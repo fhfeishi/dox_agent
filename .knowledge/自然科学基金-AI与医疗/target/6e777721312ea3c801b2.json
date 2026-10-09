@@ -2,15 +2,20 @@
   "doc_id": "6e777721312ea3c801b2",
   "version": "966f2290a31dcff7ea86",
   "source_hash": "3a3d1adb3dad9adb69d9f64ce152021ce37320e46fa68ad98cca1e1a44ef6c69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.246844+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:24.001791+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5894da667de7",
-          "name": "多组学融合AI辅助乳腺癌精准诊疗",
-          "desc": "基于多组学多模态影像、病理与基因数据，建设人工智能辅助乳腺癌精准诊疗系统并开展应用模式研究。",
+          "id": "item-9e958131f503",
+          "name": "乳腺癌多组学融合精准诊疗",
+          "desc": "乳腺癌发病率攀升",
           "evidence": [
             {
-              "quote": "乳腺癌是当前危害女性健康最主要的恶性肿瘤，近年来发病率不断攀升",
+              "quote": "乳腺癌近年来发病率不断攀升，是危害女性生命健康的主要恶性肿瘤之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 695
+                "start_char": 2810,
+                "end_char": 2841
               },
               "version": "966f2290a31dcff7ea86"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02c20cb502d1",
-          "name": "多组学信息尚未充分转化为诊疗效果提升",
-          "desc": "依托多组学信息的精准诊疗模式为乳腺癌诊疗效果提升带来希望，但需进一步建立诊疗决策新理论、新模式、新技术、新标准。",
+          "id": "item-2e17033c51ec",
+          "name": "乳腺癌早筛早诊、精准分型、预后评估与疗效评估",
+          "desc": "项目目标",
           "evidence": [
             {
-              "quote": "近年来，依托于多组学信息的肿瘤精准诊疗模式的创立，为乳腺癌诊疗效果的进一步提升带来了新的希望",
+              "quote": "在乳腺癌早筛早诊方面，发现基于超声或钼靶图像构建深度学习模型可实现对乳房结节良恶性的准确鉴别",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 697,
-                "end_char": 742
+                "start_char": 2989,
+                "end_char": 3034
               },
               "version": "966f2290a31dcff7ea86"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-969b4d6e66c9",
-          "name": "多组学融合的AI辅助诊断与风险评估系统",
-          "desc": "基于多组学多模态乳腺癌影像、病理与基因数据深度挖掘图像信息，筛选关键组学靶点，建立AI辅助的精准临床诊断系统、病理诊断系统与风险评估和疗效评估系统。",
-          "evidence": [
-            {
-              "quote": "建立人工智能辅助的精准临床诊断系统和病理诊断系统、精准风险评估和疗效评估系统，从而实现肿瘤病理、风险和疗效的可视化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 827,
-                "end_char": 883
-              },
-              "version": "966f2290a31dcff7ea86"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b9fab1561c29",
-          "name": "超声-钼靶融合模型鉴别乳腺结节AUC 0.969",
-          "desc": "基于超声模型AUC 0.927、钼靶模型AUC 0.951、融合模型AUC 0.969；基于数字病理鉴别三阴性乳腺癌四分型AUC分别达0.84、0.85、0.93和0.73；发表论文31篇。",
+          "id": "item-966545794f44",
+          "name": "超声与钼靶深度学习融合模型",
+          "desc": "良恶性鉴别",
           "evidence": [
             {
               "quote": "基于超声模型AUC：0.927；基于钼靶模型AUC：0.951；融合模型AUC：0.969",
@@ -99,44 +82,506 @@
               "version": "966f2290a31dcff7ea86"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-67e31a1f75a2",
+          "name": "数字病理与深度学习TNBC四分型模型",
+          "desc": "BLIS、IM、LAR、MES",
+          "evidence": [
+            {
+              "quote": "基于数字病理与深度学习构建了鉴别三阴性乳腺癌四分型的模型，其鉴别BLIS、IM、LAR和MES亚型的曲线下面积分别可达0.84，0.85，0.93和0.73",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3119,
+                "end_char": 3196
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4accf9b8acfa",
+          "name": "乳腺癌一站式诊疗辅助决策系统",
+          "desc": "融合多组学-影像-病理信息",
+          "evidence": [
+            {
+              "quote": "建立了可融合多组学-影像-病理信息输出患者诊断、分型、靶点、预后及新辅助化疗疗效预测的乳腺癌“一站式”诊疗辅助决策系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3383,
+                "end_char": 3441
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d96c6c552dc6",
+          "name": "多组学数据库规模",
+          "desc": "基因检测7000例，超声1500余例，钼靶1100余例，磁共振700余例",
+          "evidence": [
+            {
+              "quote": "共入组精准基因检测人数超过7000例，精准超声1500余例，精准钼靶1100余例，精准磁共振700余例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2937,
+                "end_char": 2987
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-042f2eb26042",
+          "name": "论文专利与奖励",
+          "desc": "论文31篇，专利2项，上海市科技进步一等奖",
+          "evidence": [
+            {
+              "quote": "本项目在Nat Genet、Cell Metab等期刊发表论文31篇，申请国家发明专利2项，获得上海市科技进步一等奖等科技奖励",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3454,
+                "end_char": 3516
+              },
+              "version": "966f2290a31dcff7ea86"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5894da667de7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-02c20cb502d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of clinicopathological features, multi-omics events and prognosis based on digital pathology and deep learning in HR+/ HER2- breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Hu;Hong Lv;Shen Zhao;Cai-jin Lin;Guan-hua Su;Zhi-Ming Shao",
+      "id": "out-96d1f59f44a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of clinicopathological features, multi-omics events and prognosis based on digital pathology and deep learning in HR+/ HER2- breast cancer — Jia Hu;Hong Lv;Shen Zhao;Cai-jin Lin;Guan-hua Su;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3649,
+            "end_char": 3869
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-02c20cb502d1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-969b4d6e66c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single-cell morphological and topological atlas reveals the ecosystem diversity of human breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shen Zhao;De-Pin Chen;Tong Fu;Jing-Cheng Yang;Ding Ma;Xiu-Zhi Zhu;Xiang-Xue Wang;Yi-Ping Jiao;Xi Jin;Yi Xiao;Wen-Xuan Xiao;Hu-Yunlong Zhang;Hong Lv;Anant Madabhushi;Wen-Tao Yang;Yi-Zhou Jiang;Jun Xu;Zhi-Ming Shao",
+      "id": "out-74f93b15868b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single-cell morphological and topological atlas reveals the ecosystem diversity of human breast cancer — Shen Zhao;De-Pin Chen;Tong Fu;Jing-Cheng Yang;Ding Ma;Xiu-Zhi Zhu;Xiang-Xue Wang;Yi-Ping Jiao;Xi Jin;Yi Xiao;Wen-Xuan Xiao;Hu-Yunlong Zhang;Hong Lv;Anant Madabhushi;Wen-Tao Yang;Yi-Zhou Jiang;Jun Xu;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 4197
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-969b4d6e66c9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b9fab1561c29"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Conceptualizing the complexity of ferroptosis to treat triple-negative breast cancer: theory-to-practice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hang Zhang;Fan Yang;Yi Xiao;Yi-Zhou Jiang;Zhi-Ming Shao",
+      "id": "out-df44a50496ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Conceptualizing the complexity of ferroptosis to treat triple-negative breast cancer: theory-to-practice — Hang Zhang;Fan Yang;Yi Xiao;Yi-Zhou Jiang;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4202,
+            "end_char": 4370
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computerized spermatogenesis staging (CSS) of mouse testis sections via quantitative histomorphological analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Jun;Lu Haoda;Li Haixin;Yan Chaoyang;Wang Xiangxue;Zang Min;de Rooij Dirk G.;Madabhushi Anant;Xu Eugene Yujun",
+      "id": "out-3d9b648c8da3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computerized spermatogenesis staging (CSS) of mouse testis sections via quantitative histomorphological analysis — Xu Jun;Lu Haoda;Li Haixin;Yan Chaoyang;Wang Xiangxue;Zang Min;de Rooij Dirk G.;Madabhushi Anant;Xu Eugene Yujun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4607
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Calcifications in triple-negative breast cancer: Molecular features and treatment strategies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cai-Jin Lin;Wen-Xuan Xiao;Tong Fu;Xi Jin;Zhi-Ming Shao;Gen-Hong Di",
+      "id": "out-b42762cbd25f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Calcifications in triple-negative breast cancer: Molecular features and treatment strategies — Cai-Jin Lin;Wen-Xuan Xiao;Tong Fu;Xi Jin;Zhi-Ming Shao;Gen-Hong Di",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4612,
+            "end_char": 4779
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cyclophosphamide-Free Adjuvant Chemotherapy for Ovarian Protection in Young Women With Breast Cancer: A Randomized Phase 3 Trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ke-Da Yu;Jing-Yu Ge;Xi-Yu Liu;Miao Mo;Min He;Zhi-Ming Shao",
+      "id": "out-ba2a311260f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cyclophosphamide-Free Adjuvant Chemotherapy for Ovarian Protection in Young Women With Breast Cancer: A Randomized Phase 3 Trial — Ke-Da Yu;Jing-Yu Ge;Xi-Yu Liu;Miao Mo;Min He;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4784,
+            "end_char": 4979
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺肿瘤学(第三版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邵志敏;沈镇宙;徐兵河",
+      "id": "out-c2608f2142a2",
+      "evidence": [
+        {
+          "quote": "[专著] 乳腺肿瘤学(第三版) — 邵志敏;沈镇宙;徐兵河",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4984,
+            "end_char": 5012
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genomic alterations impacting tumor-infiltrating lymphocytes and PD-L1 expression patterns in triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Wang;Xiao-Hong Ding;Cheng-Lin Liu;Yi Xiao;Ruo-Hong Shui;Yan-Ping Li;Chen Chen;Wen-Tao Yang;Suling Liu;Ce-Shi Chen;Zhi-Ming Shao;Yi-Zhou Jiang",
+      "id": "out-aab2da392e7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genomic alterations impacting tumor-infiltrating lymphocytes and PD-L1 expression patterns in triple-negative breast cancer — Han Wang;Xiao-Hong Ding;Cheng-Lin Liu;Yi Xiao;Ruo-Hong Shui;Yan-Ping Li;Chen Chen;Wen-Tao Yang;Suling Liu;Ce-Shi Chen;Zhi-Ming Shao;Yi-Zhou Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5017,
+            "end_char": 5294
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CCL19+ dendritic cells potentiate clinical benefit of anti-PD-(L)1 immunotherapy in triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song-Yang Wu;Si-Wei Zhang;Ding Ma;Yi Xiao;Yin Liu;Li Chen;Xiao-Qing Song;Xiao-Yan Ma;Ying Xu;Wen-Jun Chai;Xi Jin;Zhi-Ming Shao;Yi-Zhou Jiang",
+      "id": "out-06195abbef2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CCL19+ dendritic cells potentiate clinical benefit of anti-PD-(L)1 immunotherapy in triple-negative breast cancer — Song-Yang Wu;Si-Wei Zhang;Ding Ma;Yi Xiao;Yin Liu;Li Chen;Xiao-Qing Song;Xiao-Yan Ma;Ying Xu;Wen-Jun Chai;Xi Jin;Zhi-Ming Shao;Yi-Zhou Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5299,
+            "end_char": 5561
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国三阴性乳腺癌分子分型和精准治疗的研究和成果推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邵志敏;江一舟;李大强;吴炅;余科达;胡欣;王中华",
+      "id": "out-c070b1044494",
+      "evidence": [
+        {
+          "quote": "[奖励] 中国三阴性乳腺癌分子分型和精准治疗的研究和成果推广 — 邵志敏;江一舟;李大强;吴炅;余科达;胡欣;王中华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5567,
+            "end_char": 5624
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of axillary lymph node metastasis in triple-negative breast cancer by multi-omics analysis and an integrated model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Si-Yuan Li;Yu-Wei Li;Ding Ma;Zhi-Ming Shao",
+      "id": "out-2b5c937a61df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of axillary lymph node metastasis in triple-negative breast cancer by multi-omics analysis and an integrated model — Si-Yuan Li;Yu-Wei Li;Ding Ma;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5630,
+            "end_char": 5806
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan-Hua Su;Lin Jiang;Yi Xiao;Ren-Cheng Zheng;He Wang;Yi-Zhou Jiang;Wei-Jun Peng;Zhi-Ming Shao;Ya-Jia Gu;Chao You",
+      "id": "out-485075e66f2f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer — Guan-Hua Su;Lin Jiang;Yi Xiao;Ren-Cheng Zheng;He Wang;Yi-Zhou Jiang;Wei-Jun Peng;Zhi-Ming Shao;Ya-Jia Gu;Chao You",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5812,
+            "end_char": 6059
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Breast cancer screening and early diagnosis in Chinese women",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Ding;Yi Xiao;Miao Mo;Ying Zheng;Yi-Zhou Jiang;Zhi-Ming Shao",
+      "id": "out-bc33057bc5d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Breast cancer screening and early diagnosis in Chinese women — Rui Ding;Yi Xiao;Miao Mo;Ying Zheng;Yi-Zhou Jiang;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6065,
+            "end_char": 6197
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inhibition of ACAA1 Restrains Proliferation and Potentiates the Response to CDK4/6 Inhibitors in Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Ting Peng;Xi Jin;Xiao-En Xu;Yun-Song Yang;Ding Ma;Zhi-Ming Shao;Yi-Zhou Jiang",
+      "id": "out-51f7fa3d7f48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inhibition of ACAA1 Restrains Proliferation and Potentiates the Response to CDK4/6 Inhibitors in Triple-Negative Breast Cancer — Wen-Ting Peng;Xi Jin;Xiao-En Xu;Yun-Song Yang;Ding Ma;Zhi-Ming Shao;Yi-Zhou Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6203,
+            "end_char": 6419
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular classification of hormone receptor-positive HER2-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xi Jin;Yi-Fan Zhou;Ding Ma;Shen Zhao;Cai-Jin Lin;Yi Xiao;Tong Fu;Cheng-Lin Liu;Yi-Yu Chen;Wen-Xuan Xiao;Ya-Qing Liu;Qing-Wang Chen;Ying Yu;Le-Ming Shi;Jin-Xiu Shi;Wei Huang;John F. R. Robertson;Yi-Zhou Jiang;Zhi-Ming Shao",
+      "id": "out-73947b48c666",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular classification of hormone receptor-positive HER2-negative breast cancer — Xi Jin;Yi-Fan Zhou;Ding Ma;Shen Zhao;Cai-Jin Lin;Yi Xiao;Tong Fu;Cheng-Lin Liu;Yi-Yu Chen;Wen-Xuan Xiao;Ya-Qing Liu;Qing-Wang Chen;Ying Yu;Le-Ming Shi;Jin-Xiu Shi;Wei Huang;John F. R. Robertson;Yi-Zhou Jiang;Zhi-Ming Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6425,
+            "end_char": 6736
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic targets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan-Hua Su;Yi Xiao;Chao You;Ren-Cheng Zheng;Shen Zhao;Shi-Yun Sun;Jia-Yin Zhou;Lu-Yi Lin;He Wang;Zhi-Ming Shao;Ya-Jia Gu;Yi-Zhou Jiang",
+      "id": "out-8fbb848ccfb6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic targets — Guan-Hua Su;Yi Xiao;Chao You;Ren-Cheng Zheng;Shen Zhao;Shi-Yun Sun;Jia-Yin Zhou;Lu-Yi Lin;He Wang;Zhi-Ming Shao;Ya-Jia Gu;Yi-Zhou Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6742,
+            "end_char": 6999
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Homologous recombination deficiency and glycolysis‐related pathway in adjuvant chemotherapy for triple‐negative breast cancer: A genomic landscape and biomarker assessment of the PATTERN trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Si-Yuan Zhu;Ding Ma;Fu-Gui Ye;Zhi-Ming Shao;Ke-Da Yu",
+      "id": "out-091f3b7ede43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Homologous recombination deficiency and glycolysis‐related pathway in adjuvant chemotherapy for triple‐negative breast cancer: A genomic landscape and biomarker assessment of the PATTERN trial — Si-Yuan Zhu;Ding Ma;Fu-Gui Ye;Zhi-Ming Shao;Ke-Da Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7005,
+            "end_char": 7258
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Copy number amplification of ENSA promotes the progression of triple-negative breast cancer via cholesterol biosynthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi-Yu Chen;Jing-Yu Ge;Si-Yuan Zhu;Zhi-Ming Shao;Ke-Da Yu",
+      "id": "out-ffc7a1096dc1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Copy number amplification of ENSA promotes the progression of triple-negative breast cancer via cholesterol biosynthesis — Yi-Yu Chen;Jing-Yu Ge;Si-Yuan Zhu;Zhi-Ming Shao;Ke-Da Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7264,
+            "end_char": 7449
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep            SED‐Net            with interactive learning for multiple testicular cell types segmentation and cell composition analysis in mouse seminiferous tubules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Liang;Haoda Lu;Min Zang;Xiangxue Wang;Yiping Jiao;Tingting Zhao;Eugene Yujun Xu;Jun Xu",
+      "id": "out-fa73871d4baf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep            SED‐Net            with interactive learning for multiple testicular cell types segmentation and cell composition analysis in mouse seminiferous tubules — Shi Liang;Haoda Lu;Min Zang;Xiangxue Wang;Yiping Jiao;Tingting Zhao;Eugene Yujun Xu;Jun Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7455,
+            "end_char": 7722
+          },
+          "version": "966f2290a31dcff7ea86"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

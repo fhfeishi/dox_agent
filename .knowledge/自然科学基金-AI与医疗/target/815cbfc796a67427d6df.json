@@ -2,15 +2,20 @@
   "doc_id": "815cbfc796a67427d6df",
   "version": "5f02be727e710908a3cf",
   "source_hash": "2ac4c57227ed75757c889693c27fa5082e6729f14454b8f7ec95049fb7dc10ca",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.215602+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.849001+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1b1e6d229d2",
-          "name": "心肌梗死并发症自动识别",
-          "desc": "心肌梗死并发症死亡率高达60%，是心血管病最难治性的急危重症，早期精准诊断是守护生命健康的重难点。",
+          "id": "item-4780061d52aa",
+          "name": "心肌梗死并发症早期诊断",
+          "desc": "死亡率高达60%",
           "evidence": [
             {
               "quote": "心肌梗死并发症(MIC)死亡率高达60%，是心血管病最难治性的急危重症",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 662,
                 "end_char": 696
-              },
-              "version": "5f02be727e710908a3cf"
-            }
-          ]
-        },
-        {
-          "id": "item-887b4ba20686",
-          "name": "医学可解译MIC全流程自动诊断",
-          "desc": "建立多模态心脏医学影像智能分析框架，首次实现医学可解译的MIC全流程自动诊断及临床推广。",
-          "evidence": [
-            {
-              "quote": "本项目将建立多模态心脏医学影像智能分析框架，首次实现医学可解译的MIC全流程自动诊断及临床推广",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 996,
-                "end_char": 1042
               },
               "version": "5f02be727e710908a3cf"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f21fa0b8b725",
-          "name": "标注数据质量不高与因果推理能力不强",
-          "desc": "心脏影像标注数据质量不高、人工智能因果推理能力不强、工程与临床结合不紧密，使AI无法在MIC诊断中落地。",
+          "id": "item-af548c66362c",
+          "name": "心脏影像标注质量不高、因果推理能力不强、工程临床结合不紧",
+          "desc": "AI无法在MIC诊断中落地",
           "evidence": [
             {
-              "quote": "但由于心脏影像标注数据质量不高、人工智能因果推理能力不强、工程与临床结合不紧密，使人工智能无法在MIC诊断中应用落地",
+              "quote": "由于心脏影像标注数据质量不高、人工智能因果推理能力不强、工程与临床结合不紧密，使人工智能无法在MIC诊断中应用落地",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 736,
+                "start_char": 737,
                 "end_char": 793
-              },
-              "version": "5f02be727e710908a3cf"
-            }
-          ]
-        },
-        {
-          "id": "item-5b4640b0c192",
-          "name": "小样本非均衡数据难以有效识别",
-          "desc": "需使模型获得稳定特征表达与自主推理能力，有效识别小样本、非均衡分布的心肌梗死并发症数据。",
-          "evidence": [
-            {
-              "quote": "使模型获得了稳定的特征表达与自主推理能力，能够有效识别小样本、非均衡分布的心肌梗死并发症数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3416,
-                "end_char": 3461
               },
               "version": "5f02be727e710908a3cf"
             }
@@ -95,47 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-726fe4503d1e",
-          "name": "对抗训练与迁移学习获取分割数据",
-          "desc": "设计对抗学习算法训练生成器与判别器，并结合迁移学习获得多模态心脏影像分割数据。",
+          "id": "item-63efc22b5a6c",
+          "name": "对抗性训练多模态心脏影像分割算法",
+          "desc": "统一输入数据",
           "evidence": [
             {
-              "quote": "首先设计对抗学习算法对生成器和判别器进行训练，并结合迁移学习，获得多模态心脏影像分割数据",
+              "quote": "设计了一种基于对抗性训练的多模态心脏影像分割算法，能够从多模态影像中稳定提取心脏结构特征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3014,
-                "end_char": 3057
+                "start_char": 3231,
+                "end_char": 3274
               },
               "version": "5f02be727e710908a3cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c2dab46402cf",
-          "name": "层级嵌入知识图谱与弱监督表征",
-          "desc": "构造基于层级嵌入的语义网络得到包含多物理机制的知识图谱，并设计弱监督联系解离化表征方法构建特征提取模型。",
-          "evidence": [
-            {
-              "quote": "构造基于层级嵌入的语义网络，通过学习得到包含多物理机制的知识图谱，然后设计弱监督联系解离化表征方法构建特征提取模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3062,
-                "end_char": 3118
-              },
-              "version": "5f02be727e710908a3cf"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d2a6a051b2ef",
-          "name": "心肌梗死并发症先验知识图谱",
-          "desc": "基于发病机制、临床知识与多模态影像数据构建实体覆盖全面、语义关系丰富的高质量心肌梗死并发症先验知识图谱。",
+          "id": "item-2be5c37f9247",
+          "name": "层级知识图谱嵌入的先验知识图谱",
+          "desc": "发病机制、临床知识与多模态影像",
           "evidence": [
             {
               "quote": "基于发病机制、临床知识与多模态影像数据，利用层级知识图谱嵌入技术，构建了一个实体覆盖全面、语义关系丰富、结构清晰的高质量心肌梗死并发症先验知识图谱",
@@ -147,89 +99,283 @@
               "version": "5f02be727e710908a3cf"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-d2a78b877f97",
-          "name": "AI辅助诊断不劣于专家医师组",
-          "desc": "临床研究表明人工智能辅助诊断组不劣于由心血管专家和放射科专家组成的专家医师组。",
+          "id": "item-a306403d1a0e",
+          "name": "弱监督联系解离化表征神经网络",
+          "desc": "识别小样本非均衡MIC数据",
           "evidence": [
             {
-              "quote": "结果表明，人工智能辅助诊断组不劣于专家医师组（由心血管专家和放射科专家组成）",
+              "quote": "研发了一种基于弱监督联系解离化表征的人工神经网络方法，通过知识图谱驱动训练，使模型获得了稳定的特征表达与自主推理能力，能够有效识别小样本、非均衡分布的心肌梗死并发症数据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3489,
+                "start_char": 3378,
+                "end_char": 3461
+              },
+              "version": "5f02be727e710908a3cf"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-638c5108d834",
+          "name": "AI辅助诊断组不劣于专家医师组",
+          "desc": "临床研究比较",
+          "evidence": [
+            {
+              "quote": "人工智能辅助诊断组不劣于专家医师组（由心血管专家和放射科专家组成）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3494,
                 "end_char": 3526
               },
               "version": "5f02be727e710908a3cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-075a17191a90",
-          "name": "论文专利与获奖成果",
-          "desc": "发表论文7篇（SCI 6篇、Q1区3篇），申请发明专利5项（授权1项），并获2024广东省医学科技奖一等奖等。",
+          "id": "item-042f2eb26042",
+          "name": "论文专利与奖励",
+          "desc": "论文7篇，专利5项（授权1项），广东省医学科技奖一等奖",
           "evidence": [
             {
-              "quote": "1.发表论文7篇，其中SCI6篇，Q1区3篇，会议论文1篇。2.申请发明专利5项，其中已授权1项",
+              "quote": "发表论文7篇，其中SCI6篇，Q1区3篇，会议论文1篇。2.申请发明专利5项，其中已授权1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3564,
+                "start_char": 3566,
                 "end_char": 3611
               },
               "version": "5f02be727e710908a3cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b1b1e6d229d2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f21fa0b8b725"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多源信息的心脏病症风险监测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任鸿儒;郑楷承;高智凡;徐琳;鲁仁全",
+      "id": "out-7521911f0bd0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多源信息的心脏病症风险监测方法及系统 — 任鸿儒;郑楷承;高智凡;徐琳;鲁仁全",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3758,
+            "end_char": 3803
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f21fa0b8b725"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-726fe4503d1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic impact of in-hospital hemoglobin decline in non-overt bleeding ICU patients with acute myocardial infarction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Pengfei;Chen Meixiang;Huang Yuekang;Wang Ruixin;Chi JiaNing;Hu Jiaman;Huang Jianyu;Wu Ningxia;Cai Hua;Yuan Hui;Li Min;Xu Lin",
+      "id": "out-d993d789dda9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic impact of in-hospital hemoglobin decline in non-overt bleeding ICU patients with acute myocardial infarction — Li Pengfei;Chen Meixiang;Huang Yuekang;Wang Ruixin;Chi JiaNing;Hu Jiaman;Huang Jianyu;Wu Ningxia;Cai Hua;Yuan Hui;Li Min;Xu Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3808,
+            "end_char": 4063
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-726fe4503d1e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d2a6a051b2ef"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pinning-based neural control for multiagent systems with self-regulation intermediate event-triggered method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongru Ren;Zeyi Liu;Hongjing Liang;Hongyi Li",
+      "id": "out-e00ab44842aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pinning-based neural control for multiagent systems with self-regulation intermediate event-triggered method — Hongru Ren;Zeyi Liu;Hongjing Liang;Hongyi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4068,
+            "end_char": 4229
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c2dab46402cf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d2a78b877f97"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motion estimation based on projective information disentanglement for 3D reconstruction of rotational coronary angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiujian Liu;Si Li;Bin Wang;Lin Xu;Zhifan Gao;Guang Yang",
+      "id": "out-a3f58a1ae200",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motion estimation based on projective information disentanglement for 3D reconstruction of rotational coronary angiography — Xiujian Liu;Si Li;Bin Wang;Lin Xu;Zhifan Gao;Guang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4234,
+            "end_char": 4420
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于心电向量图的心肌梗死定位方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐琳;张献斌;李敏;黄建玉;李芳;赖莹莹;林彩龙;高宇硕",
+      "id": "out-f7ce71fc3651",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于心电向量图的心肌梗死定位方法 — 徐琳;张献斌;李敏;黄建玉;李芳;赖莹莹;林彩龙;高宇硕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4425,
+            "end_char": 4478
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a nomogram for predicting significant coronary artery stenosis in suspected non-ST-segment elevation acute coronary artery syndrome with low-to-intermediate risk stratification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meixiang Chen;Pengfei Li;Yuekang Huang;Shuang Li;Zheng Ruan;Changyu Qin;Jianyu Huang;Ruixin Wang;Zhongqiu Lin;Peng Liu;Lin Xu",
+      "id": "out-e32aee6db327",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a nomogram for predicting significant coronary artery stenosis in suspected non-ST-segment elevation acute coronary artery syndrome with low-to-intermediate risk stratification — Meixiang Chen;Pengfei Li;Yuekang Huang;Shuang Li;Zheng Ruan;Changyu Qin;Jianyu Huang;Ruixin Wang;Zhongqiu Lin;Peng Liu;Lin Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4483,
+            "end_char": 4823
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于残差驱动扩散建模的图像去噪⽅法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑楷承;徐琳;任鸿儒",
+      "id": "out-6272d796fd4f",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于残差驱动扩散建模的图像去噪⽅法 — 郑楷承;徐琳;任鸿儒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4828,
+            "end_char": 4864
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于MU-Net的ECG信号分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐琳;张浩可;吴万庆;李敏;黄建玉;张献斌;赵南南;蔡华;高宇硕;易子怡;刘鑫栋;柳毓婷",
+      "id": "out-c926412e11c5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于MU-Net的ECG信号分割方法 — 徐琳;张浩可;吴万庆;李敏;黄建玉;张献斌;赵南南;蔡华;高宇硕;易子怡;刘鑫栋;柳毓婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4869,
+            "end_char": 4940
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-level multi-type self-generated knowledge fusion for cardiac ultrasound segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengjin Yu;Shuang Li;Dhanjoo Ghista;Zhifan Gao;Heye Zhang;Javier Del Ser;Lin Xu",
+      "id": "out-827d228938b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-level multi-type self-generated knowledge fusion for cardiac ultrasound segmentation — Chengjin Yu;Shuang Li;Dhanjoo Ghista;Zhifan Gao;Heye Zhang;Javier Del Ser;Lin Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4945,
+            "end_char": 5124
+          },
+          "version": "5f02be727e710908a3cf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

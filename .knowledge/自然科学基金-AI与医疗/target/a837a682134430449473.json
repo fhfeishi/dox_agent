@@ -2,15 +2,20 @@
   "doc_id": "a837a682134430449473",
   "version": "7427dda9dda7bf456fe8",
   "source_hash": "1bedf4b0542609b472217f600618dde69f8364c9a7af7c34efb6773fedfba40b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.468705+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.335192+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9c8db0cd001f",
-          "name": "cN1-2期乳腺癌ALN pCR预测",
-          "desc": "cN1-2期乳腺癌约占我国乳腺癌50%，首选新辅助治疗，NAT后腋窝淋巴结达pCR可免除ALN清扫。",
+          "id": "item-54f0d469dfd1",
+          "name": "cN1-2期乳腺癌新辅助治疗后腋窝淋巴结pCR预测",
+          "desc": "ALN pCR可免除腋窝清扫",
           "evidence": [
             {
-              "quote": "cN1-2期乳腺癌约占我国乳腺癌50%，其首选新辅助治疗（NAT），NAT后腋窝淋巴结（ALN）达到病理完全缓解（pCR）可免除ALN清扫",
+              "quote": "本项目针对cN1-2期乳腺癌新辅助治疗（NAT）后腋窝淋巴结（ALN）病理完全缓解（pCR）预测难、假阴性率高这一临床瓶颈问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 762
-              },
-              "version": "7427dda9dda7bf456fe8"
-            }
-          ]
-        },
-        {
-          "id": "item-780efa39e9af",
-          "name": "辅助临床决策提供精准化工具",
-          "desc": "研究结果将为预测NAT后ALN的pCR提供精准化工具，辅助临床决策。",
-          "evidence": [
-            {
-              "quote": "本研究结果将为预测NAT后ALN的pCR提供精准化工具，辅助临床决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1059,
-                "end_char": 1092
+                "start_char": 2981,
+                "end_char": 3043
               },
               "version": "7427dda9dda7bf456fe8"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4e198b766e2e",
-          "name": "无创检查预测准确性不达指南要求",
-          "desc": "目前无创性检查预测准确性达不到NCCN指南要求（假阴性率<10%）。",
+          "id": "item-c60f0589eaec",
+          "name": "ALN pCR预测难、假阴性率高",
+          "desc": "临床瓶颈",
           "evidence": [
             {
-              "quote": "但目前无创性检查预测准确性达不到NCCN指南要求（假阴性率<10%）",
+              "quote": "预测难、假阴性率高这一临床瓶颈问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 764,
-                "end_char": 797
-              },
-              "version": "7427dda9dda7bf456fe8"
-            }
-          ]
-        },
-        {
-          "id": "item-ea0d7a107cbe",
-          "name": "单次单部位MRI信息不全且融合困难",
-          "desc": "存在单次、单部位MRI特征提取信息不全面、不同维度特征融合困难等挑战，导致预测准确性低。",
-          "evidence": [
-            {
-              "quote": "但存在单次、单部位MRI特征提取信息不全面、不同维度特征融合困难等挑战导致预测准确性低",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 866,
-                "end_char": 908
+                "start_char": 3027,
+                "end_char": 3043
               },
               "version": "7427dda9dda7bf456fe8"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d435921bbe3",
-          "name": "多时序MRI深度学习特征提取",
-          "desc": "基于按时序输入GRU网络的多时序原发灶及ALN MRI深度学习进行特征提取，采用Lasso回归进行特征筛选。",
-          "evidence": [
-            {
-              "quote": "基于按时序输入GRU网络的多时序原发灶及ALN MRI深度学习进行特征提取，采用Lasso回归模型进行特征筛选",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 920,
-                "end_char": 974
-              },
-              "version": "7427dda9dda7bf456fe8"
-            }
-          ]
-        },
-        {
-          "id": "item-2e276ce73a71",
-          "name": "Kronecker积多维特征融合",
-          "desc": "采用Kronecker积对MRI关键特征与临床病理分子特征进行多维特征融合与预测，并利用内外部数据验证。",
-          "evidence": [
-            {
-              "quote": "采用Kronecker积对MRI关键特征、临床病理分子特征进行多维特征融合、预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 979,
-                "end_char": 1018
-              },
-              "version": "7427dda9dda7bf456fe8"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a8bf62044156",
-          "name": "多中心标准化数据库建立",
-          "desc": "建立包含NAT全周期多时点MRI影像及临床病理信息的多中心标准化数据库（N>1000）。",
-          "evidence": [
-            {
-              "quote": "建立了包含NAT全周期（治疗前、早期、后期）多时点MRI影像及临床病理信息的多中心标准化数据库（N>1000）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3068,
-                "end_char": 3122
-              },
-              "version": "7427dda9dda7bf456fe8"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e559b03408e3",
+          "id": "item-4d7d070018bb",
           "name": "时空交互STI深度学习模型",
-          "desc": "提出基于时空交互的深度学习模型，利用Transformer和孪生网络架构有效捕捉肿瘤治疗过程中的时序动态变化与空间异质性。",
+          "desc": "Transformer与孪生网络",
           "evidence": [
             {
               "quote": "创新性地提出了基于时空交互（STI）的深度学习模型，利用Transformer和孪生网络架构，有效捕捉了肿瘤在治疗过程中的时序动态变化与空间异质性",
@@ -164,12 +82,12 @@
               "version": "7427dda9dda7bf456fe8"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-3508e4eb44b4",
-          "name": "BCAM-pCR评分AUC提升至0.90以上",
-          "desc": "开发基于MRI的肿瘤内异质性量化指标及多模态融合评分系统，显著提升pCR预测准确性，AUC提升至0.90以上，并揭示影像特征与免疫微环境的生物学关联。",
+          "id": "item-592c7683512f",
+          "name": "肿瘤内异质性ITH指标与BCAM-pCR Score",
+          "desc": "多模态融合评分系统",
           "evidence": [
             {
               "quote": "开发了基于MRI的肿瘤内异质性（ITH）量化指标及多模态融合评分系统（BCAM-pCR Score），显著提升了pCR预测的准确性（AUC提升至0.90以上）",
@@ -181,55 +99,243 @@
               "version": "7427dda9dda7bf456fe8"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-a767bcc2157e",
+          "name": "NAT全周期多时点MRI数据库",
+          "desc": "N>1000",
+          "evidence": [
+            {
+              "quote": "建立了包含NAT全周期（治疗前、早期、后期）多时点MRI影像及临床病理信息的多中心标准化数据库（N>1000）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3068,
+                "end_char": 3122
+              },
+              "version": "7427dda9dda7bf456fe8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9c8db0cd001f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4e198b766e2e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于Mamba与注意力机制的多模态图像融合方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪华登;黄天玉;蓝如师;潘细朋;朱晓妹;罗笑南",
+      "id": "out-7cf8bc95e6c9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于Mamba与注意力机制的多模态图像融合方法 — 汪华登;黄天玉;蓝如师;潘细朋;朱晓妹;罗笑南",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3428,
+            "end_char": 3483
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4e198b766e2e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7d435921bbe3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiple- parameter MRI after neoadjuvant systemic therapy combining clinicopathologic features in evaluating axillary pathologic complete response in patients with clinically node- positive breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Minglei;Xu Zeyan;Zhu Chao;Liu Yulin;Ye Yunrui;Liu Chen;Liu Zaiyi;Liang Changhong;Liu Chunling",
+      "id": "out-8fe4889a1619",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiple- parameter MRI after neoadjuvant systemic therapy combining clinicopathologic features in evaluating axillary pathologic complete response in patients with clinically node- positive breast cancer — Chen Minglei;Xu Zeyan;Zhu Chao;Liu Yulin;Ye Yunrui;Liu Chen;Liu Zaiyi;Liang Changhong;Liu Chunling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3488,
+            "end_char": 3799
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d435921bbe3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e559b03408e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of mammographic microcalcifications and MRI-enhanced lesions in the evaluation of residual disease after neoadjuvant therapy for breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu Chao;Chen Minglei;Liu Yulin;Li Pinxiong;Ye Weitao;Ye Huifen;Ye Yunrui;Liu Zaiyi;Liang Changhong;Liu Chunling",
+      "id": "out-27d72ea968cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of mammographic microcalcifications and MRI-enhanced lesions in the evaluation of residual disease after neoadjuvant therapy for breast cancer — Zhu Chao;Chen Minglei;Liu Yulin;Li Pinxiong;Ye Weitao;Ye Huifen;Ye Yunrui;Liu Zaiyi;Liang Changhong;Liu Chunling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3804,
+            "end_char": 4073
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2e276ce73a71"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3508e4eb44b4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI Response Pattern of Breast Invasive Micropapillary Carcinoma After Neoadjuvant Chemotherapy: A Matched Cohort Study With Invasive Breast Cancer of no Special Type",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Dan;Yongjia Zeng;Gao Yingying;Zeng Liujin;Yang Meichan;Lian Zhouyang;Liu Chunling",
+      "id": "out-aa1ab57c5663",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI Response Pattern of Breast Invasive Micropapillary Carcinoma After Neoadjuvant Chemotherapy: A Matched Cohort Study With Invasive Breast Cancer of no Special Type — Gao Dan;Yongjia Zeng;Gao Yingying;Zeng Liujin;Yang Meichan;Lian Zhouyang;Liu Chunling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4338
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessing Axillary Lymph Node Burden and Prognosis in cT1-T2 Stage Breast Cancer Using Machine Learning Methods: A Retrospective Dual-Institutional MRI Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liao Jiayi;Xu Zeyan;Xie Yu;Liang Yanting;Hu Qingru;Liu Chunling;Yan Lifen;Diao Wenjun;Liu Zaiyi;Wu Lei;Liang Changhong",
+      "id": "out-fc7b1eeaaa87",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessing Axillary Lymph Node Burden and Prognosis in cT1-T2 Stage Breast Cancer Using Machine Learning Methods: A Retrospective Dual-Institutional MRI Study — Liao Jiayi;Xu Zeyan;Xie Yu;Liang Yanting;Hu Qingru;Liu Chunling;Yan Lifen;Diao Wenjun;Liu Zaiyi;Wu Lei;Liang Changhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4627
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Zhenwei;Huang Xiaomei;Cheng Ziliang;Xu Zeyan;Lin Huan;Liu Chen;Chen Xiaobo;Liu Chunling;Liang Changhong;Lu Cheng;Cui Yanfen;Han Chu;Qu Jinrong;Shen Jun;Liu Zaiyi",
+      "id": "out-e4836c6f4f41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer — Shi Zhenwei;Huang Xiaomei;Cheng Ziliang;Xu Zeyan;Lin Huan;Liu Chen;Chen Xiaobo;Liu Chunling;Liang Changhong;Lu Cheng;Cui Yanfen;Han Chu;Qu Jinrong;Shen Jun;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4939
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Baseline and Early Treatment MRI Model for Predicting Complete Pathologic Response to Neoadjuvant Chemoimmunotherapy in Patients With Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Liu;Lei Wu;Chunling Liu;Xiaoyu Long;Shan Hu;Linyu Zhang;Zaiyi Liu;Changhong Liang",
+      "id": "out-c024a9e493f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Baseline and Early Treatment MRI Model for Predicting Complete Pathologic Response to Neoadjuvant Chemoimmunotherapy in Patients With Triple-Negative Breast Cancer — Bin Liu;Lei Wu;Chunling Liu;Xiaoyu Long;Shan Hu;Linyu Zhang;Zaiyi Liu;Changhong Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4944,
+            "end_char": 5201
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of an MRI spatiotemporal interaction model for early noninvasive prediction of neoadjuvant chemotherapy response in breast cancer: a multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Wenjie;Jin Chen;Kong Qingcong;Liu Chunling;Chen Siyi;Ding Shishen;Liu Bihua;Feng Zaihui;Li Ying;Dai Yi;Zhang Lei;Chen Yongxin;Han Xiaorui;Liu Shuang;Chen Dandan;Weng Zijin;Liu Weifeng;Wei Xinhua;Jiang Xinqing;Zhou Qianwei;Mao Ning;Guo Yuan",
+      "id": "out-b4baa14e4cdb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of an MRI spatiotemporal interaction model for early noninvasive prediction of neoadjuvant chemotherapy response in breast cancer: a multicentre study — Tang Wenjie;Jin Chen;Kong Qingcong;Liu Chunling;Chen Siyi;Ding Shishen;Liu Bihua;Feng Zaihui;Li Ying;Dai Yi;Zhang Lei;Chen Yongxin;Han Xiaorui;Liu Shuang;Chen Dandan;Weng Zijin;Liu Weifeng;Wei Xinhua;Jiang Xinqing;Zhou Qianwei;Mao Ning;Guo Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5206,
+            "end_char": 5636
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Abbreviated protocol of magnetic resonance imaging for breast non-mass enhancement: do we only need the first postcontrast images?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lian Zhou-yang;Chen Kai-yuan;Chen Xian-zan;Liu Hong-jun;Liu Chunling",
+      "id": "out-d61f9fc93098",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Abbreviated protocol of magnetic resonance imaging for breast non-mass enhancement: do we only need the first postcontrast images? — Lian Zhou-yang;Chen Kai-yuan;Chen Xian-zan;Liu Hong-jun;Liu Chunling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5848
+          },
+          "version": "7427dda9dda7bf456fe8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

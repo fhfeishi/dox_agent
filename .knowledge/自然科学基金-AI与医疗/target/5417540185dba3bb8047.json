@@ -2,15 +2,20 @@
   "doc_id": "5417540185dba3bb8047",
   "version": "6f48eeddc5f18befce29",
   "source_hash": "3b01ad40349345fbcd0b215495ed8fb574e4be1a4617772ea5d31160f6feb7c7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:12.202604+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.772158+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6bef93157daa",
-          "name": "单细胞转录组与系统生物学",
-          "desc": "基因调控网络的构建是系统生物学中的最核心问题之一，单细胞RNA-seq测序技术产生了大量转录组数据。",
+          "id": "item-e483aca085ab",
+          "name": "单细胞与空间转录组生物信息学",
+          "desc": "超高维度、强噪声、稀疏",
           "evidence": [
             {
-              "quote": "基因调控网络的构建是系统生物学中的最核心问题之一。热门的单细胞RNA-seq测序技术产生了大量转录组数据。",
+              "quote": "单细胞组学数据普遍存在的超高维度、强噪声、稀疏性及空间异质性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 710
-              },
-              "version": "6f48eeddc5f18befce29"
-            }
-          ]
-        },
-        {
-          "id": "item-166e2849364a",
-          "name": "空间转录组与疾病机制研究",
-          "desc": "为复杂疾病的细胞异质性解析、药物靶点发现及空间微环境研究提供计算工具。",
-          "evidence": [
-            {
-              "quote": "在实践中为复杂疾病的细胞异质性解析、药物靶点发现及空间微环境研究提供了强有力的计算工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3172,
-                "end_char": 3214
+                "start_char": 2603,
+                "end_char": 2632
               },
               "version": "6f48eeddc5f18befce29"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eec2fb569860",
-          "name": "单细胞数据高维稀疏",
-          "desc": "单细胞组学数据普遍存在超高维度、强噪声、稀疏性及空间异质性，为传统分析方法带来巨大挑战。",
+          "id": "item-4a68efaeb0de",
+          "name": "单细胞数据维度高、噪声强、稀疏",
+          "desc": "传统分析方法面临挑战",
           "evidence": [
             {
-              "quote": "研究背景源于单细胞组学数据普遍存在的超高维度、强噪声、稀疏性及空间异质性，这些特性为传统分析方法带来了巨大挑战。",
+              "quote": "这些特性为传统分析方法带来了巨大挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2597,
-                "end_char": 2652
-              },
-              "version": "6f48eeddc5f18befce29"
-            }
-          ]
-        },
-        {
-          "id": "item-09d6af3f7846",
-          "name": "网络构建准确性与对应细胞类型不足",
-          "desc": "现有网络构建算法无法构建与细胞类型对应的基因调控网络，准确性有待提高。",
-          "evidence": [
-            {
-              "quote": "弥补现有的网络构建算法无法构建与细胞类型对应的基因调控网络的不足，提高了基因调控网络构建的准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1002,
-                "end_char": 1049
+                "start_char": 2634,
+                "end_char": 2651
               },
               "version": "6f48eeddc5f18befce29"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc5044e9bcbe",
-          "name": "对比掩码自编码器模型",
-          "desc": "提出scMGC与scCMA等对比掩码自编码器模型，通过图对比学习与掩码重建机制提升单细胞聚类判别力与特征表示能力。",
+          "id": "item-11202c3e93fe",
+          "name": "对比掩码自编码器scMGC与scCMA",
+          "desc": "图对比学习与掩码重建，单细胞聚类",
           "evidence": [
             {
               "quote": "提出了scMGC与scCMA等对比掩码自编码器模型，通过图对比学习与掩码重建机制，有效提升了单细胞聚类的判别力与特征表示能力",
@@ -108,12 +81,13 @@
               },
               "version": "6f48eeddc5f18befce29"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0a0b08ce08cd",
-          "name": "空间图对比学习框架",
-          "desc": "构建通用图对比学习框架spGCLF，实现基因表达信息与空间位置坐标的深度融合。",
+          "id": "item-af4abf91351a",
+          "name": "通用图对比学习框架spGCLF",
+          "desc": "融合基因表达与空间位置",
           "evidence": [
             {
               "quote": "构建了通用图对比学习框架spGCLF，成功实现了基因表达信息与空间位置坐标的深度融合",
@@ -124,23 +98,25 @@
               },
               "version": "6f48eeddc5f18befce29"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bcbf749210d3",
-          "name": "深度自编码关联预测模型",
-          "desc": "开发基于深度自编码器的DAESTB模型与鲁棒矩阵分解模型RNMFLP，并提出scIAMC算法填补单细胞数据缺失值。",
+          "id": "item-77702e09874c",
+          "name": "DAESTB与RNMFLP关联预测模型",
+          "desc": "小分子-miRNA及circRNA-疾病关联",
           "evidence": [
             {
-              "quote": "开发了基于深度自编码器的DAESTB模型与鲁棒矩阵分解模型RNMFLP，用于精准预测小分子-miRNA及circRNA-疾病关联；同时提出scIAMC算法，有效解决了单细胞数据中的Dropout缺失值填补问题。",
+              "quote": "开发了基于深度自编码器的DAESTB模型与鲁棒矩阵分解模型RNMFLP，用于精准预测小分子-miRNA及circRNA-疾病关联",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2829,
-                "end_char": 2933
+                "end_char": 2892
               },
               "version": "6f48eeddc5f18befce29"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-941bf127839e",
-          "name": "DAESTB预测精度0.92",
-          "desc": "DAESTB模型在关联预测中的Precision达到0.92，显著优于现有主流算法。",
+          "id": "item-517382d75628",
+          "name": "DAESTB关联预测精度",
+          "desc": "Precision 0.92",
           "evidence": [
             {
               "quote": "DAESTB模型在关联预测中的Precision达到0.92，显著优于现有主流算法",
@@ -163,89 +139,134 @@
               "version": "6f48eeddc5f18befce29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d21815ebdbc5",
-          "name": "聚类指标取得SOTA",
-          "desc": "scMGC等模型在多个公开单细胞数据集上的聚类指标（ARI/NMI）均取得SOTA性能。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表论文8篇",
           "evidence": [
             {
-              "quote": "scMGC等模型在多个公开单细胞数据集上的聚类指标（ARI/NMI）均取得SOTA性能",
+              "quote": "项目执行期间，在《Briefings in Bioinformatics》（IF=11）等国际顶尖期刊及BIBM、APBC等CCF B/C类会议发表学术论文8篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3078,
-                "end_char": 3120
-              },
-              "version": "6f48eeddc5f18befce29"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-0b3056b7c2c2",
-          "name": "8篇高水平论文",
-          "desc": "在Briefings in Bioinformatics等国际顶尖期刊及BIBM、APBC等会议发表学术论文8篇。",
-          "evidence": [
-            {
-              "quote": "在《Briefings in Bioinformatics》（IF=11）等国际顶尖期刊及BIBM、APBC等CCF B/C类会议发表学术论文8篇",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2953,
+                "start_char": 2946,
                 "end_char": 3025
               },
               "version": "6f48eeddc5f18befce29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6bef93157daa"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-eec2fb569860"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RNMFLP: Predicting circRNA–disease associations based on robust nonnegative matrix factorization and label propagation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Peng;Cheng Yang;Li Huang;Xiang Chen;Xiangzheng Fu;Wei Liu",
+      "id": "out-cf03e7975691",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RNMFLP: Predicting circRNA–disease associations based on robust nonnegative matrix factorization and label propagation — Li Peng;Cheng Yang;Li Huang;Xiang Chen;Xiangzheng Fu;Wei Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3439
+          },
+          "version": "6f48eeddc5f18befce29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-09d6af3f7846"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dc5044e9bcbe"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ESR: Optimizing Gene Feature Selection for scRNA-seq Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Huang;Xiang Chen;Li Peng",
+      "id": "out-a6f3d0746b84",
+      "evidence": [
+        {
+          "quote": "[会议论文] ESR: Optimizing Gene Feature Selection for scRNA-seq Data — Tao Huang;Xiang Chen;Li Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3538
+          },
+          "version": "6f48eeddc5f18befce29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0a0b08ce08cd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d21815ebdbc5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scIAMC:Single-Cell Imputation via adaptive matrix completion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Zhang;Xiang Chen;Li Peng",
+      "id": "out-afcdfe199943",
+      "evidence": [
+        {
+          "quote": "[会议论文] scIAMC:Single-Cell Imputation via adaptive matrix completion — Shuai Zhang;Xiang Chen;Li Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3543,
+            "end_char": 3642
+          },
+          "version": "6f48eeddc5f18befce29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bcbf749210d3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0b3056b7c2c2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep graph convolution network with attention for clustering scRNA-seq data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Chen;Junnan Yu;Li Peng;Min Li",
+      "id": "out-334ccc36205d",
+      "evidence": [
+        {
+          "quote": "[会议论文] A deep graph convolution network with attention for clustering scRNA-seq data — Xiang Chen;Junnan Yu;Li Peng;Min Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3768
+          },
+          "version": "6f48eeddc5f18befce29"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

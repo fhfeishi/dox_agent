@@ -2,15 +2,20 @@
   "doc_id": "8b8edd9db2f31a15e4dc",
   "version": "9bf60f7287aae8fce9cf",
   "source_hash": "0789ec218811b3a98fad941bb4bff22dc3e68da562df547a1b536ebe2475b56f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.445339+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.344883+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7fd194e94091",
-          "name": "心理援助热线自杀危险评估",
-          "desc": "自杀是我国居民的主要死因之一，心理援助热线是常用的有效自杀预防手段。",
+          "id": "item-6810353e96af",
+          "name": "心理援助热线来电者自杀风险评估",
+          "desc": "热线是常用有效的自杀预防措施",
           "evidence": [
             {
-              "quote": "自杀是我国居民的主要死因之一，心理援助热线是常用的有效自杀预防手段",
+              "quote": "心理援助热线是我国常用且有效的自杀预防措施",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 706
-              },
-              "version": "9bf60f7287aae8fce9cf"
-            }
-          ]
-        },
-        {
-          "id": "item-a63af88a7ef9",
-          "name": "不干扰现有热线危机干预流程",
-          "desc": "项目的评估与随访过程不干扰现有的热线心理危机干预流程。",
-          "evidence": [
-            {
-              "quote": "本项目的评估与随访过程不干扰现有的热线心理危机干预流程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1040,
-                "end_char": 1066
+                "start_char": 3031,
+                "end_char": 3051
               },
               "version": "9bf60f7287aae8fce9cf"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b003f34c4b17",
-          "name": "传统量表评估可行性和准确性受限",
-          "desc": "传统量表评估自杀危险程度需逐一询问来电者较多问题，评估可行性和结果准确性受来电者配合度影响。",
-          "evidence": [
-            {
-              "quote": "在热线预防自杀实践中，用传统量表方法评估自杀危险程度需要逐一询问来电者较多问题，评估可行性和结果准确性受到来电者配合度的影响",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 708,
-                "end_char": 769
-              },
-              "version": "9bf60f7287aae8fce9cf"
-            }
-          ]
-        },
-        {
-          "id": "item-d85bf2c71b3b",
-          "name": "现有热线风险评估工具预测能力较低",
-          "desc": "此前研究表明现有热线自杀风险评估工具预测能力较低，AI能否提升评估能力存在诸多疑问。",
+          "id": "item-0e6d4200bb3f",
+          "name": "现有热线自杀风险评估工具预测能力较低",
+          "desc": "AI能否提升仍有疑问",
           "evidence": [
             {
               "quote": "此前的研究表明现有的热线自杀风险评估工具预测能力较低",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6054eeab5425",
-          "name": "深度多任务学习自动评估模型",
-          "desc": "采用人工智能技术从热线通话中实时抽取文本情感、对话问答、音频及声谱图数据，构建深度多任务学习模型自动计算来电者自杀危险程度。",
+          "id": "item-e18ab76e565f",
+          "name": "自杀风险情绪词表与负性情绪识别模型",
+          "desc": "多任务态预训练，使用北京热线录音训练",
           "evidence": [
             {
-              "quote": "采用人工智能技术从热线通话中实时抽取文本情感、对话问答、音频及声谱图数据，构建深度多任务学习模型，自动计算来电者自杀危险程度",
+              "quote": "我们首先建立了一个自杀风险评估相关的情绪词表并在语音情感特征任务中评估了该词表的信效度。而后我们还建立了一个负性情绪识别模型，并且用一个大型的数据库对该模型进行多任务态预训练",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 815,
-                "end_char": 876
+                "start_char": 3172,
+                "end_char": 3258
               },
               "version": "9bf60f7287aae8fce9cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e89e7ad520e0",
-          "name": "AI与量表串联并联结合评估",
-          "desc": "分别估算单独使用AI模型、传统量表及两者串联并联结合的预测效度。",
+          "id": "item-3781884e541d",
+          "name": "AI模型与量表串联并联结合",
+          "desc": "提高预测效力",
           "evidence": [
             {
-              "quote": "单独使用AI模型和传统量表，以及两个工具的结合方式（串联、并联）的预测效度分别估算",
+              "quote": "AI模型和量表的AUC值分别为0.62和0.65。当使用两个工具串联的方式，相应指标值为66.5%、 62.1%、63.7%、65.0%、28.5%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3554,
-                "end_char": 3594
+                "start_char": 3709,
+                "end_char": 3782
               },
               "version": "9bf60f7287aae8fce9cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,232 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7c3f63d72b6f",
-          "name": "录音训练与前瞻随访队列",
-          "desc": "用已贴自杀结局标签的1万条既往来电录音训练和调试模型，并将1500名接受模型评估的来电者纳入队列开展前瞻性随访研究。",
+          "id": "item-36e686ea0242",
+          "name": "测试集预测性能",
+          "desc": "AI模型AUC 0.62，量表AUC 0.65",
           "evidence": [
             {
-              "quote": "用已贴自杀结局标签的1万条既往来电录音训练和调试该模型",
+              "quote": "AI模型和量表的AUC值分别为0.62和0.65",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 878,
-                "end_char": 904
+                "start_char": 3709,
+                "end_char": 3732
               },
               "version": "9bf60f7287aae8fce9cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-ac313d512dad",
-          "name": "AI与量表结合提升预测效力",
-          "desc": "结果表明AI模型在心理援助热线预测自杀行为有效性尚可，AI工具与传统量表相结合可提高预测来电者未来自杀行为的效力。",
+          "id": "item-b1c5ce12fd5e",
+          "name": "热线来电录音数据集",
+          "desc": "1549个录音，745名12个月内有自杀行为",
           "evidence": [
             {
-              "quote": "本研究结果表明，AI模型在心理援助热线预测自杀行为的有效性尚可，而将AI工具与传统量表相结合可以提高预测热线来电者未来自杀行为的效力",
+              "quote": "该AI模型进一步使用北京心理援助热线的1549个来电录音进行训练。该录音中有745名来电者在来电后的12个月内有过自杀行为，而其余804名来电者无自杀行为",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3832,
-                "end_char": 3897
+                "start_char": 3260,
+                "end_char": 3336
               },
               "version": "9bf60f7287aae8fce9cf"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e0cc521fc97e",
-          "name": "自杀风险情绪词表建立",
-          "desc": "建立自杀风险评估相关的情绪词表，并在语音情感特征任务中评估该词表的信效度。",
-          "evidence": [
-            {
-              "quote": "本研究项目中我们首先建立了一个自杀风险评估相关的情绪词表并在语音情感特征任务中评估了该词表的信效度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3166,
-                "end_char": 3214
-              },
-              "version": "9bf60f7287aae8fce9cf"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7fd194e94091"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b003f34c4b17"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trends in suicide rates and the case-fatality of pesticide self-poisoning in an agricultural county in china, 2009 to 2014",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Liu;Zhichao Lan;Yi Yin;Nancy H Liu;Yongsheng Tong",
+      "id": "out-32c795c5ccc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trends in suicide rates and the case-fatality of pesticide self-poisoning in an agricultural county in china, 2009 to 2014 — Yue Liu;Zhichao Lan;Yi Yin;Nancy H Liu;Yongsheng Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3916,
+            "end_char": 4100
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b003f34c4b17"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6054eeab5425"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chinese MentalBERT: Domain-Adaptive Pre-training on Social Media for Chinese Mental Health Text Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhai W;Zhao Q;Li J;Wang Z;Wang H;Yang B;Fu G",
+      "id": "out-e8bfda4ce76f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Chinese MentalBERT: Domain-Adaptive Pre-training on Social Media for Chinese Mental Health Text Analysis — Zhai W;Zhao Q;Li J;Wang Z;Wang H;Yang B;Fu G",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4105,
+            "end_char": 4262
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6054eeab5425"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7c3f63d72b6f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Suicide attempt risks among hotline callers with and without the coronavirus disease 2019 related psychological distress: a case-control study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongsheng Tong;Kenneth R. Conner;Yi Yin;Liting Zhao;Yuehua Wang;Mengjie Wu;Cuiling Wang",
+      "id": "out-966f734a3764",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Suicide attempt risks among hotline callers with and without the coronavirus disease 2019 related psychological distress: a case-control study — Yongsheng Tong;Kenneth R. Conner;Yi Yin;Liting Zhao;Yuehua Wang;Mengjie Wu;Cuiling Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4505
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e89e7ad520e0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac313d512dad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishment and psychometric characteristics of emotional words list for suicidal risk assessment in speech emotion recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Juan Shen;Shuo Zhang;Yongsheng Tong;Xiangmin Dong;Xuelian Wang;Guanghui Fu;Liting Zhao;Mengjie Wu;Yi Yin;Yuehua Wang;Nancy H. Liu;Jianlan Wu;Jianqiang Li",
+      "id": "out-f33109e377d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishment and psychometric characteristics of emotional words list for suicidal risk assessment in speech emotion recognition — Juan Shen;Shuo Zhang;Yongsheng Tong;Xiangmin Dong;Xuelian Wang;Guanghui Fu;Liting Zhao;Mengjie Wu;Yi Yin;Yuehua Wang;Nancy H. Liu;Jianlan Wu;Jianqiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4510,
+            "end_char": 4801
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk factors for subsequent suicidal acts among 12–25-year-old high-risk callers to a suicide prevention hotline in China: a longitudinal study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianlan Wu;Ruoyun Zhang;Liting Zhao;Yi Yin;Jing Min;Yiming Ge;Yang Luo;Peiyao Li;Lingling Li;Yongsheng Tong",
+      "id": "out-1dbc8b3294aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk factors for subsequent suicidal acts among 12–25-year-old high-risk callers to a suicide prevention hotline in China: a longitudinal study — Jianlan Wu;Ruoyun Zhang;Liting Zhao;Yi Yin;Jing Min;Yiming Ge;Yang Luo;Peiyao Li;Lingling Li;Yongsheng Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4806,
+            "end_char": 5065
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "心理援助热线青少年来电者自伤行为特征及自伤后就医的影响因素",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李春玲;赵丽婷;安静;童永胜",
+      "id": "out-50433a0871ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 心理援助热线青少年来电者自伤行为特征及自伤后就医的影响因素 — 李春玲;赵丽婷;安静;童永胜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5070,
+            "end_char": 5122
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Characteristics of Suicide Attempts Registered in Urban and Rural Areas in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingling Li;Chunxu Liu;Yongsheng Tong;Jianlan Wu;Wei Zhou;Yi Yin;Mengjie Wu;Ruoyang Tong;Jing An",
+      "id": "out-a1463c4cdfc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Characteristics of Suicide Attempts Registered in Urban and Rural Areas in China — Lingling Li;Chunxu Liu;Yongsheng Tong;Jianlan Wu;Wei Zhou;Yi Yin;Mengjie Wu;Ruoyang Tong;Jing An",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5127,
+            "end_char": 5326
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Psycho-Social Factors Associated With Suicidal Ideation and Suicide Attempts Among People Living With HIV in Central West China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuelian Wang;Chuanyuan Yan;Yongsheng Tong;Juan Gao;Wei Zhou;Zhichao Lan;Jianlan Wu;Hongbing Li;Yi Yin;Yuehua Wang;Nancy H. Liu;Feng Deng",
+      "id": "out-6998d6d6f954",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Psycho-Social Factors Associated With Suicidal Ideation and Suicide Attempts Among People Living With HIV in Central West China — Xuelian Wang;Chuanyuan Yan;Yongsheng Tong;Juan Gao;Wei Zhou;Zhichao Lan;Jianlan Wu;Hongbing Li;Yi Yin;Yuehua Wang;Nancy H. Liu;Feng Deng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5331,
+            "end_char": 5617
+          },
+          "version": "9bf60f7287aae8fce9cf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

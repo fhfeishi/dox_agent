@@ -2,15 +2,20 @@
   "doc_id": "2285a22010d30d1d0604",
   "version": "3babd27f7c1dbba87222",
   "source_hash": "88fad0f9357d85c312634bde32a65bf35d77be6f3ed7e7e4c7ebb727df22e01a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.230995+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:32:41.316121+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-719a555ad199",
-          "name": "青少年儿童近视控制效果预测与预警",
-          "desc": "面向我国青少年儿童近视高发的公共卫生问题，构建集生理性眼轴预测、控制效果评估与高危预警于一体的智能模型体系。",
+          "id": "item-317cc159f3f1",
+          "name": "青少年近视防控",
+          "desc": "公共卫生问题",
           "evidence": [
             {
-              "quote": "我国的青少年儿童近视发病率逐年增高，是我国面临的一项重要的社会公共卫生问题",
+              "quote": "本项目针对我国青少年近视高发的公共卫生问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 695
+                "start_char": 2470,
+                "end_char": 2490
               },
               "version": "3babd27f7c1dbba87222"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7977829ee61a",
-          "name": "缺乏对照组且难以提前预测控制效果",
-          "desc": "由于青少年儿童近视高发，难以找到对照组长期随访生理性眼轴增长速度；临床中也难以提前预测不同控制方式的近视控制效果。",
+          "id": "item-4cb0bd75354c",
+          "name": "难以提前预测近视控制效果",
+          "desc": "不同控制方式",
           "evidence": [
             {
-              "quote": "由于我国青少年儿童近视的高发病率，难以找到对照组长期随访其正常的生理性眼轴增长速度",
+              "quote": "对于采用不同近视控制方式的青少年儿童患者，在临床中很难提前预测其近视控制效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 740,
-                "end_char": 780
+                "start_char": 782,
+                "end_char": 819
               },
               "version": "3babd27f7c1dbba87222"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1fcb14fbae27",
-          "name": "多AI算法模型预测眼轴增长与控制效果预警",
-          "desc": "基于大数据采用多种人工智能算法，完善中国青少年儿童生理性眼轴增长预测模型，并构建近视控制效果预测模型与近视快速进展高危预警模型。",
+          "id": "item-8d9a3e7c9f7e",
+          "name": "眼轴及生理性眼轴增长预测模型",
+          "desc": "高斯回归最佳",
           "evidence": [
             {
-              "quote": "基于大数据采用不同的人工智能算法，完善用于预测中国青少年儿童近视患者生理性眼轴增长的算法模型",
+              "quote": "采用多种机器学习算法构建眼轴及生理性眼轴增长预测模型，其中高斯回归模型表现最佳（R²=0.85）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 874,
-                "end_char": 919
+                "start_char": 2569,
+                "end_char": 2616
               },
               "version": "3babd27f7c1dbba87222"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6beed9f9ef75",
+          "name": "注意力混合模型HAM",
+          "desc": "近视进展风险分级预警",
+          "evidence": [
+            {
+              "quote": "构建了基于注意力机制的混合模型（HAM），实现近视进展风险分级预警",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2754,
+                "end_char": 2786
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,442 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b92c00870b28",
-          "name": "注意力混合模型近视进展分级准确率85.2%",
-          "desc": "构建基于注意力机制的混合模型（HAM）实现近视进展风险分级预警，准确率达85.2%；高斯回归模型预测生理性眼轴增长R²达0.85，AL/CRC比值识别低远视储备AUC 0.861。",
+          "id": "item-5f67c7943e84",
+          "name": "HAM风险分级预警准确率",
+          "desc": "85.2%",
           "evidence": [
             {
-              "quote": "构建了基于注意力机制的混合模型（HAM），实现近视进展风险分级预警，模型准确率达85.2%",
+              "quote": "模型准确率达85.2%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2754,
+                "start_char": 2788,
                 "end_char": 2798
               },
               "version": "3babd27f7c1dbba87222"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-1d56b2d4cec5",
+          "name": "AL/CRC比值指标",
+          "desc": "识别低远视储备，AUC=0.861",
+          "evidence": [
+            {
+              "quote": "提出AL/CRC比值可作为识别低远视储备的有效替代指标（AUC=0.861）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2642,
+                "end_char": 2679
+              },
+              "version": "3babd27f7c1dbba87222"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-719a555ad199"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7977829ee61a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diversified Segmental Defocus Optimization Lenses With and Without Atropine for Myopia Prevention A Randomized Clinical Trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Yuchang;Yang Xue;Zhou Jingwei;Chen Sitong;Li Xuewei;Deng Yuanqi;Zhang Yixuan;Li Yan;Wang Kai",
+      "id": "out-0e828fa7e883",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diversified Segmental Defocus Optimization Lenses With and Without Atropine for Myopia Prevention A Randomized Clinical Trial — Lu Yuchang;Yang Xue;Zhou Jingwei;Chen Sitong;Li Xuewei;Deng Yuanqi;Zhang Yixuan;Li Yan;Wang Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2931,
+            "end_char": 3160
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7977829ee61a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1fcb14fbae27"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Secondhand smoke (SHS) exposure is associated with an increased risk of developing myopia among nonmyopic children in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Yuchang;Li Xuewei;Deng Yuanqi;Wang Kai;Li Yan;Zhao Mingwei",
+      "id": "out-f855ab4a4314",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Secondhand smoke (SHS) exposure is associated with an increased risk of developing myopia among nonmyopic children in China — Lu Yuchang;Li Xuewei;Deng Yuanqi;Wang Kai;Li Yan;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3165,
+            "end_char": 3358
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1fcb14fbae27"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b92c00870b28"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Associations between per- and polyfluoroalkyl substance exposure and the prevalence of myopia in adolescents: the mediating role of serum albumin",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xuewei;Chen Xiaodong;Zhang Yixuan;Zheng Tonglei;Huang Lvzhen;Li Yan;Wang Kai",
+      "id": "out-bfd205739c94",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Associations between per- and polyfluoroalkyl substance exposure and the prevalence of myopia in adolescents: the mediating role of serum albumin — Li Xuewei;Chen Xiaodong;Zhang Yixuan;Zheng Tonglei;Huang Lvzhen;Li Yan;Wang Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3363,
+            "end_char": 3596
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of the long-term effects of atropine in combination with Orthokeratology and defocus incorporated multiple segment lenses for myopia control in Chinese children and adolescents",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Tao;Lu Yuchang;Li Xuewei;Zhao Heng;Wang Kai;Li Yan;Zhao Mingwei",
+      "id": "out-0972b18a020b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of the long-term effects of atropine in combination with Orthokeratology and defocus incorporated multiple segment lenses for myopia control in Chinese children and adolescents — Tang Tao;Lu Yuchang;Li Xuewei;Zhao Heng;Wang Kai;Li Yan;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3601,
+            "end_char": 3865
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of dietary inflammatory index and refractive status in American adolescents: NHANES 1999-2008",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiaodong;Li Xuewei;Xu Ningda;Li Jiarui;Guo Qianwen;Miao Heng;Wang Kai;Huang Lvzhen",
+      "id": "out-571070802d56",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of dietary inflammatory index and refractive status in American adolescents: NHANES 1999-2008 — Chen Xiaodong;Li Xuewei;Xu Ningda;Li Jiarui;Guo Qianwen;Miao Heng;Wang Kai;Huang Lvzhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3870,
+            "end_char": 4071
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of Data-Level Innovation Data-Balancing Machine Learning Models for Predicting Optimal Implantable Collamer Lens Size and Postoperative Vault",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Heng;Tang Tao;Lu Yuchang;Li Xuewei;Sun Liyuan;Chen Sitong;Ma Lu;Luo Yan;Wang Kai;Zhao Mingwei",
+      "id": "out-c902150400d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of Data-Level Innovation Data-Balancing Machine Learning Models for Predicting Optimal Implantable Collamer Lens Size and Postoperative Vault — Zhao Heng;Tang Tao;Lu Yuchang;Li Xuewei;Sun Liyuan;Chen Sitong;Ma Lu;Luo Yan;Wang Kai;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4076,
+            "end_char": 4351
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immunoregulatory cryogel-based contact lenses for bacterial keratitis prevention and treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuzhuo Fan;Fanfan Chen;Wanzhong Yuan;Yuchun Sun;Jiarui Li;Yan Li;Mingwei Zhao;Xu Zhang;Kai Wang",
+      "id": "out-76364aef4257",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immunoregulatory cryogel-based contact lenses for bacterial keratitis prevention and treatment — Yuzhuo Fan;Fanfan Chen;Wanzhong Yuan;Yuchun Sun;Jiarui Li;Yan Li;Mingwei Zhao;Xu Zhang;Kai Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4554
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Factors Influencing Ortho-K Treatment in Low Myopia and Management Approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yuzhuo;Li Xuewei;Chen Sitong;Li Yan;Zhao Mingwei;Wang Kai",
+      "id": "out-af55d51fec6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Factors Influencing Ortho-K Treatment in Low Myopia and Management Approaches — Fan Yuzhuo;Li Xuewei;Chen Sitong;Li Yan;Zhao Mingwei;Wang Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4559,
+            "end_char": 4706
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lifelong Changes in the Choroidal Thickness, Refractive Status, and Ocular Dimensions in C57BL/6J Mouse",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Tang;Chi Ren;Yi Cai;Yan Li;Kai Wang;Mingwei Zhao",
+      "id": "out-4c59a70b7a3a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lifelong Changes in the Choroidal Thickness, Refractive Status, and Ocular Dimensions in C57BL/6J Mouse — Tao Tang;Chi Ren;Yi Cai;Yan Li;Kai Wang;Mingwei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4711,
+            "end_char": 4875
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "儿童青少年近视防控数智光学新技术的临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王凯;李岩;赵明威;范玉琢;李雪薇;唐涛;徐琼;张璐;彭子苏;李予靖",
+      "id": "out-57e98a924696",
+      "evidence": [
+        {
+          "quote": "[奖励] 儿童青少年近视防控数智光学新技术的临床应用 — 王凯;李岩;赵明威;范玉琢;李雪薇;唐涛;徐琼;张璐;彭子苏;李予靖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4881,
+            "end_char": 4943
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cone Density Changes After Repeated Low-Level Red Light Treatment in Children With Myopia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liao Xinyi;Yu Jifeng;Fan Yuzhuo;Zhang Yixuan;Li Yan;Li Xuewei;Song Hongxin;Wang Kai",
+      "id": "out-7d479b07773d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cone Density Changes After Repeated Low-Level Red Light Treatment in Children With Myopia — Liao Xinyi;Yu Jifeng;Fan Yuzhuo;Zhang Yixuan;Li Yan;Li Xuewei;Song Hongxin;Wang Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4949,
+            "end_char": 5130
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using large language models to generate child-friendly education materials on myopia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xuewei;Zhang Yixuan;Zheng Tonglei;Deng Yuanqi;Lu Yuchang;Hu Jie;Chen Sitong;Li Yan;Wang Kai",
+      "id": "out-835bced416de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using large language models to generate child-friendly education materials on myopia — Li Xuewei;Zhang Yixuan;Zheng Tonglei;Deng Yuanqi;Lu Yuchang;Hu Jie;Chen Sitong;Li Yan;Wang Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5136,
+            "end_char": 5323
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-term follow-up of changes in ocular biometric parameters in orthokeratology lens wearers with relatively large-scale axial length reduction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Tao;Li Xuewei;Chen Sitong;Xu Qiong;Zhao Heng;Wang Kai;Li Yan;Zhao Mingwei",
+      "id": "out-65045a5cdfd8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-term follow-up of changes in ocular biometric parameters in orthokeratology lens wearers with relatively large-scale axial length reduction — Tang Tao;Li Xuewei;Chen Sitong;Xu Qiong;Zhao Heng;Wang Kai;Li Yan;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5329,
+            "end_char": 5560
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Real- world outcomes on myopia management efficacy of diverse segmented defocus optics (DSDO) and defocus incorporated multiple segments (DIMS) spectacle lenses in Chinese children: An initial 12- month prospective clinical study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yuzhuo;Chu Huihui;Peng Zisu;Zhou Jingwei;Ma Jiahui;Lu Yuchang;Zhao Chenxu;Wang Yanyan;Deng Qiulin;Yu Jifeng;Li Yan;Wang Kai;Zhao Mingwei",
+      "id": "out-79fdc4524e93",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Real- world outcomes on myopia management efficacy of diverse segmented defocus optics (DSDO) and defocus incorporated multiple segments (DIMS) spectacle lenses in Chinese children: An initial 12- month prospective clinical study — Fan Yuzhuo;Chu Huihui;Peng Zisu;Zhou Jingwei;Ma Jiahui;Lu Yuchang;Zhao Chenxu;Wang Yanyan;Deng Qiulin;Yu Jifeng;Li Yan;Wang Kai;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5566,
+            "end_char": 5944
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Age-specific distribution of oculometric parameters and myopia in children aged 8-12y",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Tao;Chen Si-Tong;Zhao Heng;Wang Kai;Zhao Ming-Wei",
+      "id": "out-1b55f423c1fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Age-specific distribution of oculometric parameters and myopia in children aged 8-12y — Tang Tao;Chen Si-Tong;Zhao Heng;Wang Kai;Zhao Ming-Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5950,
+            "end_char": 6098
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ocular biometric parameters in Chinese preschool children and physiological axial length growth prediction using machine learning algorithms: a retrospective cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Duanke;Zhao Heng;Tang Tao;Li Xuewei;Shi Xiaoqing;Ma Jiahui;Zhou Jingwei;Zhao Chenxu;Li Yan;Wang Kai;Zhao Mingwei",
+      "id": "out-13c9603032be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ocular biometric parameters in Chinese preschool children and physiological axial length growth prediction using machine learning algorithms: a retrospective cross-sectional study — Liu Duanke;Zhao Heng;Tang Tao;Li Xuewei;Shi Xiaoqing;Ma Jiahui;Zhou Jingwei;Zhao Chenxu;Li Yan;Wang Kai;Zhao Mingwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6104,
+            "end_char": 6408
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Morning Administration is More Effective than Evening Administration of 0.01% Atropine Eye Drops Combined with Orthokeratology for Myopia Control. Indian J Ophthalmol",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuting Xiong;Xuewei Li;Yuchang Liu;Mengyao Zhang;Yan Li;Kai Wang",
+      "id": "out-e84539c226fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Morning Administration is More Effective than Evening Administration of 0.01% Atropine Eye Drops Combined with Orthokeratology for Myopia Control. Indian J Ophthalmol — Shuting Xiong;Xuewei Li;Yuchang Liu;Mengyao Zhang;Yan Li;Kai Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6414,
+            "end_char": 6654
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weighted Zernike defocus coefficient of treatment zone is a meaningful indicator for myopia control efficacy of Ortho-K lenses.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuzhuo Fan;Yan Li;Kai Wang;Jia Qu;Mingwei Zhao",
+      "id": "out-cbda02f85b35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weighted Zernike defocus coefficient of treatment zone is a meaningful indicator for myopia control efficacy of Ortho-K lenses. — Yuzhuo Fan;Yan Li;Kai Wang;Jia Qu;Mingwei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6660,
+            "end_char": 6842
+          },
+          "version": "3babd27f7c1dbba87222"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "ca7392b81c62862910cb",
   "version": "fc198a2e0bc6c73d6415",
   "source_hash": "4105805531795ce8a95ba1e4606812c3957ca18140143baa15907bb22fd4c873",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.568270+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.303973+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f4c019833a6",
-          "name": "基于深度学习的质子CT成像",
-          "desc": "面向质子放疗精度的核心制约因素，研究从X光子CT生成临床可用合成质子CT图像的深度学习方法。",
+          "id": "item-1fc425978fa5",
+          "name": "质子治疗射程不确定性与合成质子CT",
+          "desc": "RSP精确计算",
           "evidence": [
             {
-              "quote": "质子束射程不确定性是制约质子放疗精度和疗效最重要的原因",
+              "quote": "质子治疗是利用高能质子束杀伤癌细胞的尖端肿瘤治疗技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 639,
-                "end_char": 665
+                "start_char": 2946,
+                "end_char": 2971
               },
               "version": "fc198a2e0bc6c73d6415"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-347490ac5549",
-          "name": "质子CT系统技术与工程挑战大尚未临床应用",
-          "desc": "质子CT可从根本解决射程预测难题，但开发PCT系统面临技术和工程的巨大挑战，至今尚未应用于临床治疗。",
+          "id": "item-566e69fb9a47",
+          "name": "组织相对阻止本领难以精确计算导致射程不确定",
+          "desc": "质子放疗精度",
           "evidence": [
             {
-              "quote": "然而开发PCT系统面临着技术和工程上的巨大挑战，到目前为止PCT尚未应用于临床治疗",
+              "quote": "其治疗精度和疗效主要受限于质子束射程不确定性，其中关键因素是组织相对阻止本领（Relative Stopping Power，RSP）难以精确计算",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 789
+                "start_char": 3013,
+                "end_char": 3085
               },
               "version": "fc198a2e0bc6c73d6415"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-274136d8bc49",
-          "name": "X光子CT到质子CT的跨模态非线性映射模型",
-          "desc": "在蒙特卡罗模拟基础上，用深度学习方法构造并训练从X光子CT到PCT的非线性映射神经网络，研究从线性衰减系数到相对阻止本领的跨模态变换，并进行降噪与图像合成。",
+          "id": "item-5ebd249b2239",
+          "name": "元素化体模高保真CT数据模拟",
+          "desc": "Bethe-Bloch方程计算RSP",
           "evidence": [
             {
-              "quote": "通过深度学习方法，构造和训练从X光子CT到PCT两个模态之间的非线性映射神经网络模型",
+              "quote": "提出基于元素化体模的高保真CT数据模拟方法，根据体模中各元素组成，利用Bethe-Bloch方程理论计算RSP",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 806,
-                "end_char": 847
+                "start_char": 3115,
+                "end_char": 3169
               },
               "version": "fc198a2e0bc6c73d6415"
             }
-          ]
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-ffee005c36af",
+          "name": "数据驱动与模型约束的CT降噪与合成算法",
+          "desc": "合成质子CT",
+          "evidence": [
+            {
+              "quote": "开发数据驱动与模型约束的CT图像降噪与图像合成算法，以保证模型的精度、可解释性和稳健性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3194,
+                "end_char": 3236
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-78064b75ec56",
-          "name": "合成质子CT将RSP误差由3.57%降至2.47%",
-          "desc": "基于深度学习的合成质子CT图像将RSP平均百分比相对误差由传统化学计量校准法的3.57%降低至2.47%；1%/1 mm Gamma通过率由87%提升至91%，剂量分布更接近理论最优。",
+          "id": "item-11b54806e666",
+          "name": "RSP误差降低",
+          "desc": "3.57%降至2.47%",
           "evidence": [
             {
               "quote": "基于深度学习的合成质子CT图像将RSP平均百分比相对误差由传统化学计量校准法的3.57%降低至2.47%",
@@ -99,44 +122,621 @@
               "version": "fc198a2e0bc6c73d6415"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-cb919e1ce413",
+          "name": "Gamma通过率",
+          "desc": "87%与91%",
+          "evidence": [
+            {
+              "quote": "化学计量校准法和合成质子CT图像计算所得剂量分布的1%/1 mm Gamma通过率分别为87%和91%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3446,
+                "end_char": 3496
+              },
+              "version": "fc198a2e0bc6c73d6415"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5f4c019833a6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-347490ac5549"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BSoNet: Deep Learning Solution for Optimizing Image Quality of Portable Backscatter Imaging Systems",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Linxuan;Wei Wenjia;Lu Yunfei;Zhang Wenwen;Zhang Yanlong;Zhao Wei",
+      "id": "out-48529bc591ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BSoNet: Deep Learning Solution for Optimizing Image Quality of Portable Backscatter Imaging Systems — Li Linxuan;Wei Wenjia;Lu Yunfei;Zhang Wenwen;Zhang Yanlong;Zhao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3811,
+            "end_char": 3986
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-347490ac5549"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-274136d8bc49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Data-Driven Contrast-Enhanced Dual-Energy CT Imaging via Physically Constrained Attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenwen Zhang;Tianling Lyu;Yongqing Li;Yang Chen;Baohua Sun;Wei Zhao",
+      "id": "out-d0950ca7975d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Data-Driven Contrast-Enhanced Dual-Energy CT Imaging via Physically Constrained Attention — Wenwen Zhang;Tianling Lyu;Yongqing Li;Yang Chen;Baohua Sun;Wei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3991,
+            "end_char": 4156
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-274136d8bc49"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-78064b75ec56"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Material composition characterization from computed tomography via self-supervised learning promotes pulmonary disease diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Jiachen;Zhao Wei;Liu Yuxuan;Chen Yang;Bai Xiangzhi",
+      "id": "out-adc26775393e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Material composition characterization from computed tomography via self-supervised learning promotes pulmonary disease diagnosis — Liu Jiachen;Zhao Wei;Liu Yuxuan;Chen Yang;Bai Xiangzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4352
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "WUTrans: Whole-spectrum unilateral-query-secured transformer for 4D CBCT reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Peng;Lyu Tianling;Lyu Fei;Zhang Yudong;Yang Chunfeng;Zhu Wentao;Gao Zhiqiang;Wu Zhan;Chen Yang;Zhao Wei;Coatrieux Jean Louis",
+      "id": "out-a2924591dbee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] WUTrans: Whole-spectrum unilateral-query-secured transformer for 4D CBCT reconstruction — Yuan Peng;Lyu Tianling;Lyu Fei;Zhang Yudong;Yang Chunfeng;Zhu Wentao;Gao Zhiqiang;Wu Zhan;Chen Yang;Zhao Wei;Coatrieux Jean Louis",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4357,
+            "end_char": 4582
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Data-Driven Multi-keV Virtual Monoenergetic Images Generation From Single-Energy CT Guided by Image-Domain Material Decomposition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenwen Zhang;Zihan Chai;Yantao Niu;Zhijie Zhang;Linxuan Li;Baohua Sun;Junfang Xian;Wei Zhao",
+      "id": "out-61b7b8634f41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Data-Driven Multi-keV Virtual Monoenergetic Images Generation From Single-Energy CT Guided by Image-Domain Material Decomposition — Wenwen Zhang;Zihan Chai;Yantao Niu;Zhijie Zhang;Linxuan Li;Baohua Sun;Junfang Xian;Wei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4816
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习算法的质子CT成像方法、装置和电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维;耿立升",
+      "id": "out-d295a490a358",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习算法的质子CT成像方法、装置和电子设备 — 赵维;耿立升",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 4859
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "双能 CT 成像模型的训练方法、系统、应用方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维;张文文;张高龙",
+      "id": "out-e84f8d9834cb",
+      "evidence": [
+        {
+          "quote": "[专利] 双能 CT 成像模型的训练方法、系统、应用方法及系统 — 赵维;张文文;张高龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4864,
+            "end_char": 4907
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An upfront patient selection strategy based on personalized data-driven computed tomography generation for deep inspiration breath-hold in breast radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yunxiang;Zhang Yihang;Chen Si-Ye;Lv Tie;Liu Yuxiang;Fang Hui;Jing Hao;Lu Ning-Ning;Zhai Yi-Rui;Song Yong-Wen;Liu Yue-Ping;Zhang Wen-Wen;Qi Shu-Nan;Tang Yuan;Chen Bo;Li Ye-Xiong;Men Kuo;Chen Xinyuan;Zhao Wei;Wang Shu-Lian",
+      "id": "out-a7a1961a6bf4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An upfront patient selection strategy based on personalized data-driven computed tomography generation for deep inspiration breath-hold in breast radiotherapy — Wang Yunxiang;Zhang Yihang;Chen Si-Ye;Lv Tie;Liu Yuxiang;Fang Hui;Jing Hao;Lu Ning-Ning;Zhai Yi-Rui;Song Yong-Wen;Liu Yue-Ping;Zhang Wen-Wen;Qi Shu-Nan;Tang Yuan;Chen Bo;Li Ye-Xiong;Men Kuo;Chen Xinyuan;Zhao Wei;Wang Shu-Lian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4912,
+            "end_char": 5304
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Robust Auto-Planning Algorithm Based Artificial Intelligence for Pencil Beam Scanning Proton Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Y. Liu;X. Shang;Z.R. Li;N. Li;Z. Wang;C. Fang;Y. Zou;W. Zhao;X. Le;Q. Zhou;G. Zhang;S. Xu",
+      "id": "out-23b433c88719",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Robust Auto-Planning Algorithm Based Artificial Intelligence for Pencil Beam Scanning Proton Therapy — Y. Liu;X. Shang;Z.R. Li;N. Li;Z. Wang;C. Fang;Y. Zou;W. Zhao;X. Le;Q. Zhou;G. Zhang;S. Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5309,
+            "end_char": 5509
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-Source CBCT for Large FoV Imaging Under Short-Scan Trajectories",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lyu Tianling;Zhang Xusheng;Zhong Xinyun;Wu Zhan;Xi Yan;Zhao Wei;Chen Yang;Feng Yuanjing;Zhu Wentao",
+      "id": "out-e3cfb2298a95",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-Source CBCT for Large FoV Imaging Under Short-Scan Trajectories — Lyu Tianling;Zhang Xusheng;Zhong Xinyun;Wu Zhan;Xi Yan;Zhao Wei;Chen Yang;Feng Yuanjing;Zhu Wentao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5515,
+            "end_char": 5690
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-Mamba: A hybrid convolutional State Space Model for low-dose CT denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Linxuan;Wei Wenjia;Yang Luyao;Zhang Wenwen;Dong Jiashu;Liu Yahua;Huang Hongshi;Zhao Wei",
+      "id": "out-5d15380b35f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-Mamba: A hybrid convolutional State Space Model for low-dose CT denoising — Li Linxuan;Wei Wenjia;Yang Luyao;Zhang Wenwen;Dong Jiashu;Liu Yahua;Huang Hongshi;Zhao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5696,
+            "end_char": 5871
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2023首都工程创新实践优秀案例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维",
+      "id": "out-227513173d4f",
+      "evidence": [
+        {
+          "quote": "[奖励] 2023首都工程创新实践优秀案例 — 赵维",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5877,
+            "end_char": 5902
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative assessment of adaptive radiotherapy for prostate cancer using deep learning: Bladder dose as a decision criterion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luping Wan;Yin Jiang;Xianggao Zhu;Hao Wu;Wei Zhao",
+      "id": "out-d9972f46c301",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative assessment of adaptive radiotherapy for prostate cancer using deep learning: Bladder dose as a decision criterion — Luping Wan;Yin Jiang;Xianggao Zhu;Hao Wu;Wei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5908,
+            "end_char": 6092
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning From Multimodal Privileged Information to Predict Radiation Dose for Glioblastoma Radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhijie Zhang;Wenwen Zhang;Yantao Niu;Baohua Sun;Suqing Tian;Lihua Zhu;Wei Zhao",
+      "id": "out-27a708e4bc77",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning From Multimodal Privileged Information to Predict Radiation Dose for Glioblastoma Radiotherapy — Zhijie Zhang;Wenwen Zhang;Yantao Niu;Baohua Sun;Suqing Tian;Lihua Zhu;Wei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6098,
+            "end_char": 6288
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A qualitative study of improving megavoltage computed tomography image quality and maintaining dose accuracy using cycleGAN-based image synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Tie;Xie Chuanbin;Zhang Yihang;Liu Yaoying;Zhang Gaolong;Qu Baolin;Zhao Wei;Xu Shouping",
+      "id": "out-2c333de6a03e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A qualitative study of improving megavoltage computed tomography image quality and maintaining dose accuracy using cycleGAN-based image synthesis — Lv Tie;Xie Chuanbin;Zhang Yihang;Liu Yaoying;Zhang Gaolong;Qu Baolin;Zhao Wei;Xu Shouping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6294,
+            "end_char": 6537
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Principles and Practice of Image-Guided Abdominal Radiation Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Zhao;Lei Xing",
+      "id": "out-73b5ec0ad57e",
+      "evidence": [
+        {
+          "quote": "[专著] Principles and Practice of Image-Guided Abdominal Radiation Therapy — Wei Zhao;Lei Xing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6543,
+            "end_char": 6634
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence in Radiation Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei ZHAO",
+      "id": "out-ad89746ea8cd",
+      "evidence": [
+        {
+          "quote": "[专著] Artificial Intelligence in Radiation Therapy — Wei ZHAO",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6640,
+            "end_char": 6699
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "单/双能图像映射模型训练方法、系统及应用方法、系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维;张文文;耿立升",
+      "id": "out-1066d4beae96",
+      "evidence": [
+        {
+          "quote": "[专利] 单/双能图像映射模型训练方法、系统及应用方法、系统 — 赵维;张文文;耿立升",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6705,
+            "end_char": 6747
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Highly Integrated High-Resolution Cone Beam CT System for Intraoperative Imaging in Minimally Invasive Cochlear Surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Peng;Zhang Shaobo;Wang Xianghong;Xu Lei;Jiang Yin;Niu Tianye;Zhao Wei",
+      "id": "out-43919a59fe57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Highly Integrated High-Resolution Cone Beam CT System for Intraoperative Imaging in Minimally Invasive Cochlear Surgery — Jin Peng;Zhang Shaobo;Wang Xianghong;Xu Lei;Jiang Yin;Niu Tianye;Zhao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6753,
+            "end_char": 6956
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pixel-by-pixel correction of beam hardening artifacts by bowtie filter in fan-beam CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Ping;Zhao Wei;Shimomura Taisei;Li Kai-Wen;Haga Akihiro;Geng Li-Sheng",
+      "id": "out-b3ceafebd83e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pixel-by-pixel correction of beam hardening artifacts by bowtie filter in fan-beam CT — Ye Ping;Zhao Wei;Shimomura Taisei;Li Kai-Wen;Haga Akihiro;Geng Li-Sheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6962,
+            "end_char": 7127
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimizing DIBH Patient Selection in Left Breast Cancer Radiotherapy: A Rapid Screening Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tie Lyu;Yihang Zhang;Jiashu Dong;Yunxiang Wang;Siye Chen;Shulian Wang;Xinyuan Chen;Wei Zhao",
+      "id": "out-668cb4b8686d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimizing DIBH Patient Selection in Left Breast Cancer Radiotherapy: A Rapid Screening Strategy — Tie Lyu;Yihang Zhang;Jiashu Dong;Yunxiang Wang;Siye Chen;Shulian Wang;Xinyuan Chen;Wei Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7133,
+            "end_char": 7329
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An indirect estimation of x-ray spectrum via convolutional neural network and transmission measurement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Tie;Xu Shouping;Wang Yanxin;Zhang Gaolong;Niu Tianye;Liu Chunyan;Sun Baohua;Geng Lisheng;Zhu Lihua;Zhao Wei",
+      "id": "out-a253a7e6b541",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An indirect estimation of x-ray spectrum via convolutional neural network and transmission measurement — Lv Tie;Xu Shouping;Wang Yanxin;Zhang Gaolong;Niu Tianye;Liu Chunyan;Sun Baohua;Geng Lisheng;Zhu Lihua;Zhao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7335,
+            "end_char": 7556
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical Image Synthesis: Methods and Clinical pplication",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei ZHAO",
+      "id": "out-a201a50f1a7e",
+      "evidence": [
+        {
+          "quote": "[专著] Medical Image Synthesis: Methods and Clinical pplication — Wei ZHAO",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7562,
+            "end_char": 7633
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NIFA: Low-dose CT imaging via noise intensity field aware networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Zihui;Wang Yanxin;Tian Suqing;Li Xiaomeng;Zhao Wei",
+      "id": "out-d8aa753de6a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NIFA: Low-dose CT imaging via noise intensity field aware networks — Zhao Zihui;Wang Yanxin;Tian Suqing;Li Xiaomeng;Zhao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7639,
+            "end_char": 7769
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "在线定量锥束CT无损检测装备研发与产业化",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维;李林轩;王孝龙;董佳舒",
+      "id": "out-e87ac792d216",
+      "evidence": [
+        {
+          "quote": "[奖励] 在线定量锥束CT无损检测装备研发与产业化 — 赵维;李林轩;王孝龙;董佳舒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7775,
+            "end_char": 7816
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像处理技术学",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维;金超",
+      "id": "out-71158aa3cb90",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像处理技术学 — 赵维;金超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7822,
+            "end_char": 7843
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HICOOL全球创业大赛三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵维",
+      "id": "out-14c817d1a255",
+      "evidence": [
+        {
+          "quote": "[奖励] HICOOL全球创业大赛三等奖 — 赵维",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7849,
+            "end_char": 7873
+          },
+          "version": "fc198a2e0bc6c73d6415"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 27,
+    "listed": 27,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

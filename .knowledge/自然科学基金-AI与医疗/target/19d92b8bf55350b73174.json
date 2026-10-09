@@ -2,15 +2,20 @@
   "doc_id": "19d92b8bf55350b73174",
   "version": "3e221f71a4f42316a758",
   "source_hash": "7f4ed49837157670c85678ec46a3d1655f999ac7a22a6d2995e30e9505b76c5f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.894679+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 12
+  },
+  "generated_at": "2026-10-09T11:49:28.665642+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 12,
+      "total": 12,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-23457790f897",
           "name": "宫颈癌近距离放疗实时精准导航",
-          "desc": "面向宫颈癌近距离放疗，研究基于多模态影像融合的实时精准导航与剂量计算系统。",
+          "desc": "影像引导近距离放疗",
           "evidence": [
             {
               "quote": "宫颈癌是发展中国家女性癌症死亡的第二大原因，近年来发病率有年轻化的趋势",
@@ -41,16 +46,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da47f3998c96",
-          "name": "超声图像质量较差",
-          "desc": "超声引导近距离放疗虽不增加额外辐射剂量，但超声图像质量较差，需解决跨模态分割与弹性配准难题。",
+          "id": "item-38cd8703e6db",
+          "name": "临床放疗对高精度、自动化、全流程质控的迫切需求",
+          "desc": "经验式盲插",
           "evidence": [
             {
-              "quote": "本项目针对超声图像质量较差的问题",
+              "quote": "本项目紧扣宫颈癌近距离放疗领域对“高精度、自动化、全流程质控”的迫切临床需求",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "16074dba042c699ef2e5187da23e01dbf0350a15"
+                "page": 2,
+                "chunk_id": "f0cb83ef66c3433d39a40f3a6f0d9b4f4d46a327"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ]
+        },
+        {
+          "id": "item-3643cc202fc8",
+          "name": "插植针伪影干扰CTV自动分割",
+          "desc": "靶区描绘准确性",
+          "evidence": [
+            {
+              "quote": "团队为提高宫颈癌间质性近距离放射治疗的靶点描绘准确性，特别关注了插植针的位置信息对深度学习模型性能的影响",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "687657f953267b37eb310a2dd571c5b60c169be2"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ]
+        },
+        {
+          "id": "item-edb79526d3f7",
+          "name": "边界不清的靶区分割",
+          "desc": "CTV在CT上边界模糊且对比度低",
+          "evidence": [
+            {
+              "quote": "在宫颈癌近距离放疗中，临床靶区(CTV)在CT影像上常表现为边界模糊、解剖结构复杂，且与周围正常组织的灰度对比度较低，给自动勾画带来较大困难",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 19,
+                "chunk_id": "debb443157d8b0403e1081813419c56c81afa413"
               },
               "version": "3e221f71a4f42316a758"
             }
@@ -63,34 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e87b9436f5f",
-          "name": "注意力对抗网络跨模态分割与弹性配准",
-          "desc": "提出基于注意力机制对抗网络的跨模态自适应分割算法实现宫颈癌计划靶区自动勾画，并以深度残差U型卷积神经网络解决经直肠超声与CT/MRI间不连续、大变形、跨模态的弹性配准问题。",
+          "id": "item-96e7df2cfd1a",
+          "name": "拓扑学约束与多尺度上下文感知分割",
+          "desc": "危及器官与肿瘤靶区精准分割",
           "evidence": [
             {
-              "quote": "提出了一种基于注意力机制对抗网络的跨模态自适应分割算法，能够有机融合不同模态影像的特征和形状信息，提高多模态集成的影像分割精度，实现宫颈癌计划靶区的自动勾画",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "16074dba042c699ef2e5187da23e01dbf0350a15"
-              },
-              "version": "3e221f71a4f42316a758"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6358c56c08ac",
-          "name": "构建两个高质量宫颈癌放疗影像数据库",
-          "desc": "突破传统算法局限，构建2个互不重叠、互为补充的高质量宫颈癌放疗影像数据库（覆盖175位患者完整放疗周期数据），研发多模态融合治疗计划与导航质控一体化系统；发表论文17篇，申请发明专利11项（授权4项），获2024年吴文俊人工智能技术发明二等奖。",
-          "evidence": [
-            {
-              "quote": "构建2个互不重叠、互为补充的高质量宫颈癌放疗影像数据库（覆盖175位患者完整放疗周期数据）",
+              "quote": "引入拓扑学约束、多尺度上下文感知等机制，实现危及器官、肿瘤靶区的精准分割与定位",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -99,44 +114,446 @@
               "version": "3e221f71a4f42316a758"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5aee0e42db85",
+          "name": "深度学习弹性配准技术体系",
+          "desc": "施源器插植形变",
+          "evidence": [
+            {
+              "quote": "针对施源器插植引发的形变难题，建立深度学习弹性配准技术体系，有效提升放疗剂量预测精度",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f0cb83ef66c3433d39a40f3a6f0d9b4f4d46a327"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-55b3ad9d598a",
+          "name": "多模态融合宫颈癌治疗计划与导航质控一体化系统",
+          "desc": "靶区勾画、治疗计划、导航质控",
+          "evidence": [
+            {
+              "quote": "研发多模态融合的宫颈癌治疗计划与导航质控一体化系统，集成靶区勾画、治疗计划制定、导航质控等全流程功能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f0cb83ef66c3433d39a40f3a6f0d9b4f4d46a327"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dc881f2d1e05",
+          "name": "MR-US配准网络",
+          "desc": "曼巴卷积与特征感知融合",
+          "evidence": [
+            {
+              "quote": "研发基于曼巴卷积与特征感知融合的",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "2af44da5fcbe1274c40c455a043dc4723d2d1f98"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0c10ac0cb286",
+          "name": "ARGNet十字绣结构插植针引导肿瘤分割模型",
+          "desc": "十字绣模块、空间反向注意模块、不确定区域模块",
+          "evidence": [
+            {
+              "quote": "创新性的设计了一种十字绣结构的深度学习模型ARGNet（图3），旨在优化临床靶体积（CTV）的自动分割",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "687657f953267b37eb310a2dd571c5b60c169be2"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-69740880d6d9",
+          "name": "改进M-Net模型Mnet_IM",
+          "desc": "渐进式融合与深度监督",
+          "evidence": [
+            {
+              "quote": "提出一种改进的 M-Net 模型（Mnet IM，图6）以实现 CTV的精准自动分割",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "034d7315bbbf0ccae21948a0980bf668a881e223"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3527ec09e1b3",
+          "name": "DFCNet双路径特征融合与跨层一致性约束分割网络",
+          "desc": "2.5D切片组输入，双流层内特征编码模块DAE与跨层一致性约束模块CSC",
+          "evidence": [
+            {
+              "quote": "团队提出了一种基于双路径融合与跨层一致性约束的深度学习分割网络（DFCNet）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "43ff2bf4f8aa7ffb92d3afead3cdfacba9ff8a71"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f570a75bd4c0",
+          "name": "BCTVNet三维CNN-Transformer混合分割框架",
+          "desc": "3D CLAHE对比度增强",
+          "evidence": [
+            {
+              "quote": "团队提出了一种融合卷积神经网络与 Transformer 结构的三维混合分割框架 BCTVNet（见图10）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 19,
+                "chunk_id": "debb443157d8b0403e1081813419c56c81afa413"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-68be94e744a9",
+          "name": "解剖学引导的纹理增强AGTA",
+          "desc": "单源域泛化，分水岭分区与贝塞尔变换",
+          "evidence": [
+            {
+              "quote": "团队还针对宫颈肿瘤分割提出解剖学引导的纹理增强（AGTA）方法",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 21,
+                "chunk_id": "58266f61dabc82720f1671495efca46aca0e615f"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6ebcabbb1b95",
+          "name": "风格增强领域适应跨模态宫颈肿瘤分割模型",
+          "desc": "DANN基础上的风格增强",
+          "evidence": [
+            {
+              "quote": "在基于域对抗神经网络（DANN）的模型中引入一种风格增强方法，以提高共享分割网络的泛化性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 27548,
+                "end_char": 27592
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2a50e65f411d",
+          "name": "ConSSM-GAN对比学习与状态空间模型增强的MRI到CT转换",
+          "desc": "对比感知模块与Mamba全局增强模块",
+          "evidence": [
+            {
+              "quote": "提出了一种对比学习与状态空间模型增强的生成对抗网络（ConSSM-GAN，图15）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 22,
+                "chunk_id": "93bdcecb5fbea7c66e0583b3488cf6440538c0b3"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f73b7e69aade",
+          "name": "多尺度信息融合三维危及器官分割网络",
+          "desc": "膀胱、直肠、结肠，与18种模型比较",
+          "evidence": [
+            {
+              "quote": "该结构引入了多尺度信息融合模块，在编码与解码过程中协同利用浅层特征中的边缘和纹理信息与深层特征中的语义上下文",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 25,
+                "chunk_id": "9172770658ec57a197d4c70afcfe96599b107aed"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f920644a8636",
+          "name": "管状结构感知深度卷积网络",
+          "desc": "管状滤波器与nnU-Net",
+          "evidence": [
+            {
+              "quote": "团队开发了一种新的管状结构感知深度卷积网络方法，将管状解剖形态学特征整合到宫颈癌OAR的结肠、小肠和直肠模型中",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 26,
+                "chunk_id": "2079da2f57052d7e48fda1edeb25f1bf6f76b468"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c664c3de094b",
+          "name": "ASA-Net中心线与距离图双任务学习分割",
+          "desc": "结直肠",
+          "evidence": [
+            {
+              "quote": "团队提出融合中心线与距离图信息的宫颈癌管状危及器官分割方法ASA-Net（图20）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 27,
+                "chunk_id": "6113a8bd6f877481e3b9f31bc445c16836cf790e"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e77487a13869",
+          "name": "HCFMorph混合贡献感知融合多时相配准网络",
+          "desc": "协同Mamba-卷积编码器、变形引导层级细化、贡献感知特征融合",
+          "evidence": [
+            {
+              "quote": "提出了一种混合贡献感知融合的多时相医学影像配准网络（HCFMorph，图24）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 32,
+                "chunk_id": "f5087cc573d0854424efae3063c10f330559a9e4"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a6ef79d824c9",
+          "name": "SynMSE即插即用多模态配准评价器",
+          "desc": "解耦空间与分布信息，Structure-Constrained CycleGAN",
+          "evidence": [
+            {
+              "quote": "团队提出了一种全新的解耦空间与分布信息的无监督配准框架",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 35,
+                "chunk_id": "ceca1db24965e1e9c0caa0dc0286bca30c93461f"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3e864d471af9",
+          "name": "宫颈癌放疗影像数据库",
+          "desc": "2个数据库，175位患者",
+          "evidence": [
+            {
+              "quote": "同步构建2个互不重叠、互为补充的高质量宫颈癌放疗影像数据库（覆盖175位患者完整放疗周期数据）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f0cb83ef66c3433d39a40f3a6f0d9b4f4d46a327"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-042f2eb26042",
+          "name": "论文专利与奖励",
+          "desc": "论文17篇，发明专利11项（授权4项），吴文俊人工智能技术发明二等奖",
+          "evidence": [
+            {
+              "quote": "共发表学术论文17篇；申请发明专利11项，其中获得授权4项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "1f678acd6903a97fdf9c61a6b13566ea721a0037"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-93826d803af4",
+          "name": "ARGNet分割性能",
+          "desc": "Dice 0.87，95HD 11.73mm",
+          "evidence": [
+            {
+              "quote": "ARGNet 表现出色，达到 0.87的 Dice系数，显示出预测和实际分割之间的强烈重叠。此外，95%的Hausdorff距离（95HD）评分为11.73mm",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "381905cd936eb3ce0c0ff780d395b72e7e490345"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-006562db5e83",
+          "name": "Mnet_IM数据集验证",
+          "desc": "53例患者5438张CT",
+          "evidence": [
+            {
+              "quote": "研究以53例宫颈癌患者的 5438 张 CT 影像为数据集",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "034d7315bbbf0ccae21948a0980bf668a881e223"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f01c8d16a4bf",
+          "name": "DFCNet验证",
+          "desc": "97例432个CT序列，优于U-Net、nnUnet、SegMamba",
+          "evidence": [
+            {
+              "quote": "在97例共432个宫颈癌内放 CT 序列上进行实验并验证（图 9），该方案在 ASD、HD95 及 VD 等关键指标上均优于U-Net、nnUnet及 SegMamba等主流模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 17,
+                "chunk_id": "a5efddb564c107b7172d3aa2b880a6c7f78dd1ca"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-d1391036a98f",
+          "name": "合成CT骨结构分割Dice提升",
+          "desc": "较CycleGAN提升6个点",
+          "evidence": [
+            {
+              "quote": "ConSSM-GAN 生成的合成 CT 在骨结构分割的 Dice系数上较CycleGAN提升了6个点（表6）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 23,
+                "chunk_id": "7b89c5cc656bb226ce62292488ce5aec5e56a2e7"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-204447543558",
+          "name": "ASA-Net分割性能",
+          "desc": "DSC 71.69%，HD95 6.69",
+          "evidence": [
+            {
+              "quote": "DSC为71.69%，IoU 为 56.33%，分别较 ResUNet 提高了 4.07%、4.68%, HD95 为 6.69，较 ResUNet下降2.43（表9）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 28,
+                "chunk_id": "0eafea5baeb5d6f6a84dcab48a21134d7b461793"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-161f611a7942",
+          "name": "HCFMorph验证",
+          "desc": "97例432个CT序列，优于VoxelMorph、TransMorph",
+          "evidence": [
+            {
+              "quote": "HCFMorph在保证极低雅可比折叠率的同时，显著提升了直肠、膀胱等软组织大形变区域的配准精度",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 33,
+                "chunk_id": "07a24970f5123e81cad98c2e63206acb474a2eea"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7933e51252ee",
+          "name": "SynMSE宫颈肿瘤配准",
+          "desc": "DSC 60.98%与60.45%，HD95 14.45mm与14.51mm",
+          "evidence": [
+            {
+              "quote": "我们提出的配准评价器在宫颈肿瘤数据上实现了双向60.98%和 60.45%的 DSC 指标以及 14.45mm 和 14.51mm 的 HD95 指标",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 38,
+                "chunk_id": "2136f01d79ab7e37c8acd080f1520c9dc331d527"
+              },
+              "version": "3e221f71a4f42316a758"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-23457790f897"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-da47f3998c96"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-da47f3998c96"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2e87b9436f5f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2e87b9436f5f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6358c56c08ac"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "28f3dc710f53571c51a5",
   "version": "77cd908804abf69b86df",
   "source_hash": "0bc6f0c5ef9220227b0c1b483873b3250e547787384a9ca24b89a9ebf3552561",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.869061+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 11
+  },
+  "generated_at": "2026-10-09T11:50:16.060513+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 11,
+      "total": 11,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-976ed33663e7",
-          "name": "癫痫致痫与非致痫网络AI特征研究",
-          "desc": "面向难治性癫痫精准治疗，定量研究致痫与非致痫网络的AI特征差异及分子机制。",
+          "id": "item-4824e959856a",
+          "name": "难治性癫痫致痫网络精准评估",
+          "desc": "MRI阴性及需SEEG评估的复杂病例",
           "evidence": [
             {
-              "quote": "难治性癫痫是一种致残率和致死率高，严重威胁患者身心健康的重大疾病",
+              "quote": "项目针对药物难治性癫痫，特别是MRI阴性及需立体脑电图评估的复杂病例，整合无创影像、有创电生理、高通量组学与人工智能技术",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "0e276f8625fe8ad182743c7dc931a9635aca4574"
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
               },
               "version": "77cd908804abf69b86df"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3c0068cdab8d",
-          "name": "明确致痫灶与非致痫灶是精准治疗关键",
-          "desc": "寻找并明确难治性癫痫的致痫灶和非致痫灶，对于施行精准治疗、改善预后非常关键。",
+          "id": "item-4ad47507c865",
+          "name": "传统局灶性病灶观念的局限",
+          "desc": "致痫网络与非致痫网络难以区分",
           "evidence": [
             {
-              "quote": "寻找并明确其致痫灶和非致痫灶，对于施行精准治疗，改善预后非常关键",
+              "quote": "旨在突破传统局灶性病灶观念的局限，从全脑网络视角深入解析癫痫的发病机制",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "0e276f8625fe8ad182743c7dc931a9635aca4574"
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ]
+        },
+        {
+          "id": "item-6d1229039eb8",
+          "name": "MRI阴性癫痫与隐匿FCD病灶难显影",
+          "desc": "网络难界定靶点难论证",
+          "evidence": [
+            {
+              "quote": "难治性癫痫的术前评估长期处在“病灶难显影、网络难界定、靶点难论证”的三重约束下",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 8,
+                "chunk_id": "3fd9e666f098338eec36c61dd0adad2d20a9abe0"
               },
               "version": "77cd908804abf69b86df"
             }
@@ -63,20 +84,208 @@
       "state": "has",
       "items": [
         {
-          "id": "item-69fdb61a1cf2",
-          "name": "无创影像AI特征与连接组学定量分析",
-          "desc": "定量研究致痫与非致痫网络在影像学无创数据中的AI特征差异，探明其连接组学特征并以量化数字差异为表型阐明遗传分子机制。",
+          "id": "item-bb7f972be321",
+          "name": "TBFEF-Net与LEM-UNet隐匿病灶识别模型",
+          "desc": "皮层发育不良",
           "evidence": [
             {
-              "quote": "①定量研究致痫与非致痫网络在影像学无创数据中的AI特征差异",
+              "quote": "开发TBFEF-Net、LEM-UNet等AI模型以自动识别皮层发育不良等隐匿病灶",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "0e276f8625fe8ad182743c7dc931a9635aca4574"
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
               },
               "version": "77cd908804abf69b86df"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9e8e8d600a7a",
+          "name": "SEEG自适应时空图神经网络",
+          "desc": "致痫区与网络枢纽定量定位",
+          "evidence": [
+            {
+              "quote": "利用立体脑电图构建自适应时空图神经网络模型，实现致痫区与网络枢纽的智能定量定位",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-10faff8b5157",
+          "name": "单细胞空间转录组分析",
+          "desc": "动物模型与人类脑标本",
+          "evidence": [
+            {
+              "quote": "通过动物模型与人类脑标本的单细胞空间转录组分析，揭示胶质炎症、MAPK/mTOR信号通路异常在致痫网络形成中的作用",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-3f4ac847b106",
+          "name": "皮层表面定量映射CBM",
+          "desc": "18F-FDG PET/MR，健康对照z转换",
+          "evidence": [
+            {
+              "quote": "CBM 路线的关键创新在于:将 18F-FDG PET/MR 的代谢信息在皮层表面空间进行统计映射，并以健康对照为参照对患者SUVR进行z转换，输出具有直观解释性的异常强度分布（z-map）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "efb1f95bfe5676973eb2eb841e92ce6e0f1e3456"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-13466289bcc4",
+          "name": "TBFEF-Net三分支FCD分割框架",
+          "desc": "MAP形态学分支与小波分支，跨分支特征增强CFE与多特征融合MFF",
+          "evidence": [
+            {
+              "quote": "TBFEF-Net 提出了“多源表征 + 三分支 UNet 骨干 + 跨分支特征增强/多特征融合”的系统性方案",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "cea028c5074364d40da2468b6067a66f3d7f7a20"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7de7b6074fc1",
+          "name": "Adaptive ST GNN自适应时空图神经网络",
+          "desc": "自适应图构建与图时序分析，弱监督反推SOZ通道重要性",
+          "evidence": [
+            {
+              "quote": "通过“自适应图构建模块+图时序分析模块”的组合，从原始SEEG中动态生成随时间变化的功能网络（attribute graph sequence）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "4c38fe895e3505357ab0571fde65f96f45f6dc32"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-23960d204319",
+          "name": "SEEG引导三维射频热凝RF-TC",
+          "desc": "高密度局灶立体电极阵列，斜行与正交电极，岛叶癫痫",
+          "evidence": [
+            {
+              "quote": "本部分以“SEEG-3D射频热凝（RF-TC）”为核心，形成了从电极植入策略到热凝参数、再到疗效与安全性评估的完整技术路线",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "1cd05e45247cce35957e2db37184a9941b9570db"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3362f4b3baf7",
+          "name": "响应性神经刺激RNS闭环调控",
+          "desc": "首次人体试验，ChiCTR2200055247",
+          "evidence": [
+            {
+              "quote": "该RNS研究为前瞻性、多中心、首次人体（first-in-man）试验，注册号为ChiCTR2200055247，共纳入10例难治性癫痫患者",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 17,
+                "chunk_id": "ef9592d70a63885a853aac03cf720f1163845584"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6c5ab34955d4",
+          "name": "个体扰动结构协方差网络IDSCN",
+          "desc": "mTLE-HS，海马-丘脑-基底节-皮层环路",
+          "evidence": [
+            {
+              "quote": "个体扰动结构协方差网络（Individual Perturbation Structural Covariance Network,IDSCN）这一具有方法学特色的成果，用于揭示mTLE-HS在宏观结构网络层面的系统性重构",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 20,
+                "chunk_id": "ef5b25f6e76b33472fa887eb024cda333a87049c"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5b344a2cab38",
+          "name": "白质BOLD功能连接与SEEG功能连接及DSI结构连接联合分析",
+          "desc": "16例SEEG患者",
+          "evidence": [
+            {
+              "quote": "研究对象为需要SEEG定位的药物难治癫痫患者（共16例）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 19,
+                "chunk_id": "2c413b6d00ea25af0a95c6d23e835b722fdf79a3"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-711acb68437a",
+          "name": "成像转录组学",
+          "desc": "AHBA脑全局基因表达，abagen与空间置换检验",
+          "evidence": [
+            {
+              "quote": "成像转录组分析将参考Allen Human Brain Atlas（AHBA）的脑全局基因表达数据，借助标准化工具链（如abagen）完成与分区模板的匹配",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 23,
+                "chunk_id": "5dbf1dde20facf7322d5259f4127b582da43b0ac"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-c133f14af4e1",
+          "name": "单细胞RNA、单核RNA与Xenium空间转录组联合",
+          "desc": "TLE海马",
+          "evidence": [
+            {
+              "quote": "相关研究采用单细胞 RNA 测序、单核 RNA 测序以及 Xenium 空间转录组联合策略",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 23,
+                "chunk_id": "5dbf1dde20facf7322d5259f4127b582da43b0ac"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -85,9 +294,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f450d8db4a3",
-          "name": "构建个体化结构连接组数据库与单核测序",
-          "desc": "成功构建局灶性皮层发育不良个体化结构连接组数据库并完成超过50万个细胞核的单核测序分析；开发TBFEF-Net、LEM-UNet等AI模型用于隐匿病灶检测与致痫区定位；发表论文16篇。",
+          "id": "item-77c4b843f025",
+          "name": "FCD个体化结构连接组数据库",
+          "desc": "超过50万个细胞核单核测序",
           "evidence": [
             {
               "quote": "成功构建了局灶性皮层发育不良的个体化结构连接组数据库，并完成了超过50万个细胞核的单核测序分析",
@@ -99,44 +308,130 @@
               "version": "77cd908804abf69b86df"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "国际高水平期刊论文16篇",
+          "evidence": [
+            {
+              "quote": "在国际高水平期刊如Nature Communications、eBioMedicine等发表系列论文16篇",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "6d004993fb2e5bea482a87327554f56188245471"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f7fb06a88a99",
+          "name": "考核指标兑现",
+          "desc": "SCI论文24篇，专利1项，博士后4名，博士12名，硕士14名",
+          "evidence": [
+            {
+              "quote": "已发表SCI论文24篇，覆盖无创/有创评估算法、连接组学机制、组学与分子机制、以及临床转化等方向；申请专利1项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "d76a24cea80c618fd8e0abc849bd3f3dbcbc8617"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-26390c9abfdc",
+          "name": "CBM与手术靶区一致性",
+          "desc": "一致性87.10%，敏感度0.871，特异度0.909，Kappa 0.717",
+          "evidence": [
+            {
+              "quote": "CBM与手术靶区的一致性达到87.10%，在敏感度、特异度与 Kappa一致性方面分别达到 0.871、0.909与 0.717（p<0.001）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "efb1f95bfe5676973eb2eb841e92ce6e0f1e3456"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-bd2ec00b310e",
+          "name": "SEEG-3D RF-TC治疗岛叶癫痫",
+          "desc": "10例，70%无发作，总体应答率100%",
+          "evidence": [
+            {
+              "quote": "队列共纳入10例岛叶癫痫患者（2017年2月至2021年4月），随访12-63个月；在结局方面，70%达到无发作（seizure-free），且总体应答率为100%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "3fbfcbc177125758361505f275eef5c525bb40fe"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ead4d48958e3",
+          "name": "RNS首次人体试验",
+          "desc": "植入成功率100%，发作频率平均下降61.1%±31.1%",
+          "evidence": [
+            {
+              "quote": "该研究显示植入成功率为100%，未发生严重不良事件；随访超过3个月的患者癫痫发作频率平均下降61.1%±31.1%，总体平均降幅为42.1%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 17,
+                "chunk_id": "ef9592d70a63885a853aac03cf720f1163845584"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ba5379a35599",
+          "name": "基因-谱系-网络整合图谱",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "本项目在研究实施层面形成了面向致痫网络异质性的“基因一谱系一网络”整合图谱",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 25,
+                "chunk_id": "659cfd6de4d2531c79c6de7b33874afa4c642983"
+              },
+              "version": "77cd908804abf69b86df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-976ed33663e7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3c0068cdab8d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3c0068cdab8d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-69fdb61a1cf2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-69fdb61a1cf2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3f450d8db4a3"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

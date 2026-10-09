@@ -2,15 +2,20 @@
   "doc_id": "6b44ee15e4bc5b7c5dbd",
   "version": "d557192549c064bbe103",
   "source_hash": "4bd114ac4664cb01969c9e6465e4f268feae1232480df56826d1a1eb58718df6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.509872+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.913493+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c1b3caaa757d",
-          "name": "病理图像域泛化研究",
-          "desc": "制片手法不同、脱色和切片扫描仪差异导致的域偏移会直接影响算法准确性，解决域偏移对数字病理智能判读具有重要意义。",
+          "id": "item-c20a4ba2c307",
+          "name": "病理图像域泛化",
+          "desc": "跨器官、跨制片染色流程与跨扫描仪",
           "evidence": [
             {
-              "quote": "在计算机辅助病理诊断的研究中，由于制片手法不同、脱色和切片扫描仪的差异导致的域偏移问题会直接影响算法的准确性",
+              "quote": "数字病理模型在跨器官、跨制片染色流程与跨扫描仪应用时，常因形态学差异与成像差异叠加而产生显著域偏移",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 643,
-                "end_char": 696
-              },
-              "version": "d557192549c064bbe103"
-            }
-          ]
-        },
-        {
-          "id": "item-06a2782a4621",
-          "name": "推动病理AI跨中心可部署",
-          "desc": "研究为病理人工智能在跨中心、跨设备场景下的稳定泛化与工程可部署提供方法支撑与实证依据。",
-          "evidence": [
-            {
-              "quote": "为病理人工智能在跨中心、跨设备场景下的稳定泛化与工程可部署提供了方法支撑与实证依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3021,
-                "end_char": 3061
+                "start_char": 2384,
+                "end_char": 2432
               },
               "version": "d557192549c064bbe103"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fdd2bf2f59be",
-          "name": "跨器官跨扫描仪域偏移致泛化退化",
-          "desc": "数字病理模型跨器官、跨制片染色流程与跨扫描仪应用时，形态学差异与成像差异叠加产生显著域偏移，导致分割检测任务性能波动与泛化退化。",
+          "id": "item-7d304d5b6194",
+          "name": "域偏移导致分割检测性能波动与泛化退化",
+          "desc": "真实临床场景",
           "evidence": [
             {
-              "quote": "数字病理模型在跨器官、跨制片染色流程与跨扫描仪应用时，常因形态学差异与成像差异叠加而产生显著域偏移，进而导致分割、检测等关键任务在真实临床场景中出现性能波动与泛化退化",
+              "quote": "进而导致分割、检测等关键任务在真实临床场景中出现性能波动与泛化退化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2384,
+                "start_char": 2434,
                 "end_char": 2466
-              },
-              "version": "d557192549c064bbe103"
-            }
-          ]
-        },
-        {
-          "id": "item-b01f4fbeab10",
-          "name": "IHC膜分割标注昂贵且噪声复杂",
-          "desc": "免疫组化膜分割标注昂贵且噪声复杂，需无监督方法实现稳健建模。",
-          "evidence": [
-            {
-              "quote": "针对 IHC 膜分割标注昂贵且噪声复杂的问题，提出“伪配对数据生成—小波频域分解—域对齐”的无监督分割方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2907,
-                "end_char": 2959
               },
               "version": "d557192549c064bbe103"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a78849b83eb6",
-          "name": "双重先验生成连续域图像集",
-          "desc": "通过双重先验知识生成连续域图像集，为域泛化提供数据基础。",
-          "evidence": [
-            {
-              "quote": "通过双重先验知识生成连续域图像集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 795
-              },
-              "version": "d557192549c064bbe103"
-            }
-          ]
-        },
-        {
-          "id": "item-e97c63a5fcea",
-          "name": "自监督学习与热插拔域泛化模块",
-          "desc": "设计针对病理图像的自监督学习任务模型，最终构建热插拔域泛化模块的病理辅助诊断模型用于分割与分类。",
-          "evidence": [
-            {
-              "quote": "针对病理图像特点，设计针对病理图像的自监督学习任务模型；最终构建一个热插拔域泛化模块的病理辅助诊断模型用于病理图像的分割与分类",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 859
-              },
-              "version": "d557192549c064bbe103"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bf4ce531ffbf",
-          "name": "COSAS挑战赛域泛化基准",
-          "desc": "在MICCAI 2024举办COSAS挑战赛并形成总结论文，构建跨器官、跨扫描仪腺癌分割域泛化基准，系统分析30支团队方案。",
-          "evidence": [
-            {
-              "quote": "项目在 MICCAI 2024 举办 COSAS 挑战赛并形成总结论文（投稿中），构建跨器官、跨扫描仪腺癌分割域泛化基准，系统分析 30 支团队方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2566,
-                "end_char": 2639
-              },
-              "version": "d557192549c064bbe103"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d348ad2fec26",
-          "name": "染色与图像质量参数化迁移机制",
-          "desc": "联合建模染色外观与图像质量的参数化迁移机制，通过染色分解与梯度分布约束实现可控颜色与质量调节。",
+          "id": "item-27a1c963e265",
+          "name": "染色外观与图像质量参数化迁移机制",
+          "desc": "染色分解与梯度分布约束",
           "evidence": [
             {
               "quote": "联合建模“染色外观与图像质量”的参数化迁移机制，通过染色分解与梯度分布约束实现可控颜色/质量调节",
@@ -164,72 +82,365 @@
               "version": "d557192549c064bbe103"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-90848b410225",
-          "name": "测试时风格迁移框架",
-          "desc": "提出基于病理基础模型的测试时风格迁移框架，通过双向风格映射与风格基多样化扩展可覆盖的风格空间。",
+          "id": "item-9d87c3e90332",
+          "name": "病理基础模型测试时风格迁移框架",
+          "desc": "双向风格映射与风格基多样化",
           "evidence": [
             {
-              "quote": "面向跨器官泛化，提出基于病理基础模型的测试时风格迁移框架，通过双向风格映射与风格基多样化（正交约束）扩展可覆盖的风格空间",
+              "quote": "提出基于病理基础模型的测试时风格迁移框架，通过双向风格映射与风格基多样化（正交约束）扩展可覆盖的风格空间",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2827,
+                "start_char": 2835,
                 "end_char": 2886
               },
               "version": "d557192549c064bbe103"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6c2f97110fc8",
+          "name": "IHC膜分割无监督方法",
+          "desc": "伪配对数据生成—小波频域分解—域对齐",
+          "evidence": [
+            {
+              "quote": "提出“伪配对数据生成—小波频域分解—域对齐”的无监督分割方法，实现对膜边缘与纹理细节的稳健建模",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2930,
+                "end_char": 2976
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-055fd4343b2c",
+          "name": "COSAS挑战赛与域泛化基准",
+          "desc": "MICCAI 2024，分析30支团队方案",
+          "evidence": [
+            {
+              "quote": "项目在 MICCAI 2024 举办 COSAS 挑战赛并形成总结论文（投稿中），构建跨器官、跨扫描仪腺癌分割域泛化基准，系统分析 30 支团队方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2566,
+                "end_char": 2639
+              },
+              "version": "d557192549c064bbe103"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c1b3caaa757d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fdd2bf2f59be"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DuAT: Dual-Aggregation Transformer Network for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Feilong;Xu Zhongxing;Huang Qiming;Wang Jinfeng;Hou Xianxu;Su Jionglong;Liu Jingxin",
+      "id": "out-3d7356d75c87",
+      "evidence": [
+        {
+          "quote": "[会议论文] DuAT: Dual-Aggregation Transformer Network for Medical Image Segmentation — Tang Feilong;Xu Zhongxing;Huang Qiming;Wang Jinfeng;Hou Xianxu;Su Jionglong;Liu Jingxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3081,
+            "end_char": 3250
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fdd2bf2f59be"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a78849b83eb6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pseudo Training Data Generation for Unsupervised Cell Membrane Segmentation in Immunohistochemistry Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Xi;Wang Tianyang;Kan Yanjia;Wang Yunze;Chen Silin;Zhou Albert;Hou Xianxu;Liu Jingxin",
+      "id": "out-75cc6b606119",
+      "evidence": [
+        {
+          "quote": "[会议论文] Pseudo Training Data Generation for Unsupervised Cell Membrane Segmentation in Immunohistochemistry Images — Long Xi;Wang Tianyang;Kan Yanjia;Wang Yunze;Chen Silin;Zhou Albert;Hou Xianxu;Liu Jingxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3255,
+            "end_char": 3459
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a78849b83eb6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d348ad2fec26"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosting FFPE-to-HE Virtual Staining with Cell Semantics from Pretrained Segmentation Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yihuang;Peng Qiong;Du Zhicheng;Zhang Guojun;Wu Huisi;Liu Jingxin;Chen Hao;Wang Liansheng",
+      "id": "out-1f904f635982",
+      "evidence": [
+        {
+          "quote": "[会议论文] Boosting FFPE-to-HE Virtual Staining with Cell Semantics from Pretrained Segmentation Model — Hu Yihuang;Peng Qiong;Du Zhicheng;Zhang Guojun;Wu Huisi;Liu Jingxin;Chen Hao;Wang Liansheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3464,
+            "end_char": 3655
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e97c63a5fcea"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-90848b410225"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "On the Federated Learning Framework for Cooperative Perception",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenrong Zhang;Jianan Liu;Xi Zhou;Tao Huang;Qing-Long Han;Jingxin Liu;Hongbin Liu",
+      "id": "out-6c6cbbaf4fda",
+      "evidence": [
+        {
+          "quote": "[期刊论文] On the Federated Learning Framework for Cooperative Perception — Zhenrong Zhang;Jianan Liu;Xi Zhou;Tao Huang;Qing-Long Han;Jingxin Liu;Hongbin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3660,
+            "end_char": 3812
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SCPMan: Shape context and prior constrained multi-scale attention network for pancreatic segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Leilei Zeng;Xuechen Li;Xinquan Yang;Wenting Chen;Jingxin Liu;Linlin Shen;Song Wu",
+      "id": "out-4924b905fa02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SCPMan: Shape context and prior constrained multi-scale attention network for pancreatic segmentation — Leilei Zeng;Xuechen Li;Xinquan Yang;Wenting Chen;Jingxin Liu;Linlin Shen;Song Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 4007
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADVANCING CROSS-ORGAN DOMAIN GENERALIZATION WITH TEST-TIME STYLE TRANSFER AND DIVERSITY ENHANCEMENT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Biwen;Long Xi;Yang Wanrong;Liu Ruochen;Tian Yi;Zheng Yalin;Liu Jingxin",
+      "id": "out-3cb16ebdf389",
+      "evidence": [
+        {
+          "quote": "[会议论文] ADVANCING CROSS-ORGAN DOMAIN GENERALIZATION WITH TEST-TIME STYLE TRANSFER AND DIVERSITY ENHANCEMENT — Meng Biwen;Long Xi;Yang Wanrong;Liu Ruochen;Tian Yi;Zheng Yalin;Liu Jingxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4012,
+            "end_char": 4195
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced Corneal Endothelial Cell Segmentation via Frequency-Selected Residual Fourier Diffusion Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyang Wang;Xiaofei Nan;Yunze Wang;Yuhang Yan;Zhenkai Gao;Jingxin Liu",
+      "id": "out-0364740a4431",
+      "evidence": [
+        {
+          "quote": "[会议论文] Enhanced Corneal Endothelial Cell Segmentation via Frequency-Selected Residual Fourier Diffusion Models — Tianyang Wang;Xiaofei Nan;Yunze Wang;Yuhang Yan;Zhenkai Gao;Jingxin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4383
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SALIENCE-ENHANCED NETWORK FOR METAL ARTIFACT REDUCTION IN CT IMAGING",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jiahao;Su Yingxue;Zhu Keying;Basarah Michelle Avery;Zhong Yiheng;Liu Yangchuan;Zhao Yuxuan;Stefanidis Angelos;Liu Jingxin",
+      "id": "out-4aa0f15233bf",
+      "evidence": [
+        {
+          "quote": "[会议论文] SALIENCE-ENHANCED NETWORK FOR METAL ARTIFACT REDUCTION IN CT IMAGING — Wang Jiahao;Su Yingxue;Zhu Keying;Basarah Michelle Avery;Zhong Yiheng;Liu Yangchuan;Zhao Yuxuan;Stefanidis Angelos;Liu Jingxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4591
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DOMAIN ADAPTATION OF DIGITAL PATHOLOGY IMAGES USING JOINT STAIN COLOR AND IMAGE QUALITY CONSTRAINTS",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Xi;Liu Jingxin;Hou Xianxu",
+      "id": "out-568b5c741010",
+      "evidence": [
+        {
+          "quote": "[会议论文] DOMAIN ADAPTATION OF DIGITAL PATHOLOGY IMAGES USING JOINT STAIN COLOR AND IMAGE QUALITY CONSTRAINTS — Long Xi;Liu Jingxin;Hou Xianxu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4596,
+            "end_char": 4734
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CellMamba: Adaptive Mamba for Accurate and Efficient Cell Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruochen Liu;Yi Tian;Jiahao Wang;Hongbin Liu;Xianxu Hou;Jingxin Liu",
+      "id": "out-ad759cc6b6e9",
+      "evidence": [
+        {
+          "quote": "[会议论文] CellMamba: Adaptive Mamba for Accurate and Efficient Cell Detection — Ruochen Liu;Yi Tian;Jiahao Wang;Hongbin Liu;Xianxu Hou;Jingxin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4740,
+            "end_char": 4882
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图像的染色转移方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘净心;武芳宇",
+      "id": "out-2660a85ae02e",
+      "evidence": [
+        {
+          "quote": "[专利] 图像的染色转移方法、装置、设备及介质 — 刘净心;武芳宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4888,
+            "end_char": 4920
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MULTI-STAGE TRANSFORMER FUSION FOR EFFICIENT INTRACRANIAL HEMORRHAGE SUBTYPE CLASSIFICATION",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yunze;Stefanidis Angelos;Liu Jingxin",
+      "id": "out-8f5664abce45",
+      "evidence": [
+        {
+          "quote": "[会议论文] MULTI-STAGE TRANSFORMER FUSION FOR EFFICIENT INTRACRANIAL HEMORRHAGE SUBTYPE CLASSIFICATION — Wang Yunze;Stefanidis Angelos;Liu Jingxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 5067
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Triplet-branch network with contrastive prior-knowledge embedding for disease grading",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuexiang Li;Yanping Wang;Guang Lin;Yawen Huang;Jingxin Liu;Yi Lin;Dong Wei;Qirui Zhang;Kai Ma;Zhiqiang Zhang;Guangming Lu;Yefeng Zheng",
+      "id": "out-02fb46c4ef41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Triplet-branch network with contrastive prior-knowledge embedding for disease grading — Yuexiang Li;Yanping Wang;Guang Lin;Yawen Huang;Jingxin Liu;Yi Lin;Dong Wei;Qirui Zhang;Kai Ma;Zhiqiang Zhang;Guangming Lu;Yefeng Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5073,
+            "end_char": 5301
+          },
+          "version": "d557192549c064bbe103"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

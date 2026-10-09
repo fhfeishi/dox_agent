@@ -2,15 +2,20 @@
   "doc_id": "17d1ab630c50b6e5cd0e",
   "version": "084aec8d692ecff86133",
   "source_hash": "86a08fd6cdd8e5af1f96d7d73e1ea735ae9f7cb582463a3a4d847588789cf1f5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.761407+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:29:25.039086+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2eba0975a0b0",
-          "name": "智能化肺结节辅助诊断",
-          "desc": "基于胸部CT影像研究肺结节检测、分割与恶性度预测的AI技术，支撑肺癌早期诊断与筛查。",
+          "id": "item-4bc6c77f9d2f",
+          "name": "肺结节计算机辅助诊断与肺癌筛查",
+          "desc": "肺结节CAD是肺癌筛查关键技术",
           "evidence": [
             {
-              "quote": "无论在中国，还是在全世界，肺癌都是发病人数和死亡人数最多的恶性癌症",
+              "quote": "基于胸部CT影像的肺结节计算机辅助诊断是肺癌筛查中的一项关键技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 645,
-                "end_char": 677
+                "start_char": 4090,
+                "end_char": 4121
               },
               "version": "084aec8d692ecff86133"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-40b73d03da29",
-          "name": "肺结节对比度低形态复杂难以准确诊断",
-          "desc": "CT影像中肺结节与周围组织对比度很低，形态复杂且多粘附于气管、血管和胸膜，难以准确检测、描述和诊断，可用研究数据有限。",
+          "id": "item-a3bfd6ef9a12",
+          "name": "CT对比度低、结节形态复杂、数据有限",
+          "desc": "现有辅助诊断技术效果不理想",
           "evidence": [
             {
-              "quote": "由于CT影像中肺结节与周围组织的对比度很低，且肺结节形态复杂，又大多粘附于气管、血管和胸膜上，难以准确检测、描述和诊断，再加上可供研究的数据非常有限",
+              "quote": "由于CT影像中肺结节与周围组织的对比度很低，且肺结节形态复杂，又大多粘附于气管、血管和胸膜上，难以准确检测、描述和诊断，再加上可供研究的数据非常有限，使得现有辅助诊断技术难以取得令人满意的效果",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 4142,
-                "end_char": 4215
+                "end_char": 4237
               },
               "version": "084aec8d692ecff86133"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-faf79ef9edd3",
-          "name": "迁移注意分割与知识图谱小样本学习",
-          "desc": "提出基于迁移注意机制的深度语义分割网络用于肺结节检测、基于对抗样本与弱模型结构迁移的深度自主学习模型用于良恶性分类、基于知识图谱的小样本深度学习模型用于恶性度预测及深度持续学习模型。",
+          "id": "item-7af4f6b20a17",
+          "name": "领域知识引入的肺结节良恶性分类",
+          "desc": "将诊断相关领域知识引入深度学习",
           "evidence": [
             {
-              "quote": "包括用于肺结节检测的基于迁移注意机制的深度语义分割网络、用于良恶性分类的基于对抗样本和弱模型结构迁移的深度自主学习模型、用于恶性度预测的基于知识图谱的小样本深度学习模型",
+              "quote": "其中率先将与诊断相关的领域知识引入基于深度学习的肺结节良恶性分类",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 879,
-                "end_char": 962
+                "start_char": 4418,
+                "end_char": 4449
               },
               "version": "084aec8d692ecff86133"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9969a01247e5",
+          "name": "不确定性标注的恶性度预测算法",
+          "desc": "有效使用不确定性标注信息",
+          "evidence": [
+            {
+              "quote": "可以有效使用不确定性标注信息的恶性度预测算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4604,
+                "end_char": 4625
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-06c5d65393ee",
+          "name": "分割与分类相互引导的多任务弱监督学习",
+          "desc": "多任务弱监督",
+          "evidence": [
+            {
+              "quote": "分割与分类相互引导的多任务弱监督学习技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4380,
+                "end_char": 4399
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,21 +125,80 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d61ba37b7278",
-          "name": "LIDC-IDRI良恶性分类取得最优性能",
-          "desc": "肺结节检测在LUNA16数据集上取得与排名第三方法相当的性能，良恶性分类在最大数据集LIDC-IDRI上取得当时最优性能；获授权发明专利6项、发表论文68篇（含顶级期刊/会议50余篇）。",
+          "id": "item-24d193f94c49",
+          "name": "LIDC-IDRI良恶性分类性能",
+          "desc": "取得目前最好的性能",
           "evidence": [
             {
-              "quote": "针对肺结节检测任务，在LUNA16数据集上取得了与目前排名第三的方法相当的性能；针对良恶性分类任务，在最大的数据集LIDC-IDRI上取得了目前最好的性能",
+              "quote": "针对良恶性分类任务，在最大的数据集LIDC-IDRI上取得了目前最好的性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4497,
+                "start_char": 4537,
                 "end_char": 4573
               },
               "version": "084aec8d692ecff86133"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e9f257b00b49",
+          "name": "LUNA16检测性能",
+          "desc": "与排名第三方法相当",
+          "evidence": [
+            {
+              "quote": "针对肺结节检测任务，在LUNA16数据集上取得了与目前排名第三的方法相当的性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4497,
+                "end_char": 4535
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2e034440268b",
+          "name": "发明专利",
+          "desc": "授权6项，另申请7项",
+          "evidence": [
+            {
+              "quote": "课题组累计获授权发明专利6项，另申请发明专利7项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4637,
+                "end_char": 4660
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表论文68篇",
+          "evidence": [
+            {
+              "quote": "在图像处理和机器学习领域著名国际学术期刊和会议发表论文68 篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4662,
+                "end_char": 4692
+              },
+              "version": "084aec8d692ecff86133"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +206,1098 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-2eba0975a0b0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-40b73d03da29"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-40b73d03da29"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-faf79ef9edd3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-faf79ef9edd3"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-d61ba37b7278"
+        "item_id": "item-24d193f94c49"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7af4f6b20a17"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对良恶性分类任务，在最大的数据集LIDC-IDRI上取得了目前最好的性能",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4537,
+            "end_char": 4573
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of Medical Images in the Biomedical Literature by Jointly Using Deep and Handcrafted Visual Features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jianpeng;Xia Yong;Xie Yutong;Fulham Michael;Feng David Dagan",
+      "id": "out-b616a928bd9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification of Medical Images in the Biomedical Literature by Jointly Using Deep and Handcrafted Visual Features — Zhang Jianpeng;Xia Yong;Xie Yutong;Fulham Michael;Feng David Dagan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4914,
+            "end_char": 5104
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skin lesion classification in dermoscopy images using synergic deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jianpeng;Xie Yutong;Wu Qi;Xia Yong",
+      "id": "out-390c513d8481",
+      "evidence": [
+        {
+          "quote": "[会议论文] Skin lesion classification in dermoscopy images using synergic deep learning — Zhang Jianpeng;Xie Yutong;Wu Qi;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5109,
+            "end_char": 5234
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SMILE: Sparse-Attention based Multiple Instance Contrastive Learning for Glioma Sub-Type Classication Using Pathological Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengkang Lu;Yongsheng Pan;Dong Nie;Feihong Liu;Feng Shi;Yong Xia;Dinggang Shen",
+      "id": "out-6ee7a86db63e",
+      "evidence": [
+        {
+          "quote": "[会议论文] SMILE: Sparse-Attention based Multiple Instance Contrastive Learning for Glioma Sub-Type Classication Using Pathological Images — Mengkang Lu;Yongsheng Pan;Dong Nie;Feihong Liu;Feng Shi;Yong Xia;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5239,
+            "end_char": 5453
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CoTr: Efficiently Bridging CNN and Transformer for 3D Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Yutong;Zhang Jianpeng;Shen Chunhua;Xia Yong",
+      "id": "out-1bfa8b439868",
+      "evidence": [
+        {
+          "quote": "[会议论文] CoTr: Efficiently Bridging CNN and Transformer for 3D Medical Image Segmentation — Xie Yutong;Zhang Jianpeng;Shen Chunhua;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5458,
+            "end_char": 5594
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Mutual Bootstrapping Model for Automated Skin Lesion Segmentation and Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Yutong;Zhang Jianpeng;Xia Yong;Shen Chunhua",
+      "id": "out-36f2b5fb738e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Mutual Bootstrapping Model for Automated Skin Lesion Segmentation and Classification — Xie Yutong;Zhang Jianpeng;Xia Yong;Shen Chunhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5599,
+            "end_char": 5741
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DoDNet: Learning to Segment Multi-Organ and Tumors from Multiple Partially Labeled Datasets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yutong Xie;Jianpeng Zhang;Yong Xia;Chunhua Shen",
+      "id": "out-7560095fddc1",
+      "evidence": [
+        {
+          "quote": "[会议论文] DoDNet: Learning to Segment Multi-Organ and Tumors from Multiple Partially Labeled Datasets — Yutong Xie;Jianpeng Zhang;Yong Xia;Chunhua Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5746,
+            "end_char": 5893
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Light-weight hybrid convolutional network for liver tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jianpeng;Xie Yutong;Zhang Pingping;Chen Hao;Xia Yong;Shen Chunhua",
+      "id": "out-648432a6ce7d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Light-weight hybrid convolutional network for liver tumor segmentation — Zhang Jianpeng;Xie Yutong;Zhang Pingping;Chen Hao;Xia Yong;Shen Chunhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5898,
+            "end_char": 6048
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiscale network followed network model for retinal vessel segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Yicheng;Xia Yong;Song Yang;Zhang Yanning;Cai Weidong",
+      "id": "out-6bf39431509f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multiscale network followed network model for retinal vessel segmentation — Wu Yicheng;Xia Yong;Song Yang;Zhang Yanning;Cai Weidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6053,
+            "end_char": 6190
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Atlas registration and ensemble deep convolutional neural network-based prostate segmentation using magnetic resonance imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Haozhe;Xia Yong;Song Yang;Cai Weidong;Fulham Michael;Feng David Dagan",
+      "id": "out-d4c98633c3b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Atlas registration and ensemble deep convolutional neural network-based prostate segmentation using magnetic resonance imaging — Jia Haozhe;Xia Yong;Song Yang;Cai Weidong;Fulham Michael;Feng David Dagan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6195,
+            "end_char": 6403
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge-based Collaborative Deep Learning for Benign-Malignant Lung Nodule Classification on Chest CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Yutong;Xia Yong;Zhang Jianpeng;Song Yang;Feng Dagan;Fulham Michael;Cai Weidong",
+      "id": "out-36a569a25800",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge-based Collaborative Deep Learning for Benign-Malignant Lung Nodule Classification on Chest CT — Xie Yutong;Xia Yong;Zhang Jianpeng;Song Yang;Feng Dagan;Fulham Michael;Cai Weidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6409,
+            "end_char": 6603
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HD-Net: Hybrid Discriminative Network for Prostate Segmentation in MR Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Haozhe;Song Yang;Huang Heng;Cai Weidong;Xia Yong",
+      "id": "out-ba0539c8dab5",
+      "evidence": [
+        {
+          "quote": "[会议论文] HD-Net: Hybrid Discriminative Network for Prostate Segmentation in MR Images — Jia Haozhe;Song Yang;Huang Heng;Cai Weidong;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6609,
+            "end_char": 6746
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical image classification using synergic deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jianpeng;Xie Yutong;Wu Qi;Xia Yong",
+      "id": "out-da89cbf32dd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical image classification using synergic deep learning — Zhang Jianpeng;Xie Yutong;Wu Qi;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6752,
+            "end_char": 6858
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning to Synthesize 7 T MRI from 3 T MRI with Few Data by Deformable Augmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Jie;Pan Yongsheng;Xia Yong;Shen Dinggang",
+      "id": "out-a03416852f59",
+      "evidence": [
+        {
+          "quote": "[会议论文] Learning to Synthesize 7 T MRI from 3 T MRI with Few Data by Deformable Augmentation — Wei Jie;Pan Yongsheng;Xia Yong;Shen Dinggang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6864,
+            "end_char": 7001
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Reinforcement Learning for Weakly-Supervised Lymph Node Segmentation in CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhe;Xia Yong",
+      "id": "out-d564ef7a2e35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Reinforcement Learning for Weakly-Supervised Lymph Node Segmentation in CT Images — Li Zhe;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7007,
+            "end_char": 7117
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boundary-Aware Network for Kidney Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Shishuai;Zhang Jianpeng;Xia Yong",
+      "id": "out-3af64d903d8d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Boundary-Aware Network for Kidney Tumor Segmentation — Hu Shishuai;Zhang Jianpeng;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7123,
+            "end_char": 7219
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Viral Pneumonia Screening on Chest X-Rays Using Confidence-Aware Anomaly Detection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jianpeng;Xie Yutong;Pang Guansong;Liao Zhibin;Verjans Johan;Li Wenxing;Sun Zongji;He Jian;Li Yi;Shen Chunhua;Xia Yong",
+      "id": "out-09e0ecf02f92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Viral Pneumonia Screening on Chest X-Rays Using Confidence-Aware Anomaly Detection. — Zhang Jianpeng;Xie Yutong;Pang Guansong;Liao Zhibin;Verjans Johan;Li Wenxing;Sun Zongji;He Jian;Li Yi;Shen Chunhua;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7225,
+            "end_char": 7440
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于集成深度卷积神经网络的前列腺磁共振图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;贾灏哲;张艳宁",
+      "id": "out-a5489b6d7e73",
+      "evidence": [
+        {
+          "quote": "[专利] 基于集成深度卷积神经网络的前列腺磁共振图像分割方法 — 夏勇;贾灏哲;张艳宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7446,
+            "end_char": 7488
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Brain Tumor Segmentation in Multi-sequence MR Images Using Cross-Sequence MR Image Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guojing Zhao;Jianpeng Zhang;Yong Xia",
+      "id": "out-7f64f7f87220",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improving Brain Tumor Segmentation in Multi-sequence MR Images Using Cross-Sequence MR Image Generation — Guojing Zhao;Jianpeng Zhang;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7494,
+            "end_char": 7642
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CDLRS: Collaborative Deep Learning Model with Joint Regression and Segmentation for Automatic Fovea Localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Ziyang;Pan Yongsheng;Xia Yong",
+      "id": "out-330ab9ac8f0d",
+      "evidence": [
+        {
+          "quote": "[会议论文] CDLRS: Collaborative Deep Learning Model with Joint Regression and Segmentation for Automatic Fovea Localization — Chen Ziyang;Pan Yongsheng;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7648,
+            "end_char": 7803
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Foreground Fisher Vector: Encoding Class-Relevant Foreground to Improve Image Classification.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pan Yongsheng;Xia Yong;Shen Dinggang",
+      "id": "out-c0d4e082e5a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Foreground Fisher Vector: Encoding Class-Relevant Foreground to Improve Image Classification. — Pan Yongsheng;Xia Yong;Shen Dinggang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7809,
+            "end_char": 7947
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于任务动态学习部分标记的医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;张建鹏;谢雨彤",
+      "id": "out-b1e904b8da3a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于任务动态学习部分标记的医学图像分割方法 — 夏勇;张建鹏;谢雨彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7953,
+            "end_char": 7993
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning approach to segmentation of nasopharyngeal carcinoma using computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyu Bai;Yan Hu;Guanzhong Gong;Yong Yin;Yong Xia",
+      "id": "out-bb658a54ff69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning approach to segmentation of nasopharyngeal carcinoma using computed tomography — Xiaoyu Bai;Yan Hu;Guanzhong Gong;Yong Yin;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7999,
+            "end_char": 8152
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NODULe: Combining constrained multi-scale LoG filters with densely dilated 3D deep convolutional neural network for pulmonary nodule detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Zhang;Yong Xia;Haoyue Zeng;Yanning Zhang",
+      "id": "out-cdefbc485e2c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NODULe: Combining constrained multi-scale LoG filters with densely dilated 3D deep convolutional neural network for pulmonary nodule detection — Junjie Zhang;Yong Xia;Haoyue Zeng;Yanning Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8158,
+            "end_char": 8356
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M(3)Net: A multi-model, multi-size, and multi-view deep neural network for brain magnetic resonance image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Jie;Xia Yong;Zhang Yanning",
+      "id": "out-919011b47e0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M(3)Net: A multi-model, multi-size, and multi-view deep neural network for brain magnetic resonance image segmentation — Wei Jie;Xia Yong;Zhang Yanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8362,
+            "end_char": 8519
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CSA-DE/EDA: a Novel Bio-inspired Algorithm for Function Optimization and Segmentation of Brain MR Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Li;Yong Xia;Hichem Sahli",
+      "id": "out-e977360ea907",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CSA-DE/EDA: a Novel Bio-inspired Algorithm for Function Optimization and Segmentation of Brain MR Images — Zhe Li;Yong Xia;Hichem Sahli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8525,
+            "end_char": 8666
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EMS-Net: Ensemble of Multiscale Convolutional Neural Networks for Classification of Breast Cancer Histology Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Zhanbo;Ran Lingyan;Zhang Shizhou;Xia Yong;Zhang Yanning",
+      "id": "out-0dc8523d8e66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EMS-Net: Ensemble of Multiscale Convolutional Neural Networks for Classification of Breast Cancer Histology Images — Yang Zhanbo;Ran Lingyan;Zhang Shizhou;Xia Yong;Zhang Yanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8672,
+            "end_char": 8855
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A pulmonary nodule detection method based on residual learning and dense connection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Zhang;Yutong Xie;Yong Xia;Yanning Zhang",
+      "id": "out-48ab51d60ebe",
+      "evidence": [
+        {
+          "quote": "[会议论文] A pulmonary nodule detection method based on residual learning and dense connection — Feng Zhang;Yutong Xie;Yong Xia;Yanning Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8861,
+            "end_char": 8997
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EfficientSeg: A Simple But Efficient Solution to Myocardial Pathology Segmentation Challenge",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianpeng Zhang;Yutong Xie;Zhibin Liao;Johan Verjans;Yong Xia",
+      "id": "out-ac5d381d7913",
+      "evidence": [
+        {
+          "quote": "[会议论文] EfficientSeg: A Simple But Efficient Solution to Myocardial Pathology Segmentation Challenge — Jianpeng Zhang;Yutong Xie;Zhibin Liao;Johan Verjans;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9003,
+            "end_char": 9164
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NFN+: A novel network followed network for retinal vessel segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Yicheng;Xia Yong;Song Yang;Zhang Yanning;Cai Weidong",
+      "id": "out-8f9047ebfd63",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NFN+: A novel network followed network for retinal vessel segmentation — Wu Yicheng;Xia Yong;Song Yang;Zhang Yanning;Cai Weidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9170,
+            "end_char": 9304
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pulmonary nodule detection in medical images: A survey",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Junjie;Xia Yong;Cui Hengfei;Zhang Yanning",
+      "id": "out-31e924f3bf57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pulmonary nodule detection in medical images: A survey — Zhang Junjie;Xia Yong;Cui Hengfei;Zhang Yanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9310,
+            "end_char": 9420
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segmentation then Prediction: A Multi-task Solution to Brain Tumor Segmentation and Survival Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Guojing;Jiang Bowen;Zhang Jianpengg;Xia Yong",
+      "id": "out-3f024efac8ba",
+      "evidence": [
+        {
+          "quote": "[会议论文] Segmentation then Prediction: A Multi-task Solution to Brain Tumor Segmentation and Survival Prediction — Zhao Guojing;Jiang Bowen;Zhang Jianpengg;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9426,
+            "end_char": 9587
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fusing texture, shape and deep model-learned information at decision level for automated classification of lung nodules on chest CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Yutong;Zhang Jianpeng;Xia Yong;Fulham Michael;Zhang Yanning",
+      "id": "out-9756710a4d8c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fusing texture, shape and deep model-learned information at decision level for automated classification of lung nodules on chest CT — Xie Yutong;Zhang Jianpeng;Xia Yong;Fulham Michael;Zhang Yanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9593,
+            "end_char": 9796
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vessel-Net: Retinal vessel segmentation under multi-path supervision",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Yicheng;Xia Yong;Song Yang;Zhang Donghao;Liu Dongnan;Zhang Chaoyi;Cai Weidong",
+      "id": "out-b20db59271da",
+      "evidence": [
+        {
+          "quote": "[会议论文] Vessel-Net: Retinal vessel segmentation under multi-path supervision — Wu Yicheng;Xia Yong;Song Yang;Zhang Donghao;Liu Dongnan;Zhang Chaoyi;Cai Weidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9802,
+            "end_char": 9959
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于感知一致生成对抗网络的三维医学图像重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;潘永生;黄静玉",
+      "id": "out-3cffbfa00028",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于感知一致生成对抗网络的三维医学图像重建方法 — 夏勇;潘永生;黄静玉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9965,
+            "end_char": 10007
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Retinal Image Quality Assessment via Specific Structures Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinqiang Zhou;Yicheng Wu;Yong Xia",
+      "id": "out-428e6ec4709e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Retinal Image Quality Assessment via Specific Structures Segmentation — Xinqiang Zhou;Yicheng Wu;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10013,
+            "end_char": 10124
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pairwise Relation Learning for Semi-supervised Gland Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Y.;Zhang J.;Liao Z.;Verjans J.;Shen C.;Xia Y.",
+      "id": "out-f021f9ef6579",
+      "evidence": [
+        {
+          "quote": "[会议论文] Pairwise Relation Learning for Semi-supervised Gland Segmentation — Xie Y.;Zhang J.;Liao Z.;Verjans J.;Shen C.;Xia Y.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10130,
+            "end_char": 10253
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lung nodule detection using combined traditional and deep models and chest CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Junjie;Huang Zhaowei;Huang Tairan;Xia Yong;Zhang Yanning",
+      "id": "out-5ef0dbf1f8fd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lung nodule detection using combined traditional and deep models and chest CT — Zhang Junjie;Huang Zhaowei;Huang Tairan;Xia Yong;Zhang Yanning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10259,
+            "end_char": 10407
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D APA-Net: 3D Adversarial Pyramid Anisotropic Convolutional Network for Prostate Segmentation in MR Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Haozhe;Xia Yong;Song Yang;Zhang Donghao;Huang Heng;Zhang Yanning;Cai Weidong",
+      "id": "out-33e9ffb48fa0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D APA-Net: 3D Adversarial Pyramid Anisotropic Convolutional Network for Prostate Segmentation in MR Images — Jia Haozhe;Xia Yong;Song Yang;Zhang Donghao;Huang Heng;Zhang Yanning;Cai Weidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10413,
+            "end_char": 10609
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Auto learning attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Benteng;Zhang Jing;Xia Yong;Tao Dacheng",
+      "id": "out-a2385be6ddfb",
+      "evidence": [
+        {
+          "quote": "[会议论文] Auto learning attention — Ma Benteng;Zhang Jing;Xia Yong;Tao Dacheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10615,
+            "end_char": 10689
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "$$alpha $$ -UNet++: A Data-Driven Neural Network Architecture for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaxin Chen;Benteng Ma;Yong Xia",
+      "id": "out-1a030d46f645",
+      "evidence": [
+        {
+          "quote": "[会议论文] $$alpha $$ -UNet++: A Data-Driven Neural Network Architecture for Medical Image Segmentation — Yaxin Chen;Benteng Ma;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10695,
+            "end_char": 10826
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Iterative sparse and deep learning for accurate diagnosis o",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-4f5b44eb8c46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Iterative sparse and deep learning for accurate diagnosis o",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10832,
+            "end_char": 10897
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain Tumor Segmentation on Multimodal MR Imaging Using Multi-level Upsampling in Decoder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Hu;Xiang Liu;Xin Wen;Chen Niu;Yong Xia",
+      "id": "out-b3237f591cbd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain Tumor Segmentation on Multimodal MR Imaging Using Multi-level Upsampling in Decoder — Yan Hu;Xiang Liu;Xin Wen;Chen Niu;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10949,
+            "end_char": 11089
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于最小量化误差准则的字典学习静态图像有损压缩方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;王昊;张艳宁",
+      "id": "out-5ba3dc70834b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于最小量化误差准则的字典学习静态图像有损压缩方法 — 夏勇;王昊;张艳宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11095,
+            "end_char": 11136
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于协同深度学习的医学图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;张建鹏;谢雨彤",
+      "id": "out-d90f1f52f440",
+      "evidence": [
+        {
+          "quote": "[专利] 基于协同深度学习的医学图像分类方法 — 夏勇;张建鹏;谢雨彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11142,
+            "end_char": 11176
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于移动平台的计算机辅助记忆方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;杨战波;张艳宁",
+      "id": "out-e01bbb2a2e06",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于移动平台的计算机辅助记忆方法 — 夏勇;杨战波;张艳宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11182,
+            "end_char": 11217
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种采用跨序列核磁共振图像生成改进胶质瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;赵国靖;张建鹏",
+      "id": "out-38bc1d0fa2f7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种采用跨序列核磁共振图像生成改进胶质瘤分割方法 — 夏勇;赵国靖;张建鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11223,
+            "end_char": 11264
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种针对不确定性标记数据的医学图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;廖泽慧;谢雨彤",
+      "id": "out-6d2940ac9378",
+      "evidence": [
+        {
+          "quote": "[专利] 一种针对不确定性标记数据的医学图像分类方法 — 夏勇;廖泽慧;谢雨彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11270,
+            "end_char": 11308
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "View adaptive learning for pancreas segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Wang;Jianpeng Zhang;Hengfei Cui;Yanning Zhang;Yong Xia",
+      "id": "out-04315b13c811",
+      "evidence": [
+        {
+          "quote": "[期刊论文] View adaptive learning for pancreas segmentation — Yan Wang;Jianpeng Zhang;Hengfei Cui;Yanning Zhang;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11314,
+            "end_char": 11429
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Thorax-Net: An Attention Regularized Deep Neural Network for Classification of Thoracic Diseases on Chest Radiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Jia Haozhe;Lu Le;Xia Yong",
+      "id": "out-cee503b4fd06",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Thorax-Net: An Attention Regularized Deep Neural Network for Classification of Thoracic Diseases on Chest Radiography — Wang Hongyu;Jia Haozhe;Lu Le;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11435,
+            "end_char": 11598
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesizing missing PET from MRI with cycle-consistent generative adversarial networks for Alzheimer’s disease diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pan Yongsheng;Liu Mingxia;Lian Chunfeng;Zhou Tao;Xia Yong;Shen Dinggang",
+      "id": "out-8a5615dda8da",
+      "evidence": [
+        {
+          "quote": "[会议论文] Synthesizing missing PET from MRI with cycle-consistent generative adversarial networks for Alzheimer’s disease diagnosis — Pan Yongsheng;Liu Mingxia;Lian Chunfeng;Zhou Tao;Xia Yong;Shen Dinggang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11604,
+            "end_char": 11805
+          },
+          "version": "084aec8d692ecff86133"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 50,
+    "listed": 50,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "会议论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

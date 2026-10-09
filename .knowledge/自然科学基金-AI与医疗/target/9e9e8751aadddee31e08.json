@@ -2,15 +2,20 @@
   "doc_id": "9e9e8751aadddee31e08",
   "version": "2d6db80b43414a3903f0",
   "source_hash": "68c24468c479e9ef25c9520e7e7ffc5c36f5ea7a0daf1f7b44a9153e0b2cdb3a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.719385+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.891114+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-15d155acd01a",
-          "name": "缺失MRI模态脑肿瘤分割与复发预测",
-          "desc": "脑肿瘤致死率高、复发性高，多模态MRI已成为临床诊断标准方法。",
+          "id": "item-96cd8ca93271",
+          "name": "脑肿瘤分割与复发位置预测",
+          "desc": "多模态MRI是标准诊断方法",
           "evidence": [
             {
-              "quote": "脑肿瘤因其致死率高、复发性高而严重危害全球居民的健康，多模态核磁共振图像（MRI）已经成为临床脑肿瘤诊断的标准方法",
+              "quote": "多模态 MRI 已成为脑肿瘤诊断的标准方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 729
-              },
-              "version": "2d6db80b43414a3903f0"
-            }
-          ]
-        },
-        {
-          "id": "item-b011aca1409c",
-          "name": "脑肿瘤快速勾画与治疗计划指导",
-          "desc": "研究成果可帮助医生实现脑肿瘤快速勾画及未来复发位置预测，指导后续治疗计划制定。",
-          "evidence": [
-            {
-              "quote": "本项目的研究成果能够帮助医生实现对脑肿瘤的快速勾画及未来脑肿瘤复发位置的预测，指导后续治疗计划的制定",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 969,
-                "end_char": 1018
+                "start_char": 2585,
+                "end_char": 2605
               },
               "version": "2d6db80b43414a3903f0"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5360070c22ea",
-          "name": "临床难获完整多模态图像",
-          "desc": "临床实践中很难获得完整的多模态图像集，将降低医生对脑肿瘤诊断的准确性。",
+          "id": "item-919e9019c3a4",
+          "name": "临床难获得完整多模态MRI",
+          "desc": "影响诊断准确性",
           "evidence": [
             {
-              "quote": "然而，在临床实践中很难获得完整的多模态图像集，这将降低医生对脑肿瘤诊断的准确性",
+              "quote": "但在临床实践中仍面临三大挑战：（1）多模态信息融合不足，跨模态特征利用效率低；（2）缺失模态的有效补全与重建困难，影响后续分割任务；（3）脑肿瘤复发位置预测复杂，需要挖掘多时间序列图像的潜在时空关系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 731,
-                "end_char": 769
-              },
-              "version": "2d6db80b43414a3903f0"
-            }
-          ]
-        },
-        {
-          "id": "item-be87dfb21848",
-          "name": "信息融合不足与复发预测复杂",
-          "desc": "面临多模态信息融合不足、缺失模态有效补全困难以及复发位置预测需挖掘时空关系三大挑战。",
-          "evidence": [
-            {
-              "quote": "（1）多模态信息融合不足，跨模态特征利用效率低；（2）缺失模态的有效补全与重建困难，影响后续分割任务；（3）脑肿瘤复发位置预测复杂，需要挖掘多时间序列图像的潜在时空关系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2622,
+                "start_char": 2607,
                 "end_char": 2705
               },
               "version": "2d6db80b43414a3903f0"
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-311c86ac1a01",
-          "name": "多模态图像相关性融合模块",
-          "desc": "构建多模态图像相关性模块，实现高效的多模态信息融合。",
+          "id": "item-647d64c323cd",
+          "name": "多模态图像相关性模块",
+          "desc": "高效多模态信息融合",
           "evidence": [
             {
               "quote": "构建多模态图像相关性模块，实现高效的多模态信息融合",
@@ -108,12 +81,13 @@
               },
               "version": "2d6db80b43414a3903f0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b0a52b5d469c",
-          "name": "缺失图像生成与补全方法",
-          "desc": "设计缺失图像生成方法补全缺失数据，为脑肿瘤分割提供完整图像集。",
+          "id": "item-9fbea06a9af5",
+          "name": "缺失图像生成方法",
+          "desc": "补全缺失数据",
           "evidence": [
             {
               "quote": "设计缺失图像生成方法，补全缺失数据，为脑肿瘤分割提供完整图像集",
@@ -124,12 +98,13 @@
               },
               "version": "2d6db80b43414a3903f0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9ee190372170",
-          "name": "多时间序列时空关系建模",
-          "desc": "建立基于多时间序列图像的潜在时空关系建模方法，实现脑肿瘤复发位置预测。",
+          "id": "item-a5ffa670c26d",
+          "name": "多时间序列图像潜在时空关系建模",
+          "desc": "脑肿瘤复发位置预测",
           "evidence": [
             {
               "quote": "建立基于多时间序列图像的潜在时空关系建模方法，实现脑肿瘤复发位置预测",
@@ -140,7 +115,8 @@
               },
               "version": "2d6db80b43414a3903f0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b47e3cbbff68",
-          "name": "SCI论文10篇与专利8项",
-          "desc": "在Medical Image Analysis等期刊发表SCI论文10篇，申请专利8项其中授权3项，培养硕士2名。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文10篇，专利8项（授权3项）",
           "evidence": [
             {
               "quote": "在 Medical Image Analysis、IEEE TIP、Pattern Recognition、Information Fusion、Neurocomputing等期刊发表 SCI 论文 10 篇；申请专利 8 项，其中已授权 3 项",
@@ -163,89 +139,262 @@
               "version": "2d6db80b43414a3903f0"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-46a5b474b1ab",
-          "name": "边界感知跨模态融合分割网络",
-          "desc": "提出边界感知与跨模态融合网络用于增强多模态脑肿瘤分割。",
-          "evidence": [
-            {
-              "quote": "Boundary-aware and cross-modal fusion network for enhanced multi-modal brain tumor segmentation",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3005,
-                "end_char": 3099
-              },
-              "version": "2d6db80b43414a3903f0"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-90f74d2f9cf1",
-          "name": "不确定性量化与注意力融合分割",
-          "desc": "提出不确定性量化与注意力感知融合引导的多模态MRI脑肿瘤分割方法。",
-          "evidence": [
-            {
-              "quote": "Uncertainty quantification and attention-aware fusion guided multi-modal MR brain tumor segmentation",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3892,
-                "end_char": 3991
-              },
-              "version": "2d6db80b43414a3903f0"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-15d155acd01a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5360070c22ea"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boundary-aware and cross-modal fusion network for enhanced multi-modal brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou",
+      "id": "out-b34d83f5cfb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boundary-aware and cross-modal fusion network for enhanced multi-modal brain tumor segmentation — Tongxue Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2998,
+            "end_char": 3114
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5360070c22ea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b0a52b5d469c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature fusion and latent feature learning guided brain tumor segmentation and missing modality recovery network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou",
+      "id": "out-e9b80e85ed47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature fusion and latent feature learning guided brain tumor segmentation and missing modality recovery network — Tongxue Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3119,
+            "end_char": 3252
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-311c86ac1a01"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-46a5b474b1ab"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于不确定性估计的脑肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周同雪",
+      "id": "out-9eca570e82cc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于不确定性估计的脑肿瘤分割方法 — 周同雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3257,
+            "end_char": 3285
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9ee190372170"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b47e3cbbff68"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M2GCNet: Multi-Modal Graph Convolution Network for Precise Brain Tumor Segmentation Across Multiple MRI Sequences",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou",
+      "id": "out-5ca1c04439a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M2GCNet: Multi-Modal Graph Convolution Network for Precise Brain Tumor Segmentation Across Multiple MRI Sequences — Tongxue Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3290,
+            "end_char": 3424
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态特征融合的MRI脑肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周同雪;朱杉;李铭杨",
+      "id": "out-9c63938a032c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态特征融合的MRI脑肿瘤分割方法 — 周同雪;朱杉;李铭杨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3429,
+            "end_char": 3468
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BUFNet: Boundary-aware and uncertainty-driven multi-modal fusion network for MR brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou;Su Ruan;Baiying Lei",
+      "id": "out-f7ec28581302",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BUFNet: Boundary-aware and uncertainty-driven multi-modal fusion network for MR brain tumor segmentation — Tongxue Zhou;Su Ruan;Baiying Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3473,
+            "end_char": 3618
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于解剖对称性引导的多模态融合网络的胶质瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周同雪;王峥;鲍佳敏;李铭杨",
+      "id": "out-507d6f538f9d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于解剖对称性引导的多模态融合网络的胶质瘤分割方法 — 周同雪;王峥;鲍佳敏;李铭杨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3623,
+            "end_char": 3671
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A reliable framework for brain tumor segmentation via multi-modal fusion and uncertainty modeling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou;Mingyang Li;Su Ruan;Tingjin Luo;Bingbing Jiang;Junan Zhu;Ping Ma;Defu Yang;Guang Yang",
+      "id": "out-7606a7d0084e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A reliable framework for brain tumor segmentation via multi-modal fusion and uncertainty modeling — Tongxue Zhou;Mingyang Li;Su Ruan;Tingjin Luo;Bingbing Jiang;Junan Zhu;Ping Ma;Defu Yang;Guang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3676,
+            "end_char": 3880
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Uncertainty quantification and attention-aware fusion guided multi-modal MR brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou;Shan Zhu",
+      "id": "out-99b462af0982",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Uncertainty quantification and attention-aware fusion guided multi-modal MR brain tumor segmentation — Tongxue Zhou;Shan Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3885,
+            "end_char": 4015
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning deep feature representations for multi-modal MR brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou;Zheng Wang;Xiaohui Liu;Weibo Liu;Shan Zhu",
+      "id": "out-6d05b2cdc947",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning deep feature representations for multi-modal MR brain tumor segmentation — Tongxue Zhou;Zheng Wang;Xiaohui Liu;Weibo Liu;Shan Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4021,
+            "end_char": 4165
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-modal brain tumor segmentation via disentangled representation learning and region-aware contrastive learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongxue Zhou",
+      "id": "out-732c7a7e3c72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-modal brain tumor segmentation via disentangled representation learning and region-aware contrastive learning — Tongxue Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4171,
+            "end_char": 4307
+          },
+          "version": "2d6db80b43414a3903f0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

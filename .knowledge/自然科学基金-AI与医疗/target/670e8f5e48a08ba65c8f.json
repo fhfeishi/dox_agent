@@ -2,15 +2,20 @@
   "doc_id": "670e8f5e48a08ba65c8f",
   "version": "ca377d79679f64231693",
   "source_hash": "984892eb232a38430f39233e868fd21668ed76b5fbea6aed48c16324e37b9692",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.682654+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.878449+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-001618e83079",
-          "name": "脑胶质瘤IDH基因型术前预测",
-          "desc": "IDH突变是胶质瘤精准诊断和预后评估的重要分子标志物，需实现术前无创高效诊断。",
+          "id": "item-dcc3f3e98ab0",
+          "name": "胶质瘤IDH基因型术前预测",
+          "desc": "PET/MR影像特征",
           "evidence": [
             {
-              "quote": "异柠檬酸脱氢酶（IDH）突变是胶质瘤精准诊断和预后评估的重要分子标志物",
+              "quote": "探究不同分子亚型脑胶质瘤PET/MR影像特征的差异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 702
-              },
-              "version": "ca377d79679f64231693"
-            }
-          ]
-        },
-        {
-          "id": "item-129eaade3dea",
-          "name": "胶质瘤个体化精准诊疗",
-          "desc": "阐明肿瘤影像特征与分子病理内在联系，指导胶质瘤个体化精准诊疗和早期预后预警。",
-          "evidence": [
-            {
-              "quote": "指导胶质瘤个体化精准诊疗和早期预后预警",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1048,
-                "end_char": 1066
+                "start_char": 2800,
+                "end_char": 2824
               },
               "version": "ca377d79679f64231693"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1eb62b706e25",
-          "name": "缺乏多维度影像信息准确性有限",
-          "desc": "前期MRI与18F-FET PET影像特征模型有助于预测IDH基因型，但缺乏多维影像信息与深度挖掘，准确性仍有提升空间。",
+          "id": "item-a9d547b4823b",
+          "name": "术前无创预测IDH突变状态",
+          "desc": "影像特征与分子亚型",
           "evidence": [
             {
-              "quote": "但由于缺乏肿瘤的多维度影像信息和深度数据挖掘，诊断准确性仍有很大提升空间",
+              "quote": "为术前预测脑胶质瘤IDH突变状态提供无创、简便的影像学参考",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 752,
-                "end_char": 787
-              },
-              "version": "ca377d79679f64231693"
-            }
-          ]
-        },
-        {
-          "id": "item-ab4331408bf1",
-          "name": "影像特征与分子病理联系不清",
-          "desc": "需阐明肿瘤影像特征与分子病理的内在联系。",
-          "evidence": [
-            {
-              "quote": "阐明肿瘤影像特征与分子病理内在联系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1030,
-                "end_char": 1046
+                "start_char": 3510,
+                "end_char": 3538
               },
               "version": "ca377d79679f64231693"
             }
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f11ff1a91934",
-          "name": "一体化PET/MR影像特征与组学建模",
-          "desc": "基于一体化PET/MR数据分别建立影像特征与影像组学模型预测IDH基因型，对比效能并构建综合分类决策模型。",
-          "evidence": [
-            {
-              "quote": "本课题拟基于一体化PET/MR数据分别建立预测胶质瘤IDH基因型的影像特征和影像组学模型，对比二者诊断效能并构建综合分类决策模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 897,
-                "end_char": 960
-              },
-              "version": "ca377d79679f64231693"
-            }
-          ]
-        },
-        {
-          "id": "item-b0e0c730a6df",
-          "name": "影像组学挖掘影像-病理相关性",
-          "desc": "利用影像组学挖掘影像数据的深层量化信息，探究肿瘤影像-病理相关性。",
-          "evidence": [
-            {
-              "quote": "影像组学可挖掘影像数据的深层量化信息，探究肿瘤影像-病理相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 863,
-                "end_char": 893
-              },
-              "version": "ca377d79679f64231693"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-497533966084",
-          "name": "T2-FLAIR错配征预测特异性100%",
-          "desc": "脑胶质瘤T2-FLAIR错配征观察者间一致性最高，其预测IDH突变型胶质瘤特异性为100%。",
+          "id": "item-702709dabae9",
+          "name": "T2-FLAIR错配征",
+          "desc": "预测IDH突变型胶质瘤特异性100%",
           "evidence": [
             {
               "quote": "脑胶质瘤T2-FLAIR错配征的观察者间一致性最高，其预测IDH-突变型胶质瘤的特异性为100%",
@@ -147,29 +82,12 @@
               "version": "ca377d79679f64231693"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-79ebea62e92b",
-          "name": "PET/MR鉴别级别联合AUC 0.962",
-          "desc": "一体化18F-FET PET/MR鉴别高低级别胶质瘤联合AUC达0.962，敏感性100%、特异性87.50%。",
-          "evidence": [
-            {
-              "quote": "一体化18F-FET PET/MR鉴别高低级别胶质瘤的联合AUC高达0.962，敏感性与特异性分别为100%、87.50%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3198,
-                "end_char": 3258
-              },
-              "version": "ca377d79679f64231693"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e49f6dc80afe",
-          "name": "多参数联合预测IDH突变状态",
-          "desc": "TBRmean、TBRmax、rCBVmean、rCBVmax和rADCmean联合预测IDH突变状态AUC为0.872，特异性90.00%。",
+          "id": "item-2732cd834013",
+          "name": "一体化18F-FET PET/MR多参数联合",
+          "desc": "TBR、rCBV、rADC",
           "evidence": [
             {
               "quote": "TBRmean、TBRmax、rCBVmean、rCBVmax和rADCmean联合预测胶质瘤IDH突变状态的AUC、敏感性、特异性分别为0.872、72.00%、90.00%",
@@ -181,55 +99,134 @@
               "version": "ca377d79679f64231693"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b1653ea10ae7",
+          "name": "鉴别高低级别胶质瘤联合AUC",
+          "desc": "0.962",
+          "evidence": [
+            {
+              "quote": "一体化18F-FET PET/MR鉴别高低级别胶质瘤的联合AUC高达0.962，敏感性与特异性分别为100%、87.50%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3198,
+                "end_char": 3258
+              },
+              "version": "ca377d79679f64231693"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-001618e83079"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1eb62b706e25"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The \"purfling sign'': a new imaging marker for the diagnosis of primary CNS lymphoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Niu·Lei;Zhao·Jiping;Duan·Chongfeng;Fu·Weiwei;Liu Yingchao;Liu·Xuejun;Song·Shuangshuang",
+      "id": "out-8ca17224396e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The \"purfling sign'': a new imaging marker for the diagnosis of primary CNS lymphoma — Niu·Lei;Zhao·Jiping;Duan·Chongfeng;Fu·Weiwei;Liu Yingchao;Liu·Xuejun;Song·Shuangshuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3628,
+            "end_char": 3807
+          },
+          "version": "ca377d79679f64231693"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1eb62b706e25"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f11ff1a91934"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "18F-FDG PET/MR Assist in Diagnosis of Indefinable Diffuse Large B Cell Lymphoma Intracerebral Involvement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song·Shuangshuang;Liu·Fang;Wang·Zhenguang",
+      "id": "out-fa65500fbf78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 18F-FDG PET/MR Assist in Diagnosis of Indefinable Diffuse Large B Cell Lymphoma Intracerebral Involvement — Song·Shuangshuang;Liu·Fang;Wang·Zhenguang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3812,
+            "end_char": 3967
+          },
+          "version": "ca377d79679f64231693"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f11ff1a91934"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-79ebea62e92b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of double expression status of primary CNS lymphoma using multiparametric MRI radiomics combined with habitat radiomics: a double-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Jianxin;Liang·Lijun;Li·Jixian;Li·Qi;Li·Fei and Niu·Lei;Xue·Caiqiang;Fu·Weiwei;Liu·Yingchao;Song Shuangshuang;Liu·Xuejun",
+      "id": "out-c3375ed4ab10",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of double expression status of primary CNS lymphoma using multiparametric MRI radiomics combined with habitat radiomics: a double-center study — Zhao·Jianxin;Liang·Lijun;Li·Jixian;Li·Qi;Li·Fei and Niu·Lei;Xue·Caiqiang;Fu·Weiwei;Liu·Yingchao;Song Shuangshuang;Liu·Xuejun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3972,
+            "end_char": 4258
+          },
+          "version": "ca377d79679f64231693"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b0e0c730a6df"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e49f6dc80afe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "氨基酸类PET联合MRI在脑胶质瘤诊疗中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋双双;王振光",
+      "id": "out-6d967b6444b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 氨基酸类PET联合MRI在脑胶质瘤诊疗中的应用 — 宋双双;王振光",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4302
+          },
+          "version": "ca377d79679f64231693"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

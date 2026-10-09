@@ -2,15 +2,20 @@
   "doc_id": "9541b05b32aa99a95933",
   "version": "009be1f623a24d687cae",
   "source_hash": "97e267981224291f168141c279ec18cd8b9a1d84cf720b1faef569b6fb7be809",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.856542+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:49:05.604423+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0dfc176fca69",
-          "name": "肿瘤标志物识别与肿瘤分类",
-          "desc": "综合临床医学、蛋白质组学与基因组学等多源数据，开展肿瘤分类、标志物挖掘与预后分析。",
+          "id": "item-9c1ed8a83d0e",
+          "name": "肿瘤标志物挖掘与肿瘤分类",
+          "desc": "多组学数据",
           "evidence": [
             {
-              "quote": "肿瘤是人类健康的重大威胁，也是世界范围内主要死亡原因之一",
+              "quote": "本项目属学科交叉研究，旨在通过生命科学、医学及信息科学的融合，构建肿瘤相关数据的数学模型，挖掘肿瘤标志物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 676
+                "start_char": 2712,
+                "end_char": 2763
               },
               "version": "009be1f623a24d687cae"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-20fa4dc9d253",
-          "name": "传统实验与临床方法代价高且风险大",
-          "desc": "传统生物实验和临床医学方法耗费大量时间、精力和资金，并伴随较高的临床风险，难以满足肿瘤机制研究需求。",
+          "id": "item-5a12613cd15c",
+          "name": "传统生物实验和临床方法耗时耗资且风险高",
+          "desc": "肿瘤发生机制研究",
           "evidence": [
             {
               "quote": "传统的生物实验和临床医学方法需要耗费大量的时间、精力和资金，并伴随着较高的临床风险",
@@ -63,31 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-01b284b4f3a1",
-          "name": "多源信息融合的采样算法与分类器集成算法",
-          "desc": "在研究生物信息学特征提取与智能计算方法改进基础上，提出基于多源信息融合的采样算法和分类器集成算法，并整合多组学数据用于肿瘤分类与标志物挖掘。",
+          "id": "item-04350223fcf0",
+          "name": "DTI-BERT药物-靶标相互作用识别",
+          "desc": "结合BERT与深度学习",
           "evidence": [
             {
-              "quote": "提出基于多源信息融合的采样算法和分类器集成算法",
+              "quote": "DTI-BERT模型通过结合BERT和深度学习技术，在药物-靶标相互作用识别上展现了高准确率（90%以上）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 896,
-                "end_char": 918
+                "start_char": 2911,
+                "end_char": 2963
               },
               "version": "009be1f623a24d687cae"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-f79b755b03ad",
-          "name": "iCancer-Pred七种癌症平均准确率超97%",
-          "desc": "iCancer-Pred在7种癌症类型预测中平均准确率超过97%；发表学术论文30余篇，申请中国发明专利1项，培养硕士研究生10名。",
+          "id": "item-9e40a8f85b51",
+          "name": "DNA甲基化450K数据肿瘤分类集成方法",
+          "desc": "男性肿瘤分类",
+          "evidence": [
+            {
+              "quote": "如基于DNA甲基化450K数据的男性肿瘤分类集成方法，实现了高达99.2%的整体准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3034,
+                "end_char": 3076
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0dc1076ef05e",
+          "name": "iCancer-Pred多癌种预测模型",
+          "desc": "7种癌症类型",
           "evidence": [
             {
               "quote": "iCancer-Pred在7种癌症类型预测中平均准确率超过97%",
@@ -99,44 +116,407 @@
               "version": "009be1f623a24d687cae"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文30余篇，发明专利1项",
+          "evidence": [
+            {
+              "quote": "发表学术论文30余篇，其中SCI一区1篇、二区9篇；申请中国发明专利1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3175,
+                "end_char": 3210
+              },
+              "version": "009be1f623a24d687cae"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0dfc176fca69"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-20fa4dc9d253"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anoikis-related mRNA-lncRNA and DNA methylation profiles for overall survival prediction in breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huili Yang;Wangren Qiu;Zi Liu",
+      "id": "out-b2cb03e2dd7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anoikis-related mRNA-lncRNA and DNA methylation profiles for overall survival prediction in breast cancer patients — Huili Yang;Wangren Qiu;Zi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3482,
+            "end_char": 3634
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-20fa4dc9d253"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-01b284b4f3a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "m5C-HPromoter: An Ensemble Deep Learning Predictor for Identifying 5-methylcytosine Sites in Human Promoters",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuan Xiao;Yu-Tao Shao;Zhen-Tao Luo;Wang-Ren Qiu",
+      "id": "out-e76f727782f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] m5C-HPromoter: An Ensemble Deep Learning Predictor for Identifying 5-methylcytosine Sites in Human Promoters — Xuan Xiao;Yu-Tao Shao;Zhen-Tao Luo;Wang-Ren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3803
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-01b284b4f3a1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f79b755b03ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating unsupervised language model with multi-view multiple sequence alignments for high-accuracy inter-chain contact prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Zi;Zhu Yi-Heng;Shen Long-Chen;Xiao Xuan;Qiu Wang-Ren;Yu Dong-Jun",
+      "id": "out-7961cf3c72f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating unsupervised language model with multi-view multiple sequence alignments for high-accuracy inter-chain contact prediction — Liu Zi;Zhu Yi-Heng;Shen Long-Chen;Xiao Xuan;Qiu Wang-Ren;Yu Dong-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3808,
+            "end_char": 4018
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LSTM-SAGDTA: Predicting Drug-target Binding Affinity with an Attention Graph Neural Network and LSTM Approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjing Qiu;Qianle Liang;Liyi Yu;Xuan Xiao;Wangren Qiu;Weizhong Lin",
+      "id": "out-afe061da1f3b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LSTM-SAGDTA: Predicting Drug-target Binding Affinity with an Attention Graph Neural Network and LSTM Approach — Wenjing Qiu;Qianle Liang;Liyi Yu;Xuan Xiao;Wangren Qiu;Weizhong Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4023,
+            "end_char": 4208
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stacking-ac4C: an ensemble model using mixed features for identifying n4-acetylcytidine in mRNA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lou Li-Liang;Qiu Wang-Ren;Liu Zi;Xu Zhao-Chun;Xiao Xuan;Huang Shun-Fa",
+      "id": "out-32b7b60ce8d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stacking-ac4C: an ensemble model using mixed features for identifying n4-acetylcytidine in mRNA — Lou Li-Liang;Qiu Wang-Ren;Liu Zi;Xu Zhao-Chun;Xiao Xuan;Huang Shun-Fa",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4213,
+            "end_char": 4386
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of Plant Ubiquitylation Proteins and Sites by Fusing Multiple.Features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng-Yue Guan;Wang-Ren Qiu;Qian-Kun Wang;Xuan Xiao",
+      "id": "out-3aa7595c68c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of Plant Ubiquitylation Proteins and Sites by Fusing Multiple.Features — Meng-Yue Guan;Wang-Ren Qiu;Qian-Kun Wang;Xuan Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4391,
+            "end_char": 4531
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrative approach for classifying male tumors based on DNA methylation 450K data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji-Ming Wu;Wang-Ren Qiu;Zi Liu;Zhao-Chun Xu;Shou-Hua Zhang",
+      "id": "out-2322c8bd04ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrative approach for classifying male tumors based on DNA methylation 450K data — Ji-Ming Wu;Wang-Ren Qiu;Zi Liu;Zhao-Chun Xu;Shou-Hua Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4536,
+            "end_char": 4686
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SNO-DCA: A model for predicting S-nitrosylation sites based on densely connected convolutional networks and attention mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianhua Jia;Peinuo Lv;Xin Wei;Wangren Qiu",
+      "id": "out-c98654abaffc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SNO-DCA: A model for predicting S-nitrosylation sites based on densely connected convolutional networks and attention mechanism — Jianhua Jia;Peinuo Lv;Xin Wei;Wangren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4691,
+            "end_char": 4868
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "iSUMO-RsFPN: A predictor for identifying lysine SUMO-ylation sites based on multi-features and feature pyramid networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Lv;Xin Wei;Siqin Hu;Gang Lin;Wangren Qiu",
+      "id": "out-e62633352cb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] iSUMO-RsFPN: A predictor for identifying lysine SUMO-ylation sites based on multi-features and feature pyramid networks — Zhe Lv;Xin Wei;Siqin Hu;Gang Lin;Wangren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4873,
+            "end_char": 5045
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intelligent assistant diagnosis for pediatric inguinal hernia based on a multilayer and unbalanced classification model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi-Wen Liu;Gang Chen;Chao-Fan Dong;Wang-Ren Qiu;Shou-Hua Zhang",
+      "id": "out-881503ddccde",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intelligent assistant diagnosis for pediatric inguinal hernia based on a multilayer and unbalanced classification model — Zhi-Wen Liu;Gang Chen;Chao-Fan Dong;Wang-Ren Qiu;Shou-Hua Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5051,
+            "end_char": 5242
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying Pupylation Proteins and Sites by Incorporating Multiple Methods",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang-Ren Qiu;Meng-Yue Guan;Qian-Kun Wang;Li-Liang Lou;Xuan Xiao",
+      "id": "out-fd011f101e7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying Pupylation Proteins and Sites by Incorporating Multiple Methods — Wang-Ren Qiu;Meng-Yue Guan;Qian-Kun Wang;Li-Liang Lou;Xuan Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5248,
+            "end_char": 5395
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the Lung Adenocarcinoma and Its Biomarkers by Integrating Gene Expression and DNA Methylation Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang-Ren Qiu;Bei-Bei Qi;Wei-Zhong Lin;Shou-Hua Zhang;Wang-Ke Yu;Shun-Fa Huang",
+      "id": "out-10bcd4cc1993",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the Lung Adenocarcinoma and Its Biomarkers by Integrating Gene Expression and DNA Methylation Data — Wang-Ren Qiu;Bei-Bei Qi;Wei-Zhong Lin;Shou-Hua Zhang;Wang-Ke Yu;Shun-Fa Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5401,
+            "end_char": 5596
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "pSuc-FFSEA: Predicting Lysine Succinylation Sites in Proteins Based on Feature Fusion and Stacking Ensemble Algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianhua Jia;Genqiang Wu;Wangren Qiu",
+      "id": "out-ddf9318f5730",
+      "evidence": [
+        {
+          "quote": "[期刊论文] pSuc-FFSEA: Predicting Lysine Succinylation Sites in Proteins Based on Feature Fusion and Stacking Ensemble Algorithm — Jianhua Jia;Genqiang Wu;Wangren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5602,
+            "end_char": 5763
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Innovative Insights into Liver Cancer: Multi-Omics Reveals Critical Subtypes and Hub Genes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin-Yuan Cheng;Zi Liu;Muhammad Kabir;Wang-Ren Qiu",
+      "id": "out-7858343c77d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Innovative Insights into Liver Cancer: Multi-Omics Reveals Critical Subtypes and Hub Genes — Jin-Yuan Cheng;Zi Liu;Muhammad Kabir;Wang-Ren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5769,
+            "end_char": 5917
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying TME signatures for cervical cancer prognosis based on GEO and TCGA databases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Tao Xia;Wang-Ren Qiu;Wang-Ke Yu;Zhao-Chun Xu;Shou-Hua Zhang",
+      "id": "out-1f1cf09bd693",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying TME signatures for cervical cancer prognosis based on GEO and TCGA databases — Wen-Tao Xia;Wang-Ren Qiu;Wang-Ke Yu;Zhao-Chun Xu;Shou-Hua Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5923,
+            "end_char": 6083
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Deep Learning Method for Identifying G-Protein Coupled Receptors Based on a Feature Pyramid Network and Attention Mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Lv;Siqin Hu;Xin Wei;Wang Ren Qiu",
+      "id": "out-03ac1afbee29",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Deep Learning Method for Identifying G-Protein Coupled Receptors Based on a Feature Pyramid Network and Attention Mechanism — Zhe Lv;Siqin Hu;Xin Wei;Wang Ren Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6089,
+            "end_char": 6259
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "iCancer-Pred: A tool for identifying cancer and its type using DNA methylation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weizhong Lin;Siqin Hu;Zhicheng Wu;Zhaochun Xu;Yu Zhong;Zhe Lv;Wangren Qiu;Xuan Xiao",
+      "id": "out-6fbfa9abbea3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] iCancer-Pred: A tool for identifying cancer and its type using DNA methylation — Weizhong Lin;Siqin Hu;Zhicheng Wu;Zhaochun Xu;Yu Zhong;Zhe Lv;Wangren Qiu;Xuan Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6265,
+            "end_char": 6435
+          },
+          "version": "009be1f623a24d687cae"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      }
+    },
+    "consistent": true
+  }
 }

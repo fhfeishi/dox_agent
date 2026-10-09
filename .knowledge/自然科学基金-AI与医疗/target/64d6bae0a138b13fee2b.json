@@ -2,15 +2,20 @@
   "doc_id": "64d6bae0a138b13fee2b",
   "version": "75784513389822a1898a",
   "source_hash": "609ef751bae37770e8b2ea0ab17fdd5ca937969d9e6705da0b61dddc5c3a9fd3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:10.395959+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.771355+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f4a15aa4fb49",
-          "name": "胃食管结合部腺癌新辅助化疗评估",
-          "desc": "Siewert II/III型胃食管结合部腺癌是我国高发癌肿，5年生存率低，术前新辅助化疗有助于改善预后。",
+          "id": "item-ff1429ab0aed",
+          "name": "胃癌/胃食管结合部腺癌新辅助化疗疗效预测",
+          "desc": "疗效存在显著个体差异",
           "evidence": [
             {
-              "quote": "SiewertII/III型胃食管结合部腺癌是我国高发癌肿，5年生存率低",
+              "quote": "新辅助化疗（NAC）疗效具有显著个体差异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 725
-              },
-              "version": "75784513389822a1898a"
-            }
-          ]
-        },
-        {
-          "id": "item-50c768944e46",
-          "name": "新辅助化疗决策信息支持",
-          "desc": "构建的模型对新辅助化疗决策提供更多信息，实现个性化TRG分级概率输出。",
-          "evidence": [
-            {
-              "quote": "本研究构建的模型将对新辅助化疗决策提供更多信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1066,
-                "end_char": 1088
+                "start_char": 2893,
+                "end_char": 2912
               },
               "version": "75784513389822a1898a"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-060ff606ad22",
-          "name": "化疗疗效存在显著个体差异",
-          "desc": "由于肿瘤异质性，化疗疗效存在显著个体差异，如何术前精准评估疗效是极具挑战的临床难题。",
-          "evidence": [
-            {
-              "quote": "但由于肿瘤异质性，化疗疗效存在显著个体差异。如何实现术前精准评估化疗疗效是极具挑战的临床难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 755,
-                "end_char": 800
-              },
-              "version": "75784513389822a1898a"
-            }
-          ]
-        },
-        {
-          "id": "item-55491ea1fa17",
-          "name": "需筛选获益人群避免无效治疗",
-          "desc": "治疗前早期预测疗效、筛选治疗获益人群，同时避免化疗无效患者接受治疗，是胃癌个性化治疗的核心问题。",
+          "id": "item-53798c4d308f",
+          "name": "治疗前早期预测疗效筛选获益人群",
+          "desc": "核心问题",
           "evidence": [
             {
               "quote": "治疗前早期预测疗效，筛选治疗获益人群，同时避免化疗无效患者接受治疗，是胃癌个性化治疗的核心问题",
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d3b7fd3c654a",
-          "name": "多时序影像组学动态评估模型",
-          "desc": "纳入单时间点影像组学特征并计算治疗前后特征变化量，构建多时序疗效预测模型。",
+          "id": "item-9bad39c401cf",
+          "name": "多时序CT影像组学疗效预测模型",
+          "desc": "Ratio、Delta、DeltABS特征集与Merge模型",
           "evidence": [
             {
               "quote": "构建了一个多时序影像组学疗效预测模型",
@@ -108,23 +81,25 @@
               },
               "version": "75784513389822a1898a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0cac2e3dca91",
-          "name": "融合肿瘤间质比TSR的建模",
-          "desc": "融合代表肿瘤微环境整体形态特征的肿瘤间质比、临床病理指标与关键影像学表型，构建多时间点多维度动态评估模型。",
+          "id": "item-61725cffa068",
+          "name": "融合肿瘤间质比TSR的融合模型",
+          "desc": "Merge评分联合临床风险因子及TSR",
           "evidence": [
             {
-              "quote": "融合代表肿瘤微环境整体形态特征的肿瘤间质比(TSR)及其他临床病理指标、关键影像学表型特征，构建多时间点、多维度疗效动态评估模型",
+              "quote": "基于Merge 影像组学评分联合筛选出的临床风险因子及TSR 建立的融合模型显示出最优的预测能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 943,
-                "end_char": 1006
+                "start_char": 3589,
+                "end_char": 3636
               },
               "version": "75784513389822a1898a"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,144 @@
       "state": "has",
       "items": [
         {
-          "id": "item-38cfe19d3259",
-          "name": "Merge模型训练集AUC 0.908",
-          "desc": "融合影像组学特征建立的Merge模型训练集AUC为0.908，优于各单时间点与变化量模型。",
+          "id": "item-2244183a3b00",
+          "name": "融合模型预测能力",
+          "desc": "训练集AUC 0.927，验证集0.903",
           "evidence": [
             {
-              "quote": "在训练集中5个影像组学模型 Pre、Pos、Ratio、Delta、 DeltaABS及融合影像组学特征建立的Merge模型的AUC值分别为0.712 (95%CI 0.606-0.818)、0.813 (95%CI 0.733-0.893)、0.793 (95%CI 0.700-0.886)、0.797 (95%CI 0.706-0.888)、0.671 (95%CI 0.557-0.785)及0.908 (0.853-0.963)",
+              "quote": "在训练集及验证集的AUC值分别为0.927 (0.872-0.982) 、0.903(0.815-0.990)，敏感性高达0.959 (0.753-1.000)",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3343,
-                "end_char": 3561
-              },
-              "version": "75784513389822a1898a"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5d0409ea0410",
-          "name": "TSR融合模型AUC 0.927与0.903",
-          "desc": "Merge评分联合临床风险因子及TSR建立的融合模型预测能力最优，训练集AUC 0.927、验证集0.903，敏感性达0.959。",
-          "evidence": [
-            {
-              "quote": "基于Merge 影像组学评分联合筛选出的临床风险因子及TSR 建立的融合模型显示出最优的预测能力，在训练集及验证集的AUC值分别为0.927 (0.872-0.982) 、0.903(0.815-0.990)，敏感性高达0.959 (0.753-1.000)",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3589,
+                "start_char": 3638,
                 "end_char": 3717
               },
               "version": "75784513389822a1898a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-1c3657ad29b1",
-          "name": "多时序优于单时间点模型",
-          "desc": "证明多时序CT影像组学特征较单一时间点模型具有更好的疗效预测能力，组学特征与肿瘤微环境信息具有互补作用。",
+          "id": "item-b062e73722dc",
+          "name": "NAC队列",
+          "desc": "147例",
           "evidence": [
             {
-              "quote": "证明了多时序CT影像组学特征较单一时间点模型具有更好的疗效预测能力，影像组学特征与肿瘤微环境信息在预测胃癌NAC反应方面具有信息互补作用",
+              "quote": "本项目纳入经病理证实为胃腺癌并术前接受 NAC的患者 147 例",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3750,
-                "end_char": 3817
+                "start_char": 3150,
+                "end_char": 3181
               },
               "version": "75784513389822a1898a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f4a15aa4fb49"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-060ff606ad22"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT的动脉增强分数预测胃癌新辅助化疗联合免疫治疗反应的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐敏;张文娟;邓娟;任铁柱;杨晶晶;席华泽;袁隆;周俊林",
+      "id": "out-9a4068779bcf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT的动脉增强分数预测胃癌新辅助化疗联合免疫治疗反应的价值 — 徐敏;张文娟;邓娟;任铁柱;杨晶晶;席华泽;袁隆;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3859,
+            "end_char": 3927
+          },
+          "version": "75784513389822a1898a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-060ff606ad22"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d3b7fd3c654a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Combination of clinical and spectral-CT parameters for predicting lymphovascular and perineural invasion in gastric cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tiezhu Ren;Wenjuan Zhang;Shenglin Li;Liangna Deng;Caiqiang Xue;Zhengxiao Li;Suwei Liu;Jiachen Sun;Junlin Zhou",
+      "id": "out-408ca27a1238",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Combination of clinical and spectral-CT parameters for predicting lymphovascular and perineural invasion in gastric cancer. — Tiezhu Ren;Wenjuan Zhang;Shenglin Li;Liangna Deng;Caiqiang Xue;Zhengxiao Li;Suwei Liu;Jiachen Sun;Junlin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4173
+          },
+          "version": "75784513389822a1898a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d3b7fd3c654a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1c3657ad29b1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "进展期胃癌生存预测:基于增强CT深度学习模型的构建",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张文娟;张利文;邓娟;任铁柱;徐敏;周俊林",
+      "id": "out-36f0572ea558",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 进展期胃癌生存预测:基于增强CT深度学习模型的构建 — 张文娟;张利文;邓娟;任铁柱;徐敏;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4178,
+            "end_char": 4233
+          },
+          "version": "75784513389822a1898a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0cac2e3dca91"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5d0409ea0410"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT, MRI, and radiomics studies of liver metastasis histopathological growth patterns: an up-to-date review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shenglin Li;Zhengxiao Li;Xiaoyu Huang;Peng Zhang;Juan Deng;Xianwang Liu;Caiqiang Xue;Wenjuan Zhang;Junlin Zhou",
+      "id": "out-04fe5443570d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT, MRI, and radiomics studies of liver metastasis histopathological growth patterns: an up-to-date review — Shenglin Li;Zhengxiao Li;Xiaoyu Huang;Peng Zhang;Juan Deng;Xianwang Liu;Caiqiang Xue;Wenjuan Zhang;Junlin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4463
+          },
+          "version": "75784513389822a1898a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

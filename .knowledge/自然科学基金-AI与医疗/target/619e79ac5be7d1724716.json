@@ -2,15 +2,20 @@
   "doc_id": "619e79ac5be7d1724716",
   "version": "f5a352c64ce1f980ab61",
   "source_hash": "aed5bfaa6e0f1e3cc3b2d19d7c8df4f436ec73d60fef7aac59808d0f341bf673",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.497087+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.680851+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec85226bfe88",
-          "name": "肝癌早期超声筛查体系构建",
-          "desc": "肝癌早期筛查是改善患者预后的首选策略，超声是肝癌早筛体系的核心。",
+          "id": "item-faa29261bd7f",
+          "name": "肝癌超声早期筛查",
+          "desc": "肝癌早筛改善预后",
           "evidence": [
             {
-              "quote": "肝癌早期筛查是改善患者预后的首选策略。作为指南推荐的唯一影像手段，超声是肝癌早筛体系的核心",
+              "quote": "肝癌早期筛查是改善患者预后的核心策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 646,
-                "end_char": 690
-              },
-              "version": "f5a352c64ce1f980ab61"
-            }
-          ]
-        },
-        {
-          "id": "item-d1a4f7247792",
-          "name": "肝癌智能筛查体系构建",
-          "desc": "聚焦基于异构超声数据粒计算特征表示的肝癌智能筛查体系构建。",
-          "evidence": [
-            {
-              "quote": "本项目聚焦“基于异构超声数据粒计算特征表示的肝癌智能筛查体系”构建",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2535,
-                "end_char": 2567
+                "start_char": 2499,
+                "end_char": 2516
               },
               "version": "f5a352c64ce1f980ab61"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0558de6cc00c",
-          "name": "需提高超声检出率与诊断效能",
-          "desc": "提高超声对肝癌的检出率及诊断效能是肝癌诊疗的首要关键问题。",
+          "id": "item-d5caf1822acd",
+          "name": "超声数据异构性影响特征可重复性",
+          "desc": "多中心异构数据建模隐私与效能瓶颈",
           "evidence": [
             {
-              "quote": "提高超声对肝癌的检出率及诊断效能是肝癌诊疗的首要关键问题",
+              "quote": "超声采集参数、扫描仪型号、分割位置等因素均会显著影响超声特征的可重复性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 719
-              },
-              "version": "f5a352c64ce1f980ab61"
-            }
-          ]
-        },
-        {
-          "id": "item-7d1cc13036bb",
-          "name": "超声采集参数与设备影响特征可重复性",
-          "desc": "超声采集参数、扫描仪型号、分割位置等因素均会显著影响超声特征的可重复性。",
-          "evidence": [
-            {
-              "quote": "研究率先明确，超声采集参数、扫描仪型号、分割位置等因素均会显著影响超声特征的可重复性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2600,
+                "start_char": 2607,
                 "end_char": 2641
               },
               "version": "f5a352c64ce1f980ab61"
@@ -95,80 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-34ab134e6ad0",
-          "name": "3D CNN衔接EfficientDet与DenseNet",
-          "desc": "用3D CNN衔接EfficientDet与DenseNet进一步提高目标识别和分类能力。",
+          "id": "item-e5dc825178f6",
+          "name": "早-晚期混合融合方案",
+          "desc": "结合临床数据，AUC提升2.22%~25.88%",
           "evidence": [
             {
-              "quote": "项目拟用3D CNN衔接EfficientDet与DenseNet进一步提高目标识别和分类能力",
+              "quote": "创新提出结合临床数据的早-晚期混合融合方案，基于该方案的模型效能（AUC）提升2.22%~25.88%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 836,
-                "end_char": 882
-              },
-              "version": "f5a352c64ce1f980ab61"
-            }
-          ]
-        },
-        {
-          "id": "item-3fbae2f86288",
-          "name": "粒计算理论融合异构数据",
-          "desc": "应用粒计算理论分析多源医疗数据特征，实现异构数据有效融合。",
-          "evidence": [
-            {
-              "quote": "应用粒计算理论分析多源医疗数据特征，实现异构数据的有效融合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 884,
-                "end_char": 912
-              },
-              "version": "f5a352c64ce1f980ab61"
-            }
-          ]
-        },
-        {
-          "id": "item-2f5b74e5c172",
-          "name": "区块链融合联邦学习多中心协作",
-          "desc": "应用区块链融合联邦学习建立多中心协作体系，确保医疗数据安全和模型可信共享。",
-          "evidence": [
-            {
-              "quote": "应用区块链融合联邦学习建立多中心协作体系，确保医疗数据安全和模型可信共享",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 914,
-                "end_char": 949
-              },
-              "version": "f5a352c64ce1f980ab61"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b943000a6b97",
-          "name": "hetero-sync learning算法提升AUC",
-          "desc": "针对异构数据设计兼顾隐私保护与建模效能的hetero-sync learning算法，真实临床验证显示AUC较既往最优算法提升5.1%~28.2%。",
-          "evidence": [
-            {
-              "quote": "真实临床场景验证显示，该算法较既往最优算法的AUC提升5.1%~28.2%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2799,
-                "end_char": 2835
+                "start_char": 2678,
+                "end_char": 2728
               },
               "version": "f5a352c64ce1f980ab61"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-ad1b3da51f0b",
-          "name": "ADMNet降低呼吸运动干扰",
-          "desc": "设计整合呼吸门控模块的ADMNet算法，显著降低呼吸运动对病灶定位影响，实现高质量病灶追踪。",
+          "id": "item-52c4234df5b4",
+          "name": "hetero-sync learning算法",
+          "desc": "隐私保护与建模效能提升",
+          "evidence": [
+            {
+              "quote": "针对异构数据设计兼具隐私保护与建模效能提升的hetero-sync learning算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2746,
+                "end_char": 2789
+              },
+              "version": "f5a352c64ce1f980ab61"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-cc9c0d145ab8",
+          "name": "ADMNet呼吸门控病灶追踪",
+          "desc": "降低呼吸运动对病灶定位的影响",
           "evidence": [
             {
               "quote": "设计整合呼吸门控模块的ADMNet算法，显著降低呼吸运动对病灶定位的影响，实现高质量病灶追踪",
@@ -180,12 +116,18 @@
               "version": "f5a352c64ce1f980ab61"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-36f629299612",
-          "name": "AI初筛协作模式高灵敏度",
-          "desc": "AI初筛加医师复核模式中模型灵敏度0.956、特异度0.787，并将放射科医师工作负荷降低54.5%。",
+          "id": "item-96fd6d5fd8a1",
+          "name": "AI初筛+医师复核性能",
+          "desc": "灵敏度0.956，特异度0.787，工作负荷降低54.5%",
           "evidence": [
             {
               "quote": "在“AI初筛+医师复核阴性病例”的真实临床协作模式测试中，上述模型展现出高灵敏度（0.956）与高诊断特异度（0.787），同时将放射科医师工作负荷降低54.5%",
@@ -197,55 +139,199 @@
               "version": "f5a352c64ce1f980ab61"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ec85226bfe88"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0558de6cc00c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADMNet: Adaptive-Weighting Dual Mapping for Online Tracking With Respiratory Motion Estimation in Contrast-Enhanced Ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ming-De Li;Hang-Tong Hu;Si-Min Ruan;Mei-Qing Cheng;Li-Da Chen;Ze-Rong Huang;Wei Li;Peng Lin;Hong Yang;Ming Kuang;Ming-De Lu;Qing-Hua Huang;Wei Wang",
+      "id": "out-0881b8236d45",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ADMNet: Adaptive-Weighting Dual Mapping for Online Tracking With Respiratory Motion Estimation in Contrast-Enhanced Ultrasound — Ming-De Li;Hang-Tong Hu;Si-Min Ruan;Mei-Qing Cheng;Li-Da Chen;Ze-Rong Huang;Wei Li;Peng Lin;Hong Yang;Ming Kuang;Ming-De Lu;Qing-Hua Huang;Wei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3185,
+            "end_char": 3467
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0558de6cc00c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-34ab134e6ad0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI enhanced diagnostic accuracy and workload reduction in hepatocellular carcinoma screening",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Rui-Fang;She Chao-Yin;He Dan-Ni;Cheng Mei-Qing;Wang Ying;Huang Hui;Lin Ya-Dan;Lv Jia-Yi;Qin Si;Liu Ze-Zhi;Lu Zhi-Rong;Ke Wei-Ping;Li Chao-Qun;Xiao Han;Xu Zuo-Feng;Liu Guang-Jian;Yang Hong;Ren Jie;Wang Hai-Bo;Lu Ming-De;Huang Qing-Hua;Chen Li-Da;Wang Wei;Kuang Ming",
+      "id": "out-038a14651586",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI enhanced diagnostic accuracy and workload reduction in hepatocellular carcinoma screening — Lu Rui-Fang;She Chao-Yin;He Dan-Ni;Cheng Mei-Qing;Wang Ying;Huang Hui;Lin Ya-Dan;Lv Jia-Yi;Qin Si;Liu Ze-Zhi;Lu Zhi-Rong;Ke Wei-Ping;Li Chao-Qun;Xiao Han;Xu Zuo-Feng;Liu Guang-Jian;Yang Hong;Ren Jie;Wang Hai-Bo;Lu Ming-De;Huang Qing-Hua;Chen Li-Da;Wang Wei;Kuang Ming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3472,
+            "end_char": 3840
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f5b74e5c172"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b943000a6b97"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Addressing data heterogeneity in distributed medical imaging with heterosync learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Hang-Tong;Li Ming-De;Lin Xin-Xin;Cai Meng-Yao;Liu Shuai;Wu Shao-Hong;Tong Wen-Juan;Ye Feng-Yu;Hu Jin-Bo;Ke Wei-Ping;Chen Li-Da;Yang Hong;Liu Guang-Jian;Wang Hai-Bo;Lu Ming-De;Huang Qing-Hua;Kuang Ming;Wang Wei",
+      "id": "out-865eb5e2f004",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Addressing data heterogeneity in distributed medical imaging with heterosync learning — Hu Hang-Tong;Li Ming-De;Lin Xin-Xin;Cai Meng-Yao;Liu Shuai;Wu Shao-Hong;Tong Wen-Juan;Ye Feng-Yu;Hu Jin-Bo;Ke Wei-Ping;Chen Li-Da;Yang Hong;Liu Guang-Jian;Wang Hai-Bo;Lu Ming-De;Huang Qing-Hua;Kuang Ming;Wang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3845,
+            "end_char": 4151
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3fbae2f86288"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-36f629299612"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声人工智能的图像标准化处理方法、系统、介质及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王伟;胡航通;柯伟平;李铭德;黄惠",
+      "id": "out-0d6bcffab995",
+      "evidence": [
+        {
+          "quote": "[专利] 超声人工智能的图像标准化处理方法、系统、介质及终端 — 王伟;胡航通;柯伟平;李铭德;黄惠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4156,
+            "end_char": 4205
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Systematic comparison of deep-learning based fusion strategies for multi-modal ultrasound in diagnosis of liver cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ming-De Li;Wei Li;Man-Xia Lin;Xin-Xin Lin;Hang-Tong Hu;Ying-Chen Wang;Si-Min Ruan;Ze-Rong Huang;Rui-Fang Lu;Lv Li;Ming Kuang;Ming-De Lu;Li-Da Chen;Wei Wang;Qing-hua Huang",
+      "id": "out-5e12c315ae47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Systematic comparison of deep-learning based fusion strategies for multi-modal ultrasound in diagnosis of liver cancer — Ming-De Li;Wei Li;Man-Xia Lin;Xin-Xin Lin;Hang-Tong Hu;Ying-Chen Wang;Si-Min Ruan;Ze-Rong Huang;Rui-Fang Lu;Lv Li;Ming Kuang;Ming-De Lu;Li-Da Chen;Wei Wang;Qing-hua Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4210,
+            "end_char": 4507
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于强化学习的肝癌预测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王伟;黄惠;程美清;陈立达;胡航通;李铭德",
+      "id": "out-3f2bf1c442e5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于强化学习的肝癌预测方法及系统 — 王伟;黄惠;程美清;陈立达;胡航通;李铭德",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4558
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reproducibility of Radiomics Features from Ultrasound Images: Influence of Image Acquisition and Processing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li MingDe;Cheng MeiQing;Chen LiDa;Hu HangTong;Zhang JianChao;Ruan SiMing;Huang Hui;Kuang Ming;Lu MingDe;Li Wei;Wang Wei",
+      "id": "out-011495b4398a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reproducibility of Radiomics Features from Ultrasound Images: Influence of Image Acquisition and Processing — Li MingDe;Cheng MeiQing;Chen LiDa;Hu HangTong;Zhang JianChao;Ruan SiMing;Huang Hui;Kuang Ming;Lu MingDe;Li Wei;Wang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4563,
+            "end_char": 4798
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种超声造影视频预处理方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王伟;阮思敏;揭琰;李铭德;陈立达",
+      "id": "out-56a56f18afa8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种超声造影视频预处理方法、装置、设备及介质 — 王伟;阮思敏;揭琰;李铭德;陈立达",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4803,
+            "end_char": 4849
+          },
+          "version": "f5a352c64ce1f980ab61"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "35b1352b6133bd2ad9e4",
   "version": "cecaef1f5ad56ae45af8",
   "source_hash": "54d85182f08084c7e946a1af2c1dc9d325a70dc33b7c3c42ceb38b7cee68739b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.864791+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.820815+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-25277926d3ee",
-          "name": "多模态数据融合阿尔茨海默病辅诊",
-          "desc": "随着人口老龄化加深，阿尔茨海默病发病率逐年上升，多模态数据融合辅助诊断成为研究热点。",
+          "id": "item-3e58f4e9b099",
+          "name": "阿尔茨海默病多模态辅助诊断",
+          "desc": "早期症状隐匿、病理机制复杂",
           "evidence": [
             {
-              "quote": "随着全球人口老龄化程度日益加深，与年龄老化密切相关的阿尔茨海默病发病率正在逐年上升",
+              "quote": "阿尔茨海默病作为一种常见的神经退行性疾病，其早期临床症状隐匿、病理机制复杂",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 641,
-                "end_char": 681
-              },
-              "version": "cecaef1f5ad56ae45af8"
-            }
-          ]
-        },
-        {
-          "id": "item-bf4325304cd4",
-          "name": "推动辅助诊断应用系统落地",
-          "desc": "研究推动阿尔茨海默病辅助诊断应用系统落地，同时为其它相似疾病辅助诊断研究提供技术支持与参考。",
-          "evidence": [
-            {
-              "quote": "进而推动阿尔茨海默病辅助诊断应用系统落地，同时也为其它相似疾病辅助诊断研究提供强有力的技术支持和参考",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 987,
-                "end_char": 1036
+                "start_char": 2707,
+                "end_char": 2743
               },
               "version": "cecaef1f5ad56ae45af8"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-35d0dd7fcb13",
-          "name": "尚无特异性诊断方法",
-          "desc": "目前在临床上尚缺乏面向不同阶段阿尔茨海默病的特异性诊断方法。",
+          "id": "item-96820d9e7a4b",
+          "name": "单一模态难以刻画疾病特征",
+          "desc": "制约精准辅助诊断",
           "evidence": [
             {
-              "quote": "然而，目前在临床上尚缺乏面向不同阶段阿尔茨海默病的特异性诊断方法",
+              "quote": "单一模态数据难以全面刻画疾病特征，严重制约了精准辅助诊断方法的发展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 683,
-                "end_char": 714
-              },
-              "version": "cecaef1f5ad56ae45af8"
-            }
-          ]
-        },
-        {
-          "id": "item-f76cf1821532",
-          "name": "单一模态难刻画疾病特征",
-          "desc": "阿尔茨海默病早期临床症状隐匿、病理机制复杂，单一模态数据难以全面刻画疾病特征，制约精准辅助诊断发展。",
-          "evidence": [
-            {
-              "quote": "阿尔茨海默病作为一种常见的神经退行性疾病，其早期临床症状隐匿、病理机制复杂，单一模态数据难以全面刻画疾病特征，严重制约了精准辅助诊断方法的发展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2707,
+                "start_char": 2745,
                 "end_char": 2777
               },
               "version": "cecaef1f5ad56ae45af8"
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-22e1f9e316c8",
-          "name": "多模态影像与多视角特征融合建模",
-          "desc": "围绕多模态影像与多视角特征融合构建一系列面向阿尔茨海默病的辅助诊断模型，并通过多任务学习和图学习提升性能。",
+          "id": "item-949a36ecde80",
+          "name": "多模态多视角特征融合诊断模型",
+          "desc": "多任务学习与图学习",
           "evidence": [
             {
               "quote": "项目围绕多模态影像与多视角特征融合，构建了一系列面向阿尔茨海默病的辅助诊断模型，并通过多任务学习和图学习等方法有效提升了诊断性能",
@@ -108,51 +81,30 @@
               },
               "version": "cecaef1f5ad56ae45af8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a8d05a40fdcb",
-          "name": "跨尺度融合与模型训练平台",
-          "desc": "提出受疾病致病机制启发的跨尺度融合方法，并构建多模态医学影像分析与模型训练平台实现工程化应用。",
+          "id": "item-04d8fe4c6d7a",
+          "name": "受致病机制启发的跨尺度融合方法",
+          "desc": "多模态影像分析与模型训练平台",
           "evidence": [
             {
-              "quote": "项目提出了受疾病致病机制启发的跨尺度融合方法，并构建了多模态医学影像分析与模型训练平台，实现了研究成果的系统集成与工程化应用",
+              "quote": "项目提出了受疾病致病机制启发的跨尺度融合方法，并构建了多模态医学影像分析与模型训练平台",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3239,
-                "end_char": 3300
-              },
-              "version": "cecaef1f5ad56ae45af8"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7498e6d42425",
-          "name": "统一数据管理与分析流程",
-          "desc": "整合磁共振影像、正电子发射断层成像、脑电、基因组及语言等多源数据，建立统一的数据管理与分析流程。",
-          "evidence": [
-            {
-              "quote": "整合磁共振影像、正电子发射断层成像、脑电、基因组及语言等多源数据，建立了统一的数据管理与分析流程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2993,
-                "end_char": 3040
+                "end_char": 3281
               },
               "version": "cecaef1f5ad56ae45af8"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-572b008b707a",
-          "name": "识别验证潜在标志物",
-          "desc": "从影像、基因和脑电等不同模态开展模型可解释性研究，识别并验证一批与疾病发生发展相关的潜在标志物。",
+          "id": "item-3f2cd852ff8e",
+          "name": "多模态模型可解释性研究",
+          "desc": "影像、基因和脑电",
           "evidence": [
             {
               "quote": "项目从影像、基因和脑电等不同模态出发，开展了模型可解释性研究，识别并验证了一批与疾病发生发展相关的潜在标志物",
@@ -164,12 +116,18 @@
               "version": "cecaef1f5ad56ae45af8"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-673c415fe099",
-          "name": "论文9篇与专利5项",
-          "desc": "项目共发表高水平学术论文9篇、授权发明专利5项，成果发表于Neural Networks等期刊及AAAI、ACL等会议。",
+          "id": "item-7305469d9eeb",
+          "name": "论文与发明专利",
+          "desc": "高水平论文9篇，授权发明专利5项",
           "evidence": [
             {
               "quote": "项目共发表高水平学术论文 9 篇，授权发明专利5项",
@@ -181,55 +139,264 @@
               "version": "cecaef1f5ad56ae45af8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-bfb273c18f22",
+          "name": "多模态医学影像分析与模型训练平台",
+          "desc": "系统集成与工程化",
+          "evidence": [
+            {
+              "quote": "构建了多模态医学影像分析与模型训练平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3263,
+                "end_char": 3281
+              },
+              "version": "cecaef1f5ad56ae45af8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-25277926d3ee"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-35d0dd7fcb13"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态学习的影像基因融合分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘锦;田旭;王建新",
+      "id": "out-92545ad92a77",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态学习的影像基因融合分类方法 — 刘锦;田旭;王建新",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3590,
+            "end_char": 3626
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-35d0dd7fcb13"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-22e1f9e316c8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MMGK: Multimodality Multiview Graph Representations and Knowledge Embedding for Mild Cognitive Impairment Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Liu;Hao Du;Rui Guo;Harrison X. Bai;Hulin Kuang;Jianxin Wang",
+      "id": "out-f5d52def0071",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MMGK: Multimodality Multiview Graph Representations and Knowledge Embedding for Mild Cognitive Impairment Diagnosis — Jin Liu;Hao Du;Rui Guo;Harrison X. Bai;Hulin Kuang;Jianxin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3631,
+            "end_char": 3818
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-22e1f9e316c8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-572b008b707a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "功能磁共振影像分类方法、系统、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘锦;毛浚彬",
+      "id": "out-6cc914c6afbc",
+      "evidence": [
+        {
+          "quote": "[专利] 功能磁共振影像分类方法、系统、设备及介质 — 刘锦;毛浚彬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3823,
+            "end_char": 3856
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a8d05a40fdcb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-673c415fe099"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于脑电图多波段特征融合的人群分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘锦;魏嘉昕",
+      "id": "out-7609f51eeaa0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于脑电图多波段特征融合的人群分类方法 — 刘锦;魏嘉昕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3861,
+            "end_char": 3893
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Group Attention-based Multi-wave Graph Learning for Dementia Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaxin Wei;Bin Jiao;Xu Tian;Lu Shen;Jin Liu",
+      "id": "out-2b682c7896ac",
+      "evidence": [
+        {
+          "quote": "[会议论文] Group Attention-based Multi-wave Graph Learning for Dementia Diagnosis — Jiaxin Wei;Bin Jiao;Xu Tian;Lu Shen;Jin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3898,
+            "end_char": 4020
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Scale Adaptive Graph Learning Based on Multi-Wave EEG Data for Dementia Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Jiaxin;Jiao Bin;Lin Hanhe;Tian Xu;Shen Lu;Liu Jin",
+      "id": "out-f668e72d7c36",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Scale Adaptive Graph Learning Based on Multi-Wave EEG Data for Dementia Diagnosis — Wei Jiaxin;Jiao Bin;Lin Hanhe;Tian Xu;Shen Lu;Liu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4025,
+            "end_char": 4174
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Task Learning for Alzheimer's Disease Diagnosis and Mini-Mental State Examination Score Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Liu;Xu Tian;Hanhe Lin;Hong-Dong Li;Yi Pan",
+      "id": "out-db3610a7f446",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Task Learning for Alzheimer's Disease Diagnosis and Mini-Mental State Examination Score Prediction — Jin Liu;Xu Tian;Hanhe Lin;Hong-Dong Li;Yi Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4179,
+            "end_char": 4337
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Faster Stochastic Variance Reduction Methods for Compositional MiniMax Optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Liu;Xiaokang Pan;Junwen Duan;Hong-Dong Li;Youqi Li;Zhe Qu",
+      "id": "out-452f26d130d2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Faster Stochastic Variance Reduction Methods for Compositional MiniMax Optimization — Jin Liu;Xiaokang Pan;Junwen Duan;Hong-Dong Li;Youqi Li;Zhe Qu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4495
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种行为识别方法、装置、终端设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘锦;曾德蛟;王建新",
+      "id": "out-da38b402b464",
+      "evidence": [
+        {
+          "quote": "[专利] 一种行为识别方法、装置、终端设备及介质 — 刘锦;曾德蛟;王建新",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4500,
+            "end_char": 4536
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inspired by Pathogenic Mechanisms: A Novel Gradual Multi-modal Fusion Framework for Mild Cognitive Impairment Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Tian;Hong-Dong Li;Hanhe Lin;Chao Li;Yu-Ping Wang;Harrison X Bai;Wei Lan;Jin Liu",
+      "id": "out-24295bf79c5c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inspired by Pathogenic Mechanisms: A Novel Gradual Multi-modal Fusion Framework for Mild Cognitive Impairment Diagnosis — Xu Tian;Hong-Dong Li;Hanhe Lin;Chao Li;Yu-Ping Wang;Harrison X Bai;Wei Lan;Jin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4542,
+            "end_char": 4752
+          },
+          "version": "cecaef1f5ad56ae45af8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

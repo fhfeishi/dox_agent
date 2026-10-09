@@ -2,15 +2,20 @@
   "doc_id": "3803bc10909ca7323edc",
   "version": "d02df289c2f213d6995f",
   "source_hash": "661426e2fe50a87bdd39e59c7827274dbc000456faf4d3be7025730b312bd496",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.488239+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:20.020043+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf11dafd78aa",
-          "name": "超声心动图评估主动脉瓣狭窄",
-          "desc": "主动脉瓣狭窄是最常见的心脏退行性瓣膜病，狭窄严重程度与心衰、猝死等不良预后密切相关。",
+          "id": "item-05fc629ded56",
+          "name": "主动脉瓣狭窄超声心动图评估",
+          "desc": "关键影像技术",
           "evidence": [
             {
-              "quote": "主动脉瓣狭窄是最常见的心脏退行性瓣膜病",
+              "quote": "超声心动图是目前诊断和评估主动脉瓣狭窄的关键影像技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 686
+                "start_char": 2601,
+                "end_char": 2626
               },
               "version": "d02df289c2f213d6995f"
             }
@@ -41,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6979334d4cc7",
-          "name": "评估受医生主观因素影响",
-          "desc": "超声心动图评估受超声医生主观因素和经验水平影响，精准性与效率存在挑战。",
+          "id": "item-a719d757fbf9",
+          "name": "评估依赖专业知识且耗时",
+          "desc": "临床应用瓶颈",
           "evidence": [
             {
-              "quote": "但受到超声医生主观因素和经验水平等影响，其评估的精准性和效率仍存在一定挑战",
+              "quote": "该技术需要专业知识和相当长的处理时间，导致其在临床应用中存在一些瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 738,
-                "end_char": 774
-              },
-              "version": "d02df289c2f213d6995f"
-            }
-          ]
-        },
-        {
-          "id": "item-6394f46c015d",
-          "name": "依赖专业知识和较长处理时间",
-          "desc": "超声心动图诊断与评估需要专业知识和相当长的处理时间，临床应用存在瓶颈。",
-          "evidence": [
-            {
-              "quote": "但该技术需要专业知识和相当长的处理时间，导致其在临床应用中存在一些瓶颈",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2628,
+                "start_char": 2629,
                 "end_char": 2662
               },
               "version": "d02df289c2f213d6995f"
@@ -79,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b6b30841be1",
-          "name": "深度学习多模块集成框架",
-          "desc": "优化卷积神经网络模型，在视频分类、图像分割、目标检测与多模态融合等方面进行集成。",
+          "id": "item-d75a8f6b2fba",
+          "name": "深度学习切面分类与AS检测框架",
+          "desc": "自动分类超声切面并检测AS",
           "evidence": [
             {
-              "quote": "优化卷积神经网络模型，在超声心动图动态视频图像分类、图像分割、目标检测以及多模态融合等方面进行集成",
+              "quote": "本研究开发的深度学习框架，首先自动对超声心动图切面进行分类，检测主动脉瓣狭窄的存在",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 942
+                "start_char": 2741,
+                "end_char": 2781
               },
               "version": "d02df289c2f213d6995f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d5c017273e3a",
-          "name": "单切面简化分级方法",
-          "desc": "基于单个二维胸骨旁长轴视图对主动脉瓣狭窄分类，避免对多普勒数据的依赖。",
+          "id": "item-249df785e88f",
+          "name": "单一PLAX切面AS分级方法",
+          "desc": "避免依赖多普勒数据",
           "evidence": [
             {
-              "quote": "另一种是一种简化的方法，基于单个二维（2D）胸骨旁长轴（PLAX）视图对主动脉瓣狭窄进行分类，避免了对多普勒数据的依赖",
+              "quote": "基于单个二维（2D）胸骨旁长轴（PLAX）视图对主动脉瓣狭窄进行分类，避免了对多普勒数据的依赖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2823,
+                "start_char": 2835,
                 "end_char": 2881
               },
               "version": "d02df289c2f213d6995f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,43 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a2bae8b5826",
-          "name": "狭窄检测AUC 0.942",
-          "desc": "深度学习模型在前瞻性试验数据集实现狭窄检测AUC 0.942、灵敏度0.904、特异性0.923、准确性0.922。",
+          "id": "item-7e889402503a",
+          "name": "AS检测性能",
+          "desc": "AUC 0.942，灵敏度0.904，特异性0.923",
           "evidence": [
             {
-              "quote": "深度学习模型在前瞻性试验数据集中实现了主动脉瓣狭窄检测的高性能，曲线下面积（AUC）为0.942",
+              "quote": "曲线下面积（AUC）为0.942，灵敏度为0.904，特异性为0.923，准确性为0.922",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2959,
-                "end_char": 3006
+                "start_char": 2991,
+                "end_char": 3036
               },
               "version": "d02df289c2f213d6995f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-721d5c5cfe9e",
-          "name": "分级指标与手动测量高度相关",
-          "desc": "深度学习分级指标与手动测量在Vmax、MPG、LVOT d、LVOT VTI上均表现出色。",
-          "evidence": [
-            {
-              "quote": "深度学习分级指标与手动测量之间的相关性在Vmax（r=0.94，p<0.001）、MPG（r=0.91，p<0.001）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3038,
-                "end_char": 3097
-              },
-              "version": "d02df289c2f213d6995f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-87351fb27ddd",
-          "name": "重度AS分级AUC 0.976",
-          "desc": "基于各指标的分级ROC显示严重AS的AUC最高为0.976，明显优于中度与轻度AS。",
+          "id": "item-59e61a918238",
+          "name": "严重AS分级AUC",
+          "desc": "0.976",
           "evidence": [
             {
               "quote": "严重AS的AUC最高，为0.976（95%CI:0.953，1.0）",
@@ -165,7 +141,9 @@
               "version": "d02df289c2f213d6995f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -173,47 +151,125 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-bf11dafd78aa"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6979334d4cc7"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6979334d4cc7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7b6b30841be1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7b6b30841be1"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-3a2bae8b5826"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d5c017273e3a"
+        "item_id": "item-7e889402503a"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-87351fb27ddd"
+        "dimension": "技术",
+        "item_id": "item-d75a8f6b2fba"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "曲线下面积（AUC）为0.942，灵敏度为0.904，特异性为0.923，准确性为0.922",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2991,
+            "end_char": 3036
+          },
+          "version": "d02df289c2f213d6995f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Echocardiography-based AI for detection and quantification of atrial septal defect",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Xixiang;Yang Feifei;Chen Yixin;Chen Xu;Wang Wenjun;Li Wenxiu;Wang Qiushuang;Zhang Liwei;Li Xin;Deng Yujiao;Pu Haitao;Chen Xiaotian;Wang Xiao;Luo Dong;Zhang Peifang;Burkhoff Daniel;He Kunlun",
+      "id": "out-7d979b40f3a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Echocardiography-based AI for detection and quantification of atrial septal defect — Lin Xixiang;Yang Feifei;Chen Yixin;Chen Xu;Wang Wenjun;Li Wenxiu;Wang Qiushuang;Zhang Liwei;Li Xin;Deng Yujiao;Pu Haitao;Chen Xiaotian;Wang Xiao;Luo Dong;Zhang Peifang;Burkhoff Daniel;He Kunlun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3405,
+            "end_char": 3689
+          },
+          "version": "d02df289c2f213d6995f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-assisted aortic stenosis detection and grading based on multiview versus single-view echocardiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Feifei;Zhang Yongming;Gao Yufei;Wang Baoquan;Lin Xixiang;Chen Xu;Wang Qiushuang;Zhang Meiqing;Li Xin;Liu Bohan;Zhang Peifang;He Kunlun;Zhang Liwei",
+      "id": "out-97bd263fd1a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-assisted aortic stenosis detection and grading based on multiview versus single-view echocardiography — Yang Feifei;Zhang Yongming;Gao Yufei;Wang Baoquan;Lin Xixiang;Chen Xu;Wang Qiushuang;Zhang Meiqing;Li Xin;Liu Bohan;Zhang Peifang;He Kunlun;Zhang Liwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3694,
+            "end_char": 3969
+          },
+          "version": "d02df289c2f213d6995f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "不同严重程度主动脉瓣狭窄患者超声心动图参数进展的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马佳;张丽伟;王秋霜;马永江;杨菲菲",
+      "id": "out-ab069ad7e165",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 不同严重程度主动脉瓣狭窄患者超声心动图参数进展的研究 — 马佳;张丽伟;王秋霜;马永江;杨菲菲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3974,
+            "end_char": 4027
+          },
+          "version": "d02df289c2f213d6995f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的超声心动图自动识别瓣膜反流",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭马特;宋艳杰;石婵;孙诗敏;马佳;刘博罕;王秋霜;张丽伟;杨菲菲",
+      "id": "out-b177ed2545ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于深度学习的超声心动图自动识别瓣膜反流 — 郭马特;宋艳杰;石婵;孙诗敏;马佳;刘博罕;王秋霜;张丽伟;杨菲菲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4032,
+            "end_char": 4094
+          },
+          "version": "d02df289c2f213d6995f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

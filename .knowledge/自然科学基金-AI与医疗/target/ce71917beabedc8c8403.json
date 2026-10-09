@@ -2,15 +2,20 @@
   "doc_id": "ce71917beabedc8c8403",
   "version": "43d3273bbfb0e83a5457",
   "source_hash": "953523b1e4d4255f4f8173bbe97d6809ab99eef377001381a69de6637d33632f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:13.983936+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.465827+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-e0b2ca6d1a3e",
           "name": "重大疾病多组学与医学大数据挖掘",
-          "desc": "针对生物医学大数据特点，构建多组学数据、医学影像、电子病历、论文等集成的具有进化功能的开放大数据平台。",
+          "desc": "肝癌与肾囊肿",
           "evidence": [
             {
-              "quote": "我们针对生物医学大数据的特点，构建多组学数据、医学影像、电子病历、公开发表论文等集成的具有进化功能的开放大数据平台",
+              "quote": "本项目主要针对重大疾病（肝癌、肾肿瘤）等开展研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 707
-              },
-              "version": "43d3273bbfb0e83a5457"
-            }
-          ]
-        },
-        {
-          "id": "item-26b8fa619e07",
-          "name": "个性化医疗与精准用药技术支撑",
-          "desc": "将大数据平台与研究方法标准化后移植到天河二号超算，为不同人群重大疾病的个性化医疗和精准用药提供理论和技术。",
-          "evidence": [
-            {
-              "quote": "为针对不同人群重大疾病的个性化医疗和精准用药提供理论和技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1001,
-                "end_char": 1029
+                "start_char": 2290,
+                "end_char": 2313
               },
               "version": "43d3273bbfb0e83a5457"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-557114328df7",
-          "name": "需获取重大疾病关键致病因子与调控网络",
-          "desc": "需获取癌症等重大疾病关键致病因子及相关调控网络，揭示重大疾病发生机制、发展演变过程及药物靶点。",
+          "id": "item-d4bcd36cd9ad",
+          "name": "生物医学大数据多源异构难以处理",
+          "desc": "重大疾病机制",
           "evidence": [
             {
-              "quote": "获取癌症等重大疾病关键致病因子及相关调控网络，通过区分癌司机与乘客、比较癌细胞与正常细胞差异，揭示重大疾病发生机制、发展演变过程及药物靶点",
+              "quote": "我们针对生物医学大数据的特点，构建多组学数据、医学影像、电子病历、公开发表论文等集成的具有进化功能的开放大数据平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 819,
-                "end_char": 887
-              },
-              "version": "43d3273bbfb0e83a5457"
-            }
-          ]
-        },
-        {
-          "id": "item-4deb9bd66ea6",
-          "name": "需适应生物医学数据特点的挖掘新算法",
-          "desc": "提出适应生物医学数据特点的大数据深度挖掘、知识获取新算法。",
-          "evidence": [
-            {
-              "quote": "提出适应生物医学数据特点的大数据深度挖掘、知识获取新算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 759
+                "start_char": 651,
+                "end_char": 707
               },
               "version": "43d3273bbfb0e83a5457"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6cf303a67676",
-          "name": "实体关系网络ERN模型",
-          "desc": "提出基于关联数据计算circRNA与疾病嵌入向量的实体关系网络模型，并采用Pseudo-Siamese网络进行数据分析。",
+          "id": "item-bf2b30ba2567",
+          "name": "实体关系网络ERN与Pseudo-Siamese网络",
+          "desc": "circRNA与疾病关联",
           "evidence": [
             {
               "quote": "提出了一种基于关联数据计算circRNA与疾病嵌入向量的实体关系网络 Entity Relation Network (ERN) 模型，并采用Pseudo-Siamese网络进行数据分析",
@@ -108,23 +81,42 @@
               },
               "version": "43d3273bbfb0e83a5457"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-9b8c89994dd2",
           "name": "CNN与SVR预测sgRNA切割活性",
-          "desc": "基于卷积神经网络与支持向量回归提出新模型预测CRISPR/Cas9系统sgRNA切割活性，提高基因编辑预测准确率。",
+          "desc": "CRISPR/Cas9",
           "evidence": [
             {
-              "quote": "研究如何基于卷积神经网络（CNN）与支持向量回归（SVR），提出新的模型预测CRISPR/Cas9系统sgRNA的切割活性，进而提高基因编辑预测准确率",
+              "quote": "研究如何基于卷积神经网络（CNN）与支持向量回归（SVR），提出新的模型预测CRISPR/Cas9系统sgRNA的切割活性",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2669,
-                "end_char": 2743
+                "end_char": 2729
               },
               "version": "43d3273bbfb0e83a5457"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-589b81a601d2",
+          "name": "深度学习复杂性肾囊肿CT良恶性分类",
+          "desc": "最低标注帧采样原则",
+          "evidence": [
+            {
+              "quote": "项目使用深度学习算法对复杂性肾囊肿良、恶性CT图像分类",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2745,
+                "end_char": 2771
+              },
+              "version": "43d3273bbfb0e83a5457"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -135,7 +127,7 @@
         {
           "id": "item-88150a3556bf",
           "name": "癌细胞相关数据库CCRDB",
-          "desc": "建立癌细胞相关数据库，通过对肝细胞癌患者实验数据测序收集共发现11501个circRNAs，可有效揭示circRNAs与肝癌的关系。",
+          "desc": "发现11501个circRNAs",
           "evidence": [
             {
               "quote": "建立了一个癌细胞相关数据库（CCRDB）。通过对肝细胞癌（HCC）患者的实验数据进行测序收集，共发现11501个circRNAs",
@@ -147,29 +139,14 @@
               "version": "43d3273bbfb0e83a5457"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-a1fbf3b219d0",
-          "name": "降低CT图像标注数量的采样原则",
-          "desc": "建立复杂性肾囊肿CT图像标注与识别率关系，提出最低标注帧采样原则，可大幅降低标注数量并节省人力物力。",
-          "evidence": [
-            {
-              "quote": "从理论上建立了复杂性肾囊肿CT图像标注与识别率关系，提出获得几乎不降低识别率的CT图像（包括视频流）最低标注帧采样原则",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2773,
-                "end_char": 2831
-              },
-              "version": "43d3273bbfb0e83a5457"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-691f059af074",
-          "name": "论文11篇与专利21项",
-          "desc": "项目共完成11篇学术论文（SCI 9篇），申请发明专利21项，培养硕博士40名。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文11篇，SCI 9篇，发明专利申请21项",
           "evidence": [
             {
               "quote": "本项目共完成11篇学术论文，其中SCI 9篇，申请发明专利21项",
@@ -181,55 +158,581 @@
               "version": "43d3273bbfb0e83a5457"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e0b2ca6d1a3e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-557114328df7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the Influence of Parameters on the p53 Response When Single-Stranded Breaks and Double-Stranded Breaks Coexist",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aiqing Ma;Xianhua Dai",
+      "id": "out-bce7108f6e81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the Influence of Parameters on the p53 Response When Single-Stranded Breaks and Double-Stranded Breaks Coexist — Aiqing Ma;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3006,
+            "end_char": 3156
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-557114328df7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6cf303a67676"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "C-RNNCrispr: Prediction of CRISPR/Cas9 sgRNA activity using convolutional and recurrent neural networks.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Guishan;Dai Zhiming;Dai Xianhua",
+      "id": "out-7cf5a26a384f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] C-RNNCrispr: Prediction of CRISPR/Cas9 sgRNA activity using convolutional and recurrent neural networks. — Zhang Guishan;Dai Zhiming;Dai Xianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3161,
+            "end_char": 3311
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6cf303a67676"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-88150a3556bf"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种低剂量CT图像修复去噪方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王国利;方媛;郭雪梅;戴宪华",
+      "id": "out-05282518656f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种低剂量CT图像修复去噪方法 — 王国利;方媛;郭雪梅;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3316,
+            "end_char": 3352
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9b8c89994dd2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a1fbf3b219d0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种新型的基于GRU注意力机制的答案选择模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧;刘璨;戴宪华",
+      "id": "out-8980f1eae877",
+      "evidence": [
+        {
+          "quote": "[专利] 一种新型的基于GRU注意力机制的答案选择模型 — 王慧;刘璨;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3357,
+            "end_char": 3395
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accuracy-efficiency Balanced Sampling Rate Found by Discrete Fourier Transform",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiongliang Lin;Yahui Peng;Yufei Yang;Xianhua Dai",
+      "id": "out-9b30b5054afc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Accuracy-efficiency Balanced Sampling Rate Found by Discrete Fourier Transform — Jiongliang Lin;Yahui Peng;Yufei Yang;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3400,
+            "end_char": 3535
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature Activation through First Power Linear Unit with Sign",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Boxi Duan;Yufei Yang;Xianhua Dai",
+      "id": "out-c0c5b6f90063",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature Activation through First Power Linear Unit with Sign — Boxi Duan;Yufei Yang;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3540,
+            "end_char": 3641
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于LightGBM的circRNA鉴别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邓怡云;曾甜;戴宪华",
+      "id": "out-123fee909529",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于LightGBM的circRNA鉴别方法 — 邓怡云;曾甜;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3646,
+            "end_char": 3687
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种缓解CRISPR/Cas9脱靶预测中数据不平衡问题的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾甜;戴宪华",
+      "id": "out-11944ed42011",
+      "evidence": [
+        {
+          "quote": "[专利] 一种缓解CRISPR/Cas9脱靶预测中数据不平衡问题的方法 — 曾甜;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3692,
+            "end_char": 3735
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SAAED: Embedding and Deep Learning Enhance Accurate Prediction of Association Between circRNA and Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qingyu Liu;Junjie Yu;Yanning Cai;Guishan Zhang;Xianhua Dai",
+      "id": "out-29a4c7716601",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SAAED: Embedding and Deep Learning Enhance Accurate Prediction of Association Between circRNA and Disease — Qingyu Liu;Junjie Yu;Yanning Cai;Guishan Zhang;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3740,
+            "end_char": 3912
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种引入注意力机制的人脸图像修复方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王高平;许曼玲;戴宪华",
+      "id": "out-64951a8f26c5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种引入注意力机制的人脸图像修复方法 — 王高平;许曼玲;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3918,
+            "end_char": 3954
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的农作物病害检测算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈楚城;张灵敏;戴宪华",
+      "id": "out-d47136ce569a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的农作物病害检测算法 — 陈楚城;张灵敏;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 3996
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Insights into Active Intragenic Enhancers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong Yang;Zhiming Dai;Xianhua Dai",
+      "id": "out-93e590a11201",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Insights into Active Intragenic Enhancers — Yong Yang;Zhiming Dai;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4002,
+            "end_char": 4085
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "干扰消除交织OFDMA上行链路CFO估计方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谭潇;王慧;戴宪华",
+      "id": "out-996a3f45bd82",
+      "evidence": [
+        {
+          "quote": "[专利] 干扰消除交织OFDMA上行链路CFO估计方法 — 谭潇;王慧;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4091,
+            "end_char": 4129
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于候选区域面积和宽高的自适应特 征块提取方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈楚城;戴宪华",
+      "id": "out-80917b95550f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于候选区域面积和宽高的自适应特 征块提取方法 — 陈楚城;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4135,
+            "end_char": 4174
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于美学相似性度量的图像美学排序方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许曼玲;戴宪华",
+      "id": "out-d92a9e3308e4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于美学相似性度量的图像美学排序方法 — 许曼玲;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4180,
+            "end_char": 4214
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Hybrid CNN-SVR for CRISPR/Cas9 Guide RNA Activity Prediction.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Guishan;Dai Zhiming;Dai Xianhua",
+      "id": "out-1247b27ad26e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Hybrid CNN-SVR for CRISPR/Cas9 Guide RNA Activity Prediction. — Zhang Guishan;Dai Zhiming;Dai Xianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4220,
+            "end_char": 4335
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于CRNN解决拼图任务的自监督学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林炯良;戴宪华",
+      "id": "out-528b83e1a326",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于CRNN解决拼图任务的自监督学习方法 — 林炯良;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4377
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于显著性感知和自注意力机制的图像美学评价方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许曼玲;戴宪华",
+      "id": "out-80070172edce",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于显著性感知和自注意力机制的图像美学评价方法 — 许曼玲;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4422
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的CRISPR/Cas9 sgRNA活性预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾甜;许曼玲;戴宪华",
+      "id": "out-88ccdca71d16",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的CRISPR/Cas9 sgRNA活性预测方法 — 曾甜;许曼玲;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4428,
+            "end_char": 4477
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于比率自适应池化的多尺度特征物体检测算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱勉春;许曼玲;戴宪华",
+      "id": "out-7acf5403a385",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于比率自适应池化的多尺度特征物体检测算法 — 朱勉春;许曼玲;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4483,
+            "end_char": 4524
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于GRU神经网络内部注意力机制的答案选择模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "熊海泉;王慧;戴宪华",
+      "id": "out-2994ef822928",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于GRU神经网络内部注意力机制的答案选择模型 — 熊海泉;王慧;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4572
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多种词嵌入融合与注意力机制的情感目标抽取模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "况丽娟;戴宪华",
+      "id": "out-b56bb212179e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多种词嵌入融合与注意力机制的情感目标抽取模型 — 况丽娟;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4578,
+            "end_char": 4618
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种改进的结合实体关系和局部信息的关系抽取方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙一立;戴宪华",
+      "id": "out-102d4bf2bf60",
+      "evidence": [
+        {
+          "quote": "[专利] 一种改进的结合实体关系和局部信息的关系抽取方法 — 孙一立;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4624,
+            "end_char": 4661
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Seeding based on Complex Factors-Local Fitness Method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieling Hu;Yufei Yang;Xianhua Dai",
+      "id": "out-67f4f4fe6ed6",
+      "evidence": [
+        {
+          "quote": "[会议论文] Seeding based on Complex Factors-Local Fitness Method — Jieling Hu;Yufei Yang;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4667,
+            "end_char": 4762
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of CRISPR/Cas9 single guide RNA cleavage efficiency and specificity by attention-based convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guishan Zhang;Tian Zeng;Zhiming Dai;Xianhua Dai",
+      "id": "out-8f7f4328701e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of CRISPR/Cas9 single guide RNA cleavage efficiency and specificity by attention-based convolutional neural networks — Guishan Zhang;Tian Zeng;Zhiming Dai;Xianhua Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4768,
+            "end_char": 4951
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种有效载荷传输时间的计算方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石春;单纯;程静;陈海强;彭亚辉;戴宪华",
+      "id": "out-b83136c1bbfe",
+      "evidence": [
+        {
+          "quote": "[专利] 一种有效载荷传输时间的计算方法 — 石春;单纯;程静;陈海强;彭亚辉;戴宪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4957,
+            "end_char": 4999
+          },
+          "version": "43d3273bbfb0e83a5457"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

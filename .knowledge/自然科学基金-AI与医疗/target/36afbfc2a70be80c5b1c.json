@@ -2,15 +2,20 @@
   "doc_id": "36afbfc2a70be80c5b1c",
   "version": "8e5818ed0397d1258e89",
   "source_hash": "2b5c7afb6f716933f7ee768fcbc65b85e90c74cf9073220613c1afe75e57f5ad",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.072722+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.948763+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a59e6e9f948b",
-          "name": "乳腺癌循环肿瘤细胞分离与分型检测",
-          "desc": "循环肿瘤细胞由实体肿瘤脱落进入外周血循环，其检测有助于理解肿瘤转移过程并为癌症治疗提供指导。",
+          "id": "item-419323037c6c",
+          "name": "乳腺癌循环肿瘤细胞分离与分型",
+          "desc": "CTC异质性解析转移机制",
           "evidence": [
             {
-              "quote": "循环肿瘤细胞是由实体肿瘤组织脱落并释放进入外周血循环的肿瘤细胞，对循环肿瘤细胞的检测有助于人们更好地理解肿瘤的转移过程",
+              "quote": "循环肿瘤细胞（CTC）的异质性是解析癌症转移机制、指导精准治疗的关键因素之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 702,
-                "end_char": 760
-              },
-              "version": "8e5818ed0397d1258e89"
-            }
-          ]
-        },
-        {
-          "id": "item-7599c11e80b1",
-          "name": "癌症精准诊疗技术研发",
-          "desc": "通过器件-材料-算法跨领域融合搭建CTC分离检测一体化平台，为癌症精准诊疗技术研发奠定基础。",
-          "evidence": [
-            {
-              "quote": "为癌症精准诊疗技术的研发奠定基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3422,
-                "end_char": 3437
+                "start_char": 2726,
+                "end_char": 2763
               },
               "version": "8e5818ed0397d1258e89"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-82883661e4f4",
-          "name": "CTC稀少分离难检测灵敏度不足",
-          "desc": "循环肿瘤细胞的稀少性、分离难、检测灵敏度不足等瓶颈严重制约相关研究。",
+          "id": "item-dfb22d7ce4e2",
+          "name": "CTC稀少、分离难、检测灵敏度不足",
+          "desc": "制约研究",
           "evidence": [
             {
-              "quote": "但 CTC 稀少性、分离难、检测灵敏度不足等瓶颈严重制约相关研究",
+              "quote": "CTC 稀少性、分离难、检测灵敏度不足等瓶颈严重制约相关研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2765,
+                "start_char": 2767,
                 "end_char": 2796
-              },
-              "version": "8e5818ed0397d1258e89"
-            }
-          ]
-        },
-        {
-          "id": "item-6e76e8efc969",
-          "name": "贵金属增强材料存在生物毒性",
-          "desc": "需规避贵金属增强材料对细胞的生物毒性，探索新型二维拉曼增强材料。",
-          "evidence": [
-            {
-              "quote": "然后为了规避贵金属增强材料对细胞的生物毒性，探索新型二维拉曼增强材料来增强细胞的拉曼光谱",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 902,
-                "end_char": 945
               },
               "version": "8e5818ed0397d1258e89"
             }
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fa6e9204f61a",
-          "name": "3D打印微流控芯片分离富集",
-          "desc": "采用基于流体力学原理的3D打印微流控芯片实现肿瘤细胞有效富集与分离，不破坏细胞表面蛋白。",
+          "id": "item-504cd26dc290",
+          "name": "3D打印微流控芯片",
+          "desc": "CTC高效富集与原位SERS检测",
           "evidence": [
             {
-              "quote": "采用基于流体力学的3D打印微流控芯片实现肿瘤细胞的有效富集与分离",
+              "quote": "开发两类 3D 打印微流控平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 869,
-                "end_char": 900
+                "start_char": 2882,
+                "end_char": 2896
               },
               "version": "8e5818ed0397d1258e89"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-116f215a7431",
-          "name": "新型二维材料表面增强拉曼光谱",
-          "desc": "对比Ag@SiO₂、AMO及Mxene三种拉曼增强材料，证实新型二维材料兼具高生物相容性与高增强性能。",
+          "id": "item-a02fce050e52",
+          "name": "二维拉曼增强材料AMO与Mxene",
+          "desc": "高生物相容性与高增强性能",
           "evidence": [
             {
-              "quote": "对比 Ag@SiO₂、AMO 及 Mxene 三种拉曼增强材料，证实新型二维材料 AMO 与 Mxene 兼具高生物相容性（不破坏细胞膜及表面糖蛋白）与高增强性能",
+              "quote": "证实新型二维材料 AMO 与 Mxene 兼具高生物相容性（不破坏细胞膜及表面糖蛋白）与高增强性能（增强因子达 10⁶倍）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2996,
-                "end_char": 3076
+                "start_char": 3028,
+                "end_char": 3088
               },
               "version": "8e5818ed0397d1258e89"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1f01d947efd5",
-          "name": "Fragment-Fusion Transformer分类模型",
-          "desc": "融合光谱特征离散化与Transformer架构，通过注意力机制实现特征自动筛选与可视化。",
+          "id": "item-877a87a3e51f",
+          "name": "Fragment-Fusion Transformer",
+          "desc": "拉曼光谱可解释分类",
           "evidence": [
             {
-              "quote": "开发两类创新算法：（1）Fragment-Fusion Transformer 模型，融合光谱特征离散化与 Transformer 架构",
+              "quote": "开发两类创新算法：（1）Fragment-Fusion Transformer 模型，融合光谱特征离散化与 Transformer 架构，在 10 种细胞系的 2265 个光谱样本中实现 94.5% 的分类准确率",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3128,
-                "end_char": 3195
+                "end_char": 3233
               },
               "version": "8e5818ed0397d1258e89"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f06c5ee34f62",
-          "name": "细胞系分类准确率94.5%",
-          "desc": "在10种细胞系的2265个光谱样本中实现94.5%的分类准确率，推动拉曼分析向可解释模型跨越。",
+          "id": "item-6369f21c6fdc",
+          "name": "拉曼光谱分类准确率94.5%",
+          "desc": "10种细胞系2265个样本",
           "evidence": [
             {
               "quote": "在 10 种细胞系的 2265 个光谱样本中实现 94.5% 的分类准确率",
@@ -163,89 +139,176 @@
               "version": "8e5818ed0397d1258e89"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-8076bcd954e1",
-          "name": "增强因子达10⁶倍",
-          "desc": "新型二维材料AMO与Mxene增强因子达10⁶倍，解决传统材料生物毒性与信号弱的矛盾。",
+          "id": "item-7b9d256d5dd6",
+          "name": "乳腺癌CTC分离检测一体化平台",
+          "desc": "器件-材料-算法融合",
           "evidence": [
             {
-              "quote": "增强因子达 10⁶倍），解决了传统材料生物毒性与信号弱的矛盾",
+              "quote": "成功搭建乳腺癌 CTC 分离检测一体化平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3078,
-                "end_char": 3107
+                "start_char": 3364,
+                "end_char": 3384
               },
               "version": "8e5818ed0397d1258e89"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-055d520f0457",
-          "name": "拉曼峰特征匹配RPFM方法",
-          "desc": "通过蛋白质峰特征与乳腺细胞关键数据特征精准匹配及增强，显著提升光谱识别能力。",
-          "evidence": [
-            {
-              "quote": "拉曼峰特征匹配（RPFM）方法，通过蛋白质峰特征与乳腺细胞关键数据特征的精准匹配及增强，显著提升光谱识别能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3285,
-                "end_char": 3338
-              },
-              "version": "8e5818ed0397d1258e89"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a59e6e9f948b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-82883661e4f4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Concentration Indicator Kit Based on Dandelion Propagation-Inspired SERS Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Guoqian;Yi Langlang;Zhang Shiya;Song Qin;Liang Minghui;Guan Zhihui;Zhang Yao;Zhuang Yuan;Hou Bo;Wang Xinyuan;Wu Xiaoyao;Yin Pengju;Dmitriy Klyuyev;Yang Jiang;Hu Bo;Tian Jie",
+      "id": "out-b668c46a0f42",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Concentration Indicator Kit Based on Dandelion Propagation-Inspired SERS Strategy — Li Guoqian;Yi Langlang;Zhang Shiya;Song Qin;Liang Minghui;Guan Zhihui;Zhang Yao;Zhuang Yuan;Hou Bo;Wang Xinyuan;Wu Xiaoyao;Yin Pengju;Dmitriy Klyuyev;Yang Jiang;Hu Bo;Tian Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3456,
+            "end_char": 3721
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-82883661e4f4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fa6e9204f61a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fragment-Fusion Transformer: Deep Learning-Based Discretization Method for Continuous Single-Cell Raman Spectral Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiang Yu;Xiaokun Shen;LangLang Yi;Minghui Liang;Guoqian Li;Zhihui Guan;Xiaoyao Wu;Helene Castel;Bo Hu;Pengju Yin;Wenbo Zhang",
+      "id": "out-96953b302318",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fragment-Fusion Transformer: Deep Learning-Based Discretization Method for Continuous Single-Cell Raman Spectral Analysis — Qiang Yu;Xiaokun Shen;LangLang Yi;Minghui Liang;Guoqian Li;Zhihui Guan;Xiaoyao Wu;Helene Castel;Bo Hu;Pengju Yin;Wenbo Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3726,
+            "end_char": 3980
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-116f215a7431"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8076bcd954e1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Raman Peak Features Matching: Enhancing Spectral Analysis through Feature Augmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yin Pengju;Lian Xichao;Wu Xiaoyao;Xiao Yumeng;Feng Chenyao;Lv Yuxuan;Yi Langlang;Liang Minghui;Ge Guanqun;Dmitriy Klyuyev;Hu Bo",
+      "id": "out-884249148c71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Raman Peak Features Matching: Enhancing Spectral Analysis through Feature Augmentation — Yin Pengju;Lian Xichao;Wu Xiaoyao;Xiao Yumeng;Feng Chenyao;Lv Yuxuan;Yi Langlang;Liang Minghui;Ge Guanqun;Dmitriy Klyuyev;Hu Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3985,
+            "end_char": 4207
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1f01d947efd5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f06c5ee34f62"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种拉曼峰特征匹配方法、系统、设备及介 质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡波;廉希超;殷朋举",
+      "id": "out-0631766f2090",
+      "evidence": [
+        {
+          "quote": "[专利] 一种拉曼峰特征匹配方法、系统、设备及介 质 — 胡波;廉希超;殷朋举",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4250
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种表面增强拉曼探针的制备方法及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "殷朋举;赵庆云;孙嘉骏;焦煜淞;高赞;李旭泽",
+      "id": "out-e86ac20b6c87",
+      "evidence": [
+        {
+          "quote": "[专利] 一种表面增强拉曼探针的制备方法及其应用 — 殷朋举;赵庆云;孙嘉骏;焦煜淞;高赞;李旭泽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4255,
+            "end_char": 4303
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种新型细胞外囊泡的分离及各类乳腺癌的分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "殷朋举;孙嘉骏;赵庆云;焦煜淞;高赞;李旭泽",
+      "id": "out-81a1310ffcf1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种新型细胞外囊泡的分离及各类乳腺癌的分类方法 — 殷朋举;孙嘉骏;赵庆云;焦煜淞;高赞;李旭泽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4308,
+            "end_char": 4360
+          },
+          "version": "8e5818ed0397d1258e89"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

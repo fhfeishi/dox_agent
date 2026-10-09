@@ -2,15 +2,20 @@
   "doc_id": "c1fd9f4b134cace985cf",
   "version": "18b0cd15a7ba75faf8e3",
   "source_hash": "8997accefd9c9609abff25c4b59d114c07d541a1148e404ab514b90e581e65c8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.150038+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:56:10.125517+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e0d6183f14a1",
-          "name": "影像组学异构多模态数据建模与分析",
-          "desc": "面向医疗大数据中影像组学异构多模态数据，研究深度迁移学习混合模型方法及分析策略。",
+          "id": "item-50123f32259f",
+          "name": "影像组学异构多模态数据建模",
+          "desc": "肝病与多种疾病",
           "evidence": [
             {
               "quote": "医疗大数据中影像组学异构多模态数据的建模与分析是统计学研究中的重难点",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-374b9aa7c01d",
-          "name": "浅层结构网络无法刻画复杂结构关系",
-          "desc": "以浅层结构网络为代表的传统方法已不能对影像组学异构多模态数据的复杂结构关系进行描述和刻画。",
+          "id": "item-16017fceb7c1",
+          "name": "海量影像组学异构数据应用难",
+          "desc": "充分利用结构化与非结构化数据",
           "evidence": [
             {
-              "quote": "以浅层结构网络为代表的传统方法已不能对其复杂的结构关系进行描述和刻画",
+              "quote": "海量的影像组学异构化数据应用是临床面临的巨大挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 712,
-                "end_char": 745
+                "start_char": 2969,
+                "end_char": 2992
               },
               "version": "18b0cd15a7ba75faf8e3"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e8732d8e54d9",
-          "name": "卷积神经网络深度波尔茨曼机迁移学习混合模型",
-          "desc": "提出CNNDBM-TL混合模型对肝病影像组学异构多模态数据建模，探讨不同结构图像和文本数据高维非线性特征的融合与识别分类。",
+          "id": "item-db547f7ab189",
+          "name": "深度迁移学习方法体系",
+          "desc": "CSSTL、MAPR-Net、E-DU、MMOC-Net、MBST-Net、MMAE-Net",
           "evidence": [
             {
-              "quote": "本研究提出卷积神经网络深度波尔茨曼机迁移学习混合模型(CNNDBM-TL)对(肝病)影像组学异构多模态数据进行建模分析",
+              "quote": "构建了深度迁移学习方法（CSSTL、MAPR-Net、E-DU、MMOC-Net、MBST-Net、MMAE-Net）并开发了应用系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 817,
-                "end_char": 875
+                "start_char": 3252,
+                "end_char": 3318
               },
               "version": "18b0cd15a7ba75faf8e3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b897279f640a",
+          "name": "深度迁移学习多模态融合算法",
+          "desc": "SUDFNN、SUDFX、OEDL",
+          "evidence": [
+            {
+              "quote": "创新性地构建了深度迁移学习多模态融合算法（SUDFNN、SUDFX、OEDL）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3347,
+                "end_char": 3385
+              },
+              "version": "18b0cd15a7ba75faf8e3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e9a7778b1530",
-          "name": "发表SCI论文10篇并获16项国家级竞赛奖项",
-          "desc": "发表SCI论文10篇（Top期刊3篇）、中文14篇，获国家级竞赛奖项16项、软著专利6项，并构建CSSTL、MAPR-Net、MMOC-Net等深度迁移学习方法与应用系统。",
+          "id": "item-511b09db9a1f",
+          "name": "论文、奖项与软著专利",
+          "desc": "SCI论文10篇，国家级竞赛奖项16项，软著专利6项",
           "evidence": [
             {
               "quote": "本项目已发表SCI论文10篇（Top期刊3篇）、中文14篇、国家级竞赛奖项16项、软著专利6项",
@@ -99,44 +122,879 @@
               "version": "18b0cd15a7ba75faf8e3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e0d6183f14a1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-374b9aa7c01d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "三种新型智能算法在疫情预警模型中的应用--基于百度搜索指数的COVID-19疫情预警",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高铖铖;陈锡程;张瑞;宋秋月;易东;伍亚舟",
+      "id": "out-57ace28037e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 三种新型智能算法在疫情预警模型中的应用--基于百度搜索指数的COVID-19疫情预警 — 高铖铖;陈锡程;张瑞;宋秋月;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3756,
+            "end_char": 3828
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-374b9aa7c01d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e8732d8e54d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A comparison of single imputation and multiple imputation methods for missing data in different oncogene expression profiles",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Ye;Ling Zhang;Wenqing Zhang;Xiaojiao Wu;Dong Yi;Yazhou Wu",
+      "id": "out-c227410e85ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A comparison of single imputation and multiple imputation methods for missing data in different oncogene expression profiles — Wei Ye;Ling Zhang;Wenqing Zhang;Xiaojiao Wu;Dong Yi;Yazhou Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3833,
+            "end_char": 4027
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8732d8e54d9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e9a7778b1530"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "急性高原反应转录组时序数据的加权基因共表达网络分析(2019年第六届全国大学生统计建模大赛三等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李高明;汤宁;蔡昂宋;伍亚舟;易东",
+      "id": "out-68764318734c",
+      "evidence": [
+        {
+          "quote": "[奖励] 急性高原反应转录组时序数据的加权基因共表达网络分析(2019年第六届全国大学生统计建模大赛三等奖) — 李高明;汤宁;蔡昂宋;伍亚舟;易东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4032,
+            "end_char": 4105
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多数据集多器官分割的恒通道自适应U-Net模型构建研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈锡程;王皓嘉;王桢颜;易东;伍亚舟",
+      "id": "out-916463afe4b6",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于多数据集多器官分割的恒通道自适应U-Net模型构建研究 — 陈锡程;王皓嘉;王桢颜;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4110,
+            "end_char": 4166
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于倾向评分匹配和机器学习的原发性肝癌预后预测模型构建及比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘比;余靖华;杨馥瑜;伍亚舟;李芳",
+      "id": "out-38e3a15d9545",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于倾向评分匹配和机器学习的原发性肝癌预后预测模型构建及比较研究 — 潘比;余靖华;杨馥瑜;伍亚舟;李芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4171,
+            "end_char": 4227
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多组学的肝癌预后预测S-SAECR模型构建研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李鹏鹏;黄金羽;王皓嘉;伍亚舟;陈佳",
+      "id": "out-31ff037dc737",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于多组学的肝癌预后预测S-SAECR模型构建研究 — 李鹏鹏;黄金羽;王皓嘉;伍亚舟;陈佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4232,
+            "end_char": 4282
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DRG的小儿肺炎住院费用影响因素探究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨莉莉;陈学涛;张萍;伍亚舟",
+      "id": "out-1097de4bf9af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于DRG的小儿肺炎住院费用影响因素探究 — 杨莉莉;陈学涛;张萍;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4330
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于百日咳时间序列特征的聚类分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈佳;宋秋月;李芳;张彦琦;刘岭;易东;伍亚舟",
+      "id": "out-8c10f7247e3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于百日咳时间序列特征的聚类分析 — 陈佳;宋秋月;李芳;张彦琦;刘岭;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4335,
+            "end_char": 4383
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于LUNA16数据集的卷积神经网络优化策略",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤宁;卫泽良;张瑞;伍亚舟",
+      "id": "out-93455d7d604f",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于LUNA16数据集的卷积神经网络优化策略 — 汤宁;卫泽良;张瑞;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4432
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "急性前循环颅内大血管闭塞血运重建临床试验设计比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "易大莉;武书兴;资文杰;陈济安;伍亚舟",
+      "id": "out-5a36a6008518",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 急性前循环颅内大血管闭塞血运重建临床试验设计比较研究 — 易大莉;武书兴;资文杰;陈济安;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4438,
+            "end_char": 4492
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于稀疏子空间学习的非编码RNA与疾病关联预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤永;伍亚舟;易东;卫泽良",
+      "id": "out-7f93762b1939",
+      "evidence": [
+        {
+          "quote": "[专利] 基于稀疏子空间学习的非编码RNA与疾病关联预测方法 — 汤永;伍亚舟;易东;卫泽良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4498,
+            "end_char": 4543
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An immunoscore nomogram for predicting survival in patients with oesophageal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gaoming Li;Qiuyue Song;Angsong Cai;Zeliang Wei;Rui Zhang;Dali Yi;Jia Chen;Fang Li;Yanqi Zhang;Ling Liu;Yazhou Wu;Dong Yi",
+      "id": "out-38f889678000",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An immunoscore nomogram for predicting survival in patients with oesophageal cancer — Gaoming Li;Qiuyue Song;Angsong Cai;Zeliang Wei;Rui Zhang;Dali Yi;Jia Chen;Fang Li;Yanqi Zhang;Ling Liu;Yazhou Wu;Dong Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4549,
+            "end_char": 4761
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于Hessian正则非负矩阵分解的非编码RNA与疾病关系预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤永;易东;伍亚舟;李高明",
+      "id": "out-88996402fd80",
+      "evidence": [
+        {
+          "quote": "[专利] 基于Hessian正则非负矩阵分解的非编码RNA与疾病关系预测方法 — 汤永;易东;伍亚舟;李高明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4767,
+            "end_char": 4820
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction of Multi-scale Adaptively Pyramid Residual Network Based on Multi-Data Sets and Multi-Organ Segmentation(二等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈锡程;王桢颜;李阳;易东;伍亚舟",
+      "id": "out-c24a3d051de3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Construction of Multi-scale Adaptively Pyramid Residual Network Based on Multi-Data Sets and Multi-Organ Segmentation(二等奖) — 陈锡程;王桢颜;李阳;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4826,
+            "end_char": 4974
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学统计学教学方法改革与发展的文献评价",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李芳;陈佳;宋秋月;张彦琦;刘岭;易东;伍亚舟",
+      "id": "out-748a868cf93f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 医学统计学教学方法改革与发展的文献评价 — 李芳;陈佳;宋秋月;张彦琦;刘岭;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4980,
+            "end_char": 5031
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态深度玻尔兹曼机",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤宁;伍亚舟",
+      "id": "out-c8abe6c800db",
+      "evidence": [
+        {
+          "quote": "[会议论文] 多模态深度玻尔兹曼机 — 汤宁;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5037,
+            "end_char": 5062
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "COVID-19 epidemic and public health intervention in Shanghai, China: Statistical analysis of transmission, correlation and conversion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dali Yi;Xicheng Chen;Haojia Wang;Qiuyue Song;Ling Zhang;Pengpeng Li;Wei Ye;Jia Chen;Fang Li;Dong Yi;Yazhou Wu",
+      "id": "out-0af823b984f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] COVID-19 epidemic and public health intervention in Shanghai, China: Statistical analysis of transmission, correlation and conversion — Dali Yi;Xicheng Chen;Haojia Wang;Qiuyue Song;Ling Zhang;Pengpeng Li;Wei Ye;Jia Chen;Fang Li;Dong Yi;Yazhou Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5068,
+            "end_char": 5319
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肥胖共生抑郁症患者缓解模型的 PPI 网络构建及其关键基因筛选(2021年第七届全国大学生统计建模大赛本科生组三等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王龙昊;黄威林;周文馨;伍亚舟",
+      "id": "out-10e6776ea678",
+      "evidence": [
+        {
+          "quote": "[奖励] 肥胖共生抑郁症患者缓解模型的 PPI 网络构建及其关键基因筛选(2021年第七届全国大学生统计建模大赛本科生组三等奖) — 王龙昊;黄威林;周文馨;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5325,
+            "end_char": 5406
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新冠肺炎疫情防控形势的多模型融合时间序列生成对抗网络构建研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "付泽宇;罗斯文;付佳伟;伍亚舟",
+      "id": "out-a165118e0394",
+      "evidence": [
+        {
+          "quote": "[奖励] 新冠肺炎疫情防控形势的多模型融合时间序列生成对抗网络构建研究 — 付泽宇;罗斯文;付佳伟;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5412,
+            "end_char": 5464
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating Internet multisource big data to predict the occurrence and development of COVID-19 cryptic transmission",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengcheng Gao;Rui Zhang;Xicheng Chen;Tianhua Yao;Qiuyue Song;Wei Ye;PengPeng Li;Zhenyan Wang;Dong Yi;Yazhou Wu",
+      "id": "out-4198a24d293c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating Internet multisource big data to predict the occurrence and development of COVID-19 cryptic transmission — Chengcheng Gao;Rui Zhang;Xicheng Chen;Tianhua Yao;Qiuyue Song;Wei Ye;PengPeng Li;Zhenyan Wang;Dong Yi;Yazhou Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5470,
+            "end_char": 5706
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "4150例小儿肺炎患者住院天数的影响因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨莉莉;张萍;陈雪涛;伍亚舟",
+      "id": "out-9dde58b8479d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 4150例小儿肺炎患者住院天数的影响因素分析 — 杨莉莉;张萍;陈雪涛;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5712,
+            "end_char": 5757
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "统计类课程思政研究的文献计量分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "易大莉;张彦琦;陈济安;伍亚舟",
+      "id": "out-8758a7302a64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 统计类课程思政研究的文献计量分析 — 易大莉;张彦琦;陈济安;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5763,
+            "end_char": 5803
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction of a Medical Micro-Object Cascade Network for Automated Segmentation of Cerebral Microbleeds in Susceptibility Weighted Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeliang Wei;Xicheng Chen;Jialu Huang;Zhenyan Wang;Tianhua Yao;Chengcheng Gao;Haojia Wang;Pengpeng Li;Wei Ye;Yang Li;Ning Yao;Rui Zhang;Ning Tang;Fei Wang;Jun Hu;Dong Yi;Yazhou Wu",
+      "id": "out-4963a97aaa7b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Construction of a Medical Micro-Object Cascade Network for Automated Segmentation of Cerebral Microbleeds in Susceptibility Weighted Imaging — Zeliang Wei;Xicheng Chen;Jialu Huang;Zhenyan Wang;Tianhua Yao;Chengcheng Gao;Haojia Wang;Pengpeng Li;Wei Ye;Yang Li;Ning Yao;Rui Zhang;Ning Tang;Fei Wang;Jun Hu;Dong Yi;Yazhou Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5809,
+            "end_char": 6136
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying Potential miRNA-Disease Associations Based on an Improved Manifold Learning Framework",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "YONG TANG;GAOMING LI;YAZHOU WU;DONG YI",
+      "id": "out-accbca341cb2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying Potential miRNA-Disease Associations Based on an Improved Manifold Learning Framework — YONG TANG;GAOMING LI;YAZHOU WU;DONG YI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6142,
+            "end_char": 6286
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的医学影像图像分类的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张瑞;伍亚舟",
+      "id": "out-6883c7531bbb",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于深度学习的医学影像图像分类的研究进展 — 张瑞;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6292,
+            "end_char": 6327
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "E-DU: Deep Neural Network for Multimodal Medical Image Segmentation Based on Semantic Gap Compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haojia Wang;Xicheng Chen;Rui Yu;Zeliang Wei;Tianhua Yao;Chengcheng;Yang Li;Zhenyan Wang;Dong Yi;Yazhou Wu",
+      "id": "out-0e9589834535",
+      "evidence": [
+        {
+          "quote": "[期刊论文] E-DU: Deep Neural Network for Multimodal Medical Image Segmentation Based on Semantic Gap Compensation — Haojia Wang;Xicheng Chen;Rui Yu;Zeliang Wei;Tianhua Yao;Chengcheng;Yang Li;Zhenyan Wang;Dong Yi;Yazhou Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6333,
+            "end_char": 6549
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于网络大数据及元启发式算法智能优化的传染病预警监测策略(2021年第七届全国大学生统计建模大赛研究生组一等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高铖铖;叶伟;李鹏鹏;伍亚舟;李芳",
+      "id": "out-e47fbcc20e48",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于网络大数据及元启发式算法智能优化的传染病预警监测策略(2021年第七届全国大学生统计建模大赛研究生组一等奖) — 高铖铖;叶伟;李鹏鹏;伍亚舟;李芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6555,
+            "end_char": 6635
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习方法的胃癌生物标志物预测模型构建及验证研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵杨;程宇晖;吴智能;伍亚舟;张彦琦",
+      "id": "out-1d93e7eaf549",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于机器学习方法的胃癌生物标志物预测模型构建及验证研究 — 赵杨;程宇晖;吴智能;伍亚舟;张彦琦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6641,
+            "end_char": 6693
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学纵向数据建模方法及其统计分析策略",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤宁;宋秋月;易东;伍亚舟",
+      "id": "out-3880bac6bee9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 医学纵向数据建模方法及其统计分析策略 — 汤宁;宋秋月;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6699,
+            "end_char": 6739
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国甲乙类传染病的影响测度、智能预警和精准防控——基于多源大数据融合、一步集成和系统开发",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈锡程;高铖铖;姚田华;伍亚舟;宋秋月",
+      "id": "out-7675d34236ca",
+      "evidence": [
+        {
+          "quote": "[奖励] 中国甲乙类传染病的影响测度、智能预警和精准防控——基于多源大数据融合、一步集成和系统开发 — 陈锡程;高铖铖;姚田华;伍亚舟;宋秋月",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6745,
+            "end_char": 6815
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度多模式图像的肺结节分类对比研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤宁;卫泽良;张瑞;易东;伍亚舟",
+      "id": "out-4e9f1cafdf2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多尺度多模式图像的肺结节分类对比研究 — 汤宁;卫泽良;张瑞;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6821,
+            "end_char": 6866
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of Meta-Heuristic Optimization Algorithms to Early Warning Models of Infectious Diseases in Web-Based Big Data(三等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高铖铖;张瑞;叶伟;李鹏鹏;伍亚舟",
+      "id": "out-918bd735fa6a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Application of Meta-Heuristic Optimization Algorithms to Early Warning Models of Infectious Diseases in Web-Based Big Data(三等奖) — 高铖铖;张瑞;叶伟;李鹏鹏;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6872,
+            "end_char": 7025
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于医学微小目标级联网络的深度学习辅助诊断系统研究——以脑微出血分割为例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈锡程;卫泽良;黄嘉璐;王皓嘉;王桢颜;姚田华;高铖铖;李鹏鹏;叶伟;李阳;姚宁;胡俊;易东;伍亚舟",
+      "id": "out-12db6ba961f1",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于医学微小目标级联网络的深度学习辅助诊断系统研究——以脑微出血分割为例 — 陈锡程;卫泽良;黄嘉璐;王皓嘉;王桢颜;姚田华;高铖铖;李鹏鹏;叶伟;李阳;姚宁;胡俊;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7031,
+            "end_char": 7126
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于Hessian正则化稀疏子空间学习的miRNA-疾病关联预测方法研究(2019年第六届全国大学生统计建模大赛一等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤永;张瑞;卫泽良;伍亚舟;易东",
+      "id": "out-fd4bfdaf0762",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于Hessian正则化稀疏子空间学习的miRNA-疾病关联预测方法研究(2019年第六届全国大学生统计建模大赛一等奖) — 汤永;张瑞;卫泽良;伍亚舟;易东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7132,
+            "end_char": 7215
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "我国人口老龄化趋势下医疗资源配置的时空分析与XGB-ETS预测模型构建的测度研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "叶伟;王桢颜;李阳;伍亚舟;李芳",
+      "id": "out-dea1db9d7a90",
+      "evidence": [
+        {
+          "quote": "[奖励] 我国人口老龄化趋势下医疗资源配置的时空分析与XGB-ETS预测模型构建的测度研究 — 叶伟;王桢颜;李阳;伍亚舟;李芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7221,
+            "end_char": 7284
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进机器学习算法的脑胶质瘤预后模型构建及内外部验证",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "史绮韵;成永杰;文天资;伍亚舟",
+      "id": "out-dd459bc61e62",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于改进机器学习算法的脑胶质瘤预后模型构建及内外部验证 — 史绮韵;成永杰;文天资;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7290,
+            "end_char": 7339
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于人口迁徙数据的新冠肺炎疫情传播影响因素分析及预警模型建立(2020年全国研究生统计建模大赛三等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张瑞;丁睿恒;李军政;伍亚舟;李芳",
+      "id": "out-9b528aac6a64",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于人口迁徙数据的新冠肺炎疫情传播影响因素分析及预警模型建立(2020年全国研究生统计建模大赛三等奖) — 张瑞;丁睿恒;李军政;伍亚舟;李芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7345,
+            "end_char": 7420
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在临床领域的研究进展及前景展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "伍亚舟;陈锡程;易东",
+      "id": "out-f5f333f7e3e4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在临床领域的研究进展及前景展望 — 伍亚舟;陈锡程;易东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7426,
+            "end_char": 7464
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于一体化卷积网络的检测算法:Yolo",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卫泽良;易东;伍亚舟",
+      "id": "out-71f574d415f0",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于一体化卷积网络的检测算法:Yolo — 卫泽良;易东;伍亚舟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7470,
+            "end_char": 7508
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于百度搜索指数的COVID-19 预警模型构建与评价(2020年全国研究生统计建模大赛一等奖)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高铖铖;陈锡程;周雨萌;伍亚舟;宋秋月",
+      "id": "out-b92cf74d01d1",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于百度搜索指数的COVID-19 预警模型构建与评价(2020年全国研究生统计建模大赛一等奖) — 高铖铖;陈锡程;周雨萌;伍亚舟;宋秋月",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7514,
+            "end_char": 7588
+          },
+          "version": "18b0cd15a7ba75faf8e3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 40,
+    "listed": 40,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "奖励/专著": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "82286828068c4ec0c56e",
   "version": "d82a5a969e129387fc26",
   "source_hash": "0f5b56b90b03d1167bfc2e0e6e65e21b95118645cd5d6351bde2b95b5f31cc1f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.490333+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:47:16.902539+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6087fa701b00",
-          "name": "肺癌精准靶向治疗基因影像组学",
-          "desc": "面向肺癌靶向治疗耐药问题，整合基因组学、液体活检与影像组学构建辅助疗效预测模型。",
+          "id": "item-01e2ecfd0a0a",
+          "name": "肺癌基因影像组学",
+          "desc": "肿瘤瘤内异质性是治疗失败重要因素",
           "evidence": [
             {
-              "quote": "原发及继发性耐药是导致肺癌靶向治疗失败的主要因素",
+              "quote": "肿瘤瘤内异质性是导致非小细胞肺癌治疗失败的重要因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 645,
-                "end_char": 668
+                "start_char": 2406,
+                "end_char": 2430
               },
               "version": "d82a5a969e129387fc26"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eed5b7997205",
-          "name": "瘤内异质性使局部采样难以识别全貌",
-          "desc": "肿瘤瘤内异质性是导致非小细胞肺癌治疗失败的重要因素，传统病理诊断基于局部采样，难以识别肿瘤全貌。",
+          "id": "item-d78f057af9a0",
+          "name": "传统病理基于局部采样难以识别肿瘤全貌",
+          "desc": "瘤内异质性",
           "evidence": [
             {
-              "quote": "肿瘤瘤内异质性是导致非小细胞肺癌治疗失败的重要因素，传统病理诊断基于局部采样，难以识别肿瘤全貌",
+              "quote": "传统病理诊断基于局部采样，难以识别肿瘤全貌",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2406,
+                "start_char": 2432,
                 "end_char": 2452
               },
               "version": "d82a5a969e129387fc26"
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-57a9556df672",
-          "name": "三维CT深度学习与多组学异质性建模",
-          "desc": "研发针对CT影像尤其三维数据体的深度学习方法从影像层面表征肿瘤全貌，并整合多组学数据推断分析基因组异质性，系统研究肿瘤异质性的特征、规律及影像组学表型。",
+          "id": "item-b34835a15d6a",
+          "name": "CNN肺结节良恶性鉴别模型",
+          "desc": "诊断准确性92%",
           "evidence": [
             {
-              "quote": "本研究通过研发针对CT影像尤其是三维数据体的深度学习方法，从影像层面全面表征肿瘤全貌，并整合多组学数据",
+              "quote": "课题组首先开发基于卷积神经网络的肺结节良恶性鉴别模型，诊断准确性达到92%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2466,
-                "end_char": 2516
+                "start_char": 2558,
+                "end_char": 2594
               },
               "version": "d82a5a969e129387fc26"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-086a242df985",
+          "name": "三维影像组学早期肺腺癌侵袭性量化模型",
+          "desc": "AUC 84.9%",
+          "evidence": [
+            {
+              "quote": "进一步开发基于三维影像组学特征的早期肺腺癌侵袭性量化模型，模型AUC值达到84.9%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2596,
+                "end_char": 2637
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6d8e2483f27e",
+          "name": "ITHscore肿瘤内异质性可视化量化",
+          "desc": "基于CT影像",
+          "evidence": [
+            {
+              "quote": "开发一种基于CT影像的肺癌肿瘤内异质性可视化和量化的方法——ITHscore",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2773,
+                "end_char": 2810
+              },
+              "version": "d82a5a969e129387fc26"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,564 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a260563fb8d",
-          "name": "肺结节良恶性鉴别准确率达92%与ITHscore",
-          "desc": "开发卷积神经网络肺结节良恶性鉴别模型准确率达92%；三维影像组学早期肺腺癌侵袭性量化模型AUC 84.9%；提出瘤内异质性可视化量化方法ITHscore；AI在线阅片平台完成5000余次诊疗活动。",
+          "id": "item-d2413a118116",
+          "name": "人工智能在线阅片平台",
+          "desc": "完成5000余次诊疗活动",
           "evidence": [
             {
-              "quote": "开发基于卷积神经网络的肺结节良恶性鉴别模型，诊断准确性达到92%",
+              "quote": "建设人工智能在线阅片平台，已完成5000余次诊疗活动",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2563,
-                "end_char": 2594
+                "start_char": 2885,
+                "end_char": 2910
               },
               "version": "d82a5a969e129387fc26"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6087fa701b00"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-eed5b7997205"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ITHscore: comprehensive quantification of intra-tumor heterogeneity in NSCLC by multi-scale radiomic features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaqi Li;Zhenbin Qiu;Chao Zhang;Sijie Chen;Mengmin Wang;Qiuchen Meng;Haiming Lu;Lei Wei;Hairong Lv;Wenzhao Zhong;Xuegong Zhang",
+      "id": "out-6309ce45d840",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ITHscore: comprehensive quantification of intra-tumor heterogeneity in NSCLC by multi-scale radiomic features — Jiaqi Li;Zhenbin Qiu;Chao Zhang;Sijie Chen;Mengmin Wang;Qiuchen Meng;Haiming Lu;Lei Wei;Hairong Lv;Wenzhao Zhong;Xuegong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3210,
+            "end_char": 3454
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-eed5b7997205"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-57a9556df672"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Wait-and-See Treatment Strategy Could be Considered for Lung Adenocarcinoma with Special Pleural Dissemination Lesions, and Low Genomic Instability Correlates with Better Survival",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Chen;Wen-Fang Tang;Huan Lin;Hua Bao;Wei Li;Ao Wang;Xue Wu;Jian Su;Jie-Shan Lin;Yang W.Shao;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-e9563405d3d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Wait-and-See Treatment Strategy Could be Considered for Lung Adenocarcinoma with Special Pleural Dissemination Lesions, and Low Genomic Instability Correlates with Better Survival — Ying Chen;Wen-Fang Tang;Huan Lin;Hua Bao;Wei Li;Ao Wang;Xue Wu;Jian Su;Jie-Shan Lin;Yang W.Shao;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3459,
+            "end_char": 3782
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-57a9556df672"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a260563fb8d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Toward an Expert Level of Lung Cancer Detection and Classification Using a Deep Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Zhang;Xing Sun;Kang Dang;Ke Li;Xiao-wei Guo;Jia Chang;Zong-qiao Yu;Fei-yue Huang;Yun-sheng Wu;Zhu Liang;Zai-yi Liu;Xue-gong Zhang;Xing-lin Gao;Shao-hong Huang;Jie Qin;Wei-neng Feng;Tao Zhou;Yan-bin Zhang;Wei-jun Fang;Ming-fang Zhao;Xue-ning Yang;Qing Zhou;Yi-long Wu;Wen-zhao Zhong",
+      "id": "out-5023c5cd762a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Toward an Expert Level of Lung Cancer Detection and Classification Using a Deep Convolutional Neural Network — Chao Zhang;Xing Sun;Kang Dang;Ke Li;Xiao-wei Guo;Jia Chang;Zong-qiao Yu;Fei-yue Huang;Yun-sheng Wu;Zhu Liang;Zai-yi Liu;Xue-gong Zhang;Xing-lin Gao;Shao-hong Huang;Jie Qin;Wei-neng Feng;Tao Zhou;Yan-bin Zhang;Wei-jun Fang;Ming-fang Zhao;Xue-ning Yang;Qing Zhou;Yi-long Wu;Wen-zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3787,
+            "end_char": 4190
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiomics analysis reveals a distinct response mechanism in multiple primary lung adenocarcinoma after neoadjuvant immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Chao;Yin Kai;Liu Si-Yang;Yan Li-Xu;Su Jian;Wu Yi-Long;Zhang Xu-Chao;Zhong Wen-Zhao;Yang Xue-Ning",
+      "id": "out-7efd1eab467f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiomics analysis reveals a distinct response mechanism in multiple primary lung adenocarcinoma after neoadjuvant immunotherapy — Zhang Chao;Yin Kai;Liu Si-Yang;Yan Li-Xu;Su Jian;Wu Yi-Long;Zhang Xu-Chao;Zhong Wen-Zhao;Yang Xue-Ning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4435
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three‐dimensional printed navigational template for localizing small pulmonary nodules: A case‐controlled study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Fu;Yun-Fei Chai;Jia-Tao Zhang;Tao Zhang;Xiao-Kun Chen;Song Dong;Hong-Hong Yan;Xue-Ning Yang;Mei-Ping Huang;Yi-Long Wu;Jian Zhuang;Wen-Zhao Zhong",
+      "id": "out-5522d6fc547e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three‐dimensional printed navigational template for localizing small pulmonary nodules: A case‐controlled study — Rui Fu;Yun-Fei Chai;Jia-Tao Zhang;Tao Zhang;Xiao-Kun Chen;Song Dong;Hong-Hong Yan;Xue-Ning Yang;Mei-Ping Huang;Yi-Long Wu;Jian Zhuang;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4440,
+            "end_char": 4708
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recursive partitioning analysis of patients with oligometastatic non-small cell lung cancer: a retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Tao Zhang;Si-Yang Liu;Hong-Hong Yan;Yi-Long Wu;Qiang Nie;Wen-Zhao Zhong",
+      "id": "out-a9c26c27ffd8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recursive partitioning analysis of patients with oligometastatic non-small cell lung cancer: a retrospective study — Jia-Tao Zhang;Si-Yang Liu;Hong-Hong Yan;Yi-Long Wu;Qiang Nie;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4713,
+            "end_char": 4911
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neoadjuvant immunotherapy in Non-Small Cell Lung Cancer:State of the art",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kang Jin;Zhang Chao;Zhong Wen-Zhao",
+      "id": "out-77ff53cc413d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neoadjuvant immunotherapy in Non-Small Cell Lung Cancer:State of the art — Kang Jin;Zhang Chao;Zhong Wen-Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4916,
+            "end_char": 5031
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A New Prognostic Index Combines the Metabolic Response and RECIST 1.1 to Evaluate the Therapeutic Response in Patients With Non-Small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Fang Tang;Qingyi Hou;Jun-Tao Lin;Dongjiang Li;Jie-Shan Lin;Jinghua Chen;Zhen-Bin Qiu;Xiang-Peng Chu;Xiongwen Yang;Hong-Hong Yan;Shuxia Wang;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-9dc94ad91fa5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A New Prognostic Index Combines the Metabolic Response and RECIST 1.1 to Evaluate the Therapeutic Response in Patients With Non-Small Cell Lung Cancer — Wen-Fang Tang;Qingyi Hou;Jun-Tao Lin;Dongjiang Li;Jie-Shan Lin;Jinghua Chen;Zhen-Bin Qiu;Xiang-Peng Chu;Xiongwen Yang;Hong-Hong Yan;Shuxia Wang;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5036,
+            "end_char": 5364
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Real-world Scenario of Patients with Lung Cancer Amid the COVID-19 Pandemic in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Fu;Lin Wu;Chao Zhang;Qian Chu;Jie Hu;Gen Lin;Lin Yang;Ji-Sheng Li;Xue-Ning Yang;Jin-Ji Yang;Qing Zhou;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-1a1058b8525c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Real-world Scenario of Patients with Lung Cancer Amid the COVID-19 Pandemic in China — Rui Fu;Lin Wu;Chao Zhang;Qian Chu;Jie Hu;Gen Lin;Lin Yang;Ji-Sheng Li;Xue-Ning Yang;Jin-Ji Yang;Qing Zhou;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5369,
+            "end_char": 5593
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Drainage tube hole suture improvement: Removal‐free stitches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Fu;Jia‐Tao Zhang;Song Dong;Ying Chen;Chao Zhang;Wen‐Fang Tang;Jin Xia;Qiang Nie;Wen‐Zhao Zhong",
+      "id": "out-c7b9b2e5eb95",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Drainage tube hole suture improvement: Removal‐free stitches — Rui Fu;Jia‐Tao Zhang;Song Dong;Ying Chen;Chao Zhang;Wen‐Fang Tang;Jin Xia;Qiang Nie;Wen‐Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5599,
+            "end_char": 5766
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Timing and origins of local and distant metastases in lung cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Fang Tang;Min Wu;Hua Bao;Yang Xu;Jie-Shan Lin;Yi Liang;Yu Zhang;Jian Su;Jia-Tao Zhang;Fang-Ping Xu;Jing-Hua Chen;Rui Fu;Ying Chen;Tao Yang;Qing-Ke Chen;Ting-Ting Wu;Xue Wu;Yang Shao;Jian-Tao Zheng;Zhi Xie;Zhi-Yi Lv;Song Dong;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-9d1603da368b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Timing and origins of local and distant metastases in lung cancer. — Wen-Fang Tang;Min Wu;Hua Bao;Yang Xu;Jie-Shan Lin;Yi Liang;Yu Zhang;Jian Su;Jia-Tao Zhang;Fang-Ping Xu;Jing-Hua Chen;Rui Fu;Ying Chen;Tao Yang;Qing-Ke Chen;Ting-Ting Wu;Xue Wu;Yang Shao;Jian-Tao Zheng;Zhi Xie;Zhi-Yi Lv;Song Dong;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5772,
+            "end_char": 6101
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of heritable rare variants associated with early-stage lung adenocarcinoma risk",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Fu;Jia-Tao Zhang;Rong-Rong Chen;Hong Li;Zai-Xian Tai;Hao-Xiang Lin;Jian Su;Xiang-Peng Chu;Chao Zhang;Zhen-Bin Qiu;Zi-Hao Chen;Wen-Fang Tang;Song Dong;Xue-Ning Yang;Guo-Qing Zhang;Guo-Ping Zhao;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-e170f5c0acdc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of heritable rare variants associated with early-stage lung adenocarcinoma risk — Rui Fu;Jia-Tao Zhang;Rong-Rong Chen;Hong Li;Zai-Xian Tai;Hao-Xiang Lin;Jian Su;Xiang-Peng Chu;Chao Zhang;Zhen-Bin Qiu;Zi-Hao Chen;Wen-Fang Tang;Song Dong;Xue-Ning Yang;Guo-Qing Zhang;Guo-Ping Zhao;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6107,
+            "end_char": 6432
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Plasma extracellular vesicle microRNAs for pulmonary ground-glass nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Tao Zhang;Hao Qin;Fiona Ka Man Cheung;Jian Su;Da-Dong Zhang;Shi-Yi Liu;Xiao-Fang Li;Jing Qin;Jun-Tao Lin;Ben-Yuan Jiang;Song Dong;Ri-Qiang Liao;Nie Qiang;Xue-Ning Yang;Hai-Yan Tu;Qing Zhou;Jin-Ji Yang;Xu-Chao Zhang;Ya-Nan Zhang;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-3be3d8d626ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Plasma extracellular vesicle microRNAs for pulmonary ground-glass nodules — Jia-Tao Zhang;Hao Qin;Fiona Ka Man Cheung;Jian Su;Da-Dong Zhang;Shi-Yi Liu;Xiao-Fang Li;Jing Qin;Jun-Tao Lin;Ben-Yuan Jiang;Song Dong;Ri-Qiang Liao;Nie Qiang;Xue-Ning Yang;Hai-Yan Tu;Qing Zhou;Jin-Ji Yang;Xu-Chao Zhang;Ya-Nan Zhang;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6438,
+            "end_char": 6777
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Radiopathological Grading System to Tailor Recurrence Risk for Pathologic Stage IA Lung Adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen-Bin Qiu;Meng-Min Wang;Jin-Hai Yan;Chao Zhang;Yi-Long Wu;Sheng Zhang;Wen-Zhao Zhong",
+      "id": "out-5ee479a3a3eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Radiopathological Grading System to Tailor Recurrence Risk for Pathologic Stage IA Lung Adenocarcinoma — Zhen-Bin Qiu;Meng-Min Wang;Jin-Hai Yan;Chao Zhang;Yi-Long Wu;Sheng Zhang;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6783,
+            "end_char": 6989
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Disparity in clinical outcomes between pure and combined pulmonary large-cell neuroendocrine carcinoma: a multi-center retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Tao Zhang;Ye Li;Li-Xu Yan;Zheng-Fei Zhu;Xiao-Rong Dong;Qian Chu;Lin Wu;Hong-Mei Zhang;Chun-Wei Xu;Gen Lin;Zong-Yang Yu;Jie Hu;Bo Zhu;Hui-Juan Wang;Fan Yang;Zheng-Bo Song;Zheng-Bo Han;Meng-Xia Li;Jie Lin;Yi-Long Wu;Jin-Liang Wang;Wen-Zhao Zhong",
+      "id": "out-c7d4e23bd7a0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Disparity in clinical outcomes between pure and combined pulmonary large-cell neuroendocrine carcinoma: a multi-center retrospective study — Jia-Tao Zhang;Ye Li;Li-Xu Yan;Zheng-Fei Zhu;Xiao-Rong Dong;Qian Chu;Lin Wu;Hong-Mei Zhang;Chun-Wei Xu;Gen Lin;Zong-Yang Yu;Jie Hu;Bo Zhu;Hui-Juan Wang;Fan Yang;Zheng-Bo Song;Zheng-Bo Han;Meng-Xia Li;Jie Lin;Yi-Long Wu;Jin-Liang Wang;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6995,
+            "end_char": 7389
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genomic signatures define three subtypes of EGFR-mutant stage II–III non-small-cell lung cancer with distinct adjuvant therapy outcomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-9bdc04679082",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genomic signatures define three subtypes of EGFR-mutant stage II–III non-small-cell lung cancer with distinct adjuvant therapy outcomes — Si-Yang Liu;Hua Bao;Qun Wang;Weimin Mao;Yedan Chen;Xiaoling Tong;Song-Tao Xu;Lin Wu;Yucheng Wei;Yongyu Liu;Chun Chen;Ying Cheng;Rong Yin;Fan Yang;Shengxiang Ren;Xiaofei Li;Jian Li;Cheng Huang;Zhidong Liu;Shun Xu;Ke-Neng Chen;Shidong Xu;Lei Liu;Ping Yu;Bu-Hai Wang;Haitao Ma;Hong-Hong Yan;Song Dong;Xu-Chao Zhang;Jian Su;Jin-Ji Yang;Xue-Ning Yang;Qing Zhou;Xue Wu;Yang Shao;Wen-Zhao Zhong;Yi-Long Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7395,
+            "end_char": 7937
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Metal-marked mixed reality technology for pulmonary nodule localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Tao Zhang;Tao Zhang;Zhao-Wen Qiu;Wen-Zhao Zhong",
+      "id": "out-69f1dc16036b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Metal-marked mixed reality technology for pulmonary nodule localization — Jia-Tao Zhang;Tao Zhang;Zhao-Wen Qiu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7943,
+            "end_char": 8074
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASO Author Reflections: Lung Adenocarcinoma with Accidental Invisible Pleural Dissemination Lesions: Wait-and-See Strategy for Tumors with Indolent Biologic Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Fang Tang;Wen-Zhao Zhong",
+      "id": "out-ce4ec79ada7f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASO Author Reflections: Lung Adenocarcinoma with Accidental Invisible Pleural Dissemination Lesions: Wait-and-See Strategy for Tumors with Indolent Biologic Characteristics — Wen-Fang Tang;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8080,
+            "end_char": 8289
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic 18 F-FDG PET/CT can predict the major pathological response to neoadjuvant immunotherapy in non-small cell lung cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi-Yong Chen;Rui Fu;Xiao-Yue Tan;Li-Xu Yan;Wen-Fang Tang;Zhen-Bin Qiu;Yi-Fan Qi;Yu-Fa Li;Qing-Yi Hou;Yi-Long Wu;Wen-Zhao Zhong;Ben-Yuan Jiang",
+      "id": "out-a84b76c6bb50",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic 18 F-FDG PET/CT can predict the major pathological response to neoadjuvant immunotherapy in non-small cell lung cancer. — Zhi-Yong Chen;Rui Fu;Xiao-Yue Tan;Li-Xu Yan;Wen-Fang Tang;Zhen-Bin Qiu;Yi-Fan Qi;Yu-Fa Li;Qing-Yi Hou;Yi-Long Wu;Wen-Zhao Zhong;Ben-Yuan Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8295,
+            "end_char": 8573
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantifying invasiveness of clinical stage IA lung adenocarcinoma with computed tomography texture features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen-Bin Qiu;Chao Zhang;Xiang-Peng Chu;Fei-Yue Cai;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-0b6bd1c0a9fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantifying invasiveness of clinical stage IA lung adenocarcinoma with computed tomography texture features — Zhen-Bin Qiu;Chao Zhang;Xiang-Peng Chu;Fei-Yue Cai;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8579,
+            "end_char": 8785
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Randomized Trial of an Improved Drainage Strategy vs Routine Chest Tube after Lung Wedge Resection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Tao Zhang;Song Dong;Xiang-Peng Chu;Shao-Min Lin;Run-Ying Yu;Ben-Yuan Jiang;Ri-Qiang Liao;Qiang Nie;Hong-Hong Yan;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-d6234c8d6dc1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Randomized Trial of an Improved Drainage Strategy vs Routine Chest Tube after Lung Wedge Resection — Jia-Tao Zhang;Song Dong;Xiang-Peng Chu;Shao-Min Lin;Run-Ying Yu;Ben-Yuan Jiang;Ri-Qiang Liao;Qiang Nie;Hong-Hong Yan;Xue-Ning Yang;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8791,
+            "end_char": 9054
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Emerging therapies for non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Zhang;Natasha B.Leighl;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-5500ec8bc17a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Emerging therapies for non-small cell lung cancer — Chao Zhang;Natasha B.Leighl;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9060,
+            "end_char": 9171
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The regula",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-faeea5b544a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The regula",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9177,
+            "end_char": 9193
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Induction immune-checkpoint inhibitors for resectable oncogene-mutant NSCLC: A multicenter pooled analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Zhang;Hua-Fei Chen;Shi Yan;Lin Wu;Li-Xu Yan;Xiao-Long Yan;Dong-Sheng Yue;Chun-Wei Xu;Min Zheng;Ji-Sheng Li;Si-Yang Liu;Ling-Ling Yang;Ben-Yuan Jiang;Qiu-Xiang Ou;Zhen-Bin Qiu;Yang Shao;Yi-Long Wu;Wen-Zhao Zhong",
+      "id": "out-80dac52b457b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Induction immune-checkpoint inhibitors for resectable oncogene-mutant NSCLC: A multicenter pooled analysis — Chao Zhang;Hua-Fei Chen;Shi Yan;Lin Wu;Li-Xu Yan;Xiao-Long Yan;Dong-Sheng Yue;Chun-Wei Xu;Min Zheng;Ji-Sheng Li;Si-Yang Liu;Ling-Ling Yang;Ben-Yuan Jiang;Qiu-Xiang Ou;Zhen-Bin Qiu;Yang Shao;Yi-Long Wu;Wen-Zhao Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9407,
+            "end_char": 9737
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A three-dimensional printing navigational template combined with mixed reality technique for localizing pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fu Rui;Zhang Chao;Zhang Tao;Chu Xiang-Peng;Tang Wen-Fang;Yang Xue-Ning;Huang Mei-Ping;Zhuang Jian;Wu Yi-Long;Zhong Wen-Zhao",
+      "id": "out-2fc0b481401e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A three-dimensional printing navigational template combined with mixed reality technique for localizing pulmonary nodules — Fu Rui;Zhang Chao;Zhang Tao;Chu Xiang-Peng;Tang Wen-Fang;Yang Xue-Ning;Huang Mei-Ping;Zhuang Jian;Wu Yi-Long;Zhong Wen-Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9743,
+            "end_char": 9996
+          },
+          "version": "d82a5a969e129387fc26"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 25,
+        "extracted": 25
+      }
+    },
+    "consistent": true
+  }
 }

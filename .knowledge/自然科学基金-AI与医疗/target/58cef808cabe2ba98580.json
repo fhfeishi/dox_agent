@@ -2,15 +2,20 @@
   "doc_id": "58cef808cabe2ba98580",
   "version": "d12720e6fb1d70bbee93",
   "source_hash": "9e70cb3d7e842c46f77ad2b24b97acffb35e8ac4f50112152e7aa447a32cf6c9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.776318+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.318896+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-65de58512f67",
-          "name": "基于IVUS的冠脉狭窄精准诊疗",
-          "desc": "面向冠脉PCI精准诊疗，用人工智能分析血管内超声影像并虚拟仿真支架释放以指导支架选型与术后评估。",
+          "id": "item-67a42e69bf62",
+          "name": "冠脉狭窄PCI精准诊疗",
+          "desc": "支架扩张充分性与贴壁性影响远期事件",
           "evidence": [
             {
-              "quote": "采用人工智能的方法对冠状动脉血管内超声（IVUS)影像数据进行训练",
+              "quote": "冠脉PCI术后远期事件与支架扩张充分性、贴壁性密切相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 652,
-                "end_char": 684
+                "start_char": 2672,
+                "end_char": 2698
               },
               "version": "d12720e6fb1d70bbee93"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0443bd485325",
-          "name": "传统IVUS定量依赖人工且一致性差",
-          "desc": "冠脉PCI术后远期事件与支架扩张充分性、贴壁性密切相关，而传统IVUS定量依赖人工测量，效率低且一致性受操作者影响。",
+          "id": "item-856c740bbf68",
+          "name": "传统IVUS定量依赖人工测量",
+          "desc": "效率低且一致性受操作者影响",
           "evidence": [
             {
-              "quote": "而传统IVUS定量依赖人工测量、效率低且一致性受操作者影响",
+              "quote": "传统IVUS定量依赖人工测量、效率低且一致性受操作者影响",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2700,
+                "start_char": 2701,
                 "end_char": 2728
               },
               "version": "d12720e6fb1d70bbee93"
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4644df5d34fb",
-          "name": "IVUS智能定量-虚拟支架释放-术后评估闭环体系",
-          "desc": "以“IVUS智能定量分析—有限元虚拟支架释放—术后支架评估”为主线，完成内腔与EEM自动分割、斑块性质识别体积分割，并建立支架虚拟释放计算链路与膨胀力—斑块特征—扩张效果定量映射。",
+          "id": "item-a152a25c699c",
+          "name": "IVUS内腔与EEM自动分割模型",
+          "desc": "帧级质量控制",
           "evidence": [
             {
-              "quote": "以“IVUS智能定量分析—有限元虚拟支架释放—术后支架评估”为主线，构建面向精准PCI的可复现闭环技术体系",
+              "quote": "完成内腔与EEM自动分割模型及帧级质量控制，测试集Dice分别为0.958±0.035与0.975±0.023",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2733,
-                "end_char": 2785
+                "start_char": 2866,
+                "end_char": 2920
               },
               "version": "d12720e6fb1d70bbee93"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a07e7f89af16",
+          "name": "有限元虚拟支架释放",
+          "desc": "膨胀力—斑块特征—扩张效果/贴壁性映射",
+          "evidence": [
+            {
+              "quote": "力学仿真方面，建立不同斑块属性/体积/位置组合的材料与边界条件体系，形成支架虚拟释放计算链路及“膨胀力—斑块特征—扩张效果/贴壁性”定量映射",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3071,
+                "end_char": 3140
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,293 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a83968da6037",
-          "name": "内腔与EEM分割Dice达0.958与0.975",
-          "desc": "完成内腔与EEM自动分割模型，测试集Dice分别为0.958±0.035与0.975±0.023；关键定量指标与专家一致性ICC为0.955–0.986；纳入100例随访数据完成三维重建，IVUS-FFR与有创FFR相关r=0.86、AUC=0.98。",
+          "id": "item-ba93ab600179",
+          "name": "IVUS-FFR与有创FFR相关性",
+          "desc": "r=0.86，AUC=0.98",
           "evidence": [
             {
-              "quote": "测试集Dice分别为0.958±0.035与0.975±0.023",
+              "quote": "IVUS-FFR与有创FFR相关r=0.86，AUC=0.98",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2888,
-                "end_char": 2920
+                "start_char": 3321,
+                "end_char": 3351
               },
               "version": "d12720e6fb1d70bbee93"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c45f41a4acfd",
+          "name": "关键定量指标与专家一致性",
+          "desc": "ICC 0.955–0.986",
+          "evidence": [
+            {
+              "quote": "关键定量指标与专家一致性（ICC）为0.955–0.986（Lumen-CSA 0.983、EEM-CSA 0.986、PB 0.955）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2922,
+                "end_char": 2990
+              },
+              "version": "d12720e6fb1d70bbee93"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-65de58512f67"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0443bd485325"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Agreement of ejection fraction measured by coronary computed tomography (CT) and cardiac ultrasound in evaluating patients with chronic heart failure: an observational comparative study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Heyang;Zhou Qijing;Lu Wei;Dong Liang;Sun Yong;Jiang Jun;Leng Xiaochang;Liu Yabin;Xiang Jianping;Li Changling",
+      "id": "out-1d02ee4336ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Agreement of ejection fraction measured by coronary computed tomography (CT) and cardiac ultrasound in evaluating patients with chronic heart failure: an observational comparative study — Wang Heyang;Zhou Qijing;Lu Wei;Dong Liang;Sun Yong;Jiang Jun;Leng Xiaochang;Liu Yabin;Xiang Jianping;Li Changling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3473,
+            "end_char": 3780
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0443bd485325"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4644df5d34fb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic Accuracy of Computational Fluid Dynamics-Based Fractional Flow Reserve Derived From Coronary Angiography: The ACCURATE Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Jun;Hu Yumeng;Li Changling;Dong Liang;Xu Jian;Tang Lijiang;Jiang Wenbing;Du Changqing;Jiang Xuejun;Lyu Yongnan;Leng Xiaochang;Li Chengguang;Koo Bon-Kwon;Xiang Jianping;Ge Junbo;Wang Jian'an",
+      "id": "out-612f835d69a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic Accuracy of Computational Fluid Dynamics-Based Fractional Flow Reserve Derived From Coronary Angiography: The ACCURATE Study — Jiang Jun;Hu Yumeng;Li Changling;Dong Liang;Xu Jian;Tang Lijiang;Jiang Wenbing;Du Changqing;Jiang Xuejun;Lyu Yongnan;Leng Xiaochang;Li Chengguang;Koo Bon-Kwon;Xiang Jianping;Ge Junbo;Wang Jian'an",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3785,
+            "end_char": 4124
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4644df5d34fb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a83968da6037"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic Performance of Fractional Flow Reserve Derived From Coronary CT Angiography The ACCURATE-CT Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Changling;Hu Yumeng;Jiang Jun;Dong Liang;Sun Yong;Tang Lijiang;Du Changqing;Yin Da;Jiang Wenbing;Leng Xiaochang;Jiang Fan;Pan Yibin;Jiang Xuejun;Zhou Zhong;Koo Bon-Kwon;Xiang Jianping;Wang Jian'an",
+      "id": "out-47c940a62d2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic Performance of Fractional Flow Reserve Derived From Coronary CT Angiography The ACCURATE-CT Study — Li Changling;Hu Yumeng;Jiang Jun;Dong Liang;Sun Yong;Tang Lijiang;Du Changqing;Yin Da;Jiang Wenbing;Leng Xiaochang;Jiang Fan;Pan Yibin;Jiang Xuejun;Zhou Zhong;Koo Bon-Kwon;Xiang Jianping;Wang Jian'an",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4129,
+            "end_char": 4445
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "冠脉 CTA 血管的快速标注方法、计算机设备和计算机程序产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董樑;向建平;李长岭",
+      "id": "out-d3584a10c42f",
+      "evidence": [
+        {
+          "quote": "[专利] 冠脉 CTA 血管的快速标注方法、计算机设备和计算机程序产品 — 董樑;向建平;李长岭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4450,
+            "end_char": 4497
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The diagnostic performance of AccuFFRangio for evaluating coronary artery stenosis under different computational conditions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Wei;Hu Yumeng;Xiang Peng;Sheng Xiaosheng;Leng Xiaochang;Yang Xinyi;Dong Liang;Li Changling;Sun Yong;Jiang Jun;Xiang Jianping;Lin Xianhe",
+      "id": "out-a656156ac530",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The diagnostic performance of AccuFFRangio for evaluating coronary artery stenosis under different computational conditions — Wang Wei;Hu Yumeng;Xiang Peng;Sheng Xiaosheng;Leng Xiaochang;Yang Xinyi;Dong Liang;Li Changling;Sun Yong;Jiang Jun;Xiang Jianping;Lin Xianhe",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4774
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of deep learning-based image segmentation methods for intravascular ultrasound on retrospective and large image cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Dong;Wei Lu;Xuzhou Lu;Xiaochang Leng;Jianping Xiang;Changling Li",
+      "id": "out-c281d0142747",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of deep learning-based image segmentation methods for intravascular ultrasound on retrospective and large image cohort study — Liang Dong;Wei Lu;Xuzhou Lu;Xiaochang Leng;Jianping Xiang;Changling Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4993
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Relevance of Discordance Between Physiology- and Imaging- Guided PCI Strategies in Intermediate Coronary Stenosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-22c2f8983ab0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Relevance of Discordance Between Physiology- and Imaging- Guided PCI Strategies in Intermediate Coronary Stenosis — Zhang Jinlong;Yu Wei;Hu Xinyang;Jiang Jun;Li Changling;Sun Yong;Zhu Lingjun;Gao Feng;Dong Liang;Liu Yabin;Shen Jian;Ni Cheng;Wang Kan;Chen Zexin;Chen Haibo;Li Shiqiang;Zhao Tonghui;Yang Seokhun;Kang Jeehoon;Hwang Doyeon;Hahn Joo-Yong;Nam Chang-Wook;Doh Joon-Hyung;Lee Bong-Ki;Kim Weon;Huang Jinyu;Jiang Fan;Zhou Hao;Chen Peng;Tang Lijiang;Jiang Wenbing;Chen Xiaomin;He Wenming;Ahn Sung Gyun...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4998,
+            "end_char": 5522
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sex Differences in Fractional Flow Reserve- or Intravascular Ultrasound-Guided Percutaneous Coronary Intervention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-8f5075892df4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sex Differences in Fractional Flow Reserve- or Intravascular Ultrasound-Guided Percutaneous Coronary Intervention — Zhang Jinlong;Jiang Jun;Hu Xinyang;Sun Yong;Li Changling;Zhu Lingjun;Gao Feng;Dong Liang;Liu Yabin;Shen Jian;Ni Cheng;Wang Kan;Chen Zexin;Chen Haibo;Li Shiqiang;Yang Seokhun;Kang Jeehoon;Hwang Doyeon;Hahn Joo-Yong;Nam Chang-Wook;Doh Joon-Hyung;Lee Bong-Ki;Kim Weon;Huang Jinyu;Jiang Fan;Zhou Hao;Chen Peng;Tang Lijiang;Jiang Wenbing;Chen Xiaomin;He Wenming;Ahn Sung Gyun;Yoon Myeong-Ho...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5527,
+            "end_char": 6037
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance of AccuFFRangio in the functional assessment of coronary stenosis compared with pressure wire-derived FFR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Jun;Tang Lijiang;Du Changqing;Leng Xiaochang;He Jingsong;Hu Yumeng;Dong Liang;Sun Yong;Li Changling;Xiang Jianping;Wang Jian'an",
+      "id": "out-b3a2142d26d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic performance of AccuFFRangio in the functional assessment of coronary stenosis compared with pressure wire-derived FFR — Jiang Jun;Tang Lijiang;Du Changqing;Leng Xiaochang;He Jingsong;Hu Yumeng;Dong Liang;Sun Yong;Li Changling;Xiang Jianping;Wang Jian'an",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6042,
+            "end_char": 6312
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional Assessment of Coronary Artery Stenosis from Coronary Angiography and Computed Tomography: Angio-FFR vs. CT-FFR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan Xueqiang;Song Dan;Li Changling;Hu Yumeng;Leng Xiaochang;Sheng Xiaosheng;Bao Lifang;Pan Yibin;Dong Liang;Jiang Jun;Xiang Jianping;Jiang Wenbing",
+      "id": "out-8b954afd7484",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional Assessment of Coronary Artery Stenosis from Coronary Angiography and Computed Tomography: Angio-FFR vs. CT-FFR — Guan Xueqiang;Song Dan;Li Changling;Hu Yumeng;Leng Xiaochang;Sheng Xiaosheng;Bao Lifang;Pan Yibin;Dong Liang;Jiang Jun;Xiang Jianping;Jiang Wenbing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6318,
+            "end_char": 6595
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance of computational fluid dynamics (CFD)-based fractional flow reserve (FFR) derived from coronary computed tomographic angiography (CCTA) for assessing functional severity of coronary lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Jiang;Changqing Du;Yumeng Hu;Hong Yuan;Jianhua Wang;Yibin Pan;Lifang Bao;Liang Dong;Changling Li;Yong Sun;Xiaochang Leng;Jianping Xiang;Lijiang Tang;Jian’an Wang",
+      "id": "out-363f50106cec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic performance of computational fluid dynamics (CFD)-based fractional flow reserve (FFR) derived from coronary computed tomographic angiography (CCTA) for assessing functional severity of coronary lesions — Jun Jiang;Changqing Du;Yumeng Hu;Hong Yuan;Jianhua Wang;Yibin Pan;Lifang Bao;Liang Dong;Changling Li;Yong Sun;Xiaochang Leng;Jianping Xiang;Lijiang Tang;Jian’an Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6601,
+            "end_char": 6987
+          },
+          "version": "d12720e6fb1d70bbee93"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

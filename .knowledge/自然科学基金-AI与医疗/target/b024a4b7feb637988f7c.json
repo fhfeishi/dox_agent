@@ -2,15 +2,20 @@
   "doc_id": "b024a4b7feb637988f7c",
   "version": "c54ebfeba8d3d02c4ca8",
   "source_hash": "7ade9725314565d255045998bf4d7843f5bb0ba59d1148f2e37dbe893e74d4cc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.555606+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:54:35.638176+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-77a2e6f0c273",
-          "name": "脑胶质瘤分子分型与预后的MRI深度学习预测",
-          "desc": "基于术前多模态MRI影像，构建胶质瘤分子分型预测模型与个体化预后评估模型并探究其生物学可解释性。",
+          "id": "item-e1c2c9b89487",
+          "name": "脑胶质瘤分子分型与预后MRI深度学习预测",
+          "desc": "术前精准诊疗",
           "evidence": [
             {
-              "quote": "基于术前影像和深度学习的脑胶质瘤分子分型和预后预测，是目前研究前沿",
+              "quote": "本项目围绕脑胶质瘤精准诊疗需求，以术前多模态MRI影像为数据基础，系统开展基于深度学习的分子分型预测、个体化预后评估及生物学可解释性研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 695
+                "start_char": 2990,
+                "end_char": 3057
               },
               "version": "c54ebfeba8d3d02c4ca8"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-18fac31de018",
-          "name": "深度学习模型缺乏生物学解释致临床受阻",
-          "desc": "深度学习模型缺乏生物学解释，导致其在脑胶质瘤精准诊疗中的临床应用受阻。",
+          "id": "item-aca15cbfe757",
+          "name": "深度学习模型缺乏生物学解释导致临床应用受阻",
+          "desc": "可解释性",
           "evidence": [
             {
               "quote": "但深度学习模型尚缺乏生物学解释，导致其临床应用受阻",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf00dc886df1",
-          "name": "迁移学习CNN分子分型与影像基因组学图谱",
-          "desc": "采用迁移学习和卷积神经网络分别构建分子分型预测模型与个性化预后评估模型，并基于影像与转录组数据构建影像基因组学图谱，揭示深度影像特征与驱动基因及关键分子通路的内在联系。",
+          "id": "item-c9839abf9bc1",
+          "name": "多参数MRI CNN预测LGG 1p/19q共缺失",
+          "desc": "AUC=0.983",
           "evidence": [
             {
-              "quote": "采用迁移学习和卷积神经网络分别构建胶质瘤的分子分型预测模型和个性化预后评估模型",
+              "quote": "基于多中心常规多参数MRI影像（T1WI、T2WI、FLAIR、T1c）开发CNN模型，实现LGG 1p/19q共缺失状态的精准预测（AUC=0.983）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 886,
-                "end_char": 924
+                "start_char": 3078,
+                "end_char": 3154
               },
               "version": "c54ebfeba8d3d02c4ca8"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e0ab73dd552a",
+          "name": "影像-临床综合深度预后模型",
+          "desc": "GBM OS个体化预测C-index=0.78",
+          "evidence": [
+            {
+              "quote": "基于多中心常规多参数MRI影像的CNN深度特征，联合临床因素构建影像-临床综合深度预后模型，实现GBM OS的个体化预测（C-index=0.78）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3336,
+                "end_char": 3409
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-58eaff1f9120",
+          "name": "影像基因组学图谱",
+          "desc": "深度预后表型与PTK、RB、P53通路相关",
+          "evidence": [
+            {
+              "quote": "基于基因组和转录组数据，揭示GBM常规MRI深度预后表型和与细胞增殖相关PTK通路、凋亡相关RB、P53通路及CDKN2A缺失显著相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3522,
+                "end_char": 3588
+              },
+              "version": "c54ebfeba8d3d02c4ca8"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -85,58 +125,342 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f3048b4f7867",
-          "name": "CNN预测LGG 1p/19q共缺失AUC 0.983",
-          "desc": "基于常规多参数MRI的CNN模型实现LGG 1p/19q共缺失状态精准预测（AUC=0.983）；联合DWI与DSC-PWI的影像组学模型进一步提升分子分型预测效能；并取得GBM深度预后模型的生物学解释。",
+          "id": "item-cd29a35aa9c0",
+          "name": "1p/19q共缺失预测AUC",
+          "desc": "0.983",
           "evidence": [
             {
-              "quote": "开发CNN模型，实现LGG 1p/19q共缺失状态的精准预测（AUC=0.983）",
+              "quote": "实现LGG 1p/19q共缺失状态的精准预测（AUC=0.983）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3114,
+                "start_char": 3122,
                 "end_char": 3154
               },
               "version": "c54ebfeba8d3d02c4ca8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-77a2e6f0c273"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-18fac31de018"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sangerbox 2: Enhanced functionalities and update for a comprehensive clinical bioinformatics data analysis platform",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Chen;Lixia Xu;Huiwu Xing;Weitao Shen;Ziguang Song;Hongjiang Li;Xuqiang Zhu;Xueyuan Li;Lixin Wu;Henan Jiao;Shuang Li;Jing Yan;Yuting He;Dongming Yan",
+      "id": "out-fae2a921357c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sangerbox 2: Enhanced functionalities and update for a comprehensive clinical bioinformatics data analysis platform — Di Chen;Lixia Xu;Huiwu Xing;Weitao Shen;Ziguang Song;Hongjiang Li;Xuqiang Zhu;Xueyuan Li;Lixin Wu;Henan Jiao;Shuang Li;Jing Yan;Yuting He;Dongming Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3805,
+            "end_char": 4079
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-18fac31de018"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf00dc886df1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于MRI对少突胶质细胞瘤进行风险分层的方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张振宇;阎静;马泽宇;邢傲奇;王子龙;管芳展;李志成;傅尘颖",
+      "id": "out-7cf159d86edb",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于MRI对少突胶质细胞瘤进行风险分层的方法及系统 — 张振宇;阎静;马泽宇;邢傲奇;王子龙;管芳展;李志成;傅尘颖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4084,
+            "end_char": 4148
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf00dc886df1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f3048b4f7867"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic features from multiparametric magnetic resonance imaging predict molecular subgroups of pediatric low-grade gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Liu;Xuanke Hong;Linglong Wang;Zeyu Ma;Fangzhan Guan;Weiwei Wang;Yuning Qiu;Xueping Zhang;Wenchao Duan;Minkai Wang;Chen Sun;Yuanshen Zhao;Jingxian Duan;Qiuchang Sun;Lin Liu;Lei Ding;Yuchen Ji;Dongming Yan;Xianzhi Liu;Jingliang Cheng;Zhenyu Zhang;Zhi-Cheng Li;Jing Yan",
+      "id": "out-a431e468f1f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic features from multiparametric magnetic resonance imaging predict molecular subgroups of pediatric low-grade gliomas — Zhen Liu;Xuanke Hong;Linglong Wang;Zeyu Ma;Fangzhan Guan;Weiwei Wang;Yuning Qiu;Xueping Zhang;Wenchao Duan;Minkai Wang;Chen Sun;Yuanshen Zhao;Jingxian Duan;Qiuchang Sun;Lin Liu;Lei Ding;Yuchen Ji;Dongming Yan;Xianzhi Liu;Jingliang Cheng;Zhenyu Zhang;Zhi-Cheng Li;Jing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4153,
+            "end_char": 4557
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DWI对鉴别幕上孤立性脑转移瘤和原发性中枢神经系统淋巴瘤的影像组学模型的增量价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马泽宇;阎静;张振宇;刘献志;周金桥",
+      "id": "out-90805b02500a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DWI对鉴别幕上孤立性脑转移瘤和原发性中枢神经系统淋巴瘤的影像组学模型的增量价值 — 马泽宇;阎静;张振宇;刘献志;周金桥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4629
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive prediction of BRAF V600E mutation status of pleomorphic xanthoastrocytomas with MRI morphologic features and diffusion-weighted imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Jing;Guo Cuiping;Zheng Hongwei;Li Yinhua;Duan Mengjiao;Zhang Chaoli;Cui Li;Lv Xiaofei;Fu Gui;Cheng Jingliang",
+      "id": "out-26ee011d5c2e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive prediction of BRAF V600E mutation status of pleomorphic xanthoastrocytomas with MRI morphologic features and diffusion-weighted imaging — Yan Jing;Guo Cuiping;Zheng Hongwei;Li Yinhua;Duan Mengjiao;Zhang Chaoli;Cui Li;Lv Xiaofei;Fu Gui;Cheng Jingliang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4634,
+            "end_char": 4902
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic features from dynamic susceptibility contrast perfusion-weighted imaging improve the three-class prediction of molecular subtypes in patients with adult diffuse gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongling Pei;Fangzhan Guan;Xuanke Hong;Zhen Liu;Weiwei Wang;Yuning Qiu;Wenchao Duan;Minkai Wang;Chen Sun;Wenqing Wang;Xiangxiang Wang;Yu Guo;Zilong Wang;Zhongyi Liu;Aoqi Xing;Zhixuan Guo;Lin Luo;Xianzhi Liu;Jingliang Cheng;Bin Zhang;Zhenyu Zhang;Jing Yan",
+      "id": "out-1902e3f4b7e5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic features from dynamic susceptibility contrast perfusion-weighted imaging improve the three-class prediction of molecular subtypes in patients with adult diffuse gliomas — Dongling Pei;Fangzhan Guan;Xuanke Hong;Zhen Liu;Weiwei Wang;Yuning Qiu;Wenchao Duan;Minkai Wang;Chen Sun;Wenqing Wang;Xiangxiang Wang;Yu Guo;Zilong Wang;Zhongyi Liu;Aoqi Xing;Zhixuan Guo;Lin Luo;Xianzhi Liu;Jingliang Cheng;Bin Zhang;Zhenyu Zhang;Jing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4907,
+            "end_char": 5347
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Biological underpinnings of radiomic magnetic resonance imaging phenotypes for risk stratification in IDH wild-type glioblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fangzhan Guan;Zilong Wang;Yuning Qiu;Yu Guo;Dongling Pei;Minkai Wang;Aoqi Xing;Zhongyi Liu;Bin Yu;Jingliang Cheng;Xianzhi Liu;Yuchen Ji;Dongming Yan;Jing Yan;Zhenyu Zhang",
+      "id": "out-bdf66969cac1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Biological underpinnings of radiomic magnetic resonance imaging phenotypes for risk stratification in IDH wild-type glioblastoma — Fangzhan Guan;Zilong Wang;Yuning Qiu;Yu Guo;Dongling Pei;Minkai Wang;Aoqi Xing;Zhongyi Liu;Bin Yu;Jingliang Cheng;Xianzhi Liu;Yuchen Ji;Dongming Yan;Jing Yan;Zhenyu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5352,
+            "end_char": 5659
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Noninvasive Classification of Molecular Subtypes of Adult Gliomas With Diffusion‐Weighted MR Imaging: An Externally Validated Machine Learning Algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guo;Zeyu Ma;Dongling Pei;Wenchao Duan;Yu Guo;Zhongyi Liu;Fangzhan Guan;Zilong Wang;Aoqi Xing;Zhixuan Guo;Lin Luo;Weiwei Wang;Bin Yu;Jinqiao Zhou;Yuchen Ji;Dongming Yan;Jingliang Cheng;Xianzhi Liu;Jing Yan;Zhenyu Zhang",
+      "id": "out-34475b913daf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving Noninvasive Classification of Molecular Subtypes of Adult Gliomas With Diffusion‐Weighted MR Imaging: An Externally Validated Machine Learning Algorithm — Yang Guo;Zeyu Ma;Dongling Pei;Wenchao Duan;Yu Guo;Zhongyi Liu;Fangzhan Guan;Zilong Wang;Aoqi Xing;Zhixuan Guo;Lin Luo;Weiwei Wang;Bin Yu;Jinqiao Zhou;Yuchen Ji;Dongming Yan;Jingliang Cheng;Xianzhi Liu;Jing Yan;Zhenyu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5664,
+            "end_char": 6057
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic profiling for insular diffuse glioma stratification with distinct biologic pathway activities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenchao Duan;Zilong Wang;Zeyu Ma;Hongwei Zheng;Yinhua Li;Dongling Pei;Minkai Wang;Yuning Qiu;Mengjiao Duan;Dongming Yan;Yuchen Ji;Jingliang Cheng;Xianzhi Liu;Zhenyu Zhang;Jing Yan",
+      "id": "out-fe7c6213b6a5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic profiling for insular diffuse glioma stratification with distinct biologic pathway activities — Wenchao Duan;Zilong Wang;Zeyu Ma;Hongwei Zheng;Yinhua Li;Dongling Pei;Minkai Wang;Yuning Qiu;Mengjiao Duan;Dongming Yan;Yuchen Ji;Jingliang Cheng;Xianzhi Liu;Zhenyu Zhang;Jing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6062,
+            "end_char": 6352
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于DTI序列对GBM患者进行风险分层的方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张振宇;阎静;王子龙;马泽宇;管芳展;李志成;傅尘颖",
+      "id": "out-39b43dc437cc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于DTI序列对GBM患者进行风险分层的方法及系统 — 张振宇;阎静;王子龙;马泽宇;管芳展;李志成;傅尘颖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6358,
+            "end_char": 6418
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image-based deep learning identifies glioblastoma risk groups with genomic and transcriptomic heterogeneity: a multi-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-a413c9eb9d2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image-based deep learning identifies glioblastoma risk groups with genomic and transcriptomic heterogeneity: a multi-center study — Yan Jing;Sun Qiuchang;Tan Xiangliang;Liang Chaofeng;Bai Hongmin;Duan Wenchao;Mu Tianhao;Guo Yang;Qiu Yuning;Wang Weiwei;Yao Qiaoli;Pei Dongling;Zhao Yuanshen;Liu Danni;Duan Jingxian;Chen Shifu;Sun Chen;Wang Wenqing;Liu Zhen;Hong Xuanke;Wang Xiangxiang;Guo Yu;Xu Yikai;Liu Xianzhi;Cheng Jingliang;Li Zhi-Cheng;Zhang Zhenyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6424,
+            "end_char": 6883
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting 1p/19q co-deletion status from magnetic resonance imaging using deep learning in adult-type diffuse lower-grade gliomas: a discovery and validation study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Jing;Zhang Shenghai;Sun Qiuchang;Wang Weiwei;Duan Wenchao;Wang Li;Ding Tianqing;Pei Dongling;Sun Chen;Wang Wenqing;Liu Zhen;Hong Xuanke;Wang Xiangxiang;Guo Yu;Li Wencai;Cheng Jingliang;Liu Xianzhi;Li Zhi-Cheng;Zhang Zhenyu",
+      "id": "out-3777dfa28165",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting 1p/19q co-deletion status from magnetic resonance imaging using deep learning in adult-type diffuse lower-grade gliomas: a discovery and validation study — Yan Jing;Zhang Shenghai;Sun Qiuchang;Wang Weiwei;Duan Wenchao;Wang Li;Ding Tianqing;Pei Dongling;Sun Chen;Wang Wenqing;Liu Zhen;Hong Xuanke;Wang Xiangxiang;Guo Yu;Li Wencai;Cheng Jingliang;Liu Xianzhi;Li Zhi-Cheng;Zhang Zhenyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6889,
+            "end_char": 7288
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑胶质瘤多维度标志物风险分层体系的建立及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张振宇;王伟伟;季玉陈;阎静;甄英伟;韩磊;刘灶渠;傅尘颖;刘献志;王子龙",
+      "id": "out-eaaef4d7702d",
+      "evidence": [
+        {
+          "quote": "[奖励] 脑胶质瘤多维度标志物风险分层体系的建立及临床应用 — 张振宇;王伟伟;季玉陈;阎静;甄英伟;韩磊;刘灶渠;傅尘颖;刘献志;王子龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7294,
+            "end_char": 7362
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion tensor imaging‐based machine learning for            IDH            wild‐type glioblastoma stratification to reveal the biological underpinning of radiomic features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zilong Wang;Fangzhan Guan;Wenchao Duan;Yu Guo;Dongling Pei;Yuning Qiu;Minkai Wang;Aoqi Xing;Zhongyi Liu;Bin Yu;Hongwei Zheng;Xianzhi Liu;Dongming Yan;Yuchen Ji;Jingliang Cheng;Jing Yan;Zhenyu Zhang",
+      "id": "out-473a133df2eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion tensor imaging‐based machine learning for            IDH            wild‐type glioblastoma stratification to reveal the biological underpinning of radiomic features — Zilong Wang;Fangzhan Guan;Wenchao Duan;Yu Guo;Dongling Pei;Yuning Qiu;Minkai Wang;Aoqi Xing;Zhongyi Liu;Bin Yu;Hongwei Zheng;Xianzhi Liu;Dongming Yan;Yuchen Ji;Jingliang Cheng;Jing Yan;Zhenyu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7368,
+            "end_char": 7748
+          },
+          "version": "c54ebfeba8d3d02c4ca8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

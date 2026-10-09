@@ -2,15 +2,20 @@
   "doc_id": "65bc988f6d77f4f1a429",
   "version": "dad4320be33b5a0e9f0c",
   "source_hash": "7896125a99762665854589544b7d56c4ebf105e83cfae8d004f8f2f2c3756a0b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:44.030699+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.826050+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ebf3910c4b4f",
-          "name": "急诊肺栓塞危险分层",
-          "desc": "急性肺血栓栓塞症起病急、致死率高，急诊环境下迅速对患者分层管理是提高救治成功率的重要因素。",
+          "id": "item-350d786c0b0e",
+          "name": "急诊非高危肺栓塞危险分层与预后预警",
+          "desc": "急诊场景",
           "evidence": [
             {
-              "quote": "急性肺血栓栓塞症（PTE）起病急、致死率高，严重危害国人健康。急诊环境下迅速对患者分层管理是提高救治成功率的重要因素。",
+              "quote": "本项目研究致力于构建一套急诊场景下,基于肺动脉CT影像学和临床文本大数据的非高危肺栓塞（PTE）患者的早期危险分层和30天预后预警体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 734
-              },
-              "version": "dad4320be33b5a0e9f0c"
-            }
-          ]
-        },
-        {
-          "id": "item-561d03c85b03",
-          "name": "PTE精准诊疗与成本控制",
-          "desc": "为PTE精准化诊疗方案制定、提高生存率、降低医疗成本提供依据。",
-          "evidence": [
-            {
-              "quote": "这将为PTE精准化诊疗方案制定、提高生存率、降低医疗成本提供依据。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2471,
-                "end_char": 2503
+                "start_char": 2403,
+                "end_char": 2469
               },
               "version": "dad4320be33b5a0e9f0c"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b7e08775088",
-          "name": "缺乏快速精准分层预警模型",
-          "desc": "目前缺乏快速、精准的危险分层和预后预警模型。",
+          "id": "item-1abe741d0366",
+          "name": "缺乏快速精准的危险分层和预后预警模型",
+          "desc": "急诊环境下",
           "evidence": [
             {
-              "quote": "然而，目前缺乏快速、精准的危险分层和预后预警模型。",
+              "quote": "目前缺乏快速、精准的危险分层和预后预警模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 735,
-                "end_char": 759
-              },
-              "version": "dad4320be33b5a0e9f0c"
-            }
-          ]
-        },
-        {
-          "id": "item-6f8b2eb671bd",
-          "name": "CT影像预后信息待挖掘",
-          "desc": "肺动脉CT背后隐藏大量预后相关影像信息，需要人工智能深度挖掘并融合临床文本信息。",
-          "evidence": [
-            {
-              "quote": "肺动脉CT作为重要的诊断工具，背后隐藏大量预后相关影像信息，对这些数据的人工智能（AI）深度挖掘，并融合临床文本信息，有可能为建立临床预后模型提供条件。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 835
+                "start_char": 738,
+                "end_char": 758
               },
               "version": "dad4320be33b5a0e9f0c"
             }
@@ -95,80 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-878f3f05b127",
-          "name": "肺动脉CT深度学习分割模型",
-          "desc": "建立肺动脉CT图像感兴趣区域的深度学习分割模型，自动识别分割肺动脉血栓和心脏结构。",
+          "id": "item-7343ba316ef2",
+          "name": "肺动脉CT感兴趣区深度学习分割",
+          "desc": "血栓与心脏结构",
           "evidence": [
             {
-              "quote": "建立肺动脉CT图像感兴趣区域的深度学习分割模型",
+              "quote": "基于感兴趣区域应用卷积神经网络分割建模",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 917
-              },
-              "version": "dad4320be33b5a0e9f0c"
-            }
-          ]
-        },
-        {
-          "id": "item-bad0f6865121",
-          "name": "CNN与影像组学多维度提取",
-          "desc": "采用卷积神经网络、影像组学等方法对肺动脉血栓、心脏结构等多维度影像特征进行提取和筛选。",
-          "evidence": [
-            {
-              "quote": "采用卷积神经网络、影像组学等方法，对肺动脉血栓、心脏结构等多维度影像特征进行提取和筛选",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 921,
-                "end_char": 963
-              },
-              "version": "dad4320be33b5a0e9f0c"
-            }
-          ]
-        },
-        {
-          "id": "item-6a5ed25d9d37",
-          "name": "临床文本融合危险分层模型",
-          "desc": "融合基本和综合临床文本信息，建立急诊全场景下非高危PTE患者危险分层和30天预后预警模型。",
-          "evidence": [
-            {
-              "quote": "融合基本和综合临床文本信息，建立急诊全场景下非高危PTE患者危险分层和30天预后预警模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 967,
-                "end_char": 1010
-              },
-              "version": "dad4320be33b5a0e9f0c"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-955e4b45f321",
-          "name": "PTE云平台数据库建立",
-          "desc": "建立PTE标准CRF及云平台数据库，构建跨维度影像和临床文本数据平台。",
-          "evidence": [
-            {
-              "quote": "建立PTE标准 CRF 及云平台数据库，构建跨维度影像和临床文本数据平台",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2514,
-                "end_char": 2549
+                "start_char": 2566,
+                "end_char": 2584
               },
               "version": "dad4320be33b5a0e9f0c"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-1246c5eb2b64",
-          "name": "危险智能分层模型形成",
-          "desc": "通过人工智能深度学习和影像组学构建的PTE预测模型，可以形成急诊环境下PTE危险智能分层模型。",
+          "id": "item-64de62e423dc",
+          "name": "PTE危险分层和预后模型",
+          "desc": "深度学习与影像组学",
           "evidence": [
             {
               "quote": "通过人工智能深度学习和影像组学构建的PTE预测模型，可以准确分割PTE患者肺血管结构、血栓体积、心脏大血管，可以形成急诊环境下PTE危险智能分层模型",
@@ -180,72 +99,133 @@
               "version": "dad4320be33b5a0e9f0c"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-907e0c54a652",
-          "name": "30天与3个月预后预测",
-          "desc": "通过短期生存验证标注预测短期急性加重风险，有望预测30天整体预后和3个月预后。",
+          "id": "item-c78ed39a571c",
+          "name": "PTE标准CRF及云平台数据库",
+          "desc": "跨维度影像和临床文本数据平台",
           "evidence": [
             {
-              "quote": "进一步的通过短期生存验证标注，预测短期急性加重风险，有望预测30天整体预后和3个月预后",
+              "quote": "建立PTE标准 CRF 及云平台数据库，构建跨维度影像和临床文本数据平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2716,
-                "end_char": 2758
+                "start_char": 2514,
+                "end_char": 2549
               },
               "version": "dad4320be33b5a0e9f0c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ebf3910c4b4f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1b7e08775088"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在肺血栓栓塞症和肺动脉高压诊疗中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李子涵;丁媛;李小丫;师晓雨;邝土光;杨媛华;龚娟妮",
+      "id": "out-30e55dc4e052",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在肺血栓栓塞症和肺动脉高压诊疗中的研究进展 — 李子涵;丁媛;李小丫;师晓雨;邝土光;杨媛华;龚娟妮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2845,
+            "end_char": 2905
+          },
+          "version": "dad4320be33b5a0e9f0c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6f8b2eb671bd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bad0f6865121"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics of lung ventilation/perfusion tomographic imaging in pulmonary embolism diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Shuang Liu;Lei Wang;Hao-Yu Song;Li Wang;Yuan-Hua Yang;Qi Yang;Juan-Ni Gong;Min-Fu Yang",
+      "id": "out-340a4d560223",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics of lung ventilation/perfusion tomographic imaging in pulmonary embolism diagnosis — Yu-Shuang Liu;Lei Wang;Hao-Yu Song;Li Wang;Yuan-Hua Yang;Qi Yang;Juan-Ni Gong;Min-Fu Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2910,
+            "end_char": 3099
+          },
+          "version": "dad4320be33b5a0e9f0c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-878f3f05b127"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1246c5eb2b64"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Insufficiency of quality of life as the treatment endpoint for balloon pulmonary angioplasty in inoperable chronic thromboembolic pulmonary hypertension",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Juan-Ni Gong;Yuan-Ding;Jian-Feng Wang;Wei Wang;Qiang Huang;Ran Miao;Tu-Guang Kuang;Su-Qiao Yang;Ji-Feng Li;Xiao-Jing Jiao;Yuan-Hua Yang",
+      "id": "out-a699d81fbe34",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Insufficiency of quality of life as the treatment endpoint for balloon pulmonary angioplasty in inoperable chronic thromboembolic pulmonary hypertension — Juan-Ni Gong;Yuan-Ding;Jian-Feng Wang;Wei Wang;Qiang Huang;Ran Miao;Tu-Guang Kuang;Su-Qiao Yang;Ji-Feng Li;Xiao-Jing Jiao;Yuan-Hua Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3104,
+            "end_char": 3400
+          },
+          "version": "dad4320be33b5a0e9f0c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6a5ed25d9d37"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-907e0c54a652"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical characteristics and mortality predictors among very old patients with pulmonary thromboembolism: a multicenter study report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-c35b77d4ec52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical characteristics and mortality predictors among very old patients with pulmonary thromboembolism: a multicenter study report — Zhou Xia;Yang Yuanhua;Zhai Zhenguo;Wang Dingyi;Lei Jieping;Xu Xiaomao;Ji Yingqun;Yi Qun;Chen Hong;Hu Xiaoyun;Liu Zhihong;Mao Yimin;Zhang Jie;Shi Juhong;Zhang Zhu;Wu Sinan;Gao Qian;Tao Xincao;Xie Wanmu;Wan Jun;Zhang Yunxia;Zhang Shuai;Zhen Kaiyuan;Zhang Zhonghe;Fang Baomin;Wang Chen;Li Jifeng;Yang He;Wang Lan;Zhou Haixia;Wang Maoyun;Wang Xiaohui;Luo Qin;Fan Junping;An Jun;Zeng Mian...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3405,
+            "end_char": 3932
+          },
+          "version": "dad4320be33b5a0e9f0c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

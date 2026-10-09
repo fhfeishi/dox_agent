@@ -2,15 +2,20 @@
   "doc_id": "9e2cd78e3b84f37fb23f",
   "version": "0f97df87533000ffe247",
   "source_hash": "7f265948c0276a4527124c37777fc216f348799574b1fa6da0a8e9932ea59f18",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.569803+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.819525+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-7af4e4e78a20",
           "name": "慢性青光眼智能筛查",
-          "desc": "青光眼是我国常见的不可逆致盲眼病，慢性青光眼占较大比例，早期筛查是预防干预该疾病的有效措施。",
+          "desc": "早期筛查能预防疾病",
           "evidence": [
             {
-              "quote": "青光眼是我国常见的不可逆致盲眼病，其中慢性青光眼占据了较大的比例",
+              "quote": "早期筛查能够有效预防疾病的发生，大幅改善疾病的干预治疗效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 688
-              },
-              "version": "0f97df87533000ffe247"
-            }
-          ]
-        },
-        {
-          "id": "item-50c947a366c9",
-          "name": "为我国青光眼防治提供可靠方案",
-          "desc": "建立基于眼底杯盘分割的青光眼筛查方法，有望为我国青光眼的防治提供可靠的解决方案。",
-          "evidence": [
-            {
-              "quote": "有望为我国青光眼的防治提供可靠的解决方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1020,
-                "end_char": 1039
+                "start_char": 2729,
+                "end_char": 2757
               },
               "version": "0f97df87533000ffe247"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c497ca414c2",
-          "name": "分割方法难准确提取眼底杯盘",
-          "desc": "当前疾病早筛模型准确性很大程度上受限于现有分割方法难以准确提取眼底杯盘，且青光眼探测大多使用杯盘比而忽略其他图像信息。",
+          "id": "item-8875ab0bf1f4",
+          "name": "眼底杯盘提取困难",
+          "desc": "影响早筛模型准确性",
           "evidence": [
             {
-              "quote": "然而，当前疾病早筛模型的准确性很大程度上受到了现有分割方法难以准确提取眼底杯盘这一难题的限制，并且青光眼的探测大多使用杯盘比而忽略其他图像信息",
+              "quote": "为探测青光眼，通常需要分析彩色眼底图像中的网膜神经纤维层的缺损状况、杯盘的形态变化及其杯盘比等信息，其中视盘视杯的提取是疾病分析的重要基础",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 728,
-                "end_char": 798
-              },
-              "version": "0f97df87533000ffe247"
-            }
-          ]
-        },
-        {
-          "id": "item-c4fe25234297",
-          "name": "多次编码下采样导致信息丢失",
-          "desc": "现有分割网络多次编码下采样造成信息丢失，影响边界区域分割精度。",
-          "evidence": [
-            {
-              "quote": "降低现有分割网络多次编码下采样造成的信息丢失，改善边界区域的分割精度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2943,
-                "end_char": 2976
+                "start_char": 2759,
+                "end_char": 2827
               },
               "version": "0f97df87533000ffe247"
             }
@@ -95,81 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-00df9643eb6b",
-          "name": "边界引导卷积模块设计",
-          "desc": "借助传统边界探测理论设计具有边界引导特性的卷积模块，实现眼底非结构化数据的探测与保存。",
+          "id": "item-cf4784688ffb",
+          "name": "边界引导卷积模块",
+          "desc": "基于传统边界探测技术，探测保存非结构化特征",
           "evidence": [
             {
-              "quote": "首先借助传统边界探测理论，设计具有边界引导特性的卷积模块，实现眼底非结构化数据的探测与保存",
+              "quote": "基于传统边界探测技术，设计具有边界引导特性的卷积模块，实现非结构化特征的有效探测与保存，使它们在分割中具有更大的作用权重",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 836,
-                "end_char": 880
-              },
-              "version": "0f97df87533000ffe247"
-            }
-          ]
-        },
-        {
-          "id": "item-9e992a519b89",
-          "name": "多分支耦合分割网络与组合学习",
-          "desc": "利用卷积模块构建多分支耦合分割网络执行视杯视盘准确提取，并设计边界引导的组合学习网络整合杯盘分割结果与多尺度图像信息指导青光眼筛查。",
-          "evidence": [
-            {
-              "quote": "利用上述卷积模块构建一个多分支耦合的分割网络，执行视杯视盘的准确提取；在此基础上设计一个边界引导的组合学习网络，将杯盘分割结果与多尺度图像中非结构化数据整合起来，指导青光眼的准确筛查",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 885,
-                "end_char": 975
-              },
-              "version": "0f97df87533000ffe247"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9f8e9289e096",
-          "name": "构建多种图像分割模型",
-          "desc": "基于U-Net从卷积模块、跳跃连接、网络分支三方面构建非对称分割网络、边界引导多分支分割模型、边界增强分割网络、循环跳跃分割网络与纹理融合分割网络。",
-          "evidence": [
-            {
-              "quote": "基于经典的U-Net网络从卷积模块、跳跃连接、以及网络分支三个方面分别构建了不同的图像分割模型，具体包括非对称分割网络、边界引导的多分支分割模型、边界增强的分割网络、循环跳跃的分割网络、纹理融合的分割网络",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3068,
-                "end_char": 3169
+                "start_char": 2853,
+                "end_char": 2912
               },
               "version": "0f97df87533000ffe247"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-407026cb4e2c",
-          "name": "距离引导网络训练策略",
-          "desc": "构建距离引导的网络训练策略，有效改善现有分割网络的图像处理性能。",
+          "id": "item-84ebc4e9a32f",
+          "name": "多分支耦合分割网络",
+          "desc": "降低下采样信息丢失，改善边界精度",
           "evidence": [
             {
-              "quote": "构建了一种距离引导的网络训练策略，有效改善现有分割网络的图像处理性能",
+              "quote": "借助上述设计的卷积模块构建一个多分支耦合的网络架构，降低现有分割网络多次编码下采样造成的信息丢失，改善边界区域的分割精度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3234,
-                "end_char": 3267
+                "start_char": 2917,
+                "end_char": 2976
               },
               "version": "0f97df87533000ffe247"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-36cbf6264b28",
-          "name": "残差驱动半监督分割算法",
-          "desc": "构建残差驱动半监督分割算法与新的分割代价函数，仅借助少量标签与大量无标签数据实现多模态医学图像准确分割。",
+          "id": "item-ba89577514a4",
+          "name": "残差驱动半监督分割算法与新分割代价函数",
+          "desc": "少量标签与大量无标签",
           "evidence": [
             {
               "quote": "构建了一种残差驱动的半监督分割算法和一种新的分割代价函数，仅借助少量的标签数据和大量的无标签数据，实现多模态医学图像的准确分割",
@@ -181,55 +116,307 @@
               "version": "0f97df87533000ffe247"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Incomplete Blinking Analyzed Using a Deep Learning Model With the Keratograph 5M in Dry Eye Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinxiang Zheng;Lei Wang;Han Wen;Yueping Ren;Shenghai Huang;Furong Bai;Na Li;Jennifer P. Craig;Louis Tong;Wei Chen",
+      "id": "out-b2a7df926507",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Incomplete Blinking Analyzed Using a Deep Learning Model With the Keratograph 5M in Dry Eye Disease — Qinxiang Zheng;Lei Wang;Han Wen;Yueping Ren;Shenghai Huang;Furong Bai;Na Li;Jennifer P. Craig;Louis Tong;Wei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3456,
+            "end_char": 3687
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于 OCT 图像角膜层分割的边界增强卷积神经网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王雷;常倩;沈梅晓;吕帆;陈浩",
+      "id": "out-b0422f654562",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于 OCT 图像角膜层分割的边界增强卷积神经网络 — 王雷;常倩;沈梅晓;吕帆;陈浩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3692,
+            "end_char": 3741
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EE-Net: An edge-enhanced deep learning network for jointly identifying corneal micro-layers from optical coherence tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Wang;Meixiao Shen;Ce Shi;Yuheng Zhou;Yang Chen;Jiantao Pu;Hao Chen",
+      "id": "out-27065f59ba6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EE-Net: An edge-enhanced deep learning network for jointly identifying corneal micro-layers from optical coherence tomography — Lei Wang;Meixiao Shen;Ce Shi;Yuheng Zhou;Yang Chen;Jiantao Pu;Hao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3950
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于距离引导的深度学习策略的图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王雷;郑钦象;陈浩;常倩;梅晨阳",
+      "id": "out-6c2e42d11537",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于距离引导的深度学习策略的图像分割方法 — 王雷;郑钦象;陈浩;常倩;梅晨阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 4000
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised image segmentation using a residual-driven mean teacher and an exponential Dice loss",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyang Mei;Xiaoguo Yang;Mi Zhou;Shaodan Zhang;Hao Chen;Xiaokai Yang;Lei Wang",
+      "id": "out-1b7ba811e65d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-supervised image segmentation using a residual-driven mean teacher and an exponential Dice loss — Chenyang Mei;Xiaoguo Yang;Mi Zhou;Shaodan Zhang;Hao Chen;Xiaokai Yang;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4192
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A recurrent skip deep learning network for accurate image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ce Shi;Juan Zhang;Xin Zhang;Meixiao Shen;Hao Chen;Lei Wang",
+      "id": "out-030505e0f39a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A recurrent skip deep learning network for accurate image segmentation — Ce Shi;Juan Zhang;Xin Zhang;Meixiao Shen;Hao Chen;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4197,
+            "end_char": 4334
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于不确定性引导的深度学习策略的图像分割方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张娟;王雷;郑钦象;梅晨阳",
+      "id": "out-bebc4508da36",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于不确定性引导的深度学习策略的图像分割方法及应用 — 张娟;王雷;郑钦象;梅晨阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4339,
+            "end_char": 4386
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种循环跳跃的深度学习网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王雷;常倩;沈梅晓;吕帆;陈浩",
+      "id": "out-7ba11f2b15d6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种循环跳跃的深度学习网络 — 王雷;常倩;沈梅晓;吕帆;陈浩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4391,
+            "end_char": 4426
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated delineation of corneal layers on OCT images using a boundary-guided CNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Wang;Meixiao Shen;Qian Chang;Ce Shi;Yang Chen;Yuheng Zhou;Yanchun Zhang;Jiantao Pu;Hao Chen",
+      "id": "out-4a979532d763",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated delineation of corneal layers on OCT images using a boundary-guided CNN — Lei Wang;Meixiao Shen;Qian Chang;Ce Shi;Yang Chen;Yuheng Zhou;Yanchun Zhang;Jiantao Pu;Hao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4431,
+            "end_char": 4616
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated segmentation of palpebral fissures from eye videography using a texture fusion neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinxiang Zheng;Zhongwen Li;Juan Zhang;Chenyang Mei;Guangyu Li;Lei Wang",
+      "id": "out-fcdde5140f13",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated segmentation of palpebral fissures from eye videography using a texture fusion neural network — Qinxiang Zheng;Zhongwen Li;Juan Zhang;Chenyang Mei;Guangyu Li;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4622,
+            "end_char": 4804
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A texture-aware U-Net for identifying incomplete blinking from eye videography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinxiang Zhen;Xin Zhang;Juan Zhang;Furong Bai;Shenghai Huang;Jiantao Pu;Wei Chen;Lei Wang",
+      "id": "out-3611bd4fd452",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A texture-aware U-Net for identifying incomplete blinking from eye videography — Qinxiang Zhen;Xin Zhang;Juan Zhang;Furong Bai;Shenghai Huang;Jiantao Pu;Wei Chen;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4810,
+            "end_char": 4986
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feasibility assessment of infectious keratitis depicted on slit-lamp and smartphone photographs using deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Wang;Kuan Chen;Han Wen;Qinxiang Zheng;Yang Chen;Jiantao Pu;Wei Chen",
+      "id": "out-78d91b1bb19d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feasibility assessment of infectious keratitis depicted on slit-lamp and smartphone photographs using deep learning — Lei Wang;Kuan Chen;Han Wen;Qinxiang Zheng;Yang Chen;Jiantao Pu;Wei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4992,
+            "end_char": 5187
+          },
+          "version": "0f97df87533000ffe247"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated segmentation of the optic disc from fundus images using an asymmetric deep learning network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Wang;Juan Gu;Yize Chen;Yuanbo Liang;Weijie Zhang;Jiantao Pu;Hao Chen",
+      "id": "out-dc19971695df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated segmentation of the optic disc from fundus images using an asymmetric deep learning network — Lei Wang;Juan Gu;Yize Chen;Yuanbo Liang;Weijie Zhang;Jiantao Pu;Hao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5193,
+            "end_char": 5375
+          },
+          "version": "0f97df87533000ffe247"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7af4e4e78a20"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4c497ca414c2"
-      },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4c497ca414c2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-00df9643eb6b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-00df9643eb6b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9f8e9289e096"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9e992a519b89"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-36cbf6264b28"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

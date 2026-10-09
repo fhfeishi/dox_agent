@@ -2,15 +2,20 @@
   "doc_id": "12f1a7428e77e20a8ba4",
   "version": "7b7a547d6a40aee310c8",
   "source_hash": "170af2f4ba960f337e8a726ebd3203f9182d95dfee19904ee785b5117d5d4749",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.748784+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.262159+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,23 +26,7 @@
         {
           "id": "item-8717df8d35f0",
           "name": "左心室肥厚病因诊断",
-          "desc": "多参数增强心脏磁共振是左心室肥厚病因诊断的重要影像工具，但使用受限。",
-          "evidence": [
-            {
-              "quote": "多参数增强心脏磁共振是左心室肥厚（left ventricular hypertrophy， LVH）病因诊断的重要影像工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 737
-              },
-              "version": "7b7a547d6a40aee310c8"
-            }
-          ]
-        },
-        {
-          "id": "item-4df3ea5b1bf3",
-          "name": "平扫心脏电影序列辅助诊断",
-          "desc": "平扫心脏电影序列是临床常用观察心肌形态与运动、计算心功能的序列，需挖掘其诊断价值。",
+          "desc": "平扫心脏电影序列用于观察心肌形态与运动",
           "evidence": [
             {
               "quote": "平扫心脏电影序列是目前临床常用的观察心肌形态与运动，计算心功能的序列",
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aefbb82383c9",
-          "name": "增强CMR使用造影剂耗时限制推广",
-          "desc": "增强心脏磁共振需使用造影剂、扫描耗时长、对患者配合度要求高，且图像解读依赖专业知识与临床经验。",
+          "id": "item-367e9132aeb4",
+          "name": "增强心脏磁共振需造影剂、耗时且解读门槛高",
+          "desc": "限制推广使用",
           "evidence": [
             {
               "quote": "但其需要使用造影剂，扫描耗时长，对患者配合度要求高，且图像解读要求心血管专业知识与临床经验等限制了其进一步推广与使用",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 739,
                 "end_char": 796
-              },
-              "version": "7b7a547d6a40aee310c8"
-            }
-          ]
-        },
-        {
-          "id": "item-8407187ba449",
-          "name": "传统AI模型依赖数据堆积存在瓶颈",
-          "desc": "传统AI模型构建依赖数据的堆积，在心脏磁共振领域的应用存在瓶颈问题。",
-          "evidence": [
-            {
-              "quote": "传统的AI模型构建依赖于数据的堆积，在心脏磁共振领域的应用存在瓶颈问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3105,
-                "end_char": 3139
               },
               "version": "7b7a547d6a40aee310c8"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d35ac2d4320b",
-          "name": "平扫cine多模态深度神经网络建模",
-          "desc": "融合平扫心脏电影序列，基于多模态深度神经网络学习算法构建LVH患者心肌自动化分割、运动特征分析与病因诊断模型。",
+          "id": "item-05cb3cc06515",
+          "name": "深度学习自动心肌分割与分析",
+          "desc": "基于cine影像",
           "evidence": [
             {
-              "quote": "本课题拟融合平扫心脏电影序列，基于多模态深度神经网络学习算法构建LVH患者心肌自动化分割，运动特征分析与病因诊断模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 962,
-                "end_char": 1019
-              },
-              "version": "7b7a547d6a40aee310c8"
-            }
-          ]
-        },
-        {
-          "id": "item-9a02f844681a",
-          "name": "多特征LVH病因诊断模型构建",
-          "desc": "引入基于深度学习的自动心肌分割与分析方法，构建基于不同心脏区域、左心室分割图像及分割掩膜等多种特征的病因诊断模型。",
-          "evidence": [
-            {
-              "quote": "引入基于深度学习的自动心肌分割与分析方法，构建了基于不同心脏区域、左心室分割图像及分割掩膜等多种特征的LVH病因诊断模型",
+              "quote": "引入基于深度学习的自动心肌分割与分析方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3167,
+                "end_char": 3186
+              },
+              "version": "7b7a547d6a40aee310c8"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d8daf24a64a6",
+          "name": "LVH病因诊断模型",
+          "desc": "基于不同心脏区域、分割图像及分割掩膜特征",
+          "evidence": [
+            {
+              "quote": "构建了基于不同心脏区域、左心室分割图像及分割掩膜等多种特征的LVH病因诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3188,
                 "end_char": 3226
               },
               "version": "7b7a547d6a40aee310c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-63da71eb94d6",
-          "name": "左心室分割掩膜诊断模型",
-          "desc": "证实基于左心室分割掩膜的LVH诊断模型的稳定性和优越性，其病因鉴别诊断能力不劣于资深专家。",
+          "id": "item-6ae69f68c7ae",
+          "name": "分割掩膜诊断模型验证",
+          "desc": "稳定性、优越性，不劣于资深专家",
           "evidence": [
             {
               "quote": "证实了基于左心室分割掩膜的LVH诊断模型的稳定性和优越性，在左心室肥厚相关疾病病因鉴别中的诊断能力不劣于资深专家",
@@ -147,41 +122,28 @@
               "version": "7b7a547d6a40aee310c8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-158bbed90a6f",
-          "name": "心肌时空运动特征诊断LVH病因",
-          "desc": "提出基于多通道深度学习模型的心肌时空形态特征用于诊断LVH病因。",
+          "id": "item-f7338e51aa88",
+          "name": "LVH cine磁共振影像队列",
+          "desc": "构建队列",
           "evidence": [
             {
-              "quote": "Multi-channel deep learning model-based myocardial spatial–temporal morphology feature on cardiac MRI cine images diagnoses the cause of LVH",
+              "quote": "通过构建LVH患者心脏cine磁共振影像队列",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3995,
-                "end_char": 4134
+                "start_char": 3144,
+                "end_char": 3165
               },
               "version": "7b7a547d6a40aee310c8"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-30368ce2851d",
-          "name": "前瞻性与多中心外部验证",
-          "desc": "通过前瞻性及多中心数据作为外部验证集，证实模型具有良好泛化性能与潜在临床应用价值。",
-          "evidence": [
-            {
-              "quote": "并通过前瞻性及多中心数据作为外部验证集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3228,
-                "end_char": 3246
-              },
-              "version": "7b7a547d6a40aee310c8"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +151,192 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-8717df8d35f0"
+        "dimension": "技术",
+        "item_id": "item-d8daf24a64a6"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-aefbb82383c9"
+        "item_id": "item-367e9132aeb4"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-aefbb82383c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d35ac2d4320b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d35ac2d4320b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-63da71eb94d6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9a02f844681a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-30368ce2851d"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了基于不同心脏区域、左心室分割图像及分割掩膜等多种特征的LVH病因诊断模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3188,
+            "end_char": 3226
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The added value of coronary CTA in chronic total occlusion percutaneous coronary intervention: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichu Liang;Yanlin Bai;Jing Zhang;Aijie Wang;Jing Li;Kaiyue Diao;Yong He",
+      "id": "out-3eef4701f060",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The added value of coronary CTA in chronic total occlusion percutaneous coronary intervention: a systematic review and meta-analysis — Shichu Liang;Yanlin Bai;Jing Zhang;Aijie Wang;Jing Li;Kaiyue Diao;Yong He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3380,
+            "end_char": 3594
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳房体积测量方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "白彦琳;刘莹;庞彤;刘畅;刘勇;黄娟;赵爽;刁凯悦",
+      "id": "out-d2e604b14341",
+      "evidence": [
+        {
+          "quote": "[专利] 乳房体积测量方法、装置、设备及存储介质 — 白彦琳;刘莹;庞彤;刘畅;刘勇;黄娟;赵爽;刁凯悦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3599,
+            "end_char": 3650
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Donut-in-donut: cardiac abnormalities due to Mycobacterium tuberculosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenyu·Huang;Qiao·Deng;Kaiyue·Diao",
+      "id": "out-4ea2624c9f57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Donut-in-donut: cardiac abnormalities due to Mycobacterium tuberculosis — Wenyu·Huang;Qiao·Deng;Kaiyue·Diao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3768
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cinematic three-dimensional reconstruction of computed tomography images revealed rare anomalous origin of the left pulmonary artery from the ascending aorta",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aijie Wang;Ting Liang;Chaoyi Qin;Kaiyue Diao",
+      "id": "out-a8c1abf2ecbd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cinematic three-dimensional reconstruction of computed tomography images revealed rare anomalous origin of the left pulmonary artery from the ascending aorta — Aijie Wang;Ting Liang;Chaoyi Qin;Kaiyue Diao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3773,
+            "end_char": 3983
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-channel deep learning model-based myocardial spatial–temporal morphology feature on cardiac MRI cine images diagnoses the cause of LVH",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaiyue Diao;Hong-qing Liang;Hong-kun Yin;Ming-jing Yuan;Min Gu;Peng-xin Yu;Sen He;Jiayu Sun;Bin Song;Kang Li;Yong He",
+      "id": "out-9f0add9c4ca2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-channel deep learning model-based myocardial spatial–temporal morphology feature on cardiac MRI cine images diagnoses the cause of LVH — Kaiyue Diao;Hong-qing Liang;Hong-kun Yin;Ming-jing Yuan;Min Gu;Peng-xin Yu;Sen He;Jiayu Sun;Bin Song;Kang Li;Yong He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4253
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cardiac remodeling in university athletes: non-contrast magnetic resonance imaging study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang·Hongqin;Kong·Li;Yang·Xi;Wang·Jian;Diao·Kaiyue",
+      "id": "out-e8ccb34041e5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cardiac remodeling in university athletes: non-contrast magnetic resonance imaging study — Liang·Hongqin;Kong·Li;Yang·Xi;Wang·Jian;Diao·Kaiyue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4258,
+            "end_char": 4406
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interventricular septum involvement is related to right ventricular dysfunction in anterior STEMI patients without right ventricular infarction: a cardiovascular magnetic resonance study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang·Shichu;Chen·Shi;Bai·Yanlin;Ma·Min;Shi·Fanfan;Huang·Litao;Wang·Hua;Xia·Chunchao;Diao·Kaiyue;He·Yong",
+      "id": "out-e1afc1da0bd1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interventricular septum involvement is related to right ventricular dysfunction in anterior STEMI patients without right ventricular infarction: a cardiovascular magnetic resonance study — Liang·Shichu;Chen·Shi;Bai·Yanlin;Ma·Min;Shi·Fanfan;Huang·Litao;Wang·Hua;Xia·Chunchao;Diao·Kaiyue;He·Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4411,
+            "end_char": 4710
+          },
+          "version": "7b7a547d6a40aee310c8"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

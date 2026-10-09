@@ -2,15 +2,20 @@
   "doc_id": "aeb59e82319358aed408",
   "version": "b23b9278591a234779ab",
   "source_hash": "c1c84a03ce3d04aabed842a89beba1a3354951310bc04ed93249c0c8231e385a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.532787+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:52:16.568433+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f2ffc7b7887b",
-          "name": "卵巢癌卡铂化疗敏感性预测",
-          "desc": "面向卵巢癌铂类化疗耐药问题，研究Sirtuin信号通路中Sirt5和SDHA蛋白的预测价值与机制。",
+          "id": "item-7cf903904b1c",
+          "name": "卵巢癌卡铂耐药机制",
+          "desc": "Sirt5",
           "evidence": [
             {
-              "quote": "卵巢癌在妇科恶性肿瘤中5年生存率最低，铂类化疗耐药是影响该疾病生存一个极其重要的原因",
+              "quote": "本研究旨在探讨沉默信息调节因子5（Sirt5）在卵巢癌卡铂耐药中的作用及其分子机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 699,
-                "end_char": 740
+                "start_char": 2997,
+                "end_char": 3037
               },
               "version": "b23b9278591a234779ab"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dd9e7272269a",
-          "name": "铂类化疗反应缺乏有效预测策略",
-          "desc": "铂类化疗耐药严重影响卵巢癌患者生存，迫切需要寻找切实有效的策略来预测铂类化疗反应。",
+          "id": "item-392cf3c48cdd",
+          "name": "卵巢癌铂类化疗耐药影响生存",
+          "desc": "需预测化疗反应",
           "evidence": [
             {
-              "quote": "因此迫切需要寻找切实有效的策略来预测铂类化疗反应",
+              "quote": "铂类化疗耐药是影响该疾病生存一个极其重要的原因，因此迫切需要寻找切实有效的策略来预测铂类化疗反应",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 742,
+                "start_char": 718,
                 "end_char": 765
               },
               "version": "b23b9278591a234779ab"
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-289896f0cf6a",
-          "name": "Sirt5/SDHA机制研究与机器学习预测模型",
-          "desc": "运用分子、细胞、动物模型以及预后队列和机器学习等手段，阐明Sirt5和SDHA在卵巢癌卡铂耐药中的作用与分子调控机制，并构建蛋白表达与暴露因素结合的敏感性预测模型。",
+          "id": "item-4ad26ad88070",
+          "name": "CRISPR-Cas9敲除Sirt5",
+          "desc": "卡铂耐药卵巢癌细胞系A2780和SKOV3",
           "evidence": [
             {
-              "quote": "拟运用分子、细胞、动物模型以及预后队列和机器学习等多种研究手段相结合，阐明Sirtuin信号通路中Sirt5和SDHA蛋白在卵巢癌卡铂耐药中的作用及分子调控机制",
+              "quote": "通过构建卡铂耐药的卵巢癌细胞系（A2780和SKOV3），并利用CRISPR-Cas9技术敲除Sirt5基因，我们系统地研究了Sirt5在卵巢癌耐药、增殖、凋亡、迁移和侵袭中的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 909,
-                "end_char": 988
+                "start_char": 3039,
+                "end_char": 3128
               },
               "version": "b23b9278591a234779ab"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,480 @@
       "state": "has",
       "items": [
         {
-          "id": "item-513405dc9f3e",
-          "name": "揭示Sirt5结合SDHA调控卡铂敏感性机制",
-          "desc": "通过CRISPR-Cas9敲除Sirt5证实其逆转耐药、抑制增殖迁移侵袭并诱导凋亡；机制上Sirt5直接结合SDHA调控其乙酰化水平影响卡铂敏感性，动物实验验证联合治疗的抑瘤作用。",
+          "id": "item-12d48c810ce0",
+          "name": "Sirt5通过SDHA乙酰化调控卡铂敏感性",
+          "desc": "直接结合",
           "evidence": [
             {
-              "quote": "进一步的机制研究表明，Sirt5通过与琥珀酸脱氢酶复合物黄素蛋白亚基A（SDHA）蛋白直接结合，调控其乙酰化水平，进而影响卵巢癌细胞对卡铂的敏感性",
+              "quote": "Sirt5通过与琥珀酸脱氢酶复合物黄素蛋白亚基A（SDHA）蛋白直接结合，调控其乙酰化水平，进而影响卵巢癌细胞对卡铂的敏感性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3230,
+                "start_char": 3241,
                 "end_char": 3302
               },
               "version": "b23b9278591a234779ab"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-cf9d28f43383",
+          "name": "Sirt5敲除联合卡铂抑制卵巢癌生长",
+          "desc": "动物实验验证",
+          "evidence": [
+            {
+              "quote": "动物实验进一步验证了Sirt5敲除联合卡铂治疗对卵巢癌生长的抑制作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3304,
+                "end_char": 3337
+              },
+              "version": "b23b9278591a234779ab"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f2ffc7b7887b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dd9e7272269a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Isothiocyanate Iberin inhibits cell proliferation and induces cell apoptosis in the progression of ovarian cancer by mediating ROS accumulation and GPX1 expression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gong Ting-Ting;Guo Qian;Li Xiao;Zhang Tie-Ning;Liu Fang-Hua;He Xin-Hui;Lin Bei;Wu Qi-Jun",
+      "id": "out-7d7f1411cf53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Isothiocyanate Iberin inhibits cell proliferation and induces cell apoptosis in the progression of ovarian cancer by mediating ROS accumulation and GPX1 expression — Gong Ting-Ting;Guo Qian;Li Xiao;Zhang Tie-Ning;Liu Fang-Hua;He Xin-Hui;Lin Bei;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3408,
+            "end_char": 3668
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dd9e7272269a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-289896f0cf6a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-diagnostic dietary consumption of calcium and magnesium and calcium-to-magnesium intake ratio and ovarian cancer mortality: results from the ovarian cancer follow-up study (OOPS)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gong Ting-Ting;Wei Yi-Fan;Li Xin-Yu;Liu Fang-Hua;Wen Zhao-Yan;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Wu Qi-Jun",
+      "id": "out-12d37ab1d748",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-diagnostic dietary consumption of calcium and magnesium and calcium-to-magnesium intake ratio and ovarian cancer mortality: results from the ovarian cancer follow-up study (OOPS) — Gong Ting-Ting;Wei Yi-Fan;Li Xin-Yu;Liu Fang-Hua;Wen Zhao-Yan;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3984
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-289896f0cf6a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-513405dc9f3e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of long-term particulate matter exposure with all-cause mortality among patients with ovarian cancer: A prospective cohort",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yi-Zi;Huang Shu-Hong;Shi Su;Chen Wen-Xiao;Wei Yi-Fan;Zou Bing-Jie;Yao Wei;Zhou Lu;Liu Fang-Hua;Gao Song;Yan Shi;Qin Xue;Zhao Yu-Hong;Chen Ren-Jie;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-0bef69014a03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of long-term particulate matter exposure with all-cause mortality among patients with ovarian cancer: A prospective cohort — Li Yi-Zi;Huang Shu-Hong;Shi Su;Chen Wen-Xiao;Wei Yi-Fan;Zou Bing-Jie;Yao Wei;Zhou Lu;Liu Fang-Hua;Gao Song;Yan Shi;Qin Xue;Zhao Yu-Hong;Chen Ren-Jie;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4305
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-Diagnosis Sleep Status and Survival after a Diagnosis of Ovarian Cancer: A Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiao-Ying;Gao Chang;Wei Yi-Fan;Wen Zhao-Yan;Li Xin-Yu;Liu Fang-Hua;Gong Ting-Ting;Yan Shi;Qin Xue;Gao Song;Zhao Yu-Hong;Wu Qi-Jun",
+      "id": "out-35e14754cff7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-Diagnosis Sleep Status and Survival after a Diagnosis of Ovarian Cancer: A Prospective Cohort Study — Li Xiao-Ying;Gao Chang;Wei Yi-Fan;Wen Zhao-Yan;Li Xin-Yu;Liu Fang-Hua;Gong Ting-Ting;Yan Shi;Qin Xue;Gao Song;Zhao Yu-Hong;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4310,
+            "end_char": 4554
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-diagnosis meat intake and cooking method and ovarian cancer survival: results from the Ovarian Cancer Follow-Up Study (OOPS)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Yi-Fan;Sun Ming-Li;Wen Zhao-Yan;Liu Fang-Hua;Liu Ya-Shu;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-336fc6106703",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-diagnosis meat intake and cooking method and ovarian cancer survival: results from the Ovarian Cancer Follow-Up Study (OOPS) — Wei Yi-Fan;Sun Ming-Li;Wen Zhao-Yan;Liu Fang-Hua;Liu Ya-Shu;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4559,
+            "end_char": 4829
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Plant-based diet indices and their interaction with ambient air pollution on the ovarian cancer survival: A prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cao Fan;Wang Ran;Wang Lan;Li Yi-Zi;Wei Yi-Fan;Zheng Gang;Nan Yu-Xin;Sun Ming-Hui;Liu Fang-Hua;Xu He-Li;Zou Bing-Jie;Li Xiao-Ying;Qin Xue;Huang Dong-Hui;Chen Ren-Jie;Gao Song;Meng Xia;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-4fa86ac92cbd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Plant-based diet indices and their interaction with ambient air pollution on the ovarian cancer survival: A prospective cohort study — Cao Fan;Wang Ran;Wang Lan;Li Yi-Zi;Wei Yi-Fan;Zheng Gang;Nan Yu-Xin;Sun Ming-Hui;Liu Fang-Hua;Xu He-Li;Zou Bing-Jie;Li Xiao-Ying;Qin Xue;Huang Dong-Hui;Chen Ren-Jie;Gao Song;Meng Xia;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4834,
+            "end_char": 5182
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adherence to Sulfur Microbial Diet and Ovarian Cancer Survival: Evidence from a Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Qi;Gong Ting-Ting;Liu Fang-Hua;Xu He-Li;Zheng Gang;Yan Shi;Gao Song;Tan Xiao-Ling;Wu Qi-Jun",
+      "id": "out-16fdd3acb9f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adherence to Sulfur Microbial Diet and Ovarian Cancer Survival: Evidence from a Prospective Cohort Study — Cui Qi;Gong Ting-Ting;Liu Fang-Hua;Xu He-Li;Zheng Gang;Yan Shi;Gao Song;Tan Xiao-Ling;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5187,
+            "end_char": 5395
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Strong Cumulative Evidence of Associations of 6 Single Nucleotide Polymorphisms with Ovarian Cancer Risk: An Umbrella Review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying-Jun Huo;Xiao-Ying Li;Meng Zhang;Chang Gao;Qian Xiao;Yu-Hong Zhao;Song Gao;Ting-Ting Gong;Qi-Jun Wu",
+      "id": "out-dbc68b8cbcc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Strong Cumulative Evidence of Associations of 6 Single Nucleotide Polymorphisms with Ovarian Cancer Risk: An Umbrella Review — Ying-Jun Huo;Xiao-Ying Li;Meng Zhang;Chang Gao;Qian Xiao;Yu-Hong Zhao;Song Gao;Ting-Ting Gong;Qi-Jun Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5400,
+            "end_char": 5636
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MAFF mediates PEITC-induced enhancement of sensitivity to carboplatin in ovarian cancer cell lines via activating ZNF711 transcription in vivo and in vitro",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luan Meng;Zhang Bi-Jun;Wei Yi-Fan;Liu Fang-Hua;Zhao Yu-Hong;Yu Ya-Lian;Wu Qi-Jun",
+      "id": "out-07af77846542",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MAFF mediates PEITC-induced enhancement of sensitivity to carboplatin in ovarian cancer cell lines via activating ZNF711 transcription in vivo and in vitro — Luan Meng;Zhang Bi-Jun;Wei Yi-Fan;Liu Fang-Hua;Zhao Yu-Hong;Yu Ya-Lian;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5641,
+            "end_char": 5885
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-diagnosis Cruciferous Vegetables and Isothiocyanates Intake and Ovarian Cancer Survival: A Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Yi-Fan;Hao Ying-Ying;Gao Song;Li Xiu-Qin;Liu Fang-Hua;Wen Zhao-Yan;Wang Han-Yuan;Zhang Shuang;Yan Shi;Luan Meng;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-2da38398f296",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-diagnosis Cruciferous Vegetables and Isothiocyanates Intake and Ovarian Cancer Survival: A Prospective Cohort Study — Wei Yi-Fan;Hao Ying-Ying;Gao Song;Li Xiu-Qin;Liu Fang-Hua;Wen Zhao-Yan;Wang Han-Yuan;Zhang Shuang;Yan Shi;Luan Meng;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 6172
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nutrients-Rich Food Index Scores and the Overall Survival of Ovarian Cancer Patients: Results from the Ovarian Cancer Follow-Up Study, a Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Jun-Qi;Ma Qi-Peng;Wei Yi-Fan;Zheng Gang;Zou Bing-Jie;Du Zong-Da;Gao Song;Yan Shi;Qin Xue;Gong Ting-Ting;Zhao Yu-Hong;Wu Qi-Jun",
+      "id": "out-008e33df6f6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nutrients-Rich Food Index Scores and the Overall Survival of Ovarian Cancer Patients: Results from the Ovarian Cancer Follow-Up Study, a Prospective Cohort Study — Zhao Jun-Qi;Ma Qi-Peng;Wei Yi-Fan;Zheng Gang;Zou Bing-Jie;Du Zong-Da;Gao Song;Yan Shi;Qin Xue;Gong Ting-Ting;Zhao Yu-Hong;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6178,
+            "end_char": 6479
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phytosterol intake and overall survival in newly diagnosed ovarian cancer patients: An ambispective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Jun-Qi;Hao Ying-Ying;Gong Ting-Ting;Wei Yi-Fan;Zheng Gang;Du Zong-Da;Zou Bing-Jie;Yan Shi;Liu Fang-Hua;Gao Song;Wu Qi-Jun;Zhao Yu-Hong",
+      "id": "out-f2d779d0ef09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phytosterol intake and overall survival in newly diagnosed ovarian cancer patients: An ambispective cohort study — Zhao Jun-Qi;Hao Ying-Ying;Gong Ting-Ting;Wei Yi-Fan;Zheng Gang;Du Zong-Da;Zou Bing-Jie;Yan Shi;Liu Fang-Hua;Gao Song;Wu Qi-Jun;Zhao Yu-Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6485,
+            "end_char": 6745
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre- and post-polyphenol intake and ovarian cancer survival: evidence from a prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jia-Nan;Li Yu;Luan Meng;Wu Lang;Liu Fang-Hua;Li Yi-Zi;Xu He-Li;Wei Yi-Fan;Xiao Qian;Li Xiao-Ying;Xu Jin;Liu Ke-Xin;Huang Dong-Hui;Wu Qi-Jun;Gong Ting-Ting",
+      "id": "out-ab4fc87dc026",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre- and post-polyphenol intake and ovarian cancer survival: evidence from a prospective cohort study — Sun Jia-Nan;Li Yu;Luan Meng;Wu Lang;Liu Fang-Hua;Li Yi-Zi;Xu He-Li;Wei Yi-Fan;Xiao Qian;Li Xiao-Ying;Xu Jin;Liu Ke-Xin;Huang Dong-Hui;Wu Qi-Jun;Gong Ting-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6751,
+            "end_char": 7019
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The sirtuin family in health and disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi-Jun Wu;Tie-Ning Zhang;Huan-Huan Chen;Xue-Fei Yu;Jia-Le Lv;Yu-Yang Liu;Ya-Shu Liu;Gang Zheng;Jun-Qi Zhao;Yi-Fan Wei;Jing-Yi Guo;Fang-Hua Liu;Qing Chang;Yi-Xiao Zhang;Cai-Gang Liu;Yu-Hong Zhao",
+      "id": "out-7292a2ef3439",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The sirtuin family in health and disease — Qi-Jun Wu;Tie-Ning Zhang;Huan-Huan Chen;Xue-Fei Yu;Jia-Le Lv;Yu-Yang Liu;Ya-Shu Liu;Gang Zheng;Jun-Qi Zhao;Yi-Fan Wei;Jing-Yi Guo;Fang-Hua Liu;Qing Chang;Yi-Xiao Zhang;Cai-Gang Liu;Yu-Hong Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7025,
+            "end_char": 7267
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediagnosis Depression Rather Than Anxiety Symptoms Is Associated with Decreased Ovarian Cancer Survival: Findings from the Ovarian Cancer Follow-Up Study (OOPS)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yi-Zi;Qin Xue;Liu Fang-Hua;Chen Wen-Xiao;Wei Yi-Fan;Wang Na;Yan Shi;Kang Ye;Zhao Yu-Hong;Gao Song;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-07b6a492cae5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediagnosis Depression Rather Than Anxiety Symptoms Is Associated with Decreased Ovarian Cancer Survival: Findings from the Ovarian Cancer Follow-Up Study (OOPS) — Li Yi-Zi;Qin Xue;Liu Fang-Hua;Chen Wen-Xiao;Wei Yi-Fan;Wang Na;Yan Shi;Kang Ye;Zhao Yu-Hong;Gao Song;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7273,
+            "end_char": 7569
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The association of macronutrient quality and its interactions with energy intake with survival among patients with ovarian cancer: results from a prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Gang;Gong Ting-Ting;Ma Qi-Peng;Wei Yi-Fan;Du Zong-Da;Zhao Jun-Qi;Zou Bing-Jie;Yan Shi;Liu Fang-Hua;Sun Ming-Li;Xiao Qian;Gao Song;Wu Qi-Jun;Zhao Yu -Hong",
+      "id": "out-d4eccc6a5da1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The association of macronutrient quality and its interactions with energy intake with survival among patients with ovarian cancer: results from a prospective cohort study — Zheng Gang;Gong Ting-Ting;Ma Qi-Peng;Wei Yi-Fan;Du Zong-Da;Zhao Jun-Qi;Zou Bing-Jie;Yan Shi;Liu Fang-Hua;Sun Ming-Li;Xiao Qian;Gao Song;Wu Qi-Jun;Zhao Yu -Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7575,
+            "end_char": 7913
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Follow-Up Study of Ovarian Cancer (OOPS): A Study Protocol",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gong Ting-Ting;Liu Fang-Hua;Liu Ya-Shu;Yan Shi;Xu He-Li;He Xin-Hui;Wei Yi-Fan;Qin Xue;Gao Song;Zhao Yu-Hong;Wu Qi-Jun",
+      "id": "out-069a749e1ca2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Follow-Up Study of Ovarian Cancer (OOPS): A Study Protocol — Gong Ting-Ting;Liu Fang-Hua;Liu Ya-Shu;Yan Shi;Xu He-Li;He Xin-Hui;Wei Yi-Fan;Qin Xue;Gao Song;Zhao Yu-Hong;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7919,
+            "end_char": 8105
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-diagnosis Dietary One-Carbon Metabolism Micronutrients Consumption and Ovarian Cancer Survival: A Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu He-Li;Gong Ting-Ting;Liu Fang-Hua;Wei Yi-Fan;Chen Hong-Yu;Yan Shi;Zhao Yu-Hong;Gao Song;Jiao Yi-Sheng;Wu Qi-Jun",
+      "id": "out-2fad0c12fb05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-diagnosis Dietary One-Carbon Metabolism Micronutrients Consumption and Ovarian Cancer Survival: A Prospective Cohort Study — Xu He-Li;Gong Ting-Ting;Liu Fang-Hua;Wei Yi-Fan;Chen Hong-Yu;Yan Shi;Zhao Yu-Hong;Gao Song;Jiao Yi-Sheng;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8111,
+            "end_char": 8360
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between pre-diagnostic dietary pattern and survival of ovarian cancer: Evidence from a prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen Zhao-Yan;Liu Chuan;Liu Fang-Hua;Wei Yi-Fan;Xu He-Li;Wang Ran;Li Xin-Yu;Li Yi-Zi;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+      "id": "out-7bf870910a7d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between pre-diagnostic dietary pattern and survival of ovarian cancer: Evidence from a prospective cohort study — Wen Zhao-Yan;Liu Chuan;Liu Fang-Hua;Wei Yi-Fan;Xu He-Li;Wang Ran;Li Xin-Yu;Li Yi-Zi;Yan Shi;Qin Xue;Gao Song;Li Xiu-Qin;Zhao Yu-Hong;Gong Ting-Ting;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8366,
+            "end_char": 8655
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PM2.5 exposure and its interaction of oxidative balance score on ovarian cancer survival: A prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Song;Zou Bing-Jie;Shi Su;Wei Yi-Fan;Du Zong-Da;Zheng Gang;Wang Rang;Yin Jia-Li;Zhao Jun-Qi;Yan Shi;Qin Xue;Xiao Qian;Gong Ting-Ting;Chen Ren-Jie;Zhao Yu-Hong;Wu Qi-Jun",
+      "id": "out-505700edcca1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PM2.5 exposure and its interaction of oxidative balance score on ovarian cancer survival: A prospective cohort study — Gao Song;Zou Bing-Jie;Shi Su;Wei Yi-Fan;Du Zong-Da;Zheng Gang;Wang Rang;Yin Jia-Li;Zhao Jun-Qi;Yan Shi;Qin Xue;Xiao Qian;Gong Ting-Ting;Chen Ren-Jie;Zhao Yu-Hong;Wu Qi-Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8661,
+            "end_char": 8957
+          },
+          "version": "b23b9278591a234779ab"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      }
+    },
+    "consistent": true
+  }
 }

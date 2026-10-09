@@ -2,15 +2,20 @@
   "doc_id": "f1970255bd327ac03f2a",
   "version": "470c64ddb2eabf37b30e",
   "source_hash": "7d6e3af420a4e6edbfafbe2fd1886f8b30f04a643d5044f048ee3fa906b8f94f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.194216+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.334381+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-4a71f272e164",
           "name": "数字病理自监督学习与癌症辅助诊断",
-          "desc": "基于数字病理远程诊断与质量控制平台大数据，研究自监督与弱监督学习驱动的癌症辅助诊断框架。",
+          "desc": "WSI",
           "evidence": [
             {
-              "quote": "基于深度学习的数字病理全切片图像分析是癌症病理计算机辅助诊断领域的热点研究方向",
+              "quote": "本项目围绕病理全切片图像（WSI）分析中标注成本高、数据规模大、空间结构复杂及跨癌种泛化能力不足等关键问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 689
+                "start_char": 2562,
+                "end_char": 2614
               },
               "version": "470c64ddb2eabf37b30e"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11d693fc5680",
-          "name": "全切片精细标注困难制约监督学习发展",
-          "desc": "数字病理全切片图像精细标注工作困难且繁重，制约了现有基于监督学习的癌症辅助诊断发展；同时现有辅助模式信息量有限。",
+          "id": "item-a6a0911de414",
+          "name": "WSI标注成本高、跨癌种泛化不足",
+          "desc": "",
           "evidence": [
             {
-              "quote": "数字病理全切片图像精细标注工作困难且繁重，制约了现有基于监督学习的癌症辅助诊断的发展",
+              "quote": "本项目围绕病理全切片图像（WSI）分析中标注成本高、数据规模大、空间结构复杂及跨癌种泛化能力不足等关键问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 691,
-                "end_char": 732
+                "start_char": 2562,
+                "end_char": 2614
               },
               "version": "470c64ddb2eabf37b30e"
             }
@@ -63,80 +68,695 @@
       "state": "has",
       "items": [
         {
-          "id": "item-75f6fcfef221",
-          "name": "自监督特征提取与跨模态检索辅助诊断体系",
-          "desc": "研究基于自监督学习的全切片图像特征提取、层级诊断信息挖掘与跨模态信息检索，重点解决跨时域地域诊断知识融合、百亿像素弱监督信息提取与异构数据跨模态相似性学习。",
+          "id": "item-136ea6d33005",
+          "name": "核注意力机制病理全切片分析框架",
+          "desc": "kernel驱动对比表征学习",
           "evidence": [
             {
-              "quote": "具体研究基于自监督学习的全切片图像特征提取、层级诊断信息挖掘、跨模态信息检索等方法",
+              "quote": "提出了基于核注意力机制的病理全切片分析框架，并结合kernel驱动的对比表征学习策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 881,
-                "end_char": 921
+                "start_char": 2780,
+                "end_char": 2821
               },
               "version": "470c64ddb2eabf37b30e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-67581e4514a6",
+          "name": "位置感知掩码自编码器泛癌种WSI自监督预训练",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "提出了基于位置感知掩码自编码器的泛癌种WSI级自监督预训练方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2892,
+                "end_char": 2922
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ca58381cf200",
+          "name": "病理图像跨模态检索与报告自动生成",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "提出了基于多模态表征学习的病理图像跨模态检索方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3127,
+                "end_char": 3150
+              },
+              "version": "470c64ddb2eabf37b30e"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of Epidermal Growth Factor Receptor Mutation Subtypes in Non- Small Cell Lung Cancer From Hematoxylin and Eosin- Stained Slides Using Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Wanqiu;Wang Wei;Xu Yao;Wu Kun;Shi Jun;Li Ming;Feng Zhengzhong;Liu Yinhua;Zheng Yushan;Wu Haibo",
+      "id": "out-2ecf20bd89e6",
+      "evidence": [
         {
-          "id": "item-d909a1761c8f",
-          "name": "提出位置感知掩码自编码器泛癌种预训练",
-          "desc": "提出基于位置感知掩码自编码器的泛癌种WSI级自监督预训练方法，学习稳定可迁移的全切片表征；同时提出核注意力分析框架、偏标签对比学习与病理报告自动生成方法。",
-          "evidence": [
-            {
-              "quote": "提出了基于位置感知掩码自编码器的泛癌种WSI级自监督预训练方法，通过显式建模组织空间结构学习稳定、可迁移的全切片表征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2892,
-                "end_char": 2949
-              },
-              "version": "470c64ddb2eabf37b30e"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Prediction of Epidermal Growth Factor Receptor Mutation Subtypes in Non- Small Cell Lung Cancer From Hematoxylin and Eosin- Stained Slides Using Deep Learning — Zhang Wanqiu;Wang Wei;Xu Yao;Wu Kun;Shi Jun;Li Ming;Feng Zhengzhong;Liu Yinhua;Zheng Yushan;Wu Haibo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3382,
+            "end_char": 3649
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于特征采样的病理图像表征学习方法、介质和设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;唐昆铭;姜志国;张浩鹏;谢凤英",
+      "id": "out-0ddfea110909",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于特征采样的病理图像表征学习方法、介质和设备 — 郑钰山;唐昆铭;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3654,
+            "end_char": 3705
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Kernel Attention Transformer for Histopathology Whole Slide Image Analysis and Assistant Cancer Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Huai Jianguo;Cao Ming;Jiang Zhiguo",
+      "id": "out-b8b485f03fab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Kernel Attention Transformer for Histopathology Whole Slide Image Analysis and Assistant Cancer Diagnosis — Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Huai Jianguo;Cao Ming;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 3899
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Promptable Representation Distribution Learning and Data Augmentation for Gigapixel Histopathology WSI Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Kunming;Jiang Zhiguo;Shi Jun;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-14f3c4866aa5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Promptable Representation Distribution Learning and Data Augmentation for Gigapixel Histopathology WSI Analysis — Tang Kunming;Jiang Zhiguo;Shi Jun;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 4088
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly supervised multi-modal contrastive learning framework for predicting the HER2 scores in breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Sun Dongdong;Jiang Zhiguo;Du Jun;Wang Wei;Zheng Yushan;Wu Haibo",
+      "id": "out-b88247307104",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weakly supervised multi-modal contrastive learning framework for predicting the HER2 scores in breast cancer — Shi Jun;Sun Dongdong;Jiang Zhiguo;Du Jun;Wang Wei;Zheng Yushan;Wu Haibo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4093,
+            "end_char": 4281
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep-learning model for predicting tyrosine kinase inhibitor response from histology in gastrointestinal stromal tumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kong Xue;Shi Jun;Sun Dongdong;Cheng Lanqing;Wu Can;Jiang Zhiguo;Zheng Yushan;Wang Wei;Wu Haibo",
+      "id": "out-8fb9c63f0e66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep-learning model for predicting tyrosine kinase inhibitor response from histology in gastrointestinal stromal tumor — Kong Xue;Shi Jun;Sun Dongdong;Cheng Lanqing;Wu Can;Jiang Zhiguo;Zheng Yushan;Wang Wei;Wu Haibo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4286,
+            "end_char": 4509
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Key-Points Based Anchor-Free Cervical Cell Detector",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shu Tong;Shi Jun;Zheng Yushan;Jiang Zhiguo;Yu Lanlan",
+      "id": "out-03e29fb94378",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Key-Points Based Anchor-Free Cervical Cell Detector — Shu Tong;Shi Jun;Zheng Yushan;Jiang Zhiguo;Yu Lanlan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4514,
+            "end_char": 4628
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Leveraging IHC Staining to Prompt HER2 Status Prediction from HE-Stained Histopathology Whole Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yuping;Sun Dongdong;Shi Jun;Wang Wei;Jiang Zhiguo;Wu Haibo;Zheng Yushan",
+      "id": "out-51b131ed662f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Leveraging IHC Staining to Prompt HER2 Status Prediction from HE-Stained Histopathology Whole Slide Images — Wang Yuping;Sun Dongdong;Shi Jun;Wang Wei;Jiang Zhiguo;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4824
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lifelong Histopathology Whole Slide Image Retrieval via Distance Consistency Rehearsal",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu Xinyu;Jiang Zhiguo;Wu Kun;Shi Jun;Zheng Yushan",
+      "id": "out-f7fe272cda94",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lifelong Histopathology Whole Slide Image Retrieval via Distance Consistency Rehearsal — Zhu Xinyu;Jiang Zhiguo;Wu Kun;Shi Jun;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4829,
+            "end_char": 4974
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly supervised histopathological image representation learning based on contrastive dynamic clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jun;Jiang Zhiguo;Zheng Yushan;Zhang Haopeng;Shi Jun;Hu Dingyi;Luo Wei;Jiang Zhongmin;Xue Chenghai",
+      "id": "out-abe970f28601",
+      "evidence": [
+        {
+          "quote": "[会议论文] Weakly supervised histopathological image representation learning based on contrastive dynamic clustering — Li Jun;Jiang Zhiguo;Zheng Yushan;Zhang Haopeng;Shi Jun;Hu Dingyi;Luo Wei;Jiang Zhongmin;Xue Chenghai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4980,
+            "end_char": 5194
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Positional encoding-guided transformer-based multiple instance learning histopathology whole slide images classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Sun Dongdong;Wu Kun;Jiang Zhiguo;Kong Xue;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-e785238de7f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Positional encoding-guided transformer-based multiple instance learning histopathology whole slide images classification — Shi Jun;Sun Dongdong;Wu Kun;Jiang Zhiguo;Kong Xue;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5200,
+            "end_char": 5409
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Position-Aware Masked Autoencoder for Histopathology WSI Representation Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Kun;Zheng Yushan;Shi Jun;Xie Fengying;Jiang Zhiguo",
+      "id": "out-819f0a653fc4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Position-Aware Masked Autoencoder for Histopathology WSI Representation Learning — Wu Kun;Zheng Yushan;Shi Jun;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5415,
+            "end_char": 5557
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pan-Cancer Histopathology WSI Pre-Training With Position-Aware Masked Autoencoder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Kun;Jiang Zhiguo;Tang Kunming;Shi Jun;Xie Fengying;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-2eddddae675f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pan-Cancer Histopathology WSI Pre-Training With Position-Aware Masked Autoencoder — Wu Kun;Jiang Zhiguo;Tang Kunming;Shi Jun;Xie Fengying;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5563,
+            "end_char": 5737
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于核注意力网络的病理全切片图像分类方法.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;姜志国;谢凤英;张浩鹏",
+      "id": "out-bcb0fee3f17c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于核注意力网络的病理全切片图像分类方法. — 郑钰山;姜志国;谢凤英;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5743,
+            "end_char": 5788
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pathology report generation from whole slide images with knowledge retrieval and multi-level regional feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Dingyi;Jiang Zhiguo;Shi Jun;Xie Fengying;Wu Kun;Tang Kunming;Cao Ming;Huai Jianguo;Zheng Yushan",
+      "id": "out-c0ce2d06d2fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pathology report generation from whole slide images with knowledge retrieval and multi-level regional feature selection — Hu Dingyi;Jiang Zhiguo;Shi Jun;Xie Fengying;Wu Kun;Tang Kunming;Cao Ming;Huai Jianguo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5794,
+            "end_char": 6020
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于信息检索的病理诊断报告生成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;胡定一;姜志国;张浩鹏",
+      "id": "out-165051822dca",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于信息检索的病理诊断报告生成方法 — 郑钰山;胡定一;姜志国;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6026,
+            "end_char": 6067
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Report-Guided Cross-Modal Representation Learning for Predicting EGFR Mutations by Whole Slide Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiao Qi;Shi Jun;Jiang Zhiguo;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-ef2fe958aa04",
+      "evidence": [
+        {
+          "quote": "[会议论文] Report-Guided Cross-Modal Representation Learning for Predicting EGFR Mutations by Whole Slide Image — Qiao Qi;Shi Jun;Jiang Zhiguo;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6073,
+            "end_char": 6241
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Partial-Label Contrastive Representation Learning for Fine-Grained Biomarkers Prediction From Histopathology Whole Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Wu Kun;Li Jun;Tang Kunming;Shi Jun;Wu Haibo;Jiang Zhiguo;Wang Wei",
+      "id": "out-0942d5c7f806",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Partial-Label Contrastive Representation Learning for Fine-Grained Biomarkers Prediction From Histopathology Whole Slide Images — Zheng Yushan;Wu Kun;Li Jun;Tang Kunming;Shi Jun;Wu Haibo;Jiang Zhiguo;Wang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6247,
+            "end_char": 6461
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Representation Distribution Learning for Reliable Data Augmentation in Histopathology WSI Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Kunming;Jiang Zhiguo;Wu Kun;Shi Jun;Xie Fengying;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-4386f0c82b42",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-Supervised Representation Distribution Learning for Reliable Data Augmentation in Histopathology WSI Classification — Tang Kunming;Jiang Zhiguo;Wu Kun;Shi Jun;Xie Fengying;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6467,
+            "end_char": 6680
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Histopathology Cross-Modal Retrieval based on Dual-Transformer Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Dingyi;Xie Fengying;Jiang Zhiguo;Zheng Yushan;Shi Jun",
+      "id": "out-7e76f4ab7afd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Histopathology Cross-Modal Retrieval based on Dual-Transformer Network — Hu Dingyi;Xie Fengying;Jiang Zhiguo;Zheng Yushan;Shi Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6686,
+            "end_char": 6821
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CERVICAL CELL CLASSIFICATION USING MULTI-SCALE FEATURE FUSION AND CHANNEL-WISE CROSS-ATTENTION",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Zhu Xinyu;Zhang Yuan;Zheng Yushan;Jiang Zhiguo;Zheng Liping",
+      "id": "out-1715e2d98faa",
+      "evidence": [
+        {
+          "quote": "[会议论文] CERVICAL CELL CLASSIFICATION USING MULTI-SCALE FEATURE FUSION AND CHANNEL-WISE CROSS-ATTENTION — Shi Jun;Zhu Xinyu;Zhang Yuan;Zheng Yushan;Jiang Zhiguo;Zheng Liping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6827,
+            "end_char": 6997
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GLOBAL-LOCAL ATTENTION NETWORK FOR WEAKLY SUPERVISED CERVICAL CYTOLOGY ROI ANALYSIS",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Wu Kun;Zheng Yushan;He Yuxin;Li Jun;Jiang Zhiguo;Yu Lanlan",
+      "id": "out-58cdfc4e2ecc",
+      "evidence": [
+        {
+          "quote": "[会议论文] GLOBAL-LOCAL ATTENTION NETWORK FOR WEAKLY SUPERVISED CERVICAL CYTOLOGY ROI ANALYSIS — Shi Jun;Wu Kun;Zheng Yushan;He Yuxin;Li Jun;Jiang Zhiguo;Yu Lanlan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7003,
+            "end_char": 7161
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Slide-Based Graph Collaborative Training for Histopathology Whole Slide Image Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Shu Tong;Jiang Zhiguo;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-ed3bbe2f9bda",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Slide-Based Graph Collaborative Training for Histopathology Whole Slide Image Analysis — Shi Jun;Shu Tong;Jiang Zhiguo;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7167,
+            "end_char": 7322
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing Interpretation of Histopathology Whole Slide Image Analysis via Regional Causal Dependency Discovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zixian;Shi Jun;Jiang Zhiguo;Xie Fengying;Zheng Yushan",
+      "id": "out-afbf82a40aa2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Enhancing Interpretation of Histopathology Whole Slide Image Analysis via Regional Causal Dependency Discovery — Li Zixian;Shi Jun;Jiang Zhiguo;Xie Fengying;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7328,
+            "end_char": 7503
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SlideGCD: Slide-Based Graph Collaborative Training with Knowledge Distillation for Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shu Tong;Shi Jun;Sun Dongdong;Jiang Zhiguo;Zheng Yushan",
+      "id": "out-c106d8c5f325",
+      "evidence": [
+        {
+          "quote": "[会议论文] SlideGCD: Slide-Based Graph Collaborative Training with Knowledge Distillation for Whole Slide Image Classification — Shu Tong;Shi Jun;Sun Dongdong;Jiang Zhiguo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7509,
+            "end_char": 7688
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Masked hypergraph learning for weakly supervised histopathology whole slide image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Shu Tong;Wu Kun;Jiang Zhiguo;Zheng Liping;Wang Wei;Wu Haibo;Zheng Yushan",
+      "id": "out-284ab7d2ca2b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Masked hypergraph learning for weakly supervised histopathology whole slide image classification — Shi Jun;Shu Tong;Wu Kun;Jiang Zhiguo;Zheng Liping;Wang Wei;Wu Haibo;Zheng Yushan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7694,
+            "end_char": 7879
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lesion-Aware Contrastive Representation Learning for Histopathology Whole Slide Images Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jun;Zheng Yushan;Wu Kun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+      "id": "out-4885f7821bfd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lesion-Aware Contrastive Representation Learning for Histopathology Whole Slide Images Analysis — Li Jun;Zheng Yushan;Wu Kun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7885,
+            "end_char": 8049
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于自监督学习的病理全切片特征学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;吴坤;姜志国;张浩鹏;谢凤英",
+      "id": "out-d8b004b2f092",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于自监督学习的病理全切片特征学习方法 — 郑钰山;吴坤;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8055,
+            "end_char": 8101
+          },
+          "version": "470c64ddb2eabf37b30e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Kernel Attention Transformer (KAT) for Histopathology Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+      "id": "out-22aaac871661",
+      "evidence": [
+        {
+          "quote": "[会议论文] Kernel Attention Transformer (KAT) for Histopathology Whole Slide Image Classification — Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8107,
+            "end_char": 8255
+          },
+          "version": "470c64ddb2eabf37b30e"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4a71f272e164"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-11d693fc5680"
+      "专利": {
+        "listed": 4,
+        "extracted": 4
       },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 14,
+        "extracted": 14
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-11d693fc5680"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-75f6fcfef221"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-75f6fcfef221"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d909a1761c8f"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

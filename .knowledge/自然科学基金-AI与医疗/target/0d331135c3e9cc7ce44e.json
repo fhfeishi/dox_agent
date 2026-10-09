@@ -2,15 +2,20 @@
   "doc_id": "0d331135c3e9cc7ce44e",
   "version": "17db49d3f556e8564134",
   "source_hash": "d18de7568cddaa313c01717faf844bdc857547b0ee78a0ffbfe1472c53699dfd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:09.085209+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.134593+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-4f44692fa45d",
           "name": "进展期胃癌脾门淋巴结转移预测",
-          "desc": "我国胃癌高发，多数确诊时已发展为进展期，脾门淋巴结转移是影响预后的独立危险因素。",
+          "desc": "脾门淋巴结转移是影响预后的主要因素之一",
           "evidence": [
             {
-              "quote": "我国是胃癌高发国家，大多数胃癌患者在确诊时已发展为进展期",
+              "quote": "脾门淋巴结转移是影响胃癌患者预后的主要因素之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 697
-              },
-              "version": "17db49d3f556e8564134"
-            }
-          ]
-        },
-        {
-          "id": "item-c1207c3204ca",
-          "name": "胃癌手术方案个体化制定",
-          "desc": "模型有望实现对患者脾门淋巴结转移的个体化预测，辅助临床制定胃癌手术方案。",
-          "evidence": [
-            {
-              "quote": "本项目构建的模型有望实现对患者脾门淋巴结转移的个体化预测，辅助临床制定胃癌手术方案，改善胃癌患者预后",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1013,
-                "end_char": 1062
+                "start_char": 2906,
+                "end_char": 2928
               },
               "version": "17db49d3f556e8564134"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2608f1ed5f0d",
-          "name": "脾门淋巴结清扫指征存在争议",
-          "desc": "脾门淋巴结清扫术式复杂、并发症风险高、术前诊断难，指南指出如何确定需清扫患者存在较大争议。",
+          "id": "item-75e63f5c5f5c",
+          "name": "术前CT预测脾门淋巴结转移局限",
+          "desc": "常用术前CT诊断手段存在局限",
           "evidence": [
             {
-              "quote": "指南指出，目前对如何确定哪些患者需要接受脾门淋巴结清扫存在较大争议",
+              "quote": "当前常用的术前CT影像诊断手段在预测脾门淋巴结转移方面存在一定的局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 795,
-                "end_char": 827
-              },
-              "version": "17db49d3f556e8564134"
-            }
-          ]
-        },
-        {
-          "id": "item-5c4fff0b5936",
-          "name": "术前CT预测脾门淋巴结存在局限",
-          "desc": "当前常用的术前CT影像诊断手段在预测脾门淋巴结转移方面存在一定局限性。",
-          "evidence": [
-            {
-              "quote": "然而，当前常用的术前CT影像诊断手段在预测脾门淋巴结转移方面存在一定的局限性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2964,
+                "start_char": 2967,
                 "end_char": 3001
               },
               "version": "17db49d3f556e8564134"
@@ -95,36 +68,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3df34e35fce8",
-          "name": "多模态数据域先验挖掘方法",
-          "desc": "基于术前CT影像、活检病理图像、临床指标等多模态数据，从结构域、图像域、数据域挖掘域先验信息提升特征提取质量。",
+          "id": "item-e4832d0d39f2",
+          "name": "影像-病理-临床多模态融合预测模型",
+          "desc": "融合关键影像、病理及临床信息",
           "evidence": [
             {
-              "quote": "通过从多模态数据的结构域、图像域、数据域中挖掘和利用域先验信息，提高特征提取的准确性、稳定性和可解释性",
+              "quote": "通过融合关键的影像、病理及临床信息，构建了脾门淋巴结转移预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 927,
-                "end_char": 977
+                "start_char": 3569,
+                "end_char": 3600
               },
               "version": "17db49d3f556e8564134"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ee1952898cef",
-          "name": "术前CT与病理预处理与预训练",
-          "desc": "实现术前CT影像和病理图像的预处理方法、深度学习模型预训练方法、关键特征提取筛选与预测模型构建方法。",
+          "id": "item-06e6af6dc3c1",
+          "name": "影像组学与病理组学特征提取",
+          "desc": "从术前CT与病理图像提取关键特征",
           "evidence": [
             {
-              "quote": "项目组创新并实现了术前CT影像和病理图像的预处理方法、深度学习模型的预训练方法、术前关键特征提取和筛选方法、脾门淋巴结转移预测模型的构建方法",
+              "quote": "利用人工智能方法从胃癌术前CT影像和病理图像中提取与脾门淋巴结转移高度相关的关键影像组学特征和病理组学特征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3495,
-                "end_char": 3564
+                "start_char": 3018,
+                "end_char": 3070
               },
               "version": "17db49d3f556e8564134"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2563c8b610aa",
+          "name": "深度学习模型预训练",
+          "desc": "使用2452例数据预训练",
+          "evidence": [
+            {
+              "quote": "深度学习模型的预训练方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3522,
+                "end_char": 3533
+              },
+              "version": "17db49d3f556e8564134"
+            }
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-f02c60e1061e",
+          "name": "域先验信息挖掘",
+          "desc": "结构域、图像域、数据域（申请书）",
+          "evidence": [
+            {
+              "quote": "从多模态数据的结构域、图像域、数据域中挖掘和利用域先验信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 929,
+                "end_char": 957
+              },
+              "version": "17db49d3f556e8564134"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +142,61 @@
       "state": "has",
       "items": [
         {
-          "id": "item-675ce3f1234b",
-          "name": "融合模型多中心AUC 0.857",
-          "desc": "融合影像、病理及临床信息的脾门淋巴结转移预测模型在多中心测试集AUC达0.857，优于影像组学与病理组学模型。",
+          "id": "item-d7502d5b490a",
+          "name": "融合模型多中心测试AUC 0.857",
+          "desc": "优于影像组学0.821与病理组学0.763",
           "evidence": [
             {
-              "quote": "实验结果表明，融合模型在多中心测试集上的AUC达到0.857，优于影像组学模型（AUC为0.821）和病理组学模型（AUC为0.763）",
+              "quote": "融合模型在多中心测试集上的AUC达到0.857，优于影像组学模型（AUC为0.821）和病理组学模型（AUC为0.763）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3602,
+                "start_char": 3609,
                 "end_char": 3669
               },
               "version": "17db49d3f556e8564134"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-31b9aecfc3ab",
-          "name": "830例病理金标准数据集",
-          "desc": "收集830例具备脾门淋巴结转移术后病理金标准的进展期胃癌患者数据，另收集2452例用于深度学习预训练。",
+          "id": "item-3045953c230c",
+          "name": "多中心病例数据",
+          "desc": "830例具病理金标准的进展期胃癌患者",
           "evidence": [
             {
-              "quote": "收集了830例具备脾门淋巴结转移状态的术后病理金标准的进展期胃癌患者数据，此外还收集了2452例患者数据用于深度学习模型的预训练",
+              "quote": "收集了830例具备脾门淋巴结转移状态的术后病理金标准的进展期胃癌患者数据",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3430,
-                "end_char": 3493
+                "end_char": 3465
               },
               "version": "17db49d3f556e8564134"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d1039ecdd570",
-          "name": "成果发表于主流期刊并申请专利",
-          "desc": "相关工作在IEEE JBHI、eBioMedicine等工科及临床主流期刊在线发表，申请国家发明专利一项。",
+          "id": "item-335087cea997",
+          "name": "发明专利申请",
+          "desc": "申请国家发明专利一项",
           "evidence": [
             {
-              "quote": "相关工作在工科及临床主流期刊IEEE Journal of Biomedical and Health Informatics、eBioMedicine、Journal of the National Cancer Center等上在线发表论文，申请国家发明专利一项",
+              "quote": "申请国家发明专利一项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3217,
+                "start_char": 3340,
                 "end_char": 3349
               },
               "version": "17db49d3f556e8564134"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +204,152 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-4f44692fa45d"
+        "dimension": "技术",
+        "item_id": "item-e4832d0d39f2"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-2608f1ed5f0d"
+        "item_id": "item-75e63f5c5f5c"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对这一问题，本项目利用人工智能方法从胃癌术前CT影像和病理图像中提取与脾门淋巴结转移高度相关的关键影像组学特征和病理组学特征，并结合临床信息，构建了多模态数据融合的脾门淋巴结转移预测模型，提高了对脾门淋巴结转移的预测精度",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3008,
+            "end_char": 3118
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-2608f1ed5f0d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3df34e35fce8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3df34e35fce8"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-675ce3f1234b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ee1952898cef"
+        "item_id": "item-d7502d5b490a"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-31b9aecfc3ab"
+        "dimension": "技术",
+        "item_id": "item-e4832d0d39f2"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "融合模型在多中心测试集上的AUC达到0.857，优于影像组学模型（AUC为0.821）和病理组学模型（AUC为0.763）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3609,
+            "end_char": 3669
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "分布式医学图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;方梦捷;李海林;何秉羲;吴相君",
+      "id": "out-51823259e5d9",
+      "evidence": [
+        {
+          "quote": "[专利] 分布式医学图像分类方法 — 田捷;方梦捷;李海林;何秉羲;吴相君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3787
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ContraSurv: Enhancing prognostic assessment of medical images via data-efficient weakly supervised contrastive learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hailin Li;Di Dong;Mengjie Fang;Bingxi He;Shengyuan Liu;Chaoen Hu;Zaiyi Liu;Hexiang Wang;Linglong Tang;Jie Tian",
+      "id": "out-d766125ae837",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ContraSurv: Enhancing prognostic assessment of medical images via data-efficient weakly supervised contrastive learning — Hailin Li;Di Dong;Mengjie Fang;Bingxi He;Shengyuan Liu;Chaoen Hu;Zaiyi Liu;Hexiang Wang;Linglong Tang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 4030
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The application of artificial intelligence in upper gastrointestinal cancers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoying Huang;Minghao Qin;Mengjie Fang;Zipei Wang;Chaoen Hu;Tongyu Zhao;Zhuyuan Qin;Haishan Zhu;Ling Wu;Guowei Yu;Francesco De Cobelli;Xuebin Xie;Diego Palumbo;Jie Tian;Di Dong",
+      "id": "out-b8b1a592424e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The application of artificial intelligence in upper gastrointestinal cancers — Xiaoying Huang;Minghao Qin;Mengjie Fang;Zipei Wang;Chaoen Hu;Tongyu Zhao;Zhuyuan Qin;Haishan Zhu;Ling Wu;Guowei Yu;Francesco De Cobelli;Xuebin Xie;Diego Palumbo;Jie Tian;Di Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4035,
+            "end_char": 4297
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Annotation-free artificial intelligence for abdominal computed tomography anomaly detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Fu;Mengjie Fang;Zhuozhao Zheng;Di Dong",
+      "id": "out-55dd3d3c8682",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Annotation-free artificial intelligence for abdominal computed tomography anomaly detection — Jia Fu;Mengjie Fang;Zhuozhao Zheng;Di Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4302,
+            "end_char": 4444
+          },
+          "version": "17db49d3f556e8564134"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

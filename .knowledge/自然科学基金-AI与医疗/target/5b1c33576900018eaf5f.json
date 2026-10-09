@@ -2,15 +2,20 @@
   "doc_id": "5b1c33576900018eaf5f",
   "version": "62dd82002ef35c1f78fc",
   "source_hash": "a1d75248500d44ca952d0e2fee0018e433bbeb4dc1d20dc562482f4915668a29",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.389190+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.467819+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c0e9eb9d907",
-          "name": "青少年特发性脊柱侧凸AI分型",
-          "desc": "青少年特发性脊柱侧凸是复杂的三维结构脊柱畸形，评估诊断重点在于影像准确测量与分型。",
+          "id": "item-fba7c2ef5380",
+          "name": "青少年特发性脊柱侧凸诊断分型",
+          "desc": "依赖医生手工操作",
           "evidence": [
             {
-              "quote": "青少年特发性脊柱侧凸是一种复杂的三维结构脊柱畸形，是最常见的脊柱侧凸类型",
+              "quote": "本项目针对青少年特发性脊柱侧凸（AIS）的诊断与分型主要依赖医生手工操作、存在效率低、易误差且难以应对大规模筛查的临床瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 708
-              },
-              "version": "62dd82002ef35c1f78fc"
-            }
-          ]
-        },
-        {
-          "id": "item-d5a843430373",
-          "name": "AIS大规模筛查与临床决策",
-          "desc": "开发能在诊断不确定性与高度复杂性条件下稳定工作的分型工具并指导治疗，实现临床应用甚至影响临床决策。",
-          "evidence": [
-            {
-              "quote": "开发能够在诊断不确定性及高度复杂性条件下稳定工作的青少年特发性脊柱侧凸的分型工具并指导治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 923,
-                "end_char": 967
+                "start_char": 2348,
+                "end_char": 2408
               },
               "version": "62dd82002ef35c1f78fc"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c2adcf793fa0",
-          "name": "手工测量与分型易误差效率低",
-          "desc": "相关测量和分型依赖脊柱外科医生手工完成，测量极易产生误差，且面对大规模筛查资料时反复测量工作量极大。",
+          "id": "item-8ae32d747bb7",
+          "name": "手工测量分型效率低、易误差且难以大规模筛查",
+          "desc": "临床瓶颈",
           "evidence": [
             {
-              "quote": "目前，相关的测量和分型还依赖于脊柱外科医生手工完成，这种方法存在着很多弊端。一方面在于其测量极其容易产生误差",
+              "quote": "存在效率低、易误差且难以应对大规模筛查的临床瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 766,
-                "end_char": 819
-              },
-              "version": "62dd82002ef35c1f78fc"
-            }
-          ]
-        },
-        {
-          "id": "item-016a106d9e6d",
-          "name": "缺乏AIS分型相关AI研究",
-          "desc": "已有许多研究报道AI在医学诊断中的应用，但尚没有关于青少年特发性脊柱侧凸分型相关的研究。",
-          "evidence": [
-            {
-              "quote": "目前，已有许多研究报道了人工智能技术在医学诊断中的应用，但尚没有关于青少年特发性脊柱侧凸分型相关的研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 868,
-                "end_char": 918
+                "start_char": 2385,
+                "end_char": 2408
               },
               "version": "62dd82002ef35c1f78fc"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c28dc1895217",
-          "name": "深度神经网络影像诊断分型系统",
-          "desc": "基于深度神经网络开展影像学诊断分型系统研发，并在多中心大样本临床队列中验证和应用。",
+          "id": "item-6981a972b28c",
+          "name": "ResNet-50与Transformer混合影像诊断分型系统",
+          "desc": "Cobb角精准测量",
           "evidence": [
             {
-              "quote": "本项目在前期研究的基础上，开展基于深度神经网络的影像学诊断分型系统，并在多中心大样本的临床队列中开展验证和应用",
+              "quote": "基于深度卷积神经网络的影像学诊断与分型系统：采用改进的ResNet-50与Transformer混合架构，实现了对脊柱X光、CT、MRI影像的自动分析与Cobb角精准测量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1014,
-                "end_char": 1068
-              },
-              "version": "62dd82002ef35c1f78fc"
-            }
-          ]
-        },
-        {
-          "id": "item-3bdb7b14eaab",
-          "name": "ResNet-50与Transformer混合架构",
-          "desc": "采用改进的ResNet-50与Transformer混合架构，实现脊柱X光、CT、MRI影像的自动分析与Cobb角精准测量。",
-          "evidence": [
-            {
-              "quote": "采用改进的ResNet-50与Transformer混合架构，实现了对脊柱X光、CT、MRI影像的自动分析与Cobb角精准测量",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2640,
+                "start_char": 2618,
                 "end_char": 2702
               },
               "version": "62dd82002ef35c1f78fc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-11eee8290043",
-          "name": "假设演绎推理EHR查询系统",
-          "desc": "基于国际多中心DISCO协作组数据库开发基于假设-演绎推理的电子健康记录查询系统，实现临床信息智能检索与结构化。",
+          "id": "item-2967a5e78e45",
+          "name": "表型-疾病-基因型智能评估系统PhenoApt",
+          "desc": "候选基因自动排序",
           "evidence": [
             {
-              "quote": "开发了基于假设-演绎推理的电子健康记录（EHR）查询系统，实现了临床信息的智能化检索与结构化",
+              "quote": "基于语义学相似度与异质性网络的表型-疾病-基因型智能评估系统（PhenoApt）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2511,
-                "end_char": 2556
+                "start_char": 2725,
+                "end_char": 2764
               },
               "version": "62dd82002ef35c1f78fc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d88d6b0e8c7d",
-          "name": "3万余例多中心数据队列",
-          "desc": "基于国际多中心DISCO协作组数据库建立超过3万例高质量临床数据队列，并标注3000余例脊柱影像数据构建标准化训练集。",
+          "id": "item-4c38d446f5f0",
+          "name": "国际多中心临床数据队列",
+          "desc": "超过3万例，影像3000余例",
           "evidence": [
             {
               "quote": "项目基于国际多中心DISCO协作组数据库，建立了超过3万例高质量临床数据队列",
@@ -163,89 +122,242 @@
               "version": "62dd82002ef35c1f78fc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3184d62a2f70",
-          "name": "PhenoApt基因排序工具",
-          "desc": "基于语义学相似度与异质性网络的表型-疾病-基因型智能评估系统整合HPO、OMIM知识库，将二代测序分析时间从数小时缩短至平均10分钟。",
+          "id": "item-0ee47007247f",
+          "name": "PhenoApt缩短分析时间",
+          "desc": "由数小时缩短至平均10分钟",
           "evidence": [
             {
-              "quote": "基于语义学相似度与异质性网络的表型-疾病-基因型智能评估系统（PhenoApt）：整合了HPO、OMIM等多源知识库，构建了表型驱动的候选基因自动排序工具，能将二代测序数据分析时间从数小时缩短至平均10分钟",
+              "quote": "能将二代测序数据分析时间从数小时缩短至平均10分钟",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2725,
+                "start_char": 2803,
                 "end_char": 2827
               },
               "version": "62dd82002ef35c1f78fc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-01be15b7bc72",
-          "name": "SCI论文5篇与博士4名",
-          "desc": "项目全面完成既定目标，共发表SCI高水平论文5篇，培养博士研究生4名，形成从影像自动分析到遗传病因辅助诊断的一体化解决方案。",
-          "evidence": [
-            {
-              "quote": "项目全面完成了既定目标，共发表SCI高水平论文5篇，培养博士研究生4名",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2952,
-                "end_char": 2986
-              },
-              "version": "62dd82002ef35c1f78fc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4c0e9eb9d907"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c2adcf793fa0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning in Cobb angle automated measurement on X-rays: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhu;Xiangjie Yin;Zefu Chen;Haoran Zhang;Kexin Xu;Jianguo Zhang;Nan Wu",
+      "id": "out-8f028140d96e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning in Cobb angle automated measurement on X-rays: a systematic review and meta-analysis — Yuanpeng Zhu;Xiangjie Yin;Zefu Chen;Haoran Zhang;Kexin Xu;Jianguo Zhang;Nan Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3087,
+            "end_char": 3272
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c2adcf793fa0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c28dc1895217"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Selecting the Substantially Touched Vertebra as theLowest Instrumented Vertebra in Spinal Surgeries forB3GALT6-Related Disorders: Clinical Experience andLiterature Review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aoran Maheshati;Kexin Xu;Ziquan Li;Guozhuang Li;Xiangjie Yin;Qing Li;Di Liu;Shengru Wang;Zhihong Wu;Guixing Qiu;Baozhong Zhang;Terry Jianguo Zhang;Yu Wang;Nan Wu",
+      "id": "out-8dce6b2744b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Selecting the Substantially Touched Vertebra as theLowest Instrumented Vertebra in Spinal Surgeries forB3GALT6-Related Disorders: Clinical Experience andLiterature Review — Aoran Maheshati;Kexin Xu;Ziquan Li;Guozhuang Li;Xiangjie Yin;Qing Li;Di Liu;Shengru Wang;Zhihong Wu;Guixing Qiu;Baozhong Zhang;Terry Jianguo Zhang;Yu Wang;Nan Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3277,
+            "end_char": 3617
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3bdb7b14eaab"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d88d6b0e8c7d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preliminary study assessing the long-term surgical outcomes of TBX6-associated congenital scoliosis (TACS) patients using the propensity score matching method: exploring the clinical implications of genetic discoveries in congenital scoliosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanfeng Lin;Yang Yang;Zefu Chen;Sen Zhao;Yuchen Niu;You Du;Yiwei Zhao;Shengru Wang;Nan Wu;Jianguo Zhang",
+      "id": "out-27d9cb44f698",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preliminary study assessing the long-term surgical outcomes of TBX6-associated congenital scoliosis (TACS) patients using the propensity score matching method: exploring the clinical implications of genetic discoveries in congenital scoliosis — Guanfeng Lin;Yang Yang;Zefu Chen;Sen Zhao;Yuchen Niu;You Du;Yiwei Zhao;Shengru Wang;Nan Wu;Jianguo Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3622,
+            "end_char": 3977
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-11eee8290043"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3184d62a2f70"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脊柱畸形的分子遗传学研究及临床应用-中国21世纪重要医学成就",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邱贵兴;吴南;吴志宏;仉建国;张锋",
+      "id": "out-403664f103dc",
+      "evidence": [
+        {
+          "quote": "[奖励] 脊柱畸形的分子遗传学研究及临床应用-中国21世纪重要医学成就 — 邱贵兴;吴南;吴志宏;仉建国;张锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3982,
+            "end_char": 4036
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Core planar cell polarity genes VANGL1 and VANGL2 in predisposition to congenital vertebral malformations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-71ec70e67f4f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Core planar cell polarity genes VANGL1 and VANGL2 in predisposition to congenital vertebral malformations — Xin Feng;Yongyu Ye;Jianan Zhang;Yuanqiang Zhang;Sen Zhao;Judith C W Mak;Nao Otomo;Zhengye Zhao;Yuchen Niu;Yoshiro Yonezawa;Guozhuang Li;Mao Lin;Xiaoxin Li;Prudence Wing Hang Cheung;Kexin Xu;Kazuki Takeda;Shengru Wang;Junjie Xie;Toshiaki Kotani;Vanessa N T Choi;You-Qiang Song;Yang Yang;Keith Dip Kei Luk;Kin Shing Lee;Ziquan Li;Pik Shan Li;Connie Y H Leung;Xiaochen Lin;Xiaolu Wang;Guixing Qiu;Kota Watanabe;Zhihong Wu...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4576
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中华医学科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "仉建国;王升儒;邱贵兴;吴志宏;沈建雄;田野;杨阳;林莞锋;邬春晖",
+      "id": "out-048e0b95021e",
+      "evidence": [
+        {
+          "quote": "[奖励] 中华医学科技奖 — 仉建国;王升儒;邱贵兴;吴志宏;沈建雄;田野;杨阳;林莞锋;邬春晖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4581,
+            "end_char": 4628
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "妇幼健康科学技术奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "仉建国;邱贵兴;王升儒;吴南;吴志宏;田文;赵森;邬春晖;陈亚萍;杨阳;王连雷;李子全;陈泽夫;赵政晔;杨建乐",
+      "id": "out-8ed97166c6c7",
+      "evidence": [
+        {
+          "quote": "[奖励] 妇幼健康科学技术奖 — 仉建国;邱贵兴;王升儒;吴南;吴志宏;田文;赵森;邬春晖;陈亚萍;杨阳;王连雷;李子全;陈泽夫;赵政晔;杨建乐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4704
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "先天性脊柱畸形诊疗体系的建立与推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "仉建国;邱贵兴;吴南;王升儒;张锋;吴志宏;田文;陈亚萍;赵森;邬春晖",
+      "id": "out-22a722c8a056",
+      "evidence": [
+        {
+          "quote": "[奖励] 先天性脊柱畸形诊疗体系的建立与推广 — 仉建国;邱贵兴;吴南;王升儒;张锋;吴志宏;田文;陈亚萍;赵森;邬春晖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4709,
+            "end_char": 4768
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脊柱侧凸的主被动综合矫治与智能监测适配系统及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张雪怡;王治;吴南;吴志宏; 邱贵兴",
+      "id": "out-bfbeb447d367",
+      "evidence": [
+        {
+          "quote": "[专利] 脊柱侧凸的主被动综合矫治与智能监测适配系统及设备 — 张雪怡;王治;吴南;吴志宏; 邱贵兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4773,
+            "end_char": 4822
+          },
+          "version": "62dd82002ef35c1f78fc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

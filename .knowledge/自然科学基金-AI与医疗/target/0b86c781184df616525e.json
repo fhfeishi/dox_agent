@@ -2,15 +2,20 @@
   "doc_id": "0b86c781184df616525e",
   "version": "fb065d192f280a14470d",
   "source_hash": "1b554af48cc232877eb0b45e06d43c01b865db5a960b4d9f5ddc72413b0d6c2b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.934483+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 18
+  },
+  "generated_at": "2026-10-09T11:48:39.110546+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 18,
+      "total": 18,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ed3b1ffeed1f",
-          "name": "法医体液斑精准组织溯源",
-          "desc": "面向犯罪现场体液（斑）检材的精准组织溯源需求，探索多源组学结合AI的系统研究。",
+          "id": "item-48491dbf0bdc",
+          "name": "法医体液（斑）精准组织溯源",
+          "desc": "案发现场体液斑类型判定与现场重建",
           "evidence": [
             {
-              "quote": "遗留在犯罪现场的体液（斑）检材是最重要的法医生物物证之一",
+              "quote": "对体液（斑）进行精准组织溯源，明确案发现场体液（斑）类型，有助于案件现场重建及判断案件性质",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
               },
               "version": "fb065d192f280a14470d"
             }
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24d945bb773a",
-          "name": "体液斑精准溯源是关键科学问题",
-          "desc": "体液（斑）物证的精准溯源有助于案件现场重建与性质判断，是亟待解决的关键科学问题。",
+          "id": "item-6c9e838ce4c3",
+          "name": "单一类型分子标记难以实现精准溯源",
+          "desc": "降解、混合等特殊检材",
           "evidence": [
             {
-              "quote": "对这些生物物证的精准溯源是亟待解决的关键科学问题",
+              "quote": "但仅应用一类分子标记难以实现精准溯源",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ]
+        },
+        {
+          "id": "item-e9c4eb46c044",
+          "name": "微量、降解等法医疑难生物检材鉴识",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "针对微量、降解等法医疑难生物检材，研发了基于特征工程算法的分子遗传标记甄选新策略",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
               },
               "version": "fb065d192f280a14470d"
             }
@@ -63,34 +84,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-81bc11ca065f",
-          "name": "五类分子标记甄选与AI预测模型",
-          "desc": "探索多源组学技术系统甄选不同类型体液间差异表达的五类分子标记，通过RT-qPCR验证评估并构建人工智能预测模型，最终建立法医体液（斑）精准溯源智能分析系统。",
+          "id": "item-066362785f7d",
+          "name": "mRNA与miRNA共逆转体系",
+          "desc": "五种常见体液鉴定",
           "evidence": [
             {
-              "quote": "本研究拟探索多源组学技术系统甄选不同类型体液间差异表达的五类分子标记",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "6fe8233942c08f32bd048d8d5e913cdc155899c9"
-              },
-              "version": "fb065d192f280a14470d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b5071b87258f",
-          "name": "疑难检材检测灵敏度达0.0625ng",
-          "desc": "面向微量降解检材研发基于特征工程算法的分子标记甄选新策略，扩增子长度小于200bp、灵敏度达0.0625ng，实现疑难检材个体识别、复杂亲缘鉴定与生物地理溯源技术突破；发表SCI论文35篇，申请发明专利4项。",
-          "evidence": [
-            {
-              "quote": "扩增子长度小于200bp，灵敏度达到0.0625ng，实现了法医疑难检材个体识别、复杂亲缘鉴定和生物地理溯源的技术突破",
+              "quote": "构建了以下技术体系:mRNA与miRNA共逆转体系，用于五种常见体液（精液、血液、唾液、阴道液和月经血）的鉴定",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -99,44 +98,376 @@
               "version": "fb065d192f280a14470d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-004b1200d07d",
+          "name": "DNA甲基化位点人工智能筛选新策略与SNaPshot检测体系",
+          "desc": "基于鉴识性DNA甲基化标记",
+          "evidence": [
+            {
+              "quote": "自主研发了基于鉴识性DNA甲基化标记的SNaPshot检测体系，为体液斑精准组织溯源提供了表观遗传解决方案",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b32f222b742d",
+          "name": "基于CE、NGS和焦磷酸测序的检测体系",
+          "desc": "扩增子长度小于200bp",
+          "evidence": [
+            {
+              "quote": "基于CE、NGS和焦磷酸测序技术构建的检测体系，扩增子长度小于200bp，灵敏度达到0.0625ng",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2fbf462395f7",
+          "name": "mRNA与lncRNA检测体系",
+          "desc": "探究lncRNA体液鉴定潜能",
+          "evidence": [
+            {
+              "quote": "mRNA和 IncRNA检测体系探究其在体液溯源方面的潜能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "11595658f1a76d97cb9fbde58818dae7be2d85f3"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-99763b21a7f4",
+          "name": "微生物组16S测序与随机森林预测模型",
+          "desc": "70%训练30%验证，ROC评估",
+          "evidence": [
+            {
+              "quote": "将70%和30%的数据分别为训练数据和验证数据并用于构建随机森林预测模型，并使用ROC曲线来判断模型的效能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "11595658f1a76d97cb9fbde58818dae7be2d85f3"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a12ef9e37eaa",
+          "name": "mRNA与lncRNA检测体系预测模型",
+          "desc": "10个分类算法",
+          "evidence": [
+            {
+              "quote": "利用目标 RNA 分子标记在70个样本（包括20个PB，20个 SE和 30个非PB和非 SE样本即10个SA，10个VA和10个MB）的相对表达量数据结合10个分类算法模型构建体液溯源预测模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "db84f8bfc7cfbc099a9517aeb0f0de3d1d933f6f"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7dba9680904d",
+          "name": "14个CpG标记随机森林体液分类模型",
+          "desc": "Lazy Predict 26种算法比较",
+          "evidence": [
+            {
+              "quote": "选择了RandomForestClassifier模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 40,
+                "chunk_id": "a50d4402a754b5e821fc5e3a17a23f5484758fc1"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8cdccb6b8fa5",
+          "name": "6个CpG逻辑回归分类模型",
+          "desc": "最大信息系数MIC特征选择",
+          "evidence": [
+            {
+              "quote": "基于6个 CpG的测序结果，使用 Lazy Predict 包构建各种机器学习分类模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 40,
+                "chunk_id": "a50d4402a754b5e821fc5e3a17a23f5484758fc1"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4cb9b3364fcd",
+          "name": "多重SNaPshot检测体系",
+          "desc": "八个体液特异CpG位点，毛细管电泳平台",
+          "evidence": [
+            {
+              "quote": "基于毛细管电泳平台构建了一个甲基化敏感性多重SNaPshot检测体系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 45,
+                "chunk_id": "80152f6e82c607d3e3cb5e733886b5684001e10e"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-24d35e0518e8",
+          "name": "60 AIM-DIP复合扩增检测体系",
+          "desc": "降解检材祖源推断、个体识别和亲子鉴定",
+          "evidence": [
+            {
+              "quote": "自主研发了适用于降解检材祖源推断、个体识别和亲子鉴定的60 AIM-DIP复合扩增检测体系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 47,
+                "chunk_id": "69b1efa1db5d10a46f9f5b6d4aa3376e463d970a"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d68851a31ef9",
+          "name": "64位点六色荧光复合扩增检测体系",
+          "desc": "59个常染色体DIP、2个miniSTR、2个Y-DIP与Amelogenin，扩增子小于200bp",
+          "evidence": [
+            {
+              "quote": "研究基于CE平台开发一组鉴别效能更高的、适用于高度降解检材检测的、包括常染色体上59个DIP位点、2个miniSTR基因座，Y染色体上2个DIP位点，及1个性别鉴别基因（Amelogenin）的六色荧光标记复合扩增同步分型检测体系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 50,
+                "chunk_id": "797a95f23ea5e3358b262b33f27bf93cf546760d"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1ea2a0d1614b",
+          "name": "DNA纳米球测序mtDNA全基因组测序系统",
+          "desc": "长片段扩增策略",
+          "evidence": [
+            {
+              "quote": "研究了一种基于DNA纳米球测序平台，采用长片段扩增策略的新型mtDNA全基因组测序系统",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 52,
+                "chunk_id": "6b75ec7859925cd9edfb9358a097467b8c41dace"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-32eb9217dbd1",
+          "name": "1993个SNP位点MGISEQ-2000体系",
+          "desc": "三级以内亲缘关系鉴定",
+          "evidence": [
+            {
+              "quote": "研究验证了1993个高多态性ⅡI-SNP在家系中二级亲缘关系鉴定效能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "0362417f9a53d5702dd7e3d800e642ebea0347e8"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22a4a3e7f004",
+          "name": "论文书籍规范与人才培养",
+          "desc": "SCI论文35篇，参编书籍8本，司法部技术规范1项，博硕士27名，博士后4名",
+          "evidence": [
+            {
+              "quote": "上述研究工作共发表SCI论文35篇，参编书籍8本，参与制定司法部技术规范1项，培养博硕士研究生27名，博士后4名",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-36369fccfaec",
+          "name": "技术发明专利",
+          "desc": "申请4项",
+          "evidence": [
+            {
+              "quote": "申请技术发明专利4项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "4951cdcee96f8ff1abc666e052ce3e6bb19634aa"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c6da39f43c41",
+          "name": "共逆转体系判别函数盲测",
+          "desc": "40例未知样本，判别正确",
+          "evidence": [
+            {
+              "quote": "盲测样本结果正确，提示根据共逆转体系建立的判别函数能有效判别未知样本的体液类型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 8,
+                "chunk_id": "0b9de6b98e40e0894b6a19ada2d0b41a42f8d8d1"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-32d32a4baaeb",
+          "name": "lncRNA标记物体液鉴别",
+          "desc": "4个标记AUC=1.000，10个模型预测精度100%",
+          "evidence": [
+            {
+              "quote": "10个模型的预测精度已达到100%，AUC值为1，说明10个模型在PB和 SE样本中的体液预测效果较好",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "db84f8bfc7cfbc099a9517aeb0f0de3d1d933f6f"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7ab499282f55",
+          "name": "唾液与皮肤混合物微生物群落差异",
+          "desc": "3074235个高质量序列，5110个OTU",
+          "evidence": [
+            {
+              "quote": "共获得3074235个高质量有效细菌序列和5110个细菌操作性分类单元（OTU）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 17,
+                "chunk_id": "789ecfbb840d2fce5ece1c97531439247ed1faa4"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3b7fef0a9f18",
+          "name": "6个CpG模型分类准确率",
+          "desc": "100%",
+          "evidence": [
+            {
+              "quote": "在调优的超参数组合下，该模型在训练集和测试集上都表现出优异的分类性能，准确率达到100%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 40,
+                "chunk_id": "a50d4402a754b5e821fc5e3a17a23f5484758fc1"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-8512a274af0e",
+          "name": "随机森林预测模型体液预测",
+          "desc": "95份样本，5种体液100.00%",
+          "evidence": [
+            {
+              "quote": "随机森林预测模型对5种体液的预测准确率均为100.00%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 47,
+                "chunk_id": "33fbb3803bebcd5164a0c0f80bb1aa496b566818"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-01fafce3281d",
+          "name": "mtDNA测序质量",
+          "desc": "Q20和Q30均超过90%",
+          "evidence": [
+            {
+              "quote": "该系统在各类样本中表现出极高的测序准确性，Q20和Q30值均超过90%，mtDNA覆盖率高",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 52,
+                "chunk_id": "6b75ec7859925cd9edfb9358a097467b8c41dace"
+              },
+              "version": "fb065d192f280a14470d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ed3b1ffeed1f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-24d945bb773a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-24d945bb773a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-81bc11ca065f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-81bc11ca065f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5071b87258f"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "3be3c03e023545119c4c",
   "version": "6aa6f742c31aada522e7",
   "source_hash": "630a79b08be4481a78dfba8b5f6a6d6fd9e87847bb0bae82001aa26751066c72",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.706384+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.029248+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-fa16aeac39f5",
           "name": "新冠肺炎病灶区域自动分割",
-          "desc": "新冠肺炎疫情形势严峻，快速准确检测患者对疫情防控具有重要意义，肺影像诊断更安全廉高效。",
+          "desc": "医学图像边缘模糊、分辨率差",
           "evidence": [
             {
-              "quote": "当前新冠肺炎疫情形势仍然严峻，快速、准确地检测出新冠肺炎患者对疫情防控具有重要意义",
+              "quote": "医学图像往往边缘界限模糊、分辨率差，易导致病灶区域分割准确性低",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 656,
-                "end_char": 696
-              },
-              "version": "6aa6f742c31aada522e7"
-            }
-          ]
-        },
-        {
-          "id": "item-6df59164fff2",
-          "name": "医学图像分析与辅助诊断",
-          "desc": "图像分割在医学图像分析和诊断中起重要作用，需研发智能医学图像处理分析与诊断技术。",
-          "evidence": [
-            {
-              "quote": "鉴于图像分割在医学图像分析和诊断中起着重要作用，本项目围绕深度学习的医学图像分割开展了深入研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2836,
-                "end_char": 2882
+                "start_char": 2886,
+                "end_char": 2916
               },
               "version": "6aa6f742c31aada522e7"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4a10d3dfc1f",
-          "name": "现有方法病灶分割结果模糊",
-          "desc": "现有方法的病灶分割结果模糊，影响了诊断效果。",
-          "evidence": [
-            {
-              "quote": "但是，现有方法的病灶分割结果模糊，影响了诊断效果",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 741,
-                "end_char": 764
-              },
-              "version": "6aa6f742c31aada522e7"
-            }
-          ]
-        },
-        {
-          "id": "item-a46e9e33bfe5",
-          "name": "医学图像边缘模糊分辨率差",
-          "desc": "医学图像往往边缘界限模糊、分辨率差，易导致病灶区域分割准确性低。",
+          "id": "item-0957a667b39d",
+          "name": "医学图像边缘模糊致病灶分割准确性低",
+          "desc": "新冠肺炎图像分割",
           "evidence": [
             {
               "quote": "鉴于医学图像往往边缘界限模糊、分辨率差，易导致病灶区域分割准确性低",
@@ -83,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2884,
                 "end_char": 2916
-              },
-              "version": "6aa6f742c31aada522e7"
-            }
-          ]
-        },
-        {
-          "id": "item-64fb30459b01",
-          "name": "人工分析效率低耗资源",
-          "desc": "人工分析图像诊断效率较低，突发疾病大规模爆发时耗费巨大人力物力并造成医疗资源紧张。",
-          "evidence": [
-            {
-              "quote": "医生通过人工分析图像并进行诊断往往效率较低，在新冠肺炎等突发疾病大规模爆发时不仅耗费巨大的人力和物力，还会造成医疗资源紧张",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2730,
-                "end_char": 2790
               },
               "version": "6aa6f742c31aada522e7"
             }
@@ -111,63 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1c4aca0e3115",
-          "name": "多层特征融合深度学习网络",
-          "desc": "融合各层边沿细节信息，构建带边沿指导思想的多层特征融合深度学习网络模型。",
+          "id": "item-0e0de69e2263",
+          "name": "弱边缘与上下文特征深度语义融合分割法",
+          "desc": "自动分割",
           "evidence": [
             {
-              "quote": "融合各层边沿细节信息，构建一种带边沿指导思想的多层特征融合深度学习网络模型",
+              "quote": "提出了一种了弱边缘与上下文特征深度语义融合的自动分割法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 799,
-                "end_char": 835
+                "start_char": 2918,
+                "end_char": 2944
               },
               "version": "6aa6f742c31aada522e7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ea16ff2fa4f5",
-          "name": "兼顾像素与结构的损失函数",
-          "desc": "考虑像素空间相关性，以最大化真实与预测图像高维分布相似性为目标设计新型损失函数。",
-          "evidence": [
-            {
-              "quote": "考虑像素的空间相关性，以最大化真实和预测分割图像间的高维分布相似性为目标，设计一种兼顾像素和结构信息的新型损失函数",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 893
-              },
-              "version": "6aa6f742c31aada522e7"
-            }
-          ]
-        },
-        {
-          "id": "item-aaa124393cb0",
-          "name": "分层拓扑自适应邻域引力搜索算法",
-          "desc": "结合分层拓扑结构、邻域思想与自适应策略提出引力搜索算法以优化损失函数获得最优网络参数。",
-          "evidence": [
-            {
-              "quote": "结合分层拓扑结构、邻域思想和自适应策略，提出一种分层拓扑结构自适应邻域信息引力搜索算法，优化损失函数以获得最优网络参数",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 953
-              },
-              "version": "6aa6f742c31aada522e7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6d464c9e2271",
+          "id": "item-f9bcf143ff88",
           "name": "残差连接与双重注意力U-Net",
-          "desc": "为兼顾全局信息感知与局部特征挖掘，构建基于残差连接和双重注意力机制的U-Net分割方法。",
+          "desc": "兼顾全局与局部",
           "evidence": [
             {
               "quote": "构建了一种基于残差连接和双重注意力机制的U-Net图像分割法",
@@ -179,89 +99,193 @@
               "version": "6aa6f742c31aada522e7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-5e00436e1f6e",
-          "name": "分解结构多目标鲸鱼优化特征选择",
-          "desc": "提出基于分解结构多目标鲸鱼优化算法的肺炎特征选择与检测方法，提升精度与速度。",
+          "id": "item-a6b6e4178566",
+          "name": "阶跃型引力搜索算法与特征选择",
+          "desc": "减少特征冗余",
           "evidence": [
             {
-              "quote": "提出了一种基于分解结构多目标鲸鱼优化算法(MOWOA-D)的肺炎特征选择与检测方法",
+              "quote": "提出了一种阶跃型引力搜索算法，并将其用于模型的特征选择中",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3178,
-                "end_char": 3218
+                "start_char": 3072,
+                "end_char": 3099
               },
               "version": "6aa6f742c31aada522e7"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-2e326b7f9883",
-          "name": "SCI论文与发明专利成果",
-          "desc": "已发表SCI期刊论文6篇，获授权国家发明专利1项，指导硕士毕业生2人，取得预期成果。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文6篇，授权发明专利1项",
           "evidence": [
             {
-              "quote": "目前已发表SCI期刊论文6篇，获授权国家发明专利1项，指导硕士毕业生2人，取得了项目预期的成果",
+              "quote": "目前已发表SCI期刊论文6篇，获授权国家发明专利1项",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3296,
-                "end_char": 3342
+                "end_char": 3321
               },
               "version": "6aa6f742c31aada522e7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fa16aeac39f5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b4a10d3dfc1f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Locally informed gravitational search algorithm with hierarchical topological structure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Leyi Xiao;Chaodong Fan;Zhaoyang Ai;Jie Lin",
+      "id": "out-b9c070a92d04",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Locally informed gravitational search algorithm with hierarchical topological structure — Leyi Xiao;Chaodong Fan;Zhaoyang Ai;Jie Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3361,
+            "end_char": 3499
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b4a10d3dfc1f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1c4aca0e3115"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced medical image segmentation using U-Net with residual connections and dual attention mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Leyi Xiao;Jiaojiao Song;Xia Xie;Chaodong Fan",
+      "id": "out-5f1ed02ed1b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhanced medical image segmentation using U-Net with residual connections and dual attention mechanism — Leyi Xiao;Jiaojiao Song;Xia Xie;Chaodong Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3504,
+            "end_char": 3659
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1c4aca0e3115"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6d464c9e2271"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A step gravitational search algorithm for function optimization and STTM’s synchronous feature selection-parameter optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaodong Fan;Laurence T. Yang;Leyi Xiao",
+      "id": "out-3b853ce2eef7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A step gravitational search algorithm for function optimization and STTM’s synchronous feature selection-parameter optimization — Chaodong Fan;Laurence T. Yang;Leyi Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3664,
+            "end_char": 3839
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ea16ff2fa4f5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2e326b7f9883"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Attention-enhanced separable residual with dilation net for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Leyi Xiao;Yinuo Liu;Chaodong Fan",
+      "id": "out-40b67b21f689",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Attention-enhanced separable residual with dilation net for medical image segmentation — Leyi Xiao;Yinuo Liu;Chaodong Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3844,
+            "end_char": 3971
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient constrained large‑scale multi‑objective optimization based onreference vector‑guided evolutionary algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaodong Fan;Jiawei Wang;Laurence T Yang;Leyi Xiao;Zhaoyang Ai",
+      "id": "out-f7cb052dc276",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient constrained large‑scale multi‑objective optimization based onreference vector‑guided evolutionary algorithm — Chaodong Fan;Jiawei Wang;Laurence T Yang;Leyi Xiao;Zhaoyang Ai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3976,
+            "end_char": 4164
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic brain MRI tumors segmentation based on deep fusion of weak edge and context features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Leyi Xiao;Baoxian Zhou;Chaodong Fan",
+      "id": "out-16cc232b22ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic brain MRI tumors segmentation based on deep fusion of weak edge and context features — Leyi Xiao;Baoxian Zhou;Chaodong Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4169,
+            "end_char": 4307
+          },
+          "version": "6aa6f742c31aada522e7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "890669c1b21d353b4dbf",
   "version": "a67a33826892b1509fc5",
   "source_hash": "cca7decb7f369a26cefce94b48e58275a7ca89e154d345337958a7d845a953d8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:27.851339+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.194080+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-939f57907bb7",
-          "name": "胸部疾病胸片智能筛查",
-          "desc": "胸片经常用于筛查和诊断心肺相关疾病，需要涵盖胸部常见疾病的自动诊断系统。",
+          "id": "item-bc84e8c373ef",
+          "name": "胸部疾病胸片人工智能筛查",
+          "desc": "胸片是筛查诊断心肺疾病最常用检查之一",
           "evidence": [
             {
-              "quote": "胸片经常用于筛查和诊断心肺相关疾病",
+              "quote": "胸片是筛查和诊断心肺相关疾病最常用的放射学检查之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 674
-              },
-              "version": "a67a33826892b1509fc5"
-            }
-          ]
-        },
-        {
-          "id": "item-7d4485450375",
-          "name": "大型医院与社区医院差异",
-          "desc": "为改善大型医院工作量饱和、社区医院诊断经验不足的现状提供帮助。",
-          "evidence": [
-            {
-              "quote": "为改善国内大型医院工作量饱和，社区医院诊断经验不足的现状提供帮助",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1025,
-                "end_char": 1056
+                "start_char": 2814,
+                "end_char": 2838
               },
               "version": "a67a33826892b1509fc5"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b77c815322ad",
-          "name": "胸片CNN训练需大量人工标注",
-          "desc": "训练胸片的CNN自动诊断模型往往需要人工标记大量的多标签图像。",
+          "id": "item-c09ce5d7dc1b",
+          "name": "训练胸片CNN需大量人工多标签标注",
+          "desc": "涵盖全部常见疾病的自动诊断系统",
           "evidence": [
             {
-              "quote": "但是，训练胸片的CNN自动诊断模型往往需要人工标记大量的多标签图像",
+              "quote": "训练胸片的CNN自动诊断模型往往需要人工标记大量的多标签图像",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 718,
+                "start_char": 721,
                 "end_char": 750
-              },
-              "version": "a67a33826892b1509fc5"
-            }
-          ]
-        },
-        {
-          "id": "item-798df0784528",
-          "name": "单病种模型难以覆盖全部常见病",
-          "desc": "既往CNN模型多能诊断单种疾病，需建立涵盖胸部全部常见疾病的胸片自动诊断系统。",
-          "evidence": [
-            {
-              "quote": "能够在胸片中诊断单种疾病",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 716
               },
               "version": "a67a33826892b1509fc5"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c5c935686f0b",
-          "name": "中文报告知识图谱与NLP标签",
-          "desc": "用NLP直接提取胸片原始自然语言报告，通过关键词语义联系建立中文报告知识图谱训练CNN多标签系统。",
+          "id": "item-8bd17e6cabf5",
+          "name": "NLP提取原始报告构建中文胸片报告知识图谱",
+          "desc": "用于建立训练CNN的多标签系统",
           "evidence": [
             {
               "quote": "使用NLP技术直接提取胸片的原始自然语言报告，通过关键词的语义联系建立了一套适用于描述胸片异常发现的中文报告知识图谱，用于建立训练CNN的多标签系统",
@@ -108,23 +81,25 @@
               },
               "version": "a67a33826892b1509fc5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e775cb208076",
-          "name": "NLP自动诊断模型预测建模",
-          "desc": "通过对胸片文本报告进行自然语言处理，用提取疾病关键字的方法建立CNN模型。",
+          "id": "item-a62155dc1158",
+          "name": "CNN诊断后NLP生成报告",
+          "desc": "对比模板与规则生成报告",
           "evidence": [
             {
-              "quote": "前期研究通过对1,000例胸片文本报告的自然语言处理(NLP)，用提取疾病关键字的方法，对肺实变、肺结节、肿块、气胸四类胸部异常进行标记，建立CNN模型",
+              "quote": "NLP生成的报告与最终报告的BLEU分数达到0.69，显著高于模版的0.37和基于规则的0.57",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 752,
-                "end_char": 827
+                "start_char": 3446,
+                "end_char": 3493
               },
               "version": "a67a33826892b1509fc5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e7311cfc61f",
-          "name": "胸片智能筛查系统多中心验证",
-          "desc": "在1家三甲医院和8家社区医院的9,930个胸片病例外部测试集上完成多中心回顾性验证。",
-          "evidence": [
-            {
-              "quote": "在包括1家三甲医院和8家社区医院的9,930个胸片病例（外部测试集）的多中心环境下对以上智能筛查系统进行了回顾性验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3180,
-                "end_char": 3237
-              },
-              "version": "a67a33826892b1509fc5"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2347c67e77c1",
-          "name": "25种异常AUC 0.796至0.891",
-          "desc": "系统诊断25种胸片异常AUC达0.796至0.891，略低于三甲医院医生水平，略高于社区医院医生水平。",
+          "id": "item-b65215bf7857",
+          "name": "25种胸片异常外部测试AUC",
+          "desc": "0.796至0.891",
           "evidence": [
             {
               "quote": "结果显示诊断25种胸片异常的AUC达到0.796至0.891，略低于三甲医院医生水平，略高于社区医院医生水平",
@@ -164,72 +122,88 @@
               "version": "a67a33826892b1509fc5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-591027b85ec6",
-          "name": "NLP生成报告BLEU 0.69",
-          "desc": "NLP生成报告与最终报告BLEU分数达0.69，显著高于模板与基于规则方式，且用时更少。",
+          "id": "item-236603de9eb7",
+          "name": "胸片数据库",
+          "desc": "74,082个胸片病例训练数据集",
           "evidence": [
             {
-              "quote": "结果表明NLP生成的报告与最终报告的BLEU分数达到0.69，显著高于模版的0.37和基于规则的0.57（p<0.001）",
+              "quote": "回顾性纳入了包含74,082个胸片病例（训练数据集）的大型胸片数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3442,
-                "end_char": 3502
+                "start_char": 3070,
+                "end_char": 3103
               },
               "version": "a67a33826892b1509fc5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-939f57907bb7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b77c815322ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Chest Radiograph Captions Based on Natural Language Processing vs Completed by Radiologists",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaping Zhang;Mingqian Liu;Lu Zhang;Lingyun Wang;Keke Zhao;Shundong Hu;Xu Chen;Xueqian Xie",
+      "id": "out-8c1d1783fa1e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Chest Radiograph Captions Based on Natural Language Processing vs Completed by Radiologists — Yaping Zhang;Mingqian Liu;Lu Zhang;Lingyun Wang;Keke Zhao;Shundong Hu;Xu Chen;Xueqian Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 3913
+          },
+          "version": "a67a33826892b1509fc5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b77c815322ad"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c5c935686f0b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c5c935686f0b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2347c67e77c1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e775cb208076"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-591027b85ec6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and multicenter validation of chest X-ray radiography interpretations based on natural language processing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaping Zhang;Mingqian Liu;Shundong Hu;Yao Shen;Jun Lan;Beibei Jiang;Geertruida H. de Bock;Rozemarijn Vliegenthart;Xu Chen;Xueqian Xie",
+      "id": "out-38cf67fbf9f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and multicenter validation of chest X-ray radiography interpretations based on natural language processing — Yaping Zhang;Mingqian Liu;Shundong Hu;Yao Shen;Jun Lan;Beibei Jiang;Geertruida H. de Bock;Rozemarijn Vliegenthart;Xu Chen;Xueqian Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3918,
+            "end_char": 4178
+          },
+          "version": "a67a33826892b1509fc5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

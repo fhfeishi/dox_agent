@@ -2,15 +2,20 @@
   "doc_id": "6d2274c2e007633a72dd",
   "version": "eb56ef5e67661291d329",
   "source_hash": "a363bfbacbc56b42a78acb299dc47101216c14609ea3b7853a9a4347f39ed9ad",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.729507+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:23.965562+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-22ba31207fd2",
-          "name": "多结节型肝癌肝移植适应证筛选",
-          "desc": "面向多结节型肝细胞癌患者，通过术前精准判定肿瘤起源方式优化肝移植适应证选择并优化上海复旦标准。",
-          "evidence": [
-            {
-              "quote": "IM相对于MO具有明显的早期复发特点，如能在术前即对其进行精准评价，则对于肝移植适应证的选择将有着重大的意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 806
-              },
-              "version": "eb56ef5e67661291d329"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d818c9b0c323",
-          "name": "术前难以判定多结节型肝癌起源方式",
-          "desc": "多结节型肝癌可分为多中心起源（MO）与肝内转移（IM）两种形式，二者的复发风险差异显著，术前缺乏精准鉴别手段。",
+          "id": "item-4337cadbfee8",
+          "name": "多结节型肝癌肝移植适应证",
+          "desc": "MO与IM起源方式",
           "evidence": [
             {
               "quote": "多结节型肝癌可分为多中心起源（MO）及肝内转移（IM）两种形式",
@@ -59,20 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-563038b548d6",
-          "name": "影像组学相似度树状图起源方式判别模型",
-          "desc": "对多结节型肝癌肝移植术前行多模态MR扫描，以病理及基因测序为金标准，利用相似度树状图和影像组学判定多结节相似度并建模。",
+          "id": "item-7b178c094eeb",
+          "name": "术前精准评价起源方式对肝移植适应症选择重要",
+          "desc": "IM早期复发",
           "evidence": [
             {
-              "quote": "利用“相似度”树状图和影像组学判定多个结节的相似度，建立术前诊断多结节型肝癌起源方式的临床影像组学模型",
+              "quote": "IM相对于MO具有明显早期复发的特点，如能在术前对其进行精准评价，则对于肝移植适应症的选择将有着重大的意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 945
+                "start_char": 2785,
+                "end_char": 2837
               },
               "version": "eb56ef5e67661291d329"
             }
@@ -81,13 +64,13 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-5965166c2213",
-          "name": "构建并验证多结节型HCC微血管侵犯预测模型",
-          "desc": "利用术前临床影像学变量在多结节型HCC患者中构建并验证了MVI预测模型，并进一步建立术后RFS与OS预测模型。",
+          "id": "item-9ac6e2cd77d2",
+          "name": "多结节型HCC的MVI预测模型",
+          "desc": "术前临床影像学变量",
           "evidence": [
             {
               "quote": "利用术前临床影像学变量在多结节型HCC患者中构建并验证了MVI预测模型",
@@ -99,44 +82,319 @@
               "version": "eb56ef5e67661291d329"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8fe771f88b8d",
+          "name": "生境分析双结节HCC MVI预测模型",
+          "desc": "生境分析技术",
+          "evidence": [
+            {
+              "quote": "利生境分析技术，在双结节型HCC患者中构建MVI预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2999,
+                "end_char": 3026
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-12e64b851a81",
+          "name": "超米兰标准多结节HCC术后RFS与OS预测模型",
+          "desc": "术前临床影像学变量",
+          "evidence": [
+            {
+              "quote": "利用术前临床影像学变量，在超出米兰标准的多结节型肝细胞癌患者中构建术后RFS和OS的预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2950,
+                "end_char": 2995
+              },
+              "version": "eb56ef5e67661291d329"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-22ba31207fd2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d818c9b0c323"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An MRI ‐Based Prognostic Stratification System for Medical Decision‐Making of Multinodular Hepatocellular Carcinoma Patients Beyond the Milan Criteria",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Fei;Ni Xiaoyan;Sun Haitao;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Li;Yang Chun;Zeng Mengsu",
+      "id": "out-adbdf3b7994f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An MRI ‐Based Prognostic Stratification System for Medical Decision‐Making of Multinodular Hepatocellular Carcinoma Patients Beyond the Milan Criteria — Wu Fei;Ni Xiaoyan;Sun Haitao;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Li;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3089,
+            "end_char": 3341
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d818c9b0c323"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-563038b548d6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparative evaluation of non-contrast MRI versus gadoxetic acid-enhanced abbreviated protocols in detecting colorectal liver metastases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dai Haoran;Yan Cheng;Jia Xi;Xiao Yuyao;Liang Xinyue;Yang Chun;Liu Kai;Zeng Mengsu",
+      "id": "out-2aa52ac1c283",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparative evaluation of non-contrast MRI versus gadoxetic acid-enhanced abbreviated protocols in detecting colorectal liver metastases — Dai Haoran;Yan Cheng;Jia Xi;Xiao Yuyao;Liang Xinyue;Yang Chun;Liu Kai;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3346,
+            "end_char": 3572
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-563038b548d6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5965166c2213"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of magnetic resonance imaging for diagnosis of LR‑3 and LR-4 lesions coexisting with hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yang;Xiao Yuyao;Ni Xiaoyan;Huang Peng;Wu Fei;Zhou Changwu;Xu Jianming;Zeng Mengsu;Yang Chun",
+      "id": "out-887b382617e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of magnetic resonance imaging for diagnosis of LR‑3 and LR-4 lesions coexisting with hepatocellular carcinoma — Liu Yang;Xiao Yuyao;Ni Xiaoyan;Huang Peng;Wu Fei;Zhou Changwu;Xu Jianming;Zeng Mengsu;Yang Chun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3577,
+            "end_char": 3796
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Association Between Tumor Radiomic Analysis and Peritumor Habitat-Derived Radiomic Analysis on Gadoxetate Disodium-Enhanced MRI With Microvascular Invasion in Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Cheng;Wu Fei;Wang Fang;Chong Huan-Huan;Sun Haitao;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+      "id": "out-be2a15041462",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Association Between Tumor Radiomic Analysis and Peritumor Habitat-Derived Radiomic Analysis on Gadoxetate Disodium-Enhanced MRI With Microvascular Invasion in Hepatocellular Carcinoma — Wang Cheng;Wu Fei;Wang Fang;Chong Huan-Huan;Sun Haitao;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 4095
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Estimating Microvascular Invasion in Patients with Resectable Multinodular Hepatocellular Carcinoma by Using Preoperative Contrast-Enhanced MRI: Establishment and Validation of a Risk Score",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Fei;Sun Haitao;Shi Zhang;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+      "id": "out-3ce807c6f082",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Estimating Microvascular Invasion in Patients with Resectable Multinodular Hepatocellular Carcinoma by Using Preoperative Contrast-Enhanced MRI: Establishment and Validation of a Risk Score — Wu Fei;Sun Haitao;Shi Zhang;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4100,
+            "end_char": 4382
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MR radiomics to predict microvascular invasion status and biological process in combined hepatocellular carcinoma-cholangiocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Yuyao;Wu Fei;Hou Kai;Wang Fang;Zhou Changwu;Huang Peng;Yang Chun;Zeng Mengsu",
+      "id": "out-1ceb208c02e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MR radiomics to predict microvascular invasion status and biological process in combined hepatocellular carcinoma-cholangiocarcinoma — Xiao Yuyao;Wu Fei;Hou Kai;Wang Fang;Zhou Changwu;Huang Peng;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4387,
+            "end_char": 4609
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning-Based Approach for Identifying and Measuring Focal Liver Lesions on Contrast-Enhanced MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dai Haoran;Xiao Yuyao;Fu Caixia;Grimm Robert;von Busch Heinrich;Stieltjes Bram;Choi Moon Hyung;Xu Zhoubing;Chabin Guillaume;Yang Chun;Zeng Mengsu",
+      "id": "out-e0751fab1f61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning-Based Approach for Identifying and Measuring Focal Liver Lesions on Contrast-Enhanced MRI — Dai Haoran;Xiao Yuyao;Fu Caixia;Grimm Robert;von Busch Heinrich;Stieltjes Bram;Choi Moon Hyung;Xu Zhoubing;Chabin Guillaume;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4614,
+            "end_char": 4871
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic factors for long-term outcome in bifocal hepatocellular carcinoma after resection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Fei;Sun Haitao;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+      "id": "out-03eb56df49b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic factors for long-term outcome in bifocal hepatocellular carcinoma after resection — Wu Fei;Sun Haitao;Zhou Changwu;Huang Peng;Xiao Yuyao;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4876,
+            "end_char": 5051
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Habitat-derived radiomics analysis based on dual lesion for the prediction of microvascular invasion in bifocal hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Xi;Wu Fei;Liu Jing;Wang Fang;Xiao Yuyao;Wu Dijia;Yang Chun;Zeng Mengsu",
+      "id": "out-362a5558f80f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Habitat-derived radiomics analysis based on dual lesion for the prediction of microvascular invasion in bifocal hepatocellular carcinoma — Jia Xi;Wu Fei;Liu Jing;Wang Fang;Xiao Yuyao;Wu Dijia;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5056,
+            "end_char": 5275
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic algorithm for subcentimeter hepatocellular carcinoma using alpha-fetoprotein and imaging features on gadoxetic acid-enhanced MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Peng;Wu Fei;Hou Kai;Zhou Changwu;Xiao Yuyao;Wang Cheng;Miao Gengyun;Yang Chun;Zeng Mengsu",
+      "id": "out-f371a65611cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic algorithm for subcentimeter hepatocellular carcinoma using alpha-fetoprotein and imaging features on gadoxetic acid-enhanced MRI — Huang Peng;Wu Fei;Hou Kai;Zhou Changwu;Xiao Yuyao;Wang Cheng;Miao Gengyun;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5281,
+            "end_char": 5524
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatobiliary-Phase Hypointense Nodules Without Arterial-Phase Hyperenhancement: Developing a Risk Stratification for Hypervascular Transformation Based on a Real-World Observational Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Na;Wang Yi;Yang Li;Yang Chun;Zeng Mengsu",
+      "id": "out-7b7d35a5514e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatobiliary-Phase Hypointense Nodules Without Arterial-Phase Hyperenhancement: Developing a Risk Stratification for Hypervascular Transformation Based on a Real-World Observational Cohort Study — Li Na;Wang Yi;Yang Li;Yang Chun;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5530,
+            "end_char": 5777
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Component prediction in combined hepatocellular carcinoma-cholangiocarcinoma: habitat imaging and its biologic underpinnings",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Yuyao;Huang Peng;Zhang Yunfei;Lu Xin;Zhou Changwu;Wu Fei;Wang Yi;Zeng Mengsu;Yang Chun",
+      "id": "out-2e915518fbe5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Component prediction in combined hepatocellular carcinoma-cholangiocarcinoma: habitat imaging and its biologic underpinnings — Xiao Yuyao;Huang Peng;Zhang Yunfei;Lu Xin;Zhou Changwu;Wu Fei;Wang Yi;Zeng Mengsu;Yang Chun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5783,
+            "end_char": 6007
+          },
+          "version": "eb56ef5e67661291d329"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

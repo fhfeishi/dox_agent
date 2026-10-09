@@ -2,15 +2,20 @@
   "doc_id": "29fe01f2ea63472a775d",
   "version": "fc9384665ae144a8ba8c",
   "source_hash": "fa9854283c95cc3499482814e7dae000ecfc132b3a42004e871539c2f4943ddc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.754108+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:34:11.720197+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-63db12570b61",
-          "name": "局部进展期直肠癌新辅助放化疗疗效预测",
-          "desc": "针对局部进展期直肠癌新辅助放化疗这一标准治疗路径，探索放化疗抵抗与预后的无创预测方法。",
+          "id": "item-5810c600c423",
+          "name": "局部进展期直肠癌新辅助放化疗",
+          "desc": "标准治疗方法",
           "evidence": [
             {
-              "quote": "新辅助放化疗是局部进展期直肠癌标准治疗方法",
+              "quote": "新辅助放化疗是局部进展期直肠癌（LARC）标准治疗方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 688
+                "start_char": 2928,
+                "end_char": 2954
               },
               "version": "fc9384665ae144a8ba8c"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2f252509fa2",
-          "name": "缺乏预测直肠癌放化疗抵抗与预后的简便有效方法",
-          "desc": "放化疗抵抗可致肿瘤未控或转移，而上皮间质转化EMT与放化疗抵抗及预后密切相关，目前缺乏简便有效的预测手段。",
+          "id": "item-e34ef326be4f",
+          "name": "缺乏预测放化疗抵抗及预后的简便方法",
+          "desc": "简便有效",
           "evidence": [
             {
               "quote": "目前缺乏预测放化疗抵抗及预后的简便有效方法",
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6f73a7ceaf6",
-          "name": "多参数MRI影像组学融合预测模型",
-          "desc": "基于肿瘤与瘤周区域的DKI、DCE-MRI等多参数MRI影像组学特征监测肿瘤EMT，融合临床病理及EMT标记物构建融合模型。",
-          "evidence": [
-            {
-              "quote": "基于肿瘤和瘤周区域的DKI和DCE-MRI等多参数MRI影像组学特征监测肿瘤EMT的价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 883,
-                "end_char": 926
-              },
-              "version": "fc9384665ae144a8ba8c"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-534aab5df917",
-          "name": "DKI直方图%D均值预测疗效AUC达0.939",
-          "desc": "DKI直方图参数尤其是%D均值可有效预测LARC新辅助放化疗疗效，AUC达0.939；融合模型预测DFS的C-index训练组0.780、验证组0.803。",
+          "id": "item-59096272a140",
+          "name": "DKI直方图参数预测疗效",
+          "desc": "%D均值AUC 0.939",
           "evidence": [
             {
               "quote": "DKI直方图参数，尤其是%D均值，可有效预测LARC新辅助放化疗疗效，AUC面积达0.939",
@@ -99,44 +82,292 @@
               "version": "fc9384665ae144a8ba8c"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3bcc00965a47",
+          "name": "多参数MRI影像组学与临床融合模型",
+          "desc": "预测DFS",
+          "evidence": [
+            {
+              "quote": "融合DWI或DKI在内多参数MRI影像组学和临床指标构建融合模型，预测LARC新辅助放化疗后DFS生存期",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3345,
+                "end_char": 3396
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f912271c55fd",
+          "name": "mrTEC综合评分系统",
+          "desc": "mrTDs、mrEMVI、mrCRM",
+          "evidence": [
+            {
+              "quote": "将mrTDs、mrEMVI、mrCRM构建综合评分系统mrTEC",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3460,
+                "end_char": 3491
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-aeae986546ee",
+          "name": "融合模型预测DFS",
+          "desc": "训练组与验证组C-index 0.780和0.803",
+          "evidence": [
+            {
+              "quote": "在训练组和验证组的C-index分别为0.780和0.803",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3398,
+                "end_char": 3427
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61cebc20729a",
+          "name": "论文软著与奖励",
+          "desc": "SCI论文11篇，软著5项，省科技进步二等奖1项",
+          "evidence": [
+            {
+              "quote": "发表SCI论文11篇，申请计算机软著5项，山西省科技进步二等奖1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3685,
+                "end_char": 3717
+              },
+              "version": "fc9384665ae144a8ba8c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-63db12570b61"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e2f252509fa2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SHMT2 Drives the Progression of Colorectal Cancer by Regulating UHRF1 Expression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ximao Cui;Yanfen Cui;Tao Du;Xiaohua Jiang;Chun Song;Shun Zhang;Chiye Ma;Yun Liu;Qing Ni;Yuzhe Gao;Guanghui Wang",
+      "id": "out-233e3ce32653",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SHMT2 Drives the Progression of Colorectal Cancer by Regulating UHRF1 Expression — Ximao Cui;Yanfen Cui;Tao Du;Xiaohua Jiang;Chun Song;Shun Zhang;Chiye Ma;Yun Liu;Qing Ni;Yuzhe Gao;Guanghui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3780,
+            "end_char": 3980
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e2f252509fa2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d6f73a7ceaf6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicenter evaluation of a weakly supervised deep learning  model for lymph node diagnosis in rectal cancer on MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Xia;Dandan Li;Wenguang He;Perry J. Pickhardt;Junming Jian;Rui Zhang;Junjie Zhang;Ruirui Song;Tong Tong;Xiaotang Yang;Xin Gao;Yanfen Cui",
+      "id": "out-229ee91c3dcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multicenter evaluation of a weakly supervised deep learning  model for lymph node diagnosis in rectal cancer on MRI — Wei Xia;Dandan Li;Wenguang He;Perry J. Pickhardt;Junming Jian;Rui Zhang;Junjie Zhang;Ruirui Song;Tong Tong;Xiaotang Yang;Xin Gao;Yanfen Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3985,
+            "end_char": 4248
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6f73a7ceaf6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-534aab5df917"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic value of multiparametric MRI-based radiomics model: Potential role for chemotherapeutic benefits in locally advanced rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Wenhui Yang;Jialiang Ren;Dandan Li;Xiaosong Du;Junjie Zhang;Xiaotang Yang",
+      "id": "out-881395be65d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic value of multiparametric MRI-based radiomics model: Potential role for chemotherapeutic benefits in locally advanced rectal cancer — Yanfen Cui;Wenhui Yang;Jialiang Ren;Dandan Li;Xiaosong Du;Junjie Zhang;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4253,
+            "end_char": 4487
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based deep learning radiomics nomogram for predicting the response to neoadjuvant chemotherapy in patients with locally advanced gastric cancer: A multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Jiayi Zhang;Zhenhui Li;Kaikai Wei;Ye Lei;Jialiang Ren;Lei Wu;Zhenwei Shi;Xiaochun Meng;Xiaotang Yang;Xin Gao",
+      "id": "out-38bcd36c5f3a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based deep learning radiomics nomogram for predicting the response to neoadjuvant chemotherapy in patients with locally advanced gastric cancer: A multicenter cohort study — Yanfen Cui;Jiayi Zhang;Zhenhui Li;Kaikai Wei;Ye Lei;Jialiang Ren;Lei Wu;Zhenwei Shi;Xiaochun Meng;Xiaotang Yang;Xin Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4796
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Features at Multiparametric MRI Predict Disease-Free Survival in Patients With Locally Advanced Rectal Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Guanghui Wang;Jialiang Ren;Lina Hou;Dandan Li;Qianfa Wen;Yanfeng Xi;Xiaotang Yang",
+      "id": "out-4113147e74f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Features at Multiparametric MRI Predict Disease-Free Survival in Patients With Locally Advanced Rectal Cancer — Yanfen Cui;Guanghui Wang;Jialiang Ren;Lina Hou;Dandan Li;Qianfa Wen;Yanfeng Xi;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 5021
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-based radiomics nomogram for preoperative prediction of lymphovascular invasion and clinical outcomes in patients with breast invasive ductal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Zhang;Guanghui Wang;Jialiang Ren;Zhao Yang;Dandan Li;Yanfen Cui;Xiaotang Yang",
+      "id": "out-a2dace14515c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-based radiomics nomogram for preoperative prediction of lymphovascular invasion and clinical outcomes in patients with breast invasive ductal carcinoma — Junjie Zhang;Guanghui Wang;Jialiang Ren;Zhao Yang;Dandan Li;Yanfen Cui;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5026,
+            "end_char": 5290
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion kurtosis imaging-derived histogram metrics for prediction of resistance to neoadjuvant chemoradiotherapy in rectal adenocarcinoma: Preliminary findings",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dandan Li;Yanfen Cui;Lina Hou;Zeyu Bian;Zhao Yang;Ruxin Xu;Yaju Jia;Zhifang Wu;Xiaotang Yang",
+      "id": "out-ce203042368a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion kurtosis imaging-derived histogram metrics for prediction of resistance to neoadjuvant chemoradiotherapy in rectal adenocarcinoma: Preliminary findings — Dandan Li;Yanfen Cui;Lina Hou;Zeyu Bian;Zhao Yang;Ruxin Xu;Yaju Jia;Zhifang Wu;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5295,
+            "end_char": 5557
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+      "id": "out-f0d8fd4c5b18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study — Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5562,
+            "end_char": 5790
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based radiomics analysis in the prediction of response to neoadjuvant chemotherapy in locally advanced gastric cancer: A dual-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruirui Song;Yanfen Cui;Jialiang Ren;Junjie Zhang;Zhao Yang;Dandan Li;Zhenhui Li;Xiaotang Yang",
+      "id": "out-47d245c769ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based radiomics analysis in the prediction of response to neoadjuvant chemotherapy in locally advanced gastric cancer: A dual-center study — Ruirui Song;Yanfen Cui;Jialiang Ren;Junjie Zhang;Zhao Yang;Dandan Li;Zhenhui Li;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5795,
+            "end_char": 6038
+          },
+          "version": "fc9384665ae144a8ba8c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

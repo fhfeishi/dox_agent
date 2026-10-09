@@ -2,15 +2,20 @@
   "doc_id": "ccc9daa2ecbeebf7461d",
   "version": "f359a15ab13c85412634",
   "source_hash": "b6304ead92c3145fbce3eb1b3ad994142c69f00f75c3de6a7e0fe6bae722ed54",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.471408+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.412582+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-2f6bd352ba33",
           "name": "结直肠癌病理AI生存预后",
-          "desc": "挖掘数字病理切片中不同组织细胞的空间分布及交互作用关系对肿瘤患者预后具有重要意义。",
+          "desc": "全幅数字病理",
           "evidence": [
             {
-              "quote": "挖掘数字病理切片中不同组织细胞的空间分布及交互作用关系对肿瘤患者的预后具有重要意义",
+              "quote": "本项目围绕结直肠癌患者生存风险预后、淋巴结转移检测等关键问题，展开了病理学AI技术探索",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 707
-              },
-              "version": "f359a15ab13c85412634"
-            }
-          ]
-        },
-        {
-          "id": "item-f471036afc1e",
-          "name": "推动结直肠癌精准医疗",
-          "desc": "研究对实现结直肠癌患者的精准医疗具有积极推动作用，对深入理解肿瘤内不同组织细胞交互关系具有参考价值。",
-          "evidence": [
-            {
-              "quote": "该研究对实现结直肠癌患者的精准医疗具有积极推动作用，对深入理解肿瘤内不同组织细胞之间的交互关系具有参考价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 986,
-                "end_char": 1038
+                "start_char": 2799,
+                "end_char": 2841
               },
               "version": "f359a15ab13c85412634"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf1f623304d1",
-          "name": "肿瘤病理微环境异质性量化是难点",
-          "desc": "由于肿瘤病理微环境的异质性，如何量化这些微观特征是该领域尚待解决的难点。",
+          "id": "item-1352339fb383",
+          "name": "肿瘤病理微环境异质性难以量化",
+          "desc": "精准预后",
           "evidence": [
             {
-              "quote": "然而，由于肿瘤病理微环境的异质性，如何量化这些微观特征是该领域尚待解决的难点",
+              "quote": "如何量化这些微观特征是该领域尚待解决的难点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 709,
+                "start_char": 726,
                 "end_char": 746
-              },
-              "version": "f359a15ab13c85412634"
-            }
-          ]
-        },
-        {
-          "id": "item-628d7b495efb",
-          "name": "需量化肿瘤异质性微观特征",
-          "desc": "需探索基于全幅数字病理图像分析、挖掘量化肿瘤异质性的微观特征，并建立预后生存风险计算模型。",
-          "evidence": [
-            {
-              "quote": "本课题以结直肠癌患者为研究对象，探索基于全幅数字病理图像分析、挖掘量化肿瘤异质性的微观特征，并建立预后病人生存风险的计算模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 751,
-                "end_char": 812
               },
               "version": "f359a15ab13c85412634"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-68b63658a84d",
-          "name": "多分辨率卷积网络与图模型挖掘",
-          "desc": "建立基于多分辨率分析的卷积神经网络模型自动识别病理图像中的肿瘤、淋巴免疫细胞及肿瘤相关基质区域，利用热点分析技术和图模型挖掘密度、空间分布及交互作用关系。",
-          "evidence": [
-            {
-              "quote": "建立基于多分辨率分析的卷积神经网络模型，自动识别病理图像中的肿瘤、淋巴免疫细胞及与肿瘤相关的基质区域。然后，利用热点分析技术和图模型等挖掘淋巴免疫细胞和基质在肿瘤内外的密度、空间分布及交互作用关系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 817,
-                "end_char": 914
-              },
-              "version": "f359a15ab13c85412634"
-            }
-          ]
-        },
-        {
-          "id": "item-9a2c451fb6d7",
-          "name": "双流背景感知神经网络DSCA",
-          "desc": "研发双流背景感知神经网络模型，对双分辨率病理图像与多尺度病理特征进行注意力融合，直接由病理图像端到端预后患者生存风险分数。",
+          "id": "item-02ea52b7a150",
+          "name": "DSCA双流背景感知神经网络",
+          "desc": "双分辨率注意力融合",
           "evidence": [
             {
               "quote": "研发了双流背景感知神经网络模型（DSCA），对双分辨率病理图像与多尺度病理特征进行注意力融合，直接由病理图像端到端预后患者生存风险分数",
@@ -124,7 +81,25 @@
               },
               "version": "f359a15ab13c85412634"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7a6741372e3d",
+          "name": "MAR-Net多任务自适应分辨率神经网络",
+          "desc": "淋巴结转移检测与亚型识别",
+          "evidence": [
+            {
+              "quote": "研发了多任务自适应分辨率神经网络模型（MAR-Net），对多尺度病理特征进行特定于任务的注意力融合",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2965,
+                "end_char": 3013
+              },
+              "version": "f359a15ab13c85412634"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,299 @@
       "state": "has",
       "items": [
         {
-          "id": "item-29a096769117",
-          "name": "侵袭层淋巴免疫细胞多预后更优",
-          "desc": "结直肠癌患者肿瘤侵袭层包含越多淋巴免疫细胞通常具有相对更低的生存风险、临床预后更优。",
+          "id": "item-9ca5a0f3ceab",
+          "name": "MAR-Net检测识别准确率",
+          "desc": "超过95.0%",
           "evidence": [
             {
-              "quote": "结直肠癌患者肿瘤侵袭层包含越多的淋巴免疫细胞通常具有相对更低的生存风险、临床预后更优",
+              "quote": "模型检测、识别准确率均超过95.0%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3172,
-                "end_char": 3213
-              },
-              "version": "f359a15ab13c85412634"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b791efff790e",
-          "name": "MAR-Net检测淋巴结转移准确率超95%",
-          "desc": "多任务自适应分辨率神经网络可同时实现淋巴结转移病灶检测及腺癌与黏液腺癌亚型识别，检测与识别准确率均超95.0%。",
-          "evidence": [
-            {
-              "quote": "利用所提出的多任务自适应分辨率神经网络，可同时实现淋巴结转移病灶检测及腺癌与黏液腺癌的亚型识别，模型检测、识别准确率均超过95.0%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3279,
+                "start_char": 3327,
                 "end_char": 3344
               },
               "version": "f359a15ab13c85412634"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-1085b88710c6",
-          "name": "多中心合作数据集",
-          "desc": "利用TCGA开源数据库477例结直肠癌患者病理切片与临床信息，并与韩国延世大学附属医院合作收集两个批次共706例患者病理切片。",
+          "id": "item-de95c4c64b4a",
+          "name": "数据来源",
+          "desc": "TCGA 477例及韩国两批180例、526例",
           "evidence": [
             {
-              "quote": "项目团队与韩国延世大学附属江南世福兰斯医院医生开展合作，收集了两个批次结直肠癌患者病理切片，分别包括180例患者和526例患者实验数据",
+              "quote": "包括477例结直肠癌患者病理切片和临床信息",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3096,
-                "end_char": 3162
+                "start_char": 3071,
+                "end_char": 3091
               },
               "version": "f359a15ab13c85412634"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2f6bd352ba33"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bf1f623304d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vision Transformers for Computational Histopathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongming Xu;Qi Xu;Fengyu Cong;Jeonghyun Kang;Chu Han;Zaiyi Liu;Anant Madabhushi;Cheng Lu",
+      "id": "out-cdb640beda44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vision Transformers for Computational Histopathology — Hongming Xu;Qi Xu;Fengyu Cong;Jeonghyun Kang;Chu Han;Zaiyi Liu;Anant Madabhushi;Cheng Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3421,
+            "end_char": 3570
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bf1f623304d1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-68b63658a84d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting pathological complete response based on weakly and semi-supervised joint learning in breast cancer multi-parametric MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyu Hao;Hongming Xu;Nannan Zhao;Tao Yu;Timo Hamalainen;Fengyu Cong",
+      "id": "out-5424fddc9497",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting pathological complete response based on weakly and semi-supervised joint learning in breast cancer multi-parametric MRI — Xinyu Hao;Hongming Xu;Nannan Zhao;Tao Yu;Timo Hamalainen;Fengyu Cong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3575,
+            "end_char": 3782
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-68b63658a84d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-29a096769117"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial heterogeneity and organization of tumor mutation burden with immune infiltrates within tumors based on whole slide images correlated with patient survival in bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongming Xu;Sunho Park;Jean René Clemenceau;Jinhwan Choi;Sung Hak Lee;Tae Hyun Hwang",
+      "id": "out-1bb3a8db082c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial heterogeneity and organization of tumor mutation burden with immune infiltrates within tumors based on whole slide images correlated with patient survival in bladder cancer — Hongming Xu;Sunho Park;Jean René Clemenceau;Jinhwan Choi;Sung Hak Lee;Tae Hyun Hwang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3787,
+            "end_char": 4060
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9a2c451fb6d7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b791efff790e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-task Adaptive Resolution Network for Lymph Node Metastasis Diagnosis from Whole Slide Images of Colorectal Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tong Wang;Su-Jin Shin;Mingkang Wang;Qi Xu;Guiyang Jiang;Fengyu Cong;Jeonghyun Kang;Hongming Xu",
+      "id": "out-356d732fbd83",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-task Adaptive Resolution Network for Lymph Node Metastasis Diagnosis from Whole Slide Images of Colorectal Cancer — Tong Wang;Su-Jin Shin;Mingkang Wang;Qi Xu;Guiyang Jiang;Fengyu Cong;Jeonghyun Kang;Hongming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4287
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial analysis of tumor‐infiltrating lymphocytes in histological sections using deep learning techniques predicts survival in colorectal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongming Xu;Yoon Jin Cha;Jean R Clemenceau;Jinhwan Choi;Sung Hak Lee;Jeonghyun Kang;Tae Hyun Hwang",
+      "id": "out-cf77966182c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial analysis of tumor‐infiltrating lymphocytes in histological sections using deep learning techniques predicts survival in colorectal carcinoma — Hongming Xu;Yoon Jin Cha;Jean R Clemenceau;Jinhwan Choi;Sung Hak Lee;Jeonghyun Kang;Tae Hyun Hwang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4292,
+            "end_char": 4547
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-stream Context-aware Neural Network for Survival Prediction from Whole Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junxiu Gao;Shan Jin;Ranran Wang;Mingkang Wang;Tong Wang;Hongming Xu",
+      "id": "out-533120a8e917",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual-stream Context-aware Neural Network for Survival Prediction from Whole Slide Images — Junxiu Gao;Shan Jin;Ranran Wang;Mingkang Wang;Tong Wang;Hongming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4552,
+            "end_char": 4716
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting pathological complete response based on weakly and semi-supervised joint learning from breast cancer MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyu Hao;Hongming Xu;Nannan Zhao;Tao Yu;Timo Hamalainen;Fengyu Cong",
+      "id": "out-8448c920f138",
+      "evidence": [
+        {
+          "quote": "[会议论文] Predicting pathological complete response based on weakly and semi-supervised joint learning from breast cancer MRI — Xinyu Hao;Hongming Xu;Nannan Zhao;Tao Yu;Timo Hamalainen;Fengyu Cong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4721,
+            "end_char": 4913
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-supervised contrastive pre-training integrated with multi-level co-attention for survival prognosis from whole slide images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junxiu Gao;Xinyu Hao;Shan Jin;Hongming Xu",
+      "id": "out-01035d62c908",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-supervised contrastive pre-training integrated with multi-level co-attention for survival prognosis from whole slide images — Junxiu Gao;Xinyu Hao;Shan Jin;Hongming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4918,
+            "end_char": 5096
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Simultaneously segmenting and classifying cell nuclei by using multi-task learning in multiplex immunohistochemical tissue microarray sections",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ranran Wang;Yusong Qiu;Xinyu Hao;Shan Jin;Junxiu Gao;Heng Qi;Qi Xu;Yong Zhang;Hongming Xu",
+      "id": "out-f127a6dfebb6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Simultaneously segmenting and classifying cell nuclei by using multi-task learning in multiplex immunohistochemical tissue microarray sections — Ranran Wang;Yusong Qiu;Xinyu Hao;Shan Jin;Junxiu Gao;Heng Qi;Qi Xu;Yong Zhang;Hongming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5101,
+            "end_char": 5341
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种结合颜色通道分解和循环对抗生成网络的病理图像染色迁移方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐宏明;王然然;张勇;邱煜淞;丛丰裕",
+      "id": "out-541d68ddca09",
+      "evidence": [
+        {
+          "quote": "[专利] 一种结合颜色通道分解和循环对抗生成网络的病理图像染色迁移方法 — 徐宏明;王然然;张勇;邱煜淞;丛丰裕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5347,
+            "end_char": 5402
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MIHIC: a multiplex IHC histopathological image classification dataset for lung cancer immune microenvironment quantification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ranran Wang;Yusong Qiu;Tong Wang;Mingkang Wang;Shan Jin;Fengyu Cong;Yong Zhang;Hongming Xu",
+      "id": "out-f0d614eb4968",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MIHIC: a multiplex IHC histopathological image classification dataset for lung cancer immune microenvironment quantification — Ranran Wang;Yusong Qiu;Tong Wang;Mingkang Wang;Shan Jin;Fengyu Cong;Yong Zhang;Hongming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5408,
+            "end_char": 5631
+          },
+          "version": "f359a15ab13c85412634"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

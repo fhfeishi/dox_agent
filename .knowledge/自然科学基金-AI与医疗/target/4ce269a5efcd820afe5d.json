@@ -2,15 +2,20 @@
   "doc_id": "4ce269a5efcd820afe5d",
   "version": "0136c3a5be38591ae85f",
   "source_hash": "5e9721c7b43b15c56e597e7ffb3310638e9db3f7ce113b64a910c9da48c4baed",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.077880+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.547929+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0ad8945e4a8",
-          "name": "多发性骨髓瘤精准诊疗",
-          "desc": "多发性骨髓瘤是常见血液系统恶性肿瘤，不同遗传学基础导致不同临床表现与针对性治疗需求。",
+          "id": "item-b8220215096a",
+          "name": "多发性骨髓瘤基因分型、预后与疗效评估",
+          "desc": "MM是血液系统恶性肿瘤",
           "evidence": [
             {
               "quote": "多发性骨髓瘤(MM)是一种以患者骨髓中恶性浆细胞克隆性增生为特征的常见的血液系统恶性肿瘤",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6f9098023c9e",
-          "name": "现有诊断与方案制定手段欠缺",
-          "desc": "荧光原位杂交需骨髓活检、患者痛苦且花费高；治疗方案制定从精准医疗角度看仍有欠缺。",
+          "id": "item-148983dfbc57",
+          "name": "诊断预后依赖有创骨髓活检",
+          "desc": "治疗方案依赖年龄及临床评分",
           "evidence": [
             {
               "quote": "前者需骨髓活检，患者痛苦大而花费多，后者从精准医疗和个体化医疗的角度看仍有欠缺",
@@ -51,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 822,
                 "end_char": 860
-              },
-              "version": "0136c3a5be38591ae85f"
-            }
-          ]
-        },
-        {
-          "id": "item-e2e74e25262d",
-          "name": "MM 影像组学研究空白",
-          "desc": "国内外在多发性骨髓瘤影像组学研究方面尚为空白。",
-          "evidence": [
-            {
-              "quote": "目前国内外在 MM 影像组学研究方面尚为空白",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 946,
-                "end_char": 967
               },
               "version": "0136c3a5be38591ae85f"
             }
@@ -79,81 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d6b80d1cdda",
-          "name": "骨髓MRI影像组学诺莫图",
-          "desc": "基于骨髓MRI影像组学特征构建诺莫图，用于MM患者总生存期预测。",
+          "id": "item-09507ef602f0",
+          "name": "骨髓MRI影像组学预后模型与诺莫图",
+          "desc": "预测总生存期",
           "evidence": [
             {
-              "quote": "影像组学诺莫图的预测能力优于临床模型、影像组学特征模型、D-S和ISS",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2749,
-                "end_char": 2783
-              },
-              "version": "0136c3a5be38591ae85f"
-            }
-          ]
-        },
-        {
-          "id": "item-764c8e92ed11",
-          "name": "多序列联合影像组学建模",
-          "desc": "联合T1WI、T2WI-FS影像组学特征与临床特征构建鉴别与预测模型。",
-          "evidence": [
-            {
-              "quote": "联合T1WI、T2WI-FS影像组学特征和临床特征的模型预测MM化疗疗效的表现最好",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3166,
-                "end_char": 3206
-              },
-              "version": "0136c3a5be38591ae85f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a4123b2216d7",
-          "name": "MRI影像组学有效预测MM预后",
-          "desc": "影像组学特征与1q21扩增、del(17p)、β2-MG≥5.5mg/L均与总生存期显著相关。",
-          "evidence": [
-            {
-              "quote": "基于骨髓MRI影像组学模型能有效预测MM患者的预后，可以为及时、有效的临床干预提供帮助",
+              "quote": "基于骨髓MRI影像组学模型能有效预测MM患者的预后",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2840,
-                "end_char": 2882
+                "end_char": 2864
               },
               "version": "0136c3a5be38591ae85f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-8b80bcfee941",
-          "name": "6个模型预测BCD方案疗效",
-          "desc": "6个机器学习模型对BCD方案预测能力均较好，训练集AUC为0.84-0.896、验证集0.801-0.885。",
+          "id": "item-1d5a714c435d",
+          "name": "6种机器学习模型预测BCD方案疗效",
+          "desc": "随机森林相对较好",
           "evidence": [
             {
-              "quote": "6个机器学习模型对BCD方案的预测能力均较好(AUC在训练集为0.84-0.896，在验证集为0.801-0.885)",
+              "quote": "6个机器学习模型对BCD方案的预测能力均较好(AUC在训练集为0.84-0.896，在验证集为0.801-0.885)，RF的预测能力相对较好",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2892,
-                "end_char": 2950
+                "end_char": 2962
               },
               "version": "0136c3a5be38591ae85f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-0514a369bd1c",
-          "name": "联合模型预测1q21扩增",
-          "desc": "T1WI+T2WI-FS+临床特征联合模型预测染色体1q21扩增表现最好，测试集AUC为0.908。",
+          "id": "item-c5b41a40e626",
+          "name": "T1WI+T2WI-FS+临床联合模型预测1q21扩增",
+          "desc": "测试集AUC 0.908",
           "evidence": [
             {
               "quote": "T1WI+T2WI-FS+临床特征的联合模型预测MM染色体1q21扩增的表现最好，测试集中AUC值为0.908",
@@ -165,55 +116,92 @@
               "version": "0136c3a5be38591ae85f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66cafeabaf9a",
+          "name": "影像组学诺莫图预测能力",
+          "desc": "优于临床模型及ISS",
+          "evidence": [
+            {
+              "quote": "影像组学诺莫图的预测能力优于临床模型、影像组学特征模型、D-S和ISS",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2749,
+                "end_char": 2783
+              },
+              "version": "0136c3a5be38591ae85f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f0ad8945e4a8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6f9098023c9e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-Based Bone Marrow Radiomics Nomogram for Prediction of Overall Survival in Patients With Multiple Myeloma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Li;Yang Liu;Ping Yin;Chuanxi Hao;Chao Sun;Lei Chen;Sicong Wang;Nan Hong",
+      "id": "out-80ce27809f67",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-Based Bone Marrow Radiomics Nomogram for Prediction of Overall Survival in Patients With Multiple Myeloma — Yang Li;Yang Liu;Ping Yin;Chuanxi Hao;Chao Sun;Lei Chen;Sicong Wang;Nan Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3572,
+            "end_char": 3766
+          },
+          "version": "0136c3a5be38591ae85f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6f9098023c9e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4d6b80d1cdda"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4d6b80d1cdda"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a4123b2216d7"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-764c8e92ed11"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0514a369bd1c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Models Based on Magnetic Resonance Imaging for Prediction of the Response to Bortezomib-Based Therapy in Patients with Multiple Myeloma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Li;Ping Yin;Yang Liu;Chuanxi Hao;Lei Chen;Chao Sun;Sicong Wang;Nan Hong",
+      "id": "out-62e418a14d26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Models Based on Magnetic Resonance Imaging for Prediction of the Response to Bortezomib-Based Therapy in Patients with Multiple Myeloma — Yang Li;Ping Yin;Yang Liu;Chuanxi Hao;Lei Chen;Chao Sun;Sicong Wang;Nan Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 4001
+          },
+          "version": "0136c3a5be38591ae85f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

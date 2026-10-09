@@ -2,15 +2,20 @@
   "doc_id": "a87bbb7c1dd6fc3c463d",
   "version": "cd63875fef479988e465",
   "source_hash": "a1b93f88db007cbae1c18ce3c923e3aae914180cd9cd083b7e74598b4a01e02d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.908512+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:52:16.387714+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-917fd01c06ea",
           "name": "医学影像可解释性建模",
-          "desc": "面向智慧精准医疗，在深度学习框架下从特征计算与模型分析两个层面提升医学影像分析的可解释性。",
+          "desc": "智慧精准医疗",
           "evidence": [
             {
-              "quote": "随着智慧精准医疗的纵深推进，智能分析的结果已不再是唯一的关注点，分析过程与结果的可解释性越来越受到重视",
+              "quote": "随着大模型的广泛应用，智慧精准医疗的需求不再单纯是高性能，其可解释性要求越来越高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 645,
-                "end_char": 695
+                "start_char": 2930,
+                "end_char": 2969
               },
               "version": "cd63875fef479988e465"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6aa7c02a9b7b",
-          "name": "多模不平衡小样本下模型可解释性不足",
-          "desc": "多模、不平衡、小样本的医学影像数据使深度学习模型结果难以理解，可解释性成为智慧精准医疗的核心诉求。",
+          "id": "item-6faa34889d5d",
+          "name": "多模、不平衡、小样本医学影像的特征与模型可解释性",
+          "desc": "可解释性要求越来越高",
           "evidence": [
             {
               "quote": "本课题针对多模、不平衡、小样本下的医学影像数据，从特征计算可解释性到模型分析可解释性两个层面出发",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e34eca355552",
-          "name": "融合循证医疗知识的知识图谱与可解释深度建模",
-          "desc": "引入循证医疗知识研究特征图谱构建（特征实体选择、特征关系建模），结合临床风险约束的配准建模、注意力与路由融合分割网络，以及知识指导下的对抗生成迁移网络。",
+          "id": "item-7ddf56f5203c",
+          "name": "知识图谱知识抽取、链接及推理补全",
+          "desc": "为知识推理与大模型多任务分析提供支撑",
           "evidence": [
             {
-              "quote": "在各类特征学习基础上，引入循证医疗知识，研究特征图谱构建，如特征实体的选择机制、特征关系建模等",
+              "quote": "一方面开展了知识图谱构件中的知识抽取、链接及推理补全的系统性研究，为知识推理与大模型多任务分析提供基础支撑",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 790,
-                "end_char": 836
+                "start_char": 3029,
+                "end_char": 3081
               },
               "version": "cd63875fef479988e465"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-26f5740a9dd5",
+          "name": "事前、事中、事后可解释医学图像模型",
+          "desc": "原型框架及显著性图",
+          "evidence": [
+            {
+              "quote": "另一方面，开展了医学图像事前模型可解释、事中特征可解释、事后可视化可解释等一系列研究，基于原型框架及显著性图显示理论，提出了一系列模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3083,
+                "end_char": 3149
+              },
+              "version": "cd63875fef479988e465"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c09cd5d3b42e",
-          "name": "眼科图像分割配准与分析达SOTA",
-          "desc": "开展知识图谱抽取、链接及推理补全研究，并将事前模型可解释、事中特征可解释、事后可视化可解释的一系列模型应用于眼科图像分割、配准与分析，效果达到SOTA水平。",
+          "id": "item-70e637ca103c",
+          "name": "眼科图像分割配准分析落地应用",
+          "desc": "效果达到SOTA",
           "evidence": [
             {
               "quote": "并将模型在眼科图像的分割、配准及分析等任务中开展落地应用，效果达到SOTA水平",
@@ -99,44 +122,581 @@
               "version": "cd63875fef479988e465"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-917fd01c06ea"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6aa7c02a9b7b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Anatomical Consistency Learning for Vision-Grounded Medical Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Longzhen Yang;Zhangkai Ni;Ying Wen;Yihang Liu;Lianghua He;Heng Tao Shen",
+      "id": "out-8d1a2b6a2d9f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-Supervised Anatomical Consistency Learning for Vision-Grounded Medical Report Generation — Longzhen Yang;Zhangkai Ni;Ying Wen;Yihang Liu;Lianghua He;Heng Tao Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3257,
+            "end_char": 3430
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6aa7c02a9b7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e34eca355552"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "R-HMF: A Relation-enhanced Hierarchical Multimodal Framework for Few-shot Knowledge Graph Completion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengmei Yang;Qian Li;Zhenyang Li;Chen Ma;Lianghua He",
+      "id": "out-c0abeae0fe82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] R-HMF: A Relation-enhanced Hierarchical Multimodal Framework for Few-shot Knowledge Graph Completion — Chengmei Yang;Qian Li;Zhenyang Li;Chen Ma;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3435,
+            "end_char": 3597
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e34eca355552"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c09cd5d3b42e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SCConv: Spatial and Channel Reconstruction Convolution for Feature Redundancy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiafeng Li;Yin Wen;Lianghua He",
+      "id": "out-cfd0b321c53f",
+      "evidence": [
+        {
+          "quote": "[会议论文] SCConv: Spatial and Channel Reconstruction Convolution for Feature Redundancy — Jiafeng Li;Yin Wen;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3602,
+            "end_char": 3718
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual Contrastive Learning with Mutual Correction for Semi-Supervised Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiazhe Zhu;Lianghua He",
+      "id": "out-616882ddd51e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual Contrastive Learning with Mutual Correction for Semi-Supervised Medical Image Segmentation — Jiazhe Zhu;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3849
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SFM-Net: Semantic Feature-Based Multi-Stage Network for Unsupervised Image Registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Tai;Dai Xinru;Zhang Suwei;Zou Haidong;He Lianghua;Wen Ying",
+      "id": "out-57db65549304",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SFM-Net: Semantic Feature-Based Multi-Stage Network for Unsupervised Image Registration — Ma Tai;Dai Xinru;Zhang Suwei;Zou Haidong;He Lianghua;Wen Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3854,
+            "end_char": 4011
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于transformer的医学图像分割方法、系统、介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;徐志成;林兴斌",
+      "id": "out-ffbccd963294",
+      "evidence": [
+        {
+          "quote": "[专利] 基于transformer的医学图像分割方法、系统、介质及电子设备 — 何良华;徐志成;林兴斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4016,
+            "end_char": 4067
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Salient Patch Identification for Interpretable Fundus Disease Localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Yitao;He Lianghua;Hu Die",
+      "id": "out-b3a6103b7163",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hierarchical Salient Patch Identification for Interpretable Fundus Disease Localization — Peng Yitao;He Lianghua;Hu Die",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4072,
+            "end_char": 4197
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合多尺度特征的医学图像分割模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐志成;何良华",
+      "id": "out-5ab221ebdd7f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 融合多尺度特征的医学图像分割模型 — 徐志成;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4202,
+            "end_char": 4234
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Variational Transformer: A Framework Beyond the Tradeoff Between Accuracy and Diversity for Image Captioning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Longzhen Yang;Lianghua He;Die Hu;Yihang Liu;Yitao Peng;Hongzhou Chen;MengChu Zhou",
+      "id": "out-d5874330863f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Variational Transformer: A Framework Beyond the Tradeoff Between Accuracy and Diversity for Image Captioning — Longzhen Yang;Lianghua He;Die Hu;Yihang Liu;Yitao Peng;Hongzhou Chen;MengChu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4239,
+            "end_char": 4437
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CFII-Net: Explicit Class Embeddings and Feature Maps Through Iterative Interaction for Boosting Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyu Zhu;Xiwen Liu;Lianghua He;Yin Wen",
+      "id": "out-d227b35d15ce",
+      "evidence": [
+        {
+          "quote": "[会议论文] CFII-Net: Explicit Class Embeddings and Feature Maps Through Iterative Interaction for Boosting Medical Image Segmentation — Xinyu Zhu;Xiwen Liu;Lianghua He;Yin Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4443,
+            "end_char": 4613
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于注意力机制的弱监督黑色素瘤图像分割研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王方鑫;何良华",
+      "id": "out-0b5573fe47cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于注意力机制的弱监督黑色素瘤图像分割研究 — 王方鑫;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4619,
+            "end_char": 4656
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PSAM:Prompt-based Segment Anything Model Adaption for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyi Wen;Lianghua He",
+      "id": "out-a625c20f62e8",
+      "evidence": [
+        {
+          "quote": "[会议论文] PSAM:Prompt-based Segment Anything Model Adaption for Medical Image Segmentation — Chenyi Wen;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4662,
+            "end_char": 4773
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M2RL-Net: Multi-View and Multi-Level Relation Learning Network for Weakly-Supervised Image Forgery Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jiafeng;Wen Ying;He Lianghua",
+      "id": "out-240759bc1cc1",
+      "evidence": [
+        {
+          "quote": "[会议论文] M2RL-Net: Multi-View and Multi-Level Relation Learning Network for Weakly-Supervised Image Forgery Detection — Li Jiafeng;Wen Ying;He Lianghua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4927
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Dynamic Masks for Visual Explanation of Neural Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yitao Peng;Lianghua He;Die Hu;Yihang Liu;Longzheng Yang;Shaohua Shang",
+      "id": "out-48de1da3597f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical Dynamic Masks for Visual Explanation of Neural Networks — Yitao Peng;Lianghua He;Die Hu;Yihang Liu;Longzheng Yang;Shaohua Shang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4933,
+            "end_char": 5079
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EEG-based emotion analysis using person-event network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liwei Tang;Lianghua He",
+      "id": "out-93555114c9ec",
+      "evidence": [
+        {
+          "quote": "[会议论文] EEG-based emotion analysis using person-event network — Liwei Tang;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5085,
+            "end_char": 5169
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种弱监督分割网络区域扩张参数自适应生成方法和系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何冰;戴缘生;李春华;谢小松;许强;陈伟俊;张伟;何良华",
+      "id": "out-27fd6b84d67e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种弱监督分割网络区域扩张参数自适应生成方法和系统 — 何冰;戴缘生;李春华;谢小松;许强;陈伟俊;张伟;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5175,
+            "end_char": 5235
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RadLAS: A Foundation Model for Interpretable Radiography Image Analysis with Lesion-Aware Self-Supervised Pre-training",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yihang Liu;Ying Wen;Longzhen Yang;Lianghua He;Heng Tao Shen",
+      "id": "out-589cada4c019",
+      "evidence": [
+        {
+          "quote": "[会议论文] RadLAS: A Foundation Model for Interpretable Radiography Image Analysis with Lesion-Aware Self-Supervised Pre-training — Yihang Liu;Ying Wen;Longzhen Yang;Lianghua He;Heng Tao Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5241,
+            "end_char": 5427
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoupling Deep Learning for Enhanced Image Recognition Interpretability",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yitao Peng;Lianghua He;Die Hu;Yihang Liu;Longzhen Yang;Shaohua Shang",
+      "id": "out-86bd338f11fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decoupling Deep Learning for Enhanced Image Recognition Interpretability — Yitao Peng;Lianghua He;Die Hu;Yihang Liu;Longzhen Yang;Shaohua Shang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5433,
+            "end_char": 5582
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FeaInfNet: Diagnosis of Medical Images With Feature-Driven Inference and Visual Explanations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Yitao;He Lianghua;Hu Die;Liu Yihang;Yang Longzhen;Shang Shaohua",
+      "id": "out-b048824d3799",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FeaInfNet: Diagnosis of Medical Images With Feature-Driven Inference and Visual Explanations — Peng Yitao;He Lianghua;Hu Die;Liu Yihang;Yang Longzhen;Shang Shaohua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5588,
+            "end_char": 5757
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于提示学习的自适应医学图像分割方法、设备、介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;文程艺",
+      "id": "out-825a4f95eabf",
+      "evidence": [
+        {
+          "quote": "[专利] 基于提示学习的自适应医学图像分割方法、设备、介质 — 何良华;文程艺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5763,
+            "end_char": 5801
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AFiRe: Anatomy-Driven Self-Supervised Learning for Fine-Grained Representation in Radiographic Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yihang;He Lianghua;Wen Ying;Yang Longzhen;Chen Hongzhou",
+      "id": "out-61de5f92e4b2",
+      "evidence": [
+        {
+          "quote": "[会议论文] AFiRe: Anatomy-Driven Self-Supervised Learning for Fine-Grained Representation in Radiographic Images — Liu Yihang;He Lianghua;Wen Ying;Yang Longzhen;Chen Hongzhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5807,
+            "end_char": 5976
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-grained unsupervised domain adaptation approach for semantic segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Luyang;Ma Tai;Lu Yue;Li Qingli;He Lianghua;Wen Ying",
+      "id": "out-4d37431be66d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-grained unsupervised domain adaptation approach for semantic segmentation — Li Luyang;Ma Tai;Lu Yue;Li Qingli;He Lianghua;Wen Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5982,
+            "end_char": 6126
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于弱监督学习的医学图像分割方法及其模型的训练方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;王方鑫;李聪",
+      "id": "out-878da9f648ec",
+      "evidence": [
+        {
+          "quote": "[专利] 基于弱监督学习的医学图像分割方法及其模型的训练方法 — 何良华;王方鑫;李聪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6132,
+            "end_char": 6174
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mutually Guided Few-Shot Learning For Relational Triple Extraction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengmei Yang;Shuai Jiang;Bowei He;Chen Ma;Lianghua He",
+      "id": "out-84d595a5fc97",
+      "evidence": [
+        {
+          "quote": "[会议论文] Mutually Guided Few-Shot Learning For Relational Triple Extraction — Chengmei Yang;Shuai Jiang;Bowei He;Chen Ma;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6180,
+            "end_char": 6309
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种自适应光照模型建模方法与系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何冰;王浩洋;徐晓明;何良华;郭歌;孟夏卿;余快;印明骋;刘龙飞;马野",
+      "id": "out-6a701cf7cb47",
+      "evidence": [
+        {
+          "quote": "[专利] 一种自适应光照模型建模方法与系统 — 何冰;王浩洋;徐晓明;何良华;郭歌;孟夏卿;余快;印明骋;刘龙飞;马野",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6315,
+            "end_char": 6373
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Lighting Modeling in 3D Reconstruction with Illumination Properties Recovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ge Guo;Lianghua He",
+      "id": "out-7db2e7ae6b7c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Adaptive Lighting Modeling in 3D Reconstruction with Illumination Properties Recovery — Ge Guo;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6379,
+            "end_char": 6491
+          },
+          "version": "cd63875fef479988e465"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "会议论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

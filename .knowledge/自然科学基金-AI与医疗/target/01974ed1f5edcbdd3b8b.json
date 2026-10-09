@@ -2,15 +2,20 @@
   "doc_id": "01974ed1f5edcbdd3b8b",
   "version": "6b512e0fff1f562ac6a9",
   "source_hash": "1a673ccfce491096081a4f16d5a47ab84be000436c9d5ac3019de72611182ef0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.894864+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.066414+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-54221f416933",
-          "name": "垂体腺瘤电子病历辅助诊断",
-          "desc": "垂体腺瘤发病隐匿、临床表现复杂、并发症多样，早期症状常与糖尿病、高血压等常见疾病混淆，误诊漏诊率较高。",
+          "id": "item-987f6e72b947",
+          "name": "垂体腺瘤电子病历与分子数据诊疗",
+          "desc": "垂体腺瘤是常见中枢神经系统肿瘤，早期症状易与常见病混淆",
           "evidence": [
             {
-              "quote": "垂体腺瘤是常见的中枢神经系统肿瘤之一，具有发病隐匿、临床表现复杂和并发症多样等特点。其早期症状常与糖尿病、高血压、肥胖及骨质疏松等常见疾病相混淆，导致误诊和漏诊率较高",
+              "quote": "垂体腺瘤是常见的中枢神经系统肿瘤之一",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2019,
-                "end_char": 2101
-              },
-              "version": "6b512e0fff1f562ac6a9"
-            }
-          ]
-        },
-        {
-          "id": "item-482986f8670b",
-          "name": "汉语医疗文本自然语言处理",
-          "desc": "自然语言处理技术在医疗领域的应用在我国还处于起步阶段，本项目旨在对汉语文本为输入的深度学习模型进行探索。",
-          "evidence": [
-            {
-              "quote": "自然语言处理技术在医疗领域的应用在我国还处于起步阶段，本研究项目旨在以垂体腺瘤为开端，对以汉语文本为输入的深度学习模型进行探索",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 826,
-                "end_char": 888
+                "end_char": 2036
               },
               "version": "6b512e0fff1f562ac6a9"
             }
@@ -57,32 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a3f8dbb1cf5d",
-          "name": "病历信息未被有效利用",
-          "desc": "临床诊疗产生的海量电子病历与生物学信息蕴含丰富诊断线索，但长期以来未被有效利用。",
+          "id": "item-bafaa27c9bd2",
+          "name": "早期误诊漏诊率高",
+          "desc": "早期症状与糖尿病、高血压等混淆，误诊和漏诊率较高",
           "evidence": [
             {
-              "quote": "这些信息中蕴含着丰富的诊断线索和因果信息，但长期以来未被有效利用，制约了精准诊断与智能决策的发展。",
+              "quote": "导致误诊和漏诊率较高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2163,
-                "end_char": 2211
+                "start_char": 2092,
+                "end_char": 2101
               },
               "version": "6b512e0fff1f562ac6a9"
             }
           ]
         },
         {
-          "id": "item-4fb48e367c67",
-          "name": "模型可解释性不足",
-          "desc": "需要在病历文本中识别支持诊断结论的关键证据以提升模型决策过程的可解释性。",
+          "id": "item-7f49949d400f",
+          "name": "病历文本诊断线索未被有效利用",
+          "desc": "电子病历中的诊断线索和因果信息长期未被有效利用",
           "evidence": [
             {
-              "quote": "开展因果关系抽取与证据溯源研究，在病历文本中识别支持诊断结论的关键证据，提升模型决策过程的可解释性",
+              "quote": "但长期以来未被有效利用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2398,
-                "end_char": 2446
+                "start_char": 2184,
+                "end_char": 2194
               },
               "version": "6b512e0fff1f562ac6a9"
             }
@@ -97,95 +86,24 @@
         {
           "id": "item-d9abd5b85225",
           "name": "scCM单细胞整合模型",
-          "desc": "提出scCM并完成大规模评估，支持跨数据集与跨物种的单细胞整合。",
+          "desc": "跨数据集、跨物种的中枢神经系统单细胞数据整合",
           "evidence": [
             {
-              "quote": "一是提出scCM并完成大规模评估，支持跨数据集与跨物种的单细胞整合",
+              "quote": "提出scCM并完成大规模评估，支持跨数据集与跨物种的单细胞整合",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2275,
+                "start_char": 2277,
                 "end_char": 2307
               },
               "version": "6b512e0fff1f562ac6a9"
             }
-          ]
-        },
-        {
-          "id": "item-b6c840e26bfa",
-          "name": "临床特征与MRI影像组学融合",
-          "desc": "建立临床特征与MRI影像组学融合的机器学习框架预测库欣病术后延迟缓解。",
-          "evidence": [
-            {
-              "quote": "二是建立临床特征与MRI影像组学融合的机器学习框架预测库欣病术后延迟缓解",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2309,
-                "end_char": 2344
-              },
-              "version": "6b512e0fff1f562ac6a9"
-            }
-          ]
-        },
-        {
-          "id": "item-b76b42f8aa57",
-          "name": "CD87靶向免疫治疗策略",
-          "desc": "提出CD87靶向免疫治疗策略，在侵袭性无功能垂体腺瘤中验证BiTE与CAR-T。",
-          "evidence": [
-            {
-              "quote": "三是提出CD87靶向免疫治疗策略：BiTE与CAR-T在侵袭性无功能垂体腺瘤（iNFPA）中的验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2346,
-                "end_char": 2394
-              },
-              "version": "6b512e0fff1f562ac6a9"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-14f4fd7d0103",
-          "name": "跨数据集跨物种单细胞整合方法",
-          "desc": "基于人工智能开发了跨数据集、跨物种的中枢神经系统单细胞数据整合方法。",
-          "evidence": [
-            {
-              "quote": "项目基于人工智能开发了跨数据集、跨物种的中枢神经系统单细胞数据整合的方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2620,
-                "end_char": 2655
-              },
-              "version": "6b512e0fff1f562ac6a9"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-d9180bcb97d6",
-          "name": "CD87作为侵袭性垂体腺瘤新靶点",
-          "desc": "首次系统揭示CD87是侵袭性无功能垂体腺瘤的高表达靶点，CD87的CAR-IL-12细胞展现更强效应持续性。",
-          "evidence": [
-            {
-              "quote": "首次系统揭示CD87是侵袭性无功能垂体腺瘤的高表达靶点，发现CD87的CAR-IL-12细胞展现出更强的效应持续性的肿瘤杀伤作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2657,
-                "end_char": 2720
-              },
-              "version": "6b512e0fff1f562ac6a9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-207cd27f142b",
-          "name": "XGBoost预测库欣病延迟缓解",
-          "desc": "融合临床与影像组学特征的XGBoost模型能有效预测垂体腺瘤库欣病的术后延迟缓解。",
+          "id": "item-dbd397f1c9e3",
+          "name": "临床与MRI影像组学融合XGBoost模型",
+          "desc": "预测库欣病术后延迟缓解",
           "evidence": [
             {
               "quote": "融合临床与影像组学特征的XGBoost模型能有效预测垂体腺瘤库欣病的术后延迟缓解",
@@ -197,55 +115,166 @@
               "version": "6b512e0fff1f562ac6a9"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2a5da5bd5019",
+          "name": "CD87靶向BiTE/CAR-T免疫治疗",
+          "desc": "CD87靶向免疫治疗在侵袭性无功能垂体腺瘤中的验证",
+          "evidence": [
+            {
+              "quote": "提出CD87靶向免疫治疗策略：BiTE与CAR-T在侵袭性无功能垂体腺瘤（iNFPA）中的验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2348,
+                "end_char": 2394
+              },
+              "version": "6b512e0fff1f562ac6a9"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-32b97709f46f",
+          "name": "因果关系抽取与证据溯源",
+          "desc": "在病历文本中识别支持诊断结论的关键证据",
+          "evidence": [
+            {
+              "quote": "开展因果关系抽取与证据溯源研究，在病历文本中识别支持诊断结论的关键证据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2398,
+                "end_char": 2432
+              },
+              "version": "6b512e0fff1f562ac6a9"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-105467258224",
+          "name": "CD87靶点发现",
+          "desc": "首次系统揭示CD87是侵袭性无功能垂体腺瘤的高表达靶点",
+          "evidence": [
+            {
+              "quote": "首次系统揭示CD87是侵袭性无功能垂体腺瘤的高表达靶点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2657,
+                "end_char": 2683
+              },
+              "version": "6b512e0fff1f562ac6a9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-733968469c7e",
+          "name": "库欣病术后缓解预测模型",
+          "desc": "融合临床与影像组学特征的XGBoost模型有效预测延迟缓解",
+          "evidence": [
+            {
+              "quote": "融合临床与影像组学特征的XGBoost模型能有效预测垂体腺瘤库欣病的术后延迟缓解",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2722,
+                "end_char": 2761
+              },
+              "version": "6b512e0fff1f562ac6a9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-54221f416933"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a3f8dbb1cf5d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting delayed remission in Cushing's disease using radiomics models: a multi-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Wentai;Zhang Dewei;Liu Shaocheng;Wang He;Liu Xiaohai;Dai Congxin;Fang Yi;Fan Yanghua;Wei Zhenqing;Feng Ming;Wang Renzhi",
+      "id": "out-61e7385b8f9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting delayed remission in Cushing's disease using radiomics models: a multi-center study — Zhang Wentai;Zhang Dewei;Liu Shaocheng;Wang He;Liu Xiaohai;Dai Congxin;Fang Yi;Fan Yanghua;Wei Zhenqing;Feng Ming;Wang Renzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2909,
+            "end_char": 3137
+          },
+          "version": "6b512e0fff1f562ac6a9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4fb48e367c67"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b6c840e26bfa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Is ChatGPT Proficient in extracting critical medical information from patient records?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengxing Qian;Renzhi Wang;Yi Fang",
+      "id": "out-3f5fafbe873c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Is ChatGPT Proficient in extracting critical medical information from patient records? — Chengxing Qian;Renzhi Wang;Yi Fang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3142,
+            "end_char": 3271
+          },
+          "version": "6b512e0fff1f562ac6a9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d9abd5b85225"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-14f4fd7d0103"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b76b42f8aa57"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d9180bcb97d6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CD87-targeted BiTE and CAR-T cells potently inhibit invasive nonfunctional pituitary adenomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ren Yuan;Bao Xinjie;Feng Ming;Xing Bing;Lian Wei;Yao Yong;Wang Renzhi",
+      "id": "out-04b67d6076c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CD87-targeted BiTE and CAR-T cells potently inhibit invasive nonfunctional pituitary adenomas — Ren Yuan;Bao Xinjie;Feng Ming;Xing Bing;Lian Wei;Yao Yong;Wang Renzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3276,
+            "end_char": 3447
+          },
+          "version": "6b512e0fff1f562ac6a9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

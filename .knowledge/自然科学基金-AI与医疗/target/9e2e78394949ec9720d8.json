@@ -2,15 +2,20 @@
   "doc_id": "9e2e78394949ec9720d8",
   "version": "c44166dd4f183098351e",
   "source_hash": "1f4cd75164458fa6b05df9d945acb52ac57c2072f1ca25c6712e2863fd0d37a6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.514912+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.837998+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-94a8ea52127c",
-          "name": "CRISPR基因线路精准治疗膀胱癌",
-          "desc": "膀胱癌是泌尿系统最常见的恶性肿瘤，其发生、发展是多基因参与的复杂过程。",
+          "id": "item-356ea56ab6db",
+          "name": "膀胱癌基因线路精准治疗",
+          "desc": "膀胱癌是泌尿系统最常见恶性肿瘤",
           "evidence": [
             {
               "quote": "膀胱癌是泌尿系统最常见的恶性肿瘤，其发生、发展是一个多基因参与的复杂过程",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 675,
                 "end_char": 710
-              },
-              "version": "c44166dd4f183098351e"
-            }
-          ]
-        },
-        {
-          "id": "item-6e5589314ca4",
-          "name": "为基因线路精准干预提供依据",
-          "desc": "项目实施将为基因线路精准干预膀胱癌提供理论基础和科学依据。",
-          "evidence": [
-            {
-              "quote": "该项目的实施将为基因线路精准干预膀胱癌提供理论基础和科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1035,
-                "end_char": 1064
               },
               "version": "c44166dd4f183098351e"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ca098c385ba",
-          "name": "传统靶向治疗无法区分癌细胞与正常细胞",
-          "desc": "针对单一基因的传统靶向治疗无法有效区分膀胱癌细胞和正常细胞。",
+          "id": "item-728516088615",
+          "name": "单一基因靶向治疗无法区分膀胱癌细胞和正常细胞",
+          "desc": "传统靶向治疗",
           "evidence": [
             {
               "quote": "针对单一基因的传统靶向治疗，无法有效区分膀胱癌细胞和正常细胞",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 712,
                 "end_char": 741
-              },
-              "version": "c44166dd4f183098351e"
-            }
-          ]
-        },
-        {
-          "id": "item-54b654169377",
-          "name": "信号传导器存在脱靶率高等问题",
-          "desc": "前期系统存在脱靶率高、转录调控力低、内源信号应答范围窄等潜在问题。",
-          "evidence": [
-            {
-              "quote": "但该系统存在脱靶率高、转录调控力低、内源信号应答范围窄等潜在问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 855,
-                "end_char": 886
               },
               "version": "c44166dd4f183098351e"
             }
@@ -97,7 +70,7 @@
         {
           "id": "item-f007c6f948aa",
           "name": "工程化改造sgRNA和dCas9",
-          "desc": "工程化设计改造sgRNA和dCas9，提高信号传导器的特异性和有效性。",
+          "desc": "提高信号传导器特异性和有效性",
           "evidence": [
             {
               "quote": "工程化设计改造sgRNA和dCas9，提高“信号传导器”的特异性和有效性",
@@ -108,12 +81,13 @@
               },
               "version": "c44166dd4f183098351e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2eca8567a498",
-          "name": "体外筛选核酸适体扩展应答范围",
-          "desc": "利用体外筛选技术获得膀胱癌不同蛋白靶标的核酸适体，扩展对内源信号的应答范围。",
+          "id": "item-751900b5145c",
+          "name": "核酸适体体外筛选",
+          "desc": "扩展对内源信号的应答范围",
           "evidence": [
             {
               "quote": "利用体外筛选技术获得膀胱癌不同蛋白靶标的核酸适体, 扩展对内源信号的应答范围",
@@ -124,35 +98,13 @@
               },
               "version": "c44166dd4f183098351e"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8d564b22800a",
-          "name": "CRISPR-dCas9信号传导器与基因线路",
-          "desc": "前期开发受胞内信号调控的CRISPR-dCas9信号传导器，据此搭建的基因线路首次实现对肿瘤多种蛋白信号的动态感应与整合。",
-          "evidence": [
-            {
-              "quote": "我们前期开发了受胞内信号调控的CRISPR-dCas9“信号传导器”，据此搭建的基因线路首次实现对肿瘤多种蛋白信号的动态感应与整合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 789,
-                "end_char": 853
-              },
-              "version": "c44166dd4f183098351e"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-b2682fea3c62",
-          "name": "构建膀胱癌基因诊疗线路",
-          "desc": "以优化后的信号传导器为基本元件，构建膀胱癌基因诊疗线路。",
+          "id": "item-e7aa2f7df415",
+          "name": "膀胱癌基因诊疗线路",
+          "desc": "以优化的信号传导器为基本元件",
           "evidence": [
             {
               "quote": "以优化的“信号传导器” 为基本元件，构建膀胱癌基因诊疗线路",
@@ -164,72 +116,395 @@
               "version": "c44166dd4f183098351e"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesizing a Genetic Sensor Based on CRISPR-Cas9 for Specifically Killing p53-Deficient Cancer Cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Hengji;Xie Haibiao;Zhou Qun;Liu Yuchen;Huang Weiren",
+      "id": "out-0a9e1089e5f0",
+      "evidence": [
         {
-          "id": "item-1970718adbdf",
-          "name": "AND门基因线路识别膀胱癌细胞",
-          "desc": "基于CRISPReader构建AND门微型基因线路用于识别膀胱癌细胞。",
-          "evidence": [
-            {
-              "quote": "Synthesizing AND gate minigene circuits based on CRISPReader for identification of bladder cancer cells",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4896,
-                "end_char": 4998
-              },
-              "version": "c44166dd4f183098351e"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Synthesizing a Genetic Sensor Based on CRISPR-Cas9 for Specifically Killing p53-Deficient Cancer Cells — Zhan Hengji;Xie Haibiao;Zhou Qun;Liu Yuchen;Huang Weiren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3199,
+            "end_char": 3366
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiplexed promoterless gene expression with CRISPReader",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Hengji;Zhou Qun;Gao Qunjun;Li Jianfa;Huang Weiren;Liu Yuchen",
+      "id": "out-562d2a7d686e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiplexed promoterless gene expression with CRISPReader — Zhan Hengji;Zhou Qun;Gao Qunjun;Li Jianfa;Huang Weiren;Liu Yuchen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3371,
+            "end_char": 3502
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RNA信号连接器、靶mRNA翻译调控方法、逻辑门及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘宇辰;陈志聪;蔡志明",
+      "id": "out-0c03b392a210",
+      "evidence": [
+        {
+          "quote": "[专利] RNA信号连接器、靶mRNA翻译调控方法、逻辑门及应用 — 刘宇辰;陈志聪;蔡志明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3507,
+            "end_char": 3552
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthetic artificial \"long non-coding RNAs\" targeting oncogenic microRNAs and transcriptional factors inhibit malignant phenotypes of bladder cancer cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Haibiao;Zhan Hengji;Gao Qunjun;Li Jianfa;Zhou Qun;Chen Zhicong;Liu Yuhan;Ding Mengting;Xiao Huizhong;Liu Yuchen;Huang Weiren;Cai Zhiming",
+      "id": "out-5450878cacf3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthetic artificial \"long non-coding RNAs\" targeting oncogenic microRNAs and transcriptional factors inhibit malignant phenotypes of bladder cancer cells — Xie Haibiao;Zhan Hengji;Gao Qunjun;Li Jianfa;Zhou Qun;Chen Zhicong;Liu Yuhan;Ding Mengting;Xiao Huizhong;Liu Yuchen;Huang Weiren;Cai Zhiming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3557,
+            "end_char": 3860
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CRISPR/dCasX-mediated transcriptional programming system for inhibiting the progression of bladder cancer cells by repressing c-MYC or activating TP53",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cao Congcong;Yao Lin;Li Aolin;Zhang Quan;Zhang Zhenan;Wang Xiaofei;Gani Ying;Liu Yuchen;Zhang Qian",
+      "id": "out-37a956f6083f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CRISPR/dCasX-mediated transcriptional programming system for inhibiting the progression of bladder cancer cells by repressing c-MYC or activating TP53 — Cao Congcong;Yao Lin;Li Aolin;Zhang Quan;Zhang Zhenan;Wang Xiaofei;Gani Ying;Liu Yuchen;Zhang Qian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3865,
+            "end_char": 4124
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesizing artificial devices that redirect cellular information at will",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yuchen;Li Jianfa;Chen Zhicong;Huang Weiren;Cai Zhiming",
+      "id": "out-16daac2cf773",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesizing artificial devices that redirect cellular information at will — Liu Yuchen;Li Jianfa;Chen Zhicong;Huang Weiren;Cai Zhiming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4129,
+            "end_char": 4270
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long non-coding RNA CASC9 promotes tumor growth and metastasis via modulating FZD6/Wnt/beta-catenin signaling pathway in bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Yonghao;Zhang Lianghao;Yu Shuanbao;Wen Jianguo;Liu Yuchen;Zhang Xuepei",
+      "id": "out-daea9153237e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long non-coding RNA CASC9 promotes tumor growth and metastasis via modulating FZD6/Wnt/beta-catenin signaling pathway in bladder cancer — Zhan Yonghao;Zhang Lianghao;Yu Shuanbao;Wen Jianguo;Liu Yuchen;Zhang Xuepei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4275,
+            "end_char": 4494
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesis of RNA-based gene regulatory devices for redirecting cellular signaling events mediated by p53",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xinbo;Wang Mingxia;Liu Yuchen;Gui Yaoting",
+      "id": "out-783abdfb1701",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesis of RNA-based gene regulatory devices for redirecting cellular signaling events mediated by p53 — Huang Xinbo;Wang Mingxia;Liu Yuchen;Gui Yaoting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4499,
+            "end_char": 4659
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工基因线路识别与干预膀胱癌的基础研究与临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄卫人;刘宇辰;谢震;陈巍;王明军;唐爱发;梅红兵;蔡志明",
+      "id": "out-e4fbad654a3a",
+      "evidence": [
+        {
+          "quote": "[奖励] 人工基因线路识别与干预膀胱癌的基础研究与临床应用 — 黄卫人;刘宇辰;谢震;陈巍;王明军;唐爱发;梅红兵;蔡志明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4724
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Engineering Cellular Signal Sensors based on CRISPR-sgRNA Reconstruction Approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Hengji;Xiao Lulu;Li Aolin;Yao Lin;Cai Zhiming;Liu Yuchen",
+      "id": "out-aaec8c6706fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Engineering Cellular Signal Sensors based on CRISPR-sgRNA Reconstruction Approaches — Zhan Hengji;Xiao Lulu;Li Aolin;Yao Lin;Cai Zhiming;Liu Yuchen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4730,
+            "end_char": 4883
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesizing AND gate minigene circuits based on CRISPReader for identification of bladder cancer cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yuchen;Huang Weiren;Cai Zhiming",
+      "id": "out-0aa9ecb7e8f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesizing AND gate minigene circuits based on CRISPReader for identification of bladder cancer cells — Liu Yuchen;Huang Weiren;Cai Zhiming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4889,
+            "end_char": 5036
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种连接有适配体的模板分子及其试剂盒",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄新波;刘宇辰;汪铭霞",
+      "id": "out-9d25ce057abc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种连接有适配体的模板分子及其试剂盒 — 黄新波;刘宇辰;汪铭霞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5042,
+            "end_char": 5078
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深圳市青年科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘宇辰",
+      "id": "out-c780a9d306a0",
+      "evidence": [
+        {
+          "quote": "[奖励] 深圳市青年科技奖 — 刘宇辰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5084,
+            "end_char": 5102
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Engineering cell signaling using tunable CRISPR-Cpf1-based transcription factors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yuchen;Han Jinghong;Chen Zhicong;Wu Hanwei;Dong Hongsong;Nie Guohui",
+      "id": "out-eb77caca6589",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Engineering cell signaling using tunable CRISPR-Cpf1-based transcription factors — Liu Yuchen;Han Jinghong;Chen Zhicong;Wu Hanwei;Dong Hongsong;Nie Guohui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5108,
+            "end_char": 5268
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RNAi-mediated control of CRISPR functions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xinbo;Chen Zhicong;Liu Yuchen",
+      "id": "out-568bf35488a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RNAi-mediated control of CRISPR functions — Huang Xinbo;Chen Zhicong;Liu Yuchen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5274,
+            "end_char": 5359
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膀胱癌发生机制、特异性识别和干预研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄卫人;刘宇辰;蔡志明;孙小娟;韩永华;李泽松",
+      "id": "out-64086f24aa21",
+      "evidence": [
+        {
+          "quote": "[奖励] 膀胱癌发生机制、特异性识别和干预研究 — 黄卫人;刘宇辰;蔡志明;孙小娟;韩永华;李泽松",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5365,
+            "end_char": 5413
+          },
+          "version": "c44166dd4f183098351e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LincRNA-p21 suppresses glutamine catabolism and bladder cancer cell growth through inhibiting glutaminase expression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Qun;Zhan Hengji;Lin Fan;Liu Yuhan;Yang Kang;Gao Qunjun;Ding Mengting;Liu Yuchen;Huang Weiren;Cai Zhiming",
+      "id": "out-168d36f255d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LincRNA-p21 suppresses glutamine catabolism and bladder cancer cell growth through inhibiting glutaminase expression — Zhou Qun;Zhan Hengji;Lin Fan;Liu Yuhan;Yang Kang;Gao Qunjun;Ding Mengting;Liu Yuchen;Huang Weiren;Cai Zhiming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5419,
+            "end_char": 5653
+          },
+          "version": "c44166dd4f183098351e"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-94a8ea52127c"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9ca098c385ba"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
       },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9ca098c385ba"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f007c6f948aa"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f007c6f948aa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8d564b22800a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2eca8567a498"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1970718adbdf"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

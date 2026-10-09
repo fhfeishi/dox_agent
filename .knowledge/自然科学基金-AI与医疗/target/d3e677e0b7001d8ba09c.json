@@ -2,15 +2,20 @@
   "doc_id": "d3e677e0b7001d8ba09c",
   "version": "18dbee80c4debf01a32d",
   "source_hash": "7fcc6a646e61f82e96d96f4ab61e1804832cc63c5b962d1f35bad25dd5f5c88a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.163555+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:41:55.754714+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9920c8df6ec6",
-          "name": "早期NSCLC立体定向质子放疗精准计划",
-          "desc": "面向早期非小细胞肺癌的质子SBRT治疗，基于影像组学引导制定量体裁衣的放疗计划。",
+          "id": "item-40ba9c39919c",
+          "name": "早期NSCLC质子SBRT精准计划",
+          "desc": "影像组学引导",
           "evidence": [
             {
-              "quote": "立体定向放射治疗（SBRT）对治愈早期恶性肿瘤疗效显著",
+              "quote": "针对非小细胞肺癌，首先在细胞水平建立质子SBRT离体生物效应剂量换算模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 695
+                "start_char": 887,
+                "end_char": 922
               },
               "version": "18dbee80c4debf01a32d"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e2ccc7eb0c6",
-          "name": "质子生物效应剂量现行换算方式受质疑",
-          "desc": "长期沿用的“质子生物效应剂量≈光子剂量×1.1”估算方式受到越来越多质疑，且更高生物效应使肿瘤内部生物异质性变化更复杂。",
+          "id": "item-25053fb20c19",
+          "name": "质子BED估算方式受质疑",
+          "desc": "肿瘤内部生物异质性更复杂",
           "evidence": [
             {
-              "quote": "然而，长期沿用的“质子生物效应剂量（BED）≈光子BED×1.1”估算方式受到越来越多质疑",
+              "quote": "长期沿用的“质子生物效应剂量（BED）≈光子BED×1.1”估算方式受到越来越多质疑",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 732,
+                "start_char": 735,
                 "end_char": 776
               },
               "version": "18dbee80c4debf01a32d"
@@ -63,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-69585436fb38",
-          "name": "影像组学引导的质子SBRT生物功能亚区预测",
-          "desc": "先在细胞水平建立质子SBRT离体生物效应剂量换算模型，再以荷瘤鼠影像组学特征修正在体换算模型，并基于影像组学与有监督机器学习建立疗程中肿瘤生物功能亚区域变化预测模型。",
+          "id": "item-81f665182997",
+          "name": "质子SBRT离体与在体生物效应剂量换算模型",
+          "desc": "细胞水平与荷瘤鼠影像组学修正",
+          "evidence": [
+            {
+              "quote": "以荷瘤鼠照射后肿瘤影像组学特征修正，得到质子SBRT在体生物效应剂量换算模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 926,
+                "end_char": 963
+              },
+              "version": "18dbee80c4debf01a32d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f7711c308f46",
+          "name": "肿瘤生物功能亚区域变化预测模型",
+          "desc": "影像组学与有监督机器学习",
           "evidence": [
             {
               "quote": "基于影像组学特征和有监督的机器学习，建立质子SBRT疗程中肿瘤生物功能亚区域变化预测模型",
@@ -76,67 +98,774 @@
               },
               "version": "18dbee80c4debf01a32d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤质子放疗剂量学特点序言",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱健",
+      "id": "out-5824141f4e82",
+      "evidence": [
         {
-          "id": "item-910ec0cf8a65",
-          "name": "建立质子SBRT在体生物效应剂量换算模型",
-          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明拟以荷瘤鼠影像组学特征修正得到质子SBRT在体生物效应剂量换算模型并引导个体化放疗计划。",
-          "evidence": [
-            {
-              "quote": "然后以荷瘤鼠照射后肿瘤影像组学特征修正，得到质子SBRT在体生物效应剂量换算模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 924,
-                "end_char": 963
-              },
-              "version": "18dbee80c4debf01a32d"
-            }
-          ],
-          "status": "原文未明确"
+          "quote": "[期刊论文] 肿瘤质子放疗剂量学特点序言 — 朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3224,
+            "end_char": 3248
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Blockchain + Radiotherapy: The Scenarios of the 5G‐Enabled Smart Radiotherapy Era",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Zhu;Jinming Yu",
+      "id": "out-ed8a7e364949",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Blockchain + Radiotherapy: The Scenarios of the 5G‐Enabled Smart Radiotherapy Era — Jian Zhu;Jinming Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3253,
+            "end_char": 3362
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "瓦里安ProBeam旋转机架质子治疗室接收验收测试",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈进琥;吴仕章;李成强;陶城;戴天缘;白曈;段敬豪;朱健",
+      "id": "out-ead664799354",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 瓦里安ProBeam旋转机架质子治疗室接收验收测试 — 陈进琥;吴仕章;李成强;陶城;戴天缘;白曈;段敬豪;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3367,
+            "end_char": 3429
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "食管癌4例质子治疗的剂量学特点分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈进琥;戴天缘;孙洪福;吴仕章;李成强;陶城;段敬豪;白瞳;朱健",
+      "id": "out-873531ebc93f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 食管癌4例质子治疗的剂量学特点分析 — 陈进琥;戴天缘;孙洪福;吴仕章;李成强;陶城;段敬豪;白瞳;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3434,
+            "end_char": 3492
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多阶段重建网络的CBCT伪影矫正系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "虞刚;禇彦龙;朱健;刘永昊;孙倩;李宝生",
+      "id": "out-c3d4dff2400e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多阶段重建网络的CBCT伪影矫正系统及方法 — 虞刚;禇彦龙;朱健;刘永昊;孙倩;李宝生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3497,
+            "end_char": 3547
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Advances and Challenges in Dose Constraints forOrgans at Risk in Proton Therapy: A Systematic Review of theLast Decade's Literature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinghao Duan;ChengTao;Shizhang Wu;Chengqiang Li;Jinhu Chen;Tianyuan Dai;Yunyi Fan;Tong Bai;Xiangjuan Meng;Tian Kong;Jian Zhu",
+      "id": "out-b42e7b388cdb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Advances and Challenges in Dose Constraints forOrgans at Risk in Proton Therapy: A Systematic Review of theLast Decade's Literature — Jinghao Duan;ChengTao;Shizhang Wu;Chengqiang Li;Jinhu Chen;Tianyuan Dai;Yunyi Fan;Tong Bai;Xiangjuan Meng;Tian Kong;Jian Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3552,
+            "end_char": 3825
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dosimetric predictors and Lyman normal tissue complication probability model of hematological toxicity in cervical cancer patients with treated with pelvic irradiation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Dandan;Yin Yueju;Zhou Qichao;Li Zirong;Ma Xingmin;Yin Yong;Li Baosheng;Bai Tong;Li Dapeng;Zhu Jian",
+      "id": "out-4c4098e11377",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dosimetric predictors and Lyman normal tissue complication probability model of hematological toxicity in cervical cancer patients with treated with pelvic irradiation — Wang Dandan;Yin Yueju;Zhou Qichao;Li Zirong;Ma Xingmin;Yin Yong;Li Baosheng;Bai Tong;Li Dapeng;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 4109
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CBCT生成伪CT方法发展及其在自适应放疗中应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张冉;朱健",
+      "id": "out-c01f24ce41fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CBCT生成伪CT方法发展及其在自适应放疗中应用进展 — 张冉;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4114,
+            "end_char": 4154
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "腹盆部肿瘤3例质子放疗剂量学特点分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "段敬豪;岳金波;陶城;吴仕章;李成强;戴天缘;陈进琥;白瞳;朱健",
+      "id": "out-caf74a4dc214",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 腹盆部肿瘤3例质子放疗剂量学特点分析 — 段敬豪;岳金波;陶城;吴仕章;李成强;戴天缘;陈进琥;白瞳;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4159,
+            "end_char": 4218
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differences in superficial dose distribution in patients receiving intensity modulated radiotherapy (IMRT) after radical mastectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yuan;Liu Qi;Hou Lixia;Wu Shizhang;Wang Yungang;Simon Antoine;Zhu Jian",
+      "id": "out-d39edd40db4e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differences in superficial dose distribution in patients receiving intensity modulated radiotherapy (IMRT) after radical mastectomy — Liu Yuan;Liu Qi;Hou Lixia;Wu Shizhang;Wang Yungang;Simon Antoine;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4224,
+            "end_char": 4437
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Intra-fractional respiratory motion on dose distribution in lattice radiotherapy for liver tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kuo Li;Yong Yin;Tonghai Liu;Tianyuan Dai;Jian Zhu;Zhenjiang Li",
+      "id": "out-de7c3201bbec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Intra-fractional respiratory motion on dose distribution in lattice radiotherapy for liver tumors — Kuo Li;Yong Yin;Tonghai Liu;Tianyuan Dai;Jian Zhu;Zhenjiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4443,
+            "end_char": 4621
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the potential benefits of multi-field IMPT for stage I NSCLC SBRT: An in silico dosimetric comparison to IMRT and CyberKnife",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen ZhangMing;Yan Xianrui;Xie Shu;Cheng Pinjing;Xiang Dong;Tao Cheng;Qiu Qingtao;Li Tengxiang;Li Chengqiang;Shu Huazhong;Simon Antoine;Zhu Jian",
+      "id": "out-ab42188b7a98",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the potential benefits of multi-field IMPT for stage I NSCLC SBRT: An in silico dosimetric comparison to IMRT and CyberKnife — Chen ZhangMing;Yan Xianrui;Xie Shu;Cheng Pinjing;Xiang Dong;Tao Cheng;Qiu Qingtao;Li Tengxiang;Li Chengqiang;Shu Huazhong;Simon Antoine;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4914
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于结构光体表成像的放疗患者摆位系统开发及评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王云刚;张功森;闫先瑞;杨光杰;王尉;朱健;王琳琳",
+      "id": "out-ca1e3c14d9d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 一种基于结构光体表成像的放疗患者摆位系统开发及评估 — 王云刚;张功森;闫先瑞;杨光杰;王尉;朱健;王琳琳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4920,
+            "end_char": 4979
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌4例质子放疗剂量学特点分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李成强;王云刚;余以珊;吴仕章;陶城;马星民;戴天缘;段敬豪;陈进琥;白瞳;朱健",
+      "id": "out-84420f1f34f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 乳腺癌4例质子放疗剂量学特点分析 — 李成强;王云刚;余以珊;吴仕章;陶城;马星民;戴天缘;段敬豪;陈进琥;白瞳;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4985,
+            "end_char": 5050
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT synthesis from MR images using frequency attention conditional generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Kexin;Kong Weipeng;Liu Liheng;Wang Jian;Li Baosheng;Zhao Bo;Li Zhenjiang;Zhu Jian;Yu Gang",
+      "id": "out-a81f2eb298ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT synthesis from MR images using frequency attention conditional generative adversarial network — Wei Kexin;Kong Weipeng;Liu Liheng;Wang Jian;Li Baosheng;Zhao Bo;Li Zhenjiang;Zhu Jian;Yu Gang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5056,
+            "end_char": 5254
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤个体化放射治疗关键技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱健;李宝生;周琦超;牛四杰;高希占;侯震;李振江;仇清涛;于海宁;白曈",
+      "id": "out-818cb60c444f",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤个体化放射治疗关键技术及应用 — 朱健;李宝生;周琦超;牛四杰;高希占;侯震;李振江;仇清涛;于海宁;白曈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5260,
+            "end_char": 5319
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative multiparameter MRI-based prediction of Ki-67 expression in primary central nervous system lymphoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Jian;Zhang Lili;Liu Qingzeng;Zhu Jian",
+      "id": "out-a800ff60009c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative multiparameter MRI-based prediction of Ki-67 expression in primary central nervous system lymphoma — Xu Jian;Zhang Lili;Liu Qingzeng;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5325,
+            "end_char": 5485
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能驱动的医学图像指导肿瘤精准治疗关键技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "温强;朱健;王茜",
+      "id": "out-d3ccd44d6549",
+      "evidence": [
+        {
+          "quote": "[奖励] 人工智能驱动的医学图像指导肿瘤精准治疗关键技术及应用 — 温强;朱健;王茜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5491,
+            "end_char": 5532
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "In silico studies of the impact of rotational errors on translation shifts and dose distribution in image-guided radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Min Fu;Yanhua Cui;Wenlong Qiu;Zhen Cui;Yan Zhang;Dandan Wang;Shaojie Yan;Zengjing Zhao;Yungang Wang;Jian Zhu",
+      "id": "out-82229d7d961b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] In silico studies of the impact of rotational errors on translation shifts and dose distribution in image-guided radiotherapy — Min Fu;Yanhua Cui;Wenlong Qiu;Zhen Cui;Yan Zhang;Dandan Wang;Shaojie Yan;Zengjing Zhao;Yungang Wang;Jian Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5538,
+            "end_char": 5780
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Auto‐segmentation of important centers of growth in the pediatric skeleton to consider during radiation therapy based on deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenlong Qiu;Wei Zhang;Xingmin Ma;Youyong Kong;Pengyue Shi;Min Fu;Dandan Wang;Man Hu;Xianjun Zhou;Qian Dong;Qichao Zhou;Jian Zhu",
+      "id": "out-4141d4388221",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Auto‐segmentation of important centers of growth in the pediatric skeleton to consider during radiation therapy based on deep learning — Wenlong Qiu;Wei Zhang;Xingmin Ma;Youyong Kong;Pengyue Shi;Min Fu;Dandan Wang;Man Hu;Xianjun Zhou;Qian Dong;Qichao Zhou;Jian Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5786,
+            "end_char": 6056
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel knowledge-based prediction model for estimating an initial equivalent uniform dose in semi-auto-planning for cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Tao;Bo Liu;Chengqiang Li;Jian Zhu;Yong Yin;Jie Lu",
+      "id": "out-931e11439795",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel knowledge-based prediction model for estimating an initial equivalent uniform dose in semi-auto-planning for cervical cancer — Cheng Tao;Bo Liu;Chengqiang Li;Jian Zhu;Yong Yin;Jie Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6062,
+            "end_char": 6258
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Target density override in pencil beam scanning proton therapy for different motion target delineation: an experimental dosimetry analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Xianrui;Wang Yungang;Gu Jiabing;Li Chengqiang;Tao Cheng;Simon Antoine;Shu Huazhong;Zhu Jian",
+      "id": "out-4ab5c6528a82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Target density override in pencil beam scanning proton therapy for different motion target delineation: an experimental dosimetry analysis — Yan Xianrui;Wang Yungang;Gu Jiabing;Li Chengqiang;Tao Cheng;Simon Antoine;Shu Huazhong;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6264,
+            "end_char": 6506
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of the effects of IMRT and IMPT on MRI features of normal brain tissue: a retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Jian;Zhang Lili;Liu Tingting;Liu Qingzeng;Zhu Jian",
+      "id": "out-59909e6d91d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of the effects of IMRT and IMPT on MRI features of normal brain tissue: a retrospective study — Xu Jian;Zhang Lili;Liu Tingting;Liu Qingzeng;Zhu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6512,
+            "end_char": 6678
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "头颈部肿瘤3例质子放疗剂量学特点研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李伟杰;戴天缘;胡漫;吴仕章;李成强;陶城;段敬豪;陈进琥;白瞳;魏国辉;朱健",
+      "id": "out-7eef12124f61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 头颈部肿瘤3例质子放疗剂量学特点研究 — 李伟杰;戴天缘;胡漫;吴仕章;李成强;陶城;段敬豪;陈进琥;白瞳;魏国辉;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6684,
+            "end_char": 6750
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "质子放疗比X线放疗更多通过直接作用损伤肺癌细胞",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘琦;周向东;张安航;左晓鑫;Antoine Simon;舒华忠;王鹏程;朱健",
+      "id": "out-f3254132aeea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 质子放疗比X线放疗更多通过直接作用损伤肺癌细胞 — 刘琦;周向东;张安航;左晓鑫;Antoine Simon;舒华忠;王鹏程;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6756,
+            "end_char": 6827
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态影像鉴别中央型肺癌和肺不张研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘田野;朱健",
+      "id": "out-089aaa887552",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态影像鉴别中央型肺癌和肺不张研究进展 — 刘田野;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6833,
+            "end_char": 6868
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-powered radiotherapy dose prediction: clinical insights from 622 patients across multiple sites tumor at a single institution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hou Zhen;Qin Lang;Gu Jiabing;Liu Zidong;Liu Juan;Zhang Yuan;Gao Shanbao;Zhu Jian;Li Shuangshuang",
+      "id": "out-3a64d89f2e9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-powered radiotherapy dose prediction: clinical insights from 622 patients across multiple sites tumor at a single institution — Hou Zhen;Qin Lang;Gu Jiabing;Liu Zidong;Liu Juan;Zhang Yuan;Gao Shanbao;Zhu Jian;Li Shuangshuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6874,
+            "end_char": 7118
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸部和腹部肿瘤患者不同放疗摆位技术精准度对比分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王云刚;闫先瑞;杨保成;孔祥宾;楚志翔;杨光杰;朱健",
+      "id": "out-ef75510a63b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胸部和腹部肿瘤患者不同放疗摆位技术精准度对比分析 — 王云刚;闫先瑞;杨保成;孔祥宾;楚志翔;杨光杰;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7124,
+            "end_char": 7183
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "旋转摆位误差对乳腺癌保留乳房术后放疗剂量分布的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "付敏;崔延华;陈进琥;陶城;仇文龙;朱健",
+      "id": "out-4bd7b4225ffc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 旋转摆位误差对乳腺癌保留乳房术后放疗剂量分布的影响 — 付敏;崔延华;陈进琥;陶城;仇文龙;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7189,
+            "end_char": 7243
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "放疗联盟链——基于区块链的放疗数据跨平台安全共享方案",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邹宇鹏;朱健;张问银",
+      "id": "out-af2bf44dd49b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 放疗联盟链——基于区块链的放疗数据跨平台安全共享方案 — 邹宇鹏;朱健;张问银",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7249,
+            "end_char": 7294
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于区块链架构的5G时代智慧放疗场景",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱健;于金明",
+      "id": "out-667ce99ad755",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于区块链架构的5G时代智慧放疗场景 — 朱健;于金明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7300,
+            "end_char": 7333
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于能谱CT的肿瘤放疗靶区识别方法、系统及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李双双;侯震;朱健;刘娟;高山宝;尹贻才;张陵;韩永超;张媛;闫婧",
+      "id": "out-842d21c9b843",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于能谱CT的肿瘤放疗靶区识别方法、系统及设备 — 李双双;侯震;朱健;刘娟;高山宝;尹贻才;张陵;韩永超;张媛;闫婧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7339,
+            "end_char": 7404
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于模仿人体呼吸运动驱动升降平台驱动装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘源;刘琦;苏俊逸;张树斐;王云刚;朱健",
+      "id": "out-2454940b7c5a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于模仿人体呼吸运动驱动升降平台驱动装置 — 刘源;刘琦;苏俊逸;张树斐;王云刚;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7410,
+            "end_char": 7459
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脊索瘤质子放疗中能谱CT参数与MRIADC变化的相关性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐渐;段敬豪;刘庆增;朱健",
+      "id": "out-986d4c795d45",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脊索瘤质子放疗中能谱CT参数与MRIADC变化的相关性研究 — 徐渐;段敬豪;刘庆增;朱健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7465,
+            "end_char": 7516
+          },
+          "version": "18dbee80c4debf01a32d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸中段食管癌图像引导治疗精确性评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王振立;朱健;郑安平;孙晓东;黄柏超;宋振超;路玉昆;张耀文;王晓敏;刘瑞芳;王晓蓓;王慧涛",
+      "id": "out-920f38dd13cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胸中段食管癌图像引导治疗精确性评估 — 王振立;朱健;郑安平;孙晓东;黄柏超;宋振超;路玉昆;张耀文;王晓敏;刘瑞芳;王晓蓓;王慧涛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7522,
+            "end_char": 7594
+          },
+          "version": "18dbee80c4debf01a32d"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9920c8df6ec6"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 35,
+    "listed": 35,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 30,
+        "extracted": 30
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3e2ccc7eb0c6"
+      "专利": {
+        "listed": 3,
+        "extracted": 3
       },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3e2ccc7eb0c6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-69585436fb38"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-69585436fb38"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-910ec0cf8a65"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

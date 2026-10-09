@@ -2,15 +2,20 @@
   "doc_id": "81830af175ead942e0b2",
   "version": "46268ea93135847f40cb",
   "source_hash": "08f5e411068759e6ec525daacb146d60d4100950e4b65a7200d234cbaa15194e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.216594+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.866215+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b9b2b28d94d",
-          "name": "膀胱癌淋巴转移AI辅助诊断",
-          "desc": "转移是膀胱癌患者的主要死亡原因，其中淋巴转移为主要和首发方式。",
+          "id": "item-6b5c8d995d6d",
+          "name": "膀胱癌淋巴转移精准诊断",
+          "desc": "淋巴转移为主要和首发方式",
           "evidence": [
             {
               "quote": "转移是膀胱癌患者的主要死亡原因，其中淋巴转移为主要和首发方式",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 652,
                 "end_char": 681
-              },
-              "version": "46268ea93135847f40cb"
-            }
-          ]
-        },
-        {
-          "id": "item-4c666f785e82",
-          "name": "构建膀胱癌淋巴转移精准诊断体系",
-          "desc": "围绕基于人工智能技术构建膀胱癌淋巴转移精准诊断体系这一科学问题开展研究。",
-          "evidence": [
-            {
-              "quote": "本项目围绕“基于人工智能技术构建膀胱癌淋巴转移精准诊断体系”这一科学问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 852,
-                "end_char": 887
               },
               "version": "46268ea93135847f40cb"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-832449133fa6",
-          "name": "精准诊断技术缺乏致诊疗不准",
-          "desc": "由于精准诊断技术的缺乏，膀胱癌淋巴转移的诊疗过程存在诊断不准确、治疗不精准的问题。",
+          "id": "item-eb62d394208e",
+          "name": "精准诊断技术缺乏致诊断不准确、治疗不精准",
+          "desc": "膀胱癌淋巴转移",
           "evidence": [
             {
               "quote": "由于精准诊断技术的缺乏，膀胱癌淋巴转移的诊疗过程存在诊断不准确、治疗不精准的问题",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 683,
                 "end_char": 722
-              },
-              "version": "46268ea93135847f40cb"
-            }
-          ]
-        },
-        {
-          "id": "item-8e4cc83cb80a",
-          "name": "单组学模型准确性不足",
-          "desc": "通过基因组学或影像组学模型可提高诊断准确性，但单独组学模型存在局限性，仍无法达到符合临床预期的准确性。",
-          "evidence": [
-            {
-              "quote": "但由于单独组学模型的局限性，前期构建的模型仍无法达到符合临床预期的准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 802
               },
               "version": "46268ea93135847f40cb"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-003e850d7c00",
-          "name": "多组学AI辅助诊断平台构建",
-          "desc": "利用深度迁移学习、全卷积网络、自动化增量学习等技术构建人工智能辅助的膀胱癌淋巴转移一体化精准诊断平台。",
-          "evidence": [
-            {
-              "quote": "进一步利用人工智能领域新发展起来的深度迁移学习、全卷积网络、自动化增量学习等技术构建人工智能辅助的膀胱癌淋巴转移一体化精准诊断平台",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 899,
-                "end_char": 963
-              },
-              "version": "46268ea93135847f40cb"
-            }
-          ]
-        },
-        {
-          "id": "item-56d4a5b64694",
-          "name": "多模态多组学数据整合",
-          "desc": "多中心收集膀胱镜检图、淋巴结病理图像、全视野数字病理切片、基因组学数据、影像学与临床组学数据及多组学数据。",
-          "evidence": [
-            {
-              "quote": "已多中心收集一万余例膀胱癌病人相关临床数据，包括10729名患者的69204张膀胱镜检图、998例患者的8177张淋巴结病理图像、692名膀胱癌患者的854张全视野数字病理切、315例患者的组织标本基因组学数据、721例患者的影像学数据、621例患者的临床组学数据以及258名患者完善的多组学数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3033,
-                "end_char": 3180
-              },
-              "version": "46268ea93135847f40cb"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3426c5ceb54a",
-          "name": "多中心一万余例膀胱癌数据集",
-          "desc": "多中心收集一万余例膀胱癌病人相关临床数据，涵盖膀胱镜检图、病理图像、基因组学与影像学等多种模态。",
-          "evidence": [
-            {
-              "quote": "已多中心收集一万余例膀胱癌病人相关临床数据，包括10729名患者的69204张膀胱镜检图、998例患者的8177张淋巴结病理图像",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3033,
-                "end_char": 3096
-              },
-              "version": "46268ea93135847f40cb"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ce6bf5a8219f",
-          "name": "三个AI诊断模型开发",
-          "desc": "开发基于膀胱镜的AI诊断模型、基于电切病理的肌层浸润AI诊断模型，以及基于术后病理的淋巴转移AI诊断模型。",
+          "id": "item-cfcdbad49860",
+          "name": "膀胱镜AI诊断模型",
+          "desc": "基于膀胱镜图像",
           "evidence": [
             {
               "quote": "基于人工智能开发了基于膀胱镜的AI诊断模型，基于电切病理的膀胱癌肌层浸润的AI诊断模型，以及基于术后病理的膀胱癌淋巴转移AI诊断模型",
@@ -164,72 +82,287 @@
               "version": "46268ea93135847f40cb"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-c36b1d216de7",
-          "name": "论文专利与指南纳入",
-          "desc": "在Lancet Oncology等期刊发表SCI论文4篇，授权国家发明专利1项、申请2项，授权软件著作权3项，成果纳入2022版中国泌尿外科指南。",
+          "id": "item-1098e0d171c9",
+          "name": "深度迁移学习、全卷积网络与自动化增量学习一体化诊断平台",
+          "desc": "多中心",
           "evidence": [
             {
-              "quote": "以第一作者或通讯作者在Lancet Oncology、J Natl Cancer Inst、J Transl Med、BMC Cardiovasc Disord.发表SCI论文4篇，授权国家发明专利1项，申请国家发明专利2项，授权软件著作权3项",
+              "quote": "利用人工智能（Artificial Intelligence）领域新发展起来的深度迁移学习、全卷积网络、自动化增量学习等技术构建人工智能辅助的膀胱癌淋巴转移一体化精准诊断平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3370
+                "start_char": 2945,
+                "end_char": 3031
               },
               "version": "46268ea93135847f40cb"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9a96674c3f14",
+          "name": "多中心数据",
+          "desc": "10729名患者69204张膀胱镜图等",
+          "evidence": [
+            {
+              "quote": "10729名患者的69204张膀胱镜检图、998例患者的8177张淋巴结病理图像、692名膀胱癌患者的854张全视野数字病理切、315例患者的组织标本基因组学数据、721例患者的影像学数据、621例患者的临床组学数据以及258名患者完善的多组学数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3180
+              },
+              "version": "46268ea93135847f40cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e1a8b08a530e",
+          "name": "科技奖励",
+          "desc": "2022广东省科技进步一等奖、医学技术奖一等奖",
+          "evidence": [
+            {
+              "quote": "部分成果获得 2022 年广东省科技进步一等奖（5/15）及 2022 年广东省医学技术奖一等奖(5/13)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3404,
+                "end_char": 3457
+              },
+              "version": "46268ea93135847f40cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4b9b2b28d94d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-832449133fa6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning-based models for predicting mortality and acute kidney injury in critical pulmonary embolism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Wang;Jiatang Xu;Xixia Lin;Weijie Lai;Lin Lv;Senyi Peng;Kechen Li;Mingli Luo;Jiale Chen;Dongxi Zhu;Xiong Chen;Chen Yao;Shaoxu Wu;Kai Huang",
+      "id": "out-77882609ecec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning-based models for predicting mortality and acute kidney injury in critical pulmonary embolism — Geng Wang;Jiatang Xu;Xixia Lin;Weijie Lai;Lin Lv;Senyi Peng;Kechen Li;Mingli Luo;Jiale Chen;Dongxi Zhu;Xiong Chen;Chen Yao;Shaoxu Wu;Kai Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3476,
+            "end_char": 3736
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-832449133fa6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-003e850d7c00"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于膀胱镜的智能AI图像标注方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林天歆;黄健;吴少旭;洪桂斌;陈雄",
+      "id": "out-097449a8bcac",
+      "evidence": [
+        {
+          "quote": "[专利] 基于膀胱镜的智能AI图像标注方法及装置 — 林天歆;黄健;吴少旭;洪桂斌;陈雄",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3741,
+            "end_char": 3784
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-003e850d7c00"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ce6bf5a8219f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Artificial Intelligence System for the Detection of Bladder Cancer via Cystoscopy: A Multicenter Diagnostic Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaoxu Wu;Xiong Chen;Jiexin Pan;Wen Dong;Xiayao Diao;Ruiyun Zhang;Yonghai Zhang;Yuanfeng Zhang;Guang Qian;Hao Chen;Haotian Lin;Shizhong Xu;Zhiwen Chen;Xiaozhou Zhou;Hongbing Mei;Chenglong Wu;Qiang Lv;Baorui Yuan;Zeshi Chen;Wenjian Liao;Xuefan Yang;Haige Chen;Jian Huang;Tianxin Lin",
+      "id": "out-13ebb285d389",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Artificial Intelligence System for the Detection of Bladder Cancer via Cystoscopy: A Multicenter Diagnostic Study — Shaoxu Wu;Xiong Chen;Jiexin Pan;Wen Dong;Xiayao Diao;Ruiyun Zhang;Yonghai Zhang;Yuanfeng Zhang;Guang Qian;Hao Chen;Haotian Lin;Shizhong Xu;Zhiwen Chen;Xiaozhou Zhou;Hongbing Mei;Chenglong Wu;Qiang Lv;Baorui Yuan;Zeshi Chen;Wenjian Liao;Xuefan Yang;Haige Chen;Jian Huang;Tianxin Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3789,
+            "end_char": 4195
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-56d4a5b64694"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3426c5ceb54a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膀胱癌微创精准诊疗体系建立与推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林天歆;黄健;陈旭;何旺;吴少旭;陈长昊;李锴文;王博;郭元杰;王建辰;郑俊炯;于浩;谢锐辉;钟文龙;李霞",
+      "id": "out-4194984f05d0",
+      "evidence": [
+        {
+          "quote": "[奖励] 膀胱癌微创精准诊疗体系建立与推广应用 — 林天歆;黄健;陈旭;何旺;吴少旭;陈长昊;李锴文;王博;郭元杰;王建辰;郑俊炯;于浩;谢锐辉;钟文龙;李霞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4278
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based model for lymph node metastases detection on whole slide images in bladder cancer: a retrospective, multicentre, diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaoxu Wu;Guibin Hong;Abai Xu;Hong Zeng;Xulin Chen;Yun Wang;Yun Luo;Peng Wu;Cundond Liu;Ning Jiang;Qiang Dang;Cheng Yang;Bohao Liu;Runnan Shen;Zeshi Chen;Chengxiao Liao;Zhen Lin;Jin Wang;Tianxin Lin",
+      "id": "out-da6f0501329b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based model for lymph node metastases detection on whole slide images in bladder cancer: a retrospective, multicentre, diagnostic study — Shaoxu Wu;Guibin Hong;Abai Xu;Hong Zeng;Xulin Chen;Yun Wang;Yun Luo;Peng Wu;Cundond Liu;Ning Jiang;Qiang Dang;Cheng Yang;Bohao Liu;Runnan Shen;Zeshi Chen;Chengxiao Liao;Zhen Lin;Jin Wang;Tianxin Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4283,
+            "end_char": 4649
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised and Supervised Machine Learning to Identify Variability of Tumor-Educated Platelets and Association with Pan-Cancer: A Cross-National Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Chen;Runnan Shen;Lin Lv;Dongxi Zhu;Guochang You;Zhenluan Tian;Jinwei Chen;Shen Lin;Jiatang Xu;Guibin Hong;Hu Li;Mingli Luo;Lin Cao;Shaoxu Wu;Kai Huang",
+      "id": "out-f5de2f0e8433",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised and Supervised Machine Learning to Identify Variability of Tumor-Educated Platelets and Association with Pan-Cancer: A Cross-National Study — Xiong Chen;Runnan Shen;Lin Lv;Dongxi Zhu;Guochang You;Zhenluan Tian;Jinwei Chen;Shen Lin;Jiatang Xu;Guibin Hong;Hu Li;Mingli Luo;Lin Cao;Shaoxu Wu;Kai Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4654,
+            "end_char": 4971
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An artificial intelligence model for the pathological diagnosis of invasion depth and histologic grade in bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiexin Pan;Guibin Hong;Hong Zeng;Chengxiao Liao;Huarun Li;Yuhui Yao;Qinghua Gan;Yun Wang;Shaoxu Wu;Tianxin Lin",
+      "id": "out-e23bc56e81fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An artificial intelligence model for the pathological diagnosis of invasion depth and histologic grade in bladder cancer — Jiexin Pan;Guibin Hong;Hong Zeng;Chengxiao Liao;Huarun Li;Yuhui Yao;Qinghua Gan;Yun Wang;Shaoxu Wu;Tianxin Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4976,
+            "end_char": 5215
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膀胱癌淋巴结转移的病理图像识别方法、装置、介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈旭琳;林天歆;吴少旭;洪桂斌;林真;汪进;陈睿",
+      "id": "out-af896a74059a",
+      "evidence": [
+        {
+          "quote": "[专利] 膀胱癌淋巴结转移的病理图像识别方法、装置、介质 — 陈旭琳;林天歆;吴少旭;洪桂斌;林真;汪进;陈睿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5220,
+            "end_char": 5274
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2022",
+      "precision": "年",
+      "desc": "获广东省科技进步一等奖和医学技术奖一等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-73e62b1fef5c",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "部分成果获得 2022 年广东省科技进步一等奖（5/15）及 2022 年广东省医学技术奖一等奖(5/13)",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3404,
+            "end_char": 3457
+          },
+          "version": "46268ea93135847f40cb"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

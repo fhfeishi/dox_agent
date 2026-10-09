@@ -2,15 +2,20 @@
   "doc_id": "0b6d21015e36ccfc048c",
   "version": "5b7505b620e1322db963",
   "source_hash": "393fe004d4293b0b9758900ee95c6a2bdd7dab8258f4e8ae1fa7f460fefed93c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.548117+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.016231+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-56a0819c33ee",
           "name": "自发性脑出血预后预测",
-          "desc": "自发性脑出血出血后30天病死率接近40%，仅约15%病人可在发病后30天实现生活自理。",
+          "desc": "出血后30天病死率接近40%，预后对临床决策重要",
           "evidence": [
             {
-              "quote": "自发性脑出血出血后30天病死率接近40%，仅15%左右脑出血病人可在发病后30天实现生活自理，带来巨大的社会经济负担。",
+              "quote": "自发性脑出血出血后30天病死率接近40%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2573,
-                "end_char": 2631
-              },
-              "version": "5b7505b620e1322db963"
-            }
-          ]
-        },
-        {
-          "id": "item-0c910392d11b",
-          "name": "脑出血临床治疗决策",
-          "desc": "利用影像组学和机器学习算法建立智能预后预测模型，从而指导临床治疗决策。",
-          "evidence": [
-            {
-              "quote": "建立准确的自发性脑出血智能预后预测模型，从而指导临床治疗决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2697,
-                "end_char": 2726
+                "end_char": 2592
               },
               "version": "5b7505b620e1322db963"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-430e0035bf67",
-          "name": "已有预测方法片面准确度低",
-          "desc": "患者预后对临床决策具有重要意义，但已有预测方法普遍比较片面，准确度不高。",
+          "id": "item-a749c00c3eea",
+          "name": "已有预后预测方法片面、准确度不高",
+          "desc": "现有方法普遍片面",
           "evidence": [
             {
-              "quote": "患者预后对临床决策具有重要意义，但已有预测方法普遍比较片面，准确度不高。",
+              "quote": "但已有预测方法普遍比较片面，准确度不高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2632,
-                "end_char": 2667
-              },
-              "version": "5b7505b620e1322db963"
-            }
-          ]
-        },
-        {
-          "id": "item-bbe769a6d693",
-          "name": "预后预测特征维度高",
-          "desc": "需要从大量临床影像特征中筛选出与患者预后关系最密切的关键特征。",
-          "evidence": [
-            {
-              "quote": "筛选挖掘出与病人预后关系最密切的影像和临床特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 889,
-                "end_char": 911
+                "start_char": 2648,
+                "end_char": 2666
               },
               "version": "5b7505b620e1322db963"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e48e681d7869",
-          "name": "半自动分割提取影像特征",
-          "desc": "采用半自动分割技术以CT图像血肿高密度范围为感兴趣区逐层分割，提取大量影像特征值。",
+          "id": "item-a4a01a9d7cf0",
+          "name": "血肿影像特征提取",
+          "desc": "半自动分割血肿区域逐层提取影像特征值",
           "evidence": [
             {
               "quote": "采用半自动分割技术，以CT图像血肿高密度范围为感兴趣区，逐层分割，提取计算每个感兴趣区的大量影像特征值",
@@ -108,28 +81,30 @@
               },
               "version": "5b7505b620e1322db963"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-26c554de023e",
-          "name": "六种机器学习算法对比建模",
-          "desc": "采用支持向量机、K邻近、逻辑回归、决策树、极限梯度增强树和随机森林6种算法建立预后预测模型并评价准确度。",
+          "id": "item-8f1f0cf33b8d",
+          "name": "六种机器学习预后预测模型",
+          "desc": "SVM、KNN、逻辑回归、决策树、XGBoost、随机森林",
           "evidence": [
             {
-              "quote": "采用支持向量机、K邻近、逻辑回归、决策树、极限梯度增强树(XGBoost)和随机森林6种机器学习算法建立脑出血预后预测模型，评价分析各算法准确度",
+              "quote": "然后采用支持向量机、K邻近、逻辑回归、决策树、极限梯度增强树(XGBoost)和随机森林6种机器学习算法建立脑出血预后预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2966,
-                "end_char": 3037
+                "start_char": 2964,
+                "end_char": 3026
               },
               "version": "5b7505b620e1322db963"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f7f720735c92",
-          "name": "三种特征筛选方法",
-          "desc": "采用方差选择法、特征选择法和Lasso回归三种方法筛选出关键特征。",
+          "id": "item-4edaf48b4590",
+          "name": "关键特征筛选",
+          "desc": "方差选择、特征选择与Lasso回归",
           "evidence": [
             {
               "quote": "采用方差选择法、特征选择法和Lasso回归三种方法筛选出关键特征",
@@ -140,7 +115,8 @@
               },
               "version": "5b7505b620e1322db963"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -149,9 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d92f513122b6",
-          "name": "515例样本与19个关键特征",
-          "desc": "共收集515例脑出血患者临床影像与预后信息，提取1035个特征经降维得到19个关键特征。",
+          "id": "item-32aab4f84b2c",
+          "name": "随机森林预测模型性能",
+          "desc": "测试集敏感度92.3%、特异度90.9%、准确度91.3%",
+          "evidence": [
+            {
+              "quote": "测试集中随机森林算法模型的敏感度、特异度和准确度分别达到92.3％、90.9％和91.3％",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3240,
+                "end_char": 3284
+              },
+              "version": "5b7505b620e1322db963"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7e712d8b6284",
+          "name": "脑出血患者数据集",
+          "desc": "515例患者临床、影像和预后信息",
           "evidence": [
             {
               "quote": "共收集515例脑出血患者临床、影像和预后信息",
@@ -163,41 +158,9 @@
               "version": "5b7505b620e1322db963"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3dfafa84a104",
-          "name": "六种算法准确度均超80%",
-          "desc": "全部6种机器学习算法均建立预后预测模型，准确度都超过了80%。",
-          "evidence": [
-            {
-              "quote": "全部6种机器学习算法均建立了预后预测模型，且准确度都超过了80%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3207,
-                "end_char": 3238
-              },
-              "version": "5b7505b620e1322db963"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-11ab7149c12d",
-          "name": "随机森林模型性能最佳",
-          "desc": "测试集中随机森林算法模型敏感度92.3%、特异度90.9%、准确度91.3%，是准确度最高的预测模型。",
-          "evidence": [
-            {
-              "quote": "测试集中随机森林算法模型的敏感度、特异度和准确度分别达到92.3％、90.9％和91.3％，是准确度最高的预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3240,
-                "end_char": 3296
-              },
-              "version": "5b7505b620e1322db963"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +168,106 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-56a0819c33ee"
+        "dimension": "技术",
+        "item_id": "item-8f1f0cf33b8d"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-430e0035bf67"
+        "item_id": "item-a749c00c3eea"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "课题研究旨在利用影像组学和机器学习算法进行大数据信息挖掘，建立准确的自发性脑出血智能预后预测模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2668,
+            "end_char": 2715
+          },
+          "version": "5b7505b620e1322db963"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-bbe769a6d693"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f7f720735c92"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e48e681d7869"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-d92f513122b6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-26c554de023e"
+        "item_id": "item-32aab4f84b2c"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-11ab7149c12d"
+        "dimension": "技术",
+        "item_id": "item-8f1f0cf33b8d"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "测试集中随机森林算法模型的敏感度、特异度和准确度分别达到92.3％、90.9％和91.3％",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3240,
+            "end_char": 3284
+          },
+          "version": "5b7505b620e1322db963"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic prediction of hypertensive intracerebral hemorrhage using CT radiomics and machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Xinghua;Zhang Jiashu;Yang Kai;Wang Qun;Chen Xiaolei;Xu Bainan",
+      "id": "out-d726cd795e6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic prediction of hypertensive intracerebral hemorrhage using CT radiomics and machine learning — Xu Xinghua;Zhang Jiashu;Yang Kai;Wang Qun;Chen Xiaolei;Xu Bainan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3351,
+            "end_char": 3526
+          },
+          "version": "5b7505b620e1322db963"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态影像的混合现实导航技术在脑功能区病变切除术中的应用价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "祁子禹;张家墅;徐兴华;干智超;熊若楚;张世宇;王静岳;刘明航;李晔;王群;李昉晔;陈晓雷",
+      "id": "out-97ad643537ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多模态影像的混合现实导航技术在脑功能区病变切除术中的应用价值 — 祁子禹;张家墅;徐兴华;干智超;熊若楚;张世宇;王静岳;刘明航;李晔;王群;李昉晔;陈晓雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3617
+          },
+          "version": "5b7505b620e1322db963"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

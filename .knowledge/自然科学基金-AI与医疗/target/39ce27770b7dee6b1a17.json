@@ -2,15 +2,20 @@
   "doc_id": "39ce27770b7dee6b1a17",
   "version": "7fa9b88c7fbefd849db5",
   "source_hash": "78679b38ec1499563dd42dbaec30baa0a83bfc0cd2042b40378f96baa0672fec",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:16.029210+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:31.892636+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d5b893bf096a",
-          "name": "肾细胞癌分子特征获取",
-          "desc": "肾细胞癌的分子特征对其生物学行为及药物选择至关重要，但常难以获取用于测序的组织。",
+          "id": "item-ca7f112b18b9",
+          "name": "肾癌癌栓侵袭血管壁预测",
+          "desc": "分子特征对生物学行为和药物选择重要",
           "evidence": [
             {
-              "quote": "肾细胞癌的分子特征对其生物学行为及药物选择至关重要，但常难以获取用于测序的组织。",
+              "quote": "肾细胞癌的分子特征对其生物学行为及药物选择至关重要",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 710,
-                "end_char": 749
-              },
-              "version": "7fa9b88c7fbefd849db5"
-            }
-          ]
-        },
-        {
-          "id": "item-c0abd73d49cf",
-          "name": "肾癌癌栓侵袭血管壁研究",
-          "desc": "通过基于深度学习的算法寻找影像组学特征与肿瘤分子特征的内在联系，达到通过影像学检查提示肿瘤分子特征的目的。",
-          "evidence": [
-            {
-              "quote": "通过基于深度学习的算法可能找到影像组学特征与肿瘤分子特征的内在联系，从而达到通过影像学检查提示肿瘤分子特征的目的。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 813,
-                "end_char": 869
+                "end_char": 734
               },
               "version": "7fa9b88c7fbefd849db5"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a15a1f25ab2a",
-          "name": "影像信息大部分未被利用",
-          "desc": "CT/MRI影像学数据虽易获取，但人眼仅可感知其中极少数信息，大部分信息未被利用且难以在分子水平解释。",
+          "id": "item-ea4bcd45f907",
+          "name": "难获取组织用于测序",
+          "desc": "影像信息未被充分利用",
           "evidence": [
             {
-              "quote": "CT/MRI提供的影像学数据虽易获取，但人眼仅可感知其中极少数信息，大部分信息未被利用且难以在分子水平解释。",
+              "quote": "但常难以获取用于测序的组织",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 750,
-                "end_char": 803
-              },
-              "version": "7fa9b88c7fbefd849db5"
-            }
-          ]
-        },
-        {
-          "id": "item-de8571d9f628",
-          "name": "相关性的内在物质基础未知",
-          "desc": "需要通过动物成瘤影像学实验探索这种相关性的内在物质基础。",
-          "evidence": [
-            {
-              "quote": "通过动物成瘤影像学实验，探索这种相关性的内在物质基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1031,
-                "end_char": 1056
+                "start_char": 736,
+                "end_char": 748
               },
               "version": "7fa9b88c7fbefd849db5"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e00c0bb8d17",
-          "name": "癌栓侵袭性判别建模",
-          "desc": "利用血管侵袭性癌栓与非侵袭性癌栓之间的基因转录组差异与影像组学差异，以二分类逻辑关系探索基因组与影像组学关联。",
+          "id": "item-10c51f878aa3",
+          "name": "癌栓侵袭血管壁基因影像联合预测模型",
+          "desc": "13个影像特征与6个基因特征",
           "evidence": [
             {
-              "quote": "血管侵袭性癌栓（DITT）和非侵袭性癌栓（NITT）之间有明显的基因/转录组差异",
+              "quote": "经过特征筛选和相关性分析后获得13个影像特征和6个基因特征与癌栓侵袭有关，构建了癌栓侵袭血管壁的基因影像联合预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 879,
-                "end_char": 918
+                "start_char": 3070,
+                "end_char": 3127
               },
               "version": "7fa9b88c7fbefd849db5"
             }
-          ]
-        },
-        {
-          "id": "item-3f56021bbbd9",
-          "name": "影像与转录组特征联合建模",
-          "desc": "采集癌栓患者CT影像进行影像组学研究，并采集对应癌栓标本进行转录组学测序，经特征筛选与相关性分析构建联合预测模型。",
-          "evidence": [
-            {
-              "quote": "共采集202例癌栓患者的CT影像，进行影像组学研究，采集相对应的73例癌栓标本进行了转录组学测序，经过特征筛选和相关性分析后获得13个影像特征和6个基因特征与癌栓侵袭有关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3021,
-                "end_char": 3105
-              },
-              "version": "7fa9b88c7fbefd849db5"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +91,102 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a40dc1a1d52",
-          "name": "基因影像联合预测模型",
-          "desc": "构建了癌栓侵袭血管壁的基因影像联合预测模型。",
+          "id": "item-966461bc48b8",
+          "name": "联合预测模型性能",
+          "desc": "验证集AUC 0.922，测试集AUC 0.838",
           "evidence": [
             {
-              "quote": "构建了癌栓侵袭血管壁的基因影像联合预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3107,
-                "end_char": 3127
-              },
-              "version": "7fa9b88c7fbefd849db5"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2b59745ffbd2",
-          "name": "验证集AUC 0.922与测试集0.838",
-          "desc": "模型在验证集中AUC高达0.922，在测试集中AUC也可达到0.838，证明可有效预测癌栓侵犯血管壁。",
-          "evidence": [
-            {
-              "quote": "在验证集中AUC高达0.922，在测试集中AUC也可达到0.838，证明模型可有效预测癌栓侵犯血管壁",
+              "quote": "在验证集中AUC高达0.922，在测试集中AUC也可达到0.838",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3129,
-                "end_char": 3178
+                "end_char": 3161
               },
               "version": "7fa9b88c7fbefd849db5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-f4e09b6f4b7e",
-          "name": "L1CAM血管周围生态位机制",
-          "desc": "发表L1CAM部署的血管周围肿瘤生态位促进癌栓血管壁侵袭与肾细胞癌转移的研究论文。",
+          "id": "item-05b61dc8da97",
+          "name": "癌栓CT与转录组数据",
+          "desc": "202例CT、73例标本测序",
           "evidence": [
             {
-              "quote": "L1CAM deployed perivascular tumor niche promotes vessel wall invasion of tumor thrombus and metastasis of renal cell carcinoma",
+              "quote": "共采集202例癌栓患者的CT影像，进行影像组学研究，采集相对应的73例癌栓标本进行了转录组学测序",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3440,
-                "end_char": 3565
+                "start_char": 3021,
+                "end_char": 3068
               },
               "version": "7fa9b88c7fbefd849db5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d5b893bf096a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a15a1f25ab2a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TPM2 attenuates progression of prostate cancer by blocking PDLIM7-mediated nuclear translocation of YAP1",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Zonglong;Ge Liyuan;Ma Lulin;Lu Min;Song Yimeng;Deng Shaohui;Duan Peichen;Du Tan;Wu Yaqian;Zhang Zhanyi;Zhang Shudong",
+      "id": "out-a2000aeef5fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TPM2 attenuates progression of prostate cancer by blocking PDLIM7-mediated nuclear translocation of YAP1 — Wu Zonglong;Ge Liyuan;Ma Lulin;Lu Min;Song Yimeng;Deng Shaohui;Duan Peichen;Du Tan;Wu Yaqian;Zhang Zhanyi;Zhang Shudong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3196,
+            "end_char": 3428
+          },
+          "version": "7fa9b88c7fbefd849db5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de8571d9f628"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2e00c0bb8d17"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3f56021bbbd9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a40dc1a1d52"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2e00c0bb8d17"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2b59745ffbd2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "L1CAM deployed perivascular tumor niche promotes vessel wall invasion of tumor thrombus and metastasis of renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Zonglong;Wu Yaqian;Liu Zhuo;Song Yimeng;Ge Liyuan;Du Tan;Liu Yunchong;Liu Li;Liu Cheng;Ma Lulin",
+      "id": "out-339ff196478d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] L1CAM deployed perivascular tumor niche promotes vessel wall invasion of tumor thrombus and metastasis of renal cell carcinoma — Wu Zonglong;Wu Yaqian;Liu Zhuo;Song Yimeng;Ge Liyuan;Du Tan;Liu Yunchong;Liu Li;Liu Cheng;Ma Lulin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3433,
+            "end_char": 3666
+          },
+          "version": "7fa9b88c7fbefd849db5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

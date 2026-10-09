@@ -2,15 +2,20 @@
   "doc_id": "a725fa7148e27c6a41d1",
   "version": "aac9f2ec4b1a01424862",
   "source_hash": "38ac81bee2030f6ba13215fa178d4249706e5faeaa0ca9dc7fe3c7053072de0d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.798981+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.180377+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-67284a0edf84",
-          "name": "轻度认知障碍准确辅诊",
-          "desc": "轻度认知障碍的准确诊断对阿尔兹海默症早期治疗和延缓进展有重要意义。",
-          "evidence": [
-            {
-              "quote": "轻度认知障碍（MCI）的准确诊断对于阿尔兹海默症的早期治疗和延缓进展有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 661,
-                "end_char": 699
-              },
-              "version": "aac9f2ec4b1a01424862"
-            }
-          ]
-        },
-        {
-          "id": "item-c46e4a77fba5",
-          "name": "个体形态学脑网络构建与疾病研究",
-          "desc": "基于结构磁共振成像构建个体形态学脑网络，为捕捉MCI患者大脑细微变化提供新视角与重要手段。",
-          "evidence": [
-            {
-              "quote": "基于结构磁共振成像构建个体形态学脑网络，能够为捕捉MCI患者大脑的细微变化提供新的视角和重要手段",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 729,
-                "end_char": 776
-              },
-              "version": "aac9f2ec4b1a01424862"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-2b7b6453b2cf",
-          "name": "MCI症状轻缺乏可靠辅助诊断技术",
-          "desc": "MCI阶段症状较轻，目前仍缺乏可靠的辅助诊断技术。",
-          "evidence": [
-            {
-              "quote": "但由于MCI阶段症状较轻，目前仍缺乏可靠的辅助诊断技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 701,
-                "end_char": 727
-              },
-              "version": "aac9f2ec4b1a01424862"
-            }
-          ]
-        },
-        {
-          "id": "item-a77b12cce015",
-          "name": "传统诊断方法准确性与敏感性受限",
-          "desc": "MCI症状轻微且传统诊断方法在准确性和敏感性上存在局限。",
+          "id": "item-5ef99d0b0024",
+          "name": "轻度认知障碍辅助诊断",
+          "desc": "MCI是阿尔茨海默症前期阶段",
           "evidence": [
             {
               "quote": "轻度认知障碍（MCI）是阿尔茨海默症发展的前期阶段，其症状轻微且传统诊断方法在准确性和敏感性上存在局限",
@@ -91,36 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-0e44bf82b44f",
-          "name": "几何深度学习构建个体形态学脑网络",
-          "desc": "基于几何深度学习技术对于流形和图的信息挖掘能力，发展可靠的个体形态学脑网络构建方法用于MCI研究。",
+          "id": "item-f90eb9948808",
+          "name": "MCI症状轻微，传统诊断方法准确性和敏感性有限",
+          "desc": "缺乏可靠辅助诊断技术",
           "evidence": [
             {
-              "quote": "本项目拟基于几何深度学习技术对于流形和图强大的信息挖掘能力，发展可靠的个体形态学脑网络构建方法，并用于MCI疾病的研究",
+              "quote": "其症状轻微且传统诊断方法在准确性和敏感性上存在局限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 778,
-                "end_char": 836
-              },
-              "version": "aac9f2ec4b1a01424862"
-            }
-          ]
-        },
-        {
-          "id": "item-13d338c09bf0",
-          "name": "皮层表面深度分割与网络相似度联合学习",
-          "desc": "提出直接作用于大脑皮层表面流形的深度分割模型，并建立脑网络结构和相似度的联合学习方法自适应优化网络结构。",
-          "evidence": [
-            {
-              "quote": "首先提出一个能直接作用于大脑皮层表面流形的深度分割模型，实现快速准确的大脑皮层表面分割；然后建立一个脑网络结构和相似度的联合学习方法，自适应的优化脑网络结构，同时提高相似度学习的准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 864,
-                "end_char": 955
+                "start_char": 2480,
+                "end_char": 2504
               },
               "version": "aac9f2ec4b1a01424862"
             }
@@ -129,13 +64,13 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c639c6394f46",
-          "name": "大脑皮层与海马亚区深度分割模型",
-          "desc": "提出系列深度分割模型，实现对大脑皮层表面及海马亚区的快速准确分割，为脑网络构建提供可靠节点信息。",
+          "id": "item-352def504fe5",
+          "name": "深度分割模型分割皮层表面与海马亚区",
+          "desc": "为脑网络构建提供节点信息",
           "evidence": [
             {
               "quote": "提出了系列深度分割模型，实现了对大脑皮层表面及海马亚区的快速准确分割，为脑网络构建提供可靠的节点信息",
@@ -147,12 +82,12 @@
               "version": "aac9f2ec4b1a01424862"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-f2a4956df561",
-          "name": "深度展开脑网络构建方法",
-          "desc": "建立基于深度展开技术、空间约束皮尔逊相关的脑网络构建新方法，优化网络结构估计并提高诊断准确性。",
+          "id": "item-44b6e776f2e8",
+          "name": "深度展开与空间约束皮尔逊相关脑网络构建",
+          "desc": "优化脑网络结构估计",
           "evidence": [
             {
               "quote": "建立了基于深度展开技术、空间约束皮尔逊相关的脑网络构建新方法，优化脑网络的结构估计，从而提高了基于脑网络的疾病诊断准确性",
@@ -164,72 +99,306 @@
               "version": "aac9f2ec4b1a01424862"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-8c12fcbed0ba",
-          "name": "脑网络梯度MCI诊断方法",
-          "desc": "探索MCI患者个体形态学脑网络的异常梯度模式，据此设计基于脑网络梯度的疾病诊断方法。",
+          "id": "item-ca419384aab2",
+          "name": "基于脑网络梯度的疾病诊断方法",
+          "desc": "MCI个体形态学脑网络异常梯度模式",
           "evidence": [
             {
-              "quote": "深入探索了MCI患者个体形态学脑网络的异常梯度模式，并据此设计了基于脑网络梯度的疾病诊断方法，为MCI的病理机制提供了新线索，还为其精准识别提供了新工具",
+              "quote": "深入探索了MCI患者个体形态学脑网络的异常梯度模式，并据此设计了基于脑网络梯度的疾病诊断方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2696,
-                "end_char": 2771
+                "end_char": 2741
               },
               "version": "aac9f2ec4b1a01424862"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文8篇（SCI 6篇），专利申请6件",
+          "evidence": [
+            {
+              "quote": "项目负责人以第一作者或通讯作者（含同等贡献）发表学术论文8篇（SCI 6篇，IF>5的3篇）；以第一发明人申请国家发明专利6件",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2880,
+                "end_char": 2942
+              },
+              "version": "aac9f2ec4b1a01424862"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-67284a0edf84"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2b7b6453b2cf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anatomically constrained squeeze-and-excitation graph attention network for cortical surface parcellation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinwei;Tan Jia;Wang Panyu;Liu Hong;Li Zhangyong;Wang Wei",
+      "id": "out-d9fb6cbebf2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anatomically constrained squeeze-and-excitation graph attention network for cortical surface parcellation — Li Xinwei;Tan Jia;Wang Panyu;Liu Hong;Li Zhangyong;Wang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3038,
+            "end_char": 3211
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2b7b6453b2cf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0e44bf82b44f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于超高场7T磁共振图像合成的海马亚区半监督自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李欣蔚;王林金;沈俊烨;谭然;胥吴玥熙;朱秋颐;陈彦琳;徐梓仟",
+      "id": "out-11110e20f436",
+      "evidence": [
+        {
+          "quote": "[专利] 基于超高场7T磁共振图像合成的海马亚区半监督自动分割方法 — 李欣蔚;王林金;沈俊烨;谭然;胥吴玥熙;朱秋颐;陈彦琳;徐梓仟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3216,
+            "end_char": 3282
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0e44bf82b44f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8c12fcbed0ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Autism spectrum disorder diagnosis based on deep unrolling-based spatial constraint representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dajiang Lei;Tao Zhang;Yue Wu;Weisheng Li;Xinwei Li",
+      "id": "out-15f5bf8be674",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Autism spectrum disorder diagnosis based on deep unrolling-based spatial constraint representation — Dajiang Lei;Tao Zhang;Yue Wu;Weisheng Li;Xinwei Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3287,
+            "end_char": 3444
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-13d338c09bf0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c639c6394f46"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An auxiliary diagnosis method for mild cognitive impairment based on structural magnetic resonance image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiming Li;Linjin Wang;Jiangtao He;Xinwei Li",
+      "id": "out-746e34f56119",
+      "evidence": [
+        {
+          "quote": "[会议论文] An auxiliary diagnosis method for mild cognitive impairment based on structural magnetic resonance image — Haiming Li;Linjin Wang;Jiangtao He;Xinwei Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3449,
+            "end_char": 3606
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "联合图像配准的脑卒中病灶自动分割方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李欣蔚;许炜鑫;陈勇;秦对;张冰玉;李章勇;王伟",
+      "id": "out-d9eae35a15c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 联合图像配准的脑卒中病灶自动分割方法研究 — 李欣蔚;许炜鑫;陈勇;秦对;张冰玉;李章勇;王伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3611,
+            "end_char": 3664
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bone age assessment based on deep neural networks with annotation-free cascaded critical bone region extraction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhangyong;Chen Wang;Ju Yang;Chen Yong;Hou Zhengjun;Li Xinwei;Jiang Yuhao",
+      "id": "out-6d50a898532c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bone age assessment based on deep neural networks with annotation-free cascaded critical bone region extraction — Li Zhangyong;Chen Wang;Ju Yang;Chen Yong;Hou Zhengjun;Li Xinwei;Jiang Yuhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3669,
+            "end_char": 3864
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于图注意力网络的脑网络结构和相似度的联合学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李欣蔚;李海铭;王林金;许国美;王安康;刘艳平",
+      "id": "out-eed4561638a5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于图注意力网络的脑网络结构和相似度的联合学习方法 — 李欣蔚;李海铭;王林金;许国美;王安康;刘艳平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3869,
+            "end_char": 3926
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Aberrant intra- and inter-network functional connectivity patterns of the anterior and posterior hippocampal networks in Schizophrenia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinwei;Liu Hong;Deng Yuanyang;Li Zhangyong;Jiang Yuhao;Li Deyu;Li Shuyu",
+      "id": "out-3fdba9533d9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Aberrant intra- and inter-network functional connectivity patterns of the anterior and posterior hippocampal networks in Schizophrenia — Li Xinwei;Liu Hong;Deng Yuanyang;Li Zhangyong;Jiang Yuhao;Li Deyu;Li Shuyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3931,
+            "end_char": 4148
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Syn_SegNet: A joint deep neural network for ultrahigh-field 7T MRI synthesis and hippocampal subfield segmentation in routine 3T MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinwei;Wang Linjin;Liu Hong;Ma Baoqiang;Chu Lei;Dong Xiaoxi;Zeng Debin;Che Tongtong;Jiang Xiaoming;Wang Wei;Hu Jun;Li Shuyu",
+      "id": "out-60b39e51a095",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Syn_SegNet: A joint deep neural network for ultrahigh-field 7T MRI synthesis and hippocampal subfield segmentation in routine 3T MRI — Li Xinwei;Wang Linjin;Liu Hong;Ma Baoqiang;Chu Lei;Dong Xiaoxi;Zeng Debin;Che Tongtong;Jiang Xiaoming;Wang Wei;Hu Jun;Li Shuyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4153,
+            "end_char": 4420
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three autism subtypes based on single-subject gray matter network revealed by semi-supervised machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Guomei;Geng Guohong;Wang Ankang;Li Zhangyong;Liu Zhichao;Liu Yanping;Hu Jun;Wang Wei;Li Xinwei",
+      "id": "out-ec4e05d7e949",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three autism subtypes based on single-subject gray matter network revealed by semi-supervised machine learning — Xu Guomei;Geng Guohong;Wang Ankang;Li Zhangyong;Liu Zhichao;Liu Yanping;Hu Jun;Wang Wei;Li Xinwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4426,
+            "end_char": 4642
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脑沟异常的预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李欣蔚;刘洪;刘志超;王伟;李章勇;陈望;陈勇",
+      "id": "out-477184bb918f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脑沟异常的预测系统 — 李欣蔚;刘洪;刘志超;王伟;李章勇;陈望;陈勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4648,
+            "end_char": 4689
+          },
+          "version": "aac9f2ec4b1a01424862"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

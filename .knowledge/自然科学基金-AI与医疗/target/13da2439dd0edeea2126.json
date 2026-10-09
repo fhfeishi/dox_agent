@@ -2,15 +2,20 @@
   "doc_id": "13da2439dd0edeea2126",
   "version": "4c449e4001c1211497b3",
   "source_hash": "713903beadc1e9b06eea5efebd7e60b287a171612b6935a9bd65fbfd26615f49",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.262791+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:29:24.914555+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8af0e628eb0e",
-          "name": "Stanford B型主动脉夹层腔内治疗",
-          "desc": "远端重构不良是制约Stanford B型主动脉夹层腔内治疗远期疗效的瓶颈之一。",
+          "id": "item-9274d886efda",
+          "name": "Stanford B型主动脉夹层腔内治疗术后远端重构",
+          "desc": "远端重构不良制约远期疗效",
           "evidence": [
             {
               "quote": "远端重构不良是制约Stanford B型主动脉夹层腔内治疗远期疗效的瓶颈之一",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f57a3c2ac671",
-          "name": "远端重构预测准确度不足",
-          "desc": "前期联合电子病史与影像学的机器学习模型可预测远端重构，但准确度尚不够。",
+          "id": "item-de78a357106f",
+          "name": "前期机器学习模型准确度不足",
+          "desc": "联合电子病史与影像学的模型准确度不够",
           "evidence": [
             {
               "quote": "申请人前期发现联合电子病史和影像学构建的机器学习模型可以用来预测远端重构，但准确度尚不够",
@@ -51,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 764,
                 "end_char": 807
-              },
-              "version": "4c449e4001c1211497b3"
-            }
-          ]
-        },
-        {
-          "id": "item-e1e438a63a9c",
-          "name": "多组学相互作用机制未明",
-          "desc": "主动脉形态学、管壁生物学特性与血流动力学三者如何共同影响重构，需多组学角度探索。",
-          "evidence": [
-            {
-              "quote": "提出主动脉形态学，管壁的生物学特性以及血流动力学三者相互作用，共同影响夹层术后远端重构的科学假说",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 864,
-                "end_char": 911
               },
               "version": "4c449e4001c1211497b3"
             }
@@ -79,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f87945bd902d",
-          "name": "多组学机器学习风险预测模型",
-          "desc": "联合影像组学、蛋白质组学与血流动力学多组学信息构建风险预测模型，并在前瞻队列验证。",
+          "id": "item-34148f7c499d",
+          "name": "术前CTA影像组学与LASSO筛选",
+          "desc": "筛选18个主动脉重构相关特征",
           "evidence": [
             {
-              "quote": "联合多组学信息用机器学习的方法构建风险预测模型，并在前瞻性队列中进行验证",
+              "quote": "基于患者术前CTA数据提取影像组学特征，采用LASSO回归筛选出18个主动脉重构相关的影像组学特征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1003,
-                "end_char": 1038
+                "start_char": 3052,
+                "end_char": 3100
               },
               "version": "4c449e4001c1211497b3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a781895faa38",
-          "name": "血清蛋白质组学差异分析",
-          "desc": "利用TMT标记定量蛋白组分析血清样本，筛选差异表达蛋白并做生物信息学分析。",
+          "id": "item-bb192d0c8d0c",
+          "name": "TMT定量蛋白组学血清分析",
+          "desc": "筛选82个差异表达蛋白",
           "evidence": [
             {
               "quote": "利用TMT标记定量蛋白组分析6对主动脉重构不良和正向重构患者的血清，共筛选出82个差异表达蛋白",
@@ -108,7 +98,42 @@
               },
               "version": "4c449e4001c1211497b3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-55d68789ecd1",
+          "name": "术中DSA血流动力学参数",
+          "desc": "假腔远端达峰时间为危险因素",
+          "evidence": [
+            {
+              "quote": "通过对患者术中DSA图像后处理，发现假腔远端的达峰时间是远端重构不良的危险因素",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3227
+              },
+              "version": "4c449e4001c1211497b3"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f87945bd902d",
+          "name": "多组学机器学习风险预测模型",
+          "desc": "21个预测因素，四种机器学习方法",
+          "evidence": [
+            {
+              "quote": "联合多组学信息共21个预测因素，采用4种机器学习的方法，包括logistic回归，人工神经网络，随机森林和支持向量机，构建风险预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3298
+              },
+              "version": "4c449e4001c1211497b3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,43 +142,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-35069b15d567",
-          "name": "人工神经网络模型AUC 0.798",
-          "desc": "回顾性队列中人工神经网络模型预测准确性最高，前瞻性150例队列验证AUC为0.798。",
+          "id": "item-20030fa6de50",
+          "name": "前瞻性队列验证",
+          "desc": "150例急性B型夹层，AUC 0.798",
           "evidence": [
             {
-              "quote": "在回顾性队列的验证集中证实人工神经网络模型的预测准确性最高，并在前瞻性纳入的150例急性B型夹层队列中进行验证，AUC为0.798",
+              "quote": "并在前瞻性纳入的150例急性B型夹层队列中进行验证，AUC为0.798",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3300,
+                "start_char": 3330,
                 "end_char": 3364
               },
               "version": "4c449e4001c1211497b3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-bb8c00125af7",
-          "name": "筛选18个影像组学特征",
-          "desc": "基于术前CTA数据提取影像组学特征，采用LASSO回归筛选出18个重构相关特征。",
-          "evidence": [
-            {
-              "quote": "采用LASSO回归筛选出18个主动脉重构相关的影像组学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3072,
-                "end_char": 3100
-              },
-              "version": "4c449e4001c1211497b3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b39aa724dd03",
-          "name": "PCSK9与TSP1潜标记物",
-          "desc": "82个差异表达蛋白的生物信息学分析提示PCSK9和TSP1是潜在生物标记物。",
+          "id": "item-83cd82945a62",
+          "name": "潜在生物标记物PCSK9与TSP1",
+          "desc": "蛋白组生物信息学分析提示",
           "evidence": [
             {
               "quote": "进一步的生物信息学分析提示PCSK9和TSP1是潜在的生物标记物",
@@ -165,7 +175,9 @@
               "version": "4c449e4001c1211497b3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -173,47 +185,152 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-8af0e628eb0e"
+        "dimension": "技术",
+        "item_id": "item-f87945bd902d"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-f57a3c2ac671"
+        "item_id": "item-de78a357106f"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "联合多组学信息共21个预测因素，采用4种机器学习的方法，包括logistic回归，人工神经网络，随机森林和支持向量机，构建风险预测模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3232,
+            "end_char": 3298
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-f57a3c2ac671"
+        "dimension": "成果",
+        "item_id": "item-20030fa6de50"
       },
       "to": {
         "dimension": "技术",
         "item_id": "item-f87945bd902d"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f87945bd902d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-35069b15d567"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a781895faa38"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b39aa724dd03"
-      },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "并在前瞻性纳入的150例急性B型夹层队列中进行验证，AUC为0.798",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3330,
+            "end_char": 3364
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning Prediction for Distal Aortic Remodeling After Thoracic Endovascular Aortic Repair in Stanford Type B Aortic Dissection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Min;Luo Xiaoyuan;Wang Xia;Xie Tianchen;Wang Yonggang;Shi Zhenyu;Wang Manning;Fu Weiguo",
+      "id": "out-9065816bf2d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning Prediction for Distal Aortic Remodeling After Thoracic Endovascular Aortic Repair in Stanford Type B Aortic Dissection — Zhou Min;Luo Xiaoyuan;Wang Xia;Xie Tianchen;Wang Yonggang;Shi Zhenyu;Wang Manning;Fu Weiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3436,
+            "end_char": 3668
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "模块化主动脉弓上三分支覆膜支架主体",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "符伟国;周旻;王利新;司逸;董智慧;郭大乔;陈斌;史振宇;杨珏;蒋俊豪",
+      "id": "out-91628b7ba0d2",
+      "evidence": [
+        {
+          "quote": "[专利] 模块化主动脉弓上三分支覆膜支架主体 — 符伟国;周旻;王利新;司逸;董智慧;郭大乔;陈斌;史振宇;杨珏;蒋俊豪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3732
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CD11b deficiency attenuates the ischemia/reperfusion-induced AKI-to-CKD process by regulating macrophage polarization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Huili;Zhao Shuan;Zhou Min;Fang Yi;Tsuboi Naotake;Ding Xiaoqiang;Shi Yiqin",
+      "id": "out-1fb0a7075315",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CD11b deficiency attenuates the ischemia/reperfusion-induced AKI-to-CKD process by regulating macrophage polarization — Zhou Huili;Zhao Shuan;Zhou Min;Fang Yi;Tsuboi Naotake;Ding Xiaoqiang;Shi Yiqin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3737,
+            "end_char": 3941
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "自体股浅静脉再造主髂动脉系统治疗严重感染性腹主动脉瘤:中国首批病例安全性及疗效分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琪;杨珏;潘天岳;方圆;竺挺;王利新;阚远晴;周旻;陈璋璋;董智慧;符伟国;岳嘉宁",
+      "id": "out-db37a273a84a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 自体股浅静脉再造主髂动脉系统治疗严重感染性腹主动脉瘤:中国首批病例安全性及疗效分析 — 王琪;杨珏;潘天岳;方圆;竺挺;王利新;阚远晴;周旻;陈璋璋;董智慧;符伟国;岳嘉宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3946,
+            "end_char": 4038
+          },
+          "version": "4c449e4001c1211497b3"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

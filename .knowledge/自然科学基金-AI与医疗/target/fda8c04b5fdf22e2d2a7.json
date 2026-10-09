@@ -2,15 +2,20 @@
   "doc_id": "fda8c04b5fdf22e2d2a7",
   "version": "ea4b79328d24db23678d",
   "source_hash": "20d43d8a33ef04e95dbbfbae37c7caccfaa8d96ff41807167c079570a1d5feb2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:15.978363+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:45:04.317136+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8ea86903e075",
-          "name": "TNBC新辅助化疗肿瘤演进可视化",
-          "desc": "利用临床、病理及影像信息交叉融合，探索人工智能技术在三阴性乳腺癌新辅助化疗过程中预测肿瘤异质性演进及预后的价值。",
+          "id": "item-fe3bf23344bf",
+          "name": "TNBC新辅助化疗演进与预后预测",
+          "desc": "多模态影像AI",
           "evidence": [
             {
-              "quote": "本研究利用临床、病理及影像信息的交叉和融合，探索人工智能技术在三阴性乳腺癌（TNBC）新辅助化疗（NAC）过程中预测肿瘤异质性的演进及预后的价值",
+              "quote": "本研究首次系统性揭示并量化了TNBC的独特影像表型模式",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 661,
-                "end_char": 732
-              },
-              "version": "ea4b79328d24db23678d"
-            }
-          ]
-        },
-        {
-          "id": "item-63192a771ec7",
-          "name": "实现精准化治疗改善预后",
-          "desc": "构建预测模型前瞻性筛选对NAC治疗潜在获益的TNBC患者，协助修正治疗方案并评估远处转移风险，最终改善患者预后。",
-          "evidence": [
-            {
-              "quote": "前瞻性筛选对NAC治疗潜在获益的TNBC患者，协助修正治疗方案，以及治疗后远处转移的风险评估，有助于实现其精准化治疗，最终达到改善患者预后的目的",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 984,
-                "end_char": 1055
+                "start_char": 3306,
+                "end_char": 3332
               },
               "version": "ea4b79328d24db23678d"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ca11b903cfe8",
-          "name": "NAC有效率仅30%至50%",
-          "desc": "NAC是TNBC标准内科治疗方法之一，但有效率仅为30%-50%，如何实现获益人群筛选是临床亟需解决的问题。",
+          "id": "item-3e44ed5668a9",
+          "name": "NAC有效率低需筛选获益人群",
+          "desc": "",
           "evidence": [
             {
-              "quote": "NAC是TNBC标准内科治疗方法之一，但其有效率仅为30%-50%。如何实现获益人群的筛选是临床亟需解决的问题",
+              "quote": "NAC是TNBC标准内科治疗方法之一，但其有效率仅为30%-50%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 751,
-                "end_char": 805
-              },
-              "version": "ea4b79328d24db23678d"
-            }
-          ]
-        },
-        {
-          "id": "item-6a41fee07a0f",
-          "name": "肿瘤异质性需新视角探查",
-          "desc": "影像组学和深度学习作为AI分析模式的两个技术核心，提供了探查肿瘤异质性的全新视角。",
-          "evidence": [
-            {
-              "quote": "影像组学和深度学习作为AI分析模式的两个技术核心，提供了探查肿瘤异质性的全新视角",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 807,
-                "end_char": 846
+                "end_char": 783
               },
               "version": "ea4b79328d24db23678d"
             }
@@ -95,63 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff16bf70223c",
-          "name": "多参数MRI影像组学特征模型",
-          "desc": "通过大样本队列研究建立基于多参数MRI的TNBC影像组学特征模型，实现TNBC的无创准确预测。",
-          "evidence": [
-            {
-              "quote": "首先，通过大样本队列研究，建立基于多参数MRI的TNBC影像组学特征模型，实现TNBC的无创准确预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2829,
-                "end_char": 2878
-              },
-              "version": "ea4b79328d24db23678d"
-            }
-          ]
-        },
-        {
-          "id": "item-ce98c6b8219a",
-          "name": "潜类别轨迹模型量化退缩异质性",
-          "desc": "利用潜类别轨迹模型量化分析NAC治疗中肿瘤退缩的异质性模式，筛选有效表型特征并揭示退缩规律。",
-          "evidence": [
-            {
-              "quote": "其次，利用潜类别轨迹模型，量化分析NAC治疗中肿瘤退缩的异质性模式，筛选有效表型特征，揭示其退缩规律",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2880,
-                "end_char": 2929
-              },
-              "version": "ea4b79328d24db23678d"
-            }
-          ]
-        },
-        {
-          "id": "item-f4ab932f0f75",
-          "name": "多模态融合预测模型",
-          "desc": "构建基于基线MRI、超声及乳腺X线的多模态融合预测模型，评估NAC疗效及治疗后远处转移风险。",
-          "evidence": [
-            {
-              "quote": "再者，构建基于基线MRI、超声及乳腺X线的多模态融合预测模型，评估TNBC在内的NAC疗效及治疗后远处转移风险",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2931,
-                "end_char": 2985
-              },
-              "version": "ea4b79328d24db23678d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cbd6374744ab",
-          "name": "MRI模型区分TNBC的AUC 0.795与0.705",
-          "desc": "基于多参数MRI的机器学习模型在训练集和验证集中AUC值分别达0.795和0.705，有效区分TNBC与非TNBC。",
+          "id": "item-5ba20e689f52",
+          "name": "多参数MRI机器学习模型识别TNBC",
+          "desc": "",
           "evidence": [
             {
               "quote": "基于多参数MRI的机器学习模型在训练集和验证集中AUC值分别达0.795和0.705，有效区分TNBC与非TNBC",
@@ -163,29 +82,69 @@
               "version": "ea4b79328d24db23678d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-73f22ad1318b",
-          "name": "肿瘤退缩呈四种异质性轨迹",
-          "desc": "NAC治疗中肿瘤退缩呈现四种异质性轨迹模式，第4周期后为疗效评估关键时间窗。",
+          "id": "item-3b00e75fe06f",
+          "name": "潜类别轨迹模型量化肿瘤退缩异质性",
+          "desc": "四种轨迹",
           "evidence": [
             {
-              "quote": "NAC治疗中，肿瘤退缩呈现四种异质性轨迹模式，第4周期后为疗效评估关键时间窗",
+              "quote": "利用潜类别轨迹模型，量化分析NAC治疗中肿瘤退缩的异质性模式",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3144,
-                "end_char": 3181
+                "start_char": 2883,
+                "end_char": 2912
               },
               "version": "ea4b79328d24db23678d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-2e8807c1c7db",
-          "name": "多模态融合模型pCR预测AUC 0.842",
-          "desc": "多模态融合模型在病理完全缓解预测中AUC达0.842，显著优于单一模态；Ultrafast DCE-MRI的27通道深度学习模型诊断效能最优（AUC 0.784）。",
+          "id": "item-f4ab932f0f75",
+          "name": "多模态融合预测模型",
+          "desc": "基线MRI、超声与乳腺X线",
+          "evidence": [
+            {
+              "quote": "构建基于基线MRI、超声及乳腺X线的多模态融合预测模型，评估TNBC在内的NAC疗效及治疗后远处转移风险",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2934,
+                "end_char": 2985
+              },
+              "version": "ea4b79328d24db23678d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-100d8a1ed15d",
+          "name": "Ultrafast DCE-MRI深度学习模型",
+          "desc": "27通道",
+          "evidence": [
+            {
+              "quote": "27通道深度学习模型诊断效能最优（AUC 0.784）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3272,
+                "end_char": 3298
+              },
+              "version": "ea4b79328d24db23678d"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-01b198686289",
+          "name": "pCR预测AUC",
+          "desc": "0.842",
           "evidence": [
             {
               "quote": "多模态融合模型在病理完全缓解（pCR）预测中AUC达0.842，显著优于单一模态",
@@ -197,55 +156,329 @@
               "version": "ea4b79328d24db23678d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8ea86903e075"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ca11b903cfe8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation analysis between shear-wave elastography and pathological profiles in breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Junnan;Sun Bo;Li Yanbo;Li Shuang;Wang Jiahui;Zhu Ying;Lu Hong",
+      "id": "out-944215e2c262",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation analysis between shear-wave elastography and pathological profiles in breast cancer — Li Junnan;Sun Bo;Li Yanbo;Li Shuang;Wang Jiahui;Zhu Ying;Lu Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3534,
+            "end_char": 3702
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ca11b903cfe8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ff16bf70223c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of diagnostic potential of shear wave elastography between breast mass lesions and non-mass-like lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Junnan;Liu Yacong;Li Yanbo;Li Shuang;Wang Jiahui;Zhu Ying;Lu Hong",
+      "id": "out-3c63246a86f4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of diagnostic potential of shear wave elastography between breast mass lesions and non-mass-like lesions — Li Junnan;Liu Yacong;Li Yanbo;Li Shuang;Wang Jiahui;Zhu Ying;Lu Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3899
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ff16bf70223c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cbd6374744ab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于超快速动态对比增强MRI的深度学习模型诊断乳腺恶性病变的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王文琪;马文娟;郭一君;王静博;路红",
+      "id": "out-ce7c9ebcaa48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于超快速动态对比增强MRI的深度学习模型诊断乳腺恶性病变的价值 — 王文琪;马文娟;郭一君;王静博;路红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 3963
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ce98c6b8219a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-73f22ad1318b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative ultrasonography-guided core-needle biopsy-based factors for predicting the upgrade of axillary lymph nodes in breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xing Yue;Li Yanbo;Wang Jiahui;Liu Liangsheng;Li Fangfang;Lu Hong",
+      "id": "out-16940fc20834",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative ultrasonography-guided core-needle biopsy-based factors for predicting the upgrade of axillary lymph nodes in breast cancer — Xing Yue;Li Yanbo;Wang Jiahui;Liu Liangsheng;Li Fangfang;Lu Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3968,
+            "end_char": 4177
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PSMA1-mediated ultrasmall gold nanoparticles facilitate tumor targeting and MR/CT/NIRF multimodal detection of early-stage prostate cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiahui Wang;Liang Li;Yanbo Li;Liangsheng Liu;Junnan Li;Xiaokang Li;Ying Zhu;Xuening Zhang;Hong Lu",
+      "id": "out-c814e1fdbbcb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PSMA1-mediated ultrasmall gold nanoparticles facilitate tumor targeting and MR/CT/NIRF multimodal detection of early-stage prostate cancer — Jiahui Wang;Liang Li;Yanbo Li;Liangsheng Liu;Junnan Li;Xiaokang Li;Ying Zhu;Xuening Zhang;Hong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4182,
+            "end_char": 4426
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive value of MRI-based deep learning model for lymphovascular invasion status in node-negative invasive breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Rong;Li Fangfang;Yao Jingyuan;Tong Fang;Hua Minghui;Liu Junjun;Shi Chenlei;Sui Lewen;Lu Hong",
+      "id": "out-39011be8b5bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive value of MRI-based deep learning model for lymphovascular invasion status in node-negative invasive breast cancer — Liang Rong;Li Fangfang;Yao Jingyuan;Tong Fang;Hua Minghui;Liu Junjun;Shi Chenlei;Sui Lewen;Lu Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4431,
+            "end_char": 4662
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于MRI图像的乳腺癌化疗疗效预测系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李艳博;路红;朱鹰;南丽虹;王文琪",
+      "id": "out-fc5b794e5a0e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于MRI图像的乳腺癌化疗疗效预测系统及方法 — 李艳博;路红;朱鹰;南丽虹;王文琪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4667,
+            "end_char": 4715
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌精准诊疗中多模态影像关键技术的创新与推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "路红;邵真真;马文娟;刘佩芳;朱鹰;柳杰;季宇",
+      "id": "out-20ffb17cf300",
+      "evidence": [
+        {
+          "quote": "[奖励] 乳腺癌精准诊疗中多模态影像关键技术的创新与推广 — 路红;邵真真;马文娟;刘佩芳;朱鹰;柳杰;季宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4720,
+            "end_char": 4773
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "瘤内联合瘤周动态对比增强MRI乳腺癌腋窝淋巴结转移深度学习预测模型研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭一君;尹 蕊;韩珺琪;豆兆祥;陈静静;刘佩芳;路 红;马文娟",
+      "id": "out-65e8fb37a9fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 瘤内联合瘤周动态对比增强MRI乳腺癌腋窝淋巴结转移深度学习预测模型研究 — 郭一君;尹 蕊;韩珺琪;豆兆祥;陈静静;刘佩芳;路 红;马文娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4778,
+            "end_char": 4853
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "于多模态影像学的乳腺癌全生命周期智能管理体系创建与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "路红;马文娟;朱鹰;柳杰;邵真真;季宇",
+      "id": "out-0092c252a268",
+      "evidence": [
+        {
+          "quote": "[奖励] 于多模态影像学的乳腺癌全生命周期智能管理体系创建与应用 — 路红;马文娟;朱鹰;柳杰;邵真真;季宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4859,
+            "end_char": 4912
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种乳腺图像识别处理方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘雪静;路红;朱鹰;徐熠琳",
+      "id": "out-cebf88be713b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种乳腺图像识别处理方法 — 刘雪静;路红;朱鹰;徐熠琳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4918,
+            "end_char": 4950
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tumor shrinkage patterns and optimal timing of response assessment during neoadjuvant therapy for breast cancer: a study based on multiparametric MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingbo Wang;Yacong Liu;Tianhui Liu;Yanbo Li;Xiaoxu Ma;Yishan Zhao;Hong Lu",
+      "id": "out-f65adcdb9b4b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tumor shrinkage patterns and optimal timing of response assessment during neoadjuvant therapy for breast cancer: a study based on multiparametric MRI — Jingbo Wang;Yacong Liu;Tianhui Liu;Yanbo Li;Xiaoxu Ma;Yishan Zhao;Hong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 5187
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IgG4相关硬化性乳腺炎1例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵伊珊;张琦;周雅秋;路红",
+      "id": "out-7adf675d4fb1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IgG4相关硬化性乳腺炎1例 — 赵伊珊;张琦;周雅秋;路红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5193,
+            "end_char": 5229
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Machine-Learning Model for the Prediction of Triple-Negative Breast Cancer Based on Multiparameter MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cai Yuxin;Li Yanbo;Wang Wenqi;Zhou Yaqiu;Wang Jingbo;Zhang Lina;Lu Hong",
+      "id": "out-55d5405dd8d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Machine-Learning Model for the Prediction of Triple-Negative Breast Cancer Based on Multiparameter MRI — Cai Yuxin;Li Yanbo;Wang Wenqi;Zhou Yaqiu;Wang Jingbo;Zhang Lina;Lu Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5235,
+            "end_char": 5419
+          },
+          "version": "ea4b79328d24db23678d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

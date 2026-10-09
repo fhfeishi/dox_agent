@@ -2,15 +2,20 @@
   "doc_id": "1f2af59752fad16b28b5",
   "version": "8ca0cc4d87bf3d9dfa21",
   "source_hash": "d9ab44bd908ded263b22605a4fc9c63096b30f083349fb8a672c5b5892c96634",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.502812+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.149027+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ca338da8eefc",
-          "name": "脑动静脉畸形破裂风险预测",
-          "desc": "破裂是导致脑动静脉畸形患者严重神经功能障碍甚至死亡的首要因素，精准评估破裂风险、筛查高危患者是亟待解决的重要问题。",
+          "id": "item-98a16d34329b",
+          "name": "脑动静脉畸形破裂风险评估",
+          "desc": "BAVM是青少年脑出血主要病因",
           "evidence": [
             {
-              "quote": "破裂是导致脑动静脉畸形（BAVM）患者严重神经功能障碍甚至死亡的首要因素，精准评估破裂风险、筛查高危患者是目前BAVM研究领域中亟待解决的重要问题",
+              "quote": "脑动静脉畸形（BAVM）是青少年脑出血主要病因，年破裂率2%-4%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 745
-              },
-              "version": "8ca0cc4d87bf3d9dfa21"
-            }
-          ]
-        },
-        {
-          "id": "item-af4372d4febf",
-          "name": "为个体化诊疗提供工具",
-          "desc": "构建可解释的BAVM破裂风险预测模型，为个体化诊疗提供工具，并为医工结合及AI技术在临床决策的应用提供典型实例。",
-          "evidence": [
-            {
-              "quote": "旨在通过定量血流动力学与人工智能技术，构建可解释的BAVM破裂风险预测模型，为个体化诊疗提供工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2832,
-                "end_char": 2879
+                "start_char": 2705,
+                "end_char": 2737
               },
               "version": "8ca0cc4d87bf3d9dfa21"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b753546525e6",
-          "name": "既往模型存在回顾性偏倚与变量维度少",
-          "desc": "既往传统预测模型多因回顾性/横断面设计而具有严重偏倚，加之纳入变量维度较少，导致预测效能较低。",
-          "evidence": [
-            {
-              "quote": "既往传统预测模型研究多因回顾性/横断面设计而具有严重偏倚，加之纳入变量维度较少，导致预测效能较低，难以支撑临床需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 747,
-                "end_char": 803
-              },
-              "version": "8ca0cc4d87bf3d9dfa21"
-            }
-          ]
-        },
-        {
-          "id": "item-8c9fe6c3da3a",
-          "name": "现有模型依赖形态学特征局限明显",
-          "desc": "现有预测模型多依赖人口学与血管构筑学特征，存在回顾性偏倚、变量维度少、预测效能低等局限。",
+          "id": "item-08527b30a695",
+          "name": "现有模型偏倚、变量少、效能低",
+          "desc": "依赖人口学与血管构筑学特征",
           "evidence": [
             {
               "quote": "现有预测模型多依赖人口学与血管构筑学特征，存在回顾性偏倚、变量维度少、预测效能低等局限",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f4dc6f942b95",
-          "name": "定量血流动力学与机器学习融合",
-          "desc": "通过定量血流动力学与人工智能技术构建可解释的BAVM破裂风险预测模型，依托全国多中心MATCH队列开展研究。",
+          "id": "item-737b8e8b7fbf",
+          "name": "DSA-iFlow定量血流动力学参数",
+          "desc": "提取63项参数",
           "evidence": [
             {
-              "quote": "研究依托全国多中心MATCH队列，纳入2018-2021年未干预、经DSA确诊的857例BAVM患者",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2882,
-                "end_char": 2931
-              },
-              "version": "8ca0cc4d87bf3d9dfa21"
-            }
-          ]
-        },
-        {
-          "id": "item-9fd798a1b776",
-          "name": "DSA-iFlow血流动力学参数提取",
-          "desc": "基于DSA-iFlow技术在ICA侧位图像勾画5个感兴趣区，提取63项血流动力学参数并经多重筛选确定10项核心参数。",
-          "evidence": [
-            {
-              "quote": "基于DSA-iFlow技术，在ICA侧位图像勾画5个感兴趣区，提取63项血流动力学参数，经单变量筛选（P<0.20）、多重共线性分析（VIF<10）及LASSO、Ridge、XGBoost特征排序，确定10项核心参数",
+              "quote": "基于DSA-iFlow技术，在ICA侧位图像勾画5个感兴趣区，提取63项血流动力学参数",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2992,
-                "end_char": 3099
+                "end_char": 3034
               },
               "version": "8ca0cc4d87bf3d9dfa21"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-66fca733ba67",
+          "name": "XGBoost破裂风险预测模型",
+          "desc": "13种机器学习中最优",
+          "evidence": [
+            {
+              "quote": "构建13种机器学习模型，XGBoost模型表现最优",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3139,
+                "end_char": 3163
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +108,80 @@
       "state": "has",
       "items": [
         {
-          "id": "item-375f3b17e2a7",
-          "name": "857例多中心前瞻队列",
-          "desc": "纳入2018-2021年未干预、经DSA确诊的857例BAVM患者，分为训练集、外部验证集及纵向随访集。",
+          "id": "item-551ba7892743",
+          "name": "XGBoost模型各集AUC",
+          "desc": "训练0.754、内部0.750、外部0.748",
           "evidence": [
             {
-              "quote": "纳入2018-2021年未干预、经DSA确诊的857例BAVM患者，分为训练集（523例，含418例训练、105例内部验证）、外部验证集（140例）及纵向随访集（194例保守治疗患者）",
+              "quote": "训练集交叉验证AUC=0.754，内部验证集AUC=0.750，外部验证集AUC=0.748",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2899,
-                "end_char": 2990
-              },
-              "version": "8ca0cc4d87bf3d9dfa21"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e71ce7e65897",
-          "name": "XGBoost模型外部验证AUC 0.748",
-          "desc": "构建13种机器学习模型，XGBoost表现最优，训练集交叉验证AUC 0.754、内部验证0.750、外部验证0.748，SHAP分析明确N-Area为最关键预测参数。",
-          "evidence": [
-            {
-              "quote": "构建13种机器学习模型，XGBoost模型表现最优：训练集交叉验证AUC=0.754，内部验证集AUC=0.750，外部验证集AUC=0.748",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3139,
+                "start_char": 3165,
                 "end_char": 3210
               },
               "version": "8ca0cc4d87bf3d9dfa21"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-4c22c801bb28",
-          "name": "高危组10年破裂率17.9%",
-          "desc": "纵向队列中模型将患者分为高/低危组，10年破裂率分别为17.9%、4.2%，可有效指导保守治疗决策。",
+          "id": "item-80a9a200d345",
+          "name": "高低危组10年破裂率",
+          "desc": "17.9% vs 4.2%",
           "evidence": [
             {
-              "quote": "在纵向队列中，模型将患者分为高/低危组，10年破裂率分别为17.9%、4.2%（P=0.028，HR=0.33，95%CI：0.12-0.93），可有效指导保守治疗决策",
+              "quote": "10年破裂率分别为17.9%、4.2%（P=0.028，HR=0.33，95%CI：0.12-0.93）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3250,
-                "end_char": 3333
+                "start_char": 3270,
+                "end_char": 3321
               },
               "version": "8ca0cc4d87bf3d9dfa21"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c23bebe30953",
+          "name": "QDSA软件与在线风险计算器",
+          "desc": "获软件著作权",
+          "evidence": [
+            {
+              "quote": "开发国产化QDSA软件（获软件著作权，登记号：2025SR0538714）及在线风险计算器",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3338,
+                "end_char": 3382
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c5681cdd8b84",
+          "name": "MATCH队列",
+          "desc": "857例BAVM患者",
+          "evidence": [
+            {
+              "quote": "纳入2018-2021年未干预、经DSA确诊的857例BAVM患者",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2899,
+                "end_char": 2931
+              },
+              "version": "8ca0cc4d87bf3d9dfa21"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +189,187 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-ca338da8eefc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b753546525e6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b753546525e6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f4dc6f942b95"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f4dc6f942b95"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-e71ce7e65897"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9fd798a1b776"
+        "item_id": "item-551ba7892743"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-4c22c801bb28"
+        "dimension": "技术",
+        "item_id": "item-66fca733ba67"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "训练集交叉验证AUC=0.754，内部验证集AUC=0.750，外部验证集AUC=0.748",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3165,
+            "end_char": 3210
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lesion filling index predicts brain arteriovenous malformation obliteration after Gamma knife radiosurgery: a hemodynamic analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Ruinan;Chen Yu;Chen Pingting;Ma Li;Han Heze;Li Zhipeng;Zhou Wanting;Zhou Yu;Wang Minhan;Sun Shibin;Zhao Yuanli;Chen Xiaolin",
+      "id": "out-f25f64503cff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lesion filling index predicts brain arteriovenous malformation obliteration after Gamma knife radiosurgery: a hemodynamic analysis — Li Ruinan;Chen Yu;Chen Pingting;Ma Li;Han Heze;Li Zhipeng;Zhou Wanting;Zhou Yu;Wang Minhan;Sun Shibin;Zhao Yuanli;Chen Xiaolin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3549,
+            "end_char": 3814
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Scoring System for Hemorrhage Risk in Brain Arteriovenous Malformations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-e813b02088f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Scoring System for Hemorrhage Risk in Brain Arteriovenous Malformations — Yu Chen;Heze Han;Xiangyu Meng;Hengwei Jin;Dezhi Gao;Li Ma;Ruinan Li;Zhipeng Li;Debin Yan;Haibin Zhang;Kexin Yuan;Ke Wang;Yukun Zhang;Yang Zhao;Weitao Jin;Runting Li;Fa Lin;Xiaofeng Chao;Zhengfeng Lin;Qiang Hao;Hao Wang;Xun Ye;Shuai Kang;Youxiang Li;Shibin Sun;Ali Liu;Shuo Wang;Yuanli Zhao;Xiaolin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 4233
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Venous aneurysms in unruptured supratentorial brain arteriovenous malformations: a protective factor against hemorrhagic stroke and insights into hemodynamic mechanisms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhipeng;Han Heze;Ma Li;Li Ruinan;Li Anqi;Zhang Haibin;Zhu Qinghui;Yuan Kexin;Wang Ke;Wang Chengzhuo;Zhang Yukun;Zhao Yang;Yan Debin;Lu Junlin;Chen Pingting;Zhou Wanting;Zhao Yuanli;Chen Xiaolin;Chen Yu",
+      "id": "out-0e52c03ecc08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Venous aneurysms in unruptured supratentorial brain arteriovenous malformations: a protective factor against hemorrhagic stroke and insights into hemodynamic mechanisms — Li Zhipeng;Han Heze;Ma Li;Li Ruinan;Li Anqi;Zhang Haibin;Zhu Qinghui;Yuan Kexin;Wang Ke;Wang Chengzhuo;Zhang Yukun;Zhao Yang;Yan Debin;Lu Junlin;Chen Pingting;Zhou Wanting;Zhao Yuanli;Chen Xiaolin;Chen Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4619
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lesion-Filling Index from Quantitative DSA Correlates with Hemorrhage of Cerebral AVM",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Ruinan;Chen Yu;Chen Pingting;Ma Li;Han Heze;Li Zhipeng;Zhou Wanting;Chen Xiaolin;Zhao Yuanli",
+      "id": "out-97a624e4d104",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lesion-Filling Index from Quantitative DSA Correlates with Hemorrhage of Cerebral AVM — Li Ruinan;Chen Yu;Chen Pingting;Ma Li;Han Heze;Li Zhipeng;Zhou Wanting;Chen Xiaolin;Zhao Yuanli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4624,
+            "end_char": 4813
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Overloaded transnidal pressure gradient as the hemodynamic mechanism leading to arteriovenous malformation rupture: a quantitative analysis using intravascular pressure monitoring and color-coded digital subtraction angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yukun;Chen Yu;Li Ruinan;Ma Li;Han Heze;Li Zhipeng;Zhang Haibin;Yuan Kexin;Zhao Yang;Jin Weitao;Chen Pingting;Zhou Wanting;Ye Xun;Li Youxiang;Wang Shuo;Chen Xiaolin;Zhao Yuanli",
+      "id": "out-43998d74160d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Overloaded transnidal pressure gradient as the hemodynamic mechanism leading to arteriovenous malformation rupture: a quantitative analysis using intravascular pressure monitoring and color-coded digital subtraction angiography — Zhang Yukun;Chen Yu;Li Ruinan;Ma Li;Han Heze;Li Zhipeng;Zhang Haibin;Yuan Kexin;Zhao Yang;Jin Weitao;Chen Pingting;Zhou Wanting;Ye Xun;Li Youxiang;Wang Shuo;Chen Xiaolin;Zhao Yuanli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4818,
+            "end_char": 5235
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of an Interpretable HemodynamicsBased Machine Learning Model for Predicting Cerebral Arteriovenous Malformation Rupture",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Chengzhuo;Lau Tzak Sing;Han Heze;Li Ruinan;Li Zhipeng;Zhu Qinghui;Chen Yu;Chen Xiaolin",
+      "id": "out-f8c9bb7241d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of an Interpretable HemodynamicsBased Machine Learning Model for Predicting Cerebral Arteriovenous Malformation Rupture — Wang Chengzhuo;Lau Tzak Sing;Han Heze;Li Ruinan;Li Zhipeng;Zhu Qinghui;Chen Yu;Chen Xiaolin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5240,
+            "end_char": 5486
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Re-rupture in ruptured brain arteriovenous malformations: a retrospective cohort study based on a nationwide multicenter prospective registry",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Kexin;Chen Yu;Yan Debin;Li Ruinan;Li Zhipeng;Zhang Haibin;Wang Ke;Han Heze;Zhao Yahui;Ma Li;Hao Qiang;Ye Xun;Jin Hengwei;Meng Xiangyu;Liu Ali;Gao Dezhi;Sun Shibin;Kang Shuai;Wang Hao;Li Youxiang;Wang Shuo;Chen Xiaolin;Zhao Yuanli",
+      "id": "out-0a46cf189e85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Re-rupture in ruptured brain arteriovenous malformations: a retrospective cohort study based on a nationwide multicenter prospective registry — Yuan Kexin;Chen Yu;Yan Debin;Li Ruinan;Li Zhipeng;Zhang Haibin;Wang Ke;Han Heze;Zhao Yahui;Ma Li;Hao Qiang;Ye Xun;Jin Hengwei;Meng Xiangyu;Liu Ali;Gao Dezhi;Sun Shibin;Kang Shuai;Wang Hao;Li Youxiang;Wang Shuo;Chen Xiaolin;Zhao Yuanli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5491,
+            "end_char": 5875
+          },
+          "version": "8ca0cc4d87bf3d9dfa21"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

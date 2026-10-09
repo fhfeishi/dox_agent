@@ -2,15 +2,20 @@
   "doc_id": "f367788c82b411fbd29e",
   "version": "f67aaf26632f0608c51f",
   "source_hash": "95e76f7bc3bffe8453fa71b77aea1fd674b8a8b0597147479dfd936bde269df1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.118442+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.439992+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d9a9fb269bad",
-          "name": "数字病理图像癌细胞检测与分割",
-          "desc": "癌细胞检测与分割是癌症诊断与定级的先决条件和基础任务，具有十分重要的意义。",
+          "id": "item-e1758b0a169b",
+          "name": "数字病理癌细胞检测与分割",
+          "desc": "弱监督学习",
           "evidence": [
             {
-              "quote": "数字病理图像癌细胞检测与分割是癌症诊断与定级的先决条件和基础任务，因此具有十分重要的意义",
+              "quote": "本项目研究基于弱监督学习的数字病理图像癌细胞检测与分割方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 701
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ]
-        },
-        {
-          "id": "item-27149be4741c",
-          "name": "病理辅助诊断与远程诊断系统",
-          "desc": "将算法应用于数据库标记、疾病诊断及远程诊断系统中。",
-          "evidence": [
-            {
-              "quote": "在此基础在上，将算法应用于数据库标记、疾病诊断及远程诊断系统中",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 991,
-                "end_char": 1021
+                "start_char": 2952,
+                "end_char": 2980
               },
               "version": "f67aaf26632f0608c51f"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fca950ff1b98",
-          "name": "细胞粘连重叠与形态多样",
-          "desc": "细胞之间粘连与重叠，且大小、形状、内部强度多样，癌细胞检测与分割具有极大挑战性。",
-          "evidence": [
-            {
-              "quote": "由于细胞之间的粘连与重叠、以及细胞大小、形状、内部强度多样性等问题，癌细胞检测与分割具有极大的挑战性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 703,
-                "end_char": 752
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ]
-        },
-        {
           "id": "item-81a3e3cc5b77",
           "name": "缺少大规模标记数据",
-          "desc": "在数字病理图像研究中缺少大规模标记数据的问题依然没有解决，性能还不够高。",
+          "desc": "细胞粘连重叠",
           "evidence": [
             {
-              "quote": "在数字病理图像癌细胞检测与分割的研究中，缺少大规模标记数据的问题依然没有解决，还有待深入的研究",
+              "quote": "在数字病理图像癌细胞检测与分割的研究中，缺少大规模标记数据的问题依然没有解决",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2901,
-                "end_char": 2947
+                "end_char": 2938
               },
               "version": "f67aaf26632f0608c51f"
             }
@@ -95,63 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-89ab6ab8a75f",
-          "name": "涂鸦式标记弱监督分割",
-          "desc": "研究涂鸦式（简笔）标记下的癌细胞区域检测与分割方法。",
-          "evidence": [
-            {
-              "quote": "涂鸦式标记（scribble annotation，又叫简笔标记）下的癌细胞区域检测与分割方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 944
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ]
-        },
-        {
-          "id": "item-a03db84aefe4",
-          "name": "基于主动学习的半自动标注",
-          "desc": "研究基于主动学习的癌细胞区域半自动标注方法。",
-          "evidence": [
-            {
-              "quote": "基于主动学习的癌细胞区域半自动标注方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 949,
-                "end_char": 967
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ]
-        },
-        {
-          "id": "item-0352ce461167",
-          "name": "多示例学习癌细胞检测",
-          "desc": "研究基于多示例学习的癌细胞检测与分割方法。",
-          "evidence": [
-            {
-              "quote": "基于多示例学习的癌细胞检测与分割方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 972,
-                "end_char": 989
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f2cff39ff26b",
+          "id": "item-a9f2f45fbbcf",
           "name": "细胞核半自动标注系统",
-          "desc": "系统可自动识别并标注图像中细胞核实例，使用者只需简要修改即可完成整图标注。",
+          "desc": "自动识别并标注细胞核实例",
           "evidence": [
             {
               "quote": "其核心研究项细胞核半自动标注系统可以自动识别并标注图像中的细胞核实例，使用者只需要在此基础上进行简要修改就可以完成细胞核图像整图的标注",
@@ -163,12 +82,35 @@
               "version": "f67aaf26632f0608c51f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-4038bc492753",
-          "name": "肺部病理图像分析与诊断系统",
-          "desc": "开发的肺部病理图像分析与诊断系统与厦门乳腺病理AI辅助诊断平台已部署于医院与医疗大数据中心等机构。",
+          "id": "item-477ec3148cb2",
+          "name": "点标注弱监督腺体实例分割算法",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "基于点标注的弱监督腺体实例分割算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3212,
+                "end_char": 3228
+              },
+              "version": "f67aaf26632f0608c51f"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7c871a61b34e",
+          "name": "肺部病理图像分析与诊断系统与厦门乳腺病理AI辅助诊断平台",
+          "desc": "已部署医院",
           "evidence": [
             {
               "quote": "研究组所开发的肺部病理图像分析与诊断系统与厦门乳腺病理AI 辅助诊断平台对临床辅助诊断具有重大意义，并已部署于医院与医疗大数据中心等医疗机构",
@@ -180,72 +122,224 @@
               "version": "f67aaf26632f0608c51f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-be9657424eb0",
-          "name": "点标注弱监督腺体实例分割",
-          "desc": "完成基于点标注的弱监督腺体实例分割算法与细胞核检测与分割实验平台搭建。",
-          "evidence": [
-            {
-              "quote": "研究组先后完成了细胞图像数据集的收集及标注整理、细胞核检测与分割实验平台搭建、基于点标注的弱监督腺体实例分割算法、细胞核半自动标注系统等子研究项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3173,
-                "end_char": 3244
-              },
-              "version": "f67aaf26632f0608c51f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d9a9fb269bad"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fca950ff1b98"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detecting urban hot regions by using massive geo-tagged image data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Dahan;Li Jianmin;Zhu Shunzhi",
+      "id": "out-75c5bf503c37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Detecting urban hot regions by using massive geo-tagged image data — Wang Dahan;Li Jianmin;Zhu Shunzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3442,
+            "end_char": 3550
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-81a3e3cc5b77"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-89ab6ab8a75f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Few-labeled visual recognition for self-driving using multi-view visual-semantic representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Da-Han;Li Jianmin;Zhu Shunzhi",
+      "id": "out-01cce6f9f3a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Few-labeled visual recognition for self-driving using multi-view visual-semantic representation — Wang Da-Han;Li Jianmin;Zhu Shunzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3555,
+            "end_char": 3693
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a03db84aefe4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f2cff39ff26b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于域对抗自监督学习的病理图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王大寒",
+      "id": "out-f60ce57c80d9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于域对抗自监督学习的病理图像分割方法 — 王大寒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3729
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0352ce461167"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4038bc492753"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于图卷积网络的数字 病理图像的分割与分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王大寒",
+      "id": "out-775768209c44",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于图卷积网络的数字 病理图像的分割与分类方法 — 王大寒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3734,
+            "end_char": 3769
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly-Supervised Gland Instance Segmentation based on Point Labeling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王大寒",
+      "id": "out-fb315e7e2e41",
+      "evidence": [
+        {
+          "quote": "[会议论文] Weakly-Supervised Gland Instance Segmentation based on Point Labeling — 王大寒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3774,
+            "end_char": 3855
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Histopathological Image Segmentation and Classification using Graph Convolution Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haili Ye;Da-Han Wang;Jianmin Li;Shunzhi Zhu;Chenyan Zhu",
+      "id": "out-535a3468ddc8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improving Histopathological Image Segmentation and Classification using Graph Convolution Network — Haili Ye;Da-Han Wang;Jianmin Li;Shunzhi Zhu;Chenyan Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3860,
+            "end_char": 4021
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的肺部病理图像分类与 分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王大寒",
+      "id": "out-2defd3c51b38",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的肺部病理图像分类与 分割方法 — 王大寒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4026,
+            "end_char": 4059
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于点标注的弱监督腺体实例分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王大寒;李建敏;叶海礼;朱晨雁;朱顺痣",
+      "id": "out-ffab123e83e3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于点标注的弱监督腺体实例分割方法 — 王大寒;李建敏;叶海礼;朱晨雁;朱顺痣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4064,
+            "end_char": 4109
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Misclassification Information for Fine-Grained Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Da-Han;Zhou Wei;Li Jianmin;Wu Yun;Zhu Shunzhi",
+      "id": "out-0f2ed45a07c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring Misclassification Information for Fine-Grained Image Classification — Wang Da-Han;Zhou Wei;Li Jianmin;Wu Yun;Zhu Shunzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4114,
+            "end_char": 4250
+          },
+          "version": "f67aaf26632f0608c51f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

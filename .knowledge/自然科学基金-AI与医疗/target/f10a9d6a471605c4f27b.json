@@ -2,15 +2,20 @@
   "doc_id": "f10a9d6a471605c4f27b",
   "version": "627d47491a638afe84f3",
   "source_hash": "ff9f98ba6de6ace3de79336803d847f9d23c85e064d0b7f7aaec8421d8ad4e56",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.629821+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.667294+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-848ae2cc804e",
           "name": "前列腺癌自动分割与智能诊断",
-          "desc": "前列腺癌是男性生殖泌尿系统常见恶性肿瘤，发病率和死亡率仅次于肺癌。",
+          "desc": "多参数MRI",
           "evidence": [
             {
-              "quote": "前列腺癌是男性生殖泌尿系统中常见的恶性肿瘤，发病率和死亡率仅次于肺癌，已成为泌尿外科领域一个越来越重要的课题",
+              "quote": "本项目提出了新型的分割和诊断预测模型来解决这些难题，实现前列腺癌的自动分割与风险评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 728
-              },
-              "version": "627d47491a638afe84f3"
-            }
-          ]
-        },
-        {
-          "id": "item-7b5fb9862618",
-          "name": "为前列腺癌诊断提供新途径",
-          "desc": "项目可解决前列腺癌诊断和评估的若干科学问题，为前列腺癌诊断提供一种新的有效途径。",
-          "evidence": [
-            {
-              "quote": "该项目的开展可以解决前列腺癌诊断和评估的若干科学问题，为前列腺癌诊断提供一种新的有效途径，从而提高我国前列腺癌的诊断水平",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 954,
-                "end_char": 1013
+                "start_char": 783,
+                "end_char": 824
               },
               "version": "627d47491a638afe84f3"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c521d450ca78",
-          "name": "解剖结构复杂边界模糊形状差异大",
-          "desc": "前列腺复杂解剖结构、模糊边界和不同患者前列腺形状的巨大差异，使自动分割与诊断充满挑战。",
+          "id": "item-a40c203923c5",
+          "name": "前列腺解剖复杂、边界模糊、形状差异大",
+          "desc": "自动分割与诊断",
           "evidence": [
             {
               "quote": "由于前列腺复杂的解剖结构、模糊的边界和不同患者前列腺形状的巨大差异，使得对前列腺的自动分割与诊断充满挑战",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 730,
                 "end_char": 781
-              },
-              "version": "627d47491a638afe84f3"
-            }
-          ]
-        },
-        {
-          "id": "item-c9f9438971e3",
-          "name": "数据不足制约模型训练",
-          "desc": "需通过生成图像构建数据库以解决数据不足问题。",
-          "evidence": [
-            {
-              "quote": "首先，使用多参数压缩和激发模块的生成对抗网络（mSE-GAN）生成MRI图像构建数据库，解决数据不足的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2594,
-                "end_char": 2646
               },
               "version": "627d47491a638afe84f3"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4dfe282283f1",
-          "name": "多参数压缩激发GAN生成数据",
-          "desc": "使用多参数压缩和激发模块的生成对抗网络生成MRI图像构建数据库，解决数据不足问题。",
+          "id": "item-6516da237e55",
+          "name": "mSE-GAN多参数压缩激发生成对抗网络",
+          "desc": "生成MRI构建数据库",
           "evidence": [
             {
               "quote": "使用多参数压缩和激发模块的生成对抗网络（mSE-GAN）生成MRI图像构建数据库，解决数据不足的问题",
@@ -108,23 +81,42 @@
               },
               "version": "627d47491a638afe84f3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8a5c9d5dd2f1",
-          "name": "压缩密集反卷积网络SDDN分割",
-          "desc": "设计新型定位和分割模型压缩密集反卷积网络，对前列腺癌实现高精度定位分割。",
+          "id": "item-1d3016146a61",
+          "name": "压缩密集反卷积网络SDDN",
+          "desc": "高精度定位分割",
           "evidence": [
             {
-              "quote": "其次，设计一种新型的定位和分割模型即压缩密集反卷积网络（SDDN）对前列腺癌实现高精度定位分割",
+              "quote": "设计一种新型的定位和分割模型即压缩密集反卷积网络（SDDN）对前列腺癌实现高精度定位分割",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 877,
+                "start_char": 880,
                 "end_char": 923
               },
               "version": "627d47491a638afe84f3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-26ddb8b6a87c",
+          "name": "多参数多网络特征融合诊断预测",
+          "desc": "MP-MRI",
+          "evidence": [
+            {
+              "quote": "基于多参数多网络特征融合方法对前列腺癌的 MP-MRI 图像进行自动预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2699,
+                "end_char": 2734
+              },
+              "version": "627d47491a638afe84f3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,343 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d7a090d8df9d",
-          "name": "mSE-GAN解决数据不足",
-          "desc": "使用mSE-GAN生成MRI图像构建数据库，有效解决数据不足问题。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文10篇，国际会议论文7篇，专利1项",
           "evidence": [
             {
-              "quote": "使用多参数压缩和激发模块的生成对抗网络（mSE-GAN）生成MRI图像构建数据库，解决数据不足的问题",
+              "quote": "共发表SCI期刊论文10篇，国际会议论文7篇，专利一项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2597,
-                "end_char": 2646
-              },
-              "version": "627d47491a638afe84f3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-67b7b1933562",
-          "name": "多参数多网络特征融合诊断",
-          "desc": "基于多参数多网络特征融合方法对前列腺癌MP-MRI图像进行自动预测。",
-          "evidence": [
-            {
-              "quote": "最后，基于多参数多网络特征融合方法对前列腺癌的 MP-MRI 图像进行自动预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2696,
-                "end_char": 2734
-              },
-              "version": "627d47491a638afe84f3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5f62ccc9658e",
-          "name": "论文与专利成果",
-          "desc": "项目完成预期目标，共发表SCI期刊论文10篇、国际会议论文7篇、专利一项。",
-          "evidence": [
-            {
-              "quote": "本项目完成预期目标，共发表SCI期刊论文10篇，国际会议论文7篇，专利一项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2736,
+                "start_char": 2746,
                 "end_char": 2772
               },
               "version": "627d47491a638afe84f3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-848ae2cc804e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c521d450ca78"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Placental Super Micro-vessels Segmentation Based on ResNeXt with Convolutional Block Attention and U-Net",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Minsi;Zhao Cheng;Tian Xiaoxian;Liu Yujian;Wang Tianfu;Lei Baiying",
+      "id": "out-c54b8b7eb023",
+      "evidence": [
+        {
+          "quote": "[会议论文] Placental Super Micro-vessels Segmentation Based on ResNeXt with Convolutional Block Attention and U-Net — Chen Minsi;Zhao Cheng;Tian Xiaoxian;Liu Yujian;Wang Tianfu;Lei Baiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3013,
+            "end_char": 3196
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c521d450ca78"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4dfe282283f1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AMD-GAN: Attention encoder and multi-branch structure based generative adversarial networks for fundus disease detection from scanning laser ophthalmoscopy images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hai Xie;Haijun Lei;Xianlu Zeng;Yejun He;Guozhen Chen;Ahmed Elazab;Guanghui Yue;Jiantao Wang;Guoming Zhang;Baiying Lei",
+      "id": "out-acb90bc145b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AMD-GAN: Attention encoder and multi-branch structure based generative adversarial networks for fundus disease detection from scanning laser ophthalmoscopy images — Hai Xie;Haijun Lei;Xianlu Zeng;Yejun He;Guozhen Chen;Ahmed Elazab;Guanghui Yue;Jiantao Wang;Guoming Zhang;Baiying Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3201,
+            "end_char": 3489
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4dfe282283f1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d7a090d8df9d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical image fusion method based on dense block and deep convolutional",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Cheng;Wang Tianfu;Lei Baiying",
+      "id": "out-adcf3472760e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical image fusion method based on dense block and deep convolutional — Zhao Cheng;Wang Tianfu;Lei Baiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3494,
+            "end_char": 3608
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8a5c9d5dd2f1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-67b7b1933562"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CNN in CT Image Segmentation: Beyond Loss Function for Exploiting Ground Truth Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Youyi;Yu Zhen;Zhou Teng;Teoh Jeremy Yuen-Chun;Lei Baiying;Choi Kup-Sze;Qin Jing",
+      "id": "out-2026f87e158c",
+      "evidence": [
+        {
+          "quote": "[会议论文] CNN in CT Image Segmentation: Beyond Loss Function for Exploiting Ground Truth Images — Song Youyi;Yu Zhen;Zhou Teng;Teoh Jeremy Yuen-Chun;Lei Baiying;Choi Kup-Sze;Qin Jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3791
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual Network Generative Adversarial Networks for Pediatric Echocardiography Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guo Libao;Wang Qian",
+      "id": "out-00da379cf9fa",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual Network Generative Adversarial Networks for Pediatric Echocardiography Segmentation — Guo Libao;Wang Qian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3796,
+            "end_char": 3912
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated Stage Analysis of Retinopathy of Prematurity Using Joint Segmentation and Multi-instance Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Guozhen;Fu Huazhu",
+      "id": "out-b0e892d34e9f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Automated Stage Analysis of Retinopathy of Prematurity Using Joint Segmentation and Multi-instance Learning — Chen Guozhen;Fu Huazhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3917,
+            "end_char": 4055
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Improved Object Detection Method for Mitosis Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Haijun;Liu Shaomin;Xie Hai;Kuo Jong Yih;Lei Baiying",
+      "id": "out-5cc287d460f5",
+      "evidence": [
+        {
+          "quote": "[会议论文] An Improved Object Detection Method for Mitosis Detection — Lei Haijun;Liu Shaomin;Xie Hai;Kuo Jong Yih;Lei Baiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4060,
+            "end_char": 4181
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Parameter-Free Loss for Class-Imbalanced Deep Learning in Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Du Jie;Zhou Yanhong;Liu Peng;Vong Chi-Man;Wang Tianfu",
+      "id": "out-4c9247995ce2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Parameter-Free Loss for Class-Imbalanced Deep Learning in Image Classification — Du Jie;Zhou Yanhong;Liu Peng;Vong Chi-Man;Wang Tianfu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4186,
+            "end_char": 4326
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fully Automatic Pediatric Echocardiography Segmentation Using Deep Convolutional Networks Based on BiSeNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yujin;Guo Libao;Lei Baiying;Mao Muyi;Jin Zelong;Elazab Ahmed;Xia Bei;Wang Tianfu",
+      "id": "out-878b5fe3a101",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fully Automatic Pediatric Echocardiography Segmentation Using Deep Convolutional Networks Based on BiSeNet — Hu Yujin;Guo Libao;Lei Baiying;Mao Muyi;Jin Zelong;Elazab Ahmed;Xia Bei;Wang Tianfu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4331,
+            "end_char": 4529
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于密集网络图像的分割、识别方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷柏英;汪天富;秦璟;李航;何鑫子;倪东",
+      "id": "out-62f2739ae68a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于密集网络图像的分割、识别方法和装置 — 雷柏英;汪天富;秦璟;李航;何鑫子;倪东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4535,
+            "end_char": 4581
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-co-attention neural network for anatomy segmentation in whole breast ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Baiying;Huang Shan;Li Hang;Li Ran;Bian Cheng;Chou Yi-Hong;Qin Jing;Zhou Peng;Gong Xuehao;Cheng Jie-Zhi",
+      "id": "out-7bbad78a66f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-co-attention neural network for anatomy segmentation in whole breast ultrasound — Lei Baiying;Huang Shan;Li Hang;Li Ran;Bian Cheng;Chou Yi-Hong;Qin Jing;Zhou Peng;Gong Xuehao;Cheng Jie-Zhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4786
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High tissue contrast image synthesis via multistage attention-GAN: Application to segmenting brain MR scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mohammad Hamghalam;Tianfu Wang;Baiying Lei",
+      "id": "out-450780529681",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High tissue contrast image synthesis via multistage attention-GAN: Application to segmenting brain MR scans — Mohammad Hamghalam;Tianfu Wang;Baiying Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4792,
+            "end_char": 4950
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An optimized generic cerebral tumor growth modeling framework by coupling biomechanical and diffusive models with treatment effects",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Elazab Ahmed;Anter Ahmed M.;Bai Hongmin;Hu Qingmao;Hussain Zakir;Ni Dong;Wang Tianfu;Lei Baiying",
+      "id": "out-5a45e097baf0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An optimized generic cerebral tumor growth modeling framework by coupling biomechanical and diffusive models with treatment effects — Elazab Ahmed;Anter Ahmed M.;Bai Hongmin;Hu Qingmao;Hussain Zakir;Ni Dong;Wang Tianfu;Lei Baiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 5192
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skin lesion segmentation via generative adversarial networks with dual discriminators",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Baiying;Xia Zaimin;Jiang Feng;Jiang Xudong;Ge Zongyuan;Xu Yanwu;Qin Jing;Chen Siping;Wang Tianfu;Wang Shuqiang",
+      "id": "out-ae499cfb2c36",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Skin lesion segmentation via generative adversarial networks with dual discriminators — Lei Baiying;Xia Zaimin;Jiang Feng;Jiang Xudong;Ge Zongyuan;Xu Yanwu;Qin Jing;Chen Siping;Wang Tianfu;Wang Shuqiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5198,
+            "end_char": 5406
+          },
+          "version": "627d47491a638afe84f3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

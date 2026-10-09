@@ -2,15 +2,20 @@
   "doc_id": "9e75f5c261c4e0ce1551",
   "version": "68218910b1da8274557f",
   "source_hash": "8c965d7fe1ba34989ed13a36e286d007ba294dd0e0f8be68312ae54d38a3b397",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.230755+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:50:36.873684+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6bbf40d9cff9",
-          "name": "NSCLC免疫治疗疗效与PD-L1表达预测",
-          "desc": "面向进展期非小细胞肺癌免疫治疗，用多模态影像组学预测PD-1/PD-L1表达及免疫治疗疗效。",
+          "id": "item-16afedb36344",
+          "name": "NSCLC免疫治疗疗效与PD-L1预测",
+          "desc": "免疫治疗已成为重要治疗方法",
           "evidence": [
             {
-              "quote": "免疫治疗已成为非小细胞肺癌（NSCLC）重要治疗方法，现行疗效评价标准因存在非常规缓解模式而不能实现准确评价",
+              "quote": "免疫治疗已成为非小细胞肺癌（NSCLC）重要治疗方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 683,
-                "end_char": 736
+                "end_char": 708
               },
               "version": "68218910b1da8274557f"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e364dab1eaa",
-          "name": "现行疗效评价标准存在非常规缓解模式",
-          "desc": "现行疗效评价标准因存在非常规缓解模式而不能实现准确评价，需建立影像学新方法预测疗效。",
+          "id": "item-97ad658a9804",
+          "name": "现行疗效评价标准无法准确评价非常规缓解模式",
+          "desc": "NSCLC异质性与治疗后演进",
           "evidence": [
             {
               "quote": "现行疗效评价标准因存在非常规缓解模式而不能实现准确评价",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d0aa2bac52e3",
-          "name": "三维多模态影像融合的影像组学预测模型",
-          "desc": "基于增强CT、动态增强MRI参数图与IVIM参数图经三维多模态影像融合，以时间编码神经网络分割病灶、影像组学提取特征并用LASSO回归筛选，联合生物标记物与临床指标构建临床-影像组学模型与nomogram。",
+          "id": "item-4f1e18ddb9a7",
+          "name": "多任务学习可视化肿瘤演进预测模型",
+          "desc": "预测肿瘤进展",
           "evidence": [
             {
-              "quote": "经三维多模态影像融合，并以时间编码的神经网络法分割病灶，用影像组学方法提取特征，采用LASSO回归筛选特征参数",
+              "quote": "构建了一种基于多任务学习的可视化肿瘤演进预测模型。该模型在预测肿瘤进展与否的分类效能上表现出色，AUC值高达0.89",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 789,
-                "end_char": 843
+                "start_char": 4386,
+                "end_char": 4443
               },
               "version": "68218910b1da8274557f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0d3699c61fa9",
+          "name": "随访配准深度学习联合影像组学双增量疗效评价模型",
+          "desc": "外部中心AUC 0.85",
+          "evidence": [
+            {
+              "quote": "基于随访配准的深度学习联合影像组学的双增量免疫治疗疗效评价模型在外部中心队列验证中AUC达到0.85",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4448,
+                "end_char": 4497
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-be35e5bef92a",
+          "name": "MP-NN与MPI-RF多模态深度学习模型",
+          "desc": "血清代谢指纹、蛋白标志物与图像特征",
+          "evidence": [
+            {
+              "quote": "构建了双模态（MP-NN）和三模态（MPI-RF）深度学习模型，显著提升了肺腺癌早期检测和肺结节分类的性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4812,
+                "end_char": 4864
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,375 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf80dc4e6152",
-          "name": "多任务学习肿瘤演进预测模型AUC 0.89",
-          "desc": "基于多任务学习的可视化肿瘤演进预测模型预测肿瘤进展的分类效能AUC达0.89；双增量免疫治疗疗效评价模型外部验证AUC 0.85，STAS跨中心验证AUC分别为0.844和0.840。",
+          "id": "item-b12749a8ad2b",
+          "name": "IVIM参数独立预测PFS",
+          "desc": "ADC和D风险降低56.2%至82.7%",
           "evidence": [
             {
-              "quote": "该模型在预测肿瘤进展与否的分类效能上表现出色，AUC值高达0.89",
+              "quote": "功能MRI成像IVIM的定量参数ADC和D的风险降低幅度为56.2%至82.7%，表明ADC和D参数在预测NSCLC对抗肿瘤治疗反应方面均为无进展生存期（PFS）的独立预测因子",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4411,
-                "end_char": 4443
+                "start_char": 4638,
+                "end_char": 4725
               },
               "version": "68218910b1da8274557f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-53c309aa416b",
+          "name": "太赫兹生物传感器",
+          "desc": "折射率灵敏度485.3 GHz/RIU",
+          "evidence": [
+            {
+              "quote": "其折射率灵敏度达485.3 GHz/RIU，且在斜入射角下表现出优异的角度稳定性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4976,
+                "end_char": 5015
+              },
+              "version": "68218910b1da8274557f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6bbf40d9cff9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5e364dab1eaa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺磨玻璃密度结节全程管理的研究进展—— 影像诊断、风险预测、生长判断、处理策略和预后判断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "叶晓丹",
+      "id": "out-3882a755931b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺磨玻璃密度结节全程管理的研究进展—— 影像诊断、风险预测、生长判断、处理策略和预后判断 — 叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5145,
+            "end_char": 5201
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5e364dab1eaa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d0aa2bac52e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint two-stage convolutional neural networks for intracranial aneurysms detection on 3D TOF-MRA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxi Zhou;Yifeng Yang;Ting Fang;Shouqiang Jia;Shengdong Nie;Xiaodan Ye",
+      "id": "out-3dd2b6a99ee1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint two-stage convolutional neural networks for intracranial aneurysms detection on 3D TOF-MRA — Yuxi Zhou;Yifeng Yang;Ting Fang;Shouqiang Jia;Shengdong Nie;Xiaodan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5206,
+            "end_char": 5381
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d0aa2bac52e3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bf80dc4e6152"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磨玻璃密度肺结节的 CT 诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沈蕾蕾;陈婧;叶晓丹",
+      "id": "out-fa16f31aeea0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 磨玻璃密度肺结节的 CT 诊断 — 沈蕾蕾;陈婧;叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5386,
+            "end_char": 5420
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于医学影像的机器学习预测非小细胞肺癌 EGFR突变的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙元昕;沈蕾蕾;叶晓丹",
+      "id": "out-06b82b6ec10f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于医学影像的机器学习预测非小细胞肺癌 EGFR突变的研究进展 — 孙元昕;沈蕾蕾;叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5425,
+            "end_char": 5476
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving the prediction of Spreading Through Air Spaces (STAS) in primary lung cancer with a dynamic dual-delta hybrid machine learning model: a multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiqiu Jin;Leilei Shen;Yu Tian;Hongda Zhu;Ningyuan Zou;Mengwei Zhang;Qian Chen;Changzi Dong;Qisheng Yang;Long Jiang;Jia Huang;Zheng Yuan;Xiaodan Ye;Qingquan Luo",
+      "id": "out-84d5c2777799",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving the prediction of Spreading Through Air Spaces (STAS) in primary lung cancer with a dynamic dual-delta hybrid machine learning model: a multicenter cohort study — Weiqiu Jin;Leilei Shen;Yu Tian;Hongda Zhu;Ningyuan Zou;Mengwei Zhang;Qian Chen;Changzi Dong;Qisheng Yang;Long Jiang;Jia Huang;Zheng Yuan;Xiaodan Ye;Qingquan Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5481,
+            "end_char": 5820
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于治疗前增强CT图像纹理特征预测非小细胞肺癌免疫治疗疗效",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沈蕾蕾;陶广昱;傅鸿超;刘雪梅;叶晓丹;叶剑定",
+      "id": "out-9fa28992ec64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于治疗前增强CT图像纹理特征预测非小细胞肺癌免疫治疗疗效 — 沈蕾蕾;陶广昱;傅鸿超;刘雪梅;叶晓丹;叶剑定",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5825,
+            "end_char": 5886
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of future imagery of lung nodule as growth modeling with follow-up computed tomography scans using deep learning: a retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangyu Tao;Li Zhu;Qunhui Chen;Lekang Yin;Yamin Li;Jiancheng Yang;Bingbing Ni;Zheng Zhang;Chi Wan Koo;Pradnya D. Patil;Yinan Chen;Hong Yu;Yi Xu;Xiaodan Ye",
+      "id": "out-e56373d3634a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of future imagery of lung nodule as growth modeling with follow-up computed tomography scans using deep learning: a retrospective cohort study — Guangyu Tao;Li Zhu;Qunhui Chen;Lekang Yin;Yamin Li;Jiancheng Yang;Bingbing Ni;Zheng Zhang;Chi Wan Koo;Pradnya D. Patil;Yinan Chen;Hong Yu;Yi Xu;Xiaodan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 6207
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Terahertz toroidal metasurface biosensor for sensitive distinction of lung cancer cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chiben Zhang;Tingjia Xue;Jin Zhang;Longhai Liu;Jianhua Xie;Guangming Wang;Jianquan Yao;Weiren Zhu;Xiaodan Ye",
+      "id": "out-4aa681229af2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Terahertz toroidal metasurface biosensor for sensitive distinction of lung cancer cells — Chiben Zhang;Tingjia Xue;Jin Zhang;Longhai Liu;Jianhua Xie;Guangming Wang;Jianquan Yao;Weiren Zhu;Xiaodan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6212,
+            "end_char": 6416
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺部 CT 筛查报告和数据系统(1.1)更新的 解读及分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高淳;薛庭嘉;陈婧;叶晓丹",
+      "id": "out-b48f33caa55d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺部 CT 筛查报告和数据系统(1.1)更新的 解读及分析 — 高淳;薛庭嘉;陈婧;叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6421,
+            "end_char": 6472
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishment and validation of a radiological-radiomics model for predicting high-grade patterns of lung adenocarcinoma less than or equal to 3 cm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Hao;Yin Lekang;Chen Lei;Wang Qingle;Pan Xianpan;Li Yang;Ye Xiaodan;Zeng Mengsu",
+      "id": "out-809cb98cd527",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishment and validation of a radiological-radiomics model for predicting high-grade patterns of lung adenocarcinoma less than or equal to 3 cm — Dong Hao;Yin Lekang;Chen Lei;Wang Qingle;Pan Xianpan;Li Yang;Ye Xiaodan;Zeng Mengsu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6478,
+            "end_char": 6717
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺结节处理指南的解读和比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈婧;叶晓丹",
+      "id": "out-5619ff4d6a1c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺结节处理指南的解读和比较 — 陈婧;叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6723,
+            "end_char": 6751
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrative Serum Metabolic Fingerprints Based Multi‐Modal Platforms for Lung Adenocarcinoma Early Detection and Pulmonary Nodule Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Wang;Mengji Zhang;Xufeng Pan;Mingna Zhao;Lin Huang;Xiaomeng Hu;Xueqing Wang;Lihua Qiao;Qiaomei Guo;Wanxing Xu;Wenli Qian;Tingjia Xue;Xiaodan Ye;Ming Li;Haixiang Su;Yinglan Kuang;Xing Lu;Xin Ye;Kun Qian;Jiatao Lou",
+      "id": "out-0c7421b57a86",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrative Serum Metabolic Fingerprints Based Multi‐Modal Platforms for Lung Adenocarcinoma Early Detection and Pulmonary Nodule Classification — Lin Wang;Mengji Zhang;Xufeng Pan;Mingna Zhao;Lin Huang;Xiaomeng Hu;Xueqing Wang;Lihua Qiao;Qiaomei Guo;Wanxing Xu;Wenli Qian;Tingjia Xue;Xiaodan Ye;Ming Li;Haixiang Su;Yinglan Kuang;Xing Lu;Xin Ye;Kun Qian;Jiatao Lou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6757,
+            "end_char": 7126
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺结节 MRI 检查的研究进展和临床应用疗疗效的研究)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈婧;叶晓丹",
+      "id": "out-75e4c2574172",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺结节 MRI 检查的研究进展和临床应用疗疗效的研究) — 陈婧;叶晓丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7132,
+            "end_char": 7174
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Global, regional, and national burden of esophageal cancer: a systematic analysis of the Global Burden of Disease Study 2021",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Weiqiu;Huang Kaichen;Ding Ziyin;Zhang Mengwei;Li Chongwu;Yuan Zheng;Ma Ke;Ye Xiaodan",
+      "id": "out-a2eb16c5d348",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Global, regional, and national burden of esophageal cancer: a systematic analysis of the Global Burden of Disease Study 2021 — Jin Weiqiu;Huang Kaichen;Ding Ziyin;Zhang Mengwei;Li Chongwu;Yuan Zheng;Ma Ke;Ye Xiaodan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7180,
+            "end_char": 7401
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Use of DW-MRI to predict early response to anti-tumor therapy in advanced NSCLC: A comparison of intravoxel incoherent motion-derived parameters and apparent diffusion coefficient",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yuan;Xiao-Min Niu;Xue-Mei Liu;Hong-Chao Fu;Ting-Jia Xue;Chi Wan Koo;Katsuhiro Okuda;Feng Yao;Xiao-Dan Ye",
+      "id": "out-9abf95fc35a0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Use of DW-MRI to predict early response to anti-tumor therapy in advanced NSCLC: A comparison of intravoxel incoherent motion-derived parameters and apparent diffusion coefficient — Zheng Yuan;Xiao-Min Niu;Xue-Mei Liu;Hong-Chao Fu;Ting-Jia Xue;Chi Wan Koo;Katsuhiro Okuda;Feng Yao;Xiao-Dan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7407,
+            "end_char": 7705
+          },
+          "version": "68218910b1da8274557f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "186756000307b2a2c755",
   "version": "ad29aec9d6dd4aeefd66",
   "source_hash": "32902e88322887dd46318d0b5d4dc7b860b1d80bbfbd5cc24d6dff618b9874aa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.434622+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.357406+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-09aca763d074",
-          "name": "进展期胃癌新辅助化疗疗效预测",
-          "desc": "对进展期胃癌是否应术前新辅助化疗仍有争议，获益者仅限对化疗敏感患者。",
+          "id": "item-c58731235140",
+          "name": "进展期胃癌新辅助化疗",
+          "desc": "是否术前行新辅助化疗尚有争议",
           "evidence": [
             {
-              "quote": "对进展期胃癌是否应在手术前行新辅助化疗，目前仍有争议。研究表明，获益者仅限于对化疗敏感的患者",
+              "quote": "对进展期胃癌是否应在手术前行新辅助化疗，目前仍有争议",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 654,
-                "end_char": 699
-              },
-              "version": "ad29aec9d6dd4aeefd66"
-            }
-          ]
-        },
-        {
-          "id": "item-3a9ea37fdbd2",
-          "name": "围手术期精准决策辅助工具",
-          "desc": "为临床提供实用准确的进展期胃癌围手术期精准决策辅助工具。",
-          "evidence": [
-            {
-              "quote": "旨在为临床提供一个实用、准确的进展期胃癌围手术期精准决策辅助工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 956,
-                "end_char": 987
+                "end_char": 679
               },
               "version": "ad29aec9d6dd4aeefd66"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-325aa8cd742c",
-          "name": "缺乏治疗前预测化疗敏感性工具",
-          "desc": "目前缺乏在治疗前预测化疗敏感性的工具。",
-          "evidence": [
-            {
-              "quote": "然而目前缺乏在治疗前预测化疗敏感性的工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 701,
-                "end_char": 720
-              },
-              "version": "ad29aec9d6dd4aeefd66"
-            }
-          ]
-        },
-        {
-          "id": "item-9ba1d26e91ab",
-          "name": "新辅助化疗疗效个体差异大",
-          "desc": "进展期胃癌新辅助化疗疗效个体差异大且缺乏精准预测工具。",
+          "id": "item-98ce63e4cdf6",
+          "name": "NAC疗效个体差异大、缺乏精准预测工具",
+          "desc": "临床难题",
           "evidence": [
             {
               "quote": "针对进展期胃癌新辅助化疗（NAC）疗效个体差异大、缺乏精准预测工具的临床难题",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8fb8e7539e5",
-          "name": "活检全切片数字病理深度学习",
-          "desc": "应用卷积神经网络模型对干预前胃镜活检组织全切片数字病理图像进行深度学习，挖掘与化疗敏感性和治疗结局相关的信息。",
+          "id": "item-6d964a2b623d",
+          "name": "Radio-Pathomic多模态融合预测模型",
+          "desc": "LASSO回归与LightGBM，融合CT影像组学和病理组学",
           "evidence": [
             {
-              "quote": "应用卷积神经网络模型，对干预前胃镜活检组织的全切片数字病理图像进行深度学习，从海量的数字病理图像中挖掘与化疗敏感性，治疗结局相关的信息",
+              "quote": "结合LASSO回归与LightGBM算法，建立了Radio-Pathomic多模态融合预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 825,
-                "end_char": 891
-              },
-              "version": "ad29aec9d6dd4aeefd66"
-            }
-          ]
-        },
-        {
-          "id": "item-f94bd31de837",
-          "name": "多模态融合预测模型Radio-Pathomic",
-          "desc": "构建含静脉期CT与活检全切片病理的多模态数据库，提取影像组学与病理组学特征，结合LASSO与LightGBM建立融合模型。",
-          "evidence": [
-            {
-              "quote": "课题组构建了包含静脉期CT影像与胃镜活检全切片数字病理图像的多模态临床数据库，利用特征工程提取了高通量影像组学与病理组学特征，结合LASSO回归与LightGBM算法，建立了Radio-Pathomic多模态融合预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3212,
+                "start_char": 3275,
                 "end_char": 3321
               },
               "version": "ad29aec9d6dd4aeefd66"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c91031d3ada9",
+          "name": "肿瘤标志物动态轨迹聚类",
+          "desc": "K-means对CEA、CA125动态轨迹聚类",
+          "evidence": [
+            {
+              "quote": "创新性引入K-means无监督机器学习算法对肿瘤标志物（CEA、CA125）进行动态轨迹聚类分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3449,
+                "end_char": 3496
+              },
+              "version": "ad29aec9d6dd4aeefd66"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f727cb153190",
-          "name": "多模态模型验证集AUC 0.814",
-          "desc": "Radio-Pathomic多模态融合预测模型在验证集中预测pCR的AUC达0.814。",
+          "id": "item-af5db8c12cd5",
+          "name": "预测pCR验证集AUC 0.814",
+          "desc": "Radio-Pathomic模型",
           "evidence": [
             {
-              "quote": "该模型在验证集中预测pCR的AUC达0.814，性能较佳",
+              "quote": "该模型在验证集中预测pCR的AUC达0.814",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3323,
-                "end_char": 3350
+                "end_char": 3345
               },
               "version": "ad29aec9d6dd4aeefd66"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
           "id": "item-4bad92d3422a",
           "name": "联合免疫检查点抑制剂提升pCR率",
-          "desc": "证实联合免疫检查点抑制剂可将新辅助化疗的pCR率从13.7%显著提升至29.6%。",
+          "desc": "13.7%提升至29.6%",
           "evidence": [
             {
               "quote": "证实了联合免疫检查点抑制剂可将NAC的pCR率从13.7%显著提升至29.6%",
@@ -164,29 +141,14 @@
               "version": "ad29aec9d6dd4aeefd66"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b366fe9a3d5a",
-          "name": "肿瘤标志物动态轨迹聚类预警复发",
-          "desc": "引入K-means对CEA、CA125动态轨迹聚类，发现高轨迹组复发风险较高且预测效能优于静态阈值，建立术后复发监测预警工具。",
-          "evidence": [
-            {
-              "quote": "创新性引入K-means无监督机器学习算法对肿瘤标志物（CEA、CA125）进行动态轨迹聚类分析，发现肿瘤标志物“高轨迹组”的复发风险较高，且预测效能高于传统的静态阈值，建立了新的术后复发监测预警工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3449,
-                "end_char": 3548
-              },
-              "version": "ad29aec9d6dd4aeefd66"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d273903d9e3f",
-          "name": "SCI论文7篇",
-          "desc": "项目共发表SCI论文7篇，为进展期胃癌从疗效预测、策略优化到预后动态监测提供理论依据与数据支撑。",
+          "id": "item-2c909c1049fe",
+          "name": "SCI论文",
+          "desc": "发表7篇",
           "evidence": [
             {
               "quote": "本项目共发表SCI论文7篇",
@@ -198,7 +160,9 @@
               "version": "ad29aec9d6dd4aeefd66"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -206,47 +170,146 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-09aca763d074"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-325aa8cd742c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-325aa8cd742c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c8fb8e7539e5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f94bd31de837"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-f727cb153190"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c8fb8e7539e5"
+        "item_id": "item-af5db8c12cd5"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-b366fe9a3d5a"
+        "dimension": "技术",
+        "item_id": "item-6d964a2b623d"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "该模型在验证集中预测pCR的AUC达0.814",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3323,
+            "end_char": 3345
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Oncological risk of proximal gastrectomy for proximal advanced gastric cancer after neoadjuvant chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yonghe;Chen Xiaojiang;Lin Yi;Zhang Shenyan;Zhou Zhiwei;Peng Junsheng",
+      "id": "out-05f85a668214",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Oncological risk of proximal gastrectomy for proximal advanced gastric cancer after neoadjuvant chemotherapy — Chen Yonghe;Chen Xiaojiang;Lin Yi;Zhang Shenyan;Zhou Zhiwei;Peng Junsheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3622,
+            "end_char": 3812
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immune checkpoint inhibitors improve the efficacy of neoadjuvant chemotherapy in advanced gastric cancer: a retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yonghe;Lin Yi;Xu Yingying;Zhang Jianwei;Chen Shi;Ye Shuai;Liu Gang;Lian Lei;Peng Junsheng",
+      "id": "out-f4e15d2c76fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immune checkpoint inhibitors improve the efficacy of neoadjuvant chemotherapy in advanced gastric cancer: a retrospective cohort study — Chen Yonghe;Lin Yi;Xu Yingying;Zhang Jianwei;Chen Shi;Ye Shuai;Liu Gang;Lian Lei;Peng Junsheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3817,
+            "end_char": 4054
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of pathological complete response on survival in gastric cancer after neoadjuvant chemotherapy: a propensity score matching analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yonghe;He Jiasheng;Zheng Jiabo;Lin Yi;Wang Huashe;Lian Lei;Peng Junsheng",
+      "id": "out-fec5639a9aba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of pathological complete response on survival in gastric cancer after neoadjuvant chemotherapy: a propensity score matching analysis — Chen Yonghe;He Jiasheng;Zheng Jiabo;Lin Yi;Wang Huashe;Lian Lei;Peng Junsheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4059,
+            "end_char": 4284
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning-based dynamic CEA trajectory and prognosis in gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yonghe;Liu Dan;Wang Zhong;Lin Yi;Jiang Xiaohan;Liu Junjie;Lian Lei",
+      "id": "out-229cb972f3c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning-based dynamic CEA trajectory and prognosis in gastric cancer — Chen Yonghe;Liu Dan;Wang Zhong;Lin Yi;Jiang Xiaohan;Liu Junjie;Lian Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4289,
+            "end_char": 4446
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating computed tomography and biopsy images to predict chemotherapy response in gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Shenyan;Luo Tao;Wei Kaikai;Lai Bochen;Luo Yuheng;Lin Yi;Lian Lei;Chen Yonghe",
+      "id": "out-1d89f5583189",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating computed tomography and biopsy images to predict chemotherapy response in gastric cancer — Zhang Shenyan;Luo Tao;Wei Kaikai;Lai Bochen;Luo Yuheng;Lin Yi;Lian Lei;Chen Yonghe",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4451,
+            "end_char": 4642
+          },
+          "version": "ad29aec9d6dd4aeefd66"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

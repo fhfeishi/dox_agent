@@ -2,15 +2,20 @@
   "doc_id": "1b71d515c943b491e495",
   "version": "aa32027f2644d04be01c",
   "source_hash": "6778a4b7080ccc2343009aa09fba272ef17fffd8f12d9b8297af53ba8f43e662",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:14.038468+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.486247+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-848cdb5c4e63",
-          "name": "胰腺癌化疗疗效预测",
-          "desc": "胰腺癌是预后最差的恶性肿瘤之一，治疗模式已从单一外科治疗向系统性治疗转变，需精准选择化疗方案。",
+          "id": "item-7a8ae3f461cc",
+          "name": "胰腺癌新辅助治疗疗效评估",
+          "desc": "胰腺癌是预后最差的恶性肿瘤之一",
           "evidence": [
             {
-              "quote": "胰腺癌是预后最差的恶性肿瘤之一,其治疗模式已实现了从单一外科治疗向系统性治疗的转变",
+              "quote": "胰腺癌是预后最差的恶性肿瘤之一",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 670,
-                "end_char": 710
-              },
-              "version": "aa32027f2644d04be01c"
-            }
-          ]
-        },
-        {
-          "id": "item-2ca96198afc4",
-          "name": "精准筛选转化手术候选者",
-          "desc": "研究成果为精准筛选转化手术候选者、实时优化治疗方案提供全新影像学生物标志物。",
-          "evidence": [
-            {
-              "quote": "研究成果为精准筛选转化手术候选者、实时优化治疗方案提供了全新的影像学生物标志物，具有重大的临床转化前景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3353,
-                "end_char": 3403
+                "end_char": 684
               },
               "version": "aa32027f2644d04be01c"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4fe7d60e14da",
-          "name": "需精确分选患者与选择化疗方案",
-          "desc": "胰腺癌系统性治疗以化疗为主，精确分选患者并针对性选择化疗方案是实现精准治疗的关键。",
+          "id": "item-d559ac183235",
+          "name": "预后差且个体化治疗需求迫切",
+          "desc": "需无创评估肿瘤间质特征预测疗效",
           "evidence": [
             {
-              "quote": "而精确分选患者并针对性地选择化疗方案是实现精准治疗并改善疾病预后的关键",
+              "quote": "本项目针对胰腺癌预后差、治疗个体化需求迫切的核心临床问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 726,
-                "end_char": 760
-              },
-              "version": "aa32027f2644d04be01c"
-            }
-          ]
-        },
-        {
-          "id": "item-106627b69488",
-          "name": "肿瘤纤维化程度与化疗响应密切相关",
-          "desc": "前期研究提示肿瘤纤维化程度与患者化疗响应密切相关，需建立无创评估方法。",
-          "evidence": [
-            {
-              "quote": "前期研究提示肿瘤纤维化程度与患者化疗响应密切相关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 762,
-                "end_char": 785
+                "start_char": 2821,
+                "end_char": 2848
               },
               "version": "aa32027f2644d04be01c"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24268d6923c1",
-          "name": "CT影像组学与病理间质纤维化关联建模",
-          "desc": "收集未经化疗胰腺癌患者术前增强CT影像进行影像组学分析，评估术后肿瘤标本间质纤维化程度及特点，筛选关键影像组学特征建立nomogram评估模型。",
-          "evidence": [
-            {
-              "quote": "拟回顾性收集未经化疗的胰腺癌患者术前腹部增强CT影像并进行影像组学分析，同时评估其术后肿瘤标本间质纤维化程度及特点，筛选关键影像组学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 790,
-                "end_char": 857
-              },
-              "version": "aa32027f2644d04be01c"
-            }
-          ]
-        },
-        {
-          "id": "item-880fd886b6ac",
-          "name": "FAPI-04 PET/CT参数动态评估",
-          "desc": "将前沿分子影像技术与原科学目标融合，重点开拓[18F]FAPI-04 PET/CT在疗效评估中的转化应用。",
+          "id": "item-e3afc1f73dcb",
+          "name": "[18F]FAPI-04 PET/CT疗效评估",
+          "desc": "治疗前后参数变化预测病理反应与生存",
           "evidence": [
             {
               "quote": "重点开拓了[18F]FAPI-04 PET/CT在疗效评估中的转化应用",
@@ -124,7 +81,42 @@
               },
               "version": "aa32027f2644d04be01c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-057d4cadddd3",
+          "name": "CT影像组学间质纤维化评估（原计划）",
+          "desc": "基于CT影像组学构建评估模型",
+          "evidence": [
+            {
+              "quote": "原计划基于CT影像组学构建胰腺癌间质纤维化评估模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2876,
+                "end_char": 2900
+              },
+              "version": "aa32027f2644d04be01c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9206ea1483ab",
+          "name": "多色免疫荧光机制验证",
+          "desc": "FAPI探针靶向CAFs与肿瘤细胞",
+          "evidence": [
+            {
+              "quote": "多色免疫荧光证实FAPI探针同时靶向CAFs和肿瘤细胞",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3169,
+                "end_char": 3195
+              },
+              "version": "aa32027f2644d04be01c"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,26 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7a42849ccc5b",
-          "name": "FAPI参数变化量预测病理反应",
-          "desc": "前瞻性研究证实治疗前后[18F]FAPI-04 PET/CT参数变化量是预测病理反应和生存的有效指标，病理反应良好者下降幅度显著更大。",
+          "id": "item-cdca5a42bfae",
+          "name": "FAPI PET参数变化预测病理反应与生存",
+          "desc": "59例前瞻性研究",
           "evidence": [
             {
-              "quote": "病理反应良好（CAP评分≤2）者，其ΔSUVmax、ΔSUVmean、ΔT/Bmax和ΔT/Bmean的下降幅度显著大于反应不佳者",
+              "quote": "基于59例患者的前瞻性研究证实，治疗前后[18F]FAPI-04 PET/CT参数的变化量（Δ）是预测病理反应和生存的有效指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3099,
-                "end_char": 3163
+                "start_char": 3030,
+                "end_char": 3092
               },
               "version": "aa32027f2644d04be01c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-e0d9eb6fe740",
-          "name": "ΔT/Bmax与总生存期显著相关",
-          "desc": "ΔT/Bmax < -0.5747的患者中位总生存期显著延长。",
+          "id": "item-23886a9b12a4",
+          "name": "ΔT/Bmax分层延长总生存",
+          "desc": "38.6个月 vs 31.3个月",
           "evidence": [
             {
               "quote": "ΔT/Bmax < -0.5747的患者中位总生存期显著延长（38.6个月 vs 31.3个月, p=0.01）",
@@ -164,24 +158,47 @@
               "version": "aa32027f2644d04be01c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-a542889f883e",
-          "name": "多色免疫荧光证实探针靶点",
-          "desc": "多色免疫荧光证实FAPI探针同时靶向CAFs和肿瘤细胞。",
+          "id": "item-deaa95b29644",
+          "name": "治疗前影像组学模型",
+          "desc": "初步进展",
           "evidence": [
             {
-              "quote": "机制上，多色免疫荧光证实FAPI探针同时靶向CAFs和肿瘤细胞",
+              "quote": "治疗前常规影像组学模型构建取得初步进展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3165,
-                "end_char": 3195
+                "start_char": 3001,
+                "end_char": 3019
               },
               "version": "aa32027f2644d04be01c"
             }
           ],
-          "status": "已取得"
+          "status": "在研",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2c909c1049fe",
+          "name": "SCI论文",
+          "desc": "发表6篇",
+          "evidence": [
+            {
+              "quote": "项目负责人在项目实施期间共发表SCI论文6篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3405,
+                "end_char": 3426
+              },
+              "version": "aa32027f2644d04be01c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +206,192 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-848cdb5c4e63"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4fe7d60e14da"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4fe7d60e14da"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-24268d6923c1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-24268d6923c1"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-7a42849ccc5b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-880fd886b6ac"
+        "item_id": "item-cdca5a42bfae"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-e0d9eb6fe740"
+        "dimension": "技术",
+        "item_id": "item-e3afc1f73dcb"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于59例患者的前瞻性研究证实，治疗前后[18F]FAPI-04 PET/CT参数的变化量（Δ）是预测病理反应和生存的有效指标",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3030,
+            "end_char": 3092
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Central pancreatectomy for benign or low-grade malignant pancreatic tumors in the neck and body of the pancreas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiwen Chen;Jian Xu;Xiang Li;Wei Chen;Shunliang Gao;Yan Shen;Min Zhang;Jian Wu;Risheng Qu;Jun Yu;Tingbo Liang;Xueli Bai",
+      "id": "out-66c32fadb672",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Central pancreatectomy for benign or low-grade malignant pancreatic tumors in the neck and body of the pancreas — Yiwen Chen;Jian Xu;Xiang Li;Wei Chen;Shunliang Gao;Yan Shen;Min Zhang;Jian Wu;Risheng Qu;Jun Yu;Tingbo Liang;Xueli Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3466,
+            "end_char": 3704
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胰腺癌诊治关键技术创新及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁廷波;白雪莉;章琦;马涛;黄星;陈怡文;李想;章晓祯;沈艺南;胡奇达;傅琦涵;魏涛;杨加琦",
+      "id": "out-5c38eacd9150",
+      "evidence": [
+        {
+          "quote": "[奖励] 胰腺癌诊治关键技术创新及应用 — 梁廷波;白雪莉;章琦;马涛;黄星;陈怡文;李想;章晓祯;沈艺南;胡奇达;傅琦涵;魏涛;杨加琦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3709,
+            "end_char": 3776
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sintilimab Plus Modified FOLFIRINOX in Metastatic or Recurrent Pancreatic Cancer: The Randomized Phase II CISPD3 Trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qihan Fu;Yiwen Chen;Dabing Huang;Chengxiang Guo;Xiaochen Zhang;Wenbo Xiao;Xing Xue;Qi Zhang;Xiang Li;Shunliang Gao;Risheng Que;Yan Shen;Jian Wu;Min Zhang;Xueli Bai;Tingbo Liang",
+      "id": "out-707ed248cb24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sintilimab Plus Modified FOLFIRINOX in Metastatic or Recurrent Pancreatic Cancer: The Randomized Phase II CISPD3 Trial — Qihan Fu;Yiwen Chen;Dabing Huang;Chengxiang Guo;Xiaochen Zhang;Wenbo Xiao;Xing Xue;Qi Zhang;Xiang Li;Shunliang Gao;Risheng Que;Yan Shen;Jian Wu;Min Zhang;Xueli Bai;Tingbo Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3781,
+            "end_char": 4084
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography-based delta radiomics of tumor core_edge combination for systemic treatment response evaluation in pancreatic cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiang;Lu Na;Hu Peijun;Chen Yiwen;Liu Liying;Liu Xinyuan;Guo Chengxiang;Xiao Wenbo;Sun Ke;Li Jingsong;Bai Xueli;Liang Tingbo",
+      "id": "out-4d5097351e51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography-based delta radiomics of tumor core_edge combination for systemic treatment response evaluation in pancreatic cancer — Li Xiang;Lu Na;Hu Peijun;Chen Yiwen;Liu Liying;Liu Xinyuan;Guo Chengxiang;Xiao Wenbo;Sun Ke;Li Jingsong;Bai Xueli;Liang Tingbo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4089,
+            "end_char": 4360
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Envafolimab plus lenvatinib and transcatheter arterial chemoembolization for unresectable hepatocellular carcinoma: a prospective, single-arm, phase II study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiwen Chen;Junlei Zhang;Wendi Hu;Xiang Li;Ke Sun;Yan Shen;Min Zhang;Jian Wu;Shunliang Gao;Jun Yu;Risheng Que;Yun Zhang;Fuchun Yang;Weiliang Xia;Aibin Zhang;Xiaofeng Tang;Xueli Bai;Tingbo Liang",
+      "id": "out-bdd444df5980",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Envafolimab plus lenvatinib and transcatheter arterial chemoembolization for unresectable hepatocellular carcinoma: a prospective, single-arm, phase II study — Yiwen Chen;Junlei Zhang;Wendi Hu;Xiang Li;Ke Sun;Yan Shen;Min Zhang;Jian Wu;Shunliang Gao;Jun Yu;Risheng Que;Yun Zhang;Fuchun Yang;Weiliang Xia;Aibin Zhang;Xiaofeng Tang;Xueli Bai;Tingbo Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4365,
+            "end_char": 4723
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "[18F]FAPI- 04 PET/CT for pathologic response assessment in pancreatic cancer patients with systemic treatment.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li X;Lu N;Sun K;Shi F;Lin L;Chen Y;Wang Y;Wang M;Sun K;Xue X;Xiao W;Su X;Bai X;Liang T",
+      "id": "out-59865bb6455f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] [18F]FAPI- 04 PET/CT for pathologic response assessment in pancreatic cancer patients with systemic treatment. — Li X;Lu N;Sun K;Shi F;Lin L;Chen Y;Wang Y;Wang M;Sun K;Xue X;Xiao W;Su X;Bai X;Liang T",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4728,
+            "end_char": 4933
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中晚期胰腺癌治疗关键技术创新及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁廷波;白雪莉;章琦;马涛;黄星;陈怡文;李想;章晓祯;沈艺南;易文;郭栋;胡奇达;杨加琦;莫凡;贾为国",
+      "id": "out-b9b3a76ca49a",
+      "evidence": [
+        {
+          "quote": "[奖励] 中晚期胰腺癌治疗关键技术创新及应用 — 梁廷波;白雪莉;章琦;马涛;黄星;陈怡文;李想;章晓祯;沈艺南;易文;郭栋;胡奇达;杨加琦;莫凡;贾为国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4938,
+            "end_char": 5014
+          },
+          "version": "aa32027f2644d04be01c"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

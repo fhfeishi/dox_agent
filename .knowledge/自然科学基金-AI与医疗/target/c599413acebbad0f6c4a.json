@@ -2,15 +2,20 @@
   "doc_id": "c599413acebbad0f6c4a",
   "version": "17823fb95b02466eddf5",
   "source_hash": "b0df9d01cee84e87b9766d945e88a5eaed83003ceeaae00e1a22b0382f75d2dd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.989363+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.137509+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ef6b523dea1b",
-          "name": "非酒精性脂肪肝病无创智能诊断",
-          "desc": "面向非酒精性脂肪性肝病的临床精准诊断难题，探索无创评估肝脂肪含量与纤维化程度的智能影像方法。",
+          "id": "item-3ee0845cbdae",
+          "name": "NAFLD多模态影像无创诊断",
+          "desc": "动物模型",
           "evidence": [
             {
               "quote": "精准诊断非酒精性脂肪性肝病（Nonalcoholic fatty liver disease, NAFLD）是临床上的一个难题",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0d9033e9a914",
-          "name": "肝活检创伤性与取样误差限制NAFLD诊断",
-          "desc": "肝活检是诊断NAFLD的金标准，但具有创伤性及取样误差，不适于广泛应用，临床需要无创评估手段。",
+          "id": "item-1ff612d94fc5",
+          "name": "NAFLD精准诊断困难",
+          "desc": "活检有创",
           "evidence": [
             {
-              "quote": "因此，需要无创评估NAFLD",
+              "quote": "精准诊断非酒精性脂肪性肝病（Nonalcoholic fatty liver disease, NAFLD）是临床上的一个难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 731,
-                "end_char": 744
+                "start_char": 3031,
+                "end_char": 3093
               },
               "version": "17823fb95b02466eddf5"
             }
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4777ea1c8ad",
-          "name": "深度学习多模态影像组学NAFLD诊断模型",
-          "desc": "建立NAFLD动物模型，用US-SWE、MSCT、DECT和MRI多模态影像评价，利用深度学习自动提取深层次影像特征建立数学模型精准智能诊断NAFLD。",
+          "id": "item-cd72715051bc",
+          "name": "US-SWE、MSCT、DECT与MRI多模态影像评估",
+          "desc": "无创评估严重程度",
           "evidence": [
             {
-              "quote": "利用深度学习方法自动提取多模态影像深层次数据特征，建立数学模型精准智能诊断NAFLD",
+              "quote": "US-SWE、MSCT、DECT及MRI的相关参数可以无创的评估NAFLD严重程度及病理特点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 983,
-                "end_char": 1024
+                "start_char": 3286,
+                "end_char": 3331
               },
               "version": "17823fb95b02466eddf5"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-3671c21951d1",
-          "name": "深度学习病理切片脂肪含量预测准确率88.34%",
-          "desc": "深度学习NAFLD动物模型病理切片并对脂肪含量进行预测，准确率达88.34%；提出“放射生物信息学”概念，发表相关论文11篇（SCI收录10篇），授权发明专利1项。",
+          "id": "item-5bdc082f2bd3",
+          "name": "深度学习病理切片脂肪含量预测",
+          "desc": "动物模型",
           "evidence": [
             {
               "quote": "深度学习NAFLD动物模型病理切片并对脂肪含量进行预测，准确率可达88.34%",
@@ -99,44 +99,310 @@
               "version": "17823fb95b02466eddf5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "论文11篇，发明专利授权1项，软著2项",
+          "evidence": [
+            {
+              "quote": "本项目已发表跟疾病与分析技术相关的论文11篇，其中10篇被 SCI期刊收录；国家发明专利授权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3797,
+                "end_char": 3844
+              },
+              "version": "17823fb95b02466eddf5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ef6b523dea1b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0d9033e9a914"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantification of hepatic steatosis in histologic images by deep learning method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yang;Xianyuan Jia;Pinggui Lei;Yan He;Yining Xiang;Jun Jiao;Shi Zhou;Wei Qian;Qinghong Duan",
+      "id": "out-5d558b91ce09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantification of hepatic steatosis in histologic images by deep learning method — Fan Yang;Xianyuan Jia;Pinggui Lei;Yan He;Yining Xiang;Jun Jiao;Shi Zhou;Wei Qian;Qinghong Duan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3951,
+            "end_char": 4134
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0d9033e9a914"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b4777ea1c8ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "hSnd2/TMEM208 is an HIF-1α-targeted gene and contains a WH2 motif",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pinggui Lei;Yan Xiao;Pei Li;Peng Xie;Huilin Wang;Shoujun Huang;Pingping Song;Yuanbo Zhao",
+      "id": "out-40dd3578efed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] hSnd2/TMEM208 is an HIF-1α-targeted gene and contains a WH2 motif — Pinggui Lei;Yan Xiao;Pei Li;Peng Xie;Huilin Wang;Shoujun Huang;Pingping Song;Yuanbo Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4301
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b4777ea1c8ad"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3671c21951d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based methods for assessment of metabolic dysfunction associated with fatty liver disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Na Hu;Gang Yan;Maowen Tang;Yuhui Wu;Fasong Song;Xing Xia;Lawrence Wing-Chi Chan;Pinggui Lei",
+      "id": "out-75a70e07ad30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based methods for assessment of metabolic dysfunction associated with fatty liver disease — Na Hu;Gang Yan;Maowen Tang;Yuhui Wu;Fasong Song;Xing Xia;Lawrence Wing-Chi Chan;Pinggui Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4306,
+            "end_char": 4498
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive Imaging for the Evaluation of Non-Alcoholic Fatty Liver Disease Spectrum",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianjiao Liu;Hongfang Nie;Hengtian Xu;Pingxian Wang;Pinggui Lei",
+      "id": "out-d8a4385eb557",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive Imaging for the Evaluation of Non-Alcoholic Fatty Liver Disease Spectrum — Qianjiao Liu;Hongfang Nie;Hengtian Xu;Pingxian Wang;Pinggui Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4503,
+            "end_char": 4659
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiobioinformatics: A novel bridge between basic research and clinical practice for clinical decision support in diffuse liver diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pinggui Lei;Na Hu;Yuhui Wu;Maowen Tang;Chong Lin;Luoyi Kong;Lingfeng Zhang;Peng Luo;Lawrence Wing-Chi Chan",
+      "id": "out-ba0e6f50c3b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiobioinformatics: A novel bridge between basic research and clinical practice for clinical decision support in diffuse liver diseases — Pinggui Lei;Na Hu;Yuhui Wu;Maowen Tang;Chong Lin;Luoyi Kong;Lingfeng Zhang;Peng Luo;Lawrence Wing-Chi Chan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4915
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning approach for automatic segmentation of ulna and radius in dual-energy X-ray imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yang;Xin Weng;Yuehong Miao;Yuhui Wu;Hong Xie;Pinggui Lei",
+      "id": "out-24f2936bfa64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning approach for automatic segmentation of ulna and radius in dual-energy X-ray imaging — Fan Yang;Xin Weng;Yuehong Miao;Yuhui Wu;Hong Xie;Pinggui Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4920,
+            "end_char": 5086
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MDM-U-Net: A novel network for renal cancer structure segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Weng;Fasong Song;Maowen Tang;Kansui Wang;Yusui Zhang;Yuehong Miao;Lawrence Wing-Chi Chan;Pinggui Lei;Zuquan Hu;Fan Yang",
+      "id": "out-841b05f723be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MDM-U-Net: A novel network for renal cancer structure segmentation — Xin Weng;Fasong Song;Maowen Tang;Kansui Wang;Yusui Zhang;Yuehong Miao;Lawrence Wing-Chi Chan;Pinggui Lei;Zuquan Hu;Fan Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5091,
+            "end_char": 5289
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance on multiple parameters of real-time ultrasound shear wave elastography for evaluating nonalcoholic fatty liver disease: A rabbit model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pinggui Lei;Piaochen Zhang;Hengtian Xu;Qianjiao Liu;Yan Wang;Pingxian Wang;Qinghong Duan;Jing Liu;Shi Zhou;Wei Qian;Jun Jiao",
+      "id": "out-be7112f79cd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic performance on multiple parameters of real-time ultrasound shear wave elastography for evaluating nonalcoholic fatty liver disease: A rabbit model — Pinggui Lei;Piaochen Zhang;Hengtian Xu;Qianjiao Liu;Yan Wang;Pingxian Wang;Qinghong Duan;Jing Liu;Shi Zhou;Wei Qian;Jun Jiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5294,
+            "end_char": 5584
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "香江学者奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷平贵",
+      "id": "out-b8dc5d490aa6",
+      "evidence": [
+        {
+          "quote": "[奖励] 香江学者奖 — 雷平贵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5589,
+            "end_char": 5604
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent and current advances in PET/CT imaging in the field of predicting epidermal growth factor receptor mutations in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Na Hu;Gang Yan;Yuhui Wu;Li Wang;Yang Wang;Yining Xiang;Pinggui Lei;Peng Luo",
+      "id": "out-4c91cd5f8317",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent and current advances in PET/CT imaging in the field of predicting epidermal growth factor receptor mutations in non-small cell lung cancer — Na Hu;Gang Yan;Yuhui Wu;Li Wang;Yang Wang;Yining Xiang;Pinggui Lei;Peng Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5610,
+            "end_char": 5839
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的多模态医学影像采集装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷平贵;王平鲜;范兵;杨贤",
+      "id": "out-d7521b989ce3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的多模态医学影像采集装置 — 雷平贵;王平鲜;范兵;杨贤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5845,
+            "end_char": 5885
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic efficiency on ultrasound shear wave elastography in evaluation of steatosis severity for non-alcoholic fatty liver disease: a rat model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuhui Wu;Qianjiao Liu;Yan Wang;Fangyan Li;Lawrence Wing-Chi Chan;Yong Wen;Fan Yang;Yining Xiang;Qinghong Duan;Peng Luo;Pinggui Lei",
+      "id": "out-a3bdc2223b39",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic efficiency on ultrasound shear wave elastography in evaluation of steatosis severity for non-alcoholic fatty liver disease: a rat model — Yuhui Wu;Qianjiao Liu;Yan Wang;Fangyan Li;Lawrence Wing-Chi Chan;Yong Wen;Fan Yang;Yining Xiang;Qinghong Duan;Peng Luo;Pinggui Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5891,
+            "end_char": 6176
+          },
+          "version": "17823fb95b02466eddf5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

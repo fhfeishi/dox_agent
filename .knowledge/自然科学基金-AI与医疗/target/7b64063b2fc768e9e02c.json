@@ -2,15 +2,20 @@
   "doc_id": "7b64063b2fc768e9e02c",
   "version": "6d51e7fc337ab4ed8ffd",
   "source_hash": "ec664af84c135031cdd4223ea198e19e88bdf1cf5ac41ad20364515f1631ceaa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.107324+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.625233+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31f579e10334",
-          "name": "神经退行性疾病早期诊断",
-          "desc": "神经退行性疾病病因不明且无法治愈，严重威胁健康并造成巨大经济负担，亟需有效早诊方法。",
+          "id": "item-41acd52bc753",
+          "name": "神经退行性疾病单细胞多模态数据分析",
+          "desc": "细胞异质性与复杂分子调控机制",
           "evidence": [
             {
-              "quote": "神经退行性疾病的病因不明且无法治愈，严重威胁着人类健康同时也造成了巨大的经济负担，亟需有效的早期诊断方法",
+              "quote": "神经退行性疾病（如阿尔茨海默病、帕金森病等）具有显著的细胞异质性和复杂的分子调控机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 644,
-                "end_char": 695
+                "start_char": 2584,
+                "end_char": 2625
               },
               "version": "6d51e7fc337ab4ed8ffd"
             }
@@ -41,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02017ed097c9",
-          "name": "多模态数据缺融合与挖掘方法",
-          "desc": "单细胞多模态数据高维高异质，仍缺乏有效融合及疾病亚型与风险模块挖掘的计算方法。",
+          "id": "item-b04b52cae382",
+          "name": "单细胞多模态数据高维、高噪声、强稀疏、结构复杂",
+          "desc": "制约数据挖掘效率和生物学解释能力",
           "evidence": [
             {
-              "quote": "目前仍缺乏有效融合多模态数据以及疾病亚型和风险模块挖掘的计算方法",
+              "quote": "然而，该类数据普遍存在高维、高噪声、强稀疏及多模态结构复杂等问题，严重制约了数据挖掘效率和生物学解释能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 766,
-                "end_char": 797
-              },
-              "version": "6d51e7fc337ab4ed8ffd"
-            }
-          ]
-        },
-        {
-          "id": "item-26a546a91a56",
-          "name": "数据高维高噪声强稀疏",
-          "desc": "单细胞多模态数据存在高维、高噪声、强稀疏及结构复杂等问题，制约挖掘效率与解释能力。",
-          "evidence": [
-            {
-              "quote": "该类数据普遍存在高维、高噪声、强稀疏及多模态结构复杂等问题，严重制约了数据挖掘效率和生物学解释能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2671,
+                "start_char": 2668,
                 "end_char": 2719
               },
               "version": "6d51e7fc337ab4ed8ffd"
@@ -79,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a4e24962606d",
-          "name": "变分自编码器与概率混合降维",
-          "desc": "融合变分自编码器与概率混合模型构建深度降维与可视化方法，引入零膨胀建模机制。",
+          "id": "item-d73b29364027",
+          "name": "变分自编码器与概率混合模型深度降维可视化",
+          "desc": "引入零膨胀建模",
           "evidence": [
             {
               "quote": "构建了融合变分自编码器与概率混合模型的深度降维与可视化方法，引入零膨胀建模机制",
@@ -92,144 +81,149 @@
               },
               "version": "6d51e7fc337ab4ed8ffd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0abdc36de5aa",
-          "name": "多模态网络建模与药物重定位",
-          "desc": "结合矩阵分解、图对比学习及深度分类模型的多模态网络建模策略。",
+          "id": "item-f29c3f87898b",
+          "name": "跨数据集单细胞整合分析流程",
+          "desc": "识别疾病相关细胞亚群",
           "evidence": [
             {
-              "quote": "探索了结合矩阵分解、图对比学习及深度分类模型的多模态网络建模策略",
+              "quote": "建立了跨数据集的单细胞整合分析流程，系统识别了多类疾病相关细胞亚群，并结合调控网络推断方法，解析了不同细胞状态下的关键转录调控模块",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2924,
+                "end_char": 2988
+              },
+              "version": "6d51e7fc337ab4ed8ffd"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-26654a539afb",
+          "name": "矩阵分解、图对比学习与深度分类多模态网络建模",
+          "desc": "蛋白互作预测与疾病–药物关联推断",
+          "evidence": [
+            {
+              "quote": "探索了结合矩阵分解、图对比学习及深度分类模型的多模态网络建模策略，在蛋白互作预测和疾病–药物关联推断任务中取得了较高的预测性能",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3030,
-                "end_char": 3061
-              },
-              "version": "6d51e7fc337ab4ed8ffd"
-            }
-          ]
-        },
-        {
-          "id": "item-1a05d101a7ea",
-          "name": "图卷积挖掘细胞类型特异模块",
-          "desc": "利用图卷积神经网络挖掘细胞类型特异性模块，从发育轨迹与多基因互作角度理解发病机制。",
-          "evidence": [
-            {
-              "quote": "利用图卷积神经网络挖掘细胞类型特异性模块，从细胞发育轨迹角度理解疾病发展进程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 869,
-                "end_char": 906
-              },
-              "version": "6d51e7fc337ab4ed8ffd"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-681db00afa50",
-          "name": "单细胞多模态通用算法框架",
-          "desc": "形成面向神经退行性疾病单细胞多模态数据的通用算法框架与分析工具，并在多项基准数据验证。",
-          "evidence": [
-            {
-              "quote": "本项目形成了一套面向神经退行性疾病单细胞多模态数据的通用算法框架和分析工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3096,
-                "end_char": 3132
-              },
-              "version": "6d51e7fc337ab4ed8ffd"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-0820e5dfcefd",
-          "name": "降维方法优于主流算法",
-          "desc": "多组公开数据对比实验表明，该方法在聚类一致性和可视化分辨率方面优于多种主流算法。",
-          "evidence": [
-            {
-              "quote": "该方法在聚类一致性和可视化分辨率方面优于多种主流算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2881,
-                "end_char": 2906
-              },
-              "version": "6d51e7fc337ab4ed8ffd"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-78803c466786",
-          "name": "蛋白互作与疾病药物关联预测",
-          "desc": "在蛋白互作预测与疾病–药物关联推断任务中取得较高预测性能。",
-          "evidence": [
-            {
-              "quote": "在蛋白互作预测和疾病–药物关联推断任务中取得了较高的预测性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3063,
                 "end_char": 3092
               },
               "version": "6d51e7fc337ab4ed8ffd"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of protein-protein interaction based on interaction-specific learning and hierarchical information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Tao;Shen Taiguang;Jiang Jing;Li Weizhuo;Wang Peng;Yuan Sisi;Cao Xiaofeng;Liu Yuansheng",
+      "id": "out-d8bc323e95dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of protein-protein interaction based on interaction-specific learning and hierarchical information — Tang Tao;Shen Taiguang;Jiang Jing;Li Weizhuo;Wang Peng;Yuan Sisi;Cao Xiaofeng;Liu Yuansheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3237,
+            "end_char": 3446
+          },
+          "version": "6d51e7fc337ab4ed8ffd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computational discovery of natural medicines targeting adenosine receptors for metabolic diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Peng;Xu Zhiyu;Deng Yuqing;Yuan Huiping;Wu Yale;Jiang Jing;Lyu Zhaohui;Li Zejun",
+      "id": "out-7931ac24032f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computational discovery of natural medicines targeting adenosine receptors for metabolic diseases — Wang Peng;Xu Zhiyu;Deng Yuqing;Yuan Huiping;Wu Yale;Jiang Jing;Lyu Zhaohui;Li Zejun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3451,
+            "end_char": 3640
+          },
+          "version": "6d51e7fc337ab4ed8ffd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced drug recommendation model with graph contrastive based on singular value decomposition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeng Pan;You Ling;Zhang Bofei;Meng Yajie;Tang Xianfang;Zhang Zilong;Cui Feifei;Jiang Jing;Xu Junlin",
+      "id": "out-6ed087d25a9d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhanced drug recommendation model with graph contrastive based on singular value decomposition — Zeng Pan;You Ling;Zhang Bofei;Meng Yajie;Tang Xianfang;Zhang Zilong;Cui Feifei;Jiang Jing;Xu Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3645,
+            "end_char": 3848
+          },
+          "version": "6d51e7fc337ab4ed8ffd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unravelling cell heterogeneity and gene regulation mechanisms in multiple myeloma through single-cell RNA-seq",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Jiang;Junlin Xu;Peng Wang;Yuansheng Liu;Yiping Liu",
+      "id": "out-6fd7d858ad96",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unravelling cell heterogeneity and gene regulation mechanisms in multiple myeloma through single-cell RNA-seq — Jing Jiang;Junlin Xu;Peng Wang;Yuansheng Liu;Yiping Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3853,
+            "end_char": 4026
+          },
+          "version": "6d51e7fc337ab4ed8ffd"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-31f579e10334"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-02017ed097c9"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-02017ed097c9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a4e24962606d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a4e24962606d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0820e5dfcefd"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0abdc36de5aa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-78803c466786"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

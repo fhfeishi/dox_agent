@@ -2,15 +2,20 @@
   "doc_id": "0f3ee59ef9a50ef74561",
   "version": "e8f28145e40ab4e59171",
   "source_hash": "a4acfe1ac170ca435e708f2c701c87e69820685673b57d9a22f844adbbb90494",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.786850+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:23:15.236081+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-920742ae86e1",
-          "name": "乳腺癌新辅助治疗疗效早期预判",
-          "desc": "乳腺癌是全球及我国女性发病率第一的肿瘤，术前新辅助治疗广泛应用但个体疗效差异很大。",
+          "id": "item-ce48317835fe",
+          "name": "乳腺癌新辅助治疗临床决策",
+          "desc": "术前新辅助治疗是乳腺癌广泛使用的治疗方案，疗效需在治疗中尽早判断以指导方案和手术时机",
           "evidence": [
             {
-              "quote": "乳腺癌是全球及我国女性发病率排名第一的肿瘤。术前新辅助治疗是目前全世界广泛使用的乳腺癌治疗方案，但是个体疗效差异很大",
+              "quote": "术前新辅助治疗是目前全世界广泛使用的乳腺癌治疗方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 666,
-                "end_char": 723
-              },
-              "version": "e8f28145e40ab4e59171"
-            }
-          ]
-        },
-        {
-          "id": "item-a3764ed53381",
-          "name": "临床决策与手术时机精准指导",
-          "desc": "为新辅助治疗的临床决策提供支持，帮助患者在新辅助治疗中最大程度获益。",
-          "evidence": [
-            {
-              "quote": "为乳腺癌新辅助治疗的临床决策提供有力支持，帮助患者在新辅助治疗中最大程度获益",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 984,
-                "end_char": 1021
+                "start_char": 688,
+                "end_char": 712
               },
               "version": "e8f28145e40ab4e59171"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf452d2ee803",
-          "name": "术后病理评估不可重复难即时预判",
-          "desc": "作为疗效判断金标准的术后病理评估因其不可重复性难以实现治疗过程中的即时疗效评估与预判。",
+          "id": "item-99514bbb3431",
+          "name": "新辅助治疗疗效难以早期即时预判",
+          "desc": "术后病理评估不可重复，难以在治疗过程中即时评估和预判疗效",
           "evidence": [
             {
-              "quote": "作为新辅助治疗疗效判断的金标准，术后病理评估因其不可重复性而难以实现治疗过程中的即时疗效评估和预判",
+              "quote": "术后病理评估因其不可重复性而难以实现治疗过程中的即时疗效评估和预判",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 755,
+                "start_char": 771,
                 "end_char": 803
-              },
-              "version": "e8f28145e40ab4e59171"
-            }
-          ]
-        },
-        {
-          "id": "item-a5781ef43597",
-          "name": "早期疗效预判是急需解决临床问题",
-          "desc": "如何在新辅助治疗过程中实现尽可能早期的疗效预判已成为临床急需解决的实际问题。",
-          "evidence": [
-            {
-              "quote": "如何在新辅助治疗的过程中实现尽可能早期的疗效预判已经成为临床工作中急需解决的实际临床问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 805,
-                "end_char": 848
               },
               "version": "e8f28145e40ab4e59171"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-363766e4e6b9",
-          "name": "1周期后MRI多序列组学建模",
-          "desc": "基于新辅助治疗1周期后乳腺MRI多序列影像组学信息，融合临床病理参数与MRI定量指标，以术后病理为金标准建立多模态模型。",
+          "id": "item-a577b386831e",
+          "name": "多模态MRI影像组学模型",
+          "desc": "基于新辅助治疗1周期后乳腺MRI多序列影像组学信息建立模型，早期预判疗效",
           "evidence": [
             {
-              "quote": "本项目拟基于新辅助治疗1周期后乳腺MRI的多序列影像学组学信息，有效融合临床、病理相关参数及MRI定量指标，以术后病理疗效评估为金标准，建立多模态MRI影像组学模型",
+              "quote": "建立多模态MRI影像组学模型，早期预判乳腺癌新辅助治疗疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 853,
-                "end_char": 934
+                "start_char": 921,
+                "end_char": 949
               },
               "version": "e8f28145e40ab4e59171"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1629973b85c5",
-          "name": "多时序影像组学特征变化建模",
-          "desc": "提出治疗前后MRI影像变化特征对多时序影像模型构建的重要性。",
+          "id": "item-a0f5e0b26b3f",
+          "name": "多时序MRI集成肿瘤分割算法",
+          "desc": "基于乳腺癌多模态MRI的集成肿瘤分割算法，面向全乳腺分析流程",
           "evidence": [
             {
-              "quote": "提出治疗前后（主要是一周期后）的MRI影像的变化特征对多时序影像模型构建的重要性，建立多模态MRI影像组学模型",
+              "quote": "基于乳腺癌多模态MRI的集成肿瘤分割算法的开发",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2637,
-                "end_char": 2691
+                "start_char": 2699,
+                "end_char": 2721
               },
               "version": "e8f28145e40ab4e59171"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d6e578a7cdba",
+          "name": "临床病理参数与MRI定量指标融合",
+          "desc": "将临床、病理相关参数与MRI定量指标融合入模型",
+          "evidence": [
+            {
+              "quote": "有效融合临床、病理相关参数及MRI定量指标",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 885,
+                "end_char": 905
+              },
+              "version": "e8f28145e40ab4e59171"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,55 +125,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-843743838081",
-          "name": "近500例多模态MRI影像数据队列",
-          "desc": "建立乳腺癌新辅助治疗多时序、多参数MRI影像数据队列，收集病例近500例，涉及1600多份多模态MRI影像。",
+          "id": "item-30e1cb8b7966",
+          "name": "多时序多参数MRI影像数据队列",
+          "desc": "收集病例近500例，涉及1600多份多模态MRI影像",
           "evidence": [
             {
-              "quote": "本项目建立乳腺癌新辅助治疗多时序、多参数MRI影像数据队列，收集病例近500例，涉及1600多份多模态MRI影像",
+              "quote": "收集病例近500例，涉及1600多份多模态MRI影像",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2467,
+                "start_char": 2497,
                 "end_char": 2522
               },
               "version": "e8f28145e40ab4e59171"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-5cd0590afe10",
-          "name": "集成肿瘤分割算法开发",
-          "desc": "基于乳腺癌多模态MRI开发集成肿瘤分割算法，为实现更简易、全乳腺分析流程的临床应用奠定基础。",
+          "id": "item-2cbbab8fcc02",
+          "name": "论文与专利产出",
+          "desc": "资助发表SCI论文7篇，论文述评1篇，申请专利1篇",
           "evidence": [
             {
-              "quote": "本项目基于乳腺癌多模态MRI的集成肿瘤分割算法的开发，从而为实现更简易、全乳腺分析流程的临床应用奠定基础",
+              "quote": "资助发表SCI论文7篇，论文述评1篇，申请专利1篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2696,
-                "end_char": 2747
-              },
-              "version": "e8f28145e40ab4e59171"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1eb18f2e7469",
-          "name": "SCI论文7篇与专利成果",
-          "desc": "项目执行期间资助发表SCI论文7篇、论文述评1篇，申请专利1篇。",
-          "evidence": [
-            {
-              "quote": "本项目执行期间，资助发表SCI论文7篇，论文述评1篇，申请专利1篇",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2750,
+                "start_char": 2758,
                 "end_char": 2782
               },
               "version": "e8f28145e40ab4e59171"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +168,213 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-920742ae86e1"
+        "dimension": "技术",
+        "item_id": "item-a577b386831e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-cf452d2ee803"
+        "item_id": "item-99514bbb3431"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cf452d2ee803"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-363766e4e6b9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-363766e4e6b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-843743838081"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1629973b85c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5cd0590afe10"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "建立多模态MRI影像组学模型，早期预判乳腺癌新辅助治疗疗效",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 921,
+            "end_char": 949
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Time Course Changes of Synthetic Relaxation Time During Neoadjuvant Chemotherapy in Breast Cancer: The Optimal Parameter for Treatment Response Evaluation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruimeng Zhao;Siyao Du;Si Gao;Jing Shi;Lina Zhang",
+      "id": "out-cd8a424c862f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Time Course Changes of Synthetic Relaxation Time During Neoadjuvant Chemotherapy in Breast Cancer: The Optimal Parameter for Treatment Response Evaluation — Ruimeng Zhao;Siyao Du;Si Gao;Jing Shi;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2831,
+            "end_char": 3042
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态MRI的集成MP-Unet分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "余航;谢子川;刘志恒;解立志;尹相杰;李晨阳;张立娜;杜思瑶;高斯",
+      "id": "out-792e7415c47d",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多模态MRI的集成MP-Unet分割方法 — 余航;谢子川;刘志恒;解立志;尹相杰;李晨阳;张立娜;杜思瑶;高斯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3047,
+            "end_char": 3109
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Delta-Radiomics Based on Dynamic Contrast-Enhanced MRI Predicts Pathologic Complete Response in Breast Cancer Patients Treated with Neoadjuvant Chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liangcun Guo;Siyao Du;Si Gao;Ruimeng Zhao;Guoliang Huang;Feng Jin;Yuee Teng;Lina Zhang",
+      "id": "out-9cf3035fc362",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Delta-Radiomics Based on Dynamic Contrast-Enhanced MRI Predicts Pathologic Complete Response in Breast Cancer Patients Treated with Neoadjuvant Chemotherapy — Liangcun Guo;Siyao Du;Si Gao;Ruimeng Zhao;Guoliang Huang;Feng Jin;Yuee Teng;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3114,
+            "end_char": 3365
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI‑based tumor shrinkage patterns after early neoadjuvant therapy in breast cancer: correlation with molecular subtypes and pathological response after therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengfan Wang;Siyao Du;Si Gao;Ruimeng Zhao;Shasha Liu;Wenhong Jiang;Can Peng;Ruimei Chai;Lina Zhang",
+      "id": "out-0f0ea7336f35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI‑based tumor shrinkage patterns after early neoadjuvant therapy in breast cancer: correlation with molecular subtypes and pathological response after therapy — Mengfan Wang;Siyao Du;Si Gao;Ruimeng Zhao;Shasha Liu;Wenhong Jiang;Can Peng;Ruimei Chai;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3370,
+            "end_char": 3637
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Potential Antihuman Epidermal Growth Factor Receptor 2 Target Therapy Beneficiaries: The Role of MR ‐Based Radiomics in Distinguishing Human Epidermal Growth Factor Receptor 2‐Low Status of Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoqian Bian;Siyao Du;Zhibin Yue;Si Gao;Ruimeng Zhao;Guoliang Huang;Liangcun Guo;Can Peng;Lina Zhang",
+      "id": "out-7f6f216e2d13",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Potential Antihuman Epidermal Growth Factor Receptor 2 Target Therapy Beneficiaries: The Role of MR ‐Based Radiomics in Distinguishing Human Epidermal Growth Factor Receptor 2‐Low Status of Breast Cancer — Xiaoqian Bian;Siyao Du;Zhibin Yue;Si Gao;Ruimeng Zhao;Guoliang Huang;Liangcun Guo;Can Peng;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3642,
+            "end_char": 3955
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Contrast-free MRI quantitative parameters for early prediction of pathological response to neoadjuvant chemotherapy in breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siyao Du;Si Gao;Ruimeng Zhao;Hongbo Liu;Yan Wang;Xixun Qi;Shu Li;Jibin Cao;Lina Zhang",
+      "id": "out-fe75003e5069",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Contrast-free MRI quantitative parameters for early prediction of pathological response to neoadjuvant chemotherapy in breast cancer — Siyao Du;Si Gao;Ruimeng Zhao;Hongbo Liu;Yan Wang;Xixun Qi;Shu Li;Jibin Cao;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 4186
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A delta-radiomic lymph node model using dynamic contrast enhanced MRI for the early prediction of axillary response after neoadjuvant chemotherapy in breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shasha Liu;Siyao Du;Si Gao;Yuee Teng;Feng Jin;Lina Zhang",
+      "id": "out-3fac5163c338",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A delta-radiomic lymph node model using dynamic contrast enhanced MRI for the early prediction of axillary response after neoadjuvant chemotherapy in breast cancer patients — Shasha Liu;Siyao Du;Si Gao;Yuee Teng;Feng Jin;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4191,
+            "end_char": 4428
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation between synthetic MRI relaxometry and apparent diffusion coefficient in breast cancer subtypes with different neoadjuvant therapy response",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhong Jiang;Siyao Du;Si Gao;Lizhi Xie;Zichuan Xie;Mengfan Wang;Can Peng;Jing Shi;Lina Zhang",
+      "id": "out-54264ffa5472",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation between synthetic MRI relaxometry and apparent diffusion coefficient in breast cancer subtypes with different neoadjuvant therapy response — Wenhong Jiang;Siyao Du;Si Gao;Lizhi Xie;Zichuan Xie;Mengfan Wang;Can Peng;Jing Shi;Lina Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4685
+          },
+          "version": "e8f28145e40ab4e59171"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

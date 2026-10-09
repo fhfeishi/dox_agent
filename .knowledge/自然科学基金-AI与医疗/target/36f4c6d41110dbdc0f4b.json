@@ -2,15 +2,20 @@
   "doc_id": "36f4c6d41110dbdc0f4b",
   "version": "64bf8a57e79bd3a386c3",
   "source_hash": "7b5fa503fe5ca0d0f7361708183559d44ac7661ed541c204de4a382fc8c34e5c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:16.057098+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.985186+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ce8028e3e1c1",
-          "name": "针刺辅助美沙酮减量优化策略",
-          "desc": "美沙酮维持治疗是WHO推荐的基于社区建立的阿片类药物替代疗法，受治者普遍有减量需求。",
+          "id": "item-28218299d163",
+          "name": "美沙酮维持治疗减量",
+          "desc": "MMT是公认的药物成瘾替代疗法",
           "evidence": [
             {
-              "quote": "美沙酮维持治疗（MMT）是WHO推荐的基于社区建立的阿片类药物替代疗法",
+              "quote": "美沙酮维持治疗（MMT）是目前公认的药物成瘾替代疗法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
-                "end_char": 711
-              },
-              "version": "64bf8a57e79bd3a386c3"
-            }
-          ]
-        },
-        {
-          "id": "item-5e6a5ab2fc3b",
-          "name": "为社区MMT项目发展提供提示价值",
-          "desc": "研究对MMT临床实践和我国社区MMT项目发展规划具有重要的提示价值。",
-          "evidence": [
-            {
-              "quote": "研究对MMT临床实践和我国社区MMT项目发展规划具有重要的提示价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1015,
-                "end_char": 1047
+                "start_char": 2902,
+                "end_char": 2927
               },
               "version": "64bf8a57e79bd3a386c3"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ddafcfa3a1d5",
-          "name": "缺乏美沙酮减量最优策略研究",
-          "desc": "目前仍缺乏基于美沙酮减量动态过程的最优策略研究，欠缺细化的美沙酮减量实践指导。",
-          "evidence": [
-            {
-              "quote": "目前仍缺乏基于美沙酮减量动态过程的最优策略研究，欠缺细化的美沙酮减量实践指导",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 772,
-                "end_char": 809
-              },
-              "version": "64bf8a57e79bd3a386c3"
-            }
-          ]
-        },
-        {
           "id": "item-a7def8e80265",
           "name": "单纯MMT减量效果不理想",
-          "desc": "单纯MMT受治者美沙酮减量效果不理想，存在复吸和副作用大的风险。",
+          "desc": "存在复吸和副作用大的风险",
           "evidence": [
             {
               "quote": "存在问题主要为单纯MMT受治者美沙酮减量效果不理想，存在复吸和副作用大的风险",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d31f97ab103e",
-          "name": "AI强化学习算法优化减量策略",
-          "desc": "采集广东省美沙酮门诊病例，借助AI强化学习算法探讨单纯MMT美沙酮减量的最优策略。",
+          "id": "item-a1e097569d23",
+          "name": "Actor-Critic强化学习减量策略",
+          "desc": "对MMT减量过程建模与策略优化",
           "evidence": [
             {
-              "quote": "拟通过采集广东省美沙酮门诊病例，借助人工智能（AI）强化学习算法，探讨单纯MMT的美沙酮减量的最优策略",
+              "quote": "运用AI强化学习Actor-Critic算法对单纯MMT的减量过程进行建模与策略优化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 907
+                "start_char": 3215,
+                "end_char": 3256
               },
               "version": "64bf8a57e79bd3a386c3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-35406abb4cc8",
-          "name": "多中心RCT与强化学习策略优化",
-          "desc": "开展前瞻性多中心随机对照试验确证针刺辅助减量疗效，并借助强化学习算法探讨不同减量动态特征与治疗效果的关系。",
+          "id": "item-6d2cf63ed333",
+          "name": "针刺辅助“靳三针”组穴",
+          "desc": "四神针、定神针、手智针",
           "evidence": [
             {
-              "quote": "开展前瞻性、多中心随机对照试验，确证针刺辅助MMT美沙酮减量的临床疗效；借助强化学习算法，探讨针刺辅助治疗后不同减量动态特征与治疗效果的关系",
+              "quote": "穴位配伍采用“靳三针”组穴配方中的四神针、定神针、手智针",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 911,
-                "end_char": 980
+                "start_char": 3097,
+                "end_char": 3124
               },
               "version": "64bf8a57e79bd3a386c3"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,335 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af3e7469b47c",
-          "name": "辅助减量提升32%有效率",
-          "desc": "临床试验证实辅助美沙酮减量可提升32%的有效率并降低心理渴求，成本增量效果达33.10%。",
+          "id": "item-873a7bcbd016",
+          "name": "针刺辅助减量有效率提升",
+          "desc": "提升32%并降低心理渴求",
           "evidence": [
             {
-              "quote": "临床试验证实辅助美沙酮减量可提升32%的有效率并降低心理渴求，成本增量效果达到33.10%",
+              "quote": "临床试验证实辅助美沙酮减量可提升32%的有效率并降低心理渴求",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3380,
-                "end_char": 3424
+                "end_char": 3409
               },
               "version": "64bf8a57e79bd3a386c3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-10a7c855a3b0",
-          "name": "强化学习优化减量速度提升24.5%",
-          "desc": "基于AI强化学习的减量建模与策略优化发现针刺组减量速度提升约24.5%、减量期缩短约38.9%，减量周数占比提高18.3%。",
+          "id": "item-8396f78b2e60",
+          "name": "针刺组减量速度提升",
+          "desc": "约24.5%，减量期缩短约38.9%",
           "evidence": [
             {
-              "quote": "基于AI强化学习的美沙酮减量过程建模与策略优化研究，发现针刺组减量速度提升约24.5%、减量期缩短约38.9%，同时减量周数占比提高18.3%",
+              "quote": "发现针刺组减量速度提升约24.5%、减量期缩短约38.9%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3426,
-                "end_char": 3496
+                "start_char": 3452,
+                "end_char": 3480
               },
               "version": "64bf8a57e79bd3a386c3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-6c8847663b8a",
-          "name": "构建免疫代谢肠道微生态图谱",
-          "desc": "基础研究首次构建针刺戒毒外周免疫-代谢-肠道微生态图谱，阐明针刺通过胆汁酸-半乳糖凝集素-干扰素轴改善成瘾障碍的三阶联调分子机制。",
+          "id": "item-48c07619bbb2",
+          "name": "针刺戒毒外周免疫-代谢-肠道微生态图谱",
+          "desc": "首次构建",
           "evidence": [
             {
-              "quote": "基础研究首次构建针刺戒毒外周“免疫-代谢-肠道微生态”图谱；阐明了针刺通过“胆汁酸-半乳糖凝集素-干扰素轴”改善成瘾障碍的“三阶联调”分子机制",
+              "quote": "基础研究首次构建针刺戒毒外周“免疫-代谢-肠道微生态”图谱",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3547,
-                "end_char": 3617
+                "end_char": 3575
               },
               "version": "64bf8a57e79bd3a386c3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ce8028e3e1c1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ddafcfa3a1d5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针灸真实世界研究方法与实践",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈晨;陆丽明",
+      "id": "out-0d9be7333cfe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针灸真实世界研究方法与实践 — 陈晨;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3757,
+            "end_char": 3785
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ddafcfa3a1d5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d31f97ab103e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evidence on acupuncture therapies is underused in clinical practice and health policy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Lu;Yuqing Zhang;Xiaorong Tang;Shuqi Ge;Hao Wen;Jingchun Zeng;Lai Wang;Zhao Zeng;Gabriel Rada;Camila Ávila;Camilo Vergara;Yuyuan Tang;Peiming Zhang;Rouhao Chen;Yu Dong;Xiaojing Wei;Wen Luo;Lin Wang;Gordon Guyatt;Chunzhi Tang;Nenggui Xu",
+      "id": "out-81b2ae7f938f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evidence on acupuncture therapies is underused in clinical practice and health policy — Liming Lu;Yuqing Zhang;Xiaorong Tang;Shuqi Ge;Hao Wen;Jingchun Zeng;Lai Wang;Zhao Zeng;Gabriel Rada;Camila Ávila;Camilo Vergara;Yuyuan Tang;Peiming Zhang;Rouhao Chen;Yu Dong;Xiaojing Wei;Wen Luo;Lin Wang;Gordon Guyatt;Chunzhi Tang;Nenggui Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3790,
+            "end_char": 4125
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d31f97ab103e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-10a7c855a3b0"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "广东省科学技术奖-青年科技创新奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆丽明",
+      "id": "out-8363dcf1f43f",
+      "evidence": [
+        {
+          "quote": "[奖励] 广东省科学技术奖-青年科技创新奖 — 陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4130,
+            "end_char": 4156
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-35406abb4cc8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-af3e7469b47c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single-Cell RNA Transcriptomics and Multi-omics Analyses Reveal the Clinical Effects of Acupuncture on Methadone Reduction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yiming;Fan Baochao;Zeng Jingchun;Zou Yutian;Tao Chenyang;Chen Chen;Zhang Peiming;Liang Jian;Qi Fangfang;Tang Hailin;Lu Liming",
+      "id": "out-d50fa61512f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single-Cell RNA Transcriptomics and Multi-omics Analyses Reveal the Clinical Effects of Acupuncture on Methadone Reduction — Chen Yiming;Fan Baochao;Zeng Jingchun;Zou Yutian;Tao Chenyang;Chen Chen;Zhang Peiming;Liang Jian;Qi Fangfang;Tang Hailin;Lu Liming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4161,
+            "end_char": 4422
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "阶梯整群随机试验的统计分析方法介绍",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董昱;黄闪闪;赵梦娇;张侨;曾婧纯;陆丽明",
+      "id": "out-45bad57bb470",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 阶梯整群随机试验的统计分析方法介绍 — 董昱;黄闪闪;赵梦娇;张侨;曾婧纯;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4427,
+            "end_char": 4474
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decision tree model based prediction of the efficacy of acupuncture in methadone maintenance treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Dong;Baochao Fan;Enliang Yan;Rouhao Chen;Xiaojing Wei;Jie Zhan;Jingchun Zeng;Hao Wen;Liming Lu",
+      "id": "out-1dc70700b7d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decision tree model based prediction of the efficacy of acupuncture in methadone maintenance treatment — Yu Dong;Baochao Fan;Enliang Yan;Rouhao Chen;Xiaojing Wei;Jie Zhan;Jingchun Zeng;Hao Wen;Liming Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4479,
+            "end_char": 4687
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparative efficacy of psychosocial interventions for opioid dependent persons receiving methadone maintenance treatment: A network meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Wen;Xingyu Xiang;Yong Jiang;Haoyu Zhang;Peiming Zhang;Rouhao Chen;Xiaojing Wei;Yu Dong;Songhua Xiao;Liming Lu",
+      "id": "out-0a78ea5a8ec9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparative efficacy of psychosocial interventions for opioid dependent persons receiving methadone maintenance treatment: A network meta-analysis — Hao Wen;Xingyu Xiang;Yong Jiang;Haoyu Zhang;Peiming Zhang;Rouhao Chen;Xiaojing Wei;Yu Dong;Songhua Xiao;Liming Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4692,
+            "end_char": 4960
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of Acupuncture for Methadone Reduction: A Randomized Clinical Trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Lu;Chen Chen;Yiming Chen;Yu Dong;Rouhao Chen;Xiaojing Wei;Chenyang Tao;Cui Li;Yuting Wang;Baochao Fan;Xiaorong Tang;Shichao Xu;Zhiqiu He;Guodong Mo;Yiliang Liu;Hong Gu;Xiang Li;Fang Cao;Hongxia Xu;Yuqing Zhang;Guowei Li;Xinxia Liu;Jingchun Zeng;Chunzhi Tang;Nenggui Xu",
+      "id": "out-206dfbc92f79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of Acupuncture for Methadone Reduction: A Randomized Clinical Trial — Liming Lu;Chen Chen;Yiming Chen;Yu Dong;Rouhao Chen;Xiaojing Wei;Chenyang Tao;Cui Li;Yuting Wang;Baochao Fan;Xiaorong Tang;Shichao Xu;Zhiqiu He;Guodong Mo;Yiliang Liu;Hong Gu;Xiang Li;Fang Cao;Hongxia Xu;Yuqing Zhang;Guowei Li;Xinxia Liu;Jingchun Zeng;Chunzhi Tang;Nenggui Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4965,
+            "end_char": 5323
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺安慰剂效应剖析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王毓婷;张培铭;董昱;范宝超;陆丽明",
+      "id": "out-4404c454944e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针刺安慰剂效应剖析 — 王毓婷;张培铭;董昱;范宝超;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5328,
+            "end_char": 5364
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "临床试验注册平台检索方法与评价",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤煜媛;赵梦娇;黄闪闪;张侨;陆丽明",
+      "id": "out-85f53c2b01be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 临床试验注册平台检索方法与评价 — 汤煜媛;赵梦娇;黄闪闪;张侨;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5370,
+            "end_char": 5412
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺治疗阿片类药物成瘾的机制研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁露;陆丽明",
+      "id": "out-189063a59c23",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针刺治疗阿片类药物成瘾的机制研究进展 — 丁露;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5418,
+            "end_char": 5451
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "强化学习在针刺临床研究中的潜在应用、挑战与展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈晨;曾婧纯;陆丽明",
+      "id": "out-32787aadd575",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 强化学习在针刺临床研究中的潜在应用、挑战与展望 — 陈晨;曾婧纯;陆丽明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5457,
+            "end_char": 5499
+          },
+          "version": "64bf8a57e79bd3a386c3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

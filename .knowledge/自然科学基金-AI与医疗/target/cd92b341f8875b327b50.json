@@ -2,15 +2,20 @@
   "doc_id": "cd92b341f8875b327b50",
   "version": "cb65c2d59dc9b45866f6",
   "source_hash": "d9c383b212bae75653b12736a41645e108461727e8ebef2810689cbb85da6228",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.237257+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.448419+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3388672f81bb",
-          "name": "多模异构三维骨折专家辅助系统",
-          "desc": "创伤骨折诊疗中，骨盆、脊柱、跗骨、腕骨等不规则骨及复杂骨折仍存在诊断、分型、手术方案制定等一系列困难。",
-          "evidence": [
-            {
-              "quote": "在创伤骨折的诊疗中，目前已形成了多种较为成熟的诊疗方案及骨折分型体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 703
-              },
-              "version": "cb65c2d59dc9b45866f6"
-            }
-          ]
-        },
-        {
-          "id": "item-b49916c22b7f",
-          "name": "为复杂骨折提供精准安全诊疗策略",
-          "desc": "实现骨折三维诊断识别、智能分型、最优治疗方案与预后判定，为复杂创伤骨折患者提供更加精准安全的临床诊疗策略。",
-          "evidence": [
-            {
-              "quote": "为复杂创伤骨折患者的诊治提供更加精准安全的临床诊疗策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1033,
-                "end_char": 1059
-              },
-              "version": "cb65c2d59dc9b45866f6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-327819ce597d",
-          "name": "不规则骨与复杂骨折诊疗困难",
-          "desc": "在骨盆、脊柱、跗骨、腕骨等不规则骨及损伤严重、分型复杂的骨折治疗中，临床仍存在诊断、分型、手术方案制定、手术操作、预后判定等一系列困难。",
-          "evidence": [
-            {
-              "quote": "但在骨盆、脊柱、跗骨、腕骨等不规则骨及损伤严重、分型复杂的骨折治疗中，临床上仍存在诊断、分型、手术方案制定、手术操作、预后判定等一系列困难，严重制约了创伤骨折患者的诊治和后期功能恢复",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 795
-              },
-              "version": "cb65c2d59dc9b45866f6"
-            }
-          ]
-        },
-        {
-          "id": "item-9f922e84d223",
-          "name": "二维影像信息缺失与经验难量化",
-          "desc": "骨科临床存在三维空间结构复杂、二维影像信息缺失及经验知识难以量化等痛点。",
+          "id": "item-7835e63ba68c",
+          "name": "复杂骨折辅助诊疗",
+          "desc": "人工智能与混合现实",
           "evidence": [
             {
               "quote": "本项目针对骨科临床诊疗中三维空间结构复杂、二维影像信息缺失及经验知识难以量化等痛点",
@@ -91,29 +42,35 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-8915e1af6db6",
-          "name": "AI与混合现实三维可视化决策系统",
-          "desc": "融合人工智能和混合现实技术，实现骨折诊治的自动化、智能化、精准化、三维可视化，构建三维立体可视化专家辅助决策系统。",
+          "id": "item-0c4ea6782ff3",
+          "name": "骨科三维空间结构复杂、二维影像信息缺失、经验难量化",
+          "desc": "痛点",
           "evidence": [
             {
-              "quote": "本研究将在前期研究基础上，融合人工智能和混合现实技术，实现骨折诊治的“自动化、智能化、精准化、三维可视化”",
+              "quote": "三维空间结构复杂、二维影像信息缺失及经验知识难以量化等痛点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 846,
-                "end_char": 898
+                "start_char": 2952,
+                "end_char": 2980
               },
               "version": "cb65c2d59dc9b45866f6"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
         {
-          "id": "item-33eaf71be385",
-          "name": "RetinaNet与Faster RCNN骨折识别分型",
-          "desc": "研发基于RetinaNet、Faster RCNN等深度学习算法的骨折智能识别与分型模型，重点攻克肱骨近端、股骨颈等复杂部位诊断难题。",
+          "id": "item-d1daedd91769",
+          "name": "RetinaNet与Faster RCNN骨折识别与分型",
+          "desc": "肱骨近端、股骨颈",
           "evidence": [
             {
               "quote": "研发基于RetinaNet、Faster RCNN等深度学习算法的骨折智能识别与分型模型，重点攻克肱骨近端、股骨颈等复杂部位的诊断难题",
@@ -124,18 +81,30 @@
               },
               "version": "cb65c2d59dc9b45866f6"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-1f2e29e5c95b",
-          "name": "多模态异构三维大数据平台",
-          "desc": "构建多模态异构三维医学大数据平台与智能标注体系，解决多源异构数据的整合与标准化问题，实现非结构化医学经验的量化与结构化。",
+          "id": "item-b0727bac0015",
+          "name": "MR头显HoloLens专家辅助终端",
+          "desc": "术中骨折全息可视化",
+          "evidence": [
+            {
+              "quote": "构建了由MR头显（HoloLens）与平板控制端组成的专家系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3266,
+                "end_char": 3296
+              },
+              "version": "cb65c2d59dc9b45866f6"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0331c7c4dfe4",
+          "name": "多模态异构三维医学大数据平台与智能标注体系",
+          "desc": "开放接口",
           "evidence": [
             {
               "quote": "构建多模态异构三维医学大数据平台与智能标注体系，解决多源异构数据的整合与标准化问题",
@@ -147,89 +116,302 @@
               "version": "cb65c2d59dc9b45866f6"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "配套-数据"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-be396de007ff",
-          "name": "MR专家系统实现全息可视化",
-          "desc": "构建由MR头显（HoloLens）与平板控制端组成的专家系统，实现术中骨折全息可视化及虚拟手术推演。",
+          "id": "item-bf289718bd6e",
+          "name": "专利与人才",
+          "desc": "专利6项，博硕士12名",
           "evidence": [
             {
-              "quote": "构建了由MR头显（HoloLens）与平板控制端组成的专家系统，实现了术中“透视眼”般的骨折全息可视化及虚拟手术推演",
+              "quote": "申请及授权专利6项，培养博硕士研究生12名",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3266,
-                "end_char": 3323
-              },
-              "version": "cb65c2d59dc9b45866f6"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ca560b93ed52",
-          "name": "论文专利与人才培养",
-          "desc": "项目执行期内发表SCI论文十余篇，申请及授权专利6项，培养博硕士研究生12名。",
-          "evidence": [
-            {
-              "quote": "项目执行期内，在发表SCI论文十余篇，申请及授权专利6项，培养博硕士研究生12名",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3325,
+                "start_char": 3344,
                 "end_char": 3364
               },
               "version": "cb65c2d59dc9b45866f6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3388672f81bb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-327819ce597d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "区块链与人工智能技术在创伤骨科诊疗中融合应用的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢毅;张加尧;郝智伟;匡翌婕;王泓霖;杨佳铭;刘蓬然;叶哲伟",
+      "id": "out-d88bbc4b0834",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 区块链与人工智能技术在创伤骨科诊疗中融合应用的研究进展 — 谢毅;张加尧;郝智伟;匡翌婕;王泓霖;杨佳铭;刘蓬然;叶哲伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3479,
+            "end_char": 3545
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-327819ce597d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8915e1af6db6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning assisted diagnosis system: improving the diagnostic accuracy of distal radius fractures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jiayao;Li Zhimin;Lin Heng;Xue Mingdi;Wang Honglin;Fang Ying;Liu Songxiang;Huo Tongtong;Zhou Hong;Yang Jiaming;Xie Yi;Xie Mao;Lu Lin;Liu Pengran;Ye Zhewei",
+      "id": "out-e3763b98c386",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning assisted diagnosis system: improving the diagnostic accuracy of distal radius fractures — Zhang Jiayao;Li Zhimin;Lin Heng;Xue Mingdi;Wang Honglin;Fang Ying;Liu Songxiang;Huo Tongtong;Zhou Hong;Yang Jiaming;Xie Yi;Xie Mao;Lu Lin;Liu Pengran;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3550,
+            "end_char": 3819
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8915e1af6db6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-be396de007ff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application and prospect of mixed reality technology in orthopedics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Jiaming;Zhang Jiayao;Zeng Cheng;Fang Ying;Xue Mingdi;Wang Honglin;Zhou Hong;Xie Yi;Liu Pengran;Ye Zhewei",
+      "id": "out-a200c3ace737",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application and prospect of mixed reality technology in orthopedics — Yang Jiaming;Zhang Jiayao;Zeng Cheng;Fang Ying;Xue Mingdi;Wang Honglin;Zhou Hong;Xie Yi;Liu Pengran;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3824,
+            "end_char": 4009
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-33eaf71be385"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1f2e29e5c95b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国骨科人工智能的发展现状与未来",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘蓬然;叶哲伟",
+      "id": "out-89f11580dbc3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中国骨科人工智能的发展现状与未来 — 刘蓬然;叶哲伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4014,
+            "end_char": 4046
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating blockchain technology with artificial intelligence for the diagnosis of tibial plateau fractures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Yi;Chen Xiaoliang;Yang Huiwen;Wang Honglin;Zhou Hong;Lu Lin;Zhang Jiayao;Liu Pengran;Ye Zhewei",
+      "id": "out-097064166e61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating blockchain technology with artificial intelligence for the diagnosis of tibial plateau fractures — Xie Yi;Chen Xiaoliang;Yang Huiwen;Wang Honglin;Zhou Hong;Lu Lin;Zhang Jiayao;Liu Pengran;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4051,
+            "end_char": 4266
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning system assisted detection and localization of lumbar spondylolisthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jiayao;Lin Heng;Wang Honglin;Xue Mingdi;Fang Ying;Liu Songxiang;Huo Tongtong;Zhou Hong;Yang Jiaming;Xie Yi;Xie Mao;Cheng Liangli;Lu Lin;Liu Pengran;Ye Zhewei",
+      "id": "out-f0f5a69fa38b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning system assisted detection and localization of lumbar spondylolisthesis — Zhang Jiayao;Lin Heng;Wang Honglin;Xue Mingdi;Fang Ying;Liu Songxiang;Huo Tongtong;Zhou Hong;Yang Jiaming;Xie Yi;Xie Mao;Cheng Liangli;Lu Lin;Liu Pengran;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4598
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在骨科术中导航的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "霍彤彤;刘松相;谢毅;叶哲伟",
+      "id": "out-4dbb93e788a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在骨科术中导航的应用进展 — 霍彤彤;刘松相;谢毅;叶哲伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4603,
+            "end_char": 4642
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based algorithm improves radiologists' performance in lung cancer bone metastases detection on computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huo Tongtong;Xie Yi;Fang Ying;Wang Ziyi;Liu Pengran;Duan Yuyu;Zhang Jiayao;Wang Honglin;Xue Mingdi;Liu Songxiang;Ye Zhewei",
+      "id": "out-dc0a7b2228a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based algorithm improves radiologists' performance in lung cancer bone metastases detection on computed tomography — Huo Tongtong;Xie Yi;Fang Ying;Wang Ziyi;Liu Pengran;Duan Yuyu;Zhang Jiayao;Wang Honglin;Xue Mingdi;Liu Songxiang;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4647,
+            "end_char": 4906
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "算法神谕与人文困境:医学人工智能大语言模型的哲学思辨",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "向李智;樊梦科;张芳;王亮;叶哲伟",
+      "id": "out-5458599056fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 算法神谕与人文困境:医学人工智能大语言模型的哲学思辨 — 向李智;樊梦科;张芳;王亮;叶哲伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4912,
+            "end_char": 4964
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "New augmented reality remote for virtual guidance and education of fracture surgery: a retrospective, non-inferiority, multi-center cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Songxiang;Xie Mao;Gao Fei;Fang Ying;Xue Mingdi;Zuo Bingran;Wang Junwen;Hu Jialang;Liu Rong;Zhang Jiayao;Huo Tongtong;Liu Pengran;Zeng Cheng;Yew Andy;Chen Heng-Gui;Ye Zhewei",
+      "id": "out-53325cea59a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] New augmented reality remote for virtual guidance and education of fracture surgery: a retrospective, non-inferiority, multi-center cohort study — Liu Songxiang;Xie Mao;Gao Fei;Fang Ying;Xue Mingdi;Zuo Bingran;Wang Junwen;Hu Jialang;Liu Rong;Zhang Jiayao;Huo Tongtong;Liu Pengran;Zeng Cheng;Yew Andy;Chen Heng-Gui;Ye Zhewei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4970,
+            "end_char": 5299
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国医学人工智能的现状、挑战与未来",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘蓬然;叶哲伟",
+      "id": "out-6025b2f8384c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中国医学人工智能的现状、挑战与未来 — 刘蓬然;叶哲伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5305,
+            "end_char": 5338
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence to detect the femoral intertrochanteric fracture: The arrival of the intelligent-medicine era",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pengran Liu;Lin Lu;Yufei Chen;Tongtong Huo;Mingdi Xue;Honglin Wang;Ying Fang;Yi Xie;Mao Xie;Zhewei Ye",
+      "id": "out-44f6756a9ce6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence to detect the femoral intertrochanteric fracture: The arrival of the intelligent-medicine era — Pengran Liu;Lin Lu;Yufei Chen;Tongtong Huo;Mingdi Xue;Honglin Wang;Ying Fang;Yi Xie;Mao Xie;Zhewei Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5344,
+            "end_char": 5571
+          },
+          "version": "cb65c2d59dc9b45866f6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 12
+      }
+    },
+    "consistent": false
+  }
 }

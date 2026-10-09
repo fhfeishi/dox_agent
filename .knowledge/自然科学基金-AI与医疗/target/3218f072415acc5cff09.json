@@ -2,15 +2,20 @@
   "doc_id": "3218f072415acc5cff09",
   "version": "d4907a4942fccb9c3f9d",
   "source_hash": "5a77b06a4417ee317984cf258b2a35815522d96fbd5325e5792a0b4640dafc8d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.817059+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:45.106384+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c27ee553fb91",
-          "name": "冠状动脉慢性闭塞病变介入开通预测与路径规划",
-          "desc": "面向冠脉慢性完全闭塞病变的介入治疗，于术前准确预测开通成功率并提供个体化手术路径规划。",
+          "id": "item-89ceac5bfa4a",
+          "name": "冠状动脉慢性完全闭塞介入开通",
+          "desc": "介入难度大、失败率高",
           "evidence": [
             {
-              "quote": "冠状动脉慢性闭塞病变（CTO）开通对改善患者预后意义重大",
+              "quote": "冠状动脉慢性完全闭塞（CTO）等复杂病变的介入治疗难度大、失败率高且容易造成严重并发症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 685
+                "start_char": 2621,
+                "end_char": 2663
               },
               "version": "d4907a4942fccb9c3f9d"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-19b890189417",
-          "name": "CTO介入开通难度大失败率高",
-          "desc": "CTO病变介入开通治疗难度大、失败率高且容易造成严重并发症，亟需术前准确的开通预测及路径规划。",
+          "id": "item-cd78981a6acd",
+          "name": "冠脉造影难以显示闭塞段及以远血管",
+          "desc": "介入指导存在局限",
           "evidence": [
             {
-              "quote": "但是CTO病变介入开通治疗难度大、失败率高且容易造成严重并发症，所以急需术前进行准确的开通预测及路径规划",
+              "quote": "但其不能很好地显示闭塞段及以远的血管，在冠脉CTO等复杂病变的介入指导中还存在局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 709,
-                "end_char": 760
+                "start_char": 2794,
+                "end_char": 2835
               },
               "version": "d4907a4942fccb9c3f9d"
             }
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4aab51bb3547",
-          "name": "主动学习推理人工神经网络介入开通预测",
-          "desc": "通过设计主动学习推理人工神经网络，准确预测介入开通成功率并提供个体化开通路径规划；重点解决三维冠脉血管自动解剖与多元数据预测模型设计问题。",
+          "id": "item-92dc32d29806",
+          "name": "主动学习推理人工神经网络",
+          "desc": "CTO开通CT智能预测与路径规划",
           "evidence": [
             {
-              "quote": "本项目通过设计主动学习推理人工神经网络，来准确预测介入开通成功率及提供个体化开通路径规划",
+              "quote": "本项目通过设计主动学习推理人工神经网络，构建了冠状动脉CTO介入开通CT智能预测模型和冠状动脉CTA与冠状动脉造影智能融合辅助介入开通路径规划模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 916,
-                "end_char": 959
+                "start_char": 2956,
+                "end_char": 3028
               },
               "version": "d4907a4942fccb9c3f9d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,21 +91,23 @@
       "state": "has",
       "items": [
         {
-          "id": "item-660ed51b27fb",
-          "name": "构建CTO介入开通CT智能预测与CTA-造影融合路径规划模型",
-          "desc": "构建冠状动脉CTO介入开通CT智能预测模型与冠状动脉CTA与造影智能融合辅助介入开通路径规划模型，显著提高开通成功率并降低并发症。",
+          "id": "item-1fab2a48665c",
+          "name": "术前开通预测与路径规划",
+          "desc": "辅助规划手术路径",
           "evidence": [
             {
-              "quote": "构建了冠状动脉CTO介入开通CT智能预测模型和冠状动脉CTA与冠状动脉造影智能融合辅助介入开通路径规划模型",
+              "quote": "能够于术前准确预测冠脉CTO病变介入开通情况，辅助规划手术路径",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2976,
-                "end_char": 3028
+                "start_char": 3030,
+                "end_char": 3060
               },
               "version": "d4907a4942fccb9c3f9d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +115,490 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-c27ee553fb91"
+        "dimension": "技术",
+        "item_id": "item-92dc32d29806"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-19b890189417"
+        "item_id": "item-cd78981a6acd"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-19b890189417"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4aab51bb3547"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4aab51bb3547"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-660ed51b27fb"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目通过设计主动学习推理人工神经网络，构建了冠状动脉CTO介入开通CT智能预测模型和冠状动脉CTA与冠状动脉造影智能融合辅助介入开通路径规划模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2956,
+            "end_char": 3028
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessment of Image Quality of Coronary Computed Tomography Angiography in Obese Patients by Comparing Deep Learning Image Reconstruction With Adaptive Statistical Iterative Reconstruction Veo",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongwei Wang;Rui Wang;Ying Li;Zhen Zhou;Yifeng Gao;Kairui Bo;Min Yu;Zhonghua Sun;Lei Xu",
+      "id": "out-e8a6d305a589",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessment of Image Quality of Coronary Computed Tomography Angiography in Obese Patients by Comparing Deep Learning Image Reconstruction With Adaptive Statistical Iterative Reconstruction Veo — Hongwei Wang;Rui Wang;Ying Li;Zhen Zhou;Yifeng Gao;Kairui Bo;Min Yu;Zhonghua Sun;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3148,
+            "end_char": 3436
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning-based Prediction of Percutaneous Recanalization in Chronic Total Occlusion Using Coronary CT Angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Zhou;Yifeng Gao;Weiwei Zhang;Nan Zhang;Hui Wang;Rui Wang;Zhifan Gao;Xiaomeng Huang;Shanshan Zhou;Xu Dai;Guang Yang;Heye Zhang;Koen Nieman;Lei Xu",
+      "id": "out-3c2b3f45ae8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning-based Prediction of Percutaneous Recanalization in Chronic Total Occlusion Using Coronary CT Angiography — Zhen Zhou;Yifeng Gao;Weiwei Zhang;Nan Zhang;Hui Wang;Rui Wang;Zhifan Gao;Xiaomeng Huang;Shanshan Zhou;Xu Dai;Guang Yang;Heye Zhang;Koen Nieman;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3441,
+            "end_char": 3717
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种血流储备分数测量装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张贺晔;郭赛迪;张冬",
+      "id": "out-6b96ce334ec3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种血流储备分数测量装置 — 张贺晔;郭赛迪;张冬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3722,
+            "end_char": 3751
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative analysis of three-dimensional left ventricular global strain  using coronary computed tomography angiography in patients with heart  failure: Comparison with 3T cardiac MR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Wang;Zhe Fang;Hongwei Wang;Joseph Schoepf;Tilman Emrich;Dominic Giovagnoli;Evan Biles;Zhen Zhou;Zhiqiang Du;Tong Liu;Lei Xu",
+      "id": "out-981985a9bcc7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative analysis of three-dimensional left ventricular global strain  using coronary computed tomography angiography in patients with heart  failure: Comparison with 3T cardiac MR — Rui Wang;Zhe Fang;Hongwei Wang;Joseph Schoepf;Tilman Emrich;Dominic Giovagnoli;Evan Biles;Zhen Zhou;Zhiqiang Du;Tong Liu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3756,
+            "end_char": 4076
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An automated quantification method for the Agatston coronary artery calcium score on coronary computed tomography angiography.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjia Wang;Lin Yang;Sicong Wang;Qiong Wang;Lei Xu",
+      "id": "out-ddba29c5a29d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An automated quantification method for the Agatston coronary artery calcium score on coronary computed tomography angiography. — Wenjia Wang;Lin Yang;Sicong Wang;Qiong Wang;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4081,
+            "end_char": 4266
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于示踪动力学的冠状动脉CT血流储备 分数诊断冠状动脉缺血病变的初步研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨琳;徐磊;徐超;毕涛;夏静静;郭妍;范占明",
+      "id": "out-bd9e99680aeb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于示踪动力学的冠状动脉CT血流储备 分数诊断冠状动脉缺血病变的初步研究 — 杨琳;徐磊;徐超;毕涛;夏静静;郭妍;范占明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4271,
+            "end_char": 4338
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "冠状动脉狭窄的量化方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张贺晔;张冬",
+      "id": "out-bc4c869be86c",
+      "evidence": [
+        {
+          "quote": "[专利] 冠状动脉狭窄的量化方法及装置 — 张贺晔;张冬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4370
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based full aortic CT angiography imaging with ultra-low-dose contrast medium: a preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Zhou;Yifeng Gao;Weiwei Zhang;Kairui Bo;Nan Zhang;Hui Wang;Rui Wang;Zhiqiang Du;David Firmin;Guang Yang;Heye Zhang;Lei Xu",
+      "id": "out-d263d8740975",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based full aortic CT angiography imaging with ultra-low-dose contrast medium: a preliminary study — Zhen Zhou;Yifeng Gao;Weiwei Zhang;Kairui Bo;Nan Zhang;Hui Wang;Rui Wang;Zhiqiang Du;David Firmin;Guang Yang;Heye Zhang;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4630
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于人工智能的斑块伪影修正及成分分析方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐磊;张楠;王辉",
+      "id": "out-4f40717f569f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于人工智能的斑块伪影修正及成分分析方法和装置 — 徐磊;张楠;王辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4635,
+            "end_char": 4675
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint segmentation and quantification of main coronary vessels using dual-branch multi-scale attention network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongwei Zhang;Dong Zhang;Zhifan Gao;Heye Zhang",
+      "id": "out-3ad69c224b3c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Joint segmentation and quantification of main coronary vessels using dual-branch multi-scale attention network — Hongwei Zhang;Dong Zhang;Zhifan Gao;Heye Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4681,
+            "end_char": 4846
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习图像重建算法用于肥胖个体低剂量冠状动脉CT血管成像",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王宏伟;李瑛;高一峰;王瑞;杜志强;于敏;徐磊",
+      "id": "out-9e4200a24c16",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 深度学习图像重建算法用于肥胖个体低剂量冠状动脉CT血管成像 — 王宏伟;李瑛;高一峰;王瑞;杜志强;于敏;徐磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 4913
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CTA与DSA图像智能融合方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐磊;王辉;王瑞;周振;陈炎;马建强;李广;王立伟;王霁虹",
+      "id": "out-7c1f43ebdbd7",
+      "evidence": [
+        {
+          "quote": "[专利] CTA与DSA图像智能融合方法、装置、设备及介质 — 徐磊;王辉;王瑞;周振;陈炎;马建强;李广;王立伟;王霁虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4919,
+            "end_char": 4979
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coronary computed tomography angiography radiomics: A potential noninvasive tool for detecting myocardial fibrosis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Wang;Lei Xu",
+      "id": "out-18bea738f1b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coronary computed tomography angiography radiomics: A potential noninvasive tool for detecting myocardial fibrosis. — Rui Wang;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4985,
+            "end_char": 5124
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-task learning with Multi-view Weighted Fusion Attention for artery-specific calcification analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang W;Yang G;Zhang N;Xu L;Wang X;Zhang Y;Zhang H;Ser J;Albuquerque V",
+      "id": "out-ebc89e54590a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-task learning with Multi-view Weighted Fusion Attention for artery-specific calcification analysis — Zhang W;Yang G;Zhang N;Xu L;Wang X;Zhang Y;Zhang H;Ser J;Albuquerque V",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5130,
+            "end_char": 5313
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fully automatic framework for comprehensive coronary artery calcium scores analysis on non-contrast cardiac-gated CT scan: Total and vessel-specific quantifications.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nan Zhang;Guang Yang;Weiwei Zhang;Wenjing Wang;Zhen Zhou;Heye Zhang;Lei Xu;Yundai Chen",
+      "id": "out-4fe793ef90cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fully automatic framework for comprehensive coronary artery calcium scores analysis on non-contrast cardiac-gated CT scan: Total and vessel-specific quantifications. — Nan Zhang;Guang Yang;Weiwei Zhang;Wenjing Wang;Zhen Zhou;Heye Zhang;Lei Xu;Yundai Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5319,
+            "end_char": 5579
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CTO介入治疗成功率的预测方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐磊;张楠;周振;王瑞;王辉;黄晓萌;李广;王霁虹;王立伟",
+      "id": "out-09d850b63ba6",
+      "evidence": [
+        {
+          "quote": "[专利] CTO介入治疗成功率的预测方法、装置、设备及介质 — 徐磊;张楠;周振;王瑞;王辉;黄晓萌;李广;王霁虹;王立伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5585,
+            "end_char": 5645
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of plaque compositions on fractional flow reserve in a fluid-structure interaction analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chulin Wu;Xiujian Liu;Dhanjoo Ghista;Youbin Yin;Heye Zhang",
+      "id": "out-637c3576cfc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of plaque compositions on fractional flow reserve in a fluid-structure interaction analysis — Chulin Wu;Xiujian Liu;Dhanjoo Ghista;Youbin Yin;Heye Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5651,
+            "end_char": 5816
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive fractional flow reserve derived from computed tomography angiography in a patient with abnormal origin of the left main artery and cardiac death",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuelian Gao;Zhen Zhou;Yifeng Gao;Zhonghua Sun;Lei Xu",
+      "id": "out-81cfb0ff6284",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive fractional flow reserve derived from computed tomography angiography in a patient with abnormal origin of the left main artery and cardiac death — Xuelian Gao;Zhen Zhou;Yifeng Gao;Zhonghua Sun;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5822,
+            "end_char": 6039
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vessel-GAN: Angiographic reconstructions from myocardial CT perfusion with explainable generative adversarial networks[J]",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chulin Wu;Heye Zhang;Jiaqi Chen;Zhifan Gao;Pengfei Zhang;Khan Muhammad;Javier Del Ser",
+      "id": "out-3d52683aa063",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vessel-GAN: Angiographic reconstructions from myocardial CT perfusion with explainable generative adversarial networks[J] — Chulin Wu;Heye Zhang;Jiaqi Chen;Zhifan Gao;Pengfei Zhang;Khan Muhammad;Javier Del Ser",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6045,
+            "end_char": 6260
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种血管闭塞病变的冠脉CTA处理方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐磊;周振;王瑞",
+      "id": "out-315374fd57a2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种血管闭塞病变的冠脉CTA处理方法和装置 — 徐磊;周振;王瑞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6266,
+            "end_char": 6302
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Myocardial extracellular volume fraction analysis in doxorubicin-induced beagle models: comparison of dual-energy CT with equilibrium contrast-enhanced single-energy CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Zhou;Yifeng Gao;Hongwei Wang;Wenjing Wang;Hongkai Zhang;Sicong Wang;Zhonghua Sun;Lei Xu",
+      "id": "out-0276c90f57ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Myocardial extracellular volume fraction analysis in doxorubicin-induced beagle models: comparison of dual-energy CT with equilibrium contrast-enhanced single-energy CT — Zhen Zhou;Yifeng Gao;Hongwei Wang;Wenjing Wang;Hongkai Zhang;Sicong Wang;Zhonghua Sun;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6308,
+            "end_char": 6577
+          },
+          "version": "d4907a4942fccb9c3f9d"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

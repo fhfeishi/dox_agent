@@ -2,15 +2,20 @@
   "doc_id": "12519b620ddb08c004df",
   "version": "d498da31610636ddb370",
   "source_hash": "92d9fe8ab7c858bb7d3bde3b7b3f4318c475d2e25e8a428443c784b332f565b8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:13.998272+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.225790+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-0f2e85b2532a",
           "name": "针刺治疗偏头痛疗效预测",
-          "desc": "围绕针灸临床疗效预测这一尚不明确规律和机制的临床重要问题，整合多学科技术方法开展研究。",
+          "desc": "无先兆性偏头痛为研究载体",
           "evidence": [
             {
-              "quote": "本项目围绕针灸临床疗效预测这一尚不明确规律和机制的针灸临床重要问题，整合神经影像组学、基因多态性、认知行为学和针灸学多学科技术方法",
+              "quote": "本研究以无先兆性偏头痛为研究载体，运用多模态神经影像学技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 682,
-                "end_char": 746
-              },
-              "version": "d498da31610636ddb370"
-            }
-          ]
-        },
-        {
-          "id": "item-249e56e89358",
-          "name": "针刺治疗慢性疼痛疗效预测借鉴",
-          "desc": "为针灸治疗偏头痛疗效预测的临床运用提供可视化依据，为针刺治疗慢性疼痛疗效预测研究提供新思路。",
-          "evidence": [
-            {
-              "quote": "也将为针刺治疗慢性疼痛疗效预测研究提供新的思路和借鉴",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1046,
-                "end_char": 1071
+                "start_char": 2702,
+                "end_char": 2730
               },
               "version": "d498da31610636ddb370"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ecc04f9e1643",
-          "name": "针灸临床疗效预测规律和机制尚不明确",
-          "desc": "针灸临床疗效预测的规律和机制尚不明确，需深入探讨。",
+          "id": "item-ca34bdd9040d",
+          "name": "针灸临床疗效预测规律与机制不明",
+          "desc": "重要临床问题",
           "evidence": [
             {
-              "quote": "围绕针灸临床疗效预测这一尚不明确规律和机制的针灸临床重要问题",
+              "quote": "针灸临床疗效预测这一尚不明确规律和机制的针灸临床重要问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
+                "start_char": 687,
                 "end_char": 714
-              },
-              "version": "d498da31610636ddb370"
-            }
-          ]
-        },
-        {
-          "id": "item-ae293315748c",
-          "name": "需验证模型特异性和稳定性",
-          "desc": "需通过对比一线用药与不同类型疼痛验证模型特异性，并通过已采集数据再验证模型稳定性。",
-          "evidence": [
-            {
-              "quote": "对比针刺与偏头痛预防一线用药氟桂利嗪、对比针刺治疗不同类型疼痛（紧张型头痛、慢性膝痛）以验证此模型的特异性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 946
               },
               "version": "d498da31610636ddb370"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b98eeece412",
-          "name": "神经影像组学与COMT基因多态性融合",
-          "desc": "以无先兆性偏头痛为载体，运用多模态神经影像学技术，结合COMT rs4680基因多态性和认知行为学测评，用机器学习构建疗效预测模型。",
+          "id": "item-20ee5e33681e",
+          "name": "神经影像组学机器学习疗效预测模型",
+          "desc": "构建针刺治疗无先兆性偏头痛疗效预测模型",
           "evidence": [
             {
-              "quote": "以无先兆性偏头痛为研究载体，运用多模态神经影像学技术，以大脑奖赏回路相关脑区为重点，结合COMT rs4680基因多态性和认知行为学测评，运用机器学习的方法",
+              "quote": "运用机器学习的方法，构建了针刺治疗无先兆性偏头痛患者疗效预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2705,
-                "end_char": 2782
+                "start_char": 2774,
+                "end_char": 2805
               },
               "version": "d498da31610636ddb370"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0c386dc81638",
-          "name": "多阶段验证与再验证方案",
-          "desc": "分三阶段构建疗效预测模型、对比一线用药与不同类型疼痛验证特异性、用已采集数据再验证稳定性。",
+          "id": "item-ca3e18161f08",
+          "name": "COMT rs4680基因多态性与认知行为学测评",
+          "desc": "融合入预测模型",
           "evidence": [
             {
-              "quote": "第三阶段：对已构建的针刺治疗偏头痛疗效预测模型进行前期已采集数据再验证以测试此模型的稳定性",
+              "quote": "结合COMT rs4680基因多态性和认知行为学测评",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 948,
-                "end_char": 992
+                "start_char": 2747,
+                "end_char": 2772
               },
               "version": "d498da31610636ddb370"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc7c2f302965",
-          "name": "明确奖赏回路与COMT靶点",
-          "desc": "明确奖赏回路为针刺治疗偏头痛疗效预测模型的重要神经回路，COMT rs4680基因可作为疗效预测靶点。",
+          "id": "item-68b150b92e6d",
+          "name": "奖赏回路与COMT基因靶点",
+          "desc": "明确为疗效预测重要神经回路与靶点",
           "evidence": [
             {
               "quote": "明确了奖赏回路为针刺治疗偏头痛疗效预测模型的重要神经回路以及COMT rs4680基因可作为针刺治疗偏头痛疗效预测的靶点",
@@ -147,41 +122,28 @@
               "version": "d498da31610636ddb370"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3369ebc4cc56",
-          "name": "验证模型特异性",
-          "desc": "通过对比针刺紧张型头痛患者预测模型的特征，验证了针刺治疗无先兆性偏头痛疗效预测模型的特异性。",
+          "id": "item-801ab2340c14",
+          "name": "模型特异性验证",
+          "desc": "对比紧张型头痛预测模型特征",
           "evidence": [
             {
-              "quote": "并通过对比针刺紧张型头痛患者预测模型的特征，验证了针刺治疗无先兆性偏头痛疗效预测模型的特异性",
+              "quote": "验证了针刺治疗无先兆性偏头痛疗效预测模型的特异性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2868,
+                "start_char": 2890,
                 "end_char": 2913
               },
               "version": "d498da31610636ddb370"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b297990b178c",
-          "name": "疗效预测研究方案论文",
-          "desc": "发表基于多模态MRI的针刺治疗无先兆性偏头痛疗效预测研究方案。",
-          "evidence": [
-            {
-              "quote": "Efficacy prediction of acupuncture treatment for migraine without aura based on multimodal MRI: A study protocol",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3086,
-                "end_char": 3197
-              },
-              "version": "d498da31610636ddb370"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +151,251 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-0f2e85b2532a"
+        "dimension": "技术",
+        "item_id": "item-20ee5e33681e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-ecc04f9e1643"
+        "item_id": "item-ca34bdd9040d"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ecc04f9e1643"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9b98eeece412"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9b98eeece412"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cc7c2f302965"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0c386dc81638"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3369ebc4cc56"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "运用机器学习的方法，构建了针刺治疗无先兆性偏头痛患者疗效预测模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2774,
+            "end_char": 2805
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺治疗偏头痛的神经影像学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐桂兴;程施瑞;李政杰;孙睿睿;周俊;周圆芳;孙宁;赵凌;梁繁荣",
+      "id": "out-41f6e7eea2d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针刺治疗偏头痛的神经影像学研究进展 — 徐桂兴;程施瑞;李政杰;孙睿睿;周俊;周圆芳;孙宁;赵凌;梁繁荣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3016,
+            "end_char": 3074
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy prediction of acupuncture treatment for migraine without aura based on multimodal MRI: A study protocol",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Shirui;Zhang Xinyue;Zheng Huabin;Jiang Nannan;Zhou Jun;Li Xinling;Fang Yu;Huang Xiaopeng;Liang Jingtao;Yin Tao;Liang Fanrong;Zeng Fang;Li Zhengjie",
+      "id": "out-4ea2d82f3993",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy prediction of acupuncture treatment for migraine without aura based on multimodal MRI: A study protocol — Cheng Shirui;Zhang Xinyue;Zheng Huabin;Jiang Nannan;Zhou Jun;Li Xinling;Fang Yu;Huang Xiaopeng;Liang Jingtao;Yin Tao;Liang Fanrong;Zeng Fang;Li Zhengjie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3079,
+            "end_char": 3352
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The brain structure and function alterations in tension-type headache: A protocol for systematic review and meta analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jun;Cheng Shirui;Yang Han;Lan Lei;Chen Yijia;Xu Guixing;Yin Zihan;Li Zhengjie;Liu Mailan",
+      "id": "out-535972b3e83f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The brain structure and function alterations in tension-type headache: A protocol for systematic review and meta analysis — Zhou Jun;Cheng Shirui;Yang Han;Lan Lei;Chen Yijia;Xu Guixing;Yin Zihan;Li Zhengjie;Liu Mailan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3357,
+            "end_char": 3580
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A systematic review and meta‑analysis of voxel‑based morphometric studies of migraine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Xinyue;Zhou Jun;Guo Mengyuan;Cheng Shirui;Chen Yilin;Jiang Nannan;Li Xinling;Hu Shengjie;Tian Zilei;Li Zhengjie;Zeng Fang",
+      "id": "out-415cd824c323",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A systematic review and meta‑analysis of voxel‑based morphometric studies of migraine — Zhang Xinyue;Zhou Jun;Guo Mengyuan;Cheng Shirui;Chen Yilin;Jiang Nannan;Li Xinling;Hu Shengjie;Tian Zilei;Li Zhengjie;Zeng Fang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3585,
+            "end_char": 3806
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Concurrent brain structural and functional alterations in patients with migraine without aura: an fMRI study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhengjie;Zhou Jun;Lan Lei;Cheng Shirui;Sun Ruirui;Gong Qiyong;Wintermark Max;Zeng Fang;Liang Fanrong",
+      "id": "out-083d64b874c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Concurrent brain structural and functional alterations in patients with migraine without aura: an fMRI study — Li Zhengjie;Zhou Jun;Lan Lei;Cheng Shirui;Sun Ruirui;Gong Qiyong;Wintermark Max;Zeng Fang;Liang Fanrong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3811,
+            "end_char": 4031
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy of Acupuncture Treatment of Migraine Delivered by Senior or Junior Acupuncturists: Study Protocol for a Randomized Controlled Trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jun;Jiang Nannan;Fang Yu;Zhang Xinyue;Cheng Shirui;Li Xinling;Hu Shengjie;Sun Ruirui;Zheng Huabin;Huang Xiaopeng;Zeng Fang;Liang Fanrong;Li Zhengjie",
+      "id": "out-1284ccbc1fbc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy of Acupuncture Treatment of Migraine Delivered by Senior or Junior Acupuncturists: Study Protocol for a Randomized Controlled Trial — Zhou Jun;Jiang Nannan;Fang Yu;Zhang Xinyue;Cheng Shirui;Li Xinling;Hu Shengjie;Sun Ruirui;Zheng Huabin;Huang Xiaopeng;Zeng Fang;Liang Fanrong;Li Zhengjie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4036,
+            "end_char": 4338
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Editorial: Acupuncture for pain management",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jun;Teng Yuke;Zhang Xinyue;Cheng Shirui;Li Xinling;Hu Shengjie;Luo Weiming;Chen Xingyao;Li Zhengjie",
+      "id": "out-c70ea903acf9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Editorial: Acupuncture for pain management — Zhou Jun;Teng Yuke;Zhang Xinyue;Cheng Shirui;Li Xinling;Hu Shengjie;Luo Weiming;Chen Xingyao;Li Zhengjie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4343,
+            "end_char": 4498
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Modulation effects of different treatments on periaqueductal  gray resting state functional connectivity in knee osteoarthritis  knee pain patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jun;Zeng Fang;Cheng Shirui;Dong Xiaohui;Jiang Nannan;Zhang Xinyue;Tang Chenjian;He Wenhua;Chen Yang;Sun Ning;Zhou Yuanfang;Li Xinling;Hu Shengjie;Sun Ruirui;Wintermark Max;Yang Weihua;Liang Fanrong;Li Zhengjie",
+      "id": "out-b0465990e2ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Modulation effects of different treatments on periaqueductal  gray resting state functional connectivity in knee osteoarthritis  knee pain patients — Zhou Jun;Zeng Fang;Cheng Shirui;Dong Xiaohui;Jiang Nannan;Zhang Xinyue;Tang Chenjian;He Wenhua;Chen Yang;Sun Ning;Zhou Yuanfang;Li Xinling;Hu Shengjie;Sun Ruirui;Wintermark Max;Yang Weihua;Liang Fanrong;Li Zhengjie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4503,
+            "end_char": 4873
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于神经影像学的针刺治疗偏头痛疗效预测的研究进展及思路探讨",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董晓慧;周俊;程施瑞;贺文华;曾芳;梁繁荣;李政杰",
+      "id": "out-a19fb20374b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于神经影像学的针刺治疗偏头痛疗效预测的研究进展及思路探讨 — 董晓慧;周俊;程施瑞;贺文华;曾芳;梁繁荣;李政杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4878,
+            "end_char": 4941
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "浅议中医临床“同理心”的表现、特点和能力培养",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡胜婕;周俊;张心悦;程施瑞;梁繁荣;曾芳;李政杰",
+      "id": "out-fed1562fa66e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 浅议中医临床“同理心”的表现、特点和能力培养 — 胡胜婕;周俊;张心悦;程施瑞;梁繁荣;曾芳;李政杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4947,
+            "end_char": 5003
+          },
+          "version": "d498da31610636ddb370"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "36567e4732b0568bf939",
   "version": "5f78519bae2cf148e37b",
   "source_hash": "662702b99725ff4354e8d1316f7d32e46553f81988b711f0eaab38342bac052d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:14.010674+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.894439+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a06b44a18c25",
-          "name": "胃早癌辅助诊断关键技术研究",
-          "desc": "胃癌是我国最常见的恶性肿瘤之一，其治疗效果取决于能否早期诊断，早诊早治可使5年生存率提升至84%以上。",
+          "id": "item-35bdbd954215",
+          "name": "胃早癌辅助诊断",
+          "desc": "治疗效果取决于早期诊断",
           "evidence": [
             {
               "quote": "胃癌是我国最常见的恶性肿瘤之一，其治疗效果取决于能否早期诊断",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 660,
                 "end_char": 689
-              },
-              "version": "5f78519bae2cf148e37b"
-            }
-          ]
-        },
-        {
-          "id": "item-b9eae099e8bf",
-          "name": "建立多源数据联合判别模型",
-          "desc": "借助人工智能方法探究内镜影像、病理影像及多种免疫组化分子特征与胃早癌的关系，建立多源数据联合判别模型。",
-          "evidence": [
-            {
-              "quote": "最重建立胃早癌多源数据联合判别模型，以达到精准的胃早癌快速辅辅助诊断",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1026,
-                "end_char": 1059
               },
               "version": "5f78519bae2cf148e37b"
             }
@@ -57,32 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2906c4004fe4",
-          "name": "我国胃癌早期诊断率不足10%",
-          "desc": "我国基层医师对胃早癌病理体征及分子特征认识不足，加之免疫组化检测费用高、设备要求高，胃癌早期诊断率不足10%。",
+          "id": "item-b2e3293b20db",
+          "name": "胃癌早期诊断率不足10%",
+          "desc": "基层认识不足且免疫组化成本高",
           "evidence": [
             {
-              "quote": "然而我国胃癌早期诊断率不足10%，临床医师对胃早癌体征及分子特征认识不足",
+              "quote": "胃癌早期诊断率不足10%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 799,
-                "end_char": 834
+                "start_char": 803,
+                "end_char": 814
               },
               "version": "5f78519bae2cf148e37b"
             }
           ]
         },
         {
-          "id": "item-f9e74c1fb6bf",
-          "name": "需高敏感性筛查阳性病例",
-          "desc": "需通过交叉研究对胃早癌识别问题进行突破，即高敏感性地对较大工作量数据进行阳性病例筛查与分类检出。",
+          "id": "item-0b565a338ca3",
+          "name": "基层医师认识不足与免疫组化检测限制",
+          "desc": "费用高、设备要求高",
           "evidence": [
             {
-              "quote": "旨在通过交叉研究对胃早癌识别问题进行突破，即高敏感性地对较大工作量的数据进行阳性病例筛查与分类检出",
+              "quote": "我国基层医师对胃早癌病理体征及分子特征认识不足、高昂的免疫组化检测费用和对设备过高的要求限制了胃早癌精准医疗的广泛开展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1101,
-                "end_char": 1149
+                "start_char": 3526,
+                "end_char": 3584
               },
               "version": "5f78519bae2cf148e37b"
             }
@@ -95,36 +84,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d6145e4e77f",
-          "name": "内镜病理影像与分子特征辅助诊断",
-          "desc": "开展基于内镜影像及病理影像、基于免疫组化分子特征、基于多源影像模型融合的胃早癌辅助诊断研究。",
+          "id": "item-a3da236caff6",
+          "name": "硬示例引导CNN",
+          "desc": "肿瘤分类方法",
           "evidence": [
             {
-              "quote": "1. 基于内镜影像及病理影像的胃早癌辅助诊断；2. 基于免疫组化分子特征的胃早癌辅助诊断；3. 基于多源影像模型融合的胃早癌辅助诊断",
+              "quote": "并提出了一种有效的肿瘤分类方法，称为硬示例引-CNN",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 903,
-                "end_char": 968
+                "start_char": 3744,
+                "end_char": 3769
               },
               "version": "5f78519bae2cf148e37b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-575bee3363a0",
-          "name": "硬示例引导CNN与共同学习架构",
-          "desc": "提出硬示例引导CNN的肿瘤分类方法，以及共同学习架构增强硬样本，可直接应用于真实世界数据集而无需干净注释。",
+          "id": "item-2bf169bb6661",
+          "name": "共同学习架构增强硬样本",
+          "desc": "无需干净注释",
           "evidence": [
             {
-              "quote": "提出了一种有效的肿瘤分类方法，称为硬示例引-CNN。同时，提出的共同学习架构增强硬样本可以直接应用于真实世界的数据集，而无需使用干净的注释",
+              "quote": "提出的共同学习架构增强硬样本可以直接应用于真实世界的数据集，而无需使用干净的注释",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3745,
+                "start_char": 3774,
                 "end_char": 3813
               },
               "version": "5f78519bae2cf148e37b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +124,213 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8961898097d8",
-          "name": "构建早期胃癌辅助诊断系统",
-          "desc": "课题借助人工智能模型构建早期胃癌辅助诊断系统，并提出硬示例引导CNN的肿瘤分类方法。",
+          "id": "item-4482814fb1f3",
+          "name": "早期胃癌辅助诊断系统",
+          "desc": "基于人工智能模型",
           "evidence": [
             {
-              "quote": "课题借助人工智能模型，构建早期胃癌辅助诊断系统、并提出了一种有效的肿瘤分类方法，称为硬示例引-CNN",
+              "quote": "课题借助人工智能模型，构建早期胃癌辅助诊断系统",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3720,
-                "end_char": 3769
+                "end_char": 3742
               },
               "version": "5f78519bae2cf148e37b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-49511f46b325",
-          "name": "硬样本噪声鲁棒学习方法",
-          "desc": "提出面向病理图像分类的硬样本感知噪声鲁棒学习方法。",
-          "evidence": [
-            {
-              "quote": "Hard Sample Aware Noise Robust Learning for Histopathology Image Classification",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4407,
-                "end_char": 4485
-              },
-              "version": "5f78519bae2cf148e37b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-7ba028af146c",
-          "name": "胃异型增生全切片自动诊断",
-          "desc": "利用内镜标本全切片病理图像实现胃异型增生的深度学习自动诊断。",
-          "evidence": [
-            {
-              "quote": "Deep learning for automatic diagnosis of gastric dysplasia using whole-slide histopathology images in endoscopic specimens",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3986,
-                "end_char": 4107
-              },
-              "version": "5f78519bae2cf148e37b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a06b44a18c25"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2906c4004fe4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胃超高分化腺癌12例临床病理学特征分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "侯卫华;段心科;侯卫东;刘艳晓;王俊宏;王新钊;马丽娟;石中月;李启萌;金木兰",
+      "id": "out-29fac35f427f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胃超高分化腺癌12例临床病理学特征分析 — 侯卫华;段心科;侯卫东;刘艳晓;王俊宏;王新钊;马丽娟;石中月;李启萌;金木兰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3854,
+            "end_char": 3921
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2906c4004fe4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7d6145e4e77f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积神经网络的胃癌病理诊断的应用及进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭昕萌;赵宏颖;石中月;王莹;金木兰",
+      "id": "out-556e66eb5b22",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于卷积神经网络的胃癌病理诊断的应用及进展 — 郭昕萌;赵宏颖;石中月;王莹;金木兰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3926,
+            "end_char": 3974
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7d6145e4e77f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8961898097d8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning for automatic diagnosis of gastric dysplasia using whole-slide histopathology images in endoscopic specimens",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhongyue Shi;Chuang Zhu;Yu Zhang;Yakun Wang;Weihua Hou;Xue Li;Jun Lu;Xinmeng Guo;Feng Xu;Xingran Jiang;Ying Wang;Jun Liu;Mulan Jin",
+      "id": "out-f8765e18a47b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning for automatic diagnosis of gastric dysplasia using whole-slide histopathology images in endoscopic specimens — Zhongyue Shi;Chuang Zhu;Yu Zhang;Yakun Wang;Weihua Hou;Xue Li;Jun Lu;Xinmeng Guo;Feng Xu;Xingran Jiang;Ying Wang;Jun Liu;Mulan Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3979,
+            "end_char": 4240
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-575bee3363a0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7ba028af146c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-level colonoscopy malignant tissue detection with adversarial CAC-UNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu Chuang;Mei Ke;Peng Ting;Luo Yihao;Liu Jun;Wang Ying;Jin Mulan",
+      "id": "out-09f00f754cb6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-level colonoscopy malignant tissue detection with adversarial CAC-UNet — Zhu Chuang;Mei Ke;Peng Ting;Luo Yihao;Liu Jun;Wang Ying;Jin Mulan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4395
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hard Sample Aware Noise Robust Learning for Histopathology Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuang Zhu;Wenkai Chen;Ting Peng;Ying Wang;Mulan Jin",
+      "id": "out-e54c3c5c3d98",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hard Sample Aware Noise Robust Learning for Histopathology Image Classification — Chuang Zhu;Wenkai Chen;Ting Peng;Ying Wang;Mulan Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4400,
+            "end_char": 4540
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noise Robust Learning with Hard Example Aware for Pathological Image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ting Peng;Chuang Zhu;Yihao Luo;Jun Liu;Ying Wang;Mulan Jin",
+      "id": "out-92dab1620de5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Noise Robust Learning with Hard Example Aware for Pathological Image classification — Ting Peng;Chuang Zhu;Yihao Luo;Jun Liu;Ying Wang;Mulan Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4545,
+            "end_char": 4695
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pathological Image Classification Based on Hard Example Guided CNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Ying;Peng Ting;Duan Jiajia;Zhu Chuang;Liu Jun;Ye Jiandong;Jin Mulan",
+      "id": "out-a8f89e025553",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pathological Image Classification Based on Hard Example Guided CNN — Wang Ying;Peng Ting;Duan Jiajia;Zhu Chuang;Liu Jun;Ye Jiandong;Jin Mulan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4700,
+            "end_char": 4847
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ischemic Stroke Lesion Segmentation Using Multi-Plane Information Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Long;Song Ruoning;Wang Yuanyuan;Zhu Chuang;Liu Jun;Yang Jie;Liu Lian",
+      "id": "out-da39b6a21fc1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ischemic Stroke Lesion Segmentation Using Multi-Plane Information Fusion — Zhang Long;Song Ruoning;Wang Yuanyuan;Zhu Chuang;Liu Jun;Yang Jie;Liu Lian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 5007
+          },
+          "version": "5f78519bae2cf148e37b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

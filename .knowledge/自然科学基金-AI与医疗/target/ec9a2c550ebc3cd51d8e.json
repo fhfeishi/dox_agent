@@ -2,15 +2,20 @@
   "doc_id": "ec9a2c550ebc3cd51d8e",
   "version": "ddbc194ec6112c375fa6",
   "source_hash": "340da95d8a6ec28031cf0de1d1ebae3b74d5679ac4d9b8ddf658d837fca051e3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.850924+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.562118+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-6269ae24c554",
           "name": "半监督多模态医学数据融合分类",
-          "desc": "疾病发生发展是多层次多因素相互作用的复杂过程，仅依靠单模态数据难以发现协同语义信息。",
+          "desc": "深度互学习",
           "evidence": [
             {
-              "quote": "实际上，疾病的发生发展是多层次、多因素相互作用的复杂过程，仅依靠单种模态的数据难以发现不同层次、不同因素之间蕴含的协同语义信息",
+              "quote": "本项目针对医学多模态数据分析中的若干关键问题，开展了系统深入研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 717,
-                "end_char": 779
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ]
-        },
-        {
-          "id": "item-7199dddad37a",
-          "name": "提升医疗AI模型泛化性",
-          "desc": "研究对提高智能辅助诊断准确性、提升医疗人工智能模型泛化性具有重要理论和实际意义。",
-          "evidence": [
-            {
-              "quote": "本课题研究对于提高智能辅助诊断的准确性，提升医疗人工智能模型的泛化性具有重要的理论和实际意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1023,
-                "end_char": 1068
+                "start_char": 2961,
+                "end_char": 2992
               },
               "version": "ddbc194ec6112c375fa6"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-29cbd86d3402",
-          "name": "标注昂贵且单模态难发现协同语义",
-          "desc": "对大规模训练数据注释昂贵耗时，如何利用有限标记数据与大量未标记数据建立有效模型是模型可泛化的关键挑战。",
-          "evidence": [
-            {
-              "quote": "同时为了获得更高的精度对大规模的训练数据进行注释是非常昂贵和耗时的，如何利用有限的标记数据和大量的未标记数据建立有效的模型是当前人工智能模型可泛化的关键挑战之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 781,
-                "end_char": 860
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ]
-        },
-        {
-          "id": "item-4188116a4ddc",
-          "name": "医学数据标注成本高且多模态缺失普遍",
-          "desc": "医学数据具有标注成本高昂、多模态特性明显、数据缺失普遍等特点，对传统分析方法提出巨大挑战。",
+          "id": "item-0478178f3015",
+          "name": "医学数据标注成本高、多模态、数据缺失普遍",
+          "desc": "半监督场景",
           "evidence": [
             {
               "quote": "医学数据具有标注成本高昂、多模态特性明显、数据缺失普遍等特点，这对传统数据分析方法提出了巨大挑战",
@@ -95,141 +68,321 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a36b029c8c30",
-          "name": "深度互学习半监督多模态融合",
-          "desc": "研究基于深度互学习的半监督多模态医学数据融合学习方法，通过互学习机制提升无标签样本利用效率。",
+          "id": "item-a9e7508a741b",
+          "name": "基于范数补偿的不完备多模态非负矩阵分解",
+          "desc": "特征对齐",
           "evidence": [
             {
-              "quote": "研究基于深度互学习的半监督多模态医学数据融合学习方法。综合利用影像组学、临床信息等不同维度的多模态医学数据，利用有限的标注样本，充分提取各模态私有特征",
+              "quote": "提出了一种基于范数补偿的不完备多模态非负矩阵分解算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 891,
-                "end_char": 965
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ]
-        },
-        {
-          "id": "item-d41756fc1713",
-          "name": "范数补偿不完备多模态矩阵分解",
-          "desc": "针对多模态特征对齐问题，提出基于范数补偿的不完备多模态非负矩阵分解算法及成对协正则化方法。",
-          "evidence": [
-            {
-              "quote": "针对多模态医学数据的特征对齐问题，提出了一种基于范数补偿的不完备多模态非负矩阵分解算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3173,
+                "start_char": 3190,
                 "end_char": 3215
               },
               "version": "ddbc194ec6112c375fa6"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fb7d1976984d",
+          "name": "模型无关反事实增强方法",
+          "desc": "因果视角削弱疾病共现混杂",
+          "evidence": [
+            {
+              "quote": "提出了一种新颖的模型无关反事实增强方法，从因果视角对变量间的因果效应进行建模",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3363,
+                "end_char": 3400
+              },
+              "version": "ddbc194ec6112c375fa6"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dea7df07d95f",
+          "name": "CDRM框架",
+          "desc": "因果发现与因果解耦表征学习",
+          "evidence": [
+            {
+              "quote": "研究提出了CDRM框架，将数据矩阵概念化为图表示，构建异构图网络，并使用因果发现算法恢复数据的因果结构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3538,
+                "end_char": 3588
+              },
+              "version": "ddbc194ec6112c375fa6"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Perturb more, trap more: Understanding behaviors of graph neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaojie Ji;Ruxin Wang;Hangman Wu",
+      "id": "out-a9c2f6ba4841",
+      "evidence": [
         {
-          "id": "item-c0184feaf931",
-          "name": "边界信息响应上下文感知网络",
-          "desc": "提出基于边界信息响应的上下文感知网络自适应聚合多层次细粒度图像特征，并提出级联增强语义分割模型。",
-          "evidence": [
-            {
-              "quote": "研究提出了一种基于边界信息响应的上下文感知网络，自适应地聚合多层次、细粒度的图像特征，提升了深度神经网络对病变形态及边缘信息等复杂结构的感知",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3044,
-                "end_char": 3113
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] Perturb more, trap more: Understanding behaviors of graph neural networks — Chaojie Ji;Ruxin Wang;Hangman Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3619,
+            "end_char": 3733
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "健康大数据智能分析关键技术与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李烨;蔡云鹏;郑静;尹凌;吴永胜;吴晓琳;王如心;王艺元;杨玉洁;刘增丁",
+      "id": "out-c32b76035556",
+      "evidence": [
         {
-          "id": "item-c904a7d72286",
-          "name": "模型无关反事实增强方法",
-          "desc": "提出模型无关反事实增强方法，从因果视角建模变量因果效应并干预后门路径，显著提升模型准确性和泛化性。",
-          "evidence": [
-            {
-              "quote": "提出了一种新颖的模型无关反事实增强方法，从因果视角对变量间的因果效应进行建模，有效干预后门路径，削弱疾病共现关系作为混杂因素对模型准确性的影响",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3363,
-                "end_char": 3433
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[奖励] 健康大数据智能分析关键技术与应用 — 李烨;蔡云鹏;郑静;尹凌;吴永胜;吴晓琳;王如心;王艺元;杨玉洁;刘增丁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3738,
+            "end_char": 3797
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boundary-aware context neural network for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruxin Wang;Shuyuan Chen;Chaojie Ji;Jianping Fan;Ye Li",
+      "id": "out-2447c893bd73",
+      "evidence": [
         {
-          "id": "item-4e45fa0a84cc",
-          "name": "CDRM因果解耦表征学习框架",
-          "desc": "针对多模态数据缺失提出CDRM框架，将数据矩阵概念化为图表示，构建异构图网络并用因果发现算法恢复因果结构。",
-          "evidence": [
-            {
-              "quote": "针对多模态医学数据缺失问题，研究提出了CDRM框架，将数据矩阵概念化为图表示，构建异构图网络，并使用因果发现算法恢复数据的因果结构，实现因果解耦表征学习",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3524,
-                "end_char": 3599
-              },
-              "version": "ddbc194ec6112c375fa6"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Boundary-aware context neural network for medical image segmentation — Ruxin Wang;Shuyuan Chen;Chaojie Ji;Jianping Fan;Ye Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3932
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深圳市第三届优秀科技学术论文",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王如心;陈沭源;纪超杰;樊建平;李烨",
+      "id": "out-641db8c9f6bc",
+      "evidence": [
+        {
+          "quote": "[奖励] 深圳市第三届优秀科技学术论文 — 王如心;陈沭源;纪超杰;樊建平;李烨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3937,
+            "end_char": 3976
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CDRM: Causal disentangled representation learning for missing data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingjie Chen;Hongcheng Wang;Ruxin Wang;Yuzhong Peng;Hao Zhang",
+      "id": "out-a047f6669d9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CDRM: Causal disentangled representation learning for missing data — Mingjie Chen;Hongcheng Wang;Ruxin Wang;Yuzhong Peng;Hao Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3981,
+            "end_char": 4117
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多模态图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王如心;肖福安;李烨",
+      "id": "out-52b953d1a75f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多模态图像分割方法 — 王如心;肖福安;李烨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4122,
+            "end_char": 4150
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-Supervised Multi-View Clustering based on NMF with Fusion Regularization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guosheng Cui;Ruxin Wang;Dan Wu;Ye Li",
+      "id": "out-bcf2d0b44036",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-Supervised Multi-View Clustering based on NMF with Fusion Regularization — Guosheng Cui;Ruxin Wang;Dan Wu;Ye Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4155,
+            "end_char": 4277
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cascaded context enhancement network for automatic skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruxin Wang;Shuyuan Chen;Chaojie Ji;Ye Li",
+      "id": "out-450f202a4f48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cascaded context enhancement network for automatic skin lesion segmentation — Ruxin Wang;Shuyuan Chen;Chaojie Ji;Ye Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4406
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rethinking Radiology Report Generation via Causal Inspired Counterfactual Augmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Song;Jiafan Liu;Yan Liu;Yun Li;Wenbin Lei;Ruxin Wang",
+      "id": "out-9e31ef90fc30",
+      "evidence": [
+        {
+          "quote": "[会议论文] Rethinking Radiology Report Generation via Causal Inspired Counterfactual Augmentation — Xiao Song;Jiafan Liu;Yan Liu;Yun Li;Wenbin Lei;Ruxin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4411,
+            "end_char": 4563
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "半监督的图像分析方法、装置、计算机设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王如心;李烨",
+      "id": "out-bb5a5364188f",
+      "evidence": [
+        {
+          "quote": "[专利] 半监督的图像分析方法、装置、计算机设备及存储介质 — 王如心;李烨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4569,
+            "end_char": 4606
+          },
+          "version": "ddbc194ec6112c375fa6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incomplete Multiview Clustering Using Normalizing Alignment Strategy With Graph Regularization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guosheng Cui;Ruxin Wang;Dan Wu;Ye Li",
+      "id": "out-4bef2873b2d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incomplete Multiview Clustering Using Normalizing Alignment Strategy With Graph Regularization — Guosheng Cui;Ruxin Wang;Dan Wu;Ye Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4612,
+            "end_char": 4751
+          },
+          "version": "ddbc194ec6112c375fa6"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6269ae24c554"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-29cbd86d3402"
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
       },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-29cbd86d3402"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a36b029c8c30"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a36b029c8c30"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c0184feaf931"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d41756fc1713"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4e45fa0a84cc"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

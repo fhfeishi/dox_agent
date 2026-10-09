@@ -2,15 +2,20 @@
   "doc_id": "127a34c9a08ce5e29d35",
   "version": "50e62b5fa000a799641d",
   "source_hash": "1220f43b760359303d7d270bba91d79f67aaf511e5c90f59d2e1560d82360d7b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.456807+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:27:50.244394+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-e3ef3a2a904b",
           "name": "三维颅内动脉瘤自动检测",
-          "desc": "面向颅内动脉瘤破裂导致的严重脑中风防治，研究跨模态通用的三维动脉瘤自动检测算法。",
+          "desc": "重大临床需求",
           "evidence": [
             {
-              "quote": "颅内动脉瘤(IAs)破裂会导致严重脑中风",
+              "quote": "该项目针对颅内动脉瘤自动检测这一重大临床需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 686
+                "start_char": 3062,
+                "end_char": 3083
               },
               "version": "50e62b5fa000a799641d"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d85136c4b7e",
-          "name": "传统检测受成像方式与样本分布限制不通用",
-          "desc": "传统IAs检测方法囿于数据成像方式不同、样本分布不均衡且训练集合较小，在临床与筛查中不通用。",
+          "id": "item-c490ae780340",
+          "name": "传统检测受成像方式、样本不均衡与小训练集限制",
+          "desc": "临床与筛查不通用",
           "evidence": [
             {
               "quote": "传统IAs检测方法囿于数据成像方式不同，样本分布不均衡且训练集合较小，使其在临床与筛查不通用",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b59529d0cab",
-          "name": "球B样条与空间图深度学习的形状分析检测",
-          "desc": "将IAs检测视为形状分析问题，在脑血管三维几何模型上实现检测，研究形质互嵌卷积核与子结构塌缩归约策略，并通过球B样条拟合变形求交生成大规模合成样本集。",
+          "id": "item-6a93d04ae3b1",
+          "name": "球B样条曲面建模与黎曼流形分析",
+          "desc": "多尺度动脉瘤形态特征提取",
           "evidence": [
             {
-              "quote": "本项目创新地将IAs检测视为形状分析问题，将脑血管分割重构成三维模型后，在几何模型上实现IAs检测，打破数据成像方式与分布屏障",
+              "quote": "创新性地引入球B样条曲面建模与黎曼流形分析方法，实现多尺度动脉瘤形态特征提取",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 735,
-                "end_char": 797
+                "start_char": 3192,
+                "end_char": 3229
               },
               "version": "50e62b5fa000a799641d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7cc371d8d926",
+          "name": "微分几何特征归一化算法",
+          "desc": "跨DSA/CTA/MRI多源数据检测一致性",
+          "evidence": [
+            {
+              "quote": "开发基于微分几何的特征归一化算法，在DSA/CTA/MRI多源数据上达到高精度的检测一致性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3242,
+                "end_char": 3286
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a313b269e952",
+          "name": "几何深度学习模型",
+          "desc": "攻克微小动脉瘤检测难题",
+          "evidence": [
+            {
+              "quote": "提出几何深度学习模型：攻克微小动脉瘤检测难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3394,
+                "end_char": 3415
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-108f5befdec2",
-          "name": "建立首个脑血管黎曼流形表达数据库2000例",
-          "desc": "建立首个包含2000例标注案例的脑血管黎曼流形表达数据库，提出几何深度学习模型攻克微小动脉瘤检测难题；相关算法在SIGGRAPH和TOG上实现SOTA性能。",
+          "id": "item-f48c0e6887af",
+          "name": "脑血管黎曼流形表达数据库",
+          "desc": "2000例标注案例",
           "evidence": [
             {
               "quote": "建立首个脑血管黎曼流形脑血管表达数据库：包含2000例标注案例",
@@ -99,7 +139,28 @@
               "version": "50e62b5fa000a799641d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-4c0503287001",
+          "name": "点云法向与三维重构算法",
+          "desc": "SIGGRAPH和TOG发表，SOTA",
+          "evidence": [
+            {
+              "quote": "在SIGGRAPH和TOG发表的点云法向和三维模型重构算法实现SOTA性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3324,
+                "end_char": 3360
+              },
+              "version": "50e62b5fa000a799641d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +168,830 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-e3ef3a2a904b"
+        "dimension": "技术",
+        "item_id": "item-7cc371d8d926"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-7d85136c4b7e"
+        "item_id": "item-c490ae780340"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7d85136c4b7e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9b59529d0cab"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9b59529d0cab"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-108f5befdec2"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "开发基于微分几何的特征归一化算法，在DSA/CTA/MRI多源数据上达到高精度的检测一致性，有效解决数据异质性难题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3242,
+            "end_char": 3298
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semantic-level augmented unsupervised representation action learning based on motion manifold",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haichuan Zhao;Peng Du;Xudong Ru;Zhongke Wua;Xingce Wang",
+      "id": "out-8652835f685b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Semantic-level augmented unsupervised representation action learning based on motion manifold — Haichuan Zhao;Peng Du;Xudong Ru;Zhongke Wua;Xingce Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3770
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel deformable B-spline curve model based on elasticity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ciyang Zhou;Xingce Wang;Zhongke Wu",
+      "id": "out-22a674d2e9ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel deformable B-spline curve model based on elasticity — Ciyang Zhou;Xingce Wang;Zhongke Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3775,
+            "end_char": 3877
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Consistent Point Orientation for Manifold Surfaces via Boundary Integration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Weizhou;Wang Xingce;Zhao Haichuan;Xue Xingfei;Wu Zhongke;Lu Xuequan;He Ying",
+      "id": "out-f36648828608",
+      "evidence": [
+        {
+          "quote": "[会议论文] Consistent Point Orientation for Manifold Surfaces via Boundary Integration — Liu Weizhou;Wang Xingce;Zhao Haichuan;Xue Xingfei;Wu Zhongke;Lu Xuequan;He Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 4045
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion tensor image denoising via geometric invariant nonlocal means on the tensor manifold",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+      "id": "out-7e8f211dbe34",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion tensor image denoising via geometric invariant nonlocal means on the tensor manifold — Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4050,
+            "end_char": 4189
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于主测地线分析的三维下颌骨重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武仲科;严伦;赵海川;王醒策;王学松",
+      "id": "out-68d700b93921",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于主测地线分析的三维下颌骨重建方法 — 武仲科;严伦;赵海川;王醒策;王学松",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4194,
+            "end_char": 4239
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D Mesh Saliency based on Dictionary Learning with Multi-Level Laplacian-Beltrami Operator",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Wang;Xingce Wang;Zhongke Wu;Haichuan Zhao",
+      "id": "out-80e141ff096c",
+      "evidence": [
+        {
+          "quote": "[会议论文] 3D Mesh Saliency based on Dictionary Learning with Multi-Level Laplacian-Beltrami Operator — Yu Wang;Xingce Wang;Zhongke Wu;Haichuan Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4244,
+            "end_char": 4387
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Ball B-Spline Curves",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Ciyang;Zhang Yu;Wang Xingce;Wu Zhongke",
+      "id": "out-e26e0d250951",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dynamic Ball B-Spline Curves — Zhou Ciyang;Zhang Yu;Wang Xingce;Wu Zhongke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4392,
+            "end_char": 4472
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An intrinsic anisotropic feature of DTI images derived by geometric properties on the Riemannian manifold",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+      "id": "out-fc40965f2981",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An intrinsic anisotropic feature of DTI images derived by geometric properties on the Riemannian manifold — Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4477,
+            "end_char": 4627
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gender and ethnicity classification of the 3D nose region based on scaling invariant harmonic wave kernel signature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Na;Zhang Dan;Wang Xingce;Wu Zhongke",
+      "id": "out-ef3ad33a5964",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gender and ethnicity classification of the 3D nose region based on scaling invariant harmonic wave kernel signature — Liu Na;Zhang Dan;Wang Xingce;Wu Zhongke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4795
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Simultaneous Super-Resolution and Denoising on MRI via Conditional Stochastic Normalizing Flow",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenhong Liu;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Alejandro F. Frangi",
+      "id": "out-d0a3aeddb586",
+      "evidence": [
+        {
+          "quote": "[会议论文] Simultaneous Super-Resolution and Denoising on MRI via Conditional Stochastic Normalizing Flow — Zhenhong Liu;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Alejandro F. Frangi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 4972
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "最美女科技工作者",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王醒策",
+      "id": "out-d53df03aa435",
+      "evidence": [
+        {
+          "quote": "[奖励] 最美女科技工作者 — 王醒策",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4978,
+            "end_char": 4996
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "低算力深度学习下的图像卡通风格化研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐鹏飞;周腾骅;武仲科;申佳丽;王醒策",
+      "id": "out-b42f06fd8034",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 低算力深度学习下的图像卡通风格化研究 — 徐鹏飞;周腾骅;武仲科;申佳丽;王醒策",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5002,
+            "end_char": 5048
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusing Winding Gradients (DWG): A Parallel and Scalable Method for 3D Reconstruction from Unoriented Point Clouds",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weizhou Liu;Jiaze Li;Xuhui Chen;Fei Hou;Shiqing Xin;Xingce Wang;Zhongke Wu;Chen Qian;Chen Qian",
+      "id": "out-6e2fef39f369",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusing Winding Gradients (DWG): A Parallel and Scalable Method for 3D Reconstruction from Unoriented Point Clouds — Weizhou Liu;Jiaze Li;Xuhui Chen;Fei Hou;Shiqing Xin;Xingce Wang;Zhongke Wu;Chen Qian;Chen Qian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5054,
+            "end_char": 5273
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于LDDMM的个性化人脑网络增强现实学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高沧骏;王醒策;武仲科;王小普;谭子江",
+      "id": "out-0bf46bbfea55",
+      "evidence": [
+        {
+          "quote": "[专利] 基于LDDMM的个性化人脑网络增强现实学习方法 — 高沧骏;王醒策;武仲科;王小普;谭子江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5279,
+            "end_char": 5328
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "G2 Blending Ball B-Spline Curve by B-Spline",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Yuming;Wu Zhongke;Wang Xingce;Liu Xinyue",
+      "id": "out-743c04a8073b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] G2 Blending Ball B-Spline Curve by B-Spline — Zhao Yuming;Wu Zhongke;Wang Xingce;Liu Xinyue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5334,
+            "end_char": 5431
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于离散形状空间的表情编辑方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘 娜;武仲科;王醒策;张 丹;吕辰雷",
+      "id": "out-37e2fdfc2f51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于离散形状空间的表情编辑方法 — 刘 娜;武仲科;王醒策;张 丹;吕辰雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5437,
+            "end_char": 5480
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skeleton-Based Parametric 2-D Region Representation: Disk B-Spline Curves",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Zhongke;Wang Xingce;Liu Shaolong;Chen Quan;Seah Hock Soon;Tian Feng",
+      "id": "out-ef1b0ad06c90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Skeleton-Based Parametric 2-D Region Representation: Disk B-Spline Curves — Wu Zhongke;Wang Xingce;Liu Shaolong;Chen Quan;Seah Hock Soon;Tian Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5486,
+            "end_char": 5638
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向磁共振影像超分辨的WGAN方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黎玥嵘;武仲科;王学松;申佳丽;王醒策",
+      "id": "out-0c4aadfcd713",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向磁共振影像超分辨的WGAN方法研究 — 黎玥嵘;武仲科;王学松;申佳丽;王醒策",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5644,
+            "end_char": 5691
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于语音与草图的家具模型检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武仲科;王醒策;赵禹铭;徐墅;王虎镇",
+      "id": "out-994fcb866691",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于语音与草图的家具模型检索方法 — 武仲科;王醒策;赵禹铭;徐墅;王虎镇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5697,
+            "end_char": 5740
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "虚拟现实的黎曼几何方法及教育应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武仲科;周明全;王醒策;王学松;徐鹏飞;樊亚春;陈美松;王晓敏;刘午达;朱鸿琛",
+      "id": "out-127c87cae423",
+      "evidence": [
+        {
+          "quote": "[奖励] 虚拟现实的黎曼几何方法及教育应用 — 武仲科;周明全;王醒策;王学松;徐鹏飞;樊亚春;陈美松;王晓敏;刘午达;朱鸿琛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5746,
+            "end_char": 5808
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Geometric Quantification and Rupture Risk Evaluation of 3D Intracranial Aneurysms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xudong Ru;Zeyao Zhan;Xingce Wang;Jing-Yi Liu;Yi-Cheng Zhu;Zhongke Wu",
+      "id": "out-fe8344c9bc07",
+      "evidence": [
+        {
+          "quote": "[会议论文] Automatic Geometric Quantification and Rupture Risk Evaluation of 3D Intracranial Aneurysms — Xudong Ru;Zeyao Zhan;Xingce Wang;Jing-Yi Liu;Yi-Cheng Zhu;Zhongke Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5814,
+            "end_char": 5982
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A robust intrinsic feature of images derived from the tensor manifold",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+      "id": "out-be1ccb993592",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A robust intrinsic feature of images derived from the tensor manifold — Xiangyuan Liu;Zhongke Wu;Xingce Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5988,
+            "end_char": 6102
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated anatomical labeling of a topologically variant abdominal arterial system via probabilistic hypergraph matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Liu;Xingce Wang;Zhongke Wu;Karen López-Linares;Iván Macía;Xudong Ru;Haichuan Zhao;Miguel A. González Ballester;Chong Zhang",
+      "id": "out-8b8571a9341b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated anatomical labeling of a topologically variant abdominal arterial system via probabilistic hypergraph matching — Yue Liu;Xingce Wang;Zhongke Wu;Karen López-Linares;Iván Macía;Xudong Ru;Haichuan Zhao;Miguel A. González Ballester;Chong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6108,
+            "end_char": 6363
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel heterogeneous deformable surface model based on elasticity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Ciyang;Wang Xingce;Wu Zhongke",
+      "id": "out-3e26ffa33199",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel heterogeneous deformable surface model based on elasticity — Zhou Ciyang;Wang Xingce;Wu Zhongke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6369,
+            "end_char": 6478
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于注意力机制和成对马尔科夫随机场形状检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王醒策;武仲科;王亚菁;徐墅;王虎镇",
+      "id": "out-31cf6280e87c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于注意力机制和成对马尔科夫随机场形状检索方法 — 王醒策;武仲科;王亚菁;徐墅;王虎镇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6484,
+            "end_char": 6534
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于长文本语义一致的家具场景重建与推荐方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武仲科;王醒策;龙舟;徐墅;王虎镇;刘旭楠",
+      "id": "out-0fe3ddb2bb03",
+      "evidence": [
+        {
+          "quote": "[专利] 基于长文本语义一致的家具场景重建与推荐方法 — 武仲科;王醒策;龙舟;徐墅;王虎镇;刘旭楠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6540,
+            "end_char": 6589
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic labeling of vascular structures with topological constraints via HMM",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xingce Wang;Yue Liu;Zhongke Wu;Xiao Mou;Mingquan Zhou;Miguel A. González Ballester;Chong Zhang",
+      "id": "out-092a02e2d5ca",
+      "evidence": [
+        {
+          "quote": "[奖励] Automatic labeling of vascular structures with topological constraints via HMM — Xingce Wang;Yue Liu;Zhongke Wu;Xiao Mou;Mingquan Zhou;Miguel A. González Ballester;Chong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6595,
+            "end_char": 6774
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Context-Aware Multi-Organ Segmentation in Abdominal CT via LoRA-Fine-tuned MedSAM",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lihang Zeng;Zhenhong Liu;Xingce Wang;Zhongke Wu;Xiaodong Ju;Yi-Cheng Zhu;Chong Zhang",
+      "id": "out-0955690b9347",
+      "evidence": [
+        {
+          "quote": "[会议论文] Context-Aware Multi-Organ Segmentation in Abdominal CT via LoRA-Fine-tuned MedSAM — Lihang Zeng;Zhenhong Liu;Xingce Wang;Zhongke Wu;Xiaodong Ju;Yi-Cheng Zhu;Chong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6780,
+            "end_char": 6954
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint magnetic resonance imaging artifacts and noise reduction on discrete shape space of images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiangyuan;Wu Zhongke;Wang Xingce;Liu Quansheng;Pozo Jose M.;Frangi Alejandro F.",
+      "id": "out-d1f0cecdfc38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint magnetic resonance imaging artifacts and noise reduction on discrete shape space of images — Liu Xiangyuan;Wu Zhongke;Wang Xingce;Liu Quansheng;Pozo Jose M.;Frangi Alejandro F.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6960,
+            "end_char": 7148
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated anatomical labeling of a topologically variant abdominal arterial system via probabilistic hypergraph matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Liu;王醒策;Zhongke Wu;Karen López-Linares;Iván Macía;Xudong Ru;Haichuan Zhao;Miguel A. González Ballester;Chong Zhang",
+      "id": "out-f363ff78f31b",
+      "evidence": [
+        {
+          "quote": "[奖励] Automated anatomical labeling of a topologically variant abdominal arterial system via probabilistic hypergraph matching — Yue Liu;王醒策;Zhongke Wu;Karen López-Linares;Iván Macía;Xudong Ru;Haichuan Zhao;Miguel A. González Ballester;Chong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7154,
+            "end_char": 7399
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D Skull Completion via Two-stage Conditional Diffusion-Based Signed Distance Fields",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenhong Liu;Xudong Ru;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Chong Zhang;Alejandro F. Frangi",
+      "id": "out-5c25e9d51e4a",
+      "evidence": [
+        {
+          "quote": "[会议论文] 3D Skull Completion via Two-stage Conditional Diffusion-Based Signed Distance Fields — Zhenhong Liu;Xudong Ru;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Chong Zhang;Alejandro F. Frangi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7405,
+            "end_char": 7588
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D Automated Quantitative Calculations Based on CT Images of the Hip Joint",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Du;Baijia Ni;Xiaodong Ju;Xingce Wang;Zhongke Wu;Gege Lou;Keying Hua",
+      "id": "out-81e4d041c16b",
+      "evidence": [
+        {
+          "quote": "[会议论文] 3D Automated Quantitative Calculations Based on CT Images of the Hip Joint — Peng Du;Baijia Ni;Xiaodong Ju;Xingce Wang;Zhongke Wu;Gege Lou;Keying Hua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7594,
+            "end_char": 7749
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Shape correspondence for cel animation based on a shape association graph and spectral matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Shaolong;Wang Xingce;Liu Xiangyuan;Wu Zhongke;Seah Hock Soon",
+      "id": "out-cfe0b6e4b3e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Shape correspondence for cel animation based on a shape association graph and spectral matching — Liu Shaolong;Wang Xingce;Liu Xiangyuan;Wu Zhongke;Seah Hock Soon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7755,
+            "end_char": 7923
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GLS‐PIA: n‐Dimensional Spherical B‐Spline Curve Fitting based on Geodesic Least Square with Adaptive Knot Placement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuming Zhao;Zhongke Wu;Xingce Wang",
+      "id": "out-a13522798b1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GLS‐PIA: n‐Dimensional Spherical B‐Spline Curve Fitting based on Geodesic Least Square with Adaptive Knot Placement — Yuming Zhao;Zhongke Wu;Xingce Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7929,
+            "end_char": 8087
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI Joint Super-Resolution and Denoising based on Conditional Stochastic Normalizing Flow",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenhong Liu;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Alejandro F. Frangi",
+      "id": "out-70e38b570a9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI Joint Super-Resolution and Denoising based on Conditional Stochastic Normalizing Flow — Zhenhong Liu;Xingce Wang;Zhongke Wu;Yi-Cheng Zhu;Alejandro F. Frangi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8093,
+            "end_char": 8259
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Achieving view-distance and -angle invariance in motion prediction using a simple network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haichuan Zhao;Xudong Ru;Peng Du;Shaolong Liu;Na Liu;Xingce Wang;Zhongke Wu",
+      "id": "out-41e668f47468",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Achieving view-distance and -angle invariance in motion prediction using a simple network — Haichuan Zhao;Xudong Ru;Peng Du;Shaolong Liu;Na Liu;Xingce Wang;Zhongke Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8265,
+            "end_char": 8437
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vector-Aware Anisotropic Gauge Equivariant Mesh Convolution Network for 3D Aneurysm Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ru Xudong;Zhao Haichuan;Wang Xingce;Wu Zhongke;Liu Shaolong;Zhu Yi-Cheng;Frangi Alejandro F.",
+      "id": "out-edd7ddc83bca",
+      "evidence": [
+        {
+          "quote": "[会议论文] Vector-Aware Anisotropic Gauge Equivariant Mesh Convolution Network for 3D Aneurysm Detection — Ru Xudong;Zhao Haichuan;Wang Xingce;Wu Zhongke;Liu Shaolong;Zhu Yi-Cheng;Frangi Alejandro F.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8443,
+            "end_char": 8637
+          },
+          "version": "50e62b5fa000a799641d"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 37,
+    "listed": 37,
+    "by_kind": {
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

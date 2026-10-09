@@ -2,15 +2,20 @@
   "doc_id": "f47d71ea55ec2bd14b01",
   "version": "02a7acda03e99d4563d0",
   "source_hash": "4579b75677916b9eefa4cb1f33b7842e42a5ec7bf467ae241af550fb854b051a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:10.429387+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.513490+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e1a3a8558753",
-          "name": "胶质母细胞瘤样较低级别胶质瘤诊断",
-          "desc": "较低级别胶质瘤患者生存期差异大，其中胶质母细胞瘤样LGGs预后与胶质母细胞瘤相似，需特殊对待。",
+          "id": "item-bf26de0eb647",
+          "name": "胶质母细胞瘤样较低级别胶质瘤早期诊断",
+          "desc": "影像组学",
           "evidence": [
             {
-              "quote": "由于遗传学背景的不同，较低级别胶质瘤（LGGs）患者的生存期差异较大，其中“胶质母细胞瘤样”LGGs预后与胶质母细胞瘤相似，临床实践过程中需特殊对待",
+              "quote": "本项目拟利用术前磁共振成像（MRI）影像组学与深度学习技术，实现对“胶质母细胞瘤样”LGGs的早期、无创、低成本诊断",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 759
-              },
-              "version": "02a7acda03e99d4563d0"
-            }
-          ]
-        },
-        {
-          "id": "item-7063ab5ab2c5",
-          "name": "LGGs精准诊疗科学依据",
-          "desc": "预期成果可早期无创低成本诊断胶质母细胞瘤样LGGs，为LGGs患者精准诊疗提供科学依据。",
-          "evidence": [
-            {
-              "quote": "本项目的预期研究成果将可早期、无创性、低成本诊断“胶质母细胞瘤样”LGGs，为LGGs患者的精准诊疗提供重要科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1014,
-                "end_char": 1071
+                "start_char": 2673,
+                "end_char": 2730
               },
               "version": "02a7acda03e99d4563d0"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad941f8ab14f",
-          "name": "胶质母细胞瘤样LGGs早期诊断难题",
-          "desc": "这类需特殊对待的肿瘤如何早期诊断，是目前临床亟待解决的难题。",
+          "id": "item-4dac074ea221",
+          "name": "胶质母细胞瘤样LGGs预后更差需早期诊断",
+          "desc": "",
           "evidence": [
             {
-              "quote": "然而，如何早期诊断这类需特殊对待的肿瘤，是目前临床亟待解决的难题",
+              "quote": "如何早期诊断这类需特殊对待的肿瘤，是目前临床亟待解决的难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2640,
+                "start_char": 2643,
                 "end_char": 2671
-              },
-              "version": "02a7acda03e99d4563d0"
-            }
-          ]
-        },
-        {
-          "id": "item-2503c03c8d98",
-          "name": "需更积极治疗方案识别",
-          "desc": "胶质母细胞瘤样LGGs需要更积极的手术及术后放化疗方案，需及时识别该类患者。",
-          "evidence": [
-            {
-              "quote": "相比其他LGGs预后更差，需要更积极的手术及术后放化疗方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2610,
-                "end_char": 2638
               },
               "version": "02a7acda03e99d4563d0"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-54e1c2d959c9",
-          "name": "影像组学与深层卷积神经网络建模",
-          "desc": "利用术前磁共振影像结合影像组学与深层卷积神经网络技术建立AI预测模型，并在前瞻性验证组评价效果。",
-          "evidence": [
-            {
-              "quote": "利用术前磁共振影像结合影像组学和深层卷积神经网络技术，针对“胶质母细胞瘤样”LGGs建立人工智能预测模型，在前瞻性验证组中验证模型的预测效果",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 926,
-                "end_char": 995
-              },
-              "version": "02a7acda03e99d4563d0"
-            }
-          ]
-        },
-        {
-          "id": "item-2f1ff6fbd284",
-          "name": "LASSO筛选特征与列线图",
-          "desc": "通过LASSO算法构建预测特征集，用ROC曲线评估效能，并结合年龄建立个体化列线图。",
-          "evidence": [
-            {
-              "quote": "通过最小绝对收缩和选择算子（LASSO）算法构建预测特征集；并通过训练集和验证集中的受试者工作特征（ROC）曲线来评估预测效能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2998
-              },
-              "version": "02a7acda03e99d4563d0"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7f8a3db5c372",
-          "name": "所有序列组学特征最佳AUC 0.973与0.962",
-          "desc": "基于所有序列的影像组学特征表现最佳，训练集与验证集ROC曲线下面积分别为0.973和0.962。",
-          "evidence": [
-            {
-              "quote": "基于所有序列的影像组学特征表现最佳，在训练集和验证集中ROC曲线下面积分别为0.973和0.962",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3052,
-                "end_char": 3100
-              },
-              "version": "02a7acda03e99d4563d0"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c865d2ff866e",
-          "name": "列线图一致性指数0.973与0.971",
-          "desc": "构建的特征集联合患者年龄建立列线图，训练集与验证集一致性指数分别为0.973和0.971。",
+          "id": "item-cebc5a18d939",
+          "name": "LASSO影像组学特征集与列线图",
+          "desc": "联合患者年龄",
           "evidence": [
             {
               "quote": "利用构建的特征集和患者年龄进一步建立列线图，其在训练集和验证集中的一致性指数分别为0.973和0.971",
@@ -164,72 +82,155 @@
               "version": "02a7acda03e99d4563d0"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-2dafe4e85bd7",
-          "name": "LASSO优于其他8种机器学习模型",
-          "desc": "LASSO算法表现优于其他8种机器学习模型以及深度学习预测模型。",
+          "id": "item-9886b06f8e26",
+          "name": "全序列影像组学特征",
+          "desc": "训练集AUC 0.973，验证集0.962",
           "evidence": [
             {
-              "quote": "LASSO算法的表现优于其他8种机器学习模型以及深度学习预测模型",
+              "quote": "基于所有序列的影像组学特征表现最佳，在训练集和验证集中ROC曲线下面积分别为0.973和0.962",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3161,
-                "end_char": 3192
+                "start_char": 3052,
+                "end_char": 3100
               },
               "version": "02a7acda03e99d4563d0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e1a3a8558753"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ad941f8ab14f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional reorganization of contralesional networks varies according to isocitrate dehydrogenase 1 mutation status in patients with left frontal lobe glioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chong Qi;Rui Wang;Lanxi Meng;Shaowu Li;Yiming Li",
+      "id": "out-a11ff7bcfdea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional reorganization of contralesional networks varies according to isocitrate dehydrogenase 1 mutation status in patients with left frontal lobe glioma — Chong Qi;Rui Wang;Lanxi Meng;Shaowu Li;Yiming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3394,
+            "end_char": 3608
+          },
+          "version": "02a7acda03e99d4563d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ad941f8ab14f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-54e1c2d959c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic Analysis of Vascular Endothelial Growth Factor in Patients With Glioblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Zheng;Baoshi Chen;Lingling Zhang;Hongyan Chen;Yuying Zang;Xuzhu Chen;Yiming Li",
+      "id": "out-3aa81f2a5073",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic Analysis of Vascular Endothelial Growth Factor in Patients With Glioblastoma — Fei Zheng;Baoshi Chen;Lingling Zhang;Hongyan Chen;Yuying Zang;Xuzhu Chen;Yiming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3793
+          },
+          "version": "02a7acda03e99d4563d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-54e1c2d959c9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7f8a3db5c372"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics for predicting MGMT status in cerebral glioblastoma: comparison of different MRI sequences",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Zheng;Lingling Zhang;Hongyan Chen;Yuying Zang;Xuzhu Chen;Yiming Li",
+      "id": "out-6c38226b35ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics for predicting MGMT status in cerebral glioblastoma: comparison of different MRI sequences — Fei Zheng;Lingling Zhang;Hongyan Chen;Yuying Zang;Xuzhu Chen;Yiming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 3977
+          },
+          "version": "02a7acda03e99d4563d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2f1ff6fbd284"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2dafe4e85bd7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A predictive model for cerebellar mutism syndrome based on lesion map in children with medulloblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Yang;Sikang Ren;Yiming Li;Yingjie Cai;Xiaojiao Peng;Hailang Sun;Jiashu Chen;Xinyi Chai;Hong Zhang;Kaiyi Zhu;Wenping Ma;Yongji Tian;Ming Ge",
+      "id": "out-691942ba5b41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A predictive model for cerebellar mutism syndrome based on lesion map in children with medulloblastoma — Wei Yang;Sikang Ren;Yiming Li;Yingjie Cai;Xiaojiao Peng;Hailang Sun;Jiashu Chen;Xinyi Chai;Hong Zhang;Kaiyi Zhu;Wenping Ma;Yongji Tian;Ming Ge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3982,
+            "end_char": 4235
+          },
+          "version": "02a7acda03e99d4563d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A presurgical voxel-wise predictive model for cerebellar mutism syndrome in children with posterior fossa tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Yang;Yiming Li;Zesheng Ying;Yingjie Cai;Xiaojiao Peng;HaiLang Sun;Jiashu Chen;Kaiyi Zhu;Geli Hu;Yun Peng;Ming Ge",
+      "id": "out-2f2dbbcbcb90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A presurgical voxel-wise predictive model for cerebellar mutism syndrome in children with posterior fossa tumors — Wei Yang;Yiming Li;Zesheng Ying;Yingjie Cai;Xiaojiao Peng;HaiLang Sun;Jiashu Chen;Kaiyi Zhu;Geli Hu;Yun Peng;Ming Ge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4240,
+            "end_char": 4477
+          },
+          "version": "02a7acda03e99d4563d0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

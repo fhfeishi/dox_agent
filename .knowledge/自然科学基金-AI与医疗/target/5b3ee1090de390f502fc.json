@@ -2,15 +2,20 @@
   "doc_id": "5b3ee1090de390f502fc",
   "version": "526ce05f9c14bb1650bc",
   "source_hash": "8388e96c3555eddabd5475597c5975aa20588f9a944464573c3d93d6aafaa585",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.535454+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.487567+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3bbc8c2e901c",
-          "name": "放射免疫相关肺炎风险评估",
-          "desc": "放疗联合免疫治疗在NSCLC患者治疗中具有良好应用前景，但存在毒性叠加风险。",
+          "id": "item-7e7469c89d77",
+          "name": "NSCLC放射免疫相关肺炎风险评估",
+          "desc": "放疗联合免疫治疗叠加毒性",
           "evidence": [
             {
-              "quote": "放疗联合免疫治疗在非小细胞肺癌（NSCLC）患者治疗中具有良好的应用前景，但存在毒性叠加的风险",
+              "quote": "放疗联合免疫治疗（iRT）在非小细胞肺癌（NSCLC）患者的全程管理中具有举足轻重的地位，但iRT的叠加毒性不容忽视",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 722
-              },
-              "version": "526ce05f9c14bb1650bc"
-            }
-          ]
-        },
-        {
-          "id": "item-bdaee62ee748",
-          "name": "为放疗联合免疫治疗安全性保障",
-          "desc": "为放射免疫相关肺炎发生提供个体化可解释精准预测模型并明确其机制，为NSCLC患者放疗联合免疫治疗应用的安全性提供保障。",
-          "evidence": [
-            {
-              "quote": "为NSCLC患者放疗联合免疫治疗应用的安全性提供保障",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1047,
-                "end_char": 1072
+                "start_char": 2945,
+                "end_char": 3002
               },
               "version": "526ce05f9c14bb1650bc"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4edb5e886008",
-          "name": "放射免疫相关肺炎发生机制不明确",
-          "desc": "放射免疫相关肺炎是主要治疗相关致死原因之一，但其发生情况、危险因素及机制不明确。",
+          "id": "item-ee777c2de921",
+          "name": "放免肺炎发生情况、危险因素及机制不明确",
+          "desc": "缺乏预测工具",
           "evidence": [
             {
               "quote": "放射免疫相关肺炎是主要的治疗相关致死原因之一，但其发生情况、危险因素及机制不明确",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 724,
                 "end_char": 763
-              },
-              "version": "526ce05f9c14bb1650bc"
-            }
-          ]
-        },
-        {
-          "id": "item-4e00aefc4841",
-          "name": "常规临床特征预测效能有限",
-          "desc": "常规临床特征及传统放疗剂量学参数预测效能有限，凸显开发新型预测工具的迫切性。",
-          "evidence": [
-            {
-              "quote": "进一步分析表明，常规临床特征及传统放疗剂量学参数（如肺V30，AUC≈0.600）预测效能有限，凸显了开发新型预测工具的迫切性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3217,
-                "end_char": 3279
               },
               "version": "526ce05f9c14bb1650bc"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c39a17cab5a2",
-          "name": "生物可解释深度网络全景模型",
-          "desc": "收集临床参数、影像组学、病理组学及基因组学等多维度数据，训练生物学可解释的深度网络，建立全景式放射免疫相关肺炎风险预测模型。",
-          "evidence": [
-            {
-              "quote": "收集接受放疗联合免疫治疗的NSCLC患者的临床参数、影像组学、病理组学及基因组学等多维度数据，训练生物学可解释的深度网络，建立全景式放射免疫相关肺炎风险预测模型，并设计临床可用的可视化界面",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 819,
-                "end_char": 912
-              },
-              "version": "526ce05f9c14bb1650bc"
-            }
-          ]
-        },
-        {
-          "id": "item-fae702cf663b",
-          "name": "多模态数据融合预测模型",
-          "desc": "创新性整合临床资料、CT影像深度特征及全视野数字病理切片信息，构建临床-影像-病理多维数据融合的全景式深度学习预测模型。",
+          "id": "item-b06160d7f25a",
+          "name": "临床-影像-病理多维融合全景式深度学习模型",
+          "desc": "整合临床、CT深度特征与WSI",
           "evidence": [
             {
               "quote": "本研究创新性整合临床资料、CT影像深度特征及全视野数字病理切片（WSI）信息，构建了临床-影像-病理多维数据融合的全景式深度学习预测模型",
@@ -124,23 +81,8 @@
               },
               "version": "526ce05f9c14bb1650bc"
             }
-          ]
-        },
-        {
-          "id": "item-e7028c3057e1",
-          "name": "小鼠放射免疫肺炎模型验证",
-          "desc": "应用小鼠放射免疫肺炎模型结合接受放疗联合免疫治疗的NSCLC患者，验证模型的病理与分子生物学基础并探索发生机制。",
-          "evidence": [
-            {
-              "quote": "应用小鼠放射免疫肺炎模型，结合接受放疗联合免疫治疗的NSCLC患者，验证模型的病理、分子生物学基础，进一步探索放射免疫相关肺炎的发生机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 943,
-                "end_char": 1010
-              },
-              "version": "526ce05f9c14bb1650bc"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +91,234 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e989379435cb",
-          "name": "量化iRT肺炎发生风险",
-          "desc": "通过对539例NSCLC患者的真实世界回顾性队列分析，明确量化了iRT模式下肺炎的发生风险。",
+          "id": "item-eb0ae8759a22",
+          "name": "全景式模型预测性能",
+          "desc": "验证队列234例AUC 0.859",
           "evidence": [
             {
-              "quote": "通过对539例NSCLC患者的真实世界回顾性队列分析，本研究明确量化了iRT模式下肺炎的发生风险",
+              "quote": "在234例接受iRT治疗患者的验证队列中，该模型的预测性能显著优于单一数据模型，其AUC值达0.859",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3121,
-                "end_char": 3168
+                "start_char": 3359,
+                "end_char": 3409
               },
               "version": "526ce05f9c14bb1650bc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-85c7038f8bf0",
-          "name": "联合治疗显著增加肺炎风险OR 3.301",
-          "desc": "与单纯放疗或免疫治疗相比，联合治疗显著增加≥2级肺炎的发生风险，OR为3.301。",
+          "id": "item-393c221f5af0",
+          "name": "联合治疗增加肺炎风险",
+          "desc": "OR=3.301",
           "evidence": [
             {
-              "quote": "结果显示，与单纯放疗或免疫治疗相比，联合治疗显著增加≥2级肺炎的发生风险（OR=3.301）",
+              "quote": "与单纯放疗或免疫治疗相比，联合治疗显著增加≥2级肺炎的发生风险（OR=3.301）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3170,
+                "start_char": 3175,
                 "end_char": 3215
               },
               "version": "526ce05f9c14bb1650bc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b71110d74c23",
-          "name": "多模态融合模型AUC 0.859",
-          "desc": "在234例接受iRT治疗患者的验证队列中，融合模型预测性能显著优于单一数据模型，AUC达0.859。",
+          "id": "item-e6419457faf4",
+          "name": "M1型巨噬细胞极化机制",
+          "desc": "JAK1通路活化",
           "evidence": [
             {
-              "quote": "在234例接受iRT治疗患者的验证队列中，该模型的预测性能显著优于单一数据模型，其AUC值达0.859，为早期识别放免肺炎高危人群提供了高效、精准的新工具",
+              "quote": "iRT治疗可驱动外周血单核细胞在肺组织内募集、活化并向CD11b⁺ M1型巨噬细胞极化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3359,
-                "end_char": 3435
+                "start_char": 3495,
+                "end_char": 3537
               },
               "version": "526ce05f9c14bb1650bc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3bbc8c2e901c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4edb5e886008"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于病理组学深度神经网络模型的免疫治疗疗效预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琳琳;李步托;董涛涛;徐一月;高爱琴;范秉杰;余以珊",
+      "id": "out-635afeabe819",
+      "evidence": [
+        {
+          "quote": "[专利] 基于病理组学深度神经网络模型的免疫治疗疗效预测方法 — 王琳琳;李步托;董涛涛;徐一月;高爱琴;范秉杰;余以珊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3808,
+            "end_char": 3867
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4edb5e886008"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c39a17cab5a2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incidence and risk factors of pneumonitis in ALK-rearranged non-small cell lung cancer patients treated with alectinib and thoracic radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Yiyue;Qie Wenting;Zhong Xiao;Li Butuo;Yang Linlin;Zou Bing;Wang Linlin;Yu Jinming",
+      "id": "out-a1bb69b7e0d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incidence and risk factors of pneumonitis in ALK-rearranged non-small cell lung cancer patients treated with alectinib and thoracic radiotherapy — Xu Yiyue;Qie Wenting;Zhong Xiao;Li Butuo;Yang Linlin;Zou Bing;Wang Linlin;Yu Jinming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3872,
+            "end_char": 4109
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fae702cf663b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b71110d74c23"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌免疫治疗和抗血管生成治疗的新机制及精准治疗策略应用推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琳琳;高爱琴;孙玉萍;刘杰;李娟;李步托;邹兵;徐一月",
+      "id": "out-d1a6f99a44b2",
+      "evidence": [
+        {
+          "quote": "[奖励] 肺癌免疫治疗和抗血管生成治疗的新机制及精准治疗策略应用推广 — 王琳琳;高爱琴;孙玉萍;刘杰;李娟;李步托;邹兵;徐一月",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4114,
+            "end_char": 4178
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7028c3057e1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e989379435cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Outcome Supervised Deep Learning on Pathological Whole Slide Images for Survival Prediction of Immunotherapy in Non-Small Cell Lung Cancer Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butuo Li;Linlin Yang;Huan Zhang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+      "id": "out-2eedf137670c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Outcome Supervised Deep Learning on Pathological Whole Slide Images for Survival Prediction of Immunotherapy in Non-Small Cell Lung Cancer Patients — Butuo Li;Linlin Yang;Huan Zhang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4463
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From pixels to patient care: deep learning-enabled pathomics signature offers precise outcome predictions for immunotherapy in esophageal squamous cell cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Butuo;Qin Wenru;Yang Linlin;Li Haoqian;Jiang Chao;Yao Yueyuan;Cheng Shuping;Zou Bing;Fan Bingjie;Dong Taotao;Wang Linlin",
+      "id": "out-ad2153cc03ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] From pixels to patient care: deep learning-enabled pathomics signature offers precise outcome predictions for immunotherapy in esophageal squamous cell cancer — Li Butuo;Qin Wenru;Yang Linlin;Li Haoqian;Jiang Chao;Yao Yueyuan;Cheng Shuping;Zou Bing;Fan Bingjie;Dong Taotao;Wang Linlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4468,
+            "end_char": 4758
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of proton therapy and photon therapy for early-stage non-small cell lung cancer: a meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junyi He;Yingxin Liu;Xiaojing Zhang;Butuo Li;Linlin Yang;Haohua Wang;Shijiang Wang;Jinming Yu;Linlin Wang",
+      "id": "out-953d9ecbf6c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of proton therapy and photon therapy for early-stage non-small cell lung cancer: a meta-analysis — Junyi He;Yingxin Liu;Xiaojing Zhang;Butuo Li;Linlin Yang;Haohua Wang;Shijiang Wang;Jinming Yu;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4763,
+            "end_char": 4984
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adebrelimab plus chemotherapy and sequential thoracic radiotherapy as first-line therapy for extensive-stage small-cell-cell lung cancer (ES-SCLC): a phase II trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dawei Chen;Bing Zou;Butuo Li;Aiqin Gao;Wei Huang;Qian Shao;Xiangjiao Meng;Pinliang Zhang;Xiaoyong Tang;Xudong Hu;Yan Zhang;Jun Guo;Changhong Zhao;Jiajia Yuan;Qian Li;Changbin Zhu;Jinming Yu;Linlin Wang",
+      "id": "out-74d55c66b60f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adebrelimab plus chemotherapy and sequential thoracic radiotherapy as first-line therapy for extensive-stage small-cell-cell lung cancer (ES-SCLC): a phase II trial — Dawei Chen;Bing Zou;Butuo Li;Aiqin Gao;Wei Huang;Qian Shao;Xiangjiao Meng;Pinliang Zhang;Xiaoyong Tang;Xudong Hu;Yan Zhang;Jun Guo;Changhong Zhao;Jiajia Yuan;Qian Li;Changbin Zhu;Jinming Yu;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4989,
+            "end_char": 5363
+          },
+          "version": "526ce05f9c14bb1650bc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

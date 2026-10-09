@@ -2,15 +2,20 @@
   "doc_id": "e4a8f0ea1c3ab3eb3602",
   "version": "5cbd109b4fe91e26d654",
   "source_hash": "c09bfa8e64141553c58bfcdc33780c762025202cbe8435b691e40e861f7e9361",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:31.998791+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.388622+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-82fdc27ac369",
-          "name": "表皮肿瘤病理良恶性识别",
-          "desc": "四种高发表皮肿瘤发病部位与临床特点相近，易混淆误诊，需组织病理检查识别良恶性。",
+          "id": "item-25bcc70cda97",
+          "name": "表皮肿瘤病理AI良恶性识别",
+          "desc": "四种高发表皮肿瘤WSI",
           "evidence": [
             {
-              "quote": "需要组织病理检查进行良恶性识别和恶性程度分析",
+              "quote": "四种来源于表皮细胞的肿瘤：脂溢性角化症、Bowen氏病、基底细胞癌和鳞状细胞癌是最常见的皮肤肿瘤",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 768,
-                "end_char": 789
+                "start_char": 2923,
+                "end_char": 2970
               },
               "version": "5cbd109b4fe91e26d654"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b8618921ebc",
-          "name": "皮肤病理缺乏标准化诊断方法",
-          "desc": "皮肤病理强调模式识别，国内外尚未形成数字化、标准化且一致性高的诊断方法。",
+          "id": "item-02337e22eb91",
+          "name": "易混淆误诊且缺乏标准化数字病理诊断方法",
+          "desc": "皮肤病理医生稀缺",
           "evidence": [
             {
-              "quote": "在国内外均未形成数字化、标准化、且一致性高的数字病理诊断方法",
+              "quote": "它们发病部位和临床特点相近，易被混淆和误诊，需要组织病理检查进行良恶性识别和恶性程度分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 803,
-                "end_char": 832
-              },
-              "version": "5cbd109b4fe91e26d654"
-            }
-          ]
-        },
-        {
-          "id": "item-4c18b8ee9373",
-          "name": "皮肤病理医生稀缺",
-          "desc": "国内皮肤病理医生数量不足，制约诊断效率。",
-          "evidence": [
-            {
-              "quote": "另外我国皮肤病理医生稀缺",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 834,
-                "end_char": 845
+                "start_char": 746,
+                "end_char": 789
               },
               "version": "5cbd109b4fe91e26d654"
             }
@@ -79,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7172f453cf10",
-          "name": "细胞核细粒度分割框架MSA-SAM",
-          "desc": "开发专门用于细胞核分割的MSA-SAM高效微调框架，实现细粒度特征提取。",
+          "id": "item-311d88b81898",
+          "name": "MSA-SAM细胞核细粒度分割微调框架",
+          "desc": "仅微调少量参数",
           "evidence": [
             {
               "quote": "我们开发了细胞核细粒度特征分割方法—MSA-SAM，这是一种专门用于细胞核分割的高效微调框架",
@@ -92,23 +81,25 @@
               },
               "version": "5cbd109b4fe91e26d654"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5ceceff0be05",
-          "name": "多实例良恶性智能识别方法",
-          "desc": "结合结构型式分析法，构建基于多实例方法的表皮肿瘤良恶性智能识别方法。",
+          "id": "item-ae7069c885fe",
+          "name": "多实例表皮肿瘤良恶性智能识别方法",
+          "desc": "结构型式分析法",
           "evidence": [
             {
-              "quote": "构建了基于多实例方法的表皮肿瘤良恶性智能识别方法",
+              "quote": "创新性地构建了基于多实例方法的表皮肿瘤良恶性智能识别方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3367,
+                "start_char": 3363,
                 "end_char": 3390
               },
               "version": "5cbd109b4fe91e26d654"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4102be30cc8e",
-          "name": "表皮肿瘤病理图像数据集",
-          "desc": "由多位不同年资病理医生筛选、扫描与精细标注，建立四种高发良恶性表皮肿瘤皮肤病理图像数据集。",
+          "id": "item-664370c4fa7a",
+          "name": "四种表皮肿瘤病理图像数据集",
+          "desc": "多位不同年资医生精细标注",
           "evidence": [
             {
               "quote": "建立了这四种高发的良恶性表皮肿瘤皮肤病理图像数据集",
@@ -131,72 +122,90 @@
               "version": "5cbd109b4fe91e26d654"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-db1fb018fa7b",
-          "name": "MSA-SAM 分割指标领先",
-          "desc": "仅微调少量参数即在多个评估指标上取得领先性能，验证相对现有方法的有效性。",
-          "evidence": [
-            {
-              "quote": "实现了在仅微调少量参数的情况下，在多个评估指标上均取得了领先性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3265,
-                "end_char": 3296
-              },
-              "version": "5cbd109b4fe91e26d654"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-82fdc27ac369"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0b8618921ebc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SPMLD: A skin pathological image dataset for non-melanoma with detailed lesion area annotation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haozhen Lv;Wentao Li;Zhengda Lu;Xiaoman Gao;Qiuli Zhang;Yingqiu Bao;Yu Fu;Jun Xiao",
+      "id": "out-16fb8d9377ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SPMLD: A skin pathological image dataset for non-melanoma with detailed lesion area annotation — Haozhen Lv;Wentao Li;Zhengda Lu;Xiaoman Gao;Qiuli Zhang;Yingqiu Bao;Yu Fu;Jun Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3512,
+            "end_char": 3697
+          },
+          "version": "5cbd109b4fe91e26d654"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b8618921ebc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7172f453cf10"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Role of hippo pathway and cuproptosis-related genes in immune infiltration and prognosis of skin cutaneous melanoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haozhen Lv;Lin Liu;Yuexi He;Kun Yang;Yu Fu;Yingqiu Bao",
+      "id": "out-791015944b02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Role of hippo pathway and cuproptosis-related genes in immune infiltration and prognosis of skin cutaneous melanoma — Haozhen Lv;Lin Liu;Yuexi He;Kun Yang;Yu Fu;Yingqiu Bao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3702,
+            "end_char": 3880
+          },
+          "version": "5cbd109b4fe91e26d654"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7172f453cf10"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-db1fb018fa7b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5ceceff0be05"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4102be30cc8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Subungual Amelanotic Melanoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fang Xing;Gao Tianjing;Fu Yu",
+      "id": "out-c0f8216f90f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Subungual Amelanotic Melanoma — Fang Xing;Gao Tianjing;Fu Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3885,
+            "end_char": 3951
+          },
+          "version": "5cbd109b4fe91e26d654"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

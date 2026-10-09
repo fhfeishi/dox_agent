@@ -2,15 +2,20 @@
   "doc_id": "c56e2f9ed597354c321b",
   "version": "24d2c09ac0cb8ad08f91",
   "source_hash": "227c9e84b4c40be279447246933ea43e9eeabc1d1b90b7c3829e655e8cb6366c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.869315+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.119100+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24e9a2c40bed",
-          "name": "抗癌药物敏感性突变标志物预测",
-          "desc": "为携带特定基因组突变的病人群体匹配治疗方案，预测抗癌药物敏感性的突变标志物以支撑癌症精准医疗。",
+          "id": "item-b3ec477b89b1",
+          "name": "药物敏感性突变标志物与药物关联预测",
+          "desc": "图神经网络",
           "evidence": [
             {
-              "quote": "识别抗癌药物敏感性的突变标志物，为携带特定基因组突变的病人群体选择合适的治疗方案，是开发靶向疗法、实现人类癌症精准化医疗的重要环节",
+              "quote": "致力于推动生物医学领域的关键问题解决，特别是疾病与药物的关联预测、基因突变分析、药物反应预测等方向",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 715
+                "start_char": 2827,
+                "end_char": 2875
               },
               "version": "24d2c09ac0cb8ad08f91"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a3bd3b57bb45",
-          "name": "传统实验方法需计算方法补充",
-          "desc": "传统实验方法预测药物敏感性突变标志物成本高、效率有限，亟需高效而准确的计算方法作为有力补充。",
+          "id": "item-dbb0756129cf",
+          "name": "多关系建模、数据异质性与模型可解释性",
+          "desc": "复杂生物医学问题",
           "evidence": [
             {
-              "quote": "开发高效而准确的计算方法预测抗癌药物敏感性突变标志物，将成为传统实验方法的有力补充",
+              "quote": "解决了复杂生物医学问题中的多关系建模、数据异质性处理以及模型可解释性等挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 717,
-                "end_char": 757
+                "start_char": 2899,
+                "end_char": 2935
               },
               "version": "24d2c09ac0cb8ad08f91"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8e9060d81187",
-          "name": "谱域多层图卷积网络的有向二分图链接预测",
-          "desc": "将药物敏感性与抗药性表示为方向构建突变标志物-药物有向二分网络，利用一阶与二阶近邻矩阵捕获结构信息，开发基于谱域的多层图卷积网络并融合不同层特征。",
-          "evidence": [
-            {
-              "quote": "利用一阶和二阶近邻矩阵捕获有向二分图结构信息，开发基于谱域的多层图卷积网络方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 841,
-                "end_char": 879
-              },
-              "version": "24d2c09ac0cb8ad08f91"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a04060514c73",
+          "id": "item-5fb362a03d28",
           "name": "IDDGCN可解释动态有向图卷积网络",
-          "desc": "提出可解释的动态有向图卷积网络IDDGCN，通过动态图结构处理多关系变化并引入自注意力机制，提升突变-药物反应预测准确性与可解释性。",
+          "desc": "突变与药物反应关系预测",
           "evidence": [
             {
               "quote": "IDDGCN（IEEE Journal of Biomedical and Health Informatics，2025）则提出了一种可解释的动态有向图卷积网络",
@@ -99,44 +82,382 @@
               "version": "24d2c09ac0cb8ad08f91"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4713a6587ffb",
+          "name": "PredinID框架内突变预测",
+          "desc": "图卷积与图采样",
+          "evidence": [
+            {
+              "quote": "通过图卷积网络与图采样技术，提出了针对人类致病框内突变（inframe indels）的精准预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3378,
+                "end_char": 3427
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9f0eaee19ceb",
+          "name": "论文成果",
+          "desc": "Nature Machine Intelligence、IEEE JBHI、IEEE/ACM TCBB等",
+          "evidence": [
+            {
+              "quote": "2024在Nature Machine Intelligence发表的论文探究了一种基于双线性注意力网络与领域适应的生物医学网络关联挖掘方法的重用性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2940,
+                "end_char": 3013
+              },
+              "version": "24d2c09ac0cb8ad08f91"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-24e9a2c40bed"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a3bd3b57bb45"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comprehensive Assessment of BERT-Based Methods for Predicting Antimicrobial Peptides",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wanling Gao;Jun Zhao;Jianfeng Gui;Zehan Wang;Jie Chen;Zhenyu Yue",
+      "id": "out-cef49fbdbca3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comprehensive Assessment of BERT-Based Methods for Predicting Antimicrobial Peptides — Wanling Gao;Jun Zhao;Jianfeng Gui;Zehan Wang;Jie Chen;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3757,
+            "end_char": 3914
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a3bd3b57bb45"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8e9060d81187"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TeaTFactor: A Prediction Tool for Tea Plant Transcription Factors Based on BERT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinan Tang;Ying Xiang;Wanling Gao;Liqiang Zhu;Zishu Xu;Yeyun Li;Zhenyu Yue",
+      "id": "out-efabfe49cdce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TeaTFactor: A Prediction Tool for Tea Plant Transcription Factors Based on BERT — Qinan Tang;Ying Xiang;Wanling Gao;Liqiang Zhu;Zishu Xu;Yeyun Li;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3919,
+            "end_char": 4081
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8e9060d81187"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a04060514c73"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interpretable Dynamic Directed Graph Convolutional Network for Multi-Relational Prediction of Missense Mutation and Drug Response",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Gao;Tao Xu;Xiaodi Li;Wanling Gao;Haoyuan Shi;Youhua Zhang;Jie Chen;Zhenyu Yue",
+      "id": "out-7d6ffd76b8d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interpretable Dynamic Directed Graph Convolutional Network for Multi-Relational Prediction of Missense Mutation and Drug Response — Qian Gao;Tao Xu;Xiaodi Li;Wanling Gao;Haoyuan Shi;Youhua Zhang;Jie Chen;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4306
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RiceSNP-BST: A Deep Learning Framework for Predicting Biotic Stress-associated SNPs in Rice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiajun Xu;Yujia Gao;Quan Lu;Renyi Zhang;Jianfeng Gui;Xiaoshuang Liu;Zhenyu Yue",
+      "id": "out-a034f51c883f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RiceSNP-BST: A Deep Learning Framework for Predicting Biotic Stress-associated SNPs in Rice — Jiajun Xu;Yujia Gao;Quan Lu;Renyi Zhang;Jianfeng Gui;Xiaoshuang Liu;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4311,
+            "end_char": 4489
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "APDDD: Animal Parasitic Diseases and Drugs Database",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yilei Zhang;Guojun Chen;Siyi Zhou;Lingru He;Olalekan Opeyemi Ayanniyi;Qianming Xu;Zhenyu Yue;Congshan Yang",
+      "id": "out-02e742b96f32",
+      "evidence": [
+        {
+          "quote": "[期刊论文] APDDD: Animal Parasitic Diseases and Drugs Database — Yilei Zhang;Guojun Chen;Siyi Zhou;Lingru He;Olalekan Opeyemi Ayanniyi;Qianming Xu;Zhenyu Yue;Congshan Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4494,
+            "end_char": 4660
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BES-Designer: A Web Tool to Design Guide RNAs for Base Editing to Simplify Library",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Zhou;Qian Gao;Yujia Gao;Youhua Zhang;Yanjun Chen;Min Li;Pengcheng Wei;Zhenyu Yue",
+      "id": "out-708f0c7f5326",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BES-Designer: A Web Tool to Design Guide RNAs for Base Editing to Simplify Library — Qian Zhou;Qian Gao;Yujia Gao;Youhua Zhang;Yanjun Chen;Min Li;Pengcheng Wei;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4665,
+            "end_char": 4841
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RiceSNP-ABST: A Deep Learning Approach to Identify Abiotic Stress-Associated Single Nucleotide Polymorphisms in Rice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Quan Lu;Jiajun Xu;Renyi Zhang;Hangcheng Liu;Meng Wang;Xiaoshuang Liu;Zhenyu Yue;Yujia Gao",
+      "id": "out-de5df5811ec6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RiceSNP-ABST: A Deep Learning Approach to Identify Abiotic Stress-Associated Single Nucleotide Polymorphisms in Rice — Quan Lu;Jiajun Xu;Renyi Zhang;Hangcheng Liu;Meng Wang;Xiaoshuang Liu;Zhenyu Yue;Yujia Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4846,
+            "end_char": 5060
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PredinID: Predicting Pathogenic Inframe Indels in Human through Graph Convolution Neural Network with Graph Sampling Technique",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenyu Yue;Ying Xiang;Guojun Chen;Xiaosong Wang;Ke Li;Youhua Zhang",
+      "id": "out-3f84a93d4396",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PredinID: Predicting Pathogenic Inframe Indels in Human through Graph Convolution Neural Network with Graph Sampling Technique — Zhenyu Yue;Ying Xiang;Guojun Chen;Xiaosong Wang;Ke Li;Youhua Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5065,
+            "end_char": 5266
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DGPD: A Knowledge Database of Dense Granule Proteins of the Apicomplexa",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hang Hu;Zhenxiao Lu;Haisong Feng;Guojun Chen;Yongmei Wang;Congshan Yang;Zhenyu Yue",
+      "id": "out-47a073c5b2f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DGPD: A Knowledge Database of Dense Granule Proteins of the Apicomplexa — Hang Hu;Zhenxiao Lu;Haisong Feng;Guojun Chen;Yongmei Wang;Congshan Yang;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5271,
+            "end_char": 5433
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pharmacogenomic Cluster Analysis of Lung Cancer Cell Lines Provides Insights into Preclinical Model Selection in NSCLC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yueyue Shen;Ying Xiang;Xiaolong Huang;Youhua Zhang;Zhenyu Yue",
+      "id": "out-87c5fa491264",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pharmacogenomic Cluster Analysis of Lung Cancer Cell Lines Provides Insights into Preclinical Model Selection in NSCLC — Yueyue Shen;Ying Xiang;Xiaolong Huang;Youhua Zhang;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5439,
+            "end_char": 5627
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于BERT 和集成学习的抗菌肽预测",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高皖陵;赵俊;岳振宇",
+      "id": "out-0ab8685fa3ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于BERT 和集成学习的抗菌肽预测 — 高皖陵;赵俊;岳振宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5633,
+            "end_char": 5670
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Machine Learning Algorithm Prediction for Dense Granule Proteins in Apicomplexa",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenxiao Lu;Hang Hu;Yashan Song;Siyi Zhou;Olalekan Opeyemi Ayanniyi;Qianming Xu;Zhenyu Yue;Congshan Yang",
+      "id": "out-88041fd8b068",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Machine Learning Algorithm Prediction for Dense Granule Proteins in Apicomplexa — Zhenxiao Lu;Hang Hu;Yashan Song;Siyi Zhou;Olalekan Opeyemi Ayanniyi;Qianming Xu;Zhenyu Yue;Congshan Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5676,
+            "end_char": 5900
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reusability Report: Uncovering Associations in Biomedical Bipartite Networks via a Bilinear Attention Network with Domain Adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Xu;Haoyuan Shi;Wanling Gao;Xiaosong Wang;Zhenyu Yue",
+      "id": "out-6b2abcc42232",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reusability Report: Uncovering Associations in Biomedical Bipartite Networks via a Bilinear Attention Network with Domain Adaptation — Tao Xu;Haoyuan Shi;Wanling Gao;Xiaosong Wang;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5906,
+            "end_char": 6102
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GRA-GCN: Dense Granule Protein Prediction in Apicomplexa Protozoa through Graph Convolutional Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoyuan Shi;Haisong Feng;Zhenxiao Lu;Wei Xue;Congshan Yang;Zhenyu Yue",
+      "id": "out-a47061bda8f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GRA-GCN: Dense Granule Protein Prediction in Apicomplexa Protozoa through Graph Convolutional Network — Haoyuan Shi;Haisong Feng;Zhenxiao Lu;Wei Xue;Congshan Yang;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6108,
+            "end_char": 6287
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AthEDL: Identifying Enhancers in Arabidopsis thaliana Using an Attention-based Deep Learning Method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiqiong Chen;Yujia Gao;Youhua Zhang;Zhenyu Yue",
+      "id": "out-ba0a278cac5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AthEDL: Identifying Enhancers in Arabidopsis thaliana Using an Attention-based Deep Learning Method — Yiqiong Chen;Yujia Gao;Youhua Zhang;Zhenyu Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6293,
+            "end_char": 6447
+          },
+          "version": "24d2c09ac0cb8ad08f91"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      }
+    },
+    "consistent": true
+  }
 }

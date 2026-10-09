@@ -2,15 +2,20 @@
   "doc_id": "f74b3a159182d9e7c564",
   "version": "f5730882317d00da92a5",
   "source_hash": "2f936fd70f2162b10668334c52b58858e1cbfa5c175d9851289cccb1105c2669",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.712516+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.623640+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-65aa47528859",
-          "name": "恶性心律失常可解释认知推理诊断",
-          "desc": "恶性心律失常最易诱发猝死，对发病突然、缺少规律的患者进行及时精准、安全可信诊断意义重大。",
+          "id": "item-876b4b808b53",
+          "name": "恶性心律失常可解释认知推理",
+          "desc": "循证推理",
           "evidence": [
             {
-              "quote": "恶性心率失常是最易诱发猝死的心血管疾病，对发病突然、缺少规律的心律失常患者进行及时精准、安全可信的诊断意义重大",
+              "quote": "本项目“面向恶性心律失常的可解释认知推理模型与算法研究”自开展以来",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 716
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ]
-        },
-        {
-          "id": "item-1bf1a955e984",
-          "name": "过程循证风险可知结果可解释系统",
-          "desc": "实现过程循证、风险可知、结果可解释的恶性心律失常分析推理系统，具有重要理论研究与产业应用价值。",
-          "evidence": [
-            {
-              "quote": "可望实现过程循证、风险可知、结果可解释的恶性心律失常分析推理系统，具有重要理论研究意义和产业应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1009,
-                "end_char": 1058
+                "start_char": 2974,
+                "end_char": 3006
               },
               "version": "f5730882317d00da92a5"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4e435771bbb",
-          "name": "数据表征语义漂移与模型缺乏临床信任",
-          "desc": "面临数据表征语义漂移、现有模型缺乏临床信任、医生与机器间存在认知鸿沟等科学问题。",
+          "id": "item-5067c2a274ad",
+          "name": "表征语义漂移、缺乏临床信任、医机认知鸿沟",
+          "desc": "预测预警",
           "evidence": [
             {
               "quote": "项目旨在围绕恶性心律失常预测预警中数据表征语义漂移、现有模型缺乏临床信任、医生与机器间存在认知鸿沟等科学问题",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 3049,
                 "end_char": 3102
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ]
-        },
-        {
-          "id": "item-013bf3081386",
-          "name": "循证推理与结构化解释难题",
-          "desc": "需突破医学证据和归因先验驱动的表征、知识与案例复合的循证推理、推理结果分群结构化解释三个难题。",
-          "evidence": [
-            {
-              "quote": "重点突破医学证据和归因先验驱动的表征、知识与案例复合的循证推理、推理结果分群结构化解释三个难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3104,
-                "end_char": 3150
               },
               "version": "f5730882317d00da92a5"
             }
@@ -95,41 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c3b465ebb9b1",
-          "name": "医学证据和归因先验驱动表征模型",
-          "desc": "研究医学证据和归因先验驱动的表征模型，为循证推理奠定可解释表示基础。",
-          "evidence": [
-            {
-              "quote": "研究医学证据和归因先验驱动的表征模型，为循证推理奠定可解释表示基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 854,
-                "end_char": 886
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ]
-        },
-        {
-          "id": "item-0a0fc56ee095",
-          "name": "跨模态对比学习与图结构学习",
-          "desc": "提出跨模态对比学习、图引导深度哈希相似病例检索、鲁棒图网络、双重强化图结构学习风险推理及基于Shapley值的结构化解释等算法。",
-          "evidence": [
-            {
-              "quote": "提出了跨模态对比学习框架、图引导的深度哈希相似病例检索、面向复杂诊疗的鲁棒图网络、双重强化图结构学习风险推理、以及基于Shapley值的结构化解释等关键算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3218,
-                "end_char": 3295
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ]
-        },
-        {
           "id": "item-94b08088874e",
           "name": "循证自监督表示模型",
-          "desc": "构建医学证据和归因先验驱动的表征模型基础理论，提出循证自监督表示模型。",
+          "desc": "医学证据和归因先验驱动",
           "evidence": [
             {
               "quote": "构建了医学证据和归因先验驱动的表征模型基础理论，提出了循证自监督表示模型",
@@ -140,7 +81,25 @@
               },
               "version": "f5730882317d00da92a5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-40973e3e51b6",
+          "name": "图引导深度哈希相似病例检索与Shapley值结构化解释",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "提出了跨模态对比学习框架、图引导的深度哈希相似病例检索、面向复杂诊疗的鲁棒图网络、双重强化图结构学习风险推理、以及基于Shapley值的结构化解释等关键算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3218,
+                "end_char": 3295
+              },
+              "version": "f5730882317d00da92a5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +108,125 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c9804c09c8b8",
-          "name": "可解释推理原型系统",
-          "desc": "开发过程循证、风险可知、结果可解释的恶性心律失常分析推理原型系统，验证多模态表征与可解释推理技术。",
+          "id": "item-9c45c4ddda61",
+          "name": "原型系统与专利",
+          "desc": "授权发明专利1项，软著1项",
           "evidence": [
             {
-              "quote": "通过开发过程循证、风险可知、结果可解释的恶性心律失常分析推理原型系统，对多模态数据表征、可解释认知推理技术进行了验证",
+              "quote": "项目原型系统所涉及的核心模块已授权国家发明专利1项，登记计算机软件著作权1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3305,
-                "end_char": 3362
+                "start_char": 3831,
+                "end_char": 3868
               },
               "version": "f5730882317d00da92a5"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-07bf89a27b9b",
-          "name": "SCI论文9篇与专利软著",
-          "desc": "项目资助发表论文10篇，其中SCI论文9篇，发表于JBHI、TNNLS、TCYB等领域顶级或权威期刊。",
-          "evidence": [
-            {
-              "quote": "项目资助发表论文10篇，其中SCI论文9篇",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3494,
-                "end_char": 3514
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-164bf39e88c5",
-          "name": "应用于三甲医院与医疗企业",
-          "desc": "项目研究成果已应用于多家三甲医院和大型医疗科技企业，产生了较好的社会经济价值。",
-          "evidence": [
-            {
-              "quote": "项目研究成果已经应用于多家三甲医院和大型医疗科技企业，产生了较好的社会经济价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3922,
-                "end_char": 3960
-              },
-              "version": "f5730882317d00da92a5"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-65aa47528859"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d4e435771bbb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RTGN: Robust Traditional Chinese Medicine Graph Networks for Patient Similarity Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Long;Jinghao Niu;Heping wang;Jiaxi Liu;Jie Li;Wensheng Zhang",
+      "id": "out-9ef85720cd1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RTGN: Robust Traditional Chinese Medicine Graph Networks for Patient Similarity Learning — Junjie Long;Jinghao Niu;Heping wang;Jiaxi Liu;Jie Li;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3979,
+            "end_char": 4143
+          },
+          "version": "f5730882317d00da92a5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d4e435771bbb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c3b465ebb9b1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Cross-Modal Clinical Prediction System for Intensive Care Unit Patient Outcome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengxuan Sun;Xuebing Yang;Jinghao Niu;Yifan Gu;Chutong Wang;Wensheng Zhang",
+      "id": "out-874441782329",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Cross-Modal Clinical Prediction System for Intensive Care Unit Patient Outcome — Mengxuan Sun;Xuebing Yang;Jinghao Niu;Yifan Gu;Chutong Wang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4148,
+            "end_char": 4311
+          },
+          "version": "f5730882317d00da92a5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c3b465ebb9b1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c9804c09c8b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-Supervised Graph Structure Learning via Dual Reinforcement of Label and Prior Structure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Jinghao Niu;Wensheng Zhang",
+      "id": "out-0646b9e384ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-Supervised Graph Structure Learning via Dual Reinforcement of Label and Prior Structure — Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Jinghao Niu;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4316,
+            "end_char": 4480
+          },
+          "version": "f5730882317d00da92a5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0a0fc56ee095"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-07bf89a27b9b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合大规模医学事实的跨语言双层知识图谱",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王楚童;李明达;孙孟轩;王静;杨雪冰;牛景昊;贺志阳;张文生",
+      "id": "out-1cec35c0a10a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 融合大规模医学事实的跨语言双层知识图谱 — 王楚童;李明达;孙孟轩;王静;杨雪冰;牛景昊;贺志阳;张文生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4485,
+            "end_char": 4543
+          },
+          "version": "f5730882317d00da92a5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

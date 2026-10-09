@@ -2,15 +2,20 @@
   "doc_id": "36a25866912bf167b6f2",
   "version": "f6d8454b8eedd7a1b178",
   "source_hash": "bbb21495a9bf9dca34fefde185b68ec36cdb873727a280cfdef41db24b35e4a6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.146821+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.929569+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f6a56cfeb79e",
-          "name": "不完备多模态医疗影像分割",
-          "desc": "医疗影像分割在计算机辅助诊断、手术智能导航等智慧医疗场景具有广泛应用价值。",
+          "id": "item-776f8edcf39a",
+          "name": "多中心不完备多模态医疗影像分割",
+          "desc": "计算机辅助诊断与手术导航",
           "evidence": [
             {
-              "quote": "医疗影像分割在计算机辅助诊断、手术智能导航等智慧医疗场景具有广泛的应用价值",
+              "quote": "医疗影像分割是计算机视觉与智慧医疗的重要方向",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 689
-              },
-              "version": "f6d8454b8eedd7a1b178"
-            }
-          ]
-        },
-        {
-          "id": "item-ae017a6ad94f",
-          "name": "推动分割算法临床落地应用",
-          "desc": "通过系统解决医疗影像分割算法在临床应用中的瓶颈问题，推动其在手术机器人、计算机辅助诊断等领域的落地。",
-          "evidence": [
-            {
-              "quote": "推动其在手术机器人、计算机辅助诊断等领域的落地应用，为提高我国智慧医疗水平做出贡献",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 947,
-                "end_char": 987
+                "start_char": 2469,
+                "end_char": 2490
               },
               "version": "f6d8454b8eedd7a1b178"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a14ddde47652",
-          "name": "模态缺失与多中心联合训练困难",
-          "desc": "现实场景面临多模态数据不完备、多中心分布差异显著以及高质量标注稀缺，现有方法在模态缺失鲁棒性、多中心联合建模与隐私约束下的协同训练方面仍有不足。",
+          "id": "item-98c1661676e2",
+          "name": "模态不完备、多中心差异与标注稀缺",
+          "desc": "现有方法鲁棒性不足",
           "evidence": [
             {
-              "quote": "现有方法在模态缺失鲁棒性、多中心联合建模与隐私约束下的协同训练方面仍有不足",
+              "quote": "现实场景面临多模态数据不完备、多中心分布差异显著以及高质量标注稀缺等挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2551,
-                "end_char": 2587
-              },
-              "version": "f6d8454b8eedd7a1b178"
-            }
-          ]
-        },
-        {
-          "id": "item-f75f2e02fbb8",
-          "name": "单一中心标定样本稀缺",
-          "desc": "针对模态数据缺失、单一中心标定样本稀缺、多中心数据联合训练困难等问题开展研究。",
-          "evidence": [
-            {
-              "quote": "针对“模态数据缺失”、“单一中心标定样本稀缺”、“多中心数据联合训练困难”等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 775,
-                "end_char": 814
+                "start_char": 2514,
+                "end_char": 2549
               },
               "version": "f6d8454b8eedd7a1b178"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4148206b710d",
-          "name": "不完备多模态分割系统架构与联邦小样本范式",
-          "desc": "构建面向多中心数据的不完备多模态分割框架，将分割参数学习统一到联邦小样本学习范式中。",
-          "evidence": [
-            {
-              "quote": "构建面向多中心数据的不完备多模态分割框架，将分割参数学习统一到联邦小样本学习范式中，缓解数据异构、标注稀缺与隐私限制下的联合训练难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2683,
-                "end_char": 2748
-              },
-              "version": "f6d8454b8eedd7a1b178"
-            }
-          ]
-        },
-        {
-          "id": "item-9f832cf96098",
-          "name": "语义引导掩码互学习",
-          "desc": "提出语义引导的掩码互学习，使模型在任意模态缺失时仍能学习稳健且判别的多模态表示。",
+          "id": "item-1fb4598ee72e",
+          "name": "语义引导的掩码互学习",
+          "desc": "任意模态缺失下稳健多模态表示",
           "evidence": [
             {
               "quote": "其一，语义引导的掩码互学习，使模型在任意模态缺失时仍能学习稳健且判别的多模态表示",
@@ -124,23 +81,42 @@
               },
               "version": "f6d8454b8eedd7a1b178"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-8d744656aab5",
           "name": "自监督实例自适应原型学习",
-          "desc": "面向小样本提出自监督实例自适应原型学习，在有限样本下显式建模类内差异，提升原型表征判别性与泛化能力。",
+          "desc": "小样本类内差异建模",
           "evidence": [
             {
-              "quote": "面向小样本的自监督实例自适应原型学习，在有限样本下显式建模类内差异，显著提升原型表征的判别性与泛化能力",
+              "quote": "其二，面向小样本的自监督实例自适应原型学习",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2803,
-                "end_char": 2853
+                "start_char": 2800,
+                "end_char": 2820
               },
               "version": "f6d8454b8eedd7a1b178"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b82bb509056b",
+          "name": "FedContrast-GPA联邦优化",
+          "desc": "原型级对比学习",
+          "evidence": [
+            {
+              "quote": "提出FedContrast-GPA联邦优化方法，以原型级对比学习实现跨客户端特征对齐",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3041,
+                "end_char": 3082
+              },
+              "version": "f6d8454b8eedd7a1b178"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,43 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5a54574196ca",
-          "name": "FedContrast-GPA联邦优化方法",
-          "desc": "提出以原型级对比学习实现跨客户端特征对齐，并结合过程感知全局聚合缓解数据与系统异构带来的优化困难。",
-          "evidence": [
-            {
-              "quote": "提出FedContrast-GPA联邦优化方法，以原型级对比学习实现跨客户端特征对齐，并结合过程感知的全局聚合以缓解数据与系统异构带来的优化困难",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3041,
-                "end_char": 3112
-              },
-              "version": "f6d8454b8eedd7a1b178"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b5b9ab692c63",
-          "name": "无监督多模态分割框架",
-          "desc": "提出基于结构保持噪声生成与多尺度双专家集成的无监督多模态分割框架，解决不完备模态条件下的鲁棒分割。",
-          "evidence": [
-            {
-              "quote": "提出基于结构保持噪声生成与多尺度双专家集成的无监督多模态分割框架，重点解决不完备模态条件下的鲁棒分割",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2915
-              },
-              "version": "f6d8454b8eedd7a1b178"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3adae22faa6a",
-          "name": "论文专利与引用成果",
-          "desc": "已发表SCI(E)期刊论文3篇、EI会议论文8篇，被谷歌学术引用44次；授权国家发明专利2项、公开1项；培养毕业硕博4人。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI(E)论文3篇、EI会议论文8篇，授权专利2项",
           "evidence": [
             {
               "quote": "已发表SCI(E)期刊论文3篇、EI会议论文8篇，被谷歌学术引用44次；授权国家发明专利2项、公开1项",
@@ -197,55 +139,333 @@
               "version": "f6d8454b8eedd7a1b178"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f6a56cfeb79e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a14ddde47652"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像分割方法、分割模型训练方法、介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王润泽;周芹;郑国焱",
+      "id": "out-a871136d4781",
+      "evidence": [
+        {
+          "quote": "[专利] 医学影像分割方法、分割模型训练方法、介质及电子设备 — 王润泽;周芹;郑国焱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3338,
+            "end_char": 3380
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a14ddde47652"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4148206b710d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Partially Supervised Multi-organ Segmentation via Affinity-Aware Consistency Learning and Cross Site Feature Alignment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhou;Peng Liu;Guoyan Zheng",
+      "id": "out-52536dd603bb",
+      "evidence": [
+        {
+          "quote": "[会议论文] Partially Supervised Multi-organ Segmentation via Affinity-Aware Consistency Learning and Cross Site Feature Alignment — Qin Zhou;Peng Liu;Guoyan Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3385,
+            "end_char": 3542
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4148206b710d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5a54574196ca"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于语义先验引导的不完整多模态脑肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁国艳;周芹;王喆;陈静远;谷林;姚畅;伍赛",
+      "id": "out-2691a2cfe5a4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于语义先验引导的不完整多模态脑肿瘤分割方法 — 梁国艳;周芹;王喆;陈静远;谷林;姚畅;伍赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3547,
+            "end_char": 3600
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9f832cf96098"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5b9ab692c63"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FreeCus: Free Lunch Subject-driven Customization in Diffusion Transformers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanbing Zhang;Zhe Wang;Qin Zhou;Mengping Yang",
+      "id": "out-2e9217dcfa88",
+      "evidence": [
+        {
+          "quote": "[会议论文] FreeCus: Free Lunch Subject-driven Customization in Diffusion Transformers — Yanbing Zhang;Zhe Wang;Qin Zhou;Mengping Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3605,
+            "end_char": 3733
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advancing Medical Image Segmentation via Self-supervised Instance-adaptive Prototype Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoyan Liang;Qin Zhou;Jingyuan Chen;Zhe Wang;Chang Yao",
+      "id": "out-3199b48f77c5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Advancing Medical Image Segmentation via Self-supervised Instance-adaptive Prototype Learning — Guoyan Liang;Qin Zhou;Jingyuan Chen;Zhe Wang;Chang Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3738,
+            "end_char": 3894
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FLARE2023国际腹部分割挑战赛",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhou;Peng Liu;Guoyan Zheng",
+      "id": "out-6b18069f392c",
+      "evidence": [
+        {
+          "quote": "[奖励] FLARE2023国际腹部分割挑战赛 — Qin Zhou;Peng Liu;Guoyan Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3899,
+            "end_char": 3954
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semantic-guided Masked Mutual Learning for Multi-modal Brain Tumor Segmentation with Arbitrary Missing Modalities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoyan Liang;Qin Zhou;Jingyuan Chen;Bingcang Huang;Kai Chen;Lin Gu;Zhe Wang;Sai Wu;Chang Yao",
+      "id": "out-a87fd82701af",
+      "evidence": [
+        {
+          "quote": "[会议论文] Semantic-guided Masked Mutual Learning for Multi-modal Brain Tumor Segmentation with Arbitrary Missing Modalities — Guoyan Liang;Qin Zhou;Jingyuan Chen;Bingcang Huang;Kai Chen;Lin Gu;Zhe Wang;Sai Wu;Chang Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3959,
+            "end_char": 4173
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedContrast-GPA: Heterogeneous Federated Optimization via Local Contrastive Learning and Global Process-Aware Aggregation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhou;Guoyan Zheng",
+      "id": "out-051f581ac5f0",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedContrast-GPA: Heterogeneous Federated Optimization via Local Contrastive Learning and Global Process-Aware Aggregation — Qin Zhou;Guoyan Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4178,
+            "end_char": 4329
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bamboo: A Novel Session-Aware Framework With Equiangular Tight Frame Prototypes for Few-Shot Class-Incremental Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehan Lu;Zhe Wang;Zhiling Fu;Xinlei Xu;Qian Zhang;Ting Xiao;Wenli Du",
+      "id": "out-f011f59516da",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bamboo: A Novel Session-Aware Framework With Equiangular Tight Frame Prototypes for Few-Shot Class-Incremental Learning — Xuehan Lu;Zhe Wang;Zhiling Fu;Xinlei Xu;Qian Zhang;Ting Xiao;Wenli Du",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4334,
+            "end_char": 4531
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learnable Retrieval Enhanced Visual-Text Alignment and Fusion for Radiology Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhou;Guoyan Liang;Xindi Li;Jingyuan Chen;Zhe Wang;Chang Yao;Sai Wu",
+      "id": "out-2a7724158ad2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Learnable Retrieval Enhanced Visual-Text Alignment and Fusion for Radiology Report Generation — Qin Zhou;Guoyan Liang;Xindi Li;Jingyuan Chen;Zhe Wang;Chang Yao;Sai Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4537,
+            "end_char": 4709
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Brain Anomaly Detection Using Structure-Preserving Noise Generation and Multi-Scale Dual-Expert Ensembles",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianyi Yang;Bingcang Huang;Qin Zhou;Zhe Wang;Kai Chen;Xiu Tang;Chang Yao;Sai Wu",
+      "id": "out-60cd8911416d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised Brain Anomaly Detection Using Structure-Preserving Noise Generation and Multi-Scale Dual-Expert Ensembles — Qianyi Yang;Bingcang Huang;Qin Zhou;Zhe Wang;Kai Chen;Xiu Tang;Chang Yao;Sai Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4715,
+            "end_char": 4921
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Attention Calibration for Disentangled Text-to-Image Personalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanbing Zhang;Mengping Yang;Qin Zhou;Zhe Wang",
+      "id": "out-0d75ac578c0b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Attention Calibration for Disentangled Text-to-Image Personalization — Yanbing Zhang;Mengping Yang;Qin Zhou;Zhe Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4927,
+            "end_char": 5049
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Context-aware cutmix is all you need for universal organ and cancer segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhou;Peng Liu;Guoyan Zheng",
+      "id": "out-a2bf1dc05a05",
+      "evidence": [
+        {
+          "quote": "[会议论文] Context-aware cutmix is all you need for universal organ and cancer segmentation — Qin Zhou;Peng Liu;Guoyan Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5055,
+            "end_char": 5174
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于类别边界不确定性的关系型知识蒸馏方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁国艳;周芹;王喆;陈静远;谷林;姚畅;伍赛",
+      "id": "out-08c12ebab38e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于类别边界不确定性的关系型知识蒸馏方法 — 梁国艳;周芹;王喆;陈静远;谷林;姚畅;伍赛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5180,
+            "end_char": 5231
+          },
+          "version": "f6d8454b8eedd7a1b178"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d6b8b749cd1c4aaecdaf",
   "version": "9d4c0d492e4128b613ce",
   "source_hash": "0a8072b786db7c714af6c3f7b438dcdf8ce4c44134268be25a5fc39ee26e94d7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.581165+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:41:55.915648+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0f805815b4bf",
-          "name": "儿童骨科影像学智能辅助诊断",
-          "desc": "面向髋关节脱位、膝内翻/外翻和骨龄异常等儿童骨科常见先天发育性疾病，构建影像学智能辅助诊断框架服务基层医疗。",
+          "id": "item-fd34bce7516e",
+          "name": "儿童骨科影像智能辅助诊断",
+          "desc": "髋关节脱位、膝内翻外翻、骨龄异常",
           "evidence": [
             {
-              "quote": "我国儿童骨科现有人工诊断的模式远不能满足3亿多儿童健康成长的需求",
+              "quote": "本项目以髋关节脱位、膝内翻/外翻和骨龄异常三种儿童骨科最常见先天发育性疾病为具体研究病症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 652,
-                "end_char": 683
+                "start_char": 2742,
+                "end_char": 2785
               },
               "version": "9d4c0d492e4128b613ce"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a39432b98ca8",
-          "name": "儿童骨科影像发育中组织干扰与病情信息繁杂",
-          "desc": "儿童骨科影像存在发育中组织相互干扰、关键区域多变复杂、病情信息繁杂三大挑战，导致漏误诊风险高。",
+          "id": "item-54f4d40890d4",
+          "name": "发育中组织相互干扰、关键区域多变复杂、病情信息繁杂",
+          "desc": "儿童骨科影像",
           "evidence": [
             {
               "quote": "面对儿童骨科影像中发育中组织相互干扰、关键区域多变复杂、病情信息繁杂的挑战",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df509d1fa594",
-          "name": "影像内容增强-兴趣区域识别-细粒度分级诊断框架",
-          "desc": "从儿童骨科医学影像内容增强、兴趣区域识别、病情细粒度分级精准诊断三方面展开研究，提出广义混合去噪扩散模型合成、空间依赖关系分割等创新技术。",
+          "id": "item-9d69f443f0b2",
+          "name": "广义混合去噪扩散模型医学影像合成",
+          "desc": "影像内容增强",
           "evidence": [
             {
-              "quote": "本项目从儿童骨科医学影像内容增强、兴趣区域识别、病情细粒度分级精准诊断三方面展开研究",
+              "quote": "提出了基于广义混合去噪扩散模型的医学影像合成方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2886,
-                "end_char": 2927
+                "start_char": 2929,
+                "end_char": 2952
               },
               "version": "9d4c0d492e4128b613ce"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7c18ec82fe03",
+          "name": "基于空间依赖关系的关键区域分割框架",
+          "desc": "兴趣区域识别",
+          "evidence": [
+            {
+              "quote": "基于空间依赖关系的关键区域分割框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2954,
+                "end_char": 2970
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4dfa49414fd4",
+          "name": "基于关键区域区分性信息提取的病情诊断",
+          "desc": "细粒度分级",
+          "evidence": [
+            {
+              "quote": "基于关键区域区分性信息提取的病情诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2972,
+                "end_char": 2989
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,513 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3bba5898826f",
-          "name": "发表论文21篇、授权发明专利7项并在10家医院试用",
-          "desc": "发表论文21篇（IEEE/ACM汇刊7篇、CCF-A类会议长文4篇等），授权发明专利7项；研发的辅助诊断系统在安徽省10家医院临床试行应用。",
+          "id": "item-9b8c60f8b798",
+          "name": "儿童骨科影像学智能辅助诊断系统",
+          "desc": "安徽省儿童医联体10家医院试行",
           "evidence": [
             {
-              "quote": "在IEEE-TMI、IEEE-TMM、PAIN、Bone&Joint Journal、MICCAI、CVPR等医学影像智能分析、人工智能和临床医学领域国际重要期刊会议发表论文21篇",
+              "quote": "本项目研发了儿童骨科影像学智能辅助诊断系统，在安徽省儿童医院临床环境实际数据测试中各项指标接近专业医师水平",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3000,
+                "start_char": 3190,
+                "end_char": 3242
+              },
+              "version": "9d4c0d492e4128b613ce"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文21篇，授权发明专利7项",
+          "evidence": [
+            {
+              "quote": "发表论文21篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3083,
                 "end_char": 3089
               },
               "version": "9d4c0d492e4128b613ce"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0f805815b4bf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a39432b98ca8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intra-class Adaptive Augmentation with Neighbor Correction for Deep Metric Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheren Fu;Zhendong Mao;Bo Hu;An-An Liu;Yongdong Zhang",
+      "id": "out-18872d614cbf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intra-class Adaptive Augmentation with Neighbor Correction for Deep Metric Learning — Zheren Fu;Zhendong Mao;Bo Hu;An-An Liu;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3489,
+            "end_char": 3634
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a39432b98ca8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-df509d1fa594"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于残差连接改进U-Net神经网络的医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卢金达;吕颖达;曹士衡;王佳烁;李少泉",
+      "id": "out-4addfc47235e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于残差连接改进U-Net神经网络的医学图像分割方法 — 卢金达;吕颖达;曹士衡;王佳烁;李少泉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3693
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-df509d1fa594"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3bba5898826f"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "安徽地区儿童发育性髋关节发育不良早期筛查和治疗的标准化及推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙军;方继红;梁立科;陈文建;张思成;刘永",
+      "id": "out-53605affca76",
+      "evidence": [
+        {
+          "quote": "[奖励] 安徽地区儿童发育性髋关节发育不良早期筛查和治疗的标准化及推广 — 孙军;方继红;梁立科;陈文建;张思成;刘永",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3756
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Focus Your Attention: A Focal Attention for Multimodal Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxiao Liu;Zhendong Mao;Tianzhu Zhang;An-An Liu;Bin Wang;Yongdong Zhang",
+      "id": "out-0091f70a6e18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Focus Your Attention: A Focal Attention for Multimodal Learning — Chunxiao Liu;Zhendong Mao;Tianzhu Zhang;An-An Liu;Bin Wang;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3761,
+            "end_char": 3906
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积神经网络和多重注意力机制的骨骼年龄评估方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢洪涛;张勇东;孙军;刘传彬;毛震东",
+      "id": "out-b0d58ec94f8a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于卷积神经网络和多重注意力机制的骨骼年龄评估方法 — 谢洪涛;张勇东;孙军;刘传彬;毛震东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3911,
+            "end_char": 3961
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Attention Mechanism for Pediatric Bone Age Assessment with Efficient Weak Annotation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuanbin Liu;Hongtao Xie;Yongdong Zhang",
+      "id": "out-b4f3e882d05e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-Supervised Attention Mechanism for Pediatric Bone Age Assessment with Efficient Weak Annotation — Chuanbin Liu;Hongtao Xie;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3966,
+            "end_char": 4114
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图像处理、装置、电子设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张勇东;武海;谢洪涛;毛震东",
+      "id": "out-a85c23125b9c",
+      "evidence": [
+        {
+          "quote": "[专利] 图像处理、装置、电子设备及介质 — 张勇东;武海;谢洪涛;毛震东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4155
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "下肢X光影像中关键点提取方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢洪涛;张勇东;孙军;马凌峰;毛震东",
+      "id": "out-5bd7b4064db6",
+      "evidence": [
+        {
+          "quote": "[专利] 下肢X光影像中关键点提取方法 — 谢洪涛;张勇东;孙军;马凌峰;毛震东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4160,
+            "end_char": 4199
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Context Propagation Embedding Network for Weakly Supervised Semantic Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yajun Xu;Zhendong Mao;Zhineng Chen;Xin Wen;Yangyang Li",
+      "id": "out-fc99f9a45bb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Context Propagation Embedding Network for Weakly Supervised Semantic Segmentation — Yajun Xu;Zhendong Mao;Zhineng Chen;Xin Wen;Yangyang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4204,
+            "end_char": 4348
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning–guided postoperative pain assessment in children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jihong Fang;Wei Wu;Jiawei Liu;Sicheng Zhang",
+      "id": "out-21aa5d35f6c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning–guided postoperative pain assessment in children — Jihong Fang;Wei Wu;Jiawei Liu;Sicheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4354,
+            "end_char": 4468
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Chinese Spelling Check by Character Pronunciation Prediction: The Effects of Adaptivity and Granularity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiahao Li;Quan Wang;Zhendong Mao;Junbo Guo;Yanyan Yang;Yongdong Zhang",
+      "id": "out-24be538ad3a3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improving Chinese Spelling Check by Character Pronunciation Prediction: The Effects of Adaptivity and Granularity — Jiahao Li;Quan Wang;Zhendong Mao;Junbo Guo;Yanyan Yang;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4665
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical application of artificial intelligence-assisted diagnosis using anteroposterior pelvic radiographs in children with developmental dysplasia of the hip",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Si-Cheng Zhang;Hongtao Xie;Chuanbin Liu;Ji-Hong Fang;Hong-Tao Xie;Bo Ning",
+      "id": "out-97d5219c16b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical application of artificial intelligence-assisted diagnosis using anteroposterior pelvic radiographs in children with developmental dysplasia of the hip — Si-Cheng Zhang;Hongtao Xie;Chuanbin Liu;Ji-Hong Fang;Hong-Tao Xie;Bo Ning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4671,
+            "end_char": 4912
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Metric Learning with Self-Supervised Ranking",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheren Fu;Yan Li;Zhendong Mao;Quan Wang;Yongdong Zhang",
+      "id": "out-c883d8ee9ec2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Deep Metric Learning with Self-Supervised Ranking — Zheren Fu;Yan Li;Zhendong Mao;Quan Wang;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4918,
+            "end_char": 5030
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-supervised Synthesis Ranking for Deep Metric Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheren Fu;Zhendong Mao;Chenggang Yan;An-An Liu;Hongtao Xie;Yongdong Zhang",
+      "id": "out-303f6e1fb8eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-supervised Synthesis Ranking for Deep Metric Learning — Zheren Fu;Zhendong Mao;Chenggang Yan;An-An Liu;Hongtao Xie;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5036,
+            "end_char": 5176
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Radiology Report Generation with D^2-Net: When Diffusion Meets Discriminator",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuda Jin;Weidong Chen;Yuanhe Tian;Yan Song;Chenggang Yan;Zhendong Mao",
+      "id": "out-992e1dfc81cd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improving Radiology Report Generation with D^2-Net: When Diffusion Meets Discriminator — Yuda Jin;Weidong Chen;Yuanhe Tian;Yan Song;Chenggang Yan;Zhendong Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5182,
+            "end_char": 5346
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Misshapen Pelvis Landmark Detection With Local-Global Feature Learning for Diagnosing Developmental Dysplasia of the Hip",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuanbin Liu;Hongtao Xie;Sicheng Zhang;Zhendong Mao;Jun Sun;Yongdong Zhang",
+      "id": "out-7069c09a7405",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Misshapen Pelvis Landmark Detection With Local-Global Feature Learning for Diagnosing Developmental Dysplasia of the Hip — Chuanbin Liu;Hongtao Xie;Sicheng Zhang;Zhendong Mao;Jun Sun;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5352,
+            "end_char": 5555
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Visual Relationships via Transformer-based Graphs for Enhanced Image Captioning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingyu Li;Zhendong Mao;Hao Li;Weidong Chen;Yongdong Zhang",
+      "id": "out-a8907fd482c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring Visual Relationships via Transformer-based Graphs for Enhanced Image Captioning — Jingyu Li;Zhendong Mao;Hao Li;Weidong Chen;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5561,
+            "end_char": 5716
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Not All Image Regions Matter: Masked Vector Quantization for Autoregressive Image Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengqi Huang;Zhendong Mao;Quan Wang;Yongdong Zhang",
+      "id": "out-8c7894365435",
+      "evidence": [
+        {
+          "quote": "[会议论文] Not All Image Regions Matter: Masked Vector Quantization for Autoregressive Image Generation — Mengqi Huang;Zhendong Mao;Quan Wang;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5722,
+            "end_char": 5873
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Curriculum Learning for Natural Language Understanding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Benfeng Xu;Licheng Zhang;Zhendong Mao;Quan Wang;Hongtao Xie;Yongdong Zhang",
+      "id": "out-47d499c83c6c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Curriculum Learning for Natural Language Understanding — Benfeng Xu;Licheng Zhang;Zhendong Mao;Quan Wang;Hongtao Xie;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5879,
+            "end_char": 6016
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning rich attention for pediatric bone age assessment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuanbin Liu;Hongtao Xie;Yunyan Yan;Zhendong Mao;Yongdong Zhang",
+      "id": "out-73ab57b6dd72",
+      "evidence": [
+        {
+          "quote": "[会议论文] Learning rich attention for pediatric bone age assessment — Chuanbin Liu;Hongtao Xie;Yunyan Yan;Zhendong Mao;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6022,
+            "end_char": 6151
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GH-DDM: the generalized hybrid denoising diffusion model for medical image generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sicheng Zhang;Jin Liu;Bo Hu;Zhendong Mao",
+      "id": "out-076df4967729",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GH-DDM: the generalized hybrid denoising diffusion model for medical image generation — Sicheng Zhang;Jin Liu;Bo Hu;Zhendong Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6157,
+            "end_char": 6291
+          },
+          "version": "9d4c0d492e4128b613ce"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

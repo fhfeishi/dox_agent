@@ -2,15 +2,20 @@
   "doc_id": "1eaac3708444d173a447",
   "version": "07775841cdcd53c90458",
   "source_hash": "206c53d4207e4422f3ba8323e1ddc15553060f8e72082194510ec30724338cbf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.841270+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:31:10.602448+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5767e74b1789",
-          "name": "小样本肿瘤影像分割分析",
-          "desc": "面向早期肿瘤检测需求，在标注稀缺、模态异质条件下实现高精度、高鲁棒和高泛化的肿瘤分割。",
+          "id": "item-2c4c59a98642",
+          "name": "小样本肿瘤影像分析",
+          "desc": "极具挑战且意义重大",
           "evidence": [
             {
-              "quote": "早期的肿瘤检测对于降低癌症死亡率有着至关重要的作用",
+              "quote": "小样本肿瘤影像智能分析是医学影像分析领域极具挑战且意义重大的研究方向",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 647,
-                "end_char": 671
+                "start_char": 2769,
+                "end_char": 2802
               },
               "version": "07775841cdcd53c90458"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af661c92d304",
-          "name": "肿瘤数据标注少且分布差异大",
-          "desc": "肿瘤数据形态多样化、标注数据少、数据分布差异大，对自动化精准分割与生物医学临床应用提出诸多挑战。",
+          "id": "item-739493963155",
+          "name": "数据稀缺、边界模糊、跨域泛化难",
+          "desc": "肿瘤影像分析的关键挑战",
           "evidence": [
             {
-              "quote": "然而，肿瘤数据形态多样化，标注数据少，数据分布差异大，对自动化精准分割与生物医学临床应用提出了诸多挑战",
+              "quote": "针对肿瘤影像分析中面临的数据稀缺、边界模糊、跨域泛化难等关键挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 723
+                "start_char": 2807,
+                "end_char": 2838
               },
               "version": "07775841cdcd53c90458"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8c83242d9f3",
-          "name": "多视角学习-半监督-无监督跨域分割方法体系",
-          "desc": "面向单中心单模态数据研究多视角学习分割，面向少量数据研究层级不确定性建模的半监督分割，面向极少量跨中心跨模态数据研究最小化高级潜在空间距离的无监督跨域分割。",
+          "id": "item-6631189109a1",
+          "name": "融合多元先验知识的多视角学习",
+          "desc": "EccoMamba、PKDF-Net、RW-GNN、SCDSNet",
           "evidence": [
             {
-              "quote": "研究多视角学习分割方法，融合多元先验知识，强化数据特征表达能力",
+              "quote": "提出了融合肿瘤多元先验知识的多视角学习方法，开发了EccoMamba、PKDF-Net、RW-GNN、SCDSNet等一系列创新模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 782,
-                "end_char": 812
+                "start_char": 2918,
+                "end_char": 2983
               },
               "version": "07775841cdcd53c90458"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-98ee32043fd1",
+          "name": "层级不确定性感知知识蒸馏半监督学习",
+          "desc": "ERSR、IPA-CP、TSEML",
+          "evidence": [
+            {
+              "quote": "提出了基于层级不确定性感知的肿瘤知识蒸馏半监督学习方法，构建了ERSR、IPA-CP、TSEML等框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3063,
+                "end_char": 3113
+              },
+              "version": "07775841cdcd53c90458"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0a29e2cfd189",
+          "name": "多模态少样本域适应无监督学习",
+          "desc": "HRProtoKD、RetinaDA、MSKI-Net",
+          "evidence": [
+            {
+              "quote": "提出了基于多模态肿瘤的少样本域适应无监督学习方法，研发了HRProtoKD分类框架、RetinaDA基准数据集及MSKI-Net预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3211,
+                "end_char": 3278
+              },
+              "version": "07775841cdcd53c90458"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,21 +125,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8d0798562ab6",
-          "name": "提出EccoMamba、PKDF-Net、RW-GNN、SCDSNet等模型",
-          "desc": "开发EccoMamba、PKDF-Net、RW-GNN、SCDSNet等一系列创新模型，并提出ERSR、IPA-CP、TSEML等半监督框架与HRProtoKD、RetinaDA、MSKI-Net等跨域方法，部分模型已与医院合作临床验证。",
+          "id": "item-f1d2eb7a16f6",
+          "name": "小样本肿瘤影像分析方法体系",
+          "desc": "特征增强、半监督、域适应",
           "evidence": [
             {
-              "quote": "开发了EccoMamba、PKDF-Net、RW-GNN、SCDSNet等一系列创新模型",
+              "quote": "形成了一套基于深度学习的小样本肿瘤影像分析方法体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2940,
-                "end_char": 2983
+                "start_char": 2870,
+                "end_char": 2894
               },
               "version": "07775841cdcd53c90458"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-b737f7d872c9",
+          "name": "高水平论文发表",
+          "desc": "AAAI、MICCAI、EAAI、JBHI",
+          "evidence": [
+            {
+              "quote": "研究成果已发表于AAAI、MICCAI、EAAI、JBHI等高水平期刊会议",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3414,
+                "end_char": 3450
+              },
+              "version": "07775841cdcd53c90458"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +168,473 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-5767e74b1789"
+        "dimension": "技术",
+        "item_id": "item-6631189109a1"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-af661c92d304"
+        "item_id": "item-739493963155"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-af661c92d304"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c8c83242d9f3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c8c83242d9f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8d0798562ab6"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对肿瘤形态差异大、边界信息弱的问题，提出了融合肿瘤多元先验知识的多视角学习方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2899,
+            "end_char": 2938
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Iterative pseudo-labeling based adaptive copy-paste supervision for semi-supervised tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangguo Jin;Hui Cui;Junbo Wang;Changming Sun;Yimiao He;Ping Xuan;Linlin Wang;Cong Cong;Leyi Wei;Ran Su",
+      "id": "out-58f2030e040a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Iterative pseudo-labeling based adaptive copy-paste supervision for semi-supervised tumor segmentation — Qiangguo Jin;Hui Cui;Junbo Wang;Changming Sun;Yimiao He;Ping Xuan;Linlin Wang;Cong Cong;Leyi Wei;Ran Su",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3510,
+            "end_char": 3724
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HRProtoKD:A hierarchical and relational prototype based knowledge distillation framework for few-shot cancer molecular subtyping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Guo;Rui Shi;Jia Zhou;Junlin Xu;Hui Cui;Ping Xuan;Xikang Feng;Leyi Wei;Ran Su;Qiangguo Jin",
+      "id": "out-8c96ff7a342d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HRProtoKD:A hierarchical and relational prototype based knowledge distillation framework for few-shot cancer molecular subtyping — Fei Guo;Rui Shi;Jia Zhou;Junlin Xu;Hui Cui;Ping Xuan;Xikang Feng;Leyi Wei;Ran Su;Qiangguo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3729,
+            "end_char": 3959
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evolving graph convolutional network with transformer for CT segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui Cui;Qiangguo Jin;Xixi Wu;Linlin Wang;Tiangang Zhang;Toshiya Nakaguchi;Ping Xuan;David Dagan Feng",
+      "id": "out-613b84d579aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evolving graph convolutional network with transformer for CT segmentation — Hui Cui;Qiangguo Jin;Xixi Wu;Linlin Wang;Tiangang Zhang;Toshiya Nakaguchi;Ping Xuan;David Dagan Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3964,
+            "end_char": 4146
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PKDF-Net: Anticancer peptide prediction via a prior-knowledge-aware dual-path feature-entangled network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangguo Jin;Ankang Wu;Leyi Wei;Hui Cui;Ping Xuan;Xikang Feng;Ran Su",
+      "id": "out-fa9a1a9940f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PKDF-Net: Anticancer peptide prediction via a prior-knowledge-aware dual-path feature-entangled network — Qiangguo Jin;Ankang Wu;Leyi Wei;Hui Cui;Ping Xuan;Xikang Feng;Ran Su",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4151,
+            "end_char": 4331
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inter-and intra-uncertainty based feature aggregation model for semi-supervised histopathology image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangguo Jin;Hui Cui;Changming Sun;Yang Song;Jiangbin Zheng;Leilei Cao;Leyi Wei;Ran Su",
+      "id": "out-1f64357f45c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inter-and intra-uncertainty based feature aggregation model for semi-supervised histopathology image segmentation — Qiangguo Jin;Hui Cui;Changming Sun;Yang Song;Jiangbin Zheng;Leilei Cao;Leyi Wei;Ran Su",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4336,
+            "end_char": 4544
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2022-2023年度太仓市自然科学优秀学术论文三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国",
+      "id": "out-62e2cb78fba5",
+      "evidence": [
+        {
+          "quote": "[奖励] 2022-2023年度太仓市自然科学优秀学术论文三等奖 — 金强国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4549,
+            "end_char": 4586
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSKI-Net: Towards modality-specific knowledge interaction for glioma survival prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ran Su;Jin Xiao;Hui Cui;Ping Xuan;Xikang Feng;Leyi Wei;Qiangguo Jin",
+      "id": "out-844687336517",
+      "evidence": [
+        {
+          "quote": "[会议论文] MSKI-Net: Towards modality-specific knowledge interaction for glioma survival prediction — Ran Su;Jin Xiao;Hui Cui;Ping Xuan;Xikang Feng;Leyi Wei;Qiangguo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4591,
+            "end_char": 4755
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RetinaDA: a diverse dataset for domain adaptation in retinal vessel segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Guo;Shaojia Yang;Rui Ge;Wenjuan Li;Aihong Lu;Rongzhen Feng;Wu Fang;Qiangguo Jin",
+      "id": "out-fb603b4dcde0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RetinaDA: a diverse dataset for domain adaptation in retinal vessel segmentation — Fei Guo;Shaojia Yang;Rui Ge;Wenjuan Li;Aihong Lu;Rongzhen Feng;Wu Fang;Qiangguo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4760,
+            "end_char": 4932
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态对比学习的肌少症诊断方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国;邹长江;陈昱斌;郭菲;郑江滨;苏苒;魏乐义",
+      "id": "out-e99f5139613c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态对比学习的肌少症诊断方法 — 金强国;邹长江;陈昱斌;郭菲;郑江滨;苏苒;魏乐义",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4937,
+            "end_char": 4988
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种迭代伪标签自适应复制粘贴的半监督肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国;贺祎苗;苏苒;郭菲;魏乐义;郑江滨",
+      "id": "out-077d97e02db3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种迭代伪标签自适应复制粘贴的半监督肿瘤分割方法 — 金强国;贺祎苗;苏苒;郭菲;魏乐义;郑江滨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5046
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AirWSeg: a comprehensive dataset collection for pulmonary airway segmentation in medical imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kexin Zhou;Linkuan Zhou;Fei Guo;Aihong Lu;Wu Fang;Qiangguo Jin",
+      "id": "out-32d969628e6b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AirWSeg: a comprehensive dataset collection for pulmonary airway segmentation in medical imaging — Kexin Zhou;Linkuan Zhou;Fei Guo;Aihong Lu;Wu Fang;Qiangguo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5052,
+            "end_char": 5219
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-modality Contrastive Learning for Sarcopenia Screening from Hip X-rays and Clinical Information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangguo Jin;Changjiang Zou;Hui Cui;Changming Sun;Shu-Wei Huang;Yi-Jie Kuo;Ping Xuan;Leilei Cao;Ran Su;Leyi Wei;Henry BL Duh;Yu-Pin Chen",
+      "id": "out-6c2931354313",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-modality Contrastive Learning for Sarcopenia Screening from Hip X-rays and Clinical Information — Qiangguo Jin;Changjiang Zou;Hui Cui;Changming Sun;Shu-Wei Huang;Yi-Jie Kuo;Ping Xuan;Leilei Cao;Ran Su;Leyi Wei;Henry BL Duh;Yu-Pin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5225,
+            "end_char": 5471
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于位置嵌入及距离学习在结石细粒度分析中的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国;黄佳鹏;吕岳勋;苏苒;魏乐义;郭菲",
+      "id": "out-668385afa8f4",
+      "evidence": [
+        {
+          "quote": "[专利] 基于位置嵌入及距离学习在结石细粒度分析中的方法 — 金强国;黄佳鹏;吕岳勋;苏苒;魏乐义;郭菲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5477,
+            "end_char": 5528
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale random walk driven adaptive graph neural network with dual-head neighboring node attention for CT segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Xuan;Xixi Wu;Hui Cui;Qiangguo Jin;Linlin Wang;Tiangang Zhang;Toshiya Nakaguchi;Henry B. L. Duh",
+      "id": "out-b2b67029e832",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale random walk driven adaptive graph neural network with dual-head neighboring node attention for CT segmentation — Ping Xuan;Xixi Wu;Hui Cui;Qiangguo Jin;Linlin Wang;Tiangang Zhang;Toshiya Nakaguchi;Henry B. L. Duh",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5534,
+            "end_char": 5764
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "计算智能驱动的疾病特征研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "苏苒;魏乐义;邹权;金强国",
+      "id": "out-20f579deea98",
+      "evidence": [
+        {
+          "quote": "[奖励] 计算智能驱动的疾病特征研究 — 苏苒;魏乐义;邹权;金强国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5770,
+            "end_char": 5803
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向复杂疾病的医学影像处理方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国;郭菲;方武",
+      "id": "out-c272b662b522",
+      "evidence": [
+        {
+          "quote": "[奖励] 面向复杂疾病的医学影像处理方法研究 — 金强国;郭菲;方武",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5809,
+            "end_char": 5842
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EccoMamba: Enhanced Cross-hierarchical Continuity Orthogonal Mamba for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junlin Xu;Jincan Li;Feifei Cui;Zhuang Zhang;Jialiang Yang;Shuting Jin;Qiangguo Jin;Yajie Meng",
+      "id": "out-f8b3fcae4290",
+      "evidence": [
+        {
+          "quote": "[会议论文] EccoMamba: Enhanced Cross-hierarchical Continuity Orthogonal Mamba for Medical Image Segmentation — Junlin Xu;Jincan Li;Feifei Cui;Zhuang Zhang;Jialiang Yang;Shuting Jin;Qiangguo Jin;Yajie Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5848,
+            "end_char": 6047
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Shape-aware contrastive deep supervision for esophageal tumor segmentation from CT scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangguo Jin;Hui Cui;Changming Sun;Jiapeng Huang;Ping Xuan;Yiyue Xu;Linlin Wang;Leilei Cao;Leyi Wei;Ran Su",
+      "id": "out-2d2acc1cd1b3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Shape-aware contrastive deep supervision for esophageal tumor segmentation from CT scans — Qiangguo Jin;Hui Cui;Changming Sun;Jiapeng Huang;Ping Xuan;Yiyue Xu;Linlin Wang;Leilei Cao;Leyi Wei;Ran Su",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6053,
+            "end_char": 6256
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ERSR: An Ellipse-constrained pseudo-label refinement and symmetric regularization framework for semi-supervised fetal head segmentation in ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linkuan Zhou;Zhexin Chen;Yufei Shen;Junlin Xu;Ping Xuan;Yixin Zhu;Yuqi Fang;Cong Cong;Leyi Wei;Ran Su;Jia Zhou;Qiangguo Jin",
+      "id": "out-6f208f400aa7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ERSR: An Ellipse-constrained pseudo-label refinement and symmetric regularization framework for semi-supervised fetal head segmentation in ultrasound images — Linkuan Zhou;Zhexin Chen;Yufei Shen;Junlin Xu;Ping Xuan;Yixin Zhu;Yuqi Fang;Cong Cong;Leyi Wei;Ran Su;Jia Zhou;Qiangguo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6262,
+            "end_char": 6550
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT扫描的食管肿瘤分割形状感知对比深度监督方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金强国;黄佳鹏;郭菲;苏苒;魏乐义;高利鹏",
+      "id": "out-81b127d64dca",
+      "evidence": [
+        {
+          "quote": "[专利] 基于CT扫描的食管肿瘤分割形状感知对比深度监督方法 — 金强国;黄佳鹏;郭菲;苏苒;魏乐义;高利鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6556,
+            "end_char": 6609
+          },
+          "version": "07775841cdcd53c90458"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

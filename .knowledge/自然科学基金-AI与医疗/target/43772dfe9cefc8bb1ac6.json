@@ -2,15 +2,20 @@
   "doc_id": "43772dfe9cefc8bb1ac6",
   "version": "19ebeae99bfb2dece55a",
   "source_hash": "6e0745b143175aa86b9cb141035ff43b5ca9098397d64b6011bc20a4b8dde88d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.172123+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:38:32.226226+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a648ecd8a998",
-          "name": "药物成瘾神经机制与影像标记研究",
-          "desc": "以多模态磁共振成像为手段，从微观到宏观解析药物成瘾神经机制并提取影像标记。",
+          "id": "item-d67e1fdf62ee",
+          "name": "药物成瘾神经机制与影像标记",
+          "desc": "慢性功能性脑疾病",
           "evidence": [
             {
               "quote": "药物成瘾是以戒断、复吸往复循环为特征的一种慢性功能性脑疾病",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a77908ea110",
-          "name": "成瘾脑结构与功能异常机理尚不明确",
-          "desc": "药物成瘾患者普遍存在脑功能连接和形态结构异常，但其潜在机理尚不明确，需从脑铁沉积与脱髓鞘等微观指标切入解释。",
+          "id": "item-2479751ebecc",
+          "name": "成瘾脑结构与功能连接异常机理不明",
+          "desc": "潜在机理尚不明确",
           "evidence": [
             {
               "quote": "在药物成瘾患者中普遍存在脑功能连接和形态结构异常，但其潜在机理尚不明确",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d3794ff42f48",
-          "name": "深度学习QSM重建与扩散微结构估计及多模态对齐",
-          "desc": "基于深度学习研究定量磁敏感成像精准重建以量化脑铁沉积，结合扩散成像与深度学习模型估计脑神经纤维微结构，并实现多模态信息对齐与多尺度影像标记提取。",
+          "id": "item-1e3c1381910f",
+          "name": "深度学习定量磁敏感成像重建与脑铁沉积估计",
+          "desc": "2种脑铁沉积估计模型",
           "evidence": [
             {
-              "quote": "研究定量磁敏感成像的精准重建方法，进而利用磁化率准确量化药物成瘾患者的脑铁沉积",
+              "quote": "本项目提出了2种脑铁沉积估计模型，建立了1套完整的脑微观结构估计方法体系，实现了多种多模态MRI图像分类方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 787,
-                "end_char": 825
+                "start_char": 3113,
+                "end_char": 3166
               },
               "version": "19ebeae99bfb2dece55a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7f0524430d37",
+          "name": "磁共振扩散成像脑神经纤维微结构估计",
+          "desc": "深度学习",
+          "evidence": [
+            {
+              "quote": "结合磁共振扩散成像与深度学习模型，研究脑神经纤维微结构估计算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2997,
+                "end_char": 3027
+              },
+              "version": "19ebeae99bfb2dece55a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dbf3e61c3fcb",
-          "name": "发现岛叶海马额中回平均扩散峰度可作成瘾标志物",
-          "desc": "提出2种脑铁沉积估计模型并建立完整的脑微观结构估计方法体系，发现岛叶、海马和额中回的平均扩散峰度变化可作为药物成瘾的微观结构标志物。",
+          "id": "item-a8137ab85e40",
+          "name": "微观结构标志物",
+          "desc": "岛叶、海马和额中回平均扩散峰度变化",
           "evidence": [
             {
               "quote": "研究发现岛叶、海马和额中回的平均扩散峰度变化可作为药物成瘾的微观结构标志物",
@@ -99,44 +122,581 @@
               "version": "19ebeae99bfb2dece55a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a648ecd8a998"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4a77908ea110"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive spatial and frequency experts fusion network for medical image fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianming Gu;Lihui Wang;Zeyu Deng;Ying Cao;Xingyu Huang;Yue-min Zhu",
+      "id": "out-8f0ff67480f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive spatial and frequency experts fusion network for medical image fusion — Xianming Gu;Lihui Wang;Zeyu Deng;Ying Cao;Xingyu Huang;Yue-min Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3365,
+            "end_char": 3518
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4a77908ea110"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d3794ff42f48"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于体素替换的自监督磁共振扩散加权图像去噪方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王丽会;吴林海;王双兴;吴运嘉;郑力诚;邓锐;胡超",
+      "id": "out-cdd1aa4ca381",
+      "evidence": [
+        {
+          "quote": "[专利] 基于体素替换的自监督磁共振扩散加权图像去噪方法 — 王丽会;吴林海;王双兴;吴运嘉;郑力诚;邓锐;胡超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3523,
+            "end_char": 3578
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d3794ff42f48"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dbf3e61c3fcb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Connecting macroscopic diffusion metrics of cardiac diffusion tensor imaging and microscopic myocardial structures based on simulation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lihui Wang;Yao Hong;Yong-Bin Qin;Xin-Yu Cheng;Feng Yang;Jie Yang;Yue-Min Zhu",
+      "id": "out-4ee36af1239a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Connecting macroscopic diffusion metrics of cardiac diffusion tensor imaging and microscopic myocardial structures based on simulation — Lihui Wang;Yao Hong;Yong-Bin Qin;Xin-Yu Cheng;Feng Yang;Jie Yang;Yue-Min Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3583,
+            "end_char": 3802
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于动态早停的DWI零样本超分辨率重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王丽会;吴运嘉;吴羽欣;张瑑;吴林海;吴鑫凯;邓锐",
+      "id": "out-494d59e71611",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于动态早停的DWI零样本超分辨率重建方法 — 王丽会;吴运嘉;吴羽欣;张瑑;吴林海;吴鑫凯;邓锐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3807,
+            "end_char": 3862
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GST: A Brain-Inspired Graph Signal Transmitter for Biomedical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Caiqing;Qin Yongbin;Wang Lihui;Xia Hui;Zhu Yuemin",
+      "id": "out-c2b05420d9dc",
+      "evidence": [
+        {
+          "quote": "[会议论文] GST: A Brain-Inspired Graph Signal Transmitter for Biomedical Image Segmentation — Jian Caiqing;Qin Yongbin;Wang Lihui;Xia Hui;Zhu Yuemin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 4010
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial Attention based Semantic Decouple Network for Breast Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wang;Lihui Wang;Qijian Chen;Feng Yang;Yuemin Zhu",
+      "id": "out-5c71eb5340f2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Spatial Attention based Semantic Decouple Network for Breast Tumor Segmentation — Li Wang;Lihui Wang;Qijian Chen;Feng Yang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4015,
+            "end_char": 4154
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learn Less, Infer More: Learning in the Fourier Domain for Quantitative Susceptibility Mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie He;Lihui Wang;Ying Cao;Rongpin Wang;Yuemin Zhu",
+      "id": "out-d899dbf00bbd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learn Less, Infer More: Learning in the Fourier Domain for Quantitative Susceptibility Mapping — Junjie He;Lihui Wang;Ying Cao;Rongpin Wang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4159,
+            "end_char": 4315
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A dual-flow neural network for medical image registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kun Tang;Lihui Wang;Xinyu Cheng;Hui Xia;Feng Yang;Yuemin Zhu",
+      "id": "out-02f16b3446a1",
+      "evidence": [
+        {
+          "quote": "[会议论文] A dual-flow neural network for medical image registration — Kun Tang;Lihui Wang;Xinyu Cheng;Hui Xia;Feng Yang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4320,
+            "end_char": 4446
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Replace2Self: Self-Supervised Denoising based on Voxel Replacing and Image Mixing for Diffusion MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linhai Wu;Lihui Wang;Zeyu Deng;Yuemin Zhu;Hongjiang Wei",
+      "id": "out-1262e94d89ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Replace2Self: Self-Supervised Denoising based on Voxel Replacing and Image Mixing for Diffusion MRI — Linhai Wu;Lihui Wang;Zeyu Deng;Yuemin Zhu;Hongjiang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4451,
+            "end_char": 4614
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning method with integrated invertible wavelet scattering for improving the quality of in vivo cardiac DTI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deng Zeyu;Wang Lihui;Kuai Zixiang;Chen Qijian;Ye Chen;Scott Andrew D.;Nielles-Vallespin Sonia;Zhu Yuemin",
+      "id": "out-45a233286edd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning method with integrated invertible wavelet scattering for improving the quality of in vivo cardiac DTI — Deng Zeyu;Wang Lihui;Kuai Zixiang;Chen Qijian;Ye Chen;Scott Andrew D.;Nielles-Vallespin Sonia;Zhu Yuemin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4620,
+            "end_char": 4848
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "msQSM: Morphology-based self-supervised deep learning for quantitative susceptibility mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Junjie;Peng Yunsong;Fu Bangkang;Zhu Yuemin;Wang Lihui;Wang Rongpin",
+      "id": "out-b105b5d3c2d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] msQSM: Morphology-based self-supervised deep learning for quantitative susceptibility mapping — He Junjie;Peng Yunsong;Fu Bangkang;Zhu Yuemin;Wang Lihui;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4854,
+            "end_char": 5025
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self‐supervised arbitrary‐scale super‐angular resolution diffusion MRI reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuangxing Wang;Lihui Wang;Ying Cao;Zeyu Deng;Chen Ye;Rongpin Wang;Yuemin Zhu;Hongjiang Wei",
+      "id": "out-1d4caa392d5b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self‐supervised arbitrary‐scale super‐angular resolution diffusion MRI reconstruction — Shuangxing Wang;Lihui Wang;Ying Cao;Zeyu Deng;Chen Ye;Rongpin Wang;Yuemin Zhu;Hongjiang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5031,
+            "end_char": 5216
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deformable registration framework for glioma images with absent correspondence based on auxiliary-image-aided intensity-consistency constraint",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Kun;Wang Lihui;Yang Menglong;Xu Jingwen;Cheng Xinyu;Zhang Jian;Zhu Yuemin;Wei Hongjiang",
+      "id": "out-cd74c5890765",
+      "evidence": [
+        {
+          "quote": "[会议论文] Deformable registration framework for glioma images with absent correspondence based on auxiliary-image-aided intensity-consistency constraint — Tang Kun;Wang Lihui;Yang Menglong;Xu Jingwen;Cheng Xinyu;Zhang Jian;Zhu Yuemin;Wei Hongjiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5222,
+            "end_char": 5465
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Glioma grade prediction using a cross-fusion network based on unsegmented multi-sequence magnetic resonance images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Qijian;Wang Lihui;Guo ShunChao;Xia Hui;Yang Feng;Zhu Yuemin",
+      "id": "out-8169beb5bda3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Glioma grade prediction using a cross-fusion network based on unsegmented multi-sequence magnetic resonance images — Chen Qijian;Wang Lihui;Guo ShunChao;Xia Hui;Yang Feng;Zhu Yuemin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5471,
+            "end_char": 5658
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accelerating multi-echo MRI in k-space with complex-valued diffusion probabilistic model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Cao;Lihui Wang;Jian Zhang;Hui Xia;Feng Yang;Yuemin Zhu",
+      "id": "out-4f28c93a64b0",
+      "evidence": [
+        {
+          "quote": "[会议论文] Accelerating multi-echo MRI in k-space with complex-valued diffusion probabilistic model — Ying Cao;Lihui Wang;Jian Zhang;Hui Xia;Feng Yang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5664,
+            "end_char": 5820
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive temporal information fusion network for in vivo cardiac DTI motion compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeyu Deng;Lihui Wang;Chen Ye;Ying Cao;Feng Yang;Yuemin Zhu",
+      "id": "out-f5fe54ef797e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Adaptive temporal information fusion network for in vivo cardiac DTI motion compensation — Zeyu Deng;Lihui Wang;Chen Ye;Ying Cao;Feng Yang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5826,
+            "end_char": 5981
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Objective Representation based Dynamic Prototype Learning for Unsupervised DCE-MRI Breast Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wang;Lihui Wang;Lei Tang;Zixiang Kuai;Jian Zhang;Hongjiang Wei",
+      "id": "out-2523786b5a21",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Objective Representation based Dynamic Prototype Learning for Unsupervised DCE-MRI Breast Tumor Segmentation — Li Wang;Lihui Wang;Lei Tang;Zixiang Kuai;Jian Zhang;Hongjiang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5987,
+            "end_char": 6175
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep wavelet scattering orthogonal fusion network for glioma IDH mutation status prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qijian Chen;Lihui Wang;Zhiyang Xing;Li Wang;Xubin Hu;Rongpin Wang;Yue-Min Zhu",
+      "id": "out-4f893d9bb118",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep wavelet scattering orthogonal fusion network for glioma IDH mutation status prediction — Qijian Chen;Lihui Wang;Zhiyang Xing;Li Wang;Xubin Hu;Rongpin Wang;Yue-Min Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6181,
+            "end_char": 6358
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于自监督学习的快速磁共振扩散成像重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王丽会;吴羽欣;余国珲;吴运嘉;王双兴;吴鑫凯",
+      "id": "out-a5d6476af828",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于自监督学习的快速磁共振扩散成像重建方法 — 王丽会;吴羽欣;余国珲;吴运嘉;王双兴;吴鑫凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6364,
+            "end_char": 6417
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cooperative multi-task learning and interpretable image biomarkers for glioma grading and molecular subtyping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qijian Chen;Lihui Wang;Zeyu Deng;Rongpin Wang;Li Wang;Caiqing Jian;Yuemin Zhu",
+      "id": "out-d7063fd90073",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cooperative multi-task learning and interpretable image biomarkers for glioma grading and molecular subtyping — Qijian Chen;Lihui Wang;Zeyu Deng;Rongpin Wang;Li Wang;Caiqing Jian;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6423,
+            "end_char": 6618
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Glioma segmentation based on dense contrastive learning and multimodal features recalibration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xubin Hu;Lihui Wang;Li Wang;Qijian Chen;Licheng Zheng;YueMin Zhu",
+      "id": "out-6e7ddbe46a2b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Glioma segmentation based on dense contrastive learning and multimodal features recalibration — Xubin Hu;Lihui Wang;Li Wang;Qijian Chen;Licheng Zheng;YueMin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6624,
+            "end_char": 6790
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于人工智能的fMRI分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王丽会;张瑑;郑力诚;吴运嘉;胡超;邓锐;吴鑫凯",
+      "id": "out-fc246193d59f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于人工智能的fMRI分类方法 — 王丽会;张瑑;郑力诚;吴运嘉;胡超;邓锐;吴鑫凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6796,
+            "end_char": 6844
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MD-SGT: Multi-dilation spherical graph transformer for unsupervised medical image registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kun Tang;Lihui Wang;Xingyu Huang;Xinyu Cheng;Yue-Min Zhu",
+      "id": "out-6047a43b8ffd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MD-SGT: Multi-dilation spherical graph transformer for unsupervised medical image registration — Kun Tang;Lihui Wang;Xingyu Huang;Xinyu Cheng;Yue-Min Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6850,
+            "end_char": 7009
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi‐supervised medical image segmentation based on dual swap data mixing and cross EMA strategies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Licheng Zheng;Lihui Wang;Yingfeng Ou;Li Wang;Caiqing Jian;Yuemin Zhu",
+      "id": "out-5adfb75667fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi‐supervised medical image segmentation based on dual swap data mixing and cross EMA strategies — Licheng Zheng;Lihui Wang;Yingfeng Ou;Li Wang;Caiqing Jian;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7015,
+            "end_char": 7190
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi‐Supervised Super‐Resolution of Diffusion‐Weighted Images Based on Multiple References",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haotian Guo;Lihui Wang;Yulong Gu;Jian Zhang;Yuemin Zhu",
+      "id": "out-9be74d16ca63",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi‐Supervised Super‐Resolution of Diffusion‐Weighted Images Based on Multiple References — Haotian Guo;Lihui Wang;Yulong Gu;Jian Zhang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7196,
+            "end_char": 7349
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self‐supervised Structural Similarity‐based Convolutional Neural Network for Cardiac Diffusion Tensor Image Denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nannan Yuan;Lihui Wang;Chen Ye;Zeyu Deng;Jian Zhang;Yuemin Zhu",
+      "id": "out-a1e69ee60d6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self‐supervised Structural Similarity‐based Convolutional Neural Network for Cardiac Diffusion Tensor Image Denoising — Nannan Yuan;Lihui Wang;Chen Ye;Zeyu Deng;Jian Zhang;Yuemin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7355,
+            "end_char": 7543
+          },
+          "version": "19ebeae99bfb2dece55a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

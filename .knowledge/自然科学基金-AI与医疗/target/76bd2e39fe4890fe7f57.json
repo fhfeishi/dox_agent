@@ -2,15 +2,20 @@
   "doc_id": "76bd2e39fe4890fe7f57",
   "version": "cd3a5467e9d5714703fb",
   "source_hash": "97df54f9c838910e653b7a26d5e6174698264122d545cec6597dbb560627d779",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.202871+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:45:44.340919+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66e193dc9e02",
-          "name": "大血管缺血性脑卒中患者选择",
-          "desc": "脑梗死是导致人类残疾的主要疾病之一，急性期可通过静脉溶栓及介入机械取栓恢复缺血区供血。",
+          "id": "item-0d62bce93229",
+          "name": "大血管缺血性脑卒中血管内治疗",
+          "desc": "机械取栓",
           "evidence": [
             {
-              "quote": "脑梗死是导致人类残疾的主要疾病之一，急性期可通过静脉溶栓及介入机械取栓两种疗法恢复缺血区供血",
+              "quote": "急性期可通过静脉溶栓及介入机械取栓两种疗法恢复缺血区供血",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 682,
+                "start_char": 700,
                 "end_char": 727
-              },
-              "version": "cd3a5467e9d5714703fb"
-            }
-          ]
-        },
-        {
-          "id": "item-dd00ff0c5470",
-          "name": "优化卒中绿色通道诊断流程",
-          "desc": "构建一站式脑梗死AI诊断平台可提高LVO诊断速度，对优化卒中绿色通道诊断流程有重要意义。",
-          "evidence": [
-            {
-              "quote": "对于优化卒中绿色通道的诊断流程有着重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3552,
-                "end_char": 3572
               },
               "version": "cd3a5467e9d5714703fb"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-04b87957c815",
-          "name": "缺乏共识且无研究可准确预测预后",
-          "desc": "目前对于如何选择脑梗死患者进行血管再通治疗的最佳方法还没达成共识，且尚无研究可准确预测患者预后。",
+          "id": "item-c2ff009feea0",
+          "name": "缺乏选择再通治疗患者的共识与准确预后预测",
+          "desc": "LVO",
           "evidence": [
             {
-              "quote": "但目前对于如何选择脑梗死患者进行血管再通治疗的最佳方法还没达成共识，且尚无研究可准确预测患者的预后",
+              "quote": "目前对于如何选择脑梗死患者进行血管再通治疗的最佳方法还没达成共识，且尚无研究可准确预测患者的预后",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 729,
+                "start_char": 730,
                 "end_char": 777
-              },
-              "version": "cd3a5467e9d5714703fb"
-            }
-          ]
-        },
-        {
-          "id": "item-48a5c96bd60d",
-          "name": "动物模型迁移到人类数据尚无研究",
-          "desc": "动物影像数据多样性可增加模型普适性，但从未有研究将动物影像数据建立的模型迁移学习到人类数据。",
-          "evidence": [
-            {
-              "quote": "脑梗死动物模型的构建可人为控制变量，且动物数据的多样性可增加深度学习网络模型的普适性，但从未有研究将动物影像数据建立的模型迁移学习到人类数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 825,
-                "end_char": 894
               },
               "version": "cd3a5467e9d5714703fb"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e02c8aef9770",
-          "name": "动物到人的迁移学习框架",
-          "desc": "以兔的大血管缺血性脑卒中影像数据为基础，开发适用于将动物数据建立模型迁移学习到人类数据的深度神经网络框架。",
-          "evidence": [
-            {
-              "quote": "本研究提出以兔的大血管缺血性脑卒中影像数据为基础，开发一种适用于将动物数据建立的模型迁移学习到人类数据的深度神经网络框架，输入原始CT灌注图像对脑组织供血程度进行准确分割",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 896,
-                "end_char": 980
-              },
-              "version": "cd3a5467e9d5714703fb"
-            }
-          ]
-        },
-        {
-          "id": "item-5592553663b9",
-          "name": "LVO诊断预后与SICH预测模型",
-          "desc": "利用多机构LVO患者CTA影像和临床数据构建LVO诊断、预后预测及症状性颅内出血预测模型。",
+          "id": "item-f00e34721588",
+          "name": "LVO诊断、预后预测与SICH预测模型",
+          "desc": "基于CTA影像和临床数据",
           "evidence": [
             {
               "quote": "利用多机构大血管缺血性脑梗死（LVO）患者的CTA影像和临床数据构建LVO诊断、预后预测以及症状性颅内出血（SICH）预测模型",
@@ -124,18 +81,13 @@
               },
               "version": "cd3a5467e9d5714703fb"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-0ff91ca2b1e3",
-          "name": "搭建一站式AI脑梗死诊疗平台DIANA",
-          "desc": "搭建端对端一站式人工智能脑梗死诊疗辅助平台DIANA，与医院PACS系统连通并对比传统LVO诊断流程速度。",
+          "id": "item-a3264f3790a0",
+          "name": "DIANA一站式人工智能脑梗死诊疗辅助平台",
+          "desc": "与PACS系统连通",
           "evidence": [
             {
               "quote": "搭建了一个“端对端”一站式人工智能脑梗死诊疗辅助平台DIANA，该平台与医院PACS系统连通",
@@ -147,12 +99,18 @@
               "version": "cd3a5467e9d5714703fb"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-039a148859fd",
-          "name": "AI提高LVO诊断速度",
-          "desc": "构建一站式脑梗死AI LVO诊断平台可提高LVO诊断速度，助于临床医生短时间内科学选择最有益的临床决策。",
+          "id": "item-936da76342aa",
+          "name": "一站式LVO诊断平台提高诊断速度",
+          "desc": "优化卒中绿色通道",
           "evidence": [
             {
               "quote": "构建一站式脑梗死人工智能LVO诊断平台可提高了LVO的诊断速度",
@@ -164,72 +122,181 @@
               "version": "cd3a5467e9d5714703fb"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-68b2b2234b13",
-          "name": "一站式LVO管理平台论文",
-          "desc": "发表端到端人工智能平台管理大血管闭塞的初步研究。",
-          "evidence": [
-            {
-              "quote": "End-to-end artificial intelligence platform for the management of large vessel occlusions: A preliminary study",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4308,
-                "end_char": 4417
-              },
-              "version": "cd3a5467e9d5714703fb"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-66e193dc9e02"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-04b87957c815"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "难治性癫痫发病机制与诊疗新技术临床转化研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖波;龙莉莉;冯莉;杨利;曾令李;龙泓羽;胡德文;刘鼎;周昊;肖文彪",
+      "id": "out-d728c1bc408c",
+      "evidence": [
+        {
+          "quote": "[奖励] 难治性癫痫发病机制与诊疗新技术临床转化研究 — 肖波;龙莉莉;冯莉;杨利;曾令李;龙泓羽;胡德文;刘鼎;周昊;肖文彪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3591,
+            "end_char": 3653
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-04b87957c815"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5592553663b9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于肺部CT影像和临床信息的医疗资源分配方法及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨利;孟舒娟;白皛;吴静;唐磊",
+      "id": "out-ca7fa917d4ce",
+      "evidence": [
+        {
+          "quote": "[专利] 基于肺部CT影像和临床信息的医疗资源分配方法及设备 — 杨利;孟舒娟;白皛;吴静;唐磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3658,
+            "end_char": 3705
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5592553663b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0ff91ca2b1e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of RAPNO criteria in medulloblastoma and other leptomeningeal seeding tumors using MRI and clinical data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Peng;Hao Zhou;Oliver Tang;Ken Chang;Panpan Wang;Xiaowei Zeng;Qin Shen;Jing Wu;Yanhe Xiao;Sohil H Patel;Chongyu Hu;Ke Jin;Bo Xiao;Jerrold Boxerman;Xiaoping Gao;Patrick Y Wen;Harrison X Bai;Raymond Y Huang;Li Yang",
+      "id": "out-4dd8565878d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of RAPNO criteria in medulloblastoma and other leptomeningeal seeding tumors using MRI and clinical data — Jian Peng;Hao Zhou;Oliver Tang;Ken Chang;Panpan Wang;Xiaowei Zeng;Qin Shen;Jing Wu;Yanhe Xiao;Sohil H Patel;Chongyu Hu;Ke Jin;Bo Xiao;Jerrold Boxerman;Xiaoping Gao;Patrick Y Wen;Harrison X Bai;Raymond Y Huang;Li Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3710,
+            "end_char": 4050
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e02c8aef9770"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-039a148859fd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Case of Anti-GAD 65 Autoimmune Encephalitis Associated with Focal Segmental Stiff-Person Syndrome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Zhang;Yuwei Dai;Binhong Han;Jian Peng;Jie Ma;Qi Tang;Li Yang",
+      "id": "out-a470b2734d40",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Case of Anti-GAD 65 Autoimmune Encephalitis Associated with Focal Segmental Stiff-Person Syndrome — Chen Zhang;Yuwei Dai;Binhong Han;Jian Peng;Jie Ma;Qi Tang;Li Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4055,
+            "end_char": 4228
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于人工智能影像的重大疾病诊疗新体系创建及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "廖伟华;杨 利;刘 锦;易小平;周 昊;胡 蓉;王建新;熊 曾",
+      "id": "out-a80532828b44",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于人工智能影像的重大疾病诊疗新体系创建及临床应用 — 廖伟华;杨 利;刘 锦;易小平;周 昊;胡 蓉;王建新;熊 曾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4233,
+            "end_char": 4296
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "End-to-end artificial intelligence platform for the management of large vessel occlusions: A preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shujuan Meng;Thi My Linh Tran;Mingzhe Hu;PanPan Wang;Thomas Yi;Luoyun Wang;Braden Vogt;Zhicheng Jiao;Arko Barman;Ugur Cetintemel;Ken Chang;Ferdinand K. Hui;Ian Pan;Bo Xiao;Li Yang;Hao Zhou;Harrison X. Bai",
+      "id": "out-16f728db110d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] End-to-end artificial intelligence platform for the management of large vessel occlusions: A preliminary study — Shujuan Meng;Thi My Linh Tran;Mingzhe Hu;PanPan Wang;Thomas Yi;Luoyun Wang;Braden Vogt;Zhicheng Jiao;Arko Barman;Ugur Cetintemel;Ken Chang;Ferdinand K. Hui;Ian Pan;Bo Xiao;Li Yang;Hao Zhou;Harrison X. Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4301,
+            "end_char": 4624
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based automatic tumor burden  assessment of pediatric high-grade gliomas,  medulloblastomas, and other leptomeningeal seeding  tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-1b391c70e1f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based automatic tumor burden  assessment of pediatric high-grade gliomas,  medulloblastomas, and other leptomeningeal seeding  tumors — Jian Peng;Daniel D. Kim;Jay B. Patel;Xiaowei Zeng;Jiaer Huang;Ken Chang;Xinping Xun;Chen Zhang;John Sollee;Jing Wu;Deepa J. Dalal;Xue Feng;Hao Zhou;Chengzhang Zhu;Beiji Zou;Ke Jin;Patrick Y. Wen;Jerrold L. Boxerman;Katherine E. Warren;Tina Y. Poussaint;Lisa J. States;Jayashree Kalpathy-Cramer;Li Yang;Raymond Y. Huang;Harrison X. Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4629,
+            "end_char": 5119
+          },
+          "version": "cd3a5467e9d5714703fb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "2486956ca38af58744c3",
   "version": "d6f32b6ee827116e7518",
   "source_hash": "72b98efa12f440fead0f022974987bf0f95239237a03db5ffa557e0fe4affd5e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.641964+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:32:41.426120+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-6c029f9817fb",
           "name": "海洛因成瘾复吸预测",
-          "desc": "面向海洛因成瘾这一慢性复发性脑疾病，利用影像组学预测强戒后的复吸风险。",
+          "desc": "慢性复发性脑疾病",
           "evidence": [
             {
-              "quote": "海洛因成瘾为慢性复发性脑疾病，已成为重大社会问题，临床表现核心特征为复吸率高，高达90%",
+              "quote": "海洛因成瘾为慢性复发性脑疾病，临床表现核心特征为复吸率高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 641,
-                "end_char": 684
+                "start_char": 2556,
+                "end_char": 2583
               },
               "version": "d6f32b6ee827116e7518"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-26f5afca4f90",
-          "name": "复吸机制不明且缺乏预测手段",
-          "desc": "海洛因成瘾复吸率高达90%，其潜在神经机制亟待深入研究，临床上缺乏有效的复吸预测手段。",
+          "id": "item-9fbd21950e6f",
+          "name": "神经机制仍不明确",
+          "desc": "复吸机制",
           "evidence": [
             {
-              "quote": "其潜在机制亟待深入研究，影像组学为复吸预测提供新思路",
+              "quote": "其潜在机制神经机制仍不明确",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 711
+                "start_char": 2585,
+                "end_char": 2597
               },
               "version": "d6f32b6ee827116e7518"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-84ab94fe6120",
-          "name": "多模态MRI影像组学与连接度组学复吸预测模型",
-          "desc": "对强戒患者多时点纵向跟踪，融合多模态磁共振影像构建基于全脑体素的预测模型，并借助连接度组学与高分辨率图谱在大尺度脑网络水平挖掘复吸相关神经影像靶点。",
+          "id": "item-df5c575e1de3",
+          "name": "连接度组学机器学习复吸风险预测",
+          "desc": "基线fMRI个体化预测",
           "evidence": [
             {
-              "quote": "进一步借助连接度组学的研究方法，采用高空间分辨率的图谱，在大尺度复杂脑网络水平上，更加精确地挖掘出与海洛因依赖复吸行为密切相关的神经影像学靶点",
+              "quote": "进一步采用基于连接度组学的机器学习方法通过海洛因成瘾患者基线时间点的fMRI数据对强戒后的复吸风险性进行个体化预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 929
+                "start_char": 2794,
+                "end_char": 2850
               },
               "version": "d6f32b6ee827116e7518"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6c1cdcaedcd4",
+          "name": "sMRI、BOLD与DTI多模态成像",
+          "desc": "纹状体-额叶环路标志物",
+          "evidence": [
+            {
+              "quote": "采用T1 sMRI、BOLD和DTI技术揭示了与冲动相关的纹状体-额叶环路的功能连接与结构连接的MRI脑影像标志物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2668,
+                "end_char": 2724
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,373 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a1f396143dd9",
-          "name": "CPM模型可个体化预测强戒后复吸风险",
-          "desc": "CPM模型有望基于基线fMRI数据预测强戒后个体复吸风险，识别高风险人群并筛选强戒疗效不佳者。",
+          "id": "item-6e5370187784",
+          "name": "研究被试",
+          "desc": "108名成瘾被试，51名健康被试",
           "evidence": [
             {
-              "quote": "CPM模型有望预测海洛因成瘾患者强戒后个体复吸风险情况，以识别戒断后复吸可能性大的高风险人群",
+              "quote": "本研究纳入108名海洛因成瘾被试，51名健康被试",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3165
+                "start_char": 2599,
+                "end_char": 2622
               },
               "version": "d6f32b6ee827116e7518"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-fe7eb79a3a5c",
+          "name": "核心脑区调节机制",
+          "desc": "前额叶、脑岛亚区和纹状体",
+          "evidence": [
+            {
+              "quote": "明确了戒断过程中前额叶、脑岛亚区和纹状体等核心脑区对渴求与认知两大临床特征的调节机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2726,
+                "end_char": 2767
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5249b5eac601",
+          "name": "CPM复吸风险预测",
+          "desc": "有望预测个体复吸风险",
+          "evidence": [
+            {
+              "quote": "CPM模型有望预测海洛因成瘾患者强戒后个体复吸风险情况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3146
+              },
+              "version": "d6f32b6ee827116e7518"
+            }
+          ],
+          "status": "预期",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6c029f9817fb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-26f5afca4f90"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Potential brain recovery of frontostriatal circuits in heroin users after prolonged abstinence: A preliminary study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ling Lu;Wenhan Yang;Xiaozi Zhang;Fei Tang;Yanyao Du;Li Fan;Jing Luo;Cui Yan;Jun Zhang;Jun Li;Jixin Liu;Karen M von Deneen;Dahua Yu;Jun Liu;Kai Yuan",
+      "id": "out-2c5c1d20c108",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Potential brain recovery of frontostriatal circuits in heroin users after prolonged abstinence: A preliminary study. — Ling Lu;Wenhan Yang;Xiaozi Zhang;Fei Tang;Yanyao Du;Li Fan;Jing Luo;Cui Yan;Jun Zhang;Jun Li;Jixin Liu;Karen M von Deneen;Dahua Yu;Jun Liu;Kai Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3321,
+            "end_char": 3593
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-26f5afca4f90"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-84ab94fe6120"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decreased Relative Cerebral Blood Flow in Unmedicated Heroin-Dependent Individuals",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhan Yang;Ru Yang;Fei Tang;Jing Luo;Jun Zhang;Changlong Chen;Chunmei Duan;Yuan Deng;Lidan Fan;Jun Liu",
+      "id": "out-1e7fbf07bb7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decreased Relative Cerebral Blood Flow in Unmedicated Heroin-Dependent Individuals — Wenhan Yang;Ru Yang;Fei Tang;Jing Luo;Jun Zhang;Changlong Chen;Chunmei Duan;Yuan Deng;Lidan Fan;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3598,
+            "end_char": 3792
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-84ab94fe6120"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a1f396143dd9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evidence for Dopamine Abnormalities Following Acute Methamphetamine Exposure Assessed by Neuromelanin-Sensitive Magnetic Resonance Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Tang;Hui Liu;Xiao Jie Zhang;Hui Hui Zheng;Yong Ming Dai;Li Yun Zheng;Wen Han Yang;Yan Yao Du;Jun Liu",
+      "id": "out-215a0befe0d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evidence for Dopamine Abnormalities Following Acute Methamphetamine Exposure Assessed by Neuromelanin-Sensitive Magnetic Resonance Imaging — Fei Tang;Hui Liu;Xiao Jie Zhang;Hui Hui Zheng;Yong Ming Dai;Li Yun Zheng;Wen Han Yang;Yan Yao Du;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3797,
+            "end_char": 4048
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Increased Amplitude of Low-Frequency Fluctuation in Right Angular Gyrus and Left Superior Occipital Gyrus Negatively Correlated With Heroin Use",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Luo;Ru Yang;Wenhan Yang;Chunmei Duan;Yuan Deng;Jun Zhang;Jiyuan Chen;Jun Liu",
+      "id": "out-13daa736b2da",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Increased Amplitude of Low-Frequency Fluctuation in Right Angular Gyrus and Left Superior Occipital Gyrus Negatively Correlated With Heroin Use — Jing Luo;Ru Yang;Wenhan Yang;Chunmei Duan;Yuan Deng;Jun Zhang;Jiyuan Chen;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4053,
+            "end_char": 4286
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "White Matter Abnormalities Based on TBSS and Its Correlation With Impulsivity Behavior of Methamphetamine Addicts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sihong Huang;Wenhan Yang;Jing Luo;Cui Yan;Jun Liu",
+      "id": "out-e79b57efcbe7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] White Matter Abnormalities Based on TBSS and Its Correlation With Impulsivity Behavior of Methamphetamine Addicts — Sihong Huang;Wenhan Yang;Jing Luo;Cui Yan;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4291,
+            "end_char": 4462
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reduced thalamic resting-state functional connectivity and impaired cognition in acute abstinent heroin users",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Min;Liu Shuang;Wang Shicong;Xu Yan;Chen Longmao;Shao Ziqiang;Wen Xinwen;Yang Wenhan;Liu Jun;Yuan Kai",
+      "id": "out-002956a51e00",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reduced thalamic resting-state functional connectivity and impaired cognition in acute abstinent heroin users — Zhang Min;Liu Shuang;Wang Shicong;Xu Yan;Chen Longmao;Shao Ziqiang;Wen Xinwen;Yang Wenhan;Liu Jun;Yuan Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4467,
+            "end_char": 4691
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Partial recovery of the left DLPFC-right insula circuit with reduced craving in abstinent heroin users: a longitudinal study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shan Zhang;Wenhan Yang;Minpeng Li;Shicong Wang;Jun Zhang;Jun Liu;Kai Yuan",
+      "id": "out-a917629e47dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Partial recovery of the left DLPFC-right insula circuit with reduced craving in abstinent heroin users: a longitudinal study — Shan Zhang;Wenhan Yang;Minpeng Li;Shicong Wang;Jun Zhang;Jun Liu;Kai Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4696,
+            "end_char": 4902
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal resting-state functional connectivity changes in the insular subdivisions of abstinent opioid use disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhan Yang;Shicong Wang;Jing Luo;Cui Yan;Fei Tang;Yanyao Du;Li Fan;Min Zhang;Jun Zhang;Kai Yuan;Jun Liu",
+      "id": "out-3c2150297e9e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal resting-state functional connectivity changes in the insular subdivisions of abstinent opioid use disorder — Wenhan Yang;Shicong Wang;Jing Luo;Cui Yan;Fei Tang;Yanyao Du;Li Fan;Min Zhang;Jun Zhang;Kai Yuan;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4907,
+            "end_char": 5139
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impulsivity in heroin-dependent individuals: structural and functional abnormalities within frontostriatal circuits",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Shicong;Zhang Min;Liu Shuang;Xu Yan;Shao Ziqiang;Chen Longmao;Li Jun;Yang Wenhan;Liu Jun;Yuan Kai",
+      "id": "out-539436f3be8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impulsivity in heroin-dependent individuals: structural and functional abnormalities within frontostriatal circuits — Wang Shicong;Zhang Min;Liu Shuang;Xu Yan;Shao Ziqiang;Chen Longmao;Li Jun;Yang Wenhan;Liu Jun;Yuan Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5144,
+            "end_char": 5370
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reduced midbrain functional connectivity and recovery in abstinent heroin users",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Yan;Wang Shicong;Chen Longmao;Shao Ziqiang;Zhang Min;Liu Shuang;Wen Xinwen;Li Yangding;Yang Wenhan;Tang Fei;Luo Jing;Fan Li;Yan Cui;Liu Jun;Yuan Kai",
+      "id": "out-8d0716c1c8f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reduced midbrain functional connectivity and recovery in abstinent heroin users — Xu Yan;Wang Shicong;Chen Longmao;Shao Ziqiang;Zhang Min;Liu Shuang;Wen Xinwen;Li Yangding;Yang Wenhan;Tang Fei;Luo Jing;Fan Li;Yan Cui;Liu Jun;Yuan Kai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5376,
+            "end_char": 5615
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "戒断甲基苯丙胺成瘾患者大脑功能MRI低频振荡振幅研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "侯凤;杨茹;张志学;何磊;鄢翠;刘军",
+      "id": "out-0b7242f7b97c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 戒断甲基苯丙胺成瘾患者大脑功能MRI低频振荡振幅研究 — 侯凤;杨茹;张志学;何磊;鄢翠;刘军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5621,
+            "end_char": 5674
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Treatment Response Prediction and Individualized Identification of Short-Term Abstinence Methamphetamine Dependence Using Brain Graph Metrics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Cui;Yang Xuefei;Yang Ru;Yang Wenhan;Luo Jing;Tang Fei;Huang Sihong;Liu Jun",
+      "id": "out-13853fd2ce71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Treatment Response Prediction and Individualized Identification of Short-Term Abstinence Methamphetamine Dependence Using Brain Graph Metrics — Yan Cui;Yang Xuefei;Yang Ru;Yang Wenhan;Luo Jing;Tang Fei;Huang Sihong;Liu Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5680,
+            "end_char": 5908
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recovery of superior frontal gyrus cortical thickness and  resting-state functional connectivity in abstinent heroin  users after 8 months of follow-up",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Wenhan;Zhang Min;Tang Fei;Du Yanyao;Fan Li;Luo Jing;Yan Cui;Wang Shicong;Zhang Jun;Yuan Kai;Liu Jun",
+      "id": "out-dd6ca610dede",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recovery of superior frontal gyrus cortical thickness and  resting-state functional connectivity in abstinent heroin  users after 8 months of follow-up — Yang Wenhan;Zhang Min;Tang Fei;Du Yanyao;Fan Li;Luo Jing;Yan Cui;Wang Shicong;Zhang Jun;Yuan Kai;Liu Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5914,
+            "end_char": 6178
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The genetic susceptibility analysis of TAAR1 rs8192620 to methamphetamine and heroin abuse and its role in impulsivity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Tang;Longtao Yang;Wenhan Yang;Cong Li;Jun Zhang;Jun Liu",
+      "id": "out-64b2bbeb5217",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The genetic susceptibility analysis of TAAR1 rs8192620 to methamphetamine and heroin abuse and its role in impulsivity — Fei Tang;Longtao Yang;Wenhan Yang;Cong Li;Jun Zhang;Jun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6184,
+            "end_char": 6370
+          },
+          "version": "d6f32b6ee827116e7518"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      }
+    },
+    "consistent": true
+  }
 }

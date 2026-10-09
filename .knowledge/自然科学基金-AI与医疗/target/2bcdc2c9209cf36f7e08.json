@@ -2,15 +2,20 @@
   "doc_id": "2bcdc2c9209cf36f7e08",
   "version": "6db9f54ab8ddce3abc6a",
   "source_hash": "28417c8e70ddf34e023aab335a1ea7e9b0ab201bedd00cee57afa743923391aa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.753491+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:44.808342+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-91739cb34c02",
-          "name": "帕金森病脑退变模式研究与辅助诊断",
-          "desc": "面向帕金森病高临床异质性与复杂疾病进展，研究脑退变规律并构建智能辅助诊断与病情监测平台。",
+          "id": "item-939c0fe1328e",
+          "name": "帕金森病脑退变模式研究",
+          "desc": "大脑退变漫长，损伤与代偿并存",
           "evidence": [
             {
-              "quote": "多模态磁共振成像能够从多角度揭示PD脑内结构、功能及代谢异常",
+              "quote": "PD 患者大脑退变过程漫长，脑内损伤与代偿作用相伴",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 771,
-                "end_char": 800
+                "start_char": 2405,
+                "end_char": 2429
               },
               "version": "6db9f54ab8ddce3abc6a"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-52d67fe525ff",
-          "name": "小样本单一模态研究难以解释PD脑退变模式",
-          "desc": "以往研究多在小样本中针对单一模态或特定脑区环路开展，不能全面解释PD发展过程中的复杂脑退变模式，也难以揭示临床异质性的脑机制。",
+          "id": "item-50a02b57c96d",
+          "name": "PD临床异质性高、进展复杂",
+          "desc": "脑退变规律不清",
           "evidence": [
             {
-              "quote": "而以往研究大多是在小样本中、针对某单一模态或特定脑区/环路进行，不能全面解释PD发展过程中复杂的脑退变模式",
+              "quote": "造成PD的高临床异质性和复杂多变的疾病进展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 802,
-                "end_char": 854
+                "start_char": 709,
+                "end_char": 729
               },
               "version": "6db9f54ab8ddce3abc6a"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2d446992cf78",
-          "name": "影像组学与机器学习融合多模态脑影像分析",
-          "desc": "应用影像组学与机器学习等方法，融合多维度多模态临床与影像数据探讨PD大脑退变规律，并构建智能辅助诊断与病情监测平台。",
-          "evidence": [
-            {
-              "quote": "应用影像组学、机器学习等前沿的数理方法，融合多维度、多模态的临床和影像数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 905,
-                "end_char": 941
-              },
-              "version": "6db9f54ab8ddce3abc6a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3df958c5942d",
-          "name": "初步建成具泛化能力的PD机器学习诊断模型",
-          "desc": "在已构建的PD多模态MR数据库中揭示不同临床状态下的脑内退变模式并获取海量影像组学特征，将关键特征在新纳入人群中验证，初步建成具有一定泛化能力的机器学习诊断模型。",
+          "id": "item-5e6a957eafba",
+          "name": "多模态MR影像组学机器学习诊断模型",
+          "desc": "在新纳入人群验证关键脑影像组学特征",
           "evidence": [
             {
               "quote": "将关键脑影像组学特征在新纳入的 PD 人群中进行验证，初步建成具有一定泛化能力的机器学习诊断模型",
@@ -99,44 +82,323 @@
               "version": "6db9f54ab8ddce3abc6a"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-17d4cbd1942f",
+          "name": "PD不同临床状态脑内退变模式",
+          "desc": "获取海量影像组学脑部特征",
+          "evidence": [
+            {
+              "quote": "揭示了 PD 不同临床状态下的脑内退变模式、相关生化遗传基础，获取海量影像组学脑部特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2559,
+                "end_char": 2601
+              },
+              "version": "6db9f54ab8ddce3abc6a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-91739cb34c02"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-52d67fe525ff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Progressive microstructural alterations in subcortical nuclei in Parkinson’s disease: a diffusion magnetic resonance imaging study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueqin Bai;Cheng Zhou;Tao Guo;Xiaojun Guan;Jingjing Wu;Xiaocao Liu;Ting Gao;Luyan Gu;Min Xuan;Quanquan Gu;Peiyu Huang;Zhe Song;Yaping Yan;Jiali Pu;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+      "id": "out-12be99ee8323",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Progressive microstructural alterations in subcortical nuclei in Parkinson’s disease: a diffusion magnetic resonance imaging study — Xueqin Bai;Cheng Zhou;Tao Guo;Xiaojun Guan;Jingjing Wu;Xiaocao Liu;Ting Gao;Luyan Gu;Min Xuan;Quanquan Gu;Peiyu Huang;Zhe Song;Yaping Yan;Jiali Pu;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2753,
+            "end_char": 3077
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-52d67fe525ff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2d446992cf78"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying a whole‐brain connectome‐based model in drug‐naïve Parkinson's disease for predicting motor impairment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoting Wu;Cheng Zhou;Xueqin Bai;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Tao Guo;Jingjing Wu;Xiaojun Guan;Ting Gao;Luyan Gu;Peiyu Huang;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+      "id": "out-87eadea4d5de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying a whole‐brain connectome‐based model in drug‐naïve Parkinson's disease for predicting motor impairment — Haoting Wu;Cheng Zhou;Xueqin Bai;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Tao Guo;Jingjing Wu;Xiaojun Guan;Ting Gao;Luyan Gu;Peiyu Huang;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3082,
+            "end_char": 3374
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2d446992cf78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3df958c5942d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effect of the PARK16 rs11240572 variant on brain structure in Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Lu-yan;Dai Shao-bing;Zhou Cheng;Gao Ting;Wu Jing-jing;Fang Yi;Guan Xiao-jun;Guo Tao;Zheng Ran;Jin Chongyao;Xu Xiao-jun;Song Zhe;Tian Jun;Yin Xinzhen;Zhang Min-min;Zhang Bao-rong;Yan Yaping;Pu Jiali",
+      "id": "out-625e47e27e13",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effect of the PARK16 rs11240572 variant on brain structure in Parkinson's disease — Gu Lu-yan;Dai Shao-bing;Zhou Cheng;Gao Ting;Wu Jing-jing;Fang Yi;Guan Xiao-jun;Guo Tao;Zheng Ran;Jin Chongyao;Xu Xiao-jun;Song Zhe;Tian Jun;Yin Xinzhen;Zhang Min-min;Zhang Bao-rong;Yan Yaping;Pu Jiali",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3379,
+            "end_char": 3673
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Serum Ceruloplasmin Depletion is Associated With Magnetic Resonance Evidence of Widespread Accumulation of Brain Iron in Parkinson's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan Xiaojun;Bai Xueqin;Zhou Cheng;Guo Tao;Wu Jingjing;Gu Luyan;Gao Ting;Wang Xuchu;Wei Hongjiang;Zhang Yuyao;Xuan Min;Gu Quanquan;Huang Peiyu;Liu Chunlei;Zhang Baorong;Pu Jiali;Song Zhe;Yan Yaping;Xu Xiaojun;Zhang Minming",
+      "id": "out-4632f4d38534",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Serum Ceruloplasmin Depletion is Associated With Magnetic Resonance Evidence of Widespread Accumulation of Brain Iron in Parkinson's Disease — Guan Xiaojun;Bai Xueqin;Zhou Cheng;Guo Tao;Wu Jingjing;Gu Luyan;Gao Ting;Wang Xuchu;Wei Hongjiang;Zhang Yuyao;Xuan Min;Gu Quanquan;Huang Peiyu;Liu Chunlei;Zhang Baorong;Pu Jiali;Song Zhe;Yan Yaping;Xu Xiaojun;Zhang Minming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3678,
+            "end_char": 4049
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gray and white matter alterations in different predominant side and type of motor symptom in Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingwen Chen;Xianchen Jiang;Jingjing Wu;Haoting Wu;Cheng Zhou;Tao Guo;Xueqin Bai;Xiaocao Liu;Jiaqi Wen;Zhengye Cao;Luyan Gu;Wenyi Yang;Jiali Pu;Xiaojun Guan;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+      "id": "out-474cdd6a1a3b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gray and white matter alterations in different predominant side and type of motor symptom in Parkinson's disease — Jingwen Chen;Xianchen Jiang;Jingjing Wu;Haoting Wu;Cheng Zhou;Tao Guo;Xueqin Bai;Xiaocao Liu;Jiaqi Wen;Zhengye Cao;Luyan Gu;Wenyi Yang;Jiali Pu;Xiaojun Guan;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4054,
+            "end_char": 4370
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Locus Coeruleus Degeneration Correlated with Levodopa Resistance in Parkinson’s Disease: A Retrospective Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Zhou;Tao Guo;JingJing Wu;Linbo Wang;Xueqin Bai;Ting Gao;Xiaojun Guan;Luyan Gu;Peiyu Huang;Min Xuan;Quanquan Gu;Xiaojun Xu;Baorong Zhang;Wei Cheng;Jianfeng Feng;Minming Zhang",
+      "id": "out-3928f5435cca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Locus Coeruleus Degeneration Correlated with Levodopa Resistance in Parkinson’s Disease: A Retrospective Analysis — Cheng Zhou;Tao Guo;JingJing Wu;Linbo Wang;Xueqin Bai;Ting Gao;Xiaojun Guan;Luyan Gu;Peiyu Huang;Min Xuan;Quanquan Gu;Xiaojun Xu;Baorong Zhang;Wei Cheng;Jianfeng Feng;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4676
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Microstructural but not macrostructural cortical degeneration occurs in Parkinson’s disease with mild cognitive impairment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueqin Bai;Tao Guo;Jingwen Chen;Xiaojun Guan;Cheng Zhou;Jingjing Wu;Xiaocao Liu;Haoting Wu;Jiaqi Wen;Luyan Gu;Ting Gao;Min Xuan;Peiyu Huang;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+      "id": "out-c3718d041b07",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Microstructural but not macrostructural cortical degeneration occurs in Parkinson’s disease with mild cognitive impairment — Xueqin Bai;Tao Guo;Jingwen Chen;Xiaojun Guan;Cheng Zhou;Jingjing Wu;Xiaocao Liu;Haoting Wu;Jiaqi Wen;Luyan Gu;Ting Gao;Min Xuan;Peiyu Huang;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4681,
+            "end_char": 4990
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cholinergic basal forebrain system degeneration underlies postural instability/gait difficulty and attention impairment in Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenqing Wu;Haoting Wu;Cheng Zhou;Xiaojun Guan;Tao Guo;Zhengye Cao;Jingjing Wu;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Jianmei Qin;Sijia Tan;Xiaojie Duanmu;Weijin Yuan;Qianshi Zheng;Baorong Zhang;Peiyu Huang;Xiaojun Xu;Minming Zhang",
+      "id": "out-11a3eb15a3b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cholinergic basal forebrain system degeneration underlies postural instability/gait difficulty and attention impairment in Parkinson's disease — Chenqing Wu;Haoting Wu;Cheng Zhou;Xiaojun Guan;Tao Guo;Zhengye Cao;Jingjing Wu;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Jianmei Qin;Sijia Tan;Xiaojie Duanmu;Weijin Yuan;Qianshi Zheng;Baorong Zhang;Peiyu Huang;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4995,
+            "end_char": 5373
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional connectomes of akinetic‐rigid and tremor within drug‐naïve Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoting Wu;Cheng Zhou;Xiaojun Guan;Xueqin Bai;Tao Guo;Jingjing Wu;Jingwen Chen;Jiaqi Wen;Chenqing Wu;Zhengye Cao;Xiaocao Liu;Ting Gao;Luyan Gu;Peiyu Huang;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+      "id": "out-24ea17fcaaf2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional connectomes of akinetic‐rigid and tremor within drug‐naïve Parkinson's disease — Haoting Wu;Cheng Zhou;Xiaojun Guan;Xueqin Bai;Tao Guo;Jingjing Wu;Jingwen Chen;Jiaqi Wen;Chenqing Wu;Zhengye Cao;Xiaocao Liu;Ting Gao;Luyan Gu;Peiyu Huang;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5378,
+            "end_char": 5669
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Altered brain iron depositions from aging to Parkinson's disease and Alzheimer's disease: A quantitative susceptibility mapping study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaojun Guan;Tao Guo;Cheng Zhou;Jingjing Wu;Qingze Zeng;Kaicheng Li;Xiao Luo;Xueqin Bai;Haoting Wu;Ting Gao;Luyan Gu;Xiaocao Liu;Zhengye Cao;Jiaqi Wen;Jingwen Chen;Hongjiang Wei;Yuyao Zhang;Chunlei Liu;Zhe Song;Yaping Yan;Jiali Pu;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+      "id": "out-c5eafe04822b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Altered brain iron depositions from aging to Parkinson's disease and Alzheimer's disease: A quantitative susceptibility mapping study — Xiaojun Guan;Tao Guo;Cheng Zhou;Jingjing Wu;Qingze Zeng;Kaicheng Li;Xiao Luo;Xueqin Bai;Haoting Wu;Ting Gao;Luyan Gu;Xiaocao Liu;Zhengye Cao;Jiaqi Wen;Jingwen Chen;Hongjiang Wei;Yuyao Zhang;Chunlei Liu;Zhe Song;Yaping Yan;Jiali Pu;Baorong Zhang;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5675,
+            "end_char": 6086
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Normalization effect of dopamine replacement therapy on brain functional connectome in Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenqing Wu;Haoting Wu;Cheng Zhou;Xiaojun Guan;Tao Guo;Zhengye Cao;Jingjing Wu;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Jianmei Qin;Sijia Tan;Xiaojie Duanmu;Baorong Zhang;Peiyu Huang;Xiaojun Xu;Minming Zhang",
+      "id": "out-9972504d3eab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Normalization effect of dopamine replacement therapy on brain functional connectome in Parkinson's disease — Chenqing Wu;Haoting Wu;Cheng Zhou;Xiaojun Guan;Tao Guo;Zhengye Cao;Jingjing Wu;Xiaocao Liu;Jingwen Chen;Jiaqi Wen;Jianmei Qin;Sijia Tan;Xiaojie Duanmu;Baorong Zhang;Peiyu Huang;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6092,
+            "end_char": 6408
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinically relevant connectivity features define three subtypes of Parkinson's disease patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Guo;Xiaojun Guan;Cheng Zhou;Ting Gao;Jingjing Wu;Zhe Song;Min Xuan;Quanquan Gu;Peiyu Huang;Jiali Pu;Baorong Zhang;Feng Cui;Shunren Xia;Xiaojun Xu;Minming Zhang",
+      "id": "out-baf9c05a46be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinically relevant connectivity features define three subtypes of Parkinson's disease patients — Tao Guo;Xiaojun Guan;Cheng Zhou;Ting Gao;Jingjing Wu;Zhe Song;Min Xuan;Quanquan Gu;Peiyu Huang;Jiali Pu;Baorong Zhang;Feng Cui;Shunren Xia;Xiaojun Xu;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6414,
+            "end_char": 6681
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Locus coeruleus degeneration is associated with disorganized functional topology in Parkinson’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Zhou;Tao Guo;Xueqin Bai;JingJing Wu;Ting Gao;Xiaojun Guan;Xiaocao Liu;Luyan Gu;Peiyu Huang;Min Xuan;Quanquan Gu;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+      "id": "out-1940f199d4a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Locus coeruleus degeneration is associated with disorganized functional topology in Parkinson’s disease — Cheng Zhou;Tao Guo;Xueqin Bai;JingJing Wu;Ting Gao;Xiaojun Guan;Xiaocao Liu;Luyan Gu;Peiyu Huang;Min Xuan;Quanquan Gu;Xiaojun Xu;Baorong Zhang;Minming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6687,
+            "end_char": 6955
+          },
+          "version": "6db9f54ab8ddce3abc6a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      }
+    },
+    "consistent": true
+  }
 }

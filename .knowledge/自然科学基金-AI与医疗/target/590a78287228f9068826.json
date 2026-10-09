@@ -2,15 +2,20 @@
   "doc_id": "590a78287228f9068826",
   "version": "a49c015701b72ed163d9",
   "source_hash": "7fcb889cbf596b0b62d30da91911fdb88e806c257a0e52530db665498c03ac14",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:14.022506+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.377497+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-eaa568c399d7",
           "name": "I型毒素蛋白-细胞膜作用机制",
-          "desc": "I型毒素-抗毒素系统通过多种作用机制发挥多样生物学功能，帮助细菌抵抗不利环境，解析其三维结构是揭示机制的关键。",
+          "desc": "形成跨膜孔道抵御不利环境",
           "evidence": [
             {
-              "quote": "细菌中广泛分布的I型毒素-抗毒素（Toxin-antitoxin, TA）系统通过多种作用机制发挥多样生物学功能，帮助细菌抵抗不利环境",
+              "quote": "I型毒素蛋白是细菌基因组编码的一类小分子蛋白，可通过在细菌细胞膜上形成跨膜孔道发挥多样生物学功能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 724
-              },
-              "version": "a49c015701b72ed163d9"
-            }
-          ]
-        },
-        {
-          "id": "item-3e15a374137b",
-          "name": "耐药菌治疗新途径",
-          "desc": "研究将加深对I型毒素蛋白作用机制的理解，为耐药菌的治疗提供新的途径。",
-          "evidence": [
-            {
-              "quote": "这些研究将加深对I型毒素蛋白作用机制的理解，为耐药菌的治疗提供新的途径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1021,
-                "end_char": 1055
+                "start_char": 2836,
+                "end_char": 2883
               },
               "version": "a49c015701b72ed163d9"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a7967116503f",
-          "name": "反应坐标选取是增强采样模拟难点",
-          "desc": "增强采样分子动力学模拟是研究蛋白-细胞膜体系结构特征的重要工具，但如何选取合适的反应坐标是难点。",
+          "id": "item-098f1bf500c3",
+          "name": "毒素蛋白尺寸小、结构柔性，实验解析困难",
+          "desc": "细胞膜中结构及作用机制",
           "evidence": [
             {
-              "quote": "增强采样分子动力学模拟是研究蛋白-细胞膜体系结构特征的重要工具，但如何选取合适的反应坐标是难点",
+              "quote": "导致利用实验方法解析其在细胞膜中的结构及作用机制面临诸多困难",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 787,
-                "end_char": 833
-              },
-              "version": "a49c015701b72ed163d9"
-            }
-          ]
-        },
-        {
-          "id": "item-720532c22b78",
-          "name": "毒素蛋白尺寸小结构柔性实验解析困难",
-          "desc": "I型毒素蛋白尺寸极小且结构高度柔性，导致利用实验方法解析其在细胞膜中的结构及作用机制面临诸多困难。",
-          "evidence": [
-            {
-              "quote": "但这类毒素蛋白尺寸极小且结构高度柔性，导致利用实验方法解析其在细胞膜中的结构及作用机制面临诸多困难",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2896,
+                "start_char": 2915,
                 "end_char": 2944
               },
               "version": "a49c015701b72ed163d9"
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1d7135eccf7f",
-          "name": "机器学习降维识别最优反应坐标",
-          "desc": "利用机器学习的降维特性分析大量模拟数据，鉴定最优反应坐标以增强采样效率。",
+          "id": "item-9c827badf4a3",
+          "name": "增强采样分子动力学模拟",
+          "desc": "结合实验手段",
           "evidence": [
             {
-              "quote": "我们将利用机器学习的降维特性分析大量模拟数据，鉴定最优反应坐标，增强采样效率",
+              "quote": "本项目基于增强采样分子动力学模拟，结合实验手段研究不同I型毒素蛋白在不同细胞膜中的结构特征与理化性质",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 935
+                "start_char": 2946,
+                "end_char": 2995
               },
               "version": "a49c015701b72ed163d9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-94081b1e9a2e",
-          "name": "增强模拟研究组装机制与结构特征",
-          "desc": "利用所发展的增强模拟方法研究I型毒素蛋白在不同细胞膜中的组装机制及结构特征，找出发挥不同功能的关键肽段。",
+          "id": "item-ac19157db6a8",
+          "name": "超短抗菌肽环化改造",
+          "desc": "设计新型抗菌肽环[R3W4V]",
           "evidence": [
             {
-              "quote": "利用所发展的增强模拟方法研究I型毒素蛋白在不同细胞膜中的组装机制及其结构特征，找出其发挥不同功能的关键肽段",
+              "quote": "设计出新型抗菌肽环[R3W4V]，该改造后的抗菌肽其成孔效率、抗菌活性及结构稳定性均得到显著提升",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 940,
-                "end_char": 992
+                "start_char": 3537,
+                "end_char": 3584
               },
               "version": "a49c015701b72ed163d9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,211 @@
       "state": "has",
       "items": [
         {
-          "id": "item-30e334d896ba",
-          "name": "阐明AapA1多聚体跨膜孔道结构",
-          "desc": "AapA1能以多聚体形式稳定嵌入细胞膜，形成孔径可调的跨膜孔道结构，实现水分子与离子的高效转运。",
+          "id": "item-78db9cbbb6bf",
+          "name": "AapA1孔道结构与K16/K23关键作用",
+          "desc": "多聚体形成孔径可调孔道",
           "evidence": [
             {
-              "quote": "结果表明，AapA1能以多聚体形式稳定嵌入细胞膜，形成孔径可调的跨膜孔道结构，实现水分子与离子的高效转运",
+              "quote": "AapA1能以多聚体形式稳定嵌入细胞膜，形成孔径可调的跨膜孔道结构，实现水分子与离子的高效转运",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3134,
+                "start_char": 3139,
                 "end_char": 3185
               },
               "version": "a49c015701b72ed163d9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c6446817ac9e",
-          "name": "K16与K23残基对通透性至关重要",
-          "desc": "两个保守赖氨酸残基K16与K23位于孔道内腔，对孔道结构稳定性和物质通透性至关重要，替换后通透性与渗漏性显著降低。",
+          "id": "item-29e87fb3292b",
+          "name": "骨化三醇调控膜通透性机制",
+          "desc": "更易跨膜翻转并扰动疏水核心",
           "evidence": [
             {
-              "quote": "两个保守的赖氨酸残基K16与K23位于孔道内腔，对孔道的结构稳定性和物质通透性至关重要",
+              "quote": "揭示了骨化三醇调控细胞膜通透性的分子机制，骨化三醇更易实现跨膜翻转，对膜疏水核心产生持续性扰动，进而提高膜的水通透性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3208,
-                "end_char": 3250
+                "start_char": 3365,
+                "end_char": 3422
               },
               "version": "a49c015701b72ed163d9"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-282e8a33b6ad",
-          "name": "设计新型环化抗菌肽",
-          "desc": "在超短抗菌肽R3W4V跨膜结构基础上通过环化改造设计出新型抗菌肽环[R3W4V]，成孔效率、抗菌活性及结构稳定性均显著提升。",
-          "evidence": [
-            {
-              "quote": "在其跨膜结构的基础上通过环化改造，设计出新型抗菌肽环[R3W4V]，该改造后的抗菌肽其成孔效率、抗菌活性及结构稳定性均得到显著提升",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3520,
-                "end_char": 3584
-              },
-              "version": "a49c015701b72ed163d9"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-eaa568c399d7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a7967116503f"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "吲哚衍生物及其合成方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹赞霞;史志宏;刘磊;于家峰",
+      "id": "out-0ad7435cf3c9",
+      "evidence": [
+        {
+          "quote": "[专利] 吲哚衍生物及其合成方法和应用 — 曹赞霞;史志宏;刘磊;于家峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3695,
+            "end_char": 3730
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a7967116503f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1d7135eccf7f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Designing a Novel Ultrashort Cyclic [R3W4V] Antimicrobial Peptide with Superior Antimicrobial Potential Based on the Transmembrane Structure to Facilitate Pore Formation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Liu;Zhihong Shi;Mingqiong Tong;Yaqing Fang;Dongying Yang;Jiafeng Yu;Zanxia Cao",
+      "id": "out-85847a907fe7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Designing a Novel Ultrashort Cyclic [R3W4V] Antimicrobial Peptide with Superior Antimicrobial Potential Based on the Transmembrane Structure to Facilitate Pore Formation — Lei Liu;Zhihong Shi;Mingqiong Tong;Yaqing Fang;Dongying Yang;Jiafeng Yu;Zanxia Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3735,
+            "end_char": 3995
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1d7135eccf7f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-30e334d896ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interaction of Asn297-Linked Glycan Ligands with the Fc Fragment of the Immunoglobulin Class G1: A Molecular Dynamics Simulation Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tong Mingqiong;Liu Peng;Li Chaoqun;Zhang Zhongyu;Sun Wan;Dong Pingxuan;Fan Na;Wang Xiaoyue;Liu Jing;Lv Chao;Cao Zanxia;Wang Yan",
+      "id": "out-ced52679f421",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interaction of Asn297-Linked Glycan Ligands with the Fc Fragment of the Immunoglobulin Class G1: A Molecular Dynamics Simulation Study — Tong Mingqiong;Liu Peng;Li Chaoqun;Zhang Zhongyu;Sun Wan;Dong Pingxuan;Fan Na;Wang Xiaoyue;Liu Jing;Lv Chao;Cao Zanxia;Wang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4270
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-94081b1e9a2e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-282e8a33b6ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Graphene and Its Oxides on the Structural and Dynamical Properties of Transforming Growth Factor β3",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingqiong Tong;Di Zhang;Shengqi Duan;Zecheng Zhao;Xiangling Gu;Zanxia Cao",
+      "id": "out-55d9413bd3fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Graphene and Its Oxides on the Structural and Dynamical Properties of Transforming Growth Factor β3 — Mingqiong Tong;Di Zhang;Shengqi Duan;Zecheng Zhao;Xiangling Gu;Zanxia Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4275,
+            "end_char": 4466
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of toxin peptides PepA1 and PepA2 on human red blood cell membrane model: A molecular dynamics study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Liling;Zhao Li;Li Haiyan;Cao Zanxia",
+      "id": "out-215d973c0c38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of toxin peptides PepA1 and PepA2 on human red blood cell membrane model: A molecular dynamics study — Zhao Liling;Zhao Li;Li Haiyan;Cao Zanxia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4471,
+            "end_char": 4628
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advances in the Molecular Mechanism of Kappa Opioid Receptors Signaling and the Important Sampling Methods to Probe the Activation Landscape of GPCRs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingqiong Tong;Wan Sun;Pingxuan Dong;Jinghe Wang;Xiangling Gu;Zanxia Cao",
+      "id": "out-6b90b20b9760",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advances in the Molecular Mechanism of Kappa Opioid Receptors Signaling and the Important Sampling Methods to Probe the Activation Landscape of GPCRs — Mingqiong Tong;Wan Sun;Pingxuan Dong;Jinghe Wang;Xiangling Gu;Zanxia Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4633,
+            "end_char": 4863
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of C-Terminal Lys-Arg Residue of AapA1 Protein on Toxicity and Structural Mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "zanxia cao;liling zhao;tingting yan;lei liu",
+      "id": "out-8f284cb2135f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of C-Terminal Lys-Arg Residue of AapA1 Protein on Toxicity and Structural Mechanism — zanxia cao;liling zhao;tingting yan;lei liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4868,
+            "end_char": 5011
+          },
+          "version": "a49c015701b72ed163d9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

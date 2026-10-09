@@ -2,15 +2,20 @@
   "doc_id": "f6133ac00b4682be6344",
   "version": "2bd99de7f0f2a81456ae",
   "source_hash": "b6ca01fd22c3ee1b156b20afbbba01ecab3f5e1a4b37067813a38311f942ea78",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.244555+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.552884+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95864d74fc5f",
-          "name": "儿童神经母细胞瘤骨髓转移诊断",
-          "desc": "骨髓转移是影响神经母细胞瘤患儿预后的重要因素，现有活检方案受时空异质性限制。",
+          "id": "item-782b4600bd8d",
+          "name": "神经母细胞瘤骨髓转移无创诊断",
+          "desc": "CT与MRI影像组学",
           "evidence": [
             {
               "quote": "骨髓转移是影响神经母细胞瘤患儿预后的重要因素",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 668,
                 "end_char": 689
-              },
-              "version": "2bd99de7f0f2a81456ae"
-            }
-          ]
-        },
-        {
-          "id": "item-ae0461d677f0",
-          "name": "神经母细胞瘤精准个体化诊疗",
-          "desc": "本课题推进有望促进神经母细胞瘤精准个体化诊疗，改善患儿预后和生存质量，减轻社会医疗负担。",
-          "evidence": [
-            {
-              "quote": "本课题的推进，有望促进神经母细胞瘤精准个体化诊疗，改善患儿预后和生存质量，减轻社会医疗负担",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1012,
-                "end_char": 1056
               },
               "version": "2bd99de7f0f2a81456ae"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2403ea5e0a0c",
-          "name": "活检诊断受时空异质性限制",
-          "desc": "现有活检诊断方案受限于神经母细胞瘤时空异质性，存在代表性不足、重复性差等问题。",
-          "evidence": [
-            {
-              "quote": "现有的活检诊断方案受限于神经母细胞瘤时空异质性，存在代表性不足、重复性差等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 691,
-                "end_char": 729
-              },
-              "version": "2bd99de7f0f2a81456ae"
-            }
-          ]
-        },
-        {
-          "id": "item-05693c845f03",
-          "name": "骨髓穿刺给患儿带来痛苦与风险",
-          "desc": "临床上常用骨髓穿刺监测，会给患儿带来巨大痛苦并增加感染风险。",
+          "id": "item-b6bc13377279",
+          "name": "活检受时空异质性限制",
+          "desc": "骨髓穿刺痛苦且增加感染风险",
           "evidence": [
             {
               "quote": "临床上常用骨髓穿刺监测，会给患儿带来巨大的痛苦及增加感染风险",
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c1ec69facd5d",
-          "name": "影像组学机器学习诊断模型",
-          "desc": "使用LASSO、XGB、MLP等机器学习算法构建更精准的神经母细胞瘤骨髓转移影像组学诊断模型。",
+          "id": "item-8b2eaca52432",
+          "name": "MRI与CT影像组学模型",
+          "desc": "单中心AUC高达0.9",
           "evidence": [
             {
-              "quote": "使用LASSO、XGB、MLP等机器学习算法，构建更精准的神经母细胞瘤骨髓转移影像组学诊断模型",
+              "quote": "基于MRI及CT数据，分别构建了影像组学模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 897,
-                "end_char": 943
-              },
-              "version": "2bd99de7f0f2a81456ae"
-            }
-          ]
-        },
-        {
-          "id": "item-a62bc4dfd38a",
-          "name": "多模态融合AI辅助诊断模型",
-          "desc": "运用卷积神经网络、迁移学习、多模态融合技术构建多模态融合的骨髓转移AI辅助诊断模型，并进行多中心前瞻性验证。",
-          "evidence": [
-            {
-              "quote": "运用卷积神经网络、迁移学习、多模态融合技术等AI手段，构建多模态融合的骨髓转移AI辅助诊断模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 947,
-                "end_char": 993
-              },
-              "version": "2bd99de7f0f2a81456ae"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-23b8e1674f91",
-          "name": "影像组学模型单中心AUC达0.9",
-          "desc": "基于MRI及CT数据分别构建影像组学模型，模型效果在单中心中AUC高达0.9，成果发表于《Cancer Innovation》。",
-          "evidence": [
-            {
-              "quote": "最后基于获得的患儿影像数据，基于MRI及CT数据，分别构建了影像组学模型。模型效果在单中心中AUC高达0.9",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3336,
-                "end_char": 3389
+                "start_char": 3350,
+                "end_char": 3371
               },
               "version": "2bd99de7f0f2a81456ae"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-02eb1c60f722",
-          "name": "首次提出肿瘤教育血小板分型",
-          "desc": "收集国内外多个肿瘤转录组测序数据，结合监督与无监督学习构建肿瘤诊断新模型，首次提出肿瘤教育血小板分型。",
+          "id": "item-d08de3b3ada7",
+          "name": "肿瘤教育血小板分型",
+          "desc": "转录组机器学习",
           "evidence": [
             {
               "quote": "本研究首次提出肿瘤教育血小板的分型",
@@ -164,12 +99,18 @@
               "version": "2bd99de7f0f2a81456ae"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-cb33b505d491",
-          "name": "儿童肠套叠超声AI诊断系统",
-          "desc": "基于超声数据构建儿童肠套叠辅助诊断系统，研究成果发表在cell子刊《iScience》。",
+          "id": "item-07a61ebdc9db",
+          "name": "儿童肠套叠超声辅助诊断系统",
+          "desc": "发表iScience",
           "evidence": [
             {
               "quote": "基于超声数据构建了儿童肠套叠辅助诊断系统，研究成果发表在cell子刊《iScience》",
@@ -181,55 +122,111 @@
               "version": "2bd99de7f0f2a81456ae"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-95864d74fc5f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2403ea5e0a0c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and evaluation of an artificial intelligence system for children intussusception diagnosis using ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiong;You Guochang;Chen Qinchang;Zhang Xiangxiang;Wang Na;He Xuehua;Zhu Liling;Li Zhouzhou;Liu Chen;Yao Shixiang;Ge Junshuang;Gao Wenjing;Yu Hongkui",
+      "id": "out-7f134afcb7c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and evaluation of an artificial intelligence system for children intussusception diagnosis using ultrasound images — Chen Xiong;You Guochang;Chen Qinchang;Zhang Xiangxiang;Wang Na;He Xuehua;Zhu Liling;Li Zhouzhou;Liu Chen;Yao Shixiang;Ge Junshuang;Gao Wenjing;Yu Hongkui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3600,
+            "end_char": 3888
+          },
+          "version": "2bd99de7f0f2a81456ae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2403ea5e0a0c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c1ec69facd5d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics models to predict bone marrow metastasis of neuroblastoma using CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiong;Chen Qinchang;Liu Yuanfang;Qiu Ya;Lv Lin;Zhang Zhengtao;Yin Xuntao;Shu Fangpeng",
+      "id": "out-da19c64eab6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics models to predict bone marrow metastasis of neuroblastoma using CT — Chen Xiong;Chen Qinchang;Liu Yuanfang;Qiu Ya;Lv Lin;Zhang Zhengtao;Yin Xuntao;Shu Fangpeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 4068
+          },
+          "version": "2bd99de7f0f2a81456ae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c1ec69facd5d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23b8e1674f91"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine-learning radiomics to predict bone marrow metastasis of neuroblastoma using magnetic resonance imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Lin;Zhang Zhengtao;Zhang Dongbo;Chen Qinchang;Liu Yuanfang;Qiu Ya;Fu Wen;Yin Xuntao;Chen Xiong",
+      "id": "out-eb1b3036557d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine-learning radiomics to predict bone marrow metastasis of neuroblastoma using magnetic resonance imaging — Lv Lin;Zhang Zhengtao;Zhang Dongbo;Chen Qinchang;Liu Yuanfang;Qiu Ya;Fu Wen;Yin Xuntao;Chen Xiong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4073,
+            "end_char": 4289
+          },
+          "version": "2bd99de7f0f2a81456ae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a62bc4dfd38a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cb33b505d491"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised and supervised machine learning to identify variability of tumor-educated platelets and association with pan-cancer: A cross-national study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Chen;Runnan Shen;Lin Lv;Dongxi Zhu;Guochang You;Zhenluan Tian;Jinwei Chen;Shen Lin;Jiatang Xu;Guibing Hong;Hu Li;Mingli Luo;Lin Cao;Shaoxu Wu;Kai Huang",
+      "id": "out-f5de2f0e8433",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised and supervised machine learning to identify variability of tumor-educated platelets and association with pan-cancer: A cross-national study — Xiong Chen;Runnan Shen;Lin Lv;Dongxi Zhu;Guochang You;Zhenluan Tian;Jinwei Chen;Shen Lin;Jiatang Xu;Guibing Hong;Hu Li;Mingli Luo;Lin Cao;Shaoxu Wu;Kai Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4294,
+            "end_char": 4612
+          },
+          "version": "2bd99de7f0f2a81456ae"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

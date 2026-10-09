@@ -2,15 +2,20 @@
   "doc_id": "22799d577789fd1bb537",
   "version": "e1cb8839cf90a66d19b1",
   "source_hash": "a7489a5cde5fc34c126d4ec27c7ee077996320f4eee1bdfc62984e17f7132068",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.571300+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.296817+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7db087c279fa",
-          "name": "多模态食道癌知识图谱构建与识别",
-          "desc": "食道癌是新疆高发病，发病率远高于全国平均水平，地州县基层医院漏诊误诊率高，严重威胁患者生命健康。",
+          "id": "item-a7c17b1bfb5f",
+          "name": "新疆食道癌辅助诊断",
+          "desc": "高发地区基层漏诊误诊率高",
           "evidence": [
             {
-              "quote": "食道癌是新疆高发病，发病率远高于全国平均水平，地州县基层医院漏诊误诊率高，严重威胁患者生命健康",
+              "quote": "食道癌是新疆高发病，发病率远高于全国平均水平，地州县基层医院漏诊误诊率高",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 649,
-                "end_char": 695
-              },
-              "version": "e1cb8839cf90a66d19b1"
-            }
-          ]
-        },
-        {
-          "id": "item-4315e087512f",
-          "name": "食道癌辅助诊断基础资源与技术支撑",
-          "desc": "为食道癌计算机辅助诊断、信息检索、推理和预测等应用提供基础资源和技术支撑。",
-          "evidence": [
-            {
-              "quote": "最终为食道癌计算机辅助诊断、信息检索、推理和预测等应用提供基础资源和技术支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1008,
-                "end_char": 1045
+                "end_char": 684
               },
               "version": "e1cb8839cf90a66d19b1"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b7a03dc16f6",
-          "name": "多源异构数据复杂度高",
-          "desc": "针对食道癌数据多源、异构、复杂度高的问题，需研究医学文本和多种医学影像知识的联合抽取新方法。",
+          "id": "item-2e36562671e2",
+          "name": "食道癌数据多源异构复杂度高",
+          "desc": "需联合抽取多模态知识",
           "evidence": [
             {
-              "quote": "针对食道癌数据多源、异构、复杂度高的问题，研究食道癌医学文本和相应多种医学影像知识的联合抽取新方法",
+              "quote": "针对食道癌数据多源、异构、复杂度高的问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 824,
-                "end_char": 872
-              },
-              "version": "e1cb8839cf90a66d19b1"
-            }
-          ]
-        },
-        {
-          "id": "item-2943a192ddc6",
-          "name": "各模态信息孤立深层联系缺乏挖掘",
-          "desc": "针对各种模态数据之间信息孤立、深层联系缺乏挖掘的问题开展研究。",
-          "evidence": [
-            {
-              "quote": "针对各种模态数据之间信息孤立、深层联系缺乏挖掘的问题，研究多模态知识语义融合、知识推理补全的新技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 891,
-                "end_char": 939
+                "end_char": 843
               },
               "version": "e1cb8839cf90a66d19b1"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7c12c942e6c8",
-          "name": "多模态知识语义融合与推理补全",
-          "desc": "研究多模态知识语义融合、知识推理补全的新技术，解决模态间信息孤立问题。",
-          "evidence": [
-            {
-              "quote": "研究多模态知识语义融合、知识推理补全的新技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 918,
-                "end_char": 939
-              },
-              "version": "e1cb8839cf90a66d19b1"
-            }
-          ]
-        },
-        {
-          "id": "item-b1b12c0cc77e",
-          "name": "多模态数据联合深度学习模型",
-          "desc": "针对单一模态辅助诊断精度不高的问题，深入挖掘各模态深层联系，研究基于多模态数据联合深度学习的新模型。",
-          "evidence": [
-            {
-              "quote": "针对单一模态辅助诊断精度不高的问题，深入挖掘食道癌各模态深层联系，研究基于多模态数据联合深度学习的新模型，实现食道癌的精准自动识别",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 942,
-                "end_char": 1006
-              },
-              "version": "e1cb8839cf90a66d19b1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-51c47f67531c",
-          "name": "构建食道癌多模态数据集",
-          "desc": "构建包含内窥镜图像、病理图像、患者诊断记录、元文本等数据的食道癌多模态数据集。",
-          "evidence": [
-            {
-              "quote": "构建食道癌多模态数据集，包括内窥镜图像、病理图像、患者诊断记录、元文本等数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3099,
-                "end_char": 3136
-              },
-              "version": "e1cb8839cf90a66d19b1"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3dce3405d2e3",
+          "id": "item-fd1c1fae922e",
           "name": "食管癌知识图谱构建技术体系",
-          "desc": "建立基于关系数据映射和多模态数据挖掘的食管癌知识图谱构建技术方法体系，并实现可视化、查询、推理与知识发现。",
+          "desc": "关系数据映射与多模态数据挖掘",
           "evidence": [
             {
               "quote": "建立了基于关系数据映射和多模态数据挖掘的食管癌知识图谱构建的技术方法体系",
@@ -164,12 +82,29 @@
               "version": "e1cb8839cf90a66d19b1"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-83bfed05299d",
-          "name": "文本图像多模态联合诊断",
-          "desc": "研究文本-图像多模态联合诊断方法，实现高精度的食管癌分期诊断，并搭建自动精准识别实验平台。",
+          "id": "item-2435ab537d08",
+          "name": "金标准多模态图像诊断方法",
+          "desc": "分化程度分类",
+          "evidence": [
+            {
+              "quote": "提出基于“金标准”多模态图像的食管癌诊断方法，实现了对食管癌分化程度的分类",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3251,
+                "end_char": 3287
+              },
+              "version": "e1cb8839cf90a66d19b1"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9c7ef758f874",
+          "name": "文本-图像多模态联合诊断",
+          "desc": "分期诊断",
           "evidence": [
             {
               "quote": "研究了文本-图像多模态联合诊断方法，实现了高精度的食管癌分期诊断",
@@ -181,55 +116,327 @@
               "version": "e1cb8839cf90a66d19b1"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-451fed063cfe",
+          "name": "食道癌多模态数据集",
+          "desc": "内窥镜、病理图像、诊断记录等",
+          "evidence": [
+            {
+              "quote": "（1）构建食道癌多模态数据集，包括内窥镜图像、病理图像、患者诊断记录、元文本等数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3096,
+                "end_char": 3136
+              },
+              "version": "e1cb8839cf90a66d19b1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-035d4482bbbc",
+          "name": "食道癌自动精准识别实验平台",
+          "desc": "已搭建",
+          "evidence": [
+            {
+              "quote": "搭建了食道癌自动精准识别的实验平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3338,
+                "end_char": 3354
+              },
+              "version": "e1cb8839cf90a66d19b1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5da4362d02a1",
+          "name": "期刊论文",
+          "desc": "发表14篇",
+          "evidence": [
+            {
+              "quote": "已在《Expert Systems with Applications》、《Engineering Applications of Artificial Intelligence》、《Biomedical Signal Processing and Control》等国内外权威期刊发表学术论文14篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3449,
+                "end_char": 3598
+              },
+              "version": "e1cb8839cf90a66d19b1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7db087c279fa"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4b7a03dc16f6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度特征信息增强的息肉分割网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐志翔;禹龙;田生伟",
+      "id": "out-48441190f002",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多尺度特征信息增强的息肉分割网络 — 唐志翔;禹龙;田生伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3618,
+            "end_char": 3655
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4b7a03dc16f6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7c12c942e6c8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RFIA-Net: Rich CNN-transformer network based on asymmetric fusion feature aggregation to classify stage I multimodality oesophageal cancer images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zhicheng;Sun Gang;Yu Long;Tian Shengwei;Xiao Guangli;Wang Junwen;Zhou Shaofeng",
+      "id": "out-35d3226d48df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RFIA-Net: Rich CNN-transformer network based on asymmetric fusion feature aggregation to classify stage I multimodality oesophageal cancer images — Zhou Zhicheng;Sun Gang;Yu Long;Tian Shengwei;Xiao Guangli;Wang Junwen;Zhou Shaofeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3660,
+            "end_char": 3897
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7c12c942e6c8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3dce3405d2e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SEDyConv: Spatially enhanced multi-dimensional dynamic convolution for medical multi-organ segmentation in CTs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Qin;Yu Long;Tian Shengwei;Zhou Cheng;Yu Yingying;Zhang Lei",
+      "id": "out-42909b9c1bf6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SEDyConv: Spatially enhanced multi-dimensional dynamic convolution for medical multi-organ segmentation in CTs — Hao Qin;Yu Long;Tian Shengwei;Zhou Cheng;Yu Yingying;Zhang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3902,
+            "end_char": 4083
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b1b12c0cc77e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-83bfed05299d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dr-SAM: U-Shape Structure Segment Anything Model for Generalizable Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huo Xiangzuo;Tian Shengwei;Zhou Bingming;Yu Long;Li Aolun",
+      "id": "out-13acc7d3e806",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dr-SAM: U-Shape Structure Segment Anything Model for Generalizable Medical Image Segmentation — Huo Xiangzuo;Tian Shengwei;Zhou Bingming;Yu Long;Li Aolun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4088,
+            "end_char": 4247
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于频率特征的多模态食管癌识别方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田生伟;霍相佐;宋金淼;杨启萌;范鑫;李澳伦",
+      "id": "out-17d920cd9c08",
+      "evidence": [
+        {
+          "quote": "[专利] 基于频率特征的多模态食管癌识别方法及系统 — 田生伟;霍相佐;宋金淼;杨启萌;范鑫;李澳伦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4252,
+            "end_char": 4301
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MM-HiFuse: multi-modal multi-task hierarchical feature fusion for esophagus cancer staging and differentiation classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangzuo Huo;Shengwei Tian;Long Yu;Wendong Zhang;Aolun Li;Qimeng Yang;Jinmiao Song",
+      "id": "out-f7923f2d39d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MM-HiFuse: multi-modal multi-task hierarchical feature fusion for esophagus cancer staging and differentiation classification — Xiangzuo Huo;Shengwei Tian;Long Yu;Wendong Zhang;Aolun Li;Qimeng Yang;Jinmiao Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4306,
+            "end_char": 4522
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UACENet: Uncertain area attention and cross-image context extraction network for polyp segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Zhi;Gao Feng;Yu Long;Tian Shengwei",
+      "id": "out-836eb13912ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] UACENet: Uncertain area attention and cross-image context extraction network for polyp segmentation — Wang Zhi;Gao Feng;Yu Long;Tian Shengwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4527,
+            "end_char": 4674
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Local-global multiple perception based deep multi-modality learning for sub-type of esophageal cancer classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zhicheng;Yu Long;Tian Shengwei;Xing Yan;Liu Meng;Xiao Guangli;Wang Junwen;Wang Fan",
+      "id": "out-6ba0a1671023",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Local-global multiple perception based deep multi-modality learning for sub-type of esophageal cancer classification — Zhou Zhicheng;Yu Long;Tian Shengwei;Xing Yan;Liu Meng;Xiao Guangli;Wang Junwen;Wang Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4679,
+            "end_char": 4891
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HiFuse: Hierarchical multi-scale feature fusion network for medical image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangzuo Huo;Gang Sun;Shengwei Tian;Yan Wang;Long Yu;Jun Long;Wendong Zhang;Aolun Li",
+      "id": "out-1a620b7ac9c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HiFuse: Hierarchical multi-scale feature fusion network for medical image classification — Xiangzuo Huo;Gang Sun;Shengwei Tian;Yan Wang;Long Yu;Jun Long;Wendong Zhang;Aolun Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4896,
+            "end_char": 5077
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CONHyperKGE: Using Contrastive Learning in Hyperbolic Space for Knowledge Graph Embedding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Mandeng;Tian Shengwei;Yu Long",
+      "id": "out-81738369cc01",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CONHyperKGE: Using Contrastive Learning in Hyperbolic Space for Knowledge Graph Embedding — Gao Mandeng;Tian Shengwei;Yu Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5083,
+            "end_char": 5214
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "R1Seg-3D: Rethinking Reasoning Segmentation for Medical 3D CTs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Hao;Long Yu;Shengwei Tian;Xujiong Ye;Lei Zhang",
+      "id": "out-0559f28daf18",
+      "evidence": [
+        {
+          "quote": "[会议论文] R1Seg-3D: Rethinking Reasoning Segmentation for Medical 3D CTs — Qin Hao;Long Yu;Shengwei Tian;Xujiong Ye;Lei Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5220,
+            "end_char": 5341
+          },
+          "version": "e1cb8839cf90a66d19b1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

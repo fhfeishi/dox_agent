@@ -2,15 +2,20 @@
   "doc_id": "462024b11096fc97b2bd",
   "version": "617321a998a50a8efd31",
   "source_hash": "6a402005f4a8b64f216f233573f31b6c226f1acb614a93acd0b4cf3f323193eb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.103476+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:40:11.177956+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-ad143114cca3",
           "name": "婴幼儿弥散磁共振成像数据复原",
-          "desc": "面向婴幼儿脑白质研究，改善婴幼儿dMRI数据质量以支撑脑发育研究与早期脑疾病诊断。",
+          "desc": "dMRI是婴幼儿大脑白质研究主要手段",
           "evidence": [
             {
-              "quote": "弥散磁共振成像（diffusion MRI，dMRI）是婴幼儿大脑白质研究的主要技术手段，但一系列数据质量问题严重影响了婴幼儿dMRI数据的定量分析",
+              "quote": "弥散磁共振成像（diffusion MRI，dMRI）是婴幼儿大脑白质研究的主要技术手段",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 741,
-                "end_char": 814
+                "end_char": 784
               },
               "version": "617321a998a50a8efd31"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1eff9ee8b006",
-          "name": "dMRI数据质量问题影响定量分析",
-          "desc": "婴幼儿dMRI存在噪声、分辨率不足与运动伪影等一系列数据质量问题，严重影响后续定量分析的可靠性。",
+          "id": "item-ebd7af0158b9",
+          "name": "数据质量问题影响定量分析",
+          "desc": "去噪、超分辨率与伪影矫正",
           "evidence": [
             {
               "quote": "但一系列数据质量问题严重影响了婴幼儿dMRI数据的定量分析",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4837b24413d1",
-          "name": "纵向时间信息引导的图神经网络复原框架",
-          "desc": "从去噪、超分辨率和运动伪影矫正三个核心任务出发，以图神经网络技术为基础，构建基于纵向时间信息引导的图神经网络深度学习框架用于婴幼儿dMRI数据复原。",
+          "id": "item-66fa0efbc5ba",
+          "name": "空间－角度联合自监督去噪网络",
+          "desc": "去噪",
           "evidence": [
             {
-              "quote": "以图神经网络技术为基础，构建一套基于纵向时间信息引导的图神经网络深度学习框架用于婴幼儿dMRI数据复原",
+              "quote": "空间－角度联合自监督去噪网络模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 875,
-                "end_char": 925
+                "start_char": 2461,
+                "end_char": 2476
               },
               "version": "617321a998a50a8efd31"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-435d7581815b",
+          "name": "纤维密度成像引导的超分辨率扩散模型",
+          "desc": "超分辨率",
+          "evidence": [
+            {
+              "quote": "纤维密度成像引导的超分辨率扩散模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2507,
+                "end_char": 2523
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0b0fa278358e",
+          "name": "混合网络驱动的伪影矫正模型",
+          "desc": "伪影矫正",
+          "evidence": [
+            {
+              "quote": "混合网络驱动的伪影矫正模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2577,
+                "end_char": 2589
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8dd76455a263",
-          "name": "发表高水平学术论文29篇并申请发明专利2项",
-          "desc": "以第一或通信作者发表高水平论文29篇（SCI 8篇、EI 21篇），申请国家发明专利2项；荣获ISBI最佳论文提名奖、陕西高等学校科学技术研究优秀成果一等奖，并在2项MICCAI竞赛中获冠亚军。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "高水平论文29篇，发明专利2项",
           "evidence": [
             {
               "quote": "以第一作者或通信作者发表高水平学术论文29篇到IEEE-TMI、IEEE-TNNLS、IPMI、MICCAI等领域知名期刊和会议",
@@ -99,44 +139,688 @@
               "version": "617321a998a50a8efd31"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-38c4f17d6ca8",
+          "name": "MICCAI竞赛冠亚军与最佳论文提名",
+          "desc": "2项竞赛冠亚军",
+          "evidence": [
+            {
+              "quote": "荣获ISBI最佳论文提名奖，陕西高等学校科学技术研究优秀成果一等奖，并在2项MICCAI竞赛中荣获冠亚军",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2696,
+                "end_char": 2747
+              },
+              "version": "617321a998a50a8efd31"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ad143114cca3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1eff9ee8b006"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BLSegMamba: An Optimized SegMamba Framework for msTBI Lesion Segmentation in MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yueyue Zhu;Xiaoyu Bai;Haotian Jiang;Geng Chen",
+      "id": "out-710d41eeda23",
+      "evidence": [
+        {
+          "quote": "[会议论文] BLSegMamba: An Optimized SegMamba Framework for msTBI Lesion Segmentation in MRI — Yueyue Zhu;Xiaoyu Bai;Haotian Jiang;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2924,
+            "end_char": 3058
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1eff9ee8b006"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4837b24413d1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NRD-Net: Non-local Residual Dense Network for Brain MR Image Super-Resolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Jian;Guang Mengting;Chen Geng;Yao Xiong;Tassew Tewodros Megabiaw;Li Zhen;Li Zuoyong;Zhang He",
+      "id": "out-7c14af7b90db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NRD-Net: Non-local Residual Dense Network for Brain MR Image Super-Resolution — Chen Jian;Guang Mengting;Chen Geng;Yao Xiong;Tassew Tewodros Megabiaw;Li Zhen;Li Zuoyong;Zhang He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3063,
+            "end_char": 3246
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4837b24413d1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8dd76455a263"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2025年MICCAI AIMS-TBI竞赛冠军",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱悦悦;白晓宇;姜淏天;陈耿",
+      "id": "out-8c2746c51f31",
+      "evidence": [
+        {
+          "quote": "[奖励] 2025年MICCAI AIMS-TBI竞赛冠军 — 朱悦悦;白晓宇;姜淏天;陈耿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3251,
+            "end_char": 3296
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于欠采样 DMRI 数据的组织微结构估计模型及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈耿;林诰芸;杨俊卿;姜淏天;朱闻韬;周涛;马吉全",
+      "id": "out-25720b2ae663",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于欠采样 DMRI 数据的组织微结构估计模型及方法 — 陈耿;林诰芸;杨俊卿;姜淏天;朱闻韬;周涛;马吉全",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3301,
+            "end_char": 3361
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ISBI最佳论文提名奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜淏天;张枢;温旭云;崔慧;陆军;Islem Rekik;马吉权;陈耿",
+      "id": "out-c20c2a588555",
+      "evidence": [
+        {
+          "quote": "[奖励] ISBI最佳论文提名奖 — 姜淏天;张枢;温旭云;崔慧;陆军;Islem Rekik;马吉权;陈耿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3366,
+            "end_char": 3419
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Microstructure Estimation Using Synergistic Dual-path Hybrid Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiquan Ma;Jian Cao;Junqing Yang;Siqi Wang;Geng Chen",
+      "id": "out-801480ef62a8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Microstructure Estimation Using Synergistic Dual-path Hybrid Network — Jiquan Ma;Jian Cao;Junqing Yang;Siqi Wang;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3424,
+            "end_char": 3552
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dichotomous Image Segmentation with Frequency Priors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Zhou;Bo Dong;Yuanfeng Wu;Wentao Zhu;Geng Chen;Yanning Zhang",
+      "id": "out-d3374820df51",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dichotomous Image Segmentation with Frequency Priors — Yan Zhou;Bo Dong;Yuanfeng Wu;Wentao Zhu;Geng Chen;Yanning Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3557,
+            "end_char": 3681
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "One Model, Two Brains: Automatic Fetal Brain Extraction from MR Images of Twins",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Chen;Ranlin Lu;Bin Jing;He Zhang;Geng Chen;Dinggang Shen",
+      "id": "out-436575620546",
+      "evidence": [
+        {
+          "quote": "[期刊论文] One Model, Two Brains: Automatic Fetal Brain Extraction from MR Images of Twins — Jian Chen;Ranlin Lu;Bin Jing;He Zhang;Geng Chen;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3686,
+            "end_char": 3835
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SMF-Net: Unlocking Multimodal Insights for Enhanced Stroke Lesion Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Atlaw Meklit;Chen Geng;Jiang Haotian;Wen Xuyun;Cui Hengfei;Xia Yong",
+      "id": "out-89a7b3bd279a",
+      "evidence": [
+        {
+          "quote": "[会议论文] SMF-Net: Unlocking Multimodal Insights for Enhanced Stroke Lesion Segmentation — Atlaw Meklit;Chen Geng;Jiang Haotian;Wen Xuyun;Cui Hengfei;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3840,
+            "end_char": 3994
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scalable and Efficient Multigraph Integration with Sparse-Clustered Deep Graph Normalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bethlehem Tassew;Muhammad Adeel Ijaz;Geng Chen;Islem Rekik",
+      "id": "out-0fba07729010",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scalable and Efficient Multigraph Integration with Sparse-Clustered Deep Graph Normalization — Bethlehem Tassew;Muhammad Adeel Ijaz;Geng Chen;Islem Rekik",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4159
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards Robust Basal Ganglia Segmentation in Ultra-Low-Field Pediatric MRI via an Optimized MS-TCNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Liu;Yueyue Zhu;Haotian Jiang;Xiaoyu Bai;Rongqing Cai;Geng Chen",
+      "id": "out-569dce3f96bc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Towards Robust Basal Ganglia Segmentation in Ultra-Low-Field Pediatric MRI via an Optimized MS-TCNet — Yi Liu;Yueyue Zhu;Haotian Jiang;Xiaoyu Bai;Rongqing Cai;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4339
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion MAE: Paving the Way for Representation Learning of Diffusion MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Haotian;Chen Geng",
+      "id": "out-c145ed859281",
+      "evidence": [
+        {
+          "quote": "[会议论文] Diffusion MAE: Paving the Way for Representation Learning of Diffusion MRI — Jiang Haotian;Chen Geng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4345,
+            "end_char": 4451
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Resolution Enhancement of Diffusion-Weighted Images via Unified x-q Space Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiquan Ma;Siqi Wang;Runlin Zhang;Jian Cao;Geng Chen",
+      "id": "out-47fbaabeb699",
+      "evidence": [
+        {
+          "quote": "[会议论文] Resolution Enhancement of Diffusion-Weighted Images via Unified x-q Space Learning — Jiquan Ma;Siqi Wang;Runlin Zhang;Jian Cao;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4457,
+            "end_char": 4599
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UltraMR-Enforce: A Unified Ensemble Framework for Enhancement of Ultra-Low-Field MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyu Bai;Yueyue Zhu;Haotian Jiang;Rongqing Cai;Yi Liu;Geng Chen",
+      "id": "out-87d344e4e293",
+      "evidence": [
+        {
+          "quote": "[会议论文] UltraMR-Enforce: A Unified Ensemble Framework for Enhancement of Ultra-Low-Field MRI — Xiaoyu Bai;Yueyue Zhu;Haotian Jiang;Rongqing Cai;Yi Liu;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4605,
+            "end_char": 4763
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "陕西高等学校科学技术研究优秀成果一等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏勇;陈耿;崔恒飞;潘永生;胡诗帅;廖泽慧",
+      "id": "out-f8a89b12ac3c",
+      "evidence": [
+        {
+          "quote": "[奖励] 陕西高等学校科学技术研究优秀成果一等奖 — 夏勇;陈耿;崔恒飞;潘永生;胡诗帅;廖泽慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4769,
+            "end_char": 4816
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2024年MICCAI LISA竞赛亚军",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱悦悦;姜淏天;蔡荣庆;陈耿",
+      "id": "out-081d3ab8a078",
+      "evidence": [
+        {
+          "quote": "[奖励] 2024年MICCAI LISA竞赛亚军 — 朱悦悦;姜淏天;蔡荣庆;陈耿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4863
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-Atlas Brain Connectivity Mapping with Dual-Conditional Diffusion Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Runlin Zhang;Geng Chen;Chengdong Deng;Jiquan Ma;Islem Rekik",
+      "id": "out-df18cbe30e4c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Cross-Atlas Brain Connectivity Mapping with Dual-Conditional Diffusion Model — Runlin Zhang;Geng Chen;Chengdong Deng;Jiquan Ma;Islem Rekik",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4869,
+            "end_char": 5013
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Class MambaOut for Quality Assessment of Low-field Pediatric Brain MR Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yueyue Zhu;Haotian Jiang;Rongqing Cai;Geng Chen",
+      "id": "out-064005d496b1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Class MambaOut for Quality Assessment of Low-field Pediatric Brain MR Images — Yueyue Zhu;Haotian Jiang;Rongqing Cai;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5019,
+            "end_char": 5157
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Detection of Tooth-Gingiva Trim Lines on Dental Surfaces",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Chen;Jie Qin;Weiming Zhou;Hang Dai;Tao Zhou;Heyuan Huang;Ling Shao",
+      "id": "out-5bfec099d6eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Detection of Tooth-Gingiva Trim Lines on Dental Surfaces — Geng Chen;Jie Qin;Weiming Zhou;Hang Dai;Tao Zhou;Heyuan Huang;Ling Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5163,
+            "end_char": 5309
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mixture-attention Siamese transformer for video polyp segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Geng;Yang Junqing;Pu Xiaozhou;Ji Ge-Peng;Xiong Huan;Pan Yongsheng;Cui Hengfei;Xia Yong",
+      "id": "out-51a06bbfcf25",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mixture-attention Siamese transformer for video polyp segmentation — Chen Geng;Yang Junqing;Pu Xiaozhou;Ji Ge-Peng;Xiong Huan;Pan Yongsheng;Cui Hengfei;Xia Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5315,
+            "end_char": 5481
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fusion-Embedding Siamese Network for Light Field Salient Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Chen;Huazhu Fu;Tao Zhou;Guobao Xiao;Keren Fu;Yong Xia;Yanning Zhang",
+      "id": "out-fd998c512c0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fusion-Embedding Siamese Network for Light Field Salient Object Detection — Geng Chen;Huazhu Fu;Tao Zhou;Guobao Xiao;Keren Fu;Yong Xia;Yanning Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5487,
+            "end_char": 5641
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Denoising of Diffusion MRI Data via Spatio-Angular Noise2Noise",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haotian jiang;Shu Zhang;Xuyun Wen;Xuyun Wen;Jun Lu;Islem Rekik;Jiquan Ma;Geng Chen",
+      "id": "out-aad1f62bd3db",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-Supervised Denoising of Diffusion MRI Data via Spatio-Angular Noise2Noise — Haotian jiang;Shu Zhang;Xuyun Wen;Xuyun Wen;Jun Lu;Islem Rekik;Jiquan Ma;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5647,
+            "end_char": 5816
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightweight Image Deblurring via Recurrent Gated Attention and Efficient Decoupling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Chen;Shilin Ye;Geng Chen;Meklit Atlaw;Li Lin;Yanning Zhang",
+      "id": "out-716593f9f4a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lightweight Image Deblurring via Recurrent Gated Attention and Efficient Decoupling — Jian Chen;Shilin Ye;Geng Chen;Meklit Atlaw;Li Lin;Yanning Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5822,
+            "end_char": 5977
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EM-Trans: Edge-Aware Multi-Modal Transformer for RGB-D Salient Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Chen;Qingyue Wang;Bo Dong;Ruitao Ma;Nian Liu;Huazhu Fu;Yong Xia",
+      "id": "out-4b0e8151f08a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EM-Trans: Edge-Aware Multi-Modal Transformer for RGB-D Salient Object Detection — Geng Chen;Qingyue Wang;Bo Dong;Ruitao Ma;Nian Liu;Huazhu Fu;Yong Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5983,
+            "end_char": 6139
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Super-resolved Estimation of White Matter Microstructure via 3D Conditional Latent Diffusion Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiquan Ma;Yihang Gao;Haotian Jiang;Jing Gu;Diliara Khairullina;Hui Cui;Geng Chen",
+      "id": "out-611f9b5a080f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Super-resolved Estimation of White Matter Microstructure via 3D Conditional Latent Diffusion Model — Jiquan Ma;Yihang Gao;Haotian Jiang;Jing Gu;Diliara Khairullina;Hui Cui;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6145,
+            "end_char": 6332
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Super-Resolution of Diffusion-Weighted Images via TDI-Conditioned Diffusion Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiquan Ma;Yujun Teng;Geng Chen;Haotian Jiang;Kai Zhang;Feihong Liu;Islem Rekik;Dinggang Shen",
+      "id": "out-f8eb09595dcf",
+      "evidence": [
+        {
+          "quote": "[会议论文] Super-Resolution of Diffusion-Weighted Images via TDI-Conditioned Diffusion Model — Jiquan Ma;Yujun Teng;Geng Chen;Haotian Jiang;Kai Zhang;Feihong Liu;Islem Rekik;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6338,
+            "end_char": 6520
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards Accurate Microstructure Estimation via 3D Hybrid Graph Transformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junqing Yang;Haotian Jiang;Tewodros Tassew;Peng Sun;Jiquan Ma;Yong Xia;Pew-Thian Yap;Geng Chen",
+      "id": "out-03895a350ef8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Towards Accurate Microstructure Estimation via 3D Hybrid Graph Transformer — Junqing Yang;Haotian Jiang;Tewodros Tassew;Peng Sun;Jiquan Ma;Yong Xia;Pew-Thian Yap;Geng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6526,
+            "end_char": 6703
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MedSegViG: Medical Image Segmentation with a Vision Graph Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinhong Li;Geng Chen;Yuanfeng Wu;Junqing Yang;Tao Zhou;Yi Zhou;Wentao Zhu",
+      "id": "out-15e4a42bc249",
+      "evidence": [
+        {
+          "quote": "[会议论文] MedSegViG: Medical Image Segmentation with a Vision Graph Neural Network — Xinhong Li;Geng Chen;Yuanfeng Wu;Junqing Yang;Tao Zhou;Yi Zhou;Wentao Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6709,
+            "end_char": 6863
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Super-Resolution of Diffusion-Weighted Images via Deep Diffusion Prior",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Chen;Hao Yang;Runlin Zhang;Musa Bakarr;Yong Xia;Pew-Thian Yap",
+      "id": "out-cf63c3d890f0",
+      "evidence": [
+        {
+          "quote": "[会议论文] Unsupervised Super-Resolution of Diffusion-Weighted Images via Deep Diffusion Prior — Geng Chen;Hao Yang;Runlin Zhang;Musa Bakarr;Yong Xia;Pew-Thian Yap",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6869,
+            "end_char": 7027
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image Recovery Matters: A Recovery-Extraction Framework for Robust Fetal Brain Extraction from MR Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Chen;Ranlin Lu;Shilin Ye;Mengting Guang;Tewodros Megabiaw Tassew;Bin Jing;Guofu Zhang;Geng Chen;Dinggang Shen",
+      "id": "out-8e12438337c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image Recovery Matters: A Recovery-Extraction Framework for Robust Fetal Brain Extraction from MR Images — Jian Chen;Ranlin Lu;Shilin Ye;Mengting Guang;Tewodros Megabiaw Tassew;Bin Jing;Guofu Zhang;Geng Chen;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7033,
+            "end_char": 7260
+          },
+          "version": "617321a998a50a8efd31"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "会议论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

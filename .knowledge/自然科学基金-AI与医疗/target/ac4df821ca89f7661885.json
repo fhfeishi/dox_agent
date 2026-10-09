@@ -2,15 +2,20 @@
   "doc_id": "ac4df821ca89f7661885",
   "version": "990883f7c8a584593fea",
   "source_hash": "bd5ae60b5b46171b8c35236ce32a92ad7ebea836461a23d8444cae86e9639e81",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.092670+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:52:16.496733+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-c71aa5a3cbd6",
           "name": "肺癌免疫治疗疗效评估",
-          "desc": "面向晚期肺癌免疫治疗，构建多模态标注数据库与AI影像组学疗效及病情演进预测模型。",
+          "desc": "晚期肺癌5年生存率不足5%",
           "evidence": [
             {
-              "quote": "我国肺癌发病率和致死率均位居恶性肿瘤首位，尽管免疫治疗为传统治疗及靶向治疗无效的晚期肺癌者提供了全新的治疗模式",
+              "quote": "肺癌晚期患者5年生存率不足5%，极大的制约了肺癌患者免疫治疗的临床获益",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 654,
-                "end_char": 708
+                "start_char": 736,
+                "end_char": 770
               },
               "version": "990883f7c8a584593fea"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7bbc24d4476d",
-          "name": "缺乏快速准确全面的免疫疗效评估方法",
-          "desc": "由于缺乏快速、准确、全面、动态的免疫疗效评估方法，肺癌晚期患者5年生存率不足5%，严重制约免疫治疗临床获益。",
+          "id": "item-385e6394484e",
+          "name": "缺乏快速、准确、全面、动态的免疫疗效评估方法",
+          "desc": "制约临床获益",
           "evidence": [
             {
-              "quote": "但由于缺乏快速、准确、全面、动态的免疫疗效评估方法，肺癌晚期患者5年生存率不足5%，极大的制约了肺癌患者免疫治疗的临床获益",
+              "quote": "由于缺乏快速、准确、全面、动态的免疫疗效评估方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 710,
-                "end_char": 770
+                "start_char": 711,
+                "end_char": 734
               },
               "version": "990883f7c8a584593fea"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3162ebdf0aa4",
-          "name": "AI与影像组学融合的肺癌免疫疗效预测系统",
-          "desc": "融合人工智能与影像组学技术，建立大样本肺癌免疫治疗多维标注数据库，实现CT影像组学特征自动识别与提取，研发疗效预测与病情进展分析辅助诊断系统。",
+          "id": "item-4cd43c6f5fdc",
+          "name": "全肺分析深度学习模型",
+          "desc": "肺区引导注意力机制，预测基因突变及靶向疗效",
           "evidence": [
             {
-              "quote": "通过融合新的人工智能与影像组学技术，建立大样本肺癌免疫治疗多维标注数据库",
+              "quote": "通过使用基于肺区引导注意力机制的全肺分析深度学习模型对全肺异常征象进行预测分析，成功实现基因突变及靶向疗效预测，并实现了AUC=0.813的良好效能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 845,
-                "end_char": 880
+                "start_char": 3082,
+                "end_char": 3155
               },
               "version": "990883f7c8a584593fea"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2dd429c4adf6",
+          "name": "肿瘤体积动态变化影像学生物标志物",
+          "desc": "与病理残存肿瘤量相关性优于RECIST",
+          "evidence": [
+            {
+              "quote": "提出将肿瘤体积动态变化作为新型影像学生物标志物，其与传统RECIST标准相比，与病理残存肿瘤量的相关性更显著，且与患者生存预后密切相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3209,
+                "end_char": 3275
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-499972a42bf6",
+          "name": "TLS自动分割与成熟度识别智能病理系统",
+          "desc": "AUC 0.851",
+          "evidence": [
+            {
+              "quote": "并开发出可实现自动分割与成熟度识别的智能病理系统（AUC=0.851），同时建立基于数字病理全景特征的免疫治疗疗效及预后测模型（AUC=0.814）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3312,
+                "end_char": 3385
+              },
+              "version": "990883f7c8a584593fea"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,427 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da12c84531ca",
-          "name": "全自动AI系统预测基因突变及靶向疗效AUC 0.813",
-          "desc": "研发基于肺区引导注意力的全肺分析深度学习系统，实现基因突变及靶向疗效预测AUC=0.813；提出肿瘤体积动态变化作为新型影像学生物标志物，并开发三级淋巴结构智能病理系统AUC=0.851。",
+          "id": "item-8a1361200f6d",
+          "name": "肺癌免疫治疗标准多模态数据库",
+          "desc": "联合全国多家大型医疗机构",
           "evidence": [
             {
-              "quote": "成功实现基因突变及靶向疗效预测，并实现了AUC=0.813的良好效能",
+              "quote": "联合全国多家大型医疗机构成功建立了肺癌免疫治疗标准多模态数据库，为后续研究奠定了坚实数据基础",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3155
+                "start_char": 3019,
+                "end_char": 3064
               },
               "version": "990883f7c8a584593fea"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c71aa5a3cbd6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7bbc24d4476d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tertiary lymphoid structures as potential biomarkers for cancer prediction and prognosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Zhang;Jie Yao;Mei Xie;Yiran Liang;Xuwen Lin;Jialin Song;Xinyu Bao;Xidong Ma;Yuanyong Wang;Yinguang Zhang;Yiming Liu;Wenya Han;Lei Pan;Xinying Xue",
+      "id": "out-94dbdfb1eb7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tertiary lymphoid structures as potential biomarkers for cancer prediction and prognosis — Xin Zhang;Jie Yao;Mei Xie;Yiran Liang;Xuwen Lin;Jialin Song;Xinyu Bao;Xidong Ma;Yuanyong Wang;Yinguang Zhang;Yiming Liu;Wenya Han;Lei Pan;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3476,
+            "end_char": 3722
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7bbc24d4476d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3162ebdf0aa4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive biomarkers for immune checkpoint inhibitors therapy in lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Yao;Xuwen Lin;Xin Zhang;Mei Xie;Xidong Ma;Xinyu Bao;Jialin Song;Yiran Liang;Qiqi Wang;Xinying Xue",
+      "id": "out-74e3a1494129",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive biomarkers for immune checkpoint inhibitors therapy in lung cancer — Jie Yao;Xuwen Lin;Xin Zhang;Mei Xie;Xidong Ma;Xinyu Bao;Jialin Song;Yiran Liang;Qiqi Wang;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3727,
+            "end_char": 3914
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3162ebdf0aa4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-da12c84531ca"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immune-related adverse events in non-small cell lung cancer: Occurrence, mechanisms and therapeutic strategies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuwen Lin;Mei Xie;Jie Yao;Xidong Ma;Lin Qin;Xu-Mei Zhang;Jialin Song;Xinyu Bao;Xin Zhang;Yinguang Zhang;Yiming Liu;Wenya Han;Yiran Liang;Ying Jing;Xinying Xue",
+      "id": "out-7ff8ed2871e4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immune-related adverse events in non-small cell lung cancer: Occurrence, mechanisms and therapeutic strategies — Xuwen Lin;Mei Xie;Jie Yao;Xidong Ma;Lin Qin;Xu-Mei Zhang;Jialin Song;Xinyu Bao;Xin Zhang;Yinguang Zhang;Yiming Liu;Wenya Han;Yiran Liang;Ying Jing;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3919,
+            "end_char": 4196
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种三级淋巴结构病理图像分类模型构建和分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;谢梅;王硕;刘成才;马西栋;姚捷",
+      "id": "out-b24681b98d83",
+      "evidence": [
+        {
+          "quote": "[专利] 一种三级淋巴结构病理图像分类模型构建和分类方法 — 薛新颖;谢梅;王硕;刘成才;马西栋;姚捷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4201,
+            "end_char": 4251
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical characteristics and therapeutic effects of checkpoint inhibitor-related pneumonitis in patients with non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Pang;Mei Xie;Xidong Ma;Aiben Huang;Jialin Song;Jie Yao;Hui Deng;Duchao Zhang;Xuelei Zang;Fangping Ren;Jie Gao;Chongchong Wu;Yuanyong Wang;Xin Zhang;Xinyu Bao;Lei Pan;Xinying Xue",
+      "id": "out-5ee9b00792c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical characteristics and therapeutic effects of checkpoint inhibitor-related pneumonitis in patients with non-small cell lung cancer — Li Pang;Mei Xie;Xidong Ma;Aiben Huang;Jialin Song;Jie Yao;Hui Deng;Duchao Zhang;Xuelei Zang;Fangping Ren;Jie Gao;Chongchong Wu;Yuanyong Wang;Xin Zhang;Xinyu Bao;Lei Pan;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4256,
+            "end_char": 4581
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种利用多重免疫荧光对H&E病理图像进行自动细胞标注的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;郑杰;谢梅;杨杨;吕学亨;张鑫;包辛玉",
+      "id": "out-fe1af66d5d84",
+      "evidence": [
+        {
+          "quote": "[专利] 一种利用多重免疫荧光对H&E病理图像进行自动细胞标注的方法 — 薛新颖;郑杰;谢梅;杨杨;吕学亨;张鑫;包辛玉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4645
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The prognosis of different types of pleural tags based on radiologic-pathologic comparison.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao Meng;Jie Gao;Chongchong Wu;Mei Xie;Xidong Ma;Xuelei Zang;Jialin Song;Meng Zhou;Shikun Guo;Yemei Huang;Hengyu Deng;Hongli Li;Bo Wei;Xinying Xue",
+      "id": "out-186eaa6aa863",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The prognosis of different types of pleural tags based on radiologic-pathologic comparison. — Yao Meng;Jie Gao;Chongchong Wu;Mei Xie;Xidong Ma;Xuelei Zang;Jialin Song;Meng Zhou;Shikun Guo;Yemei Huang;Hengyu Deng;Hongli Li;Bo Wei;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4650,
+            "end_char": 4896
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于肺癌新辅助免疫治疗及化疗的预后标志物及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;郑杰;谢梅;徐凡;马西栋;冯艺苗;宋佳璘",
+      "id": "out-9a34018f8d4c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于肺癌新辅助免疫治疗及化疗的预后标志物及其应用 — 薛新颖;郑杰;谢梅;徐凡;马西栋;冯艺苗;宋佳璘",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4901,
+            "end_char": 4958
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The radiological characteristics, tertiary lymphoid structures, and survival status associated with EGFR mutation in patients with subsolid nodules like stage I-II LUAD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mei Xie;Jie Gao;Xidong Ma;Jialin Song;Chongchong Wu;Yangyu Zhou;Tianjiao Jiang;Yiran Liang;Chen Yang;Xinyu Bao;Xin Zhang;Jie Yao;Ying Jing;Jianlin Wu;Jianxin Wang;Xinying Xue",
+      "id": "out-551fa7d055f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The radiological characteristics, tertiary lymphoid structures, and survival status associated with EGFR mutation in patients with subsolid nodules like stage I-II LUAD — Mei Xie;Jie Gao;Xidong Ma;Jialin Song;Chongchong Wu;Yangyu Zhou;Tianjiao Jiang;Yiran Liang;Chen Yang;Xinyu Bao;Xin Zhang;Jie Yao;Ying Jing;Jianlin Wu;Jianxin Wang;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4963,
+            "end_char": 5314
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of ImmunoPET in the efficacy and prognosis of immunotherapy for lung cancer(IF=11.2 )",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiran Liang;Mei Xie;Xuefeng Zang;Xin Zhang;Xinying Xue",
+      "id": "out-f3996fc00c03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of ImmunoPET in the efficacy and prognosis of immunotherapy for lung cancer(IF=11.2 ) — Yiran Liang;Mei Xie;Xuefeng Zang;Xin Zhang;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5320,
+            "end_char": 5479
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肺癌病理图像三级淋巴结构实例分割系统和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;郑杰;谢梅;杨杨;吕学亨",
+      "id": "out-45e38e62b00d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肺癌病理图像三级淋巴结构实例分割系统和方法 — 薛新颖;郑杰;谢梅;杨杨;吕学亨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5485,
+            "end_char": 5531
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cardiovascular toxicity in antitumor therapy: biological and therapeutic insights",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuwen Lin;Xidong Ma;Sheng Zhao;Jie Yao;Leng Han;Ying Jing;Xinying Xue",
+      "id": "out-3be4cb5505fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cardiovascular toxicity in antitumor therapy: biological and therapeutic insights — Xuwen Lin;Xidong Ma;Sheng Zhao;Jie Yao;Leng Han;Ying Jing;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5537,
+            "end_char": 5696
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于细胞分割的病理图像三级淋巴结构成熟度预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;郑杰;谢梅;杨扬;冯艺苗",
+      "id": "out-bfcce9688f18",
+      "evidence": [
+        {
+          "quote": "[专利] 基于细胞分割的病理图像三级淋巴结构成熟度预测方法 — 薛新颖;郑杰;谢梅;杨扬;冯艺苗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5702,
+            "end_char": 5749
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PIWI-interacting RNAs in cancer: Biogenesis, function, and clinical significance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Yao;Mei Xie;Xidong Ma;Jialin Song;Yuanyong Wang;Xinying Xue",
+      "id": "out-e41cc7429945",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PIWI-interacting RNAs in cancer: Biogenesis, function, and clinical significance — Jie Yao;Mei Xie;Xidong Ma;Jialin Song;Yuanyong Wang;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5755,
+            "end_char": 5907
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tertiary Lymphoid Structure in Tumor Microenvironment and Immunotherapy of Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mei Xie;Xuwen Lin;Xinyu Bao;Yiran Liang;Hui Deng;Jialin Song;Xidong Ma;Xin Zhang;Jie Yao;Lei Pan;Xinying Xue",
+      "id": "out-8b66846dde61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tertiary Lymphoid Structure in Tumor Microenvironment and Immunotherapy of Lung Cancer — Mei Xie;Xuwen Lin;Xinyu Bao;Yiran Liang;Hui Deng;Jialin Song;Xidong Ma;Xin Zhang;Jie Yao;Lei Pan;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5913,
+            "end_char": 6116
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CELLSEG2TLS: A DEEP LEARNING FRAMEWORK FOR PREDICTING THE MATURATION OF TERTIARY LYMPHOID STRUCTURES IN PATHOLOGY IMAGES",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Xie Mei;Feng Yimiao;Lv Xueheng;Song Jialin;Xue Xinying;Zheng Jie",
+      "id": "out-bf38f319dfaf",
+      "evidence": [
+        {
+          "quote": "[会议论文] CELLSEG2TLS: A DEEP LEARNING FRAMEWORK FOR PREDICTING THE MATURATION OF TERTIARY LYMPHOID STRUCTURES IN PATHOLOGY IMAGES — Yang Yang;Xie Mei;Feng Yimiao;Lv Xueheng;Song Jialin;Xue Xinying;Zheng Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6122,
+            "end_char": 6325
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of systemic inflammatory markers and tertiary lymphoid structures with pathological complete response in patients with advanced lung adenocarcinoma receiving preoperative treatment: a retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Xidong;Sun Junping;Xie Mei;Zhang Xugang;Lin Xunwen;Deng Hui;Huang Aiben;Ren Fangping;Liang Yiran;Yao Jie;Bao Xinyu;Zhang Xin;Han Nuohan;Wang Yuanyong;Brunelli Alessandro;Pan Lei;Xue Xinying",
+      "id": "out-6a50148d05de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of systemic inflammatory markers and tertiary lymphoid structures with pathological complete response in patients with advanced lung adenocarcinoma receiving preoperative treatment: a retrospective cohort study — Ma Xidong;Sun Junping;Xie Mei;Zhang Xugang;Lin Xunwen;Deng Hui;Huang Aiben;Ren Fangping;Liang Yiran;Yao Jie;Bao Xinyu;Zhang Xin;Han Nuohan;Wang Yuanyong;Brunelli Alessandro;Pan Lei;Xue Xinying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6331,
+            "end_char": 6754
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early tumor volume change as a novel CT RECIST indicator for predicting pathological response and prognosis in NSCLC patients undergoing immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Fan;Xie Mei;Lin Xuwen;Gao Jie;Ma Xidong;Yang Yang;Xue Zhiqiang;Wu Chongchong;Jiang Tianjiao;Feng Yimiao;Song Jialin;Wang Yuanyong;Yao Jie;Bao Xinyu;Zhang Xin;He Xuming;Zhang Yuyao;Yao Jiannan;Zheng Jie;Xue Xinying",
+      "id": "out-dda5f3befe38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early tumor volume change as a novel CT RECIST indicator for predicting pathological response and prognosis in NSCLC patients undergoing immunotherapy — Xu Fan;Xie Mei;Lin Xuwen;Gao Jie;Ma Xidong;Yang Yang;Xue Zhiqiang;Wu Chongchong;Jiang Tianjiao;Feng Yimiao;Song Jialin;Wang Yuanyong;Yao Jie;Bao Xinyu;Zhang Xin;He Xuming;Zhang Yuyao;Yao Jiannan;Zheng Jie;Xue Xinying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6760,
+            "end_char": 7135
+          },
+          "version": "990883f7c8a584593fea"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

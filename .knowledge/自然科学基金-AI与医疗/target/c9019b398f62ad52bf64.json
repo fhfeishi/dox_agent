@@ -2,15 +2,20 @@
   "doc_id": "c9019b398f62ad52bf64",
   "version": "762a70e4e936d50131f7",
   "source_hash": "6462ad05bdb23809010f19aff21f3b913f63de10350fec76aabd3bc3e03af34e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.543966+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.231540+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-35281ce6eabc",
-          "name": "脊髓型颈椎病智能辅助诊断",
-          "desc": "面向脊髓型颈椎病（CSM）的影像学智能辅助诊断，覆盖配准、分割、识别与康复预测四个环节。",
+          "id": "item-0bb9c4658641",
+          "name": "医学影像智能辅助诊断",
+          "desc": "生成对抗网络",
           "evidence": [
             {
-              "quote": "本课题结合脊髓型颈椎病(CSM)辅助诊断在以下四个方面展开研究",
+              "quote": "融合人工智能和医学影像的智能辅助诊断技术在医疗健康产业中具有巨大的发展潜力和广阔的应用前景",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 797
+                "start_char": 687,
+                "end_char": 731
               },
               "version": "762a70e4e936d50131f7"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e056203413e",
-          "name": "高质量医学标注图像缺乏",
-          "desc": "高质量医学标注图像的缺乏使智能辅助诊断的发展面临挑战和瓶颈。",
+          "id": "item-41fc4739ab29",
+          "name": "传统机器学习依赖人工特征与先验知识",
+          "desc": "高质量标注缺乏",
           "evidence": [
             {
-              "quote": "然而，高质量医学标注图像的缺乏也使其发展面巨大临挑战和瓶颈",
+              "quote": "由于传统机器学习方法的性能在很大程度上依赖于人工制作的特征质量以及领域专家所具有的先验知识，其应用范围十分有限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 761
+                "start_char": 2835,
+                "end_char": 2889
               },
               "version": "762a70e4e936d50131f7"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e256f468ea6",
-          "name": "弱监督学习与生成对抗网络的CSM分割识别模型",
-          "desc": "提出基于弱监督学习和生成对抗网络的分割模型，利用少量全标注与较多弱标注样本实现CSM图像精准分割；并构建融合Capsule机制的多通道生成对抗网络实现精准识别。",
+          "id": "item-379fa9828bb7",
+          "name": "特征向量化表达与图像重构无监督配准",
+          "desc": "方向层次信息易丢失",
           "evidence": [
             {
-              "quote": "提出基于弱监督学习和生成对抗网络的分割模型，利用少量全标注样本和较多的弱标注样本，实现CSM图像的精准分割",
+              "quote": "提出基于特征向量化表达和图像重构的无监督配准模型构建方法，以解决医学图像配准中方向、层次信息易丢失的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 911
+                "start_char": 2945,
+                "end_char": 2996
               },
               "version": "762a70e4e936d50131f7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ff7d8d04bd25",
+          "name": "弱监督学习与生成对抗网络分割模型",
+          "desc": "少量全标注和较多弱标注样本",
+          "evidence": [
+            {
+              "quote": "提出基于弱监督学习和生成对抗网络的分割模型，利用少量全标注样本和较多的弱标注样本，实现医学图像的精准分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3001,
+                "end_char": 3052
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-02f8f415b8e3",
+          "name": "双向映射生成对抗网络",
+          "desc": "三维端到端跨模态合成",
+          "evidence": [
+            {
+              "quote": "提出了一种新颖的三维端到端医学影像跨模态合成网络，称之为双向映射生成对抗网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3130,
+                "end_char": 3167
+              },
+              "version": "762a70e4e936d50131f7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-14eafbc53a3c",
-          "name": "发表SCI/EI论文18篇并申请中美发明专利",
-          "desc": "申请美国发明专利1项、中国发明专利11项（授权2项），发表SCI/EI论文18篇。",
+          "id": "item-82880ec35e1a",
+          "name": "专利与论文",
+          "desc": "美国发明专利1项，中国发明专利11项，SCI/EI论文18篇",
           "evidence": [
             {
               "quote": "申请美国发明专利1项，中国发明专利11项，其中授权2项。发表SCI/EI论文18篇",
@@ -99,44 +139,518 @@
               "version": "762a70e4e936d50131f7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-35281ce6eabc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2e056203413e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Insights Into Algorithms for Separable Nonlinear Least Squares Problems",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guang-Yong Chen;Min Gan;Shuqiang Wang;C. L. Philip Chen",
+      "id": "out-fb45817bd292",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Insights Into Algorithms for Separable Nonlinear Least Squares Problems — Guang-Yong Chen;Min Gan;Shuqiang Wang;C. L. Philip Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3403,
+            "end_char": 3538
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2e056203413e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0e256f468ea6"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Point Cloud Generative Model via Tree-Structured Graph Convolutions for 3D Brain Shape Reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bowen Hu;Baiying Lei;Yanyan Shen;Yong Liu;Shuqiang Wang",
+      "id": "out-288bb2f66ed1",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Point Cloud Generative Model via Tree-Structured Graph Convolutions for 3D Brain Shape Reconstruction — Bowen Hu;Baiying Lei;Yanyan Shen;Yong Liu;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3543,
+            "end_char": 3710
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0e256f468ea6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-14eafbc53a3c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Addictive brain-network identification by spatial attention recurrent network with feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changwei Gong;Xinyi Chen;Bushra Mughal;Shuqiang Wang",
+      "id": "out-690a144ffcca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Addictive brain-network identification by spatial attention recurrent network with feature selection — Changwei Gong;Xinyi Chen;Bushra Mughal;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3876
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cervical Spondylotic Myelopathy Segmentation Using Shape-Aware U-net",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuo Chen;Shuqiang Wang;Yong Hu;Huiyu Zhou;Yanyan Shen;Xiang Li",
+      "id": "out-7a37b52111c9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Cervical Spondylotic Myelopathy Segmentation Using Shape-Aware U-net — Zhuo Chen;Shuqiang Wang;Yong Hu;Huiyu Zhou;Yanyan Shen;Xiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3881,
+            "end_char": 4021
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像驱动的脑图谱构建方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;左乾坤;甘敏",
+      "id": "out-85ac433a78ce",
+      "evidence": [
+        {
+          "quote": "[专利] 影像驱动的脑图谱构建方法、装置、设备及存储介质 — 王书强;左乾坤;甘敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4026,
+            "end_char": 4066
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain MR to PET synthesis via bidirectional generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shengye Hu;Yanyan Shen;Shuqiang Wang;Baiying Lei",
+      "id": "out-1da7952e0b35",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain MR to PET synthesis via bidirectional generative adversarial network — Shengye Hu;Yanyan Shen;Shuqiang Wang;Baiying Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4202
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图像增强方法、装置及终端设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;游森榕;陆一乾;胡圣烨",
+      "id": "out-c7232e1815be",
+      "evidence": [
+        {
+          "quote": "[专利] 图像增强方法、装置及终端设备 — 王书强;游森榕;陆一乾;胡圣烨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4207,
+            "end_char": 4243
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Time-sequential graph adversarial learning for brain modularity community detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changwei Gong;Bing Xue;Changhong Jing;Chun-Hui He;Guocheng Wu;Baiying Lei;Shuqiang Wang",
+      "id": "out-5a8c36714dda",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Time-sequential graph adversarial learning for brain modularity community detection — Changwei Gong;Bing Xue;Changhong Jing;Chun-Hui He;Guocheng Wu;Baiying Lei;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4248,
+            "end_char": 4427
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diabetic Retinopathy Diagnosis Using Multichannel Generative Adversarial Network With Semisupervision",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Shuqiang;Wang Xiangyu;Hu Yong;Shen Yanyan;Yang Zhile;Gan Min;Lei Baiying",
+      "id": "out-1d630772b1eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diabetic Retinopathy Diagnosis Using Multichannel Generative Adversarial Network With Semisupervision — Wang Shuqiang;Wang Xiangyu;Hu Yong;Shen Yanyan;Yang Zhile;Gan Min;Lei Baiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4619
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Characterization Multimodal Connectivity of Brain Network by Hypergraph GAN for Alzheimer’s Disease Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junren Pan;Baiying Lei;Yanyan Shen;Yong Liu;Zhiguang Feng;Shuqiang Wang",
+      "id": "out-32428c2ece12",
+      "evidence": [
+        {
+          "quote": "[会议论文] Characterization Multimodal Connectivity of Brain Network by Hypergraph GAN for Alzheimer’s Disease Analysis — Junren Pan;Baiying Lei;Yanyan Shen;Yong Liu;Zhiguang Feng;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4625,
+            "end_char": 4813
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain stroke lesion segmentation using consistent perception generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuqiang Wang;Zhuo Chen;Senrong You;Bingchuan Wang;Yanyan Shen;Baiying Lei",
+      "id": "out-de1653d412d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain stroke lesion segmentation using consistent perception generative adversarial network — Shuqiang Wang;Zhuo Chen;Senrong You;Bingchuan Wang;Yanyan Shen;Baiying Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4819,
+            "end_char": 4993
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像重建方法、医学图像重建网络训练方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡圣烨;王书强;陈卓;申妍燕;张炽堂",
+      "id": "out-06c845c48266",
+      "evidence": [
+        {
+          "quote": "[专利] 医学图像重建方法、医学图像重建网络训练方法和装置 — 胡圣烨;王书强;陈卓;申妍燕;张炽堂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5048
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像分类方法、装置、终端设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;余雯;申妍燕;游森榕",
+      "id": "out-da314d4c1e7d",
+      "evidence": [
+        {
+          "quote": "[专利] 医学图像分类方法、装置、终端设备及存储介质 — 王书强;余雯;申妍燕;游森榕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5054,
+            "end_char": 5096
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal Representations Learning and Adversarial Hypergraph Fusion for Early Alzheimer’s Disease Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiankun Zuo;Baiying Lei;Yanyan Shen;Yong Liu;Zhiguang Feng;Shuqiang Wang",
+      "id": "out-87fff9d8bffc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multimodal Representations Learning and Adversarial Hypergraph Fusion for Early Alzheimer’s Disease Prediction — Qiankun Zuo;Baiying Lei;Yanyan Shen;Yong Liu;Zhiguang Feng;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5102,
+            "end_char": 5293
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bidirectional Mapping Generative Adversarial Networks for Brain MR to PET Synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shengye Hu;Baiying Lei;Shuqiang Wang;Yong Wang;Zhiguang Feng;Yanyan Shen",
+      "id": "out-c1e428d1e902",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bidirectional Mapping Generative Adversarial Networks for Brain MR to PET Synthesis — Shengye Hu;Baiying Lei;Shuqiang Wang;Yong Wang;Zhiguang Feng;Yanyan Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5299,
+            "end_char": 5463
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced Generative Adversarial Network And Target Sample Recognition Method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;申妍燕;张文勇",
+      "id": "out-0af91a85d28a",
+      "evidence": [
+        {
+          "quote": "[专利] Enhanced Generative Adversarial Network And Target Sample Recognition Method — 王书强;申妍燕;张文勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5469,
+            "end_char": 5563
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像分割方法、医学图像分割装置及终端设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;陈卓;申妍燕;张炽堂;吴国宝",
+      "id": "out-2cfea9424513",
+      "evidence": [
+        {
+          "quote": "[专利] 医学图像分割方法、医学图像分割装置及终端设备 — 王书强;陈卓;申妍燕;张炽堂;吴国宝",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5569,
+            "end_char": 5616
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "生成对抗网络在医学图像计算上的进展与展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "游森榕;胡圣烨;申妍燕;王书强",
+      "id": "out-09844de81cce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 生成对抗网络在医学图像计算上的进展与展望 — 游森榕;胡圣烨;申妍燕;王书强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5622,
+            "end_char": 5666
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fine Perceptive GANs for Brain MR Image Super-Resolution in Wavelet Domain",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Senrong You;Baiying Lei;Shuqiang Wang;Charles K. Chui;Albert C. Cheung;Yong Liu;Min Gan;Guocheng Wu;Yanyan Shen",
+      "id": "out-6dd821a5a61c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fine Perceptive GANs for Brain MR Image Super-Resolution in Wavelet Domain — Senrong You;Baiying Lei;Shuqiang Wang;Charles K. Chui;Albert C. Cheung;Yong Liu;Min Gan;Guocheng Wu;Yanyan Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5672,
+            "end_char": 5866
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种CSM图像分割方法、装置、终端设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;陈卓;胡勇;申妍燕",
+      "id": "out-2f2a9aca59c4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种CSM图像分割方法、装置、终端设备及存储介质 — 王书强;陈卓;胡勇;申妍燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5872,
+            "end_char": 5916
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像重建技术的方法、装置、存储介质和电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;胡博闻;申妍燕",
+      "id": "out-f1cf760a5454",
+      "evidence": [
+        {
+          "quote": "[专利] 医学图像重建技术的方法、装置、存储介质和电子设备 — 王书强;胡博闻;申妍燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5975,
+            "end_char": 6017
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图像特征可视化方法、图像特征可视化装置及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王书强;余雯;肖晨晨;胡圣烨;申妍燕",
+      "id": "out-e6034cbfdcdb",
+      "evidence": [
+        {
+          "quote": "[专利] 图像特征可视化方法、图像特征可视化装置及电子设备 — 王书强;余雯;肖晨晨;胡圣烨;申妍燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6023,
+            "end_char": 6072
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TA-GAN: transformer-driven addiction-perception generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changhong Jing;Changwei Gong;Zuxin Chen;Baiying Lei;Shuqiang Wang",
+      "id": "out-ea0a25f9ee48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TA-GAN: transformer-driven addiction-perception generative adversarial network — Changhong Jing;Changwei Gong;Zuxin Chen;Baiying Lei;Shuqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6078,
+            "end_char": 6230
+          },
+          "version": "762a70e4e936d50131f7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 10,
+        "extracted": 9
+      }
+    },
+    "consistent": false
+  }
 }

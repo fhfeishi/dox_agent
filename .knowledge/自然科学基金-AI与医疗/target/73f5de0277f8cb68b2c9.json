@@ -2,15 +2,20 @@
   "doc_id": "73f5de0277f8cb68b2c9",
   "version": "b12ce6ef29c0bd4986aa",
   "source_hash": "8198897b53168d6a4a8556cc6ad6cc0701c11898db4e5533e87ac95b6c6d5e3a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.163846+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:45:44.232384+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-617c3bf42b2e",
-          "name": "药品不良反应预测中时依性变量处理",
-          "desc": "药品不良反应预测模型有助于药品安全风险防控，电子医疗数据积累为开发更准确可靠的预测模型提供契机。",
+          "id": "item-33831751eac2",
+          "name": "药品不良反应预测模型开发",
+          "desc": "真实世界数据",
           "evidence": [
             {
-              "quote": "药品不良反应预测模型已被证实有助于药品安全风险防控，电子医疗数据的积累为开发更准确可靠的预测模型提供契机",
+              "quote": "本项目聚焦基于真实世界数据开发药品不良反应（ADR）预测模型时面临的时依性变量及结局类不平衡两大核心问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 679,
-                "end_char": 730
-              },
-              "version": "b12ce6ef29c0bd4986aa"
-            }
-          ]
-        },
-        {
-          "id": "item-c7e2f92b1c55",
-          "name": "为真实世界研究提供方法学参考",
-          "desc": "基于鄞州百万人口区域医疗数据通过实证研究验证最优策略，探索其在真实世界研究中的适用性。",
-          "evidence": [
-            {
-              "quote": "本课题将为基于电子医疗数据开发药品不良反应预测模型提供方法学参考",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1046,
-                "end_char": 1077
+                "start_char": 3024,
+                "end_char": 3075
               },
               "version": "b12ce6ef29c0bd4986aa"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be36d402c436",
-          "name": "时依性变量与低发生率增加建模难度",
-          "desc": "用药和病情随时间变化的特性导致建模常面临处理时依性变量的复杂情境，不良反应发生率低的特性也增加处理难度。",
-          "evidence": [
-            {
-              "quote": "但用药和病情等随时间变化的特性，导致建模常面临处理时依性变量的复杂情境，不良反应发生率低的特性也会增加处理难度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 786
-              },
-              "version": "b12ce6ef29c0bd4986aa"
-            }
-          ]
-        },
-        {
-          "id": "item-1bfc62fe9699",
-          "name": "结局类不平衡是核心问题之一",
-          "desc": "项目聚焦基于真实世界数据开发药品不良反应预测模型时面临的时依性变量及结局类不平衡两大核心问题。",
+          "id": "item-aeb9f6c51555",
+          "name": "时依性变量与结局类不平衡",
+          "desc": "ADR预测建模",
           "evidence": [
             {
               "quote": "本项目聚焦基于真实世界数据开发药品不良反应（ADR）预测模型时面临的时依性变量及结局类不平衡两大核心问题",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b2d6d6a25c76",
-          "name": "动态贝叶斯网络结合迁移学习",
-          "desc": "新兴的动态贝叶斯网络整合迁移学习有望成为解决时依性变量与低发生率问题的关键方法。",
+          "id": "item-b784c0c48c82",
+          "name": "平滑后界标模型",
+          "desc": "时依性变量通用最优策略",
           "evidence": [
             {
-              "quote": "新兴的动态贝叶斯网络整合迁移学习有望成为解决上述问题的关键方法",
+              "quote": "明确基于超预测数据集的平滑后界标模型为通用最优策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 818
+                "start_char": 3227,
+                "end_char": 3251
               },
               "version": "b12ce6ef29c0bd4986aa"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bca3dce7e67a",
-          "name": "12类模拟场景对比建模方法",
-          "desc": "构建涵盖3种用药情形、2种关联强度模式及2种ADR发生率的12类模拟场景生成纵向生存数据集，对比4类8种建模方法。",
+          "id": "item-7e4e75de8ee3",
+          "name": "预训练-微调迁移学习模型",
+          "desc": "类不平衡ADR预测",
           "evidence": [
             {
-              "quote": "本研究构建了涵盖3种用药情形、2种关联强度模式及2种ADR发生率的12类模拟场景，据此生成纵向生存数据集",
+              "quote": "本研究开发了基于深度神经网络的预训练-微调迁移学习模型，利用同种药物的其他常见相似ADR作为源结局，辅助目标模型训练",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3131,
-                "end_char": 3182
+                "start_char": 3380,
+                "end_char": 3437
               },
               "version": "b12ce6ef29c0bd4986aa"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8e09941b241e",
-          "name": "平滑后界标模型为通用最优策略",
-          "desc": "对比时依性Cox模型、界标模型、联合模型和动态贝叶斯网络在内的4类8种建模方法，明确基于超预测数据集的平滑后界标模型为通用最优策略。",
+          "id": "item-5b1b00fafc73",
+          "name": "时依性变量处理策略推荐路径",
+          "desc": "三维度",
           "evidence": [
             {
-              "quote": "研究对比了时依性Cox模型、界标模型、联合模型和动态贝叶斯网络在内的4类8种建模方法，明确基于超预测数据集的平滑后界标模型为通用最优策略",
+              "quote": "本研究构建了三维度时依性变量处理策略推荐路径",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3184,
-                "end_char": 3251
+                "start_char": 3257,
+                "end_char": 3278
               },
               "version": "b12ce6ef29c0bd4986aa"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-752244c3ba1d",
-          "name": "迁移学习在低发生率场景表现最优",
-          "desc": "开发基于深度神经网络的预训练-微调迁移学习模型，在目标ADR发生率较低且源与目标关联强度高的场景下表现最优，AUC及平衡准确率显著优于传统策略。",
-          "evidence": [
-            {
-              "quote": "在目标ADR发生率较低且源ADR与目标ADR关联强度高的场景下表现最优，其AUC及平衡准确率显著优于传统策略，且迁移学习与代价敏感学习结合可进一步优化性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3484,
-                "end_char": 3560
-              },
-              "version": "b12ce6ef29c0bd4986aa"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
           "id": "item-fb42cc6e4611",
           "name": "类不平衡处理策略推荐路径",
-          "desc": "形成不同ADR建模场景下类不平衡处理策略推荐路径，为罕见ADR风险预警与个体化用药决策提供技术支撑。",
+          "desc": "不同ADR建模场景",
           "evidence": [
             {
               "quote": "形成了不同ADR建模场景下类不平衡处理策略推荐路径",
@@ -181,55 +141,472 @@
               "version": "b12ce6ef29c0bd4986aa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-617c3bf42b2e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-be36d402c436"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "临床预测模型方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王胜锋;王俊峰;谷鸿秋;胥洋",
+      "id": "out-edf4a0550e65",
+      "evidence": [
+        {
+          "quote": "[专著] 临床预测模型方法与应用 — 王胜锋;王俊峰;谷鸿秋;胥洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3709,
+            "end_char": 3741
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-be36d402c436"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b2d6d6a25c76"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于XGBoost的他汀类药物用药者急性肝损伤预测模型的开发与验证",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟祥龙;于玥琳;孙烨祥;沈  鹏;江志琴;朱  宇;殷玥琪;詹思延;王胜锋",
+      "id": "out-437654253e45",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于XGBoost的他汀类药物用药者急性肝损伤预测模型的开发与验证 — 孟祥龙;于玥琳;孙烨祥;沈  鹏;江志琴;朱  宇;殷玥琪;詹思延;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3825
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bca3dce7e67a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8e09941b241e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ethnic, sex, and age disparities in esophageal cancer and medical costs: A population-based study of 18 million people in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang·Yutong;Xi·Yunfeng;Qiao·Liying;Yu·Yuelin;Yin·Bo;Kang·Weiwei;Zhan·Siyan;Chen·Ru;Wang·Shengfeng",
+      "id": "out-80007b6ace02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ethnic, sex, and age disparities in esophageal cancer and medical costs: A population-based study of 18 million people in China — Wang·Yutong;Xi·Yunfeng;Qiao·Liying;Yu·Yuelin;Yin·Bo;Kang·Weiwei;Zhan·Siyan;Chen·Ru;Wang·Shengfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 4063
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b2d6d6a25c76"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-752244c3ba1d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preliminary assessment of the data appropriateness of electronic health records for real-world studies: A survey of hospitals in a developing region in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuelin Yu;Lin Zhuo;Ruogu Meng;Wanqian Guo;Yuanyuan Chen;Yunjing Zhang;Ying Chen;Hongjing Shi;Zhi Lin;Siyan Zhan;Shengfeng Wang",
+      "id": "out-4f0071990e3b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preliminary assessment of the data appropriateness of electronic health records for real-world studies: A survey of hospitals in a developing region in China — Yuelin Yu;Lin Zhuo;Ruogu Meng;Wanqian Guo;Yuanyuan Chen;Yunjing Zhang;Ying Chen;Hongjing Shi;Zhi Lin;Siyan Zhan;Shengfeng Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4068,
+            "end_char": 4360
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "\"第一届中国科技青年论坛\"三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王胜锋",
+      "id": "out-bf182b695ba8",
+      "evidence": [
+        {
+          "quote": "[奖励] \"第一届中国科技青年论坛\"三等奖 — 王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4365,
+            "end_char": 4391
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "国内外药品上市后安全性研究的报告规范要求比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张云静;于玥琳;张卜予;缪珂;熊玮仪;詹思延;任经天;王胜锋",
+      "id": "out-88036217f893",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 国内外药品上市后安全性研究的报告规范要求比较 — 张云静;于玥琳;张卜予;缪珂;熊玮仪;詹思延;任经天;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4396,
+            "end_char": 4457
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "国内外药品上市后安全性监管体系及监管要求比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于玥琳;张云静;缪珂;张卜予;熊玮仪;詹思延;任经天;王胜锋",
+      "id": "out-35e15479da2b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 国内外药品上市后安全性监管体系及监管要求比较 — 于玥琳;张云静;缪珂;张卜予;熊玮仪;詹思延;任经天;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4462,
+            "end_char": 4523
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "阿片类药物需要量的影响因素及干预措施研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "仇景辉;周虎子威;曹颖;李文鹏;王胜锋",
+      "id": "out-d95753324892",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 阿片类药物需要量的影响因素及干预措施研究进展 — 仇景辉;周虎子威;曹颖;李文鹏;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4528,
+            "end_char": 4578
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "国内外药品上市后安全性研究的方案制定要求比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于玥琳;张云静;张卜予;缪珂;熊玮仪;詹思延;任经天;王胜锋",
+      "id": "out-6c1f1b559a80",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 国内外药品上市后安全性研究的方案制定要求比较 — 于玥琳;张云静;张卜予;缪珂;熊玮仪;詹思延;任经天;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4583,
+            "end_char": 4644
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非医疗目的使用处方阿片类药物监管的促进及阻碍因素的定性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "段玥涵;周虎子威;杨英姿;温俏睿;褚红玲;王井玲;江志琴;孙晔祥;朱  宇;王胜锋",
+      "id": "out-e425351afc7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 非医疗目的使用处方阿片类药物监管的促进及阻碍因素的定性研究 — 段玥涵;周虎子威;杨英姿;温俏睿;褚红玲;王井玲;江志琴;孙晔祥;朱  宇;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4650,
+            "end_char": 4729
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "国内外药品上市后安全性研究政策演变比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "缪珂;于玥琳;张云静;张卜予;熊玮仪;詹思延;任经天;王胜锋",
+      "id": "out-defe181f26a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 国内外药品上市后安全性研究政策演变比较 — 缪珂;于玥琳;张云静;张卜予;熊玮仪;詹思延;任经天;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4735,
+            "end_char": 4793
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "阿片类药物需要量的估算方法及应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李文鹏;周虎子威;朱兰;王胜锋",
+      "id": "out-123c5fa0be7f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 阿片类药物需要量的估算方法及应用进展 — 李文鹏;周虎子威;朱兰;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4799,
+            "end_char": 4841
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学预测模型中类不平衡问题处理策略的现状与挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟祥龙;王予童;张鑫;詹思延;王胜锋",
+      "id": "out-53bde0b7c38d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 医学预测模型中类不平衡问题处理策略的现状与挑战 — 孟祥龙;王予童;张鑫;詹思延;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 4897
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "教育部2022年度\"长江学者奖励计划\"青年学者",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王胜锋",
+      "id": "out-2a7316cd0294",
+      "evidence": [
+        {
+          "quote": "[奖励] 教育部2022年度\"长江学者奖励计划\"青年学者 — 王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4903,
+            "end_char": 4936
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医疗保险数据在肿瘤心脏病学领域的应用与挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张云静;詹思延;王胜锋",
+      "id": "out-1dd33b2e4062",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 医疗保险数据在肿瘤心脏病学领域的应用与挑战 — 张云静;詹思延;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4942,
+            "end_char": 4983
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of survival outcomes between kidney transplant and dialysis in patients with previous cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guohua He;Yunfeng Xi;Xiaoyun Jiang;Liying Qiao;Yunjing Zhang;Weiwei Kang;Lu Xu;Yingzi Yang;Huziwei Zhou;Guozhen Liu;Mingyuan Wang;Shengfeng Wang",
+      "id": "out-0f5d97b8907c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of survival outcomes between kidney transplant and dialysis in patients with previous cancer — Guohua He;Yunfeng Xi;Xiaoyun Jiang;Liying Qiao;Yunjing Zhang;Weiwei Kang;Lu Xu;Yingzi Yang;Huziwei Zhou;Guozhen Liu;Mingyuan Wang;Shengfeng Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4989,
+            "end_char": 5245
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "机器学习方法在预测麻精药品不合理使用风险中的应用现状和思考",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周虎子威;张云静;于玥琳;聂晓璐;詹思延;王胜锋",
+      "id": "out-7f36a282a167",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 机器学习方法在预测麻精药品不合理使用风险中的应用现状和思考 — 周虎子威;张云静;于玥琳;聂晓璐;詹思延;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5251,
+            "end_char": 5313
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌患者新发心血管疾病预测模型的建立与验证:基于内蒙古区域医疗数据",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张云静;乔丽颖;祁萌;严颖;亢伟伟;刘国臻;王明远;席云峰;王胜锋",
+      "id": "out-516fd303a0f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 乳腺癌患者新发心血管疾病预测模型的建立与验证:基于内蒙古区域医疗数据 — 张云静;乔丽颖;祁萌;严颖;亢伟伟;刘国臻;王明远;席云峰;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5319,
+            "end_char": 5395
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "解决多中心药品安全性研究中变量丰度不同的策略及应用概述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴昀效;许璐;卓琳;王胜锋;詹思延",
+      "id": "out-772488b176f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 解决多中心药品安全性研究中变量丰度不同的策略及应用概述 — 吴昀效;许璐;卓琳;王胜锋;詹思延",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5401,
+            "end_char": 5454
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "前列腺癌药物治疗方案卫生经济学评价研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨昕昱;杨英姿;吕超;袁清;王胜锋",
+      "id": "out-1c4aec883394",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 前列腺癌药物治疗方案卫生经济学评价研究进展 — 杨昕昱;杨英姿;吕超;袁清;王胜锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5460,
+            "end_char": 5507
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction models for different types of leukemia: a systematic review and critical appraisal",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tuerxun·Ayizhati;Yang·Yingzi;Cai·Xinqi;Chen·Xinyu;Zhao·Zhuoya;Zhao·Yang;Lin·Zinuo;Wang·Shengfeng",
+      "id": "out-16e6946cdcb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction models for different types of leukemia: a systematic review and critical appraisal — Tuerxun·Ayizhati;Yang·Yingzi;Cai·Xinqi;Chen·Xinyu;Zhao·Zhuoya;Zhao·Yang;Lin·Zinuo;Wang·Shengfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5513,
+            "end_char": 5711
+          },
+          "version": "b12ce6ef29c0bd4986aa"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      }
+    },
+    "consistent": true
+  }
 }

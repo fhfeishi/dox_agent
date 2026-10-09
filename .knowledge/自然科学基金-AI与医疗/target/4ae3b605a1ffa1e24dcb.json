@@ -2,15 +2,20 @@
   "doc_id": "4ae3b605a1ffa1e24dcb",
   "version": "8199715612fc12ae37da",
   "source_hash": "d017617feb25a93e6a1fff8640cb4e6c94b8edc11cfa15a716479552fd12bc03",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.461861+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:40:11.364486+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-93c4b6f4d20e",
           "name": "难治性乳腺癌精准诊断与风险预测",
-          "desc": "以三阴性、曲妥珠单抗耐药HER-2阳性及Luminal B型等难治性乳腺癌为对象，融合MRI组学与基因组学建模。",
+          "desc": "三阴性、HER2耐药、Luminal B",
           "evidence": [
             {
-              "quote": "乳腺癌是我国女性最常见的恶性肿瘤，近年来发病率持续上升",
+              "quote": "三阴性乳腺癌、曲妥珠单抗耐药的HER-2阳性乳腺癌以及远期复发转移高的Luminal B型乳腺癌被认为是一组“难治性乳腺癌”",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 701
+                "start_char": 732,
+                "end_char": 793
               },
               "version": "8199715612fc12ae37da"
             }
@@ -43,14 +48,14 @@
         {
           "id": "item-9fad6a75e658",
           "name": "难治性乳腺癌亚型内预后不一致",
-          "desc": "三阴性、HER-2阳性耐药及Luminal B型乳腺癌构成一组难治性乳腺癌，治疗棘手且亚型内预后存在不一致性。",
+          "desc": "需精准诊断选择治疗",
           "evidence": [
             {
-              "quote": "三阴性乳腺癌、曲妥珠单抗耐药的HER-2阳性乳腺癌以及远期复发转移高的Luminal B型乳腺癌被认为是一组“难治性乳腺癌”，对这类乳腺癌的治疗较为棘手",
+              "quote": "即便在这三种乳腺癌亚型内，仍存在着预后上的不一致性，如何基于精准诊断而选择最适合的治疗，对难治性乳腺癌的精准管控至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 807
+                "start_char": 809,
+                "end_char": 868
               },
               "version": "8199715612fc12ae37da"
             }
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f1de6019d057",
-          "name": "MRI影像组学与内在差异基因融合建模",
-          "desc": "在基因组学数据库筛选关键靶点基础上，探索多序列MRI组学与病理、分子、基因等内在表观的关联，运用数理学习方法融合多基因表型与MRI组学信息建模。",
+          "id": "item-7e8a868564a8",
+          "name": "MR影像组学无创预测关键基因靶点",
+          "desc": "HRD与TILs水平",
           "evidence": [
             {
-              "quote": "探索多序列MRI组学与病理、分子、基因等肿瘤内在表观的关联，运用数理学习方法融合多基因表型信息与MRI组学信息",
+              "quote": "MR影像组学能够无创预测关键基因靶点，包括与BRCA突变密切相关的同源重组缺陷（HRD）及与免疫治疗相关的肿瘤淋巴浸润细胞（Tils）水平",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 963,
-                "end_char": 1017
+                "start_char": 2826,
+                "end_char": 2894
               },
               "version": "8199715612fc12ae37da"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-b94201056e0b",
-          "name": "跨尺度影像-基因融合提升预测价值",
-          "desc": "发现MR影像组学可识别肿瘤内异质性、精准分子分型并无创预测HRD与TILs水平；影像组学模型具有显著疗效及预后预测价值，跨尺度融合影像-基因多组学特征可提升模型预测价值。",
+          "id": "item-a05edbf3c90e",
+          "name": "跨尺度融合影像-基因多组学特征",
+          "desc": "提升预测价值",
           "evidence": [
             {
               "quote": "跨尺度融合影像-基因多组学特征能够提升模型的预测价值",
@@ -99,44 +99,838 @@
               "version": "8199715612fc12ae37da"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-54783cec46f9",
+          "name": "难治性乳腺癌精准诊断及风险预测新平台",
+          "desc": "融合多组学构建",
+          "evidence": [
+            {
+              "quote": "融合多组学构建了评估乳腺癌整体生物性特征和精准诊断及风险预测新平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2985,
+                "end_char": 3017
+              },
+              "version": "8199715612fc12ae37da"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-93c4b6f4d20e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9fad6a75e658"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于乳腺和肿瘤分割的BPE自动化提取方法和系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "尤超;顾雅佳;彭卫军",
+      "id": "out-434b0fab4518",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于乳腺和肿瘤分割的BPE自动化提取方法和系统 — 尤超;顾雅佳;彭卫军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3058,
+            "end_char": 3100
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9fad6a75e658"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f1de6019d057"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance of perilesional radiomics analysis of contrast-enhanced mammography for the differentiation of benign and malignant breast lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Simin;Sun Yuqi;Li Ruimin;Mao Ning;Li Qin;Jiang Tingting;Chen Qianqian;Duan Shaofeng;Xie Haizhu;Gu Yajia",
+      "id": "out-b6f6604f6f35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic performance of perilesional radiomics analysis of contrast-enhanced mammography for the differentiation of benign and malignant breast lesions — Wang Simin;Sun Yuqi;Li Ruimin;Mao Ning;Li Qin;Jiang Tingting;Chen Qianqian;Duan Shaofeng;Xie Haizhu;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3105,
+            "end_char": 3375
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f1de6019d057"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b94201056e0b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DCE-MRI多区域的影像基因组学模型预测三阴性乳腺癌的病理完全缓解和预后",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周嘉音;顾雅佳",
+      "id": "out-07a6e8ef4e1a",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于DCE-MRI多区域的影像基因组学模型预测三阴性乳腺癌的病理完全缓解和预后 — 周嘉音;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3380,
+            "end_char": 3435
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomics model based on quantitative spatial heterogeneity for predicting pathological complete response and prognosis of triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayin Zhou;Yajia Gu",
+      "id": "out-899f14abd367",
+      "evidence": [
+        {
+          "quote": "[会议论文] Radiogenomics model based on quantitative spatial heterogeneity for predicting pathological complete response and prognosis of triple-negative breast cancer — Jiayin Zhou;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3440,
+            "end_char": 3625
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于磁共振图像的乳腺血管自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "顾雅佳;龚敬;谢天文;彭卫军;尤超;肖勤;李瑞敏",
+      "id": "out-1e73686d0cfe",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于磁共振图像的乳腺血管自动分割方法 — 顾雅佳;龚敬;谢天文;彭卫军;尤超;肖勤;李瑞敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3630,
+            "end_char": 3681
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved value of whole-lesion histogram analysis on DCE parametric maps for diagnosing small breast cancer (≤ 1 cm)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Tianwen;Zhao Qiufeng;Fu Caixia;Grimm Robert;Gu Yajia;Peng Weijun",
+      "id": "out-89dbf9effbcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improved value of whole-lesion histogram analysis on DCE parametric maps for diagnosing small breast cancer (≤ 1 cm) — Xie Tianwen;Zhao Qiufeng;Fu Caixia;Grimm Robert;Gu Yajia;Peng Weijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3686,
+            "end_char": 3879
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic analysis reveals tumor heterogeneity of triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Lin;You Chao;Xiao Yi;Wang He;Su Guan-Hua;Xia Bing-Qing;Zheng Ren-Cheng;Zhang Dan-Dan;Jiang Yi-Zhou;Gu Ya-Jia;Shao Zhi-Ming",
+      "id": "out-cfa9c436c220",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic analysis reveals tumor heterogeneity of triple-negative breast cancer — Jiang Lin;You Chao;Xiao Yi;Wang He;Su Guan-Hua;Xia Bing-Qing;Zheng Ren-Cheng;Zhang Dan-Dan;Jiang Yi-Zhou;Gu Ya-Jia;Shao Zhi-Ming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 4103
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Radiogenomic Model Based on Subregions of DCE-MRI Can Simultaneously Predict the Pathological Complete Response and Prognosis of Patients With Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayin Zhou;Yajia Gu",
+      "id": "out-fc39dcf14b81",
+      "evidence": [
+        {
+          "quote": "[会议论文] The Radiogenomic Model Based on Subregions of DCE-MRI Can Simultaneously Predict the Pathological Complete Response and Prognosis of Patients With Triple-Negative Breast Cancer — Jiayin Zhou;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4108,
+            "end_char": 4313
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Do Breast Oedema and Shrinkage Pattern during NAC Provide Additional Value for Predicting Treatment Response in Locally Advanced Luminal Breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyun Sun;Yajia Gu",
+      "id": "out-962340caea8c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Do Breast Oedema and Shrinkage Pattern during NAC Provide Additional Value for Predicting Treatment Response in Locally Advanced Luminal Breast cancer — Shiyun Sun;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4318,
+            "end_char": 4496
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole tumour- and subregion-based radiomics of contrast-enhanced mammography in differentiating HER2 expression status of invasive breast cancers: A double-centre pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Simin;Wang Ting;Guo Sailing;Zhu Shuangshuang;Chen Ruchuan;Zheng Jinlong;Jiang Tingting;Li Ruimin;Li Jinhui;Li Jiawei;Shen Xigang;Qian Min;Yang Meng;Yu Shengnan;You Chao;Gu Yajia",
+      "id": "out-9e38b5b5441e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole tumour- and subregion-based radiomics of contrast-enhanced mammography in differentiating HER2 expression status of invasive breast cancers: A double-centre pilot study — Wang Simin;Wang Ting;Guo Sailing;Zhu Shuangshuang;Chen Ruchuan;Zheng Jinlong;Jiang Tingting;Li Ruimin;Li Jinhui;Li Jiawei;Shen Xigang;Qian Min;Yang Meng;Yu Shengnan;You Chao;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4867
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence in breast imaging: Current situation and clinical challenges",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao You;Yiyuan Shen;Shiyun Sun;Jiayin Zhou;Jiawei Li;Guanhua Su;Eleni Michalopoulou;Weijun Peng;Yajia Gu;Weisheng Guo;Heqi Cao",
+      "id": "out-7794accffddd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence in breast imaging: Current situation and clinical challenges — Chao You;Yiyuan Shen;Shiyun Sun;Jiayin Zhou;Jiawei Li;Guanhua Su;Eleni Michalopoulou;Weijun Peng;Yajia Gu;Weisheng Guo;Heqi Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4873,
+            "end_char": 5093
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of subregion-based radiomics of contrast-enhanced mammography in differentiating the HER2-enriched and non-HER2-enriched invasive breast cancers:A double-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Simin Wang;Yajia Gu",
+      "id": "out-a6cd66203419",
+      "evidence": [
+        {
+          "quote": "[会议论文] The value of subregion-based radiomics of contrast-enhanced mammography in differentiating the HER2-enriched and non-HER2-enriched invasive breast cancers:A double-center study — Simin Wang;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5099,
+            "end_char": 5303
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of imaging combined with clinicopathological features in the diagnosis of high-risk breast lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayin Zhou;Yajia Gu",
+      "id": "out-bd501abb992c",
+      "evidence": [
+        {
+          "quote": "[会议论文] The value of imaging combined with clinicopathological features in the diagnosis of high-risk breast lesions — Jiayin Zhou;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5309,
+            "end_char": 5446
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Domain generalization for mammographic image analysis with contrastive learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheren Li;Zhiming Cui;Lichi Zhang;Sheng Wang;Chenjin Lei;Xi Ouyang;Dongdong Chen;Xiangyu Zhao;Chunling Liu;Zaiyi Liu;Yajia Gu;Dinggang Shen;JieZhi Cheng",
+      "id": "out-216666916be1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Domain generalization for mammographic image analysis with contrastive learning — Zheren Li;Zhiming Cui;Lichi Zhang;Sheng Wang;Chenjin Lei;Xi Ouyang;Dongdong Chen;Xiangyu Zhao;Chunling Liu;Zaiyi Liu;Yajia Gu;Dinggang Shen;JieZhi Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5452,
+            "end_char": 5692
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stable and Interpretable Radiomic Features Reveal Tumor Heterogeneity Associated with The Response to Neoadjuvant Chemotherapy in Luminal Breast Cancer: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyun Sun;Yajia Gu;Chao You",
+      "id": "out-ab55d7e7079a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Stable and Interpretable Radiomic Features Reveal Tumor Heterogeneity Associated with The Response to Neoadjuvant Chemotherapy in Luminal Breast Cancer: A Multicenter Study — Shiyun Sun;Yajia Gu;Chao You",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5698,
+            "end_char": 5907
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The clinicopathological and MRI features of patients with BRCA1/2 mutations in familial breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "You Chao;Xiao Qin;Zhu Xinyi;Sun Yiqun;Di Genhong;Liu Guangyu;Hou Yifeng;Chen Canming;Wu Jiong;Shao Zhimin;Gu Yajia;Hu Zhen",
+      "id": "out-74d16ff29a5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The clinicopathological and MRI features of patients with BRCA1/2 mutations in familial breast cancer — You Chao;Xiao Qin;Zhu Xinyi;Sun Yiqun;Di Genhong;Liu Guangyu;Hou Yifeng;Chen Canming;Wu Jiong;Shao Zhimin;Gu Yajia;Hu Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5913,
+            "end_char": 6145
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicenter radio-multiomic analysis for predicting breast cancer outcome and unravelling imaging-biological connection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao You;Xu Zhang;Yajia Gu",
+      "id": "out-ebb9e069ac27",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multicenter radio-multiomic analysis for predicting breast cancer outcome and unravelling imaging-biological connection — Chao You;Xu Zhang;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6151,
+            "end_char": 6305
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "对比增强乳腺X线摄影的应用、挑战与前景",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王思敏;顾雅佳",
+      "id": "out-633aa9a65298",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 对比增强乳腺X线摄影的应用、挑战与前景 — 王思敏;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6311,
+            "end_char": 6346
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unraveling the Role of Eastern and Westerm Cohorts on Spatiotemporal Heterogeneity in Predicting Treatment Sensitivity in Luminal Breast Cancer: Insights from Radiogenomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyun Sun;Yajia Gu",
+      "id": "out-f5a1d456f5ff",
+      "evidence": [
+        {
+          "quote": "[会议论文] Unraveling the Role of Eastern and Westerm Cohorts on Spatiotemporal Heterogeneity in Predicting Treatment Sensitivity in Luminal Breast Cancer: Insights from Radiogenomics — Shiyun Sun;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6352,
+            "end_char": 6552
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The application of multiband acceleration technique in temporal diffusion spectroscopy for breast tumor imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Ding;Yajia Gu",
+      "id": "out-3e672324a0fe",
+      "evidence": [
+        {
+          "quote": "[会议论文] The application of multiband acceleration technique in temporal diffusion spectroscopy for breast tumor imaging — Jie Ding;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6558,
+            "end_char": 6695
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于影像基因组学探索时空异质性在预测腔面型乳腺癌治疗敏感性中的作用:一项多中心研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙诗昀;顾雅佳",
+      "id": "out-1273583fb528",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于影像基因组学探索时空异质性在预测腔面型乳腺癌治疗敏感性中的作用:一项多中心研究 — 孙诗昀;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6701,
+            "end_char": 6758
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Approach Based on Mammographic Imaging and Radiomics for Distinguishing Male Benign and Malignant Lesions: A Preliminary Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Yan;Xiao Qin;Sun Yiqun;Wang Zhe;Li Qin;Wang He;Gu Yajia",
+      "id": "out-ee9a15038163",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Approach Based on Mammographic Imaging and Radiomics for Distinguishing Male Benign and Malignant Lesions: A Preliminary Study — Huang Yan;Xiao Qin;Sun Yiqun;Wang Zhe;Li Qin;Wang He;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6764,
+            "end_char": 6963
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI在Luminal型乳腺癌疗效及预后评估中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙诗昀;尤超;顾雅佳",
+      "id": "out-70e7787a8a1c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI在Luminal型乳腺癌疗效及预后评估中的应用进展 — 孙诗昀;尤超;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6969,
+            "end_char": 7016
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A preoperative radiogenomic model based on quantitative heterogeneity for predicting outcomes in triple-negative breast cancer patients who underwent neoadjuvant chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Jiayin;Bai Yansong;Zhang Ying;Wang Zezhou;Sun Shiyun;Lin Luyi;Gu Yajia;You Chao",
+      "id": "out-34035dc50397",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A preoperative radiogenomic model based on quantitative heterogeneity for predicting outcomes in triple-negative breast cancer patients who underwent neoadjuvant chemotherapy — Zhou Jiayin;Bai Yansong;Zhang Ying;Wang Zezhou;Sun Shiyun;Lin Luyi;Gu Yajia;You Chao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7022,
+            "end_char": 7289
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上海市抗癌科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "顾雅佳",
+      "id": "out-35642043e375",
+      "evidence": [
+        {
+          "quote": "[奖励] 上海市抗癌科技奖 — 顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7295,
+            "end_char": 7313
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Do Breast Edema and Shrinkage pattern Provide Additional Evaluation Value for Treatment Response and Recurrence in Luminal Breast Cancer?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyun Sun;Yajia Gu",
+      "id": "out-de9780b0cd7f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Do Breast Edema and Shrinkage pattern Provide Additional Evaluation Value for Treatment Response and Recurrence in Luminal Breast Cancer? — Shiyun Sun;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7319,
+            "end_char": 7484
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative analysis from ultrafast dynamic contrast-enhanced breast MRI using population-based versus individual arterial input functions,and comparison with semi-quantitative analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianwen Xie;Yajia Gu",
+      "id": "out-385324526c33",
+      "evidence": [
+        {
+          "quote": "[会议论文] Quantitative analysis from ultrafast dynamic contrast-enhanced breast MRI using population-based versus individual arterial input functions,and comparison with semi-quantitative analysis — Tianwen Xie;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7490,
+            "end_char": 7705
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomics reveals multiscale tumor heterogeneity associated with the response to neoadjuvant chemotherapy in luminal breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyun Sun;Yajia Gu",
+      "id": "out-cc7e97662d0a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Radiogenomics reveals multiscale tumor heterogeneity associated with the response to neoadjuvant chemotherapy in luminal breast cancer — Shiyun Sun;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7711,
+            "end_char": 7873
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fibroglandular Tissue and Background Parenchymal Enhancement on Breast MR Imaging Correlates With Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Xiaoxin;Jiang Luan;You Chao;Gu Yajia",
+      "id": "out-55732a27d6da",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fibroglandular Tissue and Background Parenchymal Enhancement on Breast MR Imaging Correlates With Breast Cancer — Hu Xiaoxin;Jiang Luan;You Chao;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7879,
+            "end_char": 8038
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Guan-Hua;Jiang Lin;Xiao Yi;Zheng Ren-Cheng;Wang He;Jiang Yi-Zhou;Peng Wei-Jun;Shao Zhi-Ming;Gu Ya-Jia;You Chao",
+      "id": "out-485075e66f2f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Multiomics Signature Highlights Alterations Underlying Homologous Recombination Deficiency in Triple-Negative Breast Cancer — Su Guan-Hua;Jiang Lin;Xiao Yi;Zheng Ren-Cheng;Wang He;Jiang Yi-Zhou;Peng Wei-Jun;Shao Zhi-Ming;Gu Ya-Jia;You Chao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8044,
+            "end_char": 8291
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incorporating the clinical and radiomics features of contrast-enhanced mammography to classify breast lesions: a retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Simin;Sun Yuqi;Mao Ning;Duan Shaofeng;Li Qin;Li Ruimin;Jiang Tingting;Wang Zhongyi;Xie Haizhu;Gu Yajia",
+      "id": "out-a0e3955a9440",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incorporating the clinical and radiomics features of contrast-enhanced mammography to classify breast lesions: a retrospective study — Wang Simin;Sun Yuqi;Mao Ning;Duan Shaofeng;Li Qin;Li Ruimin;Jiang Tingting;Wang Zhongyi;Xie Haizhu;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8297,
+            "end_char": 8545
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of Peritumoral Vascular and Intratumoral Radiomics to Predict Pathologic Complete Responses to Neoadjuvant Chemotherapy in Patients with Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianwen Xie;Yajia Gu",
+      "id": "out-6a0502ed9439",
+      "evidence": [
+        {
+          "quote": "[会议论文] Development and Validation of Peritumoral Vascular and Intratumoral Radiomics to Predict Pathologic Complete Responses to Neoadjuvant Chemotherapy in Patients with Triple-Negative Breast Cancer — Tianwen Xie;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8551,
+            "end_char": 8773
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The diagnostic performance of time-dependent diffusion technique in differentiating benign and malignant breast tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Ding;Yajia Gu",
+      "id": "out-b6c9939d9eb9",
+      "evidence": [
+        {
+          "quote": "[会议论文] The diagnostic performance of time-dependent diffusion technique in differentiating benign and malignant breast tumors — Jie Ding;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8779,
+            "end_char": 8923
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-879d0525386f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic-based multiomic analysis reveals imaging intratumor heterogeneity phenotypes and therapeutic",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8929,
+            "end_char": 9040
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Magnetic resonance imaging-based prognostic model for subsequent distant metastasis in patients with ipsilateral breast tumor recurrence following breast-conserving surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jinhui;Qu Feilin;Gong Jing;Sun Shiyun;Gu Yajia;You Chao;Peng Weijun",
+      "id": "out-718dac6ebeec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Magnetic resonance imaging-based prognostic model for subsequent distant metastasis in patients with ipsilateral breast tumor recurrence following breast-conserving surgery — Li Jinhui;Qu Feilin;Gong Jing;Sun Shiyun;Gu Yajia;You Chao;Peng Weijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9192,
+            "end_char": 9443
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Components of the tumor immune microenvironment based on mlHC correlated with prognosis and radiomic features were beneficial to complete triple negative breast cancer subtyping system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蔺璐奕;顾雅佳",
+      "id": "out-9f2c133d1f12",
+      "evidence": [
+        {
+          "quote": "[会议论文] Components of the tumor immune microenvironment based on mlHC correlated with prognosis and radiomic features were beneficial to complete triple negative breast cancer subtyping system — 蔺璐奕;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9449,
+            "end_char": 9649
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于mIHC技术评估的肿瘤免疫微环境与三阴性乳腺癌预后与分型的关系",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蔺璐奕;顾雅佳",
+      "id": "out-b8ff6dadf028",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于mIHC技术评估的肿瘤免疫微环境与三阴性乳腺癌预后与分型的关系 — 蔺璐奕;顾雅佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9655,
+            "end_char": 9704
+          },
+          "version": "8199715612fc12ae37da"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 37,
+    "listed": 37,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "会议论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

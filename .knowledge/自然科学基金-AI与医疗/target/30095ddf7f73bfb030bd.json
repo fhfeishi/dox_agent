@@ -2,15 +2,20 @@
   "doc_id": "30095ddf7f73bfb030bd",
   "version": "95a5e65ccb0131468549",
   "source_hash": "ede0153546957445799e668f413926d0bba3042d49627bba6f1f7973d216d8b4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.778760+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:45.000238+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-7a3551681eb1",
           "name": "低级别胶质瘤相关癫痫预后预测",
-          "desc": "低级别胶质瘤相关癫痫发病普遍、控制困难，严重影响患者生活质量，需术前无创预测预后。",
+          "desc": "关键共病，影响生活质量",
           "evidence": [
             {
-              "quote": "低级别胶质瘤相关癫痫是指继发于低级别胶质瘤的症状性癫痫发作，其发病普遍，控制困难，严重影响患者生活质量",
+              "quote": "胶质瘤相关癫痫是胶质瘤的关键共病，严重影响患者生活质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 682,
-                "end_char": 732
-              },
-              "version": "95a5e65ccb0131468549"
-            }
-          ]
-        },
-        {
-          "id": "item-788e4ff29e0c",
-          "name": "术后抗癫痫治疗临床指导",
-          "desc": "所建模型预期可为患者术后抗癫痫治疗提供临床指导，使患者接受适宜治疗并从中获益。",
-          "evidence": [
-            {
-              "quote": "所建立的模型预期可以为低级别胶质瘤相关癫痫患者的术后抗癫痫治疗提供临床指导",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3482,
-                "end_char": 3518
+                "start_char": 2804,
+                "end_char": 2830
               },
               "version": "95a5e65ccb0131468549"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-61bebf86e5e9",
-          "name": "术后癫痫控制不理想缺风险分层",
-          "desc": "低级别胶质瘤相关癫痫患者术后癫痫控制情况不理想，可能是由于缺乏基于风险分层的个体化管理。",
+          "id": "item-032b98287f19",
+          "name": "术后癫痫控制不理想、缺乏风险分层个体化管理",
+          "desc": "需早期无创预测",
           "evidence": [
             {
               "quote": "目前，低级别胶质瘤相关癫痫患者的术后癫痫控制情况并不理想，这可能是由于缺乏基于风险分层的个体化管理所致",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2864,
                 "end_char": 2914
-              },
-              "version": "95a5e65ccb0131468549"
-            }
-          ]
-        },
-        {
-          "id": "item-e4e38365041f",
-          "name": "需早期无创预测指导治疗决策",
-          "desc": "实现患者癫痫预后情况的早期无创预测，对指导临床治疗决策、改善预后意义重大。",
-          "evidence": [
-            {
-              "quote": "因此，实现患者癫痫预后情况的早期无创预测，对指导相关临床治疗决策，进而改善患者预后意义重大",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2916,
-                "end_char": 2960
               },
               "version": "95a5e65ccb0131468549"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe46b3d76383",
-          "name": "影像组学与定量脑电特征融合",
-          "desc": "提取影像组学与定量脑电特征，通过多种降维与机器学习方法组合筛选最优预测模型。",
+          "id": "item-4371ac5e121c",
+          "name": "影像-脑电-临床整合预测模型",
+          "desc": "结合影像风险评分、脑电风险评分和临床特征",
           "evidence": [
             {
-              "quote": "我们从患者资料中提取了影像组学和定量脑电特征，通过对多种降维方法与机器学习方法的组合，分别筛选出了具有最优预测效能的基于影像组学和定量脑电特征的癫痫预后预测模型",
+              "quote": "最终结合影像风险评分、脑电风险评分和临床特征建立整合预测模型，整合预测模型的AUC可达0.90以上",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3271,
+                "start_char": 3352,
+                "end_char": 3400
+              },
+              "version": "95a5e65ccb0131468549"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1e71b91f8194",
+          "name": "降维与机器学习组合筛选",
+          "desc": "基于影像组学与定量脑电特征",
+          "evidence": [
+            {
+              "quote": "通过对多种降维方法与机器学习方法的组合，分别筛选出了具有最优预测效能的基于影像组学和定量脑电特征的癫痫预后预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3294,
                 "end_char": 3350
               },
               "version": "95a5e65ccb0131468549"
             }
-          ]
-        },
-        {
-          "id": "item-4b2601027dac",
-          "name": "多模态整合预测模型构建",
-          "desc": "结合影像风险评分、脑电风险评分与临床特征建立整合预测模型。",
-          "evidence": [
-            {
-              "quote": "最终结合影像风险评分、脑电风险评分和临床特征建立整合预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3352,
-                "end_char": 3381
-              },
-              "version": "95a5e65ccb0131468549"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +108,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b07de720776f",
-          "name": "整合预测模型AUC超0.90",
-          "desc": "整合预测模型的AUC可达0.90以上，初步实现低级别胶质瘤相关癫痫预后的精准预测。",
+          "id": "item-0e1bb9b3d4b5",
+          "name": "整合预测模型AUC 0.90以上",
+          "desc": "初步实现精准预测",
           "evidence": [
             {
-              "quote": "整合预测模型的AUC可达0.90以上，初步实现了低级别胶质瘤相关癫痫预后的精准预测",
+              "quote": "整合预测模型的AUC可达0.90以上",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3383,
-                "end_char": 3423
+                "end_char": 3400
               },
               "version": "95a5e65ccb0131468549"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-dd21bf4bd872",
-          "name": "明确WHO分型下癫痫发作特点",
-          "desc": "明确最新版WHO胶质瘤分型框架下低级别胶质瘤相关癫痫的发作特点。",
+          "id": "item-ccebb56df0bf",
+          "name": "120例多模态数据队列",
+          "desc": "临床、影像、脑电和随访数据",
           "evidence": [
             {
-              "quote": "明确了最新版世界卫生组织胶质瘤分型框架下低级别胶质瘤相关癫痫的发作特点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3162,
-                "end_char": 3196
-              },
-              "version": "95a5e65ccb0131468549"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f833efba9f53",
-          "name": "多模态癫痫预后判定体系",
-          "desc": "收集120例患者临床、影像、脑电和随访数据，开发基于多模态数据的癫痫预后判定体系。",
-          "evidence": [
-            {
-              "quote": "我们收集了120例低级别胶质瘤相关癫痫患者的临床、影像、脑电和随访数据，开发了一套基于多模态数据的低级别胶质瘤相关癫痫预后判定体系",
+              "quote": "我们收集了120例低级别胶质瘤相关癫痫患者的临床、影像、脑电和随访数据",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3205,
-                "end_char": 3269
+                "end_char": 3239
               },
               "version": "95a5e65ccb0131468549"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +151,129 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-7a3551681eb1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-61bebf86e5e9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-61bebf86e5e9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fe46b3d76383"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fe46b3d76383"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-f833efba9f53"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4b2601027dac"
+        "item_id": "item-0e1bb9b3d4b5"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-b07de720776f"
+        "dimension": "技术",
+        "item_id": "item-4371ac5e121c"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "最终结合影像风险评分、脑电风险评分和临床特征建立整合预测模型，整合预测模型的AUC可达0.90以上",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3352,
+            "end_char": 3400
+          },
+          "version": "95a5e65ccb0131468549"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Expression changes in ion channel and immunity genes are associated with glioma-related epilepsy in patients with diffuse gliomas.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Lianwang;Zhang Chuanbao;Wang Zheng;Guo Yuhao;Wang Yinyan;Fan Xing;Jiang Tao",
+      "id": "out-792371b11545",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Expression changes in ion channel and immunity genes are associated with glioma-related epilepsy in patients with diffuse gliomas. — Li Lianwang;Zhang Chuanbao;Wang Zheng;Guo Yuhao;Wang Yinyan;Fan Xing;Jiang Tao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3553,
+            "end_char": 3770
+          },
+          "version": "95a5e65ccb0131468549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decreasing Shortest Path Length of the Sensorimotor Network Induces Frontal Glioma-Related  Epilepsy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fang Shengyu;Li Lianwang;Weng Shimeng;Guo Yuhao;Zhang Zhong;Wang Lei;Fan Xing;Wang Yinyan;Jiang Tao",
+      "id": "out-2591843a5136",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decreasing Shortest Path Length of the Sensorimotor Network Induces Frontal Glioma-Related  Epilepsy — Fang Shengyu;Li Lianwang;Weng Shimeng;Guo Yuhao;Zhang Zhong;Wang Lei;Fan Xing;Wang Yinyan;Jiang Tao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3775,
+            "end_char": 3983
+          },
+          "version": "95a5e65ccb0131468549"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "New-Onset Postoperative Seizures in Patients With Diffuse Gliomas: A Risk Assessment Analysis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Lianwang;Li Guanzhang;Fang Shengyu;Zhang Kenan;Huang Ruoyu;Wang Yinyan;Zhang Chuanbao;Li Yiming;Zhang Wei;Zhang Zhong;Jin Qiang;Zhou Dabiao;Fan Xing;Jiang Tao",
+      "id": "out-8c7306d728db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] New-Onset Postoperative Seizures in Patients With Diffuse Gliomas: A Risk Assessment Analysis. — Li Lianwang;Li Guanzhang;Fang Shengyu;Zhang Kenan;Huang Ruoyu;Wang Yinyan;Zhang Chuanbao;Li Yiming;Zhang Wei;Zhang Zhong;Jin Qiang;Zhou Dabiao;Fan Xing;Jiang Tao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4252
+          },
+          "version": "95a5e65ccb0131468549"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "高等学校科学研究优秀成果奖(科学技术)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹勇;王引言;张伟;江涛;樊星;焦玉明;李一鸣;李少武;游赣;王永志;刘幸;刘盼;郑御",
+      "id": "out-5f80e5fba6dd",
+      "evidence": [
+        {
+          "quote": "[奖励] 高等学校科学研究优秀成果奖(科学技术) — 曹勇;王引言;张伟;江涛;樊星;焦玉明;李一鸣;李少武;游赣;王永志;刘幸;刘盼;郑御",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4257,
+            "end_char": 4326
+          },
+          "version": "95a5e65ccb0131468549"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

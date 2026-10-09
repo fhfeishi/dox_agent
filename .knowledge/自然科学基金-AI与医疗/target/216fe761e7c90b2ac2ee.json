@@ -2,15 +2,20 @@
   "doc_id": "216fe761e7c90b2ac2ee",
   "version": "d96053b2a5b926e4f8d0",
   "source_hash": "57985aba985c55fc793a84d9710886a9eb9de2549bcb33d803796583a646269d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.518034+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:32:41.184591+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e2dd1225a5e",
-          "name": "视网膜色素变性AI诊断及临床应用",
-          "desc": "面向眼科罕见病视网膜色素变性，研制自动化诊断与分析系统开展早期预警与病情评估。",
+          "id": "item-cb16267a465a",
+          "name": "视网膜色素变性诊断与随访",
+          "desc": "常见致盲性遗传性眼病",
           "evidence": [
             {
               "quote": "视网膜色素变性（RP）是常见的致盲性遗传性眼病，也是影响范围最广的眼科罕见病",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2056db9b5415",
-          "name": "基层缺设备专家致RP难以早诊与随访",
-          "desc": "RP诊断治疗依赖医生经验，基层医院缺少先进设备和资深专家，导致大部分患者无法得到早期诊断、及时治疗、准确遗传咨询与长期随访。",
+          "id": "item-b84729315259",
+          "name": "基层缺设备缺专家致RP难早诊",
+          "desc": "无法早期诊断和及时治疗",
           "evidence": [
             {
-              "quote": "而基层医院缺少先进设备和资深专家，导致大部分RP患者无法得到早期诊断和及时治疗，无法得到准确的遗传咨询，无法对病情的进展做长期的随访",
+              "quote": "基层医院缺少先进设备和资深专家，导致大部分RP患者无法得到早期诊断和及时治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 800,
-                "end_char": 865
+                "start_char": 801,
+                "end_char": 838
               },
               "version": "d96053b2a5b926e4f8d0"
             }
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e06732b0e1e4",
-          "name": "多模影像组学与深度学习融合的RP分析",
-          "desc": "采用多模影像组学、深度学习与大数据分析技术，融合不同模态、时间点与维度的RP临床影像、功能检查和遗传基因数据，攻关诊断识别、病灶分割、进展跟踪与预测等关键问题。",
+          "id": "item-8273aeca0848",
+          "name": "多模影像组学与深度学习融合",
+          "desc": "融合影像、功能检查和遗传基因数据",
           "evidence": [
             {
-              "quote": "本项目拟采用多模影像组学、深度学习等人工智能技术、以及大数据分析技术，充分融合不同模态、不同时间点、不同维度的RP临床影像、功能检查和遗传基因数据",
+              "quote": "本项目采用多模影像组学、深度学习等人工智能技术、以及大数据分析技术，充分融合不同模态、不同时间点、不同维度的RP临床影像、功能检查和遗传基因数据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 867,
-                "end_char": 939
+                "start_char": 2810,
+                "end_char": 2881
               },
               "version": "d96053b2a5b926e4f8d0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,1019 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b8541d32624",
-          "name": "研制RP自动化诊断与分析系统",
-          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明研制自动化诊断与分析系统对RP进行早期预警与病情评估并开展临床示范应用。",
+          "id": "item-998234e2670f",
+          "name": "RP自动化诊断与分析系统",
+          "desc": "结题摘要仅复述研制目标",
           "evidence": [
             {
-              "quote": "攻关RP诊断识别、病灶定位分割、病情进展跟踪与发生发展预测等关键问题，研制开发自动化诊断与分析系统对RP进行早期预警与病情评估",
+              "quote": "研制开发自动化诊断与分析系统对RP进行早期预警与病情评估，并开展临床示范应用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 941,
-                "end_char": 1003
+                "start_char": 976,
+                "end_char": 1013
               },
               "version": "d96053b2a5b926e4f8d0"
             }
           ],
-          "status": "原文未明确"
+          "status": "原文未明确",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5e2dd1225a5e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2056db9b5415"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic zoning for retinopathy of prematurity with semi-supervised feature calibration adversarial learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Peng;Zhongyue Chen;Weifang Zhu;Fei Shi;Meng Wang;Yi Zhou;Daoman Xiang;Xinjian Chen;Feng Chen",
+      "id": "out-ff1711172d4e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic zoning for retinopathy of prematurity with semi-supervised feature calibration adversarial learning — Yuanyuan Peng;Zhongyue Chen;Weifang Zhu;Fei Shi;Meng Wang;Yi Zhou;Daoman Xiang;Xinjian Chen;Feng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3014,
+            "end_char": 3233
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2056db9b5415"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e06732b0e1e4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于循环自适应多目标加权网络的糖尿病视网膜病变区域自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;汪恋雨;朱伟芳;陈中悦",
+      "id": "out-09d4fbb9302f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于循环自适应多目标加权网络的糖尿病视网膜病变区域自动分割方法 — 陈新建;汪恋雨;朱伟芳;陈中悦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3238,
+            "end_char": 3293
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e06732b0e1e4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4b8541d32624"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint Segmentation of Multi-Class Hyper-Reflective Foci in Retinal Optical Coherence Tomography Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenpu Yao;Meng Wang;Weifang Zhu;Haifan Huang;Fei Shi;Zhongyue Chen;Lianyu Wang;Tingting Wang;Yi Zhou;Yuanyuan Peng;Liangjiu Zhu;Haoyu Chen;Xinjian Chen",
+      "id": "out-c84fbfe065d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint Segmentation of Multi-Class Hyper-Reflective Foci in Retinal Optical Coherence Tomography Images — Chenpu Yao;Meng Wang;Weifang Zhu;Haifan Huang;Fei Shi;Zhongyue Chen;Lianyu Wang;Tingting Wang;Yi Zhou;Yuanyuan Peng;Liangjiu Zhu;Haoyu Chen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3298,
+            "end_char": 3561
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-MsST-GAN: A Semi-Supervised Segmentation Method for Corneal Ulcer Segmentation in Slit-Lamp Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Wang;Meng Wang;Weifang Zhu;Lianyu Wang;Zhongyue Chen;Yuanyuan Peng;Fei Shi;Yi Zhou;Chenpu Yao;Xinjian Chen",
+      "id": "out-b6856dc1bae0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-MsST-GAN: A Semi-Supervised Segmentation Method for Corneal Ulcer Segmentation in Slit-Lamp Images — Tingting Wang;Meng Wang;Weifang Zhu;Lianyu Wang;Zhongyue Chen;Yuanyuan Peng;Fei Shi;Yi Zhou;Chenpu Yao;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3566,
+            "end_char": 3793
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双解码器与局部特征增强网络的血管旁异常分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;范译;樊莹;陈新建;彭涛",
+      "id": "out-ccc7d8fc1f86",
+      "evidence": [
+        {
+          "quote": "[专利] 基于双解码器与局部特征增强网络的血管旁异常分割方法 — 朱伟芳;范译;樊莹;陈新建;彭涛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 3846
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Uncertainty-inspired open set learning for retinal anomaly identification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wang;Tian Lin;Lianyu Wang;Aidi Lin;Ke Zou;Xinxing Xu;Yi Zhou;Yuanyuan Peng;Qingquan Meng;Yiming Qian;Guoyao Deng;Zhiqun Wu;Junhong Chen;Jianhong Lin;Mingzhi Zhang;Weifang Zhu;Changqing Zhang;Daoqiang Zhang;Rick Siow Mong Goh;Yong Liu;Chi Pui Pang;Xinjian Chen;Haoyu Chen;Huazhu Fu",
+      "id": "out-85231993368f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Uncertainty-inspired open set learning for retinal anomaly identification — Meng Wang;Tian Lin;Lianyu Wang;Aidi Lin;Ke Zou;Xinxing Xu;Yi Zhou;Yuanyuan Peng;Qingquan Meng;Yiming Qian;Guoyao Deng;Zhiqun Wu;Junhong Chen;Jianhong Lin;Mingzhi Zhang;Weifang Zhu;Changqing Zhang;Daoqiang Zhang;Rick Siow Mong Goh;Yong Liu;Chi Pui Pang;Xinjian Chen;Haoyu Chen;Huazhu Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3851,
+            "end_char": 4218
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-Modal Consistency for Single-Modal MR Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenxuan Xu;Cangxin Li;Yun Bian;Qingquan Meng;Weifang Zhu;Fei Shi;Xinjian Chen;Chengwei Shao;Dehui Xiang",
+      "id": "out-ae5e856a60b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-Modal Consistency for Single-Modal MR Image Segmentation — Wenxuan Xu;Cangxin Li;Yun Bian;Qingquan Meng;Weifang Zhu;Fei Shi;Xinjian Chen;Chengwei Shao;Dehui Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4397
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "视网膜OCT图像中的脉络膜新生血管CNV分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟庆权;卢雪梅;汪恋雨;王婷婷;王猛;向德辉;陈新建",
+      "id": "out-e9954e1ebd49",
+      "evidence": [
+        {
+          "quote": "[专利] 视网膜OCT图像中的脉络膜新生血管CNV分割方法 — 孟庆权;卢雪梅;汪恋雨;王婷婷;王猛;向德辉;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4402,
+            "end_char": 4459
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RER-Net: refractive error regression network for multi-angle eccentric photorefraction pupil images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuchen Hao;Weifang Zhu;Xinjian Chen",
+      "id": "out-53e71345e8ee",
+      "evidence": [
+        {
+          "quote": "[会议论文] RER-Net: refractive error regression network for multi-angle eccentric photorefraction pupil images — Xuchen Hao;Weifang Zhu;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4464,
+            "end_char": 4607
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "江西省科学技术奖科技进步奖二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建",
+      "id": "out-7cb60c2d5592",
+      "evidence": [
+        {
+          "quote": "[奖励] 江西省科学技术奖科技进步奖二等奖 — 陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4613,
+            "end_char": 4639
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multi-Scale Fusion and Transformer Based Registration Guided Speckle Noise Reduction for OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwei Tan;Fei Shi;Yi Zhou;Jingcheng Wang;Meng Wang;Yuanyuan Peng;Kai Xu;Ming Liu;Xinjian Chen",
+      "id": "out-f2cd72e95910",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Multi-Scale Fusion and Transformer Based Registration Guided Speckle Noise Reduction for OCT Images — Zhiwei Tan;Fei Shi;Yi Zhou;Jingcheng Wang;Meng Wang;Yuanyuan Peng;Kai Xu;Ming Liu;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4645,
+            "end_char": 4849
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "动态聚合变换器网络及视网膜血管分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;谭晓;陈新建;孟庆权;聂宝清",
+      "id": "out-7691962c104a",
+      "evidence": [
+        {
+          "quote": "[专利] 动态聚合变换器网络及视网膜血管分割方法 — 朱伟芳;谭晓;陈新建;孟庆权;聂宝清",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4899
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MsTGANet: Automatic Drusen Segmentation From Retinal OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wang;Weifang Zhu;Fei Shi;Jinzhu Su;Haoyu Chen;Kai Yu;Yi Zhou;Yuanyuan Peng;Zhongyue Chen;Xinjian Chen",
+      "id": "out-9ce2a9f951b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MsTGANet: Automatic Drusen Segmentation From Retinal OCT Images — Meng Wang;Weifang Zhu;Fei Shi;Jinzhu Su;Haoyu Chen;Kai Yu;Yi Zhou;Yuanyuan Peng;Zhongyue Chen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4905,
+            "end_char": 5083
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脉络膜新生血管生长预测方法、装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;沈佳燕;陈中悦;朱伟芳",
+      "id": "out-465f6f7f2dd0",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脉络膜新生血管生长预测方法、装置及存储介质 — 陈新建;沈佳燕;陈中悦;朱伟芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5089,
+            "end_char": 5134
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于混合网络的视网膜OCT影像中多病灶联合分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石霏;姜清新;陈新建",
+      "id": "out-126ab3104f8d",
+      "evidence": [
+        {
+          "quote": "[专利] 基于混合网络的视网膜OCT影像中多病灶联合分割方法 — 石霏;姜清新;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5140,
+            "end_char": 5182
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多种视网膜积液联合分割的上下文关注与融合网络系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;叶妍青;陈新建",
+      "id": "out-ceffb8149738",
+      "evidence": [
+        {
+          "quote": "[专利] 多种视网膜积液联合分割的上下文关注与融合网络系统 — 朱伟芳;叶妍青;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5188,
+            "end_char": 5230
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于特征重构的无监督域自适应OCT图像分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石霏;刁胜勇;陈新建",
+      "id": "out-b2cc9c2d9059",
+      "evidence": [
+        {
+          "quote": "[专利] 基于特征重构的无监督域自适应OCT图像分割方法及系统 — 石霏;刁胜勇;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5236,
+            "end_char": 5279
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Staging for Retinopathy of Prematurity With Deep Feature Fusion and Ordinal Classification Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Peng;Weifang Zhu;Zhongyue Chen;Meng Wang;Le Geng;Kai Yu;Yi Zhou;Ting Wang;Daoman Xiang;Feng Chen;Xinjian Chen",
+      "id": "out-7756512dfe7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Staging for Retinopathy of Prematurity With Deep Feature Fusion and Ordinal Classification Strategy — Yuanyuan Peng;Weifang Zhu;Zhongyue Chen;Meng Wang;Le Geng;Kai Yu;Yi Zhou;Ting Wang;Daoman Xiang;Feng Chen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5285,
+            "end_char": 5521
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于视网膜色素变性分级的类别注意力网络构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;丁维新;陈新建",
+      "id": "out-15a0bb8e6f85",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于视网膜色素变性分级的类别注意力网络构建方法 — 朱伟芳;丁维新;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5527,
+            "end_char": 5570
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-Spatial Domain Generalization for Fundus Lesion Segmentation in Unseen Manufacturer's OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichen Liao;Tao Peng;Haoyu Chen;Tian Lin;Weifang Zhu;Fei Shi;Xinjian Chen;Dehui Xiang",
+      "id": "out-9d632d1be6a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-Spatial Domain Generalization for Fundus Lesion Segmentation in Unseen Manufacturer's OCT Images — Shichen Liao;Tao Peng;Haoyu Chen;Tian Lin;Weifang Zhu;Fei Shi;Xinjian Chen;Dehui Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5576,
+            "end_char": 5772
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Morphological prognosis prediction of choroid neovascularization from longitudinal SD‐OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayan Shen;Zhongyue Chen;Yuanyuan Peng;Siqi Zhang;Chenan Xu;Weifang Zhu;Haiyun Liu;Xinjian Chen",
+      "id": "out-ef6227735ed7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Morphological prognosis prediction of choroid neovascularization from longitudinal SD‐OCT images — Jiayan Shen;Zhongyue Chen;Yuanyuan Peng;Siqi Zhang;Chenan Xu;Weifang Zhu;Haiyun Liu;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5778,
+            "end_char": 5979
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于OCT图像的罕见眼底病自动分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石霏;殷子婷;陈新建",
+      "id": "out-443d036ab99a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于OCT图像的罕见眼底病自动分类方法及系统 — 石霏;殷子婷;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5985,
+            "end_char": 6026
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AFENet: Attention Fusion Enhancement Network for Optic Disc Segmentation of Premature Infants",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Peng;Weifang Zhu;Zhongyue Chen;Fei Shi;Meng Wang;Yi Zhou;Lianyu Wang;Yuhe Shen;Daoman Xiang;Feng Chen;Xinjian Chen",
+      "id": "out-ac6edaee2846",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AFENet: Attention Fusion Enhancement Network for Optic Disc Segmentation of Premature Infants — Yuanyuan Peng;Weifang Zhu;Zhongyue Chen;Fei Shi;Meng Wang;Yi Zhou;Lianyu Wang;Yuhe Shen;Daoman Xiang;Feng Chen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6032,
+            "end_char": 6257
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph Attention U-Net for Retinal Layer Surface Detection and Choroid Neovascularization Segmentation in OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuhe Shen;Jiang Li;Weifang Zhu;Kai Yu;Meng Wang;Yuanyuan Peng;Yi Zhou;Liling Guan;Xinjian Chen",
+      "id": "out-efe049dd76a0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graph Attention U-Net for Retinal Layer Surface Detection and Choroid Neovascularization Segmentation in OCT Images — Yuhe Shen;Jiang Li;Weifang Zhu;Kai Yu;Meng Wang;Yuanyuan Peng;Yi Zhou;Liling Guan;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6263,
+            "end_char": 6481
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DRFNet: a deep radiomic fusion network for nAMD/PCV differentiation in OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Erwei Shen;Zhenmao Wang;Tian Lin;Qingquan Meng;Weifang Zhu;Fei Shi;Xinjian Chen;Haoyu Chen;Dehui Xiang",
+      "id": "out-0b2435db49ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DRFNet: a deep radiomic fusion network for nAMD/PCV differentiation in OCT images — Erwei Shen;Zhenmao Wang;Tian Lin;Qingquan Meng;Weifang Zhu;Fei Shi;Xinjian Chen;Haoyu Chen;Dehui Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6487,
+            "end_char": 6679
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进U形网络的多组织成分图像分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "向德辉;吴昊;蒋慧;边云;陈新建",
+      "id": "out-8d613036add3",
+      "evidence": [
+        {
+          "quote": "[专利] 基于改进U形网络的多组织成分图像分割方法及系统 — 向德辉;吴昊;蒋慧;边云;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6685,
+            "end_char": 6731
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Guided Optimization Semi-Supervised Method for Joint Segmentation of Macular Hole and Cystoid Macular Edema in Retinal OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wang;Tian Lin;Yuanyuan Peng;Weifang Zhu;Yi Zhou;Fei Shi;Kai Yu;Qingquan Meng;Yong Liu;Zhongyue Chen;Yuhe Shen;Dehui Xiang;Haoyu Chen;Xinjian Chen",
+      "id": "out-ae2a95312b41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-Guided Optimization Semi-Supervised Method for Joint Segmentation of Macular Hole and Cystoid Macular Edema in Retinal OCT Images — Meng Wang;Tian Lin;Yuanyuan Peng;Weifang Zhu;Yi Zhou;Fei Shi;Kai Yu;Qingquan Meng;Yong Liu;Zhongyue Chen;Yuhe Shen;Dehui Xiang;Haoyu Chen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6737,
+            "end_char": 7030
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accurate C/D ratio estimation with elliptical fitting for OCT image based on joint segmentation and detection network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenan Xu;Zhongyue Chen;Xiao Zhang;Yuanyuan Peng;Zhiwei Tan;Yu Fan;Xulong Liao;Haoyu Chen;Jiayan Shen;Xinjian Chen",
+      "id": "out-197d3e174f1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Accurate C/D ratio estimation with elliptical fitting for OCT image based on joint segmentation and detection network — Chenan Xu;Zhongyue Chen;Xiao Zhang;Yuanyuan Peng;Zhiwei Tan;Yu Fan;Xulong Liao;Haoyu Chen;Jiayan Shen;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7036,
+            "end_char": 7276
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种图像融合方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔鑫意;李磊;胡深明;王卓实",
+      "id": "out-5c50d403e6af",
+      "evidence": [
+        {
+          "quote": "[专利] 一种图像融合方法、装置、设备及介质 — 崔鑫意;李磊;胡深明;王卓实",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7282,
+            "end_char": 7320
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "矩不变对比循环一致性对抗网络的跨域分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "向德辉;樊礼纲;边云;陈新建;邵成伟",
+      "id": "out-122078883753",
+      "evidence": [
+        {
+          "quote": "[专利] 矩不变对比循环一致性对抗网络的跨域分割方法及系统 — 向德辉;樊礼纲;边云;陈新建;邵成伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7326,
+            "end_char": 7375
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于全局与局部特征重建网络的医学图像分割方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;宋佳欢;陈新建",
+      "id": "out-156a8b772522",
+      "evidence": [
+        {
+          "quote": "[专利] 基于全局与局部特征重建网络的医学图像分割方法和装置 — 朱伟芳;宋佳欢;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7381,
+            "end_char": 7424
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADS-Net: attention-awareness and deep supervision based network for automatic detection of retinopathy of prematurity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Peng;Zhongyue Chen;Weifang Zhu;Fei Shi;Meng Wang;Yi Zhou;Daoman Xiang;Xinjian Chen;Feng Chen",
+      "id": "out-1f1c0d87bb36",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ADS-Net: attention-awareness and deep supervision based network for automatic detection of retinopathy of prematurity — Yuanyuan Peng;Zhongyue Chen;Weifang Zhu;Fei Shi;Meng Wang;Yi Zhou;Daoman Xiang;Xinjian Chen;Feng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7430,
+            "end_char": 7657
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种圆锥角膜自动分级方法、装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;高嵩;石霏;朱伟芳;陈中悦",
+      "id": "out-a711b1a07b1a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种圆锥角膜自动分级方法、装置及存储介质 — 陈新建;高嵩;石霏;朱伟芳;陈中悦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7663,
+            "end_char": 7707
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多模态视网膜眼底图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;谭晓;陈新建",
+      "id": "out-96467e56273f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多模态视网膜眼底图像分类方法 — 朱伟芳;谭晓;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7713,
+            "end_char": 7746
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "培养基及其在培养视网膜祖细胞中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王卓实;张明琦;高飞;张峰磊;赵艳;刘晓丽",
+      "id": "out-7d018e239245",
+      "evidence": [
+        {
+          "quote": "[专利] 培养基及其在培养视网膜祖细胞中的应用 — 王卓实;张明琦;高飞;张峰磊;赵艳;刘晓丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7752,
+            "end_char": 7798
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CNN的睑板腺区域和睑板腺萎缩区域分割装置及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;刘灯风;朱伟芳",
+      "id": "out-50d3533a6a05",
+      "evidence": [
+        {
+          "quote": "[专利] 基于CNN的睑板腺区域和睑板腺萎缩区域分割装置及方法 — 陈新建;刘灯风;朱伟芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7804,
+            "end_char": 7848
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于图像处理的睑板腺腺体分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;刘灯风;朱伟芳",
+      "id": "out-05de8f0ff375",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于图像处理的睑板腺腺体分割方法 — 陈新建;刘灯风;朱伟芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7854,
+            "end_char": 7890
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Style Consistency Unsupervised Domain Adaptation Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lang Chen;Yun Bian;Jianbin Zeng;Qingquan Meng;Weifang Zhu;Fei Shi;Chengwei Shao;Xinjian Chen;Dehui Xiang",
+      "id": "out-9abf499834f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Style Consistency Unsupervised Domain Adaptation Medical Image Segmentation — Lang Chen;Yun Bian;Jianbin Zeng;Qingquan Meng;Weifang Zhu;Fei Shi;Chengwei Shao;Xinjian Chen;Dehui Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7896,
+            "end_char": 8084
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CAS-Net的OCT图像视网膜脱离和劈裂自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石霏;陈新建;杨长青;朱伟芳",
+      "id": "out-d46889a0f416",
+      "evidence": [
+        {
+          "quote": "[专利] 基于CAS-Net的OCT图像视网膜脱离和劈裂自动分割方法 — 石霏;陈新建;杨长青;朱伟芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8090,
+            "end_char": 8140
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "角膜溃疡分割的深度卷积神经网络训练方法及分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;王婷婷;朱伟芳;陈中悦",
+      "id": "out-e1d6d5993786",
+      "evidence": [
+        {
+          "quote": "[专利] 角膜溃疡分割的深度卷积神经网络训练方法及分割方法 — 陈新建;王婷婷;朱伟芳;陈中悦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8146,
+            "end_char": 8192
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Global and Local Feature Reconstruction for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiahuan Song;Xinjian Chen;Qianlong Zhu;Fei Shi;Dehui Xiang;Zhongyue Chen;Ying Fan;Lingjiao Pan;Weifang Zhu",
+      "id": "out-c51958da7f05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Global and Local Feature Reconstruction for Medical Image Segmentation — Jiahuan Song;Xinjian Chen;Qianlong Zhu;Fei Shi;Dehui Xiang;Zhongyue Chen;Ying Fan;Lingjiao Pan;Weifang Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8198,
+            "end_char": 8383
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LKG-Net: Lightweight Keratoconus Grading Network based on Corneal Topography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Gao;S Chen;Fei Shi;Yuanyuan Peng;Chenan Xu;Zhongyue Chen;Weifang Zhu;Xin Xu;Wei Tang;Zhiwei Tan;Yue Xu;S Ren;Xiaofeng Zhang;Xinjian Chen",
+      "id": "out-8feaaff34538",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LKG-Net: Lightweight Keratoconus Grading Network based on Corneal Topography — Song Gao;S Chen;Fei Shi;Yuanyuan Peng;Chenan Xu;Zhongyue Chen;Weifang Zhu;Xin Xu;Wei Tang;Zhiwei Tan;Yue Xu;S Ren;Xiaofeng Zhang;Xinjian Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8389,
+            "end_char": 8615
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度与局部特征引导网络的角膜神经纤维分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱伟芳;汤伟;陈新建",
+      "id": "out-e8aa9ac316c6",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多尺度与局部特征引导网络的角膜神经纤维分割方法 — 朱伟芳;汤伟;陈新建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8621,
+            "end_char": 8663
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向高度近视条纹损伤的深监督特征聚合网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谭晓;刁逸超;陈新建;石霏;樊莹;谢嘉旻;朱伟芳",
+      "id": "out-9701e883b3c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向高度近视条纹损伤的深监督特征聚合网络 — 谭晓;刁逸超;陈新建;石霏;樊莹;谢嘉旻;朱伟芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8669,
+            "end_char": 8722
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于配准网络的OCT图像增强方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈新建;谭志苇;石霏",
+      "id": "out-b9fc379b5e18",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于配准网络的OCT图像增强方法及应用 — 陈新建;谭志苇;石霏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8728,
+            "end_char": 8766
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-class retinal fluid joint segmentation based on cascaded convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Tang;Yanqing Ye;Xinjian Chen;Fei Shi;Dehui Xiang;Zhongyue Chen;Weifang Zhu",
+      "id": "out-128b1ab250b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-class retinal fluid joint segmentation based on cascaded convolutional neural networks — Wei Tang;Yanqing Ye;Xinjian Chen;Fei Shi;Dehui Xiang;Zhongyue Chen;Weifang Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8772,
+            "end_char": 8951
+          },
+          "version": "d96053b2a5b926e4f8d0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 46,
+    "listed": 46,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "专利": {
+        "listed": 23,
+        "extracted": 23
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

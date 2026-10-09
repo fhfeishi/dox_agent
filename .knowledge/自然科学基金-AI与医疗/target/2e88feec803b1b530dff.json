@@ -2,15 +2,20 @@
   "doc_id": "2e88feec803b1b530dff",
   "version": "d991cc9af4a3f3c07a35",
   "source_hash": "20abb1e71ed2e74ac316efa062fb054d6e3ede682282997b6e2c047b9d85dbc5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.231496+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:44.926840+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2756a7392a9b",
-          "name": "EBV-HLH早期标志物与预警模型",
-          "desc": "EB病毒相关噬血细胞综合征是由EB病毒感染诱发的病理性免疫激活综合征，多见于儿童、死亡率极高。",
+          "id": "item-c916c0a5b346",
+          "name": "儿童EB病毒相关噬血细胞综合征",
+          "desc": "多见于儿童、死亡率极高",
           "evidence": [
             {
               "quote": "EB病毒相关噬血细胞综合征（EBV-HLH）是一类由EB病毒感染诱发的病理性免疫激活综合征，多见于儿童、死亡率极高",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 686,
                 "end_char": 742
-              },
-              "version": "d991cc9af4a3f3c07a35"
-            }
-          ]
-        },
-        {
-          "id": "item-283e08a6613d",
-          "name": "儿童HLH早期筛查流程",
-          "desc": "建立的儿童HLH筛查流程利用常用临床和实验室参数，可快捷识别高HLH风险患儿。",
-          "evidence": [
-            {
-              "quote": "本研究建立的儿童HLH筛查流程利用常用的临床和实验室参数，可快捷地识别高HLH风险患儿",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3295,
-                "end_char": 3337
               },
               "version": "d991cc9af4a3f3c07a35"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b2e6458df13",
-          "name": "早期诊断与重症化风险评估是关键",
-          "desc": "EBV-HLH早期诊断和重症化风险评估是降低其死亡率的关键。",
+          "id": "item-604c7a86143c",
+          "name": "儿童HLH早期诊断的临床挑战",
+          "desc": "早期诊断是降低死亡率关键",
           "evidence": [
             {
-              "quote": "EBV-HLH早期诊断和重症化风险评估是降低其死亡率的关键",
+              "quote": "针对儿童HLH早期诊断的临床挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 744,
-                "end_char": 772
-              },
-              "version": "d991cc9af4a3f3c07a35"
-            }
-          ]
-        },
-        {
-          "id": "item-32dd7474d88d",
-          "name": "HLH病因复杂发生急骤死亡率高",
-          "desc": "噬血细胞综合征具有病因复杂、发生急骤、死亡率高等特点，早期诊断与针对性治疗是降低死亡率的关键。",
-          "evidence": [
-            {
-              "quote": "噬血细胞综合征（hemophagocytic lymphohistiocytosis, HLH），是一种多见于婴幼儿和儿童的病理性免疫激活综合征，具有病因复杂、发生急骤、死亡率高等特点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2502,
-                "end_char": 2593
+                "start_char": 2619,
+                "end_char": 2634
               },
               "version": "d991cc9af4a3f3c07a35"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b6c6ad0b580",
-          "name": "多肽组学筛选生物标志物",
-          "desc": "完善多肽组学技术筛选EBV-HLH生物标志物研究，并探讨其功能和机制。",
+          "id": "item-767b56da9f61",
+          "name": "血浆蛋白组学差异蛋白筛选",
+          "desc": "KEGG富集与蛋白互作网络，前瞻性靶向验证",
           "evidence": [
             {
-              "quote": "完善多肽组学技术筛选EBV-HLH生物标志物研究，并探讨其功能和机制",
+              "quote": "蛋白组学研究中对HLH儿童及四个对照组儿童的血浆标本开展蛋白组检测，进行差异蛋白筛选、KEGG信号通路富集分析和蛋白互作网络分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 979,
-                "end_char": 1012
+                "start_char": 2679,
+                "end_char": 2742
               },
               "version": "d991cc9af4a3f3c07a35"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a029248b6c1e",
-          "name": "机器学习构建预警与风险评估模型",
-          "desc": "使用机器学习算法和传统建模方法构建EBV-HLH预警模型和重症化风险评估模型，并基于前瞻性队列验证。",
+          "id": "item-fa3ac79f7fc6",
+          "name": "基于常见实验指标的三步筛查程序",
+          "desc": "儿童HLH早期筛查流程",
           "evidence": [
             {
-              "quote": "使用机器学习算法和传统建模方法构建EBV-HLH预警模型和重症化风险评估模型",
+              "quote": "开发了一个基于临床常见实验指标的三步筛查程序",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1016,
-                "end_char": 1053
+                "start_char": 3171,
+                "end_char": 3192
               },
               "version": "d991cc9af4a3f3c07a35"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-073b0a7e7896",
-          "name": "发现8个HLH差异表达蛋白",
-          "desc": "对HLH儿童及四个对照组血浆标本开展蛋白组检测，发现8个HLH差异表达蛋白。",
-          "evidence": [
-            {
-              "quote": "发现了8个HLH差异表达的蛋白，包括LCP1，VCAM1，FGB，FGG，SAA4，ECM1，APOA1，和ALB",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2764,
-                "end_char": 2820
-              },
-              "version": "d991cc9af4a3f3c07a35"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-39eb2d4cd452",
-          "name": "LCP1鉴别HLH能力AUC 0.97",
-          "desc": "LCP1具有最好的鉴别HLH能力，AUC为0.97，验证队列AUC为0.90、特异度100%。",
+          "id": "item-f941f6fd68a3",
+          "name": "LCP1鉴别HLH",
+          "desc": "AUC=0.97",
           "evidence": [
             {
               "quote": "其中LCP1具有最好的鉴别HLH能力（area under the curve，AUC=0.97）",
@@ -164,72 +122,191 @@
               "version": "d991cc9af4a3f3c07a35"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7071f28c63e4",
-          "name": "三步筛查程序灵敏度91.9%特异度94.4%",
-          "desc": "开发基于临床常见实验指标的三步筛查程序，灵敏度91.9%、特异度94.4%。",
+          "id": "item-4e63a41fce6e",
+          "name": "C1QB预测多器官功能障碍及死亡",
+          "desc": "AUC 0.96和0.81",
           "evidence": [
             {
-              "quote": "儿童HLH筛查流程研究中开发了一个基于临床常见实验指标的三步筛查程序。筛查流程灵敏度为91.9%，特异度为94.4%",
+              "quote": "C1QB预测HLH患儿发生多器官功能障碍及死亡的AUC分别为0.96和0.81",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3159,
+                "start_char": 3005,
+                "end_char": 3043
+              },
+              "version": "d991cc9af4a3f3c07a35"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2aedecb32f3e",
+          "name": "三步筛查流程性能",
+          "desc": "灵敏度91.9%、特异度94.4%",
+          "evidence": [
+            {
+              "quote": "筛查流程灵敏度为91.9%，特异度为94.4%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3194,
                 "end_char": 3216
               },
               "version": "d991cc9af4a3f3c07a35"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2756a7392a9b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9b2e6458df13"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a screening score for Hemophagocytic Lymphohistiocytosis among pediatric patients with acute infection of Epstein-Barr virus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Li;Haipeng Yan;Zhenghui Xiao;Ting Luo;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+      "id": "out-5cee204c7046",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a screening score for Hemophagocytic Lymphohistiocytosis among pediatric patients with acute infection of Epstein-Barr virus — Xun Li;Haipeng Yan;Zhenghui Xiao;Ting Luo;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3356,
+            "end_char": 3677
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9b2e6458df13"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8b6c6ad0b580"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-diagnostic trajectory of pediatric hemophagocytic lymphohistiocytosis: observations from hematological and hepatic parameters",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Li;Haipeng Yan;Zili Cai;Xiao Li;Longlong Xie;Ting Luo;Xiangyu Wang;Yufan Yang;Ling Gong;Minghui Tang;Xinping Zhang;Jiaotian Huang;Xiulan Lu;Zhenghui Xiao",
+      "id": "out-cdb1850134f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-diagnostic trajectory of pediatric hemophagocytic lymphohistiocytosis: observations from hematological and hepatic parameters — Xun Li;Haipeng Yan;Zili Cai;Xiao Li;Longlong Xie;Ting Luo;Xiangyu Wang;Yufan Yang;Ling Gong;Minghui Tang;Xinping Zhang;Jiaotian Huang;Xiulan Lu;Zhenghui Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3977
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8b6c6ad0b580"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-39eb2d4cd452"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Proteomic Analysis of Pediatric Hemophagocytic Lymphohistiocytosis: a Comparative Study with Healthy Controls, Sepsis, Critical Ill, and Active Epstein-Barr virus Infection to Identify Altered Pathways and Candidate Biomarkers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Li;Ting Luo;Haipeng Yan;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Minghui Tang;Xinping Zhang;Jiaotian Huang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Zhenghui Xiao;Xiulan Lu",
+      "id": "out-27f2a7e630d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Proteomic Analysis of Pediatric Hemophagocytic Lymphohistiocytosis: a Comparative Study with Healthy Controls, Sepsis, Critical Ill, and Active Epstein-Barr virus Infection to Identify Altered Pathways and Candidate Biomarkers — Xun Li;Ting Luo;Haipeng Yan;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Minghui Tang;Xinping Zhang;Jiaotian Huang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Zhenghui Xiao;Xiulan Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3982,
+            "end_char": 4403
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a029248b6c1e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7071f28c63e4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Three-Step Screening Procedure for Early Identification of Children at High Risk of Hemophagocytic Lymphohistiocytosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Li;Haipeng Yan;Zhenghui Xiao;Ting Luo;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Minghui Tang;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+      "id": "out-86e9eac695e3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Three-Step Screening Procedure for Early Identification of Children at High Risk of Hemophagocytic Lymphohistiocytosis — Xun Li;Haipeng Yan;Zhenghui Xiao;Ting Luo;Longlong Xie;Yufan Yang;Ling Gong;Zhexuan Tang;Minghui Tang;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4408,
+            "end_char": 4723
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fulfillment status of hypertriglyceridemia and hypofibrinogenemia in children with hemophagocytic lymphohistiocytosis and risks of multiple organ dysfunction syndrome and early mortality",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Li;Haipeng Yan;Ting Luo;Zhenghui Xiao;Ling Gong;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+      "id": "out-fe19f0371c70",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fulfillment status of hypertriglyceridemia and hypofibrinogenemia in children with hemophagocytic lymphohistiocytosis and risks of multiple organ dysfunction syndrome and early mortality — Xun Li;Haipeng Yan;Ting Luo;Zhenghui Xiao;Ling Gong;Jiaotian Huang;Xinping Zhang;Mincui Zheng;Zhenya Yao;Ping Zang;Desheng Zhu;Xiulan Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4728,
+            "end_char": 5059
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Health‐Related Quality of Life Among Discharged Patients With Hemophagocytic Lymphohistiocytosis: A Follow‐Up Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Li;Kun Yu;Haipeng Yan;Longlong Xie;Xiangyu Wang;Ting Luo;Xiulan Lu;Xun Li;Zhenghui Xiao",
+      "id": "out-40f89b9596ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Health‐Related Quality of Life Among Discharged Patients With Hemophagocytic Lymphohistiocytosis: A Follow‐Up Study — Xiao Li;Kun Yu;Haipeng Yan;Longlong Xie;Xiangyu Wang;Ting Luo;Xiulan Lu;Xun Li;Zhenghui Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5064,
+            "end_char": 5280
+          },
+          "version": "d991cc9af4a3f3c07a35"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

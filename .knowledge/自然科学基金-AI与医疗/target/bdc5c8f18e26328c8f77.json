@@ -2,15 +2,20 @@
   "doc_id": "bdc5c8f18e26328c8f77",
   "version": "8abc63e24fdcb0a50e60",
   "source_hash": "f5a55f718913d93e01f0ddc80276fd744bb696e73746e95686a33d5fa1599e08",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.176512+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:56:09.964459+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d723187e1245",
-          "name": "基于全切片图像的病理辅助诊断",
-          "desc": "面向乳腺、消化系统与妇产科等癌症，基于数字全切片图像开展计算机辅助诊断方法研究。",
+          "id": "item-43c9a260c09f",
+          "name": "WSI病理图像辅助诊断",
+          "desc": "乳腺、消化道、妇产科癌症",
           "evidence": [
             {
-              "quote": "随着数字病理和机器学习技术的深入发展，基于数字全切片图像（WSI）的癌症辅助诊断方法成为计算机辅助诊断领域的研究热点",
+              "quote": "基于数字全切片图像（WSI）的癌症辅助诊断方法成为计算机辅助诊断领域的研究热点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 647,
+                "start_char": 666,
                 "end_char": 704
               },
               "version": "8abc63e24fdcb0a50e60"
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a5d96c7db1b5",
-          "name": "切片特异性致辅助诊断模型泛化能力差",
-          "desc": "病理图像数据的切片特异性造成辅助诊断模型泛化能力差，同时存在分辨率高尺寸大、专家标注难以获得等困难。",
+          "id": "item-952bf83d890f",
+          "name": "病理图像切片特异性致模型泛化差",
+          "desc": "大规模专家标注难获得",
           "evidence": [
             {
               "quote": "针对病理图像数据的切片特异性造成的辅助诊断模型泛化能力差的问题",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a526f6318b99",
-          "name": "病理图像颜色归一化与弱监督全切片分析方法",
-          "desc": "提出基于自适应颜色反卷积和动态路由机制的病理图像标准化模块，研究多尺度诊断相关区域提取与级联U-Net全切片分割，并提出对比学习与动态聚类的弱监督全切片分析方法。",
+          "id": "item-c3a5491211d9",
+          "name": "自适应颜色反卷积与动态路由病理图像标准化模块",
+          "desc": "上百个中心稳定归一化",
           "evidence": [
             {
-              "quote": "突破了病理图像颜色归一化、病理图像底层特征学习、多倍率信息融合、全切片图像弱监督学习方面的多个关键技术",
+              "quote": "先后提出了基于自适应颜色反卷积和，和基于动态路由机制的病理图像标准化模块",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2401,
-                "end_char": 2451
+                "start_char": 2568,
+                "end_char": 2603
               },
               "version": "8abc63e24fdcb0a50e60"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-14b22ba25719",
+          "name": "融合多尺度信息的病理WSI检索与辅助诊断模型",
+          "desc": "提示疑似病变区域并检索相似病例",
+          "evidence": [
+            {
+              "quote": "提出了融合多尺度信息的病理全切片图像检索与辅助诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2818,
+                "end_char": 2844
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b9cd6add1251",
+          "name": "基于对比学习与动态聚类的弱监督WSI分析方法",
+          "desc": "仅切片级标注",
+          "evidence": [
+            {
+              "quote": "提出了一种基于对比学习与动态聚类的弱监督病理全切片图像分析方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3095
+              },
+              "version": "8abc63e24fdcb0a50e60"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,805 @@
       "state": "has",
       "items": [
         {
-          "id": "item-17f3607c085b",
-          "name": "肿瘤良恶性分类精度达95%以上",
-          "desc": "在乳腺、消化道、妇产科数据集上肿瘤良恶性分类精度达到95%以上；病理图像标准化模块可提升下游算法精度3.6%~6.7%。",
+          "id": "item-e201b03d93b7",
+          "name": "标准化提升下游精度",
+          "desc": "3.6%~6.7%",
           "evidence": [
             {
-              "quote": "在乳腺、消化道、妇产科数据集上肿瘤良恶性的分类精度达到95%以上",
+              "quote": "能提升他下游病理图像分析算法精度3.6%~6.7%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 956
+                "start_char": 2632,
+                "end_char": 2656
               },
               "version": "8abc63e24fdcb0a50e60"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d723187e1245"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a5d96c7db1b5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skin lesion segmentation using high-resolution convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fengying Xie;Jiawen Yang;Jie Liu;Zhiguo Jiang;Yushan Zheng;Yukun Wang",
+      "id": "out-eda5049d43b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Skin lesion segmentation using high-resolution convolutional neural network — Fengying Xie;Jiawen Yang;Jie Liu;Zhiguo Jiang;Yushan Zheng;Yukun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3177,
+            "end_char": 3330
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a5d96c7db1b5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a526f6318b99"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "INFORMATIVE RETRIEVAL FRAMEWORK FOR HISTOPATHOLOGY WHOLE SLIDES IMAGES BASED ON DEEP HASHING NETWORK",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Dingyi;Zheng Yushan;Zhang Haopeng;Sun Shujiao;Xie Fengying;Shi Jun;Jiang Zhiguo",
+      "id": "out-f2785457be27",
+      "evidence": [
+        {
+          "quote": "[会议论文] INFORMATIVE RETRIEVAL FRAMEWORK FOR HISTOPATHOLOGY WHOLE SLIDES IMAGES BASED ON DEEP HASHING NETWORK — Hu Dingyi;Zheng Yushan;Zhang Haopeng;Sun Shujiao;Xie Fengying;Shi Jun;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3335,
+            "end_char": 3526
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a526f6318b99"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-17f3607c085b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Frequency-Based Convolutional Neural Network for Efficient Segmentation of Histopathology Whole Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo Wei;Zheng Yushan;Hu Dingyi;Li Jun;Xue Chenghai;Jiang Zhiguo",
+      "id": "out-f9cb43689e20",
+      "evidence": [
+        {
+          "quote": "[会议论文] Frequency-Based Convolutional Neural Network for Efficient Segmentation of Histopathology Whole Slide Images — Luo Wei;Zheng Yushan;Hu Dingyi;Li Jun;Xue Chenghai;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3711
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Thin Cloud Removal for Remote Sensing Images Using a Physical-Model-Based CycleGAN With Unpaired Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zi Yue;Xie Fengying;Song Xuedong;Jiang Zhiguo;Zhang Haopeng",
+      "id": "out-eac64d1ae423",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Thin Cloud Removal for Remote Sensing Images Using a Physical-Model-Based CycleGAN With Unpaired Data — Zi Yue;Xie Fengying;Song Xuedong;Jiang Zhiguo;Zhang Haopeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3716,
+            "end_char": 3885
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "组织病理图像检索及其癌症辅助诊断方法概述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;姜志国",
+      "id": "out-da30627733bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 组织病理图像检索及其癌症辅助诊断方法概述 — 郑钰山;姜志国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3890,
+            "end_char": 3926
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic Regions Attention Network (DRA-Net) for Histopathology WSI Recommendation and Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Xie Fengying;Shi Jun;Zhang Haopeng;Huai Jianguo;Cao Ming;Yang Xiaomiao",
+      "id": "out-4fce5f1931ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic Regions Attention Network (DRA-Net) for Histopathology WSI Recommendation and Retrieval — Zheng Yushan;Jiang Zhiguo;Xie Fengying;Shi Jun;Zhang Haopeng;Huai Jianguo;Cao Ming;Yang Xiaomiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3931,
+            "end_char": 4134
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Higher Order Support Vector Random Fields for Hyperspectral Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junli Yang;Zhiguo Jiang;Shuang Hao;Haopeng Zhang",
+      "id": "out-9f15f1dcffcf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Higher Order Support Vector Random Fields for Hyperspectral Image Classification — Junli Yang;Zhiguo Jiang;Shuang Hao;Haopeng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4276
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于级联思想的病理全切片图像分割算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;孙树娇;郑钰山;谢凤英;张浩鹏",
+      "id": "out-dd67e6b3a2bd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于级联思想的病理全切片图像分割算法 — 姜志国;孙树娇;郑钰山;谢凤英;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4327
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Encoding histopathology whole slide images with location-aware graphs for diagnostically relevant regions retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Shi Jun;Xie Fengying;Zhang Haopeng;Luo Wei",
+      "id": "out-0799ad63e0a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Encoding histopathology whole slide images with location-aware graphs for diagnostically relevant regions retrieval — Zheng Yushan;Jiang Zhiguo;Shi Jun;Xie Fengying;Zhang Haopeng;Luo Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4332,
+            "end_char": 4524
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于端到端深度哈希的皮肤镜图像检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢凤英;宋雪冬;姜志国",
+      "id": "out-837dfff196bb",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于端到端深度哈希的皮肤镜图像检索方法 — 谢凤英;宋雪冬;姜志国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4569
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stain Standardization Capsule: A pre-processing module for histopathological image analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Shi Jun;Xie Fengying",
+      "id": "out-1e7ae762d1b2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Stain Standardization Capsule: A pre-processing module for histopathological image analysis — Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Shi Jun;Xie Fengying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4575,
+            "end_char": 4735
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robust Spacecraft Component Detection in Point Clouds",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Quanmao Wei;Zhiguo Jiang;Haopeng Zhang",
+      "id": "out-1653350e169f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Robust Spacecraft Component Detection in Point Clouds — Quanmao Wei;Zhiguo Jiang;Haopeng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4741,
+            "end_char": 4841
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Online Exemplar-Based Fully Convolutional Network for Aircraft Detection in Remote Sensing Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bowen Cai;Zhiguo Jiang;Haopeng Zhang;Yuan Yao;Shanlan Nie",
+      "id": "out-68d7215514b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Online Exemplar-Based Fully Convolutional Network for Aircraft Detection in Remote Sensing Images — Bowen Cai;Zhiguo Jiang;Haopeng Zhang;Yuan Yao;Shanlan Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4847,
+            "end_char": 5010
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CANCER SENSITIVE CASCADED NETWORKS (CSC-NET) FOR EFFICIENT HISTOPATHOLOGY WHOLE SLIDE IMAGE SEGMENTATION",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Shujiao;Zheng Yushan;Yuan Huining;Zhang Haopeng;Jiang Zhiguo",
+      "id": "out-fb9ba015e5b7",
+      "evidence": [
+        {
+          "quote": "[会议论文] CANCER SENSITIVE CASCADED NETWORKS (CSC-NET) FOR EFFICIENT HISTOPATHOLOGY WHOLE SLIDE IMAGE SEGMENTATION — Sun Shujiao;Zheng Yushan;Yuan Huining;Zhang Haopeng;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5016,
+            "end_char": 5193
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Thin Cloud Removal for Multispectral Remote Sensing Images Using Convolutional Neural Networks Combined With an Imaging Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zi Yue;Xie Fengying;Zhang Ning;Jiang Zhiguo;Zhu Wentao",
+      "id": "out-8cc6ce999d25",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Thin Cloud Removal for Multispectral Remote Sensing Images Using Convolutional Neural Networks Combined With an Imaging Model — Zi Yue;Xie Fengying;Zhang Ning;Jiang Zhiguo;Zhu Wentao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5199,
+            "end_char": 5387
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于JPEG压缩编码的数字病理全切片图像快速分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;罗伟;姜志国;张浩鹏;谢凤英;赵丹培",
+      "id": "out-6a193fb0f5a3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于JPEG压缩编码的数字病理全切片图像快速分析方法 — 郑钰山;罗伟;姜志国;张浩鹏;谢凤英;赵丹培",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5393,
+            "end_char": 5450
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tracing Diagnosis Paths on Histopathology WSIs for Diagnostically Relevant Case Recommendation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Shi Jun",
+      "id": "out-1753afad5129",
+      "evidence": [
+        {
+          "quote": "[会议论文] Tracing Diagnosis Paths on Histopathology WSIs for Diagnostically Relevant Case Recommendation — Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Shi Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5456,
+            "end_char": 5619
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于级联卷积网络的数字病理图像分割方法及其模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;孙树娇;郑钰山;张浩鹏",
+      "id": "out-0f6d2c309b15",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于级联卷积网络的数字病理图像分割方法及其模型 — 姜志国;孙树娇;郑钰山;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5625,
+            "end_char": 5672
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vision-based Pose Estimation for Textureless Space Objects by Contour Points Matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Zhang;Zhiguo Jiang;Haopeng Zhang;Quanmao Wei",
+      "id": "out-9fa1ff296c9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vision-based Pose Estimation for Textureless Space Objects by Contour Points Matching — Xin Zhang;Zhiguo Jiang;Haopeng Zhang;Quanmao Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5678,
+            "end_char": 5820
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph Convolutional Networks for Cervical Cell Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Shi;Ruoyu Wang;Yushan Zheng;Zhiguo Jiang;Lanlan Yu",
+      "id": "out-eca915e068a4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Graph Convolutional Networks for Cervical Cell Classification — Jun Shi;Ruoyu Wang;Yushan Zheng;Zhiguo Jiang;Lanlan Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5826,
+            "end_char": 5950
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Color Deconvolution for Histological WSI Normalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yushan Zheng;Zhiguo Jiang;Haopeng Zhang;Fengying Xie;Jun Shi;Chenghai Xue",
+      "id": "out-0a0e0bd3803a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive Color Deconvolution for Histological WSI Normalization — Yushan Zheng;Zhiguo Jiang;Haopeng Zhang;Fengying Xie;Jun Shi;Chenghai Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5956,
+            "end_char": 6101
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification for Dermoscopy Images Using Convolutional Neural Networks Based on Region Average Pooling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Jiawen;Xie Fengying;Fan Haidi;Jiang Zhiguo;Liu Jie",
+      "id": "out-e29d4edad657",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification for Dermoscopy Images Using Convolutional Neural Networks Based on Region Average Pooling — Yang Jiawen;Xie Fengying;Fan Haidi;Jiang Zhiguo;Liu Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6107,
+            "end_char": 6275
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种尺度自适应病理全切片图像数据库检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;姜志国;谢凤英;张浩鹏",
+      "id": "out-a516d378a3d8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种尺度自适应病理全切片图像数据库检索方法 — 郑钰山;姜志国;谢凤英;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6281,
+            "end_char": 6324
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Histopathological whole slide image analysis using context-based CBIR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yushan Zheng;Zhiguo Jiang;Haopeng Zhang;Fengying Xie;Yibing Ma;Huaqiang Shi;Yu Zhao",
+      "id": "out-6270629df753",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Histopathological whole slide image analysis using context-based CBIR — Yushan Zheng;Zhiguo Jiang;Haopeng Zhang;Fengying Xie;Yibing Ma;Huaqiang Shi;Yu Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6330,
+            "end_char": 6491
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cervical cell classification with graph convolutional network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Shi;Haopeng Zhang;Lanlan Yu;Zhiguo Jiang;Yushan Zheng;Ruoyu Wang",
+      "id": "out-5d6acd771d9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cervical cell classification with graph convolutional network — Jun Shi;Haopeng Zhang;Lanlan Yu;Zhiguo Jiang;Yushan Zheng;Ruoyu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6497,
+            "end_char": 6635
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种HE染色病理图像颜色归一化方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;张浩鹏;郑钰山;谢凤英",
+      "id": "out-b7ccdc9a1b27",
+      "evidence": [
+        {
+          "quote": "[专利] 一种HE染色病理图像颜色归一化方法 — 姜志国;张浩鹏;郑钰山;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6641,
+            "end_char": 6680
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DCT频率自适应选择的数字病理全切片分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;罗伟;姜志国;张浩鹏;谢凤英",
+      "id": "out-9b79cb046583",
+      "evidence": [
+        {
+          "quote": "[专利] 基于DCT频率自适应选择的数字病理全切片分割方法 — 郑钰山;罗伟;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6686,
+            "end_char": 6735
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于主题模型的半监督哈希算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;张浩鹏;麻义兵;谢凤英",
+      "id": "out-49f755905fa3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于主题模型的半监督哈希算法 — 姜志国;张浩鹏;麻义兵;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6741,
+            "end_char": 6779
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度哈希的病理全切片检索算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;胡定一;郑钰山;谢凤英;张浩鹏",
+      "id": "out-0bb21fe179da",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度哈希的病理全切片检索算法 — 姜志国;胡定一;郑钰山;谢凤英;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6785,
+            "end_char": 6829
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多分支卷积神经网络的皮肤镜图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢凤英;杨加文;姜志国",
+      "id": "out-150b04b43763",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多分支卷积神经网络的皮肤镜图像分割方法 — 谢凤英;杨加文;姜志国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6835,
+            "end_char": 6876
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Cloud Detection Method for Landsat 8 Images Based on PCANet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zi Yue;Xie Fengying;Jiang Zhiguo",
+      "id": "out-6ada0c08ce15",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Cloud Detection Method for Landsat 8 Images Based on PCANet — Zi Yue;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6882,
+            "end_char": 6984
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Encoding histopathological WSIs using GNN for scalable diagnostically relevant regions retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Bonan;Shi Jun;Zhang Haopeng;Xie Fengying",
+      "id": "out-a0fcaf902525",
+      "evidence": [
+        {
+          "quote": "[会议论文] Encoding histopathological WSIs using GNN for scalable diagnostically relevant regions retrieval — Zheng Yushan;Jiang Bonan;Shi Jun;Zhang Haopeng;Xie Fengying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6990,
+            "end_char": 7154
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "No-Reference Blurred Image Quality Assessment by Structural Similarity Index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Haopeng;Yuan Bo;Dong Bo;Jiang Zhiguo",
+      "id": "out-0f46f9e17ffd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] No-Reference Blurred Image Quality Assessment by Structural Similarity Index — Zhang Haopeng;Yuan Bo;Dong Bo;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7160,
+            "end_char": 7287
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多倍率深度学习的病理图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;郑钰山",
+      "id": "out-990a06ae6f2e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多倍率深度学习的病理图像分类方法 — 姜志国;郑钰山",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7293,
+            "end_char": 7327
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stain Standardization Capsule for Application-Driven Histopathological Image Normalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Ma Yibing;Shi Huaqiang;Zhao Yu",
+      "id": "out-c3628e31a42c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stain Standardization Capsule for Application-Driven Histopathological Image Normalization — Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Ma Yibing;Shi Huaqiang;Zhao Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7333,
+            "end_char": 7515
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Out-of-Region Keypoint Localization for 6D Pose Estimation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Zhang;Zhiguo Jiang;Haopeng Zhang",
+      "id": "out-9bfa62b61f6b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Out-of-Region Keypoint Localization for 6D Pose Estimation — Xin Zhang;Zhiguo Jiang;Haopeng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7521,
+            "end_char": 7624
+          },
+          "version": "8abc63e24fdcb0a50e60"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 36,
+    "listed": 36,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 11,
+        "extracted": 11
+      }
+    },
+    "consistent": true
+  }
 }

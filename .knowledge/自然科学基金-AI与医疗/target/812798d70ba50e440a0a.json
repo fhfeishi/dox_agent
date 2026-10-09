@@ -2,15 +2,20 @@
   "doc_id": "812798d70ba50e440a0a",
   "version": "95e05eaeda9d8137af05",
   "source_hash": "1eef3111b9adbe30228aa4210136029501e0626aa4c10ec5fca11dddb4fa2e4a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.780226+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:47:16.831537+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ffa9bb4da9ad",
-          "name": "非小细胞肺癌术后精准预后预测",
-          "desc": "面向NSCLC术后预后评估，挖掘病理全数字切片中肿瘤微环境信息以指导诊疗决策。",
+          "id": "item-fd60cb8bf2b1",
+          "name": "非小细胞肺癌预后预测",
+          "desc": "肿瘤微环境量化",
+          "evidence": [
+            {
+              "quote": "本项目针对非小细胞肺癌预后预测难的临床挑战",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2631,
+                "end_char": 2651
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8c03e0caa095",
+          "name": "非小细胞肺癌预后预测难",
+          "desc": "缺乏精准预后预测方法",
           "evidence": [
             {
               "quote": "非小细胞肺癌（NSCLC）约占肺癌的85%，评估预后可指导诊疗决策，但目前缺乏精准预后预测的方法",
@@ -37,46 +64,25 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9698e93831a8",
-          "name": "现有研究未深度挖掘肿瘤微环境",
-          "desc": "现有研究主要通过简单分析肿瘤细胞图像特征，未考虑深度挖掘组织、细胞间空间分布所反映的肿瘤微环境，预后预测精度受限。",
-          "evidence": [
-            {
-              "quote": "现有研究主要通过简单分析肿瘤细胞图像特征，未考虑深度挖掘肿瘤微环境，如组织、细胞间的空间分布",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 755,
-                "end_char": 800
-              },
-              "version": "95e05eaeda9d8137af05"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-584fbb055001",
-          "name": "组织细胞拓扑结构量化的深度学习预后预测方案",
-          "desc": "对WSI分别进行组织与细胞核分割识别，分析组织、细胞间拓扑结构量化肿瘤微环境，并提出弱监督组织分割、多任务元学习细胞核分割与图卷积预后预测三项创新算法。",
+          "id": "item-5b6dcae2b505",
+          "name": "肿瘤病理图像标准算法流程",
+          "desc": "染色标准化、细胞核分割、组织分割、空间关系预后预测",
           "evidence": [
             {
-              "quote": "首先对WSI分别进行组织和细胞核分割及识别；然后分析组织、细胞间的拓扑结构量化肿瘤微环境；最后实现NSCLC预后预测",
+              "quote": "项目负责人韩楚构建了一套肿瘤病理图像处理的标准算法流程，其中包括染色标准化、细胞核分割、组织分割、基于组织细胞空间关系的NSCLC预后预测等算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 896
+                "start_char": 2732,
+                "end_char": 2803
               },
               "version": "95e05eaeda9d8137af05"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,383 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a491c19debc",
-          "name": "发表学术论文18篇并获杰青项目资助",
-          "desc": "发表学术论文18篇（第一作者及通讯作者含共同10篇），项目负责人获2023年度广东省自然科学基金杰出青年项目资助，相关临床转化项目获全国数字健康应用大赛特等奖。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "18篇，第一或通讯作者10篇",
           "evidence": [
             {
-              "quote": "发表学术论文18篇，其中第一作者及通讯作者（含共同）论文10篇",
+              "quote": "在IEEE Transactions on Medical Imaging，IEEE Transactions on Cybernetics，Medical Image Analysis，Radiology等高水平学术期刊及会议发表学术论文18篇，其中第一作者及通讯作者（含共同）论文10篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2927,
+                "start_char": 2813,
                 "end_char": 2957
               },
               "version": "95e05eaeda9d8137af05"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61308f22a9fc",
+          "name": "全国数字健康应用大赛特等奖",
+          "desc": "病理图像核分裂象自动检测与辅助诊断",
+          "evidence": [
+            {
+              "quote": "临床转化项目“病理图像核分裂象自动检测与辅助诊断”获2023第一届全国数字健康应用大赛医学人工智能主题赛数字影像赛道特等奖（1/39）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3009,
+                "end_char": 3075
+              },
+              "version": "95e05eaeda9d8137af05"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ffa9bb4da9ad"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9698e93831a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedDBL: Communication and Data Efficient Federated Deep-Broad Learning for Histopathological Tissue Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deng Tianpeng;Huang Yanqi;Han Guoqiang;Shi Zhenwei;Lin Jiatai;Dou Qi;Liu Zaiyi;Guo Xiao-jing;Chen C. L. Philip;Han Chu",
+      "id": "out-f255c781b82e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedDBL: Communication and Data Efficient Federated Deep-Broad Learning for Histopathological Tissue Classification — Deng Tianpeng;Huang Yanqi;Han Guoqiang;Shi Zhenwei;Lin Jiatai;Dou Qi;Liu Zaiyi;Guo Xiao-jing;Chen C. L. Philip;Han Chu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3095,
+            "end_char": 3336
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9698e93831a8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-584fbb055001"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病理图像核分裂象自动检测与辅助诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩楚;王浩;林佳泰;石镇维;刘再毅",
+      "id": "out-23f6633e00e5",
+      "evidence": [
+        {
+          "quote": "[奖励] 病理图像核分裂象自动检测与辅助诊断 — 韩楚;王浩;林佳泰;石镇维;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3341,
+            "end_char": 3382
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-584fbb055001"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a491c19debc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Meta Multi-task Nuclei Segmentation with Fewer Training Samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Chu;Yao Huasheng;Zhao Bingchao;Li Zhenhui;Shi Zhenwei;Wu Lei;Chen Xin;Qu Jinrong;Zhao Ke;Lan Rushi;Liang Changhong;Pan Xipeng;Liu Zaiyi",
+      "id": "out-9081b7802dcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Meta Multi-task Nuclei Segmentation with Fewer Training Samples — Han Chu;Yao Huasheng;Zhao Bingchao;Li Zhenhui;Shi Zhenwei;Wu Lei;Chen Xin;Qu Jinrong;Zhao Ke;Lan Rushi;Liang Changhong;Pan Xipeng;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3598
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PDBL: Improving Histopathological Tissue Classification With Plug-and-Play Pyramidal Deep-Broad Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Jiatai;Han Guoqiang;Pan Xipeng;Liu Zaiyi;Chen Hao;Li Danyi;Jia Xiping;Shi Zhenwei;Wang Zhizhen;Cui Yanfen;Li Haiming;Liang Changhong;Liang Li;Wang Ying;Han Chu",
+      "id": "out-4de65a1cba43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PDBL: Improving Histopathological Tissue Classification With Plug-and-Play Pyramidal Deep-Broad Learning — Lin Jiatai;Han Guoqiang;Pan Xipeng;Liu Zaiyi;Chen Hao;Li Danyi;Jia Xiping;Shi Zhenwei;Wang Zhizhen;Cui Yanfen;Li Haiming;Liang Changhong;Liang Li;Wang Ying;Han Chu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3879
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺磁共振影像精准分析与智能诊断系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石镇维;韩楚;赵致禾;梁演婷;刘再毅",
+      "id": "out-685963a727be",
+      "evidence": [
+        {
+          "quote": "[奖励] 乳腺磁共振影像精准分析与智能诊断系统 — 石镇维;韩楚;赵致禾;梁演婷;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 3927
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Zhenwei;Huang Xiaomei;Cheng Ziliang;Xu Zeyan;Lin Huan;Liu Chen;Chen Xiaobo;Liu Chunling;Liang Changhong;Lu Cheng;Cui Yanfen;Han Chu;Qu Jinrong;Shen Jun;Liu Zaiyi",
+      "id": "out-e4836c6f4f41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer — Shi Zhenwei;Huang Xiaomei;Cheng Ziliang;Xu Zeyan;Lin Huan;Liu Chen;Chen Xiaobo;Liu Chunling;Liang Changhong;Lu Cheng;Cui Yanfen;Han Chu;Qu Jinrong;Shen Jun;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4239
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RestainNet: a self-supervised digital re-stainer for stain normalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Bingchao;Han Chu;Xipeng Pan;Lin Jiatai;Yi Zongjian;Liang Changhong;Chen Xin;Li Bingbing;Qiu Weihao;Li Danyi;Liang Li;Wang Ying;Liu Zaiyi",
+      "id": "out-2723f60baf1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RestainNet: a self-supervised digital re-stainer for stain normalization — Zhao Bingchao;Han Chu;Xipeng Pan;Lin Jiatai;Yi Zongjian;Liang Changhong;Chen Xin;Li Bingbing;Qiu Weihao;Li Danyi;Liang Li;Wang Ying;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4244,
+            "end_char": 4466
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-quantified tumour-lymphocyte spatial interaction predicts disease-free survival in resected lung adenocarcinoma: A graph-based, multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Zhengyun;Lin Huan;Liu Zaiyi;Yan Lixu;Wang Yumeng;Li Bingbing;Liu Entao;Han Chu;Shi Zhenwei;Lu Cheng;Liu Zhenbing;Pang Cheng;Li Zhenhui;Cui Yanfen;Pan Xipeng;Chen Xin",
+      "id": "out-1f035912cec2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-quantified tumour-lymphocyte spatial interaction predicts disease-free survival in resected lung adenocarcinoma: A graph-based, multicentre study — Feng Zhengyun;Lin Huan;Liu Zaiyi;Yan Lixu;Wang Yumeng;Li Bingbing;Liu Entao;Han Chu;Shi Zhenwei;Lu Cheng;Liu Zhenbing;Pang Cheng;Li Zhenhui;Cui Yanfen;Pan Xipeng;Chen Xin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4471,
+            "end_char": 4819
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vision Transformers for Computational Histopathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Hongming;Xu Qi;Cong Fengyu;Kang Jeonghyun;Han Chu;Liu Zaiyi;Madabhushi Anant;Lu Cheng",
+      "id": "out-cdb640beda44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vision Transformers for Computational Histopathology — Xu Hongming;Xu Qi;Cong Fengyu;Kang Jeonghyun;Han Chu;Liu Zaiyi;Madabhushi Anant;Lu Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4824,
+            "end_char": 4973
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanchao Ye;Guangyao Wu;Yu Qi;Kuo Li;Mingliang Wang;Chunyang Zhang;Feng Li;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Yongde Liao;Zhenwei Shi",
+      "id": "out-4e7d2257901d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study — Guanchao Ye;Guangyao Wu;Yu Qi;Kuo Li;Mingliang Wang;Chunyang Zhang;Feng Li;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Yongde Liao;Zhenwei Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4979,
+            "end_char": 5313
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer with Modality-Correlated Cross-Attention for Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Jianwei;Lin Jiatai;Lu Cheng;Chen Hao;Lin Huan;Zhao Bingchao;Shi Zhenwei;Qiu Bingjiang;Pan Xipeng;Xu Zeyan;Huang Biao;Liang Changhong;Han Guoqiang;Liu Zaiyi;Han Chu",
+      "id": "out-79c523b01a02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer with Modality-Correlated Cross-Attention for Brain Tumor Segmentation — Lin Jianwei;Lin Jiatai;Lu Cheng;Chen Hao;Lin Huan;Zhao Bingchao;Shi Zhenwei;Qiu Bingjiang;Pan Xipeng;Xu Zeyan;Huang Biao;Liang Changhong;Han Guoqiang;Liu Zaiyi;Han Chu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5319,
+            "end_char": 5623
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Chu;Lin Jiatai;Mai Jinhai;Wang Yi;Zhang Qingling;Zhao Bingchao;Chen Xin;Pan Xipeng;Shi Zhenwei;Xu Zeyan;Yao Su;Yan Lixu;Lin Huan;Huang Xiaomei;Liang Changhong;Han Guoqiang;Liu Zaiyi",
+      "id": "out-60b4e0d24438",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels — Han Chu;Lin Jiatai;Mai Jinhai;Wang Yi;Zhang Qingling;Zhao Bingchao;Chen Xin;Pan Xipeng;Shi Zhenwei;Xu Zeyan;Yao Su;Yan Lixu;Lin Huan;Huang Xiaomei;Liang Changhong;Han Guoqiang;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5629,
+            "end_char": 5941
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HoVer-Trans: Anatomy-aware HoVer-Transformer for ROI-free Breast Cancer Diagnosis in Ultrasound Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mo Yuhao;Han Chu;Liu Yu;Liu Min;Shi Zhenwei;Lin Jiatai;Zhao Bingchao;Huang Chunwang;Qiu Bingjiang;Cui Yanfen;Wu Lei;Pan Xipeng;Xu Zeyan;Huang Xiaomei;Li Zhenhui;Liu Zaiyi;Wang Ying;Liang Changhong",
+      "id": "out-2a733598b1aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HoVer-Trans: Anatomy-aware HoVer-Transformer for ROI-free Breast Cancer Diagnosis in Ultrasound Images — Mo Yuhao;Han Chu;Liu Yu;Liu Min;Shi Zhenwei;Lin Jiatai;Zhao Bingchao;Huang Chunwang;Qiu Bingjiang;Cui Yanfen;Wu Lei;Pan Xipeng;Xu Zeyan;Huang Xiaomei;Li Zhenhui;Liu Zaiyi;Wang Ying;Liang Changhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5947,
+            "end_char": 6254
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedDUS: Lung tumor segmentation on CT images through federated semi-supervised with dynamic update strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Dan;Han Chu;Zhang Zhen;Zhai Tiantian;Lin Huan;Yang Baoyao;Cui Yanfen;Lin Yinbing;Zhao Zhihe;Zhao Lujun;Liang Changhong;Zeng An;Pan Dan;Chen Xin;Shi Zhenwei;Liu Zaiyi",
+      "id": "out-79fb2b3bd14b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedDUS: Lung tumor segmentation on CT images through federated semi-supervised with dynamic update strategy — Wang Dan;Han Chu;Zhang Zhen;Zhai Tiantian;Lin Huan;Yang Baoyao;Cui Yanfen;Lin Yinbing;Zhao Zhihe;Zhao Lujun;Liang Changhong;Zeng An;Pan Dan;Chen Xin;Shi Zhenwei;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6260,
+            "end_char": 6546
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2023",
+      "precision": "年",
+      "desc": "核分裂象自动检测项目获全国数字健康应用大赛特等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-4de5dfaeeffa",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "临床转化项目“病理图像核分裂象自动检测与辅助诊断”获2023第一届全国数字健康应用大赛医学人工智能主题赛数字影像赛道特等奖（1/39）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3009,
+            "end_char": 3075
+          },
+          "version": "95e05eaeda9d8137af05"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

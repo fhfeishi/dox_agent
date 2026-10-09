@@ -2,15 +2,20 @@
   "doc_id": "96655592851fc5815299",
   "version": "c1963698090f0e1b6fec",
   "source_hash": "584bca4cdbe926974897f013db3a875f5df1a7ef0e4b5af29ebbee2b0222946d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:44.533103+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.622312+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-90aa8ca5f094",
-          "name": "胰腺癌淋巴结转移评估",
-          "desc": "淋巴结转移是胰腺癌的独立预后因素，术前准确评估对预测预后及制定治疗方案具有重要临床意义。",
+          "id": "item-8e44cfd793cd",
+          "name": "胰腺癌淋巴结转移预测",
+          "desc": "淋巴结转移是关键独立预后指标",
           "evidence": [
             {
-              "quote": "而淋巴结转移是胰腺癌的独立预后因素。术前准确评估胰腺癌的淋巴结转移情况对于预测预后及制定合适的治疗方案具有重要临床意义。",
+              "quote": "胰腺癌作为一种常见的、高致死率的消化系统恶性肿瘤，其淋巴结转移状况被视为关键的独立预后指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
-                "end_char": 744
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ]
-        },
-        {
-          "id": "item-3f8b7842a336",
-          "name": "胰腺癌精准诊疗",
-          "desc": "影像组学在胰腺癌精准诊疗中具有较高的临床应用价值。",
-          "evidence": [
-            {
-              "quote": "本研究的结果证明了影像组学在胰腺癌的精准诊疗中具有较高的临床应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2855,
-                "end_char": 2888
+                "start_char": 2468,
+                "end_char": 2512
               },
               "version": "c1963698090f0e1b6fec"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8658fd6f6b9d",
-          "name": "血清标志物准确度不高",
-          "desc": "既往用于预测胰腺癌淋巴结转移的血清学标志物准确度不高。",
+          "id": "item-5ae5dd2b52d1",
+          "name": "既往血清学标志物与常规影像学评估局限",
+          "desc": "准确度不高",
           "evidence": [
             {
-              "quote": "既往用于预测胰腺癌淋巴结转移的血清学标志物准确度不高",
+              "quote": "既往用于预测胰腺癌淋巴结转移的血清学标志物准确度不高，而常规影像学技术主要依靠淋巴结大小来评估转移情况，均具有一定局限性",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 745,
-                "end_char": 770
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ]
-        },
-        {
-          "id": "item-58700446c7ff",
-          "name": "常规影像依赖淋巴结大小",
-          "desc": "常规影像学技术主要依靠淋巴结大小来评估转移情况，具有一定局限性。",
-          "evidence": [
-            {
-              "quote": "而常规影像学技术主要依靠淋巴结大小来评估转移情况，均具有一定局限性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 772,
-                "end_char": 805
+                "end_char": 804
               },
               "version": "c1963698090f0e1b6fec"
             }
@@ -95,157 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3300149b715b",
-          "name": "DWI影像组学机器学习建模",
-          "desc": "基于DWI影像组学预测胰腺癌淋巴结转移，筛选特征并构建机器学习模型。",
+          "id": "item-036ded6f91d4",
+          "name": "DWI影像组学SVM模型",
+          "desc": "预测胰腺癌淋巴结转移",
           "evidence": [
             {
-              "quote": "首先，本研究基于DWI影像组学预测胰腺癌淋巴结转移，在筛选特征并构建机器学习模型后，发现支持向量机（SVM）模型在训练组和验证组中均展现出相对较好的诊断效能。",
+              "quote": "首先，本研究基于DWI影像组学预测胰腺癌淋巴结转移，在筛选特征并构建机器学习模型后，发现支持向量机（SVM）模型在训练组和验证组中均展现出相对较好的诊断效能",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2630,
-                "end_char": 2708
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ]
-        },
-        {
-          "id": "item-5954b3677492",
-          "name": "增强MRI影像组学列线图",
-          "desc": "结合临床特征和Radscore构建放射组学列线图模型。",
-          "evidence": [
-            {
-              "quote": "利用增强MRI影像组学列线图来预测胰腺癌淋巴结转移情况，通过结合临床特征和Radscore构建放射组学列线图模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2712,
-                "end_char": 2767
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ]
-        },
-        {
-          "id": "item-346ccedab084",
-          "name": "血清学标志物联合建模",
-          "desc": "结合临床信息、血清胶原蛋白片段等标志物、常规影像特点构建联合预测模型。",
-          "evidence": [
-            {
-              "quote": "并结合临床信息、血清胶原蛋白片段等血清学标志物、常规影像特点等构建出评估淋巴结转移情况的联合预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 955,
-                "end_char": 1004
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-07a17e794d23",
-          "name": "SVM模型诊断效能较好",
-          "desc": "支持向量机模型在训练组和验证组中均展现出相对较好的诊断效能。",
-          "evidence": [
-            {
-              "quote": "发现支持向量机（SVM）模型在训练组和验证组中均展现出相对较好的诊断效能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2672,
                 "end_char": 2707
               },
               "version": "c1963698090f0e1b6fec"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-7385518a14ad",
-          "name": "列线图模型优于单纯模型",
-          "desc": "逻辑回归模型表现较好，且列线图模型的效能显著优于单纯的放射组学模型和临床模型。",
+          "id": "item-5954b3677492",
+          "name": "增强MRI影像组学列线图",
+          "desc": "结合临床特征与Radscore",
           "evidence": [
             {
-              "quote": "结果表明逻辑回归（LR）模型的表现较好，且列线图模型的效能显著优于单纯的放射组学模型和临床模型",
+              "quote": "通过结合临床特征和Radscore构建放射组学列线图模型，结果表明逻辑回归（LR）模型的表现较好，且列线图模型的效能显著优于单纯的放射组学模型和临床模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2769,
+                "start_char": 2740,
                 "end_char": 2815
               },
               "version": "c1963698090f0e1b6fec"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6076943f3de6",
-          "name": "病理分化程度预测潜力",
-          "desc": "MRI影像组学特征在预测胰腺癌病理分化程度方面同样具有潜力。",
-          "evidence": [
-            {
-              "quote": "此外，MRI影像组学特征在预测胰腺癌病理分化程度方面同样具有潜力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2817,
-                "end_char": 2848
-              },
-              "version": "c1963698090f0e1b6fec"
-            }
-          ],
-          "status": "已取得"
+          "role": "关键创新"
         }
       ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-90aa8ca5f094"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8658fd6f6b9d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-58700446c7ff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5954b3677492"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3300149b715b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-07a17e794d23"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-346ccedab084"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7385518a14ad"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 0,
+    "listed": 0,
+    "by_kind": {},
+    "consistent": true
+  }
 }

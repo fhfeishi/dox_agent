@@ -2,15 +2,20 @@
   "doc_id": "7ca5ecfbe169d7ea96b2",
   "version": "f8f9313e85566bed7e8e",
   "source_hash": "4ba9ce5a369b94215687f4d99d0a8a40baa6773cde41a30fdc59ecbfed32ce6a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.093184+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.719573+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a632edd83505",
-          "name": "陈旧性心肌梗死局灶瘢痕CT诊断",
-          "desc": "陈旧性心肌梗死患病率高、预后差，心肌局灶瘢痕是主要病理改变及不良心血管事件独立预测因子，实际检出率低。",
+          "id": "item-08488870ebd4",
+          "name": "陈旧性心肌梗死局灶瘢痕CT无创诊断",
+          "desc": "双能量冠脉CT",
           "evidence": [
             {
-              "quote": "陈旧性心肌梗死（OMI）患病率高、预后差，心肌局灶瘢痕（MFS）是其主要病理改变及不良心血管事件（MACE）独立预测因子，受目前诊断方法限制，实际检出率低",
+              "quote": "本项目围绕陈旧性心肌梗死患者心肌局灶瘢痕（MFS）的无创精准诊断需求，以双能量冠脉CT造影（DECCTA）为核心影像手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 754
-              },
-              "version": "f8f9313e85566bed7e8e"
-            }
-          ]
-        },
-        {
-          "id": "item-80b8f1441553",
-          "name": "心血管疾病精准影像诊断",
-          "desc": "为临床替代或补充心脏磁共振检查提供理论依据与技术储备。",
-          "evidence": [
-            {
-              "quote": "为临床替代或补充心脏磁共振检查提供了重要的理论依据与技术储备",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3544,
-                "end_char": 3573
+                "start_char": 2731,
+                "end_char": 2790
               },
               "version": "f8f9313e85566bed7e8e"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0056e48b5717",
-          "name": "碘对比剂延迟强化可行性差",
-          "desc": "现MFS CT评价方法碘对比剂延迟强化因对比剂用量大、辐射剂量高、诊断效能低而存在可行性瓶颈。",
+          "id": "item-feec737ad047",
+          "name": "MFS实际检出率低",
+          "desc": "现有诊断方法受限",
           "evidence": [
             {
-              "quote": "现MFS CT评价方法——碘对比剂延迟强化因对比剂用量大、辐射剂量高、诊断效能低存在可行性差的瓶颈",
+              "quote": "受目前诊断方法限制，实际检出率低",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 756,
-                "end_char": 804
-              },
-              "version": "f8f9313e85566bed7e8e"
-            }
-          ]
-        },
-        {
-          "id": "item-b6c09b60d854",
-          "name": "病灶定位定性及风险评估需求",
-          "desc": "需实现OMI冠脉与MFS一站式评价及风险评估，优化诊疗流程、降低疾病负担。",
-          "evidence": [
-            {
-              "quote": "实现OMI冠脉、MFS一站式评价及风险评估，优化诊疗流程，降低疾病负担",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1042,
-                "end_char": 1076
+                "start_char": 739,
+                "end_char": 754
               },
               "version": "f8f9313e85566bed7e8e"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d7b095d3278b",
-          "name": "虚拟重建图像联合低剂量CT诊断",
-          "desc": "创新性提出通过单期双能量CCTA检查的多种虚拟重建图像联合利用实现低对比剂用量、低辐射剂量CT诊断。",
+          "id": "item-5af07a522b1a",
+          "name": "影像组学与机器学习MFS与射线硬化伪影鉴别",
+          "desc": "二分类最高AUC 0.937",
           "evidence": [
             {
-              "quote": "创新性提出可通过单期双能量CCTA检查的多种虚拟重建图像（VRIs）联合利用进行OMI-MFS低对比剂用量、低辐射剂量CT诊断",
+              "quote": "基于影像组学特征与机器学习（RF、XGB、SVC等），建立了MFS与BH的二分类鉴别模型（最高AUC 0.937）以及MFS、BH与正常心肌的三分类定位定性模型（最佳模型AUC 0.91）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 809,
-                "end_char": 871
+                "start_char": 2928,
+                "end_char": 3021
               },
               "version": "f8f9313e85566bed7e8e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-86c282723fc9",
-          "name": "多序列级联Dense-Unet网络",
-          "desc": "利用多序列级联Dense-Unet网络提升VRIs信息提取效能，构建OMI-MFS智能诊断模型。",
+          "id": "item-96ead1f6319e",
+          "name": "CT-ScarNet解剖信息驱动深度学习框架",
+          "desc": "两阶段预训练与可解释原型比对",
           "evidence": [
             {
-              "quote": "本研究拟利用多序列级联Dense-Unet网络进一步提升VRIs信息提取效能，构建OMI-MFS智能诊断模型",
+              "quote": "创新性提出了解剖信息驱动的深度学习框架（CT‑ScarNet），通过两阶段预训练与可解释的原型比对机制，实现了数据高效且具有生理可解释性的MFS检测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 911,
-                "end_char": 964
+                "start_char": 3089,
+                "end_char": 3162
               },
               "version": "f8f9313e85566bed7e8e"
             }
-          ]
-        },
-        {
-          "id": "item-c8872a747127",
-          "name": "图卷积融合多维度信息预测MACE",
-          "desc": "挖掘VRIs影像组学特征，通过图卷积神经网络与临床多维度信息融合构建MACE预测模型。",
-          "evidence": [
-            {
-              "quote": "挖掘VRIs影像组学特征，通过图卷积神经网络将其与临床多维度信息融合，构建MACE预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 966,
-                "end_char": 1010
-              },
-              "version": "f8f9313e85566bed7e8e"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2ff8726a9540",
-          "name": "MFS与BH鉴别AUC 0.937",
-          "desc": "基于影像组学特征与机器学习建立MFS与射线硬化伪影二分类鉴别模型最高AUC 0.937，三分类定位定性模型最佳AUC 0.91。",
-          "evidence": [
-            {
-              "quote": "建立了MFS与BH的二分类鉴别模型（最高AUC 0.937）以及MFS、BH与正常心肌的三分类定位定性模型（最佳模型AUC 0.91）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2955,
-                "end_char": 3021
-              },
-              "version": "f8f9313e85566bed7e8e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c754f0eb3970",
-          "name": "DECCTA心肌组织标注数据集",
-          "desc": "前瞻性纳入两家中心142例患者，构建首个DECCTA多种虚拟单能量心肌组织标注数据集。",
+          "id": "item-3435f2556e53",
+          "name": "DECCTA虚拟单能量心肌组织标注数据集",
+          "desc": "首个，142例患者",
           "evidence": [
             {
               "quote": "构建了首个DECCTA多种虚拟单能量心肌组织标注数据集",
@@ -180,72 +122,137 @@
               "version": "f8f9313e85566bed7e8e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-e001a93af860",
-          "name": "解剖驱动框架CT-ScarNet",
-          "desc": "提出解剖信息驱动的深度学习框架，通过两阶段预训练与可解释原型比对机制实现数据高效且生理可解释的MFS检测。",
+          "id": "item-fc7787b48785",
+          "name": "再发心绞痛风险预测模型",
+          "desc": "临床-影像组学融合",
           "evidence": [
             {
-              "quote": "创新性提出了解剖信息驱动的深度学习框架（CT‑ScarNet），通过两阶段预训练与可解释的原型比对机制",
+              "quote": "初步构建了DECCTA虚拟单能量图像、“临床-影像组学”融合模型，实现了再发心绞痛的量化风险预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3089,
-                "end_char": 3139
+                "start_char": 3189,
+                "end_char": 3236
               },
               "version": "f8f9313e85566bed7e8e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a632edd83505"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0056e48b5717"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘存雪;王燕林;陈剑;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+      "id": "out-0bbdb94e7354",
+      "evidence": [
+        {
+          "quote": "[专利] 一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置 — 潘存雪;王燕林;陈剑;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3618,
+            "end_char": 3677
+          },
+          "version": "f8f9313e85566bed7e8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0056e48b5717"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d7b095d3278b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置PCT专利",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘存雪;王燕林;陈剑;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+      "id": "out-3faa462e08c2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置PCT专利 — 潘存雪;王燕林;陈剑;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3746
+          },
+          "version": "f8f9313e85566bed7e8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d7b095d3278b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2ff8726a9540"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual energy CT-based Radiomics for identification of myocardial focal scar and artificial beam-hardening",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-3998732df45f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual energy CT-based Radiomics for identification of myocardial focal scar and artificial beam-hardening — Linqi Zeng;Feng Hu;Peixin Qin;Taoyu Jia;Ling Lu;Zhengying Yang;Xiaobing Zhou;Yuqing Qiu;Liyun Luo;Bairong Chen;Lizi Jin;Wenyi Tang;Yanlin Wang;Fang Zhou;Tianmin Liu;Ani Wang;Zhijuan Zhou;Xiaosheng Guo;Zhiwei Zheng;Xiuwu Fan;Junwei Xu;Li Xiao;Qiue Liu;Weifeng Guan;Feifei Chen;Junyao Wang;Shaolin Li;Jian Chen;Cunxue Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 4183
+          },
+          "version": "f8f9313e85566bed7e8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-86c282723fc9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c754f0eb3970"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘存雪;陈剑;王燕林;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+      "id": "out-403ae79a1d9f",
+      "evidence": [
+        {
+          "quote": "[奖励] 一种心肌局灶性瘢痕检测方法、风险预测方法和相关装置 — 潘存雪;陈剑;王燕林;张源;秦培鑫;鲁玲;贾韬宇;扈锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4188,
+            "end_char": 4247
+          },
+          "version": "f8f9313e85566bed7e8e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

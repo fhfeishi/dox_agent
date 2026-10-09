@@ -2,15 +2,20 @@
   "doc_id": "a2e0db1068dddb9a22fd",
   "version": "3dc09240d01e7b56c8c3",
   "source_hash": "9003443fe9fa96cdf17b8a72e810ec6f6311d4f2af0ab9fee894ed0cd3915690",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.362195+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:37.013362+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e01751b8d912",
-          "name": "T4期鼻咽癌局部复发风险预测",
-          "desc": "局部复发是T4期鼻咽癌治疗失败的关键原因，需筛选高复发风险病例并予以个体化治疗。",
+          "id": "item-38c85c1e8ed1",
+          "name": "T4期鼻咽癌局部复发预测",
+          "desc": "局部复发是治疗失败关键原因",
           "evidence": [
             {
               "quote": "局部复发是T4期鼻咽癌治疗失败的关键原因，但目前缺乏有效的预测方法",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 680,
                 "end_char": 712
-              },
-              "version": "3dc09240d01e7b56c8c3"
-            }
-          ]
-        },
-        {
-          "id": "item-b42b104691ac",
-          "name": "鼻咽癌个体化治疗指导",
-          "desc": "多尺度影像特征对T4期鼻咽癌局部复发预测具有补充价值，有助于鼻咽癌个体化治疗。",
-          "evidence": [
-            {
-              "quote": "多尺度影像特征对T4期鼻咽癌局部复发预测具有补充价值，有助于鼻咽癌个体化治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2956,
-                "end_char": 2993
               },
               "version": "3dc09240d01e7b56c8c3"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8c7cb1297948",
-          "name": "缺乏有效的局部复发预测方法",
-          "desc": "目前缺乏有效的预测方法，如何筛选高复发风险病例是降低局部复发面临的挑战。",
+          "id": "item-b5b5c530d26b",
+          "name": "缺乏筛选高复发风险病例的有效方法",
+          "desc": "需个体化治疗",
           "evidence": [
             {
-              "quote": "但目前缺乏有效的预测方法",
+              "quote": "如何筛选出T4期鼻咽癌高复发风险病例，并予以个体化治疗，是降低局部复发面临的挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 701,
-                "end_char": 712
-              },
-              "version": "3dc09240d01e7b56c8c3"
-            }
-          ]
-        },
-        {
-          "id": "item-cadd6f78739e",
-          "name": "需构建精准量化复发预测模型",
-          "desc": "需融合MRI影像组学标签、临床指标与分子指标，构建并验证局部复发预测模型。",
-          "evidence": [
-            {
-              "quote": "融合MRI影像组学标签、预后相关的临床指标和分子指标，构建并验证局部复发预测模型，实现T4期鼻咽癌局部复发的精准化预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 953
+                "start_char": 714,
+                "end_char": 753
               },
               "version": "3dc09240d01e7b56c8c3"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f32a7e23329",
-          "name": "多序列MRI影像组学与病理组学融合",
-          "desc": "从预处理MRI中提取放射组特征并集成，使用端到端深度学习方法从活检标本全切片图像提取组织病理学特征。",
-          "evidence": [
-            {
-              "quote": "从预处理MRI中提取放射组特征，并选择并集成到放射组特征中。使用端到端深度学习方法从活检标本的整个切片图像中提取组织病理学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2519,
-                "end_char": 2581
-              },
-              "version": "3dc09240d01e7b56c8c3"
-            }
-          ]
-        },
-        {
-          "id": "item-2ea579671a95",
-          "name": "多尺度nomogram构建与验证",
-          "desc": "结合放射学特征、组织病理学特征与独立临床因素构建多尺度nomogram，并在独立队列测试影像特征与遗传改变的相关性。",
+          "id": "item-b1d5b4b1df66",
+          "name": "多尺度nomogram",
+          "desc": "整合MRI影像组学、全切片深度学习病理特征与临床因素",
           "evidence": [
             {
               "quote": "结合两种特征和独立的临床因素，构建了一个多尺度nomogram",
@@ -124,7 +81,25 @@
               },
               "version": "3dc09240d01e7b56c8c3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0279775a61ef",
+          "name": "端到端深度学习提取组织病理学特征",
+          "desc": "活检标本全切片图像",
+          "evidence": [
+            {
+              "quote": "使用端到端深度学习方法从活检标本的整个切片图像中提取组织病理学特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2549,
+                "end_char": 2581
+              },
+              "version": "3dc09240d01e7b56c8c3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f9e4824c5f7e",
-          "name": "三个队列c指数0.689-0.779",
-          "desc": "在三个队列中，放射学和组织病理学特征均与治疗失败显著相关。",
-          "evidence": [
-            {
-              "quote": "在三个队列中，放射学和组织病理学特征均与治疗失败显著相关(c指数:0.689-0.779,p均< 0.050)",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2666,
-                "end_char": 2720
-              },
-              "version": "3dc09240d01e7b56c8c3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f4451179d1b8",
-          "name": "多尺度nomogram优于临床模型",
-          "desc": "多尺度nomogram在训练组、内测组和外测组中预测治疗失败的效果较临床模型有显著改善，并成功将患者分为预后可区分的两组。",
+          "id": "item-3c707b76fd40",
+          "name": "多尺度nomogram预测性能",
+          "desc": "训练组c-index 0.817 vs 0.730等",
           "evidence": [
             {
               "quote": "在训练组(c -指数:0.817比0.730,p < 0.050)、内测组(c -指数:0.828比0.602,p < 0.050)和外测组(c -指数:0.834比0.679,p < 0.050)中，多尺度nomogram预测治疗失败的效果与临床模型相比具有一致的显著改善",
@@ -164,72 +122,178 @@
               "version": "3dc09240d01e7b56c8c3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-812836bbe67c",
-          "name": "纹理特征与染色质重塑通路相关",
-          "desc": "在另一独立队列中发现两种纹理特征与染色质重塑途径的遗传改变有关。",
-          "evidence": [
-            {
-              "quote": "我们还发现，在另一个独立队列中，两种纹理特征与染色质重塑途径的遗传改变有关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2912,
-                "end_char": 2948
-              },
-              "version": "3dc09240d01e7b56c8c3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e01751b8d912"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8c7cb1297948"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimal cumulative cisplatin dose during concurrent chemoradiotherapy among children and adolescents with locoregionally advanced nasopharyngeal carcinoma: A real-world data study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ya-Nan Jin;Ji-Jin Yao;Ya-Fei You;Hui-Jiao Cao;Zi-Zi Li;Dan-Ling Dai;Wang-Jian Zhang;Tia Marks;Bei Zhang;Liang-Ping Xia",
+      "id": "out-2a6ed1b156a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimal cumulative cisplatin dose during concurrent chemoradiotherapy among children and adolescents with locoregionally advanced nasopharyngeal carcinoma: A real-world data study. — Ya-Nan Jin;Ji-Jin Yao;Ya-Fei You;Hui-Jiao Cao;Zi-Zi Li;Dan-Ling Dai;Wang-Jian Zhang;Tia Marks;Bei Zhang;Liang-Ping Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3012,
+            "end_char": 3319
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8c7cb1297948"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1f32a7e23329"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Role of Pretreatment 18F-FDG PET/CT for Early Prediction of Neoadjuvant Chemotherapy Response in Patients with Locoregionally Advanced Nasopharyngeal Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jijin Yao;Ying Wang;Yujing Lin;Yingying Yang;Jingjing Wan;Xiaohua Gong;Fanwei Zhang;Wangjian Zhang;Tia Marks;Siyang Wang;Hongjun Jin;Hong Shan",
+      "id": "out-fcf6ccc938e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Role of Pretreatment 18F-FDG PET/CT for Early Prediction of Neoadjuvant Chemotherapy Response in Patients with Locoregionally Advanced Nasopharyngeal Carcinoma — Jijin Yao;Ying Wang;Yujing Lin;Yingying Yang;Jingjing Wan;Xiaohua Gong;Fanwei Zhang;Wangjian Zhang;Tia Marks;Siyang Wang;Hongjun Jin;Hong Shan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3324,
+            "end_char": 3638
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1f32a7e23329"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f9e4824c5f7e"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“珠海市卫生健康系统青年才俊”称号",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚季金",
+      "id": "out-76689b094797",
+      "evidence": [
+        {
+          "quote": "[奖励] “珠海市卫生健康系统青年才俊”称号 — 姚季金",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3670
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2ea579671a95"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f4451179d1b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Does three cycles of neoadjuvant chemotherapy prior to concurrent chemoradiotherapy provide benefits for all childhood patients with locoregionally advanced nasopharyngeal carcinoma?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ya-Nan Jin;Hui-Juan Cao;Xiao‑Hua Gong;Wang-Jian Zhang;Tia Marks;Ji‑Jin Yao;Liang‑Ping Xia",
+      "id": "out-b88d925de0e6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Does three cycles of neoadjuvant chemotherapy prior to concurrent chemoradiotherapy provide benefits for all childhood patients with locoregionally advanced nasopharyngeal carcinoma? — Ya-Nan Jin;Hui-Juan Cao;Xiao‑Hua Gong;Wang-Jian Zhang;Tia Marks;Ji‑Jin Yao;Liang‑Ping Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3675,
+            "end_char": 3955
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of cumulative cisplatin dose in childhood nasopharyngeal carcinoma based on neoadjuvant chemotherapy response in the intensity-modulated radiotherapy era: a real-world study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ya-Nan Jin;Meng‑Yun Qiang;Meng‑Meng Liu;Zhi‑Bin Cheng;Wang‑Jian Zhang;Ian Ryan;Tia Marks;Ji‑Jin Yao;Liang‑Ping Xia",
+      "id": "out-9986101271aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of cumulative cisplatin dose in childhood nasopharyngeal carcinoma based on neoadjuvant chemotherapy response in the intensity-modulated radiotherapy era: a real-world study — Ya-Nan Jin;Meng‑Yun Qiang;Meng‑Meng Liu;Zhi‑Bin Cheng;Wang‑Jian Zhang;Ian Ryan;Tia Marks;Ji‑Jin Yao;Liang‑Ping Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3960,
+            "end_char": 4263
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a web-based prognostic model to quantify the survival benefit of cumulative cisplatin dose during concurrent chemoradiotherapy in childhood nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ya-Nan Jin;Qian-Qiong Yang;Zi-Qian Li;Xue-Qing Ou;Wang-Jian Zhang;Tia Marks;Ji-Jin Yao;Liang-Ping Xia",
+      "id": "out-d7bcf3f0ff0e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a web-based prognostic model to quantify the survival benefit of cumulative cisplatin dose during concurrent chemoradiotherapy in childhood nasopharyngeal carcinoma — Ya-Nan Jin;Qian-Qiong Yang;Zi-Qian Li;Xue-Qing Ou;Wang-Jian Zhang;Tia Marks;Ji-Jin Yao;Liang-Ping Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4268,
+            "end_char": 4557
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of Web-Based Nomograms to Precisely Predict Survival Outcomes of Non-metastatic Nasopharyngeal Carcinoma in an Endemic Area",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji-Jin Yao;Li Lin;Tian-Sheng Gao;Wang-Jian Zhang;Wayne R. Lawrence;Jun Ma;Ying Sun",
+      "id": "out-2ab363df1111",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of Web-Based Nomograms to Precisely Predict Survival Outcomes of Non-metastatic Nasopharyngeal Carcinoma in an Endemic Area — Ji-Jin Yao;Li Lin;Tian-Sheng Gao;Wang-Jian Zhang;Wayne R. Lawrence;Jun Ma;Ying Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4803
+          },
+          "version": "3dc09240d01e7b56c8c3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "365a69696c6313adb425",
   "version": "b0bba1a4531cd450c177",
   "source_hash": "718e9d49d3ca72d1541d2992b228ac1c3cc6990f22fbf0641d4cae7551462458",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:08.970478+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.911662+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4da8cd00645c",
-          "name": "垂体泌乳素腺瘤诊断与疗效预测",
-          "desc": "垂体泌乳素腺瘤是最常见的垂体腺瘤亚型，也是唯一首选药物治疗的类型，诊断亚型并预测药物疗效对个体化治疗意义重大。",
+          "id": "item-c1e6579f8d43",
+          "name": "垂体泌乳素腺瘤与无功能垂体腺瘤鉴别",
+          "desc": "首选治疗方法不同",
           "evidence": [
             {
-              "quote": "垂体泌乳素(Prolactin，PRL)腺瘤是最常见的垂体腺瘤(Pituitary Adenoma，PA)亚型，也是唯一首选药物而不是手术治疗的类型，因此诊断PA亚型，尤其是识别PRL腺瘤及其后续的药物疗效预测，对辅助PA个体化治疗有重要临床意义",
+              "quote": "泌乳素瘤和无功能垂体腺瘤（NFPA）是最常见的垂体瘤类型，均可表现为高泌乳素血症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 800
-              },
-              "version": "b0bba1a4531cd450c177"
-            }
-          ]
-        },
-        {
-          "id": "item-400d5d4ee3c7",
-          "name": "泌乳素瘤与无功能腺瘤鉴别",
-          "desc": "泌乳素瘤与无功能垂体腺瘤首选治疗方法不同，需在治疗前准确鉴别。",
-          "evidence": [
-            {
-              "quote": "这些疾病的首选治疗方法不同：NFPA引起压迫症状的最佳治疗方法是经蝶窦手术，而大多数泌乳素瘤首选多巴胺激动剂（DA）治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2797,
-                "end_char": 2856
+                "start_char": 2756,
+                "end_char": 2795
               },
               "version": "b0bba1a4531cd450c177"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a8b754761810",
-          "name": "PRL腺瘤诊断与疗效预测困难",
-          "desc": "目前临床上泌乳素腺瘤的准确诊断及药物疗效预测仍有困难。",
+          "id": "item-84e3ab50098b",
+          "name": "治疗前鉴别泌乳素瘤并预测药物反应",
+          "desc": "对个体化精准治疗重要",
           "evidence": [
             {
-              "quote": "目前临床上PRL腺瘤的准确诊断及药物疗效预测仍有困难",
+              "quote": "在治疗前使用影像组学方法，鉴别泌乳素瘤及伴中度高泌乳素血症的NFPA患者，预测泌乳素瘤患者的药物治疗反应至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 802,
-                "end_char": 827
-              },
-              "version": "b0bba1a4531cd450c177"
-            }
-          ]
-        },
-        {
-          "id": "item-ab411bf90e82",
-          "name": "影像组学对PRL腺瘤缺乏深入研究",
-          "desc": "影像组学能深度挖掘定量分析医学影像以辅助诊疗，但对PRL腺瘤的临床作用仍缺乏深入研究。",
-          "evidence": [
-            {
-              "quote": "影像组学能深度挖掘及定量分析医学影像图像以辅助临床诊疗，但对PRL腺瘤的临床作用仍缺乏深入研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 829,
-                "end_char": 875
+                "start_char": 2858,
+                "end_char": 2913
               },
               "version": "b0bba1a4531cd450c177"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-93b05711d7a3",
-          "name": "多参数MRI影像组学建模",
-          "desc": "完善多参数磁共振PA自动分割模型，提取影像组学特征并与临床数据结合，构建辅助诊断与疗效预测的临床-影像组学模型。",
-          "evidence": [
-            {
-              "quote": "构建辅助PRL腺瘤诊断及药物疗效预测的临床-影像组学模型，为临床上PRL腺瘤的精准诊断提供新思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1015,
-                "end_char": 1062
-              },
-              "version": "b0bba1a4531cd450c177"
-            }
-          ]
-        },
-        {
           "id": "item-71cb54775d71",
           "name": "GSU-Net垂体腺瘤自动分割",
-          "desc": "基于GSU-Net算法完善MRI序列上基于深度学习的PA感兴趣区自动分割模型。",
+          "desc": "MRI序列深度学习分割",
           "evidence": [
             {
-              "quote": "首先本研究基于GSU-Net算法，完善MRI序列上基于深度学习的PA感兴趣区自动分割模型，结果显示自动分割准确度高",
+              "quote": "首先本研究基于GSU-Net算法，完善MRI序列上基于深度学习的PA感兴趣区自动分割模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2941,
-                "end_char": 2997
+                "end_char": 2984
               },
               "version": "b0bba1a4531cd450c177"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-cb4b0ce4ea16",
+          "name": "临床-影像组学组合模型",
+          "desc": "弹性网络筛选特征",
+          "evidence": [
+            {
+              "quote": "构建了临床-影像组学组合模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3091,
+                "end_char": 3104
+              },
+              "version": "b0bba1a4531cd450c177"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4aaa3eedddc7",
-          "name": "组合模型鉴别AUC 0.94与0.93与0.90",
-          "desc": "临床-影像组学组合模型在训练、验证和外部多中心验证集AUC分别为0.94、0.93和0.90，具有良好的临床适用性。",
+          "id": "item-f678f37ad417",
+          "name": "泌乳素瘤与NFPA鉴别组合模型",
+          "desc": "训练、验证、外部AUC 0.94、0.93、0.90",
           "evidence": [
             {
               "quote": "组合模型显示了出色的识别和校准能力，在训练、验证和外部多中心验证集中的AUC值分别为0.94、0.93和0.90",
@@ -147,29 +122,14 @@
               "version": "b0bba1a4531cd450c177"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-37752fb403aa",
-          "name": "影像组学模型鉴别AUC 0.900与0.890",
-          "desc": "3个影像组学特征构建的模型在训练集AUC达0.900、验证集达0.890。",
-          "evidence": [
-            {
-              "quote": "影像组学模型的构建采用3个影像组学特征，在训练集中AUC达到0.900，在验证集中达到0.890",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3150,
-                "end_char": 3197
-              },
-              "version": "b0bba1a4531cd450c177"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-15d944fd4b92",
-          "name": "DA治疗反应组合模型AUC 0.96与0.92",
-          "desc": "影像组学模型结合3个临床特征构建的组合模型预测多巴胺激动剂治疗反应，训练、验证和外部多中心验证集AUC分别为0.96、0.92和0.92。",
+          "id": "item-a9df61d72f9c",
+          "name": "多巴胺激动剂治疗反应预测组合模型",
+          "desc": "AUC 0.96、0.92、0.92",
           "evidence": [
             {
               "quote": "该模型表现出良好的识别和校准能力，其在训练、验证和外部多中心验证集中的曲线下面积分别为0.96、0.92和0.92",
@@ -181,55 +141,90 @@
               "version": "b0bba1a4531cd450c177"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4da8cd00645c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a8b754761810"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-Invasive Preoperative Imaging Differential Diagnosis of Intracranial Hemangiopericytoma and Angiomatous Meningioma: A Novel Developed and Validated Multiparametric MRI-Based Clini-Radiomic Model.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yanghua;Liu Panpan;Li Yiping;Liu Feng;He Yu;Wang Liang;Zhang Junting;Wu Zhen",
+      "id": "out-d1c0006bf0c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-Invasive Preoperative Imaging Differential Diagnosis of Intracranial Hemangiopericytoma and Angiomatous Meningioma: A Novel Developed and Validated Multiparametric MRI-Based Clini-Radiomic Model. — Fan Yanghua;Liu Panpan;Li Yiping;Liu Feng;He Yu;Wang Liang;Zhang Junting;Wu Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3665,
+            "end_char": 3953
+          },
+          "version": "b0bba1a4531cd450c177"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a8b754761810"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-93b05711d7a3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive radiomics approach predicts dopamine agonists treatment response in patients with prolactinoma: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanghua Fan;Shuaiwei Guo;Chuming Tao;Hua Fang;Anna Mou;Ming Feng;Zhen Wu",
+      "id": "out-97d192425f37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive radiomics approach predicts dopamine agonists treatment response in patients with prolactinoma: a multicenter study — Yanghua Fan;Shuaiwei Guo;Chuming Tao;Hua Fang;Anna Mou;Ming Feng;Zhen Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 4166
+          },
+          "version": "b0bba1a4531cd450c177"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-93b05711d7a3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4aaa3eedddc7"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-71cb54775d71"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-15d944fd4b92"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive preoperative imaging differential diagnosis of pineal region tumor: A novel developed and validated multiparametric MRI-based clinicoradiomic model.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Yanghua;Huo Xulei;Li Xiaojie;Wang Liang;Wu Zhen",
+      "id": "out-25c66aad00f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive preoperative imaging differential diagnosis of pineal region tumor: A novel developed and validated multiparametric MRI-based clinicoradiomic model. — Fan Yanghua;Huo Xulei;Li Xiaojie;Wang Liang;Wu Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4171,
+            "end_char": 4392
+          },
+          "version": "b0bba1a4531cd450c177"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "c1d258d521253d17ac04",
   "version": "305c144dafb13d085e96",
   "source_hash": "93170cd2f6b0045bd4b8b66c8597dacdf22e8e48134da89e76f69b6481a3f523",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.251804+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.107596+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dca4b5892bdd",
-          "name": "肺结节生长风险预测模型",
-          "desc": "低剂量CT在肺癌筛查广泛开展，降低肺癌致死率的同时也带来了过度诊断与治疗问题，精准预测结节生长性有望降低过度诊疗风险。",
+          "id": "item-9a7ddce78dcf",
+          "name": "肺结节生长风险预测",
+          "desc": "终身学习与联邦学习",
           "evidence": [
             {
-              "quote": "低剂量CT在肺癌筛查的广泛开展，降低肺癌致死率同时，也带来了过度诊断与治疗的问题",
+              "quote": "肺结节生长性是其临床管理中最关键的一环",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 660,
-                "end_char": 699
-              },
-              "version": "305c144dafb13d085e96"
-            }
-          ]
-        },
-        {
-          "id": "item-4b8c4ffe6ded",
-          "name": "为肺癌筛查方案提供理论依据",
-          "desc": "研究可降低患者心理负担与医师工作量，优化医疗资源配置，为制定适合我国国情的肺癌筛查方案提供理论依据。",
-          "evidence": [
-            {
-              "quote": "为制定更为适合我国国情的肺癌筛查方案提供理论依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1035,
-                "end_char": 1058
+                "start_char": 701,
+                "end_char": 719
               },
               "version": "305c144dafb13d085e96"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4e276a366dd3",
-          "name": "传统算法灾难性遗忘与多中心难开展",
-          "desc": "传统人工智能算法存在灾难性遗忘缺陷，且出于数据安全考虑大样本多中心研究难以开展，导致缺乏良好泛化性与持续性的预测模型。",
+          "id": "item-57c1f8d465bc",
+          "name": "灾难性遗忘与多中心数据难共享",
+          "desc": "缺乏泛化持续的预测模型",
           "evidence": [
             {
-              "quote": "然而，传统人工智能算法存在‘灾难性遗忘’的缺陷，且出于数据安全的考虑，大样本多中心的研究难以开展，导致目前缺乏良好泛化性与持续性的预测模型",
+              "quote": "传统人工智能算法存在‘灾难性遗忘’的缺陷，且出于数据安全的考虑，大样本多中心的研究难以开展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 925
-              },
-              "version": "305c144dafb13d085e96"
-            }
-          ]
-        },
-        {
-          "id": "item-d135e427948f",
-          "name": "肺结节生长性评估是关键一环",
-          "desc": "肺结节生长性是其临床管理中最关键的一环，需精准预测以降低过度诊疗风险。",
-          "evidence": [
-            {
-              "quote": "肺结节生长性是其临床管理中最关键的一环，精准预测肺结节的生长性，有望降低其过度诊疗的风险",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 701,
-                "end_char": 744
+                "start_char": 860,
+                "end_char": 904
               },
               "version": "305c144dafb13d085e96"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9871f0237c01",
-          "name": "终身学习与联邦学习构建模型",
-          "desc": "采用终身学习与联邦学习方式，回顾性及前瞻性收集多中心临床及影像数据，建立可持续且泛化性好的模型。",
+          "id": "item-a1e5da77b81d",
+          "name": "多时序、多模态及联邦半监督算法",
+          "desc": "多中心规模化推广",
           "evidence": [
             {
-              "quote": "本项目拟基于前期研究基础，采用终身学习与联邦学习的方式，回顾性及前瞻性收集多中心临床及影像数据，建立可持续且泛化性好模型",
+              "quote": "开发多时序、多模态及联邦半监督算法，为模型在多中心临床场景的规模化推广应用提供关键技术保障",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 927,
-                "end_char": 986
-              },
-              "version": "305c144dafb13d085e96"
-            }
-          ]
-        },
-        {
-          "id": "item-7210c83c4685",
-          "name": "多时序多模态及联邦半监督算法",
-          "desc": "开发多时序、多模态及联邦半监督算法，为模型在多中心临床场景的规模化推广应用提供关键技术保障。",
-          "evidence": [
-            {
-              "quote": "深度学习算法研发：开发多时序、多模态及联邦半监督算法，为模型在多中心临床场景的规模化推广应用提供关键技术保障",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3155,
+                "start_char": 3164,
                 "end_char": 3208
               },
               "version": "305c144dafb13d085e96"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6ab01bbba89d",
+          "name": "肿瘤自动分割模型",
+          "desc": "标准化影像数据",
+          "evidence": [
+            {
+              "quote": "肿瘤自动分割模型建立：标记高质量、标准化影像数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3118
+              },
+              "version": "305c144dafb13d085e96"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,103 +108,167 @@
       "state": "has",
       "items": [
         {
-          "id": "item-793a16290f24",
-          "name": "肺癌多中心数据库构建",
-          "desc": "实现跨中心数据资源高效整合与安全共享，显著降低数据流通中的冗余成本与安全风险。",
+          "id": "item-b147e79b9335",
+          "name": "肺癌多中心数据库",
+          "desc": "跨中心整合与安全共享",
           "evidence": [
             {
-              "quote": "肺癌多中心数据库构建：实现跨中心数据资源的高效整合与安全共享，显著降低数据流通中的冗余成本与安全风险",
+              "quote": "肺癌多中心数据库构建：实现跨中心数据资源的高效整合与安全共享",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3027,
-                "end_char": 3076
+                "end_char": 3056
               },
               "version": "305c144dafb13d085e96"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-99e8346a1b5d",
-          "name": "肿瘤自动分割模型建立",
-          "desc": "标记高质量、标准化影像数据，为影像组学特征的精准提取、量化分析及预测模型构建提供核心数据支撑。",
-          "evidence": [
-            {
-              "quote": "肿瘤自动分割模型建立：标记高质量、标准化影像数据，为影像组学特征的精准提取、量化分析及预测模型构建提供核心数据支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3095,
-                "end_char": 3151
-              },
-              "version": "305c144dafb13d085e96"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-37330bcd84e9",
-          "name": "肺癌异质性评估体系构建",
-          "desc": "辅助临床医师制定个体化治疗方案，精准预测治疗反应与疾病预后，为临床决策提供客观量化依据。",
-          "evidence": [
-            {
-              "quote": "肺癌异质性评估体系构建：辅助临床医师制定个体化治疗方案，精准预测治疗反应与疾病预后，为临床决策提供客观量化的技术依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3212,
-                "end_char": 3269
-              },
-              "version": "305c144dafb13d085e96"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dca4b5892bdd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4e276a366dd3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multichannel deep learning prediction of major pathological response after neoadjuvant immunochemotherapy in lung cancer: a multicenter diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Zuhan;Li Kuo;Mei Peiyuan;Gong Zhenyu;Yan Ruiyang;Huang Yu;Zhang Chi;Zhao Bowen;Lu Mingqian;Yang Ran;Wu Guangyao;Ye Guanchao;Liao Yongde",
+      "id": "out-31ede70f36a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multichannel deep learning prediction of major pathological response after neoadjuvant immunochemotherapy in lung cancer: a multicenter diagnostic study — Geng Zuhan;Li Kuo;Mei Peiyuan;Gong Zhenyu;Yan Ruiyang;Huang Yu;Zhang Chi;Zhao Bowen;Lu Mingqian;Yang Ran;Wu Guangyao;Ye Guanchao;Liao Yongde",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3447,
+            "end_char": 3748
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4e276a366dd3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9871f0237c01"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based quantification of intratumoral heterogeneity for predicting pathologic complete response to neoadjuvant immunochemotherapy in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Guanchao;Wu Guangyao;Zhang Chunyang;Wang Mingliang;Liu Hong;Song Enmin;Zhuang Yuzhou;Li Kuo;Qi Yu;Liao Yongde",
+      "id": "out-7f226f53cfe9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based quantification of intratumoral heterogeneity for predicting pathologic complete response to neoadjuvant immunochemotherapy in non-small cell lung cancer — Ye Guanchao;Wu Guangyao;Zhang Chunyang;Wang Mingliang;Liu Hong;Song Enmin;Zhuang Yuzhou;Li Kuo;Qi Yu;Liao Yongde",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3753,
+            "end_char": 4035
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9871f0237c01"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-793a16290f24"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Guanchao;Wu Guangyao;Qi Yu;Li Kuo;Wang Mingliang;Zhang Chunyang;Li Feng;Wee Leonard;Dekker Andre;Han Chu;Liu Zaiyi;Liao Yongde;Shi Zhenwei",
+      "id": "out-4e7d2257901d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study — Ye Guanchao;Wu Guangyao;Qi Yu;Li Kuo;Wang Mingliang;Zhang Chunyang;Li Feng;Wee Leonard;Dekker Andre;Han Chu;Liu Zaiyi;Liao Yongde;Shi Zhenwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4040,
+            "end_char": 4374
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7210c83c4685"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-37330bcd84e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advancing presurgical non-invasive spread through air spaces prediction in clinical stage IA lung adenocarcinoma using artificial intelligence and CT signatures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Guanchao;Wu Guangyao;Li Yiying;Zhang Chi;Qin Lili;Wu Jianlin;Fan Jun;Qi Yu;Yang Fan;Liao Yongde",
+      "id": "out-6dd132296bae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advancing presurgical non-invasive spread through air spaces prediction in clinical stage IA lung adenocarcinoma using artificial intelligence and CT signatures — Ye Guanchao;Wu Guangyao;Li Yiying;Zhang Chi;Qin Lili;Wu Jianlin;Fan Jun;Qi Yu;Yang Fan;Liao Yongde",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4379,
+            "end_char": 4646
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-derived longitudinal and multi-dimensional CT classifier for non-small cell lung cancer to optimize neoadjuvant chemoimmunotherapy decision: a multicentre retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Guanchao;Wei Zhitao;Han Chu;Wu Guangyao;Wong Chinting;Liang Yanting;Chen Xiaobo;Zhou Wang;Gao Jianbo;Liang Changhong;Liao Yongde;Hendriks Lizza E. L.;Wee Leonard;De Ruysscher Dirk;Dekker Andre;Zhou Haiyu;Qi Yu;Liu Zaiyi;Shi Zhenwei",
+      "id": "out-0bdf2625b39d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI-derived longitudinal and multi-dimensional CT classifier for non-small cell lung cancer to optimize neoadjuvant chemoimmunotherapy decision: a multicentre retrospective study — Ye Guanchao;Wei Zhitao;Han Chu;Wu Guangyao;Wong Chinting;Liang Yanting;Chen Xiaobo;Zhou Wang;Gao Jianbo;Liang Changhong;Liao Yongde;Hendriks Lizza E. L.;Wee Leonard;De Ruysscher Dirk;Dekker Andre;Zhou Haiyu;Qi Yu;Liu Zaiyi;Shi Zhenwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 5071
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative diagnostic accuracy of dominant lesion in multifocal pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Bowen;Su Xiaoyun;Huang Yu;Zhang Chi;Ye Guanchao;Wu Junhua;Fan Shiwen;Chen Ming;Li Kuo;Yang Fan;Wu Guangyao;Liao Yongde",
+      "id": "out-166c50b00617",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative diagnostic accuracy of dominant lesion in multifocal pulmonary nodules — Zhao Bowen;Su Xiaoyun;Huang Yu;Zhang Chi;Ye Guanchao;Wu Junhua;Fan Shiwen;Chen Ming;Li Kuo;Yang Fan;Wu Guangyao;Liao Yongde",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5076,
+            "end_char": 5291
+          },
+          "version": "305c144dafb13d085e96"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

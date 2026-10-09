@@ -2,15 +2,20 @@
   "doc_id": "cb9b9c7cd7a484526509",
   "version": "9060ad86472f2b82ec78",
   "source_hash": "8967121fa1effa451b3e3bec34bb2aaee50b967da470316958a65c206b45f19c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.150345+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.339503+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-21ded74db2b3",
-          "name": "下一代病理图像分析鲁棒模型",
-          "desc": "面向病理诊断从数字化向智能化转型的需求，构建高精度、鲁棒、可解释、低成本的人工智能病理模型。",
+          "id": "item-e97ded489540",
+          "name": "病理图像分析AI鲁棒模型",
+          "desc": "病理大模型与WSI",
           "evidence": [
             {
-              "quote": "病理检查是癌症诊断的金标准，早筛早诊能有效预防并控制癌症进展",
+              "quote": "病理诊断作为肿瘤临床确诊的“金标准”，正处于从数字化向智能化转型的关键战略期",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 638,
-                "end_char": 667
+                "start_char": 2830,
+                "end_char": 2867
               },
               "version": "9060ad86472f2b82ec78"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d57c01146a90",
-          "name": "病理AI模型精度鲁棒性与可解释性不足",
-          "desc": "现有AI模型精度不足、鲁棒性差、不可解释、构建成本高等挑战阻碍其实际临床应用；同时还面临决策黑盒、多源异构偏差与超长序列特征建模困难三大瓶颈。",
+          "id": "item-c1c82fcce667",
+          "name": "决策黑盒、多源异构偏差鲁棒性受限、WSI超长序列建模困难",
+          "desc": "三大瓶颈",
           "evidence": [
             {
-              "quote": "然而现有AI模型的精度不足、鲁棒性差、不可解释、构建成本高等挑战阻碍实际临床上的应用",
+              "quote": "现有人工智能模型在实际应用中面临三大核心科学瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 746,
-                "end_char": 787
+                "start_char": 2889,
+                "end_char": 2912
               },
               "version": "9060ad86472f2b82ec78"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8798b3590b27",
-          "name": "因果理论驱动的数据与建模双维度鲁棒建模",
-          "desc": "以因果理论、度量学习、表征归纳与主动学习为理论支撑，从数据侧研究数据增强、混杂因素消除与样本选择策略，从建模侧研究不变性学习、对比学习与异常检测等鲁棒建模策略。",
+          "id": "item-d21763c59a35",
+          "name": "CPath-Omni统一视觉-语义表征大模型",
+          "desc": "150亿参数",
           "evidence": [
             {
-              "quote": "本项目以因果理论、度量学习理论、表征归纳以及主动学习理论为主要研究理论支撑，从数据和建模维度进行研究与探索",
+              "quote": "研发了参数规模达150亿的统一视觉-语义表征通用大模型CPath-Omni",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 833,
-                "end_char": 885
+                "start_char": 3304,
+                "end_char": 3340
               },
               "version": "9060ad86472f2b82ec78"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-334bc88be4d0",
+          "name": "梯度感知偏差解耦学习与LongMIL、ACMIL",
+          "desc": "弱监督WSI建模",
+          "evidence": [
+            {
+              "quote": "提出了梯度感知的偏差解耦学习框架和LongMIL、ACMIL等弱监督WSI建模架构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3376,
+                "end_char": 3416
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ab10c67b9d3",
-          "name": "构建PathGen-1.6M病理图文数据集与CPath-Omni大模型",
-          "desc": "构建含160万对高质量专家级病理图文配对的PathGen-1.6M数据集，研发参数规模150亿的统一视觉-语义表征通用大模型CPath-Omni，并建立病理大模型评测体系PathBench。",
+          "id": "item-f6b70b27531a",
+          "name": "病理图文数据集PathGen-1.6M",
+          "desc": "160万对",
           "evidence": [
             {
               "quote": "构建了国际领先的超大规模病理图文数据集PathGen-1.6M，包含160万对高质量专家级病理图文配对数据",
@@ -99,44 +122,453 @@
               "version": "9060ad86472f2b82ec78"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-d4f2c38fbdda",
+          "name": "病理大模型评测体系PathBench",
+          "desc": "标准化",
+          "evidence": [
+            {
+              "quote": "建立了标准化的病理大模型评测体系PathBench",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3449,
+                "end_char": 3473
+              },
+              "version": "9060ad86472f2b82ec78"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-21ded74db2b3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d57c01146a90"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PathMMU: A Massive Multimodal Expert-Level Benchmark for Understanding and Reasoning in Pathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxuan Sun;Hao Wu;Chenglu Zhu;Sunyi Zheng;Qizi Chen;Kai Zhang;Yunlong Zhang;Dan Wan;Xiaoxiao Lan;Mengyue Zheng;Jingxiong Li;Xinheng Lyu;Tao Lin;Lin Yang",
+      "id": "out-165a31cbe3b7",
+      "evidence": [
+        {
+          "quote": "[会议论文] PathMMU: A Massive Multimodal Expert-Level Benchmark for Understanding and Reasoning in Pathology — Yuxuan Sun;Hao Wu;Chenglu Zhu;Sunyi Zheng;Qizi Chen;Kai Zhang;Yunlong Zhang;Dan Wan;Xiaoxiao Lan;Mengyue Zheng;Jingxiong Li;Xinheng Lyu;Tao Lin;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3701,
+            "end_char": 3959
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d57c01146a90"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8798b3590b27"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于块级时间步追踪的多类别高分辨率病理图像合成扩散模型构造方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨林;李竞雄;祝骋路",
+      "id": "out-a11c1910b264",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于块级时间步追踪的多类别高分辨率病理图像合成扩散模型构造方法 — 杨林;李竞雄;祝骋路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3964,
+            "end_char": 4014
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8798b3590b27"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5ab10c67b9d3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gradient-aware learning for joint biases: Label noise and class imbalance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang·Shichuan;Zhu·Chenglu;Li·Honglin;Cai·Jiatong;Yang·Lin",
+      "id": "out-47cab213e026",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gradient-aware learning for joint biases: Label noise and class imbalance — Zhang·Shichuan;Zhu·Chenglu;Li·Honglin;Cai·Jiatong;Yang·Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4019,
+            "end_char": 4159
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向病理学全场图的自动化视觉问答方法、系统及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨林;陈平易;祝骋路",
+      "id": "out-1402b8552155",
+      "evidence": [
+        {
+          "quote": "[专利] 面向病理学全场图的自动化视觉问答方法、系统及介质 — 杨林;陈平易;祝骋路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4164,
+            "end_char": 4205
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于细胞拓扑导向的病理图像高分辨率生成的基础模型构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨林;李竞雄;祝骋路",
+      "id": "out-9dbb28e753b5",
+      "evidence": [
+        {
+          "quote": "[专利] 基于细胞拓扑导向的病理图像高分辨率生成的基础模型构建方法 — 杨林;李竞雄;祝骋路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4210,
+            "end_char": 4255
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Task-specific Fine-tuning via Variational Information Bottleneck for Weakly-supervised Pathology Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Honglin Li;Chenglu Zhu;Yunlong Zhang;Yuxuan Sun;Zhongyi Shui;Wenwei Kuang;Sunyi Zheng;Lin Yang",
+      "id": "out-9a8e35dbf1e8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Task-specific Fine-tuning via Variational Information Bottleneck for Weakly-supervised Pathology Whole Slide Image Classification — Honglin Li;Chenglu Zhu;Yunlong Zhang;Yuxuan Sun;Zhongyi Shui;Wenwei Kuang;Sunyi Zheng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4492
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "WsiCaption: Multiple Instance Generation of Pathology Reports for Gigapixel Whole-Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pingyi Chen;Honglin Li;Chenglu Zhu;Sunyi Zheng;Zhongyi Shui;Lin Yang",
+      "id": "out-f7fad51ebd5d",
+      "evidence": [
+        {
+          "quote": "[会议论文] WsiCaption: Multiple Instance Generation of Pathology Reports for Gigapixel Whole-Slide Images — Pingyi Chen;Honglin Li;Chenglu Zhu;Sunyi Zheng;Zhongyi Shui;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4497,
+            "end_char": 4668
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PathGen-1.6M: 1.6 Million Pathology Image-text Pairs Generation through Multi-agent Collaboration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxuan Sun;Yunlong Zhang;Yixuan Si;Chenglu Zhu;Kai Zhang;Zhongyi Shui;Jingxiong Li;Xuan Gong;XINHENG LYU;Tao Lin;Lin Yang",
+      "id": "out-c4b14fd398b0",
+      "evidence": [
+        {
+          "quote": "[会议论文] PathGen-1.6M: 1.6 Million Pathology Image-text Pairs Generation through Multi-agent Collaboration — Yuxuan Sun;Yunlong Zhang;Yixuan Si;Chenglu Zhu;Kai Zhang;Zhongyi Shui;Jingxiong Li;Xuan Gong;XINHENG LYU;Tao Lin;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4673,
+            "end_char": 4900
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Context-Aware Text-Assisted Multimodal Framework for Cervical Cytology Cell Diagnosis and Chatting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxuan Sun;Chenglu Zhu;Sunyi Zheng;Yunlong Zhang;Honglin Li;Lin Yang",
+      "id": "out-23b9bf0fba26",
+      "evidence": [
+        {
+          "quote": "[会议论文] Context-Aware Text-Assisted Multimodal Framework for Cervical Cytology Cell Diagnosis and Chatting — Yuxuan Sun;Chenglu Zhu;Sunyi Zheng;Yunlong Zhang;Honglin Li;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4905,
+            "end_char": 5080
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-modal Learning with Missing Modality in Predicting Axillary Lymph Node Metastasis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichuan Zhang;Sunyi Zheng;Zhongyi Shui;Honglin Li;Lin Yang",
+      "id": "out-4da22006c084",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-modal Learning with Missing Modality in Predicting Axillary Lymph Node Metastasis — Shichuan Zhang;Sunyi Zheng;Zhongyi Shui;Honglin Li;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5086,
+            "end_char": 5241
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态模型的病理检索辅助诊断方法、系统及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨林;孙宇轩;祝骋路",
+      "id": "out-d590ed2f130c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多模态模型的病理检索辅助诊断方法、系统及介质 — 杨林;孙宇轩;祝骋路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5247,
+            "end_char": 5288
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rethinking Transformer for Long Contextual Histopathology Whole Slide Image Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Honglin Li;Yunlong Zhang;Pingyi Chen;Zhongyi Shui;Chenglu Zhu;Lin Yang",
+      "id": "out-53ae61136b89",
+      "evidence": [
+        {
+          "quote": "[会议论文] Rethinking Transformer for Long Contextual Histopathology Whole Slide Image Analysis — Honglin Li;Yunlong Zhang;Pingyi Chen;Zhongyi Shui;Chenglu Zhu;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5294,
+            "end_char": 5457
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Attention-Challenging Multiple Instance Learning for Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunlong Zhang;Honglin Li;Yunxuan Sun;Sunyi Zheng;Chenglu Zhu;Lin Yang",
+      "id": "out-7ea7d0ef28fe",
+      "evidence": [
+        {
+          "quote": "[会议论文] Attention-Challenging Multiple Instance Learning for Whole Slide Image Classification — Yunlong Zhang;Honglin Li;Yunxuan Sun;Sunyi Zheng;Chenglu Zhu;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5463,
+            "end_char": 5626
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unleashing the Power of Prompt-driven Nucleus Instance Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhongyi Shui;Yunlong Zhang;Kai Yao;Chenglu Zhu;Sunyi Zheng;Jingxiong Li;Honglin Li;Yuxuan Sun;Ruizhe Guo;Lin Yang",
+      "id": "out-b19cea6b2667",
+      "evidence": [
+        {
+          "quote": "[会议论文] Unleashing the Power of Prompt-driven Nucleus Instance Segmentation — Zhongyi Shui;Yunlong Zhang;Kai Yao;Chenglu Zhu;Sunyi Zheng;Jingxiong Li;Honglin Li;Yuxuan Sun;Ruizhe Guo;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5632,
+            "end_char": 5821
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多实例生成模型的病理报告生成方法、系统和介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨林;陈平易;祝骋路",
+      "id": "out-00a02c30bb7b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多实例生成模型的病理报告生成方法、系统和介质 — 杨林;陈平易;祝骋路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5827,
+            "end_char": 5868
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Benchmarking PathCLIP for Pathology Image Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng·Sunyi;Cui·Xiaonan;Sun·Yuxuan;Li·Jingxiong;Li Honglin;Zhang·Yunlong;Chen·Pingyi;Jing·Xueping;Ye Zhaoxiang;Yang·Lin",
+      "id": "out-0e72c440b31d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Benchmarking PathCLIP for Pathology Image Analysis — Zheng·Sunyi;Cui·Xiaonan;Sun·Yuxuan;Li·Jingxiong;Li Honglin;Zhang·Yunlong;Chen·Pingyi;Jing·Xueping;Ye Zhaoxiang;Yang·Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5874,
+            "end_char": 6052
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PathBench: Advancing the Benchmark of Large Multimodal Models for Pathology Image Understanding at Patch and Whole Slide Level",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun·Yuxuan;Wu·Hao;Zhu·Chenglu;Si·Yixuan;Chen·Qizi;Zhang·Yunlong;Zhang·Kai;Li·Jingxiong;Cai·Jiatong and Wang·Yuhan;Sun·Lin;Lin·Tao;Yang·Lin",
+      "id": "out-fbf0d0418e61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PathBench: Advancing the Benchmark of Large Multimodal Models for Pathology Image Understanding at Patch and Whole Slide Level — Sun·Yuxuan;Wu·Hao;Zhu·Chenglu;Si·Yixuan;Chen·Qizi;Zhang·Yunlong;Zhang·Kai;Li·Jingxiong;Cai·Jiatong and Wang·Yuhan;Sun·Lin;Lin·Tao;Yang·Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6058,
+            "end_char": 6331
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CPath-Omni: A Unified Multimodal Foundation Model for Patch and Whole Slide Image Analysis in Computational Pathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun·Yuxuan;Si·Yixuan;Zhu·Chenglu;Gong·Xuan;Zhang Kai;Chen·Pingyi;Zhang·Ye;Shui·Zhongyi;Lin·Tao;Yang·Lin",
+      "id": "out-2dcb31a5e158",
+      "evidence": [
+        {
+          "quote": "[会议论文] CPath-Omni: A Unified Multimodal Foundation Model for Patch and Whole Slide Image Analysis in Computational Pathology — Sun·Yuxuan;Si·Yixuan;Zhu·Chenglu;Gong·Xuan;Zhang Kai;Chen·Pingyi;Zhang·Ye;Shui·Zhongyi;Lin·Tao;Yang·Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6337,
+            "end_char": 6566
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Unsupervised Cell Recognition with Prior Self-activation Maps",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen·Pingyi;Zhu·Chenglu;Shui·Zhongyi;Cai·Jiatong and Zheng·Sunyi;Zhang·Shichuan;Yang·Lin",
+      "id": "out-f974286d2705",
+      "evidence": [
+        {
+          "quote": "[会议论文] Exploring Unsupervised Cell Recognition with Prior Self-activation Maps — Chen·Pingyi;Zhu·Chenglu;Shui·Zhongyi;Cai·Jiatong and Zheng·Sunyi;Zhang·Shichuan;Yang·Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6572,
+            "end_char": 6740
+          },
+          "version": "9060ad86472f2b82ec78"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "会议论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

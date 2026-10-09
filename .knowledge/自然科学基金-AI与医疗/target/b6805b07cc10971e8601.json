@@ -2,15 +2,20 @@
   "doc_id": "b6805b07cc10971e8601",
   "version": "4608a7a7d9bd7934b6a0",
   "source_hash": "198a4d254b30577a1255c5f10df8ace647804364c476549d8a7107f28321ddc4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.444147+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:54:36.024551+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-20ed4d9ce1c7",
           "name": "NSCLC演进可视化与精准诊疗",
-          "desc": "面向可手术I-III期非小细胞肺癌，建立基于多维异构信息的演进可视化与精准诊疗体系。",
+          "desc": "演进过程异质性显著",
           "evidence": [
             {
-              "quote": "非小细胞肺癌(NSCLC)是严重危害国人健康的最常见恶性肿瘤，精准诊疗水平低是总体疗效差和医疗负担重的主要原因之一",
+              "quote": "非小细胞肺癌（NSCLC）演进过程中表现出显著的异质性，其复杂的生物学特征难以有效可视化，限制了个体化精准治疗的实施",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 715
+                "start_char": 2846,
+                "end_char": 2903
               },
               "version": "4608a7a7d9bd7934b6a0"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a65512bababd",
-          "name": "NSCLC演进异质性致生物学表征难以可视化",
-          "desc": "NSCLC演进过程中存在显著异质性，其生物学表征无法被较好可视化，使精准诊疗水平降低。",
+          "id": "item-1d24a48c9292",
+          "name": "生物学特征难以可视化限制精准治疗",
+          "desc": "NSCLC",
           "evidence": [
             {
-              "quote": "NSCLC演进过程中存在显著异质性，其生物学表征无法被较好可视化使其精准诊疗水平降低",
+              "quote": "其复杂的生物学特征难以有效可视化，限制了个体化精准治疗的实施",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 717,
-                "end_char": 758
+                "start_char": 2874,
+                "end_char": 2903
               },
               "version": "4608a7a7d9bd7934b6a0"
             }
@@ -63,31 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2160ddac1f2c",
-          "name": "多维异构信息融合与决策可视化模型",
-          "desc": "整合临床、影像组学、病理组学与生物组学信息，通过多维异构信息融合、决策可视化和前瞻性队列验证提升NSCLC演进可视化和精准诊疗水平。",
+          "id": "item-25be0b30fe35",
+          "name": "自适应三维CNN预测肺结节良恶性与浸润程度",
+          "desc": "一万例术前CT",
           "evidence": [
             {
-              "quote": "本研究将整合上海交大医工科优势建立多种图像可视化NSCLC演进的方法，通过多维异构信息融合、决策可视化和前瞻性队列验证来提升可手术I-III期NSCLC演进可视化和精准诊疗水平",
+              "quote": "通过一万例肺结节术前CT影像，构建了用于预测结节良恶性及浸润程度的自适应三维卷积神经网络（3D-CNN）模型，指导临床是否进行手术决策",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 936,
-                "end_char": 1023
+                "start_char": 2955,
+                "end_char": 3021
               },
               "version": "4608a7a7d9bd7934b6a0"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-098f96aed970",
-          "name": "多维异构预测模型SPN风险判断AUC 0.978",
-          "desc": "基于临床、CT和病理的多维异构预测模型使周围型肺结节高低风险判断AUC提升至0.978；3D-CNN模型预测隐匿性淋巴结转移AUC 0.921，联合模型使20.9%患者避免不必要手术。",
+          "id": "item-6a0e66318cb7",
+          "name": "多尺度层级注意力肺癌亚型自动分类系统",
+          "desc": "病理HE切片",
+          "evidence": [
+            {
+              "quote": "基于病理HE切片，构建了多尺度层级注意力的肺癌亚型自动分类系统、提出了基于互信息最大化的冰冻到石蜡病理图像风格转化框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3052,
+                "end_char": 3110
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-339d22c3b5e9",
+          "name": "临床-CT-病理多维异构预测模型",
+          "desc": "周围型肺结节高低风险判断",
           "evidence": [
             {
               "quote": "基于临床、CT和病理的多维异构预测模型显著提高了对周围型肺结节（SPN）高/低风险判断效力，AUC提升至0.978",
@@ -99,44 +116,577 @@
               "version": "4608a7a7d9bd7934b6a0"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e63a77ccd540",
+          "name": "避免不必要手术",
+          "desc": "20.9%的患者",
+          "evidence": [
+            {
+              "quote": "通过该联合模型，20.9%的患者避免了不必要的手术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3023,
+                "end_char": 3047
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ee157a270a1a",
+          "name": "隐匿性淋巴结转移预测AUC",
+          "desc": "0.921",
+          "evidence": [
+            {
+              "quote": "基于CT图像和临床特征的3D-CNN模型则有效预测了隐匿性淋巴结转移，AUC达到0.921",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3436,
+                "end_char": 3480
+              },
+              "version": "4608a7a7d9bd7934b6a0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-20ed4d9ce1c7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a65512bababd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic index for estimating the survival benefit of postoperative radiotherapy in pathologic N2 non-small cell lung cancer: A real-world validation study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen-Chen Zhang;Run-Ping Hou;Wu-Yan Xia;Wan-Qin Zeng;Jun Liu;Jia-Ming Wang;Chang-Xing Lv;Qing-Quan Luo;Heng Zhao;Wen Yu;Qin Zhang;Zheng-Fei Zhu;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+      "id": "out-50af0e2fefec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic index for estimating the survival benefit of postoperative radiotherapy in pathologic N2 non-small cell lung cancer: A real-world validation study — Chen-Chen Zhang;Run-Ping Hou;Wu-Yan Xia;Wan-Qin Zeng;Jun Liu;Jia-Ming Wang;Chang-Xing Lv;Qing-Quan Luo;Heng Zhao;Wen Yu;Qin Zhang;Zheng-Fei Zhu;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3748,
+            "end_char": 4090
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a65512bababd"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2160ddac1f2c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态融合的非小细胞肺癌预后预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "傅小龙;赵俊;侯润萍;夏武艳;邵琰",
+      "id": "out-8e7cb2bcfcde",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多模态融合的非小细胞肺癌预后预测方法 — 傅小龙;赵俊;侯润萍;夏武艳;邵琰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4139
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2160ddac1f2c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-098f96aed970"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "I期非小细胞肺癌治疗失败表型及预后预测的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "申宇嘉;傅小龙",
+      "id": "out-5dbff983ed3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] I期非小细胞肺癌治疗失败表型及预后预测的研究进展 — 申宇嘉;傅小龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4144,
+            "end_char": 4184
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Protein Structure Refinement Using Multi-Objective Particle Swarm Optimization with Decomposition Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng-Peng Zhou;Di Wang;Xiao-Yong Pan;Hong-Bin Shen",
+      "id": "out-80a4864f34fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Protein Structure Refinement Using Multi-Objective Particle Swarm Optimization with Decomposition Strategy — Cheng-Peng Zhou;Di Wang;Xiao-Yong Pan;Hong-Bin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4189,
+            "end_char": 4355
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Tyrosine Kinase Inhibitor Treatment Response in Stage IV Lung Adenocarcinoma Patients With EGFR Mutation Using Model-Based Deep Transfer Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Run-Ping Hou;Xiao-Yang Li;Jun-Feng Xiong;Tian-Le Shen;Wen Yu;Lawrence H Schwartz;Bin-Sheng Zhao;Jun Zhao;Xiao-Long Fu",
+      "id": "out-0898fc8644a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Tyrosine Kinase Inhibitor Treatment Response in Stage IV Lung Adenocarcinoma Patients With EGFR Mutation Using Model-Based Deep Transfer Learning — Run-Ping Hou;Xiao-Yang Li;Jun-Feng Xiong;Tian-Le Shen;Wen Yu;Lawrence H Schwartz;Bin-Sheng Zhao;Jun Zhao;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4360,
+            "end_char": 4642
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多任务卷积模型的肺部CT感兴趣区域自动检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵寅杰;傅小龙;潘小勇;徐志勇;林扬;申宇嘉;傅圆圆;沈红斌",
+      "id": "out-bcf32a3438ec",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多任务卷积模型的肺部CT感兴趣区域自动检测方法 — 赵寅杰;傅小龙;潘小勇;徐志勇;林扬;申宇嘉;傅圆圆;沈红斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4647,
+            "end_char": 4709
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Leveraging scaffold information to predict protein-ligand binding affinity with an empirical graph neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chun-Qiu Xia;Shi-Hao Feng;Ying Xia;Xiao-Yong Pan;Hong-Bin Shen",
+      "id": "out-89bc13e03828",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Leveraging scaffold information to predict protein-ligand binding affinity with an empirical graph neural network — Chun-Qiu Xia;Shi-Hao Feng;Ying Xia;Xiao-Yong Pan;Hong-Bin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4714,
+            "end_char": 4898
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于经验图神经网络的蛋白质-配体亲和力预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏春秋;夏莹;潘小勇;沈红斌",
+      "id": "out-80f05962f0d9",
+      "evidence": [
+        {
+          "quote": "[专利] 基于经验图神经网络的蛋白质-配体亲和力预测方法 — 夏春秋;夏莹;潘小勇;沈红斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4903,
+            "end_char": 4947
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A decision support framework for postoperative radiotherapy in patients with pathological N2 non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen-Chen Zhang;Wen Yu;Qin Zhang;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+      "id": "out-4498136e2cdd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A decision support framework for postoperative radiotherapy in patients with pathological N2 non-small cell lung cancer — Chen-Chen Zhang;Wen Yu;Qin Zhang;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4952,
+            "end_char": 5145
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lymph Node Parameters Predict Adjuvant Chemoradiotherapy Efficacy and Disease-Free Survival in Pathologic N2 Non-Small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen-Chen Zhang;Run-Ping Hou;Wen Feng;Xiao-Long Fu",
+      "id": "out-4492ff7a93e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lymph Node Parameters Predict Adjuvant Chemoradiotherapy Efficacy and Disease-Free Survival in Pathologic N2 Non-Small Cell Lung Cancer — Chen-Chen Zhang;Run-Ping Hou;Wen Feng;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5151,
+            "end_char": 5345
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dose-escalation by hypofractionated simultaneous integrated boost IMRT in unresectable stage III non-small-cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Zhang;Xu-Wei Cai;Wen Feng;Wen Yu;Xiao-Long Fu",
+      "id": "out-d0e920286f79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dose-escalation by hypofractionated simultaneous integrated boost IMRT in unresectable stage III non-small-cell lung cancer — Qin Zhang;Xu-Wei Cai;Wen Feng;Wen Yu;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5351,
+            "end_char": 5532
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于人工智能的H-E染色全切片病理学图像分析在肺癌研究中的进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜梦琦;韩昱晨;傅小龙",
+      "id": "out-e777f5b414a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于人工智能的H-E染色全切片病理学图像分析在肺癌研究中的进展 — 姜梦琦;韩昱晨;傅小龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5538,
+            "end_char": 5589
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Combination of radiotherapy and PD-L1 blockade induces abscopal responses in EGFR-mutated lung cancer through activating CD8+ T cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu-Yan Xia;Yu-Jia Shen;Chen-Chen Zhang;Li-Qiang Qian;Hao Wang;Kai Wang;Hai-Zhen Jin;Xue-Ru Zhu;Zheng-Ping Ding;Qin Zhang;Wen Yu;Wen Feng;Xiao-Long Fu",
+      "id": "out-eee694dd6152",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Combination of radiotherapy and PD-L1 blockade induces abscopal responses in EGFR-mutated lung cancer through activating CD8+ T cells — Wu-Yan Xia;Yu-Jia Shen;Chen-Chen Zhang;Li-Qiang Qian;Hao Wang;Kai Wang;Hai-Zhen Jin;Xue-Ru Zhu;Zheng-Ping Ding;Qin Zhang;Wen Yu;Wen Feng;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5595,
+            "end_char": 5886
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Malignancy and Invasiveness of Pulmonary Subsolid Nodules on CT Images Using Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian-Le Shen;Run-Ping Hou;Xiao-Dan Ye;Xiao-Yang Li;Jun-Feng Xiong;Qin Zhang;Chen-Chen Zhang;Xu-Wei Cai;Wen Yu;Jun Zhao;Xiao-Long Fu",
+      "id": "out-93b9b9676ee0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Malignancy and Invasiveness of Pulmonary Subsolid Nodules on CT Images Using Deep Learning — Tian-Le Shen;Run-Ping Hou;Xiao-Dan Ye;Xiao-Yang Li;Jun-Feng Xiong;Qin Zhang;Chen-Chen Zhang;Xu-Wei Cai;Wen Yu;Jun Zhao;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5892,
+            "end_char": 6133
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CoLM: Contrastive learning and multiple instance learning network for lung cancer classification of surgical options based on frozen pathological images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Zhao;Wang-Yuan Zhao;Lu Qiu;Meng-Qi Jiang;Li-Qiang Qian;Hua-Nong Ting;Xiao-Long Fu;Pu-Ming Zhang;Yu-Chen Han;Jun Zhao",
+      "id": "out-2c94fdb3b6e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CoLM: Contrastive learning and multiple instance learning network for lung cancer classification of surgical options based on frozen pathological images — Lu Zhao;Wang-Yuan Zhao;Lu Qiu;Meng-Qi Jiang;Li-Qiang Qian;Hua-Nong Ting;Xiao-Long Fu;Pu-Ming Zhang;Yu-Chen Han;Jun Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6139,
+            "end_char": 6419
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of Inflammatory Biomarkers in Patients With Stage I Lung Adenocarcinoma Treated With Surgical Dissection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Jia Shen;Li-Qiang Qian;Zheng-Ping Ding;Qing-Quan Luo;Heng Zhao;Wu-Yan Xia;Yuan-Yuan Fu;Wen Feng;Qin Zhang;Wen Yu;Xu-Wei Cai;Xiao-Long Fu",
+      "id": "out-990c9be06aa4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of Inflammatory Biomarkers in Patients With Stage I Lung Adenocarcinoma Treated With Surgical Dissection — Yu-Jia Shen;Li-Qiang Qian;Zheng-Ping Ding;Qing-Quan Luo;Heng Zhao;Wu-Yan Xia;Yuan-Yuan Fu;Wen Feng;Qin Zhang;Wen Yu;Xu-Wei Cai;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6425,
+            "end_char": 6694
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Is postoperative radiotherapy effective in patients with completely resected pathologic stage IIIA(N2) non-small cell lung cancer? High-risk populations should consider it",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shu-Xian Zhang;Chen-Chen Zhang;Run-Ping Hou;Xu-Wei Cai;Jun Liu;Wen Yu;Qin Zhang;Jin-Dong Guo;Chang-Lu Wang;Hong-Xuan Li;Zheng-Fei Zhu;Xiao-Long Fu;Wen Feng",
+      "id": "out-4d900b536d6b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Is postoperative radiotherapy effective in patients with completely resected pathologic stage IIIA(N2) non-small cell lung cancer? High-risk populations should consider it — Shu-Xian Zhang;Chen-Chen Zhang;Run-Ping Hou;Xu-Wei Cai;Jun Liu;Wen Yu;Qin Zhang;Jin-Dong Guo;Chang-Lu Wang;Hong-Xuan Li;Zheng-Fei Zhu;Xiao-Long Fu;Wen Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6700,
+            "end_char": 7035
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PUNDIT: Pulmonary nodule detection with image category transformation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang-Yuan Zhao;Jing-Chen Ma;Lu Zhao;Run-Ping Hou;Lu Qiu;Xiao-Long Fu;Jun Zhao",
+      "id": "out-c3f01db026f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PUNDIT: Pulmonary nodule detection with image category transformation — Wang-Yuan Zhao;Jing-Chen Ma;Lu Zhao;Run-Ping Hou;Lu Qiu;Xiao-Long Fu;Jun Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7041,
+            "end_char": 7196
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiosensitivity-Specific Proteomic and Signaling Pathway Network of Non-Small Cell Lung Cancer (NSCLC)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue-Ru Zhu;Yi-Ting Wang;Chang Jiang;Xiao-Yang Li;Lin-Ying Sun;Guang-Zhong Wang;Xiao-Long Fu",
+      "id": "out-2372206f12bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiosensitivity-Specific Proteomic and Signaling Pathway Network of Non-Small Cell Lung Cancer (NSCLC) — Xue-Ru Zhu;Yi-Ting Wang;Chang Jiang;Xiao-Yang Li;Lin-Ying Sun;Guang-Zhong Wang;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7202,
+            "end_char": 7405
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A real-world analysis of stereotactic body radiotherapy combined with immunotherapy in advanced or recurrent non-small cell lung cancer (NSCLC): A single-center experience",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dan Yao;Xue-Ru Zhu;Jin-Dong Guo;Xiao-Huan Dong;Ya Zeng;Xiao-Long Fu;Wen Yu",
+      "id": "out-b8d43301b58c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A real-world analysis of stereotactic body radiotherapy combined with immunotherapy in advanced or recurrent non-small cell lung cancer (NSCLC): A single-center experience — Dan Yao;Xue-Ru Zhu;Jin-Dong Guo;Xiao-Huan Dong;Ya Zeng;Xiao-Long Fu;Wen Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7411,
+            "end_char": 7665
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A random forest algorithm predicting model combining intraoperative frozen section analysis and clinical features guides surgical strategy for peripheral solitary pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li-Qiang Qian;Yin-Jie Zhou;Wan-Qin Zeng;Xiao-Ke Chen;Zheng-Ping Ding;Yu-Jia Shen;Yi-Feng Qian;Davide Tosi;Mario Silva;Yu-Chen Han;Xiao-Long Fu",
+      "id": "out-f955cf79fe28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A random forest algorithm predicting model combining intraoperative frozen section analysis and clinical features guides surgical strategy for peripheral solitary pulmonary nodules — Li-Qiang Qian;Yin-Jie Zhou;Wan-Qin Zeng;Xiao-Ke Chen;Zheng-Ping Ding;Yu-Jia Shen;Yi-Feng Qian;Davide Tosi;Mario Silva;Yu-Chen Han;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7671,
+            "end_char": 8002
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于胸部CT预测早期非小细胞肺癌淋巴道或血道转移风险的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "傅圆圆;侯润萍;傅小龙",
+      "id": "out-863f2287dc33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于胸部CT预测早期非小细胞肺癌淋巴道或血道转移风险的研究进展 — 傅圆圆;侯润萍;傅小龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8008,
+            "end_char": 8059
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dosiomics and radiomics improve the prediction of post-radiotherapy neutrophil-lymphocyte ratio in locally advanced non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Run-Ping Hou;Wu-Yan Xia;Chen-Chen Zhang;Yan Shao;Xue-Ru Zhu;Wen Feng;Qin Zhang;Wen Yu;Xiao-Long Fu;Jun Zhao",
+      "id": "out-ef85ab946232",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dosiomics and radiomics improve the prediction of post-radiotherapy neutrophil-lymphocyte ratio in locally advanced non-small cell lung cancer — Run-Ping Hou;Wu-Yan Xia;Chen-Chen Zhang;Yan Shao;Xue-Ru Zhu;Wen Feng;Qin Zhang;Wen Yu;Xiao-Long Fu;Jun Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8065,
+            "end_char": 8323
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical efficacies of different neoadjuvant therapies for non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin-Chen Tan;Xin-Yun Song;Meng-Qi Jiang;Neng-Yang Wang;Jun Liu;Wen Yu;Qin Zhang;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+      "id": "out-865cd115ae40",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical efficacies of different neoadjuvant therapies for non-small cell lung cancer — Xin-Chen Tan;Xin-Yun Song;Meng-Qi Jiang;Neng-Yang Wang;Jun Liu;Wen Yu;Qin Zhang;Xu-Wei Cai;Wen Feng;Xiao-Long Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8329,
+            "end_char": 8535
+          },
+          "version": "4608a7a7d9bd7934b6a0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

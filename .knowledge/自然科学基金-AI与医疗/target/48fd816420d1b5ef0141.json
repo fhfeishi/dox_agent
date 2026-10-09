@@ -2,15 +2,20 @@
   "doc_id": "48fd816420d1b5ef0141",
   "version": "b890f07a5a411533cec7",
   "source_hash": "0103533494fd6cd8eccd8c61cccd64717e65c21f0317e964dec0606b30c65d45",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.559011+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.270295+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8fa65b786f71",
-          "name": "脑电信号与知识驱动自适应深度学习",
-          "desc": "深度学习模型的可通用性与可解释性是最关键的难点问题，研究具有挑战性和重要意义。",
+          "id": "item-ccd1b600f86e",
+          "name": "脑电深度学习与脑纹识别",
+          "desc": "脑电信号与知识驱动",
           "evidence": [
             {
-              "quote": "深度学习模型的研究一直是经久不衰的议题，模型的可通用性与可解释性是其中最为关键的难点问题，研究具有挑战性和重要意义",
+              "quote": "基于脑电信号的深度学习模型及应用研究是人工智能领域的中心议题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 715
-              },
-              "version": "b890f07a5a411533cec7"
-            }
-          ]
-        },
-        {
-          "id": "item-9b2b46a8b5ef",
-          "name": "跨状态脑纹识别应用场景",
-          "desc": "以预训练模型知识推理能力自动获取与状态无关的特征，融合连接网络特征与身份向量特征，研究跨状态条件下脑纹识别问题。",
-          "evidence": [
-            {
-              "quote": "作为应用场景，利用预训练模型的知识推理能力自动获取与状态无关的特征，融合连接网络特征与身份向量特征，研究跨状态条件下脑纹识别问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 956
+                "start_char": 2745,
+                "end_char": 2774
               },
               "version": "b890f07a5a411533cec7"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9f9434563411",
-          "name": "可通用性与可解释性难题",
-          "desc": "模型的可通用性与可解释性是深度学习研究中最关键的难点问题。",
+          "id": "item-0f39963dfa60",
+          "name": "深度学习模型通用性与可解释性",
+          "desc": "关键难点",
           "evidence": [
             {
-              "quote": "模型的可通用性与可解释性是其中最为关键的难点问题，研究具有挑战性和重要意义",
+              "quote": "模型的可通用性与可解释性是其中最为关键的难点问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 679,
-                "end_char": 715
-              },
-              "version": "b890f07a5a411533cec7"
-            }
-          ]
-        },
-        {
-          "id": "item-2697b97c1492",
-          "name": "传统策略局限需先验知识监督",
-          "desc": "需超越传统的小规模、任务向、纯数据驱动的深度学习策略，构建以先验知识为监督、信号与知识双驱动的模型。",
-          "evidence": [
-            {
-              "quote": "本项目超越传统的小规模、任务向、纯数据驱动的深度学习策略，构建以先验知识为监督、融合认知神经科学为导向的脑网络特征、信号与知识双驱动的深度学习模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 958,
-                "end_char": 1030
+                "end_char": 702
               },
               "version": "b890f07a5a411533cec7"
             }
@@ -95,141 +68,334 @@
       "state": "has",
       "items": [
         {
-          "id": "item-16fd9846534f",
-          "name": "多任务学习预训练脑电驱动策略",
-          "desc": "面向可通用深度学习模型，采用多任务学习范式建立预训练深度学习模型的脑电信号驱动学习策略。",
+          "id": "item-17be4efaa935",
+          "name": "脑电驱动的预训练深度学习策略",
+          "desc": "自适应欧氏对齐无源域适应、加权多分支结构等",
           "evidence": [
             {
-              "quote": "面向可通用深度学习模型，采用多任务学习范式，建立预训练深度学习模型的脑电信号驱动学习策略",
+              "quote": "研究脑电信号驱动的预训练深度学习模型——基于自适应欧氏对齐的无源域适应学习策略、脑电信号驱动的预训练深度学习模型——加权多分支结构深度学习策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 771,
-                "end_char": 814
+                "start_char": 2884,
+                "end_char": 2954
               },
               "version": "b890f07a5a411533cec7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e1a11fa69217",
-          "name": "动态连接网络分解与可解释分析",
-          "desc": "面向可解释深度学习模型，研究复杂脑连接网络构建，基于动态连接网络分解采用迁移学习范式开展可解释性结构分析。",
+          "id": "item-d7e8256ac753",
+          "name": "OxcarNet深度学习模型",
+          "desc": "基于时间和通道注意力的Sinc卷积网络",
           "evidence": [
             {
-              "quote": "面向可解释深度学习模型，研究复杂脑连接网络构建；基于动态连接网络分解，采用迁移学习范式，开展预训练深度学习模型连接网络的可解释性结构分析",
+              "quote": "OxcarNet深度学习模型——基于脑电信号时间和通道注意力的Sinc卷积网络学习策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 820,
-                "end_char": 887
+                "start_char": 2956,
+                "end_char": 2998
               },
               "version": "b890f07a5a411533cec7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-74219fcd549d",
+          "name": "基于深度学习的跨状态脑纹识别",
+          "desc": "可解释性对比学习",
+          "evidence": [
+            {
+              "quote": "研究基于深度学习的脑纹识别——可解释性对比学习方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3169,
+                "end_char": 3193
+              },
+              "version": "b890f07a5a411533cec7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GLWGAN: Dual-Discriminator GAN for EEG Emotion Recognition Using Spatiotemporal Patterns",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Danlei;Wang Haixian",
+      "id": "out-2dcf554f2ca8",
+      "evidence": [
         {
-          "id": "item-23cb43ff8c90",
-          "name": "自适应欧氏对齐无源域适应策略",
-          "desc": "提出基于自适应欧氏对齐的无源域适应预训练深度学习模型学习策略。",
-          "evidence": [
-            {
-              "quote": "研究脑电信号驱动的预训练深度学习模型——基于自适应欧氏对齐的无源域适应学习策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2884,
-                "end_char": 2922
-              },
-              "version": "b890f07a5a411533cec7"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[会议论文] GLWGAN: Dual-Discriminator GAN for EEG Emotion Recognition Using Spatiotemporal Patterns — Liu Danlei;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3546,
+            "end_char": 3666
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor Imagery EEG Classification Based on Adaptive Weighted Multi-subject Sampling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Huiyang;Wang Haixian",
+      "id": "out-295c10e56170",
+      "evidence": [
         {
-          "id": "item-ad46ec410858",
-          "name": "可解释对比学习Transformer脑纹识别",
-          "desc": "提出面向脑电身份识别的可解释对比学习Transformer模型。",
-          "evidence": [
-            {
-              "quote": "An Interpretable Contrastive Learning Transformer for EEG-Based Person Identification",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4082,
-                "end_char": 4166
-              },
-              "version": "b890f07a5a411533cec7"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[会议论文] Motor Imagery EEG Classification Based on Adaptive Weighted Multi-subject Sampling — Wang Huiyang;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3671,
+            "end_char": 3787
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EEG Emotion Recognition Method Based on a Hybrid Perception Training Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yuxuan;Wang Haixian",
+      "id": "out-352f6915b95e",
+      "evidence": [
         {
-          "id": "item-986b7425964a",
-          "name": "疲劳程度影响脑纹识别研究",
-          "desc": "研究疲劳程度对基于脑电信号的脑纹识别的影响及基于相位幅度耦合的ADHD亚型识别。",
-          "evidence": [
-            {
-              "quote": "研究基于深度学习的脑纹识别——可解释性对比学习方法、疲劳程度对基于脑电信号的脑纹识别的影响、基于相位幅度耦合的ADHD亚型识别",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3169,
-                "end_char": 3231
-              },
-              "version": "b890f07a5a411533cec7"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[会议论文] EEG Emotion Recognition Method Based on a Hybrid Perception Training Strategy — Zhang Yuxuan;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3903
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Paradigm Fusion Learning from Overt and Silent Chinese Speech Based on Pseudo-Siamese Multiscale Capsule Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Jingyu;Gan John Q.;Wang Haixian",
+      "id": "out-1a39f14f3a19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Paradigm Fusion Learning from Overt and Silent Chinese Speech Based on Pseudo-Siamese Multiscale Capsule Neural Network — Gu Jingyu;Gan John Q.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3908,
+            "end_char": 4070
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Interpretable Contrastive Learning Transformer for EEG-Based Person Identification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shao Xinghan;Chang C.;Gan John Q.;Wang Haixian",
+      "id": "out-2cb0f553bb0e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Interpretable Contrastive Learning Transformer for EEG-Based Person Identification — Shao Xinghan;Chang C.;Gan John Q.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4075,
+            "end_char": 4215
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OxcarNet: Sinc Convolutional Network with Temporal and Channel Attention for Prediction of Oxcarbazepine Monotherapy Responses in Patients with Newly Diagnosed Epilepsy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Runkai;Rong Rong;Xu Yun;Wang Haixian;Wang Xiaoyun",
+      "id": "out-c8cbfcf49870",
+      "evidence": [
+        {
+          "quote": "[期刊论文] OxcarNet: Sinc Convolutional Network with Temporal and Channel Attention for Prediction of Oxcarbazepine Monotherapy Responses in Patients with Newly Diagnosed Epilepsy — Zhang Runkai;Rong Rong;Xu Yun;Wang Haixian;Wang Xiaoyun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4220,
+            "end_char": 4452
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Seizure Detection Based on Multilayer Brain Network Features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Dian;Wang Haixian",
+      "id": "out-a442c4e302d8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Seizure Detection Based on Multilayer Brain Network Features — Zhang Dian;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4457,
+            "end_char": 4549
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alterations in Phase Synchronization during Epileptic Seizures: A Frequency-Based Multilayer EEG Network Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Dian;Jiang Jiuchuan;Wang Yupeng;Gan John Q.;Wang Haixian",
+      "id": "out-94ee841fb3e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Alterations in Phase Synchronization during Epileptic Seizures: A Frequency-Based Multilayer EEG Network Analysis — Zhang Dian;Jiang Jiuchuan;Wang Yupeng;Gan John Q.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4554,
+            "end_char": 4738
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor Imagery EEG Classiﬁcation Based on a Weighted Multi-Branch Structure Suitable for Multisubject Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Huiyang;Jiang Jiuchuan;Gan John Q.;Wang Haixian",
+      "id": "out-ec4bc2e9f0bf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motor Imagery EEG Classiﬁcation Based on a Weighted Multi-Branch Structure Suitable for Multisubject Data — Wang Huiyang;Jiang Jiuchuan;Gan John Q.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4743,
+            "end_char": 4909
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Fatigue Levels on EEG-based Personal Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shao Xinghan;Chang C.;Wang Haixian",
+      "id": "out-8dd568f5d52f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Fatigue Levels on EEG-based Personal Recognition — Shao Xinghan;Chang C.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4915,
+            "end_char": 5016
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightweight Source-Free Domain Adaptation Based on Adaptive Euclidean Alignment for Brain-Computer Interfaces",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Huiyang;Han Hongfang;Gan John Q.;Wang Haixian",
+      "id": "out-eb286b74d632",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lightweight Source-Free Domain Adaptation Based on Adaptive Euclidean Alignment for Brain-Computer Interfaces — Wang Huiyang;Han Hongfang;Gan John Q.;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5022,
+            "end_char": 5190
+          },
+          "version": "b890f07a5a411533cec7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain Functional Differences Among ADHD Subtypes in Children Revealed by Phase-Amplitude Coupling Analysis of Resting-State EEG",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Wanting;Jiang Jiuchuan;Wang Haixian",
+      "id": "out-54e8146b8a2c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain Functional Differences Among ADHD Subtypes in Children Revealed by Phase-Amplitude Coupling Analysis of Resting-State EEG — Tang Wanting;Jiang Jiuchuan;Wang Haixian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5196,
+            "end_char": 5372
+          },
+          "version": "b890f07a5a411533cec7"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8fa65b786f71"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9f9434563411"
-      },
-      "basis": "原文明示"
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f9434563411"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-16fd9846534f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-16fd9846534f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23cb43ff8c90"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e1a11fa69217"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ad46ec410858"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

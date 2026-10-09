@@ -2,15 +2,20 @@
   "doc_id": "f7f41821e370da08df39",
   "version": "4024c3a5278943f0fd52",
   "source_hash": "b72818500d3adf9cbe372448a4baea09e2edb506aa9d1ed596acd33d1e80f130",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.824561+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.658839+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b56546a39e6",
-          "name": "癌症病理图像检索辅助诊断",
-          "desc": "随着数字病理图像在癌症诊断中的广泛应用，病理图像检索方法成为癌症辅助诊断的重要工具。",
+          "id": "item-58617c99dc77",
+          "name": "癌症病理图像检索",
+          "desc": "范畴论与深度学习",
           "evidence": [
             {
-              "quote": "随着数字病理图像在癌症诊断中的广泛应用，病理图像检索方法成为癌症辅助诊断的重要工具。",
+              "quote": "本项目以癌症诊断的实际需求出发，围绕底层视觉特征和高层之间的语义差异，对癌症病理图像检索展开研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 652,
-                "end_char": 693
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ]
-        },
-        {
-          "id": "item-548cdf57bc08",
-          "name": "病理图像人机交互",
-          "desc": "本项目是病理图像检索和人机交互领域交叉的难点问题，研究成果对癌症辅助诊断具有重要理论意义和实用价值。",
-          "evidence": [
-            {
-              "quote": "本项研究是病理图像检索和人机交互领域交叉和难点问题，研究成果对癌症辅助诊断具有重要的理论意义和实用价值。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 904,
-                "end_char": 955
+                "start_char": 2325,
+                "end_char": 2372
               },
               "version": "4024c3a5278943f0fd52"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-642ed44ef488",
-          "name": "语义鸿沟问题",
-          "desc": "语义鸿沟问题依然是病理图像检索研究中的难点和热点问题。",
+          "id": "item-eb0e41fb2f45",
+          "name": "底层视觉特征与高层语义之间的语义鸿沟",
+          "desc": "",
           "evidence": [
             {
-              "quote": "目前，“语义鸿沟”问题依然是病理图像检索研究中的难点和热点问题。",
+              "quote": "针对底层视觉特征与高层语义之间存在语义差异的问题，采用渐进式的范畴化思想构建不同抽象层次之间的特征映射",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 725
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ]
-        },
-        {
-          "id": "item-20d8afddb81c",
-          "name": "染色差异干扰特征提取",
-          "desc": "不同病理图像之间的颜色差异对特征提取存在干扰。",
-          "evidence": [
-            {
-              "quote": "针对不同病理图像之间的颜色差异对特征提取的干扰",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2393,
-                "end_char": 2415
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ]
-        },
-        {
-          "id": "item-bc7f0ecdbf89",
-          "name": "已标记数据不足",
-          "desc": "细胞核分割过程中存在已标记数据不足的问题，肺癌病理图像分类中也存在已标记数据较少的问题。",
-          "evidence": [
-            {
-              "quote": "针对分割过程中已标记数据不足的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2511,
-                "end_char": 2527
+                "start_char": 2753,
+                "end_char": 2803
               },
               "version": "4024c3a5278943f0fd52"
             }
@@ -111,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-959751cb2f3c",
-          "name": "条件扩散模型染色归一化",
-          "desc": "提出基于条件扩散模型的结直肠病理图像染色归一化方法。",
+          "id": "item-f4a3cfe1920f",
+          "name": "条件扩散模型结直肠病理染色归一化",
+          "desc": "",
           "evidence": [
             {
               "quote": "提出一种基于条件扩散模型的结直肠病理图像染色归一化方法",
@@ -124,144 +81,216 @@
               },
               "version": "4024c3a5278943f0fd52"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6dcd8f1753b3",
-          "name": "边缘和位置信息细胞核分割",
-          "desc": "针对模糊边缘和重叠细胞核问题提出基于边缘和位置信息的细胞核分割方法及基于对比学习和轮廓引导U-Net的方法。",
+          "id": "item-ecf5d14dfd79",
+          "name": "渐进式策略与图卷积网络检索方法",
+          "desc": "范畴化特征映射",
           "evidence": [
             {
-              "quote": "提出了基于边缘和位置信息的细胞核分割方法，并针对分割过程中已标记数据不足的问题，提出基于对比学习和轮廓引导U-Net的细胞核分割方法",
+              "quote": "提出基于渐进式策略和图卷积网络的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2489,
-                "end_char": 2554
+                "start_char": 2835,
+                "end_char": 2852
               },
               "version": "4024c3a5278943f0fd52"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9bdb11e3cd64",
-          "name": "渐进式范畴化特征映射",
-          "desc": "采用渐进式的范畴化思想构建不同抽象层次之间的特征映射，并提出基于补丁渐进多粒度特征融合的方法。",
+          "id": "item-f92df412aa0d",
+          "name": "多倍率掩码自编码器病理特征提取",
+          "desc": "多层抽象语义匹配",
           "evidence": [
             {
-              "quote": "采用渐进式的范畴化思想构建不同抽象层次之间的特征映射",
+              "quote": "提出利用多倍率掩码自编码器对病理图像特征进行提取",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2778,
-                "end_char": 2803
+                "start_char": 2934,
+                "end_char": 2957
               },
               "version": "4024c3a5278943f0fd52"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于弱监督学习的双分支结直肠病理图像腺体分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李子成;贾伟;赵雪芬;高宏娟",
+      "id": "out-57593008a309",
+      "evidence": [
         {
-          "id": "item-321a85922cf6",
-          "name": "多癌种病理图像分割方法",
-          "desc": "提出基于弱监督学习的双分支结直肠腺体分割、基于边缘关键点和边缘注意力的黑色素瘤图像分割等方法。",
-          "evidence": [
-            {
-              "quote": "提出基于弱监督学习的双分支结直肠病理图像腺体分割方法和基于边缘关键点和边缘注意力的黑色素瘤图像分割方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2566,
-                "end_char": 2616
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] 基于弱监督学习的双分支结直肠病理图像腺体分割 — 李子成;贾伟;赵雪芬;高宏娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3066,
+            "end_char": 3111
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于边缘和位置信息的细胞核分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾伟;江海峰;赵雪芬",
+      "id": "out-12c808d9549a",
+      "evidence": [
         {
-          "id": "item-2a08b4c68163",
-          "name": "肺癌病理图像分类方法",
-          "desc": "提出基于细胞形态特征对比学习的肺癌病理图像分类方法及多视图增强对比学习与预学习知识蒸馏分类方法。",
-          "evidence": [
-            {
-              "quote": "提出基于细胞形态特征对比学习的肺癌病理图像分类方法。为减少分类网络的复杂度和提高分类效率，提出基于多视图增强对比学习和预学习式知识蒸馏的分类方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2666,
-                "end_char": 2737
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] 基于边缘和位置信息的细胞核分割方法 — 贾伟;江海峰;赵雪芬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3116,
+            "end_char": 3152
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于边缘关键点和边缘注意力的黑色素瘤图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王娜;贾伟;赵雪芬;高宏娟",
+      "id": "out-2431dea116c4",
+      "evidence": [
         {
-          "id": "item-ce61bd969c9d",
-          "name": "7篇论文产出",
-          "desc": "产出结直肠腺体分割、细胞核分割、黑色素瘤分割、肺癌分类等论文7篇。",
-          "evidence": [
-            {
-              "quote": "Breast Cancer Histopathology Images Classification Through Multi-View Augmented Contrastive Learning and Pre-Learning Knowledge Distillation",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3357,
-                "end_char": 3496
-              },
-              "version": "4024c3a5278943f0fd52"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] 基于边缘关键点和边缘注意力的黑色素瘤图像分割方法 — 王娜;贾伟;赵雪芬;高宏娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3157,
+            "end_char": 3203
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fine-Grain Classification Method of Non-small Cell Lung Cancer Based on Progressive Jigsaw and Graph Convolutional Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹争光;贾伟",
+      "id": "out-35b99678c5b3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fine-Grain Classification Method of Non-small Cell Lung Cancer Based on Progressive Jigsaw and Graph Convolutional Network — 曹争光;贾伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3208,
+            "end_char": 3345
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Breast Cancer Histopathology Images Classification Through Multi-View Augmented Contrastive Learning and Pre-Learning Knowledge Distillation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jialong Si;Wei Jia;Haifeng Jiang",
+      "id": "out-a7890019ee20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Breast Cancer Histopathology Images Classification Through Multi-View Augmented Contrastive Learning and Pre-Learning Knowledge Distillation — Jialong Si;Wei Jia;Haifeng Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3350,
+            "end_char": 3531
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Colorectal Histopathological Image Classification Method Based on Progressive Multi-Granularity Feature Fusion of Patch",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹争光;贾伟;江海峰;赵雪芬;高宏娟;司嘉龙;石春晖",
+      "id": "out-84826892dff3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Colorectal Histopathological Image Classification Method Based on Progressive Multi-Granularity Feature Fusion of Patch — 曹争光;贾伟;江海峰;赵雪芬;高宏娟;司嘉龙;石春晖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3536,
+            "end_char": 3698
+          },
+          "version": "4024c3a5278943f0fd52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对比学习和轮廓引导U-Net的细胞核分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾伟;江海峰;赵雪芬",
+      "id": "out-e3390b9ceab5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于对比学习和轮廓引导U-Net的细胞核分割 — 贾伟;江海峰;赵雪芬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3703,
+            "end_char": 3744
+          },
+          "version": "4024c3a5278943f0fd52"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7b56546a39e6"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-642ed44ef488"
-      },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bc7f0ecdbf89"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6dcd8f1753b3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-959751cb2f3c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-321a85922cf6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9bdb11e3cd64"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2a08b4c68163"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

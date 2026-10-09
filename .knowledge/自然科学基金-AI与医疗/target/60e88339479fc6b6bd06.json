@@ -2,15 +2,20 @@
   "doc_id": "60e88339479fc6b6bd06",
   "version": "3fb64af696294678fb29",
   "source_hash": "4197c7b9c291faf02bb1c2e81cdeac04bf4178e19f76a58be47894bd68c7f20e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.664359+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.644267+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f74124f994de",
-          "name": "甲状腺结节癌变风险评估CAD",
-          "desc": "甲状腺癌发病率和致死率逐年提高，已成为我国主要公共健康问题，需提高计算机辅助诊断准确率。",
+          "id": "item-cfea3e5df083",
+          "name": "甲状腺结节癌变风险评估",
+          "desc": "甲状腺癌发病率和致死率逐年提高",
           "evidence": [
             {
               "quote": "甲状腺癌的发病率和致死率在逐年提高，在我国已成为主要的公共健康问题",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 657,
                 "end_char": 689
-              },
-              "version": "3fb64af696294678fb29"
-            }
-          ]
-        },
-        {
-          "id": "item-8cdb3ad4fd59",
-          "name": "为甲状腺癌诊治提供科学决策",
-          "desc": "项目研究建立标准完善的甲状腺结节图像数据库，为甲状腺癌的诊断和治疗提供科学的决策。",
-          "evidence": [
-            {
-              "quote": "项目研究建立标准完善的甲状腺结节图像数据库并为甲状腺癌的诊断和治疗提供科学的决策，具有一定的学术价值与研究意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1001,
-                "end_char": 1055
               },
               "version": "3fb64af696294678fb29"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4972a115a2be",
-          "name": "噪声类别复杂与细节丢失",
-          "desc": "针对噪声类别复杂、细节丢失等癌症图像数据的现有问题开展研究。",
+          "id": "item-c4e943ee967e",
+          "name": "图像质量、病理复杂性与疾病多样性使定性诊断困难",
+          "desc": "对知识结构和技术水平构成挑战",
           "evidence": [
             {
-              "quote": "针对噪声类别复杂、细节丢失等癌症图像数据的现有问题",
+              "quote": "有效提高计算机辅助诊断系统对于甲状腺结节的定性诊断的准确率是对现有知识结构和技术水平的巨大挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 844,
-                "end_char": 868
-              },
-              "version": "3fb64af696294678fb29"
-            }
-          ]
-        },
-        {
-          "id": "item-9bf6c0e29c26",
-          "name": "疾病种类多样病理变化复杂",
-          "desc": "甲状腺疾病种类多样性、病理变化复杂性以及医学影像本身图像质量问题，给提高CAD定性诊断准确率带来巨大挑战。",
-          "evidence": [
-            {
-              "quote": "由于甲状腺疾病种类的多样性、病理变化的复杂性以及医学影像本身的图像质量问题，有效提高计算机辅助诊断系统对于甲状腺结节的定性诊断的准确率是对现有知识结构和技术水平的巨大挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 691,
+                "start_char": 729,
                 "end_char": 775
               },
               "version": "3fb64af696294678fb29"
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0333164d78df",
-          "name": "去噪与超分辨率统一图像复原",
-          "desc": "采用去噪与超分辨率统一的图像复原技术，实现多来源图像数据统一表示并构建标准癌症图像数据库。",
+          "id": "item-75d9b95db60d",
+          "name": "去噪与超分辨率统一的图像复原",
+          "desc": "构建标准癌症图像数据库",
           "evidence": [
             {
-              "quote": "针对噪声类别复杂、细节丢失等医学图像数据的现有问题，采用去噪与超分辨率统一的图像复原等技术，实现多来源图像数据统一表示并构建标准的癌症图像数据库",
+              "quote": "采用去噪与超分辨率统一的图像复原等技术，实现多来源图像数据统一表示并构建标准的癌症图像数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2641,
-                "end_char": 2712
+                "start_char": 870,
+                "end_char": 915
               },
               "version": "3fb64af696294678fb29"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8a3622c47231",
-          "name": "注意力机制医学影像特征融合",
-          "desc": "采用基于注意力机制的医学影像特征融合方法，实现甲状腺结节多级诊断分类模型。",
+          "id": "item-7bf83e7773ae",
+          "name": "基于注意力的医学影像特征融合多级诊断分类",
+          "desc": "甲状腺结节分类",
           "evidence": [
             {
               "quote": "采用基于注意力机制的医学影像特征融合方法，实现甲状腺结节多级诊断分类模型",
@@ -124,7 +98,8 @@
               },
               "version": "3fb64af696294678fb29"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,360 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11cc1ea27840",
-          "name": "构建甲状腺结节分割模型",
-          "desc": "改善深度卷积神经网络获取图像高层次特征，结合低层次特征构建甲状腺结节图像分割模型。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表18篇，SCI 12篇",
           "evidence": [
             {
-              "quote": "改善当前的深度卷积神经网络并获取图像的高层次特征，结合图像的低层次特征构建甲状腺结节图像分割模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2714,
-                "end_char": 2761
-              },
-              "version": "3fb64af696294678fb29"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-012e57b051f1",
-          "name": "多级诊断分类模型",
-          "desc": "采用注意力机制的医学影像特征融合方法实现甲状腺结节多级诊断分类模型，并构建甲状腺癌CAD系统验证理论正确性。",
-          "evidence": [
-            {
-              "quote": "采用基于注意力机制的医学影像特征融合方法，实现甲状腺结节多级诊断分类模型。在此基础上构建甲状腺癌计算机辅助诊断系统以验证理论研究的正确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2763,
-                "end_char": 2830
-              },
-              "version": "3fb64af696294678fb29"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-171b9a4898c0",
-          "name": "论文与人才培养成果",
-          "desc": "项目共发表18篇学术论文（SCI 12篇、EI 6篇），博士毕业2名、硕士毕业4名。",
-          "evidence": [
-            {
-              "quote": "项目共发表18篇学术论文，被SCI检索的论文12篇，被EI检索的论文6篇。在博士硕士研究生培养方面，博士已毕业2名，硕士已毕业4名",
+              "quote": "项目共发表18篇学术论文，被SCI检索的论文12篇，被EI检索的论文6篇",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2832,
-                "end_char": 2896
+                "end_char": 2867
               },
               "version": "3fb64af696294678fb29"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f74124f994de"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4972a115a2be"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robot Grasping Detection in Object Overlapping Scenes Based on Multi-Stage ROI Extraction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jintao Xia;Jianning Chi;Chengdong Wu;Fengyu Zhao",
+      "id": "out-ede8e0b67477",
+      "evidence": [
+        {
+          "quote": "[会议论文] Robot Grasping Detection in Object Overlapping Scenes Based on Multi-Stage ROI Extraction — Jintao Xia;Jianning Chi;Chengdong Wu;Fengyu Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3031,
+            "end_char": 3177
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4972a115a2be"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0333164d78df"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Two-stage Cascaded Network With Deep Supervision And Residual Attention For Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingbing Li;Jianning Chi;Chengdong Wu;Xiaosheng Yu",
+      "id": "out-e3a955a3a56b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Two-stage Cascaded Network With Deep Supervision And Residual Attention For Brain Tumor Segmentation — Bingbing Li;Jianning Chi;Chengdong Wu;Xiaosheng Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3182,
+            "end_char": 3341
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0333164d78df"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-11cc1ea27840"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Temporal Enhance and Spatial Gated Network for Group Activity Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tiansheng Sun;Jianning Chi;Chengdong Wu",
+      "id": "out-5de9e88ba196",
+      "evidence": [
+        {
+          "quote": "[会议论文] Temporal Enhance and Spatial Gated Network for Group Activity Recognition — Tiansheng Sun;Jianning Chi;Chengdong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3346,
+            "end_char": 3467
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8a3622c47231"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-012e57b051f1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hybrid Transformer UNet for Thyroid Segmentation from Ultrasound Scans in Computers in Biology and Medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianning Chi;Zelan Li;Zhiyi Sun;Xiaosheng Yu;Huan Wang",
+      "id": "out-2d69f06324a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hybrid Transformer UNet for Thyroid Segmentation from Ultrasound Scans in Computers in Biology and Medicine — Jianning Chi;Zelan Li;Zhiyi Sun;Xiaosheng Yu;Huan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3472,
+            "end_char": 3642
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single Low-Dose CT Image Denoising Using a Generative Adversarial Network With Modified U-Net Generator and Multi-Level Discriminator",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianning Chi;Chengdong Wu;Xiaosheng Yu;Peng Ji;Hao Chu",
+      "id": "out-bc68da3ec6c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single Low-Dose CT Image Denoising Using a Generative Adversarial Network With Modified U-Net Generator and Multi-Level Discriminator — Jianning Chi;Chengdong Wu;Xiaosheng Yu;Peng Ji;Hao Chu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3843
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MID-UNet: Multi-input directional UNet for COVID-19 lung infection segmentation from CT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianning Chi;Shuang Zhang;Xiaoying Han;Huan Wang;Chengdong Wu;Xiaosheng Yu",
+      "id": "out-007cab53a618",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MID-UNet: Multi-input directional UNet for COVID-19 lung infection segmentation from CT images — Jianning Chi;Shuang Zhang;Xiaoying Han;Huan Wang;Chengdong Wu;Xiaosheng Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 4025
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-Locally up-Down Convolutional Attention Network for Remote Sensing Image Super-Resolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Qian Hu;Chengdong Wu;Jianning Chi;Xiaosheng Yu",
+      "id": "out-5c4b90e695e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-Locally up-Down Convolutional Attention Network for Remote Sensing Image Super-Resolution — Huan Wang;Qian Hu;Chengdong Wu;Jianning Chi;Xiaosheng Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4030,
+            "end_char": 4188
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Deeply Supervised Convolutional Neural Network for Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingbing Li;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Gang Wang",
+      "id": "out-0abc2b13108a",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Deeply Supervised Convolutional Neural Network for Brain Tumor Segmentation — Bingbing Li;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Gang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4193,
+            "end_char": 4339
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Receptive-Fields Convolutional Network for Remote Sensing Images Super-Resolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Qian Hu;Jianning Chi;Chengdong Wu;Xiaosheng Yu",
+      "id": "out-a264d167453f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Receptive-Fields Convolutional Network for Remote Sensing Images Super-Resolution — Huan Wang;Qian Hu;Jianning Chi;Chengdong Wu;Xiaosheng Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4344,
+            "end_char": 4496
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FCOS-Lite: An Efficient Anchor-free Network for Real-time Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Liu;Jianning Chi;Chengdong Wu",
+      "id": "out-342b6ba5b1eb",
+      "evidence": [
+        {
+          "quote": "[会议论文] FCOS-Lite: An Efficient Anchor-free Network for Real-time Object Detection — Shuai Liu;Jianning Chi;Chengdong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4502,
+            "end_char": 4620
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DCLNet: Dual Closed-loop Networks for face super-resolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Qian Hu;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Hao Wu",
+      "id": "out-61a29a868b5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DCLNet: Dual Closed-loop Networks for face super-resolution — Huan Wang;Qian Hu;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Hao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4626,
+            "end_char": 4757
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Underwater image super-resolution using multi-stage information distillation networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Hao Wu;Qian Hu;Jianning Chi;Xiaosheng Yu;Chengdong Wu",
+      "id": "out-ab6df9dcdf6f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Underwater image super-resolution using multi-stage information distillation networks — Huan Wang;Hao Wu;Qian Hu;Jianning Chi;Xiaosheng Yu;Chengdong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4763,
+            "end_char": 4920
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "X-Net: Multi-branch UNet-like network for liver and tumor segmentation from 3D abdominal CT scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianning Chi;Xiaoying Han;Chengdong Wu;Huan Wang;Peng Ji",
+      "id": "out-9f0fddf03f2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] X-Net: Multi-branch UNet-like network for liver and tumor segmentation from 3D abdominal CT scans — Jianning Chi;Xiaoying Han;Chengdong Wu;Huan Wang;Peng Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 5088
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Robot Grasp Relationship Detection Network Based on the Fusion of Multiple Features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianning Chi;Xingrui Wu;Changqing Ma;Xiaosheng Yu;Chengdong Wu",
+      "id": "out-81049adbb449",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Robot Grasp Relationship Detection Network Based on the Fusion of Multiple Features — Jianning Chi;Xingrui Wu;Changqing Ma;Xiaosheng Yu;Chengdong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5094,
+            "end_char": 5250
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image super-resolution using multi-granularity perception and pyramid attention networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Qian Hu;Hao Wu",
+      "id": "out-19280b52e32c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image super-resolution using multi-granularity perception and pyramid attention networks — Huan Wang;Chengdong Wu;Jianning Chi;Xiaosheng Yu;Qian Hu;Hao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5256,
+            "end_char": 5416
+          },
+          "version": "3fb64af696294678fb29"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

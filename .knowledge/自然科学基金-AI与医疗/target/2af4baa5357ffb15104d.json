@@ -2,15 +2,20 @@
   "doc_id": "2af4baa5357ffb15104d",
   "version": "f23cde4c18a9cfcce7de",
   "source_hash": "afaef03dfd17c2c027d8b25ae32a267df7640db9642fdc8fa9463ec9a195b103",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.749291+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:34:11.776359+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-fa8caddbd866",
           "name": "多中心肝脏病灶检测与分割",
-          "desc": "医学图像检测与分割是计算机辅助诊断系统的基础，需在多中心间协作提升模型稳健性。",
+          "desc": "真实落地的核心困难",
           "evidence": [
             {
-              "quote": "医学图像的检测与分割是医学图像计算机辅助诊断系统的基础",
+              "quote": "本项目聚焦多中心医疗影像智能分析在真实落地中面临的核心困难",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 784,
-                "end_char": 810
-              },
-              "version": "f23cde4c18a9cfcce7de"
-            }
-          ]
-        },
-        {
-          "id": "item-5d00f589e26a",
-          "name": "隐私保护下的跨中心协同建模",
-          "desc": "通过中心之间协作和数据共享解决AI模型训练公共数据不足问题，并支持临床部署。",
-          "evidence": [
-            {
-              "quote": "通过中心之间的协作和数据共享来解决人工智能模型训练公共数据的不足问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 944,
-                "end_char": 977
+                "start_char": 3059,
+                "end_char": 3087
               },
               "version": "f23cde4c18a9cfcce7de"
             }
@@ -57,47 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf41daec77fb",
-          "name": "数据隐私与异质性阻碍数据共享",
-          "desc": "医疗数据隐私法规与数据异质性使AI训练和评估数据集可用性受阻，患者敏感信息无法在机构外传播。",
+          "id": "item-8bb4f799e7e4",
+          "name": "隐私限制、域偏移与标注不均",
+          "desc": "多中心协同训练难",
           "evidence": [
             {
-              "quote": "但由于医疗数据隐私法规和数据异质性，人工智能训练和评估数据集的可用性受到阻碍",
+              "quote": "数据隐私限制导致难以集中共享训练，医院之间存在显著域偏移（设备、协议、人群差异），标注资源分布不均",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 979,
-                "end_char": 1016
-              },
-              "version": "f23cde4c18a9cfcce7de"
-            }
-          ]
-        },
-        {
-          "id": "item-9e000355cd98",
-          "name": "大规模标注获得耗时需专业经验",
-          "desc": "训练模型所需的大规模CT图像和标注数据获得非常耗时且需要专业经验。",
-          "evidence": [
-            {
-              "quote": "因为训练模型需要的大规模CT图像和标注数据的获得是非常耗时和需要专业的经验的",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 838,
-                "end_char": 875
-              },
-              "version": "f23cde4c18a9cfcce7de"
-            }
-          ]
-        },
-        {
-          "id": "item-40712a1fb3f2",
-          "name": "医院间存在显著域偏移",
-          "desc": "多中心落地面临域偏移、标注资源分布不均以及多期CT融合建模复杂等困难。",
-          "evidence": [
-            {
-              "quote": "医院之间存在显著域偏移（设备、协议、人群差异），标注资源分布不均",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3106,
+                "start_char": 3089,
                 "end_char": 3137
               },
               "version": "f23cde4c18a9cfcce7de"
@@ -113,50 +70,53 @@
         {
           "id": "item-c33c377d0998",
           "name": "域感知联邦学习框架DAFed",
-          "desc": "构建域感知联邦学习框架，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制提升非IID多中心泛化稳定性。",
+          "desc": "潜空间分布对齐与域相似性聚合",
           "evidence": [
             {
-              "quote": "构建域感知联邦学习框架DAFed，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制，提升非IID多中心条件下的泛化稳定性",
+              "quote": "构建域感知联邦学习框架DAFed，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3227,
-                "end_char": 3287
+                "end_char": 3268
               },
               "version": "f23cde4c18a9cfcce7de"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-af033f21f13c",
           "name": "多尺度相位注意力模型MSPA-DLA++",
-          "desc": "面向多期CT显式刻画相位增强模式与尺度变化，提高小病灶与复杂增强表现的检测敏感性。",
+          "desc": "多期CT相位增强模式",
           "evidence": [
             {
-              "quote": "提出多尺度相位注意力模型MSPA-DLA++，面向多期CT显式刻画相位增强模式与尺度变化，提高对小病灶与复杂增强表现的检测敏感性",
+              "quote": "提出多尺度相位注意力模型MSPA-DLA++，面向多期CT显式刻画相位增强模式与尺度变化",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3321,
-                "end_char": 3384
+                "end_char": 3364
               },
               "version": "f23cde4c18a9cfcce7de"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0190b3ce24ae",
-          "name": "鲁棒知识迁移与高效压缩方案",
-          "desc": "形成KDRL与HIMS_KD两条鲁棒知识迁移与高效压缩方案，将教师模型转化为轻量学生模型。",
+          "id": "item-f4a26bff85a0",
+          "name": "KDRL与HIMS_KD知识迁移压缩",
+          "desc": "教师模型转轻量学生模型",
           "evidence": [
             {
-              "quote": "形成KDRL与HIMS_KD两条鲁棒知识迁移与高效压缩方案，用于将高性能教师模型转化为轻量学生模型",
+              "quote": "形成KDRL与HIMS_KD两条鲁棒知识迁移与高效压缩方案",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3392,
-                "end_char": 3440
+                "end_char": 3420
               },
               "version": "f23cde4c18a9cfcce7de"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,26 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95c543c2068a",
-          "name": "联邦学习提升跨中心鲁棒性",
-          "desc": "研究结果表明面向域偏移的联邦学习与结构化多期建模能够显著提升跨中心鲁棒性与临床任务性能。",
-          "evidence": [
-            {
-              "quote": "面向域偏移的联邦学习与结构化多期建模能够显著提升跨中心鲁棒性与临床任务性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3569,
-                "end_char": 3605
-              },
-              "version": "f23cde4c18a9cfcce7de"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-db699861a025",
-          "name": "多中心与公开基准系统实验",
-          "desc": "在5家医院548例多中心COVID-19 CT、121例多期腹部CT肝肿瘤分割数据及LiTS2017等公开基准上完成实验验证。",
+          "id": "item-da872d106e39",
+          "name": "多中心与公开数据验证",
+          "desc": "5家医院548例COVID-19 CT、121例肝肿瘤分割数据及LiTS2017",
           "evidence": [
             {
               "quote": "包括5家医院共548例患者的多中心COVID-19 CT设置、121例多期腹部CT肝肿瘤分割数据以及LiTS2017等公开基准",
@@ -196,24 +139,9 @@
               "version": "f23cde4c18a9cfcce7de"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-fec713a81c30",
-          "name": "多尺度相位注意力会议论文",
-          "desc": "提出面向多期CT病灶检测的多尺度相位注意力深度层聚合方法。",
-          "evidence": [
-            {
-              "quote": "MSPA-DLA++: A Multi-Scale Phase Attention Deep Layer Aggregation for Lesion Detection in Multi-Phase CT Images",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3830,
-                "end_char": 3939
-              },
-              "version": "f23cde4c18a9cfcce7de"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -221,47 +149,133 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-fa8caddbd866"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bf41daec77fb"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bf41daec77fb"
-      },
-      "to": {
         "dimension": "技术",
         "item_id": "item-c33c377d0998"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-af033f21f13c"
-      },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-fec713a81c30"
+        "dimension": "问题",
+        "item_id": "item-8bb4f799e7e4"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0190b3ce24ae"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-95c543c2068a"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建域感知联邦学习框架DAFed，通过潜空间分布对齐与域相似性驱动的聚合/个性化机制",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3227,
+            "end_char": 3268
+          },
+          "version": "f23cde4c18a9cfcce7de"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge Distillation Meets Reinforcement Learning: A Cluster-Driven Approach to Image Processing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Titinunt Kitrungrotsakul;Yingying Xu;Preeyanuch Srichola",
+      "id": "out-152c3ae6b094",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge Distillation Meets Reinforcement Learning: A Cluster-Driven Approach to Image Processing — Titinunt Kitrungrotsakul;Yingying Xu;Preeyanuch Srichola",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3818
+          },
+          "version": "f23cde4c18a9cfcce7de"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSPA-DLA++: A Multi-Scale Phase Attention Deep Layer Aggregation for Lesion Detection in Multi-Phase CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Titinunt Kitrungrotsakul;Yingying Xu;Qingqing Chen;Jing Liu;Yinhao Li;Lanfen Lin;Hongjie Hu;Ruofeng Tong;Jingsong Li;Yen-Wei Chen",
+      "id": "out-b5137c7e181b",
+      "evidence": [
+        {
+          "quote": "[会议论文] MSPA-DLA++: A Multi-Scale Phase Attention Deep Layer Aggregation for Lesion Detection in Multi-Phase CT Images — Titinunt Kitrungrotsakul;Yingying Xu;Qingqing Chen;Jing Liu;Yinhao Li;Lanfen Lin;Hongjie Hu;Ruofeng Tong;Jingsong Li;Yen-Wei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3823,
+            "end_char": 4071
+          },
+          "version": "f23cde4c18a9cfcce7de"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "模型训练方法、装置、电子设备和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Titinunt Kitrungrotsakul;许莹莹;姚柯璐;李超",
+      "id": "out-27db5b690ed1",
+      "evidence": [
+        {
+          "quote": "[专利] 模型训练方法、装置、电子设备和存储介质 — Titinunt Kitrungrotsakul;许莹莹;姚柯璐;李超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4076,
+            "end_char": 4137
+          },
+          "version": "f23cde4c18a9cfcce7de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Knowledge Distillation for Efficient Model Compression and Transfer: A Multi-Level Aggregation Approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Titinunt Kitrungrotsakul;Preeyanuch Srichola",
+      "id": "out-7a6fd89fdc61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical Knowledge Distillation for Efficient Model Compression and Transfer: A Multi-Level Aggregation Approach — Titinunt Kitrungrotsakul;Preeyanuch Srichola",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4142,
+            "end_char": 4311
+          },
+          "version": "f23cde4c18a9cfcce7de"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

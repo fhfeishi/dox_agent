@@ -2,15 +2,20 @@
   "doc_id": "b52f0d2a9c9e678ef01c",
   "version": "1d73c1a5f713d3c8abb0",
   "source_hash": "ee43a0ba6694374cd5589099ea5509f5741eb9d99fe4a1f52fdf2a24d8561ae9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.160107+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.934237+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-1746d85d8c4b",
           "name": "卵巢癌铂类化疗敏感性预测",
-          "desc": "卵巢癌死亡率居妇科恶性肿瘤之首，铂类敏感型与耐药型患者预后差异明显，二者治疗方案截然不同。",
+          "desc": "铂类敏感型与耐药型预后差异明显",
           "evidence": [
             {
-              "quote": "卵巢癌死亡率居妇科恶性肿瘤之首，铂类敏感型与耐药型患者预后差异明显，二者治疗方案截然不同",
+              "quote": "卵巢癌死亡率居妇科恶性肿瘤之首，铂类敏感型与耐药/抵抗型卵巢癌患者的肿瘤缓解率和预后差异明显，二者有截然不同的治疗方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 729
-              },
-              "version": "1d73c1a5f713d3c8abb0"
-            }
-          ]
-        },
-        {
-          "id": "item-9e18d0ae7b71",
-          "name": "卵巢癌免疫微环境可视化与精准治疗",
-          "desc": "为卵巢癌患者实现治疗前精准量化分层、进行个体化精准治疗提供可视化依据。",
-          "evidence": [
-            {
-              "quote": "为卵巢癌患者实现治疗前精准量化分层、进行个体化精准治疗提供可视化依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3418,
-                "end_char": 3451
+                "start_char": 2778,
+                "end_char": 2836
               },
               "version": "1d73c1a5f713d3c8abb0"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e4d12ee64e3",
-          "name": "缺乏术前评估免疫微环境与识别敏感性方法",
-          "desc": "肿瘤浸润免疫细胞在化疗敏感及耐药机制中发挥重要作用，但临床缺乏术前评估免疫微环境及精准识别铂类敏感性个体的方法。",
+          "id": "item-045a07acc43c",
+          "name": "临床缺乏无创量化免疫微环境并识别铂敏感个体的方法",
+          "desc": "关键科学问题",
           "evidence": [
             {
-              "quote": "但临床缺乏术前评估卵巢癌免疫微环境及精准识别铂类敏感性个体的方法",
+              "quote": "但临床缺乏精准量化免疫微环境并准确识别铂类化疗敏感个体的无创影像学检查方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 788
-              },
-              "version": "1d73c1a5f713d3c8abb0"
-            }
-          ]
-        },
-        {
-          "id": "item-cb145580e18c",
-          "name": "化疗敏感与耐药机制不清",
-          "desc": "肿瘤浸润免疫细胞及释放的炎性介质造成微环境异质性，影响MRI宏观表征。",
-          "evidence": [
-            {
-              "quote": "我们推测肿瘤浸润免疫细胞及释放的炎性介质造成微环境异质性，影响MRI宏观表征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 823,
-                "end_char": 860
+                "start_char": 2865,
+                "end_char": 2901
               },
               "version": "1d73c1a5f713d3c8abb0"
             }
@@ -95,41 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8a1b2f794c5",
-          "name": "MRI组学评估肿瘤浸润免疫细胞",
-          "desc": "提取筛选与巨噬细胞和CD8+T细胞相关的MRI组学指标，建立基于影像组学的免疫细胞评估模型。",
+          "id": "item-d15ed19fade8",
+          "name": "融合影像生物学模型预测铂类敏感性",
+          "desc": "融合多模态影像学特征与临床病理因素",
           "evidence": [
             {
-              "quote": "提取筛选与巨噬细胞和CD8+T细胞相关的MRI组学指标，初步建立基于影像组学的肿瘤浸润免疫细胞评估模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 869,
-                "end_char": 919
-              },
-              "version": "1d73c1a5f713d3c8abb0"
-            }
-          ]
-        },
-        {
-          "id": "item-bb44021ee031",
-          "name": "融合多模态影像与临床病理建模",
-          "desc": "融合肿瘤免疫微环境相关影像组学表征与临床病理因素，建立早期预测铂类化疗敏感性的影像生物学模型。",
-          "evidence": [
-            {
-              "quote": "通过融合多模态影像学特征与临床病理因素，构建早期预测卵巢癌铂类化疗敏感性的影像生物学模型",
+              "quote": "通过融合多模态影像学特征与临床病理因素，构建早期预测卵巢癌铂类化疗敏感性的影像生物学模型，融合模型可获得最优的预测效能（AUC=0.86）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3126,
-                "end_char": 3169
+                "end_char": 3194
               },
               "version": "1d73c1a5f713d3c8abb0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d20994bbf73d",
-          "name": "FAPI分子探针可视化肿瘤微环境",
-          "desc": "利用特异性靶向成纤维细胞活化蛋白的新型分子探针FAPI，提高隐匿部位及微小转移灶检测灵敏度。",
+          "id": "item-e542532129b7",
+          "name": "靶向FAP的FAPI分子探针",
+          "desc": "术前分期、复发检测与治疗管理",
           "evidence": [
             {
               "quote": "研究结果显示特异性靶向成纤维细胞活化蛋白的新型分子探针FAPI在上皮性卵巢癌的术前分期、复发检测和治疗管理中具有潜在作用",
@@ -140,7 +98,8 @@
               },
               "version": "1d73c1a5f713d3c8abb0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1643cdb7b289",
-          "name": "融合模型预测效能最优AUC 0.86",
-          "desc": "融合多模态影像特征与临床病理因素的模型获得最优预测效能，AUC为0.86。",
+          "id": "item-ef5cb0c5089b",
+          "name": "融合模型预测AUC",
+          "desc": "0.86",
           "evidence": [
             {
               "quote": "融合模型可获得最优的预测效能（AUC=0.86）",
@@ -163,89 +122,134 @@
               "version": "1d73c1a5f713d3c8abb0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b16649ba248d",
-          "name": "耐药患者巨噬细胞数量更多",
-          "desc": "耐药卵巢癌患者肿瘤组织中巨噬细胞数量较铂敏感者多，治疗后巨噬细胞招募增多。",
+          "id": "item-feb112928011",
+          "name": "上皮源性卵巢癌临床-影像-病理组织芯片数据库",
+          "desc": "已建立",
           "evidence": [
             {
-              "quote": "结果显示耐药卵巢癌患者的肿瘤组织中巨噬细胞数量较铂敏感者多",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3019,
-                "end_char": 3047
-              },
-              "version": "1d73c1a5f713d3c8abb0"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c0f90e1bf011",
-          "name": "临床-影像-病理数据库与ROI平台",
-          "desc": "建立上皮源性卵巢癌临床-影像-病理组织芯片数据库，完成影像存储及原发灶与腹膜转移灶ROI标记平台搭建。",
-          "evidence": [
-            {
-              "quote": "建立了上皮源性卵巢癌的临床-影像-病理组织芯片数据库，完成影像数据库存储及卵巢癌原发病灶及腹膜转移灶的ROI标记的平台搭建",
+              "quote": "建立了上皮源性卵巢癌的临床-影像-病理组织芯片数据库",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2922,
-                "end_char": 2982
+                "end_char": 2947
               },
               "version": "1d73c1a5f713d3c8abb0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1746d85d8c4b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6e4d12ee64e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "[68Ga]Ga-FAPI-04 PET/MR imaging strategy in management of Krukenberg tumors (KTs) from gastric signet-ring-cell carcinoma: to overcome limitation of [68Ga]Ga-FAPI-04 PET imaging in KTs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Wang;Gan Huang;Haitao Zhao;Lianghua Li;Yanying Shen;Weihua Lou;Jianjun Liu",
+      "id": "out-ddf1ff157eb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] [68Ga]Ga-FAPI-04 PET/MR imaging strategy in management of Krukenberg tumors (KTs) from gastric signet-ring-cell carcinoma: to overcome limitation of [68Ga]Ga-FAPI-04 PET imaging in KTs — Tingting Wang;Gan Huang;Haitao Zhao;Lianghua Li;Yanying Shen;Weihua Lou;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3587,
+            "end_char": 3863
+          },
+          "version": "1d73c1a5f713d3c8abb0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6e4d12ee64e3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d8a1b2f794c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PFKFB3 regulates breast cancer tumorigenesis and Fulvestrant sensitivity  by affecting ERα stability",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenzhi Jia;Qianyun Wu;Mengqin Shen;Xiaofeng Yu;Shuxian An;Li Zhao;Gang Huang;Jianjun Liu",
+      "id": "out-c6c4aea3ea9b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PFKFB3 regulates breast cancer tumorigenesis and Fulvestrant sensitivity  by affecting ERα stability — Wenzhi Jia;Qianyun Wu;Mengqin Shen;Xiaofeng Yu;Shuxian An;Li Zhao;Gang Huang;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3868,
+            "end_char": 4065
+          },
+          "version": "1d73c1a5f713d3c8abb0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bb44021ee031"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1643cdb7b289"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "[68Ga]Ga-FAPI-04 PET/MR imaging strategy for Krukenberg tumours from gastric signet-ring-cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Wang;Weihua Lou;Jianjun Liu",
+      "id": "out-6138007148dd",
+      "evidence": [
+        {
+          "quote": "[会议论文] [68Ga]Ga-FAPI-04 PET/MR imaging strategy for Krukenberg tumours from gastric signet-ring-cell carcinoma — Tingting Wang;Weihua Lou;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4218
+          },
+          "version": "1d73c1a5f713d3c8abb0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d20994bbf73d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b16649ba248d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "[68GA]GA-FAPI-04 PET/MR IMAGING STRATEGY IN THE MANAGEMENT OF KRUKENBERG  TUMORS FROM GASTRIC SIGNET-RING-CELL CARCINOMA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Wang;Gang Huang;Jianjun Liu",
+      "id": "out-b4c506d19074",
+      "evidence": [
+        {
+          "quote": "[会议论文] [68GA]GA-FAPI-04 PET/MR IMAGING STRATEGY IN THE MANAGEMENT OF KRUKENBERG  TUMORS FROM GASTRIC SIGNET-RING-CELL CARCINOMA — Tingting Wang;Gang Huang;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4388
+          },
+          "version": "1d73c1a5f713d3c8abb0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

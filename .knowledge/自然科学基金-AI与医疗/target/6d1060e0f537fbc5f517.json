@@ -2,15 +2,20 @@
   "doc_id": "6d1060e0f537fbc5f517",
   "version": "17bab2d45b1b305608b1",
   "source_hash": "c1f2c265252627ba9f4e0bca03154d35281ddbacda4293ed9bcfa3673b83f363",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.530002+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.947857+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97a4a21e3a1c",
-          "name": "肝纤维化进程无创预测",
-          "desc": "肝纤维化/肝硬化是慢性肝病的常见病理结局，是可逆的病理过程，准确而无创评估其进程是个性化治疗及疗效监测的关键。",
+          "id": "item-37b2f3592408",
+          "name": "肝纤维化进程无创评估",
+          "desc": "超声射频信号",
           "evidence": [
             {
-              "quote": "肝纤维化/肝硬化是慢性肝病的常见病理结局，是一个可逆的病理过程，准确而无创评估肝纤维化进程是个性化治疗及疗效监测的关键",
+              "quote": "肝纤维化是各种慢性肝病的共同病理过程",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 725
-              },
-              "version": "17bab2d45b1b305608b1"
-            }
-          ]
-        },
-        {
-          "id": "item-93000b896748",
-          "name": "减少对肝组织活检的需求",
-          "desc": "为无创精准评估肝纤维化进程、减少对肝组织活检的需求提供依据。",
-          "evidence": [
-            {
-              "quote": "为无创精准评估肝纤维化进程、减少对肝组织活检的需求提供依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1037,
-                "end_char": 1065
+                "start_char": 3149,
+                "end_char": 3166
               },
               "version": "17bab2d45b1b305608b1"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec0c379d3882",
-          "name": "肝组织活检创伤大且病理诊断主观",
-          "desc": "肝组织活检创伤大，常用病理诊断仅主观描述肝小叶结构紊乱，未测量真正反映纤维化进程的胶原含量及其空间构架。",
+          "id": "item-3046d117c2ec",
+          "name": "需无创评估肝纤维化进程",
+          "desc": "个性化治疗和疗效监测关键",
           "evidence": [
             {
-              "quote": "肝组织活检创伤大，常用的病理诊断仅主观描述肝小叶的结构紊乱，而未测量真正反映纤维化进程的胶原含量及其空间构架，不能精确评估纤维化进展和逆转",
+              "quote": "无创评估肝纤维化进程是个性化治疗和疗效监测的关键",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 727,
-                "end_char": 795
-              },
-              "version": "17bab2d45b1b305608b1"
-            }
-          ]
-        },
-        {
-          "id": "item-718d1c096292",
-          "name": "超声新技术尚不能标准化推广",
-          "desc": "前期研究阐述多种超声新技术评估肝纤维化的价值，但尚不能标准化应用和推广。",
-          "evidence": [
-            {
-              "quote": "课题组前期研究阐述了多种超声新技术评估肝纤维化的价值，但尚不能标准化应用和推广",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 835
+                "start_char": 3197,
+                "end_char": 3220
               },
               "version": "17bab2d45b1b305608b1"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c8af50996a2",
-          "name": "多模态超声原始射频信号建模",
-          "desc": "获得大鼠肝纤维化模型和慢性肝病患者标准化多模态超声原始射频信号，利用多模影像信息互补性建立超声影像组学高通量特征集。",
+          "id": "item-a03d6b76e233",
+          "name": "超声射频信号高通量特征分类模型",
+          "desc": "以qFibrosis为金标准",
           "evidence": [
             {
-              "quote": "通过获得大鼠肝纤维化模型和慢性肝病患者的标准化多模态超声原始射频信号，利用多模影像信息的互补性，建立超声影像组学高通量特征集",
+              "quote": "以肝纤维化病理形态学和空间结构学的qFibrosis全量化指标为金标准，从射频信号复杂且庞大的信息中挖掘反映肝纤维化相关的高通量特征，创建分类模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 892,
-                "end_char": 953
+                "start_char": 3324,
+                "end_char": 3396
               },
               "version": "17bab2d45b1b305608b1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-ca3c4f140e45",
           "name": "迁移学习多模态影像组学",
-          "desc": "运用迁移学习方法对肝脏灰阶模态、弹性模态、剪切波弹性测值及多模态联合影像进行人工智能特征提取与分析，提升纤维化分期诊断训练速度和准确率。",
+          "desc": "灰阶与弹性联合模态",
           "evidence": [
             {
-              "quote": "运用迁移学习的方法对肝脏灰阶模态、弹性模态、剪切波弹性测值及多模态联合影像进行人工智能特征提取及分析，提升纤维化分期诊断的训练速度和准确率",
+              "quote": "运用迁移学习的方法对肝脏灰阶模态、弹性模态、剪切波弹性测值及多模态联合影像进行人工智能特征提取及分析",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3536,
-                "end_char": 3604
+                "end_char": 3585
               },
               "version": "17bab2d45b1b305608b1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,341 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2d1c648902a5",
-          "name": "迁移学习模型诊断准确性达99.2%以上",
-          "desc": "灰阶和弹性联合模态迁移学习在训练集中诊断S4、≥S3和≥S2的准确性分别为99.2%、99.2%和99.4%，诊断价值高于非迁移学习模型和血清学指标。",
+          "id": "item-3005eaef9875",
+          "name": "迁移学习模型训练集诊断准确性",
+          "desc": "S4、≥S3、≥S2 为99.2%、99.2%、99.4%",
           "evidence": [
             {
-              "quote": "结果显示，在训练集中，灰阶和弹性联合模态迁移学习诊断S4、≥S3和≥S2的准确性分别为99.2%、99.2%和99.4%",
+              "quote": "在训练集中，灰阶和弹性联合模态迁移学习诊断S4、≥S3和≥S2的准确性分别为99.2%、99.2%和99.4%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3606,
+                "start_char": 3611,
                 "end_char": 3665
               },
               "version": "17bab2d45b1b305608b1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-8bd969d887f3",
-          "name": "术后肝衰预测模型AUC 0.82",
-          "desc": "创建术后肝衰预测模型PM，预测价值AUC为0.82，敏感度和特异度分别为87%和70%。",
+          "id": "item-891769ae14a8",
+          "name": "术后肝衰预测模型",
+          "desc": "AUC 0.82",
           "evidence": [
             {
-              "quote": "筛选并创建术后肝衰的预测模型（PM）：PM=-15.451+0.095×LSM+11.7×INR+0.012×LN，预测价值AUC为0.82，敏感度和特异度分别为87%和70%",
+              "quote": "预测价值AUC为0.82，敏感度和特异度分别为87%和70%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3819,
+                "start_char": 3877,
                 "end_char": 3906
               },
               "version": "17bab2d45b1b305608b1"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ca3b5295385b",
-          "name": "预测模型准确性高于MELD与Child-Pugh",
-          "desc": "外部验证组结果显示预测模型准确性高于MELD评分系统及Child-Pugh分级。",
-          "evidence": [
-            {
-              "quote": "外部验证组的结果显示预测模型准确性高于MELD评分系统（0.72）及Child-Pugh分级（0.54）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3908,
-                "end_char": 3959
-              },
-              "version": "17bab2d45b1b305608b1"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-97a4a21e3a1c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ec0c379d3882"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Engineering Defected 2D Pd/H-TiO2 Nanosonosensitizers for Hypoxia Alleviation and Enhanced Sono-Chemodynamic Cancer Nanotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaohui Qiao;Liyun Xue;Hui Huang;Xinyue Dai;Yu Chen;Hong Ding",
+      "id": "out-fbb16b6ac293",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Engineering Defected 2D Pd/H-TiO2 Nanosonosensitizers for Hypoxia Alleviation and Enhanced Sono-Chemodynamic Cancer Nanotherapy — Xiaohui Qiao;Liyun Xue;Hui Huang;Xinyue Dai;Yu Chen;Hong Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4024,
+            "end_char": 4221
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ec0c379d3882"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4c8af50996a2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《2018年世界超声医学和生物学联合会指南建议:肝脏超声弹性成像检查》摘译",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "付甜甜;丁红",
+      "id": "out-98b658bff8f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 《2018年世界超声医学和生物学联合会指南建议:肝脏超声弹性成像检查》摘译 — 付甜甜;丁红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4226,
+            "end_char": 4278
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4c8af50996a2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2d1c648902a5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Liver Fibrosis and Portal Hypertension in Chronic Hepatitis B Patients by Acoustic Radiation Force Impulse Elastography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Li Zhu;Hong Ding;Tian-Tian Fu;Shi-Yao Chen;Jian-Jun Luo;Chen Xu;Yuan Zhuang;Wen-Ping Wang",
+      "id": "out-10aa67734e90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of Liver Fibrosis and Portal Hypertension in Chronic Hepatitis B Patients by Acoustic Radiation Force Impulse Elastography — Yu-Li Zhu;Hong Ding;Tian-Tian Fu;Shi-Yao Chen;Jian-Jun Luo;Chen Xu;Yuan Zhuang;Wen-Ping Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4283,
+            "end_char": 4517
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ca3c4f140e45"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8bd969d887f3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative evaluation of liver fibrosis based on ultrasound radio frequency signals: An animal experimental study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangwen Cheng;Meng Dai;Tianlei Xiao;Tiantian Fu;Hong han;Yuanyuan Wang;Wenping Wang;Hong Ding;Jinhua Yu",
+      "id": "out-7fc517a85ecf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative evaluation of liver fibrosis based on ultrasound radio frequency signals: An animal experimental study — Guangwen Cheng;Meng Dai;Tianlei Xiao;Tiantian Fu;Hong han;Yuanyuan Wang;Wenping Wang;Hong Ding;Jinhua Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4522,
+            "end_char": 4750
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "实时剪切波弹性成像技术检测肝脾弹性硬度对乙型病毒性肝炎肝硬化门脉高压的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱宇莉;丁红;付甜甜;许智婷;薛立云;陈世耀;王文平",
+      "id": "out-5c32a55904bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 实时剪切波弹性成像技术检测肝脾弹性硬度对乙型病毒性肝炎肝硬化门脉高压的预测价值 — 朱宇莉;丁红;付甜甜;许智婷;薛立云;陈世耀;王文平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4755,
+            "end_char": 4829
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肝纤维化无损预测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁红;邓寅晖;程广文;薛立云",
+      "id": "out-e0fedf9e0ca5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肝纤维化无损预测方法及系统 — 丁红;邓寅晖;程广文;薛立云",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4834,
+            "end_char": 4870
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Savitzky-Golay Filter Based Quantitative Dynamic Contrast-Enhanced Ultrasound on Assessing Therapeutic Response in Mice with Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiting Xu;Hong Ding;Bengang Wang;Tiantian Fu;Yuli Zhu;Wenping Wang;Feng Lin",
+      "id": "out-96f8ecee9c2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Savitzky-Golay Filter Based Quantitative Dynamic Contrast-Enhanced Ultrasound on Assessing Therapeutic Response in Mice with Hepatocellular Carcinoma — Zhiting Xu;Hong Ding;Bengang Wang;Tiantian Fu;Yuli Zhu;Wenping Wang;Feng Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4875,
+            "end_char": 5109
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声弹性成像相关技术无创量化评估肝纤维化进程的体系建立及推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁红;王文平;韩红;孙惠川;黄备建;朱宇莉;薛立云",
+      "id": "out-dc936ec01a40",
+      "evidence": [
+        {
+          "quote": "[奖励] 超声弹性成像相关技术无创量化评估肝纤维化进程的体系建立及推广应用 — 丁红;王文平;韩红;孙惠川;黄备建;朱宇莉;薛立云",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5114,
+            "end_char": 5178
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "二维剪切波弹性成像对原发性肝细胞癌切除术后肝衰竭的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛立云;付甜甜;丁红;朱宇莉;沈英皓;孙惠川;王文平",
+      "id": "out-e5cdef900d48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 二维剪切波弹性成像对原发性肝细胞癌切除术后肝衰竭的预测价值 — 薛立云;付甜甜;丁红;朱宇莉;沈英皓;孙惠川;王文平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5183,
+            "end_char": 5247
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transfer learning radiomics based on multimodal ultrasound imaging for staging liver fibrosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liyun Xue;Zhuoyun Jiang;Tiantian Fu;Qingmin Wang;Yuli Zhu;Meng Dai;Wenping Wang;Jinhua Yu;Hong Ding",
+      "id": "out-bea5914b74d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transfer learning radiomics based on multimodal ultrasound imaging for staging liver fibrosis — Liyun Xue;Zhuoyun Jiang;Tiantian Fu;Qingmin Wang;Yuli Zhu;Meng Dai;Wenping Wang;Jinhua Yu;Hong Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5253,
+            "end_char": 5454
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声联合肿瘤免疫治疗的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "乔晓慧;丁红",
+      "id": "out-9968ec4d5efe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声联合肿瘤免疫治疗的研究进展 — 乔晓慧;丁红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5460,
+            "end_char": 5490
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "计算机辅助超声影像组学预测肝纤维化进程的实验研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "付甜甜;蒋卓韵;丁红;朱宇莉;陈伶俐;王文平;余锦华",
+      "id": "out-f2f646561680",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 计算机辅助超声影像组学预测肝纤维化进程的实验研究 — 付甜甜;蒋卓韵;丁红;朱宇莉;陈伶俐;王文平;余锦华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5496,
+            "end_char": 5555
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Current ultrasound-related strategies for assessing liver fibrosis in chronic liver disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liyun Xue;Hong Ding",
+      "id": "out-3c7d14a38892",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Current ultrasound-related strategies for assessing liver fibrosis in chronic liver disease — Liyun Xue;Hong Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5561,
+            "end_char": 5680
+          },
+          "version": "17bab2d45b1b305608b1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

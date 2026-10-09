@@ -2,15 +2,20 @@
   "doc_id": "6f68e1d236ec5c31eff5",
   "version": "0e9567e36d954d9d0f51",
   "source_hash": "7dea20adcd6b056058881c0491cef41e88e7e1a8fa57509192d955de96904efd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.669798+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:45:44.051396+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-be7410ac812c",
           "name": "甲状腺相关眼病辅助诊断",
-          "desc": "甲状腺相关眼病是最常见的眼眶病，重度TAO治疗效果差，需早期诊断并准确分期分度。",
+          "desc": "TAO是最常见的眼眶病",
           "evidence": [
             {
-              "quote": "甲状腺相关眼病（TAO）是最常见的眼眶病，属自身免疫疾病，重度TAO治疗效果差",
+              "quote": "甲状腺相关眼病（TAO）是最常见的眼眶病，属自身免疫疾病",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 670,
-                "end_char": 708
-              },
-              "version": "0e9567e36d954d9d0f51"
-            }
-          ]
-        },
-        {
-          "id": "item-86786dbd77d1",
-          "name": "社区医务人员早期诊断支持",
-          "desc": "帮助广大社区医务人员早期诊断TAO并准确分期分度，减少误诊漏诊误治。",
-          "evidence": [
-            {
-              "quote": "帮助广大社区医务人员早期诊断TAO并准确分期、分度，进一步依据指南合理治疗并预防TAO进展，有效降低误诊、漏诊率，减少误治",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1008,
-                "end_char": 1068
+                "end_char": 697
               },
               "version": "0e9567e36d954d9d0f51"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-06e3feb80df7",
-          "name": "专业医师极少易漏诊误诊误治",
-          "desc": "眼眶病专业医师数量极少，TAO病情复杂易被非专业医师漏诊、误诊、误治，难以早期诊断和准确分期分度。",
+          "id": "item-13759ccc7663",
+          "name": "非专业医师易漏诊误诊误治",
+          "desc": "难以早期诊断和准确分期分度",
           "evidence": [
             {
-              "quote": "然此专业医师数量极少，且TAO病情复杂，易被非此专业的医师漏诊、误诊、误治",
+              "quote": "易被非此专业的医师漏诊、误诊、误治，主要是难以早期诊断和准确分期、分度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 785
-              },
-              "version": "0e9567e36d954d9d0f51"
-            }
-          ]
-        },
-        {
-          "id": "item-ba8cbf6f7428",
-          "name": "CT评价眼外肌与突出度表现不佳",
-          "desc": "基于冠状与水平CT图像评价眼外肌肿大和眼球突出的准确率并不乐观。",
-          "evidence": [
-            {
-              "quote": "但在冠状CT图像评价眼外肌肿大、水平CT图像评价眼外肌肿大和眼球突出的表现并不乐观",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3745,
-                "end_char": 3785
+                "start_char": 769,
+                "end_char": 803
               },
               "version": "0e9567e36d954d9d0f51"
             }
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ccf093764699",
-          "name": "深度卷积神经网络多阶段建模",
-          "desc": "基于1200余例TAO患者与800余例对照的8万余张外观照和眼眶CT图像，进行分类、检测和分割标注。",
+          "id": "item-e3f1963fcac7",
+          "name": "眼睛定位与角膜巩膜分割模型",
+          "desc": "U-Net",
           "evidence": [
             {
-              "quote": "本研究采用深度卷积神经网络等深度学习技术和机器学习技术，基于我科1200余例TAO患者和800余例其他患者或志愿者的8万余张外观照和眼眶CT图像，进行分类、检测和分割标注",
+              "quote": "对于角膜/巩膜的语义分割，U-Net分割模型的准确率分别达到0.93和0.87",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3258
+                "start_char": 3387,
+                "end_char": 3425
               },
               "version": "0e9567e36d954d9d0f51"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c4e085934ada",
-          "name": "多体征与眼外肌检测模型",
-          "desc": "获得检测眼睑、结膜、角膜、泪阜等体征和眼球运动的模型以及检测眼外肌增粗和眼球突出度的模型。",
+          "id": "item-fa2fe48c906b",
+          "name": "TAO多体征诊断系统",
+          "desc": "7种体征识别",
           "evidence": [
             {
-              "quote": "获得检测眼睑、结膜、角膜、泪阜等相关体征和眼球运动情况的算法模型以及检测眼外肌增粗和眼球突出度的算法模型",
+              "quote": "通过多个阶段的深度学习模型预测，能够有效地识别7种TAO体征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3260,
-                "end_char": 3311
+                "start_char": 3428,
+                "end_char": 3457
               },
               "version": "0e9567e36d954d9d0f51"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-de989d616d48",
-          "name": "图像模型融合与病史修正",
-          "desc": "融合图像检测模型并辅以简单病史修正，获得TAO及其活动性、严重度的AI诊断模型。",
+          "id": "item-80707e86892e",
+          "name": "眼眶CT二维图像诊断",
+          "desc": "仍需更多数据",
           "evidence": [
             {
-              "quote": "融合上述图像检测模型，辅以简单病史修正，即获得TAO及其活动性、严重度的人工智能诊断算法模型",
+              "quote": "基于二维CT图像的人工智能诊断TAO诊断系统仍需要更多的数据和训练来提高其诊断性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3871,
-                "end_char": 3916
+                "start_char": 3828,
+                "end_char": 3868
               },
               "version": "0e9567e36d954d9d0f51"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b4aaefb3a46a",
-          "name": "眼睛定位模型准确度0.98",
-          "desc": "在阈值IoU>0.5的情况下，眼睛定位模型准确度达0.98，可高精度检测正位及左右侧位三种体态。",
+          "id": "item-8d0cb2c0a58c",
+          "name": "眼睛定位模型准确度",
+          "desc": "0.98",
           "evidence": [
             {
               "quote": "在阈值IoU>0.5的情况下，眼睛定位模型的准确度达到0.98",
@@ -163,89 +139,117 @@
               "version": "0e9567e36d954d9d0f51"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-ab9f5b4a57c1",
-          "name": "7种TAO体征识别AUC",
-          "desc": "可有效识别7种TAO体征，除结膜水肿与角膜溃疡外多数体征检测准确率较高，总平均AUC大于0.85。",
+          "id": "item-2840e95670a6",
+          "name": "TAO体征识别性能",
+          "desc": "总平均AUC>0.85，F1 score>0.80",
           "evidence": [
             {
-              "quote": "其准确率（AUC，95%CI）分别为：眼睑退缩 0.93，眼睑水肿 0.90，眼睑充血 0.94，结膜充血 0.91，结膜水肿 0.60，角膜溃疡 0.79，眼球运动障碍 0.91",
+              "quote": "总平均AUCs>0.85（95%CI），F1 score>0.80",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3459,
-                "end_char": 3548
+                "start_char": 3550,
+                "end_char": 3582
               },
               "version": "0e9567e36d954d9d0f51"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-93cc111009af",
-          "name": "CT图像诊断性能仍需提升",
-          "desc": "实验表明基于二维CT图像的TAO AI诊断系统仍需更多数据与训练来提高诊断性能。",
-          "evidence": [
-            {
-              "quote": "实验结果表明，基于二维CT图像的人工智能诊断TAO诊断系统仍需要更多的数据和训练来提高其诊断性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3821,
-                "end_char": 3868
-              },
-              "version": "0e9567e36d954d9d0f51"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-be7410ac812c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-06e3feb80df7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于外观照的甲状腺相关眼病及体征识别系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄潇;魏锐利;琚烈;杨志文;熊健皓;王欣;赵昕;戈宗元;陈羽中;和超;张大磊",
+      "id": "out-324360d89f19",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于外观照的甲状腺相关眼病及体征识别系统 — 黄潇;魏锐利;琚烈;杨志文;熊健皓;王欣;赵昕;戈宗元;陈羽中;和超;张大磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3997,
+            "end_char": 4064
+          },
+          "version": "0e9567e36d954d9d0f51"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-06e3feb80df7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ccf093764699"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "甲状腺相关眼病一本通",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏锐利;黄潇;陆燕;王浩",
+      "id": "out-172900ef9c2d",
+      "evidence": [
+        {
+          "quote": "[专著] 甲状腺相关眼病一本通 — 魏锐利;黄潇;陆燕;王浩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4069,
+            "end_char": 4098
+          },
+          "version": "0e9567e36d954d9d0f51"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c4e085934ada"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ab9f5b4a57c1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-de989d616d48"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b4aaefb3a46a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel homozygous mutation (p.N958K) ofSLC12A3in Gitelman syndrome is associated with endoplasmic reticulum stress",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang W.;Huang X.;Liu Y.;Lv Q.;Li T.;Song Y.;Zhang X.;Chen X.;Shi Y.",
+      "id": "out-a22d02b62932",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel homozygous mutation (p.N958K) ofSLC12A3in Gitelman syndrome is associated with endoplasmic reticulum stress — Tang W.;Huang X.;Liu Y.;Lv Q.;Li T.;Song Y.;Zhang X.;Chen X.;Shi Y.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4103,
+            "end_char": 4294
+          },
+          "version": "0e9567e36d954d9d0f51"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

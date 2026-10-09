@@ -2,15 +2,20 @@
   "doc_id": "13afde2bb378058a23ef",
   "version": "43d08c8b2ff58077adbd",
   "source_hash": "88121e913d48ee14941c21016065c2bc7386132e7a37962198addda692bb038e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.565605+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:29:24.897345+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6a8aeb5cc4c",
-          "name": "先天性心脏病早期筛查",
-          "desc": "先天性心脏病是我国最常见的出生缺陷类型，也是新生儿及儿童期死亡的首要病因。",
+          "id": "item-90278736c189",
+          "name": "先天性心脏病超声筛查诊断",
+          "desc": "心脏超声是先心病筛查及诊断的主要手段",
           "evidence": [
             {
-              "quote": "先天性心脏病是我国最常见的出生缺陷类型，也是新生儿及儿童期死亡的首要病因。",
+              "quote": "心脏超声是先心病筛查及诊断的主要手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 666,
-                "end_char": 702
-              },
-              "version": "43d08c8b2ff58077adbd"
-            }
-          ]
-        },
-        {
-          "id": "item-2aca34fad29a",
-          "name": "基层医院先心病诊断",
-          "desc": "在基层医院由于筛查人员经验和数量不足，导致很多先心病漏诊和误诊。",
-          "evidence": [
-            {
-              "quote": "然而在基层医院，由于筛查人员经验和数量不足，导致很多先心病漏诊和误诊。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 783
+                "start_char": 2599,
+                "end_char": 2616
               },
               "version": "43d08c8b2ff58077adbd"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4e404b7e9d7c",
-          "name": "医疗资源分布不均衡",
-          "desc": "由于我国医疗资源分布不均衡、基层医院经验不足，仍有很多先心病患儿因漏误诊错过最佳治疗时机。",
+          "id": "item-b4839e80773a",
+          "name": "基层经验不足导致漏误诊",
+          "desc": "资源分布不均衡，患儿错过最佳治疗时机",
           "evidence": [
             {
-              "quote": "但由于我国医疗资源分布不均衡，基层医院经验不足，仍有很多先心病患儿因漏误诊而错过最佳治疗时机，甚至危及生命。",
+              "quote": "基层医院经验不足，仍有很多先心病患儿因漏误诊而错过最佳治疗时机",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2618,
-                "end_char": 2671
-              },
-              "version": "43d08c8b2ff58077adbd"
-            }
-          ]
-        },
-        {
-          "id": "item-1933699e902d",
-          "name": "经验积累依赖难以替代",
-          "desc": "以机器学习代替长期经验积累，构建先心病辅助诊断系统。",
-          "evidence": [
-            {
-              "quote": "以机器学习代替长期经验积累",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3255,
-                "end_char": 3267
+                "start_char": 2633,
+                "end_char": 2663
               },
               "version": "43d08c8b2ff58077adbd"
             }
@@ -97,7 +70,7 @@
         {
           "id": "item-082d0bfb85a9",
           "name": "五标准切面分类识别方法",
-          "desc": "提出利用胸骨旁左室长轴切面、胸骨旁大动脉短轴切面、心尖四腔心切面、剑突下双房切面及胸骨上窝主动脉弓长轴切面完成先心病分类识别。",
+          "desc": "五个标准切面完成先心病分类识别并申请专利",
           "evidence": [
             {
               "quote": "提出利用5个标准切面，即胸骨旁左室长轴切面、胸骨旁大动脉短轴切面、心尖四腔心切面、剑突下双房切面以及胸骨上窝主动脉弓长轴切面完成对先心病的分类识别方法并申请专利",
@@ -108,28 +81,30 @@
               },
               "version": "43d08c8b2ff58077adbd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c5e06620020b",
-          "name": "TCN网络二维视频模型",
-          "desc": "建立基于5切面二维超声视频影像的深度聚合框架模型，选用TCN网络建立二维视频模型。",
+          "id": "item-18f0445744b0",
+          "name": "TCN二维超声视频模型",
+          "desc": "五切面二维超声视频深度聚合",
           "evidence": [
             {
-              "quote": "团队进一步建立基于5切面二维超声视频影像的深度聚合框架模型进行分类诊断，选用TCN网络建立二维视频模型",
+              "quote": "选用TCN网络建立二维视频模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2989,
+                "start_char": 3025,
                 "end_char": 3039
               },
               "version": "43d08c8b2ff58077adbd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a2f6d6132804",
-          "name": "彩色多普勒与二维全融合",
-          "desc": "构建5个标准切面彩色多普勒影像和二维超声影像全融合模型。",
+          "id": "item-bcdd1f90965c",
+          "name": "彩色多普勒与二维超声全融合模型",
+          "desc": "五个标准切面全融合",
           "evidence": [
             {
               "quote": "构建了5个标准切面彩色多普勒影像和二维超声影像全融合模型",
@@ -140,7 +115,8 @@
               },
               "version": "43d08c8b2ff58077adbd"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +125,47 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d0fcc2b3d24c",
-          "name": "20万数据先心病影像数据库",
-          "desc": "建立超过3000人、20万数据的先心病超声影像数据库。",
+          "id": "item-e522aeb604d3",
+          "name": "先心病超声影像数据库",
+          "desc": "超过3000人、20万数据",
           "evidence": [
             {
-              "quote": "建立了超过3000人，20万数据的先心病超声影像数据库，对医学大数据进行科学管理",
+              "quote": "首先建立了超过3000人，20万数据的先心病超声影像数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2711,
-                "end_char": 2750
+                "start_char": 2709,
+                "end_char": 2737
               },
               "version": "43d08c8b2ff58077adbd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-13186a48911d",
-          "name": "全融合模型分类准确度",
-          "desc": "全融合模型在判断是否为先心病以及在正常、VSD或ASD三分类诊断方面准确度分别可达96.5%和93.1%。",
+          "id": "item-52bf75b518b6",
+          "name": "二维影像辅助分类诊断系统",
+          "desc": "判断先心病准确度95.4%，三分类92.3%",
+          "evidence": [
+            {
+              "quote": "当前模型在判断是否为先心病方面准确度为95.4％，在正常、VSD或ASD三分类诊断方面的准确度为92.3％",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2916,
+                "end_char": 2968
+              },
+              "version": "43d08c8b2ff58077adbd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-012972702091",
+          "name": "全融合模型分类效果",
+          "desc": "准确度分别可达96.5%和93.1%",
           "evidence": [
             {
               "quote": "在判断是否为先心病以及在正常、VSD或ASD三分类诊断方面的准确度分别可达96.5%和93.1%",
@@ -180,24 +177,9 @@
               "version": "43d08c8b2ff58077adbd"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-650e20c1fcff",
-          "name": "首个超声二维影像辅助诊断系统",
-          "desc": "建立了国际上首个基于超声二维影像的人工智能先心病辅助分类诊断系统。",
-          "evidence": [
-            {
-              "quote": "建立了国际上首个基于超声二维影像的人工智能先心病辅助分类诊断系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2876,
-                "end_char": 2907
-              },
-              "version": "43d08c8b2ff58077adbd"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +187,87 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-2aca34fad29a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4e404b7e9d7c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1933699e902d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-082d0bfb85a9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a2f6d6132804"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-13186a48911d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c5e06620020b"
+        "item_id": "item-012972702091"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-650e20c1fcff"
+        "dimension": "技术",
+        "item_id": "item-bcdd1f90965c"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在判断是否为先心病以及在正常、VSD或ASD三分类诊断方面的准确度分别可达96.5%和93.1%",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3176,
+            "end_char": 3223
+          },
+          "version": "43d08c8b2ff58077adbd"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "先天性心脏病的超声心动图识别方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张鑫;王晶",
+      "id": "out-79bc12fa090a",
+      "evidence": [
+        {
+          "quote": "[专利] 先天性心脏病的超声心动图识别方法及装置 — 张鑫;王晶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3418
+          },
+          "version": "43d08c8b2ff58077adbd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated interpretation of congenital heart disease from multi-view echocardiograms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Wang;Xiaofeng Liu;Fangyun Wang;Lin Zheng;Fengqiao Gao;Hanwen Zhang;Xin Zhang;Wanqing Xie;Binbin Wang",
+      "id": "out-cf30ec1a4404",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated interpretation of congenital heart disease from multi-view echocardiograms — Jing Wang;Xiaofeng Liu;Fangyun Wang;Lin Zheng;Fengqiao Gao;Hanwen Zhang;Xin Zhang;Wanqing Xie;Binbin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3423,
+            "end_char": 3621
+          },
+          "version": "43d08c8b2ff58077adbd"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

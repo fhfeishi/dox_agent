@@ -2,15 +2,20 @@
   "doc_id": "613db85a76220fce6bac",
   "version": "260a5dcab874240312b2",
   "source_hash": "fda2a8fec2721e0319a1dc5c2ab9103aa71033104c7c4d6d2f74d8825cf19410",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.180656+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:23.662333+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a8202f61da8",
-          "name": "代谢综合征膳食模式与精准营养干预",
-          "desc": "面向与膳食营养密切相关的代谢综合征，利用AR与机器学习精准研究膳食模式及干预机制。",
+          "id": "item-3b1bd1fcfcb3",
+          "name": "代谢综合征膳食模式与精准营养",
+          "desc": "MS发病率持续升高",
           "evidence": [
             {
-              "quote": "在我国，与膳食营养因素密切相关的代谢综合征(MS)发病逐年升高，成为亟待解决的公共卫生问题",
+              "quote": "我国代谢综合征（MS）发病率持续升高，与不合理膳食密切相关，成为亟待解决的公共卫生问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 719
+                "start_char": 3115,
+                "end_char": 3157
               },
               "version": "260a5dcab874240312b2"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff62c7dc39c5",
-          "name": "真实世界膳食调查依从性差且误差大",
-          "desc": "当前膳食调查在真实世界场景中存在依从性差、误差大等瓶颈，亟需构建科学高效的真实世界膳食评估系统。",
+          "id": "item-be8f39b9d8e0",
+          "name": "真实世界膳食调查依从性差、误差大",
+          "desc": "传统调查瓶颈",
           "evidence": [
             {
-              "quote": "当前膳食调查在真实世界场景中存在依从性差、误差大等瓶颈，构建科学高效的真实世界膳食评估系统，是国际营养学研究的重要前沿",
+              "quote": "当前膳食调查在真实世界场景中存在依从性差、误差大等瓶颈",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3159,
-                "end_char": 3217
+                "end_char": 3185
               },
               "version": "260a5dcab874240312b2"
             }
@@ -63,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb24a168e0dc",
-          "name": "AR膳食调查系统与机器学习互验膳食模式",
-          "desc": "通过增强现实技术人机互动建立新型膳食调查系统并做信度效度检验，在大样本人群队列中用两种机器学习方法计算互验MS相关膳食模式，并用体内外模型解析机制。",
+          "id": "item-e7d0fd3578a4",
+          "name": "增强现实AR新型膳食调查系统",
+          "desc": "人机互动并进行信度效度检验",
           "evidence": [
             {
               "quote": "通过增强现实技术（AR）人机互动建立新型膳食调查系统并进行信度效度检验",
@@ -76,7 +81,25 @@
               },
               "version": "260a5dcab874240312b2"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-635ee36e026f",
+          "name": "两种机器学习互验MS相关膳食模式",
+          "desc": "大样本队列与横断面研究",
+          "evidence": [
+            {
+              "quote": "进行大样本人群队列与横断面研究，通过两种机器学习计算互验MS相关膳食模式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 896,
+                "end_char": 931
+              },
+              "version": "260a5dcab874240312b2"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,526 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6f6293a7ad4",
-          "name": "建立AR膳食调查系统并识别MS相关膳食模式",
-          "desc": "建立基于AR的新型膳食调查系统、识别与MS改善相关的膳食模式，并开展膳食方式及靶向干预的健康效应评估；成果发表于JAMA、Cancer Cell、GUT等国际顶级期刊。",
+          "id": "item-0df108afb0f3",
+          "name": "基于AR的新型膳食调查系统",
+          "desc": "已建立",
           "evidence": [
             {
-              "quote": "项目团队建立了基于AR的新型膳食调查系统；识别与MS改善相关的膳食模式",
+              "quote": "项目团队建立了基于AR的新型膳食调查系统",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3444,
-                "end_char": 3478
+                "end_char": 3463
               },
               "version": "260a5dcab874240312b2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-59372eae2353",
+          "name": "高水平期刊发表",
+          "desc": "JAMA、Cancer Cell等，3篇ESI高被引",
+          "evidence": [
+            {
+              "quote": "研究成果发表在JAMA、Cancer Cell、GUT、Ann Intern Med、Nat Micro、Cell Reports Medicine、Nat Commun、Cardiovascular Diabetology、Hypertension等国际顶级学术期刊，其中3篇论文为ESI高被引",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3574,
+                "end_char": 3721
+              },
+              "version": "260a5dcab874240312b2"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6a8202f61da8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ff62c7dc39c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The intratumor mycobiome promotes lung cancer progression via myeloid-derived suppressor cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu NN;Yi CX;Wei LQ;Zhou JA;Jiang T;Hu CC;Wang L;Wang YY;Zou Y;Zhao YK;Zhang LL;Nie YT;Zhu YJ;Yi XY;Zeng LB;Li JQ;Huang XT;Ji HB;Kozlakidis Z;Zhong L;Heeschen C;Zheng XQ;Chen C;Zhang P;Wang H",
+      "id": "out-b1ed647ea9b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The intratumor mycobiome promotes lung cancer progression via myeloid-derived suppressor cells — Liu NN;Yi CX;Wei LQ;Zhou JA;Jiang T;Hu CC;Wang L;Wang YY;Zou Y;Zhao YK;Zhang LL;Nie YT;Zhu YJ;Yi XY;Zeng LB;Li JQ;Huang XT;Ji HB;Kozlakidis Z;Zhong L;Heeschen C;Zheng XQ;Chen C;Zhang P;Wang H",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3785,
+            "end_char": 4079
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ff62c7dc39c5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cb24a168e0dc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Omics Profiles of Small Intestine Organoids in Reaction to Breast Milk and Different Infant Formula Preparations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianli Wang;Shangzhi Yang;Chengdong Zheng;Chenxuan Huang;Haiyang Yao;Zimo Guo;Yilun Wu;Zening Wang;Zhenyang Wu;Ruihong Ge;Wei Cheng;Yuanyuan Yan;Shilong Jiang;Jianguo Sun;Xiaoguang Li;Qinggang Xie;Hui Wang",
+      "id": "out-ac53f21510ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Omics Profiles of Small Intestine Organoids in Reaction to Breast Milk and Different Infant Formula Preparations — Xianli Wang;Shangzhi Yang;Chengdong Zheng;Chenxuan Huang;Haiyang Yao;Zimo Guo;Yilun Wu;Zening Wang;Zhenyang Wu;Ruihong Ge;Wei Cheng;Yuanyuan Yan;Shilong Jiang;Jianguo Sun;Xiaoguang Li;Qinggang Xie;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4084,
+            "end_char": 4416
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cb24a168e0dc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d6f6293a7ad4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于主动健康码的个体健康状态可视化评价方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧",
+      "id": "out-2f04c3a0e642",
+      "evidence": [
+        {
+          "quote": "[专利] 基于主动健康码的个体健康状态可视化评价方法及系统 — 王慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4421,
+            "end_char": 4454
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌预后标记物及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧;何牮",
+      "id": "out-354d853a04ac",
+      "evidence": [
+        {
+          "quote": "[专利] 肺癌预后标记物及其应用 — 王慧;何牮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4459,
+            "end_char": 4482
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trends in Prevalence of Diabetes and Control of Risk Factors in Diabetes Among US Adults, 1999-2018",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wang;Xiaoguang Li;Zhaoxin Wang;Michael P Bancks;Mercedes R Carnethon;Philip Greenland;Ying-Qing Feng;Hui Wang;Victor W Zhong",
+      "id": "out-26e2298d3278",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trends in Prevalence of Diabetes and Control of Risk Factors in Diabetes Among US Adults, 1999-2018 — Li Wang;Xiaoguang Li;Zhaoxin Wang;Michael P Bancks;Mercedes R Carnethon;Philip Greenland;Ying-Qing Feng;Hui Wang;Victor W Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4487,
+            "end_char": 4722
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bidirectional Mendelian Randomization Analysis of Genetic Proxies of Plasma Fatty Acids and Pre-Eclampsia Risk",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingqi Zhou;Shuo Jiang;Dangyun Liu;Xinyi Li;Ziyi Zhou;Zhiheng Wang;Hui Wang",
+      "id": "out-b3aaa0ddcc43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bidirectional Mendelian Randomization Analysis of Genetic Proxies of Plasma Fatty Acids and Pre-Eclampsia Risk — Jingqi Zhou;Shuo Jiang;Dangyun Liu;Xinyi Li;Ziyi Zhou;Zhiheng Wang;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4727,
+            "end_char": 4921
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Achievement of Guideline-Recommended Targets in Diabetes Care in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Victor W. Zhong;Dongmei Yu;Liyun Zhao;Yuxiang Yang;Xiaoguang Li;Yuge Li;Yue Huang;Gangqiang Ding;Hui Wang",
+      "id": "out-e7bbbd520530",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Achievement of Guideline-Recommended Targets in Diabetes Care in China — Victor W. Zhong;Dongmei Yu;Liyun Zhao;Yuxiang Yang;Xiaoguang Li;Yuge Li;Yue Huang;Gangqiang Ding;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4926,
+            "end_char": 5110
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of Four Dietary Patterns and Stair Climbing with Major Adverse Cardiovascular Events: A Large Population-Based Prospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kexin Li;Yanqiu Huang;Liao Wang;Yong Yuan;Xu Jiang;Yang Yang;Qingyun Huang;Hui Wang",
+      "id": "out-b66f8d6174e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of Four Dietary Patterns and Stair Climbing with Major Adverse Cardiovascular Events: A Large Population-Based Prospective Cohort Study — Kexin Li;Yanqiu Huang;Liao Wang;Yong Yuan;Xu Jiang;Yang Yang;Qingyun Huang;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5115,
+            "end_char": 5354
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Combined Effects of the Most Important Dietary Patterns on the Incidence and Prevalence of Chronic Renal Failure: Results from the US National Health and Nutrition Examination Survey and Mendelian Analyses",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanqiu Huang;Shiyu Xu;Tingya Wan;Xiaoyu Wang;Shuo Jiang;Wentao Shi;Shuai Ma;Hui Wang",
+      "id": "out-6c3cc9a523f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Combined Effects of the Most Important Dietary Patterns on the Incidence and Prevalence of Chronic Renal Failure: Results from the US National Health and Nutrition Examination Survey and Mendelian Analyses — Yanqiu Huang;Shiyu Xu;Tingya Wan;Xiaoyu Wang;Shuo Jiang;Wentao Shi;Shuai Ma;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5661
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between Lifestyle Modification and All-Cause, Cardiovascular, and Premature Mortality in Individuals with Non-Alcoholic Fatty Liver Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanqiu Huang;Jinfan Xu;Yang Yang;Tingya Wan;Hui Wang;Xiaoguang Li",
+      "id": "out-6e76b97e20bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between Lifestyle Modification and All-Cause, Cardiovascular, and Premature Mortality in Individuals with Non-Alcoholic Fatty Liver Disease — Yanqiu Huang;Jinfan Xu;Yang Yang;Tingya Wan;Hui Wang;Xiaoguang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5667,
+            "end_char": 5892
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "固液混合食物体积的计算方法和系统及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧",
+      "id": "out-baa144bc227e",
+      "evidence": [
+        {
+          "quote": "[专利] 固液混合食物体积的计算方法和系统及设备 — 王慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5898,
+            "end_char": 5926
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcriptome and metabolome analyses reveal the effects of formula and breast milk on the growth and development of human small intestinal organoids",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianli Wang;Yiming Zhong;Chengdong Zheng;Chenxuan Huang;Haiyang Yao;Zimo Guo;Yilun Wu;Zening Wang;Zhengyang Wu;Ruihong Ge;Wei Cheng;Yuanyuan Yan;Shilong Jiang;Jianguo Sun;Jingquan Li;Qinggang Xie;Xiaoguang Li;Hui Wang",
+      "id": "out-8f4adde09b9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcriptome and metabolome analyses reveal the effects of formula and breast milk on the growth and development of human small intestinal organoids — Xianli Wang;Yiming Zhong;Chengdong Zheng;Chenxuan Huang;Haiyang Yao;Zimo Guo;Yilun Wu;Zening Wang;Zhengyang Wu;Ruihong Ge;Wei Cheng;Yuanyuan Yan;Shilong Jiang;Jianguo Sun;Jingquan Li;Qinggang Xie;Xiaoguang Li;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5932,
+            "end_char": 6307
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of dietary depression index in Chinese adults",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Min Gao;Jiali Zheng;Fangyu Li;Yumeng Yan;Yin Wu;Sha Li;Jun Li;Xiaoguang Li;Hui Wang",
+      "id": "out-4b63aac7ff53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of dietary depression index in Chinese adults — Min Gao;Jiali Zheng;Fangyu Li;Yumeng Yan;Yin Wu;Sha Li;Jun Li;Xiaoguang Li;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6313,
+            "end_char": 6477
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Environmental eustress modulates β-ARs/CCL2 axis to induce anti-tumor immunity and sensitize immunotherapy against liver cancer in mice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaobao Liu;Yang Yang;Cheng Chen;Ling Li;Jingquan Li;Xiaonan Wang;Qiao Chu;Lin Qiu;Qian Ba;Xiaoguang Li;Hui Wang",
+      "id": "out-802a88615b62",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Environmental eustress modulates β-ARs/CCL2 axis to induce anti-tumor immunity and sensitize immunotherapy against liver cancer in mice — Chaobao Liu;Yang Yang;Cheng Chen;Ling Li;Jingquan Li;Xiaonan Wang;Qiao Chu;Lin Qiu;Qian Ba;Xiaoguang Li;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6483,
+            "end_char": 6739
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非接触式计算机视觉食物营养素识别方法和系统及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧",
+      "id": "out-9f309987791a",
+      "evidence": [
+        {
+          "quote": "[专利] 非接触式计算机视觉食物营养素识别方法和系统及设备 — 王慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6745,
+            "end_char": 6778
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "固体食物体积的计算方法和系统及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧",
+      "id": "out-a813b330dc44",
+      "evidence": [
+        {
+          "quote": "[专利] 固体食物体积的计算方法和系统及设备 — 王慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6784,
+            "end_char": 6810
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inflammatory markers link triglyceride-glucose index and obesity indicators with adverse cardiovascular events in patients with hypertension: insights from three cohorts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Yanqiu;Zhou Yi;Xu Yadan;Wang Xiaoyu;Zhou Ziyi;Wu Kang;Meng Qiqi;Wang Liao;Yang Yang;Gao Hong;Ji Juan;Jiang Xu;Yang Yang;Hao Lipeng;Wang Hui",
+      "id": "out-635ff04fbaa7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inflammatory markers link triglyceride-glucose index and obesity indicators with adverse cardiovascular events in patients with hypertension: insights from three cohorts — Huang Yanqiu;Zhou Yi;Xu Yadan;Wang Xiaoyu;Zhou Ziyi;Wu Kang;Meng Qiqi;Wang Liao;Yang Yang;Gao Hong;Ji Juan;Jiang Xu;Yang Yang;Hao Lipeng;Wang Hui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6816,
+            "end_char": 7139
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Glutamine metabolic competition drives immunosuppressive reprogramming of intratumour GPR109A+myeloid cells to promote liver cancer progression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Tianduo Pei;Chaobao Liu;Mingtao Cao;Xiaolin Hu;Jie Yuan;Fengqian Chen;Bao Guo;Yuemei Hong;Jibin Liu;Bin Li;Xiaoguang Li;Hui Wang",
+      "id": "out-47acf808ffb0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Glutamine metabolic competition drives immunosuppressive reprogramming of intratumour GPR109A+myeloid cells to promote liver cancer progression — Yang Yang;Tianduo Pei;Chaobao Liu;Mingtao Cao;Xiaolin Hu;Jie Yuan;Fengqian Chen;Bao Guo;Yuemei Hong;Jibin Liu;Bin Li;Xiaoguang Li;Hui Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7145,
+            "end_char": 7435
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rebalancing TGF-β/Smad7 signaling via Compound kushen injection in hepatic stellate cells protects against liver fibrosis and hepatocarcinogenesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Sun Mayu;Li Weida;Liu Chaobao;Jiang Zheshun;Gu Pengfei;Li Jingquan;Wang Wei;You Rongli;Ba Qian;Li Xiaoguang;Wang Hui",
+      "id": "out-d75c03e3587e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rebalancing TGF-β/Smad7 signaling via Compound kushen injection in hepatic stellate cells protects against liver fibrosis and hepatocarcinogenesis — Yang Yang;Sun Mayu;Li Weida;Liu Chaobao;Jiang Zheshun;Gu Pengfei;Li Jingquan;Wang Wei;You Rongli;Ba Qian;Li Xiaoguang;Wang Hui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7441,
+            "end_char": 7722
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于遗传算法的个性化精准营养食谱推荐方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧",
+      "id": "out-8d4464e0607f",
+      "evidence": [
+        {
+          "quote": "[专利] 基于遗传算法的个性化精准营养食谱推荐方法及系统 — 王慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7728,
+            "end_char": 7760
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于主动健康指数的健康干预系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王慧;高翔;周良;李晓光",
+      "id": "out-917ddca19547",
+      "evidence": [
+        {
+          "quote": "[专利] 基于主动健康指数的健康干预系统 — 王慧;高翔;周良;李晓光",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7766,
+            "end_char": 7800
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The interplay between tissue-resident microbiome and host proteins by integrated multi-omics during progression of colorectal adenoma to carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Di;Wang An-Jun;Bu De-Chao;Sun Yan-Yan;Li Chen-Hao;Hong Yue-Mei;Zhang Shan;Chen Shi-Yang;Zhou Jin-An;Zhang Tian-Yi;Yu Min-Hao;Ma Yong-Jing;Wang Xiu-Li;Xu Jia;He Wei;Heeschen Christopher;Chen Jian-Feng;Mao Wen-Jun;Ding Hui;Wu Wen-Juan;Zhao Yi;Wang Hui;Liu Ning-Ning",
+      "id": "out-9e06044a159b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The interplay between tissue-resident microbiome and host proteins by integrated multi-omics during progression of colorectal adenoma to carcinoma — Wu Di;Wang An-Jun;Bu De-Chao;Sun Yan-Yan;Li Chen-Hao;Hong Yue-Mei;Zhang Shan;Chen Shi-Yang;Zhou Jin-An;Zhang Tian-Yi;Yu Min-Hao;Ma Yong-Jing;Wang Xiu-Li;Xu Jia;He Wei;Heeschen Christopher;Chen Jian-Feng;Mao Wen-Jun;Ding Hui;Wu Wen-Juan;Zhao Yi;Wang Hui;Liu Ning-Ning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7806,
+            "end_char": 8227
+          },
+          "version": "260a5dcab874240312b2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

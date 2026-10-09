@@ -2,15 +2,20 @@
   "doc_id": "76554ee3e282378005bf",
   "version": "551d022a53c042814b5c",
   "source_hash": "6e071e7bfd2239e75c4792023b3c8d1a72acb6d6ee056c260fe134096c37eb2c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.200732+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:44.322542+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f61c1c65bf0",
-          "name": "以健康状态为核心的中医人工智能诊疗系统",
-          "desc": "面向中医诊断现代化，以健康状态辨识为核心构建融合云计算与大数据的中医人工智能诊疗系统。",
+          "id": "item-b9494c5566d9",
+          "name": "中医诊疗现代化",
+          "desc": "状态辨识与人工智能结合",
           "evidence": [
             {
-              "quote": "基于云计算和大数据技术的中医人工智能诊疗系统研发是中医药发展的趋势和必然",
+              "quote": "中医诊断现代化是中医现代化的必要条件，状态辨识和人工智能相结合的中医诊疗系统是实现中医诊断现代化的重要手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 684
+                "start_char": 2831,
+                "end_char": 2883
               },
               "version": "551d022a53c042814b5c"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7182a140a28c",
-          "name": "缺乏系统理论支撑致四诊合参缺失与模型偏差",
-          "desc": "由于缺乏系统理论支撑，现代人工智能优势难以发挥，四诊合参的缺失和模型算法的偏差成为制约中医智能诊疗发展的关键。",
+          "id": "item-33bd2d5409c0",
+          "name": "四诊合参缺失与模型算法偏差",
+          "desc": "缺乏系统理论支撑",
           "evidence": [
             {
-              "quote": "但是，由于缺乏系统的理论支撑，现代人工智能的优势难以发挥，由此产生的四诊合参的缺失和模型算法的偏差成为制约本领域发展的关键",
+              "quote": "由于缺乏系统的理论支撑，现代人工智能的优势难以发挥，由此产生的四诊合参的缺失和模型算法的偏差成为制约本领域发展的关键",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 717,
+                "start_char": 720,
                 "end_char": 777
               },
               "version": "551d022a53c042814b5c"
@@ -63,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eb46841c7a68",
-          "name": "四诊客观化采集与多核学习融合及多标记辨证算法",
-          "desc": "以状态辨识为核心从宏中微三观构建四诊参数体系实现758个参数客观化采集，采用协同训练与多核学习解决多源异构信息融合，并构建多标记学习辨证诊断算法。",
+          "id": "item-67783ce37bbc",
+          "name": "四诊信息采集系统",
+          "desc": "758个参数客观化采集",
+          "evidence": [
+            {
+              "quote": "自主研发了四诊信息采集系统，实现对758个参数的客观化采集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3132,
+                "end_char": 3160
+              },
+              "version": "551d022a53c042814b5c"
+            }
+          ],
+          "role": "配套-感知"
+        },
+        {
+          "id": "item-e497048af2c5",
+          "name": "协同训练与多核学习四诊信息融合",
+          "desc": "解决多源异构信息融合",
           "evidence": [
             {
               "quote": "采用协同训练、多核学习的方法解决四诊多源异构信息融合的技术难点，实现四诊合参",
@@ -76,7 +98,42 @@
               },
               "version": "551d022a53c042814b5c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-64d59571b3f5",
+          "name": "辨证诊断多标记学习算法",
+          "desc": "健康状态定量诊断",
+          "evidence": [
+            {
+              "quote": "构建辨证诊断多标记学习算法，实现健康状态的可测量",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3252,
+                "end_char": 3275
+              },
+              "version": "551d022a53c042814b5c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d81f37cac91c",
+          "name": "中医干预方案知识库",
+          "desc": "知识规则与相似度算法自动推荐",
+          "evidence": [
+            {
+              "quote": "采用知识规则与相似度算法相结合，自动推荐最优配治疗方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3378,
+                "end_char": 3404
+              },
+              "version": "551d022a53c042814b5c"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +142,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad1529c1a6bd",
-          "name": "10万例医案验证与1000例现实案例运行试验",
-          "desc": "采用临床10万例医案进行系统性能验证，并采集1000例现实案例进行系统运行试验，结果良好，实现了中医诊疗的客观化、规范化、智能化。",
+          "id": "item-954ac819cc58",
+          "name": "中医人工智能诊疗系统",
+          "desc": "融合AI、云计算、大数据的三位一体系统",
+          "evidence": [
+            {
+              "quote": "以状态为核心，构建了融合人工智能、云计算、大数据技术的三位一体的中医人工智能诊疗系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3486,
+                "end_char": 3527
+              },
+              "version": "551d022a53c042814b5c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c08ddf4cd04b",
+          "name": "系统性能验证",
+          "desc": "10万例医案验证与1000例现实案例试验",
           "evidence": [
             {
               "quote": "采用临床10万例医案进行了系统性能验证，并采集1000例现实案例进行系统运行试验，结果良好",
@@ -99,44 +175,1022 @@
               "version": "551d022a53c042814b5c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5f61c1c65bf0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7182a140a28c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于阈值技术和灰度投影的舌图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;李佐勇;周常恩;朱龙;林雪娟;刘伟霞;吴长汶;辛基梁;闵莉;俞洁",
+      "id": "out-2ce341a8b3ce",
+      "evidence": [
+        {
+          "quote": "[专利] 基于阈值技术和灰度投影的舌图像分割方法 — 李灿东;李佐勇;周常恩;朱龙;林雪娟;刘伟霞;吴长汶;辛基梁;闵莉;俞洁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3659,
+            "end_char": 3721
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7182a140a28c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-eb46841c7a68"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“五辨”思维辨识2型糖尿病状态",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "翁慧;吴长汶;陈谦峰;李绍滋;李灿东",
+      "id": "out-5761939f4c08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] “五辨”思维辨识2型糖尿病状态 — 翁慧;吴长汶;陈谦峰;李绍滋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3726,
+            "end_char": 3768
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-eb46841c7a68"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ad1529c1a6bd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint multilabel classification and feature selection based on deep canonical correlation analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Dai;Guodong Du;Jia Zhang;Candong Li;Rong Wei;Shaozi Li",
+      "id": "out-0f60a7eecc00",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint multilabel classification and feature selection based on deep canonical correlation analysis — Liang Dai;Guodong Du;Jia Zhang;Candong Li;Rong Wei;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3773,
+            "end_char": 3940
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "以“逆陷、散郁”补充八纲的设想",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "詹杰;李思汉;李书楠;陈聪明;李灿东",
+      "id": "out-154b3a4e67fe",
+      "evidence": [
+        {
+          "quote": "[奖励] 以“逆陷、散郁”补充八纲的设想 — 詹杰;李思汉;李书楠;陈聪明;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3945,
+            "end_char": 3985
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning from class-imbalance and heterogeneous data for 30-day hospital readmission",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guodong Du;Jia Zhang;Shaozi Li;Candong Li",
+      "id": "out-23fc0481e6ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning from class-imbalance and heterogeneous data for 30-day hospital readmission — Guodong Du;Jia Zhang;Shaozi Li;Candong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3990,
+            "end_char": 4124
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种健康检测镜子",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;朱龙;周常恩;胡将;雷黄伟;张傑屹;于路",
+      "id": "out-785195261779",
+      "evidence": [
+        {
+          "quote": "[专利] 一种健康检测镜子 — 李灿东;朱龙;周常恩;胡将;雷黄伟;张傑屹;于路",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4129,
+            "end_char": 4168
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "状态辨识与中医健康管理的特点",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东",
+      "id": "out-4471e8655083",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 状态辨识与中医健康管理的特点 — 李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4173,
+            "end_char": 4199
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医健康状态辨识中的多标记分类方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "辛基梁;张佳;李绍滋;李灿东",
+      "id": "out-d462679e8ccf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医健康状态辨识中的多标记分类方法研究 — 辛基梁;张佳;李绍滋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4204,
+            "end_char": 4246
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于整体观念的中医皮肤望诊体系构建",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈谦峰;靖媛;李书楠;梁永辉;李灿东",
+      "id": "out-247c738c3832",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于整体观念的中医皮肤望诊体系构建 — 陈谦峰;靖媛;李书楠;梁永辉;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4251,
+            "end_char": 4295
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "四诊合参古之论",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文;李思汉;詹杰;婧媛;徐云浩;王洋;李灿东",
+      "id": "out-9ee73cae108a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 四诊合参古之论 — 赵文;李思汉;詹杰;婧媛;徐云浩;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4301,
+            "end_char": 4340
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于状态辨识的中医诊断思维训练新模式研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李永;赵文;詹杰;雷黄伟;林雪娟;李灿东",
+      "id": "out-ec68d236718d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于状态辨识的中医诊断思维训练新模式研究 — 李永;赵文;詹杰;雷黄伟;林雪娟;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4346,
+            "end_char": 4395
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“因发知受”是中医诊断思维的体现",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈谦峰;李灿东",
+      "id": "out-c70f986b3fc2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] “因发知受”是中医诊断思维的体现 — 陈谦峰;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4401,
+            "end_char": 4433
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An iterative transfer learning framework for cross‐domain tongue segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Li;Zhiming Luo;Mengting Zhang;Yuanzheng Cai;Candong Li;Shaozi Li",
+      "id": "out-c0e11d2853d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An iterative transfer learning framework for cross‐domain tongue segmentation — Lei Li;Zhiming Luo;Mengting Zhang;Yuanzheng Cai;Candong Li;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4593
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于健康状态辨识的中医健康管理",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;赵文;徐佳君",
+      "id": "out-a034e9905e5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于健康状态辨识的中医健康管理 — 李灿东;赵文;徐佳君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4599,
+            "end_char": 4633
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医药临床疗效循证评价的现状与对策研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷黄伟;吴清杰;陈子文;杨朝阳;李灿东",
+      "id": "out-2cbcaceaa1be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医药临床疗效循证评价的现状与对策研究 — 雷黄伟;吴清杰;陈子文;杨朝阳;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4639,
+            "end_char": 4686
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医辨证的原则",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "詹杰;邓丽金;翁慧;陈启亮;雷黄伟;夏淑洁;王洋;李灿东",
+      "id": "out-c2207388a7af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医辨证的原则 — 詹杰;邓丽金;翁慧;陈启亮;雷黄伟;夏淑洁;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4692,
+            "end_char": 4736
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hand gesture recognition based on attentive feature fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Yu;Zhiming Luo;Huangbin Wu;Shaozi Li",
+      "id": "out-de430ada574e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hand gesture recognition based on attentive feature fusion — Bin Yu;Zhiming Luo;Huangbin Wu;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4742,
+            "end_char": 4849
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种中医四诊太空舱",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;林雪娟;陈淑娇;俞洁;周常恩;朱龙;吴长汶;辛基梁",
+      "id": "out-6948420723e6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种中医四诊太空舱 — 李灿东;林雪娟;陈淑娇;俞洁;周常恩;朱龙;吴长汶;辛基梁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4900
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医健康管理与人工智能",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;辛基梁;雷黄伟;周常恩;朱龙",
+      "id": "out-f8575afeb901",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医健康管理与人工智能 — 李灿东;辛基梁;雷黄伟;周常恩;朱龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4906,
+            "end_char": 4944
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "从“因发知受”到中医状态辨识",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏淑洁;李书楠;林雪娟;朱龙;李灿东",
+      "id": "out-c6be79403e54",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 从“因发知受”到中医状态辨识 — 夏淑洁;李书楠;林雪娟;朱龙;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4950,
+            "end_char": 4991
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-source heterogeneous data analytic method for future price fluctuation prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Chai;Hongfeng Xu;Zhiming Luo;Shaozi Li",
+      "id": "out-f9d297e9c1c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-source heterogeneous data analytic method for future price fluctuation prediction — Lei Chai;Hongfeng Xu;Zhiming Luo;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4997,
+            "end_char": 5137
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于健康状态探讨治未病现代发展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文;李思汉;李灿东",
+      "id": "out-f31d57651e27",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于健康状态探讨治未病现代发展 — 赵文;李思汉;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5143,
+            "end_char": 5175
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《黄帝内经》中“衰”与“老”的状态辨识",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陶文娟;吕忠宽;陈谦峰;李灿东",
+      "id": "out-56dab4cb2f41",
+      "evidence": [
+        {
+          "quote": "[奖励] 《黄帝内经》中“衰”与“老”的状态辨识 — 陶文娟;吕忠宽;陈谦峰;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5181,
+            "end_char": 5222
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医健康管理与整体观念",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;夏淑洁;雷黄伟",
+      "id": "out-0c0fb5996942",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医健康管理与整体观念 — 李灿东;夏淑洁;雷黄伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5228,
+            "end_char": 5259
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医健康管理的关键技术与方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;夏淑洁;徐佳君",
+      "id": "out-16ebb8bead4d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医健康管理的关键技术与方法 — 李灿东;夏淑洁;徐佳君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5265,
+            "end_char": 5299
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A weakly supervised tooth‐mark and crack detection method in tongue image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui Weng;Lei Li;Huangwei Lei;Zhiming Luo;Candong Li;Shaozi Li",
+      "id": "out-125b31f0b570",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A weakly supervised tooth‐mark and crack detection method in tongue image — Hui Weng;Lei Li;Huangwei Lei;Zhiming Luo;Candong Li;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5305,
+            "end_char": 5448
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "智能化中医辅助诊疗系统模型构建",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文;李书楠;徐佳君;许鸿本;周常恩;李灿东",
+      "id": "out-1f5d3773f8aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 智能化中医辅助诊疗系统模型构建 — 赵文;李书楠;徐佳君;许鸿本;周常恩;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5454,
+            "end_char": 5500
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "以状态为核心的中医治未病理论与技术应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东",
+      "id": "out-c4eab0cc7f0a",
+      "evidence": [
+        {
+          "quote": "[奖励] 以状态为核心的中医治未病理论与技术应用 — 李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5506,
+            "end_char": 5535
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于状态辨识原理的名老中医经验智能传承共性技术研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周常恩;赵文;许鸿本;李文友;雷黄伟;徐佳君;杨朝阳;李灿东",
+      "id": "out-68fc27c1cf1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于状态辨识原理的名老中医经验智能传承共性技术研究 — 周常恩;赵文;许鸿本;李文友;雷黄伟;徐佳君;杨朝阳;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5541,
+            "end_char": 5605
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "从误诊谈中医诊断思维",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈谦峰;翁慧;李灿东",
+      "id": "out-8a4edfe68084",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 从误诊谈中医诊断思维 — 陈谦峰;翁慧;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5611,
+            "end_char": 5640
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医面诊、舌诊一体化自动采集系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;朱龙;周常恩;杨朝阳;林雪娟;俞洁;吴长汶;辛基梁;赵文;雷黄伟;康丕春;康希;许若峰",
+      "id": "out-cbaa2cfd0f52",
+      "evidence": [
+        {
+          "quote": "[专利] 中医面诊、舌诊一体化自动采集系统 — 李灿东;朱龙;周常恩;杨朝阳;林雪娟;俞洁;吴长汶;辛基梁;赵文;雷黄伟;康丕春;康希;许若峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5646,
+            "end_char": 5716
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mutual information based multi-label feature selection via constrained convex optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenqiang Sun;Jia Zhang;Liang Dai;Candong Li;Changen Zhou;Jiliang Xin;Shaozi Li",
+      "id": "out-21497dc4cb01",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mutual information based multi-label feature selection via constrained convex optimization — Zhenqiang Sun;Jia Zhang;Liang Dai;Candong Li;Changen Zhou;Jiliang Xin;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5722,
+            "end_char": 5900
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards a unified multi-source-based optimization framework for multi-label learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Zhang;Candong Li;Zhenqiang Sun;Zhiming Luo;Changen Zhou;Shaozi Li",
+      "id": "out-63ca44dd72f4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Towards a unified multi-source-based optimization framework for multi-label learning — Jia Zhang;Candong Li;Zhenqiang Sun;Zhiming Luo;Changen Zhou;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5906,
+            "end_char": 6068
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脉搏测量支架结构",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;林雪娟;朱龙;周常恩;陈淑娇;俞洁;吴长汶;辛基梁;许若锋;康丕春",
+      "id": "out-7ef6d5195fcd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脉搏测量支架结构 — 李灿东;林雪娟;朱龙;周常恩;陈淑娇;俞洁;吴长汶;辛基梁;许若锋;康丕春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6074,
+            "end_char": 6128
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "四诊现代化研究原理与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏淑洁;周智慧;李佐飞;靖媛;王洋;李灿东",
+      "id": "out-0ca926cc8bb9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 四诊现代化研究原理与应用 — 夏淑洁;周智慧;李佐飞;靖媛;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6134,
+            "end_char": 6176
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stock movement predictive network via incorporative attention mechanisms based on tweet and historical prices",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongfeng Xu;Lei Cha;Zhiming Luo;Shaozi Li",
+      "id": "out-85c553120ba2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stock movement predictive network via incorporative attention mechanisms based on tweet and historical prices — Hongfeng Xu;Lei Cha;Zhiming Luo;Shaozi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6182,
+            "end_char": 6341
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "证素的预测及其对“既病防变”的指导",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐佳君;罗志明;赵文;雷黄伟;周常恩;李绍滋;李灿东",
+      "id": "out-71354e5ff9fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 证素的预测及其对“既病防变”的指导 — 徐佳君;罗志明;赵文;雷黄伟;周常恩;李绍滋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6347,
+            "end_char": 6399
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医四诊信息采集的方法与原则",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李思汉;夏淑洁;赵文;李明珠;邓丽金;王洋;李灿东",
+      "id": "out-fa8003f9849e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医四诊信息采集的方法与原则 — 李思汉;夏淑洁;赵文;李明珠;邓丽金;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6405,
+            "end_char": 6453
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“因发知受”的思维原理剖析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏淑洁;李灿东",
+      "id": "out-ee2c921a5be3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] “因发知受”的思维原理剖析 — 夏淑洁;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6459,
+            "end_char": 6488
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "四诊合参智能化发展现状及实现路径",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文;张佳;徐佳君;辛基梁;周常恩;李绍滋;李灿东",
+      "id": "out-02c2d20d5220",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 四诊合参智能化发展现状及实现路径 — 赵文;张佳;徐佳君;辛基梁;周常恩;李绍滋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6494,
+            "end_char": 6544
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "四诊合参现代化发展研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文;陈启亮;李永;朱景茹;王章林;王洋;李灿东",
+      "id": "out-2d1d2a4ce535",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 四诊合参现代化发展研究 — 赵文;陈启亮;李永;朱景茹;王章林;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6550,
+            "end_char": 6594
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中西医诊断术语的差异性比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李永;陈启亮;赵文;詹杰;黄曙文;王洋;李灿东",
+      "id": "out-6d3ed932a8a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中西医诊断术语的差异性比较研究 — 李永;陈启亮;赵文;詹杰;黄曙文;王洋;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6600,
+            "end_char": 6647
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种气体采集检测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东;吴清海;林雪娟",
+      "id": "out-6bab4e1d5f06",
+      "evidence": [
+        {
+          "quote": "[专利] 一种气体采集检测装置 — 李灿东;吴清海;林雪娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6653,
+            "end_char": 6681
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医诊断现代化与健康状态辨识",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏淑洁;李灿东",
+      "id": "out-a53a3b64ec37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医诊断现代化与健康状态辨识 — 夏淑洁;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6687,
+            "end_char": 6717
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "-",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李灿东",
+      "id": "out-fe8e8288ed6c",
+      "evidence": [
+        {
+          "quote": "[奖励] - — 李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6723,
+            "end_char": 6734
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“五辨”论痰证诊治心得",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王洋;李鑫;李灿东",
+      "id": "out-94d0f4e22fcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] “五辨”论痰证诊治心得 — 王洋;李鑫;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6740,
+            "end_char": 6769
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于数据驱动的名老中医学术经验智能化传承研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷黄伟;徐佳君;杨朝阳;周常恩;李灿东",
+      "id": "out-6e39a07dcca9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于数据驱动的名老中医学术经验智能化传承研究 — 雷黄伟;徐佳君;杨朝阳;周常恩;李灿东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6775,
+            "end_char": 6825
+          },
+          "version": "551d022a53c042814b5c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 47,
+    "listed": 47,
+    "by_kind": {
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 36,
+        "extracted": 36
+      },
+      "奖励/专著": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

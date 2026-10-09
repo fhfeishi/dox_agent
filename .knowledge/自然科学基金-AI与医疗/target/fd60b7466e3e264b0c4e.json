@@ -2,15 +2,20 @@
   "doc_id": "fd60b7466e3e264b0c4e",
   "version": "c84a918e9fa3fa67d057",
   "source_hash": "bd9ce92af986b5ddf018bde17dc7f8fb2d092f19b5c534bec7689ebb9ad1cd39",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:27.809589+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:45:04.300099+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-34154398903d",
           "name": "慢阻肺病情进展早期预测",
-          "desc": "慢阻肺病情进展早期预测有利于个性化治疗方案制定，对提高生活质量与改善预后有重要意义。",
+          "desc": "多维度分层数据",
           "evidence": [
             {
-              "quote": "慢性阻塞性肺疾病（COPD）病情进展早期预测有利于患者个性化治疗方案的制定，对提高患者生活质量、改善预后有重要意义",
+              "quote": "慢阻肺多个层面的数据（肺功能、影像学、蛋白组学等）有助于实现对患者病情进展的早期预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 718
+                "start_char": 2781,
+                "end_char": 2822
               },
               "version": "c84a918e9fa3fa67d057"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-055b6d4ffc90",
-          "name": "多层面数据差异大传统建模效果差",
-          "desc": "不同层面数据在类型、量纲、变异程度与变量关系上存在差异且变量数目极大，传统统计或机器学习建模难以取得好效果。",
+          "id": "item-7be93da1f2a3",
+          "name": "不同层面数据差异大变量多",
+          "desc": "传统模型效果欠佳",
           "evidence": [
             {
-              "quote": "然而，不同层面的数据在类型、量纲、变异程度和变量关系等方面可能存在差异，且变量数目极大，传统的统计模型或机器学习方法建模难以取得好的预测效果",
+              "quote": "传统的统计模型或机器学习方法建模难以取得好的预测效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 772,
+                "start_char": 816,
                 "end_char": 841
-              },
-              "version": "c84a918e9fa3fa67d057"
-            }
-          ]
-        },
-        {
-          "id": "item-df40c577f845",
-          "name": "急性加重等进展指标预测困难",
-          "desc": "需建立肺功能、症状评分、运动能力变化程度和急性加重等病情进展指标的预测模型。",
-          "evidence": [
-            {
-              "quote": "建立肺功能、症状评分、运动能力变化程度和急性加重等病情进展指标的预测模型，并进行前瞻性验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 961
               },
               "version": "c84a918e9fa3fa67d057"
             }
@@ -79,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-39a1e73bbc9d",
-          "name": "分层深度神经网络算法",
-          "desc": "针对不同层面数据在病情进展预测中的问题，提出新的分层深度神经网络算法。",
+          "id": "item-6d30234638c2",
+          "name": "多维度数据慢阻肺病情进展预测模型",
+          "desc": "外部验证",
           "evidence": [
             {
-              "quote": "本项目针对COPD不同层面数据在病情进展预测中的问题，提出新的分层深度神经网络算法",
+              "quote": "本项目使用多维度数据建立了慢阻肺病情进展的预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 875,
-                "end_char": 915
+                "start_char": 2845,
+                "end_char": 2869
               },
               "version": "c84a918e9fa3fa67d057"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7354bfe8b331",
-          "name": "深度网络变量筛选与损失函数构造",
-          "desc": "研究分层深度神经网络构建、损失函数构造与深度神经网络变量筛选方法。",
+          "id": "item-04442ac3744d",
+          "name": "痰液蛋白组学标志物",
+          "desc": "IGHV3-15、IGKV1D-33、IGKV4-1",
           "evidence": [
             {
-              "quote": "研究主要包括：分层深度神经网络构建、损失函数构造、深度神经网络变量筛选方法、预测模型构建和前瞻性验证等",
+              "quote": "IGHV3-15、IGKV1D-33和IGKV4-1蛋白都是慢阻肺急性加重的诊断和预后标志物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 963,
-                "end_char": 1013
+                "start_char": 3006,
+                "end_char": 3051
               },
               "version": "c84a918e9fa3fa67d057"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -117,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-93299fa89170",
-          "name": "模型与FEV1 FVC相关系数0.73与0.75",
-          "desc": "外部验证数据集中模型与肺功能指标FEV1和FVC的相关系数为0.73和0.75。",
-          "evidence": [
-            {
-              "quote": "在外部验证数据集中，模型与肺功能指标FEV1和FVC的相关系数为0.73和0.75",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2871,
-                "end_char": 2911
-              },
-              "version": "c84a918e9fa3fa67d057"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-aa0d52da5b8d",
-          "name": "急性加重预测AUC 0.71",
-          "desc": "对随访期间慢阻肺急性加重预测的AUC值为0.71。",
+          "id": "item-148532faf16e",
+          "name": "急性加重预测AUC",
+          "desc": "0.71",
           "evidence": [
             {
               "quote": "对随访期间慢阻肺急性加重预测的AUC值为0.71",
@@ -148,72 +122,111 @@
               "version": "c84a918e9fa3fa67d057"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5458ad0c2f38",
-          "name": "痰液蛋白组学发现诊断标志物",
-          "desc": "痰液蛋白组学发现纤毛蛋白和免疫球蛋白可能是慢阻肺急性加重的诊断标志物，IGHV3-15等为诊断和预后标志物。",
-          "evidence": [
-            {
-              "quote": "本项目使用痰液蛋白组学发现纤毛蛋白和免疫球蛋白可能是慢阻肺急性加重的诊断标志物",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2964,
-                "end_char": 3002
-              },
-              "version": "c84a918e9fa3fa67d057"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-34154398903d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-055b6d4ffc90"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal reciprocal association between rheumatoid arthritis and chronic obstructive pulmonary disease and mediation of inflammation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Yang;Lingwei Wang;Shuyu Chen;Rongchang Chen",
+      "id": "out-f72294b63ec5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal reciprocal association between rheumatoid arthritis and chronic obstructive pulmonary disease and mediation of inflammation — Kai Yang;Lingwei Wang;Shuyu Chen;Rongchang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3307,
+            "end_char": 3499
+          },
+          "version": "c84a918e9fa3fa67d057"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-055b6d4ffc90"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-39a1e73bbc9d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between cooking fuel exposure and respiratory health: Longitudinal evidence from the China Health and Retirement Longitudinal Study (CHARLS)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Yang;Rongchang Chen",
+      "id": "out-fe575c53013a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between cooking fuel exposure and respiratory health: Longitudinal evidence from the China Health and Retirement Longitudinal Study (CHARLS) — Kai Yang;Rongchang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3504,
+            "end_char": 3688
+          },
+          "version": "c84a918e9fa3fa67d057"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-39a1e73bbc9d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-93299fa89170"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early IL-17A Prevention Rather Than Late IL-17A Neutralization Attenuates Toluene Diisocyanate-Induced Mixed Granulocytic Asthma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuyu Chen;Li Yu;Yao Deng;Yuanyuan Liu;Lingwei Wang;Difei Li;Kai Yang;Shengming Liu;Ailin Tao;Rongchang Chen",
+      "id": "out-f5a8be918ebc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early IL-17A Prevention Rather Than Late IL-17A Neutralization Attenuates Toluene Diisocyanate-Induced Mixed Granulocytic Asthma. — Shuyu Chen;Li Yu;Yao Deng;Yuanyuan Liu;Lingwei Wang;Difei Li;Kai Yang;Shengming Liu;Ailin Tao;Rongchang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3693,
+            "end_char": 3939
+          },
+          "version": "c84a918e9fa3fa67d057"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7354bfe8b331"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5458ad0c2f38"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of radiomic features in chronic obstructive pulmonary disease assessment: a prospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Yang;Yuqiong Yang;Yan Kang;Zhenyu Liang;Fengyan Wang;Qiang Li;Jiaxuan Xu;Guoyan Tang;Rongchang Chen",
+      "id": "out-f0ef28430462",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The value of radiomic features in chronic obstructive pulmonary disease assessment: a prospective study — Kai Yang;Yuqiong Yang;Yan Kang;Zhenyu Liang;Fengyan Wang;Qiang Li;Jiaxuan Xu;Guoyan Tang;Rongchang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3944,
+            "end_char": 4159
+          },
+          "version": "c84a918e9fa3fa67d057"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

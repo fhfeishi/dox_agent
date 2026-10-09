@@ -2,15 +2,20 @@
   "doc_id": "a0a972f98262f84baed2",
   "version": "50134e266aa86d7c6e4b",
   "source_hash": "785da1a6e2cc32dec8ee31c413e3481dbfec81650efe0a283eeceedc3821bc1f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.513842+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 6
+  },
+  "generated_at": "2026-10-09T10:50:36.970886+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a61e53090f1f",
-          "name": "代谢影像组学预测肺癌靶向耐药",
-          "desc": "面向肺癌靶向治疗，以代谢影像组学等多维数据构建智能预测模型以提升疗效评价精准性。",
+          "id": "item-00ed09e7d147",
+          "name": "肺癌靶向耐药预测",
+          "desc": "分子靶向治疗是标准治疗",
           "evidence": [
             {
-              "quote": "分子靶向治疗已成为肺癌临床标准治疗的重要内容",
+              "quote": "分子靶向治疗已成为肺癌临床标准治疗的重要内容，但及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 654,
-                "end_char": 675
+                "end_char": 707
               },
               "version": "50134e266aa86d7c6e4b"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dff70217b05a",
-          "name": "靶向药物疗效预测亟需及时无创精准",
-          "desc": "靶向治疗中及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题。",
+          "id": "item-4cc4f1e38620",
+          "name": "缺乏及时无创精准的靶向药物疗效预测",
+          "desc": "关键问题",
           "evidence": [
             {
-              "quote": "但及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题",
+              "quote": "及时、无创、便捷、精准地预测靶向药物疗效是亟需解决的关键问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
+                "start_char": 678,
                 "end_char": 707
               },
               "version": "50134e266aa86d7c6e4b"
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a40ea9c3d56f",
-          "name": "自编码器与深度迁移学习的代谢组学分析",
-          "desc": "基于自编码器模型和深度迁移学习框架，研究代谢影像组学数据互动的特征提取与分析方法、高通量数据比对与并行算法等关键技术。",
+          "id": "item-0380135445f0",
+          "name": "自编码器与深度迁移学习框架",
+          "desc": "影像分析、特征提取、数据降维",
           "evidence": [
             {
-              "quote": "基于自编码器模型和深度迁移学习框架，研究基于代谢影像组学数据互动的特征提取和分析方法、高通量数据比对与并行算法等关键技术",
+              "quote": "基于自编码器模型和深度迁移学习框架，对上述高维复杂医学数据从影像分析、特征提取、组学数据比对、数据降维、机器学习等层面进行了系统研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 935,
-                "end_char": 994
+                "start_char": 2694,
+                "end_char": 2759
               },
               "version": "50134e266aa86d7c6e4b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d3e3772597b",
-          "name": "开发肺癌靶向疗效动态量化分析系统",
-          "desc": "对高维复杂医学数据从影像分析、特征提取、组学比对、数据降维与机器学习系统研究，开发基于定量代谢影像组学及多组学的肺癌靶向疗效智能预测动态量化分析系统，并经多中心大样本临床验证。",
+          "id": "item-293a2014351d",
+          "name": "定量代谢影像组学及多组学智能预测动态量化分析系统",
+          "desc": "开发",
           "evidence": [
             {
               "quote": "开发了基于定量代谢影像组学及多组学智能预测肺癌靶向治疗效果的动态量化分析系统",
@@ -99,44 +105,2947 @@
               "version": "50134e266aa86d7c6e4b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f20e0f0e7ed5",
+          "name": "多模态智能诊疗工具",
+          "desc": "基于代谢靶点",
+          "evidence": [
+            {
+              "quote": "同时开发了基于代谢靶点的多模态智能诊疗工具",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2856,
+                "end_char": 2876
+              },
+              "version": "50134e266aa86d7c6e4b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a61e53090f1f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dff70217b05a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Effect of Molecular Mass of Hydroxyethyl Cellulose on the Performance of Capillary Electrophoretic Separation of Proteins",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaxin Huang;Chunxian Tao;Zhenqing Li;Erika Miyake;Qingxiang You;Wen Xiao;Dawei Zhang;Yoshinori Yamaguchi",
+      "id": "out-657a1be668c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Effect of Molecular Mass of Hydroxyethyl Cellulose on the Performance of Capillary Electrophoretic Separation of Proteins — Jiaxin Huang;Chunxian Tao;Zhenqing Li;Erika Miyake;Qingxiang You;Wen Xiao;Dawei Zhang;Yoshinori Yamaguchi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2926,
+            "end_char": 3165
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dff70217b05a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a40ea9c3d56f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Generating Full-Field Digital Mammogram From Digitized Screen-Film Mammogram for Breast Cancer Screening With High-Resolution Generative Adversarial Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpin Zhou;Jun Wei;Dongmei Wu;Yaqin Zhang",
+      "id": "out-5d7a31b0bc8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Generating Full-Field Digital Mammogram From Digitized Screen-Film Mammogram for Breast Cancer Screening With High-Resolution Generative Adversarial Network — Yuanpin Zhou;Jun Wei;Dongmei Wu;Yaqin Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3170,
+            "end_char": 3378
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a40ea9c3d56f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9d3e3772597b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated molecular modeling techniques to reveal selective mechanisms of inhibitors to PI3K delta with marketed Idelalisib",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingyu Zhu;Lei Jia;Yingmin Jiang;Qianqian Yu;Lei Xu;Yanfei Cai;Yun Chen;Huazhong Li;Gang Huang;Wenqing Liang;Jian Jin",
+      "id": "out-7e4d65cf3879",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated molecular modeling techniques to reveal selective mechanisms of inhibitors to PI3K delta with marketed Idelalisib — Jingyu Zhu;Lei Jia;Yingmin Jiang;Qianqian Yu;Lei Xu;Yanfei Cai;Yun Chen;Huazhong Li;Gang Huang;Wenqing Liang;Jian Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3383,
+            "end_char": 3633
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种靶向Frizzled7单克隆抗体及其制备方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "解伟;黄钢;王进;张坤驰;周兆丽;孙吉;王风仙;张艳;赵慧杰",
+      "id": "out-c25cd30dfaf7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种靶向Frizzled7单克隆抗体及其制备方法与应用 — 解伟;黄钢;王进;张坤驰;周兆丽;孙吉;王风仙;张艳;赵慧杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3638,
+            "end_char": 3702
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Solasonine promotes ferroptosis of hepatoma carcinoma cells via glutathione peroxidase 4-induced destruction of the glutathione redox system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingming Jin;Chunzi Shi;Tian Li;Yue Wu;Cheng Hu;Gang Huang",
+      "id": "out-aa2ca1d3e911",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Solasonine promotes ferroptosis of hepatoma carcinoma cells via glutathione peroxidase 4-induced destruction of the glutathione redox system — Mingming Jin;Chunzi Shi;Tian Li;Yue Wu;Cheng Hu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3914
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of the Targeted Regulation of CCRK by miR-335-5p on the Proliferation and Tumorigenicity of Human Renal Carcinoma Cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaojia Zuo;Chaojun Lu;Yanjun Zheng;Donglin Lai;Dingsheng Liu;Guoqing Wan;Changlian Lu;Xuefeng Gu",
+      "id": "out-532098e584ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of the Targeted Regulation of CCRK by miR-335-5p on the Proliferation and Tumorigenicity of Human Renal Carcinoma Cells — Xiaojia Zuo;Chaojun Lu;Yanjun Zheng;Donglin Lai;Dingsheng Liu;Guoqing Wan;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3919,
+            "end_char": 4152
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "T-distribution stochastic neighbor embedding for fine brain functional parcellation on rs-fMRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Hu;Xiaobing Li;Lijia Wang;Baosan Han;Shengdong Nie",
+      "id": "out-97819d468ff2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] T-distribution stochastic neighbor embedding for fine brain functional parcellation on rs-fMRI — Ying Hu;Xiaobing Li;Lijia Wang;Baosan Han;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4315
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非小细胞肺癌淋巴结转移预测模型研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卢孔尧;黄钢;左艳",
+      "id": "out-375a711e59f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 非小细胞肺癌淋巴结转移预测模型研究 — 卢孔尧;黄钢;左艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4320,
+            "end_char": 4355
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A prognostic and therapeutic hallmark developed by the integrated profile of basement membrane and immune infiltrative landscape in lung adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaijie Chen;Shuang Liu;Changlian Lu;Xuefeng Gu",
+      "id": "out-7f484402ae6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A prognostic and therapeutic hallmark developed by the integrated profile of basement membrane and immune infiltrative landscape in lung adenocarcinoma — Kaijie Chen;Shuang Liu;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4360,
+            "end_char": 4566
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesis of a Single‐Stranded DNA Aptamer Modified Near‐infrared, Water‐Soluble Fluorophore for Lung Cancer Cell Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyan He;Hui Li;Sisi Liu;Yue Li;Xiangde Lin;Haoyang Zheng;Zhaoli Zhou;Dongdong Zeng",
+      "id": "out-21aaca3dad71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesis of a Single‐Stranded DNA Aptamer Modified Near‐infrared, Water‐Soluble Fluorophore for Lung Cancer Cell Imaging — Xiaoyan He;Hui Li;Sisi Liu;Yue Li;Xiangde Lin;Haoyang Zheng;Zhaoli Zhou;Dongdong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4572,
+            "end_char": 4787
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi‐scale cascaded networks for synthesis of mammogram to decrease intensity distortion and increase model‐based perceptual similarity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gongfa Jiang;Zilong He;Yuanpin Zhou;Jun Wei;Yuesheng Xu;Hui Zeng;Jiefang Wu;Genggeng Qin;Weiguo Chen;Yao Lu",
+      "id": "out-cb150386231d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi‐scale cascaded networks for synthesis of mammogram to decrease intensity distortion and increase model‐based perceptual similarity — Gongfa Jiang;Zilong He;Yuanpin Zhou;Jun Wei;Yuesheng Xu;Hui Zeng;Jiefang Wu;Genggeng Qin;Weiguo Chen;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4793,
+            "end_char": 5045
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Relationship between the expression of PD-1/PD-L1 and 18F-FDG uptake in bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruohua Chen;Xiang Zhou;Jianjun Liu;Gang Huang",
+      "id": "out-375e1e33f057",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Relationship between the expression of PD-1/PD-L1 and 18F-FDG uptake in bladder cancer — Ruohua Chen;Xiang Zhou;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5051,
+            "end_char": 5191
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fibrinogen and Fibrin Differentially Regulate the Local Hydrodynamic Environment in Neutrophil-Tumor Cell-Endothelial Cell Adhesion System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Fu;Ang Li;Jie Wu;Robert F. Kunz;Ren Sun;Zurong Ding;Jianhua Wu;Cheng Dong",
+      "id": "out-0e9286dd7fff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fibrinogen and Fibrin Differentially Regulate the Local Hydrodynamic Environment in Neutrophil-Tumor Cell-Endothelial Cell Adhesion System — Yi Fu;Ang Li;Jie Wu;Robert F. Kunz;Ren Sun;Zurong Ding;Jianhua Wu;Cheng Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5197,
+            "end_char": 5420
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synergistic antitumor effect of the anti-ErbB2 antibodies trastuzumab and H2-18 on trastuzumab-resistant gastric cancer cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Wang;Lingfei Wang;Beibei Liang;Bo Zhou;Yu Sun;Yanchun Meng;Jian Dong;Lin Chen;Bohua Li",
+      "id": "out-fd3aad64a702",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synergistic antitumor effect of the anti-ErbB2 antibodies trastuzumab and H2-18 on trastuzumab-resistant gastric cancer cells — Chao Wang;Lingfei Wang;Beibei Liang;Bo Zhou;Yu Sun;Yanchun Meng;Jian Dong;Lin Chen;Bohua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5426,
+            "end_char": 5651
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习在医学影像智能处理中的应用与挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "左艳;黄钢;聂生东",
+      "id": "out-0b500fee7851",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 深度学习在医学影像智能处理中的应用与挑战 — 左艳;黄钢;聂生东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5657,
+            "end_char": 5695
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Shikonin inhibited glycolysis and sensitized cisplatin treatment in non-small cell lung cancer cells via the exosomal pyruvate kinase M2 pathway",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yitian Dai;Yuping Liu;Jingyi Li;Mingming Jin;Hao Yang;Gang Huang",
+      "id": "out-9f9eeaffca9d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Shikonin inhibited glycolysis and sensitized cisplatin treatment in non-small cell lung cancer cells via the exosomal pyruvate kinase M2 pathway — Yitian Dai;Yuping Liu;Jingyi Li;Mingming Jin;Hao Yang;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5701,
+            "end_char": 5918
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computer-aided detection of pulmonary nodules based on convolutional neural networks: a review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuqin Min;Liangyun Hu;Long Wei;Sheng-Dong Nie",
+      "id": "out-a7bb8ece0e0d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computer-aided detection of pulmonary nodules based on convolutional neural networks: a review — Yuqin Min;Liangyun Hu;Long Wei;Sheng-Dong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5924,
+            "end_char": 6072
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anatomical Prior-Based Automatic Segmentation for Cardiac Substructures from Computed Tomography Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuefang Wang;Xinyi Li;Ruxu Du;Yong Zhong;Yao Lu;Ting Song",
+      "id": "out-bf4f89edb192",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anatomical Prior-Based Automatic Segmentation for Cardiac Substructures from Computed Tomography Images — Xuefang Wang;Xinyi Li;Ruxu Du;Yong Zhong;Yao Lu;Ting Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6078,
+            "end_char": 6247
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种制备固定化精氨酸脱亚胺酶及生产[14/15N]-L-瓜氨酸的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄钢;李斌;李玥",
+      "id": "out-658975021aad",
+      "evidence": [
+        {
+          "quote": "[专利] 一种制备固定化精氨酸脱亚胺酶及生产[14/15N]-L-瓜氨酸的方法 — 黄钢;李斌;李玥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6253,
+            "end_char": 6302
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LINC01123, a c-Myc-activated long non-coding RNA, promotes proliferation and aerobic glycolysis of non-small cell lung cancer through miR-199a-5p/c-Myc axis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Hua;Mingming Jin;Baoming Mi;Fei Xu;Tian Li;Li Zhao;Jianjun Liu;Gang Huang",
+      "id": "out-7176901d4dcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LINC01123, a c-Myc-activated long non-coding RNA, promotes proliferation and aerobic glycolysis of non-small cell lung cancer through miR-199a-5p/c-Myc axis — Qian Hua;Mingming Jin;Baoming Mi;Fei Xu;Tian Li;Li Zhao;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6308,
+            "end_char": 6551
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Revealing the correlations between brain cortical characteristics and susceptibility genes for Alzheimer disease: a cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liting Han;Hanni Jiang;Xufeng Yao;Zhe Ren;Zhongsen Qu;Tonggang Yu;Shichang Luo;Tao Wu",
+      "id": "out-202162ca3648",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Revealing the correlations between brain cortical characteristics and susceptibility genes for Alzheimer disease: a cross-sectional study — Liting Han;Hanni Jiang;Xufeng Yao;Zhe Ren;Zhongsen Qu;Tonggang Yu;Shichang Luo;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6557,
+            "end_char": 6788
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification and characterization of a 25-lncRNA prognostic signature for early recurrence in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Fu;Xindong Wei;Qiuqin Han;Jiamei Le;Yujie Ma;Xinjie Lin;Yuhui Xu;Ning Liu;Xuan Wang;Xiaoni Kong;Jinyang Gu;Ying Tong;Hailong Wu",
+      "id": "out-c696c94686d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification and characterization of a 25-lncRNA prognostic signature for early recurrence in hepatocellular carcinoma — Yi Fu;Xindong Wei;Qiuqin Han;Jiamei Le;Yujie Ma;Xinjie Lin;Yuhui Xu;Ning Liu;Xuan Wang;Xiaoni Kong;Jinyang Gu;Ying Tong;Hailong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6794,
+            "end_char": 7053
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASPP2 suppresses tumour growth and stemness characteristics in HCC by inhibiting Warburg effect via WNT/β‐catenin/HK2 axis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Beibei Liang;Yuan Jiang;Shaohua Song;Wei Jing;Hao Yang;Li Zhao;Ya Chen;Qiqi Tang;Xuhui Li;Lisha Zhang;Haili Bao;Gang Huang;Jian Zhao",
+      "id": "out-5b044fc6172f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASPP2 suppresses tumour growth and stemness characteristics in HCC by inhibiting Warburg effect via WNT/β‐catenin/HK2 axis — Beibei Liang;Yuan Jiang;Shaohua Song;Wei Jing;Hao Yang;Li Zhao;Ya Chen;Qiqi Tang;Xuhui Li;Lisha Zhang;Haili Bao;Gang Huang;Jian Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7059,
+            "end_char": 7322
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像与基因特征分析方法在阿尔茨海默病中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩立婷;姚旭峰;金宇;赵从义;黄钢",
+      "id": "out-af20ff496444",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像与基因特征分析方法在阿尔茨海默病中的研究进展 — 韩立婷;姚旭峰;金宇;赵从义;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7328,
+            "end_char": 7378
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ischemic stroke subtyping method combining convolutional neural network and radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Chen;Yiwen He;Zhuoyun Jiang;Yuanzhong Xie;Shengdong Nie",
+      "id": "out-407a322ef925",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ischemic stroke subtyping method combining convolutional neural network and radiomics — Yang Chen;Yiwen He;Zhuoyun Jiang;Yuanzhong Xie;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7384,
+            "end_char": 7538
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segmentation of pulmonary nodules in CT images based on 3D-UNET combined with three-dimensional conditional random field optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhao Wu;Lei Gao;Huihong Duan;Gang Huang;Xiaodan Ye;Shengdong Nie",
+      "id": "out-7adf5adf76b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Segmentation of pulmonary nodules in CT images based on 3D-UNET combined with three-dimensional conditional random field optimization — Wenhao Wu;Lei Gao;Huihong Duan;Gang Huang;Xiaodan Ye;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7544,
+            "end_char": 7752
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Antibacterial activity study of 1,2,4-triazole derivatives",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Gao;Tengfei Wang;Jiaqi Xiao;Gang Huang",
+      "id": "out-e79632a02831",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Antibacterial activity study of 1,2,4-triazole derivatives — Feng Gao;Tengfei Wang;Jiaqi Xiao;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7758,
+            "end_char": 7868
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Harnessing Multiplex crRNA in the CRISPR/Cas12a System Enables an Amplification-Free DNA Diagnostic Platform for ASFV Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Muchu Zeng;Yuqing Ke;Zhiyi Zhuang;Chao Qin;Lai Yan Li;Gaoyuan Sheng;Zhuoru Li;He Meng;Xianting Ding",
+      "id": "out-4bd1059574e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Harnessing Multiplex crRNA in the CRISPR/Cas12a System Enables an Amplification-Free DNA Diagnostic Platform for ASFV Detection — Muchu Zeng;Yuqing Ke;Zhiyi Zhuang;Chao Qin;Lai Yan Li;Gaoyuan Sheng;Zhuoru Li;He Meng;Xianting Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7874,
+            "end_char": 8109
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature Selection Based on Gaussian Mixture Model Clustering for the Classification of Pulmonary Nodules Based on Computed Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huihong Duan;Xu Wang;Xingyi He;Yonggang He;Litao Song;Shengdong Nie",
+      "id": "out-3879ac67a360",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature Selection Based on Gaussian Mixture Model Clustering for the Classification of Pulmonary Nodules Based on Computed Tomography — Huihong Duan;Xu Wang;Xingyi He;Yonggang He;Litao Song;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8115,
+            "end_char": 8324
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segmentation of pulmonary vascular tree by incorporating vessel enhancement filter and variational region-growing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui-Hong Duan;Guan-Qun Su;Yi-Chao Huang;Li-Tao Song;Shengdong Nie",
+      "id": "out-52a8fe2a9988",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Segmentation of pulmonary vascular tree by incorporating vessel enhancement filter and variational region-growing — Hui-Hong Duan;Guan-Qun Su;Yi-Chao Huang;Li-Tao Song;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8330,
+            "end_char": 8517
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D brain glioma segmentation in MRI through integrating multiple densely connected 2D convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaobing Zhang;Yin Hu;Wen Chen;Gang Huang;Shengdong Nie",
+      "id": "out-f859f4d3b47a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D brain glioma segmentation in MRI through integrating multiple densely connected 2D convolutional neural networks — Xiaobing Zhang;Yin Hu;Wen Chen;Gang Huang;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8523,
+            "end_char": 8702
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Circular RNA EPB41 expression predicts unfavorable prognoses in NSCLC by regulating miR-486-3p/eIF5A axis-mediated stemness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingming Jin;Xiyu Liu;Yue Wu;Yuqing Lou;Xue Li;Gang Huang",
+      "id": "out-2e23bbfc01fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Circular RNA EPB41 expression predicts unfavorable prognoses in NSCLC by regulating miR-486-3p/eIF5A axis-mediated stemness — Mingming Jin;Xiyu Liu;Yue Wu;Yuqing Lou;Xue Li;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8708,
+            "end_char": 8897
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative evaluation of residual tumor in patients with endometrial carcinoma by using F-18-FDG PET/CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhua Wu;Ruohua Chen;Xiang Zhou;Qian Xia;Jianjun Liu",
+      "id": "out-636b5fb55005",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative evaluation of residual tumor in patients with endometrial carcinoma by using F-18-FDG PET/CT — Chunhua Wu;Ruohua Chen;Xiang Zhou;Qian Xia;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9110,
+            "end_char": 9278
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EFFECT OF POST-SURGICAL RAI THERAPY ON PARATHYROID FUNCTION IN PATIENTS WITH DIFFERENTIATED THYROID CANCER",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aimi Zhang;Panli Li;Qiufang Liu;Shiyao Peng;Gang Huang;Shaoli Song",
+      "id": "out-ff3887c782b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EFFECT OF POST-SURGICAL RAI THERAPY ON PARATHYROID FUNCTION IN PATIENTS WITH DIFFERENTIATED THYROID CANCER — Aimi Zhang;Panli Li;Qiufang Liu;Shiyao Peng;Gang Huang;Shaoli Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9284,
+            "end_char": 9465
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-supervised learning for multi-center magnetic resonance imaging harmonization without traveling phantoms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Chang;Xin Cai;Yibo Dan;Yang Song;Qing Lu;Guang Yang;Shengdong Nie",
+      "id": "out-3993f8623f4e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-supervised learning for multi-center magnetic resonance imaging harmonization without traveling phantoms — Xiao Chang;Xin Cai;Yibo Dan;Yang Song;Qing Lu;Guang Yang;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9471,
+            "end_char": 9659
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of Ferroptosis-Related Biomarkers for Prognosis and Immunotherapy in Patients With Glioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junfeng Shi;Donglin Lai;Xiaojia Zuo;Dingsheng Liu;Bing Chen;Yanjun Zheng;Changlian Lu;Xuefeng Gu",
+      "id": "out-2abf3d274861",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of Ferroptosis-Related Biomarkers for Prognosis and Immunotherapy in Patients With Glioma — Junfeng Shi;Donglin Lai;Xiaojia Zuo;Dingsheng Liu;Bing Chen;Yanjun Zheng;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9665,
+            "end_char": 9874
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of protein complexes and functional modules in E. coli PPI networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Kong;Gang Huang;Wei Liu",
+      "id": "out-6f2cd74f8992",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of protein complexes and functional modules in E. coli PPI networks — Ping Kong;Gang Huang;Wei Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9880,
+            "end_char": 9999
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT synthesis from multi-sequence MRI using adaptive fusion network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Li;Sisi Xu;Haibin Chen;Ying Sun;Jing Bian;Shuanshuan Guo;Yao Lu;Zhenyu Qi",
+      "id": "out-d28e7d0fda71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT synthesis from multi-sequence MRI using adaptive fusion network — Yan Li;Sisi Xu;Haibin Chen;Ying Sun;Jing Bian;Shuanshuan Guo;Yao Lu;Zhenyu Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10005,
+            "end_char": 10157
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel SREBP1 inhibitor cinobufotalin suppresses proliferation of hepatocellular carcinoma by targeting lipogenesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huannan Meng;Mengqin Shen;Jiajin Li;Ruixue Zhang;Xi Li;Li Zhao;Gang Huang;Jianjun Liu",
+      "id": "out-ab2bbc78fcea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel SREBP1 inhibitor cinobufotalin suppresses proliferation of hepatocellular carcinoma by targeting lipogenesis — Huannan Meng;Mengqin Shen;Jiajin Li;Ruixue Zhang;Xi Li;Li Zhao;Gang Huang;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10163,
+            "end_char": 10371
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical knowledge embedded method based on multi-task learning for thyroid nodule classification with ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zixiong Gao;Yufan Chen;Pengtao Sun;Hongmei Liu;Yao Lu",
+      "id": "out-68629e10983b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical knowledge embedded method based on multi-task learning for thyroid nodule classification with ultrasound images — Zixiong Gao;Yufan Chen;Pengtao Sun;Hongmei Liu;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10377,
+            "end_char": 10559
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting EGFR mutation subtypes in lung adenocarcinoma using F-18-FDG PET/CT radiomic features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiufang Liu;Dazhen Sun;Nan Li;Jinman Kim;Dagan Feng;Gang Huang;Lisheng Wang;Shaoli Song",
+      "id": "out-ba767df30d0d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting EGFR mutation subtypes in lung adenocarcinoma using F-18-FDG PET/CT radiomic features — Qiufang Liu;Dazhen Sun;Nan Li;Jinman Kim;Dagan Feng;Gang Huang;Lisheng Wang;Shaoli Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10565,
+            "end_char": 10757
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel lung nodule accurate detection of computerized tomography images based on convolutional neural network and probability graph model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xunpeng Xia;Rongfu Zhang;Xufeng Yao;Gang Huang;Tiequn Tang",
+      "id": "out-cb9922124464",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel lung nodule accurate detection of computerized tomography images based on convolutional neural network and probability graph model — Xunpeng Xia;Rongfu Zhang;Xufeng Yao;Gang Huang;Tiequn Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10763,
+            "end_char": 10968
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AL355338 acts as an oncogenic lncRNA by interacting with protein ENO1 to regulate EGFR/AKT pathway in NSCLC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Hua;Dongliang Wang;Lin Zhao;Zhihui Hong;Kairu Ni;Yizhen Shi;Zengli Liu;Baoming Mi",
+      "id": "out-a4f0023d5d40",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AL355338 acts as an oncogenic lncRNA by interacting with protein ENO1 to regulate EGFR/AKT pathway in NSCLC — Qian Hua;Dongliang Wang;Lin Zhao;Zhihui Hong;Kairu Ni;Yizhen Shi;Zengli Liu;Baoming Mi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10974,
+            "end_char": 11176
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于空洞空间卷积池化金字塔结构和注意力机制的全卷积残差网络磨玻璃肺结节分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董婷;魏珑;叶晓丹;陈阳;侯学文;聂生东",
+      "id": "out-cc74d93ff91b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于空洞空间卷积池化金字塔结构和注意力机制的全卷积残差网络磨玻璃肺结节分割方法 — 董婷;魏珑;叶晓丹;陈阳;侯学文;聂生东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11182,
+            "end_char": 11250
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A prognostic analysis method for non-small cell lung cancer based on the computed tomography radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Wang;Huihong Duan;Xiaobing Li;Xiaodan Ye;Gang Huang;Shengdong Nie",
+      "id": "out-4b14fb299aa0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A prognostic analysis method for non-small cell lung cancer based on the computed tomography radiomics — Xu Wang;Huihong Duan;Xiaobing Li;Xiaodan Ye;Gang Huang;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11256,
+            "end_char": 11435
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcriptome Analysis of the Inhibitory Effect of Sennoside A on the Metastasis of Hepatocellular Carcinoma Cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiamei Le;Yi Fu;Qiuqin Han;Yujie Ma;Houlin Ji;Xindong Wei;Yifan Chen;Yongning Sun;Yueqiu Gao;Hailong Wu",
+      "id": "out-737f78ea0029",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcriptome Analysis of the Inhibitory Effect of Sennoside A on the Metastasis of Hepatocellular Carcinoma Cells — Jiamei Le;Yi Fu;Qiuqin Han;Yujie Ma;Houlin Ji;Xindong Wei;Yifan Chen;Yongning Sun;Yueqiu Gao;Hailong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11441,
+            "end_char": 11667
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Remodeling endogenous H2S microenvironment in colon cancer to enhance chemodynamic therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Donglin Liu;Mengjun Liu;Ying Wan;Xuesu Zhou;Shiping Yang;Lu An;Gang Huang;Qiwei Tian",
+      "id": "out-b5bc8ae8d79b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Remodeling endogenous H2S microenvironment in colon cancer to enhance chemodynamic therapy — Donglin Liu;Mengjun Liu;Ying Wan;Xuesu Zhou;Shiping Yang;Lu An;Gang Huang;Qiwei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11673,
+            "end_char": 11856
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An improved AdaBoost algorithm for identification of lung cancer based on electronic nose",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lijun Hao;Gang Huang",
+      "id": "out-ef59e1992518",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An improved AdaBoost algorithm for identification of lung cancer based on electronic nose — Lijun Hao;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11862,
+            "end_char": 11980
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Estimating rotation angle from asymmetric projection of chest",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhonghang Wu;Pengfei Hou;Wei Li;Tianbao Zhu;Peipei Wang;Mingyuan Yuan;Jiuai Sun",
+      "id": "out-158d901ff3cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Estimating rotation angle from asymmetric projection of chest — Zhonghang Wu;Pengfei Hou;Wei Li;Tianbao Zhu;Peipei Wang;Mingyuan Yuan;Jiuai Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11986,
+            "end_char": 12135
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Super-assembled core-shell mesoporous silica-metal-phenolic network nanoparticles for combinatorial photothermal therapy and chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bo Yang;Shan Zhou;Jie Zeng;Liping Zhang;Runhao Zhang;Kang Liang;Lei Xie;Bing Shao;Shaoli Song;Gang Huang;Dongyuan Zhao;Pu Chen;Biao Kong",
+      "id": "out-e89a68c2a18c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Super-assembled core-shell mesoporous silica-metal-phenolic network nanoparticles for combinatorial photothermal therapy and chemotherapy — Bo Yang;Shan Zhou;Jie Zeng;Liping Zhang;Runhao Zhang;Kang Liang;Lei Xie;Bing Shao;Shaoli Song;Gang Huang;Dongyuan Zhao;Pu Chen;Biao Kong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12141,
+            "end_char": 12423
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of white blood cells using weighted optimized deformable convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xufeng Yao;Kai Sun;Xixi Bu;Congyi Zhao;Yu Jin",
+      "id": "out-43304a33c257",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification of white blood cells using weighted optimized deformable convolutional neural networks — Xufeng Yao;Kai Sun;Xixi Bu;Congyi Zhao;Yu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12429,
+            "end_char": 12584
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent advances in enhanced chemodynamic therapy strategies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiwei Tian;Fengfeng Xue;Yurui Wang;Yuying Cheng;Lu An;Shiping Yang;Xiaoyuan Chen;Gang Huang",
+      "id": "out-2c032f80bd92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent advances in enhanced chemodynamic therapy strategies — Qiwei Tian;Fengfeng Xue;Yurui Wang;Yuying Cheng;Lu An;Shiping Yang;Xiaoyuan Chen;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12590,
+            "end_char": 12749
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "显微图像的深度学习超分辨率重建方法、介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄钢;叶学华;聂生东",
+      "id": "out-2b8c926301d2",
+      "evidence": [
+        {
+          "quote": "[专利] 显微图像的深度学习超分辨率重建方法、介质及电子设备 — 黄钢;叶学华;聂生东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12755,
+            "end_char": 12797
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular-subtype guided automatic invasive breast cancer grading using dynamic contrast-enhanced MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rong Sun;Long Wei;Xuewen Hou;Yang Chen;Baosan Han;Yuanzhong Xie;Shengdong Nie",
+      "id": "out-f08aed49e10d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular-subtype guided automatic invasive breast cancer grading using dynamic contrast-enhanced MRI — Rong Sun;Long Wei;Xuewen Hou;Yang Chen;Baosan Han;Yuanzhong Xie;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12803,
+            "end_char": 12990
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Therapeutic Efficacy of Vascular Disrupting Agent CA4P in Rats with Liver Tumors by Hepatobiliary Contrast Agent Mn-DPDP-Enhanced MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yewei Liu;Qiu Guan;Xiangyong Kong;Frederik De Keyzer;Yuanbo Feng;Feng Chen;Jie Yu;Jianjun Liu;Shaoli Song;Jos van Pelt;Johan Swinnen;Guy Bormans;Raymond Oyen;Shuncong Wang;Gang Huang;Yicheng Ni;Yue Li",
+      "id": "out-5ffd7a77f3b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Therapeutic Efficacy of Vascular Disrupting Agent CA4P in Rats with Liver Tumors by Hepatobiliary Contrast Agent Mn-DPDP-Enhanced MRI — Yewei Liu;Qiu Guan;Xiangyong Kong;Frederik De Keyzer;Yuanbo Feng;Feng Chen;Jie Yu;Jianjun Liu;Shaoli Song;Jos van Pelt;Johan Swinnen;Guy Bormans;Raymond Oyen;Shuncong Wang;Gang Huang;Yicheng Ni;Yue Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12996,
+            "end_char": 13349
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Delayed post-diuretic F-18-FDG PET/CT for preoperative evaluation of renal pelvic cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiping Shi;Ruohua Chen;Yining Wang;Gan Huang;Qian Xia;Jianjun Liu",
+      "id": "out-73f67f22833f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Delayed post-diuretic F-18-FDG PET/CT for preoperative evaluation of renal pelvic cancer — Yiping Shi;Ruohua Chen;Yining Wang;Gan Huang;Qian Xia;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13355,
+            "end_char": 13517
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CaCO3-Encapuslated Microspheres for Enhanced Transhepatic Arterial Embolization Treatment of Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aimi Zhang;Zhisheng Xiao;Qiufang Liu;Panli Li;Fei Xu;Jianjun Liu;Huiquan Tao;Liangzhu Feng;Shaoli Song;Zhuang Liu;Gang Huang",
+      "id": "out-e30bf78d61e5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CaCO3-Encapuslated Microspheres for Enhanced Transhepatic Arterial Embolization Treatment of Hepatocellular Carcinoma — Aimi Zhang;Zhisheng Xiao;Qiufang Liu;Panli Li;Fei Xu;Jianjun Liu;Huiquan Tao;Liangzhu Feng;Shaoli Song;Zhuang Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13523,
+            "end_char": 13773
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Laser Speckle Contrast Imaging Based on a Mobile Phone Camera",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Kong;Hao Xu;Ran Li;Gang Huang;Wei Liu",
+      "id": "out-0873dec888aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Laser Speckle Contrast Imaging Based on a Mobile Phone Camera — Ping Kong;Hao Xu;Ran Li;Gang Huang;Wei Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13779,
+            "end_char": 13891
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovery of potential inhibitors targeting the kinase domain of polynucleotide kinase/phosphatase (PNKP): Homology modeling, virtual screening based on multiple conformations, and molecular dynamics simulation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingyu Zhu;Haoer Zhang;Lei Jia;Lijun Ma;Lei Xu;Yun Chen;Yanfei Cai;Huazhong Li;Gang Huang;Jian Jin",
+      "id": "out-01c5c7d3a71d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovery of potential inhibitors targeting the kinase domain of polynucleotide kinase/phosphatase (PNKP): Homology modeling, virtual screening based on multiple conformations, and molecular dynamics simulation — Jingyu Zhu;Haoer Zhang;Lei Jia;Lijun Ma;Lei Xu;Yun Chen;Yanfei Cai;Huazhong Li;Gang Huang;Jian Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13897,
+            "end_char": 14214
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种靶向Frizzled7人源化抗体及其制备方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "解伟;黄钢;王进;张坤驰;孙吉;张艳;王风仙;赵慧杰;黄燕娟",
+      "id": "out-28643a1a1bf7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种靶向Frizzled7人源化抗体及其制备方法与应用 — 解伟;黄钢;王进;张坤驰;孙吉;张艳;王风仙;赵慧杰;黄燕娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14220,
+            "end_char": 14284
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "结合深度卷积神经网络与影像学特征的肺结节良恶性鉴别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高大川;聂生东",
+      "id": "out-d58698e16b21",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 结合深度卷积神经网络与影像学特征的肺结节良恶性鉴别方法 — 高大川;聂生东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14290,
+            "end_char": 14333
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT synthesis from MRI with an improved multi-scale learning network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Li;Sisi Xu;Yao Lu;Zhenyu Qi",
+      "id": "out-cbde19471156",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT synthesis from MRI with an improved multi-scale learning network — Yan Li;Sisi Xu;Yao Lu;Zhenyu Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14339,
+            "end_char": 14446
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fructose 1,6-Bisphosphatase 1 Expression Reduces F-18-FDG Uptake in Clear Cell Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Ruohua;Zhou Xiang;Huang Gang;Liu Jianjun",
+      "id": "out-cdab722fe4ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fructose 1,6-Bisphosphatase 1 Expression Reduces F-18-FDG Uptake in Clear Cell Renal Cell Carcinoma — Chen Ruohua;Zhou Xiang;Huang Gang;Liu Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14452,
+            "end_char": 14605
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction and Comprehensive Analysis of Dysregulated Long Noncoding RNA-Associated Competing Endogenous RNA Network in Moyamoya Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuefeng Gu;Dongyang Jiang;Yue Yang;Peng Zhang;Guoqing Wan;Wangxian Gu;Junfeng Shi;Liying Jiang;Bing Chen;Yanjun Zheng;Dingsheng Liu;Sufen Guo;Changlia",
+      "id": "out-e3942f109645",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Construction and Comprehensive Analysis of Dysregulated Long Noncoding RNA-Associated Competing Endogenous RNA Network in Moyamoya Disease — Xuefeng Gu;Dongyang Jiang;Yue Yang;Peng Zhang;Guoqing Wan;Wangxian Gu;Junfeng Shi;Liying Jiang;Bing Chen;Yanjun Zheng;Dingsheng Liu;Sufen Guo;Changlia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14611,
+            "end_char": 14908
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TNFα-induced IDH1 hyperacetylation reprograms redox homeostasis and promotes the chemotherapeutic sensitivity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Yang;Xiaoping Zhao;Jianjun Liu;Mingming Jin;Xiyu Liu;Jun Yan;Xufeng Yao;Xinyi Mao;Nan Li;Beibei Liang;Wei Xie;Kunchi Zhang;Jian Zhao;Liu Liu;Gang Huang",
+      "id": "out-8e1f07b85235",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TNFα-induced IDH1 hyperacetylation reprograms redox homeostasis and promotes the chemotherapeutic sensitivity — Hao Yang;Xiaoping Zhao;Jianjun Liu;Mingming Jin;Xiyu Liu;Jun Yan;Xufeng Yao;Xinyi Mao;Nan Li;Beibei Liang;Wei Xie;Kunchi Zhang;Jian Zhao;Liu Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14918,
+            "end_char": 15191
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Upregulated circRNA ARHGAP10 Predicts an Unfavorable Prognosis in NSCLC through Regulation of the miR-150-5p/GLUT-1 Axis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingming Jin;Chunzi Shi;Chen Yang;Jianjun Liu;Gang Huang",
+      "id": "out-65b541c2e027",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Upregulated circRNA ARHGAP10 Predicts an Unfavorable Prognosis in NSCLC through Regulation of the miR-150-5p/GLUT-1 Axis. — Mingming Jin;Chunzi Shi;Chen Yang;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15197,
+            "end_char": 15383
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Oxymatrine enhanced anti-tumor effects of Bevacizumab against triple-negative breast cancer via abating Wnt/β-Catenin signaling pathway",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Xie;Yan Zhang;Shiwei Zhang;Fengxian Wang;Kunchi Zhang;Yanjuan Huang;Zhaoli Zhou;Gang Huang;Jin Wang",
+      "id": "out-c84500bff08c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Oxymatrine enhanced anti-tumor effects of Bevacizumab against triple-negative breast cancer via abating Wnt/β-Catenin signaling pathway — Wei Xie;Yan Zhang;Shiwei Zhang;Fengxian Wang;Kunchi Zhang;Yanjuan Huang;Zhaoli Zhou;Gang Huang;Jin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15389,
+            "end_char": 15636
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Copper and neocuproine catalysed synthesis of cinnamyl ether derivatives directly from secondary and tertiary cinnamyl alcohols",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenjiao Yang;Yongsheng Zhang;Xingxian Lv;Yang Yang;Chunhao Jiang;Xiaoyan He;Guoliang Chen;Gang Huang;Xiuhong Lu",
+      "id": "out-e82e5ffaeaec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Copper and neocuproine catalysed synthesis of cinnamyl ether derivatives directly from secondary and tertiary cinnamyl alcohols — Zhenjiao Yang;Yongsheng Zhang;Xingxian Lv;Yang Yang;Chunhao Jiang;Xiaoyan He;Guoliang Chen;Gang Huang;Xiuhong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15642,
+            "end_char": 15890
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comprehensive landscape of tRNA-derived fragments in lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zitong Gao;Mayumi Jijiwa;Masaki Nasu;Heather Borgard;Ting Gong;Jinwen Xu;Shaoqiu Chen;Yuanyuan Fu;Yu Chen;Xiamin Hu;Gang Huang;Youping Deng",
+      "id": "out-26548cf5c855",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comprehensive landscape of tRNA-derived fragments in lung cancer — Zitong Gao;Mayumi Jijiwa;Masaki Nasu;Heather Borgard;Ting Gong;Jinwen Xu;Shaoqiu Chen;Yuanyuan Fu;Yu Chen;Xiamin Hu;Gang Huang;Youping Deng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15896,
+            "end_char": 16108
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction and Validation of a Tumor Microenvironment-Based Scoring System to Evaluate Prognosis and Response to Immune Checkpoint Inhibitor Therapy in Lung Adenocarcinoma Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pinzheng Huang;Linfeng Xu;Mingming Jin;Lixi Li;Yizhong Ke;Min Zhang;Kairui Zhang;Kongyao Lu;Gang Huang",
+      "id": "out-f86c5c52dfd6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Construction and Validation of a Tumor Microenvironment-Based Scoring System to Evaluate Prognosis and Response to Immune Checkpoint Inhibitor Therapy in Lung Adenocarcinoma Patients — Pinzheng Huang;Linfeng Xu;Mingming Jin;Lixi Li;Yizhong Ke;Min Zhang;Kairui Zhang;Kongyao Lu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16114,
+            "end_char": 16407
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肝细胞癌不良预后潜在基因的生物信息学分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柯益忠;黄钢",
+      "id": "out-1582ee3c8a9e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肝细胞癌不良预后潜在基因的生物信息学分析 — 柯益忠;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16413,
+            "end_char": 16448
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "靶向外泌体PKM2改善非小细胞肺癌顺铂耐药性的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨浩;黄钢;王栋梁;解伟;张坤驰;孔平;梁蓓蓓",
+      "id": "out-f527c07ca85f",
+      "evidence": [
+        {
+          "quote": "[专利] 靶向外泌体PKM2改善非小细胞肺癌顺铂耐药性的应用 — 杨浩;黄钢;王栋梁;解伟;张坤驰;孔平;梁蓓蓓",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16454,
+            "end_char": 16509
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肺部图像处理方法、装置及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄钢;聂生东;段辉宏",
+      "id": "out-691fa9db6b7f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肺部图像处理方法、装置及设备 — 黄钢;聂生东;段辉宏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16515,
+            "end_char": 16548
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain network analyses of diffusion tensor imaging for brain aging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Xu;Xufeng Yao;Liting Han;Yuting Lv;Xixi Bu;Gan Huang;Yifeng Fan;Tonggang Yu;Gang Huang",
+      "id": "out-6c19a6d79095",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain network analyses of diffusion tensor imaging for brain aging — Song Xu;Xufeng Yao;Liting Han;Yuting Lv;Xixi Bu;Gan Huang;Yifeng Fan;Tonggang Yu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16554,
+            "end_char": 16720
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Type I Pullulanase from Geobacillus subterraneus: Functional Expression in Escherichia coli, Enzyme Characterization, Truncation, and Application",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mianhui Chen;Jin Zhang;Jingjing Wang;Lin Lin;Wei Wei;Yaling Shen;Dongzhi Wei",
+      "id": "out-cfdaffdde270",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Type I Pullulanase from Geobacillus subterraneus: Functional Expression in Escherichia coli, Enzyme Characterization, Truncation, and Application — Mianhui Chen;Jin Zhang;Jingjing Wang;Lin Lin;Wei Wei;Yaling Shen;Dongzhi Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16726,
+            "end_char": 16958
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification, Characterization, and Computer-Aided Rational Design of a Novel Thermophilic Esterase from Geobacillus subterraneus, and Application in the Synthesis of Cinnamyl Acetate",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Zhang;Lin Lin;Wei Wei;Dongzhi Wei",
+      "id": "out-5b271eb60fbf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification, Characterization, and Computer-Aided Rational Design of a Novel Thermophilic Esterase from Geobacillus subterraneus, and Application in the Synthesis of Cinnamyl Acetate — Jin Zhang;Lin Lin;Wei Wei;Dongzhi Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16964,
+            "end_char": 17195
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Modeling of Patients Undergoing Surgery Alone for Esophageal Squamous Cell Carcinoma: A Histopathological and Computed Tomography Based Quantitative Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei-Lei Wu;Jin-Long Wang;Wei Huang;Xuan Liu;Yang-Yu Huang;Jing Zeng;Chun-Yan Cui;Jia-Bin Lu;Peng Lin;Hao Long;Lan-Jun Zhang;Jun Wei;Yao Lu;Guo-Wei Ma",
+      "id": "out-93f70817fff8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Modeling of Patients Undergoing Surgery Alone for Esophageal Squamous Cell Carcinoma: A Histopathological and Computed Tomography Based Quantitative Analysis — Lei-Lei Wu;Jin-Long Wang;Wei Huang;Xuan Liu;Yang-Yu Huang;Jing Zeng;Chun-Yan Cui;Jia-Bin Lu;Peng Lin;Hao Long;Lan-Jun Zhang;Jun Wei;Yao Lu;Guo-Wei Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17201,
+            "end_char": 17527
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Regulatory mechanism of α-hederin upon cisplatin sensibility in NSCLC at safe dose by destroying GSS/GSH/GPX2 axis–mediated glutathione oxidation-reduction system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Wu;Dongliang Wang;Yuqing Lou;Xiyu Liu;Pinzheng Huang;Mingming Jin;Gang Huang",
+      "id": "out-572a090b9a08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Regulatory mechanism of α-hederin upon cisplatin sensibility in NSCLC at safe dose by destroying GSS/GSH/GPX2 axis–mediated glutathione oxidation-reduction system — Yue Wu;Dongliang Wang;Yuqing Lou;Xiyu Liu;Pinzheng Huang;Mingming Jin;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17533,
+            "end_char": 17784
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MedSRGAN: medical images super-resolution using generative adversarial networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuchong Gu;Zitao Zeng;Haibin Chen;Jun Wei;Yaqin Zhang;Binghui Chen;Yingqin Li;Yujuan Qin;Qing Xie;Zhuoren Jiang;Yao Lu",
+      "id": "out-adaa0f7d6212",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MedSRGAN: medical images super-resolution using generative adversarial networks — Yuchong Gu;Zitao Zeng;Haibin Chen;Jun Wei;Yaqin Zhang;Binghui Chen;Yingqin Li;Yujuan Qin;Qing Xie;Zhuoren Jiang;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17790,
+            "end_char": 17996
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An epileptic seizure prediction model based on a time-wise attention simulation module and a pretrained ResNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yating Jiang;Yao Lu;Lingling Yang",
+      "id": "out-a494c2698aca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An epileptic seizure prediction model based on a time-wise attention simulation module and a pretrained ResNet — Yating Jiang;Yao Lu;Lingling Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18002,
+            "end_char": 18154
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Pan-Cancer Analysis Reveals the Prognostic and Immunotherapeutic Value of ALKBH7",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaijie Chen;Dongjie Shen;Lin Tan;Donglin Lai;Yuru Han;Yonggang Gu;Changlian Lu;Xuefeng Gu",
+      "id": "out-8a5fdca642c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Pan-Cancer Analysis Reveals the Prognostic and Immunotherapeutic Value of ALKBH7 — Kaijie Chen;Dongjie Shen;Lin Tan;Donglin Lai;Yuru Han;Yonggang Gu;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18160,
+            "end_char": 18340
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A method for distinguishing benign and malignant pulmonary nodules based on 3D dual path network aided by K-means clustering analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dachuan Gao;Xiaodan Ye;Xuewen Hou;Yang Chen;Xue Kong;Yuanzhong Xie;Shengdong Nie",
+      "id": "out-bb9302a68406",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A method for distinguishing benign and malignant pulmonary nodules based on 3D dual path network aided by K-means clustering analysis — Dachuan Gao;Xiaodan Ye;Xuewen Hou;Yang Chen;Xue Kong;Yuanzhong Xie;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18346,
+            "end_char": 18568
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishing a survival prediction model for esophageal squamous cell carcinoma based on CT and histopathological images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinlong Wang;Lei-Lei Wu;Yunzhe Zhang;Guowei Ma;Yao Lu",
+      "id": "out-54358a87606c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishing a survival prediction model for esophageal squamous cell carcinoma based on CT and histopathological images — Jinlong Wang;Lei-Lei Wu;Yunzhe Zhang;Guowei Ma;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18574,
+            "end_char": 18756
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immunological and prognostic analysis of PSENEN in low-grade gliomas: An immune infiltration-related prognostic biomarker",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaijie Chen;Beibei Liang;Wenhao Ma;Guoqing Wan;Bing Chen;Changlian Lu;Yuzhou Luo;Xuefeng Gu",
+      "id": "out-e1ff4375db5a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immunological and prognostic analysis of PSENEN in low-grade gliomas: An immune infiltration-related prognostic biomarker — Kaijie Chen;Beibei Liang;Wenhao Ma;Guoqing Wan;Bing Chen;Changlian Lu;Yuzhou Luo;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18762,
+            "end_char": 18983
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic segmentation of the pectoral muscle based on boundary identification and shape prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongze Guo;Wenhui Zhao;Songfeng Li;Yaqin Zhang;Yao Lu",
+      "id": "out-fa1c0f27d0d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic segmentation of the pectoral muscle based on boundary identification and shape prediction — Yongze Guo;Wenhui Zhao;Songfeng Li;Yaqin Zhang;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 18989,
+            "end_char": 19150
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LncRNA AC020978 facilitates non-small cell lung cancer progression by interacting with malate dehydrogenase 2 and activating the AKT pathway",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Xu;Qian Hua;Aimi Zhang;Zhang Di;Yining Wang;Li Zhao;Hao Yang;Jianjun Liu;Gang Huang",
+      "id": "out-8a389b8898c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LncRNA AC020978 facilitates non-small cell lung cancer progression by interacting with malate dehydrogenase 2 and activating the AKT pathway — Fei Xu;Qian Hua;Aimi Zhang;Zhang Di;Yining Wang;Li Zhao;Hao Yang;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 19156,
+            "end_char": 19392
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Supervised learning with cyclegan for low-dose FDG PET image denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Zhou;Joshua D Schaefferkoetter;Ivan W K Tham;Gang Huang;Jianhua Yan",
+      "id": "out-bcc278274679",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Supervised learning with cyclegan for low-dose FDG PET image denoising — Long Zhou;Joshua D Schaefferkoetter;Ivan W K Tham;Gang Huang;Jianhua Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 19398,
+            "end_char": 19549
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Validation of radiographic quality of simulation software - ImaSim",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhonghang Wu;Jieying Yu;Qianqing Wu;Pengfei Hou;Jiuai Sun",
+      "id": "out-68735505d94b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Validation of radiographic quality of simulation software - ImaSim — Zhonghang Wu;Jieying Yu;Qianqing Wu;Pengfei Hou;Jiuai Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 19555,
+            "end_char": 19687
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of breast cancer molecular subtypes using DCE-MRI based on CNNs combined with ensemble learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rong Sun;Zijun Meng;Xuewen Hou;Yang Chen;Yifeng Yang;Gang Huang;Shengdong Nie",
+      "id": "out-7941791d4952",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of breast cancer molecular subtypes using DCE-MRI based on CNNs combined with ensemble learning — Rong Sun;Zijun Meng;Xuewen Hou;Yang Chen;Yifeng Yang;Gang Huang;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 19693,
+            "end_char": 19885
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Heterogeneous Metabolic Patterns of Ganglia in Ga-68-PSMA, C-11-choline, and F-18-FDG PET/CT in Prostate Cancer Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiping Shi;Jian Guo Wu;Lian Xu;Yinjie Zhu;Yining Wang;Gan Huang;Jianjun Liu;Ruohua Chen",
+      "id": "out-835bbbd9f695",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Heterogeneous Metabolic Patterns of Ganglia in Ga-68-PSMA, C-11-choline, and F-18-FDG PET/CT in Prostate Cancer Patients — Yiping Shi;Jian Guo Wu;Lian Xu;Yinjie Zhu;Yining Wang;Gan Huang;Jianjun Liu;Ruohua Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 19891,
+            "end_char": 20111
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Electroacupuncture may alleviate behavioral defects via modulation of gut microbiota in a mouse model of Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiu-Qin Han;Yi Fu;Jia-Mei Le;Adam Pilot;Si Cheng;Pei-Qing Chen;Hailong Wu;Guo-Qing Wan;Xue-Feng Gu",
+      "id": "out-26536fdd7db8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Electroacupuncture may alleviate behavioral defects via modulation of gut microbiota in a mouse model of Parkinson's disease — Qiu-Qin Han;Yi Fu;Jia-Mei Le;Adam Pilot;Si Cheng;Pei-Qing Chen;Hailong Wu;Guo-Qing Wan;Xue-Feng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20117,
+            "end_char": 20348
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immune infiltration and diagnostic value of immune‐related genes in periodontitis using bioinformatics analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Donglin Lai;Wenhao Ma;Jie Wang;Luzhu Zhang;Junfeng Shi;Changlian Lu;Xuefeng Gu",
+      "id": "out-b3ab927e3032",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immune infiltration and diagnostic value of immune‐related genes in periodontitis using bioinformatics analysis — Donglin Lai;Wenhao Ma;Jie Wang;Luzhu Zhang;Junfeng Shi;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20354,
+            "end_char": 20552
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于磁共振影像的乳腺癌计算机辅助检测方法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "聂生东;魏传令;张小兵",
+      "id": "out-28357c0f3e78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于磁共振影像的乳腺癌计算机辅助检测方法综述 — 聂生东;魏传令;张小兵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20558,
+            "end_char": 20600
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Alberta Stroke Program Early Computed Tomographic Scoring in patients with acute ischemic stroke using diffusion-weighted imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Wu;Rong Sun;Yuanzhong Xie;Shengdong Nie",
+      "id": "out-5d585b1e58d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Alberta Stroke Program Early Computed Tomographic Scoring in patients with acute ischemic stroke using diffusion-weighted imaging — Yan Wu;Rong Sun;Yuanzhong Xie;Shengdong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20606,
+            "end_char": 20797
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A quality improvement method for lung LDCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Chen;Xiaoting Dai;Huihong Duan;Lei Gao;Xiw",
+      "id": "out-cc3ec0ca8d51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A quality improvement method for lung LDCT images — Yang Chen;Xiaoting Dai;Huihong Duan;Lei Gao;Xiw",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20803,
+            "end_char": 20908
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Smart On-Site Immobilizable Near-Infrared II Fluorescent Nanoprobes for Ultra-Long-Term Imaging-Guided Tumor Surgery and Photothermal Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuqi Zhang;Meng Zhao;Jing Fang;Shuyue Ye;Anna Wang;Yan Zhao;Chaoxiang Cui;Lei He;Haibin Shi",
+      "id": "out-043af179e50a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Smart On-Site Immobilizable Near-Infrared II Fluorescent Nanoprobes for Ultra-Long-Term Imaging-Guided Tumor Surgery and Photothermal Therapy — Yuqi Zhang;Meng Zhao;Jing Fang;Shuyue Ye;Anna Wang;Yan Zhao;Chaoxiang Cui;Lei He;Haibin Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 20934,
+            "end_char": 21175
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A content-adaptive unstructured grid based integral equation method with the TV regularization for SPECT reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Chen;Jiasheng Huang;Si Li;Yao Lu;Yuesheng Xu",
+      "id": "out-b6be445e2330",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A content-adaptive unstructured grid based integral equation method with the TV regularization for SPECT reconstruction — Yun Chen;Jiasheng Huang;Si Li;Yao Lu;Yuesheng Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 21181,
+            "end_char": 21357
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Ferroptosis-Related lncRNA Signatures Associated With Immunotherapy and Chemotherapy Responses in Patients With Stomach Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Donlin Lai;Lin Tan;Xiaojia Zuo;DingSheng Liu;Deyi Jiao;Guoqing Wan;Changlian Lu;Dongjie Shen;Xuefeng Gu",
+      "id": "out-62e37e4a63b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Ferroptosis-Related lncRNA Signatures Associated With Immunotherapy and Chemotherapy Responses in Patients With Stomach Cancer — Donlin Lai;Lin Tan;Xiaojia Zuo;DingSheng Liu;Deyi Jiao;Guoqing Wan;Changlian Lu;Dongjie Shen;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 21363,
+            "end_char": 21612
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A portable instrument for on-site detection of heavy metal ions in water",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenqing Li;Debao Xu;Dawei Zhang;Yoshinori Yamaguchi",
+      "id": "out-5d7bd7ed73d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A portable instrument for on-site detection of heavy metal ions in water — Zhenqing Li;Debao Xu;Dawei Zhang;Yoshinori Yamaguchi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 21619,
+            "end_char": 21752
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "传统解剖学特征与深度学习相结合的肺叶分割算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高磊;段辉宏;聂生东",
+      "id": "out-3976a5906f26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 传统解剖学特征与深度学习相结合的肺叶分割算法 — 高磊;段辉宏;聂生东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 21759,
+            "end_char": 21800
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Model In Vitro Study Using Hypericin: Tumor-Versus Necrosis-Targeting Property and Possible Mechanisms.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Li;Shuncong Wang;Yuanyu Zhao;Hexige Saiyi;Xiaoyan He;Juanzhi Zhao;Ling Li;Ali Talebi;Gang Huang;Yicheng Ni",
+      "id": "out-c08c7457edba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Model In Vitro Study Using Hypericin: Tumor-Versus Necrosis-Targeting Property and Possible Mechanisms. — Yue Li;Shuncong Wang;Yuanyu Zhao;Hexige Saiyi;Xiaoyan He;Juanzhi Zhao;Ling Li;Ali Talebi;Gang Huang;Yicheng Ni",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 21807,
+            "end_char": 22031
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesis of 4-((1H-benzo[d]imidazol-2-yl)oxy)-3-methylpicolinic acid, a key related substance of Rabeprazole sodium",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyan He;Yan Chang;Xuefei Bao;Zi'ao Liu;Guoliang Chen;Xiuhong Lu",
+      "id": "out-453e74e47881",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesis of 4-((1H-benzo[d]imidazol-2-yl)oxy)-3-methylpicolinic acid, a key related substance of Rabeprazole sodium — Xiaoyan He;Yan Chang;Xuefei Bao;Zi'ao Liu;Guoliang Chen;Xiuhong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 22038,
+            "end_char": 22229
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A fundamental solution for radiofrequency heating due to a point electrical current in an infinite spatial domain: Numerical proofs with MATHEMATICA and ANSYS",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yansheng Jiang;Peng Li;Yue Li;Chong Wang",
+      "id": "out-f903dbf28311",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A fundamental solution for radiofrequency heating due to a point electrical current in an infinite spatial domain: Numerical proofs with MATHEMATICA and ANSYS — Yansheng Jiang;Peng Li;Yue Li;Chong Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 22236,
+            "end_char": 22443
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hub Genes, Diagnostic Model, and Predicted Drugs Related to Iron Metabolism in Alzheimer's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuefeng Gu;Donglin Lai;Shuang Liu;Kaijie Chen;Peng Zhang;Bing Chen;Gang Huang;Xiaoqin Cheng;Changlian Lu",
+      "id": "out-7ba75ba0b46a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hub Genes, Diagnostic Model, and Predicted Drugs Related to Iron Metabolism in Alzheimer's Disease — Xuefeng Gu;Donglin Lai;Shuang Liu;Kaijie Chen;Peng Zhang;Bing Chen;Gang Huang;Xiaoqin Cheng;Changlian Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 22450,
+            "end_char": 22661
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint two-stage convolutional neural networks for intracranial aneurysms detection on 3D TOF-MRA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxi Zhou;Yifeng Yang;Ting Fang;Shouqiang Jia;Shengdong Nie;Xiaodan Ye",
+      "id": "out-3dd2b6a99ee1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint two-stage convolutional neural networks for intracranial aneurysms detection on 3D TOF-MRA — Yuxi Zhou;Yifeng Yang;Ting Fang;Shouqiang Jia;Shengdong Nie;Xiaodan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 22668,
+            "end_char": 22843
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Adaptive Region Growing Based on Neutrosophic Set in Ultrasound Domain for Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue Jiang;Yanhui Guo;Haibin Chen;Yaqin Zhang;Yao Lu",
+      "id": "out-bfdabf1df44f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Adaptive Region Growing Based on Neutrosophic Set in Ultrasound Domain for Image Segmentation — Xue Jiang;Yanhui Guo;Haibin Chen;Yaqin Zhang;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 22850,
+            "end_char": 23006
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Yolk-Shelled Gold@Cuprous Oxide Nanostructures with Hot Carriers Boosting Photocatalytic Performance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yujie Ma;Xiaoyan Liu;Xindong Wei;Jiamei Le;Yi Fu;Qiuqin Han;Houlin Ji;Zhi Yang;Hailong Wu",
+      "id": "out-de5d6276ba8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Yolk-Shelled Gold@Cuprous Oxide Nanostructures with Hot Carriers Boosting Photocatalytic Performance — Yujie Ma;Xiaoyan Liu;Xindong Wei;Jiamei Le;Yi Fu;Qiuqin Han;Houlin Ji;Zhi Yang;Hailong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23013,
+            "end_char": 23211
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sirtuin-mediated deacetylation of hnRNP A1 suppresses glycolysis and growth in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Yang;Rongxuan Zhu;Xiaoping Zhao;Liu Liu;Zhaoli Zhou;Li Zhao;Beibei Liang;Wenjing Ma;Jian Zhao;Jianjun Liu;Gang Huang",
+      "id": "out-011837ee4023",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sirtuin-mediated deacetylation of hnRNP A1 suppresses glycolysis and growth in hepatocellular carcinoma — Hao Yang;Rongxuan Zhu;Xiaoping Zhao;Liu Liu;Zhaoli Zhou;Li Zhao;Beibei Liang;Wenjing Ma;Jian Zhao;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23218,
+            "end_char": 23450
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An AKT/PRMT5/SREBP1 axis in lung adenocarcinoma regulates de novo lipogenesis and tumor growth",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Liu;Hui Yan;Maomei Ruan;Hao Yang;Lihua Wang;Bei Lei;Xiaoyan Sun;Cheng Chang;Gang Huang;Wenhui Xie",
+      "id": "out-84069a024a6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An AKT/PRMT5/SREBP1 axis in lung adenocarcinoma regulates de novo lipogenesis and tumor growth — Liu Liu;Hui Yan;Maomei Ruan;Hao Yang;Lihua Wang;Bei Lei;Xiaoyan Sun;Cheng Chang;Gang Huang;Wenhui Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23457,
+            "end_char": 23661
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Iterative multiple instance learning for weakly annotated whole slide image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpin Zhou;Shuanlong Che;Fang Lu;Si Liu;Ziye Yan;Jun Wei;Yinghua Li;Xiangdong Ding;Yao Lu",
+      "id": "out-e346f336ad8f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Iterative multiple instance learning for weakly annotated whole slide image classification — Yuanpin Zhou;Shuanlong Che;Fang Lu;Si Liu;Ziye Yan;Jun Wei;Yinghua Li;Xiangdong Ding;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23668,
+            "end_char": 23858
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "应用MALDI-TOF-MS筛选紫杉醇耐药乳腺癌组织蛋白标志物",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王栋梁;杨浩;宋少莉;刘建军;黄钢",
+      "id": "out-9937ceb3b933",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 应用MALDI-TOF-MS筛选紫杉醇耐药乳腺癌组织蛋白标志物 — 王栋梁;杨浩;宋少莉;刘建军;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23865,
+            "end_char": 23922
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synthesis of Mammogram From Digital Breast Tomosynthesis Using Deep Convolutional Neural Network With Gradient Guided cGANs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gongfa Jiang;Jun Wei;Yuesheng Xu;Zilong He;Hui Zeng;Jiefang Wu;Genggeng Qin;Weiguo Chen;Yao Lu",
+      "id": "out-4f33966f8804",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synthesis of Mammogram From Digital Breast Tomosynthesis Using Deep Convolutional Neural Network With Gradient Guided cGANs — Gongfa Jiang;Jun Wei;Yuesheng Xu;Zilong He;Hui Zeng;Jiefang Wu;Genggeng Qin;Weiguo Chen;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 23929,
+            "end_char": 24155
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ANALYSES OF BRAIN CORTICAL CHANGES OF ALZHEIMER'S DISEASE",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuting Lv;Wenshuo Zhao;Xufeng Yao;Song Xu;Zhixian Tang;Yifeng Fan;Gang Huang",
+      "id": "out-e96f3f1dc783",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ANALYSES OF BRAIN CORTICAL CHANGES OF ALZHEIMER'S DISEASE — Yuting Lv;Wenshuo Zhao;Xufeng Yao;Song Xu;Zhixian Tang;Yifeng Fan;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 24162,
+            "end_char": 24304
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exosomal IDH1 increases the resistance of colorectal cancer cells to 5-Fluorouracil",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Yang;Sha Xie;Beibei Liang;Qiqi Tang;Huanchen Liu;Dongliang Wang;Gang Huang",
+      "id": "out-71d7da72eccb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exosomal IDH1 increases the resistance of colorectal cancer cells to 5-Fluorouracil — Hao Yang;Sha Xie;Beibei Liang;Qiqi Tang;Huanchen Liu;Dongliang Wang;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 24311,
+            "end_char": 24481
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rapid quantitative detection of chloramphenicol in milk by microfluidic immunoassay",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mantong Zhao;Xiaolong Li;Yule Zhang;Yuwen Wang;Bo Wang;Lulu Zheng;Dawei Zhang;Songlin Zhuang",
+      "id": "out-a83bb834de03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rapid quantitative detection of chloramphenicol in milk by microfluidic immunoassay — Mantong Zhao;Xiaolong Li;Yule Zhang;Yuwen Wang;Bo Wang;Lulu Zheng;Dawei Zhang;Songlin Zhuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 24488,
+            "end_char": 24672
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "In Silico Rational Design and Protein Engineering of Disulfide Bridges of an α‐Amylase from Geobacillussp. to Improve Thermostability",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Heng Zhang;Wenxin Zhai;Lin Lin;Ping Wang;Xiangyang Xu;Wei Wei;Dongzhi Wei",
+      "id": "out-0a0a6b9a2585",
+      "evidence": [
+        {
+          "quote": "[期刊论文] In Silico Rational Design and Protein Engineering of Disulfide Bridges of an α‐Amylase from Geobacillussp. to Improve Thermostability — Heng Zhang;Wenxin Zhai;Lin Lin;Ping Wang;Xiangyang Xu;Wei Wei;Dongzhi Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 24679,
+            "end_char": 24894
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ES-MION-Based Dual-Modality PET/MRI Probes for Acidic Tumor Microenvironment Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuyan Wei;Haitao Zhao;Gang Huang;Jianhua Liu;Weina He;Qingqing Huang",
+      "id": "out-b24a0ec0da64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ES-MION-Based Dual-Modality PET/MRI Probes for Acidic Tumor Microenvironment Imaging — Xiuyan Wei;Haitao Zhao;Gang Huang;Jianhua Liu;Weina He;Qingqing Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 24901,
+            "end_char": 25063
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hypoxia-induced lncRNA-AC020978 promotes proliferation and glycolytic metabolism of non-small cell lung cancer by regulating PKM2/HIF-1 alpha axis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Hua;Baoming Mi;Fei Xu;Jun Wen;Li Zhao;Jianjun Liu;Gang Huang",
+      "id": "out-3ae6b18ac654",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hypoxia-induced lncRNA-AC020978 promotes proliferation and glycolytic metabolism of non-small cell lung cancer by regulating PKM2/HIF-1 alpha axis — Qian Hua;Baoming Mi;Fei Xu;Jun Wen;Li Zhao;Jianjun Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 25070,
+            "end_char": 25290
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Radiomic feature–based Nipple Detection Algorithm on Digital Mammography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayu Jiang;Yaqin Zhang;Yao Lu;Yanhui Guo;Haibin Chen",
+      "id": "out-3433601e22a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Radiomic feature–based Nipple Detection Algorithm on Digital Mammography — Jiayu Jiang;Yaqin Zhang;Yao Lu;Yanhui Guo;Haibin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 25297,
+            "end_char": 25433
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Architectural distortion detection based on superior-inferior directional context and anatomic prior knowledge in digital breast tomosynthesis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Li;Zilong He;Xiangyuan Ma;Weixiong Zeng;Jialing Liu;Weimin Xu;Zeyuan Xu;Sina Wang;Chanjuan Wen;Hui Zeng;Jiefang Wu;Weiguo Chen;Yao Lu",
+      "id": "out-9298ed5418c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Architectural distortion detection based on superior-inferior directional context and anatomic prior knowledge in digital breast tomosynthesis. — Yue Li;Zilong He;Xiangyuan Ma;Weixiong Zeng;Jialing Liu;Weimin Xu;Zeyuan Xu;Sina Wang;Chanjuan Wen;Hui Zeng;Jiefang Wu;Weiguo Chen;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 25440,
+            "end_char": 25729
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rab25 acts as an oncogene and participates in the regulation of aerobic glycolysis via PKM2 in gastric adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyu Zheng;Linyi Huang;Ning Chen;Huiping Xue;Peihua Ni;Gang Huang",
+      "id": "out-07bc5e41d834",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rab25 acts as an oncogene and participates in the regulation of aerobic glycolysis via PKM2 in gastric adenocarcinoma — Tianyu Zheng;Linyi Huang;Ning Chen;Huiping Xue;Peihua Ni;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 25736,
+            "end_char": 25929
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiplex amplification of target genes of periodontal pathogens in continuous flow PCR microfluidic chip",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenqing Li;Jiahui Liu;Ping Wang;Chunxian Tao;Lulu Zheng;Shinichi Sekine;Songlin Zhuang;Dawei Zhang;Yoshinori Yamaguchi",
+      "id": "out-9ba1ab220c8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiplex amplification of target genes of periodontal pathogens in continuous flow PCR microfluidic chip — Zhenqing Li;Jiahui Liu;Ping Wang;Chunxian Tao;Lulu Zheng;Shinichi Sekine;Songlin Zhuang;Dawei Zhang;Yoshinori Yamaguchi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 25936,
+            "end_char": 26169
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoupling convolution network for characterizing the metastatic lymph nodes of breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rutong Zeng;Xiang Zhang;Chushan Zheng;Jin-Hong Du;Zixiong Gao;Wei Jun;Jun Shen;Yao Lu",
+      "id": "out-f54c09d87713",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decoupling convolution network for characterizing the metastatic lymph nodes of breast cancer patients — Rutong Zeng;Xiang Zhang;Chushan Zheng;Jin-Hong Du;Zixiong Gao;Wei Jun;Jun Shen;Yao Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 26176,
+            "end_char": 26372
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcriptomic analysis reveals a WNT signaling pathway-based gene signature prognostic for non-small cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gang Liu;Wenhui Xie;Mingming Jin;Ping Li;Liu Liu;Lei Liu;Gang Huang",
+      "id": "out-726aaee8ba4d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcriptomic analysis reveals a WNT signaling pathway-based gene signature prognostic for non-small cell carcinoma — Gang Liu;Wenhui Xie;Mingming Jin;Ping Li;Liu Liu;Lei Liu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 26379,
+            "end_char": 26571
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Long Noncoding RNA MEG3 Retains Epithelial-Mesenchymal Transition by Sponging miR-146b-5p to Regulate SLFN5 Expression in Breast Cancer Cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuefeng Gu;Jingyi Li;Xiaojia Zuo;Kaijie Chen;Guoqing Wan;Li-Li Deng;Weiming Zhao;Changlian Lu",
+      "id": "out-1e18e5d7dc5c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Long Noncoding RNA MEG3 Retains Epithelial-Mesenchymal Transition by Sponging miR-146b-5p to Regulate SLFN5 Expression in Breast Cancer Cells — Xuefeng Gu;Jingyi Li;Xiaojia Zuo;Kaijie Chen;Guoqing Wan;Li-Li Deng;Weiming Zhao;Changlian Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 26578,
+            "end_char": 26825
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing the bioconversion of phytosterols to steroidal intermediates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-532356484c2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancing the bioconversion of phytosterols to steroidal intermediates",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 26832,
+            "end_char": 26908
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cisplatin-resistant NSCLC cells induced by hypoxia transmit resistance to sensitive cells through exosomal PKM2",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongliang Wang;Chaoshuai Zhao;Fei Xu;Aimi Zhang;Mingming Jin;Kunchi Zhang;Liu Liu;Qian Hua;Jian Zhao;Jianjun Liu;Hao Yang;Gang Huang",
+      "id": "out-443b334f0116",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cisplatin-resistant NSCLC cells induced by hypoxia transmit resistance to sensitive cells through exosomal PKM2 — Dongliang Wang;Chaoshuai Zhao;Fei Xu;Aimi Zhang;Mingming Jin;Kunchi Zhang;Liu Liu;Qian Hua;Jian Zhao;Jianjun Liu;Hao Yang;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 27106,
+            "end_char": 27358
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Delayed F-18-FDG PET/CT Appearance of Urachal Adenocarcinomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lian Xu;Yiping Shi;Yining Wang;Xiang Zhou;Gan Huang;Ruohua Chen;Jianjun Liu",
+      "id": "out-67f6e63c5640",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Delayed F-18-FDG PET/CT Appearance of Urachal Adenocarcinomas — Lian Xu;Yiping Shi;Yining Wang;Xiang Zhou;Gan Huang;Ruohua Chen;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 27365,
+            "end_char": 27510
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hyaluronic acid-coated Bi:Cu2O: an H2S-responsive agent for colon cancer with targeted delivery and enhanced photothermal performance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuying Cheng;Haiji Bo;Ruomeng Qin;Fulai Chen;Fengfeng Xue;Lu An;Gang Huang;Qiwei Tian",
+      "id": "out-db95925d5b72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hyaluronic acid-coated Bi:Cu2O: an H2S-responsive agent for colon cancer with targeted delivery and enhanced photothermal performance — Yuying Cheng;Haiji Bo;Ruomeng Qin;Fulai Chen;Fengfeng Xue;Lu An;Gang Huang;Qiwei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 27517,
+            "end_char": 27744
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High-quality genome assembly of Metaphire vulgaris",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Jin;Zhaoli Zhou;Qi Guo;Zhenwen Liang;Ruoyu Yang;Jibao Jiang;Yanlin He;Qi Zhao;Qiang Zhao",
+      "id": "out-efeb9ebbd7c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High-quality genome assembly of Metaphire vulgaris — Feng Jin;Zhaoli Zhou;Qi Guo;Zhenwen Liang;Ruoyu Yang;Jibao Jiang;Yanlin He;Qi Zhao;Qiang Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 27751,
+            "end_char": 27903
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Region growing algorithm combined with morphology and skeleton analysis for segmenting airway tree in CT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui-Hong Duan;Jing Gong;Xi-Wen Sun;Sheng-Dong Nie",
+      "id": "out-33a733072397",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Region growing algorithm combined with morphology and skeleton analysis for segmenting airway tree in CT images — Hui-Hong Duan;Jing Gong;Xi-Wen Sun;Sheng-Dong Nie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 27910,
+            "end_char": 28079
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Novel Regulatory Role of lncRNA-miRNA-mRNA Axis in Amyotrophic Lateral Sclerosis: An Integrated Bioinformatics Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dingsheng Liu;Xiaojia Zuo;Peng Zhang;Rui Zhao;Donglin Lai;Kaijie Chen;Yuru Han;Guoqing Wan;Yanjun Zheng;Changlian Lu;Xuefeng Gu",
+      "id": "out-24465055d29b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Novel Regulatory Role of lncRNA-miRNA-mRNA Axis in Amyotrophic Lateral Sclerosis: An Integrated Bioinformatics Analysis — Dingsheng Liu;Xiaojia Zuo;Peng Zhang;Rui Zhao;Donglin Lai;Kaijie Chen;Yuru Han;Guoqing Wan;Yanjun Zheng;Changlian Lu;Xuefeng Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 28086,
+            "end_char": 28345
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosting the photocatalytic performance of Cu2O for hydrogen generation by Au nanostructures and rGO nanosheets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yujie Ma;Xindong Wei;Kedeerya Aishanjiang;Yi Fu;Jiamei Le;Hailong Wu",
+      "id": "out-e43f93e12706",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boosting the photocatalytic performance of Cu2O for hydrogen generation by Au nanostructures and rGO nanosheets — Yujie Ma;Xindong Wei;Kedeerya Aishanjiang;Yi Fu;Jiamei Le;Hailong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 28352,
+            "end_char": 28540
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning of mammary gland distribution for architectural distortion detection in digital breast tomosynthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Li;Zilong He;Yao Lu;Xiangyuan Ma;Yanhui Guo;Zheng Xie;Genggeng Qin;Weimin Xu;Zeyuan Xu;Weiguo Chen;Haibin Chen",
+      "id": "out-e8be262398ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning of mammary gland distribution for architectural distortion detection in digital breast tomosynthesis — Yue Li;Zilong He;Yao Lu;Xiangyuan Ma;Yanhui Guo;Zheng Xie;Genggeng Qin;Weimin Xu;Zeyuan Xu;Weiguo Chen;Haibin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 28547,
+            "end_char": 28784
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Relationship between the expression of oestrogen receptor and progesterone receptor and F-18-FDG uptake in endometrial cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhua Wu;Ruohua Chen;Lian Xu;Yumei Chen;Yining Wang;Gang Huang;Jianjun Liu",
+      "id": "out-4c315a9c1eed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Relationship between the expression of oestrogen receptor and progesterone receptor and F-18-FDG uptake in endometrial cancer — Chunhua Wu;Ruohua Chen;Lian Xu;Yumei Chen;Yining Wang;Gang Huang;Jianjun Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 28791,
+            "end_char": 29001
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种靶向原肌球蛋白激酶TRK融合蛋白的PET探针及其合成与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐德伟;黄钢;黄辰;吴星宇;俞美岑;李妍娇",
+      "id": "out-706a227dcebd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种靶向原肌球蛋白激酶TRK融合蛋白的PET探针及其合成与应用 — 唐德伟;黄钢;黄辰;吴星宇;俞美岑;李妍娇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 29008,
+            "end_char": 29067
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graphene Oxide Biosensors Based on Hybridization Chain Reaction Signal Amplification for Detecting Biomarkers of Radiation-Resistant Nasopharyngeal Carcinoma and Imaging in Living Cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan Qin;Dutao Yang;Shaoxian Yin;Yue Qan;Yanfei Cai;Jian Jin;Gang Huang;Zhaoqi Yang",
+      "id": "out-0e30f21a7414",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graphene Oxide Biosensors Based on Hybridization Chain Reaction Signal Amplification for Detecting Biomarkers of Radiation-Resistant Nasopharyngeal Carcinoma and Imaging in Living Cells — Lan Qin;Dutao Yang;Shaoxian Yin;Yue Qan;Yanfei Cai;Jian Jin;Gang Huang;Zhaoqi Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 29074,
+            "end_char": 29350
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Human Schlafen 5 regulates reversible epithelial and mesenchymal transitions in breast cancer by suppression of ZEB1 transcription",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoqing Wan;Jiang Zhu;Xuefeng Gu;Yue Yang;Yihao Liu;Zhizheng Wang;Yuxia Zhao;Hailong Wu;Gang Huang;Changlian Lu",
+      "id": "out-ca934bf47730",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Human Schlafen 5 regulates reversible epithelial and mesenchymal transitions in breast cancer by suppression of ZEB1 transcription — Guoqing Wan;Jiang Zhu;Xuefeng Gu;Yue Yang;Yihao Liu;Zhizheng Wang;Yuxia Zhao;Hailong Wu;Gang Huang;Changlian Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 29357,
+            "end_char": 29607
+          },
+          "version": "50134e266aa86d7c6e4b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 139,
+    "listed": 139,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 132,
+        "extracted": 131
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": false
+  }
 }

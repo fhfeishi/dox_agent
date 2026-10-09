@@ -2,15 +2,20 @@
   "doc_id": "471743084ec2e3d81441",
   "version": "d1fd83e2890c98706e37",
   "source_hash": "15d631aff9944bd3cc26ea85f6834ca3fcd8e6d6ae7f64ead6aa6f263ec33cb6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.239885+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.216019+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b19b72c9bcd6",
-          "name": "孕晚期胎儿窘迫智能辅助诊断",
-          "desc": "孕晚期胎儿窘迫是新生儿窒息、致残和死亡的主要原因之一，胎心宫缩监护是临床评估胎儿健康的主要手段。",
+          "id": "item-0aada7175b53",
+          "name": "孕晚期胎儿窘迫辅助诊断",
+          "desc": "CTG胎心监护",
           "evidence": [
             {
-              "quote": "孕晚期胎儿窘迫是新生儿窒息、致残和死亡等不良事件发生的主要原因之一，胎心宫缩监护（Cardiotocography, CTG）是临床评估胎儿健康状况的主要检测手段",
+              "quote": "以胎心率(Fetal Heart Rate，FHR)和胎儿监护图(Cardiotocography，CTG)为对象，借助人工智能技术进行胎儿窘迫辅助诊断研究得到国内外学者的广泛关注",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 753
-              },
-              "version": "d1fd83e2890c98706e37"
-            }
-          ]
-        },
-        {
-          "id": "item-19ea9cf8b7b6",
-          "name": "智能辅助诊断系统产科落地",
-          "desc": "研究为孕晚期胎儿窘迫智能辅助诊断系统在产科临床落地应用奠定理论基础和技术支撑。",
-          "evidence": [
-            {
-              "quote": "本项目的研究将为孕晚期胎儿窘迫智能辅助诊断系统在产科临床落地应用奠定坚实的理论基础和技术支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1020,
-                "end_char": 1065
+                "start_char": 2691,
+                "end_char": 2780
               },
               "version": "d1fd83e2890c98706e37"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0816bf5c0f3",
-          "name": "数据缺乏类别不均衡与模型缺解释",
-          "desc": "产科临床智能诊断面临数据缺乏、类别不均衡和模型缺乏解释等瓶颈问题。",
-          "evidence": [
-            {
-              "quote": "本项目围绕产科临床智能诊断面临的数据缺乏、类别不均衡和模型缺乏解释等瓶颈问题展开深入研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 755,
-                "end_char": 798
-              },
-              "version": "d1fd83e2890c98706e37"
-            }
-          ]
-        },
-        {
-          "id": "item-f18e1069d126",
-          "name": "FHR信号采集存在缺失与重建难题",
-          "desc": "FHR信号在真实采集环境中存在缺失，需解决动态丢失和重建困难问题。",
+          "id": "item-675ab6abdeea",
+          "name": "FHR信号缺失、数据稀少且类别不平衡、纸质CTG无法量化",
+          "desc": "真实环境下",
           "evidence": [
             {
               "quote": "针对FHR信号在真实采集环境中存在缺失的问题，提出了基于稀疏字典学习和Boosting集成学习的FHR重建算法",
@@ -95,157 +68,313 @@
       "state": "has",
       "items": [
         {
-          "id": "item-34d4a359f096",
-          "name": "稀疏字典学习FHR重建与缺失值填补",
-          "desc": "提出基于稀疏字典学习和Boosting集成学习的FHR重建算法，以及基于维度构建和周期分割的FHR缺失值填补算法DMDI-FHR。",
+          "id": "item-6611fe9aafb1",
+          "name": "FHR缺失值填补与重建算法DMDI-FHR",
+          "desc": "稀疏字典学习与Boosting",
           "evidence": [
             {
-              "quote": "提出了基于稀疏字典学习和Boosting集成学习的FHR重建算法，构建了基于维度构建和周期分割的FHR缺失值填补算法DMDI-FHR",
+              "quote": "构建了基于维度构建和周期分割的FHR缺失值填补算法DMDI-FHR",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2890,
+                "start_char": 2923,
                 "end_char": 2955
               },
               "version": "d1fd83e2890c98706e37"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5a5af2e32024",
-          "name": "GAN数据生成与双趋势累积模型",
-          "desc": "构建基于生成对抗网络的少数类FHR数据生成模型解决数据量不足问题，并提出双趋势累积模型挖掘全局与局部特征。",
+          "id": "item-ff4e9046b911",
+          "name": "基于GAN的少数类FHR数据生成",
+          "desc": "解决数据不足",
           "evidence": [
             {
-              "quote": "构建基于生成对抗网络的少数类FHR数据生成模型，解决了辅助诊断方法中数据量不足的问题",
+              "quote": "构建基于生成对抗网络的少数类FHR数据生成模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3012,
-                "end_char": 3053
+                "end_char": 3034
               },
               "version": "d1fd83e2890c98706e37"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1d7238f811b7",
-          "name": "轻量网络与双层可解释AI模型",
-          "desc": "提出跨通道交互注意力机制的轻量网络LW-FHRNet，并构建结合多特征类别量化及数字孪生技术的双层AI模型DT-CTNet增强可解释性。",
+          "id": "item-be130826908c",
+          "name": "双趋势累积模型DTAF",
+          "desc": "FHR趋势特征",
           "evidence": [
             {
-              "quote": "提出跨通道交互注意力机制的轻量网络LW-FHRNet，较其他模型缩减至少4倍，同时胎儿窘迫分类保持高水准",
+              "quote": "提出双趋势累积模型(DTAF)，解决了FHR时序信号中存在全局和局部特征信息挖掘不充分的问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3146,
+                "end_char": 3191
+              },
+              "version": "d1fd83e2890c98706e37"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ff2b8530f03f",
+          "name": "轻量网络LW-FHRNet",
+          "desc": "跨通道交互注意力",
+          "evidence": [
+            {
+              "quote": "提出跨通道交互注意力机制的轻量网络LW-FHRNet，较其他模型缩减至少4倍",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3377,
-                "end_char": 3428
+                "end_char": 3414
               },
               "version": "d1fd83e2890c98706e37"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hybrid-FHR: a multi-modal AI approach for automated fetal acidosis diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Zhidong;Zhu Jiawei;Jiao Pengfei;Wang Jinpeng;Zhang Xiaohong;Zhang Xiaohong;Lu Xinmiao;Zhang Yefei",
+      "id": "out-1b22bfe40a17",
+      "evidence": [
         {
-          "id": "item-bae346bd0807",
-          "name": "纸质CTG数字化算法",
-          "desc": "提出基于超像素区域融合的二值化CTG数字化算法，精准提取纸质CTG图像中的胎心率及宫缩数据。",
-          "evidence": [
-            {
-              "quote": "提出基于超像素区域融合的二值化CTG数字化算法，精准提取纸质CTG图像中的胎心率及宫缩数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3073,
-                "end_char": 3117
-              },
-              "version": "d1fd83e2890c98706e37"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] Hybrid-FHR: a multi-modal AI approach for automated fetal acidosis diagnosis — Zhao Zhidong;Zhu Jiawei;Jiao Pengfei;Wang Jinpeng;Zhang Xiaohong;Zhang Xiaohong;Lu Xinmiao;Zhang Yefei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3543,
+            "end_char": 3730
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于生成式对抗网络的胎心率信号数据增强方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵治栋;张烨菲;邓艳军;周志鑫;张晓红",
+      "id": "out-760311449be0",
+      "evidence": [
         {
-          "id": "item-7296006ec972",
-          "name": "轻量网络缩减至少4倍",
-          "desc": "跨通道交互注意力机制的轻量网络较其他模型缩减至少4倍，同时胎儿窘迫分类保持高水准。",
-          "evidence": [
-            {
-              "quote": "提出跨通道交互注意力机制的轻量网络LW-FHRNet，较其他模型缩减至少4倍，同时胎儿窘迫分类保持高水准",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3377,
-                "end_char": 3428
-              },
-              "version": "d1fd83e2890c98706e37"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[专利] 基于生成式对抗网络的胎心率信号数据增强方法和装置 — 赵治栋;张烨菲;邓艳军;周志鑫;张晓红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3735,
+            "end_char": 3785
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于胎心率信号多模态特征融合的胎儿窘迫诊断系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱家伟;赵治栋;邓艳军;张显飞;张晓红",
+      "id": "out-7f2342a21d0e",
+      "evidence": [
         {
-          "id": "item-6f91f8aef6d4",
-          "name": "双层AI模型DT-CTNet增强可解释性",
-          "desc": "构建结合多特征类别量化及数字孪生技术的双层AI模型，增强模型可解释性。",
-          "evidence": [
-            {
-              "quote": "构建结合多特征类别量化及数字孪生技术的双层AI模型DT-CTNet，增强了模型的可解释性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3430,
-                "end_char": 3473
-              },
-              "version": "d1fd83e2890c98706e37"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[专利] 一种基于胎心率信号多模态特征融合的胎儿窘迫诊断系统 — 朱家伟;赵治栋;邓艳军;张显飞;张晓红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3790,
+            "end_char": 3841
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "On Multi-Modal Fusion Learning in Pathological Diagnosis of Fetal Distress",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yefei Zhang;Zhidong Zhao;Yanjun Deng;Pengfei Jiao",
+      "id": "out-6a0bec257350",
+      "evidence": [
+        {
+          "quote": "[会议论文] On Multi-Modal Fusion Learning in Pathological Diagnosis of Fetal Distress — Yefei Zhang;Zhidong Zhao;Yanjun Deng;Pengfei Jiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3846,
+            "end_char": 3978
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improvement of accuracy and resilience in FHR classification via double trend accumulation encoding and attention mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhixin Zhou;Zhidong Zhao;Xiaohong Zhang;Xianfei Zhang;Pengfei Jiao",
+      "id": "out-64ff679d1287",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improvement of accuracy and resilience in FHR classification via double trend accumulation encoding and attention mechanism — Zhixin Zhou;Zhidong Zhao;Xiaohong Zhang;Xianfei Zhang;Pengfei Jiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4181
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reconstruction of Missing Samples in Antepartum and Intrapartum FHR Measurements Via Mini-Batch-Based Minimized Sparse Dictionary Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yefei Zhang;Zhidong Zhao;Yanjun Deng;Xiaohong Zhang;Yu Zhang",
+      "id": "out-8951fd1fd909",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reconstruction of Missing Samples in Antepartum and Intrapartum FHR Measurements Via Mini-Batch-Based Minimized Sparse Dictionary Learning — Yefei Zhang;Zhidong Zhao;Yanjun Deng;Xiaohong Zhang;Yu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4186,
+            "end_char": 4393
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bidirectional Long Short-term Memory-based Intelligent Auxiliary Diagnosis of Fetal Health",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yefei;Deng Yanjun;zhang Xiaohong;Shao Lihuan;Zhao Zhidong",
+      "id": "out-7d80fcd26111",
+      "evidence": [
+        {
+          "quote": "[会议论文] Bidirectional Long Short-term Memory-based Intelligent Auxiliary Diagnosis of Fetal Health — Zhang Yefei;Deng Yanjun;zhang Xiaohong;Shao Lihuan;Zhao Zhidong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4398,
+            "end_char": 4560
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FHRGAN: Generative adversarial networks for synthetic fetal heart rate signal generation in low-resource settings",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yefei;Zhao Zhidong;Deng Yanjun;Zhang Xiaohong",
+      "id": "out-74d76edf2f09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FHRGAN: Generative adversarial networks for synthetic fetal heart rate signal generation in low-resource settings — Zhang Yefei;Zhao Zhidong;Deng Yanjun;Zhang Xiaohong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4565,
+            "end_char": 4738
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying fetal status with fetal heart rate: Deep learning approach based on long convolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhixin Zhou;Zhidong Zhao;Xianfei Zhang;Xiaohong Zhang;Pengfei Jiao;Xuanyu Ye",
+      "id": "out-a35c0b5c51ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying fetal status with fetal heart rate: Deep learning approach based on long convolution — Zhixin Zhou;Zhidong Zhao;Xianfei Zhang;Xiaohong Zhang;Pengfei Jiao;Xuanyu Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4743,
+            "end_char": 4924
+          },
+          "version": "d1fd83e2890c98706e37"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Filling of Fetal Heart Rate Signal: Diffusion Model Based on Dimension Construction and Period Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zhixin;Zhao Zhidong;Zhang Yefei;Deng Yanjun;Wang Shuai;Wu Huaming;Jiao Pengfei",
+      "id": "out-a6c4fb5ccd9d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Filling of Fetal Heart Rate Signal: Diffusion Model Based on Dimension Construction and Period Segmentation — Zhou Zhixin;Zhao Zhidong;Zhang Yefei;Deng Yanjun;Wang Shuai;Wu Huaming;Jiao Pengfei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4930,
+            "end_char": 5129
+          },
+          "version": "d1fd83e2890c98706e37"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b19b72c9bcd6"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f0816bf5c0f3"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
       },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f0816bf5c0f3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-34d4a359f096"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-34d4a359f096"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bae346bd0807"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1d7238f811b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6f91f8aef6d4"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

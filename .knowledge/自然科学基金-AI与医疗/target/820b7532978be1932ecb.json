@@ -2,15 +2,20 @@
   "doc_id": "820b7532978be1932ecb",
   "version": "6f28e154dcc75cd9ae19",
   "source_hash": "3aadb31a7f88a0d40043c927a69cc7908f67320e96b66b1439e280a2a552df39",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.565603+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:10:11.662813+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 8,
+      "total": 8,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fae783c2acd0",
-          "name": "组胺H3受体介导摄食网络与肥胖症",
-          "desc": "面向肥胖症精准治疗，阐明组胺H3受体调控的摄食神经网络在肥胖症中的作用及机制。",
+          "id": "item-e80f6af4c9d9",
+          "name": "肥胖症摄食行为调控",
+          "desc": "肥胖症危害严重且缺乏安全有效的治疗手段，摄食行为调控神经环路及分子机制尚未阐明",
           "evidence": [
             {
-              "quote": "肥胖症危害大，缺乏有效安全的治疗手段",
+              "quote": "肥胖症危害严重，且缺乏安全有效的治疗手段。摄食行为调控的神经环路及分子机制尚未阐明，是限制相关治疗策略研发的重要原因",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9fbe74eb7c10e98b4111fcd2c3bafd58c0e75ecc"
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ]
+        },
+        {
+          "id": "item-f4b54670f9f2",
+          "name": "健康饮食管理",
+          "desc": "项目成果拟应用领域包括摄食障碍性疾病的治疗与健康饮食管理",
+          "evidence": [
+            {
+              "quote": "本项目成果拟应用领域:1、摄食障碍性疾病的治疗2、健康饮食管理",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 27,
+                "chunk_id": "353b637df1e512ad2352147d30f3917325387208"
               },
               "version": "6f28e154dcc75cd9ae19"
             }
@@ -41,16 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-91e7c27a6c70",
-          "name": "摄食调控神经环路及分子机制未阐明",
-          "desc": "摄食行为调控的神经环路及分子机制尚未阐明，是限制肥胖症相关治疗策略研发的重要原因。",
+          "id": "item-a25977780be2",
+          "name": "摄食神经环路机制未阐明",
+          "desc": "摄食行为调控的神经环路及分子机制尚未阐明，是限制相关治疗策略研发的重要原因",
           "evidence": [
             {
-              "quote": "摄食行为调控的神经环路及分子机制尚未阐明是限制相关治疗策略研发的重要原因",
+              "quote": "摄食行为调控的神经环路及分子机制尚未阐明，是限制相关治疗策略研发的重要原因",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9fbe74eb7c10e98b4111fcd2c3bafd58c0e75ecc"
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ]
+        },
+        {
+          "id": "item-05c64e6a6e80",
+          "name": "高脂饮食特异性调控机制不明",
+          "desc": "需阐明H3R对高脂饮食的特异性调控作用及其在睡眠限制诱导饮食偏好改变中的关键机制",
+          "evidence": [
+            {
+              "quote": "揭示了丘脑室旁核（PVT）中组胺H3受体（H3R）对高脂饮食的特异性调控作用，及其在睡眠限制诱导的饮食偏好改变中的关键机制",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
               },
               "version": "6f28e154dcc75cd9ae19"
             }
@@ -63,34 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-18bb0833ff86",
-          "name": "转基因小鼠结合环路示踪与药理遗传学",
-          "desc": "利用多种转基因小鼠结合环路示踪、光/药理遗传学、钙成像、电生理、微透析、三代测序与药理学等技术，阐明H3受体调控的摄食神经网络作用机制并评价剪切体偏向性化合物的抗肥胖药理活性。",
+          "id": "item-4b3b8162cbc4",
+          "name": "全脑组胺能神经投射三维图谱",
+          "desc": "利用HDC-CreERT2小鼠及全脑显微光学切片断层成像技术构建量化的小鼠全脑组胺能神经投射三维图谱",
           "evidence": [
             {
-              "quote": "拟利用多种转基因小鼠结合环路示踪、光/药理遗传学、钙成像、电生理、微透析、显微切割、三代测序、药理学等技术阐明组胺H3受体调控的摄食神经网络在肥胖症中的作用及机制",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9fbe74eb7c10e98b4111fcd2c3bafd58c0e75ecc"
-              },
-              "version": "6f28e154dcc75cd9ae19"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b77a48aa37e0",
-          "name": "首次全脑量化组胺能神经投射图谱",
-          "desc": "首次构建量化的小鼠全脑组胺能神经投射三维图谱，揭示PVT中H3R对高脂饮食的特异性调控及H3R-G12/13非典型信号转导机制，并阐明睡眠限制诱导高脂饮食偏爱的机制。",
-          "evidence": [
-            {
-              "quote": "首次在全脑尺度上量化了组胺能神经投射图谱，系统揭示了PVT中H3R在调控高脂饮食及睡眠-代谢交互中的关键作用",
+              "quote": "本项目利用HDC-CreERT2小鼠及全脑显微光学切片断层成像技术，首次构建了量化的小鼠全脑组胺能神经投射三维图谱",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -99,7 +114,123 @@
               "version": "6f28e154dcc75cd9ae19"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-82c0348db3c3",
+          "name": "H3R剪接体偏向性信号通路分析",
+          "desc": "借助可选择性激活不同下游通路的H3R剪接体，分析偏向性信号转导机制",
+          "evidence": [
+            {
+              "quote": "进一步借助可选择性激活不同下游通路的H3 R剪接体，本项目发现H3R通过偏向性激活G12/13信号通路（而非经典的Gi通路），增强PVT脂肪响应神经元的兴奋性",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fcb04b2ac3a5",
+          "name": "人群数据与动物模型联合分析",
+          "desc": "结合人群数据分析与动物模型阐明睡眠限制诱导高脂饮食偏爱的机制",
+          "evidence": [
+            {
+              "quote": "结合人群数据分析与动物模型，本项目进一步阐明:睡眠限制可促使PVT局部组胺累积",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5e1c160d72e7",
+          "name": "全脑组胺能神经投射图谱",
+          "desc": "首次在全脑尺度上量化了组胺能神经投射图谱",
+          "evidence": [
+            {
+              "quote": "本项目首次在全脑尺度上量化了组胺能神经投射图谱",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "首次",
+          "self_reported": false
+        },
+        {
+          "id": "item-69526f306d5e",
+          "name": "H3R-G12/13非典型信号通路机制",
+          "desc": "明确H3R-G12/13非典型信号转导通路对高脂饮食的特异性调控机制",
+          "evidence": [
+            {
+              "quote": "明确了H3R-G12/13非典型信号转导通路对高脂饮食的特异性调控机制",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "明确了",
+          "self_reported": false
+        },
+        {
+          "id": "item-005b5ef11c27",
+          "name": "肥胖症精准治疗靶点理论依据",
+          "desc": "为肥胖症等摄食障碍性疾病开发更具靶向性的调控药物提供理论依据",
+          "evidence": [
+            {
+              "quote": "为肥胖症等摄食障碍性疾病开发更具靶向性的调控药物提供了重要的理论依据",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "提供",
+          "self_reported": false
+        },
+        {
+          "id": "item-e3f968dc2da6",
+          "name": "Biased histamine signaling 论文",
+          "desc": "关于偏向性组胺信号选择性门控脂肪偏好的研究成果发表于Neuron",
+          "evidence": [
+            {
+              "quote": "Biased histamine signaling selectively gates fat preference, Neuron, 2025, 26. SCIE. 第一标注",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 24,
+                "chunk_id": "fcf6e340ac78c73bf0385f16491e69b5841d95c3"
+              },
+              "version": "6f28e154dcc75cd9ae19"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "2025",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +238,289 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-4b3b8162cbc4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a25977780be2"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目利用HDC-CreERT2小鼠及全脑显微光学切片断层成像技术，首次构建了量化的小鼠全脑组胺能神经投射三维图谱",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-82c0348db3c3"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-05c64e6a6e80"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目发现H3R通过偏向性激活G12/13信号通路（而非经典的Gi通路），增强PVT脂肪响应神经元的兴奋性",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-fae783c2acd0"
+        "item_id": "item-e80f6af4c9d9"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-91e7c27a6c70"
+        "item_id": "item-a25977780be2"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "摄食行为调控的神经环路及分子机制尚未阐明，是限制相关治疗策略研发的重要原因",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-91e7c27a6c70"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-18bb0833ff86"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-18bb0833ff86"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-b77a48aa37e0"
+        "item_id": "item-5e1c160d72e7"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4b3b8162cbc4"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目首次在全脑尺度上量化了组胺能神经投射图谱",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "b764672b556a3b6cf3f36d33ca8eec274e200268"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Biased histamine signaling selectively gates fat preference",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Neuron",
+      "id": "out-7b5fbe0b5a5d",
+      "evidence": [
+        {
+          "quote": "Biased histamine signaling selectively gates fat preference, Neuron, 2025, 26. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 24,
+            "chunk_id": "fcf6e340ac78c73bf0385f16491e69b5841d95c3"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Whole-brain mapping of histaminergic projections in mouse brain",
+      "status_raw": "2023",
+      "year": "2023",
+      "identifiers": {},
+      "venue": "Proc Nat1 Acad Sci U S A",
+      "id": "out-4638022b546b",
+      "evidence": [
+        {
+          "quote": "Whole-brain mapping of histaminergic projections in mouse brain, Proc Nat1 Acad Sci U S A, 2023, 120(14). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 24,
+            "chunk_id": "4a0303fd6ec02a09c5093e9c52f3e4a5efc0cfc0"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Histamine-tuned subicular circuit mediates alert-driven accelerated locomotion in mice",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "Nature Communications",
+      "id": "out-0e68200d4ad3",
+      "evidence": [
+        {
+          "quote": "Histamine-tuned subicular circuit mediates alert-driven accelerated locomotion in mice, Nature Communications, 2024, 15(1). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 24,
+            "chunk_id": "4a0303fd6ec02a09c5093e9c52f3e4a5efc0cfc0"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Histamine H1 receptors in dentate gyrus-projecting cholinergic neurons of the medial septum suppress contextual fear retrieval in mice",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "Nature Communications",
+      "id": "out-8e5927ab15a5",
+      "evidence": [
+        {
+          "quote": "Histamine H1 receptors in dentate gyrus-projecting cholinergic neurons of the medial septum suppress contextual fear retrieval in mice, Nature Communications, 2024, 15(1). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 25,
+            "chunk_id": "bb6b91e2b3b308e9079849be0bbdce8201693b20"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Dissecting the brain with spatially resolved multi-omics",
+      "status_raw": "2023",
+      "year": "2023",
+      "identifiers": {},
+      "venue": "Journal of Pharmaceutical Analysis",
+      "id": "out-80e582798fd0",
+      "evidence": [
+        {
+          "quote": "Dissecting the brain with spatially resolved multi-omics, Journal of Pharmaceutical Analysis, 2023, 13(7): 694-710. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 25,
+            "chunk_id": "262591db1f68bdd6fc9f15b8d1b7ae5a53880223"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "前期成果",
+      "status": "已发表",
+      "title": "Lateral Hypothalamus Calcium/Calmodulin-Dependent Protein Kinase II α Neurons Encode Novelty-Seeking Signals to Promote Predatory Eating",
+      "status_raw": "2022",
+      "year": "2022",
+      "identifiers": {},
+      "venue": "Research",
+      "id": "out-08ac26286844",
+      "evidence": [
+        {
+          "quote": "Lateral Hypothalamus Calcium/Calmodulin-Dependent Protein Kinase II α Neurons Encode Novelty-Seeking Signals to Promote Predatory Eating, Research, 2022, 2022(9802382). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 25,
+            "chunk_id": "bb6b91e2b3b308e9079849be0bbdce8201693b20"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "试验",
+      "status": "已取得",
+      "date": "2025",
+      "precision": "年",
+      "desc": "偏向性组胺信号选择性门控脂肪偏好的研究成果发表于Neuron",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-31fdb0140e02",
+      "tech_ids": [
+        "item-82c0348db3c3"
+      ],
+      "output_ids": [
+        "out-7b5fbe0b5a5d"
+      ],
+      "evidence": [
+        {
+          "quote": "Biased histamine signaling selectively gates fat preference, Neuron, 2025, 26. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 24,
+            "chunk_id": "fcf6e340ac78c73bf0385f16491e69b5841d95c3"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    },
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2023",
+      "precision": "年",
+      "desc": "小鼠全脑组胺能神经投射图谱构建成果发表",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-71be505c037a",
+      "tech_ids": [
+        "item-4b3b8162cbc4"
+      ],
+      "output_ids": [
+        "out-4638022b546b"
+      ],
+      "evidence": [
+        {
+          "quote": "Whole-brain mapping of histaminergic projections in mouse brain, Proc Nat1 Acad Sci U S A, 2023, 120(14). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 24,
+            "chunk_id": "4a0303fd6ec02a09c5093e9c52f3e4a5efc0cfc0"
+          },
+          "version": "6f28e154dcc75cd9ae19"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "e32f1c6b0704496728b9",
   "version": "639801060374f988bdac",
   "source_hash": "1055b38c5a88be98ea6d31a0d1da787b13337316579242f1912a0308446f5722",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:18.004864+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.350885+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24979a79d61d",
-          "name": "胎儿及婴幼儿脑早期MR图像非刚性配准",
-          "desc": "面向脑早期MR图像，通过配准计算个体发育差异、寻找发育规律，并及早发现发展性障碍疾病。",
+          "id": "item-c064dd8265e3",
+          "name": "胎儿及婴幼儿脑早期MR图像配准",
+          "desc": "发育轨迹约束",
           "evidence": [
             {
-              "quote": "通过脑早期MR图像配准可计算个体发育差异、寻找发育规律，及早发现各种发展性障碍疾病",
+              "quote": "本项目围绕脑早期MR图像配准精度的提升和应用的拓展，研究发育轨迹约束下基于深度学习的非刚性配准模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 688,
-                "end_char": 728
+                "start_char": 2948,
+                "end_char": 2996
               },
               "version": "639801060374f988bdac"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cce6252fee74",
-          "name": "脑早期MR图像纵向形态与灰度差异显著",
-          "desc": "脑早期MR图像在时间纵向上形态和灰度存在显著差异，且深度学习配准方法忽视语义一致性，导致配准精度与应用拓展受限。",
+          "id": "item-00bb98aa2d9f",
+          "name": "配准依赖单流网络忽视语义一致性",
+          "desc": "域外数据性能下降",
           "evidence": [
             {
-              "quote": "针对脑早期MR图像时间纵向上形态和灰度存在显著差异问题",
+              "quote": "基于深度学习的配准方法依赖于单流编码器-解码器网络来计算一对 3D 体积之间的变形场，忽视语义一致性问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 825,
-                "end_char": 851
+                "start_char": 3047,
+                "end_char": 3098
               },
               "version": "639801060374f988bdac"
             }
@@ -63,80 +68,443 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b08d8d4ba51d",
-          "name": "发育轨迹约束下深度对抗网络非刚性配准模型",
-          "desc": "研究发育轨迹约束下基于深度对抗网络的非刚性配准模型，融合变分自编码器形变场学习、级联条件对抗灰度映射与堆叠自编码器残余形变估计。",
+          "id": "item-d9b9646544b2",
+          "name": "结构约束生成对抗网络脑MR多模态生成",
+          "desc": "数据特性失衡",
           "evidence": [
             {
-              "quote": "研究发育轨迹约束下基于深度对抗网络的非刚性配准模型",
+              "quote": "提出基于结构约束生成对抗网络的脑 MR 图像多模态生成算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 756,
-                "end_char": 780
+                "start_char": 3012,
+                "end_char": 3040
               },
               "version": "639801060374f988bdac"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a2bd5d4d289b",
+          "name": "形变一致性约束双向通信配准网络",
+          "desc": "灰度与分割图像约束",
+          "evidence": [
+            {
+              "quote": "提出基于形变一致性约束的脑部 MR 图像配准方法，构建利用灰度图像和分割图像中约束信息的双向通信配准网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3100,
+                "end_char": 3151
+              },
+              "version": "639801060374f988bdac"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-144c6d4703a0",
+          "name": "融合不确定性信息的非刚性配准算法",
+          "desc": "域外数据",
+          "evidence": [
+            {
+              "quote": "设计了融合不确定性信息的 MR 图像非刚性配准算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3192,
+                "end_char": 3216
+              },
+              "version": "639801060374f988bdac"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GPI-net: gestalt-guided parallel interaction network via orthogonal geometric consistency for robust point cloud registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu·Weikang;Han·Mingyue;Xue·Li;Dong·Heng;Yang·Changcai;Chen·Riqing;Wei·Lifang",
+      "id": "out-64a2f518d03a",
+      "evidence": [
         {
-          "id": "item-164aadfa286c",
-          "name": "实现脑发育轨迹约束的微分同胚群组配准",
-          "desc": "在层次联合配准基础上设计基于脑发育轨迹约束的微分同胚群组图像配准，为自闭症谱系障碍和注意缺陷多动障碍等儿童发展性障碍疾病提供新技术新方法。",
-          "evidence": [
-            {
-              "quote": "设计基于脑发育轨迹约束的微分同胚群组图像配准",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 976,
-                "end_char": 997
-              },
-              "version": "639801060374f988bdac"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[会议论文] GPI-net: gestalt-guided parallel interaction network via orthogonal geometric consistency for robust point cloud registration — Gu·Weikang;Han·Mingyue;Xue·Li;Dong·Heng;Yang·Changcai;Chen·Riqing;Wei·Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3378,
+            "end_char": 3588
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于联合深度网络和形态结构约束的三维医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李军;叶欣怡;杨长才;陈秋凤;薛岚燕;魏丽芳",
+      "id": "out-e9abaf592f12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于联合深度网络和形态结构约束的三维医学图像分割方法 — 李军;叶欣怡;杨长才;陈秋凤;薛岚燕;魏丽芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3593,
+            "end_char": 3650
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "G-GTNet: Gestalt-inspired graph transformer network for robust point cloud registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Weikang;Han Mingyue;Xue Li;Yu Jiaming;Dong Heng;Yang Changcai;Chen Riqing;Wei Lifang",
+      "id": "out-4520a4bc404d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] G-GTNet: Gestalt-inspired graph transformer network for robust point cloud registration — Gu Weikang;Han Mingyue;Xue Li;Yu Jiaming;Dong Heng;Yang Changcai;Chen Riqing;Wei Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3655,
+            "end_char": 3838
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度稀疏语义动态图的高质量特征匹配选择方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨长才;庄丰园;代栾媛;陈日清;魏丽芳;林耀海",
+      "id": "out-3267a83939d3",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多尺度稀疏语义动态图的高质量特征匹配选择方法 — 杨长才;庄丰园;代栾媛;陈日清;魏丽芳;林耀海",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3843,
+            "end_char": 3897
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PMA-Net: Progressive multi-stage adaptive feature learning for two-view correspondence",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiaojie;Zhuang Fengyuan;Liu Yizhang;Chen Riqing;Wei Lifang;Yang Changcai",
+      "id": "out-3294282f0e85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PMA-Net: Progressive multi-stage adaptive feature learning for two-view correspondence — Li Xiaojie;Zhuang Fengyuan;Liu Yizhang;Chen Riqing;Wei Lifang;Yang Changcai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3902,
+            "end_char": 4072
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gestalt-Inspired Feature Integration Network with Entropy Uncertainty Modeling for Pathology Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "dawei fan;Jiamei Wen;Heng Dong;Mingyue Han;Jun Li;Chengfei Cai;Yanping Chen;Changcai Yang;Riqing Chen;Lifang Wei",
+      "id": "out-1173b78fa708",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gestalt-Inspired Feature Integration Network with Entropy Uncertainty Modeling for Pathology Image Segmentation — dawei fan;Jiamei Wen;Heng Dong;Mingyue Han;Jun Li;Chengfei Cai;Yanping Chen;Changcai Yang;Riqing Chen;Lifang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4077,
+            "end_char": 4309
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IPMMG: Information propagation with multi-granularity morphology-guided for nuclear segmentation and classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Dawei;Li Jun;Cai Chengfei;Lin Lihui;Chen Riqing;Chen Yanping;Wei Lifang",
+      "id": "out-884f47db7e53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IPMMG: Information propagation with multi-granularity morphology-guided for nuclear segmentation and classification — Fan Dawei;Li Jun;Cai Chengfei;Lin Lihui;Chen Riqing;Chen Yanping;Wei Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4314,
+            "end_char": 4513
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CSCE-Net: Channel-Spatial Contextual Enhancement Network for Robust Point Cloud Registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingtao Wang;Changcai Yang;Lifang Wei;Riqing Chen",
+      "id": "out-7f9f3f8bc0f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CSCE-Net: Channel-Spatial Contextual Enhancement Network for Robust Point Cloud Registration — Jingtao Wang;Changcai Yang;Lifang Wei;Riqing Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4518,
+            "end_char": 4668
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OpenNDD: Open Set Recognition for Neurodevelopmental Disorders Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu·Jiaming;Guan·Zihao;Chang·Xinyue;Liu·Shujie;Shi·Zhenshan;Liu·Xiumei;Yang·Changcai;Chen·Riqing;Xue·Lanyan;Wei·Lifang",
+      "id": "out-0780f0ffcc4b",
+      "evidence": [
+        {
+          "quote": "[会议论文] OpenNDD: Open Set Recognition for Neurodevelopmental Disorders Detection — Yu·Jiaming;Guan·Zihao;Chang·Xinyue;Liu·Shujie;Shi·Zhenshan;Liu·Xiumei;Yang·Changcai;Chen·Riqing;Xue·Lanyan;Wei·Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4673,
+            "end_char": 4871
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于偏好引导过滤的深度学习图像特征匹配方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈日清;刘鑫;魏丽芳;扬长才",
+      "id": "out-2a2cba9d3c33",
+      "evidence": [
+        {
+          "quote": "[专利] 基于偏好引导过滤的深度学习图像特征匹配方法及系统 — 陈日清;刘鑫;魏丽芳;扬长才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4877,
+            "end_char": 4922
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MCCSeg: Morphological embedding causal constraint network for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yifan Gao;Lifang Wei;Jun Li;Xinyue Chang;Yulong Zhang;Riqing Chen;Changcai Yang;Yi Wei;Heng Dong",
+      "id": "out-fa0f87c38e36",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MCCSeg: Morphological embedding causal constraint network for medical image segmentation — Yifan Gao;Lifang Wei;Jun Li;Xinyue Chang;Yulong Zhang;Riqing Chen;Changcai Yang;Yi Wei;Heng Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4928,
+            "end_char": 5121
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Morphological Guided Causal Constraint Network for Medical Image Multi-Object Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao·Yifan;Li·Jun;Chang·Xinyue;Zhang·Yulong;Chen·Riqing;Yang·Changcai;Wei·Yi;Dong·Heng;Wei·Lifang",
+      "id": "out-47542e84d67c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Morphological Guided Causal Constraint Network for Medical Image Multi-Object Segmentation — Gao·Yifan;Li·Jun;Chang·Xinyue;Zhang·Yulong;Chen·Riqing;Yang·Changcai;Wei·Yi;Dong·Heng;Wei·Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5127,
+            "end_char": 5322
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-View Connectivity Analysis via Dynamic Graph Transformer Network for ASD Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan·Zihao;Yu·Jiaming;Shi·Zhenshan;Liu·Xiumei;Yang·Changcai;Chen·Riqing;Wei·Lifang",
+      "id": "out-a23f908789a9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual-View Connectivity Analysis via Dynamic Graph Transformer Network for ASD Diagnosis — Guan·Zihao;Yu·Jiaming;Shi·Zhenshan;Liu·Xiumei;Yang·Changcai;Chen·Riqing;Wei·Lifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5328,
+            "end_char": 5506
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MatchMamba: Correspondence Pruning via Selective State Space Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu·Yubin;Li·Xiaojie;Chen·Hao;Yang·Changcai;Wei·Lifang;Chen·Riqing",
+      "id": "out-a8868548fc5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MatchMamba: Correspondence Pruning via Selective State Space Model — Wu·Yubin;Li·Xiaojie;Chen·Hao;Yang·Changcai;Wei·Lifang;Chen·Riqing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5512,
+            "end_char": 5652
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CGR-Net: Consistency Guided ResFormer for Two-View Correspondence Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Changcai;Li Xiaojie;Ma Jiayi;Zhuang Fengyuan;Wei Lifang;Chen Riqing;Chen Guodong",
+      "id": "out-9fe597a80912",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CGR-Net: Consistency Guided ResFormer for Two-View Correspondence Learning — Yang Changcai;Li Xiaojie;Ma Jiayi;Zhuang Fengyuan;Wei Lifang;Chen Riqing;Chen Guodong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5658,
+            "end_char": 5826
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MS2DG-Net: Progressive Correspondence Learning via Multiple Sparse Semantics Dynamic Graph",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luanyuan Dai;Yizhang Liu;Jiayi Ma;Lifang Wei;Taotao Lai;Changcai Yang;Riqing Chen",
+      "id": "out-0190b0980d62",
+      "evidence": [
+        {
+          "quote": "[会议论文] MS2DG-Net: Progressive Correspondence Learning via Multiple Sparse Semantics Dynamic Graph — Luanyuan Dai;Yizhang Liu;Jiayi Ma;Lifang Wei;Taotao Lai;Changcai Yang;Riqing Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5832,
+            "end_char": 6012
+          },
+          "version": "639801060374f988bdac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Guided Sampling for Multistructure Data via Neighborhood Consensus and Residual Sorting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Taotao Lai;Yizhang Liu;Jie Chang;Lifang Wei;Zuoyong Li;Hamido Fujita",
+      "id": "out-4fcf8c1f49e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Guided Sampling for Multistructure Data via Neighborhood Consensus and Residual Sorting — Taotao Lai;Yizhang Liu;Jie Chang;Lifang Wei;Zuoyong Li;Hamido Fujita",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6018,
+            "end_char": 6182
+          },
+          "version": "639801060374f988bdac"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-24979a79d61d"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cce6252fee74"
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
       },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cce6252fee74"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b08d8d4ba51d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b08d8d4ba51d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-164aadfa286c"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

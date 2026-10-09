@@ -2,15 +2,20 @@
   "doc_id": "26c109d3a48ec911ec32",
   "version": "42f41015ee01db780c15",
   "source_hash": "0bb4d6058746aa29725aefdd908bd743ec0ee8be256905b9998248ea7e3a27dc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:27.797335+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:34:11.569778+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-e69031ecfce8",
           "name": "发热待查辅助诊断",
-          "desc": "发热待查病因复杂、表现多样、缺乏特异性检查，是医学界最难诊断的疾病之一。",
+          "desc": "最难诊断疾病之一",
           "evidence": [
             {
-              "quote": "发热待查由于病因复杂、临床表现多样、缺乏特异性检查方法、病因分布具有时空差异、经验性治疗缺乏循证依据，是医学界最难诊断的疾病之一",
+              "quote": "发热待查病因复杂、临床表现多样、缺乏特异性检验检查方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 652,
-                "end_char": 715
-              },
-              "version": "42f41015ee01db780c15"
-            }
-          ]
-        },
-        {
-          "id": "item-43017e2412c3",
-          "name": "医疗资源不均衡缓解",
-          "desc": "通过辅助诊断技术实现医疗资源共享与优势互补，缓减医疗资源不平衡状况。",
-          "evidence": [
-            {
-              "quote": "还能在一定程度上实现医疗资源共享和优势互补，缓减我国医疗资源部分不平衡状况，优化医疗资源布局结构",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 996,
-                "end_char": 1043
+                "start_char": 2667,
+                "end_char": 2693
               },
               "version": "42f41015ee01db780c15"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-633f92886ba3",
-          "name": "诊断主观性强易误诊漏诊",
-          "desc": "国际上无统一诊断方法，诊断很大程度依赖医生临床经验，主观性强且易误诊漏诊。",
+          "id": "item-46f7bc7757e6",
+          "name": "无统一诊断方法、诊断主观易误诊漏诊",
+          "desc": "国际上尚无",
           "evidence": [
             {
-              "quote": "目前国际上尚无发热待查统一的诊断方法，其诊断很大程度依赖于医生的临床经验，导致诊断主观性强、易误诊漏诊",
+              "quote": "目前国际上无发热待查统一的诊断方法，导致诊断主观性强、易误诊漏诊",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 737,
-                "end_char": 787
-              },
-              "version": "42f41015ee01db780c15"
-            }
-          ]
-        },
-        {
-          "id": "item-aed073b8ff99",
-          "name": "确诊越晚预后越差",
-          "desc": "发热待查预后与潜在疾病相关，确诊越晚预后越差。",
-          "evidence": [
-            {
-              "quote": "其预后与潜在疾病相关，确诊越晚预后越差",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 717,
-                "end_char": 735
+                "start_char": 2732,
+                "end_char": 2763
               },
               "version": "42f41015ee01db780c15"
             }
@@ -95,41 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad0e49e02b82",
-          "name": "层次化多模态神经网络框架",
-          "desc": "定义发热病因类别标签层次结构，提出具有可解释性的层次化多模态神经网络框架。",
+          "id": "item-b5b9c9b88779",
+          "name": "可解释层次化多模态神经网络框架",
+          "desc": "入院48小时内非特异性多模态数据",
           "evidence": [
             {
-              "quote": "提出一个具有可解释性的层次化多模态神经网络框架",
+              "quote": "进而提出一个具有可解释性的层次化多模态神经网络框架",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3019,
+                "start_char": 3017,
                 "end_char": 3041
               },
               "version": "42f41015ee01db780c15"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a42b5e7a0567",
-          "name": "自注意力与相关性分数传播",
-          "desc": "引入自注意力机制和相关性分数逐层传播算法，实现对不同模态输入特征的可解释性分析。",
+          "id": "item-6b1f786b75a1",
+          "name": "自注意力与相关性分数逐层传播",
+          "desc": "输入特征可解释性分析",
           "evidence": [
             {
-              "quote": "通过引入自注意力机制和相关性分数逐层传播算法实现对不同模态输入特征的可解释性分析",
+              "quote": "还通过引入自注意力机制和相关性分数逐层传播算法实现对不同模态输入特征的可解释性分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3106,
+                "start_char": 3105,
                 "end_char": 3145
               },
               "version": "42f41015ee01db780c15"
             }
-          ]
+          ],
+          "role": "配套-验证"
         },
         {
-          "id": "item-52d34e2613bc",
-          "name": "电子病历结构化与专病库构建",
-          "desc": "设计数据项与提取逻辑，进行电子病历数据挖掘，实现信息抽取、清洗、预处理和结构化。",
+          "id": "item-0df1f8be24a1",
+          "name": "电子病历数据挖掘与结构化",
+          "desc": "抽取、清洗、预处理",
           "evidence": [
             {
               "quote": "进行电子病历数据挖掘，实现患者信息抽取、清洗、预处理和结构化",
@@ -140,7 +115,8 @@
               },
               "version": "42f41015ee01db780c15"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -149,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bcf0799615a9",
-          "name": "7276例发热待查专病数据库",
-          "desc": "规范术语描述并归类整理，构建最终包含7276例发热待查患者的专病数据库。",
+          "id": "item-98eb9e5d923b",
+          "name": "发热待查专病数据库",
+          "desc": "7276例患者",
           "evidence": [
             {
               "quote": "构建最终包含7276例发热待查患者专病数据库",
@@ -163,89 +139,153 @@
               "version": "42f41015ee01db780c15"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-2187c8bdc59b",
-          "name": "入院48小时内早期辅助鉴别",
-          "desc": "结合领域知识对入院48小时内易获取的非特异性临床多模态数据建模，实现发热病因早期辅助鉴别诊断。",
+          "id": "item-2f54e8b998bc",
+          "name": "浙江省科技进步一等奖",
+          "desc": "相关成果获奖",
           "evidence": [
             {
-              "quote": "通过结合领域知识对发热患者入院48小时内易获取的、非特异性的临床多模态数据进行建模以实现对发热病因的早期辅助鉴别诊断",
+              "quote": "相关成果获浙江省科技进步一等奖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3043,
-                "end_char": 3100
+                "start_char": 3433,
+                "end_char": 3447
               },
               "version": "42f41015ee01db780c15"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-bac04ab1d325",
-          "name": "权威期刊论文与人才培养",
-          "desc": "研究成果发表在IEEE J Biomed Health Inform等权威期刊3篇，另2篇投稿中，培养硕博研究生2名。",
+          "id": "item-67eaa4edab44",
+          "name": "在投论文",
+          "desc": "2篇",
           "evidence": [
             {
-              "quote": "相关研究成果也发表在IEEE J Biomed Health Inform",
+              "quote": "正在投稿的有2篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3281,
-                "end_char": 3317
+                "start_char": 3342,
+                "end_char": 3349
               },
               "version": "42f41015ee01db780c15"
             }
           ],
-          "status": "已取得"
+          "status": "预期",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e69031ecfce8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-633f92886ba3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic accuracy of metagenomic next-generation sequencing in diagnosing infectious diseases: a meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Liu;Qiao Zhang;Yong-Quan Dong;Jie Yin;Yun-Qing Qiu",
+      "id": "out-0d88de8e4642",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic accuracy of metagenomic next-generation sequencing in diagnosing infectious diseases: a meta-analysis — Jian Liu;Qiao Zhang;Yong-Quan Dong;Jie Yin;Yun-Qing Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3466,
+            "end_char": 3642
+          },
+          "version": "42f41015ee01db780c15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-633f92886ba3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ad0e49e02b82"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Timing-Sequence Warning Models for Serious Bacterial Infections in Adults Based on Machine Learning: Retrospective Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Liu;Jia Chen;Yongquan Dong;Yan Lou;Yu Tian;Huiyao Sun;Yuqing Jin;Jingsong Li;Yunqing Qiu",
+      "id": "out-4c902f4185cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Timing-Sequence Warning Models for Serious Bacterial Infections in Adults Based on Machine Learning: Retrospective Study — Jian Liu;Jia Chen;Yongquan Dong;Yan Lou;Yu Tian;Huiyao Sun;Yuqing Jin;Jingsong Li;Yunqing Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3878
+          },
+          "version": "42f41015ee01db780c15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ad0e49e02b82"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2187c8bdc59b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型冠状病毒病防治策略重大创新和技术突破",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李兰娟;姚航平;徐小微;李赛;杨益大;徐凯进;裘云庆;盛吉芳",
+      "id": "out-393da41a0f0a",
+      "evidence": [
+        {
+          "quote": "[奖励] 新型冠状病毒病防治策略重大创新和技术突破 — 李兰娟;姚航平;徐小微;李赛;杨益大;徐凯进;裘云庆;盛吉芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3883,
+            "end_char": 3940
+          },
+          "version": "42f41015ee01db780c15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-52d34e2613bc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bcf0799615a9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating Medical Domain Knowledge for Early Diagnosis of Fever of Unknown Origin: An Interpretable Hierarchical Multimodal Neural Network Approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Z;Liu J;Tian Y;Zhou T;Liu Q;Qiu Y;Li J",
+      "id": "out-bf1e1d709a85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating Medical Domain Knowledge for Early Diagnosis of Fever of Unknown Origin: An Interpretable Hierarchical Multimodal Neural Network Approach — Wang Z;Liu J;Tian Y;Zhou T;Liu Q;Qiu Y;Li J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3945,
+            "end_char": 4146
+          },
+          "version": "42f41015ee01db780c15"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

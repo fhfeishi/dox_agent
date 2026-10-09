@@ -2,15 +2,20 @@
   "doc_id": "40cb34f10d39ea747169",
   "version": "ba11e2b88a903feb9abe",
   "source_hash": "cc1f2c3ad15c5aabca3f0a804ef1918d9fab1bc5c403b0345afc0614a0a75220",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.115401+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:38:32.137848+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f99a9c4a9ee",
-          "name": "空间转录组学与多模态深度学习疾病诊断",
-          "desc": "将空间位置信息与转录组分析结合，引入病理图像信息构建多模态深度学习疾病预测模型。",
+          "id": "item-145e13e928e7",
+          "name": "空间转录组学与病理图像分子诊断",
+          "desc": "常规H&E切片与空间基因表达",
           "evidence": [
             {
-              "quote": "空间转录组学（Spatial transcriptomics）的提出将空间位置信息和转录组分析相结合，为研究细胞功能、表型和组织微环境中位置的关系提供了重要依据",
+              "quote": "探索常规病理切片（H&E图像）与空间基因表达谱之间的非线性映射关系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 709,
-                "end_char": 788
+                "start_char": 2698,
+                "end_char": 2730
               },
               "version": "ba11e2b88a903feb9abe"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-34506ba23b8e",
-          "name": "空间转录组成本高分辨率有限且多模态整合困难",
-          "desc": "空间转录组测序成本高、分辨率有限，且缺少与组织形态之间的定量联系，多模态数据整合困难，制约其大规模应用。",
+          "id": "item-8f2926e0bd9e",
+          "name": "空间转录组测序成本高、分辨率有限、多模态整合困难",
+          "desc": "大规模应用受限",
           "evidence": [
             {
               "quote": "针对空间转录组测序成本高、分辨率有限以及多模态数据整合困难等科学问题",
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-55aa1410c01a",
-          "name": "病理图像到基因表达的跨模态翻译深度学习模型",
-          "desc": "建立基于多模态深度学习的疾病预测模型，将病理组织图像信息引入基因表达数据训练细胞类型与疾病分期预测网络，并用迁移学习实现多源异构任务间参数共享。",
-          "evidence": [
-            {
-              "quote": "建立一个基于多模态深度学习的疾病预测模型，将病理组织的图像信息引入基因表达数据，用于训练预测细胞类型和疾病分期的神经网络模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 900
-              },
-              "version": "ba11e2b88a903feb9abe"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-886f1e9220a9",
-          "name": "构建HE2Gene实现H&E图像直接预测空间表达谱",
-          "desc": "构建基于多任务学习的深度学习模型HE2Gene，在人类乳腺癌与阿尔兹海默症数据集上实现从H&E图像直接预测全基因组空间表达谱，关键基因空间相关性显著优于同类算法；项目期间发表论文20余篇。",
+          "id": "item-31e2ae587ef0",
+          "name": "HE2Gene多任务深度学习框架",
+          "desc": "从H&E图像预测全基因组空间表达谱",
           "evidence": [
             {
               "quote": "成功构建了基于多任务学习的深度学习模型HE2Gene",
@@ -99,44 +82,487 @@
               "version": "ba11e2b88a903feb9abe"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-06880e08eb67",
+          "name": "scPER2P跨模态翻译",
+          "desc": "参数高效微调的RNA-蛋白质组跨模态翻译",
+          "evidence": [
+            {
+              "quote": "开发了scPER2P模型，利用参数高效微调（PEFT）技术实现了高精度的RNA-蛋白质组跨模态翻译",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3004,
+                "end_char": 3052
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-08b1f686dff7",
+          "name": "scOTM最优传输框架",
+          "desc": "预测未见细胞类型药物扰动响应",
+          "evidence": [
+            {
+              "quote": "提出了基于最优传输（Optimal Transport）的scOTM框架，首次实现了对“未见细胞类型”在药物扰动下的转录响应精准预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3054,
+                "end_char": 3119
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表20余篇论文并发布开源工具包",
+          "evidence": [
+            {
+              "quote": "累计在 Bioinformatics、iScience、Advanced Science、Nature Communications 等国际顶级期刊发表高质量学术论文20余篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3147,
+                "end_char": 3233
+              },
+              "version": "ba11e2b88a903feb9abe"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8f99a9c4a9ee"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-34506ba23b8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Lightweight Framework For Chromatin Loop Detection at the Single‐Cell Level",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fuzhou Wang;Hamid Alinejad‐Rokny;Jiecong Lin;Tingxiao Gao;Xingjian Chen;Zetian Zheng;Lingkuan Meng;Xiangtao Li;Ka‐Chun Wong",
+      "id": "out-f6c5830c9752",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Lightweight Framework For Chromatin Loop Detection at the Single‐Cell Level — Fuzhou Wang;Hamid Alinejad‐Rokny;Jiecong Lin;Tingxiao Gao;Xingjian Chen;Zetian Zheng;Lingkuan Meng;Xiangtao Li;Ka‐Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3446,
+            "end_char": 3655
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-34506ba23b8e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-55aa1410c01a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TransPTM: a transformer-based model for non-histone acetylation site prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingkuan Meng;Xingjian Chen;Ke Cheng;Nanjun Chen;Zetian Zheng;Fuzhou Wang;Hongyan Sun;Ka-Chun Wong",
+      "id": "out-2f82600daf5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TransPTM: a transformer-based model for non-histone acetylation site prediction — Lingkuan Meng;Xingjian Chen;Ke Cheng;Nanjun Chen;Zetian Zheng;Fuzhou Wang;Hongyan Sun;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3660,
+            "end_char": 3846
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-55aa1410c01a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-886f1e9220a9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MotifHub: Detection of trans-acting DNA motif group with probabilistic modeling algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Liu;Hiu-Man Wong;Xingjian Chen;Jiecong Lin;Shixiong Zhang;Shankai Yan;Fuzhou Wang;Xiangtao Li;Ka-Chun Wong",
+      "id": "out-0af5f2ddbf47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MotifHub: Detection of trans-acting DNA motif group with probabilistic modeling algorithm — Zhe Liu;Hiu-Man Wong;Xingjian Chen;Jiecong Lin;Shixiong Zhang;Shankai Yan;Fuzhou Wang;Xiangtao Li;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3851,
+            "end_char": 4059
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HE2Gene: image-to-RNA translation via multi-task learning for spatial transcriptomics data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xingjian Chen;Jiecong Lin;Yuchen Wang;Weitong Zhng;Weidun Xie;Zetian Zheng;Ka-Chun Wong",
+      "id": "out-1d002e936549",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HE2Gene: image-to-RNA translation via multi-task learning for spatial transcriptomics data — Xingjian Chen;Jiecong Lin;Yuchen Wang;Weitong Zhng;Weidun Xie;Zetian Zheng;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4064,
+            "end_char": 4250
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LncRNA-Top: Controlled deep learning approaches for lncRNA gene regulatory relationship annotations across different platforms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weidun Xie;Xingjian Chen;Zetian Zheng;Fuzhou Wang;Xiaowei Zhu;Qiuzhen Lin;Yanni Sun;Ka-Chun Wong",
+      "id": "out-acfab0d782ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LncRNA-Top: Controlled deep learning approaches for lncRNA gene regulatory relationship annotations across different platforms — Weidun Xie;Xingjian Chen;Zetian Zheng;Fuzhou Wang;Xiaowei Zhu;Qiuzhen Lin;Yanni Sun;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4255,
+            "end_char": 4486
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AutoCancer as an automated multimodal framework for early cancer detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linjing Liu;Ying Xiong;Zetian Zheng;Lei Huang;Jiangning Song;Qiuzhen Lin;Buzhou Tang;Ka-Chun Wong",
+      "id": "out-cbc2cfb76248",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AutoCancer as an automated multimodal framework for early cancer detection — Linjing Liu;Ying Xiong;Zetian Zheng;Lei Huang;Jiangning Song;Qiuzhen Lin;Buzhou Tang;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4491,
+            "end_char": 4671
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction of Immune Infiltration-related LncRNA signatures based on machine learning for the prognosis in Colon cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Liu;Olutomilayo Olayemi Petinrin;Muhammad Toseef;Nanjun Chen;Ka-Chun Wong",
+      "id": "out-51acf61dbf1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Construction of Immune Infiltration-related LncRNA signatures based on machine learning for the prognosis in Colon cancer — Zhe Liu;Olutomilayo Olayemi Petinrin;Muhammad Toseef;Nanjun Chen;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4676,
+            "end_char": 4883
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yuchen;Lu Tianchi;Chen Xingjian;Yao Zhongyu;Wong Ka-Chun",
+      "id": "out-d1a9ce6fa674",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models — Wang Yuchen;Lu Tianchi;Chen Xingjian;Yao Zhongyu;Wong Ka-Chun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4888,
+            "end_char": 5067
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Gene-Cell Collective Representation Learning with Optimal Transport",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jixiang Yu;Nanjun Chen;Ming Gao;Xiangtao Li;Ka-Chun Wong",
+      "id": "out-9f415bb680d8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Unsupervised Gene-Cell Collective Representation Learning with Optimal Transport — Jixiang Yu;Nanjun Chen;Ming Gao;Xiangtao Li;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5072,
+            "end_char": 5217
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Review of Single-cell RNA-seq Data Clustering for Cell Type Identification and Characterization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shixiong Zhang;Xiangtao Li;Jiecong Lin;Qiuzhen Lin;Ka-Chun Wong",
+      "id": "out-0216332013cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Review of Single-cell RNA-seq Data Clustering for Cell Type Identification and Characterization — Shixiong Zhang;Xiangtao Li;Jiecong Lin;Qiuzhen Lin;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5223,
+            "end_char": 5390
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Topological identification and interpretation for single-cell gene regulation elucidation across multiple platforms using scMGCA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuohan Yu;Yanchi Su;Yifu Lu;Yuning Yang;Fuzhou Wang;Shixiong Zhang;Yi Chang;Ka-Chun Wong;Xiangtao Li",
+      "id": "out-6d4307c6f058",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Topological identification and interpretation for single-cell gene regulation elucidation across multiple platforms using scMGCA — Zhuohan Yu;Yanchi Su;Yifu Lu;Yuning Yang;Fuzhou Wang;Shixiong Zhang;Yi Chang;Ka-Chun Wong;Xiangtao Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5396,
+            "end_char": 5634
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enabling Single‐Cell Drug Response Annotations from Bulk RNA‐Seq Using SCAD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zetian Zheng;Junyi Chen;Xingjian Chen;Lei Huang;Weidun Xie;Qiuzhen Lin;Xiangtao Li;Ka‐Chun Wong",
+      "id": "out-712fa2e0ea98",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enabling Single‐Cell Drug Response Annotations from Bulk RNA‐Seq Using SCAD — Zetian Zheng;Junyi Chen;Xingjian Chen;Lei Huang;Weidun Xie;Qiuzhen Lin;Xiangtao Li;Ka‐Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5640,
+            "end_char": 5819
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovering DNA shape motifs with multiple DNA shape features: generalization, methods, and validation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nanjun Chen;Jixiang Yu;Zhe Liu;Lingkuan Meng;Xiangtao Li;Ka-Chun Wong",
+      "id": "out-859d0bff61eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovering DNA shape motifs with multiple DNA shape features: generalization, methods, and validation — Nanjun Chen;Jixiang Yu;Zhe Liu;Lingkuan Meng;Xiangtao Li;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5825,
+            "end_char": 6005
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Human disease prediction from microbiome data by multiple feature fusion and deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xingjian Chen;Zifan Zhu;Weitong Zhang;Yuchen Wang;Fuzhou Wang;Jianyi Yang;Ka-Chun Wong",
+      "id": "out-73ae892c41f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Human disease prediction from microbiome data by multiple feature fusion and deep learning — Xingjian Chen;Zifan Zhu;Weitong Zhang;Yuchen Wang;Fuzhou Wang;Jianyi Yang;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6011,
+            "end_char": 6196
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk scoring based on DNA methylation-driven related DEGs for colorectal cancer prognosis with systematic insights",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Liu;Ilias Georgakopoulos-Soares;Nadav Ahituv;Ka-Chun Wong",
+      "id": "out-d5a84c611a1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk scoring based on DNA methylation-driven related DEGs for colorectal cancer prognosis with systematic insights — Zhe Liu;Ilias Georgakopoulos-Soares;Nadav Ahituv;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6202,
+            "end_char": 6386
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scREPA: Predicting single-cell perturbation responses with cycle-consistent representation alignment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yuchen;Chen Xingjian;Li Xiangtao;Wong Ka-Chun",
+      "id": "out-aa4fce2817f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scREPA: Predicting single-cell perturbation responses with cycle-consistent representation alignment — Wang Yuchen;Chen Xingjian;Li Xiangtao;Wong Ka-Chun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6392,
+            "end_char": 6551
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scGREAT: Transformer-based deep-language model for gene regulatory network inference from single-cell transcriptomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuchen Wang;Xingjian Chen;Zetian Zheng;Lei Huang;Weidun Xie;Fuzhou Wang;Zhaolei Zhang;Ka-Chun Wong",
+      "id": "out-95da547686ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scGREAT: Transformer-based deep-language model for gene regulatory network inference from single-cell transcriptomics — Yuchen Wang;Xingjian Chen;Zetian Zheng;Lei Huang;Weidun Xie;Fuzhou Wang;Zhaolei Zhang;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6557,
+            "end_char": 6781
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep transfer learning for clinical decision-making based on high-throughput data: comprehensive survey with benchmark results",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Muhammad Toseef;Olutomilayo Olayemi Petinrin;Fuzhou Wang;Saifur Rahaman;Zhe Liu;Xiangtao Li;Ka-Chun Wong",
+      "id": "out-6e3e7a132d4e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep transfer learning for clinical decision-making based on high-throughput data: comprehensive survey with benchmark results — Muhammad Toseef;Olutomilayo Olayemi Petinrin;Fuzhou Wang;Saifur Rahaman;Zhe Liu;Xiangtao Li;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6787,
+            "end_char": 7026
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning in metastatic cancer research: Potentials, possibilities, and prospects",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Olutomilayo Olayemi Petinrin;Faisal Saeed;Muhammad Toseef;Zhe Liu;Shadi Basurra;Ibukun Omotayo Muyide;Xiangtao Li;Qiuzhen Lin;Ka-Chun Wong",
+      "id": "out-76207ba18721",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning in metastatic cancer research: Potentials, possibilities, and prospects — Olutomilayo Olayemi Petinrin;Faisal Saeed;Muhammad Toseef;Zhe Liu;Shadi Basurra;Ibukun Omotayo Muyide;Xiangtao Li;Qiuzhen Lin;Ka-Chun Wong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7032,
+            "end_char": 7267
+          },
+          "version": "ba11e2b88a903feb9abe"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

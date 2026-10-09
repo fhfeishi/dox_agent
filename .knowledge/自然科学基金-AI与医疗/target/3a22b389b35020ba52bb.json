@@ -2,15 +2,20 @@
   "doc_id": "3a22b389b35020ba52bb",
   "version": "006c24704a43ac3941dc",
   "source_hash": "b8d6c0b34da127aa8ac373f205d9ac055866367eb2064bc82ae581b2c82faa80",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:16.043738+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:31.910398+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b743016cb753",
-          "name": "慢性意识障碍患者脑功能监测",
-          "desc": "严重脑损伤患者救治成功率提高致使长期存活的意识障碍患者数量不断增加。",
+          "id": "item-8bfc928a8b0f",
+          "name": "慢性意识障碍预后预测",
+          "desc": "严重脑损伤患者长期存活",
           "evidence": [
             {
-              "quote": "随着急救技术及重症医学的快速发展，严重脑损伤患者的救治成功率显著提高，致使长期存活的意识障碍患者数量不断增加。",
+              "quote": "致使长期存活的意识障碍患者数量不断增加",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 702
-              },
-              "version": "006c24704a43ac3941dc"
-            }
-          ]
-        },
-        {
-          "id": "item-cbfec67a09a3",
-          "name": "意识障碍药物治疗反应评估",
-          "desc": "在使用金刚烷胺、阿扑吗啡和唑吡坦等处方药尝试治疗DOC患者时，部分患者应答良好而部分无改善。",
-          "evidence": [
-            {
-              "quote": "在使用金刚烷胺、阿扑吗啡和唑吡坦等处方药尝试治疗DOC患者时，部分患者应答良好，而部分患者的临床症状则无改善。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 703,
-                "end_char": 757
+                "start_char": 683,
+                "end_char": 701
               },
               "version": "006c24704a43ac3941dc"
             }
@@ -59,30 +48,14 @@
         {
           "id": "item-96dbfb35ca75",
           "name": "缺乏精准疗效预测模型",
-          "desc": "目前尚缺乏精准的疗效预测模型，无法在治疗前或治疗早期阶段对治疗效果进行准确预测。",
+          "desc": "治疗前或早期无法预测治疗效果",
           "evidence": [
             {
-              "quote": "但是，目前尚缺乏精准的疗效预测模型，无法在治疗前或治疗早期阶段对治疗效果进行准确预测。",
+              "quote": "目前尚缺乏精准的疗效预测模型，无法在治疗前或治疗早期阶段对治疗效果进行准确预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 800
-              },
-              "version": "006c24704a43ac3941dc"
-            }
-          ]
-        },
-        {
-          "id": "item-47e8b0ecfb4d",
-          "name": "特定药物治疗样本量小",
-          "desc": "需要实现对样本量较小的特定药物治疗反应性脑特征建立预后预测模型。",
-          "evidence": [
-            {
-              "quote": "以实现对样本量较小的特定药物治疗反应性脑特征建立预后预测的模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 883,
-                "end_char": 913
+                "start_char": 761,
+                "end_char": 799
               },
               "version": "006c24704a43ac3941dc"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c13d912c19d7",
-          "name": "稀疏参数共享多任务学习",
-          "desc": "借助稀疏参数共享的多任务学习方法，利用清醒与未清醒患者的大量历史脑电图数据挖掘脑活动标志物。",
+          "id": "item-9b5cf85ab8d3",
+          "name": "EEG多任务学习与多模态融合",
+          "desc": "分数阶傅里叶变换与多特征融合",
           "evidence": [
             {
-              "quote": "本项目拟借助稀疏参数共享的多任务学习方法，利用清醒患者和未清醒患者的大量历史脑电图数据，充分挖掘可以索引人脑意识状态的多类别脑活动标志物和先验知识",
+              "quote": "提出了基于脑电图（EEG）信号的多任务学习和多模态数据融合方法，用于患者分类与预后预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 809,
-                "end_char": 881
+                "start_char": 2415,
+                "end_char": 2457
               },
               "version": "006c24704a43ac3941dc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f894d9cd7ce3",
-          "name": "分数阶傅里叶变换与多特征融合",
-          "desc": "结合时域、频域及非线性动力学特征，采用分数阶傅里叶变换与多特征融合技术提升分类精度与鲁棒性。",
+          "id": "item-57f12faeb3f7",
+          "name": "药物治疗反应性脑特征预测模型",
+          "desc": "个性化治疗依据",
           "evidence": [
             {
-              "quote": "通过结合时域、频域及非线性动力学特征，并采用分数阶傅里叶变换与多特征融合技术，显著提升了模型的分类精度和鲁棒性",
+              "quote": "基于药物治疗反应性脑特征的预测模型，为意识障碍的个性化治疗提供了科学依据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2459,
-                "end_char": 2513
+                "start_char": 2587,
+                "end_char": 2622
               },
               "version": "006c24704a43ac3941dc"
             }
-          ]
-        },
-        {
-          "id": "item-05c1172fd805",
-          "name": "EEG-fMRI-PET多模态融合",
-          "desc": "整合EEG、功能性磁共振成像和正电子发射断层扫描等多模态数据，支撑脑功能网络分析及药物作用机制研究。",
-          "evidence": [
-            {
-              "quote": "研究还整合了EEG、功能性磁共振成像（fMRI）和正电子发射断层扫描（PET）等多模态数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2515,
-                "end_char": 2559
-              },
-              "version": "006c24704a43ac3941dc"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6d8b6f35fe50",
-          "name": "意识状态区分效果良好",
-          "desc": "实验结果表明所提方法能够有效区分不同意识状态的患者，并具有良好的临床应用前景。",
-          "evidence": [
-            {
-              "quote": "实验结果表明，所提出的方法能够有效区分不同意识状态的患者，并具有良好的临床应用前景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2624,
-                "end_char": 2664
-              },
-              "version": "006c24704a43ac3941dc"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2cbbab8fcc02",
-          "name": "论文与专利产出",
-          "desc": "在高水平SCI期刊发表论文4篇、中文核心期刊2篇、国际会议2篇，并申请2项发明专利。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文4篇，中文核心2篇，会议论文2篇，发明专利2项",
           "evidence": [
             {
               "quote": "项目成果已在高水平SCI期刊上发表论文4篇，在中文核心期刊上发表论文2篇，国际学术会议上发表论文2篇，并申请了2项发明专利",
@@ -180,72 +122,182 @@
               "version": "006c24704a43ac3941dc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5e6f1c9e9a99",
-          "name": "多任务学习脑电分类专利",
-          "desc": "申请基于稀疏参数共享的多任务学习脑电图分类与预后预测方法专利。",
-          "evidence": [
-            {
-              "quote": "基于稀疏参数共享的多任务学习脑电图分类与预后预测方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2980,
-                "end_char": 3005
-              },
-              "version": "006c24704a43ac3941dc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cbfec67a09a3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-96dbfb35ca75"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于离散小波变换的意识障碍患者意识水平评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毛培名;黑玉光;杨姗姗;季虹",
+      "id": "out-663eb3cee40a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于离散小波变换的意识障碍患者意识水平评估 — 毛培名;黑玉光;杨姗姗;季虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2770,
+            "end_char": 2814
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-47e8b0ecfb4d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c13d912c19d7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Groupwise structural sparsity for discriminative voxels identification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji Hong;Zhang Xiaowei;Chen Badong;Yuan Zejian;Zheng Nanning;Keil Andreas",
+      "id": "out-e0666831b416",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Groupwise structural sparsity for discriminative voxels identification — Ji Hong;Zhang Xiaowei;Chen Badong;Yuan Zejian;Zheng Nanning;Keil Andreas",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2819,
+            "end_char": 2970
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f894d9cd7ce3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6d8b6f35fe50"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于稀疏参数共享的多任务学习脑电图分类与预后预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "季虹;黑玉光;江文;杨博",
+      "id": "out-1c9107c80387",
+      "evidence": [
+        {
+          "quote": "[专利] 基于稀疏参数共享的多任务学习脑电图分类与预后预测方法 — 季虹;黑玉光;江文;杨博",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2975,
+            "end_char": 3020
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-05c1172fd805"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2cbbab8fcc02"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An effective fusion model for seizure prediction: GAMRNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji Hong;Xu Ting;Xue Tao;Xu Tao;Yan Zhiqiang;Liu Yonghong;Chen Badong;Jiang Wen",
+      "id": "out-fa081cee1b72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An effective fusion model for seizure prediction: GAMRNN — Ji Hong;Xu Ting;Xue Tao;Xu Tao;Yan Zhiqiang;Liu Yonghong;Chen Badong;Jiang Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3025,
+            "end_char": 3168
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Brain Connectivity Patterns and Cognitive Resilience in Aging: A Study with the LEMON Dataset",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kapeleshh K. S.;Wei Chen;Prince Aldrin Domer;Hong Ji",
+      "id": "out-ab2a22a6cfda",
+      "evidence": [
+        {
+          "quote": "[会议论文] Exploring Brain Connectivity Patterns and Cognitive Resilience in Aging: A Study with the LEMON Dataset — Kapeleshh K. S.;Wei Chen;Prince Aldrin Domer;Hong Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3173,
+            "end_char": 3337
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-view multi-level contrastive graph convolutional network for cancer subtyping on multi-omics data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Bo;Cui Chenxi;Wang Meng;Ji Hong;Gao Feiyue",
+      "id": "out-f4f44f4f56df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-view multi-level contrastive graph convolutional network for cancer subtyping on multi-omics data — Yang Bo;Cui Chenxi;Wang Meng;Ji Hong;Gao Feiyue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3342,
+            "end_char": 3501
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Batch effects correction in scRNA-seq based on biological-noise decoupling autoencoder and central-cross loss",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Zhangjie;Yang Bo;Li Meng;Wu Yue;Ji Hong",
+      "id": "out-96f9fc620d91",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Batch effects correction in scRNA-seq based on biological-noise decoupling autoencoder and central-cross loss — Di Zhangjie;Yang Bo;Li Meng;Wu Yue;Ji Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3506,
+            "end_char": 3666
+          },
+          "version": "006c24704a43ac3941dc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

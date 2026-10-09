@@ -2,15 +2,20 @@
   "doc_id": "359e6c339f36d7869e9b",
   "version": "19339374327bed705825",
   "source_hash": "dfe4cebd90586725881424618eea344b06e74bfab2787dafc8361aa26fcd11bd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.727114+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.801903+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-41b3c1c7863c",
-          "name": "轻度创伤性脑损伤动态因果建模",
-          "desc": "创伤性脑损伤患者多数为轻度损伤，但常缺乏客观影像学改变与生物标志物导致延误诊断与治疗。",
+          "id": "item-ff51b1fd6774",
+          "name": "轻度创伤性脑损伤诊断",
+          "desc": "多数创伤性脑损伤为轻度",
           "evidence": [
             {
-              "quote": "创伤性脑损伤患者中多数为轻度损伤；然而，轻度损伤常缺乏客观的影像学改变以及生物标志物导致延误诊断与治疗",
+              "quote": "创伤性脑损伤患者中多数为轻度损伤",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 721,
-                "end_char": 771
-              },
-              "version": "19339374327bed705825"
-            }
-          ]
-        },
-        {
-          "id": "item-fb2142791cde",
-          "name": "军事训练与人员选拔评估预测",
-          "desc": "研究成果对国防领域军事训练、特殊训练效果评估预测及特定人员选拔培养具有研究思路与证据启发意义。",
-          "evidence": [
-            {
-              "quote": "对于国防领域的军事训练、特殊训练（如：认知训练）效果评估预测、特定人员选拔与培养（如：飞行员）具有重要的研究思路与研究证据启发意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3431,
-                "end_char": 3495
+                "end_char": 736
               },
               "version": "19339374327bed705825"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc4bc06401f0",
-          "name": "轻度脑创伤缺客观影像学生物标志物",
-          "desc": "轻度脑创伤认知功能损伤机理不清晰且缺乏客观临床诊断影像学生物标记物。",
-          "evidence": [
-            {
-              "quote": "研究成果可为轻度脑创伤的认知功能损伤机理不清晰和缺乏客观临床诊断影像学生物标记物等亟需解决的问题提供关键依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1022,
-                "end_char": 1075
-              },
-              "version": "19339374327bed705825"
-            }
-          ]
-        },
-        {
-          "id": "item-12fac035cb4d",
-          "name": "轻度损伤缺客观影像学改变",
-          "desc": "轻度损伤常缺乏客观的影像学改变导致延误诊断与治疗。",
+          "id": "item-d3a46a11a624",
+          "name": "轻度损伤缺乏客观影像学改变致延误诊断治疗",
+          "desc": "缺乏客观生物标志物",
           "evidence": [
             {
               "quote": "然而轻度损伤常缺乏客观的影像学改变导致延误诊断与治疗",
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b292ef1d311",
-          "name": "多模态融合动态因果建模与机器学习",
-          "desc": "采用多模态融合动态因果建模与机器学习相结合的角度，深度挖掘脑功能影像数据中具有生理意义的非线性时空动态信息。",
-          "evidence": [
-            {
-              "quote": "本项目提出采用多模态融合动态因果建模与机器学习相结合的新颖角度，深度挖掘大脑功能影像数据中蕴含的具有生理意义的非线性时空动态信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 781,
-                "end_char": 844
-              },
-              "version": "19339374327bed705825"
-            }
-          ]
-        },
-        {
-          "id": "item-6afbacedb5c7",
-          "name": "数据驱动全脑动态因果建模结构推断",
-          "desc": "提出数据驱动的全脑动态因果建模模型结构推断方法框架，利用功能连接分析优势挖掘潜在功能整合连接关系。",
+          "id": "item-8b627e2a2c56",
+          "name": "全脑动态因果建模模型结构推断框架",
+          "desc": "数据驱动",
           "evidence": [
             {
               "quote": "提出了一种数据驱动的全脑动态因果建模模型结构推断方法框架",
@@ -124,7 +81,42 @@
               },
               "version": "19339374327bed705825"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-aded2f4356b3",
+          "name": "多模态参数估计方法谱系",
+          "desc": "fMRI/EEG动态因果建模等",
+          "evidence": [
+            {
+              "quote": "构建了涵盖fMRI频谱动态因果建模、参数经验贝叶斯、EEG规范微电路动态因果建模、时域相关性功能连接、频域相干性功能连接、颅脑材料力学建模等计算模型的多模态参数估计方法谱系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3064,
+                "end_char": 3149
+              },
+              "version": "19339374327bed705825"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e8f7bbc56273",
+          "name": "结构推断-参数估计-机器学习分类方法体系",
+          "desc": "机理建模与AI结合",
+          "evidence": [
+            {
+              "quote": "形成了“模型结构推断-模型参数估计-机器学习算法预测分类”的方法体系框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3194,
+                "end_char": 3229
+              },
+              "version": "19339374327bed705825"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-17f4ea9ba3d9",
-          "name": "发现脑损伤相关功能整合网络",
-          "desc": "发现包含中央旁小叶右、枕中回右、舌回右的脑损伤相关功能整合网络及其异常连接模式。",
+          "id": "item-140dc25276e7",
+          "name": "脑损伤相关功能整合网络",
+          "desc": "中央旁小叶右、枕中回右、舌回右",
           "evidence": [
             {
               "quote": "发现了一个包含中央旁小叶右、枕中回右、舌回右的脑损伤相关功能整合网络及其异常连接模式",
@@ -147,89 +139,245 @@
               "version": "19339374327bed705825"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6ad81a0c29b2",
-          "name": "多模态多尺度参数集",
-          "desc": "构建涵盖fMRI频谱动态因果建模、参数经验贝叶斯、EEG规范微电路建模等计算模型的方法谱系，形成多模态多尺度参数集。",
-          "evidence": [
-            {
-              "quote": "构建了涵盖fMRI频谱动态因果建模、参数经验贝叶斯、EEG规范微电路动态因果建模、时域相关性功能连接、频域相干性功能连接、颅脑材料力学建模等计算模型的多模态参数估计方法谱系，形成了描述轻度创伤性脑损伤的多模态、多尺度参数集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3064,
-                "end_char": 3174
-              },
-              "version": "19339374327bed705825"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-17fc7f19b978",
-          "name": "推断到预测方法体系框架",
-          "desc": "形成模型结构推断、模型参数估计、机器学习算法预测分类的方法体系框架，可应用于疾病分类与辅助诊断。",
-          "evidence": [
-            {
-              "quote": "形成了“模型结构推断-模型参数估计-机器学习算法预测分类”的方法体系框架，能够应用于疾病分类、辅助诊断、后天行为效应评估预测等研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3194,
-                "end_char": 3258
-              },
-              "version": "19339374327bed705825"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-41b3c1c7863c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cc4bc06401f0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Generating Adversarial Patterns in Facial Recognition with Visual Camouflage",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qirui Bao;Haiyang Mei;Huilin Wei;Zheng Lü;Yuxin Wang;Xin Yang",
+      "id": "out-f19557b36414",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Generating Adversarial Patterns in Facial Recognition with Visual Camouflage — Qirui Bao;Haiyang Mei;Huilin Wei;Zheng Lü;Yuxin Wang;Xin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3677
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cc4bc06401f0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1b292ef1d311"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effective Connectivity Changes among Brain Hierarchical Architecture of Pre-Supplementary Motor Area in Taxi Drivers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huilin Wei;Lubin Wang;Limin Peng;Chenming Li;Tian Ma;Dewen Hu",
+      "id": "out-1a8c1ef1ad08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effective Connectivity Changes among Brain Hierarchical Architecture of Pre-Supplementary Motor Area in Taxi Drivers — Huilin Wei;Lubin Wang;Limin Peng;Chenming Li;Tian Ma;Dewen Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3868
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1b292ef1d311"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6ad81a0c29b2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "动态决策能力的交互式测评工具开发",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏慧琳;程雪迎;王楚玥;李晨明;骆方;马天",
+      "id": "out-24fd01e8d766",
+      "evidence": [
+        {
+          "quote": "[会议论文] 动态决策能力的交互式测评工具开发 — 魏慧琳;程雪迎;王楚玥;李晨明;骆方;马天",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3873,
+            "end_char": 3919
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6afbacedb5c7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-17f4ea9ba3d9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种便携式冲击波传感器",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨斌;康越;马天;刘凯峰;韩笑;魏慧琳",
+      "id": "out-ce7f1329fd54",
+      "evidence": [
+        {
+          "quote": "[专利] 一种便携式冲击波传感器 — 杨斌;康越;马天;刘凯峰;韩笑;魏慧琳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3924,
+            "end_char": 3961
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于虚拟现实的认知与动作敏捷交互式测评 工具开发",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "明晓飞;魏慧琳;李婧;王楚玥;马天;骆方",
+      "id": "out-e62a169bf0f7",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于虚拟现实的认知与动作敏捷交互式测评 工具开发 — 明晓飞;魏慧琳;李婧;王楚玥;马天;骆方",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3966,
+            "end_char": 4019
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and application of Few-shot learning methods in materials science under data scarcity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongxing Chen;Peng Long;Bin Liu;Yi Wang;Junlong Wang;Tian Ma;Huilin Wei;Yue Kang;Haining Ji",
+      "id": "out-c38e7b1d7f80",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and application of Few-shot learning methods in materials science under data scarcity — Yongxing Chen;Peng Long;Bin Liu;Yi Wang;Junlong Wang;Tian Ma;Huilin Wei;Yue Kang;Haining Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4024,
+            "end_char": 4221
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于虚拟现实狙击场景的应激稳定性测评工具开发",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏慧琳;严彦文;康越;骆方;马天",
+      "id": "out-478b7dee8c79",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于虚拟现实狙击场景的应激稳定性测评工具开发 — 魏慧琳;严彦文;康越;骆方;马天",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4226,
+            "end_char": 4273
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种认知增强训练系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏慧琳;韦新;马天;李晨明;刘凯峰;康越",
+      "id": "out-bb5c3d084513",
+      "evidence": [
+        {
+          "quote": "[专利] 一种认知增强训练系统及方法 — 魏慧琳;韦新;马天;李晨明;刘凯峰;康越",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4278,
+            "end_char": 4318
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针对个体防护的冲击波检测评估技术",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡勇;马天;王俊龙;杜智博;黄献聪;嵇海宁;魏慧琳;柳占立;康越",
+      "id": "out-b16d0c4a790c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针对个体防护的冲击波检测评估技术 — 胡勇;马天;王俊龙;杜智博;黄献聪;嵇海宁;魏慧琳;柳占立;康越",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4323,
+            "end_char": 4380
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Measuring functional connectivity in frequency-domain helps to better characterize brain function",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Limin Peng;Jianpo Su;Dewen Hu;Yang Yu;Huilin Wei;Ming Li",
+      "id": "out-6bb22d90bb62",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Measuring functional connectivity in frequency-domain helps to better characterize brain function — Limin Peng;Jianpo Su;Dewen Hu;Yang Yu;Huilin Wei;Ming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4548
+          },
+          "version": "19339374327bed705825"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

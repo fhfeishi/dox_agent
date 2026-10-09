@@ -2,15 +2,20 @@
   "doc_id": "91cf48d66089215d72c4",
   "version": "a464e91d9f479983caf3",
   "source_hash": "9403f3232e13a98f730b4169d8783fddcbd4813416326ebcf00e662dad6c2133",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.919201+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:07:44.858702+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 13,
+      "total": 13,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-51e341ac8c8c",
-          "name": "儿童喘息症状可解释AI辅助诊断",
-          "desc": "面向儿童喘息症状诊断，研究可解释性人工智能辅助诊断技术以提升儿科诊断水平。",
+          "id": "item-ef2cbffa497f",
+          "name": "儿童喘息症状辅助诊断",
+          "desc": "儿童喘息病因复杂，早期精准诊断困难，临床亟需高可解释性的辅助诊断技术",
           "evidence": [
             {
-              "quote": "儿童喘息发病率极高且持续上升",
+              "quote": "儿童喘息发病率极高且持续上升。年幼时喘息控制不佳，会影响成年时的肺功能",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        },
+        {
+          "id": "item-fd78d0ccf980",
+          "name": "难治性肺炎支原体肺炎早期预警",
+          "desc": "以RMPP为例，构建覆盖多中心影像数据的多模态数据库并做早期风险分层",
+          "evidence": [
+            {
+              "quote": "融合多中心医学影像数据与人工智能方法，构建了覆盖2000余例患儿的多模态数据库",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        },
+        {
+          "id": "item-94e202dfc128",
+          "name": "儿童支气管镜与激素个体化治疗决策",
+          "desc": "分析支气管镜介入治疗与糖皮质激素疗效的异质性效应，识别获益人群",
+          "evidence": [
+            {
+              "quote": "利用因果森林算法，分析支气管镜介入治疗的异质性效应，识别获益患者亚群",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
               },
               "version": "a464e91d9f479983caf3"
             }
@@ -41,16 +78,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f33c272d7171",
-          "name": "病因复杂致诊断严重依赖专家经验",
-          "desc": "儿童喘息病因复杂，诊断过程严重依赖临床经验丰富的儿科专家，而我国儿科医生极度缺乏且缺少规范培训。",
+          "id": "item-698d0b48caba",
+          "name": "儿科经验依赖与诊断培训不足",
+          "desc": "诊断过程严重依赖临床经验丰富的儿科专家，我国儿科医生极度缺乏且多数缺少规范培训",
           "evidence": [
             {
-              "quote": "因其病因复杂，诊断过程严重依赖临床经验丰富的儿科专家",
+              "quote": "因其病因复杂，诊断过程严重依赖临床经验丰富的儿科专家。然而，我国儿科医生极度缺乏且多数缺少规范的喘息症状诊断培训，难以完成准确诊断",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        },
+        {
+          "id": "item-24b57a5f0ee6",
+          "name": "AI诊断黑盒且不可解释",
+          "desc": "既有AI诊断过程黑盒、难以控制，且缺乏可解释性",
+          "evidence": [
+            {
+              "quote": "人工智能（AI）技术有望提高儿科医生对喘息症状的诊断能力，但相关研究尚处于起步阶段，诊断过程黑盒、难以控制，且缺乏可解释性",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ]
+        },
+        {
+          "id": "item-f97ba47136fa",
+          "name": "RMPP微循环障碍机制不清",
+          "desc": "需验证儿童肺炎微循环障碍假说并明确肺血容量重分布规律",
+          "evidence": [
+            {
+              "quote": "首先发现RMPP患儿存在特征性“微血管减少（BV5%降低）伴大血管相对扩张”的肺血容量重分布",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
               },
               "version": "a464e91d9f479983caf3"
             }
@@ -63,34 +132,46 @@
       "state": "has",
       "items": [
         {
-          "id": "item-07975ce680f8",
-          "name": "症状级-病灶级-全局三级可解释性框架",
-          "desc": "从症状级可解释性、病灶级可解释性和全局可解释性三个角度入手，以临床病历文本和影像为基础建立可解释模型，实现儿童喘息诊断的全局可解释性框架。",
+          "id": "item-1ae78ba3a564",
+          "name": "定量CT肺血管体积分析",
+          "desc": "应用定量CT技术揭示RMPP肺微血管重塑模式，验证微循环障碍假说",
           "evidence": [
             {
-              "quote": "本课题拟以儿童喘息症状诊断为出发点，以可解释AI辅助诊断技术为手段，从“症状级可解释性”、“病灶级可解释性”和“全局可解释性”三个角度入手",
+              "quote": "应用定量CT技术揭示RMPP肺微血管重塑模式，验证微循环障碍假说",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "f0af87fc2cb0f392070e5d243f208d47ca0cc486"
+                "page": 2,
+                "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
               },
               "version": "a464e91d9f479983caf3"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-81160a47780d",
-          "name": "Trans-DLF预警模型AUC 0.89-0.90",
-          "desc": "构建覆盖2000余例患儿的多模态数据库，基于Transformer的全自动端到端预警模型Trans-DLF在内外测试集AUC达0.89-0.90；因果森林识别的获益亚群经支气管镜治疗后发热时长平均缩短1.16天。",
+          "id": "item-95224478a9bf",
+          "name": "Trans-DLF端到端预警模型",
+          "desc": "基于Transformer架构的全自动端到端预警模型，实现基于基线CT的早期RMPP风险分层",
           "evidence": [
             {
-              "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
+              "quote": "构建基于Transformer架构的全自动端到端预警模型（Trans-DLF），实现基于基线CT的早期RMPP风险分层",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c63d1add3b79",
+          "name": "因果森林异质性效应分析",
+          "desc": "用因果森林分析支气管镜与激素疗效异质性，识别获益亚群",
+          "evidence": [
+            {
+              "quote": "因果模型识别出的获益亚群，经支气管镜治疗后发热时长显著缩短（平均缩短1.16天），而非获益亚群无效，为精准干预提供依据",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -99,7 +180,123 @@
               "version": "a464e91d9f479983caf3"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c98d166ebc5d",
+          "name": "U-Net CT量化分析",
+          "desc": "基于U-Net网络CT量化分析预测病毒性肺炎感染后间质性肺异常的发生",
+          "evidence": [
+            {
+              "quote": "基于U-Net网络CT量化分析预测病毒性肺炎感染后间质性肺异常的发生",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 51,
+                "chunk_id": "8380fed653624c6181d9710221ccd50f6fb850f3"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-12e954784b71",
+          "name": "文本-影像多模态融合模型",
+          "desc": "基于多模态临床自由文本描述与结构化检验数据融合识别儿童肺炎支原体",
+          "evidence": [
+            {
+              "quote": "Identification of mycoplasma pneumonia in children based on fusion of multi-modal clinical free-text description and structured test data",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 46,
+                "chunk_id": "1f1faf1d32335c96d681a1214717d833c18dbee9"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "role": "配套-数据"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5ae8418e7786",
+          "name": "Trans-DLF早期预警模型",
+          "desc": "内外测试集AUC达0.89-0.90，决策热图与临床关注病灶吻合",
+          "evidence": [
+            {
+              "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90），决策热图与临床关注病灶吻合，具良好可解释性与泛化能力",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "表现稳健",
+          "self_reported": false
+        },
+        {
+          "id": "item-95d1b87a9d8a",
+          "name": "支气管镜获益亚群精准识别",
+          "desc": "获益亚群经支气管镜治疗后发热时长平均缩短1.16天",
+          "evidence": [
+            {
+              "quote": "经支气管镜治疗后发热时长显著缩短（平均缩短1.16天）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "显著缩短",
+          "self_reported": false
+        },
+        {
+          "id": "item-597faf4bc24a",
+          "name": "COVID-19肺血容量重分布规律复现",
+          "desc": "证实小血管占比BV5%对临床结局具高预测价值（AUC=0.79）",
+          "evidence": [
+            {
+              "quote": "而在COVID-19患者中复现了类似肺血容量重分布规律，并证实小血管占比（BV5%）对临床结局具高预测价值（AUC=0.79）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "证实",
+          "self_reported": false
+        },
+        {
+          "id": "item-64b36c51ee02",
+          "name": "RMPP预测模型相关专利",
+          "desc": "难治性肺炎支原体肺炎预测模型构建方法、肺微血管变化预测方法等发明专利申请",
+          "evidence": [
+            {
+              "quote": "发明人:宋兰，应周梦，朱振宸，胡歌，周振，谭卫雄.一种难治性肺炎支原体肺炎预测模型的构建方法、设备.专利申请号:202510660348.1",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 46,
+                "chunk_id": "79aa1f0ac12854918455fe69d17d9ce3132d63d6"
+              },
+              "version": "a464e91d9f479983caf3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "优先审查中",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +304,400 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-95224478a9bf"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-24b57a5f0ee6"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建基于Transformer架构的全自动端到端预警模型（Trans-DLF），实现基于基线CT的早期RMPP风险分层",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1ae78ba3a564"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-f97ba47136fa"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "应用定量CT技术揭示RMPP肺微血管重塑模式，验证微循环障碍假说",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-51e341ac8c8c"
+        "item_id": "item-94e202dfc128"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-f33c272d7171"
+        "item_id": "item-698d0b48caba"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "临床亟需高可解释性的辅助诊断技术",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-f33c272d7171"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-07975ce680f8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-07975ce680f8"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-81160a47780d"
+        "item_id": "item-5ae8418e7786"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-95224478a9bf"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Application of artificial intelligence in pediatric wheezing illnesses",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Chinese Journal of Academic Radiology",
+      "id": "out-2340cc1246eb",
+      "evidence": [
+        {
+          "quote": "Application of artificial intelligence in pediatric wheezing illnesses, Chinese Journal of Academic Radiology, 2025，8(2):89-102. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 48,
+            "chunk_id": "8d21537af57ec1f89c7c095ace0a3b4c130b0b8f"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A causal forest model integrating quantitative CT scores to predict benefit from flexible bronchoscopy in pediatric Mycoplasma pneumoniae pneumonia: a two-center retrospective study",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Respiratory Research",
+      "id": "out-6680128bea19",
+      "evidence": [
+        {
+          "quote": "A causal forest model integrating quantitative CT scores to predict benefit from flexible bronchoscopy in pediatric Mycoplasma pneumoniae pneumonia: a two-center retrospective study, Respiratory Research, 2025, 27(1): 18-18. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 49,
+            "chunk_id": "8e8bf2474e11d31210206801b957885e75da1e09"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Pulmonary blood volume redistribution in COVID-19 patients of different severity and its predictive value for six-month outcomes in the less pathogenic Omicron variant",
+      "status_raw": "2026",
+      "year": "2026",
+      "identifiers": {},
+      "venue": "Pulmonology",
+      "id": "out-671136d63d90",
+      "evidence": [
+        {
+          "quote": "Pulmonary blood volume redistribution in COVID-19 patients of different severity and its predictive value for six-month outcomes in the less pathogenic Omicron variant, Pulmonology, 2026，32(1):2607932. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 49,
+            "chunk_id": "8e8bf2474e11d31210206801b957885e75da1e09"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "U-Net-based computed tomography quantification of viral pneumonia can predict fibrotic interstitial lung abnormalities at 3-month follow-up",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "Frontiers in Medicine",
+      "id": "out-0c8503841604",
+      "evidence": [
+        {
+          "quote": "U-Net-based computed tomography quantification of viral pneumonia can predict fibrotic interstitial lung abnormalities at 3-month follow-up, Frontiers in Medicine, 2024, 11(无). 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 50,
+            "chunk_id": "e01cddf6e85164c8b319709f1775e478b955730b"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Quantitative analysis of pulmonary vascular alterations in children with refractory Mycoplasma pneumoniae pneumonia",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "id": "out-92a80d40d96a",
+      "evidence": [
+        {
+          "quote": "Quantitative analysis of pulmonary vascular alterations in children with refractory Mycoplasma pneumoniae pneumonia, Quantita tive Imaging In Medicine and Surgery, 2025, 15(11). 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 50,
+            "chunk_id": "37c6bd9a4691fc33a5d24ed3a4f11c9857163fb1"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Value of deep learning reconstruction of chest low-dose CT for image quality improvement and lung parenchyma assessment on lung window",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "EUROPEAN RADIOLOGY",
+      "id": "out-3b1fcedd34f2",
+      "evidence": [
+        {
+          "quote": "Value of deep learning reconstruction of chest low-dose CT for image quality improvement and lung parenchyma assessment on lung window, EUROPEAN RADIOLOGY, 2024，34(2):1053-1064. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 50,
+            "chunk_id": "e01cddf6e85164c8b319709f1775e478b955730b"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Assessing the Heterogeneous Treatment Effects of Glucocorticoids in Infants and Toddlers with Severe Pneumonia",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Biomedicines",
+      "id": "out-d723cb8ae604",
+      "evidence": [
+        {
+          "quote": "Assessing the Heterogeneous Treatment Effects of Glucocorticoids in Infants and Toddlers with Severe Pneumonia, Biomedicines, 2025， 13(10). 第一标注 1",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 50,
+            "chunk_id": "37c6bd9a4691fc33a5d24ed3a4f11c9857163fb1"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "一种难治性肺炎支原体肺炎预测模型的构建方法、设备",
+      "status_raw": "优先审查中",
+      "year": "2025",
+      "identifiers": {
+        "application_no": "202510660348.1"
+      },
+      "id": "out-0a56f8624088",
+      "evidence": [
+        {
+          "quote": "一种难治性肺炎支原体肺炎预测模型的构建方法、设备.专利申请号:202510660348.1，类型:发明，申请日期:2025.05.21，专利状态:优先审查中（2026年1月14日）",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 46,
+            "chunk_id": "79aa1f0ac12854918455fe69d17d9ce3132d63d6"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "基于肺微血管变化预测 RMPP的方法、设备、介质和程序产品",
+      "status_raw": "2025-05-21",
+      "year": "2025",
+      "identifiers": {
+        "application_no": "202510660210.1"
+      },
+      "id": "out-13df52cfd4eb",
+      "evidence": [
+        {
+          "quote": "ii.发明人:宋兰，应周梦，胡歌，朱振宸，周振，谭卫雄.基于肺微血管变化预测RMPP的方法、设备、介质和程序产品.专利申请号:\n\n202510660210.1",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 47293,
+            "end_char": 47371
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "覆盖2000余例患儿的多模态数据库",
+      "status_raw": "构建",
+      "identifiers": {},
+      "id": "out-dcaab90a8414",
+      "evidence": [
+        {
+          "quote": "构建了覆盖2000余例患儿的多模态数据库",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "52129af1e78d732753b73e18e18b8ebbf6935f77"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2025",
+      "precision": "年",
+      "desc": "应用人工智能在儿科喘息性疾病中的研究成果发表综述论文",
+      "result": "Chinese Journal of Academic Radiology 2025第8卷第2期",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-aef6ef87d399",
+      "tech_ids": [],
+      "output_ids": [
+        "out-2340cc1246eb"
+      ],
+      "evidence": [
+        {
+          "quote": "Application of artificial intelligence in pediatric wheezing illnesses, Chinese Journal of Academic Radiology, 2025，8(2):89-102. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 48,
+            "chunk_id": "8d21537af57ec1f89c7c095ace0a3b4c130b0b8f"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "type": "专利申请",
+      "status": "已取得",
+      "date": "2025-05-21",
+      "precision": "日",
+      "desc": "提交基于肺微血管变化预测RMPP的方法专利申请",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-428d352ab705",
+      "tech_ids": [
+        "item-1ae78ba3a564"
+      ],
+      "output_ids": [
+        "out-0a56f8624088"
+      ],
+      "evidence": [
+        {
+          "quote": "一种难治性肺炎支原体肺炎预测模型的构建方法、设备.专利申请号:202510660348.1，类型:发明，申请日期:2025.05.21",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 46,
+            "chunk_id": "79aa1f0ac12854918455fe69d17d9ce3132d63d6"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    },
+    {
+      "type": "试验",
+      "status": "已取得",
+      "date": "",
+      "precision": "未知",
+      "desc": "Trans-DLF模型在内外测试集上完成验证",
+      "result": "曲线下面积AUC达0.89-0.90",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-bb82cb03f0b0",
+      "tech_ids": [
+        "item-95224478a9bf"
+      ],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "76c1068187c87eaedfbde4308c2f972a7e5dad4d"
+          },
+          "version": "a464e91d9f479983caf3"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "9dc796b32adf720112ee",
   "version": "0401ff48366660e4a62d",
   "source_hash": "7e3f127d5502c2522702ea7162e4387801702ff1af8aa296a64e493922ea2ee3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.870695+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:50:36.800369+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-373fbc0c5aeb",
           "name": "非小细胞肺癌跨模态辅助诊断",
-          "desc": "面向肺癌诊断数据量大、早期漏诊率高的问题，基于收敛生成对抗网络分析多模态肺部图像及同构异构跨模态数据。",
+          "desc": "数据量大、医生工作重、早期漏诊率高",
           "evidence": [
             {
-              "quote": "针对肺癌诊断中存在数据量大、医生工作任务重及早期漏诊率高等问题，本项目基于收敛生成对抗网络，分析多模态肺部图像及其相关同构、异构跨模态数据",
+              "quote": "针对肺癌等高发癌症在诊断中存在数据量大、医生工作任务重及早期漏诊率高等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 729,
-                "end_char": 797
+                "start_char": 2849,
+                "end_char": 2885
               },
               "version": "0401ff48366660e4a62d"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-61ae54eaf178",
-          "name": "海量医学图像需赋予计算机自动分析能力",
-          "desc": "面对临床诊断产生的海量图像数据，赋予计算机自动智能分析能力是医学图像临床应用系统的核心问题与关键技术之一。",
+          "id": "item-ea8ac11f2b41",
+          "name": "诊断数据量大、医生任务重、早期漏诊率高",
+          "desc": "肺癌诊断",
           "evidence": [
             {
-              "quote": "面对临床诊断中产生的海量图像数据，赋予计算机自动对图像进行智能分析能力是以医学图像作为输入的临床应用系统中的核心问题与关键技术之一",
+              "quote": "针对肺癌等高发癌症在诊断中存在数据量大、医生工作任务重及早期漏诊率高等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 727
+                "start_char": 2849,
+                "end_char": 2885
               },
               "version": "0401ff48366660e4a62d"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb0254511c93",
-          "name": "收敛GAN驱动的跨模态哈希检索与报告生成",
-          "desc": "研究基于收敛GAN的跨模态连续哈希检索、基于收敛图GAN的跨模态诊断报告生成，以及基于收敛协同GAN的跨模态早期预测，并整合对抗学习与阈值投票策略。",
+          "id": "item-1596af9f76f2",
+          "name": "深度终身哈希检索算法",
+          "desc": "医学流数据，避免灾难性遗忘",
           "evidence": [
             {
-              "quote": "研究基于收敛GAN的非小细胞肺癌跨模态连续哈希检索方法",
+              "quote": "提出多种深度终身哈希检索算法，实现医学流数据哈希检索，避免灾难性遗忘并降低计算开销",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 853,
-                "end_char": 879
+                "start_char": 2959,
+                "end_char": 2999
               },
               "version": "0401ff48366660e4a62d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-bac854188655",
+          "name": "跨模态融合诊断报告生成方法",
+          "desc": "解决跨模态对齐困难等",
+          "evidence": [
+            {
+              "quote": "提出多种跨模态融合的诊断报告生成方法，解决跨模态融合能力不足、跨模态数据对齐困难、全局信息缺失以及病灶区域关注度不足等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3075,
+                "end_char": 3135
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-08f33d04fbcb",
+          "name": "二阶优化差分架构搜索疾病预测算法",
+          "desc": "高发癌症预测",
+          "evidence": [
+            {
+              "quote": "提出二阶优化差分架构搜索疾病预测算法，解决无法在不同尺度上检测病变及真实场景中低准确性问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3254
+              },
+              "version": "0401ff48366660e4a62d"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-19ee9186a1ac",
-          "name": "提出零中心Wasserstein距离保证模型收敛",
-          "desc": "提出零中心Wasserstein距离确保模型收敛到全局平衡状态、局部流形正则化确保同胚性流形映射、二阶优化梯度近似架构搜索实现更快收敛，并发展终身哈希等抗遗忘机制。",
+          "id": "item-80a44bee30fb",
+          "name": "零中心Wasserstein距离",
+          "desc": "保证模型收敛到全局平衡",
           "evidence": [
             {
               "quote": "提出零中心Wasserstein距离，确保模型收敛到全局平衡状态",
@@ -99,44 +139,560 @@
               "version": "0401ff48366660e4a62d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-373fbc0c5aeb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-61ae54eaf178"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Disease Label-guided Graph Convolutional Network for Medical Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Yongheng Wang;Chunlin He;Quan Tang;Xinahua Zeng;Jiancheng Lv",
+      "id": "out-67c19e8256ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Disease Label-guided Graph Convolutional Network for Medical Report Generation — Liming Xu;Yongheng Wang;Chunlin He;Quan Tang;Xinahua Zeng;Jiancheng Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3885
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-61ae54eaf178"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cb0254511c93"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Modal disentangled generative adversarial networks for bidirectional magnetic resonance image synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Yanrong Lei;Jie Shao;Xianhua Zeng;Weisheng Li",
+      "id": "out-2b5285ab7fd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Modal disentangled generative adversarial networks for bidirectional magnetic resonance image synthesis — Liming Xu;Yanrong Lei;Jie Shao;Xianhua Zeng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3890,
+            "end_char": 4057
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cb0254511c93"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-19ee9186a1ac"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于终身学习的可微医学跨模态哈希检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;赵灯平;郑伯川;刘念",
+      "id": "out-c94f8c2897de",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于终身学习的可微医学跨模态哈希检索方法 — 徐黎明;赵灯平;郑伯川;刘念",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4062,
+            "end_char": 4105
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于视觉流形图与生成对抗网络的医学报告生成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;王元;肖山;张莉",
+      "id": "out-7bec1952c691",
+      "evidence": [
+        {
+          "quote": "[专利] 基于视觉流形图与生成对抗网络的医学报告生成方法 — 徐黎明;王元;肖山;张莉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4110,
+            "end_char": 4152
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SODAS: Second-order optimization differential architecture search for diabetic retinopathy prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Wang;Liming Xu;Jie Shao;Jiancheng Lv;Xianhua Zeng;Weisheng Li",
+      "id": "out-0bfb23d83fc8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SODAS: Second-order optimization differential architecture search for diabetic retinopathy prediction — Jing Wang;Liming Xu;Jie Shao;Jiancheng Lv;Xianhua Zeng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4333
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图卷积网络的医学图像诊断报告自动生成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;汪勇衡;刘念;郑伯川;唐全",
+      "id": "out-1fb7e4fba4d0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于图卷积网络的医学图像诊断报告自动生成方法 — 徐黎明;汪勇衡;刘念;郑伯川;唐全",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4338,
+            "end_char": 4384
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Lifelong Cross-modal Hashing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Hanqi Li;Bochuan Zheng;Weisheng Li;Jiancheng Lv",
+      "id": "out-2f33325a058b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Lifelong Cross-modal Hashing — Liming Xu;Hanqi Li;Bochuan Zheng;Weisheng Li;Jiancheng Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4488
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale Consistency Deep Lifelong Cross-modal Hashing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Hanqi Li;Jie Shao;Xianhua Zeng;Weisheng Li",
+      "id": "out-d73fb31e7fa9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale Consistency Deep Lifelong Cross-modal Hashing — Liming Xu;Hanqi Li;Jie Shao;Xianhua Zeng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4493,
+            "end_char": 4611
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Image Captioning: A Review of Methods, Trends and Future Challenges",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Quan Tang;Jiancheng Lv;Bochuan Zheng;Xianhua Zeng;Weisheng Li",
+      "id": "out-7cdfd47bfa71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Image Captioning: A Review of Methods, Trends and Future Challenges — Liming Xu;Quan Tang;Jiancheng Lv;Bochuan Zheng;Xianhua Zeng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4616,
+            "end_char": 4768
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态医学图像智能分析的辅助诊断关键技术研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄志伟;徐黎明;钟丽莎",
+      "id": "out-51fbe0685fc1",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于多模态医学图像智能分析的辅助诊断关键技术研究 — 黄志伟;徐黎明;钟丽莎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4774,
+            "end_char": 4816
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint attention GAN for medical report generation with clinical style preservation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zuge Tang;Xiaoou Liu;Jun Bie;Liming Xu;Shijie Xu",
+      "id": "out-f4276228ee09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint attention GAN for medical report generation with clinical style preservation — Zuge Tang;Xiaoou Liu;Jun Bie;Liming Xu;Shijie Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4961
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre- to post-contrast medical image synthesis with outline-guide accelerate diffusion model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueying Fan;Liming Xu;Bochuan Zheng;Xianhua Zeng;Weisheng Li;Zhiwei Huang",
+      "id": "out-d5767760dfd9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre- to post-contrast medical image synthesis with outline-guide accelerate diffusion model — Xueying Fan;Liming Xu;Bochuan Zheng;Xianhua Zeng;Weisheng Li;Zhiwei Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4967,
+            "end_char": 5140
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于Transformer 的灰度医学图像着色方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;赵灯平;刘青海",
+      "id": "out-226f2dd2eb5f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于Transformer 的灰度医学图像着色方法及系统 — 徐黎明;赵灯平;刘青海",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5146,
+            "end_char": 5194
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于 Transformer 语义对齐的医学图像 跨模态哈希检索",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴钱林;唐伦;刘青海;徐黎明;陈前斌",
+      "id": "out-df0abce4cd15",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于 Transformer 语义对齐的医学图像 跨模态哈希检索 — 吴钱林;唐伦;刘青海;徐黎明;陈前斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5200,
+            "end_char": 5259
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于在线语义相似跨模态医学图像哈希检索",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘青海;唐伦;吴钱林;徐黎明;陈前斌",
+      "id": "out-5db104fb7666",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于在线语义相似跨模态医学图像哈希检索 — 刘青海;唐伦;吴钱林;徐黎明;陈前斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5265,
+            "end_char": 5311
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-modality visual feature flow for medical report generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Quan Tang;Liming Xu;Yongheng Wang;Bochuan Zheng;Jiancheng Lv;Xianhua Zeng;Weisheng Li",
+      "id": "out-1130efbde6ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-modality visual feature flow for medical report generation — Quan Tang;Liming Xu;Yongheng Wang;Bochuan Zheng;Jiancheng Lv;Xianhua Zeng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5317,
+            "end_char": 5474
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于终身学习的无监督对比跨模态哈希检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;高鑫",
+      "id": "out-9fb142bb09a1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于终身学习的无监督对比跨模态哈希检索方法 — 徐黎明;高鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5480,
+            "end_char": 5516
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADGAN: Adaptive Domain Medical Image Synthesis Based on Generative Adversarial Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Yanrong Lei;Bochuan Zheng;Jiancheng Lv;Weisheng Li",
+      "id": "out-12217f2d45c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ADGAN: Adaptive Domain Medical Image Synthesis Based on Generative Adversarial Networks — Liming Xu;Yanrong Lei;Bochuan Zheng;Jiancheng Lv;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5522,
+            "end_char": 5678
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Differential Lifelong Cross-modal Hashing for Stream Medical Data Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Dengping Zhao;Hanqi Li;Xianhua Zeng;Bochuang Zheng",
+      "id": "out-48e05c1844ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Differential Lifelong Cross-modal Hashing for Stream Medical Data Retrieval — Liming Xu;Dengping Zhao;Hanqi Li;Xianhua Zeng;Bochuang Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5684,
+            "end_char": 5833
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IFGAN: Pre- to Post-Contrast Medical Image Synthesis Based on Interactive Frequency GAN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanrong Lei;Liming Xu;Xian Wang;Xueyin Fan;Bochuan Zheng",
+      "id": "out-ed79289a9097",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IFGAN: Pre- to Post-Contrast Medical Image Synthesis Based on Interactive Frequency GAN — Yanrong Lei;Liming Xu;Xian Wang;Xueyin Fan;Bochuan Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5839,
+            "end_char": 5991
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Multiparticle Swarm Neural Architecture Search for High-Incidence Cancer Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Jie Zheng;Chunlin He;Jing Wang;Bochuan Zheng;Jiancheng Lv",
+      "id": "out-db772485407e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive Multiparticle Swarm Neural Architecture Search for High-Incidence Cancer Prediction — Liming Xu;Jie Zheng;Chunlin He;Jing Wang;Bochuan Zheng;Jiancheng Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5997,
+            "end_char": 6165
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-modal semantic feature alignment medical cross-modal hashing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinghai Liu;Qianlin Wu;Lun Tang;Liming Xu;Qianbin Chen",
+      "id": "out-98c15c1f9c7a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-modal semantic feature alignment medical cross-modal hashing — Qinghai Liu;Qianlin Wu;Lun Tang;Liming Xu;Qianbin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6171,
+            "end_char": 6300
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于收敛生成对抗网络的医学图像诊断报告隐写方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐黎明;李寒琪",
+      "id": "out-062938da4a66",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于收敛生成对抗网络的医学图像诊断报告隐写方法 — 徐黎明;李寒琪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6306,
+            "end_char": 6345
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TransColor: Transformer-based medical image colourization with content and structure preservation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qinghai Liu;Dengping Zhao;Lun Tang;Liming Xu",
+      "id": "out-695586bb1997",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TransColor: Transformer-based medical image colourization with content and structure preservation — Qinghai Liu;Dengping Zhao;Lun Tang;Liming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6351,
+            "end_char": 6501
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph convolutional lifelong medical cross-modal hashing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengping Zhao;Xin Gao;Liming Xu;Weisheng Li;Xianhua Zeng;Jie Shao",
+      "id": "out-fe5e43ab4468",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graph convolutional lifelong medical cross-modal hashing — Dengping Zhao;Xin Gao;Liming Xu;Weisheng Li;Xianhua Zeng;Jie Shao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6507,
+            "end_char": 6637
+          },
+          "version": "0401ff48366660e4a62d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

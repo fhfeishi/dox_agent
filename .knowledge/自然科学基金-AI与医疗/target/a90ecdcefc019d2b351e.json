@@ -2,15 +2,20 @@
   "doc_id": "a90ecdcefc019d2b351e",
   "version": "db6b3e3c44aea03573bc",
   "source_hash": "690ddd2e6e4330f0d791381361ca4e9909d3e205b1fbeb37fbc6732a1f9780b9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:10.496108+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.442022+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,61 +26,7 @@
         {
           "id": "item-b28a7cc4db82",
           "name": "耳甲电针治疗抑郁症疗效预测",
-          "desc": "抑郁症是常见精神系统疾病，耳甲电针通过刺激迷走神经治疗抑郁症有效，但疗效个体差异明显。",
-          "evidence": [
-            {
-              "quote": "抑郁症是常见精神系统疾病，前期研究表明，耳甲区穴位表皮电针（耳甲电针，也称经皮耳穴-迷走神经刺激技术，taVNS）通过刺激迷走神经治疗抑郁症有效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 745
-              },
-              "version": "db6b3e3c44aea03573bc"
-            }
-          ]
-        },
-        {
-          "id": "item-78e4caa18401",
-          "name": "抑郁症精准物理治疗技术支撑",
-          "desc": "为taVNS治疗抑郁症筛查适宜人群、达到精准治疗提供科学方法。",
-          "evidence": [
-            {
-              "quote": "此预测模型将为taVNS治疗抑郁症筛查适宜人群、达到精准治疗提供科学方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1032,
-                "end_char": 1067
-              },
-              "version": "db6b3e3c44aea03573bc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-c57de89ecd5c",
-          "name": "疗效个体差异明显难精准治疗",
-          "desc": "taVNS治疗抑郁症疗效个体差异明显，能否预测疗效达到精准治疗是面临的临床挑战。",
-          "evidence": [
-            {
-              "quote": "但疗效个体差异明显，能否预测疗效达到精准治疗是面临的临床挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 747,
-                "end_char": 776
-              },
-              "version": "db6b3e3c44aea03573bc"
-            }
-          ]
-        },
-        {
-          "id": "item-bb3cc8f8f598",
-          "name": "现有疗法起效慢个体差异大",
-          "desc": "抑郁症具有高致残率，现有疗法存在起效慢及个体差异大等瓶颈，亟需精准诊疗策略。",
+          "desc": "taVNS治疗抑郁症",
           "evidence": [
             {
               "quote": "抑郁症具有高致残率，现有疗法存在起效慢及个体差异大等瓶颈，亟需精准诊疗策略",
@@ -91,36 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-f5a2576be37a",
-          "name": "机器学习融合多维度MRI数据",
-          "desc": "采用机器学习技术，将临床疗效及MRI脑影像多维度数据作为训练对象，智能识别提取与疗效相关的特征参数。",
+          "id": "item-ca8d83093a6a",
+          "name": "taVNS治疗抑郁症缺乏早期疗效预测指标",
+          "desc": "科学问题",
           "evidence": [
             {
-              "quote": "采用机器学习技术，将临床疗效及MRI脑影像多维度数据作为训练对象，智能识别及提取与疗效相关的特征参数",
+              "quote": "针对经皮耳穴迷走神经刺激（taVNS）治疗抑郁症缺乏早期疗效预测指标这一科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 908,
-                "end_char": 957
-              },
-              "version": "db6b3e3c44aea03573bc"
-            }
-          ]
-        },
-        {
-          "id": "item-a30e2bdef055",
-          "name": "支持向量机疗效预测模型",
-          "desc": "筛选出11个关键影像学特征，构建基于支持向量机的疗效预测模型并独立样本验证。",
-          "evidence": [
-            {
-              "quote": "筛选出11个关键影像学特征，构建了基于支持向量机（SVM）的疗效预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3303,
-                "end_char": 3338
+                "start_char": 3015,
+                "end_char": 3054
               },
               "version": "db6b3e3c44aea03573bc"
             }
@@ -129,30 +64,30 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-45bfc497a92f",
-          "name": "SVM疗效预测模型AUC 0.856",
-          "desc": "模型预测曲线下面积达0.856，准确率为76.6%，经独立样本验证具有良好稳定性。",
+          "id": "item-3bbd7702d471",
+          "name": "基于SVM的taVNS疗效预测模型",
+          "desc": "11个关键影像学特征",
           "evidence": [
             {
-              "quote": "模型预测曲线下面积（AUC）达0.856，准确率为76.6%，并经独立样本验证具有良好稳定性",
+              "quote": "筛选出11个关键影像学特征，构建了基于支持向量机（SVM）的疗效预测模型，模型预测曲线下面积（AUC）达0.856，准确率为76.6%，并经独立样本验证具有良好稳定性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3340,
+                "start_char": 3303,
                 "end_char": 3385
               },
               "version": "db6b3e3c44aea03573bc"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-4fd13f8884ba",
-          "name": "揭示奖赏环路与网络调节机制",
-          "desc": "揭示taVNS主要通过重塑皮质-纹状体-苍白球-丘脑奖赏环路，以及调节默认网络与情感网络功能连接发挥抗抑郁作用。",
+          "id": "item-d386219b137a",
+          "name": "taVNS重塑奖赏环路机制",
+          "desc": "调节默认网络与情感网络",
           "evidence": [
             {
               "quote": "揭示了taVNS主要通过重塑“皮质-纹状体-苍白球-丘脑”奖赏环路，以及调节默认网络（DMN）、情感网络（前扣带回、海马、岛叶）的功能连接来发挥抗抑郁作用",
@@ -164,12 +99,18 @@
               "version": "db6b3e3c44aea03573bc"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-18a75ea4b4ca",
-          "name": "8周taVNS显著改善抑郁症状",
-          "desc": "大样本数据显示8周taVNS治疗可显著改善抑郁症状，对首发及复发性抑郁症均有良好疗效。",
+          "id": "item-7284545ce3f5",
+          "name": "8周taVNS治疗改善抑郁症状",
+          "desc": "首发及复发性抑郁症均有良好疗效",
           "evidence": [
             {
               "quote": "大样本数据显示8周taVNS治疗可显著改善患者的抑郁症状，对首发及复发性抑郁症均有良好疗效",
@@ -181,72 +122,203 @@
               "version": "db6b3e3c44aea03573bc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e03c60668f1a",
-          "name": "耳部刺激电极舒适化调整",
-          "desc": "根据人体工学对现有耳部刺激电极进行舒适化调整，显著提升患者依从性。",
-          "evidence": [
-            {
-              "quote": "项目组根据人体工学对现有耳部刺激电极进行了舒适化调整，显著提升了患者依从性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3410,
-                "end_char": 3446
-              },
-              "version": "db6b3e3c44aea03573bc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b28a7cc4db82"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c57de89ecd5c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于静息态fMRI技术观察耳甲电针治疗首发性抑郁症即刻脑效应",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙继飞;何家恺;马跃;王智;郭春蕾;罗屹;洪洋;曹久冬;张磊;田静;余学;肖雪;方继良",
+      "id": "out-f474ba16c1e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于静息态fMRI技术观察耳甲电针治疗首发性抑郁症即刻脑效应 — 孙继飞;何家恺;马跃;王智;郭春蕾;罗屹;洪洋;曹久冬;张磊;田静;余学;肖雪;方继良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3613
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c57de89ecd5c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f5a2576be37a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "抑郁症的中医证候学机制研究及耳针治疗推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曲淼;方继良",
+      "id": "out-e5b08479d322",
+      "evidence": [
+        {
+          "quote": "[奖励] 抑郁症的中医证候学机制研究及耳针治疗推广应用 — 曲淼;方继良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3618,
+            "end_char": 3653
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a30e2bdef055"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-45bfc497a92f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于静息态fMRI探讨经皮耳迷走神经刺激对抑郁症患者相关脑区功能连接的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马跃;郭春蕾;孙继飞;高山山;罗屹;陈庆燕;洪洋;张磊;曹久冬;肖雪;荣培晶;方继良",
+      "id": "out-fd76ed894f46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于静息态fMRI探讨经皮耳迷走神经刺激对抑郁症患者相关脑区功能连接的影响 — 马跃;郭春蕾;孙继飞;高山山;罗屹;陈庆燕;洪洋;张磊;曹久冬;肖雪;荣培晶;方继良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3658,
+            "end_char": 3746
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f5a2576be37a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4fd13f8884ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "复发性与首发性抑郁症杏仁核静息态功能连接的对比研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙继飞;马跃;郭春蕾;罗屹;高山山;陈庆燕;洪洋;张国雷;方继良",
+      "id": "out-f28e08978a86",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 复发性与首发性抑郁症杏仁核静息态功能连接的对比研究 — 孙继飞;马跃;郭春蕾;罗屹;高山山;陈庆燕;洪洋;张国雷;方继良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3751,
+            "end_char": 3817
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Altered neural activity in the reward-related circuit associated with anhedonia in mild to moderate Major Depressive Disorder.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Ma;Chunlei Guo;Yi Luo;Shanshan Gao;Jifei Sun;Qingyan Chen;Xueyu Lv;Jiudong Cao;Lei Zhang;Jiliang Fang",
+      "id": "out-6a6c37d602f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Altered neural activity in the reward-related circuit associated with anhedonia in mild to moderate Major Depressive Disorder. — Yue Ma;Chunlei Guo;Yi Luo;Shanshan Gao;Jifei Sun;Qingyan Chen;Xueyu Lv;Jiudong Cao;Lei Zhang;Jiliang Fang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3822,
+            "end_char": 4062
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A predictive study of the efficacy of transcutaneous auricular vagus nerve stimulation in the treatment of major depressive disorder: An fMRI-based machine learning analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jifei;Sun Kai;Chen Limei;Li Xiaojiao;Xu Ke;Guo Chunlei;Ma Yue;Cao Jiudong;Zhang Guolei;Hong Yang;Wang Zhi;Gao Shanshan;Luo Yi;Chen Qingyan;Ye Weiyi;Yu Xue;Xiao Xue;Rong Peijing;Yu Changbin;Fang Jiliang",
+      "id": "out-f094116c885c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A predictive study of the efficacy of transcutaneous auricular vagus nerve stimulation in the treatment of major depressive disorder: An fMRI-based machine learning analysis — Sun Jifei;Sun Kai;Chen Limei;Li Xiaojiao;Xu Ke;Guo Chunlei;Ma Yue;Cao Jiudong;Zhang Guolei;Hong Yang;Wang Zhi;Gao Shanshan;Luo Yi;Chen Qingyan;Ye Weiyi;Yu Xue;Xiao Xue;Rong Peijing;Yu Changbin;Fang Jiliang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4454
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种耳夹及治疗仪",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "方继良;马跃;郭春蕾;罗屹;高山山",
+      "id": "out-cdd5e4f4cd0d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种耳夹及治疗仪 — 方继良;马跃;郭春蕾;罗屹;高山山",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4459,
+            "end_char": 4491
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "耳部电刺激装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "方继良;许天骄;高山山;郭春蕾",
+      "id": "out-e9557264dd8f",
+      "evidence": [
+        {
+          "quote": "[专利] 耳部电刺激装置 — 方继良;许天骄;高山山;郭春蕾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4496,
+            "end_char": 4525
+          },
+          "version": "db6b3e3c44aea03573bc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

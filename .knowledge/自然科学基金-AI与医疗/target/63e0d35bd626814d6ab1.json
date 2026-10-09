@@ -2,15 +2,20 @@
   "doc_id": "63e0d35bd626814d6ab1",
   "version": "c02bd99971a282004d2d",
   "source_hash": "123071f66b9b8ea38a3c333a8028db5e06287a5b1500baf0b9d4ed4b754d1329",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.497713+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.752671+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e72a7512eb7",
-          "name": "肾透明细胞癌术后预后预测",
-          "desc": "肾透明细胞癌是肾脏最常见的恶性肿瘤，手术切除是其主要治疗方法。",
+          "id": "item-de44bef5e7ef",
+          "name": "透明细胞肾细胞癌术后预后预测",
+          "desc": "约30%-40%术后复发转移",
           "evidence": [
             {
-              "quote": "肾透明细胞癌是肾脏最常见的恶性肿瘤，手术切除是其主要治疗方法",
+              "quote": "约30%-40%患者术后仍发生复发或转移",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 696
-              },
-              "version": "c02bd99971a282004d2d"
-            }
-          ]
-        },
-        {
-          "id": "item-97296df4e0ce",
-          "name": "指导个体化精准诊疗",
-          "desc": "建立肾透明细胞癌术后生存期精准预测模型，进而指导个体化的精准诊疗。",
-          "evidence": [
-            {
-              "quote": "以期建立肾透明细胞癌术后生存期的精准预测模型，进而指导个体化的精准诊疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1026,
-                "end_char": 1060
+                "start_char": 2895,
+                "end_char": 2914
               },
               "version": "c02bd99971a282004d2d"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df42a130485c",
-          "name": "约1/3肿瘤具侵袭性术后复发转移",
-          "desc": "由于近1/3肿瘤存在侵袭性，术后仍出现复发或转移，预后不良。",
+          "id": "item-ef6abec94cd2",
+          "name": "术前量化指标不足，跨中心一致性有限",
+          "desc": "现行风险评估依赖术后病理与临床经验",
           "evidence": [
             {
-              "quote": "然而，由于近1/3肿瘤存在侵袭性，术后仍出现复发或转移，预后不良",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 698,
-                "end_char": 729
-              },
-              "version": "c02bd99971a282004d2d"
-            }
-          ]
-        },
-        {
-          "id": "item-54e37b932a16",
-          "name": "术前量化指标不足跨中心推广受限",
-          "desc": "现行风险评估主要依赖术后病理与临床经验，术前可用的量化指标不足，跨中心一致性与可推广性有限。",
-          "evidence": [
-            {
-              "quote": "现行风险评估主要依赖术后病理与临床经验，术前可用的量化指标不足，跨中心一致性与可推广性有限，影响随访强度、辅助治疗及临床试验入组的精准决策",
+              "quote": "现行风险评估主要依赖术后病理与临床经验，术前可用的量化指标不足，跨中心一致性与可推广性有限",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2916,
-                "end_char": 2984
+                "end_char": 2960
               },
               "version": "c02bd99971a282004d2d"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6f784a5372d",
-          "name": "影像病理多尺度特征融合建模",
-          "desc": "整合术前CT影像及术后数字病理图像，应用自动化图像分割及组学分析技术挖掘筛选预后相关影像病理特征，融合临床信息构建多尺度预测模型。",
+          "id": "item-a0d4257ef48c",
+          "name": "影像-临床联合建模",
+          "desc": "分割、深度学习特征与影像组学联合",
           "evidence": [
             {
-              "quote": "整合术前CT影像及术后数字病理图像，应用自动化图像分割及组学分析技术，挖掘、筛选与预后高度相关的影像、病理特征，并融合临床信息构建多尺度的预测模型",
+              "quote": "建立从图像标准化处理、肿瘤区域分割、深度学习特征与影像组学联合建模到临床变量融合的技术路线",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 927,
-                "end_char": 999
+                "start_char": 3064,
+                "end_char": 3108
               },
               "version": "c02bd99971a282004d2d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fd740f886360",
+          "name": "多尺度特征汇聚与注意力病理组学框架",
+          "desc": "亚型识别与核分级",
+          "evidence": [
+            {
+              "quote": "构建多尺度特征汇聚与注意力机制相结合的病理组学分析框架，实现肾癌亚型识别与核分级等关键任务",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3196,
+                "end_char": 3240
+              },
+              "version": "c02bd99971a282004d2d"
+            }
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-cae0488f2809",
           "name": "跨模态融合与迁移学习框架",
-          "desc": "构建跨模态融合与迁移学习框架，利用影像宏观表型与病理微观结构的互补优势提升远期结局预测的鲁棒性与临床适用性。",
+          "desc": "影像宏观与病理微观互补",
           "evidence": [
             {
-              "quote": "在融合端，构建跨模态融合与迁移学习框架，利用影像宏观表型与病理微观结构的互补优势，提升对远期结局预测的鲁棒性与临床适用性",
+              "quote": "构建跨模态融合与迁移学习框架，利用影像宏观表型与病理微观结构的互补优势，提升对远期结局预测的鲁棒性与临床适用性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3293,
+                "start_char": 3298,
                 "end_char": 3352
               },
               "version": "c02bd99971a282004d2d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,301 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7f67308159c9",
-          "name": "CT影像组学预测术后DSS多中心研究",
-          "desc": "建立CT影像组学多中心研究模型预测透明细胞肾细胞癌术后疾病特异性生存。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文8篇，发明专利3项，软著1项",
           "evidence": [
             {
-              "quote": "CT radiomics for predicting postoperative disease specific survival in clear cell renal cell carcinoma: a multi-center study",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3677,
-                "end_char": 3800
-              },
-              "version": "c02bd99971a282004d2d"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-37223727fc49",
-          "name": "TGMIL全切片分类模型",
-          "desc": "提出基于Transformer与图注意力网络的混合多实例学习模型，用于肾细胞癌全切片图像分类。",
-          "evidence": [
-            {
-              "quote": "TGMIL: A hybrid multi-instance learning model based on the Transformer and the Graph Attention Network for whole-slide images classification of renal cell carcinoma",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4306,
-                "end_char": 4469
-              },
-              "version": "c02bd99971a282004d2d"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ca560b93ed52",
-          "name": "论文专利与人才培养",
-          "desc": "项目发表SCI论文8篇、中文核心1篇（中科院1区Top 3篇），申请发明专利3项，获软件著作权1项，培养博士2名、硕士2名。",
-          "evidence": [
-            {
-              "quote": "项目发表SCI论文8篇、中文核心期刊论文1篇（其中SCI论文中科院1区Top期刊3篇），申请发明专利3项，获得软件著作权1项，培养博士研究生2名、硕士研究生2名",
+              "quote": "项目发表SCI论文8篇、中文核心期刊论文1篇（其中SCI论文中科院1区Top期刊3篇），申请发明专利3项，获得软件著作权1项",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3389,
-                "end_char": 3468
+                "end_char": 3450
               },
               "version": "c02bd99971a282004d2d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6e72a7512eb7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-df42a130485c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多尺度特征融合的医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王荣品;付帮康;贺俊杰;彭云松;孙欣欢",
+      "id": "out-1128e261db81",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多尺度特征融合的医学图像分割方法 — 王荣品;付帮康;贺俊杰;彭云松;孙欣欢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3619,
+            "end_char": 3665
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-df42a130485c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d6f784a5372d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT radiomics for predicting postoperative disease specific survival in clear cell renal cell carcinoma: a multi-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wuchao;Xie Xin;Li Pinhao;Zhu Jianguo;Li Kai;Jiang Kehua;Zeng Xianchun;Liu Heng;Pei Yuanyuan;Zhang Yan;Zhang Tijiang;Wang Rongpin",
+      "id": "out-edda51de9a59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT radiomics for predicting postoperative disease specific survival in clear cell renal cell carcinoma: a multi-center study — Li Wuchao;Xie Xin;Li Pinhao;Zhu Jianguo;Li Kai;Jiang Kehua;Zeng Xianchun;Liu Heng;Pei Yuanyuan;Zhang Yan;Zhang Tijiang;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3670,
+            "end_char": 3934
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6f784a5372d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7f67308159c9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态医学数据的混合监督融合方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "付帮康;王荣品;张笑利;贺俊杰;李武超;许梓",
+      "id": "out-3e8533ce9297",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态医学数据的混合监督融合方法 — 付帮康;王荣品;张笑利;贺俊杰;李武超;许梓",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3939,
+            "end_char": 3988
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cae0488f2809"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-37223727fc49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicenter study of CT-based deep learning for predicting preoperative T staging and TNM staging in clear cell renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wuchao;Xi Yin;Lu Ming;He Junjie;Zhu Jianguo;Li Haohan;Yang Tongyin;Zeng Xianchun;Liu Xinfeng;Xu Rui;Huang Hui;Liu Heng;Zhang Tijiang;Min Xiangde;Wang Rongpin",
+      "id": "out-606b217a92a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multicenter study of CT-based deep learning for predicting preoperative T staging and TNM staging in clear cell renal cell carcinoma — Li Wuchao;Xi Yin;Lu Ming;He Junjie;Zhu Jianguo;Li Haohan;Yang Tongyin;Zeng Xianchun;Liu Xinfeng;Xu Rui;Huang Hui;Liu Heng;Zhang Tijiang;Min Xiangde;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3993,
+            "end_char": 4294
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TGMIL: A hybrid multi-instance learning model based on the Transformer and the Graph Attention Network for whole-slide images classification of renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Xinhuan;Li Wuchao;Fu Bangkang;Peng Yunsong;He Junjie;Wang Lihui;Yang Tongyin;Meng Xue;Li Jin;Wang Jinjing;Huang Ping;Wang Rongpin",
+      "id": "out-1c82094ede3d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TGMIL: A hybrid multi-instance learning model based on the Transformer and the Graph Attention Network for whole-slide images classification of renal cell carcinoma — Sun Xinhuan;Li Wuchao;Fu Bangkang;Peng Yunsong;He Junjie;Wang Lihui;Yang Tongyin;Meng Xue;Li Jin;Wang Jinjing;Huang Ping;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4299,
+            "end_char": 4605
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于影像组学和深度学习的肾癌Leibovich评分预测模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李武超;张体江;王荣品",
+      "id": "out-5b41c197a46e",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于影像组学和深度学习的肾癌Leibovich评分预测模型 — 李武超;张体江;王荣品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4659
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT深度学习的透明细胞肾细胞癌术前T分期和TNM分期预测研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李武超;王荣品",
+      "id": "out-f58dfd45b20c",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于CT深度学习的透明细胞肾细胞癌术前T分期和TNM分期预测研究 — 李武超;王荣品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4712
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicenter evaluation of CT deep radiomics model in predicting Leibovich score risk groups for non-metastatic clear cell renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wuchao;Yang Tongyin;Li Pinhao;Liu Xinfeng;Zhang Shasha;Zhu Jianguo;Pei Yuanyuan;Zhang Yan;Zhang Tijiang;Wang Rongpin",
+      "id": "out-9d4e9074b7a5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multicenter evaluation of CT deep radiomics model in predicting Leibovich score risk groups for non-metastatic clear cell renal cell carcinoma — Li Wuchao;Yang Tongyin;Li Pinhao;Liu Xinfeng;Zhang Shasha;Zhu Jianguo;Pei Yuanyuan;Zhang Yan;Zhang Tijiang;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4717,
+            "end_char": 4987
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "能谱CT平扫图像直方图纹理分析对肾盂旁囊肿与肾盂积水的鉴别价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陶健;马海彦;梁甜甜;曾宪春;王荣品",
+      "id": "out-b12eed9dbde1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 能谱CT平扫图像直方图纹理分析对肾盂旁囊肿与肾盂积水的鉴别价值 — 陶健;马海彦;梁甜甜;曾宪春;王荣品",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4992,
+            "end_char": 5050
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HSFSurv: A hybrid supervision framework at individual and feature levels for multimodal cancer survival analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bangkang Fu;Junjie He;Xiaoli Zhang;Yunsong Peng;Zhuxu Zhang;Qi Tang;Xinfeng Liu;Ying Cao;Rongpin Wang",
+      "id": "out-8d7cffa73ace",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HSFSurv: A hybrid supervision framework at individual and feature levels for multimodal cancer survival analysis — Bangkang Fu;Junjie He;Xiaoli Zhang;Yunsong Peng;Zhuxu Zhang;Qi Tang;Xinfeng Liu;Ying Cao;Rongpin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5056,
+            "end_char": 5278
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pathological graph self-supervised learning for clear-cell renal cell carcinoma survival prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wuchao;Zhang Yan;Yang Shangzong;Zhang Xuetao;Li Pinhao;Wang Rongpin",
+      "id": "out-3418bb521903",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pathological graph self-supervised learning for clear-cell renal cell carcinoma survival prediction — Li Wuchao;Zhang Yan;Yang Shangzong;Zhang Xuetao;Li Pinhao;Wang Rongpin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5284,
+            "end_char": 5462
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HGTL: A hypergraph transfer learning framework for survival prediction of ccRCC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Xiangmin;Li Wuchao;Zhang Yan;Li Pinhao;Zhu Jianguo;Zhang Tijiang;Wang Rongpin;Gao Yue",
+      "id": "out-94aced1fb193",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HGTL: A hypergraph transfer learning framework for survival prediction of ccRCC — Han Xiangmin;Li Wuchao;Zhang Yan;Li Pinhao;Zhu Jianguo;Zhang Tijiang;Wang Rongpin;Gao Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5468,
+            "end_char": 5645
+          },
+          "version": "c02bd99971a282004d2d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

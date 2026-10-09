@@ -2,15 +2,20 @@
   "doc_id": "f2b53defa58fd343cb24",
   "version": "f84a832ea5793565907e",
   "source_hash": "d770ca48d6cece92922fa7ac9898871ab52292faad301c5e3a6aed1f56facebd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:44.043231+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.404462+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-40ffe42ecbc5",
-          "name": "鼻咽癌放疗剂量雕刻",
-          "desc": "以放疗为主的综合治疗是鼻咽癌的标准治疗方案，提高鼻咽靶区放疗剂量有望提高肿瘤局部控制率，但不加选择地提高整个靶区剂量会增加周围正常器官受照剂量。",
+          "id": "item-f4326baa2fb2",
+          "name": "鼻咽癌高复发风险预测与放疗优化",
+          "desc": "影像组学",
           "evidence": [
             {
-              "quote": "以放疗为主的综合治疗是鼻咽癌的标准治疗方案。提高鼻咽靶区的放疗剂量有望提高肿瘤局部控制率，但是如果不加选择的提高整个靶区的剂量，则会增加靶区周围正常器官的受照剂量，从而降低患者生存质量",
+              "quote": "本项目旨在构建鼻咽癌高复发风险预测模型，精准筛选高治疗失败率的鼻咽癌患者",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2943,
-                "end_char": 3034
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ]
-        },
-        {
-          "id": "item-02f02b59979f",
-          "name": "复发风险导向的个体化精准放疗",
-          "desc": "利用影像组学标记物预测鼻咽癌高复发风险区域，并根据不同复发风险优化治疗方案。",
-          "evidence": [
-            {
-              "quote": "本项目利用影像组学标记物预测鼻咽癌的高复发风险区域，并根据不同复发风险优化治疗方案，为以复发风险为导向的个体化精准放疗提供理论基础。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3808,
-                "end_char": 3873
+                "start_char": 3054,
+                "end_char": 3089
               },
               "version": "f84a832ea5793565907e"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6ec29f552178",
-          "name": "全靶区提量增加正常器官受照",
-          "desc": "不加选择地针对整个靶区提高剂量会增加靶区周围正常器官受照剂量，降低患者生存质量，成为限制靶区剂量提高的重要原因。",
+          "id": "item-1a5ad3f3869c",
+          "name": "提高靶区剂量增加正常器官受量",
+          "desc": "限制剂量提升",
           "evidence": [
             {
-              "quote": "这也成为限制靶区剂量提高的重要原因。",
+              "quote": "如果不加选择的提高整个靶区的剂量，则会增加靶区周围正常器官的受照剂量，从而降低患者生存质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 763,
-                "end_char": 780
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ]
-        },
-        {
-          "id": "item-7a891b65c27d",
-          "name": "需定位靶区内高复发风险区域",
-          "desc": "如能在治疗前进一步精准定位高复发风险患者靶区内的高复发风险区域，从而只针对该区域进行精准剂量雕刻，则有望避免正常组织过度照射。",
-          "evidence": [
-            {
-              "quote": "如能在治疗前进一步精准定位这些患者靶区内的高复发风险区域，从而只针对该区域进行精准剂量雕刻，则有望避免正常组织的过度照射及其相关副反应。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 808,
-                "end_char": 875
+                "start_char": 2990,
+                "end_char": 3034
               },
               "version": "f84a832ea5793565907e"
             }
@@ -95,63 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a9f70c2e31a",
-          "name": "治疗前与复发影像融合定位",
-          "desc": "融合治疗前及复发影像，在治疗前CT图像上定位复发区域并提取该区域的影像组学特征。",
-          "evidence": [
-            {
-              "quote": "本项目将首先融合治疗前及复发影像，在治疗前CT图像上定位复发区域，并提取该区域的影像组学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 880,
-                "end_char": 925
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ]
-        },
-        {
-          "id": "item-cf8ea4f90167",
-          "name": "影像组学与临床病理联合建模",
-          "desc": "联合临床病理因素构建鼻咽癌高复发风险区域预测模型，建立基于影像组学和临床病理参数的数学模型。",
-          "evidence": [
-            {
-              "quote": "联合临床病理因素构建鼻咽癌高复发风险区域的预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 930,
-                "end_char": 954
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ]
-        },
-        {
-          "id": "item-55b8273b32ea",
-          "name": "影像基因组学热图关联",
-          "desc": "将每个关键的影像组学特征与富集的基因集关联起来构建影像基因组学热图。",
-          "evidence": [
-            {
-              "quote": "通过将每个关键的影像组学特征与富集的基因集关联起来构建影像基因组学热图，我们发现这些关键影像组学特征与一些基因集之间存在显著关联。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3602,
-                "end_char": 3666
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ced688499833",
-          "name": "总生存独立预测因素确立",
-          "desc": "确立传统指标性别和放疗剂量、影像组学指标volume-density和run length non-uniformity为鼻咽癌患者总生存率的独立预测因素。",
+          "id": "item-41db2fe41952",
+          "name": "影像组学与临床参数结合的总生存预测",
+          "desc": "volume-density与run length non-uniformity",
           "evidence": [
             {
               "quote": "确立了传统指标“性别”和“放疗剂量”，影像组学指标“volume-density”（反映肿瘤几何学特征）和“run length non-uniformity”（反映肿瘤纹理特征）为鼻咽癌患者总生存率的独立预测因素",
@@ -163,89 +82,41 @@
               "version": "f84a832ea5793565907e"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-d78573160f98",
-          "name": "高治疗失败风险模型外部验证",
-          "desc": "建立基于影像组学和临床病理参数的数学模型，并通过外部验证证实可有效预测头颈部肿瘤患者不同病灶的复发风险。",
+          "id": "item-1b6bd4d57cff",
+          "name": "降阶梯治疗风险分层影像组学模型",
+          "desc": "99例前瞻性队列",
           "evidence": [
             {
-              "quote": "建立了基于影像组学和临床病理参数的数学模型，并通过外部验证，证实了该模型可有效预测头颈部肿瘤患者的不同病灶的复发风险",
+              "quote": "利用影像组学技术对该队列中的患者进行风险分层，开发和验证了一个较好的预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3374,
-                "end_char": 3431
+                "start_char": 3521,
+                "end_char": 3558
               },
               "version": "f84a832ea5793565907e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f9ed2c4530db",
-          "name": "降阶梯治疗筛选模型",
-          "desc": "对99例鼻咽癌患者分析，开发和验证了一个预测模型，能够确保在不降低疗效前提下筛选适合接受降阶梯治疗的局部晚期鼻咽癌患者。",
-          "evidence": [
-            {
-              "quote": "开发和验证了一个较好的预测模型，该模型能够确保在不降低治疗疗效的前提下筛选出适合接受降阶梯治疗的局部晚期鼻咽癌患者",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3544,
-                "end_char": 3600
-              },
-              "version": "f84a832ea5793565907e"
-            }
-          ],
-          "status": "已取得"
+          "role": "关键创新"
         }
       ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-40ffe42ecbc5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6ec29f552178"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7a891b65c27d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6a9f70c2e31a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf8ea4f90167"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d78573160f98"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-55b8273b32ea"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f9ed2c4530db"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 0,
+    "listed": 0,
+    "by_kind": {},
+    "consistent": true
+  }
 }

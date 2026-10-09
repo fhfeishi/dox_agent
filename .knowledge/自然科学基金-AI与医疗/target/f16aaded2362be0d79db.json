@@ -2,15 +2,20 @@
   "doc_id": "f16aaded2362be0d79db",
   "version": "54b31cba1c0746dad80c",
   "source_hash": "d5023ffb92196634115704e742b37e10cb81e61c7120e1e5fe7ed6086a7e93ff",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.257058+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.298428+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-ae18311650d8",
           "name": "急性脑梗死后脑出血风险预测",
-          "desc": "面向急性脑梗死常见并发症脑出血的早期防治，构建适合中国人群的高准确度风险预测模型。",
+          "desc": "多特征融合与机器学习",
           "evidence": [
             {
-              "quote": "脑出血是急性脑梗死常见并发症，致死率高",
+              "quote": "本项目针对我国急性脑梗死患者出血转化及不良预后风险缺乏精准预测工具的临床痛点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 683
+                "start_char": 2929,
+                "end_char": 2966
               },
               "version": "54b31cba1c0746dad80c"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4f5e906ba8e",
-          "name": "国外模型对中国人群预测能力低且国内空白",
-          "desc": "国外脑出血预测模型对中国人群预测能力低至53%左右且未被中国指南采纳，国内尚无脑出血预测模型；评分模型纳入因子少，难以处理非线性与交互作用。",
+          "id": "item-47fc4cab8b7e",
+          "name": "缺乏适合国人的出血转化预测工具",
+          "desc": "国外模型预测能力低",
           "evidence": [
             {
               "quote": "目前国外脑出血预测模型对中国人群预测能力低至53%左右，未被中国指南采纳，国内尚无脑出血预测模型",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe271608ee22",
-          "name": "多特征融合与机器学习高准确度预测模型",
-          "desc": "基于中国急性脑梗死患者数据库挖掘出血转化与不良预后预测因子，用多特征融合与机器学习构建并外部验证预测模型，并以SHAP实现可解释性。",
+          "id": "item-0f98a6c26eff",
+          "name": "XGBoost、随机森林等5个AI预测模型",
+          "desc": "3160例数据库",
           "evidence": [
             {
-              "quote": "本项目拟在前期基础上，进一步寻找和发现中国急性脑梗死患者脑出血的有价值预测因子，并基于机器学习算法构建适合我国人群的高准确度预测模型",
+              "quote": "构建了XGBoost、随机森林等5个人工智能预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 968,
-                "end_char": 1033
+                "start_char": 3304,
+                "end_char": 3329
               },
               "version": "54b31cba1c0746dad80c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b004868937ce",
+          "name": "SHAP可解释性",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "团队运用SHAP方法实现了模型可解释性，解决了AI模型“黑箱化”问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3420,
+                "end_char": 3453
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,358 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5c2c39185a04",
-          "name": "深度神经网络预测脑出血后不良结局AUC 0.905",
-          "desc": "建立含3160例患者的数据库并构建XGBoost、随机森林等5个模型，其中脑出血后不良结局深度神经网络AUC达0.905，介入治疗后动态预测模型出院时准确度0.945，显著优于传统HIAT、THRIVE评分。",
+          "id": "item-1791c3221708",
+          "name": "深度神经网络预测不良结局",
+          "desc": "AUC 0.905",
           "evidence": [
             {
-              "quote": "其中用于预测脑出血后不良结局的深度神经网络模型AUC达0.905，脑梗死介入治疗后动态预测模型在出院时的预测准确度达0.945",
+              "quote": "用于预测脑出血后不良结局的深度神经网络模型AUC达0.905",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3331,
-                "end_char": 3393
+                "start_char": 3333,
+                "end_char": 3362
               },
               "version": "54b31cba1c0746dad80c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3ce9c52ad0e5",
+          "name": "论文奖励软著",
+          "desc": "SCI 16篇，省级奖励7项，软著7项",
+          "evidence": [
+            {
+              "quote": "项目共发表SCI论文16篇，获省级奖励7项，取得计算机软件著作权7项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3467,
+                "end_char": 3500
+              },
+              "version": "54b31cba1c0746dad80c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ae18311650d8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c4f5e906ba8e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre- and Post-Operative Online Prediction of Outcome in Patients Undergoing Endovascular Coiling after Aneurysmal Subarachnoid Hemorrhage: Visual and Dynamic Nomograms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zhou;Wang Fusang;Chen Tingting;Wei Ziqiao;Chen Chen;Xiang Lan;Xiang Liang;Zhang Qian;Huang Kaizong;Jiang Fuping;Zhao Zhihong;Zou Jianjun",
+      "id": "out-0f4ad7a16f47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre- and Post-Operative Online Prediction of Outcome in Patients Undergoing Endovascular Coiling after Aneurysmal Subarachnoid Hemorrhage: Visual and Dynamic Nomograms — Zhou Zhou;Wang Fusang;Chen Tingting;Wei Ziqiao;Chen Chen;Xiang Lan;Xiang Liang;Zhang Qian;Huang Kaizong;Jiang Fuping;Zhao Zhihong;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3951
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c4f5e906ba8e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fe271608ee22"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "缺血性脑卒中精准抗血栓治疗体系的创建及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨杰;邹建军;林亚鹏;李素萍;潘希丁;林燕;刘宇恺;谭荃丹;何松;毛凤凯",
+      "id": "out-11f3a8e42827",
+      "evidence": [
+        {
+          "quote": "[奖励] 缺血性脑卒中精准抗血栓治疗体系的创建及临床应用 — 杨杰;邹建军;林亚鹏;李素萍;潘希丁;林燕;刘宇恺;谭荃丹;何松;毛凤凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3956,
+            "end_char": 4022
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fe271608ee22"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5c2c39185a04"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Prediction of Mechanical Thrombectomy Outcome for Acute Ischemic Stroke Patients Using Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yixing;Yang Tongtong;Zhang Juan;Wang Xixi;Cui Xiaoli;Chen Nihong;Zhou Junshan;Jiang Fuping;Zhu Junrong;Zou Jianjun",
+      "id": "out-169cb7f649a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic Prediction of Mechanical Thrombectomy Outcome for Acute Ischemic Stroke Patients Using Machine Learning — Hu Yixing;Yang Tongtong;Zhang Juan;Wang Xixi;Cui Xiaoli;Chen Nihong;Zhou Junshan;Jiang Fuping;Zhu Junrong;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4264
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a Nomogram Model to Predict the Risk of Postoperative Delirium in Cardiac Surgery Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kipanga Zikomo Gaudence;Bao Zexiang;Tella Marvel Gyeyock;Fiagbey Emmanuel Delali Kofi;Saad Salama Habibu;Mbambara Bongani;Bah Chernor Sulaiman;Iddi Asha Khatib;Ding Rui;Si Yanna;Zhang Yuan;Zou Jianjun",
+      "id": "out-078d3864a798",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a Nomogram Model to Predict the Risk of Postoperative Delirium in Cardiac Surgery Patients — Kipanga Zikomo Gaudence;Bao Zexiang;Tella Marvel Gyeyock;Fiagbey Emmanuel Delali Kofi;Saad Salama Habibu;Mbambara Bongani;Bah Chernor Sulaiman;Iddi Asha Khatib;Ding Rui;Si Yanna;Zhang Yuan;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4269,
+            "end_char": 4583
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic and visual nomograms to online predict unfavorable outcome of mechanical thrombectomy for acute basilar artery occlusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pan Xiding;Lin Shiteng;Xiang Liang;Zhou Feng;Xu Mengyi;Jie Qiong;Zhao Zhihong;Chen Chen;Zhou Junshan;Zou Jianjun",
+      "id": "out-e29a7c55f80e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic and visual nomograms to online predict unfavorable outcome of mechanical thrombectomy for acute basilar artery occlusion — Pan Xiding;Lin Shiteng;Xiang Liang;Zhou Feng;Xu Mengyi;Jie Qiong;Zhao Zhihong;Chen Chen;Zhou Junshan;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4588,
+            "end_char": 4837
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning to predict futile recanalization of large vessel occlusion before and after endovascular thrombectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Xinping;Zheng Xiaohan;Zhang Juan;Cui Xiaoli;Zou Daizu;Zhao Zheng;Pan Xiding;Jie Qiong;Wu Yuezhang;Qiu Runze;Zhou Junshan;Chen Nihong;Tang Li;Ge Chun;Zou Jianjun",
+      "id": "out-ceb385cbeda0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning to predict futile recanalization of large vessel occlusion before and after endovascular thrombectomy — Lin Xinping;Zheng Xiaohan;Zhang Juan;Cui Xiaoli;Zou Daizu;Zhao Zheng;Pan Xiding;Jie Qiong;Wu Yuezhang;Qiu Runze;Zhou Junshan;Chen Nihong;Tang Li;Ge Chun;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4842,
+            "end_char": 5133
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新技术引进和赋能:脑血管病早期防治关键靶标发现及智能诊疗体系的创新构建与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邹建军;周洲;赵志鸿",
+      "id": "out-a461ef0b51e9",
+      "evidence": [
+        {
+          "quote": "[奖励] 新技术引进和赋能:脑血管病早期防治关键靶标发现及智能诊疗体系的创新构建与应用 — 邹建军;周洲;赵志鸿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5138,
+            "end_char": 5193
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的脑梗死不良预后预测研究、软件开发及其临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵志鸿;邹建军;陈劲松;梁辉;林心萍;林世腾;赵拯;李享;郑孝涵;王扶桑",
+      "id": "out-cbc21f6b6f7f",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于机器学习的脑梗死不良预后预测研究、软件开发及其临床应用 — 赵志鸿;邹建军;陈劲松;梁辉;林心萍;林世腾;赵拯;李享;郑孝涵;王扶桑",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5198,
+            "end_char": 5270
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的脑梗死并发症和不良预后的预测模型研究、软件开发及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邹建军;周俊山;蒋春莲",
+      "id": "out-017e917815d4",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于机器学习的脑梗死并发症和不良预后的预测模型研究、软件开发及临床应用 — 邹建军;周俊山;蒋春莲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5275,
+            "end_char": 5328
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accurately predicting the risk of unfavorable outcomes after endovascular coil therapy in patients with aneurysmal subarachnoid hemorrhage: an interpretable machine learning model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zhou;Anran Dai;Yuqing Yan;Yuzhan Jin;DaiZun Zou;XiaoWen Xu;Lan Xiang;LeHeng Guo;Liang Xiang;FuPing Jiang;ZhiHong Zhao;JianJun Zou",
+      "id": "out-665b62013963",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Accurately predicting the risk of unfavorable outcomes after endovascular coil therapy in patients with aneurysmal subarachnoid hemorrhage: an interpretable machine learning model — Zhou Zhou;Anran Dai;Yuqing Yan;Yuzhan Jin;DaiZun Zou;XiaoWen Xu;Lan Xiang;LeHeng Guo;Liang Xiang;FuPing Jiang;ZhiHong Zhao;JianJun Zou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5334,
+            "end_char": 5656
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accurate prediction of bleeding risk after coronary artery bypass grafting with dual antiplatelet therapy: A machine learning model vs. the PRECISE-DAPT score",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yi;Yan Yuqing;Zhou Zhou;Zhang Jifan;Han Haolong;Zhang Weihui;Wang Xia;Chen Chen;Ge Weihong;Pan Jun;Zou Jianjun;Xu Hang",
+      "id": "out-c5ccd9fd3b27",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Accurate prediction of bleeding risk after coronary artery bypass grafting with dual antiplatelet therapy: A machine learning model vs. the PRECISE-DAPT score — Yang Yi;Yan Yuqing;Zhou Zhou;Zhang Jifan;Han Haolong;Zhang Weihui;Wang Xia;Chen Chen;Ge Weihong;Pan Jun;Zou Jianjun;Xu Hang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5662,
+            "end_char": 5952
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Practical prognostic tools to predict the risk of postoperative delirium in older patients undergoing cardiac surgery: visual and dynamic nomograms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bah Chernor Sulaiman;Mbambara Bongani;Xie Xianhai;Li Junlin;Iddi Asha Khatib;Chen Chen;Jiang Hui;Feng Yue;Zhong Yi;Zhang Xinlong;Xia Huaming;Yan Libo;Si Yanna;Zhang Juan;Zou Jianjun",
+      "id": "out-24b194f7029c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Practical prognostic tools to predict the risk of postoperative delirium in older patients undergoing cardiac surgery: visual and dynamic nomograms — Bah Chernor Sulaiman;Mbambara Bongani;Xie Xianhai;Li Junlin;Iddi Asha Khatib;Chen Chen;Jiang Hui;Feng Yue;Zhong Yi;Zhang Xinlong;Xia Huaming;Yan Libo;Si Yanna;Zhang Juan;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5958,
+            "end_char": 6295
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Online interpretable dynamic prediction models for postoperative delirium after cardiac surgery under cardiopulmonary bypass developed based on machine learning algorithms: A retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Xiuxiu;Li Junlin;Xie Xianhai;Fang Zhaojing;Feng Yue;Zhong Yi;Chen Chen;Huang Kaizong;Ge Chun;Shi Hongwei;Si Yanna;Zou Jianjun",
+      "id": "out-a37a9e08bd78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Online interpretable dynamic prediction models for postoperative delirium after cardiac surgery under cardiopulmonary bypass developed based on machine learning algorithms: A retrospective cohort study — Zhao Xiuxiu;Li Junlin;Xie Xianhai;Fang Zhaojing;Feng Yue;Zhong Yi;Chen Chen;Huang Kaizong;Ge Chun;Shi Hongwei;Si Yanna;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6301,
+            "end_char": 6641
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel interpretative tool for early prediction of low cardiac output syndrome after valve surgery: online machine learning models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Liang;Feng Tianling;Qiu Runze;Lin Shiteng;Xue Yinying;Huang Kaizong;Chen Chen;Wang Jiawen;Xie Rongrong;Song Sanbing;Zhang Cui;Zou Jianjun",
+      "id": "out-9ca7c4b04653",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel interpretative tool for early prediction of low cardiac output syndrome after valve surgery: online machine learning models — Hong Liang;Feng Tianling;Qiu Runze;Lin Shiteng;Xue Yinying;Huang Kaizong;Chen Chen;Wang Jiawen;Xie Rongrong;Song Sanbing;Zhang Cui;Zou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6647,
+            "end_char": 6929
+          },
+          "version": "54b31cba1c0746dad80c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

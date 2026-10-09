@@ -2,15 +2,20 @@
   "doc_id": "e9a5b64c46b5c303bbad",
   "version": "41213997b96dc7873a57",
   "source_hash": "725bb9a219ed7de760eaababc92e5d78b65b457c291a7a06eb4affb38248c551",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.285015+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.476864+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fb250b92cdb6",
-          "name": "ⅢB至Ⅳ期NSCLC驱动基因无创预测",
-          "desc": "肺癌是癌症相关死亡首要原因，ⅢB～Ⅳ期NSCLC已失去手术最佳时机，靶向治疗带来新希望。",
-          "evidence": [
-            {
-              "quote": "肺癌是癌症相关死亡的首要原因，特别是处于ⅢB～Ⅳ期的非小细胞肺癌(Non-small cell lung cancer, NSCLC)，已失去手术治疗的最佳时机，靶向治疗为这些患者带来了新希望",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 700,
-                "end_char": 795
-              },
-              "version": "41213997b96dc7873a57"
-            }
-          ]
-        },
-        {
-          "id": "item-179515ae3482",
-          "name": "临床个体化靶向治疗方案辅助",
-          "desc": "为临床个体化靶向治疗方案制订提供辅助工具，保障患者最大生存获益。",
-          "evidence": [
-            {
-              "quote": "为临床个体化靶向治疗方案的制订提供辅助工具，保障患者最大生存获益",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1066,
-                "end_char": 1097
-              },
-              "version": "41213997b96dc7873a57"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cb546f6e870f",
-          "name": "组织检测有创昂贵且有转移风险",
-          "desc": "基于组织学样本检测NSCLC驱动基因的方法有创、价昂且穿刺取样存在肿瘤转移风险。",
-          "evidence": [
-            {
-              "quote": "然而，基于组织学样本检测NSCLC驱动基因的方法有创、价昂且穿刺取样存在肿瘤转移的风险等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 842
-              },
-              "version": "41213997b96dc7873a57"
-            }
-          ]
-        },
-        {
-          "id": "item-e4d39177184d",
-          "name": "需科学精准无创预测驱动基因突变",
-          "desc": "如何科学、精准、无创地预测驱动基因突变状态，对实现获益分层具有重大临床价值。",
+          "id": "item-5134e025197d",
+          "name": "ⅢB～Ⅳ期NSCLC驱动基因无创预测",
+          "desc": "深度学习",
           "evidence": [
             {
               "quote": "如何科学、精准、无创地预测驱动基因的突变状态，对实现获益分层具有重大临床价值",
@@ -91,13 +42,35 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-152e6ab1d241",
+          "name": "组织学检测有创价昂且有转移风险",
+          "desc": "驱动基因",
+          "evidence": [
+            {
+              "quote": "基于组织学样本检测NSCLC驱动基因的方法有创、价昂且穿刺取样存在肿瘤转移的风险等问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 800,
+                "end_char": 842
+              },
+              "version": "41213997b96dc7873a57"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-6b0cc41fa578",
-          "name": "CNN深度学习预测模型与组学对比",
-          "desc": "基于卷积神经网络构建深度学习模型，同时构建传统影像组学模型进行比较。",
+          "id": "item-949c6744aabd",
+          "name": "基于CNN的EGFR与ALK突变预测模型",
+          "desc": "胸部CT",
           "evidence": [
             {
               "quote": "构建基于卷积神经网络（CNN）的深度学习模型，同时构建了传统的影像组学模型进行比较",
@@ -108,23 +81,25 @@
               },
               "version": "41213997b96dc7873a57"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-01c546fdfde1",
           "name": "Grad-CAM可解释性分析",
-          "desc": "采用梯度加权类激活映射技术对深度学习模型进行可解释性分析，解释其黑箱属性。",
+          "desc": "",
           "evidence": [
             {
-              "quote": "为了进一步解释深度学习模型的“黑箱”属性，采用了梯度加权类激活映射（Grad-CAM）技术对深度学习模型进行可解释性分析",
+              "quote": "采用了梯度加权类激活映射（Grad-CAM）技术对深度学习模型进行可解释性分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2894,
+                "start_char": 2915,
                 "end_char": 2953
               },
               "version": "41213997b96dc7873a57"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-273aaf7e409e",
-          "name": "多中心数据库2000余例",
-          "desc": "规范化收集临床-影像-病理-基因信息，构建包含2000余例符合要求病例的多中心数据库。",
+          "id": "item-07f858ba515e",
+          "name": "多中心数据库",
+          "desc": "2000余例",
           "evidence": [
             {
               "quote": "构建多中心数据库，包含符合要求的病例2000余例",
@@ -147,29 +122,14 @@
               "version": "41213997b96dc7873a57"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-070cc5c597ab",
-          "name": "外部测试集验证泛化能力",
-          "desc": "在独立的外部测试集上对深度学习模型的预测性能进行验证并评估其泛化能力。",
-          "evidence": [
-            {
-              "quote": "在独立的外部测试集上对深度学习模型的预测性能进行验证与并评估其泛化能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2958,
-                "end_char": 2992
-              },
-              "version": "41213997b96dc7873a57"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d965a2e2b5a2",
-          "name": "论文6篇与会议录用交流",
-          "desc": "已发表相关文章6篇（SCI 5篇、中文核心1篇），部分成果被RSNA、ECR、CCR录用并作大会发言或壁报交流。",
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "6篇，SCI 5篇",
           "evidence": [
             {
               "quote": "本项目组已发表相关文章6篇，其中SCI文章5篇，中文核心期刊文章1篇",
@@ -181,55 +141,132 @@
               "version": "41213997b96dc7873a57"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fb250b92cdb6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb546f6e870f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of epidermal growth factor receptor (EGFR) mutation status in lung adenocarcinoma patients on computed tomography (CT) images using 3-dimensional (3D) convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guojin Zhang;Lan Shang;Yuntai Cao;Jing Zhang;Shenglin Li;Rong Qian;Huan Liu;Zhuoli Zhang;Hong Pu;Qiong Man;Weifang Kong",
+      "id": "out-66fe5a8bf680",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of epidermal growth factor receptor (EGFR) mutation status in lung adenocarcinoma patients on computed tomography (CT) images using 3-dimensional (3D) convolutional neural network — Guojin Zhang;Lan Shang;Yuntai Cao;Jing Zhang;Shenglin Li;Rong Qian;Huan Liu;Zhuoli Zhang;Hong Pu;Qiong Man;Weifang Kong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3449,
+            "end_char": 3767
+          },
+          "version": "41213997b96dc7873a57"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb546f6e870f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6b0cc41fa578"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-enhanced CT deep learning model for differentiating lung adenocarcinoma from tuberculoma: a multicenter diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Guojin;Shang Lan;Li Shenglin;Zhang Jing;Zhang Zhuoli;Zhang Xin;Qian Rong;Yang Ke;Li Xin;Liu Yiming;Wu Ying;Pu Hong;Cao Yuntai;Man Qiong;Kong Weifang",
+      "id": "out-56f0d31df5d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-enhanced CT deep learning model for differentiating lung adenocarcinoma from tuberculoma: a multicenter diagnostic study — Zhang Guojin;Shang Lan;Li Shenglin;Zhang Jing;Zhang Zhuoli;Zhang Xin;Qian Rong;Yang Ke;Li Xin;Liu Yiming;Wu Ying;Pu Hong;Cao Yuntai;Man Qiong;Kong Weifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 4059
+          },
+          "version": "41213997b96dc7873a57"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6b0cc41fa578"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-273aaf7e409e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical profiles and related factors in tuberculosis patients with positive sputum smear mycobacterium tuberculosis tests",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Shiqing;Gao Yan;Lu Junzhu;Zhang Guojin;Chen Xinyue;Zhang Rongping;Kong Weifang;Shang Lan",
+      "id": "out-9f7fe13ff145",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical profiles and related factors in tuberculosis patients with positive sputum smear mycobacterium tuberculosis tests — Yu Shiqing;Gao Yan;Lu Junzhu;Zhang Guojin;Chen Xinyue;Zhang Rongping;Kong Weifang;Shang Lan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4064,
+            "end_char": 4286
+          },
+          "version": "41213997b96dc7873a57"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-01c546fdfde1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-070cc5c597ab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting epidermal growth factor receptor mutation status of lung adenocarcinoma based on PET/CT images using deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Lele;Kong Weifang;Luo Yongjun;Xie Hongjun;Liu Jiangyan;Zhang Xin;Zhang Guojin",
+      "id": "out-f99273d18881",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting epidermal growth factor receptor mutation status of lung adenocarcinoma based on PET/CT images using deep learning — Huang Lele;Kong Weifang;Luo Yongjun;Xie Hongjun;Liu Jiangyan;Zhang Xin;Zhang Guojin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4291,
+            "end_char": 4508
+          },
+          "version": "41213997b96dc7873a57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using multi-phase CT radiomics features to predict EGFR mutation status in lung adenocarcinoma patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guojin Zhang;Qiong Man;Lan Shang;Jing Zhang;Yuntai Cao;Shenglin Li;Rong Qian;Jialiang Ren;Hong Pu;Junlin Zhou;Zhuoli Zhang;Weifang Kong",
+      "id": "out-e42b3ffbdb8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using multi-phase CT radiomics features to predict EGFR mutation status in lung adenocarcinoma patients — Guojin Zhang;Qiong Man;Lan Shang;Jing Zhang;Yuntai Cao;Shenglin Li;Rong Qian;Jialiang Ren;Hong Pu;Junlin Zhou;Zhuoli Zhang;Weifang Kong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4513,
+            "end_char": 4760
+          },
+          "version": "41213997b96dc7873a57"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

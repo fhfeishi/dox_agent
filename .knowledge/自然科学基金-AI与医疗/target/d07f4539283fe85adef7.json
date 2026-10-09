@@ -2,15 +2,20 @@
   "doc_id": "d07f4539283fe85adef7",
   "version": "7ba4bc02b2440d16bed4",
   "source_hash": "5e628bf167907fdee8926a3579221a4b15e90822ed0625952fb5c3688e496215",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.265049+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.484059+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-3d2bb4128e2a",
           "name": "医学影像标注智能处理",
-          "desc": "基于人工智能的医学影像智能分析技术飞速发展，为医疗辅助诊断和医疗服务发挥重要作用。",
+          "desc": "少标注、弱标注、噪声标注",
           "evidence": [
             {
-              "quote": "基于人工智能的医学影像智能分析技术的飞速发展，为医疗辅助诊断和医疗服务发挥着重要作用",
+              "quote": "本项目围绕基于人工智能的医学影像分析中的少标注、弱标注、噪声标注等问题进行研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 647,
-                "end_char": 688
-              },
-              "version": "7ba4bc02b2440d16bed4"
-            }
-          ]
-        },
-        {
-          "id": "item-c6f1e7f544bc",
-          "name": "拓展手术辅助与医生智能体场景",
-          "desc": "研究拓展了手术辅助、医生智能体等场景，并引入多模态大模型等技术。",
-          "evidence": [
-            {
-              "quote": "此外，我们还拓展了研究路径，引入例如多模态大模型等技术，同时还拓展了手术辅助、医生智能体等场景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2913,
-                "end_char": 2959
+                "start_char": 2725,
+                "end_char": 2763
               },
               "version": "7ba4bc02b2440d16bed4"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-36f046406eea",
-          "name": "精细标注数据非常缺乏",
-          "desc": "医学场景中精细标注数据非常少，需花费比自然图像标注更多的精力，且标注专业性要求高、主观性强。",
+          "id": "item-6fc20f988fdd",
+          "name": "精细标注数据缺乏",
+          "desc": "标注专业性要求高且主观性强",
           "evidence": [
             {
-              "quote": "在医学场景中，精细标注的数据非常少，需要花费比自然图像标注更多的时间和精力，同时医学影像的标注专业性要求高且主观性强，这些都使得精细的医学影像标注数据非常缺乏",
+              "quote": "由于医学影像的标注专业性要求高且主观性强使得精细标注的数据非常缺乏",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 774,
-                "end_char": 852
-              },
-              "version": "7ba4bc02b2440d16bed4"
-            }
-          ]
-        },
-        {
-          "id": "item-6c1493effddc",
-          "name": "少标注弱标注错误标注问题亟待解决",
-          "desc": "医学影像分析中的少标注、弱标注、错误标注等问题亟待解决。",
-          "evidence": [
-            {
-              "quote": "因此，我们认为医学影像分析中的少标注、弱标注、错误标注等问题亟待解决",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 854,
-                "end_char": 887
+                "start_char": 2843,
+                "end_char": 2875
               },
               "version": "7ba4bc02b2440d16bed4"
             }
@@ -95,63 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbbb5356b1d6",
-          "name": "自监督技术处理弱标注问题",
-          "desc": "引入自监督技术，为医疗数据中的弱标注问题提供训练模式和理论基础。",
-          "evidence": [
-            {
-              "quote": "引入自监督技术，为医疗数据中的弱标注问题提供训练模式和理论基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 901,
-                "end_char": 931
-              },
-              "version": "7ba4bc02b2440d16bed4"
-            }
-          ]
-        },
-        {
-          "id": "item-3bfb4236858a",
-          "name": "图神经网络与置信学习处理少标注噪声标注",
-          "desc": "引入图神经网络处理少标注问题；引入置信学习估计错误标注与真实标注的联合分布，过滤错误标注样本并实现带噪学习。",
-          "evidence": [
-            {
-              "quote": "引入置信学习技术，估计错误标注和真实标注的联合分布，过滤错误标注样本，并实现带噪学习",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 959,
-                "end_char": 1000
-              },
-              "version": "7ba4bc02b2440d16bed4"
-            }
-          ]
-        },
-        {
-          "id": "item-9af9c55f27b6",
-          "name": "元学习与自适应学习选择代表性样本",
-          "desc": "引入元学习、自适应学习等技术，为模型自适应地选择对模型有性能增益的代表性样本进行标注。",
-          "evidence": [
-            {
-              "quote": "引入元学习、自适应学习等技术，为模型自适应地选择对模型有性能增益的代表性样本进行标注",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1004,
-                "end_char": 1045
-              },
-              "version": "7ba4bc02b2440d16bed4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bf888967d8a9",
-          "name": "弱标注学习多场景验证",
-          "desc": "在图像有序回归弱标注预测、胚胎视频弱标注成囊预测及胰腺癌WSI病理图像组织弱标注预测等场景开展研究。",
+          "id": "item-5b761589e1b5",
+          "name": "医学影像弱标注学习",
+          "desc": "有序回归、胚胎视频成囊预测、胰腺癌WSI组织预测",
           "evidence": [
             {
               "quote": "医学影像数据弱标注学习，包括图像有序回归弱标注预测，自适应关键帧选择的胚胎视频弱标注成囊预测，以及胰腺癌 WSI 病理图像组织弱标注预测",
@@ -163,89 +82,492 @@
               "version": "7ba4bc02b2440d16bed4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-409486707ab0",
-          "name": "少标注补全框架提升准确性",
-          "desc": "提出基于自监督和一次性学习、梯度引导元学习及通用医疗多模态学习少标注补全框架，提高少标注下模型准确性。",
+          "id": "item-a71e86b1ec1d",
+          "name": "医学影像噪声标注学习",
+          "desc": "不确定感知蒸馏",
           "evidence": [
             {
-              "quote": "包括基于自监督和一次性学习的模型、基于梯度引导的元学习模型以及基于通用的医疗多模态学习少标注补全框架提高在少标注下模型的准确性",
+              "quote": "医学影像数据噪声标注学习，包括基于影像不确定感知蒸馏噪声学习模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3070,
-                "end_char": 3132
+                "start_char": 3137,
+                "end_char": 3168
               },
               "version": "7ba4bc02b2440d16bed4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-3e0e3c962ea4",
-          "name": "手术辅助与多模态大模型拓展",
-          "desc": "在眼外科机器人自主眼内异物移除、手术机器人深度估计、实时全景手术室场景重建及多模态大模型辅助预后预测等方向取得进展。",
+          "id": "item-5d929692f632",
+          "name": "眼外科机器人自主眼内异物移除系统",
+          "desc": "动态校准与模仿学习",
           "evidence": [
             {
-              "quote": "医学影像多模态大模型构建，包括结合医学大模型辅助和多模态影像融合的癌症预后预测模型，于序数回归与多模态大模型的通用眼科疾病分级模型以及基于大语言模型的标准化病人智能体驱动的医生训练框架",
+              "quote": "基于动态校准与模仿学习的眼外科机器人自主眼内异物移除系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3299,
-                "end_char": 3390
+                "start_char": 3221,
+                "end_char": 3248
               },
               "version": "7ba4bc02b2440d16bed4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多模态指令指导的蛋白质设计方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;周寒靖;殷铭泽;应豪超;徐红霞",
+      "id": "out-82a07ccb37a0",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多模态指令指导的蛋白质设计方法和装置 — 吴健;周寒靖;殷铭泽;应豪超;徐红霞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3502,
+            "end_char": 3547
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种H&E染色切片图像中异常组织的分割方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;谢雨峰;杨琦;冯芮苇;胡荷萍;许晶虹;应豪超",
+      "id": "out-d1e45680bad2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种H&E染色切片图像中异常组织的分割方法和装置 — 吴健;谢雨峰;杨琦;冯芮苇;胡荷萍;许晶虹;应豪超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3552,
+            "end_char": 3608
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于医学特化多尺度条件的冠心病斑块预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;董文婕;杜邦;孔子泰;徐红霞;吴瑞佳;陶明哲;张益溢;宋文君",
+      "id": "out-dd31ffc53482",
+      "evidence": [
+        {
+          "quote": "[专利] 基于医学特化多尺度条件的冠心病斑块预测方法 — 吴健;董文婕;杜邦;孔子泰;徐红霞;吴瑞佳;陶明哲;张益溢;宋文君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3674
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scalable Autoregressive Monocular Depth Estimation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang JH;Chen JT;Liu J;Tang DQ;Li WT;Danny Chen;Wu J",
+      "id": "out-20a3f2773c2f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scalable Autoregressive Monocular Depth Estimation — Wang JH;Chen JT;Liu J;Tang DQ;Li WT;Danny Chen;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3679,
+            "end_char": 3789
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种甲状腺乳头状瘤 BRAF 基因突变检测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;林彦宏;应豪超",
+      "id": "out-22a5ffbba5e8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种甲状腺乳头状瘤 BRAF 基因突变检测装置 — 吴健;林彦宏;应豪超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3794,
+            "end_char": 3834
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态融合的胚胎多焦平面图像着床预测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;程奕;陈婷婷;应豪超;叶志前",
+      "id": "out-eeaf5c1cd39d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态融合的胚胎多焦平面图像着床预测装置 — 吴健;程奕;陈婷婷;应豪超;叶志前",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3839,
+            "end_char": 3887
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Making Pre-trained Language Models Great on Tabular Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan JH;Zheng B;Xu HX;Zhu YH;Danny Chen;Sun JM;Wu J;Chen JT",
+      "id": "out-ddff97cae57c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Making Pre-trained Language Models Great on Tabular Prediction — Yan JH;Zheng B;Xu HX;Zhu YH;Danny Chen;Sun JM;Wu J;Chen JT",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 4021
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Team up GBDTs and DNNs: Advancing Efficient and Effective Tabular Prediction with Tree-hybrid MLPs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan JH;Chen JT;Wang QX;Danny Z. Chen;Wu J",
+      "id": "out-b40d348c0d79",
+      "evidence": [
+        {
+          "quote": "[会议论文] Team up GBDTs and DNNs: Advancing Efficient and Effective Tabular Prediction with Tree-hybrid MLPs — Yan JH;Chen JT;Wang QX;Danny Z. Chen;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4026,
+            "end_char": 4174
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于特征分离重组的肝移植排异反应预测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;程奕;应豪超;徐红霞;叶志前",
+      "id": "out-9d72c0044ea4",
+      "evidence": [
+        {
+          "quote": "[专利] 基于特征分离重组的肝移植排异反应预测装置 — 吴健;程奕;应豪超;徐红霞;叶志前",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4179,
+            "end_char": 4223
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多源数据融合的肝移植受者预后预测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;欧阳振球;徐红霞;应豪超;冯芮苇;黄博;程奕",
+      "id": "out-668ca555e393",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多源数据融合的肝移植受者预后预测装置 — 吴健;欧阳振球;徐红霞;应豪超;冯芮苇;黄博;程奕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4281
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于时序数据的血透病人风险预测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;陈江华;徐红霞;钱思忆;楼晓伟;陈晋泰;姚曦",
+      "id": "out-a950a39a03c1",
+      "evidence": [
+        {
+          "quote": "[专利] 基于时序数据的血透病人风险预测装置 — 吴健;陈江华;徐红霞;钱思忆;楼晓伟;陈晋泰;姚曦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4336
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态融合网络的白内障术后视力预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;王锦鸿;应豪超;陈婷婷",
+      "id": "out-8e0f7342ed27",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态融合网络的白内障术后视力预测系统 — 吴健;王锦鸿;应豪超;陈婷婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4386
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于治疗项目聚类和数据挖掘的分组方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;张铠;杜邦;郑文浩;黄博;罗春华",
+      "id": "out-1bc5daa09cc6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于治疗项目聚类和数据挖掘的分组方法和装置 — 吴健;张铠;杜邦;郑文浩;黄博;罗春华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4392,
+            "end_char": 4441
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KA2ER: Knowledge Adaptive Amalgamation of ExpeRts for Medical Images Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao SD;Fu YC;Liu K;Xu HX;Wu J",
+      "id": "out-51a03ed8b7f2",
+      "evidence": [
+        {
+          "quote": "[会议论文] KA2ER: Knowledge Adaptive Amalgamation of ExpeRts for Medical Images Segmentation — Gao SD;Fu YC;Liu K;Xu HX;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4447,
+            "end_char": 4566
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于图神经网络的隐式关系药物推荐模型的构建方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;钱思忆;应豪超",
+      "id": "out-7f09117cc3f4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于图神经网络的隐式关系药物推荐模型的构建方法和应用 — 吴健;钱思忆;应豪超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4572,
+            "end_char": 4617
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GCL: gradient-guided contrastive learning for medical image segmentation with multi-perspective meta labels",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu YX;Chen JT;Yan JH;Zhu YH;Danny Z. Chen;Wu J",
+      "id": "out-f362b76bdf11",
+      "evidence": [
+        {
+          "quote": "[会议论文] GCL: gradient-guided contrastive learning for medical image segmentation with multi-perspective meta labels — Wu YX;Chen JT;Yan JH;Zhu YH;Danny Z. Chen;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4623,
+            "end_char": 4785
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于药物敏感性数据的多组学生物标志物筛选方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;刘伟泽;徐红霞;郑波;胡朝文;范逸群;吴育连",
+      "id": "out-abe716286163",
+      "evidence": [
+        {
+          "quote": "[专利] 基于药物敏感性数据的多组学生物标志物筛选方法和装置 — 吴健;刘伟泽;徐红霞;郑波;胡朝文;范逸群;吴育连",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4791,
+            "end_char": 4848
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-Enhanced Virtual Reality in Medicine: A Comprehensive Survey",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu YX;Hu KY;Danny Z. Chen;Wu J",
+      "id": "out-3a40c7ce63fd",
+      "evidence": [
+        {
+          "quote": "[会议论文] AI-Enhanced Virtual Reality in Medicine: A Comprehensive Survey — Wu YX;Hu KY;Danny Z. Chen;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4854,
+            "end_char": 4956
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多组学相似度引导的药物敏感性预测方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴健;冯芮苇;谢雨峰;郭越;曹戟;何俏军;杨波",
+      "id": "out-83cd9a5d9a43",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多组学相似度引导的药物敏感性预测方法和装置 — 吴健;冯芮苇;谢雨峰;郭越;曹戟;何俏军;杨波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4962,
+            "end_char": 5015
+          },
+          "version": "7ba4bc02b2440d16bed4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Modal CLIP-Informed Protein Editing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying MZ;Zhou HJ;Zhu YH;Lin M;Wu YX;Wu JL;Xu HX;Chang-Yu Hsieh;Hou TJ;Chen JT;Wu J",
+      "id": "out-3fab2a966a70",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Modal CLIP-Informed Protein Editing — Ying MZ;Zhou HJ;Zhu YH;Lin M;Wu YX;Wu JL;Xu HX;Chang-Yu Hsieh;Hou TJ;Chen JT;Wu J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5021,
+            "end_char": 5152
+          },
+          "version": "7ba4bc02b2440d16bed4"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3d2bb4128e2a"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "专利": {
+        "listed": 13,
+        "extracted": 13
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-36f046406eea"
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
       },
-      "basis": "原文明示"
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-36f046406eea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fbbb5356b1d6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fbbb5356b1d6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bf888967d8a9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9af9c55f27b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3e0e3c962ea4"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

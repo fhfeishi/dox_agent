@@ -2,15 +2,20 @@
   "doc_id": "8aeae74c4e1f28208613",
   "version": "042402e3a7f5b0b075a3",
   "source_hash": "a0c5895043d2ae54e71e66bfcf732028da9b7e863def1c855b75c0c3788cf260",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.324333+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.326592+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-7a8ae3f461cc",
           "name": "胰腺癌新辅助治疗疗效评估",
-          "desc": "胰腺癌患者行新辅助治疗是国际趋势，需在术前评估疗效以支持转化手术时机选择。",
+          "desc": "系统治疗提高手术率与R0切除率",
           "evidence": [
             {
-              "quote": "胰腺癌患者行新辅助治疗是国际趋势",
+              "quote": "胰腺癌作为一种全身性疾病，目前指南推荐有限进行系统治疗以提高胰腺癌患者手术率以及R0切除率",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 673
+                "start_char": 2648,
+                "end_char": 2692
               },
               "version": "042402e3a7f5b0b075a3"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f064e14c801e",
-          "name": "现有疗效评估灵敏度特异度不高",
-          "desc": "目前疗效评估方法灵敏度和特异度均不高，有效评估方式缺乏使临床医生受困于时机选择与方案调整。",
+          "id": "item-efc0102b0275",
+          "name": "现有疗效评估标准缺陷多、临床评估常有偏差",
+          "desc": "影像学评估结合肿瘤标志物",
           "evidence": [
             {
-              "quote": "而目前疗效评估方法灵敏度和特异度均不高，有效评估方式的缺乏使得临床医生受困于转化手术时机选择和治疗方案调整等临床问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 732
-              },
-              "version": "042402e3a7f5b0b075a3"
-            }
-          ]
-        },
-        {
-          "id": "item-f3a7bc75b6ea",
-          "name": "影像学评估存在滞后缺陷",
-          "desc": "临床常用影像学评估结合肿瘤标志物的方法存在诸多缺陷，评估常存在偏差。",
-          "evidence": [
-            {
-              "quote": "目前临床上常用的系统治疗疗效评估标准为影像学评估结合肿瘤标志物的方法，但是存在诸多缺陷",
+              "quote": "目前临床上常用的系统治疗疗效评估标准为影像学评估结合肿瘤标志物的方法，但是存在诸多缺陷，因而临床评估常常存在偏差",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2713,
-                "end_char": 2755
+                "end_char": 2768
               },
               "version": "042402e3a7f5b0b075a3"
             }
@@ -79,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-78e17dc16f23",
-          "name": "影像组学联合ctDNA评估模型",
-          "desc": "联合影像组学方法与液体活检技术建立术前疗效评估模型，并以nomogram形式呈现。",
+          "id": "item-c8c0298dfc6e",
+          "name": "分区域影像组学机器学习疗效评估模型",
+          "desc": "整体肿瘤、核心、边缘及周围区域，治疗前后特征变化",
           "evidence": [
             {
-              "quote": "联合应用影像组学方法和液体活检技术建立新型胰腺癌患者术前疗效评估模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 738,
-                "end_char": 771
-              },
-              "version": "042402e3a7f5b0b075a3"
-            }
-          ]
-        },
-        {
-          "id": "item-2abf2c7aecda",
-          "name": "胰腺肿瘤分区域特征分析",
-          "desc": "从增强CT门脉期图像分割出整体肿瘤、肿瘤核心、肿瘤边缘及肿瘤周围区域提取特征变化。",
-          "evidence": [
-            {
-              "quote": "从腹部增强CT门脉期图像中分割出整体肿瘤、肿瘤核心、肿瘤边缘以及肿瘤周围区域",
+              "quote": "从腹部增强CT门脉期图像中分割出整体肿瘤、肿瘤核心、肿瘤边缘以及肿瘤周围区域。通过提取治疗前后放射学特征的变化来创建机器学习模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2831,
-                "end_char": 2868
+                "end_char": 2894
               },
               "version": "042402e3a7f5b0b075a3"
             }
-          ]
-        },
-        {
-          "id": "item-1979b9d5a439",
-          "name": "前瞻队列外部验证校正",
-          "desc": "建立前瞻性队列对所得模型进行外部验证，并再次校正调整。",
-          "evidence": [
-            {
-              "quote": "同期建立前瞻性队列对所得模型进行外部验证，再次对模型进行校正和调整",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 929,
-                "end_char": 961
-              },
-              "version": "042402e3a7f5b0b075a3"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e16260909319",
-          "name": "核心与边缘联合模型评估最佳",
-          "desc": "联合肿瘤核心及边缘特征的模型比单一区域特征模型具有更好的评估准确性。",
-          "evidence": [
-            {
-              "quote": "联合肿瘤核心及边缘特征的模型比单一区域特征模型具有更好的评估准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2972,
-                "end_char": 3004
-              },
-              "version": "042402e3a7f5b0b075a3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-78a29ff43df0",
-          "name": "影像组学模型优于临床评估",
-          "desc": "与临床影像学评估及肿瘤标志物变化评估对比，影像组学模型评估效果最佳。",
+          "id": "item-b7355de6749f",
+          "name": "影像组学模型评估效果最佳",
+          "desc": "优于临床影像学评估及肿瘤标志物变化评估",
           "evidence": [
             {
               "quote": "与临床影像学评估及肿瘤标志物变化评估方法对比，影像组学模型评估效果最佳",
@@ -164,12 +105,14 @@
               "version": "042402e3a7f5b0b075a3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-6dd9c9d2892a",
-          "name": "纳入122例完成系统治疗患者",
-          "desc": "共纳入122名完成系统治疗后接受手术的胰腺癌患者，按病理反应分为响应组与非响应组。",
+          "id": "item-95eba015cd1b",
+          "name": "系统治疗后手术胰腺癌队列",
+          "desc": "122名",
           "evidence": [
             {
               "quote": "本项目共纳入122名完成系统治疗后并接受手术治疗的胰腺癌患者",
@@ -181,55 +124,90 @@
               "version": "042402e3a7f5b0b075a3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7a8ae3f461cc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f064e14c801e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "18F-FAPI-04 Outperforms 18F-FDG PET/CT in Clinical Assessments of Patients with Pancreatic Adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Li;Na Lu;Lili Lin;Yiwen Chen;Shuye Yang;Huatao Wang;Xinyuan Liu;Chengyi Wu;Xing Xue;Xinhui Su;Xueli Bai;Tingbo Liang",
+      "id": "out-043f458c5343",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 18F-FAPI-04 Outperforms 18F-FDG PET/CT in Clinical Assessments of Patients with Pancreatic Adenocarcinoma — Xiang Li;Na Lu;Lili Lin;Yiwen Chen;Shuye Yang;Huatao Wang;Xinyuan Liu;Chengyi Wu;Xing Xue;Xinhui Su;Xueli Bai;Tingbo Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3178,
+            "end_char": 3414
+          },
+          "version": "042402e3a7f5b0b075a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f064e14c801e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-78e17dc16f23"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and safety of envafolimab plus lenvatinib combined with TACE in unresectable hepatocellular carcinoma: An open-label, single-arm, phase 2 study—The CISLD-12 study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingbo Liang;Yiwen Chen;Xin Huang;Wendi Hu;Xiang Li;Junhui Sun;Yan Shen;Min Zhang;Jian Wu;Shunliang Gao;Jun Yu;Risheng Que;Yun Zhang;Fuchun Yang;Weiliang Xia;Aibin Zhang;Xiaofeng Tang;Xueli Bai",
+      "id": "out-7201d9580536",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and safety of envafolimab plus lenvatinib combined with TACE in unresectable hepatocellular carcinoma: An open-label, single-arm, phase 2 study—The CISLD-12 study. — Tingbo Liang;Yiwen Chen;Xin Huang;Wendi Hu;Xiang Li;Junhui Sun;Yan Shen;Min Zhang;Jian Wu;Shunliang Gao;Jun Yu;Risheng Que;Yun Zhang;Fuchun Yang;Weiliang Xia;Aibin Zhang;Xiaofeng Tang;Xueli Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3419,
+            "end_char": 3793
+          },
+          "version": "042402e3a7f5b0b075a3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-78e17dc16f23"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-78a29ff43df0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2abf2c7aecda"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e16260909319"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography-based delta-radiomics of tumor core_edge combination for systemic treatment response evaluation in pancreatic cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Li;Na Lu;Peijun Hu;Yiwen Chen;Liying Liu;Xinyuan Liu;Chengxiang Guo;Wenbo Xiao;Ke Sun;Jingsong Li;Xueli Bai;Tingbo Liang",
+      "id": "out-fd534736a22f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography-based delta-radiomics of tumor core_edge combination for systemic treatment response evaluation in pancreatic cancer — Xiang Li;Na Lu;Peijun Hu;Yiwen Chen;Liying Liu;Xinyuan Liu;Chengxiang Guo;Wenbo Xiao;Ke Sun;Jingsong Li;Xueli Bai;Tingbo Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 4069
+          },
+          "version": "042402e3a7f5b0b075a3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

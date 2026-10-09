@@ -2,15 +2,20 @@
   "doc_id": "fdda5c099e78cbeab961",
   "version": "a1c335ff2c98547f7bc1",
   "source_hash": "300937816fade4bae2fe4ddf5ba28857339a17760fbd00b0be9f280b1a992088",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.870920+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:45:04.352607+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9788dc4b3b85",
-          "name": "轻中度颅脑损伤急性期",
-          "desc": "进展性颅内血肿是导致颅脑损伤特别是轻中度患者预后不良的重要因素。",
+          "id": "item-4295b5d45658",
+          "name": "轻中度颅脑损伤血肿进展预判",
+          "desc": "CNN与深度置信网络",
           "evidence": [
             {
-              "quote": "进展性颅内血肿是导致颅脑损伤(TBI），特别是轻中度患者预后不良的重要因素。",
+              "quote": "本研究首先建立了轻中度颅脑损伤患者数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 711
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ]
-        },
-        {
-          "id": "item-b27805a48a15",
-          "name": "神经系统急性损伤预测",
-          "desc": "预测系统在颅脑外伤等多种神经系统急性损伤疾病中均展现出满意的预测准确性。",
-          "evidence": [
-            {
-              "quote": "这些预测系统的准确性在颅脑外伤等多种神经系统急性损伤疾病中均展现出满意的预测准确性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2907
+                "start_char": 2731,
+                "end_char": 2750
               },
               "version": "a1c335ff2c98547f7bc1"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b7f329d62746",
-          "name": "缺乏精准预判体系",
-          "desc": "虽已证实凝血功能障碍等是危险因素，但目前仍缺乏能精准预判的体系。",
+          "id": "item-3673c3712109",
+          "name": "进展性颅内血肿致预后不良",
+          "desc": "缺乏精准预判体系",
           "evidence": [
             {
-              "quote": "我们的前期研究已证实多种因素，如凝血功能障碍等，均是进展性颅内血肿的危险因素，但目前仍缺乏能精准预判的体系。",
+              "quote": "颅脑创伤后进展性的颅内血肿是导致轻中度颅脑损伤患者预后不良的重要因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 712,
-                "end_char": 765
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ]
-        },
-        {
-          "id": "item-d1b36f43f6f3",
-          "name": "TBI领域AI应用甚少",
-          "desc": "人工智能深度学习技术在TBI领域仍涉及甚少。",
-          "evidence": [
-            {
-              "quote": "但在TBI领域仍涉及甚少",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 798,
-                "end_char": 809
+                "start_char": 2512,
+                "end_char": 2545
               },
               "version": "a1c335ff2c98547f7bc1"
             }
@@ -95,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f53839aa2a3b",
-          "name": "CNN影像组学预判",
-          "desc": "应用卷积神经网络深度学习急性期轻中度TBI影像组学建立血肿进展预判体系。",
+          "id": "item-5086969bafd8",
+          "name": "CNN与DBNs血肿进展预判AI模型",
+          "desc": "云端预判平台",
           "evidence": [
             {
-              "quote": "首先应用CNN深度学习急性期轻中度TBI影像组学建立血肿进展预判体系",
+              "quote": "在CNN和DBNs辅助下建立了用于预判轻中度颅脑外伤脑内出血的血肿进展预判的人工智能模型和云端预判平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 959,
-                "end_char": 992
+                "start_char": 2791,
+                "end_char": 2841
               },
               "version": "a1c335ff2c98547f7bc1"
             }
-          ]
-        },
-        {
-          "id": "item-56cae49f8581",
-          "name": "DBNs融合影像与临床数据",
-          "desc": "应用深度置信网络模型融合影像及临床数据建立能够模拟真实世界的颅内血肿进展预测体系。",
-          "evidence": [
-            {
-              "quote": "然后再应用DBNs模型融合影像及临床数据建立能够模拟真实世界的颅内血肿进展预测体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 994,
-                "end_char": 1034
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ]
-        },
-        {
-          "id": "item-57763dbdd190",
-          "name": "多中心大样本数据融合",
-          "desc": "结合大样本临床人口学特征、影像资料及实验室结果等数据进行多轮次无监督训练。",
-          "evidence": [
-            {
-              "quote": "结合大样本临床人口学特征、影像资料及实验室结果等数据，建立专属于轻中度颅脑损伤急性期内血肿进展预判体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2679,
-                "end_char": 2729
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +91,83 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad981d4ac58e",
-          "name": "血肿进展预判模型与云端平台",
-          "desc": "在CNN和DBNs辅助下建立了血肿进展预判的人工智能模型和云端预判平台，以及模拟真实环境的辅助诊断预测系统。",
+          "id": "item-df4ff7c840a1",
+          "name": "论文与软著",
+          "desc": "SCI 3篇，软著登记证书",
           "evidence": [
             {
-              "quote": "在CNN和DBNs辅助下建立了用于预判轻中度颅脑外伤脑内出血的血肿进展预判的人工智能模型和云端预判平台，以及模拟真实环境的人工智能辅助诊断和预测系统",
+              "quote": "共发表SCI论文3篇，获得软件著作权登记证书",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2791,
-                "end_char": 2864
+                "start_char": 2965,
+                "end_char": 2986
               },
               "version": "a1c335ff2c98547f7bc1"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-45afe45dabfa",
-          "name": "非计划二次手术原因分析",
-          "desc": "建立轻中度颅脑损伤患者数据库，分析得出血肿进展是导致患者接受非计划二次手术并造成不良预后的潜在原因。",
-          "evidence": [
-            {
-              "quote": "本研究首先建立了轻中度颅脑损伤患者数据库，分析得出血肿进展是造成这些患者接受非计划二次手术病最终造成不良预后的潜在原因",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2731,
-                "end_char": 2789
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d19355c47467",
-          "name": "3篇SCI与软著",
-          "desc": "在本项目资助下共发表SCI论文3篇，获得软件著作权登记证书，协助培养博士研究生2名、硕士研究生1名。",
-          "evidence": [
-            {
-              "quote": "在本项目资助下，共发表SCI论文3篇，获得软件著作权登记证书，协助培养博士研究生2名、硕士研究生1名。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2957,
-                "end_char": 3007
-              },
-              "version": "a1c335ff2c98547f7bc1"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9788dc4b3b85"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b7f329d62746"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison on gene expression profiles between different models of spinal cord injury",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Haoru;Chen Xingyu;Zhou Longnian;Tao Yiming;Yu Jian;Xie Rong",
+      "id": "out-4793cc24e09c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison on gene expression profiles between different models of spinal cord injury — Dong Haoru;Chen Xingyu;Zhou Longnian;Tao Yiming;Yu Jian;Xie Rong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3025,
+            "end_char": 3183
+          },
+          "version": "a1c335ff2c98547f7bc1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d1b36f43f6f3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f53839aa2a3b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-56cae49f8581"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ad981d4ac58e"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-57763dbdd190"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d19355c47467"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intracranial Pressure Variability Associates with 3-Month Outcomes in Spontaneous Intracerebral Hemorrhage: A Retrospective Analysis of 597 Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Lei;Wang Mei-Hua;Song Jie;Bao Yi-Feng;Yuan Qiang;Wang Yue;Hu Jin;Yu Jian;Wu Gang;Zhao Jian-Lan",
+      "id": "out-2257d862cab5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intracranial Pressure Variability Associates with 3-Month Outcomes in Spontaneous Intracerebral Hemorrhage: A Retrospective Analysis of 597 Patients — Yang Lei;Wang Mei-Hua;Song Jie;Bao Yi-Feng;Yuan Qiang;Wang Yue;Hu Jin;Yu Jian;Wu Gang;Zhao Jian-Lan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3188,
+            "end_char": 3444
+          },
+          "version": "a1c335ff2c98547f7bc1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

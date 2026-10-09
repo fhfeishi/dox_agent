@@ -2,15 +2,20 @@
   "doc_id": "4085fe09270076afade3",
   "version": "d6c3bdc5fdb37fd94970",
   "source_hash": "0cfda3a6e36543826e4572abf7a910da40ec9a5d045cdced85b4c5dfe62f694c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.826267+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:38:32.119343+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-bde79f5f25bd",
           "name": "不可切除III期NSCLC免疫治疗疗效预测",
-          "desc": "面向根治性同步放化疗后巩固免疫治疗路径，构建多中心影像组学模型以精准筛选免疫治疗获益人群。",
+          "desc": "同步放化疗后巩固免疫治疗",
           "evidence": [
             {
-              "quote": "对于不可切除III期非小细胞肺癌（NSCLC），NCCN指南推荐根治性同步放化疗后予以巩固性免疫治疗，但目前临床中仍缺乏有效预测免疫治疗疗效的方法，无法准确筛选出获益人群",
+              "quote": "对于不可切除III期非小细胞肺癌（NSCLC），NCCN指南推荐根治性同步放化疗后予以巩固性免疫治疗",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 687,
-                "end_char": 771
+                "end_char": 736
               },
               "version": "d6c3bdc5fdb37fd94970"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2a4758fa089d",
-          "name": "影像组学模型泛化性差致临床落地困难",
-          "desc": "影像组学可量化肿瘤异质性，但模型泛化性差导致临床落地困难，原因包括训练数据缺乏标准化、缺乏动态量化分析与样本量多样性不足。",
+          "id": "item-360908862a2d",
+          "name": "影像组学模型泛化性差",
+          "desc": "数据缺乏标准化、缺乏动态量化、样本量和多样性不足",
           "evidence": [
             {
-              "quote": "但当前影像组学模型的泛化性差导致临床落地困难",
+              "quote": "现有基于影像组学的免疫治疗疗效预测模型仍未能广泛应用于临床，主要原因包括：1）模型训练数据和标注缺乏标准化；2）缺乏对肿瘤动态变化的量化分析；3）训练数据样本量和多样性不足，导致模型泛化能力差",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 816,
-                "end_char": 837
+                "start_char": 2887,
+                "end_char": 2982
               },
               "version": "d6c3bdc5fdb37fd94970"
             }
@@ -63,80 +68,422 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fd2a0bddc94d",
-          "name": "FAIR标准化+多时序CT影像组学+联邦学习",
-          "desc": "应用FAIR数据准则标准化临床与影像数据，基于多时序CT影像组学动态量化肿瘤时空异质性，并利用联邦学习连接多中心数据构建预测模型。",
+          "id": "item-60de2c3c5248",
+          "name": "FAIR数据准则标准化",
+          "desc": "临床与影像数据标准化",
           "evidence": [
             {
-              "quote": "基于多时序CT影像组学动态量化肿瘤的时空异质性",
+              "quote": "应用FAIR（可查找性、可访问性、互操作性和可重用性）数据准则对临床和影像数据进行标准化处理，确保数据的高质量和可共享性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 944,
-                "end_char": 966
+                "start_char": 3006,
+                "end_char": 3065
               },
               "version": "d6c3bdc5fdb37fd94970"
             }
-          ]
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-81848b57602e",
+          "name": "多时序CT影像组学动态量化",
+          "desc": "肿瘤时空异质性",
+          "evidence": [
+            {
+              "quote": "基于CT影像组学技术，动态量化肿瘤的时空异质性，捕捉肿瘤在治疗过程中的变化特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3069,
+                "end_char": 3107
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1f193d267fc6",
+          "name": "联邦学习多中心建模",
+          "desc": "保护数据隐私",
+          "evidence": [
+            {
+              "quote": "利用联邦学习技术连接多中心数据，在确保数据隐私安全的前提下，构建多中心影像组学预测模型，提升模型的泛化能力和临床应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3111,
+                "end_char": 3170
+              },
+              "version": "d6c3bdc5fdb37fd94970"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale pathology image texture signature is a prognostic factor for resectable lung adenocarcinoma: a multi-center, retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+      "id": "out-2b1dd1a82be3",
+      "evidence": [
         {
-          "id": "item-7c8991740b37",
-          "name": "构建III期NSCLC免疫治疗疗效预测模型",
-          "desc": "构建NSCLC新辅助免疫治疗疗效预测模型，精准识别潜在受益患者群体，为临床决策提供依据。",
-          "evidence": [
-            {
-              "quote": "构建NSCLC新辅助免疫治疗疗效预测模型，精准识别潜在受益患者群体",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3347,
-                "end_char": 3379
-              },
-              "version": "d6c3bdc5fdb37fd94970"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Multi-scale pathology image texture signature is a prognostic factor for resectable lung adenocarcinoma: a multi-center, retrospective study — Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3448,
+            "end_char": 3792
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Protecting Prostate Cancer Classification From Rectal Artifacts via Targeted Adversarial Training",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Hu;Dawei Zhou;Jiahua Xu;Cheng Lu;Chu Han;Zhenwei Shi;Qikui Zhu;Xinbo Gao;Nannan Wang;Zaiyi Liu",
+      "id": "out-6f5e636548d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Protecting Prostate Cancer Classification From Rectal Artifacts via Targeted Adversarial Training — Lei Hu;Dawei Zhou;Jiahua Xu;Cheng Lu;Chu Han;Zhenwei Shi;Qikui Zhu;Xinbo Gao;Nannan Wang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3797,
+            "end_char": 4001
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学研究的困境和出路",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "石镇维;刘再毅",
+      "id": "out-9c4d36448da1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像组学研究的困境和出路 — 石镇维;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4006,
+            "end_char": 4034
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于结构分解和重染色的病理图像颜色标准化方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;韩楚;易宗键;梁长虹;潘细朋;石镇维;陈鑫",
+      "id": "out-e4eea9d15258",
+      "evidence": [
+        {
+          "quote": "[专利] 基于结构分解和重染色的病理图像颜色标准化方法及装置 — 刘再毅;韩楚;易宗键;梁长虹;潘细朋;石镇维;陈鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4039,
+            "end_char": 4096
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Use of Pretreatment Multiparametric MRI to Predict Tumor Regression Pattern to Neoadjuvant Chemotherapy in Breast CancerTaggedEnd",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Liu;Xiaomei Huang;Xiaobo Chen;Zhenwei Shi;Chunling Liu;Yanting Liang;Xin Huang;Minglei Chen;Xin Chen;Changhong Liang;Zaiyi Liu",
+      "id": "out-b183455eeb1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Use of Pretreatment Multiparametric MRI to Predict Tumor Regression Pattern to Neoadjuvant Chemotherapy in Breast CancerTaggedEnd — Chen Liu;Xiaomei Huang;Xiaobo Chen;Zhenwei Shi;Chunling Liu;Yanting Liang;Xin Huang;Minglei Chen;Xin Chen;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4101,
+            "end_char": 4370
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using Machine Learning Methods to Assess Lymphovascular Invasion and Survival in Breast Cancer: Performance of Combining Preoperative Clinical and            MRI            Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeyan Xu;Yu Xie;Lei Wu;Minglei Chen;Zhenwei Shi;Yanfen Cui;Chu Han;Huan Lin;Yu Liu;Pinxiong Li;Xin Chen;Yingying Ding;Zaiyi Liu",
+      "id": "out-cbd76f00fec4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using Machine Learning Methods to Assess Lymphovascular Invasion and Survival in Breast Cancer: Performance of Combining Preoperative Clinical and            MRI            Characteristics — Zeyan Xu;Yu Xie;Lei Wu;Minglei Chen;Zhenwei Shi;Yanfen Cui;Chu Han;Huan Lin;Yu Liu;Pinxiong Li;Xin Chen;Yingying Ding;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4699
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Deep Learning Model to Reduce the Interference of Rectal Artifacts in MRI-based Prostate Cancer Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Hu;Xiangyu Guo;Dawei Zhou;Zhen Wang;Lisong Dai;Liang Li;Ying Li;Tian Zhang;Haining Long;Chengxin Yu;Zhen-wei Shi;Chu Han;Cheng Lu;Jungong Zhao;Yuehua Li;Yunfei Zha;Zaiyi Liu",
+      "id": "out-7d892f98da1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Deep Learning Model to Reduce the Interference of Rectal Artifacts in MRI-based Prostate Cancer Diagnosis — Lei Hu;Xiangyu Guo;Dawei Zhou;Zhen Wang;Lisong Dai;Liang Li;Ying Li;Tian Zhang;Haining Long;Chengxin Yu;Zhen-wei Shi;Chu Han;Cheng Lu;Jungong Zhao;Yuehua Li;Yunfei Zha;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4704,
+            "end_char": 5027
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Label-efficient transformer-based framework with self-supervised strategies for heterogeneous lung tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenbing Liu;Weixing Li;Yancen Cui;Xin Chen;Xipeng Pan;Guanchao Ye;Yongde Liao;Leroy Volmer;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Zhenwei Shi",
+      "id": "out-70064debc72a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Label-efficient transformer-based framework with self-supervised strategies for heterogeneous lung tumor segmentation — Zhenbing Liu;Weixing Li;Yancen Cui;Xin Chen;Xipeng Pan;Guanchao Ye;Yongde Liao;Leroy Volmer;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Zhenwei Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5032,
+            "end_char": 5304
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重视影像组学的临床应用研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;石镇维",
+      "id": "out-ed48bbd04e97",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 重视影像组学的临床应用研究 — 刘再毅;石镇维",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5309,
+            "end_char": 5338
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An MRI-based Scoring System for Preoperative Prediction of Axillary Response to Neoadjuvant Chemotherapy in Node-Positive Breast Cancer: A Multicenter Retrospective Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaomei Huang;Zhenwei Shi;Jinhai Mai;Chunling Liu;Chen Liu;Shuting Chen;Hong Lu;Yanbo Li;Bo He;Jun Li;Hanxue Cun;Chu Han;Xin Chen;Changhong Liang;Zaiyi Liu",
+      "id": "out-447318ebe24d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An MRI-based Scoring System for Preoperative Prediction of Axillary Response to Neoadjuvant Chemotherapy in Node-Positive Breast Cancer: A Multicenter Retrospective Study — Xiaomei Huang;Zhenwei Shi;Jinhai Mai;Chunling Liu;Chen Liu;Shuting Chen;Hong Lu;Yanbo Li;Bo He;Jun Li;Hanxue Cun;Chu Han;Xin Chen;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5344,
+            "end_char": 5678
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于染色相似性重建的双任务循环自监督细胞核分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴宏江;韩国强;韩楚;刘再毅;林佳泰;王浩;乐俊聪;石镇维",
+      "id": "out-c916cf9403ea",
+      "evidence": [
+        {
+          "quote": "[专利] 基于染色相似性重建的双任务循环自监督细胞核分割方法 — 吴宏江;韩国强;韩楚;刘再毅;林佳泰;王浩;乐俊聪;石镇维",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5684,
+            "end_char": 5745
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenwei Shi;Xiaomei Huang;Ziliang Cheng;Zeyan Xu;Huan Lin;Chen Liu;Xiaobo Chen;Chunling Liu;Changhong Liang;Cheng Lu;Yanfen Cui;Chu Han;Jinrong Qu;Jun Shen;Zaiyi Liu",
+      "id": "out-e4836c6f4f41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based Quantification of Intratumoral Heterogeneity for Predicting Treatment Response to Neoadjuvant Chemotherapy in Breast Cancer — Zhenwei Shi;Xiaomei Huang;Ziliang Cheng;Zeyan Xu;Huan Lin;Chen Liu;Xiaobo Chen;Chunling Liu;Changhong Liang;Cheng Lu;Yanfen Cui;Chu Han;Jinrong Qu;Jun Shen;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5751,
+            "end_char": 6058
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanchao Ye;Guangyao Wu;Yu Qi;Kuo Li;Mingliang Wang;Chunyang Zhang;Feng Li;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Yongde Liao;Zhenwei Shi",
+      "id": "out-4e7d2257901d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive multimodal CT deep learning biomarker to predict pathological complete response of non-small cell lung cancer following neoadjuvant immunochemotherapy: a multicenter study — Guanchao Ye;Guangyao Wu;Yu Qi;Kuo Li;Mingliang Wang;Chunyang Zhang;Feng Li;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Yongde Liao;Zhenwei Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6064,
+            "end_char": 6398
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SwinHR: Hemodynamic-powered hierarchical vision transformer for breast tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhihe Zhao;Siyao Du;Zeyan Xu;Zhi Yin;Xiaomei Huang;Xin Huang;Chinting Wong;Yanting Liang;Jing Shen;Jianlin Wu;Jinrong Qu;Lina Zhang;Yanfen Cui;Ying Wang;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Zhenwei Shi;Changhong Liang",
+      "id": "out-2348e0e39f02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SwinHR: Hemodynamic-powered hierarchical vision transformer for breast tumor segmentation — Zhihe Zhao;Siyao Du;Zeyan Xu;Zhi Yin;Xiaomei Huang;Xin Huang;Chinting Wong;Yanting Liang;Jing Shen;Jianlin Wu;Jinrong Qu;Lina Zhang;Yanfen Cui;Ying Wang;Leonard Wee;Andre Dekker;Chu Han;Zaiyi Liu;Zhenwei Shi;Changhong Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6404,
+            "end_char": 6725
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病理图像核分裂象自动检测与辅助诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩楚;王浩;林佳泰;石镇维;刘再毅",
+      "id": "out-23f6633e00e5",
+      "evidence": [
+        {
+          "quote": "[奖励] 病理图像核分裂象自动检测与辅助诊断 — 韩楚;王浩;林佳泰;石镇维;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6731,
+            "end_char": 6772
+          },
+          "version": "d6c3bdc5fdb37fd94970"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedDUS: Lung tumor segmentation on CT images through federated semi-supervised with dynamic update strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dan Wang;Chu Han;Zhen Zhang;Tiantian Zhai;Huan Lin;Baoyao Yang;Yanfen Cui;Yinbing Lin;Zhihe Zhao;Lujun Zhao;Changhong Liang;An Zeng;Dan Pan;Xin Chen;Zhenwei Shi;Zaiyi Liu",
+      "id": "out-79fb2b3bd14b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedDUS: Lung tumor segmentation on CT images through federated semi-supervised with dynamic update strategy — Dan Wang;Chu Han;Zhen Zhang;Tiantian Zhai;Huan Lin;Baoyao Yang;Yanfen Cui;Yinbing Lin;Zhihe Zhao;Lujun Zhao;Changhong Liang;An Zeng;Dan Pan;Xin Chen;Zhenwei Shi;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6778,
+            "end_char": 7064
+          },
+          "version": "d6c3bdc5fdb37fd94970"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bde79f5f25bd"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2a4758fa089d"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
       },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2a4758fa089d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fd2a0bddc94d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fd2a0bddc94d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7c8991740b37"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

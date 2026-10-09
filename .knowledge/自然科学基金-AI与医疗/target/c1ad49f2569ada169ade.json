@@ -2,15 +2,20 @@
   "doc_id": "c1ad49f2569ada169ade",
   "version": "542abd48a6153170052b",
   "source_hash": "765f71e63797d64158e5f11caf04cd440440ee37ce188cb7ae0a450fe50c3fb8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.565382+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.090358+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-69381ed8c012",
-          "name": "皮肤病智能辅助诊断系统",
-          "desc": "白癜风以皮肤色素脱失为主要表现，临床上极易与其他皮肤白斑混淆导致误诊，病情评估及治疗困难。",
+          "id": "item-d6b6767258b7",
+          "name": "白癜风智能辅助诊断与病情评估",
+          "desc": "皮肤镜与多模态数据",
           "evidence": [
             {
-              "quote": "白癜风是以皮肤色素脱失为主要表现的顽固性皮肤病，临床上极易与其他皮肤白斑混淆导致误诊，且病情评估及治疗非常困难",
+              "quote": "白癜风是以皮肤色素脱失为主要表现的常见皮肤疾病，临床上极易与其他皮肤白斑混淆导致误诊",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 709
-              },
-              "version": "542abd48a6153170052b"
-            }
-          ]
-        },
-        {
-          "id": "item-c968505a937b",
-          "name": "白癜风诊疗水平提升",
-          "desc": "研发白癜风光疗的智能辅助决策系统，提升白癜风诊疗水平。",
-          "evidence": [
-            {
-              "quote": "并研发白癜风光疗的智能辅助决策系统，提升白癜风诊疗水平",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1021,
-                "end_char": 1047
+                "start_char": 2871,
+                "end_char": 2912
               },
               "version": "542abd48a6153170052b"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f4ef10bfc1e9",
-          "name": "缺乏高质量数据与技术瓶颈",
-          "desc": "缺乏高质量临床数据资源，且在图像特征提取、异构数据融合处理、智能诊疗可解释性等方面存在技术瓶颈。",
+          "id": "item-082fcd2162ec",
+          "name": "易误诊且病情评估缺乏客观标准",
+          "desc": "治疗困难",
           "evidence": [
             {
-              "quote": "但由于缺乏高质量的临床数据资源，且在图像特征提取、异构数据融合处理、智能诊疗的可解释性等诸多方面存在技术瓶颈，导致白癜风智能辅助诊疗应用受限",
+              "quote": "病情评估缺乏客观标准，导致治疗非常困难",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 745,
-                "end_char": 814
-              },
-              "version": "542abd48a6153170052b"
-            }
-          ]
-        },
-        {
-          "id": "item-633984af2148",
-          "name": "病情评估缺乏客观标准",
-          "desc": "白癜风病情评估缺乏客观标准，导致治疗非常困难。",
-          "evidence": [
-            {
-              "quote": "且病情评估缺乏客观标准，导致治疗非常困难",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2914,
+                "start_char": 2915,
                 "end_char": 2933
               },
               "version": "542abd48a6153170052b"
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b58d8116990",
-          "name": "多模态异构数据融合诊断算法",
-          "desc": "以临床照片、皮肤镜图像为基础，结合临床信息与生物学指标，研发基于多模态异构数据融合处理的智能诊断算法和病情评估新方法。",
+          "id": "item-f1edded4ba86",
+          "name": "Swin Transformer Large皮肤镜分类框架",
+          "desc": "区分白癜风与其他色素减退性皮肤病",
           "evidence": [
             {
-              "quote": "研发基于多模态异构数据融合处理的白癜风智能诊断算法和病情评估新方法",
+              "quote": "创建了基于白癜风皮肤镜图像分类诊断的深度学习框架，其中Swin Transformer Large模型的分类性能最好",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 987,
-                "end_char": 1019
+                "start_char": 3066,
+                "end_char": 3123
               },
               "version": "542abd48a6153170052b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b44ceb997309",
-          "name": "HSV色彩转换与生成模型模拟Wood灯",
-          "desc": "利用HSV色彩转换和生成模型将原始图像转换为模拟临床Wood灯下的拍摄效果，提高诊断和病情评估准确性。",
+          "id": "item-e00067eadde3",
+          "name": "HSV转换与生成模型模拟Wood灯图像",
+          "desc": "缓解Wood灯数据稀缺",
           "evidence": [
             {
-              "quote": "利用HSV色彩转换和生成模型，实现了将白癜风患者原始图像转换为模拟临床Wood灯下的拍摄效果，提高了白癜风诊断和病情评估准确性",
+              "quote": "利用HSV色彩转换和生成模型，实现了将白癜风患者原始图像转换为模拟临床Wood灯下的拍摄效果",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3313,
-                "end_char": 3375
+                "end_char": 3358
               },
               "version": "542abd48a6153170052b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,278 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1161fd524078",
-          "name": "Swin Transformer白斑分类AUC 0.94",
-          "desc": "创建基于皮肤镜图像分类诊断的深度学习框架，Swin Transformer Large模型AUC 0.94、准确率93.82%、灵敏度94.02%、特异度93.50%。",
+          "id": "item-4b6a9ac43d10",
+          "name": "Swin Transformer Large分类性能",
+          "desc": "AUC 0.94，准确率93.82%",
           "evidence": [
             {
-              "quote": "创建了基于白癜风皮肤镜图像分类诊断的深度学习框架，其中Swin Transformer Large模型的分类性能最好，其AUC值、准确率、灵敏度和特异度分别达0.94、93.82%、94.02% 和93.50%",
+              "quote": "其AUC值、准确率、灵敏度和特异度分别达0.94、93.82%、94.02% 和93.50%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3066,
+                "start_char": 3125,
                 "end_char": 3170
               },
               "version": "542abd48a6153170052b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c99ac13f3f23",
-          "name": "建立多模态病情评估数据集",
-          "desc": "收集患者临床文本信息、血清生物样本与皮肤影像数据，建立用于白癜风病情评估的多模态数据集。",
+          "id": "item-0334dc57e7b1",
+          "name": "辅助诊断系统",
+          "desc": "皮肤镜辅助诊断系统与云裳智能皮肤病诊断系统",
           "evidence": [
             {
-              "quote": "收集了白癜风患者临床文本信息、血清生物样本、皮肤影像数据，建立了用于白癜风病情评估的多模态数据集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3195,
-                "end_char": 3242
-              },
-              "version": "542abd48a6153170052b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-807ba5c0b49f",
-          "name": "云端辅助诊断系统开发",
-          "desc": "开发白癜风皮肤镜辅助诊断系统与云裳智能皮肤病诊断系统，实现智能诊断和疾病管理。",
-          "evidence": [
-            {
-              "quote": "开发了白癜风皮肤镜辅助诊断系统、云裳智能皮肤病诊断系统，以实现对白癜风图像进行智能诊断和疾病管理",
+              "quote": "开发了白癜风皮肤镜辅助诊断系统、云裳智能皮肤病诊断系统",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3380,
-                "end_char": 3427
+                "end_char": 3406
               },
               "version": "542abd48a6153170052b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-69381ed8c012"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f4ef10bfc1e9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于迁移学习的皮肤镜图像分类模型的装置及训练方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李春英;李舒丽;郭森;陈健儒;贺楷乔;钟凡;张军鹏",
+      "id": "out-8aa975ce0718",
+      "evidence": [
+        {
+          "quote": "[专利] 基于迁移学习的皮肤镜图像分类模型的装置及训练方法 — 李春英;李舒丽;郭森;陈健儒;贺楷乔;钟凡;张军鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3604,
+            "end_char": 3660
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f4ef10bfc1e9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9b58d8116990"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "白癜风光疗复色模式的临床观察及其影响因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贺楷乔;李舒丽;李柏樟;刘玲;李春英",
+      "id": "out-183423654ac0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 白癜风光疗复色模式的临床观察及其影响因素分析 — 贺楷乔;李舒丽;李柏樟;刘玲;李春英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3665,
+            "end_char": 3714
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9b58d8116990"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1161fd524078"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "转录因子TFAP2B在健康人及白癜风患者表皮黑色素细胞中的表达模式",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马晶晶;亢盼;郭森;坚哲;李春英;李舒丽",
+      "id": "out-51ab7e86eb68",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 转录因子TFAP2B在健康人及白癜风患者表皮黑色素细胞中的表达模式 — 马晶晶;亢盼;郭森;坚哲;李春英;李舒丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3719,
+            "end_char": 3781
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b44ceb997309"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-807ba5c0b49f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent Advancements and Perspectives in the Diagnosis of Skin Diseases Using Machine Learning and Deep Learning: A Review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junpeng Zhang;Fan Zhong;Kaiqiao He;Mengqi Ji;Shuli Li;Chunying Li",
+      "id": "out-70a9796770d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent Advancements and Perspectives in the Diagnosis of Skin Diseases Using Machine Learning and Deep Learning: A Review — Junpeng Zhang;Fan Zhong;Kaiqiao He;Mengqi Ji;Shuli Li;Chunying Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3786,
+            "end_char": 3981
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Metabolomics Signature and Potential Application of Serum Polyunsaturated Fatty Acids Metabolism in Patients With Vitiligo.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhubiao Ye;Jianru Chen;Pengran Du;Qingrong Ni;Baizhang Li;Zhe Zhang;Qi Wang;Tingting Cui;Xiuli Yi;Chunying Li;Shuli Li",
+      "id": "out-503e71799ac2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Metabolomics Signature and Potential Application of Serum Polyunsaturated Fatty Acids Metabolism in Patients With Vitiligo. — Zhubiao Ye;Jianru Chen;Pengran Du;Qingrong Ni;Baizhang Li;Zhe Zhang;Qi Wang;Tingting Cui;Xiuli Yi;Chunying Li;Shuli Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4236
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CO 2点阵激光联合氟尿嘧啶/复方倍他米松注射液导入治疗白癜风的临床观察",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张倩;张金娥;郭森;宋璞;高琳;李春英",
+      "id": "out-c1d765b9bb9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CO 2点阵激光联合氟尿嘧啶/复方倍他米松注射液导入治疗白癜风的临床观察 — 张倩;张金娥;郭森;宋璞;高琳;李春英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4305
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "白癜风代谢重塑:进展和未来",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李春英;陈健儒;李舒丽",
+      "id": "out-4583e3fb09ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 白癜风代谢重塑:进展和未来 — 李春英;陈健儒;李舒丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4310,
+            "end_char": 4343
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pharmacological inhibition of demethylzeylasteral on JAK-STAT signaling ameliorates vitiligo",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuqian Chang;Pan Kang;Tingting Cui;Weinan Guo;Weigang Zhang;Pengran Du;Xiuli Yi;Sen Guo;Tianwen Gao;Chunying Li;Shuli Li",
+      "id": "out-534170601b1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pharmacological inhibition of demethylzeylasteral on JAK-STAT signaling ameliorates vitiligo — Yuqian Chang;Pan Kang;Tingting Cui;Weinan Guo;Weigang Zhang;Pengran Du;Xiuli Yi;Sen Guo;Tianwen Gao;Chunying Li;Shuli Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4348,
+            "end_char": 4569
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Influences of vitiligo-associated characteristics on the occurrence of diabetes mellitus: Interactive analysis of a cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Baizhang Li;Guannan Zhu;Pan Kang;Jianru Chen;Kaiqiao He;Xinju Wang;Tianwen Gao;Chunying Li;Shuli Li",
+      "id": "out-8c43e8f27c03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Influences of vitiligo-associated characteristics on the occurrence of diabetes mellitus: Interactive analysis of a cross-sectional study — Baizhang Li;Guannan Zhu;Pan Kang;Jianru Chen;Kaiqiao He;Xinju Wang;Tianwen Gao;Chunying Li;Shuli Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4574,
+            "end_char": 4819
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "白癜风黑素细胞损伤的关键机制与治疗新技术",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李春英;李舒丽;坚哲;石琼;刘玲;郭伟楠;易秀莉;郭森;宋璞;亢盼;高天文",
+      "id": "out-cb6f4c715ad9",
+      "evidence": [
+        {
+          "quote": "[奖励] 白癜风黑素细胞损伤的关键机制与治疗新技术 — 李春英;李舒丽;坚哲;石琼;刘玲;郭伟楠;易秀莉;郭森;宋璞;亢盼;高天文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4889
+          },
+          "version": "542abd48a6153170052b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

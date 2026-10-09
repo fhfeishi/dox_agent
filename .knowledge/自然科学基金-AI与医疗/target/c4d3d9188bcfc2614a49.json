@@ -2,15 +2,20 @@
   "doc_id": "c4d3d9188bcfc2614a49",
   "version": "79e06a8ba9f70005315d",
   "source_hash": "10ac55c5892ff502a11784019912cebb6e039bc9770fb77ae893143f16bfc5c6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.290660+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.201166+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5a8b2418c214",
-          "name": "抑郁障碍早期识别模型",
-          "desc": "抑郁障碍是现代社会常见的精神障碍类疾病，传统症状描述式诊疗存在诊断率低、症状描述定性而非定量等问题。",
+          "id": "item-454cccc85a81",
+          "name": "抑郁障碍早期识别",
+          "desc": "多模态心理生理数据",
           "evidence": [
             {
-              "quote": "抑郁障碍是现代社会常见的精神障碍类疾病。目前广泛采用的“症状描述式”诊疗方法存在诊断率较低、症状描述定性而非定量等问题",
+              "quote": "然而，其临床诊断率长期偏低，漏诊现象普遍",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 711
-              },
-              "version": "79e06a8ba9f70005315d"
-            }
-          ]
-        },
-        {
-          "id": "item-ea8f27758a88",
-          "name": "构建科学化早期筛查体系",
-          "desc": "开发客观、量化的抑郁障碍识别方法，构建科学化早期筛查体系，是推进健康中国战略的重要实践需求。",
-          "evidence": [
-            {
-              "quote": "因此，开发客观、量化的抑郁障碍识别方法，构建科学化早期筛查体系，已成为精神健康领域的核心课题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2999,
-                "end_char": 3044
+                "start_char": 2899,
+                "end_char": 2918
               },
               "version": "79e06a8ba9f70005315d"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b27c6cd5a041",
-          "name": "传统症状描述式诊疗诊断率低",
-          "desc": "抑郁障碍临床诊断率长期偏低、漏诊现象普遍，导致大量患者尤其早期患者错失诊疗良机。",
+          "id": "item-e75dda612726",
+          "name": "症状描述式诊疗依赖主观",
+          "desc": "诊断率低",
           "evidence": [
             {
-              "quote": "然而，其临床诊断率长期偏低，漏诊现象普遍，导致大量患者（尤其是早期患者）错失诊疗良机",
+              "quote": "传统\"症状描述式\"诊疗模式依赖主观性较强的面谈和量表评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2899,
-                "end_char": 2940
-              },
-              "version": "79e06a8ba9f70005315d"
-            }
-          ]
-        },
-        {
-          "id": "item-e91ce0ba7347",
-          "name": "多模态数据面临多源异质与样本不平衡",
-          "desc": "应用场景中多模态数据存在多源异质、模态信息缺失、小样本、样本不平衡和时序不同步等难点。",
-          "evidence": [
-            {
-              "quote": "围绕本应用场景中多模态数据存在的多源异质、模态信息缺失、小样本、样本不平衡和时序不同步等难点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 828,
-                "end_char": 873
+                "start_char": 2942,
+                "end_char": 2969
               },
               "version": "79e06a8ba9f70005315d"
             }
@@ -95,141 +68,443 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2d0715ff6d0",
-          "name": "多模态多语义融合统一表征",
-          "desc": "综合考察多种心理学实验范式目标语义，以多模态特征的统一表征和语义融合为核心问题实现精准早期识别。",
+          "id": "item-457075051fb2",
+          "name": "多模态数据语义表征与统一表征体系",
+          "desc": "脑电与语音",
           "evidence": [
             {
-              "quote": "以多模态特征的统一表征和语义融合为核心问题，实现精准的抑郁障碍早期识别",
+              "quote": "建立了多源异构数据统一表征体系，提出了创新性域适应算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 792,
-                "end_char": 826
-              },
-              "version": "79e06a8ba9f70005315d"
-            }
-          ]
-        },
-        {
-          "id": "item-d58c1374f288",
-          "name": "域适应与在线增量学习",
-          "desc": "结合新增数据和知识迁移，实现对模型参数快速准确的在线式增量学习，进一步提升预测精度和临床适用性。",
-          "evidence": [
-            {
-              "quote": "结合新增数据和知识迁移，实现对模型参数快速准确的在线式增量学习，进一步提升预测精度和临床适用性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 971
-              },
-              "version": "79e06a8ba9f70005315d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-055fdd8b6e17",
-          "name": "多源异构数据统一表征体系",
-          "desc": "研究多模态数据语义表征、特征关联互补机制及模型动态优化等关键技术，建立多源异构数据统一表征体系并提域适应算法。",
-          "evidence": [
-            {
-              "quote": "研究了多模态数据语义表征、特征关联互补机制及模型动态优化等关键技术，建立了多源异构数据统一表征体系，提出了创新性域适应算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3158,
+                "start_char": 3192,
                 "end_char": 3218
               },
               "version": "79e06a8ba9f70005315d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-587430e1ae55",
-          "name": "域增量学习抑郁检测模型",
-          "desc": "提出基于域增量学习的抑郁障碍检测模型训练方法及电子设备。",
+          "id": "item-ccf60899b320",
+          "name": "多模态心理生理抑郁障碍识别系统",
+          "desc": "初步应用",
           "evidence": [
             {
-              "quote": "基于域增量学习的抑郁障碍检测模型训练方法及电子设备",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4344,
-                "end_char": 4368
-              },
-              "version": "79e06a8ba9f70005315d"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-007aea2efeee",
-          "name": "多模态心理生理抑郁识别系统",
-          "desc": "开发多模态心理生理抑郁障碍识别系统并初步应用，为情绪管理、认知评估及压力监测提供创新解决方案。",
-          "evidence": [
-            {
-              "quote": "开发了多模态心理生理抑郁障碍识别系统并初步进行了应用，为情绪管理、认知评估及压力监测等提供了创新解决方案",
+              "quote": "开发了多模态心理生理抑郁障碍识别系统并初步进行了应用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3220,
-                "end_char": 3271
+                "end_char": 3245
               },
               "version": "79e06a8ba9f70005315d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Few-Shot Partial Multi-View Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong;Jiebo Luo",
+      "id": "out-cb2186b8f3bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Few-Shot Partial Multi-View Learning — Yuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong;Jiebo Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3320,
+            "end_char": 3420
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于软提示主题建模的抑郁情绪检测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;刘积隆;郝世杰;洪日昌",
+      "id": "out-642be499f1a3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于软提示主题建模的抑郁情绪检测方法及系统 — 郭艳蓉;刘积隆;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3425,
+            "end_char": 3470
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Prompt-Based Topic-Modeling Method for Depression Detection on Low-Resource Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanrong Guo;Jilong Liu;Lei Wang;Wei Qin;Shijie Hao;Richang Hong",
+      "id": "out-3663a60528ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Prompt-Based Topic-Modeling Method for Depression Detection on Low-Resource Data — Yanrong Guo;Jilong Liu;Lei Wang;Wei Qin;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3475,
+            "end_char": 3629
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MS 2 -GNN: Exploring GNN-Based Multimodal Fusion Network for Depression Detection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Chen;Richang Hong;Yanrong Guo;Shijie Hao;Bin Hu",
+      "id": "out-112648de5636",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MS 2 -GNN: Exploring GNN-Based Multimodal Fusion Network for Depression Detection. — Tao Chen;Richang Hong;Yanrong Guo;Shijie Hao;Bin Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3634,
+            "end_char": 3776
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Multifeature Fusion via Audio-Response-Level Modeling for Depression Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong",
+      "id": "out-5faa0e639399",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical Multifeature Fusion via Audio-Response-Level Modeling for Depression Detection — Zhiyuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3781,
+            "end_char": 3929
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Self-attention Graph Pooling with EEG-based Topological Structure and Soft Label for Depression Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Chen;Yanrong Guo;Shijie Hao;Richang Hong",
+      "id": "out-9f53c67f42eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring Self-attention Graph Pooling with EEG-based Topological Structure and Soft Label for Depression Detection — Tao Chen;Yanrong Guo;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3934,
+            "end_char": 4102
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Prototype Refinement with Progressive Inter-categorical Discrimination Maximization for Few-shot Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong",
+      "id": "out-866096d97436",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical Prototype Refinement with Progressive Inter-categorical Discrimination Maximization for Few-shot Learning — Yuan Zhou;Yanrong Guo;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4107,
+            "end_char": 4279
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种面向数据缺失场景的阿尔兹海默症分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;沈一鸣;孙惠惠;郝世杰;洪日昌",
+      "id": "out-c7a1168764f9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种面向数据缺失场景的阿尔兹海默症分类方法及系统 — 郭艳蓉;沈一鸣;孙惠惠;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4284,
+            "end_char": 4334
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于域增量学习的抑郁障碍检测模型训练方法及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;陈涛;郝世杰;洪日昌",
+      "id": "out-644f6ecb86b5",
+      "evidence": [
+        {
+          "quote": "[专利] 基于域增量学习的抑郁障碍检测模型训练方法及电子设备 — 郭艳蓉;陈涛;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4339,
+            "end_char": 4385
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态融合的多维心理状态评估方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;郭有为;郝世杰;洪日昌",
+      "id": "out-236ea4e607c8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态融合的多维心理状态评估方法 — 郭艳蓉;郭有为;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4391,
+            "end_char": 4433
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised Domain Adaptation for Major Depressive Disorder Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Chen;Yanrong Guo;Shijie Hao;Richang Hong",
+      "id": "out-5673c3787a51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-supervised Domain Adaptation for Major Depressive Disorder Detection — Tao Chen;Yanrong Guo;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4565
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于层级多语音学特征融合模型的精神状态检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;周致远;郝世杰;洪日昌",
+      "id": "out-b766ec29f7e5",
+      "evidence": [
+        {
+          "quote": "[专利] 基于层级多语音学特征融合模型的精神状态检测方法 — 郭艳蓉;周致远;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4571,
+            "end_char": 4616
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于数据增广和模型集成策略的图神经网络在抑郁症识别上的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨炳新;郭艳蓉;郝世杰;洪日昌",
+      "id": "out-65b8c0d9c76e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于数据增广和模型集成策略的图神经网络在抑郁症识别上的应用 — 杨炳新;郭艳蓉;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4622,
+            "end_char": 4675
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于细粒度提示学习的多层次抑郁状态检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;张俊;郝世杰;洪日昌",
+      "id": "out-06d224125715",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于细粒度提示学习的多层次抑郁状态检测方法 — 郭艳蓉;张俊;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4681,
+            "end_char": 4725
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multilevel depression status detection based on fine-grained prompt learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Zhang;Yanrong Guo",
+      "id": "out-77f8c01ee3dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multilevel depression status detection based on fine-grained prompt learning — Jun Zhang;Yanrong Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4837
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Depression Detection via Learning and Fusing Features From Visual Cues",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanrong Guo;Chenyang Zhu;Shijie Hao;Richang Hong",
+      "id": "out-b98494568da0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Depression Detection via Learning and Fusing Features From Visual Cues — Yanrong Guo;Chenyang Zhu;Shijie Hao;Richang Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4843,
+            "end_char": 4980
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于情感分布的多模态深度模型构建方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭艳蓉;周致远;郝世杰;洪日昌",
+      "id": "out-16c23ee35002",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于情感分布的多模态深度模型构建方法及系统 — 郭艳蓉;周致远;郝世杰;洪日昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5031
+          },
+          "version": "79e06a8ba9f70005315d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive dictionary and structure learning for unsupervised feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanrong Guo;Huihui Sun;Shijie Hao",
+      "id": "out-a2a875fe3cbc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive dictionary and structure learning for unsupervised feature selection — Yanrong Guo;Huihui Sun;Shijie Hao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5037,
+            "end_char": 5156
+          },
+          "version": "79e06a8ba9f70005315d"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5a8b2418c214"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b27c6cd5a041"
-      },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b27c6cd5a041"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e2d0715ff6d0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e2d0715ff6d0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-055fdd8b6e17"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d58c1374f288"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-007aea2efeee"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

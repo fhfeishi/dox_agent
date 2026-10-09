@@ -2,15 +2,20 @@
   "doc_id": "92750018616915028744",
   "version": "e472db052eebcad004a2",
   "source_hash": "ec590de72545ded999959f058a40ec37846788c99e2ed892e6420f5183391f90",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.458821+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.568266+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-caa65497ef6f",
           "name": "MR引导原发性肝癌自适应放疗",
-          "desc": "原发性肝癌为常见恶性肿瘤，局控失败与放射性肝病严重制约放疗应用，提升局控与减少RILD矛盾突出。",
+          "desc": "局控失败与放射性肝病",
           "evidence": [
             {
-              "quote": "原发性肝癌（HCC）为常见恶性肿瘤，局控失败与放射性肝病（RILD）严重制约放疗应用；提升肿瘤局控与减少RILD发生矛盾日益突出",
+              "quote": "通过整合人工智能（AI）与多模态磁共振成像（MRI）技术，系统开展了HCC精准放疗的关键技术研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 726
-              },
-              "version": "e472db052eebcad004a2"
-            }
-          ]
-        },
-        {
-          "id": "item-1bc7b813463b",
-          "name": "实现可实时修正的动态自适应放疗",
-          "desc": "研发一套AI辅助下依托连续MR影像的HCC动态自适应放疗新方案，在减少RILD危害基础上最大限度提升靶区剂量。",
-          "evidence": [
-            {
-              "quote": "实现可实时修正的HCC动态自适应放疗新方案，在尽力减少RILD危害基础上最大限度提升靶区剂量、获得最理想放疗收益",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1005,
-                "end_char": 1060
+                "start_char": 2969,
+                "end_char": 3016
               },
               "version": "e472db052eebcad004a2"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df129b587072",
-          "name": "缺乏实时动态放疗反应量化评估",
-          "desc": "传统影像引导HCC放疗虽可减少摆位误差、呼吸扰动影响，但因缺乏肿瘤与肝脏实时动态放疗反应的量化评估，无法及时修正治疗策略。",
+          "id": "item-71b7e54776ca",
+          "name": "缺乏肿瘤与肝脏实时动态放疗反应的量化评估",
+          "desc": "无法及时修正治疗策略",
           "evidence": [
             {
-              "quote": "但因缺乏肿瘤与肝脏实时动态放疗反应的量化评估，无法及时修正治疗策略，疗效难最优、失败难避免",
+              "quote": "因缺乏肿瘤与肝脏实时动态放疗反应的量化评估，无法及时修正治疗策略，疗效难最优、失败难避免",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 806,
+                "start_char": 807,
                 "end_char": 850
-              },
-              "version": "e472db052eebcad004a2"
-            }
-          ]
-        },
-        {
-          "id": "item-632e0a2b8c89",
-          "name": "局控与放射性肝病矛盾突出",
-          "desc": "提升肿瘤局控与减少RILD发生矛盾日益突出，精准优化放疗策略实现得失最佳平衡是必由出路。",
-          "evidence": [
-            {
-              "quote": "精准优化放疗策略实现“得失最佳平衡”，是未来提高疗效、避免RILD的必由出路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 728,
-                "end_char": 765
               },
               "version": "e472db052eebcad004a2"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4355a412c312",
-          "name": "AI辅助每日MR影像一体化处理",
-          "desc": "建立基于AI的每日MR图像一体化处理解决方案，包括自动分割、异质性分析、形变配准及剂量累加模型，实现放疗反应动态量化追踪。",
+          "id": "item-b95117542c1e",
+          "name": "AI每日MR图像一体化处理方案",
+          "desc": "自动分割、异质性分析、形变配准、剂量累加",
           "evidence": [
             {
               "quote": "研究建立了基于AI的每日MR图像一体化处理解决方案，包括自动分割、异质性分析、形变配准及剂量累加模型，实现了肿瘤靶区与正常组织放疗反应的动态量化追踪",
@@ -108,51 +81,13 @@
               },
               "version": "e472db052eebcad004a2"
             }
-          ]
-        },
-        {
-          "id": "item-2cb29eddbfe8",
-          "name": "疗效与RILD预测模型",
-          "desc": "提出疗效及放射性肝损伤预测模型，并形成动态自适应放疗新策略。",
-          "evidence": [
-            {
-              "quote": "提出了疗效及放射性肝损伤（RILD）预测模型，并形成动态自适应放疗新策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3093,
-                "end_char": 3128
-              },
-              "version": "e472db052eebcad004a2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d57141f664e8",
-          "name": "4DMRI在靶区勾画中优势显著",
-          "desc": "对比4DCT与4DMRI在靶区勾画中的差异，证实4DMRI在减少伪影、提升运动评估精度方面显著优势，GTV体积减小15.5%、伪影发生率降低30.4%。",
-          "evidence": [
-            {
-              "quote": "通过对比4DCT与4DMRI在靶区勾画中的差异，证实4DMRI在减少伪影、提升运动评估精度方面的显著优势（GTV体积减小15.5%，伪影发生率降低30.4%）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3130,
-                "end_char": 3208
-              },
-              "version": "e472db052eebcad004a2"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-0294bf596b3f",
-          "name": "每日更新自动分割效率提升至73秒",
-          "desc": "开发患者特异性每日更新深度学习自动分割策略，分割效率提升至73秒（DSC达0.90），治疗时间缩短50%。",
+          "id": "item-92bd176cfb74",
+          "name": "患者特异性每日更新深度学习自动分割策略",
+          "desc": "分割效率73秒，DSC 0.90",
           "evidence": [
             {
               "quote": "开发的患者特异性每日更新深度学习自动分割策略，将分割效率提升至73秒（DSC达0.90），治疗时间缩短50%",
@@ -164,72 +99,417 @@
               "version": "e472db052eebcad004a2"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-0f633d15407d",
-          "name": "多期增强MRI靶区确定新标准",
-          "desc": "基于多期增强MRI的靶区确定研究明确了CE-T1WI-45s序列的临床优势（DSC达0.986），为精准勾画提供新标准。",
+          "id": "item-254953344003",
+          "name": "4DMRI较4DCT靶区勾画优势",
+          "desc": "GTV体积减小15.5%，伪影发生率降低30.4%",
           "evidence": [
             {
-              "quote": "基于多期增强MRI的靶区确定研究，明确了CE-T1WI-45s序列的临床优势（DSC达0.986），为精准勾画提供新标准",
+              "quote": "证实4DMRI在减少伪影、提升运动评估精度方面的显著优势（GTV体积减小15.5%，伪影发生率降低30.4%）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3337,
-                "end_char": 3396
+                "start_char": 3154,
+                "end_char": 3208
               },
               "version": "e472db052eebcad004a2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2721aa04a28c",
+          "name": "CE-T1WI-45s序列靶区确定",
+          "desc": "DSC 0.986",
+          "evidence": [
+            {
+              "quote": "基于多期增强MRI的靶区确定研究，明确了CE-T1WI-45s序列的临床优势（DSC达0.986）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3337,
+                "end_char": 3385
+              },
+              "version": "e472db052eebcad004a2"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-caa65497ef6f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-df129b587072"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于1.5T MR-Linac在宫颈癌自适应放射治疗中在线评估靶区和器官运动",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王华东;李振江;尹勇;李振凯",
+      "id": "out-d6a4bb5577af",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于1.5T MR-Linac在宫颈癌自适应放射治疗中在线评估靶区和器官运动 — 王华东;李振江;尹勇;李振凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3513,
+            "end_char": 3574
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-df129b587072"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4355a412c312"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based deep learning radiomics and hematological biomarkers in the assessment of pathological complete response to neoadjuvant chemoradiotherapy in patients with esophageal squamous cell carcinoma: A two-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Meng;Lu Yukun;Sun Hongfu;Hou Chuanke;Zhou Zichun;Liu Xiao;Zhou Qichao;Li Zhenjiang;Yin Yong",
+      "id": "out-42f77575144e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based deep learning radiomics and hematological biomarkers in the assessment of pathological complete response to neoadjuvant chemoradiotherapy in patients with esophageal squamous cell carcinoma: A two-center study — Zhang Meng;Lu Yukun;Sun Hongfu;Hou Chuanke;Zhou Zichun;Liu Xiao;Zhou Qichao;Li Zhenjiang;Yin Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3579,
+            "end_char": 3903
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4355a412c312"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0294bf596b3f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "主动束流调制质子与射波刀在巨大体积肿瘤立体定向中央消融放疗中的剂量学研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李腾翔;仇清涛;贺睿敏;王帅;姚鑫森;范晓滢;王淑婷;陈进琥;尹勇",
+      "id": "out-9655e3c81d1d",
+      "evidence": [
+        {
+          "quote": "[会议论文] 主动束流调制质子与射波刀在巨大体积肿瘤立体定向中央消融放疗中的剂量学研究 — 李腾翔;仇清涛;贺睿敏;王帅;姚鑫森;范晓滢;王淑婷;陈进琥;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3908,
+            "end_char": 3986
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2cb29eddbfe8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0f633d15407d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparative Evaluation of 4-Dimensional Computed Tomography and 4-Dimensional Magnetic Resonance Imaging to Delineate the Target of Primary Liver Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yukai;Gong Guanzhong;Wang Yinxing;Liu Chenlu;Su Ya;Wang Lizhen;Yang Bo;Yin Yong",
+      "id": "out-74b91f1c3ec1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparative Evaluation of 4-Dimensional Computed Tomography and 4-Dimensional Magnetic Resonance Imaging to Delineate the Target of Primary Liver Cancer — Chen Yukai;Gong Guanzhong;Wang Yinxing;Liu Chenlu;Su Ya;Wang Lizhen;Yang Bo;Yin Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3991,
+            "end_char": 4236
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-task deep learning model for EGFR genotyping prediction and GTV segmentation of brain metastasis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Zichun;Wang Min;Zhao Rubin;Shao Yan;Xing Ligang;Qiu Qingtao;Yin Yong",
+      "id": "out-acbecf029bd0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-task deep learning model for EGFR genotyping prediction and GTV segmentation of brain metastasis — Zhou Zichun;Wang Min;Zhao Rubin;Shao Yan;Xing Ligang;Qiu Qingtao;Yin Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4427
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤放疗损伤机制与精准防治技术体系研究及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢力刚;张舒羽;赵汉玺;曹建平;朱婉琦;孙晓蓉;尹勇;许亚萍;孟雪;巩贯忠",
+      "id": "out-065e304c02be",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤放疗损伤机制与精准防治技术体系研究及临床应用 — 邢力刚;张舒羽;赵汉玺;曹建平;朱婉琦;孙晓蓉;尹勇;许亚萍;孟雪;巩贯忠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4500
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于增强CT影像组学特征的机器学习模型预测非手术食管癌放化疗患者治疗响应、无进展生存期和总生存期",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔永斌;尹勇",
+      "id": "out-c721ad1428ac",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于增强CT影像组学特征的机器学习模型预测非手术食管癌放化疗患者治疗响应、无进展生存期和总生存期 — 崔永斌;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4505,
+            "end_char": 4568
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics and dosiomics combined hematological parameters model predicts pathological complete response in esophageal squamous cell carcinoma patients after neoadjuvant chemoradiotherapy:a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔永斌;尹勇",
+      "id": "out-423c210b4703",
+      "evidence": [
+        {
+          "quote": "[会议论文] Radiomics and dosiomics combined hematological parameters model predicts pathological complete response in esophageal squamous cell carcinoma patients after neoadjuvant chemoradiotherapy:a multicenter study — 崔永斌;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4573,
+            "end_char": 4794
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Determining the gross tumor volume for hepatocellular carcinoma radiotherapy based on multi-phase contrast-enhanced magnetic resonance imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Kangning;Gong Guanzhong;Liu Rui;Du Shanshan;Wang Ruozheng;Yin Yong",
+      "id": "out-07de45248db8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Determining the gross tumor volume for hepatocellular carcinoma radiotherapy based on multi-phase contrast-enhanced magnetic resonance imaging — Meng Kangning;Gong Guanzhong;Liu Rui;Du Shanshan;Wang Ruozheng;Yin Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4799,
+            "end_char": 5021
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Influence and optimization strategy of the magnetic field in 1.5 T MR-linac liver stereotactic radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xin;Yin Peijun;Li Tengxiang;Yin Yong;Li Zhenjiang",
+      "id": "out-4f1d87f25cb0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Influence and optimization strategy of the magnetic field in 1.5 T MR-linac liver stereotactic radiotherapy — Liu Xin;Yin Peijun;Li Tengxiang;Yin Yong;Li Zhenjiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5027,
+            "end_char": 5196
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺腺癌脑转移瘤EGFR基因分型预测和GTV分割的多任务深度学习模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周子淳;王敏;邢力刚;仇清涛;尹勇",
+      "id": "out-69d0cca2e616",
+      "evidence": [
+        {
+          "quote": "[会议论文] 肺腺癌脑转移瘤EGFR基因分型预测和GTV分割的多任务深度学习模型 — 周子淳;王敏;邢力刚;仇清涛;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5202,
+            "end_char": 5261
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态影像组学引导肿瘤个体化放疗的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "尹勇;邢力刚;章真;巩贯忠;王利生;胡伟刚;仇清涛;段敬豪;卢洁",
+      "id": "out-2b1ecc708134",
+      "evidence": [
+        {
+          "quote": "[奖励] 多模态影像组学引导肿瘤个体化放疗的研究 — 尹勇;邢力刚;章真;巩贯忠;王利生;胡伟刚;仇清涛;段敬豪;卢洁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5267,
+            "end_char": 5325
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Developing and validating a deep learning and radiomic model for glioma grading using multiplanar reconstructed magnetic resonance contrast-enhanced T1-weighted imaging: a robust, multi-institutional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Jialin;Zhao Rubin;Qiu Qingtao;Chen Jinhu;Duan Jinghao;Cao Xiujuan;Yin Yong",
+      "id": "out-aed45f3ad1e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Developing and validating a deep learning and radiomic model for glioma grading using multiplanar reconstructed magnetic resonance contrast-enhanced T1-weighted imaging: a robust, multi-institutional study — Ding Jialin;Zhao Rubin;Qiu Qingtao;Chen Jinhu;Duan Jinghao;Cao Xiujuan;Yin Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5331,
+            "end_char": 5624
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学、剂量组学结合血液学参数预测食管鳞癌患者新辅助放化疗后病理完全缓解:一项多中心研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔永斌;尹勇",
+      "id": "out-143a9544b4b1",
+      "evidence": [
+        {
+          "quote": "[会议论文] 影像组学、剂量组学结合血液学参数预测食管鳞癌患者新辅助放化疗后病理完全缓解:一项多中心研究 — 崔永斌;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5630,
+            "end_char": 5690
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "修订后免疫细胞有效剂量对放化疗后胰腺癌淋巴细胞减少和生存影响的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘鑫;尹勇;张云艳;李振江",
+      "id": "out-1c37ec13437e",
+      "evidence": [
+        {
+          "quote": "[会议论文] 修订后免疫细胞有效剂量对放化疗后胰腺癌淋巴细胞减少和生存影响的研究 — 刘鑫;尹勇;张云艳;李振江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5696,
+            "end_char": 5751
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于准直器的定位激光灯质控装置及其使用方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "尹勇;仇清涛;李腾翔;卢洁;刘同海;唐泉;程品晶;陈进琥;李振江;刘波;赵伟;佟颖;沙雪;苏铭;侯传珂;王俪臻;苏亚",
+      "id": "out-32659c1ef702",
+      "evidence": [
+        {
+          "quote": "[专利] 基于准直器的定位激光灯质控装置及其使用方法 — 尹勇;仇清涛;李腾翔;卢洁;刘同海;唐泉;程品晶;陈进琥;李振江;刘波;赵伟;佟颖;沙雪;苏铭;侯传珂;王俪臻;苏亚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5757,
+            "end_char": 5843
+          },
+          "version": "e472db052eebcad004a2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

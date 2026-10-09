@@ -2,15 +2,20 @@
   "doc_id": "f43ffdd656896f761c79",
   "version": "b5184de9f19a5a3e5894",
   "source_hash": "15cde2dfcf36f1637bc3c73a08342ed1d88c03c11f14edf7a42d4d5e8e1e9d23",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.105921+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.494607+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-79c26e3681b8",
-          "name": "原发性肝癌亚型诊断与预后评估",
-          "desc": "原发性肝癌患者预后不良生存率不高，随病理分类细化需对肝细胞癌、肝内胆管癌等亚型深入研究。",
+          "id": "item-ef85da21afa7",
+          "name": "原发性肝癌亚型MRI评估",
+          "desc": "胆管细胞分化表型HCC",
           "evidence": [
             {
-              "quote": "原发性肝癌患者的预后不良生存率不高一直是临床工作中亟待解决的问题，随着病理分类的进一步细化",
+              "quote": "尤其是表现出胆管细胞分化表型的肝细胞癌 (CK7 或者 CK9阳性HCC)，因其侵袭性强、预后差而成为本项目组关注的重点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 730
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ]
-        },
-        {
-          "id": "item-6d0c6bf4a1c8",
-          "name": "肝癌亚型治疗策略制定",
-          "desc": "建立影像组学及多因素预测模型，为肝癌各亚型的治疗策略及预后评估提供新依据。",
-          "evidence": [
-            {
-              "quote": "同时建立影像组学及多因素的预测模型，为肝癌各亚型的治疗策略及预后评估提供新的依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1013,
-                "end_char": 1052
+                "start_char": 2568,
+                "end_char": 2627
               },
               "version": "b5184de9f19a5a3e5894"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e4d88f8a89c1",
-          "name": "胆管细胞分化表型HCC诊断困难",
-          "desc": "表现出胆管细胞分化表型的肝细胞癌侵袭性强、预后差，是诊断与评估的重点难点。",
+          "id": "item-cfc61b835b64",
+          "name": "具有胆管细胞分化表型HCC的诊断难题",
+          "desc": "侵袭性强",
           "evidence": [
             {
-              "quote": "尤其是表现出胆管细胞分化表型的肝细胞癌 (CK7 或者 CK9阳性HCC)，因其侵袭性强、预后差而成为本项目组关注的重点",
+              "quote": "还可以有效解决具有胆管细胞分化表型的肝细胞癌的诊断难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2568,
-                "end_char": 2627
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ]
-        },
-        {
-          "id": "item-594f693a6906",
-          "name": "肝癌亚型分子与影像关联不清",
-          "desc": "需评价影像特征与肝癌亚型分子标志物的相关性，并关联免疫组化与基因表达。",
-          "evidence": [
-            {
-              "quote": "并研究这些影像特征与肝癌亚型分子标志物的相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 989,
-                "end_char": 1011
+                "start_char": 2767,
+                "end_char": 2793
               },
               "version": "b5184de9f19a5a3e5894"
             }
@@ -95,140 +68,170 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ffd14d4d7e98",
-          "name": "多参数MRI与影像组学自动分割",
-          "desc": "评价MRI的T1mapping、DKI、IVIM等多参数图像特征，利用AI的MRI图像自动分割技术结合影像组学实现术前亚型诊断。",
+          "id": "item-4e07a897a367",
+          "name": "增强MRI与DWI非高斯模型",
+          "desc": "评估微血管侵犯并鉴别ICC",
           "evidence": [
             {
-              "quote": "评价MRI的T1mapping、DKI、IVIM等多参数图像特征，利用人工智能的MRI图像自动分割技术结合影像组学特征实现肝癌各亚型的术前诊断",
+              "quote": "MRI增强扫描、DWI结合非高斯模型不但可以评估HCC的微血管侵犯等生物学行为，鉴别肝内胆管细胞癌（ICC）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 987
+                "start_char": 2712,
+                "end_char": 2765
               },
               "version": "b5184de9f19a5a3e5894"
             }
-          ]
-        },
-        {
-          "id": "item-6704214a35e6",
-          "name": "动物模型与临床研究结合",
-          "desc": "将动物模型与临床研究相结合，前瞻性评估肝癌各亚型的免疫组化、基因表达等生物学行为。",
-          "evidence": [
-            {
-              "quote": "在本项目中，我们将动物模型与临床研究相结合，前瞻性地评估肝癌各亚型的免疫组化、基因表达等生物学行为",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 867,
-                "end_char": 915
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ]
-        },
-        {
-          "id": "item-3a57e3f5e781",
-          "name": "非高斯模型功能MRI序列分析",
-          "desc": "应用增强MRI和功能MRI序列结合不同数学模型开展系统研究。",
-          "evidence": [
-            {
-              "quote": "我们应用了多种先进的影像学技术，特别是增强磁共振成像（MRI）和功能MRI序列，结合不同的数学模型，进行了系统的研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2645,
-                "end_char": 2702
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of the Stretched Exponential and Fractional-order Model in Differentiating Hepatocellular from Intrahepatic Cholangiocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinhuan Xie;Chenhui Li;Qianjuan Chen;Yidi Chen;Huiting Zhang;Liling Long",
+      "id": "out-d5e415f15ea4",
+      "evidence": [
         {
-          "id": "item-bc8469aad64f",
-          "name": "MRI结合非高斯模型评估生物学行为",
-          "desc": "MRI增强扫描、DWI结合非高斯模型可评估HCC微血管侵犯、鉴别肝内胆管细胞癌并解决胆管细胞分化表型HCC的诊断难题。",
-          "evidence": [
-            {
-              "quote": "MRI增强扫描、DWI结合非高斯模型不但可以评估HCC的微血管侵犯等生物学行为，鉴别肝内胆管细胞癌（ICC），还可以有效解决具有胆管细胞分化表型的肝细胞癌的诊断难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2712,
-                "end_char": 2793
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] Value of the Stretched Exponential and Fractional-order Model in Differentiating Hepatocellular from Intrahepatic Cholangiocarcinoma — Jinhuan Xie;Chenhui Li;Qianjuan Chen;Yidi Chen;Huiting Zhang;Liling Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2942,
+            "end_char": 3155
+          },
+          "version": "b5184de9f19a5a3e5894"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative prediction of VETC in hepatocellular carcinoma using non-Gaussian diffusion-weighted imaging at high b values: a pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Chenhui;Wen Yan;Xie Jinhuan;Chen Qianjuan;Dang Yiwu;Zhang Huiting;Guo Hu;Long Liling",
+      "id": "out-dd82755b32db",
+      "evidence": [
         {
-          "id": "item-e5d364571425",
-          "name": "影像组学预测小肝癌微血管侵犯",
-          "desc": "建立MRI影像组学与诺莫图用于小肝癌微血管侵犯的术前预测。",
-          "evidence": [
-            {
-              "quote": "Radiomics and nomogram of magnetic resonance imaging for preoperative prediction of microvascular invasion in small hepatocellular carcinoma",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3779,
-                "end_char": 3918
-              },
-              "version": "b5184de9f19a5a3e5894"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Preoperative prediction of VETC in hepatocellular carcinoma using non-Gaussian diffusion-weighted imaging at high b values: a pilot study — Li Chenhui;Wen Yan;Xie Jinhuan;Chen Qianjuan;Dang Yiwu;Zhang Huiting;Guo Hu;Long Liling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3160,
+            "end_char": 3393
+          },
+          "version": "b5184de9f19a5a3e5894"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磁共振弥散成像参数预测肝细胞癌微血管模式的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈千娟;龙莉玲;李晨晖;谢金桓;张会婷",
+      "id": "out-9bd864851f9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 磁共振弥散成像参数预测肝细胞癌微血管模式的价值 — 陈千娟;龙莉玲;李晨晖;谢金桓;张会婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3398,
+            "end_char": 3449
+          },
+          "version": "b5184de9f19a5a3e5894"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Potential Value of the Stretched Exponential and Fractional Order Calculus Model in Discriminating Between Hepatocellular Carcinoma and Intrahepatic Cholangiocarcinoma: An Animal Experiment of Orthotopic Xenograft Nude Mice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Jinhuan;Li Chenhui;Chen Yidi;Zhang Huiting;Lin Huashan;Yang Guang;Long Liling",
+      "id": "out-caf84d22f3c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Potential Value of the Stretched Exponential and Fractional Order Calculus Model in Discriminating Between Hepatocellular Carcinoma and Intrahepatic Cholangiocarcinoma: An Animal Experiment of Orthotopic Xenograft Nude Mice — Xie Jinhuan;Li Chenhui;Chen Yidi;Zhang Huiting;Lin Huashan;Yang Guang;Long Liling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3454,
+            "end_char": 3767
+          },
+          "version": "b5184de9f19a5a3e5894"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics and nomogram of magnetic resonance imaging for preoperative prediction of microvascular invasion in small hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yi-Di;Zhang Ling;Zhou Zhi-Peng;Lin Bin;Jiang Zi-Jian;Tang Cheng;Dang Yi-Wu;Xia Yu-Wei;Song Bin;Long Li-Ling",
+      "id": "out-131be1ce2304",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics and nomogram of magnetic resonance imaging for preoperative prediction of microvascular invasion in small hepatocellular carcinoma — Chen Yi-Di;Zhang Ling;Zhou Zhi-Peng;Lin Bin;Jiang Zi-Jian;Tang Cheng;Dang Yi-Wu;Xia Yu-Wei;Song Bin;Long Li-Ling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 4033
+          },
+          "version": "b5184de9f19a5a3e5894"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gd-EOB-DTPA-enhanced magnetic resonance imaging may help identify patients with hepatocellular carcinoma eligible for treatment targeted at RAF1",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mo Zhiqing;Ding Hao;Zhou Xiaojiao;Zeng Zisan;Long Liling",
+      "id": "out-1532b83a8ad6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gd-EOB-DTPA-enhanced magnetic resonance imaging may help identify patients with hepatocellular carcinoma eligible for treatment targeted at RAF1 — Mo Zhiqing;Ding Hao;Zhou Xiaojiao;Zeng Zisan;Long Liling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4038,
+            "end_char": 4247
+          },
+          "version": "b5184de9f19a5a3e5894"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-79c26e3681b8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e4d88f8a89c1"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e4d88f8a89c1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ffd14d4d7e98"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ffd14d4d7e98"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc8469aad64f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6704214a35e6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e5d364571425"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

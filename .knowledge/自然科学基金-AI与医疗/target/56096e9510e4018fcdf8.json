@@ -2,15 +2,20 @@
   "doc_id": "56096e9510e4018fcdf8",
   "version": "5347d6bdd4db7bed8fbf",
   "source_hash": "8a221ae14ace996f5df362bec3250e380ef2ff070a5f3f447ea65a97dfaf3562",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.813184+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.150333+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f75587aae090",
-          "name": "机器学习驱动的多模态医学数据处理",
-          "desc": "面向疾病预测、医学影像分类与分割等困难问题，研究可临床部署应用的安全机器学习方法。",
+          "id": "item-f586cd4b15d9",
+          "name": "医疗多模态数据机器学习全链路处理",
+          "desc": "异构、标注匮乏、跨机构共享隐私风险",
           "evidence": [
             {
-              "quote": "机器学习已被用于解决如疾病预测、医学影像分类和分割等困难问题",
+              "quote": "针对医疗多模态数据普遍存在的异构性强、高质量标注匮乏以及跨机构共享隐私泄露风险高等关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 680
+                "start_char": 2927,
+                "end_char": 2973
               },
               "version": "5347d6bdd4db7bed8fbf"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-41e4c0a574ae",
-          "name": "现有方法缺临床导向且难应对不完整与隐私问题",
-          "desc": "已有方法在设计上缺少临床需求和先验知识导向，难以解决临床数据不完整、数据安全保护以及多模态等问题，无法体现机器学习优势。",
+          "id": "item-fdd71e7e8d7e",
+          "name": "多模态数据异构、标注匮乏、隐私泄露风险高",
+          "desc": "关键科学问题",
           "evidence": [
             {
-              "quote": "然而，已有方法在设计上缺少临床需求和先验知识的导向，且难以解决临床数据不完整和数据安全保护以及多模态等问题，无法体现机器学习的优势",
+              "quote": "针对医疗多模态数据普遍存在的异构性强、高质量标注匮乏以及跨机构共享隐私泄露风险高等关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 858
+                "start_char": 2927,
+                "end_char": 2973
               },
               "version": "5347d6bdd4db7bed8fbf"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e7d4b137d5b7",
-          "name": "多模态协同感知与隐私计算安全机器学习",
-          "desc": "构建视觉语言大模型引导的小样本跨模态学习框架，提出通用多器官联合分割框架UniMOS与非对称分层3D异常检测网络，并建立基于扩散模型的差分隐私生成体系与抗压缩身份保护机制。",
+          "id": "item-1f32f660521c",
+          "name": "VLM引导的小样本跨模态学习框架",
+          "desc": "解决罕见数据特征对齐",
           "evidence": [
             {
-              "quote": "为此，项目拟研究可临床部署应用的安全机器学习方法",
+              "quote": "构建了基于视觉语言大模型（VLM）引导的小样本跨模态学习框架",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 860,
-                "end_char": 883
+                "start_char": 3022,
+                "end_char": 3051
               },
               "version": "5347d6bdd4db7bed8fbf"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-880c35d0ce0d",
+          "name": "通用多器官联合分割框架UniMOS",
+          "desc": "解决单中心标签不全",
+          "evidence": [
+            {
+              "quote": "提出了通用多器官联合分割框架（UniMOS）及非对称分层3D异常检测网络，攻克了临床“单中心标签不全”及微小目标特征难以捕捉的瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3125,
+                "end_char": 3189
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1f18ee4ae8e6",
+          "name": "基于扩散模型的差分隐私生成体系dp-promise",
+          "desc": "隐私安全生成",
+          "evidence": [
+            {
+              "quote": "建立了基于扩散模型的差分隐私生成体系（dp-promise）与抗压缩身份保护机制（GAP-Diff）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3298
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c997b7b5c6ce",
-          "name": "发表高水平学术论文26篇",
-          "desc": "累计发表高水平学术论文26篇，涵盖USENIX Security、NDSS、NeurIPS、ICCV、AAAI等顶级会议及IEEE TDSC、TGRS等权威期刊；构建并开源含71万样本的医疗多模态对抗防御基准数据库。",
+          "id": "item-069e57bbce3c",
+          "name": "论文与对抗防御基准库",
+          "desc": "论文26篇，71万样本基准数据库",
           "evidence": [
             {
               "quote": "本项目累计发表高水平学术论文 26 篇",
@@ -99,44 +139,537 @@
               "version": "5347d6bdd4db7bed8fbf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0352b0fb8c76",
+          "name": "UniMOS分割提升",
+          "desc": "部分标注条件下Dice提升3%-5%",
+          "evidence": [
+            {
+              "quote": "UniMOS 在部分标注条件下使多器官分割 Dice 系数提升 3%-5%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3569,
+                "end_char": 3605
+              },
+              "version": "5347d6bdd4db7bed8fbf"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f75587aae090"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-41e4c0a574ae"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADDM: Adversarial Defenses with Diffusion Model for Medical Imaging Data Mining",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yimin He;Shuchao Pang;Anan Du;Hechang Chen;Lele Cong;Mehmet A Orgun",
+      "id": "out-1069a68e9c7d",
+      "evidence": [
+        {
+          "quote": "[会议论文] ADDM: Adversarial Defenses with Diffusion Model for Medical Imaging Data Mining — Yimin He;Shuchao Pang;Anan Du;Hechang Chen;Lele Cong;Mehmet A Orgun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3738,
+            "end_char": 3893
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-41e4c0a574ae"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e7d4b137d5b7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UniADS: Universal Architecture-Distiller Search for Distillation Gap",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Lu;Zhenghan Chen;Xiaoyu Lu;Yihang Rao;Lujun Li;Shuchao Pang",
+      "id": "out-7423d8d41f4e",
+      "evidence": [
+        {
+          "quote": "[会议论文] UniADS: Universal Architecture-Distiller Search for Distillation Gap — Liming Lu;Zhenghan Chen;Xiaoyu Lu;Yihang Rao;Lujun Li;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3898,
+            "end_char": 4041
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7d4b137d5b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c997b7b5c6ce"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UniMOS: A Universal Framework For Multi-Organ Segmentation Over Label-Constrained Datasets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Can Li;Sheng Shao;Junyi Qu;Shuchao Pang;Mehmet A. Orgun",
+      "id": "out-94a78126f38c",
+      "evidence": [
+        {
+          "quote": "[会议论文] UniMOS: A Universal Framework For Multi-Organ Segmentation Over Label-Constrained Datasets — Can Li;Sheng Shao;Junyi Qu;Shuchao Pang;Mehmet A. Orgun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4046,
+            "end_char": 4200
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CDSRNP: Cross-Domain Sequential Recommendation via Neural Process",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haipeng Li;Jiangxia Cao;Yiwen Gao;Yunhuai Liu;Shuchao Pang",
+      "id": "out-96ea5e2162c5",
+      "evidence": [
+        {
+          "quote": "[会议论文] CDSRNP: Cross-Domain Sequential Recommendation via Neural Process — Haipeng Li;Jiangxia Cao;Yiwen Gao;Yunhuai Liu;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4205,
+            "end_char": 4337
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "利用文本和2D边界框同时生成多个3D物体的方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "逄淑超;孙绍荣;姚亚洲;黄小水",
+      "id": "out-a3fb77625a58",
+      "evidence": [
+        {
+          "quote": "[专利] 利用文本和2D边界框同时生成多个3D物体的方法及系统 — 逄淑超;孙绍荣;姚亚洲;黄小水",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4390
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PriDM: Effective and Universal Private Data Recovery via Diffusion Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuchao Pang;Yihang Rao;Zhigang Lu;Haichen Wang;Yongbin Zhou;Minhui Xue",
+      "id": "out-2a32c9a3d952",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PriDM: Effective and Universal Private Data Recovery via Diffusion Models — Shuchao Pang;Yihang Rao;Zhigang Lu;Haichen Wang;Yongbin Zhou;Minhui Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4395,
+            "end_char": 4548
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anti-AsynDGAN: Black-box Membership Inference Attacks Against Medical Distributed Generation Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Chen;Shuchao Pang;Rui Zhang",
+      "id": "out-fc6c8935cbbd",
+      "evidence": [
+        {
+          "quote": "[会议论文] Anti-AsynDGAN: Black-box Membership Inference Attacks Against Medical Distributed Generation Models — Yue Chen;Shuchao Pang;Rui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4553,
+            "end_char": 4692
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GAP-Diff: Protecting JPEG-Compressed Images from Diffusion-based Facial Customization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haotian Zhu;Shuchao Pang;Zhigang Lu;Yongbin Zhou;Minhui Xue",
+      "id": "out-428dc477184c",
+      "evidence": [
+        {
+          "quote": "[会议论文] GAP-Diff: Protecting JPEG-Compressed Images from Diffusion-based Facial Customization — Haotian Zhu;Shuchao Pang;Zhigang Lu;Yongbin Zhou;Minhui Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4697,
+            "end_char": 4850
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CIARD: Cyclic Iterative Adversarial Robustness Distillation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Lu;Shuchao Pang;Xu Zheng;Xiang Gu;Anan Du;Yunhuai Liu;Yongbin Zhou",
+      "id": "out-a0081f1c67b6",
+      "evidence": [
+        {
+          "quote": "[会议论文] CIARD: Cyclic Iterative Adversarial Robustness Distillation — Liming Lu;Shuchao Pang;Xu Zheng;Xiang Gu;Anan Du;Yunhuai Liu;Yongbin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4855,
+            "end_char": 4996
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Veil Privacy on Visual Data: Concealing Privacy for Humans, Unveiling for DNNs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuchao Pang;Ruhao Ma;Bing Li;Yongbin Zhou;Yazhou Yao",
+      "id": "out-0773416ca5d9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Veil Privacy on Visual Data: Concealing Privacy for Humans, Unveiling for DNNs — Shuchao Pang;Ruhao Ma;Bing Li;Yongbin Zhou;Yazhou Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5002,
+            "end_char": 5142
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Multimodal Prompt Tuning: Boost Few-Shot Learning with VLM-Guided Point Cloud Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Gu;Shuchao Pang;Anan Du;Yifei Wang;Jixiang Miao;Jorge Díez",
+      "id": "out-cae68e7d6755",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dynamic Multimodal Prompt Tuning: Boost Few-Shot Learning with VLM-Guided Point Cloud Models — Xiang Gu;Shuchao Pang;Anan Du;Yifei Wang;Jixiang Miao;Jorge Díez",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5148,
+            "end_char": 5313
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CLEAR: A Clean-Label Backdoor Attack via Representation-Guided Trigger Embedding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Wu;Haipeng Li;Di Wu;Shuchao Pang",
+      "id": "out-807b448a00d9",
+      "evidence": [
+        {
+          "quote": "[会议论文] CLEAR: A Clean-Label Backdoor Attack via Representation-Guided Trigger Embedding — Zhan Wu;Haipeng Li;Di Wu;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5319,
+            "end_char": 5445
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MAFFN-SAT: 3D Point Cloud Defense via Multi-view Adaptive Feature Fusion and Smooth Adversarial Training",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shen Zhang;Anan Du;Jue Zhang;Yiwen Gao;Shuchao Pang",
+      "id": "out-da3badc3a43b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MAFFN-SAT: 3D Point Cloud Defense via Multi-view Adaptive Feature Fusion and Smooth Adversarial Training — Shen Zhang;Anan Du;Jue Zhang;Yiwen Gao;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5451,
+            "end_char": 5615
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multimodal Adversarial Database: Towards A Comprehensive Assessment of Adversarial Attacks and Defenses on Medical Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junyao Hu;Yimin He;Weiyu Zhang;Shuchao Pang;Ruhao Ma;Anan Du",
+      "id": "out-f7d06f212652",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Multimodal Adversarial Database: Towards A Comprehensive Assessment of Adversarial Attacks and Defenses on Medical Images — Junyao Hu;Yimin He;Weiyu Zhang;Shuchao Pang;Ruhao Ma;Anan Du",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5621,
+            "end_char": 5813
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种针对点云大模型的多模态动态微调方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "逄淑超;顾翔;杜安安;王艺菲;苗吉祥",
+      "id": "out-39c6a8fb0896",
+      "evidence": [
+        {
+          "quote": "[专利] 一种针对点云大模型的多模态动态微调方法及系统 — 逄淑超;顾翔;杜安安;王艺菲;苗吉祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5819,
+            "end_char": 5866
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PCL: Point Contrast and Labeling for Weakly Supervised Point Cloud Semantic Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Anan Du;Tianfei Zhou;Shuchao Pang;Qiang Wu;Jian Zhang",
+      "id": "out-265ee412dc67",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PCL: Point Contrast and Labeling for Weakly Supervised Point Cloud Semantic Segmentation — Anan Du;Tianfei Zhou;Shuchao Pang;Qiang Wu;Jian Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5872,
+            "end_char": 6022
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "One Head to Rule Them All: Amplifying LVLM Safety through a Single Critical Attention Head",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junhao Xia;Haotian Zhu;Shuchao Pang;Zhigang Lu;Bing Li;Yongbin Zhou;Minhui Xue",
+      "id": "out-9066e0481713",
+      "evidence": [
+        {
+          "quote": "[会议论文] One Head to Rule Them All: Amplifying LVLM Safety through a Single Critical Attention Head — Junhao Xia;Haotian Zhu;Shuchao Pang;Zhigang Lu;Bing Li;Yongbin Zhou;Minhui Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6028,
+            "end_char": 6205
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reconstruction of Differentially Private Text Sanitization via Large Language Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuchao Pang;Zhigang Lu;Haichen Wang;Peng Fu;Yongbin Zhou;Minhui Xue",
+      "id": "out-7d936f75c0d1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Reconstruction of Differentially Private Text Sanitization via Large Language Models — Shuchao Pang;Zhigang Lu;Haichen Wang;Peng Fu;Yongbin Zhou;Minhui Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6211,
+            "end_char": 6372
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stealthy Infiltrations: Backdoor Attacks in Medical Distributed Generative Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Chen;Shuchao Pang;Di Wu;Yunyun Wang;Mehmet A. Orgun",
+      "id": "out-e86b928e2a43",
+      "evidence": [
+        {
+          "quote": "[会议论文] Stealthy Infiltrations: Backdoor Attacks in Medical Distributed Generative Models — Yue Chen;Shuchao Pang;Di Wu;Yunyun Wang;Mehmet A. Orgun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6378,
+            "end_char": 6523
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Asymmetric Student-Teacher Framework for 3D Point Cloud Anomaly Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian Chenming;Pang Shuchao;Du Anan",
+      "id": "out-60f8e7b27df8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hierarchical Asymmetric Student-Teacher Framework for 3D Point Cloud Anomaly Detection — Tian Chenming;Pang Shuchao;Du Anan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6529,
+            "end_char": 6658
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing content-based recommendation via large language model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wentao Xu;Qianqian Xie;Shuo Yang;Jiangxia Cao;Shuchao Pang",
+      "id": "out-8861b7d0d23b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Enhancing content-based recommendation via large language model — Wentao Xu;Qianqian Xie;Shuo Yang;Jiangxia Cao;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6664,
+            "end_char": 6794
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Point-Level Label-Free Segmentation Framework for 3D Point Cloud Semantic Mining",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Anan Du;Shuchao Pang;Mehmet Orgun",
+      "id": "out-83a063b0e61a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Point-Level Label-Free Segmentation Framework for 3D Point Cloud Semantic Mining — Anan Du;Shuchao Pang;Mehmet Orgun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6800,
+            "end_char": 6922
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal Robust Prompt Distillation for 3D Point Cloud Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Gu;Liming Lu;Xu Zheng;Anan Du;Yongbin Zhou;Shuchao Pang",
+      "id": "out-170a3d54eb0e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multimodal Robust Prompt Distillation for 3D Point Cloud Models — Xiang Gu;Liming Lu;Xu Zheng;Anan Du;Yongbin Zhou;Shuchao Pang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6928,
+            "end_char": 7061
+          },
+          "version": "5347d6bdd4db7bed8fbf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "会议论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

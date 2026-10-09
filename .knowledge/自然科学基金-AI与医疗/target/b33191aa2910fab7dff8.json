@@ -2,15 +2,20 @@
   "doc_id": "b33191aa2910fab7dff8",
   "version": "623f25da8efb39a1e7c7",
   "source_hash": "e6c0143df8b19b2948f474711b8157cbb8a36ca4ce038e3fb52e76bb0a0c63e4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.273279+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.877690+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0768e38a2b19",
-          "name": "精神疾病跨诊断层级框架研究",
-          "desc": "以DSM等为代表的疾病分类系统是当前精神疾病诊疗体系的基础，需围绕跨诊断难题开展研究。",
+          "id": "item-df401165f5f9",
+          "name": "精神病理学层级框架与跨诊断应用",
+          "desc": "内化障碍",
           "evidence": [
             {
-              "quote": "以DSM等为代表的疾病分类系统是当前精神疾病诊疗体系的基础",
+              "quote": "本项目聚焦层级化跨诊断精神病理学框架下内化障碍的生物学机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 706
-              },
-              "version": "623f25da8efb39a1e7c7"
-            }
-          ]
-        },
-        {
-          "id": "item-13617ed529a0",
-          "name": "精神医学个体化精准诊疗",
-          "desc": "层级框架的跨诊断研究为精神疾病跨诊断病理机制和临床应用开辟新途径，对个体化精准诊疗有重要意义。",
-          "evidence": [
-            {
-              "quote": "将为精神疾病跨诊断的病理机制和临床应用开辟新的途径，对精神医学的个体化精准诊疗有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1023,
-                "end_char": 1066
+                "start_char": 2678,
+                "end_char": 2706
               },
               "version": "623f25da8efb39a1e7c7"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0f4cf74b5c7b",
-          "name": "分类系统无法解释合并症",
-          "desc": "疾病分类系统无法解释广泛的合并症现象，缺乏医生诊断间一致性，一定程度上阻碍生物标记研究和发展。",
+          "id": "item-bfdbb41ba2ed",
+          "name": "DSM分类无法解释合并症且医生诊断间一致性差",
+          "desc": "阻碍生物标记研究",
           "evidence": [
             {
-              "quote": "然而，它无法解释广泛的合并症现象，缺乏医生诊断间的一致性，一定程度上阻碍了生物标记的研究和发展",
+              "quote": "它无法解释广泛的合并症现象，缺乏医生诊断间的一致性，一定程度上阻碍了生物标记的研究和发展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 708,
+                "start_char": 711,
                 "end_char": 754
-              },
-              "version": "623f25da8efb39a1e7c7"
-            }
-          ]
-        },
-        {
-          "id": "item-44c586f14d88",
-          "name": "二分类局限难以刻画共变症状",
-          "desc": "传统疾病分类学严格的二分类局限难以表征复杂、共变的精神疾病症状。",
-          "evidence": [
-            {
-              "quote": "这一层级框架的跨诊断研究，突破传统疾病分类学严格的二分类局限",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 966,
-                "end_char": 995
               },
               "version": "623f25da8efb39a1e7c7"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fb528c2c5569",
-          "name": "双因子层级模型与多模态影像融合",
-          "desc": "通过验证性因子分析确立最优双因子层级模型，分离一般精神病理学因子与一般内化因子，并结合多模态神经影像与机器学习。",
+          "id": "item-0da503723d9f",
+          "name": "双因子层级模型",
+          "desc": "一般精神病理学因子p-factor与一般内化因子",
           "evidence": [
             {
               "quote": "研究基于大规模临床样本，通过验证性因子分析确立了最优的双因子层级模型，成功分离出一般精神病理学因子（p-factor）和一般内化因子",
@@ -108,68 +81,13 @@
               },
               "version": "623f25da8efb39a1e7c7"
             }
-          ]
-        },
-        {
-          "id": "item-32f88c1118b4",
-          "name": "影像-转录组关联分析",
-          "desc": "影像-转录组关联分析鉴定突触传递、钙离子信号通路相关基因集，为跨诊断病理机制提供分子层面证据。",
-          "evidence": [
-            {
-              "quote": "影像-转录组关联分析进一步鉴定出突触传递、钙离子信号通路相关基因集，为理解跨诊断病理机制提供了分子层面证据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3026,
-                "end_char": 3078
-              },
-              "version": "623f25da8efb39a1e7c7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-532a6bfa145e",
-          "name": "p因子与前额叶岛叶扣带回体积减少相关",
-          "desc": "p-factor主要与前额叶-岛叶-扣带回皮层灰质体积减少相关，内化因子则表现边缘-纹状体结构增大与前额-岛叶皮层萎缩的失衡模式。",
-          "evidence": [
-            {
-              "quote": "研究发现，p-factor主要与前额叶-岛叶-扣带回皮层的灰质体积减少相关，而内化因子则表现出边缘-纹状体结构增大与前额-岛叶皮层萎缩的失衡模式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2834,
-                "end_char": 2905
-              },
-              "version": "623f25da8efb39a1e7c7"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-961b05a57b40",
-          "name": "外周生理标记与内化因子显著关联",
-          "desc": "肌肉骨骼、心血管、代谢及免疫系统标记物与内化因子呈现显著关联，揭示精神病理的系统性生物学嵌入特征。",
-          "evidence": [
-            {
-              "quote": "外周生理系统标记物——特别是肌肉骨骼系统（握力、骨密度）、心血管系统（心脏结构功能）、代谢系统（脂质代谢）及免疫系统（炎症指标）——与内化因子呈现显著关联",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2914,
-                "end_char": 2990
-              },
-              "version": "623f25da8efb39a1e7c7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-cb98875ea8cd",
-          "name": "深度神经网络预测模型r=0.24-0.32",
-          "desc": "基于多模态神经影像特征的深度神经网络预测模型在独立测试集上展现显著预测效能，验证客观生物标记辅助评估的可行性。",
+          "id": "item-f9d40bec3ae1",
+          "name": "多模态神经影像深度神经网络预测模型",
+          "desc": "跨诊断层级预测",
           "evidence": [
             {
               "quote": "基于多模态神经影像特征构建的深度神经网络预测模型在独立测试集上展现出显著的预测效能（r=0.24-0.32）",
@@ -181,55 +99,154 @@
               "version": "623f25da8efb39a1e7c7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c58a16d209d1",
+          "name": "p-factor与灰质体积减少相关",
+          "desc": "前额叶-岛叶-扣带回皮层",
+          "evidence": [
+            {
+              "quote": "p-factor主要与前额叶-岛叶-扣带回皮层的灰质体积减少相关，而内化因子则表现出边缘-纹状体结构增大与前额-岛叶皮层萎缩的失衡模式",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2839,
+                "end_char": 2905
+              },
+              "version": "623f25da8efb39a1e7c7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0768e38a2b19"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0f4cf74b5c7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neuroimaging and multiomics reveal cross-scale circuit abnormalities in schizophrenia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-7a3eb5139438",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neuroimaging and multiomics reveal cross-scale circuit abnormalities in schizophrenia — Meng Wang;Hao Yan;Xiaohan Tian;Weihua Yue;Yong Liu;Lingzhong Fan;Ke Hu;Yuqing Sun;Yuxin Zhao;Jing Lou;Ming Song;Peng Li;Jun Chen;Yunchun Chen;Huaning Wang;Wenming Liu;Zhigang Li;Yongfeng Yang;Hua Guo;Luxian Lv;Jun Yan;Huiling Wang;Hongxing Zhang;Huawang Wu;Yuping Ning;Lin Lu;Dai Zhang;Ang Li;Tianzi Jiang;Bing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3244,
+            "end_char": 3652
+          },
+          "version": "623f25da8efb39a1e7c7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0f4cf74b5c7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fb528c2c5569"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The dual nature of neuroticism: Distinct dimensions impact longevity and well-being",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yini He;Jing Xiao;Ke Hu;Tian Gao;Yan Yan;Yu Yu;Lei Wang;Kaixin Li;Wenkun Lei;Kun Zhao;Changsheng Dong;Xiaohan Tian;Chaoyue Ding;Yingjie Peng;Junxing Xian;Shangzheng Huang;Xiya Liu;Yiheng Tu;Long Li;Peng Zhang;Zhanjun Zhang;Sheng He;Ang Li;Bing Liu",
+      "id": "out-5699830f2770",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The dual nature of neuroticism: Distinct dimensions impact longevity and well-being — Yini He;Jing Xiao;Ke Hu;Tian Gao;Yan Yan;Yu Yu;Lei Wang;Kaixin Li;Wenkun Lei;Kun Zhao;Changsheng Dong;Xiaohan Tian;Chaoyue Ding;Yingjie Peng;Junxing Xian;Shangzheng Huang;Xiya Liu;Yiheng Tu;Long Li;Peng Zhang;Zhanjun Zhang;Sheng He;Ang Li;Bing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3657,
+            "end_char": 3996
+          },
+          "version": "623f25da8efb39a1e7c7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fb528c2c5569"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-532a6bfa145e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spontaneous brain regional dynamics contribute to generalizable brain-behaviour associations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian Xiaohan;Peng Yingjie;Liu Shu;Shafiei Golia;Wang Meng;Sun Yuqing;Lou Jing;Xian Junxing;Hu Ke;He Yini;Wang Qi;Ding Chaoyue;Gao Tian;Huang Shangzheng;Li Kaixin;Zuo Xi-Nian;Zhang Zhanjun;Li Ang;Liu Bing",
+      "id": "out-e5e1f9f22069",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spontaneous brain regional dynamics contribute to generalizable brain-behaviour associations — Tian Xiaohan;Peng Yingjie;Liu Shu;Shafiei Golia;Wang Meng;Sun Yuqing;Lou Jing;Xian Junxing;Hu Ke;He Yini;Wang Qi;Ding Chaoyue;Gao Tian;Huang Shangzheng;Li Kaixin;Zuo Xi-Nian;Zhang Zhanjun;Li Ang;Liu Bing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4001,
+            "end_char": 4305
+          },
+          "version": "623f25da8efb39a1e7c7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-32f88c1118b4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cb98875ea8cd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Topological EEG Nonlinear Dynamics Analysis for Emotion Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yan;Xuankun Wu;Chengdong Li;Yini He;Zhicheng Zhang;Huihui Li;Ang Li;Lei Wang",
+      "id": "out-6f54a9facf7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Topological EEG Nonlinear Dynamics Analysis for Emotion Recognition — Yan Yan;Xuankun Wu;Chengdong Li;Yini He;Zhicheng Zhang;Huihui Li;Ang Li;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4310,
+            "end_char": 4466
+          },
+          "version": "623f25da8efb39a1e7c7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical fluctuation shapes a dynamic flow linked to states of consciousness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ang Li;Haiyang Liu;Xu Lei;Yini He;Qian Wu;Yan Yan;Xin Zhou;Xiaohan Tian;Yingjie Peng;Shangzheng Huang;Kaixin Li;Meng Wang;Yuqing Sun;Hao Yan;Cheng Zhang;Sheng He;Ruquan Han;Xiaoqun Wang;Bing Liu",
+      "id": "out-c7a1e16f7e46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical fluctuation shapes a dynamic flow linked to states of consciousness — Ang Li;Haiyang Liu;Xu Lei;Yini He;Qian Wu;Yan Yan;Xin Zhou;Xiaohan Tian;Yingjie Peng;Shangzheng Huang;Kaixin Li;Meng Wang;Yuqing Sun;Hao Yan;Cheng Zhang;Sheng He;Ruquan Han;Xiaoqun Wang;Bing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4471,
+            "end_char": 4754
+          },
+          "version": "623f25da8efb39a1e7c7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

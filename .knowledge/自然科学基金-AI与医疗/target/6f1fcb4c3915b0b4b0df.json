@@ -2,15 +2,20 @@
   "doc_id": "6f1fcb4c3915b0b4b0df",
   "version": "487e72ddc163b7995320",
   "source_hash": "24323ce75d45b383c188b76593e649f93e182e14cf51443d9639a81e8e832a1a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.882635+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:45:44.015545+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4e569af54f36",
-          "name": "HIV病毒储存库与艾滋病根治",
-          "desc": "HIV感染者体内病毒储存库的持续存在是艾滋病无法得到根治的根本原因。",
+          "id": "item-874337b7c938",
+          "name": "HIV单核巨噬细胞病毒储存库",
+          "desc": "病毒储存库使艾滋病无法根治",
           "evidence": [
             {
-              "quote": "HIV感染者体内病毒储存库的持续存在是艾滋病无法得到根治的根本原因。",
+              "quote": "HIV感染者病毒储存库的持续存在是艾滋病无法得到根治的原因之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 666,
-                "end_char": 699
-              },
-              "version": "487e72ddc163b7995320"
-            }
-          ]
-        },
-        {
-          "id": "item-eee9c6ad8611",
-          "name": "单核巨噬细胞储存库研究",
-          "desc": "除CD4阳性T淋巴细胞外，单核巨噬细胞是病毒储存库的重要组成部分。",
-          "evidence": [
-            {
-              "quote": "除CD4阳性T淋巴细胞外，单核巨噬细胞是病毒储存库的重要组成部分。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 700,
-                "end_char": 732
+                "start_char": 2671,
+                "end_char": 2701
               },
               "version": "487e72ddc163b7995320"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0eab0461b0fe",
-          "name": "缺乏识别储存库准种序列手段",
-          "desc": "目前没有直接的手段来识别单核巨噬细胞病毒储存库的准种序列。",
+          "id": "item-1476a5b6fe7c",
+          "name": "缺乏识别单核巨噬细胞储存库准种序列的直接手段",
+          "desc": "无法直接识别",
           "evidence": [
             {
-              "quote": "但是目前没有直接的手段来识别单核巨噬细胞病毒储存库的准种序列。",
+              "quote": "但是目前没有直接的手段来识别单核巨噬细胞病毒储存库的准种序列",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 733,
-                "end_char": 763
-              },
-              "version": "487e72ddc163b7995320"
-            }
-          ]
-        },
-        {
-          "id": "item-0fbaf5789cdc",
-          "name": "病毒储存库演变规律不清",
-          "desc": "需要重建全身不同组织巨噬细胞病毒储存库的传播路径及演变规律。",
-          "evidence": [
-            {
-              "quote": "通过系统分子动力学的研究方法，重建全身不同组织巨噬细胞病毒储存库的传播路径及演变规律",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 978,
-                "end_char": 1019
+                "end_char": 762
               },
               "version": "487e72ddc163b7995320"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-378d592dbb95",
-          "name": "机器学习序列特征识别",
-          "desc": "利用机器学习识别与单核细胞病毒储存库密切相关的重要位点特征并建立预测模型。",
+          "id": "item-7db8fe6ce148",
+          "name": "env序列机器学习预测模型",
+          "desc": "区分单核细胞与T细胞病毒",
           "evidence": [
             {
-              "quote": "利用机器学习找到了与单核细胞病毒储存库密切相关的重要位点特征，并据此建立了有效的预测模型",
+              "quote": "该项目基于env序列，建立了机器学习模型来区分单核细胞中的病毒和T细胞中HIV 病毒",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 784,
-                "end_char": 827
+                "start_char": 3046,
+                "end_char": 3087
               },
               "version": "487e72ddc163b7995320"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3047e8d3ab82",
-          "name": "单拷贝基因组与深度测序",
-          "desc": "结合单拷贝基因组测序以及深度测序，深入研究单核巨噬细胞病毒储存库准种序列的特征。",
+          "id": "item-2696a136ee5e",
+          "name": "单拷贝基因组扩增测序",
+          "desc": "磁珠分选CD4+和CD14+细胞",
           "evidence": [
             {
-              "quote": "结合单拷贝基因组测序以及深度测序，深入研究单核巨噬细胞病毒储存库准种序列的特征",
+              "quote": "然后通过单拷贝基因组扩增病毒序列，得到193条env C2V3C3序列",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 861,
-                "end_char": 899
+                "start_char": 2891,
+                "end_char": 2925
               },
               "version": "487e72ddc163b7995320"
             }
-          ]
-        },
-        {
-          "id": "item-ab50ee54b9f1",
-          "name": "磁珠分选与单拷贝扩增",
-          "desc": "通过磁珠分选CD4+和CD14+细胞，再通过单拷贝基因组扩增病毒序列。",
-          "evidence": [
-            {
-              "quote": "通过磁珠分选CD4+和CD14+细胞。然后通过单拷贝基因组扩增病毒序列，得到193条env C2V3C3序列。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2872,
-                "end_char": 2926
-              },
-              "version": "487e72ddc163b7995320"
-            }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -149,103 +108,102 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8720ef8f67e1",
-          "name": "B亚型预测模型准确率87.9%",
-          "desc": "识别出5个重要特征并建立机器学习模型，对整个数据集准确率为87.9%、特异性为0.94。",
+          "id": "item-0e68689ba887",
+          "name": "B亚型env模型准确率",
+          "desc": "87.9%，特异性0.94",
           "evidence": [
             {
-              "quote": "对整个数据集的准确率为87.9%（95%CI:（0.85，0.91））。特异性为0.94。",
+              "quote": "对整个数据集的准确率为87.9%（95%CI:（0.85，0.91））。特异性为0.94",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2793,
-                "end_char": 2837
+                "end_char": 2836
               },
               "version": "487e72ddc163b7995320"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-ae5909501e65",
-          "name": "CRF01_AE亚型模型准确率85.39%",
-          "desc": "筛选出6个最重要特征组成的机器学习模型，准确率为85.39%、特异性为0.93。",
+          "id": "item-f9852e0a7d83",
+          "name": "CRF01_AE亚型模型准确率",
+          "desc": "85.39%",
           "evidence": [
             {
-              "quote": "这六个重要特征组成的机器学习模型对整个数据集的准确率为85.39 %（95%CI:（0.79, 0.90））。特异性为0.93。",
+              "quote": "这六个重要特征组成的机器学习模型对整个数据集的准确率为85.39 %（95%CI:（0.79, 0.90））",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2982,
-                "end_char": 3045
+                "end_char": 3035
               },
               "version": "487e72ddc163b7995320"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b6b9ba7d639e",
-          "name": "T细胞与单核细胞储存库序列差异",
-          "desc": "发现感染者中T细胞和单核细胞之间病毒储存库序列存在差异，为根除HIV病毒储存库提供新方向。",
-          "evidence": [
-            {
-              "quote": "进一步分析发现这些感染者中T细胞和单核细胞之间病毒储存库序列存在差异",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2927,
-                "end_char": 2960
-              },
-              "version": "487e72ddc163b7995320"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-eee9c6ad8611"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0eab0461b0fe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning identified genetic features associated with HIV sequences in the monocytes.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaorong Peng;Biao Zhu",
+      "id": "out-de46ffc7b08a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning identified genetic features associated with HIV sequences in the monocytes. — Xiaorong Peng;Biao Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3148,
+            "end_char": 3271
+          },
+          "version": "487e72ddc163b7995320"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0fbaf5789cdc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3047e8d3ab82"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-378d592dbb95"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8720ef8f67e1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ab50ee54b9f1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b6b9ba7d639e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Increase in HIV reservoir and T cell immune response after CoronaVac vaccination in people living with HIV",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaorong Peng;Xueling Zhu;Xiang Liu;Ying Huang;Biao Zhu",
+      "id": "out-50a3bcfe9784",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Increase in HIV reservoir and T cell immune response after CoronaVac vaccination in people living with HIV — Xiaorong Peng;Xueling Zhu;Xiang Liu;Ying Huang;Biao Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3276,
+            "end_char": 3446
+          },
+          "version": "487e72ddc163b7995320"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

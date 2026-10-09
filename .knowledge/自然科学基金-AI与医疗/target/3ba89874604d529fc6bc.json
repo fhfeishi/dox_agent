@@ -2,15 +2,20 @@
   "doc_id": "3ba89874604d529fc6bc",
   "version": "4f51b1011aebdd7212d9",
   "source_hash": "76c9a906fb2026940b0748f25a53e8372f1ae291e27aa0f9730694da60bb66ae",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.480461+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.010479+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a3cd3316c21",
-          "name": "新冠肺炎肺纤维化预测",
-          "desc": "COVID-19全球大流行，可导致肺纤维化严重影响生活质量，需早期识别与预测以提前干预。",
+          "id": "item-79e0c3e8795b",
+          "name": "新冠肺炎后肺纤维化预测",
+          "desc": "部分康复患者出现肺纤维化",
           "evidence": [
             {
-              "quote": "新型冠状病毒肺炎（COVID-19）在全球大流行，国内外研究团队及本课题组前期研究表明COVID-19可导致肺纤维化，严重影响患者生活质量",
+              "quote": "部分患者康复后出现肺纤维化（PCPF），严重影响生活质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 731
-              },
-              "version": "4f51b1011aebdd7212d9"
-            }
-          ]
-        },
-        {
-          "id": "item-b2bc890f7fa3",
-          "name": "疫情防控与病毒性肺炎后遗症评估",
-          "desc": "建立肺纤维化风险预警模型，为COVID-19疫情防控提供依据，并为病毒性肺炎后遗症无创评估提供新方法。",
-          "evidence": [
-            {
-              "quote": "建立肺纤维化风险预警模型，为COVID-19疫情防控提供依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1032,
-                "end_char": 1061
+                "start_char": 2779,
+                "end_char": 2806
               },
               "version": "4f51b1011aebdd7212d9"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5d82cbcd633a",
-          "name": "常规影像检查存在滞后性",
-          "desc": "常规影像学检查存在滞后性，一旦出现典型纤维化影像学表现很难逆转。",
+          "id": "item-ff03a503e8db",
+          "name": "常规影像学检查滞后",
+          "desc": "典型纤维化难逆转",
           "evidence": [
             {
-              "quote": "但是，常规影像学检查存在滞后性，一旦出现典型纤维化影像学表现，很难逆转",
+              "quote": "常规影像学检查存在滞后性，一旦出现典型纤维化表现则难以逆转",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 792
-              },
-              "version": "4f51b1011aebdd7212d9"
-            }
-          ]
-        },
-        {
-          "id": "item-6c3778cde41f",
-          "name": "迫切需要新的影像分析方法",
-          "desc": "迫切需要发展新的医学影像分析方法，充分利用影像中深层次数据信息对肺纤维化早期评估与预测。",
-          "evidence": [
-            {
-              "quote": "迫切需要发展新的医学影像分析方法，充分利用医学影像图像中蕴含的深层次的数据信息（影像组学）用于解析临床信息，对肺纤维化进行早期评估及预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 861
+                "start_char": 2808,
+                "end_char": 2836
               },
               "version": "4f51b1011aebdd7212d9"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31346a9b3fd3",
-          "name": "深度学习分割提取CT定量组学特征",
-          "desc": "通过基于深度学习的分割技术提取薄层CT定量影像组学特征，利用卷积神经网络结合机器学习构建组学预测模型。",
+          "id": "item-fefafa7ced41",
+          "name": "Residual U-Net自动分割与PyRadiomics特征",
+          "desc": "LASSO筛选",
           "evidence": [
             {
-              "quote": "本研究拟通过基于深度学习的分割技术提取薄层CT定量影像组学特征，利用卷积神经网络结合机器学习（支持向量机、逻辑回归、决策树、随机森林等）构建组学预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 906,
-                "end_char": 981
-              },
-              "version": "4f51b1011aebdd7212d9"
-            }
-          ]
-        },
-        {
-          "id": "item-9638b0b1cbba",
-          "name": "临床与组学整合列线图模型",
-          "desc": "采用Residual U-Net自动分割病灶，PyRadiomics提取高通量特征，LASSO筛选后整合临床独立风险因素构建Nomogram。",
-          "evidence": [
-            {
-              "quote": "采用深度学习（Residual U-Net）自动分割肺炎病灶，利用PyRadiomics提取高通量影像组学特征，并通过LASSO回归进行特征筛选。整合临床独立风险因素与影像组学特征，构建联合预测模型（Nomogram），并评估其预测效能",
+              "quote": "采用深度学习（Residual U-Net）自动分割肺炎病灶，利用PyRadiomics提取高通量影像组学特征，并通过LASSO回归进行特征筛选",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3000,
+                "end_char": 3071
+              },
+              "version": "4f51b1011aebdd7212d9"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-592f8aa60b75",
+          "name": "临床-影像组学联合列线图",
+          "desc": "整合临床独立风险因素",
+          "evidence": [
+            {
+              "quote": "整合临床独立风险因素与影像组学特征，构建联合预测模型（Nomogram），并评估其预测效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3073,
                 "end_char": 3117
               },
               "version": "4f51b1011aebdd7212d9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e655ece5e65b",
-          "name": "36.5%患者随访出现肺纤维化",
-          "desc": "36.5%的患者在1-2年随访中出现肺纤维化影像学改变。",
-          "evidence": [
-            {
-              "quote": "36.5%的患者在1-2年随访中出现肺纤维化影像学改变",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3134,
-                "end_char": 3160
-              },
-              "version": "4f51b1011aebdd7212d9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f004541b7cae",
-          "name": "年龄与住院时长为独立预测因素",
-          "desc": "多因素分析确定年龄和住院时长为PCPF独立预测因素。",
-          "evidence": [
-            {
-              "quote": "多因素分析确定年龄（OR=1.04，95%CI: 1.02-1.07）和住院时长（OR=1.06，95%CI: 1.01-1.12）为PCPF独立预测因素",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3165,
-                "end_char": 3241
-              },
-              "version": "4f51b1011aebdd7212d9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-943300ebdaa9",
-          "name": "联合模型AUC 0.868",
-          "desc": "整合临床特征与深度学习-影像组学特征的联合模型在测试集AUC达0.868、灵敏度0.808、特异度0.827，显著优于单纯临床模型。",
+          "id": "item-af9f7694e721",
+          "name": "联合预测模型测试集性能",
+          "desc": "AUC 0.868，优于单纯临床模型0.749",
           "evidence": [
             {
               "quote": "构建的联合预测模型（整合临床特征与深度学习-影像组学特征）在测试集中AUC达0.868（95%CI: 0.783-0.952），灵敏度0.808，特异度0.827，显著优于单纯临床模型（AUC=0.749）",
@@ -181,7 +122,47 @@
               "version": "4f51b1011aebdd7212d9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-fd4e6da0f612",
+          "name": "肺纤维化发生率",
+          "desc": "36.5%的患者1-2年随访出现",
+          "evidence": [
+            {
+              "quote": "36.5%的患者在1-2年随访中出现肺纤维化影像学改变",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3134,
+                "end_char": 3160
+              },
+              "version": "4f51b1011aebdd7212d9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-528a83ecc2a2",
+          "name": "论文专利标准专著",
+          "desc": "论文6篇、授权专利2项、国家团体标准1项等",
+          "evidence": [
+            {
+              "quote": "项目共发表/录用学术论文6篇（其中SCI论文3篇），授权发明专利2项，获省部级/厅级科技奖励2项，参与制定国家团体标准1项、专家共识2部，主编专著1部",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3435,
+                "end_char": 3509
+              },
+              "version": "4f51b1011aebdd7212d9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +170,280 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-3a3cd3316c21"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5d82cbcd633a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5d82cbcd633a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-31346a9b3fd3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9638b0b1cbba"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-943300ebdaa9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-31346a9b3fd3"
+        "item_id": "item-af9f7694e721"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-f004541b7cae"
+        "dimension": "技术",
+        "item_id": "item-592f8aa60b75"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建的联合预测模型（整合临床特征与深度学习-影像组学特征）在测试集中AUC达0.868（95%CI: 0.783-0.952），灵敏度0.808，特异度0.827，显著优于单纯临床模型（AUC=0.749）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3310,
+            "end_char": 3412
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Combined with the semantic features of CT and selected clinical variables, a machine learning model for accurately predicting the prognosis of Omicron was established",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Jin;Zicong Li;Zhikang Deng;Jiayu Nan;Pei Huang;Bingliang Zeng;Bing Fan",
+      "id": "out-2d6a9be3bde9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Combined with the semantic features of CT and selected clinical variables, a machine learning model for accurately predicting the prognosis of Omicron was established — Di Jin;Zicong Li;Zhikang Deng;Jiayu Nan;Pei Huang;Bingliang Zeng;Bing Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3733,
+            "end_char": 3981
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病毒性肺炎与鹦鹉热肺炎诊断及治疗",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾炳亮;范兵;胡志伟",
+      "id": "out-9d988290130f",
+      "evidence": [
+        {
+          "quote": "[专著] 病毒性肺炎与鹦鹉热肺炎诊断及治疗 — 曾炳亮;范兵;胡志伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4019
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型冠状病毒肺炎感染后肺纤维化的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王牧娟;姜敏;范兵",
+      "id": "out-b0dc0c5d4854",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 新型冠状病毒肺炎感染后肺纤维化的研究进展 — 王牧娟;姜敏;范兵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4024,
+            "end_char": 4062
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Post-COVID-19 inflammatory fibrotic lesions research: A new perspective of computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang;Pei Huang;Bing Fan",
+      "id": "out-06508ca0e7c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Post-COVID-19 inflammatory fibrotic lesions research: A new perspective of computed tomography — Jie Wang;Pei Huang;Bing Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4197
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "COVID-19影像评估体系研发及推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷平贵;范兵",
+      "id": "out-3033aa7b2b4f",
+      "evidence": [
+        {
+          "quote": "[奖励] COVID-19影像评估体系研发及推广应用 — 雷平贵;范兵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4202,
+            "end_char": 4236
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于特征提取的医学影像智能分析系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范兵;徐华香;徐文斌;黄培;李健",
+      "id": "out-b2759e726d08",
+      "evidence": [
+        {
+          "quote": "[专利] 基于特征提取的医学影像智能分析系统 — 范兵;徐华香;徐文斌;黄培;李健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4281
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of Post-Covid-19 Pulmonary Fibrosis: An Integrated Approach Combining CT Radiomics and Clinical Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mujuan Wang;Pei Huang;Min Jiang;Bing Fan",
+      "id": "out-61a79c536eb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of Post-Covid-19 Pulmonary Fibrosis: An Integrated Approach Combining CT Radiomics and Clinical Characteristics — Mujuan Wang;Pei Huang;Min Jiang;Bing Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4286,
+            "end_char": 4457
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的多模态医学影像采集装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷平贵;王平鲜;范兵;杨贤",
+      "id": "out-d7521b989ce3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的多模态医学影像采集装置 — 雷平贵;王平鲜;范兵;杨贤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4462,
+            "end_char": 4502
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像分析用观察设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范兵;鲍坤旺;王川红;胡少波;董文涛;刘佳琦;徐贵华;曾文凯",
+      "id": "out-3dbbb1884392",
+      "evidence": [
+        {
+          "quote": "[专利] 医学影像分析用观察设备 — 范兵;鲍坤旺;王川红;胡少波;董文涛;刘佳琦;徐贵华;曾文凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4555
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "普通型及重型新型冠状病毒肺炎患者治疗前后的影像变化分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李滋聪;范兵;张华;熊昌辉;刘佳琦;曾炳亮;刘小红;李宗梁",
+      "id": "out-eb64a68bf77d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 普通型及重型新型冠状病毒肺炎患者治疗前后的影像变化分析 — 李滋聪;范兵;张华;熊昌辉;刘佳琦;曾炳亮;刘小红;李宗梁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4561,
+            "end_char": 4626
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型冠状病毒肺炎影像诊断关键技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范兵;徐华香;林小琪",
+      "id": "out-22cd39fa2e4c",
+      "evidence": [
+        {
+          "quote": "[奖励] 新型冠状病毒肺炎影像诊断关键技术及应用 — 范兵;徐华香;林小琪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4668
+          },
+          "version": "4f51b1011aebdd7212d9"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

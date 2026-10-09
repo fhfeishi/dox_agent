@@ -2,15 +2,20 @@
   "doc_id": "65da60b16726eb341516",
   "version": "06ebf7db7ccea6282813",
   "source_hash": "077f9d9b5d2ce37b89b7c57d92140b79939046f9b74f9cb5a072576d72691b76",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:44.102866+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.843433+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c014b20f5af0",
-          "name": "癌症驱动基因识别与靶向治疗",
-          "desc": "准确识别能够推动癌症发展的驱动基因是癌症靶向治疗的关键。",
+          "id": "item-accef4a0cb29",
+          "name": "癌症驱动基因识别",
+          "desc": "精准靶向治疗核心前提",
           "evidence": [
             {
-              "quote": "准确的识别出能够推动癌症发展的驱动基因是癌症靶向治疗的关键。",
+              "quote": "准确识别驱动癌症发生与发展的关键驱动基因，是实现精准靶向治疗的核心前提",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 677
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ]
-        },
-        {
-          "id": "item-fdb99acebcbe",
-          "name": "多机构协同与隐私合规",
-          "desc": "为精准肿瘤学提供兼具隐私保障、技术可行性和临床转化前景的数据不动、模型动的新范式。",
-          "evidence": [
-            {
-              "quote": "为精准肿瘤学提供了兼具隐私保障、技术可行性和临床转化前景的“数据不动、模型动”的新范式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3150,
-                "end_char": 3192
+                "start_char": 2692,
+                "end_char": 2726
               },
               "version": "06ebf7db7ccea6282813"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5579d9a95e38",
-          "name": "高噪声与高异质性",
-          "desc": "在识别癌症驱动基因过程中面临高噪声、高异质性和病人隐私泄漏的问题，为癌症靶向治疗研究发展造成阻碍。",
+          "id": "item-71dcfdeea399",
+          "name": "高维噪声、分子异质性、隐私法规导致数据孤岛",
+          "desc": "现有方法三大挑战",
           "evidence": [
             {
-              "quote": "然而，在识别癌症驱动基因的过程中面临着高噪声、高异质性和病人隐私泄漏的问题，为癌症靶向治疗研究发展造成了阻碍。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 732
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ]
-        },
-        {
-          "id": "item-ebc1fe2e125e",
-          "name": "隐私法规导致数据孤岛",
-          "desc": "多机构协作受限于隐私法规导致数据孤岛，患者身份无法安全对齐。",
-          "evidence": [
-            {
-              "quote": "以及多机构协作受限于隐私法规导致数据孤岛",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2766,
-                "end_char": 2785
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ]
-        },
-        {
-          "id": "item-c778fb6e0714",
-          "name": "驱动信号淹没于高维噪声",
-          "desc": "驱动信号淹没于高维噪声中、患者间分子异质性显著。",
-          "evidence": [
-            {
-              "quote": "现有方法面临三大挑战：驱动信号淹没于高维噪声中、患者间分子异质性显著，以及多机构协作受限于隐私法规导致数据孤岛。",
+              "quote": "现有方法面临三大挑战：驱动信号淹没于高维噪声中、患者间分子异质性显著，以及多机构协作受限于隐私法规导致数据孤岛",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2731,
-                "end_char": 2786
+                "end_char": 2785
               },
               "version": "06ebf7db7ccea6282813"
             }
@@ -113,7 +70,7 @@
         {
           "id": "item-74697714703b",
           "name": "区块链隐私身份系统",
-          "desc": "设计融合可链接环签名、Pedersen承诺与非交互式零知识证明的区块链隐私身份系统，在不暴露真实身份前提下支持跨机构记录安全关联。",
+          "desc": "可链接环签名、Pedersen承诺与零知识证明",
           "evidence": [
             {
               "quote": "我们设计了一种融合可链接环签名、Pedersen承诺与非交互式零知识证明的区块链隐私身份系统",
@@ -124,12 +81,13 @@
               },
               "version": "06ebf7db7ccea6282813"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-eac2fae89217",
-          "name": "多组学与生物功能网络融合",
-          "desc": "提出多组学与生物功能网络融合算法，通过双向随机游走结合统计显著性分析整合多组学数据与通路先验知识。",
+          "id": "item-3b60964cb5fa",
+          "name": "多组学与生物功能网络融合算法",
+          "desc": "双向随机游走",
           "evidence": [
             {
               "quote": "提出一种多组学与生物功能网络融合算法，通过双向随机游走结合统计显著性分析，整合基因组、转录组等多组学数据与通路先验知识，构建个体化分子全景图",
@@ -140,12 +98,13 @@
               },
               "version": "06ebf7db7ccea6282813"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-a4722702803a",
           "name": "联邦非负矩阵分解模型",
-          "desc": "设计联邦非负矩阵分解模型，在原始数据不出域、仅交换隐私保护模型参数的前提下实现协同训练。",
+          "desc": "原始数据不出域",
           "evidence": [
             {
               "quote": "进而设计联邦非负矩阵分解模型，在原始数据不出域、仅交换隐私保护模型参数的前提下实现协同训练",
@@ -156,112 +115,203 @@
               },
               "version": "06ebf7db7ccea6282813"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于驱动基因识别的癌症亚型划分方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋俊蓉;龚元丽;宋智明;蒋颢",
+      "id": "out-959b433cd1fa",
+      "evidence": [
         {
-          "id": "item-81efab5e5c1c",
-          "name": "患者亚型划分与靶点定位",
-          "desc": "基于识别结果结合贝叶斯推荐与Condorcet整合方法，实现患者亚型划分并定位多个亚型特异性潜在靶点。",
-          "evidence": [
-            {
-              "quote": "基于识别结果，进一步结合贝叶斯推荐与Condorcet整合方法，实现患者亚型划分，并定位多个亚型特异性潜在靶点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3062,
-                "end_char": 3116
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[专利] 基于驱动基因识别的癌症亚型划分方法及系统 — 宋俊蓉;龚元丽;宋智明;蒋颢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3211,
+            "end_char": 3252
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于生物功能网络和通路特征优化的癌症驱动基因识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋俊蓉;宋智明;龚元丽;蒋颢",
+      "id": "out-00583243cac7",
+      "evidence": [
         {
-          "id": "item-d98a0e37bde1",
-          "name": "跨机构协同框架建立",
-          "desc": "构建了一个隐私保护的跨机构联邦驱动基因识别框架，有效解决多中心组学数据共享难、协同难、合规难的问题。",
-          "evidence": [
-            {
-              "quote": "本项目构建了一个隐私保护的跨机构联邦驱动基因识别框架",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2790,
-                "end_char": 2815
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[专利] 基于生物功能网络和通路特征优化的癌症驱动基因识别方法 — 宋俊蓉;宋智明;龚元丽;蒋颢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3257,
+            "end_char": 3304
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于联邦迁移学习和深度学习算法的特异性驱动基因和共有驱动基因识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋俊蓉;葛立昌;宋智明;蒋颢;杨润华",
+      "id": "out-e4cf3a040235",
+      "evidence": [
         {
-          "id": "item-ddda4dcd9cd2",
-          "name": "专利与论文产出",
-          "desc": "产出驱动基因识别的癌症亚型划分、生物功能网络驱动基因识别、联邦迁移学习驱动基因识别等专利4项及论文4篇。",
-          "evidence": [
-            {
-              "quote": "Privacy-Preserving Identification of Cancer Subtype-Specific Driver Genes Based on Multigenomics Data with Privatedriver",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3380,
-                "end_char": 3499
-              },
-              "version": "06ebf7db7ccea6282813"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[专利] 基于联邦迁移学习和深度学习算法的特异性驱动基因和共有驱动基因识别方法 — 宋俊蓉;葛立昌;宋智明;蒋颢;杨润华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3309,
+            "end_char": 3368
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Privacy-Preserving Identification of Cancer Subtype-Specific Driver Genes Based on Multigenomics Data with Privatedriver",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junrong Song;Zhiming Song;Jinpeng Zhang;Yuanli Gong",
+      "id": "out-71aa12b1f7bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Privacy-Preserving Identification of Cancer Subtype-Specific Driver Genes Based on Multigenomics Data with Privatedriver — Junrong Song;Zhiming Song;Jinpeng Zhang;Yuanli Gong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3373,
+            "end_char": 3553
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DriverSub-SVM: A Machine Learning Approach for Cancer Subtype Classification by Integrating Patient-Specific and Global Driver Genes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junrong Song;Yuanli Gong;Zhiming Song;Xingui Xu;Kun Qian;Yingbo Liu",
+      "id": "out-064d46347440",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DriverSub-SVM: A Machine Learning Approach for Cancer Subtype Classification by Integrating Patient-Specific and Global Driver Genes — Junrong Song;Yuanli Gong;Zhiming Song;Xingui Xu;Kun Qian;Yingbo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3558,
+            "end_char": 3766
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于可编辑区块链的政府数据目录安全共享模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵雨琦;宋智明;宋俊蓉;姜茸;田生湖;童慧",
+      "id": "out-624300cf54b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于可编辑区块链的政府数据目录安全共享模型 — 赵雨琦;宋智明;宋俊蓉;姜茸;田生湖;童慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 3822
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种同时预测药物-靶点相互作用及药物-疾病关联关系的药物重定位模型构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋俊蓉;杨子龙;宋智明;衡宴;李春宏;蒋颢",
+      "id": "out-d2f655ac5115",
+      "evidence": [
+        {
+          "quote": "[专利] 一种同时预测药物-靶点相互作用及药物-疾病关联关系的药物重定位模型构建方法 — 宋俊蓉;杨子龙;宋智明;衡宴;李春宏;蒋颢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3892
+          },
+          "version": "06ebf7db7ccea6282813"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "隐私保护及安全可控的区块链数字身份模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "闫恩华;宋智明;任志鑫;宋俊蓉;姜茸",
+      "id": "out-4b18eea36e8c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 隐私保护及安全可控的区块链数字身份模型 — 闫恩华;宋智明;任志鑫;宋俊蓉;姜茸",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3897,
+            "end_char": 3943
+          },
+          "version": "06ebf7db7ccea6282813"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c014b20f5af0"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5579d9a95e38"
-      },
-      "basis": "原文明示"
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ebc1fe2e125e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-74697714703b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-eac2fae89217"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-81efab5e5c1c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a4722702803a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d98a0e37bde1"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

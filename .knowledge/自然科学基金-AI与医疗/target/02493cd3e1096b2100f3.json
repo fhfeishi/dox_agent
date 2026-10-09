@@ -2,15 +2,20 @@
   "doc_id": "02493cd3e1096b2100f3",
   "version": "e51b00ec8f419a85f734",
   "source_hash": "0d26fbb3c656ab558ec0fe491cbbcfe6c93026bddfe32315173e349245e530fa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:54.787237+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.169121+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-03391e435fa1",
-          "name": "中医经典名方智能辅助遴选",
-          "desc": "经典名方是中药方剂中最杰出的代表，是中医药传承发展的重要突破口之一。",
+          "id": "item-64511214e835",
+          "name": "中医经典名方遴选",
+          "desc": "经典名方是中药方剂最杰出的代表，是中医药传承发展的重要突破口",
           "evidence": [
             {
-              "quote": "经典名方是中药方剂中最为杰出的代表，是中医药传承发展的重要突破口之一",
+              "quote": "经典名方是中药方剂中最为杰出的代表",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 667,
-                "end_char": 700
-              },
-              "version": "e51b00ec8f419a85f734"
-            }
-          ]
-        },
-        {
-          "id": "item-ddc05719127d",
-          "name": "经典名方知识产权与新品研发",
-          "desc": "为经典名方持续性研究与发布、知识产权保护和中药新药研发提供支持。",
-          "evidence": [
-            {
-              "quote": "以期为经典名方的持续性研究与发布、经典名方知识产权保护和新药研发等方面提供支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 982,
-                "end_char": 1020
+                "end_char": 683
               },
               "version": "e51b00ec8f419a85f734"
             }
@@ -57,32 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be954831c7f0",
-          "name": "遴选标准缺客观量化指标",
-          "desc": "现有经典名方遴选标准缺失客观量化指标，人工遴选难确保可持续性和一致性，可能遗漏有潜在开发价值的方剂。",
+          "id": "item-2f089a7dc782",
+          "name": "遴选缺乏客观量化指标",
+          "desc": "人工遴选难以确保可持续性和一致性",
           "evidence": [
             {
-              "quote": "由于现有经典名方的遴选标准缺失客观量化指标，人工遴选过程难以确保可持续性和一致性，有可能遗漏掉部分有潜在开发价值的方剂",
+              "quote": "由于现有经典名方的遴选标准缺失客观量化指标，人工遴选过程难以确保可持续性和一致性",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 702,
-                "end_char": 760
+                "end_char": 741
               },
               "version": "e51b00ec8f419a85f734"
             }
           ]
         },
         {
-          "id": "item-338c3f097fd5",
-          "name": "评价维度单一与筛选效率低",
-          "desc": "传统方剂评价存在维度单一、客观性不足以及筛选效率低下的核心痛点。",
+          "id": "item-e41594739b95",
+          "name": "人工判别复杂且样本稀缺",
+          "desc": "经典名方人工判别复杂、样本稀缺",
           "evidence": [
             {
-              "quote": "旨在解决传统方剂评价维度单一、客观性不足以及筛选效率低下的核心痛点",
+              "quote": "针对经典名方人工判别的复杂性和样本稀缺性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2737,
-                "end_char": 2769
+                "start_char": 3284,
+                "end_char": 3303
               },
               "version": "e51b00ec8f419a85f734"
             }
@@ -95,63 +84,77 @@
       "state": "has",
       "items": [
         {
-          "id": "item-714be933414b",
-          "name": "NLP与本体语义相似度计算",
-          "desc": "研究自然语言处理技术高效采集基础数据抽取证据信息，并探索使用本体技术计算语义相似度指标。",
+          "id": "item-4a45ca433b83",
+          "name": "复杂网络分析方剂演化",
+          "desc": "对历代方剂进行组合创新视角的系统分析",
           "evidence": [
             {
-              "quote": "研究自然语言处理技术，高效采集基础数据抽取证据信息；探索使用本体技术计算语义相似度指标",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 842,
-                "end_char": 884
-              },
-              "version": "e51b00ec8f419a85f734"
-            }
-          ]
-        },
-        {
-          "id": "item-5e2ca9d4107f",
-          "name": "条件生成对抗网络综合评价模型",
-          "desc": "使用条件生成对抗网络深度学习模型构建综合评价模型，克服指标量化难、样本小难题。",
-          "evidence": [
-            {
-              "quote": "使用条件生成对抗网络深度学习模型构建综合评价模型，克服广义经典名方筛选评价的指标量化难、样本小等难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 886,
-                "end_char": 935
-              },
-              "version": "e51b00ec8f419a85f734"
-            }
-          ]
-        },
-        {
-          "id": "item-654a604de56b",
-          "name": "复杂网络分析方剂演化规律",
-          "desc": "采用复杂网络等AI技术对历代方剂进行组合创新视角的系统分析，揭示经典方剂演化规律。",
-          "evidence": [
-            {
-              "quote": "创新性地采用复杂网络等AI技术，对历代方剂进行组合创新视角的系统分析，揭示了经典方剂演化规律",
+              "quote": "创新性地采用复杂网络等AI技术，对历代方剂进行组合创新视角的系统分析",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2857,
-                "end_char": 2902
+                "end_char": 2890
               },
               "version": "e51b00ec8f419a85f734"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-9989fd0608aa",
+          "id": "item-2af64087a5c2",
+          "name": "大语言模型证据信息抽取",
+          "desc": "对多源证据信息抽取、整理和规范化",
+          "evidence": [
+            {
+              "quote": "采用了最新的大语言模型技术，对多源证据信息进行了高效抽取、整理和规范化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3160
+              },
+              "version": "e51b00ec8f419a85f734"
+            }
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-9b70ca7ed3c4",
+          "name": "功效知识本体",
+          "desc": "古代方剂与现代药品或优势病种功效自动分类",
+          "evidence": [
+            {
+              "quote": "团队构建了功效知识本体，实现了古代方剂与现代已上市药品或中医优势病种的功效自动分类",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3202
+              },
+              "version": "e51b00ec8f419a85f734"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b6df09502429",
+          "name": "综合评价排序算法",
+          "desc": "融合准确Top-k、局部邻域与淘汰策略",
+          "evidence": [
+            {
+              "quote": "研发了融合准确Top-k算法、局部邻域策略及淘汰策略的综合评价排序算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3305,
+                "end_char": 3339
+              },
+              "version": "e51b00ec8f419a85f734"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-64af9c661499",
           "name": "广义经典名方量化指标体系",
-          "desc": "构建涵盖权威性、疗效广泛性、安全性等多个维度的量化指标体系，并对400多部古籍方书进行分级评价。",
+          "desc": "涵盖权威性、疗效广泛性、安全性等维度",
           "evidence": [
             {
               "quote": "构建了涵盖权威性、疗效广泛性、安全性等多个维度的广义经典名方量化指标体系",
@@ -163,12 +166,37 @@
               "version": "e51b00ec8f419a85f734"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c68d05bf2867",
+          "name": "智能辅助遴选示范系统",
+          "desc": "三层架构，实现多维评价、可视化与报告自动生成",
+          "evidence": [
+            {
+              "quote": "成功开发了智能辅助遴选示范系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3341,
+                "end_char": 3355
+              },
+              "version": "e51b00ec8f419a85f734"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-31e2db2e3d66",
-          "name": "46.7万条文献证据知识库",
-          "desc": "采用大语言模型技术抽取整理多源证据，整合46.7万条文献数据，建立含有效率、不良反应发生率及临床结局评估的知识库。",
+          "id": "item-5d2949a283ad",
+          "name": "证据知识库",
+          "desc": "整合46.7万条文献数据",
           "evidence": [
             {
               "quote": "整合了46.7万条文献数据，建立了包含有效率、不良反应发生率及临床结局评估等指标的证据知识库",
@@ -180,41 +208,47 @@
               "version": "e51b00ec8f419a85f734"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c68d05bf2867",
-          "name": "智能辅助遴选示范系统",
-          "desc": "研发融合准确Top-k算法、局部邻域策略及淘汰策略的综合评价排序算法，开发智能辅助遴选示范系统，实现3800首候选方剂的多维度评价。",
+          "id": "item-4791953e88db",
+          "name": "3800首候选方剂评价",
+          "desc": "多维度评价、可视化展示及报告自动生成",
           "evidence": [
             {
-              "quote": "研发了融合准确Top-k算法、局部邻域策略及淘汰策略的综合评价排序算法，成功开发了智能辅助遴选示范系统",
+              "quote": "实现了对3800首候选方剂的多维度评价、可视化展示及报告自动生成",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3305,
-                "end_char": 3355
+                "start_char": 3392,
+                "end_char": 3423
               },
               "version": "e51b00ec8f419a85f734"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3049a9ce67bb",
-          "name": "方剂演化规律研究发表于PNAS",
-          "desc": "方剂演化规律研究发表于美国国家科学院院刊，填补中医药技术体系演化模式研究空白。",
+          "id": "item-80d5fcd3e2d3",
+          "name": "方剂演化规律研究发表",
+          "desc": "发表于《美国国家科学院院刊》",
           "evidence": [
             {
-              "quote": "这项研究发表于《美国国家科学院院刊》，填补了中医药技术体系演化模式研究方面的空白",
+              "quote": "这项研究发表于《美国国家科学院院刊》",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2904,
-                "end_char": 2943
+                "end_char": 2921
               },
               "version": "e51b00ec8f419a85f734"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -222,47 +256,295 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-03391e435fa1"
+        "dimension": "技术",
+        "item_id": "item-b6df09502429"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-be954831c7f0"
+        "item_id": "item-e41594739b95"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对经典名方人工判别的复杂性和样本稀缺性，研发了融合准确Top-k算法、局部邻域策略及淘汰策略的综合评价排序算法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3284,
+            "end_char": 3339
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-64af9c661499"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-be954831c7f0"
+        "item_id": "item-2f089a7dc782"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-714be933414b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e2ca9d4107f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c68d05bf2867"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-654a604de56b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3049a9ce67bb"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了涵盖权威性、疗效广泛性、安全性等多个维度的广义经典名方量化指标体系",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2987,
+            "end_char": 3022
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中成药说明书功能表述现状及建议",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张美微;李可千;姚克宇;朱彦",
+      "id": "out-d32bbd26c0bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中成药说明书功能表述现状及建议 — 张美微;李可千;姚克宇;朱彦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3528,
+            "end_char": 3566
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Weighted Voting Approach for Traditional Chinese Medicine Formula Classification Using Large Language Models: Algorithm Development and Validation Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Zhe;Li Keqian;Peng Suyuan;Liu Lihong;Yang Xiaolin;Yao Keyu;Herre Heinrich;Zhu Yan",
+      "id": "out-b091e7c66a1f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Weighted Voting Approach for Traditional Chinese Medicine Formula Classification Using Large Language Models: Algorithm Development and Validation Study — Wang Zhe;Li Keqian;Peng Suyuan;Liu Lihong;Yang Xiaolin;Yao Keyu;Herre Heinrich;Zhu Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3571,
+            "end_char": 3820
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MedDRA在中国药品监测应用实施的现状分析及建议",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱彦;李庆娜;朱兰;谢江安;姚克宇;黄光瑞;杨啸林;关健",
+      "id": "out-37689161ad06",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MedDRA在中国药品监测应用实施的现状分析及建议 — 朱彦;李庆娜;朱兰;谢江安;姚克宇;黄光瑞;杨啸林;关健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3825,
+            "end_char": 3887
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中成药说明书“主治”项规范化表述探析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张美微;李可千;姚克宇;朱彦",
+      "id": "out-6ca8ff8f3417",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中成药说明书“主治”项规范化表述探析 — 张美微;李可千;姚克宇;朱彦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 3933
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医药领域本体研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐静雯;朱彦",
+      "id": "out-3ebd896aa73c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医药领域本体研究现状 — 徐静雯;朱彦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 3964
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于HPD算法的中药药对挖掘方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛琪;高博;温晶;朱彦;孟祥福",
+      "id": "out-84871e0a99cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于HPD算法的中药药对挖掘方法 — 薛琪;高博;温晶;朱彦;孟祥福",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3969,
+            "end_char": 4009
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医药本体研究思考与展望——从术语集到本体集",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱彦;徐静雯",
+      "id": "out-d62b257c90c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医药本体研究思考与展望——从术语集到本体集 — 朱彦;徐静雯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4014,
+            "end_char": 4051
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "药品剂型标准术语的比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张雨琪;徐昕怡;朱兰;朱彦",
+      "id": "out-5674b27da340",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 药品剂型标准术语的比较研究 — 张雨琪;徐昕怡;朱兰;朱彦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4056,
+            "end_char": 4091
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "现行中医疾病分类标准比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘晶;王哲;刘涛;李宗友;朱彦",
+      "id": "out-13417ecd98b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 现行中医疾病分类标准比较研究 — 刘晶;王哲;刘涛;李宗友;朱彦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4134
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医病机语义模型构建初探",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐静雯;王书童;黄玉燕;刘涛;石英杰;吕淑贞;朱彦;牟冬梅",
+      "id": "out-adf68946fcde",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中医病机语义模型构建初探 — 徐静雯;王书童;黄玉燕;刘涛;石英杰;吕淑贞;朱彦;牟冬梅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4140,
+            "end_char": 4190
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "数智时代背景下的广义经典名方遴选",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李可千;朱彦;姚克宇",
+      "id": "out-a3ff82c157d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 数智时代背景下的广义经典名方遴选 — 李可千;朱彦;姚克宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4196,
+            "end_char": 4231
+          },
+          "version": "e51b00ec8f419a85f734"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      }
+    },
+    "consistent": true
+  }
 }

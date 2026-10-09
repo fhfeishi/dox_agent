@@ -2,15 +2,20 @@
   "doc_id": "bdcb7c197cf678c12dd2",
   "version": "04b3bdd6a3c63eed2c6a",
   "source_hash": "51c116ee7313f1215be1dc6078394c498718b875ac5f5796004802feded2f8b5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.547717+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:09.983258+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-53e4561465f0",
-          "name": "ESCC自适应放疗策略",
-          "desc": "放化综合治疗是局部晚期食管鳞癌重要治疗手段，但五年生存率仅15-30%。",
+          "id": "item-819aa5905b0c",
+          "name": "食管癌精准放疗",
+          "desc": "多模态影像引导自适应放疗",
           "evidence": [
             {
-              "quote": "放化综合治疗是局部晚期ESCC重要治疗手段，但五年生存率仅有15-30%",
+              "quote": "本项目围绕食管癌精准放疗的实际需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 710
-              },
-              "version": "04b3bdd6a3c63eed2c6a"
-            }
-          ]
-        },
-        {
-          "id": "item-0389c21ab619",
-          "name": "提供量体裁衣式个体化治疗方案",
-          "desc": "建立ESCC自适应放疗辅助决策模式，为患者提供量体裁衣式的个体化治疗方案。",
-          "evidence": [
-            {
-              "quote": "最终为ESCC患者提供“量体裁衣”式的个体化治疗方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1040,
-                "end_char": 1065
+                "start_char": 2739,
+                "end_char": 2755
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d5dba37f6e09",
-          "name": "治疗抗拒与食管疗中形变致疗效欠佳",
-          "desc": "治疗抗拒和食管疗中形变是疗效欠佳的可能原因。",
+          "id": "item-f004fd01ae05",
+          "name": "ESCC放化疗疗效欠佳",
+          "desc": "治疗抗拒和食管疗中形变",
           "evidence": [
             {
-              "quote": "治疗抗拒和食管疗中形变是疗效欠佳的可能原因",
+              "quote": "放化综合治疗是局部晚期ESCC重要治疗手段，但五年生存率仅有15-30%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 712,
-                "end_char": 732
-              },
-              "version": "04b3bdd6a3c63eed2c6a"
-            }
-          ]
-        },
-        {
-          "id": "item-04f30f5ea5a5",
-          "name": "需早期预测敏感性与正常组织损伤",
-          "desc": "需基于动态影像信息早期预测ESCC放化疗敏感性及正常组织损伤，制定个体化自适应放疗方案。",
-          "evidence": [
-            {
-              "quote": "若能基于不同患者之间动态影像信息，早期预测ESCC放化疗敏感性及正常组织损伤，制定个体化的自适应放疗方案，对于提高局部晚期ESCC生存时间具有重要临床价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 734,
-                "end_char": 810
+                "start_char": 675,
+                "end_char": 710
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-583535e133e9",
-          "name": "深度学习多模态形变配准算法",
-          "desc": "利用深度学习框架开发CT、CBCT和fMRI等不同模态影像之间的形变配准算法，对放疗过程中解剖及功能变化进行综合评估。",
+          "id": "item-494fe2e1e9f3",
+          "name": "RegGAN多模态配准算法",
+          "desc": "配准时间缩短至7秒",
           "evidence": [
             {
-              "quote": "本项目拟利用深度学习框架开发CT、CBCT和fMRI等不同模态影像之间形变配准算法，对ESCC放疗过程中解剖及功能变化进行综合评估，实现不同模态之间的优势互补",
+              "quote": "项目团队开发了基于深度学习的高精度配准算法（RegGAN），实现了将配准时间缩短至7秒的突破",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 812,
-                "end_char": 890
+                "start_char": 2840,
+                "end_char": 2885
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9735a757abff",
-          "name": "字典学习提取高区分度影像组学特征",
-          "desc": "利用字典学习提取高区分度影像组学特征，评价肿瘤区域内部生物异质性差异，解决放化抵抗和正常组织损伤的早期精准预测问题。",
+          "id": "item-137555cb9e82",
+          "name": "个体化自适应分割模型",
+          "desc": "靶区与危及器官自动分割",
           "evidence": [
             {
-              "quote": "利用字典学习提取高区分度影像组学特征，评价肿瘤区域内部的生物异质性差异，解决ESCC放化抵抗和正常组织损伤的早期精准预测问题",
+              "quote": "基于大规模高质量标注数据集构建了个体化自适应分割模型，快速精准地完成了靶区和危及器官的自动分割",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 892,
-                "end_char": 953
+                "start_char": 2909,
+                "end_char": 2955
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2bc5001e83dd",
+          "name": "磁共振影像组学深度学习多模态联合疗效预测模型",
+          "desc": "同步放化疗疗效预测",
+          "evidence": [
+            {
+              "quote": "团队结合磁共振影像组学特征、深度学习算法及临床数据，建立了多模态联合分析模型，实现了同步放化疗疗效的精准预测，准确率达到71.2%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2998,
+                "end_char": 3062
+              },
+              "version": "04b3bdd6a3c63eed2c6a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,419 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbce8023f192",
-          "name": "RegGAN配准时间缩短至7秒",
-          "desc": "开发基于深度学习的高精度配准算法RegGAN，将配准时间缩短至7秒，显著提升临床应用效率。",
+          "id": "item-81dffdbc88ed",
+          "name": "自动分割Dice与勾画时间",
+          "desc": "Dice超过90%，35分钟缩短至1.2分钟",
           "evidence": [
             {
-              "quote": "开发了基于深度学习的高精度配准算法（RegGAN），实现了将配准时间缩短至7秒的突破，显著提升了临床应用效率",
+              "quote": "平均Dice系数超过90%，将勾画时间从35分钟缩短至1.2分钟",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2844,
-                "end_char": 2897
-              },
-              "version": "04b3bdd6a3c63eed2c6a"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-99d932402a91",
-          "name": "自动分割Dice超90%时间缩短至1.2分钟",
-          "desc": "构建个体化自适应分割模型完成靶区和危及器官自动分割，平均Dice系数超90%，勾画时间从35分钟缩短至1.2分钟。",
-          "evidence": [
-            {
-              "quote": "构建了个体化自适应分割模型，快速精准地完成了靶区和危及器官的自动分割，平均Dice系数超过90%，将勾画时间从35分钟缩短至1.2分钟",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2922,
+                "start_char": 2957,
                 "end_char": 2988
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b5ad163606e4",
-          "name": "疗效预测准确率71.2%",
-          "desc": "结合磁共振影像组学特征、深度学习算法及临床数据建立多模态联合分析模型，同步放化疗疗效预测准确率达71.2%，并成功实现产品化转化。",
+          "id": "item-ded127778fcb",
+          "name": "AccuContour影像处理平台",
+          "desc": "多家国内顶尖医院部署",
           "evidence": [
             {
-              "quote": "建立了多模态联合分析模型，实现了同步放化疗疗效的精准预测，准确率达到71.2%，为个性化治疗方案的优化提供了数据支撑",
+              "quote": "研发的AccuContour（R）影像处理平台已在多家国内顶尖医院部署",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3024,
-                "end_char": 3081
+                "start_char": 3280,
+                "end_char": 3314
               },
               "version": "04b3bdd6a3c63eed2c6a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文12篇，发明专利申请8项",
+          "evidence": [
+            {
+              "quote": "发表SCI论文12篇（4篇为一区论文），并申请了8项国家发明专利",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3247,
+                "end_char": 3278
+              },
+              "version": "04b3bdd6a3c63eed2c6a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-53e4561465f0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d5dba37f6e09"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种测量MR-linac配准误差的质量保证流程研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "殷培钧;虞刚;尹勇;李振江",
+      "id": "out-a6dc03d59e9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 一种测量MR-linac配准误差的质量保证流程研究 — 殷培钧;虞刚;尹勇;李振江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3608,
+            "end_char": 3655
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d5dba37f6e09"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-583535e133e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based deep learning radiomics and hematological biomarkers in the assessment of pathological complete response to neoadjuvant chemoradiotherapy in patients with esophageal squamous cell carcinoma: A two-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Zhang;Yukun Lu;Hongfu Sun;Chuanke Hou;Zichun Zhou;Xiao Liu;Qichao Zhou;Zhenjiang Li;Yong Yin",
+      "id": "out-42f77575144e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based deep learning radiomics and hematological biomarkers in the assessment of pathological complete response to neoadjuvant chemoradiotherapy in patients with esophageal squamous cell carcinoma: A two-center study — Meng Zhang;Yukun Lu;Hongfu Sun;Chuanke Hou;Zichun Zhou;Xiao Liu;Qichao Zhou;Zhenjiang Li;Yong Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3660,
+            "end_char": 3984
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-583535e133e9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fbce8023f192"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Patient-specific daily updated deep learning auto-segmentation for MRI-guided adaptive radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenjiang Li;Wei Zhang;Baosheng Li;Jian Zhu;Yinglin Peng;Chengze Li;Jennifer Zhu;Qichao Zhou;Yong Yin",
+      "id": "out-2fba451ecbcb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Patient-specific daily updated deep learning auto-segmentation for MRI-guided adaptive radiotherapy — Zhenjiang Li;Wei Zhang;Baosheng Li;Jian Zhu;Yinglin Peng;Chengze Li;Jennifer Zhu;Qichao Zhou;Yong Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3989,
+            "end_char": 4198
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9735a757abff"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5ad163606e4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using RegGAN to generate synthetic CT images from CBCT images acquired with different linear accelerators",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenkai Li;Qingxian Zhang;Haodong Li;Lingke Kong;Huadong Wang;Benzhe Liang;Mingming Chen;Xiaohang Qin;Yong Yin;Zhenjiang Li",
+      "id": "out-a796b1fd5e33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using RegGAN to generate synthetic CT images from CBCT images acquired with different linear accelerators — Zhenkai Li;Qingxian Zhang;Haodong Li;Lingke Kong;Huadong Wang;Benzhe Liang;Mingming Chen;Xiaohang Qin;Yong Yin;Zhenjiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4203,
+            "end_char": 4440
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于1.5T MR-linac在线自适应MR引导放疗在肝癌患者中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘鑫;王华东;李昊东;马文成;李振江;尹勇",
+      "id": "out-a3325e10e81d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于1.5T MR-linac在线自适应MR引导放疗在肝癌患者中的应用 — 刘鑫;王华东;李昊东;马文成;李振江;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4445,
+            "end_char": 4510
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of effective dose to immune cells and vertebral marrow dose with hematologic toxicity during neoadjuvant chemoradiotherapy in esophageal squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Zhang;Zhenjiang Li;Yong Yin",
+      "id": "out-f20e5d4321e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of effective dose to immune cells and vertebral marrow dose with hematologic toxicity during neoadjuvant chemoradiotherapy in esophageal squamous cell carcinoma — Meng Zhang;Zhenjiang Li;Yong Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4515,
+            "end_char": 4728
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feasibility study of adaptive radiotherapy for esophageal cancer using artificial intelligence autosegmentation based on MR-Linac",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "huadong wang;xin liu;yajun song;peijun yin;jingmin zou;xihua shi;yong yin;zhenjiang li",
+      "id": "out-4fe4b28e30c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feasibility study of adaptive radiotherapy for esophageal cancer using artificial intelligence autosegmentation based on MR-Linac — huadong wang;xin liu;yajun song;peijun yin;jingmin zou;xihua shi;yong yin;zhenjiang li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4733,
+            "end_char": 4957
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical application of MR-Linac in tumor radiotherapy: a systematic review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Liu;Zhenjiang Li;Yong Yin",
+      "id": "out-6d98d7167f9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical application of MR-Linac in tumor radiotherapy: a systematic review — Xin Liu;Zhenjiang Li;Yong Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4962,
+            "end_char": 5075
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "食管癌精准放疗临床集成解决方案的研发与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄伟;李宝生;刘波;孙新臣;朱健;周琦超;李振江",
+      "id": "out-3a6aee5cf2dd",
+      "evidence": [
+        {
+          "quote": "[奖励] 食管癌精准放疗临床集成解决方案的研发与应用 — 黄伟;李宝生;刘波;孙新臣;朱健;周琦超;李振江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5080,
+            "end_char": 5132
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "食管癌新辅助放化疗预后影响因素和复发模式预测研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张萌;李振江;尹勇",
+      "id": "out-7fb9a2025b17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 食管癌新辅助放化疗预后影响因素和复发模式预测研究进展 — 张萌;李振江;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5138,
+            "end_char": 5182
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Analysis of treatment response based on 1.5T magnetic resonance imaging texture analysis in stereotactic body radiotherapy of hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "zhang meng;li zhen jiang;yin yong",
+      "id": "out-44929b44f1f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Analysis of treatment response based on 1.5T magnetic resonance imaging texture analysis in stereotactic body radiotherapy of hepatocellular carcinoma — zhang meng;li zhen jiang;yin yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5188,
+            "end_char": 5380
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于MR的ART工作流程在头颈部肿瘤放射治疗中的剂量验证",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李振凯;王华东;尹勇;李振江",
+      "id": "out-3f09489ebce9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于MR的ART工作流程在头颈部肿瘤放射治疗中的剂量验证 — 李振凯;王华东;尹勇;李振江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5386,
+            "end_char": 5437
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MR引导食管癌自适应放射治疗研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王华东;李昊东;李振江;尹勇",
+      "id": "out-b43bb489572c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MR引导食管癌自适应放射治疗研究进展 — 王华东;李昊东;李振江;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5443,
+            "end_char": 5484
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Influence and optimization strategy of the magnetic field in 1.5T MR-linac liver stereotactic radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Liu;Peijun Yin;Tengxiang Li;Yong Yin;Zhenjiang Li",
+      "id": "out-3c28052a582d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Influence and optimization strategy of the magnetic field in 1.5T MR-linac liver stereotactic radiotherapy — Xin Liu;Peijun Yin;Tengxiang Li;Yong Yin;Zhenjiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5490,
+            "end_char": 5658
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Influence of different factors on registration error in a 1.5 T MR-guided linac",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peijun Yin;Gang Yu;Chuanke Hou;Xuechun Li;Mengdi Sun;Kuo Li;Zhen Cui;Pei Liu;Xihua Shi;Qiang Zhang;Yukai Chen;Bingjie Pi;Yong Yin;Zhenjiang Li",
+      "id": "out-32e788e45048",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Influence of different factors on registration error in a 1.5 T MR-guided linac — Peijun Yin;Gang Yu;Chuanke Hou;Xuechun Li;Mengdi Sun;Kuo Li;Zhen Cui;Pei Liu;Xihua Shi;Qiang Zhang;Yukai Chen;Bingjie Pi;Yong Yin;Zhenjiang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5664,
+            "end_char": 5894
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤个体化放射治疗关键技术研究及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱健;李宝生;周琦超;牛四杰;高希占;侯震;李振江;仇清涛;于海宁;白曈",
+      "id": "out-c6ea3abb0f6c",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤个体化放射治疗关键技术研究及应用 — 朱健;李宝生;周琦超;牛四杰;高希占;侯震;李振江;仇清涛;于海宁;白曈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5900,
+            "end_char": 5961
+          },
+          "version": "04b3bdd6a3c63eed2c6a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

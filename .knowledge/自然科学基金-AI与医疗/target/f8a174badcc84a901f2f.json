@@ -2,15 +2,20 @@
   "doc_id": "f8a174badcc84a901f2f",
   "version": "b36fcb30ca1b3fab221b",
   "source_hash": "0f5e11cc8e0db5b413d68f480c8eba74ce677e1bbf8b983a8baf0ce1f1c78720",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.807961+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.676229+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6f3d02f21647",
-          "name": "心脏移植急性细胞性排斥反应分级",
-          "desc": "心脏移植是挽救终末心脏病病人生命的最有效治疗方式，术后急性细胞性排斥反应是影响生存期和手术成败的最主要原因之一。",
+          "id": "item-d2fad7aeecae",
+          "name": "心脏移植急性细胞性排斥反应病理分级",
+          "desc": "心肌活检WSI",
           "evidence": [
             {
-              "quote": "心脏移植是挽救终末心脏病病人生命和改善其生活质量的最有效治疗方式。术后急性细胞性排斥反应（ACR）是影响患者生存期和手术成败的最主要原因之一",
+              "quote": "针对心肌活检组织病理图像的病灶检测和正确分级诊断对指导临床早期治疗和提高心脏移植的远期疗效具有重要意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 679,
-                "end_char": 748
-              },
-              "version": "b36fcb30ca1b3fab221b"
-            }
-          ]
-        },
-        {
-          "id": "item-44c6e69c01c3",
-          "name": "ACR早期检测与临床监测",
-          "desc": "为早期发现和临床监测ACR提供一种可靠无创的新手段。",
-          "evidence": [
-            {
-              "quote": "从而为早期发现和临床监测ACR提供一种可靠无创的新手段",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1050,
-                "end_char": 1076
+                "start_char": 2899,
+                "end_char": 2949
               },
               "version": "b36fcb30ca1b3fab221b"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c684a8540ebe",
-          "name": "EMB判读主观且重复性差",
-          "desc": "临床对心内膜心肌活检组织标本的解释和分级依赖医生主观判读，耗时耗力、不确定性高、可重复性差。",
+          "id": "item-65c4ae1b6181",
+          "name": "EMB判读依赖主观，耗时可重复性差",
+          "desc": "大尺寸WSI标注成本高",
           "evidence": [
             {
               "quote": "临床实践中对EMB组织标本的解释和分级依赖于医生的主观判读，具有耗时耗力、不确定性高、可重复性差等缺点",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 776,
                 "end_char": 826
-              },
-              "version": "b36fcb30ca1b3fab221b"
-            }
-          ]
-        },
-        {
-          "id": "item-f272c720c815",
-          "name": "全切片病理图像标注成本高",
-          "desc": "大尺寸全切片数字病理图像标注成本高，制约其在病理图像的应用。",
-          "evidence": [
-            {
-              "quote": "然而大尺寸全切片数字病理图像(WSI)的标注成本高，制约其在病理图像的应用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 852,
-                "end_char": 888
               },
               "version": "b36fcb30ca1b3fab221b"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-efbde0cd0032",
-          "name": "半自动半人工辅助标注与细胞核分割",
-          "desc": "通过半自动半人工辅助标注图像解决大数据样本训练问题，采用深度学习结合传统医学图像处理方法实现细胞核精准分割。",
+          "id": "item-e4c577bb1ec2",
+          "name": "半监督深度学习淋巴细胞检测算法",
+          "desc": "大规模高精度数字病理图像",
           "evidence": [
             {
-              "quote": "首先通过半自动半人工辅助标注图像解决大数据样本训练问题；采用深度学习结合传统医学图像处理方法实现细胞核精准分割",
+              "quote": "提出了一种基于大规模高精度的数字病理图像的全新半监督深度学习淋巴细胞检测算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 920,
-                "end_char": 974
+                "start_char": 2988,
+                "end_char": 3025
               },
               "version": "b36fcb30ca1b3fab221b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1c7ded82056f",
-          "name": "深度学习融合网络挖掘定量关系",
-          "desc": "构建深度学习融合网络，挖掘图像标志物、患者临床诊断指标与ACR分级的定量相关关系。",
+          "id": "item-fe3179b6f25b",
+          "name": "ACR智能诊断网络模型",
+          "desc": "自动分级与辅助监测",
           "evidence": [
             {
-              "quote": "构建深度学习融合网络，挖掘图像标志物、患者临床诊断指标与ACR分级的定量相关关系",
+              "quote": "构建了一种智能诊断网络模型，实现了ACR的自动分级和辅助监测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1009,
-                "end_char": 1048
+                "start_char": 3057,
+                "end_char": 3086
               },
               "version": "b36fcb30ca1b3fab221b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-493c6ec7704b",
-          "name": "71例709张病理图像数据集",
-          "desc": "完成71例样本共709张心脏移植多染色病理图像以及临床数据的采集。",
+          "id": "item-cb8972819d38",
+          "name": "病理图像样本",
+          "desc": "71例709张",
           "evidence": [
             {
               "quote": "本研究完成了71例样本共709张心脏移植多染色病理图像以及临床数据的采集",
@@ -147,89 +122,327 @@
               "version": "b36fcb30ca1b3fab221b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-5164b20582b3",
-          "name": "半监督深度学习淋巴细胞检测算法",
-          "desc": "提出基于大规模高精度数字病理图像的全新半监督深度学习淋巴细胞检测算法，并发现验证了区分不同ACR分级的病理图像标志物。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI 4篇，授权专利1项，软著2项",
           "evidence": [
             {
-              "quote": "提出了一种基于大规模高精度的数字病理图像的全新半监督深度学习淋巴细胞检测算法；发现和验证了区分不同ACR分级的病理图像标志物",
+              "quote": "授权了1项专利和2项软件著作权",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2988,
-                "end_char": 3049
+                "start_char": 3255,
+                "end_char": 3269
               },
               "version": "b36fcb30ca1b3fab221b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-03c40556ea9e",
-          "name": "病理图像信息评价系统临床转化",
-          "desc": "研发基于新型深度神经网络的病理图像信息评价系统，并在合作医院进行成果转化，与病理医师判读结果一致性较高。",
-          "evidence": [
-            {
-              "quote": "研发了一款基于新型深度神经网络的病理图像信息评价系统，在合作医院进行成果转化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3091,
-                "end_char": 3128
-              },
-              "version": "b36fcb30ca1b3fab221b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6f3d02f21647"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c684a8540ebe"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的重叠染色体识别和分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "万涛;王子睿;秦曾昌;杜金伟",
+      "id": "out-3dabb1e78642",
+      "evidence": [
+        {
+          "quote": "[专利] 基于机器学习的重叠染色体识别和分割方法 — 万涛;王子睿;秦曾昌;杜金伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3289,
+            "end_char": 3329
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c684a8540ebe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-efbde0cd0032"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robust nuclei segmentation in histopathology using ASPPU-Net and boundary refinement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Wan;Lei Zhao;Hongxiang Feng;Deyu Li;Chao Tong;Zengchang Qin",
+      "id": "out-eab5db2b9ebb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Robust nuclei segmentation in histopathology using ASPPU-Net and boundary refinement — Tao Wan;Lei Zhao;Hongxiang Feng;Deyu Li;Chao Tong;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3334,
+            "end_char": 3490
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-efbde0cd0032"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5164b20582b3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic features on multiparametric MRI for preoperative evaluation of pituitary macroadenomas consistency: Preliminary findings",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Wan;Chunxue Wu;Ming Meng;Tao Liu;Chuzhong Li;Jun Ma;Zengchang Qin",
+      "id": "out-04e00205724d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic features on multiparametric MRI for preoperative evaluation of pituitary macroadenomas consistency: Preliminary findings — Tao Wan;Chunxue Wu;Ming Meng;Tao Liu;Chuzhong Li;Jun Ma;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3495,
+            "end_char": 3702
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1c7ded82056f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-03c40556ea9e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning model for early prediction of sepsis from intensive care unit records",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Zhao;Tao Wan;Deyu Li;Zhengbo Zhang;Zengchang Qin",
+      "id": "out-4c594bca2376",
+      "evidence": [
+        {
+          "quote": "[会议论文] A deep learning model for early prediction of sepsis from intensive care unit records — Rui Zhao;Tao Wan;Deyu Li;Zhengbo Zhang;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3853
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning method for automatic evaluation of diagnostic information from multi-stained histopathological images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junyu Ji;Tao Wan;Dong Chen;Hao Wang;Menghan Zheng;Zengchang Qin",
+      "id": "out-b675a9de6670",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning method for automatic evaluation of diagnostic information from multi-stained histopathological images — Junyu Ji;Tao Wan;Dong Chen;Hao Wang;Menghan Zheng;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 4047
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习和机器学习的病理图像分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "万涛;衣正阳;秦曾昌;陈东",
+      "id": "out-faf4ca1ca9ff",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习和机器学习的病理图像分类方法及系统 — 万涛;衣正阳;秦曾昌;陈东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4052,
+            "end_char": 4097
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多种染色病理图像的诊断信息评估方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "万涛;季君予;秦曾昌;孙中杰",
+      "id": "out-4ae70ba4cb3c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多种染色病理图像的诊断信息评估方法及系统 — 万涛;季君予;秦曾昌;孙中杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4102,
+            "end_char": 4145
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accurate segmentation of overlapping cells in cervical cytology with deep convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Wan;Shusong Xu;Chen Sang;Yulan Jin;Zengchang Qin",
+      "id": "out-73c41fc1a7ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Accurate segmentation of overlapping cells in cervical cytology with deep convolutional neural networks — Tao Wan;Shusong Xu;Chen Sang;Yulan Jin;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4150,
+            "end_char": 4314
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Random neural graph generation with structure evolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuguang Zhou;Zheng He;Tao Wan;Zengchang Qin",
+      "id": "out-6a4d36ab6624",
+      "evidence": [
+        {
+          "quote": "[会议论文] Random neural graph generation with structure evolution — Yuguang Zhou;Zheng He;Tao Wan;Zengchang Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4319,
+            "end_char": 4426
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A lightweight network model for video frame interpolation using spatial pyramids",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiankai Zhuang;Zengchang Qin;Jialu Chen;Tao Wan",
+      "id": "out-a210b4484f1d",
+      "evidence": [
+        {
+          "quote": "[会议论文] A lightweight network model for video frame interpolation using spatial pyramids — Jiankai Zhuang;Zengchang Qin;Jialu Chen;Tao Wan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4432,
+            "end_char": 4568
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性心脏恶性肿瘤分子病理学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪昊;陈东;董方",
+      "id": "out-5aa2ac730146",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 原发性心脏恶性肿瘤分子病理学研究进展 — 汪昊;陈东;董方",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4574,
+            "end_char": 4609
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多种染色病理图像的非炎性主动脉中膜变性计算机辅助诊断方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪昊;孙中杰;陈东;万涛;梁智勇;连国亮;董方;龚珊珊;季君予;秦曾昌",
+      "id": "out-ffa46b1d4527",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多种染色病理图像的非炎性主动脉中膜变性计算机辅助诊断方法 — 汪昊;孙中杰;陈东;万涛;梁智勇;连国亮;董方;龚珊珊;季君予;秦曾昌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4615,
+            "end_char": 4689
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的多种染色病理图像分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "万涛;秦曾昌;孙中杰;季君予",
+      "id": "out-c20a088529b4",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习的多种染色病理图像分类方法及系统 — 万涛;秦曾昌;孙中杰;季君予",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4695,
+            "end_char": 4738
+          },
+          "version": "b36fcb30ca1b3fab221b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

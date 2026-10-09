@@ -2,15 +2,20 @@
   "doc_id": "d0dd1e93ef220e6212de",
   "version": "0c3e0bcc92dd34f8b0a7",
   "source_hash": "ee4578e9d0d597cd117612431a547d6323452900bd498ed0961fd4c38a166b29",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.506376+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.502898+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-84b50a3a4fa5",
-          "name": "医疗健康大数据驱动的临床误诊研判",
-          "desc": "面向千万级诊疗病例，研究大数据与人工智能驱动的全景式临床误诊研判理论与技术。",
+          "id": "item-907f64287f26",
+          "name": "临床误诊研判",
+          "desc": "医疗健康大数据",
           "evidence": [
             {
-              "quote": "因为临床误诊的偶然性、复杂性和社会性等原因，研判的影响因素众多，使得误诊研判也具有“高维”特性，误诊相关研究进展缓慢",
+              "quote": "本项目属于“生物、医学信息系统与技术”领域的面上项目，关注大数据驱动的临床误诊研判理论与方法创新",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 698,
-                "end_char": 755
+                "start_char": 3213,
+                "end_char": 3260
               },
               "version": "0c3e0bcc92dd34f8b0a7"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-149ba4a9928a",
-          "name": "医疗大数据超高维使常规分析难以处理",
-          "desc": "医疗健康大数据具有高度多源、异构、多模态、超高维等特征，常规的大数据分析技术很难处理，误诊研判存在“维数灾难”难题。",
+          "id": "item-2bc9d70a5b29",
+          "name": "传统方法难以处理医疗数据，误诊研判缺乏系统性方法",
+          "desc": "维数灾难",
           "evidence": [
             {
-              "quote": "医疗健康大数据具有高度多源、异构、多模态、超高维等特征，常规的大数据分析技术很难以处理",
+              "quote": "误诊研判长期缺乏系统性方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 693
+                "start_char": 3306,
+                "end_char": 3318
               },
               "version": "0c3e0bcc92dd34f8b0a7"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-56cd58d78396",
-          "name": "知识智能体降维降噪与全景式误诊研判",
-          "desc": "创新大数据分析与人工智能技术，研究知识智能体降维降噪及实时决策处理技术，设计时空智能识别码与自主触发器，挖掘误诊像素与像素块并构建误诊画像、误诊事理图谱与知识图谱。",
+          "id": "item-181d80312551",
+          "name": "误诊像素与像素块挖掘及误诊知识图谱与事理图谱",
+          "desc": "误诊规律结构化表达",
           "evidence": [
             {
-              "quote": "项目创新大数据分析与人工智能技术，研究知识智能体降维降噪及实时决策处理技术解决上述共性的“高维”难题",
+              "quote": "构建了误诊知识图谱与误诊事理图谱框架，实现了误诊规律的结构化表达",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 806
+                "start_char": 3496,
+                "end_char": 3527
               },
               "version": "0c3e0bcc92dd34f8b0a7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f95175550837",
+          "name": "知识智能体降维降噪与实时研判机制",
+          "desc": "解决维数灾难",
+          "evidence": [
+            {
+              "quote": "提出了知识智能体驱动的降维降噪与实时研判机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3529,
+                "end_char": 3550
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,736 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7639d496ab46",
-          "name": "研发误诊智能自主研判平台并发表39篇论文",
-          "desc": "研发高维精准全景式误诊智能自主研判平台，可对千万级病例进行结构化处理、跨病种误诊规律挖掘与智能化呈现；发表学术论文39篇（SCI/SSCI 35篇），登记软件著作权2项，培养博士生11人、硕士26人。",
+          "id": "item-052fc80707cd",
+          "name": "高维精准全景式误诊智能自主研判平台",
+          "desc": "集成误诊挖掘、知识图谱构建、决策分析、可视化",
           "evidence": [
             {
-              "quote": "项目研发了“高维精准全景式误诊智能自主研判平台”，集成误诊挖掘、知识图谱构建、决策分析、可视化展示等功能",
+              "quote": "项目研发了“高维精准全景式误诊智能自主研判平台”",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3730,
-                "end_char": 3781
+                "end_char": 3753
               },
               "version": "0c3e0bcc92dd34f8b0a7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "论文39篇，专利2项，软著2项",
+          "evidence": [
+            {
+              "quote": "项目执行期间共发表学术论文39篇，其中SCI/SSCI论文35篇、EI论文1篇，CSSCI/CSCD论文3篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3868,
+                "end_char": 3921
+              },
+              "version": "0c3e0bcc92dd34f8b0a7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-84b50a3a4fa5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-149ba4a9928a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Flexible Job Shop Scheduling with Peak Power Consumption Constraints: Mathematical Models and an Improved Memetic Algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Yuan;Xiaomin Zhu;Jinsheng Gao;Runtong Zhang",
+      "id": "out-e8571f1c69ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Flexible Job Shop Scheduling with Peak Power Consumption Constraints: Mathematical Models and an Improved Memetic Algorithm — Shuai Yuan;Xiaomin Zhu;Jinsheng Gao;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4056,
+            "end_char": 4237
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-149ba4a9928a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-56cd58d78396"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合先验知识与多源异构数据的临床误诊风险预测与特征识别研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王笑辰;李世娟;黄文胜;赵红梅;张润彤",
+      "id": "out-a3cbfa8559c4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 融合先验知识与多源异构数据的临床误诊风险预测与特征识别研究 — 王笑辰;李世娟;黄文胜;赵红梅;张润彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4242,
+            "end_char": 4299
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-56cd58d78396"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7639d496ab46"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Beyond Likes and Comments: How Social Proof Influences Consumer Impulse Buying on Short-form Video Platforms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wensheng Huang;Xiaochen Wang;Qianyao Zhang;Junhui Han;Runtong Zhang",
+      "id": "out-823fc22300cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Beyond Likes and Comments: How Social Proof Influences Consumer Impulse Buying on Short-form Video Platforms — Wensheng Huang;Xiaochen Wang;Qianyao Zhang;Junhui Han;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4304,
+            "end_char": 4488
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Systematic Review of Generative Adversarial Imputation Network in Missing Data Imputation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuqing Zhang;Runtong Zhang;Butian Zhao",
+      "id": "out-e300fe845d59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Systematic Review of Generative Adversarial Imputation Network in Missing Data Imputation — Yuqing Zhang;Runtong Zhang;Butian Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4493,
+            "end_char": 4631
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Influence of Social Embedding on Belief System and Its Application in Online Public Opinion Guidance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Shang;Runtong Zhang;Xiaomin Zhu",
+      "id": "out-fab457eb1256",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Influence of Social Embedding on Belief System and Its Application in Online Public Opinion Guidance — Cui Shang;Runtong Zhang;Xiaomin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4636,
+            "end_char": 4784
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Effects of Factors on the Motivations for Knowledge Sharing in Online Health Communities: A Benefit-cost Perspective",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Wu;Runtong Zhang;Jing Luan",
+      "id": "out-8e16a29a3fc6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Effects of Factors on the Motivations for Knowledge Sharing in Online Health Communities: A Benefit-cost Perspective — Pei Wu;Runtong Zhang;Jing Luan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4789,
+            "end_char": 4948
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical Knowledge Graph Completion via Fusion of Entity Description and Type Information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaochen Wang;Runtong Zhang;Butian Zhao;Yuhan Yao;Hongmei Zhao;Xiaomin Zhu",
+      "id": "out-35e4cdc3ef30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical Knowledge Graph Completion via Fusion of Entity Description and Type Information — Xiaochen Wang;Runtong Zhang;Butian Zhao;Yuhan Yao;Hongmei Zhao;Xiaomin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4953,
+            "end_char": 5124
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Label-based Topic Modeling to Enhance Medical Triage for Medical Triage Robots",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi;Chenghao Xiao",
+      "id": "out-4a0f15f289f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Label-based Topic Modeling to Enhance Medical Triage for Medical Triage Robots — Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi;Chenghao Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5275
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于机器学习的电子病历误诊识别方 法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐蜀曦;赵步天;张润彤",
+      "id": "out-66a84e115d97",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于机器学习的电子病历误诊识别方 法 — 徐蜀曦;赵步天;张润彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5280,
+            "end_char": 5318
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Medical Service Quality Based on a Novel Multi-criteria Decision-making Method with Unknown Weighted Information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butian Zhao;Runtong Zhang;Yuping Xing",
+      "id": "out-4bf2bb243dbe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of Medical Service Quality Based on a Novel Multi-criteria Decision-making Method with Unknown Weighted Information — Butian Zhao;Runtong Zhang;Yuping Xing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5324,
+            "end_char": 5496
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Explainable Dual-mode Convolutional Neural Network for Multivariate Time Series Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Cai;Xiaomin Zhu;Kaiyuan Bai;Aihui Ye;Runtong Zhang",
+      "id": "out-fad28f24029a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Explainable Dual-mode Convolutional Neural Network for Multivariate Time Series Classification — Wei Cai;Xiaomin Zhu;Kaiyuan Bai;Aihui Ye;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5502,
+            "end_char": 5662
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scheduling For Trial Production with a Parallel Machine and Multitasking Scheduling Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinsheng Gao;Xiaomin Zhu;Runtong Zhang",
+      "id": "out-3ab8b60e1012",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Scheduling For Trial Production with a Parallel Machine and Multitasking Scheduling Model — Jinsheng Gao;Xiaomin Zhu;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5668,
+            "end_char": 5804
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "在线健康社区医生多模态信息融合对患者决策行为影响研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈东华;张润彤",
+      "id": "out-f7259877bbec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 在线健康社区医生多模态信息融合对患者决策行为影响研究 — 陈东华;张润彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5810,
+            "end_char": 5852
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Visualization Method of Knowledge Graphs for the Computation and Comprehension of Ultrasound Reports",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi.",
+      "id": "out-0bfbadb3b512",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Visualization Method of Knowledge Graphs for the Computation and Comprehension of Ultrasound Reports — Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5858,
+            "end_char": 6015
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Social Media News on COVID-19 Vaccine Hesitancy and Vaccination Behavior",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianyao Zhang;Runtong Zhang;Wen Wu;Yang Liu;Yu Zhou",
+      "id": "out-d4eb5854a4aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Social Media News on COVID-19 Vaccine Hesitancy and Vaccination Behavior — Qianyao Zhang;Runtong Zhang;Wen Wu;Yang Liu;Yu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6021,
+            "end_char": 6163
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Adaptive Consensus Model in Large-scale Group Decision Making with Noncooperative and Compromising Behaviors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Shang;Runtong Zhang;Xiaomin Zhu",
+      "id": "out-f67dd356019b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Adaptive Consensus Model in Large-scale Group Decision Making with Noncooperative and Compromising Behaviors — Cui Shang;Runtong Zhang;Xiaomin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6169,
+            "end_char": 6324
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Fuzzy Multi-Granularity Convolutional Neural Network with Double Attention Mechanisms for Measuring Semantic Textual Similarity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butian Zhao;Runtong Zhang;and Kaiyuan Bai",
+      "id": "out-26cfad5f2205",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Fuzzy Multi-Granularity Convolutional Neural Network with Double Attention Mechanisms for Measuring Semantic Textual Similarity — Butian Zhao;Runtong Zhang;and Kaiyuan Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6330,
+            "end_char": 6509
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Factors Influencing Patients' Opt-in Intention of Exchanging Health Information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xijing Zhang;Runtong Zhang",
+      "id": "out-ec88d242188a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Factors Influencing Patients' Opt-in Intention of Exchanging Health Information — Xijing Zhang;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6515,
+            "end_char": 6629
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种误诊案例分类编码体系及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张倩瑶;赵步天;朱晓敏;张润彤;尚小溥;赵红梅",
+      "id": "out-061f513d2226",
+      "evidence": [
+        {
+          "quote": "[专利] 一种误诊案例分类编码体系及方法 — 张倩瑶;赵步天;朱晓敏;张润彤;尚小溥;赵红梅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6635,
+            "end_char": 6680
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Integrated Approach for Service Quality Evaluation of Online Health Communities Based on Q-rung Orthopair Fuzzy Linguistic Aggregation Operators",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Hao;Runtong Zhang;Kaiyuan Bai",
+      "id": "out-e757c7c5c88f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Integrated Approach for Service Quality Evaluation of Online Health Communities Based on Q-rung Orthopair Fuzzy Linguistic Aggregation Operators — Dong Hao;Runtong Zhang;Kaiyuan Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6686,
+            "end_char": 6876
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Consensus-based Group Decision-making Method for Multidisciplinary Team Meeting under Q-rung Orthopair Fuzzy Environment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aihui Ye;Runtong Zhang;Wei Cai;Yang Liu;Cui Shang;Xiaomin Zhu",
+      "id": "out-e51f0d94fe30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Consensus-based Group Decision-making Method for Multidisciplinary Team Meeting under Q-rung Orthopair Fuzzy Environment — Aihui Ye;Runtong Zhang;Wei Cai;Yang Liu;Cui Shang;Xiaomin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6882,
+            "end_char": 7074
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated Generation of ICD-11 Cluster Codes for Precision Medical Record Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi;Zhaoxing Li",
+      "id": "out-3fa8cfdcd7f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automated Generation of ICD-11 Cluster Codes for Precision Medical Record Classification — Jiayi Feng;Runtong Zhang;Donghua Chen;Lei Shi;Zhaoxing Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7080,
+            "end_char": 7234
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Branch‐and‐price Approach to the Multitasking Scheduling With Batch Control on Parallel Machines",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinsheng Gao;Xiaomin Zhu;Runtong Zhang",
+      "id": "out-794bf4454075",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Branch‐and‐price Approach to the Multitasking Scheduling With Batch Control on Parallel Machines — Jinsheng Gao;Xiaomin Zhu;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7240,
+            "end_char": 7385
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MapReduce‐Based Dynamic Partition Join with Shannon Entropy for Data Skewness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Donghua Chen;Runtong Zhang",
+      "id": "out-e6f510d9e7c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MapReduce‐Based Dynamic Partition Join with Shannon Entropy for Data Skewness — Donghua Chen;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7391,
+            "end_char": 7503
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imbalanced Fault Diagnosis of a Conditional Variational Auto-encoder With Transfer and Adversarial Structures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangkun Zhao;Xiaomin Zhu;Runtong Zhang;Qianxia Ma",
+      "id": "out-ea5088295444",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Imbalanced Fault Diagnosis of a Conditional Variational Auto-encoder With Transfer and Adversarial Structures — Xiangkun Zhao;Xiaomin Zhu;Runtong Zhang;Qianxia Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7509,
+            "end_char": 7677
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association Between eHealth Literacy in Online Health Communities and Patient Adherence: Cross-sectional Questionnaire Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyi Lu;Runtong Zhang",
+      "id": "out-f679873e743f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association Between eHealth Literacy in Online Health Communities and Patient Adherence: Cross-sectional Questionnaire Study — Xinyi Lu;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7683,
+            "end_char": 7838
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An adaptive consensus method based on feedback mechanism and social interaction in social network group decision making",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Shang;Runtong Zhang;Xiaomin Zhu;Yang Liu",
+      "id": "out-5f84b330768f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An adaptive consensus method based on feedback mechanism and social interaction in social network group decision making — Cui Shang;Runtong Zhang;Xiaomin Zhu;Yang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7844,
+            "end_char": 8016
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Machine-Learning-Based Approach for Identifying Diagnostic Errors in Electronic Medical Records",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butian Zhao;Runtong Zhang;Donghua Chen;Kaiyuan Bai;Hongmei Zhao;Siqian Gong;Xiaomin Zhu",
+      "id": "out-a6ed5a45ac73",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Machine-Learning-Based Approach for Identifying Diagnostic Errors in Electronic Medical Records — Butian Zhao;Runtong Zhang;Donghua Chen;Kaiyuan Bai;Hongmei Zhao;Siqian Gong;Xiaomin Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8022,
+            "end_char": 8215
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Intelligent Resource Management Solution for Hospital Information System Based on Cloud Computing Platform",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siqian Gong;Xiaomin Zhu;Runtong Zhang;Hongmei Zhao;Chao Guo",
+      "id": "out-8e087849363e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Intelligent Resource Management Solution for Hospital Information System Based on Cloud Computing Platform — Siqian Gong;Xiaomin Zhu;Runtong Zhang;Hongmei Zhao;Chao Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8221,
+            "end_char": 8398
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "What drives the adoption of online health communities? An empirical study from patient-centric perspective",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianyao Zhang;Runtong Zhang;Xinyi Lu;Xijing Zhang",
+      "id": "out-d375f728c468",
+      "evidence": [
+        {
+          "quote": "[期刊论文] What drives the adoption of online health communities? An empirical study from patient-centric perspective — Qianyao Zhang;Runtong Zhang;Xinyi Lu;Xijing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8404,
+            "end_char": 8568
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Method Based on Q-rung Orthopair Fuzzy Cognitive Map and TOPSIS Method for Failure Mode and Effect Analysis Considering Risk Causal Relationships",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianxia Ma;Xiaomin Zhu;Qian Pu;Jian Liu;Guanhua Fu;Runtong Zhang",
+      "id": "out-4caee0d7dcbf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Method Based on Q-rung Orthopair Fuzzy Cognitive Map and TOPSIS Method for Failure Mode and Effect Analysis Considering Risk Causal Relationships — Qianxia Ma;Xiaomin Zhu;Qian Pu;Jian Liu;Guanhua Fu;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8574,
+            "end_char": 8794
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Building Multimodal Knowledge Bases with Multimodal Computational Sequences and Generative Adversarial Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Donghua Chen;Runtong Zhang",
+      "id": "out-f7422c88c84a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Building Multimodal Knowledge Bases with Multimodal Computational Sequences and Generative Adversarial Networks — Donghua Chen;Runtong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8800,
+            "end_char": 8946
+          },
+          "version": "0c3e0bcc92dd34f8b0a7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 30,
+        "extracted": 30
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

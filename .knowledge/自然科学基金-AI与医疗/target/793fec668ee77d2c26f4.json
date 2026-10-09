@@ -2,15 +2,20 @@
   "doc_id": "793fec668ee77d2c26f4",
   "version": "44220b04e36df5292d00",
   "source_hash": "77de32c706b4c5ad5437ebb31a0ddb0f439999eb9cdac6b02e6c76ca803fa022",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.244303+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:44.376491+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fd5e4beffa43",
-          "name": "中晚期非小细胞肺癌靶向治疗疗效与预后评估",
-          "desc": "面向中晚期NSCLC靶向治疗，基于影像病理组学构建疗效评价与预后评估的风险量化模型。",
+          "id": "item-849ad11230c6",
+          "name": "中晚期NSCLC靶向治疗疗效评价与预后评估",
+          "desc": "精准诊疗",
           "evidence": [
             {
-              "quote": "中晚期非小细胞肺癌占全部肺癌的25%，靶向治疗是首选治疗方案",
+              "quote": "本项目围绕肺癌精准诊疗临床挑战与影像智能分析工科量化的重大问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 700
+                "start_char": 2734,
+                "end_char": 2764
               },
               "version": "44220b04e36df5292d00"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d58b85a5f3f",
-          "name": "耐药缺乏精准量化预测方法",
-          "desc": "25-30%的靶向治疗患者会出现耐药，临床缺乏精准量化的耐药预测方法，难以准确识别靶向治疗获益个体。",
+          "id": "item-568c73186bbe",
+          "name": "样本规模受限、多中心异构、多模态融合困难、数据隐私保护",
+          "desc": "临床挑战",
           "evidence": [
             {
-              "quote": "但25-30%患者会出现耐药，并且临床缺乏精准量化的耐药预测方法，难以准确识别靶向治疗的获益个体",
+              "quote": "针对普遍存在的样本规模受限、多中心数据异构分布、多模态图像融合困难和数据隐私保护等临床挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 702,
-                "end_char": 749
+                "start_char": 2766,
+                "end_char": 2810
               },
               "version": "44220b04e36df5292d00"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0a0c20a35182",
-          "name": "CT与病理WSI异构影像病理组学融合建模",
-          "desc": "基于非同源异构的CT图像与穿刺活检病理全光镜扫描图像，用深度学习提取与靶向治疗耐药高度相关的特征，并结合动态演变连续CT图像与临床模型构建融合风险量化模型。",
+          "id": "item-33c6c33390e7",
+          "name": "深度学习自动化影像表征框架",
+          "desc": "多尺度特征建模与临床-影像信息融合",
           "evidence": [
             {
-              "quote": "基于非同源异构的CT图像和穿刺活检病理全光镜扫描图像，深度学习提取和筛选与非小细胞肺癌靶向治疗耐药高度相关的特征",
+              "quote": "构建基于深度学习自动化影像表征框架，通过多尺度特征建模与临床-影像信息融合，提升对复杂影像表型的表征能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 834,
-                "end_char": 889
+                "start_char": 2967,
+                "end_char": 3018
               },
               "version": "44220b04e36df5292d00"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-24db0412d75f",
+          "name": "联邦学习框架与优化机制",
+          "desc": "多中心协同建模",
+          "evidence": [
+            {
+              "quote": "提出多种具有普适性的联邦学习框架与优化机制，在不共享原始数据前提下，实现多中心模型的有效协同",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3120,
+                "end_char": 3165
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fbe0dfee1b49",
+          "name": "多模态协同表示学习框架DL-MFIF",
+          "desc": "CT宏观与病理WSI微观特征互补融合",
+          "evidence": [
+            {
+              "quote": "构建多模态协同表示学习框架，实现影像CT宏观特征与病理WSI微观特征的互补融合。DL-MFIF在内部验证集和外部验证集AUC分别达到0.856和0.817",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3225,
+                "end_char": 3301
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae6089d60397",
-          "name": "DL-MFIF内外验证集AUC 0.856与0.817",
-          "desc": "多模态融合模型DL-MFIF在内部验证集与外部验证集AUC分别达0.856和0.817，实现影像CT宏观特征与病理WSI微观特征的互补融合。",
+          "id": "item-e518cd45c66a",
+          "name": "DL-MFIF验证集性能",
+          "desc": "内部0.856，外部0.817",
           "evidence": [
             {
               "quote": "DL-MFIF在内部验证集和外部验证集AUC分别达到0.856和0.817",
@@ -99,44 +139,456 @@
               "version": "44220b04e36df5292d00"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-865dfcb966b4",
+          "name": "论文专利与软著",
+          "desc": "SCI论著9篇，发明专利申请2项，软著11项",
+          "evidence": [
+            {
+              "quote": "项目负责人第一作者/通讯作者SCI论著9篇，通讯作者中文核心期刊论著6篇；申请发明专利2项；授权计算机软件著作权11项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3350,
+                "end_char": 3408
+              },
+              "version": "44220b04e36df5292d00"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fd5e4beffa43"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4d58b85a5f3f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal radiopathological integration for prognosis and prediction of adjuvant chemotherapy benefit in resectable lung adenocarcinoma: A multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-c9bd6949a5f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal radiopathological integration for prognosis and prediction of adjuvant chemotherapy benefit in resectable lung adenocarcinoma: A multicentre study — Huan Lin;Junjie Hua;Zhengze Gong;Mingwei Chen;Bingjiang Qiu;Yuxin Wu;Wenfeng He;Yumeng Wang;Zhengyun Feng;Yanting Liang;Wansheng Long;Ronggang Li;Qionglian Kuang;Yingxin Chen;Jiawei Lu;Shiwei Luo;Wei Zhao;Lixu Yan;Xin Chen;Zhenwei Shi;Zeyan Xu;Ziyang Mo;Entao Liu;Chu Han;Yanfen Cui;Xiaotang Yang;Xiangmeng Chen;Jun Liu;Xipeng Pan;Anant Madabhushi;Cheng Lu;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3584,
+            "end_char": 4116
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4d58b85a5f3f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0a0c20a35182"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于自适应聚合权重联邦学习的肺结节CT图像分类",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "侍江烽;冯宝;陈业航;陈相猛",
+      "id": "out-42d6da0087cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于自适应聚合权重联邦学习的肺结节CT图像分类 — 侍江烽;冯宝;陈业航;陈相猛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4121,
+            "end_char": 4167
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0a0c20a35182"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ae6089d60397"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非艾滋病患者不同免疫状态肺隐球菌病临床和CT表现 对比分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;聂中新;陈小娟;张朝桐;段晓蓓;谭国强",
+      "id": "out-9115808bab82",
+      "evidence": [
+        {
+          "quote": "[会议论文] 非艾滋病患者不同免疫状态肺隐球菌病临床和CT表现 对比分析 — 陈相猛;聂中新;陈小娟;张朝桐;段晓蓓;谭国强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4172,
+            "end_char": 4233
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "增强CT熵特征联合影像学征象对胸腺上皮性肿瘤危险程度的鉴别诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;苏秀芳;段晓蓓;冯宝;徐坤财;龙晚生",
+      "id": "out-b4528134611e",
+      "evidence": [
+        {
+          "quote": "[会议论文] 增强CT熵特征联合影像学征象对胸腺上皮性肿瘤危险程度的鉴别诊断 — 陈相猛;苏秀芳;段晓蓓;冯宝;徐坤财;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4300
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能影像组学在早期肺癌精准诊疗中的临床应用研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;龙晚生;冯宝;段晓蓓;张朝桐",
+      "id": "out-51db1e8898de",
+      "evidence": [
+        {
+          "quote": "[奖励] 人工智能影像组学在早期肺癌精准诊疗中的临床应用研究 — 陈相猛;龙晚生;冯宝;段晓蓓;张朝桐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4305,
+            "end_char": 4355
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A brain-like classification method for computed tomography images based on adaptive feature matching dual-source domain heterogeneous transfer learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yehang Chen;Xiangmeng Chen",
+      "id": "out-beb0c671f41d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A brain-like classification method for computed tomography images based on adaptive feature matching dual-source domain heterogeneous transfer learning — Yehang Chen;Xiangmeng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4360,
+            "end_char": 4546
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying Solitary Granulomatous Nodules from Solid Lung Adenocarcinoma: Exploring Robust Image Features with Cross-Domain Transfer Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Xiangmeng Chen;Yehang Chen;Tianyou Yu;Xiaobei Duan;Kunfeng Liu;Kunwei Li;Zaiyi Liu;Huan Lin;Sheng Li;Xiaodong Chen;Yuting Ke;Zhi Li;Enming Cui;Wansheng Long;Xueguo Liu",
+      "id": "out-0c1dbfbf7723",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying Solitary Granulomatous Nodules from Solid Lung Adenocarcinoma: Exploring Robust Image Features with Cross-Domain Transfer Learning — Bao Feng;Xiangmeng Chen;Yehang Chen;Tianyou Yu;Xiaobei Duan;Kunfeng Liu;Kunwei Li;Zaiyi Liu;Huan Lin;Sheng Li;Xiaodong Chen;Yuting Ke;Zhi Li;Enming Cui;Wansheng Long;Xueguo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4551,
+            "end_char": 4878
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸部CT影像征象预测部分实性结节肺腺癌脏层胸膜侵犯的多因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "聂中新;段晓蓓;区丽琼;陈小娟;李红旗;钱荣梅;陈相猛",
+      "id": "out-e86b40669ffc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胸部CT影像征象预测部分实性结节肺腺癌脏层胸膜侵犯的多因素分析 — 聂中新;段晓蓓;区丽琼;陈小娟;李红旗;钱荣梅;陈相猛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4883,
+            "end_char": 4950
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Collaborative assessment of the risk of postoperative progression in early-stage non-small cell lung cancer: a robust federated learning model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Liu;Xiaobei Duan;Xiaojuan Chen;Kunwei Li;Qiong Li;Ke Liu;Wansheng Long;Huan Lin;Bao Feng;Xiangmeng Chen",
+      "id": "out-62068282ebce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Collaborative assessment of the risk of postoperative progression in early-stage non-small cell lung cancer: a robust federated learning model — Yu Liu;Xiaobei Duan;Xiaojuan Chen;Kunwei Li;Qiong Li;Ke Liu;Wansheng Long;Huan Lin;Bao Feng;Xiangmeng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4955,
+            "end_char": 5212
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性肺浸润性黏液腺癌影像学亚型 与临床病理特征的相关性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林茵;段晓蓓;陈萍;曾维婷;陈相猛",
+      "id": "out-f5f2db0ab699",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 原发性肺浸润性黏液腺癌影像学亚型 与临床病理特征的相关性研究 — 林茵;段晓蓓;陈萍;曾维婷;陈相猛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5218,
+            "end_char": 5274
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning-Based Multimodal Feature Interaction-Guided Fusion: Enhancing the Evaluation of EGFR in Advanced Lung Adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junhui Xu;Bao Feng;Xiangmeng Chen;Fei Wu;Yu Liu;Zhaole Yu;Senliang Lu;Xiaobei Duan;Xiaojuan Chen;Kunwei Li;Weibin Zhang;Xisheng Dai",
+      "id": "out-e387af9b3778",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning-Based Multimodal Feature Interaction-Guided Fusion: Enhancing the Evaluation of EGFR in Advanced Lung Adenocarcinoma — Junhui Xu;Bao Feng;Xiangmeng Chen;Fei Wu;Yu Liu;Zhaole Yu;Senliang Lu;Xiaobei Duan;Xiaojuan Chen;Kunwei Li;Weibin Zhang;Xisheng Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5280,
+            "end_char": 5550
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk stratification for early-stage NSCLC progression: a federated learning framework with largesmall model synergy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zijun Huang;Bao Feng;Yehang Chen;Liebin Huang;Yuan Chen;Xiaobei Duan;Xiaojuan Chen;Huan Lin;Kunwei Li;Yuping Li;Qiong Li;Xiaohong Ruan;Xiangmeng Chen;Wansheng Long",
+      "id": "out-6a769c34f4ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk stratification for early-stage NSCLC progression: a federated learning framework with largesmall model synergy — Zijun Huang;Bao Feng;Yehang Chen;Liebin Huang;Yuan Chen;Xiaobei Duan;Xiaojuan Chen;Huan Lin;Kunwei Li;Yuping Li;Qiong Li;Xiaohong Ruan;Xiangmeng Chen;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5556,
+            "end_char": 5843
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal deep learning radiomics model for predicting postoperative progression in solid stage I non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qionglian Kuang;Bao Feng;Kuncai Xu;Yehang Chen;Xiaojuan Chen;Xiaobei Duan;Xiaoyan Lei;Xiangmeng Chen;Kunwei Li;Wansheng Long",
+      "id": "out-15dabdec833b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal deep learning radiomics model for predicting postoperative progression in solid stage I non-small cell lung cancer — Qionglian Kuang;Bao Feng;Kuncai Xu;Yehang Chen;Xiaojuan Chen;Xiaobei Duan;Xiaoyan Lei;Xiangmeng Chen;Kunwei Li;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5849,
+            "end_char": 6107
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor imagery electroencephalogram classification algorithm based on joint features in the spatial and frequency domains and instance transfer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ximiao Wang; Xisheng Da;Yu Liu;Xiangmeng Chen;Qinghui Hu;Rongliang Hu;Mingxin Li",
+      "id": "out-dcea64e69578",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motor imagery electroencephalogram classification algorithm based on joint features in the spatial and frequency domains and instance transfer — Ximiao Wang; Xisheng Da;Yu Liu;Xiangmeng Chen;Qinghui Hu;Rongliang Hu;Mingxin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6113,
+            "end_char": 6344
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸部CT影像学特征预测部分实性结节肺腺癌 脏层胸膜侵犯的多因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;聂中新;段晓蓓;陈小娟;陈家辉",
+      "id": "out-c76bde042275",
+      "evidence": [
+        {
+          "quote": "[会议论文] 胸部CT影像学特征预测部分实性结节肺腺癌 脏层胸膜侵犯的多因素分析 — 陈相猛;聂中新;段晓蓓;陈小娟;陈家辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6350,
+            "end_char": 6411
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性肺浸润性黏液腺癌的临床和影像学特征:结节肿块型与实变型对比分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;林茵;郑钊文;陈萍;段晓蓓;谭国强",
+      "id": "out-1b394d91f76b",
+      "evidence": [
+        {
+          "quote": "[会议论文] 原发性肺浸润性黏液腺癌的临床和影像学特征:结节肿块型与实变型对比分析 — 陈相猛;林茵;郑钊文;陈萍;段晓蓓;谭国强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6417,
+            "end_char": 6481
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性囊腔样肺腺癌 CT 分型与病理分化程度的相关性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;李红旗;赵家淇;钱荣梅;聂中新;陈小娟",
+      "id": "out-bfd8e90a7515",
+      "evidence": [
+        {
+          "quote": "[会议论文] 原发性囊腔样肺腺癌 CT 分型与病理分化程度的相关性研究 — 陈相猛;李红旗;赵家淇;钱荣梅;聂中新;陈小娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6487,
+            "end_char": 6547
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A meta-learning-based robust federated learning for diagnosing lung adenocarcinoma and tuberculosis granulomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuyao Chen;Lei Liu;Bao Feng;Yehang Chen;Jun Xu;Huan Lin;Kunwei Li;Xiaodong Chen;Yuting Ke;Haoyang Zhou;Qinghui Hu;Qinggeng Jin;Wansheng Long;Qiong Li;Xiangmeng Chen",
+      "id": "out-02ca43a90f5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A meta-learning-based robust federated learning for diagnosing lung adenocarcinoma and tuberculosis granulomas — Yuyao Chen;Lei Liu;Bao Feng;Yehang Chen;Jun Xu;Huan Lin;Kunwei Li;Xiaodong Chen;Yuting Ke;Haoyang Zhou;Qinghui Hu;Qinggeng Jin;Wansheng Long;Qiong Li;Xiangmeng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6553,
+            "end_char": 6836
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于肺癌组织病理图像的智能分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;潘贤;段晓蓓;冯宝;侍江峰;陈业航;邝琼莲;陆森良;李荣岗;崔恩铭;龙晚生",
+      "id": "out-fca1a9782f87",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于肺癌组织病理图像的智能分类方法 — 陈相猛;潘贤;段晓蓓;冯宝;侍江峰;陈业航;邝琼莲;陆森良;李荣岗;崔恩铭;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6842,
+            "end_char": 6909
+          },
+          "version": "44220b04e36df5292d00"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

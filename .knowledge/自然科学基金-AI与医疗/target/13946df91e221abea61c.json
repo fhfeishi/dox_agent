@@ -2,15 +2,20 @@
   "doc_id": "13946df91e221abea61c",
   "version": "822aedfe8b078d0ef79f",
   "source_hash": "fc0d358f62643f7bc6a8a854069ef03e31e0e2f2f8c9234d5fa3ee011b140ed1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.565948+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:29:24.838855+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-56f1fb4d73d0",
-          "name": "心脏手术后急性肾损伤早诊",
-          "desc": "心脏手术后急性肾损伤是心外科术后严重并发症，显著增加经济负担与死亡率。",
+          "id": "item-c921b8dab97b",
+          "name": "心脏手术后急性肾损伤早期预测",
+          "desc": "CS-AKI是心外科术后严重并发症",
           "evidence": [
             {
-              "quote": "心脏手术后急性肾损伤（CS-AKI）是心外科术后的严重并发症，显著增加患者经济负担与死亡率",
+              "quote": "心脏手术后急性肾损伤（Cardiac surgery-associated acute kidney injury;CS-AKI）是心外科术后的严重并发症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 708,
-                "end_char": 752
-              },
-              "version": "822aedfe8b078d0ef79f"
-            }
-          ]
-        },
-        {
-          "id": "item-6ac6369c719f",
-          "name": "围术期肾保护精准医学",
-          "desc": "通过术前预测模型识别亚临床肾脏应激状态高危患者，指导个体化术前干预。",
-          "evidence": [
-            {
-              "quote": "通过构建术前预测模型，可以在术前识别出那些已经处于“亚临床肾脏应激状态”的高危患者，实现更早、更精准的风险分层",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3474,
-                "end_char": 3528
+                "start_char": 2806,
+                "end_char": 2882
               },
               "version": "822aedfe8b078d0ef79f"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24bb581e4ec5",
-          "name": "现有诊断标准灵敏度特异性不高",
-          "desc": "目前CS-AKI诊断标准基于血肌酐与尿量，诊断灵敏度和特异性不高，干预手段有限。",
+          "id": "item-5fe66ea10c68",
+          "name": "术后预测对早期预警作用有限",
+          "desc": "术后12/24小时预测",
           "evidence": [
             {
-              "quote": "目前CS-AKI诊断标准是基于血肌酐与尿量，诊断灵敏度和特异性不高",
+              "quote": "术后预测（术后12小时或24小时）对于病人的早期预警作用有限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 789,
-                "end_char": 821
-              },
-              "version": "822aedfe8b078d0ef79f"
-            }
-          ]
-        },
-        {
-          "id": "item-e31aca5d1e71",
-          "name": "术后早期预测预警作用有限",
-          "desc": "既往研究集中于术后12或24小时预测，对CS-AKI早期预警作用有限。",
-          "evidence": [
-            {
-              "quote": "既往研究主要集中于术后早期预测（术后12或24小时），对于CS-AKI预警作用有限，其灵敏度和特异性也不尽人意",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 847,
-                "end_char": 901
+                "start_char": 2943,
+                "end_char": 2972
               },
               "version": "822aedfe8b078d0ef79f"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6bc52851b40",
-          "name": "术前尿液蛋白组与代谢组建模",
-          "desc": "纳入多中心CS-AKI队列开展术前尿液蛋白质组与代谢组分析，并用机器学习构建预测模型。",
+          "id": "item-254cf3e8a384",
+          "name": "术前尿蛋白与代谢物机器学习预测模型",
+          "desc": "基于尿液蛋白质和代谢物",
           "evidence": [
             {
               "quote": "进一步采用机器学习方法构建了基于尿液蛋白质和代谢物的预测模型",
@@ -108,23 +81,25 @@
               },
               "version": "822aedfe8b078d0ef79f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-986a3520122c",
-          "name": "尿蛋白质组质量控制体系",
-          "desc": "开展质谱检测平台多中心研究，开发MSCohort尿蛋白质组实验质量控制体系。",
+          "id": "item-5966dbef48fc",
+          "name": "MSCohort尿蛋白质组质控体系",
+          "desc": "20个质谱平台验证稳定性、重复性与定量准确性",
           "evidence": [
             {
-              "quote": "开发了MSCohort尿蛋白质组组实验质量控制体系，通过20个不同质谱检测平台的尿液蛋白质组学分析",
+              "quote": "开发了MSCohort尿蛋白质组组实验质量控制体系",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3070,
-                "end_char": 3118
+                "end_char": 3094
               },
               "version": "822aedfe8b078d0ef79f"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,43 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e45642863310",
-          "name": "尿蛋白质模型外部验证AUC 0.93",
-          "desc": "尿蛋白质对AKI外部验证集AUC为0.93，尿代谢物AUC为0.83。",
+          "id": "item-243ab400f517",
+          "name": "尿蛋白预测外部验证AUC 0.93",
+          "desc": "对AKI外部验证集",
           "evidence": [
             {
-              "quote": "尿蛋白质对AKI外部验证集的AUC值为0.93，尿代谢物对对AKI外部验证集的AUC值为0.83",
+              "quote": "尿蛋白质对AKI外部验证集的AUC值为0.93",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3341,
-                "end_char": 3388
+                "end_char": 3363
               },
               "version": "822aedfe8b078d0ef79f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7ad668e98e6e",
-          "name": "差异蛋白反映AKI三大病理环节",
-          "desc": "差异蛋白质主要反映细胞存活/修复、应激防御和免疫炎症三个AKI核心病理生理环节。",
-          "evidence": [
-            {
-              "quote": "差异蛋白质主要反映了细胞存活/修复、应激防御和免疫炎症这三个AKI核心病理生理环节",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3222,
-                "end_char": 3262
-              },
-              "version": "822aedfe8b078d0ef79f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-398d6b8f12a5",
-          "name": "蛋白代谢联合建模AUC 0.93",
-          "desc": "尿液蛋白质和代谢物联合建模对AKI外部验证集AUC为0.93。",
+          "id": "item-9f7e297f83f5",
+          "name": "蛋白与代谢物联合模型AUC 0.93",
+          "desc": "对AKI外部验证集",
           "evidence": [
             {
               "quote": "尿液蛋白质和代谢物联合建模对AKI外部验证集的AUC值为0.93",
@@ -181,7 +141,9 @@
               "version": "822aedfe8b078d0ef79f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +151,83 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-56f1fb4d73d0"
+        "dimension": "技术",
+        "item_id": "item-254cf3e8a384"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-24bb581e4ec5"
+        "item_id": "item-5fe66ea10c68"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-24bb581e4ec5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c6bc52851b40"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c6bc52851b40"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e45642863310"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-986a3520122c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7ad668e98e6e"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目提出可以使用术前尿液样品进行CS-AKI的预测，从而可以有效进行术中及术后干预和监测，降低发病率",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2990,
+            "end_char": 3040
+          },
+          "version": "822aedfe8b078d0ef79f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative Proteomic and Metabolomic Profiling Reveals Altered Purine Metabolism in Acute Kidney Injury after On-Pump Coronary Artery Bypass Graft",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Mindi;Liu Xiaoyan;Gao Huawei;Wang Quaner;Guo Zhengguang;Yang Yan;Tian Meice;Wang Xianqiang;Wang Liqing;Sun Wei;Li Chuanbao",
+      "id": "out-f9b7aa1e681d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative Proteomic and Metabolomic Profiling Reveals Altered Purine Metabolism in Acute Kidney Injury after On-Pump Coronary Artery Bypass Graft — Zhao Mindi;Liu Xiaoyan;Gao Huawei;Wang Quaner;Guo Zhengguang;Yang Yan;Tian Meice;Wang Xianqiang;Wang Liqing;Sun Wei;Li Chuanbao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3597,
+            "end_char": 3881
+          },
+          "version": "822aedfe8b078d0ef79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Blood- and Urine-Based Liquid Biopsy for Early-Stage Cancer Investigation: Taken Clear Renal Cell Carcinoma as a Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaoyan;Zhang Mingxin;Shao Chen;Sun Haidan;Zhang Binbin;Guo Zhengguang;Sun Jiameng;Qi Feng;Zhang Yushi;Niu Haitao;Sun Wei",
+      "id": "out-95a0b36dfc09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Blood- and Urine-Based Liquid Biopsy for Early-Stage Cancer Investigation: Taken Clear Renal Cell Carcinoma as a Model — Liu Xiaoyan;Zhang Mingxin;Shao Chen;Sun Haidan;Zhang Binbin;Guo Zhengguang;Sun Jiameng;Qi Feng;Zhang Yushi;Niu Haitao;Sun Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3886,
+            "end_char": 4138
+          },
+          "version": "822aedfe8b078d0ef79f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

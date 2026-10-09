@@ -2,15 +2,20 @@
   "doc_id": "c629cee04b295bd60158",
   "version": "10bb5852e2216197766b",
   "source_hash": "9545991a673a1c28d9ad84f3b517126b3d6fd4d11bf2bc8c21678a564243a140",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.320782+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.157040+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f576fa2a2eae",
-          "name": "急性肾损伤超声影像组学早期诊断",
-          "desc": "急性肾损伤是临床常见危急重症，发病率呈上升趋势，诊断滞后且死亡率高。",
+          "id": "item-c68ed18b3844",
+          "name": "急性肾损伤早期诊断与疗效评估",
+          "desc": "多模态超声",
           "evidence": [
             {
-              "quote": "急性肾损伤(acute kidney injury，AKI)是临床常见的危急重症，近年发病率呈上升趋势",
+              "quote": "本课题运用常规超声、超声造影、平面波超微血管成像、超声弹性成像、分子靶向技术等多模态超声影像技术对急性肾损伤早期诊断及疗效评估方面分别开展了相关研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 725
-              },
-              "version": "10bb5852e2216197766b"
-            }
-          ]
-        },
-        {
-          "id": "item-9ac9d9951970",
-          "name": "AKI早期预警与疗效动态监测",
-          "desc": "建立AKI早期预警及疗效评估系统，实现早期诊断和疗效动态监测，为临床精准治疗提供依据。",
-          "evidence": [
-            {
-              "quote": "建立AKI的早期预警及疗效评估系统，以实现AKI的早期诊断和疗效动态监测，为临床实现精准治疗、改善患者预后提供依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1010,
-                "end_char": 1066
+                "start_char": 2810,
+                "end_char": 2883
               },
               "version": "10bb5852e2216197766b"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5dcc5469bb63",
-          "name": "AKI诊断滞后且化验指标缺乏特异性",
-          "desc": "该病起病急、早期临床化验指标缺乏特异性，导致目前AKI诊断滞后。",
+          "id": "item-509758c28317",
+          "name": "AKI临床诊断指标不能及时准确反映病情",
+          "desc": "诊断滞后",
           "evidence": [
             {
-              "quote": "该病起病急、早期临床化验指标缺乏特异性等原因，导致目前AKI诊断滞后",
+              "quote": "然而现阶段AKI的临床诊断指标不能及时、准确反映病情变化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 827
-              },
-              "version": "10bb5852e2216197766b"
-            }
-          ]
-        },
-        {
-          "id": "item-6761119d4465",
-          "name": "肾脏血流灌注不足是加重肾损伤重要因素",
-          "desc": "AKI患者中肾脏血流灌注不足是导致或加重肾损伤的重要因素，约占AKI患者的77.8%。",
-          "evidence": [
-            {
-              "quote": "研究显示AKI患者中肾脏血流灌注不足是导致或加重肾损伤的重要因素，约占AKI患者的77.8%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 829,
-                "end_char": 874
+                "start_char": 2781,
+                "end_char": 2808
               },
               "version": "10bb5852e2216197766b"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2bf3d0d5a95e",
-          "name": "多模态超声评估肾脏微循环灌注",
-          "desc": "运用常规超声、超声造影、平面波超微血管成像、超声弹性成像、分子靶向技术等多模态超声影像技术开展早期诊断与疗效评估研究。",
+          "id": "item-ca90dd0886c8",
+          "name": "多模态超声评估肾脏微循环",
+          "desc": "先于传统肾功能指标预测AKI",
           "evidence": [
             {
-              "quote": "本课题运用常规超声、超声造影、平面波超微血管成像、超声弹性成像、分子靶向技术等多模态超声影像技术对急性肾损伤早期诊断及疗效评估方面分别开展了相关研究",
+              "quote": "多模态超声技术可以通过早期评估肾脏微循环改变反映肾脏微循环变化，进而先于传统肾功能指标早期预测AKI",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2810,
-                "end_char": 2883
+                "start_char": 3062,
+                "end_char": 3111
               },
               "version": "10bb5852e2216197766b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-345f33b71130",
-          "name": "靶向微泡分子成像监测炎症",
-          "desc": "构建携载VCAM-1多肽的靶向微泡，早期监测及评估AKI的肾脏血流灌注及炎症反应。",
+          "id": "item-959fb7001aa3",
+          "name": "VCAM-1多肽靶向微泡",
+          "desc": "早期监测肾脏血流灌注与炎症",
           "evidence": [
             {
               "quote": "我们构建的携载VCAM-1多肽的靶向微泡可早期监测及评估AKI的肾脏血流灌注及炎症反应",
@@ -124,7 +98,8 @@
               },
               "version": "10bb5852e2216197766b"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,339 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e4299279d72c",
-          "name": "多模态超声先于传统指标预测AKI",
-          "desc": "多模态超声技术可通过早期评估肾脏微循环改变，先于传统肾功能指标早期预测AKI。",
+          "id": "item-c842693d45d9",
+          "name": "潜在靶向造影剂",
+          "desc": "携载VCAM-1多肽靶向微泡",
           "evidence": [
             {
-              "quote": "研究结果显示，多模态超声技术可以通过早期评估肾脏微循环改变反映肾脏微循环变化，进而先于传统肾功能指标早期预测AKI",
+              "quote": "并开发了潜在的靶向造影剂",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3055,
-                "end_char": 3111
+                "start_char": 3325,
+                "end_char": 3336
               },
               "version": "10bb5852e2216197766b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d4aa004134a6",
-          "name": "CEUS评价微循环与疗效显著相关",
-          "desc": "通过超声造影评价的肾脏微循环改变与AKI治疗效果显著相关，进而有效评价AKI预后。",
-          "evidence": [
-            {
-              "quote": "且通过CEUS评价的肾脏微循环改变与AKI治疗效果显著相关，进而有效评价AKI预后",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3153
-              },
-              "version": "10bb5852e2216197766b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e2481f1e3433",
-          "name": "多模态超声诊疗价值探索",
-          "desc": "探索多模态超声对急性肾损伤的诊疗价值，研究不同病因AKI的微循环改变及机制，评估潜在药物治疗效果并开发靶向造影剂。",
-          "evidence": [
-            {
-              "quote": "本研究结果探索了多模态超声对急性肾损伤的诊疗价值，研究不同病因导致的急性肾损伤的微循环改变及机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3251,
-                "end_char": 3298
-              },
-              "version": "10bb5852e2216197766b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f576fa2a2eae"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5dcc5469bb63"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive Early Prediction of Septic Acute Kidney Injury by Doppler-Based Renal Resistive Indexes Combined With Echocardiographic Parameters: An Experimental Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Zhang;Jianing Zhu;Chuyue Zhang;Jing Xiao;Chao Liu;Shuo Wang;Ping Zhao;Yaqiong Zhu;Li Wang;Qiuyang Li;Yukun Luo",
+      "id": "out-ca480a6ce13e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive Early Prediction of Septic Acute Kidney Injury by Doppler-Based Renal Resistive Indexes Combined With Echocardiographic Parameters: An Experimental Study — Ying Zhang;Jianing Zhu;Chuyue Zhang;Jing Xiao;Chao Liu;Shuo Wang;Ping Zhao;Yaqiong Zhu;Li Wang;Qiuyang Li;Yukun Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3386,
+            "end_char": 3676
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5dcc5469bb63"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2bf3d0d5a95e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Contrast-enhanced ultrasound in evaluating the severity of acute kidney injury: An animal experimental study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ling Ren;Yuzhuo Zhao;Jing Xiao;Miao Li;Ying Zhang;Lianhua Zhu;Yukun Luo",
+      "id": "out-cbe7e6656c38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Contrast-enhanced ultrasound in evaluating the severity of acute kidney injury: An animal experimental study — Ling Ren;Yuzhuo Zhao;Jing Xiao;Miao Li;Ying Zhang;Lianhua Zhu;Yukun Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3681,
+            "end_char": 3869
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2bf3d0d5a95e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e4299279d72c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像学技术在急性肾损伤诊断中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵萍;李秋洋;朱连华;罗渝昆;唐杰",
+      "id": "out-4d1fc1192b10",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像学技术在急性肾损伤诊断中的研究进展 — 赵萍;李秋洋;朱连华;罗渝昆;唐杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 3919
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-345f33b71130"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d4aa004134a6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Therapeutic Effects of Curcumin in Early Septic Acute Kidney Injury: An Experimental Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuo Wang;Ping Zhao;Ying Zhang;Lianhua Zhu;Jianing Zhu;Yukun Luo;Qiuyang Li",
+      "id": "out-690559ddc2ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Therapeutic Effects of Curcumin in Early Septic Acute Kidney Injury: An Experimental Study — Shuo Wang;Ping Zhao;Ying Zhang;Lianhua Zhu;Jianing Zhu;Yukun Luo;Qiuyang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3924,
+            "end_char": 4102
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "常规超声及超声造影在肾上腺肿瘤诊断中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱嘉宁;李静波;罗渝昆;李秋洋",
+      "id": "out-16c65983523a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 常规超声及超声造影在肾上腺肿瘤诊断中的应用 — 朱嘉宁;李静波;罗渝昆;李秋洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4107,
+            "end_char": 4152
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation between serum cystatin C level and renal microvascular perfusion assessed by contrast-enhanced ultrasound in patients with diabetic kidney disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Zhao;Nan Li;Lin Lin;Qiuyang Li;Yiru Wang;Yukun Luo",
+      "id": "out-1e4e440371cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation between serum cystatin C level and renal microvascular perfusion assessed by contrast-enhanced ultrasound in patients with diabetic kidney disease — Ping Zhao;Nan Li;Lin Lin;Qiuyang Li;Yiru Wang;Yukun Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4379
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型超声造影剂BR55在实体肿瘤诊断和治疗中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李静波;朱嘉宁;张颖;李秋洋;罗渝昆",
+      "id": "out-254fbb697984",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 新型超声造影剂BR55在实体肿瘤诊断和治疗中的研究进展 — 李静波;朱嘉宁;张颖;李秋洋;罗渝昆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4384,
+            "end_char": 4438
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种大鼠尾静脉注射固定装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗渝昆;张颖;朱嘉宁;李秋洋;韩鹏",
+      "id": "out-af4a81f1bf70",
+      "evidence": [
+        {
+          "quote": "[专利] 一种大鼠尾静脉注射固定装置 — 罗渝昆;张颖;朱嘉宁;李秋洋;韩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4443,
+            "end_char": 4480
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声造影定量评价脓毒症急性肾损伤肾血流灌注及其参数与炎症因子的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王烁;赵萍;李秋洋;张颖;宋青;朱嘉宁;朱连华;罗渝昆",
+      "id": "out-cad5a4fcf59e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声造影定量评价脓毒症急性肾损伤肾血流灌注及其参数与炎症因子的相关性 — 王烁;赵萍;李秋洋;张颖;宋青;朱嘉宁;朱连华;罗渝昆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4485,
+            "end_char": 4555
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声造影在脓毒症相关急性肾损伤早期诊断及预后评估中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王烁;李秋洋;罗渝昆",
+      "id": "out-03f22a423c05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声造影在脓毒症相关急性肾损伤早期诊断及预后评估中的研究进展 — 王烁;李秋洋;罗渝昆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4561,
+            "end_char": 4610
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The therapeutic effect of Picroside II in renal ischemia-reperfusion induced acute kidney injury: An experimental study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ling Ren;Yuzhuo Zhao;Xianpu Ji;Wenqing Li;Wenli Jiang;Qiuyang Li;Lianhua Zhu;Yukun Luo",
+      "id": "out-9df805d1f7f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The therapeutic effect of Picroside II in renal ischemia-reperfusion induced acute kidney injury: An experimental study — Ling Ren;Yuzhuo Zhao;Xianpu Ji;Wenqing Li;Wenli Jiang;Qiuyang Li;Lianhua Zhu;Yukun Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4616,
+            "end_char": 4830
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声造影在慢性肾病中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵萍;罗渝昆;唐杰",
+      "id": "out-ad98bb481e60",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声造影在慢性肾病中的研究进展 — 赵萍;罗渝昆;唐杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4836,
+            "end_char": 4869
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种大鼠肾脏超声造影恒温固定台",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗渝昆;李秋洋;张颖;朱嘉宁",
+      "id": "out-12609c54c0ee",
+      "evidence": [
+        {
+          "quote": "[专利] 一种大鼠肾脏超声造影恒温固定台 — 罗渝昆;李秋洋;张颖;朱嘉宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4875,
+            "end_char": 4911
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Contrast‐enhanced ultrasound (            CEUS            ) of benign and malignant renal tumors: Distinguishing            CEUS            features differ with tumor size",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianing Zhu;Nan Li;Ping Zhao;Yanjie Wang;Qing Song;Luda Song;Qiuyang Li;Yukun Luo",
+      "id": "out-a920e35ec127",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Contrast‐enhanced ultrasound (            CEUS            ) of benign and malignant renal tumors: Distinguishing            CEUS            features differ with tumor size — Jianing Zhu;Nan Li;Ping Zhao;Yanjie Wang;Qing Song;Luda Song;Qiuyang Li;Yukun Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4917,
+            "end_char": 5178
+          },
+          "version": "10bb5852e2216197766b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

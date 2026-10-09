@@ -2,15 +2,20 @@
   "doc_id": "3ccbb1f43773e4c921fb",
   "version": "6853d00ee66e5ee7f5ae",
   "source_hash": "f8cbe8132ff0693d47a1c85828b98d27bfc493d6ead9c585627ff13759bb0f2a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.444284+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:38:32.064392+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1628b948440c",
-          "name": "小肝癌演进预测与诊疗决策系统",
-          "desc": "面向肝硬化相关结节与小肝癌的个体化精准诊疗，建立精准诊断、演进预测与智能消融平台。",
+          "id": "item-a2a9e661a7c1",
+          "name": "小肝癌诊疗决策",
+          "desc": "肝硬化结节与小肝癌诊疗差异大",
           "evidence": [
             {
-              "quote": "本研究对应“肿瘤影像、病理与多组学融合的智能诊断与疗效评估”",
+              "quote": "随着影像技术进步，肝硬化相关结节和小肝癌检出明显增多，且小肝癌间诊疗差异巨大",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 686
+                "start_char": 688,
+                "end_char": 725
               },
               "version": "6853d00ee66e5ee7f5ae"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-43f69b4275ac",
-          "name": "小肝癌诊疗差异大且缺乏个体化建议",
-          "desc": "肝硬化相关结节和小肝癌检出明显增多且诊疗差异巨大，但指南对肝内结节监测和小肝癌诊疗策略未提供个体化建议。",
+          "id": "item-3d4d667542f6",
+          "name": "缺乏个体化监测和诊疗策略",
+          "desc": "指南无个体化建议",
           "evidence": [
             {
-              "quote": "随着影像技术进步，肝硬化相关结节和小肝癌检出明显增多，且小肝癌间诊疗差异巨大，但指南对肝内结节监测和小肝癌诊疗策略未有个体化建议",
+              "quote": "指南对肝内结节监测和小肝癌诊疗策略未有个体化建议",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 688,
+                "start_char": 728,
                 "end_char": 751
               },
               "version": "6853d00ee66e5ee7f5ae"
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-25a4ce1e62ee",
-          "name": "多模态影像组学精准诊断与智能消融平台",
-          "desc": "基于多模态影像与病理临床资料建立小肝癌精准诊断模型、演进预测模型与个体化治疗决策模型，结合融合导航技术构建标准化流程的智能消融平台。",
-          "evidence": [
-            {
-              "quote": "采用肝硬化相关结节和小肝癌多模态影像数据、病理临床资料，建立小肝癌精准诊断模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 799,
-                "end_char": 837
-              },
-              "version": "6853d00ee66e5ee7f5ae"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-54f6228a5bc7",
-          "name": "BTS-Net肝结节自动分割并构建分级诊断模型",
-          "desc": "构建动态超声造影肝结节自动分割模型BTS-Net（内外测试集Dice 0.79/0.75）；超声影像组学RF模型鉴别硬化结节、不典型增生结节和小肝癌AUC分别为0.91、0.91、0.98；MVI与肿瘤分化预测模型AUC分别为0.869和0.819。",
+          "id": "item-f29a34a38e1c",
+          "name": "BTS-Net肝结节分割模型",
+          "desc": "动态超声造影自动分割",
           "evidence": [
             {
               "quote": "构建了基于深度学习的BTS-Net模型，用于动态超声造影图像中肝结节的自动分割",
@@ -99,44 +82,626 @@
               "version": "6853d00ee66e5ee7f5ae"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9a4874ab975d",
+          "name": "超声影像组学肝结节诊断模型",
+          "desc": "随机森林",
+          "evidence": [
+            {
+              "quote": "通过超声影像组学分析，构建了硬化结节、不典型增生结节和小肝癌的诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3312,
+                "end_char": 3346
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5617401c0d9e",
+          "name": "3DCEUS-FI消融疗效评估系统",
+          "desc": "三维超声造影融合成像",
+          "evidence": [
+            {
+              "quote": "开发了基于三维超声造影融合成像（3DCEUS-FI）的消融疗效评估系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3613,
+                "end_char": 3647
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9d3b1060b70e",
+          "name": "3DUS-FI消融导航技术",
+          "desc": "与迈瑞合作",
+          "evidence": [
+            {
+              "quote": "开发了基于三维超声融合成像（3DUS-FI）的消融导航技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3745,
+                "end_char": 3773
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c05577f3b4f1",
+          "name": "BTS-Net分割性能",
+          "desc": "Dice 0.79和0.75",
+          "evidence": [
+            {
+              "quote": "模型在内部和外部测试集中的Dice系数分别为0.79和0.75，准确率分别为0.93和0.94",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3236,
+                "end_char": 3282
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-038857b08526",
+          "name": "RF模型诊断肝结节",
+          "desc": "测试集AUC 0.91、0.91、0.98",
+          "evidence": [
+            {
+              "quote": "随机森林（RF）模型在测试集中的AUC分别为0.91、0.91和0.98，显著优于传统超声视觉征象诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3348,
+                "end_char": 3398
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-27a232ef2eba",
+          "name": "MVI与肿瘤分化预测模型",
+          "desc": "AUC 0.869和0.819",
+          "evidence": [
+            {
+              "quote": "MVI和肿瘤分化预测模型的AUC分别为0.869和0.819",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3547,
+                "end_char": 3576
+              },
+              "version": "6853d00ee66e5ee7f5ae"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1628b948440c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-43f69b4275ac"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Assessment of Nomogram Based on AFP Response for Patients with Unresectable Hepatocellular Carcinoma Treated with Immune Checkpoint Inhibitors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Zhang;Hui Shen;Ruiying Zheng;Yueting Sun;Xiaoyan Xie;Ming-De Lu;Baoxian Liu;Guangliang Huang",
+      "id": "out-5b2813fab006",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Assessment of Nomogram Based on AFP Response for Patients with Unresectable Hepatocellular Carcinoma Treated with Immune Checkpoint Inhibitors — Yi Zhang;Hui Shen;Ruiying Zheng;Yueting Sun;Xiaoyan Xie;Ming-De Lu;Baoxian Liu;Guangliang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3962,
+            "end_char": 4224
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-43f69b4275ac"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-25a4ce1e62ee"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Perfluorocarbon nanodrug induced oxygen self-enriching sonodynamic therapy improves cancer immunotherapy after insufficient radiofrequency ablation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongyi Huang;Wenxin Wu;Jiancong Wu;Yang Tan;Minru Zhang;Haiyi Long;Huanling Guo;Xiaoer Zhang;Wenwen Zhou;Qi Zhang;Xiaoyan Xie;Ming Xu;Chunyang Zhang",
+      "id": "out-dbd821db54c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Perfluorocarbon nanodrug induced oxygen self-enriching sonodynamic therapy improves cancer immunotherapy after insufficient radiofrequency ablation — Tongyi Huang;Wenxin Wu;Jiancong Wu;Yang Tan;Minru Zhang;Haiyi Long;Huanling Guo;Xiaoer Zhang;Wenwen Zhou;Qi Zhang;Xiaoyan Xie;Ming Xu;Chunyang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4533
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-25a4ce1e62ee"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-54f6228a5bc7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound Fusion–Guided Core Needle Biopsy for Deep Head and Neck Space Lesions: Technical Feasibility, Histopathologic Yield, and Safety",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "X. Li;J. Li;N. Zheng;H. Hu;X. Xie;G. Huang",
+      "id": "out-d6c78ef78533",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound Fusion–Guided Core Needle Biopsy for Deep Head and Neck Space Lesions: Technical Feasibility, Histopathologic Yield, and Safety — X. Li;J. Li;N. Zheng;H. Hu;X. Xie;G. Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4538,
+            "end_char": 4727
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting symptomatic post-hepatectomy liver failure in patients with hepatocellular carcinoma: development and validation of a preoperative nomogram",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiyi Long;Chuan Peng;Hong Ding;Yun Zheng;Jianhua Zhou;Wei Chen;Xian Zhong;Yifan Shi;Yu Duan;Xiaohua Xie;Ming Kuang;Xiaoyan Xie;Manxia Lin",
+      "id": "out-3ae40906680b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting symptomatic post-hepatectomy liver failure in patients with hepatocellular carcinoma: development and validation of a preoperative nomogram — Haiyi Long;Chuan Peng;Hong Ding;Yun Zheng;Jianhua Zhou;Wei Chen;Xian Zhong;Yifan Shi;Yu Duan;Xiaohua Xie;Ming Kuang;Xiaoyan Xie;Manxia Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4732,
+            "end_char": 5029
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasomics in liver cancer: Developing a radiomics model for differentiating intrahepatic cholangiocarcinoma from hepatocellular carcinoma using contrast-enhanced ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li-Ya Su;Ming Xu;Yan-Lin Chen;Man-Xia Lin;Xiao-Yan Xie",
+      "id": "out-5858b6158457",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasomics in liver cancer: Developing a radiomics model for differentiating intrahepatic cholangiocarcinoma from hepatocellular carcinoma using contrast-enhanced ultrasound — Li-Ya Su;Ming Xu;Yan-Lin Chen;Man-Xia Lin;Xiao-Yan Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5034,
+            "end_char": 5271
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Two Kinds of Two-Dimensional Shear Wave Elastography Techniques in the Evaluation of Jaundiced Infants Suspected of Biliary Atresia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenying Zhou;Jinyu Liang;Quanyuan Shan;Huadong Chen;Pengfei Gao;Qinghua Cao;Guotao Wang;Xiaoyan Xie;Luyao Zhou",
+      "id": "out-025af79f3a58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Two Kinds of Two-Dimensional Shear Wave Elastography Techniques in the Evaluation of Jaundiced Infants Suspected of Biliary Atresia — Wenying Zhou;Jinyu Liang;Quanyuan Shan;Huadong Chen;Pengfei Gao;Qinghua Cao;Guotao Wang;Xiaoyan Xie;Luyao Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5276,
+            "end_char": 5540
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D fusion is superior to 2D point-to-point contrast-enhanced US to evaluate the ablative margin after RFA for hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiyi Long;Xiaoyu Zhou;Xiaoer Zhang;Jieyi Ye;Tongyi Huang;Longfei Cong;Xiaoyan Xie;Guangliang Huang",
+      "id": "out-4bb60625fdc9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D fusion is superior to 2D point-to-point contrast-enhanced US to evaluate the ablative margin after RFA for hepatocellular carcinoma — Haiyi Long;Xiaoyu Zhou;Xiaoer Zhang;Jieyi Ye;Tongyi Huang;Longfei Cong;Xiaoyan Xie;Guangliang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5545,
+            "end_char": 5787
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three-dimensional ultrasound fusion imaging in precise needle placement for thermal ablation of hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaming Liu;Yuqing Guo;Yueting Sun;Ming Liu;Xiaoer Zhang;Ruiying Zheng;Longfei Cong;Baoxian Liu;Xiaoyan Xie;Guangliang Huang",
+      "id": "out-08f46f44f2f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three-dimensional ultrasound fusion imaging in precise needle placement for thermal ablation of hepatocellular carcinoma — Jiaming Liu;Yuqing Guo;Yueting Sun;Ming Liu;Xiaoer Zhang;Ruiying Zheng;Longfei Cong;Baoxian Liu;Xiaoyan Xie;Guangliang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5792,
+            "end_char": 6045
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Interpretable Radiomics Model Based on Two-Dimensional Shear Wave Elastography for Predicting Symptomatic Post-Hepatectomy Liver Failure in Patients with Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Zhong;Zohaib Salahuddin;Yi Chen;Henry C. Woodruff;Haiyi Long;Jianyun Peng;Xiaoyan Xie;Manxia Lin;Philippe Lambin",
+      "id": "out-90494270e0fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Interpretable Radiomics Model Based on Two-Dimensional Shear Wave Elastography for Predicting Symptomatic Post-Hepatectomy Liver Failure in Patients with Hepatocellular Carcinoma — Xian Zhong;Zohaib Salahuddin;Yi Chen;Henry C. Woodruff;Haiyi Long;Jianyun Peng;Xiaoyan Xie;Manxia Lin;Philippe Lambin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6050,
+            "end_char": 6357
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The “stiff rim” sign of hepatocellular carcinoma on shear wave elastography: correlation with pathological features and potential prognostic value",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Zhong;Lili Chen;Haiyi Long;Ruiying Zheng;Liya Su;Yu Duan;Xiaoyan Xie;Manxia Lin",
+      "id": "out-591cbcf65c60",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The “stiff rim” sign of hepatocellular carcinoma on shear wave elastography: correlation with pathological features and potential prognostic value — Xian Zhong;Lili Chen;Haiyi Long;Ruiying Zheng;Liya Su;Yu Duan;Xiaoyan Xie;Manxia Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6363,
+            "end_char": 6602
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nanodrug shows spatiotemporally controlled release of anti-PD-L1 antibody and STING agonist to effectively inhibit tumor progression after radiofrequency ablation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huanling Guo;Jinsheng Huang;Yang Tan;Wenxin Wu;Tongyi Huang;Nan Zhang;Shuling Chen;Chunyang Zhang;Xiaoyan Xie;Xintao Shuai;Ming Xu",
+      "id": "out-ab59e7dde3fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nanodrug shows spatiotemporally controlled release of anti-PD-L1 antibody and STING agonist to effectively inhibit tumor progression after radiofrequency ablation — Huanling Guo;Jinsheng Huang;Yang Tan;Wenxin Wu;Tongyi Huang;Nan Zhang;Shuling Chen;Chunyang Zhang;Xiaoyan Xie;Xintao Shuai;Ming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6608,
+            "end_char": 6909
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nanodroplet-enhanced sonodynamic therapy potentiates immune checkpoint blockade for systemic suppression of triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenxin Wu;Ming xu;Bin Qiao;Tongyi Huang;Huanling Guo;Nan Zhang;Luyao Zhou;Manying Li;Yang Tan;Minru Zhang;Xiaoyan Xie;Xintao Shuai;Chunyang Zhang",
+      "id": "out-69e1dc206927",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nanodroplet-enhanced sonodynamic therapy potentiates immune checkpoint blockade for systemic suppression of triple-negative breast cancer — Wenxin Wu;Ming xu;Bin Qiao;Tongyi Huang;Huanling Guo;Nan Zhang;Luyao Zhou;Manying Li;Yang Tan;Minru Zhang;Xiaoyan Xie;Xintao Shuai;Chunyang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6915,
+            "end_char": 7206
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal Bowel Behavior Assessed by Bowel Ultrasound to Predict Early Response to Anti-TNF Therapy in Patients with Crohn's Disease: A Pilot Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Jun Chen;Bai-Li Chen;Mei-Juan Liang;Shu-Ling Chen;Xue-Hua Li;Yun Qiu;Lan-Lan Pang;Qing-Qing Xia;Yao He;Zhi-Rong Zeng;Min-Hu Chen;Ren Mao;Xiao-Yan Xie",
+      "id": "out-159e86940e8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal Bowel Behavior Assessed by Bowel Ultrasound to Predict Early Response to Anti-TNF Therapy in Patients with Crohn's Disease: A Pilot Study — Yu-Jun Chen;Bai-Li Chen;Mei-Juan Liang;Shu-Ling Chen;Xue-Hua Li;Yun Qiu;Lan-Lan Pang;Qing-Qing Xia;Yao He;Zhi-Rong Zeng;Min-Hu Chen;Ren Mao;Xiao-Yan Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7212,
+            "end_char": 7523
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of non-radiomics imaging features and radiomics models based on contrast-enhanced ultrasound and Gd-EOB-DTPA-enhanced MRI for predicting microvascular invasion in hepatocellular carcinoma within 5cm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiying Zheng;Xiaoer Zhang;Baoxian Liu;Yi Zhang;Hui Shen;Xiaoyan Xie;Shurong Li;Guangliang Huang",
+      "id": "out-8c2cd4ea3354",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of non-radiomics imaging features and radiomics models based on contrast-enhanced ultrasound and Gd-EOB-DTPA-enhanced MRI for predicting microvascular invasion in hepatocellular carcinoma within 5cm — Ruiying Zheng;Xiaoer Zhang;Baoxian Liu;Yi Zhang;Hui Shen;Xiaoyan Xie;Shurong Li;Guangliang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7529,
+            "end_char": 7843
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intensity-adjustable pain management with prolonged duration based on phase-transitional nanoparticles-assisted ultrasound imaging-guided nerve blockade",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Qiao;Xinye Song;Weiyi Zhang;Ming Xu;Bowen Zhuang;Wei Li;Huanling Guo;Wenxin Wu;Guangliang Huang;Minru Zhang;Xiaoyan Xie;Nan Zhang;Yong Luan;Chunyang Zhang",
+      "id": "out-d6d9a2385180",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intensity-adjustable pain management with prolonged duration based on phase-transitional nanoparticles-assisted ultrasound imaging-guided nerve blockade — Bin Qiao;Xinye Song;Weiyi Zhang;Ming Xu;Bowen Zhuang;Wei Li;Huanling Guo;Wenxin Wu;Guangliang Huang;Minru Zhang;Xiaoyan Xie;Nan Zhang;Yong Luan;Chunyang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7849,
+            "end_char": 8168
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stiffness on shear wave elastography as a potential microenvironment biomarker for predicting tumor recurrence in HBV-related hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Zhong;Haiyi Long;Lili Chen;Yuhua Xie;Yifan Shi;Jianyun Peng;Ruiying Zheng;Liya Su;Yu Duan;Xiaoyan Xie;Manxia Lin",
+      "id": "out-ab3e949f2961",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stiffness on shear wave elastography as a potential microenvironment biomarker for predicting tumor recurrence in HBV-related hepatocellular carcinoma — Xian Zhong;Haiyi Long;Lili Chen;Yuhua Xie;Yifan Shi;Jianyun Peng;Ruiying Zheng;Liya Su;Yu Duan;Xiaoyan Xie;Manxia Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8174,
+            "end_char": 8450
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声融合导航技术在咽旁-颞下窝-颅底肿物穿刺活检中的初步应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李晓菊;李健;郑念真;胡汉良;谢晓燕;黄光亮",
+      "id": "out-9b9933eec29b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声融合导航技术在咽旁-颞下窝-颅底肿物穿刺活检中的初步应用 — 李晓菊;李健;郑念真;胡汉良;谢晓燕;黄光亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8456,
+            "end_char": 8517
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cox model risk score to predict survival of intrahepatic cholangiocarcinoma after ultrasound-guided ablation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yueting Sun;Baoxian Liu;Hui Shen;Yi Zhang;Ruiying Zheng;Jiaming Liu;Hanliang Hu;Xiaoyan Xie;Guangliang Huang",
+      "id": "out-39457985ff49",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cox model risk score to predict survival of intrahepatic cholangiocarcinoma after ultrasound-guided ablation — Yueting Sun;Baoxian Liu;Hui Shen;Yi Zhang;Ruiying Zheng;Jiaming Liu;Hanliang Hu;Xiaoyan Xie;Guangliang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8523,
+            "end_char": 8748
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肝脏二维剪切波弹性图像的影像组学分析方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钟娴;林满霞;徐旺;刘明;李晓菊;匡铭;谢晓燕",
+      "id": "out-ae882f15fb61",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肝脏二维剪切波弹性图像的影像组学分析方法和装置 — 钟娴;林满霞;徐旺;刘明;李晓菊;匡铭;谢晓燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8754,
+            "end_char": 8809
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "三维超声融合成像可视化技术在引导肝细胞癌热消融精准布针中的初步应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙月婷;郭语清;刘家铭;刘明;丛龙飞;刘保娴;谢晓燕;黄光亮",
+      "id": "out-605b877f176f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 三维超声融合成像可视化技术在引导肝细胞癌热消融精准布针中的初步应用 — 孙月婷;郭语清;刘家铭;刘明;丛龙飞;刘保娴;谢晓燕;黄光亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8815,
+            "end_char": 8887
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Nano-Red Blood Cells Nanoplatform with Lysosomal Escape Capability for Ultrasound Imaging-Guided On-Demand Pain Management",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Qiao;Xinye Song;Nan Zhang;Ming Xu;Bowen Zhuang;Huanling Guo;Wenxin Wu;Zhuyang Yang;Xiaoyan Xie;Yong Luan;Chunyang Zhang",
+      "id": "out-52aaa4c4df29",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Nano-Red Blood Cells Nanoplatform with Lysosomal Escape Capability for Ultrasound Imaging-Guided On-Demand Pain Management — Bin Qiao;Xinye Song;Nan Zhang;Ming Xu;Bowen Zhuang;Huanling Guo;Wenxin Wu;Zhuyang Yang;Xiaoyan Xie;Yong Luan;Chunyang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8893,
+            "end_char": 9158
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning model based on contrast-enhanced ultrasound for predicting vessels encapsulating tumor clusters in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenxin Xu;Haoyan Zhang;Rui Zhang;Xian Zhong;Xiaoju Li;Wenwen Zhou;Xiaoyan Xie;Kun Wang;Ming Xu",
+      "id": "out-42de8bedc4c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning model based on contrast-enhanced ultrasound for predicting vessels encapsulating tumor clusters in hepatocellular carcinoma — Wenxin Xu;Haoyan Zhang;Rui Zhang;Xian Zhong;Xiaoju Li;Wenwen Zhou;Xiaoyan Xie;Kun Wang;Ming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9164,
+            "end_char": 9404
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Comparison of Prediction Models Based on Sonovue- and Sonazoid-Enhanced Ultrasound for Pathologic Grade and Microvascular Invasion in Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Zhang;Di Li;Yanlin Chen;Wenxin Xu;Wenwen Zhou;Manxia Lin;Xiaoyan Xie;Ming Xu",
+      "id": "out-a386f9efb5c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Comparison of Prediction Models Based on Sonovue- and Sonazoid-Enhanced Ultrasound for Pathologic Grade and Microvascular Invasion in Hepatocellular Carcinoma — Rui Zhang;Di Li;Yanlin Chen;Wenxin Xu;Wenwen Zhou;Manxia Lin;Xiaoyan Xie;Ming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9410,
+            "end_char": 9673
+          },
+          "version": "6853d00ee66e5ee7f5ae"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 22,
+        "extracted": 22
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

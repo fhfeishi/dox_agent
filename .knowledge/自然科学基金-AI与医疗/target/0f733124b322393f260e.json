@@ -2,15 +2,20 @@
   "doc_id": "0f733124b322393f260e",
   "version": "bd2200e5481f92eb476f",
   "source_hash": "f980f8b1bdd3b5af1eaec53876a716ec5d5bf72ee4fc6e4955febe8259885f63",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.187253+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:23:15.258093+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b9c874ffa10",
-          "name": "脑卒中运动想象脑电康复",
-          "desc": "面向脑卒中运动功能障碍康复，结合运动想象脑机接口与虚拟现实构建可视化闭环康复系统。",
+          "id": "item-b76af8a4214e",
+          "name": "脑卒中运动想象脑机接口结合VR康复",
+          "desc": "脑卒中患者运动功能障碍的MI-BCI结合VR康复训练",
           "evidence": [
             {
-              "quote": "运动想象脑机交互（Brain-Computer Interaction，BCI）结合虚拟现实(Virtual Reality，VR)是脑卒中患者运动功能障碍康复新方法",
+              "quote": "脑卒中患者运动功能障碍康复新方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 661,
+                "start_char": 728,
                 "end_char": 743
               },
               "version": "bd2200e5481f92eb476f"
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-431cc9d18bb5",
-          "name": "每次使用需长时训练建模致患者难以接受",
-          "desc": "运动想象BCI最大缺陷是每个患者每次使用均需长时训练建模，患者容易疲劳甚至不能接受，制约康复推广。",
+          "id": "item-45bf276cc073",
+          "name": "运动想象BCI每次使用均需长时训练建模",
+          "desc": "每个患者每次使用均需长时训练建模，患者易疲劳甚至不能接受",
           "evidence": [
             {
               "quote": "运动想象BCI最大缺陷是每个患者每次使用均需长时训练建模，患者容易疲劳甚至不能接受",
@@ -63,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6ea0bd5487b5",
-          "name": "主动迁移学习建模与VR闭环康复系统",
-          "desc": "用乘法递归神经网络提取历史样本特征，基于散度指标选择最相似历史患者，通过样本熵主动学习筛选高贡献样本迁移到目标域建立新患者分类器，并将解码结果传递给VR场景形成闭环。",
+          "id": "item-da376c05673a",
+          "name": "乘法递归神经网络特征提取",
+          "desc": "用乘法递归神经网络深度学习历史患者样本，提取运动想象特征表达",
+          "evidence": [
+            {
+              "quote": "首先利用乘法递归神经网络深度学习已有患者历史训练样本本质特点，提取运动想象的卓越特征表达",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 811,
+                "end_char": 854
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1cb0df52aaea",
+          "name": "基于散度的相似源域患者选择",
+          "desc": "以散度指标度量域间特征分布相似性，选择最相似的历史患者",
           "evidence": [
             {
               "quote": "基于散度指标度量两个域特征分布相似性，选择与新患者最相似的若干历史患者",
@@ -76,7 +98,59 @@
               },
               "version": "bd2200e5481f92eb476f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-324bf27c71cb",
+          "name": "样本熵主动学习与样本迁移",
+          "desc": "主动学习筛选对目标域模型贡献最大的样本并迁移，建立新患者分类器",
+          "evidence": [
+            {
+              "quote": "通过样本熵主动学习筛选出这些历史患者中对目标域模型贡献最大的样本，迁移到目标域",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 919,
+                "end_char": 957
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5a7257324d40",
+          "name": "多损失融合FBCNet解码",
+          "desc": "基于多损失融合FBCNet的运动想象脑电信号解码",
+          "evidence": [
+            {
+              "quote": "利用基于多损失融合FBCNet的运动想象脑电信号解码等算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2943,
+                "end_char": 2971
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9a27707663a4",
+          "name": "VR场景在线反馈",
+          "desc": "将在线解码结果传递给VR场景，实现意图驱动的虚拟场景动作",
+          "evidence": [
+            {
+              "quote": "将在线解码结果传递给设计的VR场景，实现意图驱动虚拟场景动作",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 974,
+                "end_char": 1003
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "role": "配套-控制"
         }
       ]
     },
@@ -85,21 +159,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8363f1d06ba",
-          "name": "构建MI-BCI与VR可视化训练系统",
-          "desc": "结合MI-BCI与VR构建了一套可视化训练系统，通过跨个体跨时间迁移学习提升康复效果，使患者能够在沉浸式虚拟环境中进行康复训练。",
+          "id": "item-350ea7ecc1f1",
+          "name": "多任务MI-BCI范式与数据采集",
+          "desc": "设计适合脑卒中患者康复需求的多任务MI-BCI范式并采集数据",
           "evidence": [
             {
-              "quote": "构建了一套可视化训练系统，为康复治疗提供了新的思路和方法",
+              "quote": "设计适合脑卒中患者康复需求的多任务MI-BCI范式，并进行相关数据的采集",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2847,
-                "end_char": 2874
+                "start_char": 2885,
+                "end_char": 2920
               },
               "version": "bd2200e5481f92eb476f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-1fb112b17641",
+          "name": "MI-BCI与VR可视化训练系统",
+          "desc": "构建了一套可视化训练系统",
+          "evidence": [
+            {
+              "quote": "构建了一套可视化训练系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2847,
+                "end_char": 2858
+              },
+              "version": "bd2200e5481f92eb476f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +202,658 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-1b9c874ffa10"
+        "dimension": "技术",
+        "item_id": "item-324bf27c71cb"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-431cc9d18bb5"
+        "item_id": "item-45bf276cc073"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-431cc9d18bb5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6ea0bd5487b5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6ea0bd5487b5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c8363f1d06ba"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本研究通过脑电建模方法创新，缩短训练时间，使更多患者能够接受使用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 1017,
+            "end_char": 1048
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hand Gesture Recognition using sEMG Signals Based on CNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Bo;Yang Banghua;Gao Shouwei;LinFeng Yan;Haodong Zhuang;Wen Wang",
+      "id": "out-a437d3d9ef11",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hand Gesture Recognition using sEMG Signals Based on CNN — Li Bo;Yang Banghua;Gao Shouwei;LinFeng Yan;Haodong Zhuang;Wen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3252,
+            "end_char": 3383
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immersive AR merged with MI-BCI hand function rehabilitation training system for stroke patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yinyang Qin;Banghua Yang;Dongze Li",
+      "id": "out-21e1ca326a1f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Immersive AR merged with MI-BCI hand function rehabilitation training system for stroke patients — Yinyang Qin;Banghua Yang;Dongze Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3388,
+            "end_char": 3527
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Paradigm Design of a Novel 2-class Unilateral Upper Limb Motor Imagery Tasks and its EEG Signal Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenzheng Qiu;Banghua Yang;Jun Ma;Shouwei Gao;Yan Zhu;Wen Wang",
+      "id": "out-551660329b68",
+      "evidence": [
+        {
+          "quote": "[会议论文] The Paradigm Design of a Novel 2-class Unilateral Upper Limb Motor Imagery Tasks and its EEG Signal Classification — Wenzheng Qiu;Banghua Yang;Jun Ma;Shouwei Gao;Yan Zhu;Wen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3532,
+            "end_char": 3716
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BCI+VR Rehabilitation Design of Closed-Loop Motor Imagery Based on the Degree of Drug Addiction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Xuelin;Yang Banghua;Gao Shouwei;Gao Honghao;Yan Linfeng;Xu Ding;Wang Wen",
+      "id": "out-9efe479299fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BCI+VR Rehabilitation Design of Closed-Loop Motor Imagery Based on the Degree of Drug Addiction — Gu Xuelin;Yang Banghua;Gao Shouwei;Gao Honghao;Yan Linfeng;Xu Ding;Wang Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3900
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Drug Addiction Detection Algorithm Based on CNN-BN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Du Li;Banghua Yang;Xuelin Gu;Dewen Kong;Peng Zan",
+      "id": "out-5517525712c1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Drug Addiction Detection Algorithm Based on CNN-BN — Du Li;Banghua Yang;Xuelin Gu;Dewen Kong;Peng Zan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 4012
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stroke identification based on EEG convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Ma;Banghua Yang;Wenzheng Qiu;Xuelin Gu;Zhu Yan;Meng Xia",
+      "id": "out-daa78b4d0a02",
+      "evidence": [
+        {
+          "quote": "[会议论文] Stroke identification based on EEG convolutional neural network — Jun Ma;Banghua Yang;Wenzheng Qiu;Xuelin Gu;Zhu Yan;Meng Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4017,
+            "end_char": 4148
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatio-time-frequency joint sparse optimization with transfer learning in motor imagery-based brain-computer interface system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minmin Zheng;Banghua Yang;Shouwei Gao;Xia Meng",
+      "id": "out-3c64042d08c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatio-time-frequency joint sparse optimization with transfer learning in motor imagery-based brain-computer interface system — Minmin Zheng;Banghua Yang;Shouwei Gao;Xia Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4153,
+            "end_char": 4333
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于手写笔画多任务运动想象脑机接口康复训练系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨帮华;荣芬奇;马跃;竭荣欣",
+      "id": "out-c2b21c53ebda",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于手写笔画多任务运动想象脑机接口康复训练系统 — 杨帮华;荣芬奇;马跃;竭荣欣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4338,
+            "end_char": 4384
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Design of Upper Limb Rehabilitation Training System Combining BCI and AR Technology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Yao;Banghua Yang;Xinxing Xia;Zan Peng;Shouwei Gao;Xia Meng",
+      "id": "out-82c6538d5a3e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Design of Upper Limb Rehabilitation Training System Combining BCI and AR Technology — Yuan Yao;Banghua Yang;Xinxing Xia;Zan Peng;Shouwei Gao;Xia Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4389,
+            "end_char": 4544
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anxiety and Depression Diagnosis Method Based on Brain Networks and Convolutional Neural Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunlong Xie;Banghua Yang;Xi Lu;Minmin Zheng;Cunxiu Fan;Xiaoying Bi;Shu zhou;Yingjie Li",
+      "id": "out-84e4f1ccf0fc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Anxiety and Depression Diagnosis Method Based on Brain Networks and Convolutional Neural Networks — Yunlong Xie;Banghua Yang;Xi Lu;Minmin Zheng;Cunxiu Fan;Xiaoying Bi;Shu zhou;Yingjie Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4550,
+            "end_char": 4742
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Research on Brain-Controlled Robotic Arm Based on Improved Faster-RCNN Target Detection Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhua Chen;Banghua Yang;Xuelin Gu;Zhaokun Wang;Yunzhe Li",
+      "id": "out-463fccfa1e3b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Research on Brain-Controlled Robotic Arm Based on Improved Faster-RCNN Target Detection Model — Wenhua Chen;Banghua Yang;Xuelin Gu;Zhaokun Wang;Yunzhe Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4748,
+            "end_char": 4907
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain-Controlled Robotic Arm Based on Adaptive FBCCA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Zhang;Banghua Yang;Shouwei Gao;Xuelin Gu",
+      "id": "out-2a5ffa77c5fc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain-Controlled Robotic Arm Based on Adaptive FBCCA — Dong Zhang;Banghua Yang;Shouwei Gao;Xuelin Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4913,
+            "end_char": 5019
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A large EEG dataset for studying cross-session variability in motor imagery brain-computer interface.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Ma;Banghua Yang;Wenzheng Qiu;Yunzhe Li;Shouwei Gao;Xinxing Xia",
+      "id": "out-7bd749054bd6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A large EEG dataset for studying cross-session variability in motor imagery brain-computer interface. — Jun Ma;Banghua Yang;Wenzheng Qiu;Yunzhe Li;Shouwei Gao;Xinxing Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5025,
+            "end_char": 5201
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EEG Based Eye Movements Multi-Classification Using Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haodong Zhuang;Banghua Yang;Bo Li;Peng Zan;BaiHeng Ma;Xia Meng",
+      "id": "out-dc51e64c1923",
+      "evidence": [
+        {
+          "quote": "[会议论文] EEG Based Eye Movements Multi-Classification Using Convolutional Neural Network — Haodong Zhuang;Banghua Yang;Bo Li;Peng Zan;BaiHeng Ma;Xia Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5207,
+            "end_char": 5357
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain-Controlled Robotic Arm Grasping System Based on Adaptive TRCA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhaokun Wang;Banghua Yang;Wen Wang;Dong Zhang;Xuelin Gu",
+      "id": "out-d7fe28523898",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain-Controlled Robotic Arm Grasping System Based on Adaptive TRCA — Zhaokun Wang;Banghua Yang;Wen Wang;Dong Zhang;Xuelin Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5363,
+            "end_char": 5494
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于树莓派的便携式脑卒中康复训练系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨帮华;李东泽;邹文辉;王照坤;张栋;姚媛;顾叶萱",
+      "id": "out-cab5400fdbae",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于树莓派的便携式脑卒中康复训练系统及方法 — 杨帮华;李东泽;邹文辉;王照坤;张栋;姚媛;顾叶萱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5500,
+            "end_char": 5555
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The unilateral upper limb classification from fMRI-weighted EEG signals using convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Jun Ma;Wenzheng Qiu;Jian Zhang;Xiaofan Wang",
+      "id": "out-df1a97e6a4a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The unilateral upper limb classification from fMRI-weighted EEG signals using convolutional neural network — Banghua Yang;Jun Ma;Wenzheng Qiu;Jian Zhang;Xiaofan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5561,
+            "end_char": 5732
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A new 2-class unilateral upper limb motor imagery tasks for stroke rehabilitation training",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Jun Ma;Wenzheng Qiu;Yan Zhu;Xia Meng",
+      "id": "out-9487ef7afc17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A new 2-class unilateral upper limb motor imagery tasks for stroke rehabilitation training — Banghua Yang;Jun Ma;Wenzheng Qiu;Yan Zhu;Xia Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5738,
+            "end_char": 5886
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种快速注射脑电帽导电膏的装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨帮华;李永聪;谷雪林",
+      "id": "out-a3473c7c844a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种快速注射脑电帽导电膏的装置 — 杨帮华;李永聪;谷雪林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5892,
+            "end_char": 5925
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep neural network with subdomain adaptation for motor imagery brain-computer interface",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minmin Zheng;Banghua Yang",
+      "id": "out-62e7918777de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep neural network with subdomain adaptation for motor imagery brain-computer interface — Minmin Zheng;Banghua Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5931,
+            "end_char": 6055
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification accuracy and functional difference prediction in different brain regions of drug abuser prefrontal lobe basing on machine-learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Xuelin Gu;Shouwei Gao;Ding Xu",
+      "id": "out-06c16f5977d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification accuracy and functional difference prediction in different brain regions of drug abuser prefrontal lobe basing on machine-learning — Banghua Yang;Xuelin Gu;Shouwei Gao;Ding Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6061,
+            "end_char": 6257
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain control jigsaw puzzle system based on hybrid brain computer interface of motor imagery and steady-state visual evoked potential",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rongxin Jie;Banghua Yang;Zhaokun Wang;Jun Ma;Xinxing Xia;Shouwei Gao",
+      "id": "out-66d708d087e7",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain control jigsaw puzzle system based on hybrid brain computer interface of motor imagery and steady-state visual evoked potential — Rongxin Jie;Banghua Yang;Zhaokun Wang;Jun Ma;Xinxing Xia;Shouwei Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6263,
+            "end_char": 6473
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Different types of drug abusers prefrontal cortex activation patterns and based on machine-learning classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Banghua;Gu Xuelin;Gao Shouwei;Yan Lin Feng;Xu Ding;Wang Wen",
+      "id": "out-65ca89c884e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Different types of drug abusers prefrontal cortex activation patterns and based on machine-learning classification — Yang Banghua;Gu Xuelin;Gao Shouwei;Yan Lin Feng;Xu Ding;Wang Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6479,
+            "end_char": 6666
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Review of pathological index detection and new rehabilitation technique of drug addicts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Xuelin Gu;Chao Gu;Ding Xu;Chengcheng Fan",
+      "id": "out-2742a97622ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Review of pathological index detection and new rehabilitation technique of drug addicts — Banghua Yang;Xuelin Gu;Chao Gu;Ding Xu;Chengcheng Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6672,
+            "end_char": 6821
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Research on the Intelligent Evaluation of Addiction Degree and New Method of Rehabilitation of Drug Addicts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Xuelin;Yang Banghua;Li Du;Xu Ding;Gu Chao",
+      "id": "out-19ea171ff0f3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Research on the Intelligent Evaluation of Addiction Degree and New Method of Rehabilitation of Drug Addicts — Gu Xuelin;Yang Banghua;Li Du;Xu Ding;Gu Chao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6827,
+            "end_char": 6987
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Task-Related Component Analysis Combining Paired Character Decoding for Miniature Asymmetric Visual Evoked Potentials",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yusong Zhou;Banghua Yang;Cuntai Guan",
+      "id": "out-9b06009d1559",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Task-Related Component Analysis Combining Paired Character Decoding for Miniature Asymmetric Visual Evoked Potentials — Yusong Zhou;Banghua Yang;Cuntai Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6993,
+            "end_char": 7155
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor Imagery EEG Classification Method Based on Adaptive Decision Surface of LDA Classifier",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Du Li;Baiheng Ma;Xuelin Gu;Dewen Kong",
+      "id": "out-3844015f5d53",
+      "evidence": [
+        {
+          "quote": "[会议论文] Motor Imagery EEG Classification Method Based on Adaptive Decision Surface of LDA Classifier — Banghua Yang;Du Li;Baiheng Ma;Xuelin Gu;Dewen Kong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7161,
+            "end_char": 7312
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EEG classification across sessions and across subjects through transfer learning in motor imagery-based brain-machine interface system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Minmin;Yang Banghua;Xie Yunlong",
+      "id": "out-384f8833564e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EEG classification across sessions and across subjects through transfer learning in motor imagery-based brain-machine interface system — Zheng Minmin;Yang Banghua;Xie Yunlong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7318,
+            "end_char": 7498
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Study on EEG-NIRS Testing of Drug Users' Brain Function under Visual Induction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Banghua Yang;Xuelin Gu;Ding Xu;Chengcheng Fan",
+      "id": "out-36db88929599",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Study on EEG-NIRS Testing of Drug Users' Brain Function under Visual Induction — Banghua Yang;Xuelin Gu;Ding Xu;Chengcheng Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7504,
+            "end_char": 7638
+          },
+          "version": "bd2200e5481f92eb476f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "会议论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "b20c5d23d8f11a2d84be",
   "version": "516421e3fbd012e89719",
   "source_hash": "647f670e8d9f300e6952f0fa9dfeecc8c8689155fa9c0fd3ea2fe1e7ef9788b6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.166419+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:54:35.789179+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b0badd0238ce",
-          "name": "ADHD多模态神经影像辅助诊断",
-          "desc": "面向注意缺陷多动障碍的客观诊断需求，基于EEG-MRI多模态特征构建深度学习辅助诊断模型。",
+          "id": "item-0cedc68c8eaa",
+          "name": "ADHD辅助诊断",
+          "desc": "儿童神经发育障碍",
           "evidence": [
             {
-              "quote": "注意缺陷多动障碍（ADHD）是高发的儿童神经发育障碍性疾病，其社会影响大、疾病负担重",
+              "quote": "注意缺陷多动障碍（ADHD）是一种常见的儿童神经发育障碍性疾病，该病患病率高、损害重",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 704
+                "start_char": 2643,
+                "end_char": 2684
               },
               "version": "516421e3fbd012e89719"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc61a2c94ca0",
-          "name": "异质性强致单一指标无法诊断",
-          "desc": "ADHD异质性强，单一指标并不能用于诊断，需要建立多维度指标体系并发展客观诊断方法。",
+          "id": "item-1cc66c7d1559",
+          "name": "缺乏客观诊断工具",
+          "desc": "需寻找生物学标记",
           "evidence": [
             {
-              "quote": "由于该病的异质性强，单一指标并不能用于诊断，因此需要建立多维度的指标体系，发展客观诊断方法",
+              "quote": "目前ADHD缺乏客观诊断工具，迫切需要寻找相关的生物学标记，发展客观诊断方法，提高其诊断准确性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 771,
-                "end_char": 815
+                "start_char": 2686,
+                "end_char": 2732
               },
               "version": "516421e3fbd012e89719"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2906ae92e1c2",
-          "name": "深度学习整合EEG-MRI多模态特征诊断建模",
-          "desc": "整合EEG-MRI多模态影像特征及认知功能建立并优化ADHD深度学习诊断模型，解析不同类型患者各维度突出特征并探索不同表型ADHD划分标准。",
-          "evidence": [
-            {
-              "quote": "本项目拟将深度学习技术用于ADHD的辅助诊断，整合EEG-MRI多模态影像特征及认知功能，建立并优化ADHD深度学习诊断模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 817,
-                "end_char": 878
-              },
-              "version": "516421e3fbd012e89719"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d758964e3a69",
-          "name": "脑电熵值三频段分类准确率最高达94.7%",
-          "desc": "基于静息态脑电熵值在alpha、beta、gamma三频段分类准确率分别达91.3%、94.7%、90.7%；基于大尺度脑网络功率的卷积网络准确率90.3%；脑影像特征对药物响应者分类最高达94.23%。",
+          "id": "item-db0c46833bf6",
+          "name": "脑电熵值分类",
+          "desc": "alpha、beta、gamma频段",
           "evidence": [
             {
               "quote": "基于静息态脑电熵值，在alpha、beta和gamma三个频段的分类准确率分别达到了91.3%、94.7%和90.7%",
@@ -99,44 +82,505 @@
               "version": "516421e3fbd012e89719"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5a2da5f35c0d",
+          "name": "大尺度脑网络功率深度学习分类",
+          "desc": "图像卷积神经网络",
+          "evidence": [
+            {
+              "quote": "基于大尺度脑网络功率，研究发现深度学习图像卷积神经网络的分类准确率达90.3%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2877,
+                "end_char": 2915
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e997a4093aed",
+          "name": "脑影像特征预测药物治疗响应",
+          "desc": "响应者与非响应者分类",
+          "evidence": [
+            {
+              "quote": "基于脑影像特征对于药物治疗响应者和非响应者分类准确率最高达到94.23%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3312,
+                "end_char": 3347
+              },
+              "version": "516421e3fbd012e89719"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Overactivated contextual visual perception and response to a single dose of methylphenidate in children with ADHD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangsheng Luo;Chen Dang;Jialiang Guo;Dongwei Li;Encong Wang;Yu Zhu;Lu Liu;Yufeng Wang;Yan Song;Li Sun",
+      "id": "out-1ea33cfb3ace",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Overactivated contextual visual perception and response to a single dose of methylphenidate in children with ADHD — Xiangsheng Luo;Chen Dang;Jialiang Guo;Dongwei Li;Encong Wang;Yu Zhu;Lu Liu;Yufeng Wang;Yan Song;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3668
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "成人注意缺陷多动障碍患者工作记忆特点的事件相关电位研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵希希;孙黎;王长明;王恩聪;李卉;吴占良;陈进;曹庆久;王玉凤",
+      "id": "out-41597de8f7cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 成人注意缺陷多动障碍患者工作记忆特点的事件相关电位研究 — 赵希希;孙黎;王长明;王恩聪;李卉;吴占良;陈进;曹庆久;王玉凤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3741
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effects of first-dose methylphenidate on the neural signatures of visual selective attention in children with attention-deficit/hyperactivity disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jialiang Guo;Xiangsheng Luo;Yuanjun Kong;Bingkun Li;Bailu Si;Ole Jensen;Li Sun;Yan Song",
+      "id": "out-b3a03a97a861",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effects of first-dose methylphenidate on the neural signatures of visual selective attention in children with attention-deficit/hyperactivity disorder — Jialiang Guo;Xiangsheng Luo;Yuanjun Kong;Bingkun Li;Bailu Si;Ole Jensen;Li Sun;Yan Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3746,
+            "end_char": 3996
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inhibition‐directed multimodal imaging fusion patterns in adults with ADHD and its potential underlying “gene‐brain‐cognition” relationship",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaojie Guo;Lu Liu;Tiantian Li;Qihua Zhao;Hui Li;Fang Huang;Yanfei Wang;Qiujin Qian;Qingjiu Cao;Yufeng Wang;Vince D. Calhoun;Jing Sui;Li Sun",
+      "id": "out-4fdf24d6b3c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inhibition‐directed multimodal imaging fusion patterns in adults with ADHD and its potential underlying “gene‐brain‐cognition” relationship — Xiaojie Guo;Lu Liu;Tiantian Li;Qihua Zhao;Hui Li;Fang Huang;Yanfei Wang;Qiujin Qian;Qingjiu Cao;Yufeng Wang;Vince D. Calhoun;Jing Sui;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4001,
+            "end_char": 4289
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "成人ADHD患者脑电α功率不对称性与生态执行功能的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈进;赵希希;韩传亮;李卉;吴占良;钱秋谨;曹庆久;王长明;孙黎;王玉凤",
+      "id": "out-bdb23e4dfa1f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 成人ADHD患者脑电α功率不对称性与生态执行功能的相关性 — 陈进;赵希希;韩传亮;李卉;吴占良;钱秋谨;曹庆久;王长明;孙黎;王玉凤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4294,
+            "end_char": 4367
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Atypical Developmental Trajectories of Early Perception Among School‐Age Children With Attention Deficit Hyperactivity Disorder During a Visual Search Task",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangsheng Luo;Jialiang Guo;Dongwei Li;Lu Liu;Yanbo Chen;Yu Zhu;Stuart J. Johnstone;Yufeng Wang;Yan Song;Li Sun",
+      "id": "out-408f990a3de5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Atypical Developmental Trajectories of Early Perception Among School‐Age Children With Attention Deficit Hyperactivity Disorder During a Visual Search Task — Xiangsheng Luo;Jialiang Guo;Dongwei Li;Lu Liu;Yanbo Chen;Yu Zhu;Stuart J. Johnstone;Yufeng Wang;Yan Song;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4372,
+            "end_char": 4647
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neural Correlates of Working Memory Deficits in Different Adult Outcomes of ADHD: An Event-Related Potential Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xixi Zhao;Hui Li;Encong Wang;Xiangsheng Luo;Chuanliang Han;Qingjiu Cao;Lu Liu;Jin Chen;Changming Wang;Stuart J. Johnstone;Yufeng Wang;Li Sun",
+      "id": "out-d03880039b9e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neural Correlates of Working Memory Deficits in Different Adult Outcomes of ADHD: An Event-Related Potential Study — Xixi Zhao;Hui Li;Encong Wang;Xiangsheng Luo;Chuanliang Han;Qingjiu Cao;Lu Liu;Jin Chen;Changming Wang;Stuart J. Johnstone;Yufeng Wang;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4652,
+            "end_char": 4915
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional reorganization of brain activity in children with attention-deficit/hyperactivity disorder: Evidence from the modulatory effect of cognitive demand during visuospatial attention task",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Zhu;Xiangsheng Luo;Xiaojie Guo;Yanbo Chen;Suli Zheng;Chen Dang;Yuan Feng;Chenyang Xu;Yufeng Wang;Yan Song;Hang Zhang;Li Sun",
+      "id": "out-490c962ed132",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional reorganization of brain activity in children with attention-deficit/hyperactivity disorder: Evidence from the modulatory effect of cognitive demand during visuospatial attention task — Yu Zhu;Xiangsheng Luo;Xiaojie Guo;Yanbo Chen;Suli Zheng;Chen Dang;Yuan Feng;Chenyang Xu;Yufeng Wang;Yan Song;Hang Zhang;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4920,
+            "end_char": 5248
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the Potential “Brain-Cognition-Behavior” Relationship in Children With ADHD Based on Resting-State Brain Local Activation and Functional Connectivity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Feng;Yu Zhu;Xiaojie Guo;Xiangsheng Luo;Chen Dang;Qianrong Liu;Chenyang Xu;Simin Kang;Gaohan Yin;Taizhu Liang;Yufeng Wang;Lu Liu;Li Sun",
+      "id": "out-d59e79ffbeaf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the Potential “Brain-Cognition-Behavior” Relationship in Children With ADHD Based on Resting-State Brain Local Activation and Functional Connectivity — Yuan Feng;Yu Zhu;Xiaojie Guo;Xiangsheng Luo;Chen Dang;Qianrong Liu;Chenyang Xu;Simin Kang;Gaohan Yin;Taizhu Liang;Yufeng Wang;Lu Liu;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5253,
+            "end_char": 5560
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A randomized controlled study of remote computerized cognitive, neurofeedback, and combined training in the treatment of children with attention-deficit/hyperactivity disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangsheng Luo;Xiaojie Guo;Qihua Zhao;Yu Zhu;Yanbo Chen;Dawei Zhang;Han Jiang;Yufeng Wang;Stuart Johnstone;Li Sun",
+      "id": "out-eb0186e7e865",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A randomized controlled study of remote computerized cognitive, neurofeedback, and combined training in the treatment of children with attention-deficit/hyperactivity disorder — Xiangsheng Luo;Xiaojie Guo;Qihua Zhao;Yu Zhu;Yanbo Chen;Dawei Zhang;Han Jiang;Yufeng Wang;Stuart Johnstone;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5566,
+            "end_char": 5863
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Abnormal modulation of theta oscillations in children with attention-deficit/hyperactivity disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jialiang Guo;Xiangsheng Luo;Bingkun Li;Qinyuan Chang;Li Sun;Yan Song",
+      "id": "out-e312270451b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Abnormal modulation of theta oscillations in children with attention-deficit/hyperactivity disorder — Jialiang Guo;Xiangsheng Luo;Bingkun Li;Qinyuan Chang;Li Sun;Yan Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5869,
+            "end_char": 6045
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic sensory change processing in adults with attention deficit and hyperactivity disorder: a visual mismatch negativity study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Dang;Xiangsheng Luo;Yu Zhu;Bingkun Li;Yuan Feng;Chenyang Xu;Simin Kang;Gaohan Yin;Stuart J. Johnstone;Yufeng Wang;Yan Song;Li Sun",
+      "id": "out-5ad30289f6d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic sensory change processing in adults with attention deficit and hyperactivity disorder: a visual mismatch negativity study — Chen Dang;Xiangsheng Luo;Yu Zhu;Bingkun Li;Yuan Feng;Chenyang Xu;Simin Kang;Gaohan Yin;Stuart J. Johnstone;Yufeng Wang;Yan Song;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6051,
+            "end_char": 6325
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "阈下注意缺陷多动障碍儿童生态执行功能及行为问题特征",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐晨阳;罗翔升;祝雨;陈彦博;郑苏丽;傅朝;刘倩溶;曹庆久;孙黎",
+      "id": "out-b5fedb08570b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 阈下注意缺陷多动障碍儿童生态执行功能及行为问题特征 — 徐晨阳;罗翔升;祝雨;陈彦博;郑苏丽;傅朝;刘倩溶;曹庆久;孙黎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6331,
+            "end_char": 6397
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Abnormal reactivity of brain oscillations to visual search target in children with attention-deficit/hyperactivity disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jialiang Guo;Xiangsheng Luo;Yuanjun Kong;Bingkun Li;Bailu Si;Li Sun;Yan Song",
+      "id": "out-40f32958a57e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Abnormal reactivity of brain oscillations to visual search target in children with attention-deficit/hyperactivity disorder — Jialiang Guo;Xiangsheng Luo;Yuanjun Kong;Bingkun Li;Bailu Si;Li Sun;Yan Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6403,
+            "end_char": 6611
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparing the Transfer Effects of Three Neurocognitive Training Protocols in Children With Attention-Deficit/Hyperactivity Disorder: A Single-Case Experimental Design",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Da-Wei Zhang;Stuart J. Johnstone;Hui Li;Xiangsheng Luo;Li Sun",
+      "id": "out-dcc20f536953",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparing the Transfer Effects of Three Neurocognitive Training Protocols in Children With Attention-Deficit/Hyperactivity Disorder: A Single-Case Experimental Design — Da-Wei Zhang;Stuart J. Johnstone;Hui Li;Xiangsheng Luo;Li Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6617,
+            "end_char": 6853
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative Identification of ADHD Tendency in Children With Immersive Fingertip Force Control Tasks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhihao Zhang;Simin Kang;Jifan Yu;Heyang Li;Gaohan Yin;Hongxing Zhang;Li Sun;Dangxiao Wang",
+      "id": "out-fa74852df898",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative Identification of ADHD Tendency in Children With Immersive Fingertip Force Control Tasks — Zhihao Zhang;Simin Kang;Jifan Yu;Heyang Li;Gaohan Yin;Hongxing Zhang;Li Sun;Dangxiao Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6859,
+            "end_char": 7058
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Information‐based multivariate decoding reveals imprecise neural encoding in children with attention deficit hyperactivity disorder during visual selective attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongwei Li;Xiangsheng Luo;Jialiang Guo;Yuanjun Kong;Yiqing Hu;Yanbo Chen;Yu Zhu;Yufeng Wang;Li Sun;Yan Song",
+      "id": "out-04548dd66b84",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Information‐based multivariate decoding reveals imprecise neural encoding in children with attention deficit hyperactivity disorder during visual selective attention — Dongwei Li;Xiangsheng Luo;Jialiang Guo;Yuanjun Kong;Yiqing Hu;Yanbo Chen;Yu Zhu;Yufeng Wang;Li Sun;Yan Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7064,
+            "end_char": 7345
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Compensatory mechanism of attention-deficit/hyperactivity disorder recovery in resting state alpha rhythms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuanliang Han;Tian Wang;Yujie Wu;Hui Li;Encong Wang;Xixi Zhao;Qingjiu Cao;Qiujin Qian;Yufeng Wang;Fei Dou;Jian K. Liu;Li Sun;Dajun Xing",
+      "id": "out-3b5f3d3e33ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Compensatory mechanism of attention-deficit/hyperactivity disorder recovery in resting state alpha rhythms — Chuanliang Han;Tian Wang;Yujie Wu;Hui Li;Encong Wang;Xixi Zhao;Qingjiu Cao;Qiujin Qian;Yufeng Wang;Fei Dou;Jian K. Liu;Li Sun;Dajun Xing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7351,
+            "end_char": 7602
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Aberrant brain dynamics and spectral power in children with ADHD and its subtypes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Na Luo;Xiangsheng Luo;Suli Zheng;Dongren Yao;Min Zhao;Yue Cui;Yu Zhu;Vince D. Calhoun;Li Sun;Jing Sui",
+      "id": "out-a16a8b815fa4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Aberrant brain dynamics and spectral power in children with ADHD and its subtypes — Na Luo;Xiangsheng Luo;Suli Zheng;Dongren Yao;Min Zhao;Yue Cui;Yu Zhu;Vince D. Calhoun;Li Sun;Jing Sui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7608,
+            "end_char": 7799
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "成人ADHD患者静息脑电及其与生态执行功能的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈进;李卉;郭晓杰;赵希希;吴占良;钱秋谨;曹庆久;王长明;孙黎;王玉凤",
+      "id": "out-ef5af5083adf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 成人ADHD患者静息脑电及其与生态执行功能的相关性 — 陈进;李卉;郭晓杰;赵希希;吴占良;钱秋谨;曹庆久;王长明;孙黎;王玉凤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7805,
+            "end_char": 7875
+          },
+          "version": "516421e3fbd012e89719"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lack of an association between anticipatory alpha oscillations and attentional selection in children with attention-deficit/hyperactivity disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingkun Li;Jialiang Guo;Chenguang Zhao;Xiangsheng Luo;Yuanjun Kong;Yanbo Chen;Hongyu Liu;Li Sun;Yan Song",
+      "id": "out-b2ddece29d5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lack of an association between anticipatory alpha oscillations and attentional selection in children with attention-deficit/hyperactivity disorder — Bingkun Li;Jialiang Guo;Chenguang Zhao;Xiangsheng Luo;Yuanjun Kong;Yanbo Chen;Hongyu Liu;Li Sun;Yan Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7881,
+            "end_char": 8140
+          },
+          "version": "516421e3fbd012e89719"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b0badd0238ce"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cc61a2c94ca0"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 21,
+        "extracted": 21
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cc61a2c94ca0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2906ae92e1c2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2906ae92e1c2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d758964e3a69"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

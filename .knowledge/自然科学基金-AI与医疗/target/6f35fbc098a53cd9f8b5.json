@@ -2,15 +2,20 @@
   "doc_id": "6f35fbc098a53cd9f8b5",
   "version": "501429ed23fb676d6f0b",
   "source_hash": "11aacfacd7c8df825efaec8c5ca15c73e073a73ef7825a2f23eca8ee6af05b86",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.174957+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:44.033985+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dcf8dc3bda7b",
-          "name": "面向药品重定位的医学知识图谱构建与应用",
-          "desc": "面向突发公共卫生事件下的快速药品研发需求，构建医药知识图谱并支撑药物重定位。",
+          "id": "item-5a5a5445df0f",
+          "name": "药品重定位",
+          "desc": "应急条件下老药新用",
           "evidence": [
             {
               "quote": "面对突然爆发的未知病毒，从头开始研发新药花费太长时间，“老药新用”的药物重定位策略是最佳选择",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-24a5d58c747e",
-          "name": "缺乏大规模药品知识库与知识表达手段",
-          "desc": "目前药品重定位研究既缺乏综合各类药品知识的大规模知识库，也没有利用大规模知识库的知识表达手段。",
+          "id": "item-4583702641d8",
+          "name": "缺乏大规模药品知识库和知识表示方法",
+          "desc": "药品重定位研究",
           "evidence": [
             {
-              "quote": "但目前的药品重定位研究既缺乏综合各类药品知识的大规模知识库，也没有利用大规模知识库的知识表达手段",
+              "quote": "本项目针对目前药品重定位缺乏大规模知识库和知识表示方法的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 715,
-                "end_char": 762
+                "start_char": 2902,
+                "end_char": 2931
               },
               "version": "501429ed23fb676d6f0b"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-53db30bc1a5e",
-          "name": "医药知识图谱构建融合与表示学习链接预测",
-          "desc": "整合多源中英文医药知识库构建医药知识图谱，从文献与专利持续扩充，改进表示学习模型获取嵌入表示，并采用PU学习与链接预测进行药品重定位。",
+          "id": "item-1f9f4feda056",
+          "name": "跨语言实体对齐构建融合多源知识图谱",
+          "desc": "双向对齐与属性信息",
           "evidence": [
             {
-              "quote": "本项目将知识图谱引入药品重定位，研究基于知识图谱的药品重定向方法",
+              "quote": "提出利用双向对齐和属性信息的跨语言实体对齐方法和融合迭代式关系图匹配和属性语义嵌入的实体对齐方法，用于构建和融合多源知识图谱",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 773,
-                "end_char": 804
+                "start_char": 3093,
+                "end_char": 3154
               },
               "version": "501429ed23fb676d6f0b"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2a76cf11a55a",
+          "name": "基于知识图谱的药品重定位方法",
+          "desc": "帕金森病、COVID-19、罕见病",
+          "evidence": [
+            {
+              "quote": "提出了基于医药知识图谱嵌入表示的帕金森病药品重定位方法、基于知识图谱和图卷积网络的COVID-19药物重定位方法、基于异构网络父子节点信息的罕见病药物重定位方法和基于领域对比学习异构网络的药物重定位方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3261,
+                "end_char": 3361
+              },
+              "version": "501429ed23fb676d6f0b"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-944074f75f14",
+          "name": "药物组合副作用预测方法",
+          "desc": "药物序列与子结构特征",
+          "evidence": [
+            {
+              "quote": "针对药物副作用预测，提出基于药物序列与子结构特征的药物组合副作用预测方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3429,
+                "end_char": 3464
+              },
+              "version": "501429ed23fb676d6f0b"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a82649b86b08",
-          "name": "发表论文22篇并申请发明专利4项",
-          "desc": "团队成员累计发表论文22篇（SCI检索论文16篇，中科院1区5篇），中文核心论文2篇，并申请相关发明专利4项；成果被多位杰青、IEEE Fellow等学者引用。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文22篇（SCI 16篇），发明专利4项",
           "evidence": [
             {
               "quote": "团队成员累计发表论文22篇，其中SCI检索论文16篇（中科院1区论文5篇），中文核心论文2篇，并申请相关发明专利4项",
@@ -99,44 +139,518 @@
               "version": "501429ed23fb676d6f0b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dcf8dc3bda7b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-24a5d58c747e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DeepMGT-DTI: Transformer network incorporating multilayer graph information for Drug–Target interaction prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiliang Zhang;Ziqi Wei;Chao Che;Bo Jin",
+      "id": "out-1516f2e67830",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DeepMGT-DTI: Transformer network incorporating multilayer graph information for Drug–Target interaction prediction — Peiliang Zhang;Ziqi Wei;Chao Che;Bo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3690,
+            "end_char": 3852
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-24a5d58c747e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-53db30bc1a5e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合多邻域关联信息的药物-疾病相互作用预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车超;刘运炯;张培良",
+      "id": "out-8d0a40ade025",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合多邻域关联信息的药物-疾病相互作用预测方法 — 车超;刘运炯;张培良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3857,
+            "end_char": 3899
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-53db30bc1a5e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a82649b86b08"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合多维度特征的药物-靶点相互作用预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车超;姚奎",
+      "id": "out-ffefbfa7a53c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合多维度特征的药物-靶点相互作用预测方法 — 车超;姚奎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3904,
+            "end_char": 3939
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bi-graph Attention Network for Aspect Category Sentiment Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongxue Shan;Chao Che;Xiaopeng Wei;Xiaodong Wang;Yongjun Zhu;Bo Jin",
+      "id": "out-cb0026689342",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bi-graph Attention Network for Aspect Category Sentiment Classification — Yongxue Shan;Chao Che;Xiaopeng Wei;Xiaodong Wang;Yongjun Zhu;Bo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3944,
+            "end_char": 4091
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enriching limited information on rare diseases from heterogeneous networks for drug repositioning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongkui Cao;Liang Zhang;Bo Jin;Shicheng Cheng;Xiaopeng Wei;Chao Che",
+      "id": "out-2ef32260d018",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enriching limited information on rare diseases from heterogeneous networks for drug repositioning — Hongkui Cao;Liang Zhang;Bo Jin;Shicheng Cheng;Xiaopeng Wei;Chao Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4269
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RDFNet: A Fast Caries Detection Method Incorporating Transformer Mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Jiang;Peiliang Zhang;Chao Che;Bo Jin",
+      "id": "out-812ab3dea140",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RDFNet: A Fast Caries Detection Method Incorporating Transformer Mechanism — Hao Jiang;Peiliang Zhang;Chao Che;Bo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4274,
+            "end_char": 4397
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge-Graph-Based Drug Repositioning against COVID-19 by Graph Convolutional Network with Attention Mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingxuan Che;Kui Yao;Chao Che;Zhangwei Cao;Fanchen Kong",
+      "id": "out-a39e1bb23d39",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge-Graph-Based Drug Repositioning against COVID-19 by Graph Convolutional Network with Attention Mechanism — Mingxuan Che;Kui Yao;Chao Che;Zhangwei Cao;Fanchen Kong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4402,
+            "end_char": 4579
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合多视图信息的化合物-蛋白质相互作用预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车超;问伯竹",
+      "id": "out-ef930b516a92",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合多视图信息的化合物-蛋白质相互作用预测方法 — 车超;问伯竹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4584,
+            "end_char": 4622
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SSF-DDI: a deep learning method utilizing drug sequence and substructure features for drug–drug interaction prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Zhu;Chao Che;Hao Jiang;Jian Xu;Jiajun Yin;Zhaoqian Zhong",
+      "id": "out-445af499fe1f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SSF-DDI: a deep learning method utilizing drug sequence and substructure features for drug–drug interaction prediction — Jing Zhu;Chao Che;Hao Jiang;Jian Xu;Jiajun Yin;Zhaoqian Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4815
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Aspect-Level Sentiment Classification of Chinese Patient Comments Based on Pre-trained Sentiment Embedding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongxue Shan;Zhaoqian Zhong;Chao Che;Bo Jin;Xiaopeng Wei",
+      "id": "out-eed875d369a4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Aspect-Level Sentiment Classification of Chinese Patient Comments Based on Pre-trained Sentiment Embedding — Yongxue Shan;Zhaoqian Zhong;Chao Che;Bo Jin;Xiaopeng Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 4992
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合多层药物结构信息的药物-靶点相互作用预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车超;张培良",
+      "id": "out-babf98dd1d0e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合多层药物结构信息的药物-靶点相互作用预测方法 — 车超;张培良",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4998,
+            "end_char": 5037
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SDDSynergy: Learning Important Molecular Substructures for Explainable Anticancer Drug Synergy Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunjiong Liu;Peiliang Zhang;Chao Che;Ziqi Wei",
+      "id": "out-d8c955f1d3a5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SDDSynergy: Learning Important Molecular Substructures for Explainable Anticancer Drug Synergy Prediction — Yunjiong Liu;Peiliang Zhang;Chao Che;Ziqi Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5043,
+            "end_char": 5202
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合迭代式关系图匹配和属性语义嵌入的实体对齐方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "迟棠;车超",
+      "id": "out-db2351a96337",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 融合迭代式关系图匹配和属性语义嵌入的实体对齐方法 — 迟棠;车超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5208,
+            "end_char": 5246
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CariesFG: A fine-grained RGB image classification framework with attention mechanism for dental caries",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Jiang;Peiliang Zhang;Chao Che;Bo Jin;Yongjun Zhu",
+      "id": "out-5e70b46c0a84",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CariesFG: A fine-grained RGB image classification framework with attention mechanism for dental caries — Hao Jiang;Peiliang Zhang;Chao Che;Bo Jin;Yongjun Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5252,
+            "end_char": 5415
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DualCFGL: dual-channel fusion global and local features for sequential recommendation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuxu Chen;Yuanyuan Liu;Chao Che;Ziqi Wei",
+      "id": "out-f51ab26a5a82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DualCFGL: dual-channel fusion global and local features for sequential recommendation — Shuxu Chen;Yuanyuan Liu;Chao Che;Ziqi Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5421,
+            "end_char": 5556
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OSGAN: Omni-scale and Global-aware ECG arrhythmia diagnostic network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Chen;Bo Jin;Chao Che;Ruixin Li",
+      "id": "out-38b8b8f1c4eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] OSGAN: Omni-scale and Global-aware ECG arrhythmia diagnostic network — Chao Chen;Bo Jin;Chao Che;Ruixin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5562,
+            "end_char": 5674
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NCH-DDA: Neighborhood Contrastive Learning Heterogeneous Network for Drug–Disease Association Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiliang Zhang;Chao Che;Bo Jin;Jingling Yuan;Ruixin Li;Yongjun Zhu",
+      "id": "out-09251aa0b278",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NCH-DDA: Neighborhood Contrastive Learning Heterogeneous Network for Drug–Disease Association Prediction — Peiliang Zhang;Chao Che;Bo Jin;Jingling Yuan;Ruixin Li;Yongjun Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5680,
+            "end_char": 5859
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Harmonized system code prediction of import and export commodities based on Hybrid Convolutional Neural Network with Auxiliary Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengjie Zhou;Chao Che;Xi Sheryl Zhang;Qiang Zhang;Dongsheng Zhou",
+      "id": "out-4971f9de72f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Harmonized system code prediction of import and export commodities based on Hybrid Convolutional Neural Network with Auxiliary Network — Chengjie Zhou;Chao Che;Xi Sheryl Zhang;Qiang Zhang;Dongsheng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5865,
+            "end_char": 6073
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Drug-target Interaction Via Self-supervised Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiatao Chen;Liang Zhang;Ke Cheng;Bo Jin;Xinjiang Lu;Chao Che",
+      "id": "out-5bf41ba89f5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Drug-target Interaction Via Self-supervised Learning — Jiatao Chen;Liang Zhang;Ke Cheng;Bo Jin;Xinjiang Lu;Chao Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6079,
+            "end_char": 6211
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Constrained transformer network for ECG signal processing and arrhythmia classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Che;Peiliang Zhang;Min Zhu;Yue Qu;Bo Jin",
+      "id": "out-54f49929b498",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Constrained transformer network for ECG signal processing and arrhythmia classification — Chao Che;Peiliang Zhang;Min Zhu;Yue Qu;Bo Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6217,
+            "end_char": 6358
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transformer fast gradient method with relative positional embedding: a mutual translation model between English and Chinese",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yuchen;Shan Yongxue;Liu Zhuoya;Che Chao;Zhong Zhaoqian",
+      "id": "out-c543d9f39c71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transformer fast gradient method with relative positional embedding: a mutual translation model between English and Chinese — Li Yuchen;Shan Yongxue;Liu Zhuoya;Che Chao;Zhong Zhaoqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6364,
+            "end_char": 6553
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IEA-GNN: Anchor-aware Graph Neural Network Fused with Information Entropy for Node Classification and Link Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiliang Zhang;Jiatao Chen;Chao Che;Liang Zhang;Bo Jin;Yongjun Zhu",
+      "id": "out-eaaf6e3392e3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IEA-GNN: Anchor-aware Graph Neural Network Fused with Information Entropy for Node Classification and Link Prediction — Peiliang Zhang;Jiatao Chen;Chao Che;Liang Zhang;Bo Jin;Yongjun Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6559,
+            "end_char": 6751
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双向对齐与属性信息的跨语言实体对齐",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车超;刘迪",
+      "id": "out-e10cccaf5ec6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于双向对齐与属性信息的跨语言实体对齐 — 车超;刘迪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6757,
+            "end_char": 6790
+          },
+          "version": "501429ed23fb676d6f0b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "c9987ca9ea88bdb285dc",
   "version": "9b98a919a35d29f83f25",
   "source_hash": "e0f07aa9d247310b2936d71eae02d49e745c9565675cae4bf54de4d580f30406",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.628100+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.249036+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-a65636f5cc14",
           "name": "亚实性肺结节良恶性预测",
-          "desc": "面向肺癌CT影像筛查，对亚实性肺结节进行良恶性鉴别诊断，为临床提供定量信息。",
+          "desc": "CT影像",
           "evidence": [
             {
-              "quote": "亚实性肺结节的良恶性诊断在肺癌CT影像筛查中具有重要作用",
+              "quote": "亚实性肺结节的定性诊断在肺癌CT影像筛查中具有重要作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 684
+                "start_char": 2622,
+                "end_char": 2648
               },
               "version": "9b98a919a35d29f83f25"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dd9b4d1aec22",
-          "name": "亚实性肺结节边界模糊致主观诊断困难",
-          "desc": "亚实性肺结节边界模糊、大小形状不固定、内部密度不均匀，依靠主观征象进行良恶性诊断难度较大。",
+          "id": "item-3881d9b6f04e",
+          "name": "亚实性结节边界模糊、大小形状不固定、内部密度不均匀",
+          "desc": "主观征象诊断困难",
           "evidence": [
             {
               "quote": "由于亚实性肺结节具有边界模糊、大小形状不固定和内部密度不均匀的特点，依靠主观征象进行良恶性诊断时难度较大",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bbd2e417fb37",
-          "name": "深度学习与传统机器学习结合的ROI分割与预测优化",
-          "desc": "从感兴趣区（ROI）分割、亚实性肺结节识别、良恶性预测模型构建三方面优化算法，建立小波能量与后验概率活动轮廓模型、特征级联与在线困难样本挖掘、稀疏贝叶斯学习与极限学习机。",
+          "id": "item-92a457bfd925",
+          "name": "结合马尔科夫随机场能量和模糊速度函数的活动轮廓模型",
+          "desc": "ROI分割",
           "evidence": [
             {
-              "quote": "本项目将深度学习和传统机器学习相结合，从感兴趣区（ROI）分割、亚实性肺结节识别、良恶性预测模型构建三个方面开展算法优化工作",
+              "quote": "提出结合马尔科夫随机场能量和模糊速度函数的活动轮廓模型以及基于模糊速度函数驱动下活动轮廓模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 741,
-                "end_char": 802
+                "start_char": 2891,
+                "end_char": 2936
               },
               "version": "9b98a919a35d29f83f25"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e4bad3f5c2d9",
+          "name": "个性化鲁棒联邦学习",
+          "desc": "多中心非独立同分布",
+          "evidence": [
+            {
+              "quote": "针对多中心数据存在非独立同分布问题，提出个性化鲁棒的联邦学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3006,
+                "end_char": 3035
+              },
+              "version": "9b98a919a35d29f83f25"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,402 @@
       "state": "has",
       "items": [
         {
-          "id": "item-152322cc2a45",
-          "name": "发表学术论文17篇含Nature Communications 1篇",
-          "desc": "项目组发表学术论文17篇，其中SCI期刊论文12篇（含一篇发表于Nature Communications）、EI期刊论文5篇。",
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "17篇，SCI 12篇含Nature Communications",
           "evidence": [
             {
-              "quote": "项目组共计在国内外权威学术期刊发表学术论文17篇，其中SCI期刊论文12篇（其中一篇发表在“Nature Communications”期刊上）",
+              "quote": "项目组共计在国内外权威学术期刊发表学术论文17篇，其中SCI期刊论文12篇（其中一篇发表在“Nature Communications”期刊上），EI期刊论文5篇",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3250,
-                "end_char": 3321
+                "end_char": 3330
               },
               "version": "9b98a919a35d29f83f25"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a65636f5cc14"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dd9b4d1aec22"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting lymphovascular invasion in clinically node-negative breast cancer detected by abbreviated magnetic resonance imaging: Transfer learning vs. radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Zhuangsheng Liu;Yu Liu;Yehang Chen;Haoyang Zhou;Enming Cui;Xiaoping Li;Xiangmeng Chen;Ronggang Li;Tianyou Yu;Ling Zhang;Wansheng Long",
+      "id": "out-9b972a0e0a8c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting lymphovascular invasion in clinically node-negative breast cancer detected by abbreviated magnetic resonance imaging: Transfer learning vs. radiomics — Bao Feng;Zhuangsheng Liu;Yu Liu;Yehang Chen;Haoyang Zhou;Enming Cui;Xiaoping Li;Xiangmeng Chen;Ronggang Li;Tianyou Yu;Ling Zhang;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3350,
+            "end_char": 3661
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dd9b4d1aec22"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bbd2e417fb37"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于肺癌组织病理图像的智能分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈相猛;潘贤;段晓蓓;冯宝;侍江峰;陈业航;邝琼莲;陆森良;李荣岗;崔恩铭;龙晚生",
+      "id": "out-fca1a9782f87",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于肺癌组织病理图像的智能分类方法 — 陈相猛;潘贤;段晓蓓;冯宝;侍江峰;陈业航;邝琼莲;陆森良;李荣岗;崔恩铭;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3666,
+            "end_char": 3733
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bbd2e417fb37"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-152322cc2a45"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多尺度特征提取的胸腺瘤CT图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯宝;徐坤财;周皓阳;陈业航;陈相猛;蒋成亮;刘昱;李运德;何婧;崔恩铭;龙晚生",
+      "id": "out-859559105462",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多尺度特征提取的胸腺瘤CT图像分割方法 — 冯宝;徐坤财;周皓阳;陈业航;陈相猛;蒋成亮;刘昱;李运德;何婧;崔恩铭;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3738,
+            "end_char": 3808
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based deep learning model for subsolid pulmonary nodules to distinguish minimally invasive adenocarcinoma and invasive adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiangmeng;Feng Bao;Chen Yehang;Duan Xiaobei;Liu Kunfeng;Li Kunwei;Zhang Chaotong;Liu Xueguo;Long Wansheng",
+      "id": "out-509ca549c11d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based deep learning model for subsolid pulmonary nodules to distinguish minimally invasive adenocarcinoma and invasive adenocarcinoma — Chen Xiangmeng;Feng Bao;Chen Yehang;Duan Xiaobei;Liu Kunfeng;Li Kunwei;Zhang Chaotong;Liu Xueguo;Long Wansheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 4070
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种联邦学习框架下本地模型构建方法、存储介质及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔恩铭;冯宝;马长宜;陆森良;刘昱;崔晋;龙晚生",
+      "id": "out-6642e8679fbe",
+      "evidence": [
+        {
+          "quote": "[专利] 一种联邦学习框架下本地模型构建方法、存储介质及终端 — 崔恩铭;冯宝;马长宜;陆森良;刘昱;崔晋;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4075,
+            "end_char": 4131
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Active contour model of breast cancer DCE‐MRI segmentation with an extreme learning machine and a fuzzy C‐means cluster",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Haoyang Zhou;Jin Feng;Yehang Chen;Yu Liu;Tianyou Yu;Zhuangsheng Liu;Wansheng Long",
+      "id": "out-5e3aff5de93a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Active contour model of breast cancer DCE‐MRI segmentation with an extreme learning machine and a fuzzy C‐means cluster — Bao Feng;Haoyang Zhou;Jin Feng;Yehang Chen;Yu Liu;Tianyou Yu;Zhuangsheng Liu;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4136,
+            "end_char": 4354
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed Tomography-Based Radiomics Nomogram: Potential to Predict Local Recurrence of Gastric Cancer After Radical Resection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Liebin;Feng Bao;Li Yueyue;Liu Yu;Chen Yehang;Chen Qinxian;Li Changlin;Huang Wensi;Xue Huimin;Li Xuehua;Zhou Tao;Li Ronggang;Long Wansheng;Feng Shi-Ting",
+      "id": "out-7465cd124bf7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed Tomography-Based Radiomics Nomogram: Potential to Predict Local Recurrence of Gastric Cancer After Radical Resection — Huang Liebin;Feng Bao;Li Yueyue;Liu Yu;Chen Yehang;Chen Qinxian;Li Changlin;Huang Wensi;Xue Huimin;Li Xuehua;Zhou Tao;Li Ronggang;Long Wansheng;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4359,
+            "end_char": 4650
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态概率分布自适应的原发性肝癌病理分级预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔恩铭;冯宝;刘昱;马长宜;龙晚生;徐坤财;侍江峰",
+      "id": "out-578d97d0551a",
+      "evidence": [
+        {
+          "quote": "[专利] 多模态概率分布自适应的原发性肝癌病理分级预测方法 — 崔恩铭;冯宝;刘昱;马长宜;龙晚生;徐坤财;侍江峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4655,
+            "end_char": 4711
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于活动轮廓模型和影像组学的乳腺癌LVI状态预测",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯宝;李昌林;李智;刘壮盛",
+      "id": "out-0b161c8b16a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于活动轮廓模型和影像组学的乳腺癌LVI状态预测 — 冯宝;李昌林;李智;刘壮盛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4716,
+            "end_char": 4762
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Heterogeneity Radiomic Nomogram for Preoperative Differentiation of Primary Gastric Lymphoma From Borrmann Type IV Gastric Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Liebin Huang;Changlin Li;Yong Quan;Yehang Chen;Huimin Xue;Qinxian Chen;Shanlin Sun;Ronggang Li;Wansheng Long",
+      "id": "out-02cfd7a4eb55",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Heterogeneity Radiomic Nomogram for Preoperative Differentiation of Primary Gastric Lymphoma From Borrmann Type IV Gastric Cancer — Bao Feng;Liebin Huang;Changlin Li;Yong Quan;Yehang Chen;Huimin Xue;Qinxian Chen;Shanlin Sun;Ronggang Li;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4768,
+            "end_char": 5025
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Transfer Learning Radiomics Nomogram for Preoperative Prediction of Borrmann Type IV Gastric Cancer From Primary Gastric Lymphoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Liebin Huang;Yu Liu;Yehang Chen;Haoyang Zhou;Tianyou Yu;Huimin Xue;Qinxian Chen;Tao Zhou;Qionglian Kuang;Zhiqi Yang;Xiangguang Chen;Xiaofeng Chen;Zhenpeng Peng;Wansheng Long",
+      "id": "out-bce08d3376e6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Transfer Learning Radiomics Nomogram for Preoperative Prediction of Borrmann Type IV Gastric Cancer From Primary Gastric Lymphoma — Bao Feng;Liebin Huang;Yu Liu;Yehang Chen;Haoyang Zhou;Tianyou Yu;Huimin Xue;Qinxian Chen;Tao Zhou;Qionglian Kuang;Zhiqi Yang;Xiangguang Chen;Xiaofeng Chen;Zhenpeng Peng;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5031,
+            "end_char": 5353
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics nomogram for preoperative differentiation of lung tuberculoma from adenocarcinoma in solitary pulmonary solid nodule",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;Xiangmen Chen;Yehang chen;Kunfeng Liu;Kunwei Li;Xueguo Liu;Nan Yao;Zhi Li;Ronggang Li;Chaotong Zhang;Jianbo Ji;Wansheng Long",
+      "id": "out-9d6c4c1211aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics nomogram for preoperative differentiation of lung tuberculoma from adenocarcinoma in solitary pulmonary solid nodule — Bao Feng;Xiangmen Chen;Yehang chen;Kunfeng Liu;Kunwei Li;Xueguo Liu;Nan Yao;Zhi Li;Ronggang Li;Chaotong Zhang;Jianbo Ji;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5627
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A transfer learning nomogram for predicting prostate cancer and benign conditions on MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junhao Chen;Bao Feng;Maoqing Hu;Feidong Huang;Yehang Chen;Xilun Ma;Wansheng Long",
+      "id": "out-e81ffb23404c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A transfer learning nomogram for predicting prostate cancer and benign conditions on MRI — Junhao Chen;Bao Feng;Maoqing Hu;Feidong Huang;Yehang Chen;Xilun Ma;Wansheng Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5633,
+            "end_char": 5810
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于自适应选择的双源域异构迁移学习的肺结节CT图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔恩铭;冯宝;陈业航;龙晚生;马长宜;陆森良;侍江峰;刘昱;何婧;胡子建",
+      "id": "out-54de8b599382",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于自适应选择的双源域异构迁移学习的肺结节CT图像分类方法 — 崔恩铭;冯宝;陈业航;龙晚生;马长宜;陆森良;侍江峰;刘昱;何婧;胡子建",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5816,
+            "end_char": 5890
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Solitary solid pulmonary nodules: a CT-based deep learning nomogram helps differentiate tuberculosis granulomas from lung adenocarcinomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Feng;XiangMeng Chen;YeHang Chen;SenLiang Lu;KunFeng Liu;KunWei Li;ZhuangSheng Liu;YiXiu Hao;Zhi Li;ZhiBin Zhu;Nan Yao;GuangYuan Liang;JiaYu Zhang;WanSheng Long;XueGuo Liu",
+      "id": "out-9ab3f1607963",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Solitary solid pulmonary nodules: a CT-based deep learning nomogram helps differentiate tuberculosis granulomas from lung adenocarcinomas — Bao Feng;XiangMeng Chen;YeHang Chen;SenLiang Lu;KunFeng Liu;KunWei Li;ZhuangSheng Liu;YiXiu Hao;Zhi Li;ZhiBin Zhu;Nan Yao;GuangYuan Liang;JiaYu Zhang;WanSheng Long;XueGuo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5896,
+            "end_char": 6216
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于生成对抗网络的肺结节良恶性诊断算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗家健;冯宝;陈相猛;顾正晖",
+      "id": "out-4ffcbad627b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于生成对抗网络的肺结节良恶性诊断算法 — 罗家健;冯宝;陈相猛;顾正晖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6222,
+            "end_char": 6264
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "结合MRF能量和DCE-MRI时域特征的乳腺癌灶分割算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周皓阳;冯宝;齐菲菲;刘壮盛;龙晚生",
+      "id": "out-6f7dc654297c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 结合MRF能量和DCE-MRI时域特征的乳腺癌灶分割算法 — 周皓阳;冯宝;齐菲菲;刘壮盛;龙晚生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6270,
+            "end_char": 6325
+          },
+          "version": "9b98a919a35d29f83f25"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "5d11aa7875ce257a038c",
   "version": "fa57a81321fe24b721e7",
   "source_hash": "b6517dbf4dc2631738761e69f806bb27026ee018b18338297a9ac9a890243c99",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.371328+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.541092+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-584123e64e1e",
-          "name": "前列腺癌经直肠超声靶向穿刺诊断",
-          "desc": "经直肠超声引导下系统活检是前列腺癌确诊指南推荐方法，需实现癌灶可视化以指引靶向穿刺。",
+          "id": "item-b6d707d3d09f",
+          "name": "前列腺癌靶向穿刺诊断",
+          "desc": "经直肠超声引导系统活检",
           "evidence": [
             {
-              "quote": "经直肠超声引导下的系统活检是目前指南推荐的前列腺癌的确诊方法",
+              "quote": "经直肠超声引导下的系统活检是目前指南推荐的前列腺癌确诊方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 681,
-                "end_char": 710
-              },
-              "version": "fa57a81321fe24b721e7"
-            }
-          ]
-        },
-        {
-          "id": "item-37ac1b7caf4a",
-          "name": "减少系统穿刺针数与并发症",
-          "desc": "研究对提高前列腺癌治疗效果、减少系统穿刺活检针数及相关并发症具有重要意义。",
-          "evidence": [
-            {
-              "quote": "研究对提高前列腺癌的治疗效果、减少系统穿刺活检针数以及相关的并发症均具有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1040,
-                "end_char": 1079
+                "start_char": 2593,
+                "end_char": 2621
               },
               "version": "fa57a81321fe24b721e7"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f33db1ad292",
-          "name": "系统活检漏诊与过度检出风险",
-          "desc": "系统活检存在漏诊高级别前列腺癌、过度检出惰性前列腺癌以及多针穿刺高并发症风险。",
+          "id": "item-6ae400e0f5dc",
+          "name": "系统活检漏诊高级别癌、过度检出惰性癌、并发症高",
+          "desc": "漏诊与过度诊断风险",
           "evidence": [
             {
               "quote": "但存在漏诊高级别前列腺癌(csPCa)和过度检出惰性前列腺癌(cisPCa)的风险以及多针穿刺带来的高并发症风险等问题",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2623,
                 "end_char": 2681
-              },
-              "version": "fa57a81321fe24b721e7"
-            }
-          ]
-        },
-        {
-          "id": "item-d791e6da9e87",
-          "name": "癌灶可视化与靶向穿刺方法缺失",
-          "desc": "能否通过影像组学分析特征参数实现癌灶可视化、指引靶向穿刺，目前尚未见报道。",
-          "evidence": [
-            {
-              "quote": "那么，能否通过影像组学的方法分析前列腺癌的特征参数从而实现癌灶可视化，指引靶向穿刺活检，目前尚未见报道",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 829,
-                "end_char": 879
               },
               "version": "fa57a81321fe24b721e7"
             }
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-52ab3681081b",
-          "name": "三维超声与病理容积配准标识癌灶",
-          "desc": "通过经直肠前列腺三维超声容积图像与病理容积数据配准，在超声容积图像上准确标识癌灶。",
+          "id": "item-7fd8aad16db5",
+          "name": "方差感知注意U-Net等分割配准技术",
+          "desc": "多模态影像分割与配准",
           "evidence": [
             {
-              "quote": "本研究拟通过经直肠前列腺三维超声容积图像与前列腺病理容积数据配准，在超声容积图像上对癌灶进行准确标识",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 881,
-                "end_char": 930
-              },
-              "version": "fa57a81321fe24b721e7"
-            }
-          ]
-        },
-        {
-          "id": "item-b7a9a1a767ed",
-          "name": "深度卷积网络癌灶区域分割模型",
-          "desc": "采用深度卷积神经网络构建基于三维超声容积图像的前列腺癌灶区域分割模型，实现癌灶可视化。",
-          "evidence": [
-            {
-              "quote": "采用深度卷积神经网络的方法构建基于三维超声容积图像的前列腺癌灶区域分割模型，实现癌灶在超声图像上可视化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 932,
-                "end_char": 982
-              },
-              "version": "fa57a81321fe24b721e7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7cd0590b1c73",
-          "name": "多器官分割配准深度学习技术",
-          "desc": "通过方差感知注意U-Net分割模型、互惠学习策略、涂鸦监督分割及可变形配准网络等实现多模态多器官图像精确分割与配准。",
-          "evidence": [
-            {
-              "quote": "通过方差感知注意U-Net分割模型、半监督医学图像分割的互惠学习策略、涂鸦监督分割方法，以及具有显著性模块的可变形配准网络等深度学习技术，能够对多种模态影像数据的复杂多器官图像进行精确的分割和配准",
+              "quote": "通过方差感知注意U-Net分割模型、半监督医学图像分割的互惠学习策略、涂鸦监督分割方法，以及具有显著性模块的可变形配准网络等深度学习技术",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2991,
-                "end_char": 3088
+                "end_char": 3058
               },
               "version": "fa57a81321fe24b721e7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-5a2fa4647b0e",
-          "name": "超声影像病理融合模型提升预测效能",
-          "desc": "分别用Resnet 18与注意力多实例学习提取超声与病理特征，通过共注意力与后融合整合三层次特征提升预测效能。",
+          "id": "item-0fda7dcbde84",
+          "name": "超声影像病理深度学习融合模型",
+          "desc": "Resnet18、多实例学习与共注意力",
           "evidence": [
             {
               "quote": "采用Resnet 18模型提取超声图像特征，基于注意力的多实例学习模型提取病理特征，超声引导下的共注意力模块融合超声图像和病理特征，通过后融合算法整合三个层次特征的超声影像病理深度学习模型提升了模型的预测效能",
@@ -164,72 +99,265 @@
               "version": "fa57a81321fe24b721e7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-8d3f2e26cd28",
+          "id": "item-1891264950c3",
           "name": "csPCa分类框架与分布热图",
-          "desc": "多模态超声动态图像特征联合自适应空间融合与正交正则化策略生成csPCa分类框架，提高分类精度并生成分布热图指导靶向穿刺。",
+          "desc": "多模态超声动态图像特征联合自适应空间融合",
           "evidence": [
             {
-              "quote": "采用多模态超声动态图像特征联合自适应空间融合模块、正交正则化策略生成的csPCa分类框架，提高了分类精度，能够生成可能的csPCa分布热图，指导经直肠超声引导下的靶向穿刺活检",
+              "quote": "采用多模态超声动态图像特征联合自适应空间融合模块、正交正则化策略生成的csPCa分类框架，提高了分类精度，能够生成可能的csPCa分布热图",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3242,
-                "end_char": 3328
+                "end_char": 3310
               },
               "version": "fa57a81321fe24b721e7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Salient deformable network for abdominal multiorgan registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Rao;Yihao Zhou;Yi Wang",
+      "id": "out-901e0773afb2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Salient deformable network for abdominal multiorgan registration — Yi Rao;Yihao Zhou;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3447,
+            "end_char": 3545
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "金字塔循环形变的医学图像配准方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王毅;王海桥",
+      "id": "out-dc0b69688eb0",
+      "evidence": [
+        {
+          "quote": "[专利] 金字塔循环形变的医学图像配准方法、装置、设备及介质 — 王毅;王海桥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3550,
+            "end_char": 3588
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多模态医学图像的配准方法及相关装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王毅;饶怡;倪东",
+      "id": "out-1b8cabfdff5f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多模态医学图像的配准方法及相关装置 — 王毅;饶怡;倪东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3593,
+            "end_char": 3627
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning radiopathomics based on preoperative US images and biopsy whole slide images can distinguish between luminal and non-luminal tumors in early-stage breast cancers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yini Huang;Zhao Yao;Lingling Li;Rushuang Mao;Weijun Huang;Zhengming Hu;Yixin Hu;Yun Wang;Ruohan Guo;Xiaofeng Tang;Liang Yang;Yuanyuan Wang;Rongzhen Luo;Jinhua Yu;Jianhua Zhou",
+      "id": "out-5ac470449f54",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning radiopathomics based on preoperative US images and biopsy whole slide images can distinguish between luminal and non-luminal tumors in early-stage breast cancers — Yini Huang;Zhao Yao;Lingling Li;Rushuang Mao;Weijun Huang;Zhengming Hu;Yixin Hu;Yun Wang;Ruohan Guo;Xiaofeng Tang;Liang Yang;Yuanyuan Wang;Rongzhen Luo;Jinhua Yu;Jianhua Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3632,
+            "end_char": 3990
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于半监督学习的图像分割模型的训练方法及分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王毅;曾祥云;黄日安;钟宇鸣",
+      "id": "out-8bedfc95b29b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于半监督学习的图像分割模型的训练方法及分割方法 — 王毅;曾祥云;黄日安;钟宇鸣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4040
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ModeT: Learning Deformable Image Registration via Motion Decomposition Transformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiqiao Wang;Dong Ni;Yi Wang",
+      "id": "out-c5eef8a10516",
+      "evidence": [
+        {
+          "quote": "[会议论文] ModeT: Learning Deformable Image Registration via Motion Decomposition Transformer — Haiqiao Wang;Dong Ni;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4045,
+            "end_char": 4164
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Areciprocal learning strategy for semisupervised medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyun Zeng;Rian Huang;Yuming Zhong;Zeyan Xu;Zaiyi Liu;Yi Wang",
+      "id": "out-29de7e72ba44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Areciprocal learning strategy for semisupervised medical image segmentation — Xiangyun Zeng;Rian Huang;Yuming Zhong;Zeyan Xu;Zaiyi Liu;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4169,
+            "end_char": 4317
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Variance-aware attention U-Net for multi-organ segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoneng Lin;Zongshang Li;Zefan Yang;Yi Wang",
+      "id": "out-de155033ae2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Variance-aware attention U-Net for multi-organ segmentation — Haoneng Lin;Zongshang Li;Zefan Yang;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4433
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于涂鸦标注的医学图像分割模型训练方法、装置及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王毅;杨泽帆",
+      "id": "out-18cf53915d75",
+      "evidence": [
+        {
+          "quote": "[专利] 基于涂鸦标注的医学图像分割模型训练方法、装置及终端 — 王毅;杨泽帆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4438,
+            "end_char": 4476
+          },
+          "version": "fa57a81321fe24b721e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-iterative scribble-supervised learning with pacing pseudo-masks for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zefan Yang;Di Lin;Dong Ni;Yi Wang",
+      "id": "out-f218421916b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-iterative scribble-supervised learning with pacing pseudo-masks for medical image segmentation — Zefan Yang;Di Lin;Dong Ni;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4482,
+            "end_char": 4622
+          },
+          "version": "fa57a81321fe24b721e7"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-584123e64e1e"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3f33db1ad292"
+      "专利": {
+        "listed": 4,
+        "extracted": 4
       },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3f33db1ad292"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-52ab3681081b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-52ab3681081b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8d3f2e26cd28"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b7a9a1a767ed"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7cd0590b1c73"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

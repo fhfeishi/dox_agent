@@ -2,15 +2,20 @@
   "doc_id": "2c75024c97a8baacbbff",
   "version": "1fc07cfb948680cebf4a",
   "source_hash": "cfefbc3dde8b76219a38eec795be3ff173263818c050a6e980418262c90b66b7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.804907+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:44.845845+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f8c6b4f3ab95",
-          "name": "核医学影像一体化智能诊疗",
-          "desc": "面向癌症个体化诊疗需求，构建基于PET的核医学影像一体化智能诊疗基础模型与关键技术。",
+          "id": "item-116dd02b2d80",
+          "name": "核医学PET一体化智能诊疗",
+          "desc": "基础模型与关键技术",
           "evidence": [
             {
-              "quote": "PET成像对癌症患者体内代谢活动显像效果明显，是早期临床诊断的金标准之一",
+              "quote": "本项目围绕核医学影像一体化智能诊疗的基础模型与关键技术开展研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 684
+                "start_char": 2687,
+                "end_char": 2717
               },
               "version": "1fc07cfb948680cebf4a"
             }
@@ -43,13 +48,13 @@
         {
           "id": "item-6a8a4130dbb6",
           "name": "PET智能诊疗临床实用性不足",
-          "desc": "基于PET的智能诊疗研究虽已成为热点，但受诸多现实挑战限制，其临床实用性仍有很大不足。",
+          "desc": "现实挑战受限",
           "evidence": [
             {
-              "quote": "基于PET的智能诊疗研究已成为领域热点，但受限于诸多现实挑战，其临床实用性仍有很大不足",
+              "quote": "但受限于诸多现实挑战，其临床实用性仍有很大不足",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
+                "start_char": 706,
                 "end_char": 728
               },
               "version": "1fc07cfb948680cebf4a"
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f13b98c1cc51",
-          "name": "视觉基础模型驱动的多模态核医学影像智能分析",
-          "desc": "构建基于视觉基础模型的多模态核医学影像智能分析理论与方法，并配套跨模态多核素全身PET药代动力学定量成像与一体化肿瘤智能诊疗技术。",
+          "id": "item-106661c09719",
+          "name": "DuSS-PET自监督双域重建",
+          "desc": "无需全剂量监督",
           "evidence": [
             {
-              "quote": "构建基于视觉基础模型的多模态核医学影像智能分析理论与方法，为智能诊疗的泛化能力提升奠定通用模型与理论方法基础",
+              "quote": "提出了统计先验嵌入的自监督双域重建方法DuSS-PET，实现了无需全剂量监督的高质量PET重建",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 781,
-                "end_char": 834
+                "start_char": 2792,
+                "end_char": 2838
               },
               "version": "1fc07cfb948680cebf4a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2edce12a8389",
+          "name": "DDIM-MPAC衰减矫正",
+          "desc": "无CT辅助",
+          "evidence": [
+            {
+              "quote": "开发了基于两阶段三维去噪扩散模型的DDIM-MPAC方法，成功实现了无CT辅助的高保真PET衰减矫正",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2853,
+                "end_char": 2902
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-888a7732e1b7",
+          "name": "DIReCT MRI-to-PET生成",
+          "desc": "可学习提示多模态基础模型引导",
+          "evidence": [
+            {
+              "quote": "提出了可学习提示多模态基础模型引导的MRI-to-PET生成方法DIReCT",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3037,
+                "end_char": 3074
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9e8b333707b",
-          "name": "构建PET-Bench数据集与8000余例多中心PET数据库",
-          "desc": "构建涵盖近十万问答对的基准数据集PET-Bench及8000余例多中心PET数据库；发表SCI论文15篇（含Nature Communications 1篇）及国际顶级会议论文10篇。",
+          "id": "item-240a141c0b70",
+          "name": "PET-Bench与多中心PET数据库",
+          "desc": "近十万问答对、8000余例",
           "evidence": [
             {
               "quote": "构建了涵盖近十万问答对的大规模基准数据集PET-Bench及拥有8000余例的多中心PET数据库",
@@ -99,44 +139,405 @@
               "version": "1fc07cfb948680cebf4a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "SCI论文15篇与顶会论文10篇",
+          "evidence": [
+            {
+              "quote": "共发表SCI论文15篇（含Nature Communications 1篇，中科院 I 区论文10篇）及国际顶级会议论文10篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3246
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-121100d85338",
+          "name": "心脏PET分析软件",
+          "desc": "集成开发",
+          "evidence": [
+            {
+              "quote": "并完成了心脏PET分析软件的集成开发",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3248,
+                "end_char": 3265
+              },
+              "version": "1fc07cfb948680cebf4a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f8c6b4f3ab95"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6a8a4130dbb6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FSDA-DG: Improving cross-domain generalizability of medical image segmentation with few source domain annotations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye·Zanting;Wang·Ke;Lv·Wenbing;Feng·Qianjin;Lu·Lijun",
+      "id": "out-75d3d53bfa80",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FSDA-DG: Improving cross-domain generalizability of medical image segmentation with few source domain annotations — Ye·Zanting;Wang·Ke;Lv·Wenbing;Feng·Qianjin;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3400,
+            "end_char": 3573
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6a8a4130dbb6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f13b98c1cc51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Geometric deep learning with adaptive full-band spatial diffusion for accurate·efficient·and robust cortical parcellation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu·Yuanzhuo;Li·Xianjun;Niu·Chen;Wang·Fan;Ma·Jianhua",
+      "id": "out-aaf53100f755",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Geometric deep learning with adaptive full-band spatial diffusion for accurate·efficient·and robust cortical parcellation — Zhu·Yuanzhuo;Li·Xianjun;Niu·Chen;Wang·Fan;Ma·Jianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3578,
+            "end_char": 3760
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f13b98c1cc51"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b9e8b333707b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-Quantified ¹¹C-MET PET/CT bone marrow metabolic activity for prognostic assessment in newly diagnosed multiple myeloma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye·Zanting;Lv·Jieqin;Wu·Xuanbin;Li·Hui;Niu·Xiaolong;Han·Xu;Li·Baoyuan;Gao·Lu;Yang·Jiaqi;Ouyang·Fu",
+      "id": "out-4d8b196e535c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI-Quantified ¹¹C-MET PET/CT bone marrow metabolic activity for prognostic assessment in newly diagnosed multiple myeloma — Ye·Zanting;Lv·Jieqin;Wu·Xuanbin;Li·Hui;Niu·Xiaolong;Han·Xu;Li·Baoyuan;Gao·Lu;Yang·Jiaqi;Ouyang·Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3765,
+            "end_char": 3992
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Flexibly Distilled 3D Rectified Flow with Anatomical Constraints for Developmental Infant Brain MRI Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang·Haifeng;Ren·Zehua;Chang·Heng;Qiu·Xinmei;Wang·Fan;Lian·Chunfeng;Ma·Jianhua",
+      "id": "out-b137a3014d3d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Flexibly Distilled 3D Rectified Flow with Anatomical Constraints for Developmental Infant Brain MRI Prediction — Wang·Haifeng;Ren·Zehua;Chang·Heng;Qiu·Xinmei;Wang·Fan;Lian·Chunfeng;Ma·Jianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3997,
+            "end_char": 4194
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised model based on implicit neural representation and mutual learning (SIMN) for multi-center nasopharyngeal carcinoma segmentation on MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han·Xu;Chen·Zihang;Lin·Guoyu;Lv·Wenbing;Zheng·Chundan;Lu·Wantong;Sun·Ying;Lu·Lijun",
+      "id": "out-98a0dc3e4601",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-supervised model based on implicit neural representation and mutual learning (SIMN) for multi-center nasopharyngeal carcinoma segmentation on MRI — Han·Xu;Chen·Zihang;Lin·Guoyu;Lv·Wenbing;Zheng·Chundan;Lu·Wantong;Sun·Ying;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4440
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic reorientation to generate short-axis myocardial PET images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang·Yuling;Wang·Fanghu;Han·Xu;Xu·Hui;Zhang·Yangmei;Xu·Weiping;Wang·Shuxia;Lu·Lijun",
+      "id": "out-c05cac893824",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic reorientation to generate short-axis myocardial PET images — Yang·Yuling;Wang·Fanghu;Han·Xu;Xu·Hui;Zhang·Yangmei;Xu·Weiping;Wang·Shuxia;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4445,
+            "end_char": 4605
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of tracer uptake rate on quantification accuracy of myocardial blood flow in PET: A simulation study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong·Xiaotong;Sanaat·Amirhossein;Salimi·Yazdan;Nkoulou·René;Arabi·Hossein;Lu·Lijun;Zaidi·Habib",
+      "id": "out-6155d5479d8f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of tracer uptake rate on quantification accuracy of myocardial blood flow in PET: A simulation study — Hong·Xiaotong;Sanaat·Amirhossein;Salimi·Yazdan;Nkoulou·René;Arabi·Hossein;Lu·Lijun;Zaidi·Habib",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4820
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CortexGen: A Geometric Generative Framework for Realistic Cortical Surface Generation Using Latent Flow Matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu·Yuanzhuo;Li·Kehan;Ma·Jianhua;Lian·Chunfeng;Wang·Fan",
+      "id": "out-9c1981ccc87d",
+      "evidence": [
+        {
+          "quote": "[会议论文] CortexGen: A Geometric Generative Framework for Realistic Cortical Surface Generation Using Latent Flow Matching — Zhu·Yuanzhuo;Li·Kehan;Ma·Jianhua;Lian·Chunfeng;Wang·Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 5001
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anatomy-Aware Deep Unrolling for Task-Oriented Acceleration of Multi-Contrast MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He·Yuzhu;Lian·Chunfeng;Xiao·Ruyi;Ju·Fangmao;Zou·Chao;Xu·Zongben;Ma·Jianhua",
+      "id": "out-ba488a89c2dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anatomy-Aware Deep Unrolling for Task-Oriented Acceleration of Multi-Contrast MRI — He·Yuzhu;Lian·Chunfeng;Xiao·Ruyi;Ju·Fangmao;Zou·Chao;Xu·Zongben;Ma·Jianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5006,
+            "end_char": 5170
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DIReCT: Domain-Informed Rectified Flow for Controllable Brain MRI to PET Translation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu·Tuo;Wang·Haifeng;Chang·Heng;Wang·Fan;Lian·Chunfeng;Ma·Jianhua",
+      "id": "out-6af571bfbede",
+      "evidence": [
+        {
+          "quote": "[会议论文] DIReCT: Domain-Informed Rectified Flow for Controllable Brain MRI to PET Translation — Liu·Tuo;Wang·Haifeng;Chang·Heng;Wang·Fan;Lian·Chunfeng;Ma·Jianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5176,
+            "end_char": 5334
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicontrast MR-Guided Diffusion Model for Ultra-Low-Dose Brain PET Denoising in Temporal Lobe Epilepsy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Niu·Xiaolong;Lv·Jieqin;Ye·Zanting;Wei·Yibo;Lu·Yijun;Wu·Xuanbin;Yi·Wenxiang;Ran·Pengcheng;Lu·Lijun",
+      "id": "out-2f6547f64ae7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multicontrast MR-Guided Diffusion Model for Ultra-Low-Dose Brain PET Denoising in Temporal Lobe Epilepsy — Niu·Xiaolong;Lv·Jieqin;Ye·Zanting;Wei·Yibo;Lu·Yijun;Wu·Xuanbin;Yi·Wenxiang;Ran·Pengcheng;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5340,
+            "end_char": 5550
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LMSST-GCN: Longitudinal MRI sub-structural texture guided graph convolution network for improved progression prediction of knee osteoarthritis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv·Wenbing;Peng·Junyi;Hu·Jiaping;Lu·Yijun;Zhou·Zidong;Xu·Hui;Xing·Kongzai;Zhang·Xiaodong;Lu·Lijun",
+      "id": "out-ddab3acc739f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LMSST-GCN: Longitudinal MRI sub-structural texture guided graph convolution network for improved progression prediction of knee osteoarthritis — Lv·Wenbing;Peng·Junyi;Hu·Jiaping;Lu·Yijun;Zhou·Zidong;Xu·Hui;Xing·Kongzai;Zhang·Xiaodong;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5556,
+            "end_char": 5804
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Controllable Flow Matching for 3D Contrast-Enhanced Brain MRI Synthesis from Non-contrast Scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chang·Heng;Shang·Yu;Wang·Haifeng;Liang·Yuxia;Wang·Haoyu;Wang·Fan;Niu·Chen;Lian·Chunfeng",
+      "id": "out-8bb03512eef5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Controllable Flow Matching for 3D Contrast-Enhanced Brain MRI Synthesis from Non-contrast Scans — Chang·Heng;Shang·Yu;Wang·Haifeng;Liang·Yuxia;Wang·Haoyu;Wang·Fan;Niu·Chen;Lian·Chunfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5810,
+            "end_char": 6001
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Controllable Counterfactual Generation for Interpretable Medical Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Shiyu;Wang Fan;Ren Zehua;Lian Chunfeng;Ma Jianhua",
+      "id": "out-72436b2bd4c5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Controllable Counterfactual Generation for Interpretable Medical Image Classification — Liu Shiyu;Wang Fan;Ren Zehua;Lian Chunfeng;Ma Jianhua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6007,
+            "end_char": 6154
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based joint attenuation and scatter correction strategies for multi-tracer total-body PET",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun·Hao;Huang·Yanchao;Hu·Debin;Hong·Xiaotong;Salimi·Yazdan;Lv·Wenbing;Chen·Hongwen;Zaidi·Habib;Wu·Hubing;Lu·Lijun",
+      "id": "out-292951604102",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based joint attenuation and scatter correction strategies for multi-tracer total-body PET — Sun·Hao;Huang·Yanchao;Hu·Debin;Hong·Xiaotong;Salimi·Yazdan;Lv·Wenbing;Chen·Hongwen;Zaidi·Habib;Wu·Hubing;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6160,
+            "end_char": 6395
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MDAA-Diff: CT-Guided Multi-dose Adaptive Attention Diffusion Model for PET Denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Niu·Xiaolong;Ye·Zanting;Han·Xu;Huang·Yanchao;Sun·Hao;Wu·Hubing;Lu·Lijun",
+      "id": "out-a342d88322e9",
+      "evidence": [
+        {
+          "quote": "[会议论文] MDAA-Diff: CT-Guided Multi-dose Adaptive Attention Diffusion Model for PET Denoising — Niu·Xiaolong;Ye·Zanting;Han·Xu;Huang·Yanchao;Sun·Hao;Wu·Hubing;Lu·Lijun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6401,
+            "end_char": 6565
+          },
+          "version": "1fc07cfb948680cebf4a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "45973ba9bf11345c676d",
   "version": "9999d122a419ecf03311",
   "source_hash": "6fa31ddee28b4079306c554fed1305a838013229bce2f7e67369180f2f1ab240",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.187819+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:40:11.141067+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1a9ba7abd011",
-          "name": "年龄相关性视网膜疾病OCT图像分析",
-          "desc": "以视网膜OCT图像为对象，开展视网膜分层、AMD病变异常分割及多种生物标记检测与定位研究。",
+          "id": "item-273971f84965",
+          "name": "年龄相关性黄斑变性OCT图像分析",
+          "desc": "AMD是第二位致盲眼病",
           "evidence": [
             {
               "quote": "视网膜中的年龄相关性黄斑变性AMD是仅次于糖尿病视网膜病变的第二位致盲眼病",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5521c4a234a3",
-          "name": "大量OCT图像亟待自动检视与分析",
-          "desc": "随着人口老龄化，致盲性AMD患病上升趋势明显，大量OCT图像需要检视与分析，亟需自动图像处理技术。",
+          "id": "item-81a7210ba8ff",
+          "name": "深度学习层分割标记成本高、病变致层形变",
+          "desc": "需弱监督方法",
           "evidence": [
             {
-              "quote": "针对我国逐步步入老年化，致盲性AMD患病上升趋势明显，大量的OCT图像需要检视与分析的现状",
+              "quote": "为减少深度学习层分割中的标记成本，探索了仅依赖笔画监督的分割算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 754,
-                "end_char": 798
+                "start_char": 2653,
+                "end_char": 2684
               },
               "version": "9999d122a419ecf03311"
             }
@@ -63,80 +68,506 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66cda29fa78e",
-          "name": "弱监督与半监督OCT分割及生物标记检测算法",
-          "desc": "提出保持层间拓扑内外顺序的分层算法、大幅降低手工标记工作量的脉络膜新生血管与地图样萎缩半监督分割方法，以及图像级弱标注下的生物标记自动检测与定位算法。",
+          "id": "item-10632b7e0dcb",
+          "name": "不确定性原型与边界回归弱监督分割",
+          "desc": "混合伪标签策略",
           "evidence": [
             {
-              "quote": "提出能大幅降低手工标记样本工作量的脉络膜新生血管与地图样萎缩的半监督分割方法",
+              "quote": "提出一种基于不确定性原型和边界回归的弱监督分割方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 900,
-                "end_char": 937
+                "start_char": 2686,
+                "end_char": 2710
               },
               "version": "9999d122a419ecf03311"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ed36c0f4a190",
+          "name": "地图样萎缩多阶段双分支图像投影网络",
+          "desc": "投影注意模块与对比学习增强",
+          "evidence": [
+            {
+              "quote": "提出了一种多阶段双分支图像投影网络GA分割方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2976,
+                "end_char": 2998
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-32447acb9a2f",
+          "name": "生物标志物弱标注检测",
+          "desc": "点标记、整图类标签、GAN",
+          "evidence": [
+            {
+              "quote": "对于OCT图像中生物标注物检测与分割，提出了多种方法，包括基于点标记的检测方法、基于整图类标签的检测算法、基于生成对抗网络GAN的检测方法等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3211,
+                "end_char": 3280
+              },
+              "version": "9999d122a419ecf03311"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OCTA Retinal Vessel Segmentation Based on Vessel Thickness Inconsistency Loss",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Lizhi Hu;Xiao Li;Jinshan Tang",
+      "id": "out-e75b23db1945",
+      "evidence": [
         {
-          "id": "item-261af5427ebb",
-          "name": "提出仅依赖笔画监督的层分割算法",
-          "desc": "在层分割中探索仅依赖笔画监督的分割算法，提出基于不确定性原型和边界回归的弱监督分割方法，并在三个数据集上验证其合理性与优越性。",
-          "evidence": [
-            {
-              "quote": "在层分割中，为减少深度学习层分割中的标记成本，探索了仅依赖笔画监督的分割算法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2647,
-                "end_char": 2684
-              },
-              "version": "9999d122a419ecf03311"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[会议论文] OCTA Retinal Vessel Segmentation Based on Vessel Thickness Inconsistency Loss — Xiaoming Liu;Lizhi Hu;Xiao Li;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3479,
+            "end_char": 3607
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Contrastive uncertainty based biomarkers detection in retinal optical coherence tomography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Kejie Zhou;Junping Yao;Man Wang;Ying Zhang",
+      "id": "out-5a09f3d8754a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Contrastive uncertainty based biomarkers detection in retinal optical coherence tomography images — Xiaoming Liu;Kejie Zhou;Junping Yao;Man Wang;Ying Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3612,
+            "end_char": 3773
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-branch image projection network for geographic atrophy segmentation in retinal OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaoming;Li Jieyang;Zhang Ying;Yao Junping",
+      "id": "out-f5c238565602",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-branch image projection network for geographic atrophy segmentation in retinal OCT images — Liu Xiaoming;Li Jieyang;Zhang Ying;Yao Junping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3927
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph Convolutional Networks with Feature Enhancement for Choroidal Neovascularization Segmentation in OCT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Rui Wang;Jinshan Tang",
+      "id": "out-d45214ebcdf1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Graph Convolutional Networks with Feature Enhancement for Choroidal Neovascularization Segmentation in OCT Images — Xiaoming Liu;Rui Wang;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4088
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "VCT-NET: An Octa Retinal Vessel Segmentation Network Based on Convolution and Transformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Di Zhang;Xin Zhu;Jinshan Tang",
+      "id": "out-b1cb81418dbe",
+      "evidence": [
+        {
+          "quote": "[会议论文] VCT-NET: An Octa Retinal Vessel Segmentation Network Based on Convolution and Transformer — Xiaoming Liu;Di Zhang;Xin Zhu;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4093,
+            "end_char": 4233
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SC3L-Net: Semi-supervised Retinal Layer Segmentation via Cross-Task Consistency and Contrastive Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jia;Liu Xiaoming;Luo Liangfu",
+      "id": "out-a8f5a7832a67",
+      "evidence": [
+        {
+          "quote": "[会议论文] SC3L-Net: Semi-supervised Retinal Layer Segmentation via Cross-Task Consistency and Contrastive Learning — Zhang Jia;Liu Xiaoming;Luo Liangfu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4238,
+            "end_char": 4385
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly supervised segmentation of retinal layers on OCT images with AMD using uncertainty prototype and boundary regression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaoming;Zhang Jia;Zhang Ying;Chen Li;Luo Liangfu;Tang Jinshan",
+      "id": "out-e1f3cea01372",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weakly supervised segmentation of retinal layers on OCT images with AMD using uncertainty prototype and boundary regression — Liu Xiaoming;Zhang Jia;Zhang Ying;Chen Li;Luo Liangfu;Tang Jinshan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4390,
+            "end_char": 4588
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale CNN-Swin transformer network with boundary supervision for multiclass biomarker segmentation in retinal OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Zhanpeng;Liu Xiaoming;Zhang Ying;Zhang Jia",
+      "id": "out-a9470c4011c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale CNN-Swin transformer network with boundary supervision for multiclass biomarker segmentation in retinal OCT images — Fan Zhanpeng;Liu Xiaoming;Zhang Ying;Zhang Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4593,
+            "end_char": 4774
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TSSK-Net: Weakly supervised biomarker localization and segmentation with image-level annotation in retinal OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Qi Liu;Ying Zhang;Man Wang;Jinshan Tang",
+      "id": "out-890ba14d3758",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TSSK-Net: Weakly supervised biomarker localization and segmentation with image-level annotation in retinal OCT images — Xiaoming Liu;Qi Liu;Ying Zhang;Man Wang;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4957
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scribble-Supervised Meibomian Glands Segmentation in Infrared Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Shuo Wang;Ying Zhang;Quan Yuan",
+      "id": "out-f6c6a6ab3722",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Scribble-Supervised Meibomian Glands Segmentation in Infrared Images — Xiaoming Liu;Shuo Wang;Ying Zhang;Quan Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4963,
+            "end_char": 5083
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised contrast learning-based segmentation of choroidal vessel in optical coherence tomography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Jingling Pan;Ying Zhang;Xiao Li;Jinshan Tang",
+      "id": "out-c18f35b7179b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-supervised contrast learning-based segmentation of choroidal vessel in optical coherence tomography images — Xiaoming Liu;Jingling Pan;Ying Zhang;Xiao Li;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5089,
+            "end_char": 5266
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于3D和2D相结合的OCTA图像视网膜血管分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘小明;胡立志;胡威;刘俊;张凯",
+      "id": "out-115f135c8f5a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于3D和2D相结合的OCTA图像视网膜血管分割方法 — 刘小明;胡立志;胡威;刘俊;张凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5272,
+            "end_char": 5321
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Uncertainty-guided self-ensembling model for semi-supervised segmentation of multiclass retinal fluid in optical coherence tomography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaoming;Wang Shaocheng;Cao Jun;Zhang Ying;Wang Man",
+      "id": "out-13e515f8a995",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Uncertainty-guided self-ensembling model for semi-supervised segmentation of multiclass retinal fluid in optical coherence tomography images — Liu Xiaoming;Wang Shaocheng;Cao Jun;Zhang Ying;Wang Man",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5327,
+            "end_char": 5531
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Complementary discriminative region feature fusion network with ordinal regression for fine-grained nuclear cataract grading in AS-OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaoming;Song Wei;Zhang Ying;Wu Guohuan",
+      "id": "out-6ea4fe34ce1c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Complementary discriminative region feature fusion network with ordinal regression for fine-grained nuclear cataract grading in AS-OCT images — Liu Xiaoming;Song Wei;Zhang Ying;Wu Guohuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5537,
+            "end_char": 5730
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boundary-Repairing Dual-Path Network for Retinal Layer Segmentation in OCT Image with Pigment Epithelial Detachment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Xiao Li;Ying Zhang;Man Wang;Junping Yao;Jinshan Tang",
+      "id": "out-889be8f72961",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boundary-Repairing Dual-Path Network for Retinal Layer Segmentation in OCT Image with Pigment Epithelial Detachment — Xiaoming Liu;Xiao Li;Ying Zhang;Man Wang;Junping Yao;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5736,
+            "end_char": 5925
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint Boundary-Enhanced and Topology-Preserving Dual-Path Network for Retinal Layer Segmentation in OCT Images with Pigment Epithelial Detachment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Xiao Li",
+      "id": "out-f4a2f236382a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Joint Boundary-Enhanced and Topology-Preserving Dual-Path Network for Retinal Layer Segmentation in OCT Images with Pigment Epithelial Detachment — Xiaoming Liu;Xiao Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5931,
+            "end_char": 6105
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly-supervised localization and classification of biomarkers in OCT images with integrated reconstruction and attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Zhipeng Liu;Ying Zhang;Man Wang;Jinshan Tang",
+      "id": "out-3c8072a88477",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weakly-supervised localization and classification of biomarkers in OCT images with integrated reconstruction and attention — Xiaoming Liu;Zhipeng Liu;Ying Zhang;Man Wang;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6111,
+            "end_char": 6299
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale local-global transformer with contrastive learning for biomarkers segmentation in retinal OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Yuanzhe Ding;Ying Zhang;Jinshan Tang",
+      "id": "out-6790ab684c74",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale local-global transformer with contrastive learning for biomarkers segmentation in retinal OCT images — Xiaoming Liu;Yuanzhe Ding;Ying Zhang;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6305,
+            "end_char": 6475
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transformer and convolutional based dual branch network for retinal vessel segmentation in OCTA images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Di Zhang;Junping Yao;Jinshan Tang",
+      "id": "out-e304bb67b087",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transformer and convolutional based dual branch network for retinal vessel segmentation in OCTA images — Xiaoming Liu;Di Zhang;Junping Yao;Jinshan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6481,
+            "end_char": 6638
+          },
+          "version": "9999d122a419ecf03311"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Point based weakly semi-supervised biomarker detection with cross-scale and label assignment in retinal OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoming Liu;Xin Zhu;Ying Zhang;Man Wang",
+      "id": "out-250af17435e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Point based weakly semi-supervised biomarker detection with cross-scale and label assignment in retinal OCT images — Xiaoming Liu;Xin Zhu;Ying Zhang;Man Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6644,
+            "end_char": 6807
+          },
+          "version": "9999d122a419ecf03311"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1a9ba7abd011"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5521c4a234a3"
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
       },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5521c4a234a3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-66cda29fa78e"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-66cda29fa78e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-261af5427ebb"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

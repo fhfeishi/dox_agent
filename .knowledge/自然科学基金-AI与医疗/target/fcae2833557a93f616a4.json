@@ -2,15 +2,20 @@
   "doc_id": "fcae2833557a93f616a4",
   "version": "b7c59dfcbf1fa88899e2",
   "source_hash": "aaaf21ba56805c52a1a74b064ab80049b2547b8f9bbc3e373cf87335983a248d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.134408+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:45:04.210042+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,25 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bcf4ba9f49f4",
-          "name": "主动脉瓣狭窄术后左室重构逆转预测",
-          "desc": "部分重度主动脉瓣狭窄患者瓣膜置换后左室重构不能逆转，预后较差，术后早期预测逆转程度是精准诊疗关键。",
+          "id": "item-aac278c3b3e7",
+          "name": "主动脉瓣置换术后左室逆向重构预测",
+          "desc": "心外膜下脂肪影像组学",
           "evidence": [
             {
-              "quote": "部分重度主动脉瓣狭窄患者在瓣膜置换后左室重构不能逆转，预后较差。术后早期预测左室逆向重构的程度是精准诊疗、最大化侵入性治疗效果的关键",
+              "quote": "本项目结合前期工作提出病理激活后的心外膜下脂肪，通过加重心肌间质纤维化负荷，阻碍主动脉瓣置换术后左室逆向重构的科学假说",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 757
+                "start_char": 2798,
+                "end_char": 2856
               },
               "version": "b7c59dfcbf1fa88899e2"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
         {
-          "id": "item-76fccbfa04f7",
-          "name": "早期识别高危患者改善预后",
-          "desc": "阐明左室功能恢复的预测因素及机制，从而早期识别高危患者、改善患者预后。",
+          "id": "item-61098bce9162",
+          "name": "术后左室重构不能逆转需早期识别高危患者",
+          "desc": "",
           "evidence": [
             {
               "quote": "因此迫切需要阐明其预测因素及机制，从而早期识别高危患者、改善患者预后",
@@ -53,123 +64,13 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-4f87718e4f0d",
-          "name": "术后随访忽视左室重构逆转程度",
-          "desc": "既往术后随访更关注人工瓣膜功能却忽略了左室重构逆转的程度，而左室整体功能恢复与长期结局息息相关。",
-          "evidence": [
-            {
-              "quote": "但既往的术后随访往往更为关注人工瓣膜的功能却忽略了左室重构逆转的程度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2709,
-                "end_char": 2742
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ]
-        },
-        {
-          "id": "item-2e4438d05d5f",
-          "name": "缺乏心外膜下脂肪与重构关联证据",
-          "desc": "提出病理激活后的心外膜下脂肪通过加重心肌间质纤维化负荷阻碍左室逆向重构的科学假说，但缺乏相应预测证据。",
-          "evidence": [
-            {
-              "quote": "据此提出病理激活后的心外膜下脂肪，通过加重心肌间质纤维化负荷，阻碍主动脉瓣置换术后左室逆向重构的科学假说，利用心外膜下脂肪的变化可预测左室逆向重构",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 826,
-                "end_char": 898
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ef9b467d2564",
-          "name": "心外膜下脂肪影像组学特征筛选",
-          "desc": "采用多模态影像与影像组学方法，首先筛选出可预测左室逆向重构的心外膜下脂肪影像特征。",
-          "evidence": [
-            {
-              "quote": "项目执行中采用了多模态影像、影像组学方法，首先筛选出可预测左室逆向重构的心外膜下脂肪影像特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2879,
-                "end_char": 2924
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ]
-        },
-        {
-          "id": "item-36c92bf9f154",
-          "name": "机器学习构建多维预测模型",
-          "desc": "结合代谢组学检测、临床、生化、解剖特点、血流动力学等信息以机器学习构建多维度预测模型并前瞻性验证。",
-          "evidence": [
-            {
-              "quote": "再尝试结合代谢组学检测、临床、生化、解剖特点、血流动力学等信息以机器学习的方法构建多维度左室逆向重构预测模型并行前瞻性验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2926,
-                "end_char": 2986
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-65974e5170fd",
-          "name": "术前主动脉瓣反流预测重构不佳",
-          "desc": "回顾性队列发现术前合并轻度以上的主动脉瓣反流可预测TAVR术后左室逆向重构不佳。",
-          "evidence": [
-            {
-              "quote": "在回顾性队列中发现术前合并轻度以上的主动脉瓣反流可预测TAVR术后左室逆向重构不佳",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3061,
-                "end_char": 3101
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3a31958e4f47",
-          "name": "心外膜下脂肪术后动态变化",
-          "desc": "超过70%的患者术后1年心外膜下脂肪体积中位增长16.7cm³、平均灰度值下降7.46HU。",
-          "evidence": [
-            {
-              "quote": "心外膜下脂肪在TAVR术后有动态变化，超过70%的患者术后1年心外膜下脂肪体积中位增长16.7cm³、平均灰度值下降7.46HU",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3103,
-                "end_char": 3166
-              },
-              "version": "b7c59dfcbf1fa88899e2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-bd4a3cbf60ba",
-          "name": "Radscore列线图验证AUC 0.743",
-          "desc": "筛选6个心外膜下脂肪影像组学特征构建Radscore，逻辑回归与支持向量机验证效果良好，列线图验证队列AUC为0.743。",
+          "id": "item-d9ab0524875f",
+          "name": "心外膜下脂肪影像组学Radscore与列线图",
+          "desc": "6个影像组学特征",
           "evidence": [
             {
               "quote": "筛选到6个心外膜下脂肪的影像组学特征构建的Radscore，逻辑回归和支持向量机模型验证效果良好，并基于Radscore构建了一个列线图，其在验证队列中的AUC为0.743",
@@ -181,55 +82,220 @@
               "version": "b7c59dfcbf1fa88899e2"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-4d61daa79eb1",
+          "name": "TAVR患者临床、多模态影像、血样数据库",
+          "desc": "丰富",
+          "evidence": [
+            {
+              "quote": "丰富了团队经导管主动脉瓣置换术（TAVR）患者临床、多模态影像、血样的数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3022,
+                "end_char": 3059
+              },
+              "version": "b7c59dfcbf1fa88899e2"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bcf4ba9f49f4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4f87718e4f0d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcatheter aortic valve implantation in patients with bicuspid valve morphology: a roadmap towards standardization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-876ad2217c9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcatheter aortic valve implantation in patients with bicuspid valve morphology: a roadmap towards standardization — Tian-Yuan Xiong;Walid Ben Ali;Yuan Feng;Kentaro Hayashida;Hasan Jilaihawi;Azeem Latib;Michael S. Lee;Martin B Leon;Raj Makkar;Thomas Modine;Christoph Naber;Yong Peng;Nicolo Piazza;Michael J Reardon;Simon Redwood;Ashok Seth;Lars Sondergaard;Edgar Tay;Didier Tchetche;Wei-Hsian Yin;Mao Chen;Bernard Prendergast;Darren Mylotte",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3353,
+            "end_char": 3802
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4f87718e4f0d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ef9b467d2564"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sex Difference in Outcomes Following Transcatheter Aortic Valve Replacement in Bicuspid Aortic Stenosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-c6305ed35da7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sex Difference in Outcomes Following Transcatheter Aortic Valve Replacement in Bicuspid Aortic Stenosis — Jing-Jing He;Tian-Yuan Xiong;Yi-Jun Yao;Yong Peng;Jia-Fu Wei;Sen He;Yun-Dai Chen;Qiao Li;Zhen-Gang Zhao;Xin Wei;Wen-Xia Zhou;Yu-Jia Liang;Hong Tang;Guo Chen;Xuan Zhou;Ming-Xia Zheng;Wei Meng;Yan-Biao Liao;Yi-Ming Li;Yi-Ming Li;Fei Chen;Yuan-Weixiang Ou;Qi Liu;Xi Li;Xi Wang;Yi Zhang;Zhong-Kai Zhu;Hao-Ran Yang;Kai-Yu Jia;Mao Chen;Yuan Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3807,
+            "end_char": 4258
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ef9b467d2564"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3a31958e4f47"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of systemic impact of tricuspid regurgitation: an appleal for the notion of tricuspid regurgitation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fanglin Lu;Tianyuan Xiong;Mao Chen",
+      "id": "out-625456d2e12f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of systemic impact of tricuspid regurgitation: an appleal for the notion of tricuspid regurgitation — Fanglin Lu;Tianyuan Xiong;Mao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4416
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-36c92bf9f154"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bd4a3cbf60ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk of Coronary Obstruction During Redo-TAVR in Patients With Bicuspid Versus Tricuspid Aortic Valve Stenosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Chen;Tianyuan Xiong;Yijian Li;Xi Wang;Zhongkai Zhu;Yijun Yao;Yuanweixiang Ou;Xi Li;Xin Wei;Zhengang Zhao;Qiao Li;Sen He;Jiafu Wei;Yong Peng;Yuan Feng;Mao Chen",
+      "id": "out-73edaf9bcddc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk of Coronary Obstruction During Redo-TAVR in Patients With Bicuspid Versus Tricuspid Aortic Valve Stenosis — Fei Chen;Tianyuan Xiong;Yijian Li;Xi Wang;Zhongkai Zhu;Yijun Yao;Yuanweixiang Ou;Xi Li;Xin Wei;Zhengang Zhao;Qiao Li;Sen He;Jiafu Wei;Yong Peng;Yuan Feng;Mao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4421,
+            "end_char": 4702
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of patients with bicuspid and tricuspid aortic valve in transcatheter aortic valve implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhongkai Zhu;Tianyuan Xiong;Mao Chen",
+      "id": "out-47d092509cf7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of patients with bicuspid and tricuspid aortic valve in transcatheter aortic valve implantation — Zhongkai Zhu;Tianyuan Xiong;Mao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4707,
+            "end_char": 4858
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "经导管主动脉瓣置换术后左室质量回归不佳风险预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈茂;熊恬园;张怡",
+      "id": "out-0486640e4e68",
+      "evidence": [
+        {
+          "quote": "[专利] 经导管主动脉瓣置换术后左室质量回归不佳风险预测方法 — 陈茂;熊恬园;张怡",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4863,
+            "end_char": 4904
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcatheter aortic valve replacement:A journey of two decades and beyond",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyuan Xiong;Mao Chen",
+      "id": "out-df8558ebc7c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcatheter aortic valve replacement:A journey of two decades and beyond — Tianyuan Xiong;Mao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4909,
+            "end_char": 5015
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Concomitant aortic regurgitation predicts better left ventricular reverse remodeling after transcatheter aortic valve replacement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao-Ran Yang;Tian-Yuan Xiong;Yi Zhang;Jing-Jing He;Yuan Feng;Mao Chen",
+      "id": "out-0949223f9494",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Concomitant aortic regurgitation predicts better left ventricular reverse remodeling after transcatheter aortic valve replacement — Hao-Ran Yang;Tian-Yuan Xiong;Yi Zhang;Jing-Jing He;Yuan Feng;Mao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5020,
+            "end_char": 5227
+          },
+          "version": "b7c59dfcbf1fa88899e2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

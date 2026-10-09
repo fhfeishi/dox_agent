@@ -2,15 +2,20 @@
   "doc_id": "88055ab363b94cceb563",
   "version": "54fcb721f7df4284c832",
   "source_hash": "e454cb8fbb13586cb5df3707e5741be256d8199fee165eb05979371b03384925",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.852764+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:17.029554+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-75a93718cf42",
-          "name": "病理全切片图像检索与癌症辅助诊断",
-          "desc": "组织病理全切片成像技术快速发展，基于AI与深度学习的数字病理图像分析与辅助诊断成为热点难点。",
+          "id": "item-e009b1217ad7",
+          "name": "数字病理全切片图像检索与癌症辅助诊断",
+          "desc": "检索相似病例",
           "evidence": [
             {
-              "quote": "组织病理全切片成像技术在医学病理领域得到快速发展，基于人工智能、深度学习的数字病理图像分析和辅助诊断方法已成为该领域研究的热点、难点问题",
+              "quote": "本课题研究了基于内容的病理全切片图像检索方法及其癌症辅助诊断新模式，通过在大规模数字病理库中检索、返回相似病例的方式，为医生诊断提供更丰富的辅助信息",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 720
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ]
-        },
-        {
-          "id": "item-a256c3a189d4",
-          "name": "提升病理诊断效率与水平",
-          "desc": "研究成果对提高医生癌症诊断效率与水平、提升我国医学病理诊断质量有重要理论意义和实际应用价值。",
-          "evidence": [
-            {
-              "quote": "研究成果对提高医生癌症诊断效率与诊断水平，提升我国医学病理诊断质量有重要的理论意义和实际应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3236,
-                "end_char": 3283
+                "start_char": 2843,
+                "end_char": 2916
               },
               "version": "54fcb721f7df4284c832"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f411caa7da1b",
-          "name": "癌症辅助诊断输出单一可解释性差",
-          "desc": "病理图像分类分割方法存在输出结果形式单一、可解释性差等缺陷，难以为医生提供更具参考价值的辅助信息。",
+          "id": "item-f5edb054b13c",
+          "name": "病理图像分类分割输出单一、可解释性差",
+          "desc": "难以提供更具参考价值的辅助诊断信息",
           "evidence": [
             {
-              "quote": "病理图像分类、分割是该领域常见的癌症辅助诊断方式，能模拟医生对病例做出定性或定量的诊断，但存在输出结果形式单一、可解释性差等缺陷，难以为医生提供更具参考价值的辅助诊断信息",
+              "quote": "存在输出结果形式单一、可解释性差等缺陷，难以为医生提供更具参考价值的辅助诊断信息",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2734,
+                "start_char": 2779,
                 "end_char": 2818
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ]
-        },
-        {
-          "id": "item-825d8e95ce85",
-          "name": "现有方法精度难以满足诊断要求",
-          "desc": "现有癌症辅助诊断方法通常对感兴趣区域检测识别，精度难以满足诊断要求且缺少诊断参考信息。",
-          "evidence": [
-            {
-              "quote": "目前的癌症辅助诊断方法通常对感兴趣区域进行检测识别，精度难以满足诊断要求，同时缺少医生所需要的诊断参考信息，与实际应用仍存在较大差距",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 722,
-                "end_char": 787
               },
               "version": "54fcb721f7df4284c832"
             }
@@ -95,81 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99a0bfd68bdb",
-          "name": "基于内容的病理全切片检索",
-          "desc": "研究基于内容的病理全切片图像检索及其癌症辅助诊断方法，通过检索返回相似切片为医生提供更全面的辅助诊断信息。",
-          "evidence": [
-            {
-              "quote": "本课题研究基于内容的病理全切片图像检索及其癌症辅助诊断方法，通过在病理数字切片库中检索返回相似切片的方式，为医生提供更全面的辅助诊断信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 814,
-                "end_char": 881
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ]
-        },
-        {
-          "id": "item-04aedf62cf08",
-          "name": "组织结构量化编码与跨模态检索",
-          "desc": "提出病理全切片图像组织结构量化编码与检索方法、多源信息检索与相似病例推荐方法及双分支注意力跨模态检索框架。",
-          "evidence": [
-            {
-              "quote": "病理全切片图像组织结构量化编码与检索方法，面向数字病理平台的多源信息检索与相似病例推荐方法，以及基于双分支注意力机制的病理全切片跨模态检索框架等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2986,
-                "end_char": 3057
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7e814289711e",
-          "name": "胃活检筛查敏感性95.5%特异性84.6%",
-          "desc": "部分研究成果已转化应用于胃活检病理筛查辅助诊断，经测试筛查敏感性95.5%、特异性84.6%，与基层病理医生诊断精度相当。",
-          "evidence": [
-            {
-              "quote": "经卫生部数字病理远程诊断与质控平台测试表明，目前该软件对胃部活检病例的筛查敏感性可达95.5%，特异性达84.6%，与基层病理医生诊断精度相当",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3086,
-                "end_char": 3156
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3add50e360b5",
-          "name": "降低误诊13.27%与漏诊17.41%",
-          "desc": "基层病理医生与辅助诊断软件协同工作时可降低13.27%的误诊风险与17.41%的漏诊风险，并提高远程诊断平台28.7%~46.9%的诊断效率。",
-          "evidence": [
-            {
-              "quote": "基层病理医生与辅助诊断软件协同工作时，可降低13.27%的误诊风险与17.41%的漏诊风险，同时提高远程诊断平台28.7%~46.9%的诊断效率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3163,
-                "end_char": 3234
-              },
-              "version": "54fcb721f7df4284c832"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-71c55ef5dfa7",
-          "name": "动态路由颜色归一化方法",
-          "desc": "针对病理全切片图像数据库检索关键问题，提出基于动态路由的病理图像颜色归一化方法与自上而下的检索模型。",
+          "id": "item-1ef81025ed99",
+          "name": "动态路由病理图像颜色归一化",
+          "desc": "病理图像颜色归一化",
           "evidence": [
             {
               "quote": "提出了基于动态路由的病理图像颜色归一化方法",
@@ -181,55 +82,384 @@
               "version": "54fcb721f7df4284c832"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9dc9a8aa3066",
+          "name": "自上而下的病理全切片图像检索模型",
+          "desc": "全切片检索",
+          "evidence": [
+            {
+              "quote": "基于自上而下的病理全切片图像检索模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2967,
+                "end_char": 2984
+              },
+              "version": "54fcb721f7df4284c832"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-21b84417954c",
+          "name": "双分支注意力跨模态检索框架",
+          "desc": "病理全切片跨模态检索",
+          "evidence": [
+            {
+              "quote": "基于双分支注意力机制的病理全切片跨模态检索框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3034,
+                "end_char": 3056
+              },
+              "version": "54fcb721f7df4284c832"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-7e83fda10ebc",
+          "name": "胃活检病理筛查辅助诊断软件测试",
+          "desc": "敏感性95.5%，特异性84.6%",
+          "evidence": [
+            {
+              "quote": "目前该软件对胃部活检病例的筛查敏感性可达95.5%，特异性达84.6%，与基层病理医生诊断精度相当",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3108,
+                "end_char": 3156
+              },
+              "version": "54fcb721f7df4284c832"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5a532cf08008",
+          "name": "人机协同降低误诊漏诊",
+          "desc": "误诊风险降13.27%，漏诊风险降17.41%",
+          "evidence": [
+            {
+              "quote": "基层病理医生与辅助诊断软件协同工作时，可降低13.27%的误诊风险与17.41%的漏诊风险，同时提高远程诊断平台28.7%~46.9%的诊断效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3163,
+                "end_char": 3234
+              },
+              "version": "54fcb721f7df4284c832"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-75a93718cf42"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f411caa7da1b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Informative Retrieval Framework for Histopathology Whole Slides Images Based on Deep Hashing Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dingyi Hu;Yushan Zheng;Haopeng Zhang;Shujiao Sun;Fengying Xie;Jun Shi;Zhiguo Jiang",
+      "id": "out-f2785457be27",
+      "evidence": [
+        {
+          "quote": "[会议论文] Informative Retrieval Framework for Histopathology Whole Slides Images Based on Deep Hashing Network — Dingyi Hu;Yushan Zheng;Haopeng Zhang;Shujiao Sun;Fengying Xie;Jun Shi;Zhiguo Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3303,
+            "end_char": 3494
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f411caa7da1b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-99a0bfd68bdb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于核注意力网络的病理全切片图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;姜志国;谢凤英;张浩鹏",
+      "id": "out-900743d65803",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于核注意力网络的病理全切片图像分类方法 — 郑钰山;姜志国;谢凤英;张浩鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3499,
+            "end_char": 3543
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-99a0bfd68bdb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7e814289711e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于JPEG压缩编码的数字病理全切片图像快速分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;罗伟;姜志国;张浩鹏;谢凤英;赵丹培",
+      "id": "out-6a193fb0f5a3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于JPEG压缩编码的数字病理全切片图像快速分析方法 — 郑钰山;罗伟;姜志国;张浩鹏;谢凤英;赵丹培",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3548,
+            "end_char": 3605
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-04aedf62cf08"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-71c55ef5dfa7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic Regions Attention Network (DRA-Net) for Histopathology WSI Recommendation and Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Xie Fengying;Shi Jun;Zhang Haopeng;Huai Jianguo;Cao Ming;Yang Xiaomiao",
+      "id": "out-4fce5f1931ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic Regions Attention Network (DRA-Net) for Histopathology WSI Recommendation and Retrieval — Zheng Yushan;Jiang Zhiguo;Xie Fengying;Shi Jun;Zhang Haopeng;Huai Jianguo;Cao Ming;Yang Xiaomiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3610,
+            "end_char": 3813
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Kernel Attention Transformer (KAT) for Histopathology Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+      "id": "out-22aaac871661",
+      "evidence": [
+        {
+          "quote": "[会议论文] Kernel Attention Transformer (KAT) for Histopathology Whole Slide Image Classification — Zheng Yushan;Li Jun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3818,
+            "end_char": 3966
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对称编码网络的病理全切片图像跨模态检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;胡定一;姜志国;张浩鹏;谢凤英",
+      "id": "out-2ce7ebb764a8",
+      "evidence": [
+        {
+          "quote": "[专利] 基于对称编码网络的病理全切片图像跨模态检索方法 — 郑钰山;胡定一;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3971,
+            "end_char": 4020
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lesion-Aware Contrastive Representation Learning for Histopathology Whole Slide Images Analysi",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jun;Zheng Yushan;Wu Kun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+      "id": "out-5211b8d0f836",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lesion-Aware Contrastive Representation Learning for Histopathology Whole Slide Images Analysi — Li Jun;Zheng Yushan;Wu Kun;Shi Jun;Xie Fengying;Jiang Zhiguo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4025,
+            "end_char": 4188
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tracing Diagnosis Paths on Histopathology WSIs for Diagnostically Relevant Case Recommendation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Shi Jun",
+      "id": "out-1753afad5129",
+      "evidence": [
+        {
+          "quote": "[会议论文] Tracing Diagnosis Paths on Histopathology WSIs for Diagnostically Relevant Case Recommendation — Zheng Yushan;Jiang Zhiguo;Zhang Haopeng;Xie Fengying;Shi Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4193,
+            "end_char": 4356
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Global-Local Attention Network for Weakly Supervised Cervical Cytology ROI Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Jun;Wu Kun;Zheng Yushan;He Yuxin;Li Jun;Jiang Zhiguo;Yu Lanlan",
+      "id": "out-58cdfc4e2ecc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Global-Local Attention Network for Weakly Supervised Cervical Cytology ROI Analysis — Shi Jun;Wu Kun;Zheng Yushan;He Yuxin;Li Jun;Jiang Zhiguo;Yu Lanlan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4361,
+            "end_char": 4519
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DCT频率自适应选择的数字病理全切片分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;罗伟;姜志国;张浩鹏;谢凤英",
+      "id": "out-9b79cb046583",
+      "evidence": [
+        {
+          "quote": "[专利] 基于DCT频率自适应选择的数字病理全切片分割方法 — 郑钰山;罗伟;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4525,
+            "end_char": 4574
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Encoding histopathology whole slide images with location-aware graphs for diagnostically relevant regions retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yushan;Jiang Zhiguo;Shi Jun;Xie Fengying;Zhang Haopeng;Luo Wei;Hu Dingyi;Sun Shujiao;Jiang Zhongmin;Xue Chenghai",
+      "id": "out-0799ad63e0a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Encoding histopathology whole slide images with location-aware graphs for diagnostically relevant regions retrieval — Zheng Yushan;Jiang Zhiguo;Shi Jun;Xie Fengying;Zhang Haopeng;Luo Wei;Hu Dingyi;Sun Shujiao;Jiang Zhongmin;Xue Chenghai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4580,
+            "end_char": 4822
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度哈希的病理全切片检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志国;胡定一;郑钰山;张浩鹏;谢凤英",
+      "id": "out-ab8653222d71",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度哈希的病理全切片检索方法 — 姜志国;胡定一;郑钰山;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4828,
+            "end_char": 4872
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种数字病理图像的表征学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑钰山;李俊;姜志国;张浩鹏;谢凤英",
+      "id": "out-bde806744123",
+      "evidence": [
+        {
+          "quote": "[专利] 一种数字病理图像的表征学习方法 — 郑钰山;李俊;姜志国;张浩鹏;谢凤英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4878,
+            "end_char": 4918
+          },
+          "version": "54fcb721f7df4284c832"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

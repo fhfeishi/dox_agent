@@ -2,15 +2,20 @@
   "doc_id": "0107608b0da378e81259",
   "version": "a0f4f8d46099e9d3cd9f",
   "source_hash": "52c7cd879f452234614dc8ead85379b732df4b3e6d43ef6176ecc717b4849f9d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.610267+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 9
+  },
+  "generated_at": "2026-10-09T11:47:00.595378+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 9,
+      "total": 9,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d0e999daaa95",
-          "name": "肝癌肝移植关键分子智能可视化",
-          "desc": "面向肝癌肝移植术后复发率高的难题，实现杭州标准与关键分子的智能可视化及复发预测。",
+          "id": "item-7c5418b94788",
+          "name": "肝癌肝移植诊疗关键分子智能可视化",
+          "desc": "杭州标准、HIF1α、USP22、CK19",
           "evidence": [
             {
-              "quote": "肝移植是治疗肝细胞癌（以下简称肝癌）的有效手段之一，然而术后肿瘤复发率高达20%，严重影响移植受者预后",
+              "quote": "本研究将采用人工智能辅助医学影像智能预测肝癌组织学分级，HIF1α、USP22和CK19组织表达水平",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -41,12 +46,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-20070d0c8e6c",
-          "name": "肝移植术后肿瘤复发率高达20%",
-          "desc": "肝细胞癌肝移植术后肿瘤复发率高达20%，严重影响移植受者预后，需实现受者精细化选择与复发风险预测。",
+          "id": "item-4534c33e43b6",
+          "name": "肝移植术后肿瘤复发率高",
+          "desc": "影响移植受者预后",
           "evidence": [
             {
-              "quote": "术后肿瘤复发率高达20%",
+              "quote": "肝移植是治疗肝细胞癌（以下简称肝癌）的有效手段之一，然而术后肿瘤复发率高达20%，严重影响移植受者预后",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -63,20 +68,89 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f655a227a23d",
-          "name": "AI影像预测组织学分级与关键分子可视化",
-          "desc": "采用人工智能辅助医学影像智能预测肝癌组织学分级及HIF1α、USP22和CK19组织表达水平，实现对杭州标准与诊疗关键分子智能可视化，并通过深度学习整合跨尺度多模态信息建立复发预测模型。",
+          "id": "item-4002dd1c596c",
+          "name": "基于多期CT的肝肿瘤分割框架",
+          "desc": "多相通道堆叠双注意力模块MCDA与多尺度监督加权损失SWL",
           "evidence": [
             {
-              "quote": "本研究将采用人工智能辅助医学影像智能预测肝癌组织学分级，HIF1α、USP22和CK19组织表达水平，实现对“杭州标准”与肝癌诊疗关键分子智能可视化，指导受者精细化选择",
+              "quote": "引入多相通道堆叠双注意力模块（MCDA）与多尺度监督加权损失函数（SWL），实现多中心数据的自动配准、分割与特征提取",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "e36a50c39961ee4f912b18582d30d8d2a20889fc"
+                "page": 3,
+                "chunk_id": "7d7f0ca912b9137fc276eb2b8afd75fb9f87c218"
               },
               "version": "a0f4f8d46099e9d3cd9f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dcc430026b49",
+          "name": "MSMR-DenseCNNs肝癌组织病理分级预测",
+          "desc": "多尺度多区域密集连接CNN，肿瘤实质与周围微环境",
+          "evidence": [
+            {
+              "quote": "基于多尺度、多区域密集连接卷积神经网络",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "c201d4a888843da12460d497bb9d86c196e5feaf"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9473766f505a",
+          "name": "千余例数字病理切片肿瘤复发预测模型",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "构建基于千余例数字病理切片的肿瘤复发预测模型和基于医学影像的肌少症智能诊断体系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "7d7f0ca912b9137fc276eb2b8afd75fb9f87c218"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b4365e75ac1f",
+          "name": "关键分子术前无创智能预测与可视化原型平台",
+          "desc": "RPS6K、CK19",
+          "evidence": [
+            {
+              "quote": "实现RPS6K、CK19等肝癌肝移植关键诊疗分子的智能可视化",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "82e285c9ff96c7f932fd75d387aa62a6134b40c2"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-11c1562703a0",
+          "name": "Filter与Wrapper结合的多层特征筛选",
+          "desc": "影像组学与深度特征",
+          "evidence": [
+            {
+              "quote": "采用Filter和 Wrapper算法结合的特征选择策略进行多层特征筛选",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "82e285c9ff96c7f932fd75d387aa62a6134b40c2"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +159,47 @@
       "state": "has",
       "items": [
         {
-          "id": "item-904436677cd6",
-          "name": "发表论文49篇并申请发明专利20项",
-          "desc": "建立含回顾性（n=517）与前瞻性（n=211）肝癌肝移植队列的跨尺度多模态数据库，提出MCDA分割框架与TNFR2联合杭州标准的肺转移风险分层策略；累计发表论文49篇，申请发明专利20项（授权5项），获2025年中国抗癌协会科技奖一等奖。",
+          "id": "item-da98157c566e",
+          "name": "跨尺度多模态数据库",
+          "desc": "回顾性队列517例，前瞻性队列211例",
+          "evidence": [
+            {
+              "quote": "包含回顾性肝癌肝移植队列（n=517）和前瞻性肝癌肝移植队列（n=211）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "7d7f0ca912b9137fc276eb2b8afd75fb9f87c218"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-43e65f5f9a23",
+          "name": "关键分子机制",
+          "desc": "USP22/HIF-1α/E2F7轴介导mTOR抑制剂耐药，CHI3L1，TNFR2，CK19",
+          "evidence": [
+            {
+              "quote": "揭示USP22/ HIF-1α/E2F7轴介导mTOR抑制剂耐药机制，发现CHI3L1作为“肌少症—肿瘤进展/复发”的关键介质",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "7d7f0ca912b9137fc276eb2b8afd75fb9f87c218"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-042f2eb26042",
+          "name": "论文专利与奖励",
+          "desc": "论文49篇，发明专利20项（授权5项），中国抗癌协会科技奖一等奖",
           "evidence": [
             {
               "quote": "项目组累计发表论文49篇（含Hepatology、Am J Transplant等），申请发明专利20项（授权5项）",
@@ -99,44 +211,54 @@
               "version": "a0f4f8d46099e9d3cd9f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-cea772f9ef3c",
+          "name": "已转化专利",
+          "desc": "一种肝癌肝移植术后肌肉流失预测方法和装置",
+          "evidence": [
+            {
+              "quote": "“一种肝癌肝移植术后肌肉流失预测方法和装置”（ZL202510142065.8）已实现转化",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "0c9bd0c28bbf3b018527ab6cb09776b6196ad2a1"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-8d8ba3a97313",
+          "name": "临床指南引用",
+          "desc": "中国肝移植受者肌肉减少症临床诊疗指南",
+          "evidence": [
+            {
+              "quote": "项目部分研究内容被写入《中国肝移植受者肌肉减少症临床诊疗指南》",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "0c9bd0c28bbf3b018527ab6cb09776b6196ad2a1"
+              },
+              "version": "a0f4f8d46099e9d3cd9f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d0e999daaa95"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-20070d0c8e6c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-20070d0c8e6c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f655a227a23d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f655a227a23d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-904436677cd6"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "6e40870726d684d79196",
   "version": "ced281d433e369f77ce8",
   "source_hash": "e21b6c5c36ad1544a0642f21e43760b7c413861e87921ef7919253d58854df11",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.832569+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:23.983258+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ecc8570cec42",
-          "name": "儿童单基因糖尿病及相关综合征精准诊断",
-          "desc": "面向儿童单基因糖尿病及糖尿病相关综合征发病率与遗传学诊断不清的问题，构建精准诊断模型。",
+          "id": "item-911efebc9035",
+          "name": "儿童单基因糖尿病精准诊断",
+          "desc": "WES阴性病因不明",
           "evidence": [
             {
-              "quote": "儿童糖尿病发病率迅速增加，儿童单基因糖尿病及糖尿病相关综合征发病率及遗传学诊断均不清",
+              "quote": "针对全外显子测序（WES）阴性患儿遗传病因不明、临床异质性显著等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 693,
-                "end_char": 734
+                "start_char": 2601,
+                "end_char": 2634
               },
               "version": "ced281d433e369f77ce8"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-44259aa53062",
-          "name": "WES阴性患儿基因诊断不明",
-          "desc": "全外显子组测序虽已诊断多种单基因突变病例，但仍有近80%疑诊为遗传性糖尿病的患儿基因诊断不明。",
+          "id": "item-3f8ed0f0d0af",
+          "name": "WES阴性患儿遗传病因不明",
+          "desc": "临床异质性显著",
           "evidence": [
             {
-              "quote": "但仍有近80%疑诊为遗传性糖尿病患儿的基因诊断不明",
+              "quote": "针对全外显子测序（WES）阴性患儿遗传病因不明、临床异质性显著等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 774,
-                "end_char": 798
+                "start_char": 2601,
+                "end_char": 2634
               },
               "version": "ced281d433e369f77ce8"
             }
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1c9df24a11ff",
-          "name": "转录组学结合聚类机器学习的多组学精准诊断模型",
-          "desc": "对WES阴性病例开展转录组测序识别异常剪接与异常表达量，结合大家系数据与eQTL/sQTL关联分析，利用多组学相似性与互补性相互验证并构建分类模型。",
+          "id": "item-c55dec80d00f",
+          "name": "WES阴性患儿RNA测序",
+          "desc": "鉴定HLA-DRB1异常剪接变异",
           "evidence": [
             {
-              "quote": "本研究拟在进一步扩大前期队列基础上，对WES阴性病例进行转录组测序，以识别异常剪接和异常表达量",
+              "quote": "对70例WES阴性儿童糖尿病患者开展RNA测序，首次在WFS1家系中鉴定出HLA-DRB1异常剪接变异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 800,
-                "end_char": 846
+                "start_char": 2754,
+                "end_char": 2804
               },
               "version": "ced281d433e369f77ce8"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-802a1e28de2c",
-          "name": "深度学习单基因糖尿病诊断模型准确率92.3%",
-          "desc": "开发基于深度学习的单基因糖尿病诊断模型整体准确率达92.3%；对70例WES阴性患儿完成RNA测序，建立包含120例患者的中国儿童单基因糖尿病转录组数据库。",
+          "id": "item-ca89a764a6ba",
+          "name": "深度学习单基因糖尿病诊断模型",
+          "desc": "整体准确率92.3%",
           "evidence": [
             {
               "quote": "项目开发了基于深度学习的单基因糖尿病诊断模型，整体准确率达92.3%",
@@ -99,44 +99,363 @@
               "version": "ced281d433e369f77ce8"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b2f76d239247",
+          "name": "中国儿童单基因糖尿病转录组数据库",
+          "desc": "120例患者",
+          "evidence": [
+            {
+              "quote": "建立了包含120例患者的中国儿童单基因糖尿病转录组数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2968,
+                "end_char": 2995
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c08dae9d6a4b",
+          "name": "MODY筛查",
+          "desc": "175例疑似病例发现30例致病或可能致病变异",
+          "evidence": [
+            {
+              "quote": "开展MODY筛查，在175例疑似病例中发现30例致病或可能致病变异（含7个新变异）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3078,
+                "end_char": 3118
+              },
+              "version": "ced281d433e369f77ce8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ecc8570cec42"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-44259aa53062"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genetic variants of ABCC8 and clinical manifestations in eight Chinese children with hyperinsulinemic hypoglycemia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoying Chang;Lingwen Ying;Qianwen Zhang;Biyun Feng;Ruen Yao;Yu Ding;Juan Li;Xiaodong Huang;Yongnian Shen;Tingting Yu;Jian Wang;Xiumin Wang",
+      "id": "out-899ddd5fc5d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genetic variants of ABCC8 and clinical manifestations in eight Chinese children with hyperinsulinemic hypoglycemia — Guoying Chang;Lingwen Ying;Qianwen Zhang;Biyun Feng;Ruen Yao;Yu Ding;Juan Li;Xiaodong Huang;Yongnian Shen;Tingting Yu;Jian Wang;Xiumin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3588,
+            "end_char": 3850
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-44259aa53062"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1c9df24a11ff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Defining Puberty and Spectrum of Hypogonadism in Alström Syndrome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ali Sadaf;Zhang Qianwen;Anwunah Ijeoma;Baig Shanat;Xavier Gabriela da Silva;Dawson Charlotte;Dassie Francesca;Tang Yijun;Wang Libo;Chang Guoying;Gleeson Paul;Warfield Adrian T.;Paisey Richard;Barrett Timothy G.;Maffei Pietro;Wang Xiumin;Homer Victoria;Kershaw Melanie;Geberhiwot Tarekegn",
+      "id": "out-3aa1ee3bcbb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Defining Puberty and Spectrum of Hypogonadism in Alström Syndrome — Ali Sadaf;Zhang Qianwen;Anwunah Ijeoma;Baig Shanat;Xavier Gabriela da Silva;Dawson Charlotte;Dassie Francesca;Tang Yijun;Wang Libo;Chang Guoying;Gleeson Paul;Warfield Adrian T.;Paisey Richard;Barrett Timothy G.;Maffei Pietro;Wang Xiumin;Homer Victoria;Kershaw Melanie;Geberhiwot Tarekegn",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3855,
+            "end_char": 4216
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1c9df24a11ff"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-802a1e28de2c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "单亲二体相关糖代谢异常研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高诗阳;汪莉波;张倩文;王秀敏",
+      "id": "out-8ceb543384ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 单亲二体相关糖代谢异常研究进展 — 高诗阳;汪莉波;张倩文;王秀敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4260
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Complex clinical manifestations and new insights in RNA sequencing of children with diabetes and WFS1 variants",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Yu;Li Zhe;Zhang Qianwen;Li Niu;Chang Guoying;Wang Yirou;Li Xin;Li Juan;Li Qun;Yao Ru-en;Wang Xiumin",
+      "id": "out-4e1432d3509f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Complex clinical manifestations and new insights in RNA sequencing of children with diabetes and WFS1 variants — Ding Yu;Li Zhe;Zhang Qianwen;Li Niu;Chang Guoying;Wang Yirou;Li Xin;Li Juan;Li Qun;Yao Ru-en;Wang Xiumin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4265,
+            "end_char": 4488
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Screening/diagnosis of pediatric endocrine disorders through the artificial intelligence model in different language settings",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Lingwen;Li Sichen;Chen Chunyang;Yang Fan;Li Xin;Chen Yao;Ding Yu;Chang Guoying;Li Juan;Wang Xiumin",
+      "id": "out-be96144e5a5b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Screening/diagnosis of pediatric endocrine disorders through the artificial intelligence model in different language settings — Ying Lingwen;Li Sichen;Chen Chunyang;Yang Fan;Li Xin;Chen Yao;Ding Yu;Chang Guoying;Li Juan;Wang Xiumin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4493,
+            "end_char": 4730
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Obesity-Related Ciliopathies: Focus on Advances of Biomarkers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianwen Zhang;Shiyang Gao;Yu Ding;Hao Zhang;Guoying Chang;Xiumin Wang",
+      "id": "out-7d631b069c6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Obesity-Related Ciliopathies: Focus on Advances of Biomarkers — Qianwen Zhang;Shiyang Gao;Yu Ding;Hao Zhang;Guoying Chang;Xiumin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4735,
+            "end_char": 4874
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Age-related heterogeneity of type 1 diabetes mellitus in children: a single-center retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi-Yang Gao;Yi-Guo Huang;Li-Bo Wang;Qian-Wen Zhang;Guo-Ying Chang;Juan Li;Fei-Han Hu;Yu Ding;Xiu-Min Wang",
+      "id": "out-ac06cf7ee8a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Age-related heterogeneity of type 1 diabetes mellitus in children: a single-center retrospective study — Shi-Yang Gao;Yi-Guo Huang;Li-Bo Wang;Qian-Wen Zhang;Guo-Ying Chang;Juan Li;Fei-Han Hu;Yu Ding;Xiu-Min Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4879,
+            "end_char": 5096
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular and phenotypic characteristics of Bardet-Biedl syndrome in Chinese patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Shiyang;Zhang Qianwen;Ding Yu;Wang Libo;Li Zhiying;Hu Feihan;Yao Ru-en;Yu Tingting;Chang Guoying;Wang Xiumin",
+      "id": "out-e0f1e11e6260",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular and phenotypic characteristics of Bardet-Biedl syndrome in Chinese patients — Gao Shiyang;Zhang Qianwen;Ding Yu;Wang Libo;Li Zhiying;Hu Feihan;Yao Ru-en;Yu Tingting;Chang Guoying;Wang Xiumin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5101,
+            "end_char": 5307
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "儿童内分泌遗传代谢领域罕见病诊治进展(上)-Alstrom综合征诊治及研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪莉波;张倩文;王秀敏",
+      "id": "out-2cf8fa47f230",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 儿童内分泌遗传代谢领域罕见病诊治进展(上)-Alstrom综合征诊治及研究进展 — 汪莉波;张倩文;王秀敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5312,
+            "end_char": 5371
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "移植治疗在儿童与青少年1型糖尿病治疗中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈瑶;王秀敏",
+      "id": "out-6dcfb1fa36c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 移植治疗在儿童与青少年1型糖尿病治疗中的应用进展 — 陈瑶;王秀敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5377,
+            "end_char": 5416
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Focusing on Rare Variants Related to Maturity-Onset Diabetes of the Young in Children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Yu;Zhang Qianwen;Gao Shiyang;Li Juan;Chang Guoying;Wang Yirou;Wang Libo;Li Xin;Chen Yao;Yao Ru-en;Yu Tingting;Li Niu;Lou Dan;Wang Xiumin",
+      "id": "out-cfa7e9bb5188",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Focusing on Rare Variants Related to Maturity-Onset Diabetes of the Young in Children — Ding Yu;Zhang Qianwen;Gao Shiyang;Li Juan;Chang Guoying;Wang Yirou;Wang Libo;Li Xin;Chen Yao;Yao Ru-en;Yu Tingting;Li Niu;Lou Dan;Wang Xiumin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5422,
+            "end_char": 5657
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genotypic and phenotypic features of dyslipidemia in a sample of pediatric patients in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Qianwen;Chang Guoying;Tang Yijun;Gu Shili;Ding Yu;Chen Yao;Wang Yirou;Liu Shijian;Wang Jian;Wang Xiumin",
+      "id": "out-2619c5d8a77c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genotypic and phenotypic features of dyslipidemia in a sample of pediatric patients in China — Zhang Qianwen;Chang Guoying;Tang Yijun;Gu Shili;Ding Yu;Chen Yao;Wang Yirou;Liu Shijian;Wang Jian;Wang Xiumin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5663,
+            "end_char": 5873
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alström Syndrome in China: Epidemiologic Trends, Geographic Distribution, and Clinical- Socioeconomic Profiles under Innovative Care Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianwen Zhang;Libo Wang;Yiguo Huang;Shiyang Gao;Guoying Chang;Yu Ding;Xiumin Wang",
+      "id": "out-7ab61c62936f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Alström Syndrome in China: Epidemiologic Trends, Geographic Distribution, and Clinical- Socioeconomic Profiles under Innovative Care Models — Qianwen Zhang;Libo Wang;Yiguo Huang;Shiyang Gao;Guoying Chang;Yu Ding;Xiumin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5879,
+            "end_char": 6108
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel CEP57 variant associated with mosaic variegated aneuploidy syndrome in a Chinese female presenting with short stature, microcephaly, brachydactyly, and small teeth",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Biyun Feng;Guoying Chang;Qianwen Zhang;Xin Li;Yijun Tang;Shili Gu;Yirou Wang;Jian Wang;Xiumin Wang",
+      "id": "out-cf7136826c0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel CEP57 variant associated with mosaic variegated aneuploidy syndrome in a Chinese female presenting with short stature, microcephaly, brachydactyly, and small teeth — Biyun Feng;Guoying Chang;Qianwen Zhang;Xin Li;Yijun Tang;Shili Gu;Yirou Wang;Jian Wang;Xiumin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6114,
+            "end_char": 6392
+          },
+          "version": "ced281d433e369f77ce8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      }
+    },
+    "consistent": true
+  }
 }

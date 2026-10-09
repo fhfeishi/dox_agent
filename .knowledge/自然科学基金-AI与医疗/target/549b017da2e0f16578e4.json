@@ -2,15 +2,20 @@
   "doc_id": "549b017da2e0f16578e4",
   "version": "65251890657c3d3655f4",
   "source_hash": "632a7855afc04c37255e7381fe01402eb59f587904e8b0f006109011aa8106c6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.567053+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:41:37.826284+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-2610c2bdc782",
           "name": "微生物组单细胞功能解析",
-          "desc": "面向微生物组功能探测与利用，在单细胞层面关联表型与基因型，跨越难培养微生物的功能解析瓶颈。",
+          "desc": "单细胞精准分选是关键瓶颈",
           "evidence": [
             {
-              "quote": "拉曼分选/测序能在单细胞层面关联其表型和基因型",
+              "quote": "单细胞精准分选是微生物组功能解析和合成生物学菌株筛选的关键技术瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 745,
-                "end_char": 767
+                "start_char": 3120,
+                "end_char": 3152
               },
               "version": "65251890657c3d3655f4"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec577bd5ca63",
-          "name": "拉曼分选通量低难以满足菌群解析需求",
-          "desc": "传统拉曼激活细胞分选依赖手动操作，通量仅1-2细胞/分钟，难以满足高通量筛选与菌群单细胞功能解析需求。",
+          "id": "item-b005843f876d",
+          "name": "传统拉曼激活细胞分选手动操作通量低",
+          "desc": "1-2细胞/分钟",
           "evidence": [
             {
               "quote": "传统拉曼激活细胞分选(RACS)技术虽能实现代谢表型识别，但依赖手动操作，通量低(1-2细胞/分钟)，难以满足高通量筛选需求",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-76690b73c751",
-          "name": "AI辅助自动定位与自动化拉曼分选-测序耦合技术",
-          "desc": "首次提出人工智能预测细菌泳动范围来辅助自动定位，配合“先近后远、应分尽分、有序导出、选择接收”的自动分选策略，并发展自动拉曼光镊采集与单细胞液滴打印分选。",
+          "id": "item-cc91602c08d5",
+          "name": "RAMS拉曼激活微流控分选系统",
+          "desc": "光镊辅助池筛选，静态流场设计",
           "evidence": [
             {
-              "quote": "首次提出人工智能预测细菌泳动范围来辅助自动定位",
+              "quote": "开发了基于光镊辅助池筛选的RAMS(Raman-Activated Microfluidic Sorting)系统，通过静态流场设计和微流控芯片结构优化，实现细胞在500微米腔室内的稳定筛选",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 872,
-                "end_char": 894
+                "start_char": 3309,
+                "end_char": 3403
               },
               "version": "65251890657c3d3655f4"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0a9256d7772b",
+          "name": "深度学习AI辅助单细胞识别与路径规划",
+          "desc": "CNN识别、光镊捕获、智能分选",
+          "evidence": [
+            {
+              "quote": "构建了基于深度学习的AI辅助单细胞识别与路径规划系统，集成CNN细胞识别、光镊捕获和智能分选算法，识别准确率达95%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3491,
+                "end_char": 3550
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-51fb331595aa",
+          "name": "全石英拉曼分选芯片量产方案",
+          "desc": "石英-PDMS-石英三明治结构",
+          "evidence": [
+            {
+              "quote": "突破了全石英拉曼分选芯片的量产化瓶颈，建立基于石英-PDMS-石英三明治结构和玻璃夹胶工艺的批量制备方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3408,
+                "end_char": 3459
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a46481f24e75",
-          "name": "RAMS系统通量提升10倍且分选纯度>99.7%",
-          "desc": "RAMS系统实现从手动1-2细胞/分钟到自动化10-20细胞/分钟的10倍通量跨越，分选纯度>99.7%；已从红壤分选出13株强耐铝菌株，并与企业完成产业转化。",
+          "id": "item-355ca19a688c",
+          "name": "分选通量提升",
+          "desc": "1-2细胞/分钟提升至10-20细胞/分钟，纯度>99.7%",
           "evidence": [
             {
               "quote": "RAMS系统实现从手动1-2细胞/分钟到自动化10-20细胞/分钟的10倍通量跨越，分选纯度>99.7%",
@@ -99,44 +139,363 @@
               "version": "65251890657c3d3655f4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-46bbf9e996a1",
+          "name": "耐铝微生物分离应用",
+          "desc": "分选13株强耐铝菌株",
+          "evidence": [
+            {
+              "quote": "成功应用于酸性土壤耐铝微生物分离，从红壤样品分选出13株强耐铝菌株，单细胞培养成功率18.1%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3728,
+                "end_char": 3774
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-561330e971d1",
+          "name": "产业转化",
+          "desc": "与星赛生物合作，已在20余家机构部署",
+          "evidence": [
+            {
+              "quote": "与星赛生物合作完成RAMS系统产业转化，已在20余家科研机构部署应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3958,
+                "end_char": 3991
+              },
+              "version": "65251890657c3d3655f4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2610c2bdc782"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ec577bd5ca63"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于光操控技术的菌落挑选系统及挑选方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "阚凌雁;刁志钿;高玮;罗思军;籍月彤;马波;徐健",
+      "id": "out-f6dd3f85fcc9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于光操控技术的菌落挑选系统及挑选方法 — 阚凌雁;刁志钿;高玮;罗思军;籍月彤;马波;徐健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4032,
+            "end_char": 4084
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ec577bd5ca63"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-76690b73c751"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence-Assisted Automatic Raman-Activated Cell Sorting (AI-RACS) System for Mining Specific Functional Microorganisms in the Microbiome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Diao Zhidian;Jing Xiaoyan;Hou Xibao;Meng Yu;Zhang Jiaping;Wang Yongshun;Ji Yuetong;Ge Anle;Wang Xixian;Liang Yuting;Xu Jian;Ma Bo",
+      "id": "out-c828a33d2b54",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Intelligence-Assisted Automatic Raman-Activated Cell Sorting (AI-RACS) System for Mining Specific Functional Microorganisms in the Microbiome — Diao Zhidian;Jing Xiaoyan;Hou Xibao;Meng Yu;Zhang Jiaping;Wang Yongshun;Ji Yuetong;Ge Anle;Wang Xixian;Liang Yuting;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4089,
+            "end_char": 4379
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-76690b73c751"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a46481f24e75"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Contracted Channel Droplet Reinjection Chip-Based Simple Integrated ddpcr System for SARS-CoV-2 and H1N1 Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Fengyi;Ge Anle;Wang Xixian;Wu Fei;Xu Jian;Ma Bo",
+      "id": "out-60c9896fcc19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Contracted Channel Droplet Reinjection Chip-Based Simple Integrated ddpcr System for SARS-CoV-2 and H1N1 Detection — Liu Fengyi;Ge Anle;Wang Xixian;Wu Fei;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4384,
+            "end_char": 4560
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于LAMP反应的便携式核酸检测装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴非;葛安乐;崔超杰;马波;徐健",
+      "id": "out-b2a1db9a9dd2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于LAMP反应的便携式核酸检测装置 — 吴非;葛安乐;崔超杰;马波;徐健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4565,
+            "end_char": 4608
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Auto Flow-Focusing Droplet Reinjection Chip-Based Integrated Portable Droplet System (iPODs)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fengyi Liu;Anle Ge;Chunyu Li;Wei Gao;Fei Wu;Lingyan Kan;Jian Xu;Bo Ma",
+      "id": "out-1578aee6f4f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Auto Flow-Focusing Droplet Reinjection Chip-Based Integrated Portable Droplet System (iPODs) — Fengyi Liu;Anle Ge;Chunyu Li;Wei Gao;Fei Wu;Lingyan Kan;Jian Xu;Bo Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4613,
+            "end_char": 4783
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于光操控单细胞和单液滴的方法及微流控芯片",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文婕;刁志钿;马波;徐健",
+      "id": "out-399e3d514c95",
+      "evidence": [
+        {
+          "quote": "[专利] 基于光操控单细胞和单液滴的方法及微流控芯片 — 赵文婕;刁志钿;马波;徐健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4788,
+            "end_char": 4829
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Versatile, Facile and Low-Cost Single-Cell Isolation, Culture and Sequencing by Optical Tweezer-Assisted Pool-Screening",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Teng Xu;Yuandong Li;Xiao Han;Lingyan Kan;Jing Ren;Luyang Sun;Zhidian Diao;Yuetong Ji;Pengfei Zhu;Jian Xu;Bo Ma",
+      "id": "out-ac4425d80594",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Versatile, Facile and Low-Cost Single-Cell Isolation, Culture and Sequencing by Optical Tweezer-Assisted Pool-Screening — Teng Xu;Yuandong Li;Xiao Han;Lingyan Kan;Jing Ren;Luyang Sun;Zhidian Diao;Yuetong Ji;Pengfei Zhu;Jian Xu;Bo Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4834,
+            "end_char": 5072
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Label-free high-throughput live-cell sorting of genome-wide random mutagenesis libraries for metabolic traits by Raman flow cytometry",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Xixian;Wang Sen;Diao Zhidian;Hou Xibao;Gong Yanhai;Sun Qing;Zhang Jiaping;Ren Lihui;Li Yuandong;Ji Yuetong;Shen Wei;Yin Yifeng;Huang Shi;Song Xiaojin;Cui Qiu;Feng Yingang;Xu Jian;Ma Bo",
+      "id": "out-d972e1bf0ed6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Label-free high-throughput live-cell sorting of genome-wide random mutagenesis libraries for metabolic traits by Raman flow cytometry — Wang Xixian;Wang Sen;Diao Zhidian;Hou Xibao;Gong Yanhai;Sun Qing;Zhang Jiaping;Ren Lihui;Li Yuandong;Ji Yuetong;Shen Wei;Yin Yifeng;Huang Shi;Song Xiaojin;Cui Qiu;Feng Yingang;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5408
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An integrated microfluidic platform for on-demand single droplet dispenser with high accuracy by electrohydrodynamic (EHD) printing technique",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ge Anle;Diao Zhidian;Li Yuandong;Cui Chaojie;Wang Xixian;Liu Yang;Xu Jian;Ma Bo",
+      "id": "out-573f74620ebd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An integrated microfluidic platform for on-demand single droplet dispenser with high accuracy by electrohydrodynamic (EHD) printing technique — Ge Anle;Diao Zhidian;Li Yuandong;Cui Chaojie;Wang Xixian;Liu Yang;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5413,
+            "end_char": 5642
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种单细胞捕获方法及微孔耦合微腔室微流控芯片",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刁志钿;赵文婕;马波;徐健",
+      "id": "out-0fadf61e3e4f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种单细胞捕获方法及微孔耦合微腔室微流控芯片 — 刁志钿;赵文婕;马波;徐健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 5690
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "真空进样装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "阚凌雁;高玮;李远东;籍月彤;马波",
+      "id": "out-db822ae377c1",
+      "evidence": [
+        {
+          "quote": "[专利] 真空进样装置 — 阚凌雁;高玮;李远东;籍月彤;马波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5696,
+            "end_char": 5726
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrafast Evolution of Bacterial Antimicrobial Resistance by Picoliter-Scale Centrifugal Microfluidics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Teng;Dai Yajie;Ge Anle;Chen Xueqian;Gong Yanhai;Lam Tze Hau;Lee Kelvin;Han Xiao;Ji Yuetong;Shen Wei;Liu Jiquan;Sun Luyang;Xu Jian;Ma Bo",
+      "id": "out-60ee1adcd1c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrafast Evolution of Bacterial Antimicrobial Resistance by Picoliter-Scale Centrifugal Microfluidics — Xu Teng;Dai Yajie;Ge Anle;Chen Xueqian;Gong Yanhai;Lam Tze Hau;Lee Kelvin;Han Xiao;Ji Yuetong;Shen Wei;Liu Jiquan;Sun Luyang;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5732,
+            "end_char": 5981
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "光镊耦合模块",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "阚凌雁;李远东;高玮;籍月彤;马波",
+      "id": "out-b735956d95bd",
+      "evidence": [
+        {
+          "quote": "[专利] 光镊耦合模块 — 阚凌雁;李远东;高玮;籍月彤;马波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5987,
+            "end_char": 6017
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optical-based microbubble for on-demand droplet release from static droplet array (SDA) for dispensing one droplet into one tube",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Diao Zhidian;Wang Xixian;Zhang Jiaping;Ge Anle;Xu Teng;Kan Lingyan;Li Yuandong;Ji Yuetong;Jing Xiaoyan;Xu Jian;Ma Bo",
+      "id": "out-9bedfcbe07fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optical-based microbubble for on-demand droplet release from static droplet array (SDA) for dispensing one droplet into one tube — Diao Zhidian;Wang Xixian;Zhang Jiaping;Ge Anle;Xu Teng;Kan Lingyan;Li Yuandong;Ji Yuetong;Jing Xiaoyan;Xu Jian;Ma Bo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6023,
+            "end_char": 6276
+          },
+          "version": "65251890657c3d3655f4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "专利": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

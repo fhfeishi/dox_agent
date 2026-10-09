@@ -2,15 +2,20 @@
   "doc_id": "c30c61937ff0b2df556a",
   "version": "a4bf0c7f5eb40cef7788",
   "source_hash": "baf64b3e7ed90b465714c6ce93cf6870fa5609b351735a28660b3625f7ecbaab",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.509694+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.145172+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-2cca9ab124be",
           "name": "心源性猝死法医学鉴定",
-          "desc": "心源性猝死鉴定是法医学实践中最具挑战性的工作之一。",
+          "desc": "光谱成像、质谱与AI",
           "evidence": [
             {
-              "quote": "心源性猝死的鉴定是法医学实践中最具有挑战性的工作之一",
+              "quote": "本项目围绕心源性猝死（SCD）的法医学鉴定",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 693
-              },
-              "version": "a4bf0c7f5eb40cef7788"
-            }
-          ]
-        },
-        {
-          "id": "item-2e11f0b2b707",
-          "name": "突破形态学鉴定技术瓶颈",
-          "desc": "从高通量、多维度层面为鉴定心源性猝死提供新技术，突破现有形态学鉴定的技术瓶颈。",
-          "evidence": [
-            {
-              "quote": "从高通量、多维度的层面为鉴定心源性猝死提供了新技术，突破现有形态学鉴定的技术瓶颈",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 971,
-                "end_char": 1010
+                "start_char": 2600,
+                "end_char": 2620
               },
               "version": "a4bf0c7f5eb40cef7788"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6a1019c7cd8",
-          "name": "缺乏显著病理改变传统鉴定难",
-          "desc": "部分心源性猝死为功能性恶化，缺乏显著病理学改变或特异性形态学改变，传统鉴定方法难以提供精准依据。",
+          "id": "item-ac7da57008a0",
+          "name": "传统方法难以提供精准司法鉴定依据",
+          "desc": "缺乏有效客观技术手段",
           "evidence": [
             {
-              "quote": "由于部分心源性猝死为功能性恶化，缺乏显著的病理学改变或没有特异性形态学改变，传统鉴定方法难以提供精准司法鉴定依据",
+              "quote": "缺乏显著的病理学改变或没有特异性形态学改变，传统鉴定方法难以提供精准司法鉴定依据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 695,
+                "start_char": 711,
                 "end_char": 750
-              },
-              "version": "a4bf0c7f5eb40cef7788"
-            }
-          ]
-        },
-        {
-          "id": "item-419c903446e9",
-          "name": "死后自溶腐败影响检测准确性",
-          "desc": "死后组织自溶与腐败引起体液生化检测与组织免疫组化观察准确性较差，且研究指标单一。",
-          "evidence": [
-            {
-              "quote": "死后组织自溶与腐败，引起体液生化检测与组织免疫组化观察准确性较差，且研究指标单一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 764,
-                "end_char": 803
               },
               "version": "a4bf0c7f5eb40cef7788"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f345c16db75a",
-          "name": "光谱成像质谱分析多模态鉴识体系",
-          "desc": "构建基于光谱成像、质谱分析和人工智能的多模态鉴识体系，以提高死因分析科学性和精准度。",
+          "id": "item-d264d5537981",
+          "name": "光谱成像与质谱代谢组学AI分类模型",
+          "desc": "PLS-DA与CNN",
           "evidence": [
             {
-              "quote": "本项目围绕心源性猝死（SCD）的法医学鉴定，构建了基于光谱成像、质谱分析和人工智能的多模态鉴识体系",
+              "quote": "研究开发了人工智能分类模型，结合PLS-DA、CNN等算法，实现了SCD与其他死因（如机械性窒息、过敏性休克等）的有效区分",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2600,
-                "end_char": 2648
-              },
-              "version": "a4bf0c7f5eb40cef7788"
-            }
-          ]
-        },
-        {
-          "id": "item-3bc5c6da5f41",
-          "name": "机器学习深度学习分类模型",
-          "desc": "结合PLS-DA、CNN等算法开发人工智能分类模型，实现SCD与其他死因的有效区分。",
-          "evidence": [
-            {
-              "quote": "基于光谱和代谢数据，研究开发了人工智能分类模型，结合PLS-DA、CNN等算法，实现了SCD与其他死因（如机械性窒息、过敏性休克等）的有效区分",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2940,
+                "start_char": 2950,
                 "end_char": 3010
               },
               "version": "a4bf0c7f5eb40cef7788"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +91,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d42282e3d7f2",
-          "name": "筛选出SCD特征性光谱标志物",
-          "desc": "筛选出酰胺I、酰胺II蛋白质酰胺键相关峰与脂质相关峰等特征性光谱标志物，在死亡后48小时内保持稳定。",
+          "id": "item-1c0571d6c713",
+          "name": "SCD特征性光谱标志物",
+          "desc": "amide I 1645 cm-1，amide II 1540 cm-1，脂质2922 cm-1",
           "evidence": [
             {
-              "quote": "研究成功筛选出SCD的特征性光谱标志物，如amide I（1645 cm-1）和amide II（1540 cm-1）蛋白质酰胺键相关峰，脂质相关峰（2922 cm-1），这些标志物在死亡后48小时内保持稳定",
+              "quote": "研究成功筛选出SCD的特征性光谱标志物，如amide I（1645 cm-1）和amide II（1540 cm-1）蛋白质酰胺键相关峰，脂质相关峰（2922 cm-1）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2745,
-                "end_char": 2848
+                "end_char": 2829
               },
               "version": "a4bf0c7f5eb40cef7788"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-be2b78490a3c",
-          "name": "质谱筛选SCD相关代谢物",
-          "desc": "质谱代谢组学筛选出乳酸、柠檬酸、游离脂肪酸等与SCD密切相关的代谢物，揭示糖酵解紊乱、三羧酸循环受损及脂肪酸积累机制。",
-          "evidence": [
-            {
-              "quote": "质谱代谢组学分析筛选出与SCD密切相关的代谢物，如乳酸、柠檬酸、游离脂肪酸，揭示了SCD导致的糖酵解紊乱、三羧酸循环受损及脂肪酸积累等核心代谢机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2938
-              },
-              "version": "a4bf0c7f5eb40cef7788"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f09292b2cf62",
-          "name": "分类模型准确率超过90%",
-          "desc": "人工智能分类模型对SCD与其他死因的区分准确率超过90%，提供无损高通量检测手段。",
+          "id": "item-e16fc88071f0",
+          "name": "分类模型准确率",
+          "desc": "超过90%",
           "evidence": [
             {
               "quote": "模型的分类准确率超过90%",
@@ -181,55 +124,174 @@
               "version": "a4bf0c7f5eb40cef7788"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2cca9ab124be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d6a1019c7cd8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FTIR microspectroscopy of renal tubules for the identification of diabetic ketoacidosis death",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Ling;Zhang Ji;Li Dechan;Yu Haixing;Tian Tian;Deng Kaifei;Qin Zhiqiang;Zhang Jianhua;Huang Jiang;Huang Ping",
+      "id": "out-dd7b2dc6c6bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FTIR microspectroscopy of renal tubules for the identification of diabetic ketoacidosis death — Xiong Ling;Zhang Ji;Li Dechan;Yu Haixing;Tian Tian;Deng Kaifei;Qin Zhiqiang;Zhang Jianhua;Huang Jiang;Huang Ping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3163,
+            "end_char": 3377
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d6a1019c7cd8"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f345c16db75a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Post-mortem evaluation of the pathological degree of myocardial infarction by Fourier transform infrared microspectroscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hancheng Lin;Zhenyuan Wang;Yiwen Luo;Qiran Sun;Yiwen Shen;Ping Huang",
+      "id": "out-4f561e766eaa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Post-mortem evaluation of the pathological degree of myocardial infarction by Fourier transform infrared microspectroscopy — Hancheng Lin;Zhenyuan Wang;Yiwen Luo;Qiran Sun;Yiwen Shen;Ping Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3382,
+            "end_char": 3581
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f345c16db75a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d42282e3d7f2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non/mini-invasive monitoring of diabetes-induced myocardial damage by Fourier transform infrared spectroscopy: Evidence from biofluids",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hancheng Lin;Zhimin Wang;Yiwen Luo;Zijie Lin;Guanghui Hong;Kaifei Deng;Ping Huang;Yiwen Shen",
+      "id": "out-33f628cad0bf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non/mini-invasive monitoring of diabetes-induced myocardial damage by Fourier transform infrared spectroscopy: Evidence from biofluids — Hancheng Lin;Zhimin Wang;Yiwen Luo;Zijie Lin;Guanghui Hong;Kaifei Deng;Ping Huang;Yiwen Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3586,
+            "end_char": 3821
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3bc5c6da5f41"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f09292b2cf62"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Distinguishing Asphyxia from Sudden Cardiac Death as the Cause of Death from the Lung Tissues of Rats and Humans Using Fourier Transform Infrared Spectroscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Zhang;Ruina Liu;Ya Tuo;Kaijun Ma;Dongchuan Zhang;Zhenyuan Wang;Ping Huang",
+      "id": "out-25f7dd961d79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Distinguishing Asphyxia from Sudden Cardiac Death as the Cause of Death from the Lung Tissues of Rats and Humans Using Fourier Transform Infrared Spectroscopy — Kai Zhang;Ruina Liu;Ya Tuo;Kaijun Ma;Dongchuan Zhang;Zhenyuan Wang;Ping Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3826,
+            "end_char": 4070
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The use of untargeted and widely targeted metabolomics to distinguish between asphyxia and sudden cardiac death as the cause of death in rats: A preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Zhang;Ya Tuo;Ruina Liu;Hui Yan;Ping Xiang;Zhenyuan Wang;Ping Huang",
+      "id": "out-1dd506cca12c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The use of untargeted and widely targeted metabolomics to distinguish between asphyxia and sudden cardiac death as the cause of death in rats: A preliminary study — Kai Zhang;Ya Tuo;Ruina Liu;Hui Yan;Ping Xiang;Zhenyuan Wang;Ping Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4075,
+            "end_char": 4316
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluating Subtle Pathological Changes in Early Myocardial Ischemia Using Spectral Histopathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian Tian;Jianhua Zhang;Ling Xiong;Haixing Yu;Kaifei Deng;Xinbiao Liao;Fu Zhang;Ping Huang;Ji Zhang;Yijiu Chen",
+      "id": "out-95045cf972d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluating Subtle Pathological Changes in Early Myocardial Ischemia Using Spectral Histopathology — Tian Tian;Jianhua Zhang;Ling Xiong;Haixing Yu;Kaifei Deng;Xinbiao Liao;Fu Zhang;Ping Huang;Ji Zhang;Yijiu Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4321,
+            "end_char": 4537
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Use of Gas Chromatography Coupled with High-Resolution Mass Spectrometry-Based Untargeted Metabolomics to Discover Metabolic Changes and Help in the Determination of Complex Causes of Death: A Preliminary Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Kai;Yan Hui;Liu Ruina;Xiang Ping;Zhang Ji;Deng Kaifei;Huang Ping;Wang Zhenyuan",
+      "id": "out-1e37a865ff4c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Use of Gas Chromatography Coupled with High-Resolution Mass Spectrometry-Based Untargeted Metabolomics to Discover Metabolic Changes and Help in the Determination of Complex Causes of Death: A Preliminary Study — Zhang Kai;Yan Hui;Liu Ruina;Xiang Ping;Zhang Ji;Deng Kaifei;Huang Ping;Wang Zhenyuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4542,
+            "end_char": 4849
+          },
+          "version": "a4bf0c7f5eb40cef7788"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

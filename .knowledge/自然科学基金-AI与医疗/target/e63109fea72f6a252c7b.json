@@ -2,15 +2,20 @@
   "doc_id": "e63109fea72f6a252c7b",
   "version": "9686e3536c8fced2b46e",
   "source_hash": "e71a6345be98eef206a36fb133962bb95493153221be74db7f4f2e3fb2b985d8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:12.293876+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.423879+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e99e607de12",
-          "name": "非酒精性脂肪性肝炎无创评估",
-          "desc": "非酒精性脂肪性肝炎的发生是非酒精性脂肪肝进展为肝纤维化、肝硬化及肝细胞癌的关键环节，但目前对其尚无可靠的无创性评估方法。",
+          "id": "item-b9bc6ea7894a",
+          "name": "NASH无创评估",
+          "desc": "多参数MRI与Hedgehog通路",
           "evidence": [
             {
-              "quote": "非酒精性脂肪性肝炎（NASH）的发生是非酒精性脂肪肝进展为肝纤维化、肝硬化及肝细胞癌的关键环节，但目前对其尚无可靠的无创性评估方法。",
+              "quote": "本研究为NASH的无创性评估提供了一种有效的检查方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 759
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ]
-        },
-        {
-          "id": "item-4299655a0cd3",
-          "name": "NASH早期诊断与疗效评估",
-          "desc": "建立可无创性评估NASH的多参数MRI影像组学模型，探讨其在NASH早期诊断及治疗疗效评估中的应用价值。",
-          "evidence": [
-            {
-              "quote": "建立可无创性评估NASH的多参数MRI影像组学模型，探讨其在NASH早期诊断及治疗疗效评估中的应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1018,
-                "end_char": 1068
+                "start_char": 3157,
+                "end_char": 3182
               },
               "version": "9686e3536c8fced2b46e"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-15eb7ff60a74",
-          "name": "NASH缺乏无创性评估方法",
-          "desc": "目前对NASH尚无可靠的无创性评估方法。",
+          "id": "item-12aad0eaceb7",
+          "name": "NASH尚无可靠无创评估方法",
+          "desc": "进展关键环节",
           "evidence": [
             {
-              "quote": "但目前对其尚无可靠的无创性评估方法。",
+              "quote": "但目前对其尚无可靠的无创性评估方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 742,
-                "end_char": 759
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ]
-        },
-        {
-          "id": "item-a484611b1b85",
-          "name": "病理混杂因素需校正",
-          "desc": "需要多参数MRI影像组学通过校正病理混杂因素、检测肝细胞气球样变、反映Hh信号通路激活。",
-          "evidence": [
-            {
-              "quote": "多参数MRI影像组学通过校正病理混杂因素、检测肝细胞气球样变、反映Hh信号通路激活，可以作为NASH早期诊断及治疗疗效评估的无创性检查方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 864,
-                "end_char": 932
+                "end_char": 758
               },
               "version": "9686e3536c8fced2b46e"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-30b62e402386",
-          "name": "11.7T多参数MRI检查",
-          "desc": "通过构建大鼠NASH模型进行11.7T多参数MRI检查，包括多b值扩散加权成像、脂肪定量序列、T1 mapping、T2 mapping、T1ρ成像。",
+          "id": "item-8e96709d1d71",
+          "name": "11.7-T多参数MRI NASH诊断模型",
+          "desc": "MD、脂肪分数及T1值",
           "evidence": [
             {
-              "quote": "本研究通过构建大鼠NASH模型，进行11.7-T 多参数MRI检查(多b值扩散加权成像、脂肪定量序列、T1 mapping、T2mapping、T1ρ成像)",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2839,
-                "end_char": 2916
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ]
-        },
-        {
-          "id": "item-83a1435428aa",
-          "name": "SAF系统病理评估",
-          "desc": "采用SAF系统进行病理学评估（脂肪变、气球样变、小叶内炎症及纤维化），并进行配体Shh的免疫组化染色。",
-          "evidence": [
-            {
-              "quote": "采用SAF系统进行病理学评估（脂肪变、气球样变、小叶内炎症及纤维化），并进行配体Shh的免疫组化染色",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2918,
-                "end_char": 2967
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ]
-        },
-        {
-          "id": "item-b894c7e48111",
-          "name": "多参数MRI NASH诊断模型",
-          "desc": "利用MD、脂肪分数及T1值构建多参数MRI的NASH诊断模型，并比较其与超声模型的诊断效能。",
-          "evidence": [
-            {
-              "quote": "利用MD、脂肪分数及T1值构建多参数MRI的NASH诊断模型；采用超声脂肪肝测定新技术—USAT技术与超声弹性成像结合，构建超声的NASH诊断模型，并通过比较两种模型的诊断效能表明多参数MRI模型在NASH诊断中具有更高的诊断准确性。",
+              "quote": "利用MD、脂肪分数及T1值构建多参数MRI的NASH诊断模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3040,
-                "end_char": 3156
+                "end_char": 3069
               },
               "version": "9686e3536c8fced2b46e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-81c50c5dcf09",
+          "name": "USAT与超声弹性成像NASH诊断模型",
+          "desc": "对照比较",
+          "evidence": [
+            {
+              "quote": "采用超声脂肪肝测定新技术—USAT技术与超声弹性成像结合，构建超声的NASH诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3071,
+                "end_char": 3112
+              },
+              "version": "9686e3536c8fced2b46e"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,103 +108,129 @@
       "state": "has",
       "items": [
         {
-          "id": "item-66d5af72564e",
-          "name": "MD与气球样变及Hh通路相关",
-          "desc": "验证了扩散相关参数平均扩散系数（MD）与肝细胞气球样变评分及Hh信号通路表达的相关性。",
+          "id": "item-c4d4f3d4f918",
+          "name": "多参数MRI模型更优",
+          "desc": "诊断准确性更高",
           "evidence": [
             {
-              "quote": "验证了扩散相关参数—平均扩散系数（MD）与肝细胞气球样变评分及Hh信号通路表达的相关性",
+              "quote": "通过比较两种模型的诊断效能表明多参数MRI模型在NASH诊断中具有更高的诊断准确性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2969,
-                "end_char": 3011
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-834c94aa03fd",
-          "name": "MRI模型诊断准确性更高",
-          "desc": "比较两种模型诊断效能表明多参数MRI模型在NASH诊断中具有更高的诊断准确性。",
-          "evidence": [
-            {
-              "quote": "表明多参数MRI模型在NASH诊断中具有更高的诊断准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3128,
+                "start_char": 3115,
                 "end_char": 3155
               },
               "version": "9686e3536c8fced2b46e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b8e0c5c05e56",
-          "name": "无创评估方法建立",
-          "desc": "本研究为NASH的无创性评估提供了一种有效的检查方法。",
-          "evidence": [
-            {
-              "quote": "本研究为NASH的无创性评估提供了一种有效的检查方法。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3157,
-                "end_char": 3183
-              },
-              "version": "9686e3536c8fced2b46e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5e99e607de12"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-15eb7ff60a74"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超重/肥胖儿童代谢相关脂肪性肝病的磁共振质子密度脂肪分数分布特点",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋华丹",
+      "id": "out-3f33f24f4101",
+      "evidence": [
+        {
+          "quote": "[会议论文] 超重/肥胖儿童代谢相关脂肪性肝病的磁共振质子密度脂肪分数分布特点 — 宋华丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3201,
+            "end_char": 3245
+          },
+          "version": "9686e3536c8fced2b46e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a484611b1b85"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-83a1435428aa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超重/肥胖儿童非酒精性脂肪性肝病的磁共振 成像质子密度脂肪分数分布特点",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋华丹;刘明;刘欢欢;尹秋凤;严永青;王强;张静;赵翼;赵献策;李金凝",
+      "id": "out-ce4cfa51ab83",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超重/肥胖儿童非酒精性脂肪性肝病的磁共振 成像质子密度脂肪分数分布特点 — 宋华丹;刘明;刘欢欢;尹秋凤;严永青;王强;张静;赵翼;赵献策;李金凝",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3250,
+            "end_char": 3329
+          },
+          "version": "9686e3536c8fced2b46e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-30b62e402386"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-66d5af72564e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The associations of MRI-based proton density fat fraction of liver and vertebral marrow with common data acquired from physical examinations in children with obesity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinning Li;Xiance Zhao;Dengbin Wang",
+      "id": "out-0440eda221c5",
+      "evidence": [
+        {
+          "quote": "[会议论文] The associations of MRI-based proton density fat fraction of liver and vertebral marrow with common data acquired from physical examinations in children with obesity — Jinning Li;Xiance Zhao;Dengbin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3334,
+            "end_char": 3543
+          },
+          "version": "9686e3536c8fced2b46e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b894c7e48111"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-834c94aa03fd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Contrast-Enhanced MRI Assessing Antifibrotic Therapeutic Effects of Pancreatic Fibrosis with Curcumin – An Experimental Study  at 11.7 T",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Yimei;Zhang Tingting;Yang Shuyan;Yang Baofeng;Li Jinning;Liu Huanhuan;Yao Defan;Ren Gang;Wang Dengbin",
+      "id": "out-d6c361fac5d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic Contrast-Enhanced MRI Assessing Antifibrotic Therapeutic Effects of Pancreatic Fibrosis with Curcumin – An Experimental Study  at 11.7 T — Lu Yimei;Zhang Tingting;Yang Shuyan;Yang Baofeng;Li Jinning;Liu Huanhuan;Yao Defan;Ren Gang;Wang Dengbin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3548,
+            "end_char": 3805
+          },
+          "version": "9686e3536c8fced2b46e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

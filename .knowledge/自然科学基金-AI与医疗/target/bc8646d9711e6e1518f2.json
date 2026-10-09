@@ -2,15 +2,20 @@
   "doc_id": "bc8646d9711e6e1518f2",
   "version": "1eaba0a32ee81e3c9b4c",
   "source_hash": "94f86028fa3716809b34f9b9ddc2ed58bd96288ab022e9b3f07239dd449940af",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.608091+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:09.909860+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0173349f9ac4",
-          "name": "肺亚实性结节AI辅助影像决策",
-          "desc": "对持续存在的肺亚实性结节自然生长史、危险因素及影像特征与病理侵袭性关系已初步了解，但处理仍分歧较大。",
+          "id": "item-715cffa7741b",
+          "name": "肺亚实性结节预后与随诊决策",
+          "desc": "基于预后的AI辅助",
           "evidence": [
             {
-              "quote": "在过去的5-10年中，我们对持续存在的肺亚实性结节（SSN）自然生长史、影响SSN生长的危险因素、SSN影像特征与病理侵袭性的关系已经初步了解",
+              "quote": "本项目围绕着肺亚实性结节（SSN）的预后展开",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 739
-              },
-              "version": "1eaba0a32ee81e3c9b4c"
-            }
-          ]
-        },
-        {
-          "id": "item-f205e5df59a7",
-          "name": "SSN个体化随诊与避免过度治疗",
-          "desc": "建立基于预后的AI辅助肺SSN影像精准及个体化随诊决策系统，指导个体化处理，避免或减少过度治疗。",
-          "evidence": [
-            {
-              "quote": "建立基于预后的人工智能辅助肺SSN影像精准及个体化随诊决策系统，预期将会对SSN的处理策略起到进一步辅助作用，指导SSN的个体化处理，避免或减少过度治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 989,
-                "end_char": 1064
+                "start_char": 2545,
+                "end_char": 2566
               },
               "version": "1eaba0a32ee81e3c9b4c"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9dea15f62825",
-          "name": "SSN处理分歧大可能过度治疗",
-          "desc": "目前对SSN的处理依然分歧较大，可能会存在过度治疗问题。",
+          "id": "item-4506320e58c8",
+          "name": "SSN处理分歧较大，可能过度治疗",
+          "desc": "随诊干预时点不明",
           "evidence": [
             {
-              "quote": "但目前的现状是对于SSN的处理依然分歧较大，可能会存在过度治疗问题",
+              "quote": "目前的现状是对于SSN的处理依然分歧较大，可能会存在过度治疗问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 764,
+                "start_char": 765,
                 "end_char": 796
-              },
-              "version": "1eaba0a32ee81e3c9b4c"
-            }
-          ]
-        },
-        {
-          "id": "item-22ad4a9622fc",
-          "name": "SSN最佳干预时间点不明确",
-          "desc": "需明确哪些PSN可长期生存、哪些预后相对较差以及SSN最佳干预时间点。",
-          "evidence": [
-            {
-              "quote": "哪些PSN可以长期生存？哪些PSN预后相对较差？SSN的最佳干预时间点在哪儿？",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 872,
-                "end_char": 910
               },
               "version": "1eaba0a32ee81e3c9b4c"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b816574ed6cd",
-          "name": "CNN肺SSN预后预测训练与验证",
-          "desc": "完成基于深度卷积神经网络的SSN预后预测训练与验证，实现高性能预测诊断。",
+          "id": "item-2cbe56b11682",
+          "name": "基于CNN的SSN预后预测",
+          "desc": "训练与验证",
           "evidence": [
             {
               "quote": "本项目重点进行了基于深度卷积神经网络（CNN）肺SSN预后预测的训练与验证，实现了高性能的预测诊断",
@@ -108,23 +81,25 @@
               },
               "version": "1eaba0a32ee81e3c9b4c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-98734ff8bb3e",
           "name": "多因素SSN预后预测模型",
-          "desc": "构建整合临床、影像和病理信息的多因素SSN预后预测模型，为预测长期结局提供工具。",
+          "desc": "整合临床、影像和病理信息",
           "evidence": [
             {
-              "quote": "本研究构建了多因素SSN预后预测模型，该模型整合了临床、影像和病理信息，为预测SSN患者的长期结局提供了强有力的工具",
+              "quote": "本研究构建了多因素SSN预后预测模型，该模型整合了临床、影像和病理信息",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2999,
-                "end_char": 3056
+                "end_char": 3033
               },
               "version": "1eaba0a32ee81e3c9b4c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d219a784d894",
-          "name": "pGGN预后显著优于PSN",
-          "desc": "研究显示纯磨玻璃密度结节患者预后好，显著优于部分实性结节患者，pGGN随访中演变成PSN能长期生存。",
-          "evidence": [
-            {
-              "quote": "研究显示，纯磨玻璃密度结节（pGGN）患者预后好，且pGGN预后显著优于部分实性结节（PSN）患者，pGGN随访中演变成PSN能长期生存，且生存率高",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2682,
-                "end_char": 2755
-              },
-              "version": "1eaba0a32ee81e3c9b4c"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-618b4714d6df",
-          "name": "SSN预后独立影响因素",
-          "desc": "患者性别、血清CEA水平、实性部分最长径（临界值9.1mm）和CTR（临界值39.4%）是影响SSN预后的独立影响因素。",
-          "evidence": [
-            {
-              "quote": "对于所有SSN，患者性别、血清CEA水平、实性部分最长径（临界值9.1mm）和CTR（临界值39.4%）是影响SSN预后的独立影响因素",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2849,
-                "end_char": 2915
-              },
-              "version": "1eaba0a32ee81e3c9b4c"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-789436444fd9",
-          "name": "建立AI辅助随诊决策系统",
-          "desc": "建立基于预后的人工智能辅助肺SSN影像精准及个体化随诊决策系统。",
+          "id": "item-5a0e958f9a6a",
+          "name": "AI辅助肺SSN影像精准及个体化随诊决策系统",
+          "desc": "已建立",
           "evidence": [
             {
               "quote": "进而建立了基于预后的人工智能辅助肺SSN 影像精准及个体化随诊决策系统",
@@ -181,55 +122,302 @@
               "version": "1eaba0a32ee81e3c9b4c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-8352bbfed774",
+          "name": "干预时点影像阈值",
+          "desc": "实性部分最长径>9.1mm，CTR＞39.4%",
+          "evidence": [
+            {
+              "quote": "影像表现出现深分叶征、实性部分最长径>9.1mm或CTR＞39.4%时可以考虑进行手术干预",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2928,
+                "end_char": 2972
+              },
+              "version": "1eaba0a32ee81e3c9b4c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0173349f9ac4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9dea15f62825"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "双层探测器光谱CT定量参数对非小细胞肺癌EGFR突变的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李凤兰;齐琳琳;程赛楠;刘嘉宁;刘佳琪;崔舒蕾;王建卫",
+      "id": "out-40e322cc0c9e",
+      "evidence": [
+        {
+          "quote": "[会议论文] 双层探测器光谱CT定量参数对非小细胞肺癌EGFR突变的预测价值 — 李凤兰;齐琳琳;程赛楠;刘嘉宁;刘佳琪;崔舒蕾;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3487,
+            "end_char": 3554
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9dea15f62825"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b816574ed6cd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的人工智能技术对肺亚实性结节检出与诊断的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李凤兰;齐琳琳;刘嘉宁;王建卫",
+      "id": "out-20920f0fd91d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于深度学习的人工智能技术对肺亚实性结节检出与诊断的研究进展 — 李凤兰;齐琳琳;刘嘉宁;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3559,
+            "end_char": 3613
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b816574ed6cd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d219a784d894"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a combined radiomics and CT feature-based model for differentiating malignant from benign subcentimeter solid pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianing Liu;Linlin Qi;Yawen Wang;Fenglan Li;Jiaqi Chen;Shulei Cui;Sainan Cheng;Zhen Zhou;Lin Li;Jianwei Wang",
+      "id": "out-6b18c01808ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a combined radiomics and CT feature-based model for differentiating malignant from benign subcentimeter solid pulmonary nodules — Jianing Liu;Linlin Qi;Yawen Wang;Fenglan Li;Jiaqi Chen;Shulei Cui;Sainan Cheng;Zhen Zhou;Lin Li;Jianwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3618,
+            "end_char": 3877
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-98734ff8bb3e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-789436444fd9"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imaging characteristics and diagnosis of primary middle mediastinal lesion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "J. Chen;L. Qi;J. Wang;L. Xue;Q. Xue;J. Jia;G. Zhang;J. Liu;F. Li",
+      "id": "out-a81cac9ac76c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Imaging characteristics and diagnosis of primary middle mediastinal lesion — J. Chen;L. Qi;J. Wang;L. Xue;Q. Xue;J. Jia;G. Zhang;J. Liu;F. Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 4029
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance of a deep learning-based method in the differential diagnosis of benign and malignant subcentimeter solid pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianing Liu;Jianwei Wang",
+      "id": "out-75a86663c15e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Diagnostic performance of a deep learning-based method in the differential diagnosis of benign and malignant subcentimeter solid pulmonary nodules — Jianing Liu;Jianwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4034,
+            "end_char": 4213
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "实性肺结节良恶性分析方法的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘嘉宁;王建卫",
+      "id": "out-8da09feb4a3b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 实性肺结节良恶性分析方法的研究进展 — 刘嘉宁;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4218,
+            "end_char": 4251
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺磨玻璃结节干预策略",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔舒蕾;王建卫",
+      "id": "out-648deef7c0ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺磨玻璃结节干预策略 — 崔舒蕾;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4256,
+            "end_char": 4282
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "细支气管腺瘤的CT影像特征",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李凤兰;齐琳琳;李琳;王建卫",
+      "id": "out-512c6ea8d384",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 细支气管腺瘤的CT影像特征 — 李凤兰;齐琳琳;李琳;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4323
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "双层探测器光谱CT定量参数检测肺腺癌中的表皮生长因子受体突变的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李凤兰;齐琳琳;程赛楠;王建卫",
+      "id": "out-073f123a07f4",
+      "evidence": [
+        {
+          "quote": "[会议论文] 双层探测器光谱CT定量参数检测肺腺癌中的表皮生长因子受体突变的价值 — 李凤兰;齐琳琳;程赛楠;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4328,
+            "end_char": 4385
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic performance of a deep learning-based method in differentiating malignant from benign subcentimeter (≤10 mm) solid pulmonary nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianing Liu;Linlin Qi;Yawen Wang;Fenglan Li;Jiaqi Chen;Sainan Cheng;Zhen Zhou;Yizhou Yu;Jianwei Wang",
+      "id": "out-19119a55b9df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic performance of a deep learning-based method in differentiating malignant from benign subcentimeter (≤10 mm) solid pulmonary nodules — Jianing Liu;Linlin Qi;Yawen Wang;Fenglan Li;Jiaqi Chen;Sainan Cheng;Zhen Zhou;Yizhou Yu;Jianwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4391,
+            "end_char": 4642
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "持续存在肺磨玻璃结节预后的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈佳琪;王建卫",
+      "id": "out-1702fe5284df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 持续存在肺磨玻璃结节预后的研究进展 — 陈佳琪;王建卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4648,
+            "end_char": 4681
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal assessment of cardiac parameters through MRI in breast cancer patients treated with anti-HER2 therapy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sainan Cheng;Jianwei Wang;Yawen Wang;Linlin Qi;Fenglan Li;Jianing Liu;Jiaqi Chen;Yang Fan;Lizhi Xie",
+      "id": "out-6910083ff18c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal assessment of cardiac parameters through MRI in breast cancer patients treated with anti-HER2 therapy. — Sainan Cheng;Jianwei Wang;Yawen Wang;Linlin Qi;Fenglan Li;Jianing Liu;Jiaqi Chen;Yang Fan;Lizhi Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4687,
+            "end_char": 4910
+          },
+          "version": "1eaba0a32ee81e3c9b4c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

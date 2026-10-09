@@ -2,15 +2,20 @@
   "doc_id": "3922b3b2ba5d9eafff73",
   "version": "f2a72db70dfc5768eaac",
   "source_hash": "f4ef1c1d36e211997889dff9f167644e7696a1d68f8579af2ec11372fff5ca65",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.484600+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:20.093034+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbb91bae3fad",
-          "name": "双视角钼靶乳腺癌计算机辅助诊断",
-          "desc": "学习跨视角相关性特征能有效发挥双视角钼靶图像的诊断作用，对提高乳腺癌诊断精度至关重要。",
+          "id": "item-bcb448ba652b",
+          "name": "乳腺钼靶计算机辅助诊断",
+          "desc": "小样本、良恶性分类与转移风险评估",
           "evidence": [
             {
-              "quote": "学习跨视角相关性特征能有效发挥双视角钼靶图像的诊断作用，对提高乳腺癌诊断精度至关重要",
+              "quote": "本项目围绕乳腺钼靶计算机辅助诊断（CAD）系统中的关键挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 656,
-                "end_char": 697
-              },
-              "version": "f2a72db70dfc5768eaac"
-            }
-          ]
-        },
-        {
-          "id": "item-8ea019dfbd31",
-          "name": "乳腺癌良恶性分级与转移风险",
-          "desc": "基于跨视角相关性特征研发新型双视角乳腺癌计算机辅助诊断系统，提高良恶性分级和转移风险评估诊断精度。",
-          "evidence": [
-            {
-              "quote": "提高乳腺癌良恶性分级和转移风险评估两大临床任务的诊断精度，具有重要的科学意义和应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1010,
-                "end_char": 1052
+                "start_char": 2617,
+                "end_char": 2645
               },
               "version": "f2a72db70dfc5768eaac"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fef4009b3fa9",
-          "name": "双视角图像难对齐不同步样本少",
-          "desc": "双视角钼靶图像在空间上难对齐、时间上不同步且样本量少，使跨视角相关性特征学习困难。",
+          "id": "item-816352347579",
+          "name": "数据稀缺、视角非对齐和时序建模困难",
+          "desc": "乳腺钼靶CAD",
           "evidence": [
             {
-              "quote": "但双视角钼靶图像在空间上难对齐、在时间上不同步且样本量少，使跨视角相关性特征学习困难",
+              "quote": "针对数据稀缺、视角非对齐和时序建模困难等难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 699,
-                "end_char": 740
-              },
-              "version": "f2a72db70dfc5768eaac"
-            }
-          ]
-        },
-        {
-          "id": "item-e91c88261029",
-          "name": "小样本下相关性特征学习过拟合",
-          "desc": "样本量少导致跨视角相关性特征学习存在过拟合问题。",
-          "evidence": [
-            {
-              "quote": "实现数据增广，缓解小样本下相关性特征学习过拟合问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 918,
-                "end_char": 942
+                "start_char": 2680,
+                "end_char": 2701
               },
               "version": "f2a72db70dfc5768eaac"
             }
@@ -95,80 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c0272c8b012",
-          "name": "混合注意力特征对齐方法",
-          "desc": "针对空间非对齐性研究基于混合注意力机制的特征对齐方法，以特征对齐代替空间对齐。",
+          "id": "item-8c409faa215a",
+          "name": "门控条件扩散模型GCDM",
+          "desc": "单视角乳腺图像可控合成",
           "evidence": [
             {
-              "quote": "针对空间非对齐性，研究基于混合注意力机制的特征对齐方法，以特征对齐代替空间对齐，有效学习空域跨视角相关性特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 782,
-                "end_char": 835
-              },
-              "version": "f2a72db70dfc5768eaac"
-            }
-          ]
-        },
-        {
-          "id": "item-f3b6b321c396",
-          "name": "常微分方程特征积分方法",
-          "desc": "针对时间非同步性研究基于常微分方程的特征积分方法，实现稠密时序特征编码。",
-          "evidence": [
-            {
-              "quote": "针对时间非同步性，研究基于常微分方程的特征积分方法，实现稠密时序特征编码，深度优化时域跨视角特征相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 889
-              },
-              "version": "f2a72db70dfc5768eaac"
-            }
-          ]
-        },
-        {
-          "id": "item-06af3be1715d",
-          "name": "生成对抗学习双视角图像合成",
-          "desc": "研究双视角图像合成方法，基于生成对抗学习迁移病灶实现数据增广。",
-          "evidence": [
-            {
-              "quote": "研究双视角图像合成方法，基于生成对抗学习迁移病灶，实现数据增广，缓解小样本下相关性特征学习过拟合问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 942
-              },
-              "version": "f2a72db70dfc5768eaac"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-7a34f15742d2",
-          "name": "门控条件扩散模型图像可控合成",
-          "desc": "基于门控条件扩散模型实现单视角乳腺图像的可控合成，FID指标降至26.77，Mass IoU提升至86.30%。",
-          "evidence": [
-            {
-              "quote": "基于门控条件扩散模型（GCDM）实现了单视角乳腺图像的可控合成，FID指标降至26.77，Mass IoU提升至86.30%",
+              "quote": "基于门控条件扩散模型（GCDM）实现了单视角乳腺图像的可控合成",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2718,
-                "end_char": 2779
+                "end_char": 2748
               },
               "version": "f2a72db70dfc5768eaac"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-4b72f4972919",
-          "name": "DCHA-Net分类准确率95.5%",
-          "desc": "设计双视角关联特征挖掘网络，在INbreast数据集上分类准确率达95.5%、AUC 0.950。",
+          "id": "item-d587d47f1c3d",
+          "name": "CA3D-Diff跨视角转换",
+          "desc": "条带注意力与隐式三维建模",
+          "evidence": [
+            {
+              "quote": "开发了融合条带注意力与隐式三维建模的跨视角转换方法（CA3D-Diff）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2781,
+                "end_char": 2816
+              },
+              "version": "f2a72db70dfc5768eaac"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-75c7a8a0935f",
+          "name": "双视角关联特征挖掘网络DCHA-Net",
+          "desc": "INbreast分类",
           "evidence": [
             {
               "quote": "设计了双视角关联特征挖掘网络（DCHA-Net），在INbreast数据集上分类准确率达到95.5%，AUC值为0.950",
@@ -180,12 +116,12 @@
               "version": "f2a72db70dfc5768eaac"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-dada62546130",
-          "name": "时序空间分解Transformer提升7.6%",
-          "desc": "构建时序-空间分解式Transformer模型，有效利用多时间点信息提升转移风险评估精度，较单时间点模型提升7.6%。",
+          "id": "item-6d16da22ea15",
+          "name": "时序-空间分解式Transformer",
+          "desc": "转移风险评估",
           "evidence": [
             {
               "quote": "构建了时序-空间分解式Transformer模型，有效利用多时间点信息提升了转移风险评估精度，较单时间点模型提升7.6%",
@@ -197,55 +133,241 @@
               "version": "f2a72db70dfc5768eaac"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1925b9274776",
+          "name": "DCHA-Net分类性能",
+          "desc": "准确率95.5%，AUC 0.950",
+          "evidence": [
+            {
+              "quote": "在INbreast数据集上分类准确率达到95.5%，AUC值为0.950",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2876,
+                "end_char": 2911
+              },
+              "version": "f2a72db70dfc5768eaac"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "高水平论文8篇",
+          "evidence": [
+            {
+              "quote": "共发表高水平学术论文8篇，均以本项目为第一资助",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2981,
+                "end_char": 3003
+              },
+              "version": "f2a72db70dfc5768eaac"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fbb91bae3fad"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fef4009b3fa9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-correlation Rectification for Robust Deformable Registration of Brain Tumor MRI between Preoperative and Postoperative Phases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chongwei Wu;Tao Gong;Xiaoyu Zeng;Shuxian Niu;Guangbin Wang;Qiang Li;Zhiwei Wang",
+      "id": "out-899208163c15",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-correlation Rectification for Robust Deformable Registration of Brain Tumor MRI between Preoperative and Postoperative Phases — Chongwei Wu;Tao Gong;Xiaoyu Zeng;Shuxian Niu;Guangbin Wang;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3347,
+            "end_char": 3566
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fef4009b3fa9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4c0272c8b012"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FSI-Edit: Frequency and Stochasticity Injection for Flexible Diffusion-Based Image Editing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaixiang Yang;Xin Li;Yuxi Li;Qiang Li;Zhiwei Wang",
+      "id": "out-aed5e2570236",
+      "evidence": [
+        {
+          "quote": "[会议论文] FSI-Edit: Frequency and Stochasticity Injection for Flexible Diffusion-Based Image Editing — Kaixiang Yang;Xin Li;Yuxi Li;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3571,
+            "end_char": 3719
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-06af3be1715d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7a34f15742d2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint Holistic and Lesion Controllable Mammogram Synthesis via Gated Conditional Diffusion Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Li;Kaixiang Yang;Qiang Li;Zhiwei Wang",
+      "id": "out-28d615b5c989",
+      "evidence": [
+        {
+          "quote": "[会议论文] Joint Holistic and Lesion Controllable Mammogram Synthesis via Gated Conditional Diffusion Model — Xin Li;Kaixiang Yang;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3724,
+            "end_char": 3870
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f3b6b321c396"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dada62546130"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noise Removed Inconsistency Activation Map for Unsupervised Registration of Brain Tumor MRI Between Pre-operative and Follow-Up Phases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Chongwei;Zeng Xiaoyu;Wang Hao;Zhang Xu;Fang Wei;Li Qiang;Wang Zhiwei",
+      "id": "out-912c3490b72f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Noise Removed Inconsistency Activation Map for Unsupervised Registration of Brain Tumor MRI Between Pre-operative and Follow-Up Phases — Wu Chongwei;Zeng Xiaoyu;Wang Hao;Zhang Xu;Fang Wei;Li Qiang;Wang Zhiwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3875,
+            "end_char": 4089
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "StyleSeg V2: Towards Robust Single-label-supervised Segmentation of Brain Tissue via Optimization-free Registration Error Perception",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chongwei Wu;Xiaoyu Zeng;Tingwei Quan;Jinxin Lv;Xu Zhang;Wei Fang;Qiang Li;Zhiwei Wang",
+      "id": "out-da8b0df82196",
+      "evidence": [
+        {
+          "quote": "[期刊论文] StyleSeg V2: Towards Robust Single-label-supervised Segmentation of Brain Tissue via Optimization-free Registration Error Perception — Chongwei Wu;Xiaoyu Zeng;Tingwei Quan;Jinxin Lv;Xu Zhang;Wei Fang;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4094,
+            "end_char": 4320
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "First-frame Supervised Video Polyp Segmentation via Propagative and Semantic Dual-teacher Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiang Hu;Mei Liu;Qiang Li;Zhiwei Wang",
+      "id": "out-d23c2243e3d6",
+      "evidence": [
+        {
+          "quote": "[会议论文] First-frame Supervised Video Polyp Segmentation via Propagative and Semantic Dual-teacher Network — Qiang Hu;Mei Liu;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4468
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-view Correlation Hybrid Attention Network for Robust Holistic Mammogram Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwei Wang;Junlin Xian;Kangyi Liu;Xin Li;Qiang Li;Xin Yang",
+      "id": "out-6771eea3e977",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual-view Correlation Hybrid Attention Network for Robust Holistic Mammogram Classification — Zhiwei Wang;Junlin Xian;Kangyi Liu;Xin Li;Qiang Li;Xin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4473,
+            "end_char": 4632
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Holistic White-Light Polyp Classification via Alignment-Free Dense Distillation of Auxiliary Optical Chromoendoscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiang Hu;Qimei Wang;Jia Chen;Xuantao Ji;Mei Liu;Qiang Li;Zhiwei Wang",
+      "id": "out-7080e521693d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Holistic White-Light Polyp Classification via Alignment-Free Dense Distillation of Auxiliary Optical Chromoendoscopy — Qiang Hu;Qimei Wang;Jia Chen;Xuantao Ji;Mei Liu;Qiang Li;Zhiwei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4830
+          },
+          "version": "f2a72db70dfc5768eaac"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

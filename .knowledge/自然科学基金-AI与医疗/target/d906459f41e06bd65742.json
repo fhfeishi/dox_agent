@@ -2,15 +2,20 @@
   "doc_id": "d906459f41e06bd65742",
   "version": "5bff7ee272432bec67be",
   "source_hash": "b27fb471ae32d3ee63313922f729a2ff7323ccef7dfb0a4f5c82e963a9ebf43e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.868804+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:56.008523+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-38900aafc1ea",
-          "name": "lncRNA基因致病性突变筛查鉴定",
-          "desc": "lncRNA基因突变与人类重大疾病发生发展密切相关，已成为疾病诊断治疗和预后的潜在标志物。",
+          "id": "item-595663dc65f0",
+          "name": "lncRNA基因变异有害性评估",
+          "desc": "机器学习",
           "evidence": [
             {
-              "quote": "lncRNA基因突变与人类重大疾病的发生发展密切相关，已成为疾病诊断治疗和预后的潜在标志物",
+              "quote": "长链非编码RNA（lncRNA）基因变异与疾病关联的研究具有重要意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 672,
-                "end_char": 716
-              },
-              "version": "5bff7ee272432bec67be"
-            }
-          ]
-        },
-        {
-          "id": "item-0a1622fcbdbf",
-          "name": "精准医学临床筛查诊断提升",
-          "desc": "建立高效辅助筛查鉴定致病性lncRNA基因突变的人工智能算法工具，显著提高相关疾病筛查诊断成功率。",
-          "evidence": [
-            {
-              "quote": "最终建立一套高效辅助筛查鉴定致病性lncRNA基因突变的人工智能算法工具，显著提高相关疾病筛查诊断的成功率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1018,
-                "end_char": 1070
+                "start_char": 2851,
+                "end_char": 2884
               },
               "version": "5bff7ee272432bec67be"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8433f702a667",
-          "name": "缺乏有效评估lncRNA功能有害性方法",
-          "desc": "lncRNA基因变异与疾病关联研究具有重要意义，但目前缺乏有效方法判定其功能有害性。",
+          "id": "item-4ac16089bb4e",
+          "name": "缺乏评估lncRNA变异功能有害性的有效方法",
+          "desc": "瓶颈",
           "evidence": [
             {
-              "quote": "长链非编码RNA（lncRNA）基因变异与疾病关联的研究具有重要意义，但目前缺乏有效的评估方法来判定其功能有害性",
+              "quote": "但目前缺乏有效的评估方法来判定其功能有害性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2851,
+                "start_char": 2886,
                 "end_char": 2906
-              },
-              "version": "5bff7ee272432bec67be"
-            }
-          ]
-        },
-        {
-          "id": "item-2df4d08f3a9c",
-          "name": "AI筛查鉴定lncRNA突变是瓶颈",
-          "desc": "如何实现人工智能筛查鉴定lncRNA基因致病性突变，是精准医学研究与应用的主要瓶颈和迫切需求之一。",
-          "evidence": [
-            {
-              "quote": "然而，如何实现人工智能筛查鉴定lncRNA基因致病性突变，是精准医学研究与应用的主要瓶颈和迫切需求之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 718,
-                "end_char": 768
               },
               "version": "5bff7ee272432bec67be"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-42add72eb8fb",
-          "name": "多算法模型训练与加权整合",
-          "desc": "利用多种有监督机器学习算法和表型相似度匹配算法进行模型训练、交叉验证和加权整合，研发变异有害性计分模型与表型相似度计分模型。",
+          "id": "item-6fb3bf14bb70",
+          "name": "10种机器学习算法分类模型",
+          "desc": "AdaBoost、SVM等，8个特征与4500个特征",
           "evidence": [
             {
-              "quote": "拟利用多种先进的有监督机器学习算法和表型相似度匹配算法进行模型训练、交叉验证和模型加权整合研究，分别研发准确特异针对lncRNA的最佳变异有害性计分模型和表型相似度计分模型",
+              "quote": "项目团队使用AdaBoost、SVM等10种机器学习算法构建了分类模型，分别在8个特征和4500个特征的基础上进行训练",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 844,
-                "end_char": 929
+                "start_char": 3147,
+                "end_char": 3205
               },
               "version": "5bff7ee272432bec67be"
             }
-          ]
-        },
-        {
-          "id": "item-e0607df4dc4d",
-          "name": "逻辑回归拟合与性能优化评估",
-          "desc": "利用逻辑回归对两个最佳模型进行拟合，研发人工智能辅助筛查鉴定新算法，并利用大规模实验验证数据集优化评估性能。",
-          "evidence": [
-            {
-              "quote": "再利用逻辑回归算法对这两个最佳模型进行拟合研究，研发人工智能辅助筛查鉴定lncRNA基因致病性突变的新算法，并使用我们的大规模实验验证数据集对该人工智能算法进行性能优化评估",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 931,
-                "end_char": 1016
-              },
-              "version": "5bff7ee272432bec67be"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ef57ed4568b",
-          "name": "4302个lncRNA变异标准数据集",
-          "desc": "从GWAS目录和千人基因组计划收集整理4302个lncRNA基因变异数据，构建功能性和非功能性变异标准数据集。",
+          "id": "item-c8cdfe2e65f0",
+          "name": "lncRNA基因变异标准数据集",
+          "desc": "4302个变异",
           "evidence": [
             {
               "quote": "首先从GWAS目录和千人基因组计划中收集并整理了4302个lncRNA基因变异数据，构建了功能性和非功能性lncRNA基因变异的标准数据集",
@@ -147,89 +105,155 @@
               "version": "5bff7ee272432bec67be"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-14b7e42bb170",
-          "name": "4500特征模型预测性能强劲",
-          "desc": "内部验证与外部测试表明4500个特征模型预测性能强劲，GradBoost算法展现稳定性能与较强泛化能力。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "5篇论文，国内发明专利1项",
           "evidence": [
             {
-              "quote": "内部验证和外部测试表明，4500个特征模型的预测性能十分强劲，其中CNN、RVOT和Stacking算法在内部测试中表现优异，GradBoost算法在内外部测试中展现了稳定的性能和较强的泛化能力",
+              "quote": "发表了5篇论文，并申请了1项国内发明专利",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3207,
-                "end_char": 3303
-              },
-              "version": "5bff7ee272432bec67be"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2a69643fef12",
-          "name": "论文与发明专利成果",
-          "desc": "相关成果分别发表于《Nucleic Acids Research》《Bioinformatics》等期刊共5篇论文，并申请1项国内发明专利。",
-          "evidence": [
-            {
-              "quote": "项目的相关成果已以项目负责人为第一作者/通讯作者，分别在《Nucleic Acids Research》《Bioinformatics》等期刊上发表了5篇论文，并申请了1项国内发明专利",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3402,
+                "start_char": 3474,
                 "end_char": 3493
               },
               "version": "5bff7ee272432bec67be"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-38900aafc1ea"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8433f702a667"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "circMine: a comprehensive database to integrate, analyze and visualize human disease–related circRNA transcriptome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenliang Zhang;Yang Liu;Zhuochao Min;Guodong Liang;Jing Mo;Zhen Ju;Binghui Zeng;Wen Guan;Yan Zhang;Jianliang Chen;Qianshen Zhang;Hanguang Li;Chunxia Zeng;Yanjie Wei;Godfrey Chi-Fung Chan",
+      "id": "out-4bcdfd6238ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] circMine: a comprehensive database to integrate, analyze and visualize human disease–related circRNA transcriptome — Wenliang Zhang;Yang Liu;Zhuochao Min;Guodong Liang;Jing Mo;Zhen Ju;Binghui Zeng;Wen Guan;Yan Zhang;Jianliang Chen;Qianshen Zhang;Hanguang Li;Chunxia Zeng;Yanjie Wei;Godfrey Chi-Fung Chan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3694,
+            "end_char": 4003
+          },
+          "version": "5bff7ee272432bec67be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8433f702a667"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-42add72eb8fb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ExomiRHub: A comprehensive database for hosting and analyzing human disease-related extracellular microRNA transcriptomics data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yang;Min Zhuochao;Mo Jing;Ju Zhen;Chen Jianliang;Liang Weiling;Zhang Lantian;Li Hanguang;Chan Godfrey Chi-Fung;Wei Yanjie;Zhang Wenliang",
+      "id": "out-f3541b2b9994",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ExomiRHub: A comprehensive database for hosting and analyzing human disease-related extracellular microRNA transcriptomics data — Liu Yang;Min Zhuochao;Mo Jing;Ju Zhen;Chen Jianliang;Liang Weiling;Zhang Lantian;Li Hanguang;Chan Godfrey Chi-Fung;Wei Yanjie;Zhang Wenliang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4008,
+            "end_char": 4284
+          },
+          "version": "5bff7ee272432bec67be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-42add72eb8fb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1ef57ed4568b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ExpOmics: a comprehensive web platform empowering biologists with robust multi-omics data analysis capabilities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Douyue;Min Zhuochao;Guo Jia;Chen Yubin;Zhang Wenliang",
+      "id": "out-58dd66abeeb4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ExpOmics: a comprehensive web platform empowering biologists with robust multi-omics data analysis capabilities — Li Douyue;Min Zhuochao;Guo Jia;Chen Yubin;Zhang Wenliang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4289,
+            "end_char": 4465
+          },
+          "version": "5bff7ee272432bec67be"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e0607df4dc4d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-14b7e42bb170"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D culture of the spinal cord with roots as an ex vivo model for comparative studies of motor and sensory nerve regeneration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li-Kang Zhang;Jia-Hui Sun;Sheng Liu;Wen-Liang Zhang;Jian-Long Zou",
+      "id": "out-db061b9c97b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D culture of the spinal cord with roots as an ex vivo model for comparative studies of motor and sensory nerve regeneration — Li-Kang Zhang;Jia-Hui Sun;Sheng Liu;Wen-Liang Zhang;Jian-Long Zou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4470,
+            "end_char": 4668
+          },
+          "version": "5bff7ee272432bec67be"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种ncRNA基因突变的解读方法、存储介质及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张文亮",
+      "id": "out-95387bf2fd6c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种ncRNA基因突变的解读方法、存储介质及终端 — 张文亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4673,
+            "end_char": 4707
+          },
+          "version": "5bff7ee272432bec67be"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

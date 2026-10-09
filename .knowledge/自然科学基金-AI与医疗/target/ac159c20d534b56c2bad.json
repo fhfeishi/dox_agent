@@ -2,15 +2,20 @@
   "doc_id": "ac159c20d534b56c2bad",
   "version": "22cdecc15a87c8801658",
   "source_hash": "873ce14f009e43199ed7159c4c6121b3b5e6734c69ab9a69712c799a4b58ab28",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.228352+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.478813+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-766584663d48",
-          "name": "宫颈癌预后危险因素无创评估",
-          "desc": "宫颈癌是中国女性发病率最高的生殖道恶性肿瘤，术前精准评估预后危险因素、早期筛选需补充放化疗患者对避免双重治疗至关重要。",
-          "evidence": [
-            {
-              "quote": "宫颈癌是中国女性发病率最高的生殖道恶性肿瘤，在手术治疗前精准评估预后危险因素，早期筛选术后需要补充放化疗患者，对于避免双重治疗模式，改善患者生活质量至关重要",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 739
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ]
-        },
-        {
-          "id": "item-585263c3f42b",
-          "name": "宫颈癌个体化诊疗与资源合理分配",
-          "desc": "为宫颈癌预后危险因素评估提供智能无创新方法，辅助临床决策，促进个体化诊疗发展与医疗资源合理分配。",
-          "evidence": [
-            {
-              "quote": "为宫颈癌预后危险因素评估提供了智能无创的新方法，辅助临床决策，促进宫颈癌个体化诊疗的发展及医疗资源的合理分配",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 988,
-                "end_char": 1041
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-4e442bd8f7ba",
-          "name": "临床缺乏无创智能评估手段",
-          "desc": "目前临床缺乏可无创、智能评估宫颈癌预后危险因素的手段。",
-          "evidence": [
-            {
-              "quote": "但目前临床缺乏可无创、智能评估宫颈癌预后危险因素的手段",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 741,
-                "end_char": 767
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ]
-        },
-        {
-          "id": "item-5daafb195f16",
-          "name": "IB-IIA期治疗方案选择存在争议",
-          "desc": "IB-IIA期患者治疗方案选择存在争议，术后64%高复发风险患者需辅助放化疗并承受双重治疗负担。",
+          "id": "item-7017fd17384b",
+          "name": "宫颈癌预后评估",
+          "desc": "IB-IIA期治疗方案选择存在争议",
           "evidence": [
             {
               "quote": "IB-IIA期患者治疗方案选择存在争议，术后64%高复发风险患者需辅助放化疗，承受双重治疗负担",
@@ -91,52 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-f336863b6dd2",
-          "name": "注意力卷积网络分割与特征提取",
-          "desc": "采用注意力机制的卷积神经网络完成宫颈组织和病灶的分割，自动完成影像组学特征提取。",
+          "id": "item-e299a83d5bf5",
+          "name": "缺乏无创精准的预后危险因素评估手段",
+          "desc": "病理评估滞后、血清标志物灵敏度不足、影像评估准确率有限",
           "evidence": [
             {
-              "quote": "采用注意力机制的卷积神经网络完成宫颈组织和病灶的分割，自动完成影像组学的特征提取",
+              "quote": "目前临床缺乏无创精准的预后危险因素评估手段，病理评估滞后、血清标志物灵敏度不足、影像评估准确率有限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 871,
-                "end_char": 910
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ]
-        },
-        {
-          "id": "item-3fb34c5b375e",
-          "name": "多通道卷积网络融合影像与血清学",
-          "desc": "融合影像学及血清学特征，运用多通道卷积神经网络构建预后危险因素评估模型及术后放化疗预测模型。",
-          "evidence": [
-            {
-              "quote": "融合影像学及血清学特征，运用多通道卷积神经网络构建宫颈癌预后危险因素评估模型及术后放化疗预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 915,
-                "end_char": 962
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ]
-        },
-        {
-          "id": "item-1c513b6b978d",
-          "name": "视觉基础模型与提示工程分割",
-          "desc": "探索基于视觉基础模型与提示工程的病灶自动分割技术。",
-          "evidence": [
-            {
-              "quote": "探索基于视觉基础模型（Vision Foundation Models）与提示工程的病灶自动分割技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3050,
-                "end_char": 3099
+                "start_char": 2915,
+                "end_char": 2963
               },
               "version": "22cdecc15a87c8801658"
             }
@@ -145,47 +64,13 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-4132522f613b",
-          "name": "Cervical-YOSA分割网络",
-          "desc": "研发Cervical-YOSA分割网络，协助完成临床实时高精分割。",
-          "evidence": [
-            {
-              "quote": "研发Cervical-YOSA分割网络，协助完成临床实时高精分割",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3229,
-                "end_char": 3260
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-67e1e015501f",
-          "name": "序列级影像组学模型预测LVSI",
-          "desc": "建立序列级影像组学模型预测淋巴血管间隙浸润，并利用SHAP可解释性技术剖析模型决策逻辑。",
-          "evidence": [
-            {
-              "quote": "建立序列级影像组学模型预测LVSI，并利用SHAP可解释性技术对模型决策逻辑进行剖析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3262,
-                "end_char": 3303
-              },
-              "version": "22cdecc15a87c8801658"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-93f5228e5278",
+          "id": "item-4ca402388df8",
           "name": "Restore-RWKV影像修复算法",
-          "desc": "提出Restore-RWKV等系列算法，将影像修复计算复杂度降至线性水平，显著优于现有模型。",
+          "desc": "复杂度降至线性",
           "evidence": [
             {
               "quote": "提出Restore-RWKV等系列算法，将影像修复计算复杂度降至线性水平，显著优于现有模型",
@@ -197,55 +82,214 @@
               "version": "22cdecc15a87c8801658"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-94981f493a82",
+          "name": "Cervical-YOSA分割网络",
+          "desc": "视觉基础模型与提示工程",
+          "evidence": [
+            {
+              "quote": "研发Cervical-YOSA分割网络，协助完成临床实时高精分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3229,
+                "end_char": 3260
+              },
+              "version": "22cdecc15a87c8801658"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2d6c24e817a7",
+          "name": "序列级影像组学预测LVSI模型",
+          "desc": "SHAP可解释性",
+          "evidence": [
+            {
+              "quote": "建立序列级影像组学模型预测LVSI，并利用SHAP可解释性技术对模型决策逻辑进行剖析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3262,
+                "end_char": 3303
+              },
+              "version": "22cdecc15a87c8801658"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-057cb0a6f9c7",
+          "name": "多序列MRI与临床病理血清学标准化数据库",
+          "desc": "建成",
+          "evidence": [
+            {
+              "quote": "建成含多序列MRI影像及临床病理、血清学数据的标准化数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3153,
+                "end_char": 3181
+              },
+              "version": "22cdecc15a87c8801658"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-766584663d48"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4e442bd8f7ba"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Region Attention Transformer for Medical Image Restoration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Zhou;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+      "id": "out-04739ac61679",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Region Attention Transformer for Medical Image Restoration — Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Zhou;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3518,
+            "end_char": 3669
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4e442bd8f7ba"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f336863b6dd2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cervical‐YOSA: Utilizing prompt engineering and pre‐trained large‐scale models for automated segmentation of multi‐sequence MRI images in cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanwei Xia;Zhengjie Ou;Lihua Tan;Qiang Liu;Yanfen Cui;Da Teng;Dan Zhao",
+      "id": "out-33057fa0d943",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cervical‐YOSA: Utilizing prompt engineering and pre‐trained large‐scale models for automated segmentation of multi‐sequence MRI images in cervical cancer — Yanwei Xia;Zhengjie Ou;Lihua Tan;Qiang Liu;Yanfen Cui;Da Teng;Dan Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3674,
+            "end_char": 3906
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f336863b6dd2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4132522f613b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "All-In-One Medical Image Restoration via Task-Adaptive Routing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Yi;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+      "id": "out-f4dae782408a",
+      "evidence": [
+        {
+          "quote": "[会议论文] All-In-One Medical Image Restoration via Task-Adaptive Routing — Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Yi;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3911,
+            "end_char": 4064
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3fb34c5b375e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-67e1e015501f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of Postoperative Pathologic Risk Factors in Cervical Cancer Patients Treated with Radical Hysterectomy by Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhengjie Ou;Wei Mao;Lihua Tan;Yanli Yang;Shuanghuan Liu;Yanan Zhang;Bin Li;Dan Zhao",
+      "id": "out-97e73b7f973b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of Postoperative Pathologic Risk Factors in Cervical Cancer Patients Treated with Radical Hysterectomy by Machine Learning — Zhengjie Ou;Wei Mao;Lihua Tan;Yanli Yang;Shuanghuan Liu;Yanan Zhang;Bin Li;Dan Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4069,
+            "end_char": 4294
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Region Attention Transformer for Medical Image Restoration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Zhou;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+      "id": "out-1238457d9df9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Region Attention Transformer for Medical Image Restoration — Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Zhou;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4299,
+            "end_char": 4450
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "All-In-One Medical Image Restoration via Task-Adaptive Routing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Yi;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+      "id": "out-d92b10328001",
+      "evidence": [
+        {
+          "quote": "[期刊论文] All-In-One Medical Image Restoration via Task-Adaptive Routing — Zhiwen Yang;Haowei Chen;Ziniu Qian;Yang Yi;Hui Zhang;Dan Zhao;Bingzheng Wei;Yan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4455,
+            "end_char": 4608
+          },
+          "version": "22cdecc15a87c8801658"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

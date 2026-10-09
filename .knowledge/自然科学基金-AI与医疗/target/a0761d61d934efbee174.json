@@ -2,15 +2,20 @@
   "doc_id": "a0761d61d934efbee174",
   "version": "aa1b7ddb098104ab8b12",
   "source_hash": "b256e9784e0168d1e9e947186f68570cb1c0ba4aeb730fd229203241d9f89762",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.531717+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.926718+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1c1dd305feb5",
-          "name": "甲状腺乳头状癌侵袭性超声影像组学",
-          "desc": "甲状腺乳头状癌高发病率引起社会关注，其惰性特点给临床路径选择带来困难，术前准确评估侵袭性成为关键。",
+          "id": "item-ed3c504bce64",
+          "name": "甲状腺乳头状癌侵袭性评估",
+          "desc": "惰性特点给临床路径选择带来困难",
           "evidence": [
             {
-              "quote": "甲状腺乳头状癌（PTC）的高发病率引起社会关注，其惰性特点给临床路径选择带来困难，术前准确评估PTC侵袭性成为关键",
+              "quote": "其惰性特点给临床路径选择带来困难，术前准确评估PTC侵袭性成为关键",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
+                "start_char": 695,
                 "end_char": 727
-              },
-              "version": "aa1b7ddb098104ab8b12"
-            }
-          ]
-        },
-        {
-          "id": "item-f12ce45c8b90",
-          "name": "为临床PTC侵袭性诊断提供新方法",
-          "desc": "借助影像组学新技术融合肿瘤分子和影像大数据信息，为临床PTC侵袭性诊断提供新方法。",
-          "evidence": [
-            {
-              "quote": "借助影像组学新技术融合肿瘤分子和影像大数据信息为临床PTC侵袭性诊断提供新方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1009,
-                "end_char": 1047
               },
               "version": "aa1b7ddb098104ab8b12"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2cb5764634f",
-          "name": "需明确影像组学特征的蛋白基础",
-          "desc": "需明确超声影像组学侵袭性特征具有的侵袭性蛋白质基础，融合影像组学和蛋白组学特征建立超声影像组学系统。",
+          "id": "item-c4c5d81f71fe",
+          "name": "术前准确评估PTC侵袭性",
+          "desc": "影像组学特征的分子基础不明",
           "evidence": [
             {
-              "quote": "本项目拟明确超声影像组学侵袭性特征具有的侵袭性蛋白质基础，融合影像组学和蛋白组学特征建立超声影像组学系统，以术前准确评估PTC侵袭性",
+              "quote": "术前准确评估PTC侵袭性成为关键",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 845
-              },
-              "version": "aa1b7ddb098104ab8b12"
-            }
-          ]
-        },
-        {
-          "id": "item-f40e7cb9e258",
-          "name": "超声影像组学与基因关联机制待探索",
-          "desc": "需研究肿瘤超声的图像-基因-基因集三者间的关联性，深入理解影像特征的作用机制。",
-          "evidence": [
-            {
-              "quote": "进而研究肿瘤超声的图像-基因-基因集三者间的关联性，建立超声基因组学框架IMAGGS揭示智能模型跨组学关联",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3565,
-                "end_char": 3617
+                "start_char": 712,
+                "end_char": 727
               },
               "version": "aa1b7ddb098104ab8b12"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-28bdbaff1194",
-          "name": "全卷积神经网络超声视频影像组学",
-          "desc": "用全卷积神经网络等方法开发超声视频影像组学预测PTC侵袭性体系。",
+          "id": "item-bd8da1c2ed45",
+          "name": "超声影像组学评估PTC侵袭性体系",
+          "desc": "预测颈部淋巴结转移",
           "evidence": [
             {
-              "quote": "用全卷积神经网络等方法开发超声视频影像组学预测PTC侵袭性体系",
+              "quote": "首先建立超声影像组学评估PTC侵袭性体系，多中心验证集预测颈部中央区淋巴结转移的曲线下面积（AUC）分别为0.856、0.870和0.870，预测侧颈部淋巴结转移的AUC分别为0.905、0.881和0.903",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 847,
-                "end_char": 877
+                "start_char": 3265,
+                "end_char": 3369
               },
               "version": "aa1b7ddb098104ab8b12"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-686945bc126d",
-          "name": "多核学习智能融合多组学特征",
-          "desc": "用基因组学与分子生物学方法筛选异质基因表达，用多核学习法智能融合多组学特征建立侵袭性评估系统并完成临床验证。",
+          "id": "item-8738e6c14de9",
+          "name": "超声基因组学框架IMAGGS",
+          "desc": "图像-基因-基因集关联",
           "evidence": [
             {
-              "quote": "用多核学习法智能融合多组学特征，建立PTC侵袭性评估的超声影像组学系统并完成临床验证",
+              "quote": "建立超声基因组学框架IMAGGS揭示智能模型跨组学关联",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 929,
-                "end_char": 970
+                "start_char": 3591,
+                "end_char": 3617
               },
               "version": "aa1b7ddb098104ab8b12"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f596e61c4643",
+          "name": "超声扫查视频预测肿瘤亚型模型",
+          "desc": "最大AUC 0.81",
+          "evidence": [
+            {
+              "quote": "同时开发了基于超声扫查视频预测肿瘤亚型的模型，获得最大AUC为0.81",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3666,
+                "end_char": 3700
+              },
+              "version": "aa1b7ddb098104ab8b12"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,301 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b95d675607c",
-          "name": "预测颈部淋巴结转移AUC 0.856至0.905",
-          "desc": "多中心验证集预测颈部中央区淋巴结转移AUC分别为0.856、0.870和0.870，预测侧颈部淋巴结转移AUC分别为0.905、0.881和0.903。",
+          "id": "item-8f7c955c799d",
+          "name": "论文专利",
+          "desc": "SCI论文8篇，发明专利申请3项",
           "evidence": [
             {
-              "quote": "多中心验证集预测颈部中央区淋巴结转移的曲线下面积（AUC）分别为0.856、0.870和0.870，预测侧颈部淋巴结转移的AUC分别为0.905、0.881和0.903",
+              "quote": "本项目成果包括，已发表的SCI论文8篇（中科院1区1篇，2区2篇），修回的SCI论文2篇，在审的核心期刊论文3篇，申请发明专利3项（已授权1项），申请软件著作权1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3286,
-                "end_char": 3369
+                "start_char": 3892,
+                "end_char": 3973
               },
               "version": "aa1b7ddb098104ab8b12"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f781beb3ca51",
-          "name": "发现THBS1与侵袭性密切相关",
-          "desc": "THBS1与PTC侵袭性密切相关，与MAPK、肿瘤粘附和免疫相关通路相关，可能通过抑制抗肿瘤免疫微环境导致较差预后，并基于THBS1建立免疫治疗预测体系。",
-          "evidence": [
-            {
-              "quote": "发现THBS1与PTC侵袭性密切相关，且与MAPK、肿瘤粘附和免疫相关通路相关，可能通过抑制抗肿瘤免疫微环境导致较差的甲状腺癌预后，并基于THBS1建立免疫治疗预测体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3480,
-                "end_char": 3563
-              },
-              "version": "aa1b7ddb098104ab8b12"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-76b8e3ed3423",
-          "name": "超声基因组学框架IMAGGS",
-          "desc": "建立超声基因组学框架IMAGGS揭示智能模型跨组学关联，发现不同肿瘤亚型中多项肿瘤基因与超声影像组学特征具有相关性，并开发超声视频预测亚型模型（AUC 0.81）。",
-          "evidence": [
-            {
-              "quote": "建立超声基因组学框架IMAGGS揭示智能模型跨组学关联，发现在不同的肿瘤亚型中多项肿瘤基因与超声影像组学特征具有相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3591,
-                "end_char": 3649
-              },
-              "version": "aa1b7ddb098104ab8b12"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1c1dd305feb5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e2cb5764634f"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "东方英才计划青年项目",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周世崇",
+      "id": "out-af7a22e38770",
+      "evidence": [
+        {
+          "quote": "[奖励] 东方英才计划青年项目 — 周世崇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4196,
+            "end_char": 4216
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e2cb5764634f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-28bdbaff1194"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasonic Features and Molecular Subtype Predict Somatic Mutations in TP53 and PIK3CA Genes in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunxia Huang;Qiang Yu;Jian Le;Jin Zhou;Lang Qian;Sheng Chen;Shichong Zhou;Cai Chang",
+      "id": "out-43e08ac98727",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasonic Features and Molecular Subtype Predict Somatic Mutations in TP53 and PIK3CA Genes in Breast Cancer — Yunxia Huang;Qiang Yu;Jian Le;Jin Zhou;Lang Qian;Sheng Chen;Shichong Zhou;Cai Chang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4422
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-28bdbaff1194"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b95d675607c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High Expression of THBS1 Leads to a Poor Prognosis in Papillary Thyroid Cancer and Suppresses the Anti-Tumor Immune Microenvironment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Anqi;Zhou Jin;Yu Pengcheng;Zhou Shichong;Chang Cai",
+      "id": "out-83ab0fc55456",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High Expression of THBS1 Leads to a Poor Prognosis in Papillary Thyroid Cancer and Suppresses the Anti-Tumor Immune Microenvironment — Jin Anqi;Zhou Jin;Yu Pengcheng;Zhou Shichong;Chang Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4427,
+            "end_char": 4622
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-686945bc126d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-76b8e3ed3423"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "青蒿琥酯在制备增敏三阴性乳腺癌治疗药物中的用途",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑东东;周世崇;周瑾;常才;刘雪娇;张之茗",
+      "id": "out-c891034c9a4c",
+      "evidence": [
+        {
+          "quote": "[专利] 青蒿琥酯在制备增敏三阴性乳腺癌治疗药物中的用途 — 郑东东;周世崇;周瑾;常才;刘雪娇;张之茗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4627,
+            "end_char": 4678
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于迭代的图像弱监督分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭翌;刘若韵;汪源源;周世崇;常才",
+      "id": "out-3dd1b59771e8",
+      "evidence": [
+        {
+          "quote": "[专利] 基于迭代的图像弱监督分割方法 — 郭翌;刘若韵;汪源源;周世崇;常才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4683,
+            "end_char": 4721
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unraveling the Pivotal Network of Ultrasound and Somatic Mutations in Triple-Negative and Non-Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunxia Huang;Yi Guo;Qin Xiao;Shuyu Liang;Qiang Yu;Lang Qian;Jin Zhou;Jian Le;Yuchen Pei;Lei Wang;Cai Chang;Sheng Chen;Shichong Zhou",
+      "id": "out-4860a5582362",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unraveling the Pivotal Network of Ultrasound and Somatic Mutations in Triple-Negative and Non-Triple-Negative Breast Cancer — Yunxia Huang;Yi Guo;Qin Xiao;Shuyu Liang;Qiang Yu;Lang Qian;Jin Zhou;Jian Le;Yuchen Pei;Lei Wang;Cai Chang;Sheng Chen;Shichong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4726,
+            "end_char": 4989
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能辅助乳腺肿瘤筛查的超声仪器",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周世崇",
+      "id": "out-c0c48ddb15dd",
+      "evidence": [
+        {
+          "quote": "[奖励] 人工智能辅助乳腺肿瘤筛查的超声仪器 — 周世崇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5021
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能辅助乳腺肿瘤筛查的便携超声设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周世崇",
+      "id": "out-4d0fd5768855",
+      "evidence": [
+        {
+          "quote": "[奖励] 人工智能辅助乳腺肿瘤筛查的便携超声设备 — 周世崇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5026,
+            "end_char": 5055
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于混合标注的甲状腺超声图像结节弱监督分割系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭翌;李志洲;周世崇;汪源源;常才",
+      "id": "out-3670a89feabb",
+      "evidence": [
+        {
+          "quote": "[专利] 基于混合标注的甲状腺超声图像结节弱监督分割系统 — 郭翌;李志洲;周世崇;汪源源;常才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5060,
+            "end_char": 5107
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic Analysis of Papillary Thyroid Carcinoma for Prediction of Cervical Lymph Node Metastasis: A Preliminary Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuyang Tong;Peixuan Sun;Juanjuan Yong;Hongbo Zhang;Yunxia Huang;Yi Guo;Jinhua Yu;Shichong Zhou;Yulong Wang;Yu Wang;Qinghai Ji;Yuanyuan Wang;Cai Chang",
+      "id": "out-321d97928d89",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic Analysis of Papillary Thyroid Carcinoma for Prediction of Cervical Lymph Node Metastasis: A Preliminary Study — Yuyang Tong;Peixuan Sun;Juanjuan Yong;Hongbo Zhang;Yunxia Huang;Yi Guo;Jinhua Yu;Shichong Zhou;Yulong Wang;Yu Wang;Qinghai Ji;Yuanyuan Wang;Cai Chang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5113,
+            "end_char": 5393
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound-based radiomics analysis for preoperative prediction of central and lateral cervical lymph node metastasis in papillary thyroid carcinoma: a multi-institutional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tong Yuyang;Zhang Jingwen;Wei Yi;Yu Jinhua;Zhan Weiwei;Xia Hansheng;Zhou Shichong;Wang Yuanyuan;Chang Cai",
+      "id": "out-9076f49ff332",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound-based radiomics analysis for preoperative prediction of central and lateral cervical lymph node metastasis in papillary thyroid carcinoma: a multi-institutional study — Tong Yuyang;Zhang Jingwen;Wei Yi;Yu Jinhua;Zhan Weiwei;Xia Hansheng;Zhou Shichong;Wang Yuanyuan;Chang Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5399,
+            "end_char": 5690
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IMAGGS: a radiogenomic framework for identifying multi-way associations in breast cancer subtypes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuyu Liang;Sicheng Xu;Shichong Zhou;Cai Chang;Zhiming Shao;Yuanyuan Wang;Sheng Chen;Yunxia Huang;Yi Guo",
+      "id": "out-afe7daf17bee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IMAGGS: a radiogenomic framework for identifying multi-way associations in breast cancer subtypes — Shuyu Liang;Sicheng Xu;Shichong Zhou;Cai Chang;Zhiming Shao;Yuanyuan Wang;Sheng Chen;Yunxia Huang;Yi Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5696,
+            "end_char": 5906
+          },
+          "version": "aa1b7ddb098104ab8b12"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

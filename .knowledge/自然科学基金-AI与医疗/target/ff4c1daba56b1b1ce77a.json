@@ -2,15 +2,20 @@
   "doc_id": "ff4c1daba56b1b1ce77a",
   "version": "83c72b908778d47138ef",
   "source_hash": "325a00236c781468ad3f5457e0ac2a76fbb2eb888cc0f9df74cb5c4dc805ab59",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.921694+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:45:04.387104+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-501394cc7651",
-          "name": "眼科OCT多模态影像智能分析",
-          "desc": "面向白内障与年龄相关性黄斑变性（AMD）两大致盲眼病，建立基于OCT多模态数据的智能化IOL度数计算与AMD分析评估系统。",
+          "id": "item-73d8b7082fea",
+          "name": "眼科OCT多模态智能分析",
+          "desc": "IOL度数计算与AMD诊断",
           "evidence": [
             {
-              "quote": "白内障与年龄相关性黄斑变性（AMD）为眼科两大致盲眼病",
+              "quote": "老年性白内障与年龄相关性黄斑变性（AMD）为眼科常见两大致盲眼病",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 699
+                "start_char": 2688,
+                "end_char": 2719
               },
               "version": "83c72b908778d47138ef"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a6b83594e417",
-          "name": "IOL度数计算准确度不足且AMD诊断水平参差",
-          "desc": "眼科临床常用人工晶状体球镜度数计算公式准确度约80%仍有提升空间，且不同级别医院医生对AMD的OCT影像诊断水平参差不齐。",
+          "id": "item-94de4223cd68",
+          "name": "IOL度数计算公式准确度约80%有提升空间",
+          "desc": "AMD OCT诊断水平参差不齐",
           "evidence": [
             {
-              "quote": "目前，眼科临床常用人工晶状体（IOL）球镜度数计算公式准确度约为80%，仍存在可提升空间",
+              "quote": "眼科临床常用人工晶状体（IOL）球镜度数计算公式准确度约为80%，仍存在可提升空间",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2760,
+                "start_char": 2763,
                 "end_char": 2803
               },
               "version": "83c72b908778d47138ef"
@@ -63,80 +68,489 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02b2606a6bad",
-          "name": "深度学习结合OCT多模态数据的IOL计算与AMD诊断系统",
-          "desc": "将深度学习分别与眼前后节OCT影像学数据整合挖掘，建立基于OCT多模态数据的智能化IOL度数计算和AMD分析评估方法，解决稳定性、低质量图像判断准确性与训练样本量等基础问题。",
+          "id": "item-15dac8fb6457",
+          "name": "径向基函数拟合IOL度数代理模型",
+          "desc": "结合眼部生物结构参数",
           "evidence": [
             {
-              "quote": "建立基于OCT多模态数据下的智能化IOL度数计算和AMD分析评估方法",
+              "quote": "提出了各种径向基函数拟合与眼部生物结构参数数据结合形成人工晶状体度数代理模型的基础理论和方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2969
+                "start_char": 3128,
+                "end_char": 3173
               },
               "version": "83c72b908778d47138ef"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d081e9ce2cdb",
+          "name": "CNN对AMD OCT图像诊断分类与分割",
+          "desc": "OCT血管成像",
+          "evidence": [
+            {
+              "quote": "提出了利用卷积神经网络模型与AMD不同发病阶段OCT图像数据结合形成AMD疾病诊断、分类以及图像分割的基础理论和方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3265,
+                "end_char": 3322
+              },
+              "version": "83c72b908778d47138ef"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated diagnosis and segmentation of choroidal neovascularization in OCT angiography using deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jie;Hormel Tristan T.;Gao Liqin;Zang Pengxiao;Guo Yukun;Wang Xiaogang;Bailey Steven T.;Jia Yali",
+      "id": "out-bc2d4a01c19c",
+      "evidence": [
         {
-          "id": "item-ddfd3f86464c",
-          "name": "径向基函数IOL度数代理模型达到国际同等准确度",
-          "desc": "提出径向基函数拟合与眼部生物结构参数结合形成人工晶状体度数代理模型，达到与现有国际计算公式同等准确度；并实现OCT血管成像模式下AMD疾病的正确分类与量化分析。",
-          "evidence": [
-            {
-              "quote": "提出了各种径向基函数拟合与眼部生物结构参数数据结合形成人工晶状体度数代理模型的基础理论和方法，不同程度的达到与现有国际计算公式同等准确度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3128,
-                "end_char": 3195
-              },
-              "version": "83c72b908778d47138ef"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Automated diagnosis and segmentation of choroidal neovascularization in OCT angiography using deep learning — Wang Jie;Hormel Tristan T.;Gao Liqin;Zang Pengxiao;Guo Yukun;Wang Xiaogang;Bailey Steven T.;Jia Yali",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3547,
+            "end_char": 3763
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comprehensive assessment of anterior segmentin refraction corrected OCT based on multitasklearning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaiwen Li;Guangqian Yang;Shuimiao Chang;Jinhan Yao;Chong He;Fang Lu;Xiaogang Wang;Zhao Wang",
+      "id": "out-67451e81419f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comprehensive assessment of anterior segmentin refraction corrected OCT based on multitasklearning — Kaiwen Li;Guangqian Yang;Shuimiao Chang;Jinhan Yao;Chong He;Fang Lu;Xiaogang Wang;Zhao Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3768,
+            "end_char": 3966
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three-Dimensional Reconstruction and Swept-Source Optical Coherence Tomography for Crystalline Lens Tilt and Decentration Relative to the Corneal Vertex",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Jing;Wang Xiao-Liang;Deng Minghui;Wang Xiao-Gang",
+      "id": "out-eab58eb5bda8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three-Dimensional Reconstruction and Swept-Source Optical Coherence Tomography for Crystalline Lens Tilt and Decentration Relative to the Corneal Vertex — Dong Jing;Wang Xiao-Liang;Deng Minghui;Wang Xiao-Gang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3971,
+            "end_char": 4185
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "角膜后表面散光对散光型人工晶状体计算的重要性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董静;张素华;王晓刚",
+      "id": "out-93ad5a726762",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 角膜后表面散光对散光型人工晶状体计算的重要性 — 董静;张素华;王晓刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4231
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "急性与慢性中心性浆液性脉络膜视网膜病变视网膜微血管改变的对比研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓刚;张洁;虞仁和;周亮",
+      "id": "out-5e995e50d4f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 急性与慢性中心性浆液性脉络膜视网膜病变视网膜微血管改变的对比研究 — 王晓刚;张洁;虞仁和;周亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4236,
+            "end_char": 4290
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incidence and Risk Factors for Berger’s Space Development after Uneventful Cataract Surgery: Evidence from Swept-Source Optical Coherence Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhengwei Zhang;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Minghui Deng;Xiaogang Wang",
+      "id": "out-64500b2f53f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incidence and Risk Factors for Berger’s Space Development after Uneventful Cataract Surgery: Evidence from Swept-Source Optical Coherence Tomography — Zhengwei Zhang;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Minghui Deng;Xiaogang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4295,
+            "end_char": 4550
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Mean Corneal Power of Annular Rings and Zones Using Swept-Source Optical Coherence Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Dong;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Xiaogang Wang",
+      "id": "out-588b0296b067",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Mean Corneal Power of Annular Rings and Zones Using Swept-Source Optical Coherence Tomography — Jing Dong;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Xiaogang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4555,
+            "end_char": 4751
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Corneal Astigmatism Measurements Comparison among Ray-Tracing Aberrometry, Partial Coherence Interferometry, and Scheimpflug Imaging System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yaqin;Dong Jing;Zhang Suhua;Sun Bin;Wang Xiaoliang;Tang Maolong;Wang Xiaogang",
+      "id": "out-9e62ced30cee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Corneal Astigmatism Measurements Comparison among Ray-Tracing Aberrometry, Partial Coherence Interferometry, and Scheimpflug Imaging System — Zhang Yaqin;Dong Jing;Zhang Suhua;Sun Bin;Wang Xiaoliang;Tang Maolong;Wang Xiaogang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4987
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "眼科人工智能应用研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓刚;王晓亮;董静",
+      "id": "out-88b3d60abb75",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 眼科人工智能应用研究进展 — 王晓刚;王晓亮;董静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4992,
+            "end_char": 5023
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic measurement of anterior chamberangle parameters in AS-OCT images using deeplearning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangqian Yang;Kaiwen Li;Jinhan Yao;Shuimiao Chang;Chong He;Fang Lu;Xiaogang Wang;Zhao Wang",
+      "id": "out-013ed1ffc595",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic measurement of anterior chamberangle parameters in AS-OCT images using deeplearning — Guangqian Yang;Kaiwen Li;Jinhan Yao;Shuimiao Chang;Chong He;Fang Lu;Xiaogang Wang;Zhao Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5029,
+            "end_char": 5222
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种应用于白内障手术的多功能劈核刀",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓刚;董静",
+      "id": "out-c80849b7cc22",
+      "evidence": [
+        {
+          "quote": "[专利] 一种应用于白内障手术的多功能劈核刀 — 王晓刚;董静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5228,
+            "end_char": 5258
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "白内障超声乳化手术医生成长手册",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓刚;邓明辉;董静",
+      "id": "out-94cdd7df56a4",
+      "evidence": [
+        {
+          "quote": "[专著] 白内障超声乳化手术医生成长手册 — 王晓刚;邓明辉;董静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5264,
+            "end_char": 5296
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative Evaluation of Retinal Microvascular Abnormalities in Patients With Type 2 Diabetes Mellitus Without Clinical Sign of Diabetic Retinopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongqing Han;Xiaogang Wang;Gang Sun;Jing Luo;Xing Cao;Pengyi Yin;Renhe Yu;Simin He;Fang Yang;Frank L. Myers;Liang Zhou",
+      "id": "out-f345a815db5b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative Evaluation of Retinal Microvascular Abnormalities in Patients With Type 2 Diabetes Mellitus Without Clinical Sign of Diabetic Retinopathy — Yongqing Han;Xiaogang Wang;Gang Sun;Jing Luo;Xing Cao;Pengyi Yin;Renhe Yu;Simin He;Fang Yang;Frank L. Myers;Liang Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5302,
+            "end_char": 5579
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Calculation of Toric Intraocular Lens Power with the Barrett Calculator and Data from Three Keratometers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Dong;Yaqin Zhang;Xiaogang Wang",
+      "id": "out-a434b6ccba06",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Calculation of Toric Intraocular Lens Power with the Barrett Calculator and Data from Three Keratometers — Jing Dong;Yaqin Zhang;Xiaogang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5585,
+            "end_char": 5733
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Symmetrical Nasal Ectopia Lentis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaogang Wang;Timothy P.H. Lin",
+      "id": "out-105704b590a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Symmetrical Nasal Ectopia Lentis — Xiaogang Wang;Timothy P.H. Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5739,
+            "end_char": 5810
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison Study of the Two Biometers Based on Swept-Source Optical Coherence Tomography Technology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Dong;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Xiaogang Wang",
+      "id": "out-5d62d74e49eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison Study of the Two Biometers Based on Swept-Source Optical Coherence Tomography Technology — Jing Dong;Jinhan Yao;Shuimiao Chang;Piotr Kanclerz;Ramin Khoramnia;Xiaogang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5816,
+            "end_char": 6004
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Large air bubble in the Berger space during cataract surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Dong;Bin Sun;Lin Jiang;Xiaogang Wang",
+      "id": "out-2d0dde074e19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Large air bubble in the Berger space during cataract surgery — Jing Dong;Bin Sun;Lin Jiang;Xiaogang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6010,
+            "end_char": 6120
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Limbus-centered marking technique-assisted continuous circular capsulorhexis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Xiaogang;Dong Jing;Deng Minghui",
+      "id": "out-e26d511dea1d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Limbus-centered marking technique-assisted continuous circular capsulorhexis — Wang Xiaogang;Dong Jing;Deng Minghui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6126,
+            "end_char": 6247
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detection of the Microvascular Changes of Diabetic Retinopathy Progression Using Optical Coherence Tomography Angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Xiaogang;Han Yongqing;Sun Gang;Yang Fang;Liu Wen;Luo Jing;Cao Xing;Yin Pengyi;Myers Frank L.;Zhou Liang",
+      "id": "out-ffe5903d1b2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Detection of the Microvascular Changes of Diabetic Retinopathy Progression Using Optical Coherence Tomography Angiography — Wang Xiaogang;Han Yongqing;Sun Gang;Yang Fang;Liu Wen;Luo Jing;Cao Xing;Yin Pengyi;Myers Frank L.;Zhou Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6253,
+            "end_char": 6491
+          },
+          "version": "83c72b908778d47138ef"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种辅助人工晶状体支撑一体化装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓刚;董静;王梓伊",
+      "id": "out-45225d5b86ed",
+      "evidence": [
+        {
+          "quote": "[专利] 一种辅助人工晶状体支撑一体化装置 — 王晓刚;董静;王梓伊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6497,
+            "end_char": 6530
+          },
+          "version": "83c72b908778d47138ef"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-501394cc7651"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a6b83594e417"
+      "专利": {
+        "listed": 2,
+        "extracted": 2
       },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a6b83594e417"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-02b2606a6bad"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-02b2606a6bad"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ddfd3f86464c"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

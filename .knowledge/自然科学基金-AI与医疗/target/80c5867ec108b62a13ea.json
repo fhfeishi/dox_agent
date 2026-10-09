@@ -2,15 +2,20 @@
   "doc_id": "80c5867ec108b62a13ea",
   "version": "7106ec6185cef35c372e",
   "source_hash": "a07f4609a2037727c7caf8a2e459880f83c008a3f7a39bf34c2e2c917854de9d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.882418+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:12:53.824207+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 11,
+      "total": 11,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c37c24df2fc5",
-          "name": "肺癌快速演进分子可视化与智能诊断",
-          "desc": "面向肺癌快速演进识别与早期干预，开展关键分子功能可视化与智能诊断策略研究。",
+          "id": "item-83469f2a2bde",
+          "name": "肺癌快速演进的早期识别与干预",
+          "desc": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期，机制不清",
           "evidence": [
             {
-              "quote": "肺癌是我国发病率和死亡率最高的恶性肿瘤，早期识别其快速演进类型并实现精准干预是改善预后的关键",
+              "quote": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期，机制不清。识别肺癌快速演进并及时干预是目前的临床难点",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+                "page": 1,
+                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        },
+        {
+          "id": "item-25bc7630324e",
+          "name": "肺结节临床队列与智能诊断",
+          "desc": "基于已建立的肺结节临床队列挖掘三类结节生物标志物并构建智能预测模型",
+          "evidence": [
+            {
+              "quote": "本课题将基于已建立的肺结节临床队列，挖掘稳定型肺结节、缓慢进展型肺癌及快速进展型肺癌的生物标志物",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        },
+        {
+          "id": "item-6cd45b11be31",
+          "name": "肺癌早诊早治",
+          "desc": "项目成果拟应用于肺癌早诊早治与人工智能领域",
+          "evidence": [
+            {
+              "quote": "本项目成果拟应用领域:1、肺癌早诊早治2、人工智能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 38,
+                "chunk_id": "94142acbb6ed18c27732a38d81259ff41b5f1939"
               },
               "version": "7106ec6185cef35c372e"
             }
@@ -41,12 +78,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ef042cd6244",
-          "name": "部分肺癌快速进展机制不清",
-          "desc": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期且机制不清，识别快速演进并及时干预是临床难点。",
+          "id": "item-214d52a4382f",
+          "name": "快速演进机制不清",
+          "desc": "部分肺癌快速进展至晚期但机制不清，识别与及时干预是临床难点",
           "evidence": [
             {
-              "quote": "部分原位癌及早期肺癌可长期稳定，但部分快速进展至晚期，机制不清",
+              "quote": "识别肺癌快速演进并及时干预是目前的临床难点",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ]
+        },
+        {
+          "id": "item-bdace5bf2511",
+          "name": "缺乏快速演进风险预测工具",
+          "desc": "需构建肺癌快速演进风险模型并实现无创智能预测",
+          "evidence": [
+            {
+              "quote": "构建肺癌快速演进风险模型，并在前瞻性队列中验证及优化，实现肺癌快速演进的无创智能预测，指导临床制定早期干预策略",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -63,20 +116,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-70a1cacc3c0d",
-          "name": "肺结节队列生物标志物挖掘与分子探针",
-          "desc": "基于肺结节临床队列挖掘稳定、缓慢进展与快速进展型肺癌的生物标志物，利用空间与单细胞转录组确定关键分子，并采用分子探针和靶向示踪技术实现活体可视化。",
+          "id": "item-2d5d99cf377a",
+          "name": "单细胞与空间转录组多组学分析",
+          "desc": "基于单细胞转录组与空间转录组分析鉴定关键肿瘤微环境细胞亚群",
           "evidence": [
             {
-              "quote": "本课题将基于已建立的肺结节临床队列，挖掘稳定型肺结节、缓慢进展型肺癌及快速进展型肺癌的生物标志物",
+              "quote": "基于单细胞转录组与空间转录组分析，鉴定了SPP1\\*巨噬细胞、SLPI⁺AT2样细胞等关键肿瘤微环境细胞亚群",
               "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+                "basis": "parsed_text",
+                "start_char": 3468,
+                "end_char": 3521
               },
               "version": "7106ec6185cef35c372e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-cf8b0746cc9a",
+          "name": "驱动基因突变蛋白探针",
+          "desc": "开发靶向EGFR、ALK、KRAS等驱动基因的突变蛋白探针实现分子功能可视化",
+          "evidence": [
+            {
+              "quote": "成功开发了靶向EGFR、ALK、KRAS等驱动基因的突变蛋白探针",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5405048eba65",
+          "name": "双光子/近红外与PET探针",
+          "desc": "监测脂滴代谢、免疫微环境粘度与活性氧的双光子/近红外荧光探针与PET探针",
+          "evidence": [
+            {
+              "quote": "以及监测脂滴代谢、免疫微环境粘度/活性氧的双光子/近红外荧光探针与PET探针，实现了关键分子活性的实时、在体可视化监测",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-199316cb61e5",
+          "name": "深度学习肺结节风险预测模型",
+          "desc": "融合影像、临床、病理与分子数据构建基于深度学习的肺结节恶性风险预测模型",
+          "evidence": [
+            {
+              "quote": "项目融合影像、临床、病理与分子数据，构建了基于深度学习的肺结节恶性风险预测模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +190,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-37f6f3d62336",
-          "name": "演进风险模型AUC 0.83并研制C-Lung-RADS",
-          "desc": "建立含43326例肺结节的临床队列；深度学习肺结节恶性风险模型区分快速与缓慢进展型肺癌AUC达0.83、≤1cm小结节预测准确率90%；创新研发中国版肺结节分级标准C-Lung-RADS，四维整合体系诊断效能提升至92%。",
+          "id": "item-ba86ace3465f",
+          "name": "43326例肺结节临床研究队列",
+          "desc": "建立包含43326例肺结节的队列并精分出稳定/良性、缓慢进展与快速进展三类群体",
+          "evidence": [
+            {
+              "quote": "建立了包含43326例肺结节的临床研究队列，从中精分出稳定/良性、缓慢进展与快速进展三类群体",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "建立了",
+          "self_reported": false
+        },
+        {
+          "id": "item-f7d90ce5827b",
+          "name": "肺结节恶性风险预测模型",
+          "desc": "区分快速与缓慢进展型肺癌AUC达0.83，对≤1 cm小结节预测准确率达90%",
           "evidence": [
             {
               "quote": "该模型在区分快速与缓慢进展型肺癌方面AUC达0.83，对≤1 cm小结节预测准确率达90%",
@@ -99,7 +223,47 @@
               "version": "7106ec6185cef35c372e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "AUC达0.83",
+          "self_reported": false
+        },
+        {
+          "id": "item-c49c935133de",
+          "name": "C-Lung-Rads肺结节分级标准",
+          "desc": "创新研发的中国版肺结节分级标准",
+          "evidence": [
+            {
+              "quote": "并创新研发了中国版肺结节分级标准C-Lung-RADS",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "创新研发了",
+          "self_reported": false
+        },
+        {
+          "id": "item-904424813fc5",
+          "name": "临床-影像-病理-分子四维整合预测体系",
+          "desc": "建立四维整合预测体系，诊断效能提升至92%并在前瞻性队列中得到验证",
+          "evidence": [
+            {
+              "quote": "还建立了临床-影像-病理-分子四维整合预测体系，诊断效能提升至92%，并在前瞻性队列中得到验证",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+              },
+              "version": "7106ec6185cef35c372e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "诊断效能提升至92%",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +271,405 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-2d5d99cf377a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-214d52a4382f"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于单细胞转录组与空间转录组分析，鉴定了SPP1\\*巨噬细胞、SLPI⁺AT2样细胞等关键肿瘤微环境细胞亚群",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3468,
+            "end_char": 3521
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-199316cb61e5"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-bdace5bf2511"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建肺癌快速演进风险模型，并在前瞻性队列中验证及优化，实现肺癌快速演进的无创智能预测",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-c37c24df2fc5"
+        "item_id": "item-83469f2a2bde"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-3ef042cd6244"
+        "item_id": "item-214d52a4382f"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "识别肺癌快速演进并及时干预是目前的临床难点",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "e0c70c14b6e8670a98b6dd200186bc886e02dd27"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-3ef042cd6244"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-70a1cacc3c0d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-70a1cacc3c0d"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-37f6f3d62336"
+        "item_id": "item-f7d90ce5827b"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-199316cb61e5"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "该模型在区分快速与缓慢进展型肺癌方面AUC达0.83，对≤1 cm小结节预测准确率达90%",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-5405048eba65"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-cf8b0746cc9a"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "成功开发了靶向EGFR、ALK、KRAS等驱动基因的突变蛋白探针，以及监测脂滴代谢、免疫微环境粘度/活性氧的双光子/近红外荧光探针与PET探针",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Data-driven risk stratification and precision management of pulmonary nodules detected on chest computed tomography",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "Nature Medicine",
+      "id": "out-7dea1275cc6e",
+      "evidence": [
+        {
+          "quote": "Data-driven risk stratification and precision management of pulmonary nodules detected on chest computed tomography, Nature Medicine, 2024, 30(11). 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 32,
+            "chunk_id": "4f984fcadee9d1fe572e4d08effd575a590cba0a"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A fluorogenic probe for predicting treatment response in non-small cell lung cancer with EGFR-activating mutations",
+      "status_raw": "2022",
+      "year": "2022",
+      "identifiers": {},
+      "venue": "Nature Communications",
+      "id": "out-ccc0a15ef44e",
+      "evidence": [
+        {
+          "quote": "A fluorogenic probe for predicting treatment response in non-small cell lung cancer with EGFR-activating mutations, Nature Communications, 2022, 13(1). 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 32,
+            "chunk_id": "a033606e056bed2b548b8c116f372431b305ba55"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Accurate diagnosis of early-stage lung cancer by targeting lipid droplets with a two-photon near-infrared fluorescence probe",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Sensors and Actuators B-chemical",
+      "id": "out-3409c0cd301a",
+      "evidence": [
+        {
+          "quote": "Accurate diagnosis of early-stage lung cancer by targeting lipid droplets with a two-photon near-infrared fluorescence probe, Sensors and Actuators B-chemical，2025，426. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 33,
+            "chunk_id": "6a6e38ce59d2bcd3322c4ed626e151d6f947e067"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Comprehensive Characterization of Somatic Mutation Timing Reveals the Evolutionary Trajectory of Lung Adenocarcinoma in Chinese Patients",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Cancer Research",
+      "id": "out-c964f0fea1ff",
+      "evidence": [
+        {
+          "quote": "Comprehensive Characterization of Somatic Mutation Timing Reveals the Evolutionary Trajectory of Lung Adenocarcinoma in Chinese Patients, Cancer Research, 2025, 85(15): 2905-2920. 第四标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 34,
+            "chunk_id": "8b6cc49da404188f4e7271191efec15c4b10bd0b"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Development and validation of an abnormality-derived deep-learning diagnostic system for major respiratory diseases",
+      "status_raw": "2022",
+      "year": "2022",
+      "identifiers": {},
+      "venue": "NPJ DIGITAL MEDICINE",
+      "id": "out-ed067d587bc9",
+      "evidence": [
+        {
+          "quote": "Development and validation of an abnormality-derived deep-learning diagnostic system for major respiratory diseases, NPJ DIGITAL MEDICINE, 2022, 5(1): 124. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 34,
+            "chunk_id": "b2b0fc1f2958c562de112468d5152cc36c3ce756"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "导管设备",
+      "status_raw": "2023-08-22",
+      "year": "2023",
+      "identifiers": {
+        "application_no": "ZL 2022 1 0584853.9"
+      },
+      "id": "out-48fe80ae89ad",
+      "evidence": [
+        {
+          "quote": "李为民；刘丹；周刚；瞿烨波；导管设备，2023-08-22至2033-08-22，中国，ZL 2022 1 0584853.9.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 38,
+            "chunk_id": "6f98105972d13a398f99c2a83de4ba45d9fcb261"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "肺癌靶向治疗多基因多突变类型测序文库构建方法与试剂盒",
+      "status_raw": "2025-04-18",
+      "year": "2025",
+      "identifiers": {
+        "application_no": "ZL202510136204.6"
+      },
+      "id": "out-60116bdc6e04",
+      "evidence": [
+        {
+          "quote": "肺癌靶向治疗多基因多突变类型测序文库构建方法与试剂盒，2025-04-18至2035-04-18，中国，ZL202510136204.6.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 38,
+            "chunk_id": "6f98105972d13a398f99c2a83de4ba45d9fcb261"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "授权",
+      "title": "基于胸部影像的肺部疾病多亚型分类方法、系统、设备",
+      "status_raw": "2025-02-25",
+      "year": "2025",
+      "identifiers": {
+        "application_no": "ZL202411700874.8"
+      },
+      "id": "out-532064f238e0",
+      "evidence": [
+        {
+          "quote": "基于胸部影像的肺部疾病多亚型分类方法、系统、设备，2025-02-25至2036-02-24，中国，ZL202411700874.8.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 38,
+            "chunk_id": "94142acbb6ed18c27732a38d81259ff41b5f1939"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "包含43326例肺结节的临床研究队列",
+      "status_raw": "建立了",
+      "identifiers": {},
+      "id": "out-56b608f4128c",
+      "evidence": [
+        {
+          "quote": "建立了包含43326例肺结节的临床研究队列",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "论文发表",
+      "status": "已取得",
+      "date": "2024",
+      "precision": "年",
+      "desc": "肺结节风险分层与精准管理研究成果发表于Nature Medicine",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-23dcb3d4a74e",
+      "tech_ids": [
+        "item-199316cb61e5"
+      ],
+      "output_ids": [
+        "out-7dea1275cc6e"
+      ],
+      "evidence": [
+        {
+          "quote": "Data-driven risk stratification and precision management of pulmonary nodules detected on chest computed tomography, Nature Medicine, 2024, 30(11). 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 32,
+            "chunk_id": "4f984fcadee9d1fe572e4d08effd575a590cba0a"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "type": "专利授权",
+      "status": "已取得",
+      "date": "2025-02-25",
+      "precision": "日",
+      "desc": "基于胸部影像的肺部疾病多亚型分类方法获发明专利授权",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-bf28d4182333",
+      "tech_ids": [
+        "item-199316cb61e5"
+      ],
+      "output_ids": [
+        "out-532064f238e0"
+      ],
+      "evidence": [
+        {
+          "quote": "基于胸部影像的肺部疾病多亚型分类方法、系统、设备，2025-02-25至2036-02-24，中国，ZL202411700874.8.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 38,
+            "chunk_id": "94142acbb6ed18c27732a38d81259ff41b5f1939"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    },
+    {
+      "type": "试验",
+      "status": "已取得",
+      "date": "",
+      "precision": "未知",
+      "desc": "四维整合预测体系在前瞻性队列中完成验证",
+      "result": "诊断效能提升至92%",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-0a8f85d292f5",
+      "tech_ids": [
+        "item-199316cb61e5"
+      ],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "还建立了临床-影像-病理-分子四维整合预测体系，诊断效能提升至92%，并在前瞻性队列中得到验证",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "41861de7b0698452afe3ea3e5bfd46128a8d72dd"
+          },
+          "version": "7106ec6185cef35c372e"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": null
 }

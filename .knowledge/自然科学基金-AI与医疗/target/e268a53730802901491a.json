@@ -2,15 +2,20 @@
   "doc_id": "e268a53730802901491a",
   "version": "5c0447ce98b3484a4985",
   "source_hash": "8acc71aa48020c00357362d1aac471f7349ad52601f09e657057cbfd892a6413",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.864513+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.277012+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,25 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e7bbfedc6e60",
-          "name": "前列腺癌手术患者多学科精准康复",
-          "desc": "国人前列腺癌发病率井喷式增长，治疗以手术为主结合内分泌、放疗或化疗等。",
-          "evidence": [
-            {
-              "quote": "近年来国人前列腺癌发病率井喷式增长，其治疗以手术为主结合内分泌、放疗或化疗等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 685,
-                "end_char": 722
-              },
-              "version": "5c0447ce98b3484a4985"
-            }
-          ]
-        },
-        {
-          "id": "item-e9dbd87f40e5",
-          "name": "提升前列腺癌术后康复水平",
-          "desc": "构建基于智慧医疗平台的多学科精准康复模式，提升前列腺癌术后患者的康复水平。",
+          "id": "item-5be6fd3c35af",
+          "name": "前列腺癌术后多学科精准康复",
+          "desc": "智慧医疗平台",
           "evidence": [
             {
               "quote": "本研究旨在构建基于智慧医疗平台的前列腺癌手术患者多学科精准康复模式，提升前列腺癌术后患者的康复水平",
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-650d820afbaa",
-          "name": "术后尿失禁等康复问题影响生存质量",
-          "desc": "临床存在术后尿失禁、性功能障碍以及认知障碍、疲乏等生理、心理及社会问题，严重影响患者生存质量。",
+          "id": "item-f897f0115a54",
+          "name": "术后尿失禁等并发症严重影响生活质量",
+          "desc": "康复管理",
           "evidence": [
             {
-              "quote": "但临床依然存在术后尿失禁、性功能障碍，以及认知障碍、疲乏等生理、心理及社会问题，严重影响患者生存质量",
+              "quote": "手术是前列腺癌的主要治疗方式，但术后往往存在尿失禁等并发症，严重影响患者的生活质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 743,
-                "end_char": 792
-              },
-              "version": "5c0447ce98b3484a4985"
-            }
-          ]
-        },
-        {
-          "id": "item-84831da26620",
-          "name": "康复问题需多学科持续管理",
-          "desc": "康复问题需采用整合多学科的综合措施持续患者管理，临床医生力有未逮，亟待以护理人员为主体的多学科团队研究解决。",
-          "evidence": [
-            {
-              "quote": "上述康复问题的解决需采用整合多学科的综合措施持续患者管理，临床医生力有未逮，亟待以护理人员为主体的多学科团队研究解决",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 851
+                "start_char": 2953,
+                "end_char": 2993
               },
               "version": "5c0447ce98b3484a4985"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a81a9182d28",
-          "name": "围术期多学科加速康复外科方案",
-          "desc": "通过专家咨询法构建基于循证证据的前列腺癌患者围术期多学科加速康复外科方案，聚焦围术期膀胱冲洗液、居家尿袋更换等护理细节开展临床革新与转化。",
-          "evidence": [
-            {
-              "quote": "通过专家咨询法构建了基于循证证据的前列腺癌患者围术期多学科加速康复外科方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3075,
-                "end_char": 3111
-              },
-              "version": "5c0447ce98b3484a4985"
-            }
-          ]
-        },
-        {
           "id": "item-c4f3a6c56d4b",
           "name": "尿失禁康复管理智慧医疗平台",
-          "desc": "基于循证证据与课题组开发的尿失禁康复管理智慧医疗平台，构建前列腺癌手术患者远期尿失禁精准化康复管理模式并在护理门诊中应用。",
+          "desc": "远期精准化康复管理模式",
           "evidence": [
             {
               "quote": "依托课题组开发的尿失禁康复管理智慧医疗平台，构建了前列腺癌手术患者远期尿失禁精准化康复管理模式",
@@ -124,7 +81,25 @@
               },
               "version": "5c0447ce98b3484a4985"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3a81a9182d28",
+          "name": "围术期多学科加速康复外科方案",
+          "desc": "专家咨询法构建",
+          "evidence": [
+            {
+              "quote": "首先通过专家咨询法构建了基于循证证据的前列腺癌患者围术期多学科加速康复外科方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3073,
+                "end_char": 3111
+              },
+              "version": "5c0447ce98b3484a4985"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-56ff2dd85440",
-          "name": "加速康复进程并提升康复效果",
-          "desc": "全程应用结果显示明显加速患者康复进程、提升康复效果，尤其为部分晚期患者赢得术后1年内根治性放疗最佳时机提供保障。",
-          "evidence": [
-            {
-              "quote": "结果显示，明显加速了患者康复进程、提升了康复效果，尤其为部分晚期患者赢得术后1年内的根治性放疗最佳时机提供了保障",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3421,
-                "end_char": 3476
-              },
-              "version": "5c0447ce98b3484a4985"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8708813c79ab",
-          "name": "MDT门诊量年均2000余人次",
-          "desc": "课题组所在泌尿外科诊疗中心尿失禁护理、排尿与控尿障碍、女性尿失禁、前列腺相关尿失禁MDT门诊量年均2000余人次。",
-          "evidence": [
-            {
-              "quote": "课题组所在泌尿外科诊疗中心尿失禁护理、排尿与控尿障碍、女性尿失禁、前列腺相关尿失禁MDT门诊量，年均2000余人次",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3478,
-                "end_char": 3534
-              },
-              "version": "5c0447ce98b3484a4985"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b0d52d8147ab",
-          "name": "论文与护理科技奖",
-          "desc": "共发表论文14篇（SCI 2篇、EI 2篇），获上海护理科技二等奖1项及中华护理学会科普作品奖。",
+          "id": "item-f18960d8be31",
+          "name": "论文与奖项",
+          "desc": "论文14篇，上海护理科技二等奖1项",
           "evidence": [
             {
               "quote": "共发表论文14篇，其中SCI论文2篇，EI论文2篇；获上海护理科技二等奖1项",
@@ -181,55 +122,308 @@
               "version": "5c0447ce98b3484a4985"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e7bbfedc6e60"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-650d820afbaa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于分光测色仪测量法的膀胱冲洗液比色卡研制",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹洁;魏然;彭春雪;顾婕",
+      "id": "out-eef3aa999969",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于分光测色仪测量法的膀胱冲洗液比色卡研制 — 曹洁;魏然;彭春雪;顾婕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3748,
+            "end_char": 3790
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-650d820afbaa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3a81a9182d28"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种可视化盆底肌及提肛肌锻炼装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭先娟;丁艳;曹洁;马倩云",
+      "id": "out-1389a1a52980",
+      "evidence": [
+        {
+          "quote": "[专利] 一种可视化盆底肌及提肛肌锻炼装置 — 郭先娟;丁艳;曹洁;马倩云",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 3831
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3a81a9182d28"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-56ff2dd85440"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "13例机器人辅助单孔腹腔镜经膀胱前列腺癌根治术护理体会",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "顾婕;曹洁;任善成",
+      "id": "out-c732da6e4bea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 13例机器人辅助单孔腹腔镜经膀胱前列腺癌根治术护理体会 — 顾婕;曹洁;任善成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3881
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c4f3a6c56d4b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8708813c79ab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "盆底肌锻炼模式对机器人辅助腹腔镜下前列腺癌根治术后尿失禁康复的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "瞿旻;贾泽鹏;连碧珺;朱峰;陈欢;王燕;高旭",
+      "id": "out-75a0097c8d59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 盆底肌锻炼模式对机器人辅助腹腔镜下前列腺癌根治术后尿失禁康复的影响 — 瞿旻;贾泽鹏;连碧珺;朱峰;陈欢;王燕;高旭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3886,
+            "end_char": 3950
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "揭秘前列腺癌",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹洁;陆小英;张玲娟",
+      "id": "out-dbcdc0f50496",
+      "evidence": [
+        {
+          "quote": "[专著] 揭秘前列腺癌 — 曹洁;陆小英;张玲娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 3978
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第十五届上海市护理学会科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹洁",
+      "id": "out-8c0a728f0d41",
+      "evidence": [
+        {
+          "quote": "[奖励] 第十五届上海市护理学会科技奖 — 曹洁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4006
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning Curve for the Tension-Free Vaginal Tape–Obturator Procedure for Female Stress Urinary Incontinence: A Prospective Single-Surgeon Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruixiang Song;Xing He;Yifan Chang;Feng Zhu;Wei Zhang;Xin Cheng;Qixiang Song;Yiru Hao;Mou Huang;Guixiao Huang;Huizhen Li",
+      "id": "out-83c03cc97cdb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning Curve for the Tension-Free Vaginal Tape–Obturator Procedure for Female Stress Urinary Incontinence: A Prospective Single-Surgeon Study — Ruixiang Song;Xing He;Yifan Chang;Feng Zhu;Wei Zhang;Xin Cheng;Qixiang Song;Yiru Hao;Mou Huang;Guixiao Huang;Huizhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4011,
+            "end_char": 4282
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "前列腺癌术后患者尿袋更换护理包",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曹洁;顾婕;季永凤;彭春雪",
+      "id": "out-a7b24d639f70",
+      "evidence": [
+        {
+          "quote": "[专利] 前列腺癌术后患者尿袋更换护理包 — 曹洁;顾婕;季永凤;彭春雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4322
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical efficacy of an enhanced recovery after surgery protocol in patients undergoing robotic-assisted laparoscopic prostatectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cao Jie;Gu Jie;Wang Yan;Guo Xianjuan;Gao Xu;Lu Xiaoying",
+      "id": "out-4897f92fbed9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical efficacy of an enhanced recovery after surgery protocol in patients undergoing robotic-assisted laparoscopic prostatectomy — Cao Jie;Gu Jie;Wang Yan;Guo Xianjuan;Gao Xu;Lu Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4327,
+            "end_char": 4522
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "经尿道前列腺增生腔内手术膀胱冲洗质量评价体系的构建",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟宪丽;曹洁;程欣",
+      "id": "out-788d5b95e3fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 经尿道前列腺增生腔内手术膀胱冲洗质量评价体系的构建 — 孟宪丽;曹洁;程欣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4528,
+            "end_char": 4571
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "前列腺癌术后尿失禁康复管理的最佳证据总结",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "顾婕;曹洁;马倩云;陆雪;高旭;李惠珍",
+      "id": "out-153619840708",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 前列腺癌术后尿失禁康复管理的最佳证据总结 — 顾婕;曹洁;马倩云;陆雪;高旭;李惠珍",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4577,
+            "end_char": 4625
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "翻转课堂教学模式在全军泌尿外科护理示范基地专科护士带教中的应用探讨",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王彤彤;曹洁;陆小英",
+      "id": "out-a0c32aaf7110",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 翻转课堂教学模式在全军泌尿外科护理示范基地专科护士带教中的应用探讨 — 王彤彤;曹洁;陆小英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4631,
+            "end_char": 4683
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sustainable functional urethral reconstruction: Maximizing early continence recovery in robotic-assisted radical prostatectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zepeng Jia;Yifan Chang;Yan Wang;Jing Li;Min Qu;Feng Zhu;Huan Chen;Bijun Lian;Meimian Hua;Yinghao Sun;Xu Gao",
+      "id": "out-5fec1ba42b2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sustainable functional urethral reconstruction: Maximizing early continence recovery in robotic-assisted radical prostatectomy — Zepeng Jia;Yifan Chang;Yan Wang;Jing Li;Min Qu;Feng Zhu;Huan Chen;Bijun Lian;Meimian Hua;Yinghao Sun;Xu Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4689,
+            "end_char": 4931
+          },
+          "version": "5c0447ce98b3484a4985"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

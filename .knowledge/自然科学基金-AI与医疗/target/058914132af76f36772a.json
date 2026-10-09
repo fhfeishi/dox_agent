@@ -2,15 +2,20 @@
   "doc_id": "058914132af76f36772a",
   "version": "77d409f7265203c57067",
   "source_hash": "23beda1648acdac7d594a13050e7de9e5834e14854ca2ff55fd53df8bcab5a3d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.699200+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:26:17.248731+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4c5710197c2",
-          "name": "心脑血管病生理电信号在线学习",
-          "desc": "心脑血管病起病隐匿、病程长，生理电信号在患者监测、诊断和康复治疗中发挥重要作用。",
+          "id": "item-6ea7f175c95f",
+          "name": "心脑血管病生理电信号监测诊断",
+          "desc": "生理电信号在心脑血管病监测、诊断和康复中发挥重要作用",
           "evidence": [
             {
-              "quote": "心脑血管病具有起病隐匿、病程长且病情迁延不愈的特点，极易导致患者失能和失智",
+              "quote": "生理电信号由于其非入侵性、方便灵活等特征，在心脑血管病人的监测、诊断和康复治疗中发挥着重要的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 700
-              },
-              "version": "77d409f7265203c57067"
-            }
-          ]
-        },
-        {
-          "id": "item-de72caac5be7",
-          "name": "新型心脑血管病智慧医疗系统",
-          "desc": "成果为建立集智能诊疗、远程监测与康复治疗为一体的新型智慧医疗系统提供技术支持和解决方案。",
-          "evidence": [
-            {
-              "quote": "项目的研究成果为建立集智能诊疗、远程监测与康复治疗为一体的新型心脑血管病智慧医疗系统提供技术支持和解决方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3293,
-                "end_char": 3345
+                "start_char": 702,
+                "end_char": 749
               },
               "version": "77d409f7265203c57067"
             }
@@ -57,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d975d544d1af",
-          "name": "生理电信号模式识别存在多方面问题",
-          "desc": "现有研究存在特征空间表示单一、患者历史数据利用率偏低、模型结构复杂不透明以及无法完成在线学习等问题。",
+          "id": "item-ac418e782b2a",
+          "name": "生理电信号模式识别的四类问题",
+          "desc": "特征空间表示单一、历史数据利用率低、模型复杂不透明、无法在线学习",
           "evidence": [
             {
-              "quote": "然而，基于人工智能的生理电信号模式识别研究目前依然存在不少问题，如生理电信号特征空间表示单一、患者历史数据利用率偏低、模型结构复杂且不透明以及无法完成在线学习等",
+              "quote": "如生理电信号特征空间表示单一、患者历史数据利用率偏低、模型结构复杂且不透明以及无法完成在线学习等",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 751,
+                "start_char": 783,
                 "end_char": 830
               },
               "version": "77d409f7265203c57067"
@@ -73,16 +62,16 @@
           ]
         },
         {
-          "id": "item-5b428b06c524",
-          "name": "高维数据导致维数灾难",
-          "desc": "单个TSK模糊系统作为基本学习单元时面对高维数据出现维数灾难问题。",
+          "id": "item-cb879c7c3442",
+          "name": "单个TSK模糊系统面对高维数据的维数灾难",
+          "desc": "TSK模糊系统作基本学习单元时的维数灾难",
           "evidence": [
             {
-              "quote": "解决单个TSK模糊系统在作为基本学习单元时，面对高维数据所出现的“维数灾难”问题，提升了系统的可解释性",
+              "quote": "解决单个TSK模糊系统在作为基本学习单元时，面对高维数据所出现的“维数灾难”问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3107,
-                "end_char": 3157
+                "end_char": 3146
               },
               "version": "77d409f7265203c57067"
             }
@@ -95,47 +84,60 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9a21a85e48f6",
-          "name": "多视角表示与协同学习",
-          "desc": "利用不同特征分析方法构建生理电信号多视角表示，挖掘特征空间之间蕴含的约束信息实现多空间协同学习。",
+          "id": "item-4d568b140504",
+          "name": "栈式深度结构TSK模糊系统",
+          "desc": "利用广义栈式原理构建，提升可解释性",
           "evidence": [
             {
-              "quote": "利用不同的特征分析方法构建生理电信号的多视角表示，并挖掘不同特征空间之间蕴含的约束信息，实现在多个特征空间协同学习",
+              "quote": "利用广义栈式原理，构建了具有栈式深度结构的TSK模糊系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 859,
-                "end_char": 915
-              },
-              "version": "77d409f7265203c57067"
-            }
-          ]
-        },
-        {
-          "id": "item-aa05cecdbb70",
-          "name": "广义栈式TSK模糊系统",
-          "desc": "在在线学习框架下利用广义栈式原理构建具有栈式深度结构的TSK模糊系统，提升可解释性。",
-          "evidence": [
-            {
-              "quote": "在生理电信号的在线学习框架下，利用广义栈式原理，构建了具有栈式深度结构的TSK模糊系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3063,
+                "start_char": 3078,
                 "end_char": 3105
               },
               "version": "77d409f7265203c57067"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-b812139f5fa7",
-          "name": "在线学习框架与优化准则",
-          "desc": "构建基于生理电信号的在线学习框架，并构建多视角多源域迁移学习目标优化基本准则。",
+          "id": "item-9a21a85e48f6",
+          "name": "多视角表示与协同学习",
+          "desc": "生理电信号特征的多视角表示及协同学习策略",
+          "evidence": [
+            {
+              "quote": "实现了生理电信号特征的多视角表示，并制定多视角协同学习策略，实现了多视角协同学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3177,
+                "end_char": 3216
+              },
+              "version": "77d409f7265203c57067"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-58a5e89a33eb",
+          "name": "多源域知识选择性迁移学习",
+          "desc": "结合历史数据与少量当前患者校验数据",
+          "evidence": [
+            {
+              "quote": "实现了多源域知识选择性迁移学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3276,
+                "end_char": 3290
+              },
+              "version": "77d409f7265203c57067"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e0800d77bce9",
+          "name": "生理电信号在线学习框架",
+          "desc": "多视角多源域迁移学习目标优化基本准则",
           "evidence": [
             {
               "quote": "构建了基于生理电信号的在线学习框架，并构建多视角多源域迁移学习目标优化基本准则",
@@ -147,41 +149,32 @@
               "version": "77d409f7265203c57067"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-d16eeeee8d47",
-          "name": "多源域知识选择性迁移学习",
-          "desc": "利用长期积累的历史生理电信号数据结合少量当前患者校验数据，实现多源域知识选择性迁移学习。",
+          "id": "item-fb506d2f145a",
+          "name": "在线学习框架",
+          "desc": "构建基于生理电信号的在线学习框架",
           "evidence": [
             {
-              "quote": "利用同一认知任务下长期积累的历史生理电信号数据，同时结合少量当前患者的校验数据，实现了多源域知识选择性迁移学习",
+              "quote": "构建了基于生理电信号的在线学习框架",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3236,
-                "end_char": 3290
+                "start_char": 3020,
+                "end_char": 3036
               },
               "version": "77d409f7265203c57067"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-4123da0cdcb1",
-          "name": "多视角协同学习策略实现",
-          "desc": "实现生理电信号特征的多视角表示并制定多视角协同学习策略。",
-          "evidence": [
-            {
-              "quote": "在生理电信号的在线学习框架下，实现了生理电信号特征的多视角表示，并制定多视角协同学习策略，实现了多视角协同学习",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3162,
-                "end_char": 3216
-              },
-              "version": "77d409f7265203c57067"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +182,234 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-c4c5710197c2"
+        "dimension": "技术",
+        "item_id": "item-4d568b140504"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-d975d544d1af"
+        "item_id": "item-cb879c7c3442"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d975d544d1af"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9a21a85e48f6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9a21a85e48f6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4123da0cdcb1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-aa05cecdbb70"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d16eeeee8d47"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "解决单个TSK模糊系统在作为基本学习单元时，面对高维数据所出现的“维数灾难”问题，提升了系统的可解释性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3107,
+            "end_char": 3157
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-modality Fusion & Inductive Knowledge Transfer Underlying Non-Sparse Multi-Kernel Learning and Distribution Adaption",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhang;Kaijian Xia;Yizhang Jiang;Pengjiang Qian;Weiwei Cai;Chengyu Qiu;Lai Khin Wee;Dongrui Wu",
+      "id": "out-20de5940d629",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-modality Fusion & Inductive Knowledge Transfer Underlying Non-Sparse Multi-Kernel Learning and Distribution Adaption — Yuanpeng Zhang;Kaijian Xia;Yizhang Jiang;Pengjiang Qian;Weiwei Cai;Chengyu Qiu;Lai Khin Wee;Dongrui Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3365,
+            "end_char": 3598
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor imagery classification via stacking-based Takagi–Sugeno–Kang fuzzy classifier ensemble",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhang;Weiping Ding",
+      "id": "out-ce476e6db186",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motor imagery classification via stacking-based Takagi–Sugeno–Kang fuzzy classifier ensemble — Yuanpeng Zhang;Weiping Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3731
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Epilepsy Diagnosis Using Multi-view & Multi-medoid Entropy-based Clustering with Privacy Protection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yuanpeng;Jiang Yizhang;Qi Lianyong;Bhuiyan Md Zakirul Alam;Qian Pengjiang",
+      "id": "out-5181840cf9af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Epilepsy Diagnosis Using Multi-view & Multi-medoid Entropy-based Clustering with Privacy Protection — Zhang Yuanpeng;Jiang Yizhang;Qi Lianyong;Bhuiyan Md Zakirul Alam;Qian Pengjiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3736,
+            "end_char": 3923
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TSK fuzzy system fusion at sensitivity-ensemble-level for imbalanced data classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhang;Guanjin Wang;Xiuyu Huang;Weiping Ding",
+      "id": "out-131c4bfd9f85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TSK fuzzy system fusion at sensitivity-ensemble-level for imbalanced data classification — Yuanpeng Zhang;Guanjin Wang;Xiuyu Huang;Weiping Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3928,
+            "end_char": 4077
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度调和的自步TSK模糊系统的不平衡数据处理方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张远鹏;邱成羽;张馨匀;程煜婷;谢宇航;陈秀",
+      "id": "out-d37a82168b30",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度调和的自步TSK模糊系统的不平衡数据处理方法 — 张远鹏;邱成羽;张馨匀;程煜婷;谢宇航;陈秀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4082,
+            "end_char": 4137
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种头皮脑电信号的在线多特征空间迁移识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张远鹏;王理;王沛华;王加利",
+      "id": "out-808d84b46632",
+      "evidence": [
+        {
+          "quote": "[专利] 一种头皮脑电信号的在线多特征空间迁移识别方法 — 张远鹏;王理;王沛华;王加利",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4142,
+            "end_char": 4185
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多视角多源域自适应的驾驶疲劳在线计算方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张远鹏;谢宇航;蒋葵",
+      "id": "out-73abcf826b68",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多视角多源域自适应的驾驶疲劳在线计算方法 — 张远鹏;谢宇航;蒋葵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4229
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A fuzzy system with common linear-term consequents equivalent to FLNN and GMM",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhang;Guanjin Wang;Fu-lai Chung;Shitong Wang",
+      "id": "out-7017a43d315d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A fuzzy system with common linear-term consequents equivalent to FLNN and GMM — Yuanpeng Zhang;Guanjin Wang;Fu-lai Chung;Shitong Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4234,
+            "end_char": 4373
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mutual Supervised Fusion & Transfer Learning with Interpretable Linguistic Meaning for Social Data Analytics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanpeng Zhang;Yizhang Jiang;Alireza Jolfaei",
+      "id": "out-2918c5f25c8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mutual Supervised Fusion & Transfer Learning with Interpretable Linguistic Meaning for Social Data Analytics — Yuanpeng Zhang;Yizhang Jiang;Alireza Jolfaei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4378,
+            "end_char": 4539
+          },
+          "version": "77d409f7265203c57067"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

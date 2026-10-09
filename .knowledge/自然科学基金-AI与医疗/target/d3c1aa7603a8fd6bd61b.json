@@ -2,15 +2,20 @@
   "doc_id": "d3c1aa7603a8fd6bd61b",
   "version": "13822716ecd6588a98e9",
   "source_hash": "fa23e4967f4796cb52a044cf914a2c15a56c43cf86001878047cf2520e9b6058",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.787956+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:41:55.733039+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0a88eef2a992",
-          "name": "阿尔茨海默病早期预测与筛查",
-          "desc": "面向AD一旦确诊即无有效治疗的特点，在MCI阶段开展早期预测，为早期筛查与干预提供保障。",
+          "id": "item-20519476f6bd",
+          "name": "阿尔茨海默病早期智能预测",
+          "desc": "影像与基因多模态",
           "evidence": [
             {
-              "quote": "阿尔茨海默病（AD）是一种致残率和致死率极高的进行性发展的神经系统变性疾病，一旦确诊则无有效治疗与缓解的方法",
+              "quote": "本研究围绕阿尔茨海默病（AD）的早期智能诊断，进行了基于影像与基因等数据的智能预测研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 712
+                "start_char": 2749,
+                "end_char": 2791
               },
               "version": "13822716ecd6588a98e9"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f71252faffd4",
-          "name": "AD早期无特异性症状致预测困难",
-          "desc": "AD早期没有特异性症状，临床上难以早期预测，错失在MCI阶段干预的机会。",
+          "id": "item-a99863348d64",
+          "name": "AD早期无特异性症状，临床早期预测困难",
+          "desc": "MCI阶段干预",
           "evidence": [
             {
               "quote": "但因AD早期没有特异性症状，故临床早期预测困难",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a4e2121875c9",
-          "name": "影像基因多模特征与贝叶斯深度信念预测模型",
-          "desc": "在深度学习框架下结合人工先验知识挖掘影像与组学内在信息，用树形结构稀疏模型研究影像与基因相关性，并以加权特征贝叶斯深度信念模型配合变量消元与期望最大化预测MCI转换概率。",
+          "id": "item-e3e07c4660e1",
+          "name": "多特征压缩激励空洞残差网络",
+          "desc": "AD纵向预测，转换概率",
           "evidence": [
             {
-              "quote": "本项目采用影像与组学特征结合，在深度学习的框架下，解决AD早期预测的难题",
+              "quote": "提出多特征压缩激励空洞残差网络深度学习模型，进行AD纵向预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 823
+                "start_char": 2834,
+                "end_char": 2863
               },
               "version": "13822716ecd6588a98e9"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-490a6272ccea",
+          "name": "改进型Tabnet基因表达AD分类",
+          "desc": "差异基因筛选模块",
+          "evidence": [
+            {
+              "quote": "以Tabnet为基础网络，在Tabnet编码器中添加差异基因筛选模块，来达到提升Tabnet分类网络性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2953,
+                "end_char": 3004
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eb64d31fface",
-          "name": "MCI转换概率预测准确率87.96%-88.36%",
-          "desc": "多特征压缩激励空洞残差网络进行AD纵向预测，五折验证下12月、24月、36月转换概率预测准确率分别为87.96%、85.52%、88.36%；改进型Tabnet二分类与三分类准确率分别为93.80%、88.27%。",
+          "id": "item-43d5feb05285",
+          "name": "转换概率预测准确率",
+          "desc": "12月87.96%，24月85.52%，36月88.36%",
           "evidence": [
             {
               "quote": "转换概率的预测准确率12月、24月、36月分别为：87.96%、85.52%、88.36%",
@@ -99,44 +122,688 @@
               "version": "13822716ecd6588a98e9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-448d3b081de7",
+          "name": "改进Tabnet分类准确率",
+          "desc": "二分类93.80%，三分类88.27%",
+          "evidence": [
+            {
+              "quote": "准确率分别为93.80%、88.27%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3079,
+                "end_char": 3097
+              },
+              "version": "13822716ecd6588a98e9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0a88eef2a992"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f71252faffd4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Recognition of Cephalometric Landmarks ViaMulti-Scale Sampling Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Congyi Zhao;Zengbei Yuan;Shichang Luo;Wenjie Wang;Zhe Ren;Xufeng Yao;Tao Wu",
+      "id": "out-d742eb65b38f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Recognition of Cephalometric Landmarks ViaMulti-Scale Sampling Strategy — Congyi Zhao;Zengbei Yuan;Shichang Luo;Wenjie Wang;Zhe Ren;Xufeng Yao;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3808
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f71252faffd4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a4e2121875c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "恐惧和悲伤情绪认知重评过程中的脑电活动差异",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏玲;李颖洁;姚旭峰",
+      "id": "out-b35da15972e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 恐惧和悲伤情绪认知重评过程中的脑电活动差异 — 魏玲;李颖洁;姚旭峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 3853
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a4e2121875c9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-eb64d31fface"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning Classification of Alzheimer’s Disease Using Joint Features of Diffusion Tensor Imaging and Clinical Scales",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Ren;Xufeng Yao;Zengbei Yuan;Liang Zhou",
+      "id": "out-5dafab059d2f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Machine Learning Classification of Alzheimer’s Disease Using Joint Features of Diffusion Tensor Imaging and Clinical Scales — Zhe Ren;Xufeng Yao;Zengbei Yuan;Liang Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 4032
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "量子检测效率在平板探测器评估中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐松;姚旭峰;黄钢",
+      "id": "out-9f030e0a60f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 量子检测效率在平板探测器评估中的研究进展 — 徐松;姚旭峰;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4037,
+            "end_char": 4075
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的血细胞分类研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙凯;姚旭峰;马风玲;赵文硕;黄钢",
+      "id": "out-c4585de47d05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于机器学习的血细胞分类研究进展 — 孙凯;姚旭峰;马风玲;赵文硕;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4080,
+            "end_char": 4122
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of Alzheimer’s disease using robust TabNet neural networks on genetic data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Jin;Zhe Ren;Wenjie Wang;Yulei Zhang;Liang Zhou;Xufeng Yao;Tao Wu",
+      "id": "out-a4bf2f4f7546",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification of Alzheimer’s disease using robust TabNet neural networks on genetic data — Yu Jin;Zhe Ren;Wenjie Wang;Yulei Zhang;Liang Zhou;Xufeng Yao;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4292
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于影像学表型的全基因组关联分析方法、介质及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚旭峰;吕玉婷;韩立婷;任哲",
+      "id": "out-e01d7037a570",
+      "evidence": [
+        {
+          "quote": "[专利] 基于影像学表型的全基因组关联分析方法、介质及设备 — 姚旭峰;吕玉婷;韩立婷;任哲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4297,
+            "end_char": 4342
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preparation and characterization of green emitting NASO:Tb3+ and red emitting NASO:Eu3+ glasses derived from ions exchanged LTA zeolite",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxin Pan;Yuxiao Fan;Hui Lin;Dawei Zhang;Xiaodong Xu;Xufeng Yao",
+      "id": "out-c2a6c1d55f87",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preparation and characterization of green emitting NASO:Tb3+ and red emitting NASO:Eu3+ glasses derived from ions exchanged LTA zeolite — Yuxin Pan;Yuxiao Fan;Hui Lin;Dawei Zhang;Xiaodong Xu;Xufeng Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4347,
+            "end_char": 4554
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磁共振弥散张量成像的阿尔茨海默病脑白质特征",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任哲;韩立婷;巩姝彤;姚旭峰;吴韬",
+      "id": "out-838d2a5dbe52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 磁共振弥散张量成像的阿尔茨海默病脑白质特征 — 任哲;韩立婷;巩姝彤;姚旭峰;吴韬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4559,
+            "end_char": 4606
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于智能影像基因组学技术的阿尔茨海默病预测进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚旭峰;袁增贝;卜溪溪",
+      "id": "out-0f8d1f8c1336",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于智能影像基因组学技术的阿尔茨海默病预测进展 — 姚旭峰;袁增贝;卜溪溪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4612,
+            "end_char": 4655
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "阿尔茨海默病影像基因组学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕玉婷;姚旭峰;卜溪溪;徐松;黄钢",
+      "id": "out-3ae08bab2171",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 阿尔茨海默病影像基因组学研究进展 — 吕玉婷;姚旭峰;卜溪溪;徐松;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4661,
+            "end_char": 4703
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of white blood cells using weighted optimized deformable convolutional neural networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xufeng Yao;Kai Sun;Xixi Bu;Congyi Zhao;Yu Jin",
+      "id": "out-43304a33c257",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification of white blood cells using weighted optimized deformable convolutional neural networks — Xufeng Yao;Kai Sun;Xixi Bu;Congyi Zhao;Yu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4709,
+            "end_char": 4864
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of Alzheimer’s Disease using combined features of fMRI Brain Network and clinical scales",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xia Xu;Wenjie Wang;Zengbei Yuan;Xinlin Li;Tao Wu;Xufeng Yao",
+      "id": "out-a910abd827e0",
+      "evidence": [
+        {
+          "quote": "[会议论文] Classification of Alzheimer’s Disease using combined features of fMRI Brain Network and clinical scales — Xia Xu;Wenjie Wang;Zengbei Yuan;Xinlin Li;Tao Wu;Xufeng Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4870,
+            "end_char": 5041
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain network analyses of diffusion tensor imaging for brain aging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Xu;Xufeng Yao;Liting Han;Yuting Lv;Xixi Bu;Gan Huang;Yiifeng Fan;Tonggang Yu;Gang Huang",
+      "id": "out-6c19a6d79095",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain network analyses of diffusion tensor imaging for brain aging — Song Xu;Xufeng Yao;Liting Han;Yuting Lv;Xixi Bu;Gan Huang;Yiifeng Fan;Tonggang Yu;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5047,
+            "end_char": 5214
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Analyses of brain cortical changes of Alzheimer's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Yuting;Zhao wenshuo;Yao Xufeng;Xu Song;Tang Zhixian;Fan Yifeng;Gang Huang",
+      "id": "out-e96f3f1dc783",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Analyses of brain cortical changes of Alzheimer's disease — Lv Yuting;Zhao wenshuo;Yao Xufeng;Xu Song;Tang Zhixian;Fan Yifeng;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5220,
+            "end_char": 5362
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coupling analysis between functional and structural brain networks in Alzheimer's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xia Xu;Song Xu;Liting Han;Xufeng Yao",
+      "id": "out-1748c8312140",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coupling analysis between functional and structural brain networks in Alzheimer's disease — Xia Xu;Song Xu;Liting Han;Xufeng Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5368,
+            "end_char": 5502
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多序列脑影像特征的机器学习分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵文硕;姚旭峰",
+      "id": "out-52556bf831c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多序列脑影像特征的机器学习分类方法 — 赵文硕;姚旭峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5508,
+            "end_char": 5543
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "X线头颅正位片头影测量标志点自动识别方法及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚旭峰;赵从义;金宇",
+      "id": "out-62c06338b546",
+      "evidence": [
+        {
+          "quote": "[专利] X线头颅正位片头影测量标志点自动识别方法及设备 — 姚旭峰;赵从义;金宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5549,
+            "end_char": 5589
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Proceedings of International Conference on Image, Vision and Intelligent Systems 2022 (ICIVIS 2022)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xufeng Yao",
+      "id": "out-2660899505a0",
+      "evidence": [
+        {
+          "quote": "[专著] Proceedings of International Conference on Image, Vision and Intelligent Systems 2022 (ICIVIS 2022) — Xufeng Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5595,
+            "end_char": 5711
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of functional magnetic resonance imaging brain network for Alzheimer's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Xu;Xufeng Yao;Xixi Bu;Yuting Lv;Gang Huang",
+      "id": "out-6791f4800b6c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Evaluation of functional magnetic resonance imaging brain network for Alzheimer's disease — Song Xu;Xufeng Yao;Xixi Bu;Yuting Lv;Gang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5717,
+            "end_char": 5862
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel lung nodule accurate detection of computerized tomography images based on convolutional neural network and probability graph model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xunpeng Xia;Rongfu Zhang;Xufeng Yao;Gang Huang;Tiequn Tang",
+      "id": "out-cb9922124464",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel lung nodule accurate detection of computerized tomography images based on convolutional neural network and probability graph model — Xunpeng Xia;Rongfu Zhang;Xufeng Yao;Gang Huang;Tiequn Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5868,
+            "end_char": 6073
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning of Brain Functional Network Characteristics for AD Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjie Wang;Xia Xu;Xufeng Yao;Liang Zhou;Tao Wu",
+      "id": "out-d6f30f6055ad",
+      "evidence": [
+        {
+          "quote": "[会议论文] Machine Learning of Brain Functional Network Characteristics for AD Classification — Wenjie Wang;Xia Xu;Xufeng Yao;Liang Zhou;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6079,
+            "end_char": 6217
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像与基因特征分析方法在阿尔茨海默病中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩立婷;姚旭峰;金宇;赵从义;黄钢",
+      "id": "out-af20ff496444",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像与基因特征分析方法在阿尔茨海默病中的研究进展 — 韩立婷;姚旭峰;金宇;赵从义;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6223,
+            "end_char": 6273
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的白细胞六分类研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙凯;姚旭峰;黄钢",
+      "id": "out-a7e3a287a9be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于机器学习的白细胞六分类研究 — 孙凯;姚旭峰;黄钢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6279,
+            "end_char": 6312
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "双能CT图像域基材料分解算法的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭俏;姚旭峰",
+      "id": "out-2198123e7aeb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 双能CT图像域基材料分解算法的研究进展 — 郭俏;姚旭峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6318,
+            "end_char": 6352
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Brain Network Changes for Normal Brain Aging by the Resting-state Functional Connectivity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yulei Zhang;Xufeng Yao;Xinlin Li;Liang Zhou;Tao Wu",
+      "id": "out-28cfd46c62be",
+      "evidence": [
+        {
+          "quote": "[会议论文] Evaluation of Brain Network Changes for Normal Brain Aging by the Resting-state Functional Connectivity — Yulei Zhang;Xufeng Yao;Xinlin Li;Liang Zhou;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6358,
+            "end_char": 6520
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积神经网络的双能CT图像域基材料分解方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚旭峰;郭俏;徐红春;潘宇新;唐智贤;周亮;吴韬",
+      "id": "out-5d2521283d1d",
+      "evidence": [
+        {
+          "quote": "[专利] 基于卷积神经网络的双能CT图像域基材料分解方法 — 姚旭峰;郭俏;徐红春;潘宇新;唐智贤;周亮;吴韬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6526,
+            "end_char": 6580
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A combined deformable model and medical transformer algorithm for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhixian Tang;Jintao Duan;Yanming Sun;Yanan Zeng;Yile Zhang;Xufeng Yao",
+      "id": "out-2e53189a2096",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A combined deformable model and medical transformer algorithm for medical image segmentation — Zhixian Tang;Jintao Duan;Yanming Sun;Yanan Zeng;Yile Zhang;Xufeng Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6586,
+            "end_char": 6756
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A robust automated surface-matching registration method for neuronavigation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yifeng Fan;Xufeng Yao;Xiufang Xu",
+      "id": "out-7b77ef844d9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A robust automated surface-matching registration method for neuronavigation — Yifeng Fan;Xufeng Yao;Xiufang Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6762,
+            "end_char": 6878
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of Alzheimer's Disease via Deep Residual Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Shi;Xufeng Yao;Shichang Luo;Liang Zhou;Tao Wu",
+      "id": "out-f181662db161",
+      "evidence": [
+        {
+          "quote": "[会议论文] Classification of Alzheimer's Disease via Deep Residual Network — Cheng Shi;Xufeng Yao;Shichang Luo;Liang Zhou;Tao Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6884,
+            "end_char": 7007
+          },
+          "version": "13822716ecd6588a98e9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

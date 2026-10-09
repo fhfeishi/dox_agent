@@ -2,15 +2,20 @@
   "doc_id": "309f60bbf5097589b80f",
   "version": "6a8eac8e1be17ade3bd6",
   "source_hash": "a3625b3def802e8d24fcfaf6b40dd9fc64bce2d1d8d83c714c2b124a0d2fdcae",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.190434+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:45.053119+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ba5c3bf04c3",
-          "name": "脑年龄预测模型研究",
-          "desc": "生命历程中脑功能和结构体现与年龄相关的动态变化，基于影像进行脑年龄预测成为脑科学新兴领域。",
+          "id": "item-b310bb5c183a",
+          "name": "脑年龄预测与神经疾病分类",
+          "desc": "基于多模态影像",
           "evidence": [
             {
-              "quote": "在生命历程中，脑功能和结构体现出和年龄相关的动态变化",
+              "quote": "基于影像数据进行脑年龄预测成为脑科学研究的一个新兴领域",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 673
-              },
-              "version": "6a8eac8e1be17ade3bd6"
-            }
-          ]
-        },
-        {
-          "id": "item-e99669e2247b",
-          "name": "脑疾病早期预测与预防",
-          "desc": "便于通过脑年龄识别个体脑健康状态，为脑疾病早期预测和预防提供科学依据。",
-          "evidence": [
-            {
-              "quote": "便于通过脑年龄识别个体的脑健康状态，从而为脑疾病的早期预测和预防提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 958,
-                "end_char": 995
+                "start_char": 704,
+                "end_char": 730
               },
               "version": "6a8eac8e1be17ade3bd6"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-44ab6b316e90",
-          "name": "人工特征模型预测误差待提高",
-          "desc": "先前研究多采用传统机器学习与人工特征，脑年龄预测误差有待进一步提高。",
+          "id": "item-8d50a7b725ed",
+          "name": "传统机器学习脑年龄预测误差有待提高",
+          "desc": "依赖人工特征",
           "evidence": [
             {
               "quote": "先前的大多数研究采用传统的机器学习方法，基于人工特征构建脑年龄预测模型，预测误差有待进一步提高",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 732,
                 "end_char": 778
-              },
-              "version": "6a8eac8e1be17ade3bd6"
-            }
-          ]
-        },
-        {
-          "id": "item-5ed90dbc613d",
-          "name": "脑网络表征学习面临新挑战",
-          "desc": "脑网络具有复杂拓扑结构和多维属性，构建模型对其有效表征学习并实现高精度预测面临新问题。",
-          "evidence": [
-            {
-              "quote": "构建机器学习模型对脑网络进行有效表征学习，进而实现高精度的脑年龄预测及神经疾病分类，面临新的问题和挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2550,
-                "end_char": 2600
               },
               "version": "6a8eac8e1be17ade3bd6"
             }
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe642ddbe2e9",
-          "name": "多模态影像融合建模",
-          "desc": "有效融合rs-fMRI、sMRI和DTI多模态影像数据，围绕脑年龄预测模型构建与应用开展研究。",
-          "evidence": [
-            {
-              "quote": "本项目旨在有效融合多模态影像数据(rs-fMRI, sMRI和DTI)，针对脑年龄预测模型构建和应用的关键问题，开展三方面的研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 799,
-                "end_char": 862
-              },
-              "version": "6a8eac8e1be17ade3bd6"
-            }
-          ]
-        },
-        {
           "id": "item-dbb5b28be255",
           "name": "双通道图卷积神经网络",
-          "desc": "提出双通道图卷积神经网络模型，改进拓扑相似约束损失函数，刻画多视图脑网络的局部与全局拓扑关系。",
+          "desc": "改进拓扑相似约束损失函数",
           "evidence": [
             {
-              "quote": "提出一个双通道图卷积神经网络模型，改进拓扑相似约束损失函数，有效刻画了多视图脑网络的局部连接和全局网络拓扑相似关系",
+              "quote": "提出一个双通道图卷积神经网络模型，改进拓扑相似约束损失函数",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2831,
-                "end_char": 2887
+                "end_char": 2859
               },
               "version": "6a8eac8e1be17ade3bd6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-8165a5ad0836",
           "name": "带符号曲率图神经网络",
-          "desc": "针对消息传递图神经网络的过挤压问题，提出带符号曲率图神经网络并用于脑年龄预测。",
+          "desc": "缓解过挤压",
           "evidence": [
             {
-              "quote": "针对消息传递图神经网络的过挤压问题，提出带符号曲率图神经网络",
+              "quote": "提出带符号曲率图神经网络，通过节点特征间的互信息和脑网络的Ollivier-Ricci矩阵重构邻接矩阵",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2924,
-                "end_char": 2953
+                "start_char": 2942,
+                "end_char": 2992
               },
               "version": "6a8eac8e1be17ade3bd6"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d075082ee43e",
+          "name": "因果启发的图Transformer",
+          "desc": "识别因果脑区与连接",
+          "evidence": [
+            {
+              "quote": "提出因果启发的图Transformer模型，识别出与标签有因果关系的脑区和连接，在MCI进展预测中取得最高分类准确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3221,
+                "end_char": 3278
+              },
+              "version": "6a8eac8e1be17ade3bd6"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,146 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e1999999b2c",
-          "name": "揭示脑网络增龄性变化模式",
-          "desc": "基于个体水平构建脑形态学网络，从节点、模块和连接体三个层次揭示脑网络增龄性变化模式。",
+          "id": "item-176168fc93a1",
+          "name": "脑年龄预测MAE最优",
+          "desc": "6个数据集",
           "evidence": [
             {
-              "quote": "从节点、模块和连接体三个层次考察脑网络的拓扑特征，揭示了脑网络增龄性变化模式",
+              "quote": "脑年龄预测的实验结果表明，我们的模型在6个数据集上都取得了最好的平均绝对误差性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2713,
-                "end_char": 2750
-              },
-              "version": "6a8eac8e1be17ade3bd6"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-cfa3acf2751f",
-          "name": "6个数据集最佳平均绝对误差",
-          "desc": "脑年龄预测实验结果表明该模型在6个数据集上都取得最好的平均绝对误差性能。",
-          "evidence": [
-            {
-              "quote": "我们的模型在6个数据集上都取得了最好的平均绝对误差性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3036,
+                "start_char": 3023,
                 "end_char": 3062
               },
               "version": "6a8eac8e1be17ade3bd6"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-dc6ae20334d6",
-          "name": "热扩散模型预测功能连接",
-          "desc": "提出基于热扩散模型的多尺度融合方法，利用扩散过程动态信息基于结构连接更准确预测功能连接。",
-          "evidence": [
-            {
-              "quote": "提出一种基于热扩散模型的多尺度融合方法，有效利用扩散过程的动态信息，基于大脑结构连接更准确地预测了功能连接",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2752,
-                "end_char": 2804
-              },
-              "version": "6a8eac8e1be17ade3bd6"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1ba5c3bf04c3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-44ab6b316e90"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Limitations of clinical trial sample size estimate by subtraction of two measurements",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Kewei;Guo Xiaojuan;Pan Rong;Xiong Chengjie;Danielle J. Harvey;Chen Yinghua;Yao Li;Su Yi;Eric M. Reiman",
+      "id": "out-8b65e0ddb1b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Limitations of clinical trial sample size estimate by subtraction of two measurements — Chen Kewei;Guo Xiaojuan;Pan Rong;Xiong Chengjie;Danielle J. Harvey;Chen Yinghua;Yao Li;Su Yi;Eric M. Reiman",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3363,
+            "end_char": 3564
+          },
+          "version": "6a8eac8e1be17ade3bd6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-44ab6b316e90"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fe642ddbe2e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Estimating the connectional brain template based on multi-view networks with bi-channel graph neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jingming;Lyu Zhengyuan;Li Ke;Yao Li;Guo Xiaojuan",
+      "id": "out-c16a3713f55a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Estimating the connectional brain template based on multi-view networks with bi-channel graph neural network — Li Jingming;Lyu Zhengyuan;Li Ke;Yao Li;Guo Xiaojuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3569,
+            "end_char": 3737
+          },
+          "version": "6a8eac8e1be17ade3bd6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dbb5b28be255"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cfa3acf2751f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Coupled Representation of Hierarchical Features for Mild Cognitive Impairment and Alzheimer's Disease Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Ke;Li Qing;Yao Li;Guo Xiaojuan",
+      "id": "out-5dd36951d1c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Coupled Representation of Hierarchical Features for Mild Cognitive Impairment and Alzheimer's Disease Classification — Liu Ke;Li Qing;Yao Li;Guo Xiaojuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3905
+          },
+          "version": "6a8eac8e1be17ade3bd6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8165a5ad0836"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0e1999999b2c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tracking Age‐Related Topological Changes in Individual Brain Morphological Networks Across the Human Lifespan",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jingming;Wang Qian;Li Ke;Yao Li;Guo Xiaojuan",
+      "id": "out-cdb9f808ba24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tracking Age‐Related Topological Changes in Individual Brain Morphological Networks Across the Human Lifespan — Li Jingming;Wang Qian;Li Ke;Yao Li;Guo Xiaojuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 4075
+          },
+          "version": "6a8eac8e1be17ade3bd6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting resting-state brain functional connectivity from the structural connectome using the heat diffusion model: a multiple-timescale fusion method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Zhengyuan;Li Jingming;Yao Li;Guo Xiaojuan",
+      "id": "out-37357fb2b0b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting resting-state brain functional connectivity from the structural connectome using the heat diffusion model: a multiple-timescale fusion method — Lv Zhengyuan;Li Jingming;Yao Li;Guo Xiaojuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4080,
+            "end_char": 4285
+          },
+          "version": "6a8eac8e1be17ade3bd6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

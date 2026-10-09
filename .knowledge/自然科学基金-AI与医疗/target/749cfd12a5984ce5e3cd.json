@@ -2,15 +2,20 @@
   "doc_id": "749cfd12a5984ce5e3cd",
   "version": "c4e0641e2ad1c33fff01",
   "source_hash": "f3e409eb29e91180aa1396a0526d9620ace2777bef9ee79b53e988fdbff70017",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.826154+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:45:44.251003+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf073a96be2a",
-          "name": "胃癌新辅助化疗疗效影像组学预测",
-          "desc": "面向进展期胃癌新辅助化疗决策，基于多模态影像组学与AI构建治疗前疗效预测模型。",
+          "id": "item-987ac19b8d05",
+          "name": "胃癌新辅助化疗疗效预测",
+          "desc": "新辅助化疗并非对所有患者有效",
           "evidence": [
             {
-              "quote": "胃癌是我国发病率和死亡率都非常高的恶性肿瘤，给我国带来了巨大的经济和社会负担",
+              "quote": "胃癌新辅助化疗结合手术是临床指南推荐的进展期胃癌的标准治疗方案之一，但临床实践中发现新辅助化疗并不是对所有的患者都有效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 661,
-                "end_char": 698
+                "start_char": 2392,
+                "end_char": 2450
               },
               "version": "c4e0641e2ad1c33fff01"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8dc8df55d0a6",
-          "name": "新辅助化疗并非对所有患者有效",
-          "desc": "新辅助化疗并不是对所有患者都有效，如何在治疗前有效预判其疗效是挑战性临床问题。",
+          "id": "item-ec8c7e83016b",
+          "name": "治疗前有效预判新辅助化疗疗效",
+          "desc": "挑战性临床问题",
           "evidence": [
             {
-              "quote": "但临床实践中发现新辅助化疗并不是对所有的患者都有效，如何在治疗前有效预判新辅助化疗的疗效是一个挑战性临床问题",
+              "quote": "如何在治疗前有效预判新辅助化疗的疗效是一个挑战性临床问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2426,
+                "start_char": 2452,
                 "end_char": 2479
               },
               "version": "c4e0641e2ad1c33fff01"
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85a605f150a6",
-          "name": "多期CT影像组学与AI融合预测模型",
-          "desc": "从CT、内镜超声影像提取与新辅助化疗疗效高度相关的影像组学特征，结合病理与临床信息，利用半监督学习、弱监督关键区域筛选与多类别特征提取构建融合预测模型。",
+          "id": "item-902c05228781",
+          "name": "融合多期CT影像组学与临床信息预测模型",
+          "desc": "半监督学习训练框架与弱监督关键区域筛选",
           "evidence": [
             {
-              "quote": "通过新兴的影像组学方法从CT、内镜超声影像中提取与胃癌新辅助化疗疗效高度相关的关键影像组学特征，并结合病理、临床等信息，利用人工智能技术构建胃癌的新辅助化疗疗效预测模型",
+              "quote": "项目组创新了半监督学习训练框架、基于弱监督学习的关键区域筛选算法以及多类别特征提取技术，同时提取与TRG分级相关的深度学习特征和高通量预定义特征，并完成了一套融合多期CT影像组学特征和临床信息的预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 851,
-                "end_char": 934
+                "start_char": 2853,
+                "end_char": 2953
               },
               "version": "c4e0641e2ad1c33fff01"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e55a6cd4ff31",
+          "name": "胃癌淋巴结转移预测模型",
+          "desc": "预定义特征与密集神经网络特征",
+          "evidence": [
+            {
+              "quote": "基于CT影像的预定义特征和密集神经网络特征构建了胃癌淋巴结转移预测模型，该模型诊断精度比现有临床方法提高17%以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3085,
+                "end_char": 3141
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6388c2072e2d",
-          "name": "融合模型预测TRG 0/1的AUC达0.819",
-          "desc": "基于近1000例回顾性与100例前瞻性数据构建融合模型，独立测试集预测新辅助化疗良好反应（TRG 0或1）AUC达0.819；淋巴结转移预测模型诊断精度较临床方法提高17%以上，工作发表于Annals of Oncology。",
+          "id": "item-6b84996d073c",
+          "name": "融合模型独立测试集AUC",
+          "desc": "0.819，优于RECIST、临床和影像组学模型",
           "evidence": [
             {
               "quote": "该融合模型在独立测试集上预测新辅助化疗良好反应患者（TRG为0或1）的AUC达0.819，优于RECIST评分、临床模型和影像组学模型",
@@ -99,44 +122,975 @@
               "version": "c4e0641e2ad1c33fff01"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-71a10be1173c",
+          "name": "回顾性与前瞻性队列",
+          "desc": "近1000例回顾性和100例前瞻性",
+          "evidence": [
+            {
+              "quote": "收集了近1000例回顾性和100例前瞻性胃癌患者数据",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2787,
+                "end_char": 2812
+              },
+              "version": "c4e0641e2ad1c33fff01"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bf073a96be2a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8dc8df55d0a6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-view co-training network for semi-supervised medical image-based prognostic prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hailin Li;Siwen Wang;Bo Liu;Mengjie Fang;Runnan Cao;Bingxi He;Shengyuan Liu;Chaoen Hu;Di Dong;Ximing Wang;Hexiang Wang;Jie Tian",
+      "id": "out-f3e28c65471c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-view co-training network for semi-supervised medical image-based prognostic prediction — Hailin Li;Siwen Wang;Bo Liu;Mengjie Fang;Runnan Cao;Bingxi He;Shengyuan Liu;Chaoen Hu;Di Dong;Ximing Wang;Hexiang Wang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3320,
+            "end_char": 3550
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8dc8df55d0a6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-85a605f150a6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning signatures reveal multiscale intratumor heterogeneity associated with biological functions and survival in recurrent nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xun Zhao;Yu-Jing Liang;Xu Zhang;Dong-Xiang Wen;Wei Fan;Lin-Quan Tang;Di Dong;Jie Tian;Hai-Qiang Mai",
+      "id": "out-c366982509b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning signatures reveal multiscale intratumor heterogeneity associated with biological functions and survival in recurrent nasopharyngeal carcinoma — Xun Zhao;Yu-Jing Liang;Xu Zhang;Dong-Xiang Wen;Wei Fan;Lin-Quan Tang;Di Dong;Jie Tian;Hai-Qiang Mai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3555,
+            "end_char": 3818
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-85a605f150a6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6388c2072e2d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive model for predicting future ischemic strokes in patients with silent lacunar infarction using radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie-hua Su;Ling-wei Meng;Di Dong;Wen-yan Zhuo;Jian-ming Wang;Li-bin Liu;Yi Qin;Ye Tian;Jie Tian;Zhao-hui Li",
+      "id": "out-0e2517f0bdb1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive model for predicting future ischemic strokes in patients with silent lacunar infarction using radiomics — Jie-hua Su;Ling-wei Meng;Di Dong;Wen-yan Zhuo;Jian-ming Wang;Li-bin Liu;Yi Qin;Ye Tian;Jie Tian;Zhao-hui Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3823,
+            "end_char": 4054
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting response to immunotherapy in advanced non-small cell lung cancer using tumour mutational burden radiomic biomarker, Journal for ImmunoTherapy of Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingxi He;Di Dong;Yunlang She;Caicun Zhou;Mengjie Fang;Yongbei Zhu;Henghui Zhang;Zhipei Huang;Tao Jiang;Jie Tian;Chang Chen",
+      "id": "out-58638b4a7a72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting response to immunotherapy in advanced non-small cell lung cancer using tumour mutational burden radiomic biomarker, Journal for ImmunoTherapy of Cancer — Bingxi He;Di Dong;Yunlang She;Caicun Zhou;Mengjie Fang;Yongbei Zhu;Henghui Zhang;Zhipei Huang;Tao Jiang;Jie Tian;Chang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4059,
+            "end_char": 4353
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chest Radiographs Using a Context-Fusion Convolution Neural Network (CNN): Can It Distinguish the Etiology of Community-Acquired Pneumonia (CAP) in Children?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shasha Hu;Yongbei Zhu;Di Dong;Bei Wang;Zuofu Zhou;Chi Wang;Jie Tian;Yun Peng",
+      "id": "out-1322e98c5048",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chest Radiographs Using a Context-Fusion Convolution Neural Network (CNN): Can It Distinguish the Etiology of Community-Acquired Pneumonia (CAP) in Children? — Shasha Hu;Yongbei Zhu;Di Dong;Bei Wang;Zuofu Zhou;Chi Wang;Jie Tian;Yun Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4358,
+            "end_char": 4600
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-energy CT-based deep learning radiomics can improve lymph node metastasis risk prediction for gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Li;Di Dong;Mengjie Fang;Rui Wang;Jie Tian;Hailiang Li;Jianbo Gao",
+      "id": "out-b48683958b1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-energy CT-based deep learning radiomics can improve lymph node metastasis risk prediction for gastric cancer — Jing Li;Di Dong;Mengjie Fang;Rui Wang;Jie Tian;Hailiang Li;Jianbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4605,
+            "end_char": 4796
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The role of imaging in the detection and management of COVID-19: a review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Dong;Zhenchao Tang;Shuo Wang;Hui Hui;Lixin Gong;Yao Lu;Zhong Xue;Hongen Liao;Fang Chen;Fan Yang;Ronghua Jin;Kun Wang;Zhenyu Liu;Jingwei Wei;Wei Mu;Hui Zhang;Jingying Jiang;Jie Tian;Hongjun Li",
+      "id": "out-661511c807b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The role of imaging in the detection and management of COVID-19: a review — Di Dong;Zhenchao Tang;Shuo Wang;Hui Hui;Lixin Gong;Yao Lu;Zhong Xue;Hongen Liao;Fang Chen;Fan Yang;Ronghua Jin;Kun Wang;Zhenyu Liu;Jingwei Wei;Wei Mu;Hui Zhang;Jingying Jiang;Jie Tian;Hongjun Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4801,
+            "end_char": 5077
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的淋巴结转移影像分析系统、方法及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;董迪;李海林;胡振华;王思雯;胡朝恩",
+      "id": "out-f6449226bc88",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习的淋巴结转移影像分析系统、方法及设备 — 田捷;董迪;李海林;胡振华;王思雯;胡朝恩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5082,
+            "end_char": 5134
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2022 IEEE Engineering in Medicine and Biology Society (EMBS) Best Paper Award 2nd Place",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Dong;Zhenchao Tang;Shuo Wang;Hui Hui;Lixin Gong;Yao Lu;Zhong Xue;Hongen Liao;Fang Chen;Fan Yang;Ronghua Jin;Kun Wang;Zhenyu Liu;Jingwei Wei;Wei Mu;Hui Zhang;Jingying Jiang;Jie Tian;Hongjun Li",
+      "id": "out-003c4c277843",
+      "evidence": [
+        {
+          "quote": "[奖励] 2022 IEEE Engineering in Medicine and Biology Society (EMBS) Best Paper Award 2nd Place — Di Dong;Zhenchao Tang;Shuo Wang;Hui Hui;Lixin Gong;Yao Lu;Zhong Xue;Hongen Liao;Fang Chen;Fan Yang;Ronghua Jin;Kun Wang;Zhenyu Liu;Jingwei Wei;Wei Mu;Hui Zhang;Jingying Jiang;Jie Tian;Hongjun Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5139,
+            "end_char": 5427
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The potential of prostate gland radiomic features in identifying the Gleason score",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lixin Gong;Min Xu;Mengjie Fang;Bingxi He;Hailin Li;Xiangming Fang;Di Dong;Jie Tian",
+      "id": "out-965687e3bc16",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The potential of prostate gland radiomic features in identifying the Gleason score — Lixin Gong;Min Xu;Mengjie Fang;Bingxi He;Hailin Li;Xiangming Fang;Di Dong;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5433,
+            "end_char": 5606
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于分布式深度学习的医学影像智能分析系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;董迪;王思雯;胡振华;胡朝恩;杨鑫",
+      "id": "out-08664eeb7f0a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于分布式深度学习的医学影像智能分析系统 — 田捷;董迪;王思雯;胡振华;胡朝恩;杨鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5612,
+            "end_char": 5659
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive Prediction of High-Grade Prostate Cancer via Biparametric MRI Radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lixin Gong;Min Xu;Mengjie Fang;Jian Zou;Shudong Yang;Xinyi Yu;Dandan Xu;Lijuan Zhou;Hailin Li;Bingxi He;Yan Wang;Xiangming Fang;Di Dong;Jie Tian",
+      "id": "out-06e31bb06c12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive Prediction of High-Grade Prostate Cancer via Biparametric MRI Radiomics — Lixin Gong;Min Xu;Mengjie Fang;Jian Zou;Shudong Yang;Xinyi Yu;Dandan Xu;Lijuan Zhou;Hailin Li;Bingxi He;Yan Wang;Xiangming Fang;Di Dong;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5665,
+            "end_char": 5901
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence in gastric cancer: applications and challenges",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Runnan Cao;Lei Tang;Mengjie Fang;Lianzhen Zhong;Siwen Wang;Lixin Gong;Jiazheng Li;Di Dong;Jie Tian",
+      "id": "out-07d3ebec3c62",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence in gastric cancer: applications and challenges — Runnan Cao;Lei Tang;Mengjie Fang;Lianzhen Zhong;Siwen Wang;Lixin Gong;Jiazheng Li;Di Dong;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5907,
+            "end_char": 6084
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2D and 3D CT Radiomic Features Performance Comparison in Characterization of Gastric Cancer: A Multi-Center Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingwei Meng;Di Dong;Xin Chen;Mengjie Fang;Rongpin Wang;Jing Li;Zaiyi Liu;Jie Tian",
+      "id": "out-33e8c03e5f52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 2D and 3D CT Radiomic Features Performance Comparison in Characterization of Gastric Cancer: A Multi-Center Study — Lingwei Meng;Di Dong;Xin Chen;Mengjie Fang;Rongpin Wang;Jing Li;Zaiyi Liu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6090,
+            "end_char": 6294
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and External Validation of Radiomics Approach for Nuclear Grading in Clear Cell Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongyu Zhou;Haixia Mao;Di Dong;Mengjie Fang;Dongsheng Gu;Xueling Liu;Min Xu;Shudong Yang;Jian Zou;Ruohan Yin;Hairong Zheng;Jie Tian;Changjie Pan;Xiangming Fang",
+      "id": "out-6870be7999f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and External Validation of Radiomics Approach for Nuclear Grading in Clear Cell Renal Cell Carcinoma — Hongyu Zhou;Haixia Mao;Di Dong;Mengjie Fang;Dongsheng Gu;Xueling Liu;Min Xu;Shudong Yang;Jian Zou;Ruohan Yin;Hairong Zheng;Jie Tian;Changjie Pan;Xiangming Fang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6300,
+            "end_char": 6580
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Captioning of Early Gastric Cancer via Magnification Endoscopy with Narrow Band Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lixin Gong;Min Wang;Lei Shu;Jie He;Bin Qin;Jiacheng Xu;Wei Su;Di Dong;Hao Hu;Jie Tian;Pinghong Zhou",
+      "id": "out-e140ab824861",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Captioning of Early Gastric Cancer via Magnification Endoscopy with Narrow Band Imaging — Lixin Gong;Min Wang;Lei Shu;Jie He;Bin Qin;Jiacheng Xu;Wei Su;Di Dong;Hao Hu;Jie Tian;Pinghong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6586,
+            "end_char": 6791
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Deep Learning Prognosis Model Help Alert for COVID-19 Patients at High-Risk of Death: A Multi-center Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingwei Meng;Di Dong;Liang Li;Meng Niu;Yan Bai;Meiyun Wang;Xiaoming Qiu;Yunfei Zha;Jie Tian",
+      "id": "out-dbe9c20959d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Deep Learning Prognosis Model Help Alert for COVID-19 Patients at High-Risk of Death: A Multi-center Study — Lingwei Meng;Di Dong;Liang Li;Meng Niu;Yan Bai;Meiyun Wang;Xiaoming Qiu;Yunfei Zha;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6797,
+            "end_char": 7005
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于Unet迁移学习的胃印戒细胞癌图像智能分类系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;董迪;李聪;胡振华;杨鑫;胡朝恩",
+      "id": "out-9ad612c9f271",
+      "evidence": [
+        {
+          "quote": "[专利] 基于Unet迁移学习的胃印戒细胞癌图像智能分类系统 — 田捷;董迪;李聪;胡振华;杨鑫;胡朝恩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7011,
+            "end_char": 7062
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intratumoral and peritumoral radiomics analysis for preoperative Lauren classification in gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao-Xiao Wang;Yi Ding;Si-Wen Wang;Di Dong;Hai-Lin Li;Jian Chen;Hui Hu;Chao Lu;Jie Tian;Xiu-Hong Shan",
+      "id": "out-f4721d7f3c03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intratumoral and peritumoral radiomics analysis for preoperative Lauren classification in gastric cancer — Xiao-Xiao Wang;Yi Ding;Si-Wen Wang;Di Dong;Hai-Lin Li;Jian Chen;Hui Hu;Chao Lu;Jie Tian;Xiu-Hong Shan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7068,
+            "end_char": 7282
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting origin for bone metastatic cancer using deep learning-based pathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengjie Fang;Zipei Wang;Jie Tian;Di Dong",
+      "id": "out-1b324401faa1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting origin for bone metastatic cancer using deep learning-based pathology — Mengjie Fang;Zipei Wang;Jie Tian;Di Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7288,
+            "end_char": 7417
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative computed tomography-guided disease-free survival prediction in gastric cancer: a multicenter radiomics study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siwen Wang;Caizhen Feng;Di Dong;Hailin Li;Jing Zhou;Yingjiang Ye;Zaiyi Liu;Jie Tian;Yi Wang",
+      "id": "out-72cbd6b3d717",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative computed tomography-guided disease-free survival prediction in gastric cancer: a multicenter radiomics study — Siwen Wang;Caizhen Feng;Di Dong;Hailin Li;Jing Zhou;Yingjiang Ye;Zaiyi Liu;Jie Tian;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7423,
+            "end_char": 7644
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based deep learning radiomics analysis for evaluation of serosa invasion in advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruijia Sun;Mengjie Fang;Lei Tang;Xiaoting Li;Qiaoyuan Lu;Di Dong;Jie Tian;Yingshi Sun",
+      "id": "out-44b4c5f7dcfe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based deep learning radiomics analysis for evaluation of serosa invasion in advanced gastric cancer — Ruijia Sun;Mengjie Fang;Lei Tang;Xiaoting Li;Qiaoyuan Lu;Di Dong;Jie Tian;Yingshi Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7650,
+            "end_char": 7846
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics and Deep Learning in Nasopharyngeal Carcinoma: A Review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zipei Wang;Mengjie Fang;Jie Zhang;Linquan Tang;Lianzhen Zhong;Hailin Li;Runnan Cao;Xun Zhao;Shengyuan Liu;Ruofan Zhang;Xuebin Xie;Haiqiang Mai;Sufang Qiu;Jie Tian;Di Dong",
+      "id": "out-6aef4471e905",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics and Deep Learning in Nasopharyngeal Carcinoma: A Review — Zipei Wang;Mengjie Fang;Jie Zhang;Linquan Tang;Lianzhen Zhong;Hailin Li;Runnan Cao;Xun Zhao;Shengyuan Liu;Ruofan Zhang;Xuebin Xie;Haiqiang Mai;Sufang Qiu;Jie Tian;Di Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7852,
+            "end_char": 8096
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning-based radiomic nomogram for prognosis and treatment decision in advanced nasopharyngeal carcinoma: A multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lianzhen Zhong;Di Dong;Xueliang Fang;Fan Zhang;Ning Zhang;Liwen Zhang;Mengjie Fang;Wei Jiang;Shaobo Liang;Cong Li;Yujia Liu;Xun Zhao;Runnan Cao;Hong Shan;Zhenhua Hu;Jun Ma;Linglong Tang;Jie Tian",
+      "id": "out-ee361473d595",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning-based radiomic nomogram for prognosis and treatment decision in advanced nasopharyngeal carcinoma: A multicentre study — Lianzhen Zhong;Di Dong;Xueliang Fang;Fan Zhang;Ning Zhang;Liwen Zhang;Mengjie Fang;Wei Jiang;Shaobo Liang;Cong Li;Yujia Liu;Xun Zhao;Runnan Cao;Hong Shan;Zhenhua Hu;Jun Ma;Linglong Tang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8102,
+            "end_char": 8439
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic signatures reveal multiscale intratumor heterogeneity associated with tissue tolerance and survival in re-irradiated nasopharyngeal carcinoma: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-eb03672d7f9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic signatures reveal multiscale intratumor heterogeneity associated with tissue tolerance and survival in re-irradiated nasopharyngeal carcinoma: a multicenter study — Ting Liu;Di Dong;Xun Zhao;Xiao-Min Ou;Jun-Lin Yi;Jian Guan;Ye Zhang;Lv Xiao-Fei;Chuan-Miao Xie;Dong-Hua Luo;Rui Sun;Qiu-Yan Chen;Lv Xing;Shan-Shan Guo;Li-Ting Liu;Da-Feng Lin;Yan-Zhou Chen;Jie-Yi Lin;Mei-Juan Luo;Wen-Bin Yan;Mei-Lin He;Meng-Yuan Mao;Man-Yi Zhu;Wen-Hui Chen;Bo-Wen Shen;Shi-Qian Wang;Hai-Lin Li;Lian-Zhen Zhong;Chao-Su Hu;De-Hua Wu;Hai-Qiang Mai;Jie Tian;Lin-Quan Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8445,
+            "end_char": 9009
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the predictive value of additional peritumoral regions based on deep learning and radiomics: A multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangjun Wu;Di Dong;Lu Zhang;Mengjie Fang;Yongbei Zhu;Bingxi He;Zhaoxiang Ye;Minming Zhang;Shuixing Zhang;Jie Tian",
+      "id": "out-17e68f7c5b6b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the predictive value of additional peritumoral regions based on deep learning and radiomics: A multicenter study — Xiangjun Wu;Di Dong;Lu Zhang;Mengjie Fang;Yongbei Zhu;Bingxi He;Zhaoxiang Ye;Minming Zhang;Shuixing Zhang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9015,
+            "end_char": 9260
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-Based Deep-Learning Model f",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-d1f217f883bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-Based Deep-Learning Model f",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9266,
+            "end_char": 9303
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Deep Learning Radiomics Model to Identify Poor Outcome in COVID-19 Patients with Underlying Health Conditions: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siwen Wang;Di Dong;Liang Li;Hailin Li;Yan Bai;Yahua Hu;Yuanyi Huang;Xiangrong Yu;Sibin Liu;Xiaoming Qiu;Ligong Lu;Meiyun Wang;Yunfei Zha;Jie Tian",
+      "id": "out-7fd4b1079bf0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Deep Learning Radiomics Model to Identify Poor Outcome in COVID-19 Patients with Underlying Health Conditions: A Multicenter Study — Siwen Wang;Di Dong;Liang Li;Hailin Li;Yan Bai;Yahua Hu;Yuanyi Huang;Xiangrong Yu;Sibin Liu;Xiaoming Qiu;Ligong Lu;Meiyun Wang;Yunfei Zha;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9582,
+            "end_char": 9868
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From signal to knowledge: The diagnostic value of raw data in artificial intelligence prediction of human data for the first time",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-4b569c00ff50",
+      "evidence": [
+        {
+          "quote": "[期刊论文] From signal to knowledge: The diagnostic value of raw data in artificial intelligence prediction of human data for the first time — Bingxi He;Yu Guo;Yongbei Zhu;Lixia Tong;Boyu Kong;Kun Wang;Caixia Sun;Hailin Li;Feng Huang;Liwei Wu;Meng Wang;Fanyang Meng;Le Dou;Kai Sun;Tong Tong;Zhenyu Liu;Ziqi Wei;Wei Mu;Shuo Wang;Zhenchao Tang;Shuaitong Zhang;Jingwei Wei;Lizhi Shao;Mengjie Fang;Juntao Li;Shouping Zhu;Lili Zhou;Shuo Wang;Di Dong;Huimao Zhang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9874,
+            "end_char": 10335
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics and Its Clinical Application: Artificial Intelligence and Medical Big Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Tian;Di Dong;Zhenyu Liu;Jingwei Wei",
+      "id": "out-9e581def638b",
+      "evidence": [
+        {
+          "quote": "[专著] Radiomics and Its Clinical Application: Artificial Intelligence and Medical Big Data — Jie Tian;Di Dong;Zhenyu Liu;Jingwei Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10341,
+            "end_char": 10471
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying early gastric cancer under magnifying narrow-band images with deep learning: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Hu;Lixin Gong;Di Dong;Liang Zhu;Min Wang;Jie He;Lei Shu;Yiling Cai;Shilun Cai;Wei Su;Yunshi Zhong;Cong Li;Yongbei Zhu;Mengjie Fang;Lianzhen Zhong;Xin Yang;Pinghong Zhou;Jie Tian",
+      "id": "out-6591ad8f02ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying early gastric cancer under magnifying narrow-band images with deep learning: a multicenter study — Hao Hu;Lixin Gong;Di Dong;Liang Zhu;Min Wang;Jie He;Lei Shu;Yiling Cai;Shilun Cai;Wei Su;Yunshi Zhong;Cong Li;Yongbei Zhu;Mengjie Fang;Lianzhen Zhong;Xin Yang;Pinghong Zhou;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10477,
+            "end_char": 10775
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning radiomic nomogram can predict the number of lymph node metastasis in locally advanced gastric cancer: an international multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Dong;Mengjie Fang;Lei Tang;Xiuhong Shan;Jianbo Gao;Francesco Giganti;Rongpin Wang;Xin Chen;Xiaoxiao Wang;Diego Palumbo;Jia Fu;Wuchao Li;Jing Li;Lianzhen Zhong;Francesco De Cobelli;Jiafu Ji;Zaiyi Liu;Jie Tian",
+      "id": "out-d8a036c7f39f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning radiomic nomogram can predict the number of lymph node metastasis in locally advanced gastric cancer: an international multicenter study — Di Dong;Mengjie Fang;Lei Tang;Xiuhong Shan;Jianbo Gao;Francesco Giganti;Rongpin Wang;Xin Chen;Xiaoxiao Wang;Diego Palumbo;Jia Fu;Wuchao Li;Jing Li;Lianzhen Zhong;Francesco De Cobelli;Jiafu Ji;Zaiyi Liu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10781,
+            "end_char": 11150
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI Radiomic Model for Preoperative Predicting WHO/ISUP Nuclear Grade of Clear Cell Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiong Li;Yujia Liu;Di Dong;Xu Bai;Qingbo Huang;Aitao Guo;Huiyi Ye;Jie Tian;Haiyi Wang",
+      "id": "out-0e2756d2f01a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI Radiomic Model for Preoperative Predicting WHO/ISUP Nuclear Grade of Clear Cell Renal Cell Carcinoma — Qiong Li;Yujia Liu;Di Dong;Xu Bai;Qingbo Huang;Aitao Guo;Huiyi Ye;Jie Tian;Haiyi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11156,
+            "end_char": 11370
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于HER2基因检测的胃癌病理图像分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;董迪;张若凡;方梦捷;操润楠",
+      "id": "out-17b83ab40ff6",
+      "evidence": [
+        {
+          "quote": "[专利] 基于HER2基因检测的胃癌病理图像分类方法及系统 — 田捷;董迪;张若凡;方梦捷;操润楠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11376,
+            "end_char": 11424
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based AI model for signet-ring cell carcinoma diagnosis and chemotherapy response prediction in gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cong Li;Yun Qin;Weihan Zhang;Hanyu Jiang;Bin Song;Mustafa R. Bashir;Heng Xu;Ting Duan;Mengjie Fang;Lianzhen Zhong;Lingwei Meng;Di Dong;Zhenhua Hu;Jie Tian;Jiankun Hu",
+      "id": "out-e1cce30c0d90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based AI model for signet-ring cell carcinoma diagnosis and chemotherapy response prediction in gastric cancer — Cong Li;Yun Qin;Weihan Zhang;Hanyu Jiang;Bin Song;Mustafa R. Bashir;Heng Xu;Ting Duan;Mengjie Fang;Lianzhen Zhong;Lingwei Meng;Di Dong;Zhenhua Hu;Jie Tian;Jiankun Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11430,
+            "end_char": 11728
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pathological diagnosis and prognosis of Gastric cancer through a multi-instance learning method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Runnan Cao;Lixin Gong;Di Dong",
+      "id": "out-75555c3f4085",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pathological diagnosis and prognosis of Gastric cancer through a multi-instance learning method — Runnan Cao;Lixin Gong;Di Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11734,
+            "end_char": 11867
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Specific Borrmann classification in advanced gastric cancer by an ensemble multilayer perceptron network: a multicenter research",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siwen Wang;Di Dong;Wenjuan Zhang;Hui Hu;Hailin Li;Yongbei Zhu;Junlin Zhou;Xiuhong Shan;Jie Tian",
+      "id": "out-107c70d8af64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Specific Borrmann classification in advanced gastric cancer by an ensemble multilayer perceptron network: a multicenter research — Siwen Wang;Di Dong;Wenjuan Zhang;Hui Hu;Hailin Li;Yongbei Zhu;Junlin Zhou;Xiuhong Shan;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11873,
+            "end_char": 12105
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating No.3 lymph nodes and primary tumor radiomics to predict lymph node metastasis in T1-2 gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxiao Wang;Cong Li;Mengjie Fang;Liwen Zhang;Lianzhen Zhong;Di Dong;Jie Tian;Xiuhong Shan",
+      "id": "out-2178d80280cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating No.3 lymph nodes and primary tumor radiomics to predict lymph node metastasis in T1-2 gastric cancer — Xiaoxiao Wang;Cong Li;Mengjie Fang;Liwen Zhang;Lianzhen Zhong;Di Dong;Jie Tian;Xiuhong Shan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12111,
+            "end_char": 12323
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning for predicting major pathological response to neoadjuvant chemoimmunotherapy in non-small cell lung cancer: A multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunlang She;Bingxi He;Fang Wang;Yifan Zhong;Tingting Wang;Zhenchuan Liu;Minglei Yang;Bentong Yu;Jiajun Deng;Xiwen Sun;Chunyan Wu;Likun Hou;Yuming Zhu;Yang Yang;Hongjie Hu;Di Dong;Chang Chen;Jie Tian",
+      "id": "out-e9ae9b15fd7b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning for predicting major pathological response to neoadjuvant chemoimmunotherapy in non-small cell lung cancer: A multicentre study — Yunlang She;Bingxi He;Fang Wang;Yifan Zhong;Tingting Wang;Zhenchuan Liu;Minglei Yang;Bentong Yu;Jiajun Deng;Xiwen Sun;Chunyan Wu;Likun Hou;Yuming Zhu;Yang Yang;Hongjie Hu;Di Dong;Chang Chen;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12329,
+            "end_char": 12677
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学基础",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田捷;李纯明;董迪;刘振宇;魏靖伟",
+      "id": "out-e254b524e5e4",
+      "evidence": [
+        {
+          "quote": "[专著] 影像组学基础 — 田捷;李纯明;董迪;刘振宇;魏靖伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12683,
+            "end_char": 12713
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based identification of pediatric non-Wilms tumors using convolutional neural networks at a single center",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yupeng Zhu;Hailin Li;Yangyue Huang;Wangxing Fu;Siwen Wang;Ning Sun;Di Dong;Jie Tian;Yun Peng",
+      "id": "out-bdaa27abea48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based identification of pediatric non-Wilms tumors using convolutional neural networks at a single center — Yupeng Zhu;Hailin Li;Yangyue Huang;Wangxing Fu;Siwen Wang;Ning Sun;Di Dong;Jie Tian;Yun Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12719,
+            "end_char": 12928
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a deep learning model to screen for trisomy 21 during the first trimester from nuchal ultrasonographic images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liwen Zhang;Di Dong;Yongqing Sun;Chaoen Hu;Congxin Sun;Qingqing Wu;Jie Tian",
+      "id": "out-953b6509d371",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a deep learning model to screen for trisomy 21 during the first trimester from nuchal ultrasonographic images — Liwen Zhang;Di Dong;Yongqing Sun;Chaoen Hu;Congxin Sun;Qingqing Wu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12934,
+            "end_char": 13157
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2022年中国图象图形学学会(CSIG)青年科学家奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董迪",
+      "id": "out-ee5443c7b59c",
+      "evidence": [
+        {
+          "quote": "[奖励] 2022年中国图象图形学学会(CSIG)青年科学家奖 — 董迪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13163,
+            "end_char": 13198
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge-guided multi-task attention network for survival risk prediction using multi-center computed tomography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liwen Zhang;Lianzhen Zhong;Cong Li;Wenjuan Zhang;Chaoen Hu;Di Dong;Zaiyi Liu;Junlin Zhou;Jie Tian",
+      "id": "out-e25e2798d6df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge-guided multi-task attention network for survival risk prediction using multi-center computed tomography images — Liwen Zhang;Lianzhen Zhong;Cong Li;Wenjuan Zhang;Chaoen Hu;Di Dong;Zaiyi Liu;Junlin Zhou;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13204,
+            "end_char": 13430
+          },
+          "version": "c4e0641e2ad1c33fff01"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 44,
+    "listed": 44,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 36,
+        "extracted": 36
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

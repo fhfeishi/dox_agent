@@ -2,15 +2,20 @@
   "doc_id": "4fde6198358548efc167",
   "version": "22a49ba89e78bb37114b",
   "source_hash": "d40e92da2e81da7fab373f6237371cfb38a33d5139b7c3dbc117da6c8b3ef005",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.975896+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:41:37.679684+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fa6b301a6f5d",
-          "name": "肝细胞肝癌精准放疗",
-          "desc": "面向肝细胞肝癌综合治疗中的放射治疗，解析放疗敏感性分子机制并建立敏感性预测模型以支撑精准放疗。",
+          "id": "item-3fd7f5838d7b",
+          "name": "肝细胞癌放疗敏感性",
+          "desc": "放疗是综合治疗重要手段",
           "evidence": [
             {
-              "quote": "放疗已成为肝细胞肝癌综合治疗不可或缺的重要手段之一",
+              "quote": "放射治疗已成为肝细胞肝癌综合治疗不可或缺的重要手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 646,
-                "end_char": 670
+                "start_char": 2982,
+                "end_char": 3006
               },
               "version": "22a49ba89e78bb37114b"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb4d71832a91",
-          "name": "肝癌细胞异质性与耐受剂量限制导致放疗疗效不佳",
-          "desc": "受肝癌细胞异质性以及肝脏和周围器官耐受剂量限制，部分肝细胞肝癌患者放疗后疗效不佳，放疗响应异质性成因尚不明确。",
+          "id": "item-f69ecbdb3fff",
+          "name": "肝癌细胞异质性与周围器官耐受限制致疗效不佳",
+          "desc": "部分患者放疗疗效不佳",
           "evidence": [
             {
-              "quote": "然而由于肝癌细胞异质性及肝脏和周围器官耐受剂量的限制，部分患者疗效不佳",
+              "quote": "由于肝癌细胞异质性及周围器官耐受剂量的限制，部分肝细胞肝癌患者放射治疗后的疗效不佳",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 672,
-                "end_char": 706
+                "start_char": 3009,
+                "end_char": 3049
               },
               "version": "22a49ba89e78bb37114b"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-295b99a4f7d8",
-          "name": "CRISPR文库筛选结合分子细胞生物学解析线粒体自噬机制",
-          "desc": "从分子、细胞、动物多层次运用分子和细胞生物学手段，通过CRISPR全基因组敲除文库筛选放疗抵抗相关基因，明确线粒体自噬影响放疗敏感性的机制。",
+          "id": "item-a3e7357d0561",
+          "name": "CRISPR全基因组敲除文库筛选放疗抵抗基因",
+          "desc": "建立放射抵抗细胞株",
           "evidence": [
             {
-              "quote": "通过CRISPR全基因组敲除文库系统地筛选了与肝癌放疗抵抗相关的基因",
+              "quote": "通过CRISPR全基因组敲除文库系统地筛选了与肝癌放疗抵抗相关的基因，建立了肝癌细胞放射抵抗的细胞株",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3215,
-                "end_char": 3248
+                "end_char": 3264
               },
               "version": "22a49ba89e78bb37114b"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b3a2a550b6b9",
+          "name": "放疗敏感性预测模型",
+          "desc": "基于临床特征、影像组特征及分子变异特征",
+          "evidence": [
+            {
+              "quote": "建立了基于肝细胞肝癌患者临床特征、影像组特征及分子变异特征的放疗敏感性预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3355,
+                "end_char": 3393
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a616dc297ce",
-          "name": "鉴定放疗抵抗关键基因并发表SCI论文8篇",
-          "desc": "鉴定线粒体自噬影响放疗敏感性的关键基因、确认线粒体自噬抑制剂放疗增敏作用，建立基于临床与影像组特征的放疗敏感性预测模型，在Cancer Cell等期刊发表SCI论文8篇。",
+          "id": "item-25025c96efdf",
+          "name": "线粒体自噬抑制剂放疗增敏作用",
+          "desc": "确认",
+          "evidence": [
+            {
+              "quote": "确认了线粒体自噬抑制剂的放疗增敏作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3175,
+                "end_char": 3192
+              },
+              "version": "22a49ba89e78bb37114b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2c909c1049fe",
+          "name": "SCI论文",
+          "desc": "发表8篇",
           "evidence": [
             {
               "quote": "本项目在Cancer Cell、JAMA Surgery、Radiotherapy and Oncology等期刊发表SCI论文8篇",
@@ -99,44 +141,220 @@
               "version": "22a49ba89e78bb37114b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fa6b301a6f5d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb4d71832a91"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Postoperative radiotherapy following null-margin hepatectomy in patients with hepatocellular carcinoma adhering to the major vessels: A propensity score-matched survival analysis cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liuhua Long;Bo Chen;Xuan Zheng;Fan Wu;Liming Wang;Weiqi Rong;Jianxiong Wu;Yexiong Li;Weihu Wang",
+      "id": "out-847feaa69a19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Postoperative radiotherapy following null-margin hepatectomy in patients with hepatocellular carcinoma adhering to the major vessels: A propensity score-matched survival analysis cohort study — Liuhua Long;Bo Chen;Xuan Zheng;Fan Wu;Liming Wang;Weiqi Rong;Jianxiong Wu;Yexiong Li;Weihu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3666,
+            "end_char": 3961
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb4d71832a91"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-295b99a4f7d8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gut microbiota-mediated nucleotide synthesis attenuates the response to neoadjuvant chemoradiotherapy in rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huajing Teng;Yan Wang;Xin Sui;Jiawen Fan;Shuai Li;Xiao Lei;Chen Shi;Wei Sun;Maxiaowei Song;Hongzhi Wang;Dezuo Dong;Jianhao Geng;Yangzi Zhang;Xianggao Zhu;Yong Cai;Yongheng Li;Bo Li;Qingjie Min;Weihu Wang;Qimin Zhan",
+      "id": "out-5903550b0654",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gut microbiota-mediated nucleotide synthesis attenuates the response to neoadjuvant chemoradiotherapy in rectal cancer — Huajing Teng;Yan Wang;Xin Sui;Jiawen Fan;Shuai Li;Xiao Lei;Chen Shi;Wei Sun;Maxiaowei Song;Hongzhi Wang;Dezuo Dong;Jianhao Geng;Yangzi Zhang;Xianggao Zhu;Yong Cai;Yongheng Li;Bo Li;Qingjie Min;Weihu Wang;Qimin Zhan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3966,
+            "end_char": 4307
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-295b99a4f7d8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8a616dc297ce"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phase 1 trial of apatinib combined with intensity-modulated radiotherapy in unresectable hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongzhi Wang;Xianggao Zhu;Yuting Zhao;Dezuo Dong;Lijuan Li;Yong Cai;Yongheng Li;Weihu Wang",
+      "id": "out-2efc2da6e485",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phase 1 trial of apatinib combined with intensity-modulated radiotherapy in unresectable hepatocellular carcinoma — Hongzhi Wang;Xianggao Zhu;Yuting Zhao;Dezuo Dong;Lijuan Li;Yong Cai;Yongheng Li;Weihu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4312,
+            "end_char": 4524
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "4D-MRI assisted stereotactic body radiation therapy for unresectable colorectal cancer liver metastases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongzhi Wang;Xuan Zheng;Jiawen Sun;Xianggao Zhu;Dezuo Dong;Yi Du;Zhongsu Feng;Jian Gong;Hao Wu;Jianhao Geng;Shuai Li;Maxiaowei Song;Yangzi Zhang;Zhiyan Liu;Yong Cai;Yongheng Li;Weihu Wang",
+      "id": "out-c516b3f9bf0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 4D-MRI assisted stereotactic body radiation therapy for unresectable colorectal cancer liver metastases — Hongzhi Wang;Xuan Zheng;Jiawen Sun;Xianggao Zhu;Dezuo Dong;Yi Du;Zhongsu Feng;Jian Gong;Hao Wu;Jianhao Geng;Shuai Li;Maxiaowei Song;Yangzi Zhang;Zhiyan Liu;Yong Cai;Yongheng Li;Weihu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4529,
+            "end_char": 4828
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neoadjuvant Toripalimab plus concurrent chemoradiotherapy in the locally advanced adenocarcinoma of esophagogastric junction: a phase II trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杜荣旭;耿建昊;刘志艳;隋鑫;李帅;唐磊;王之龙;张晓燕;闫炎;武爱文;李忠武;李永恒;王维虎;李子禹",
+      "id": "out-47c7c2eda0d6",
+      "evidence": [
+        {
+          "quote": "[会议论文] Neoadjuvant Toripalimab plus concurrent chemoradiotherapy in the locally advanced adenocarcinoma of esophagogastric junction: a phase II trial — 杜荣旭;耿建昊;刘志艳;隋鑫;李帅;唐磊;王之龙;张晓燕;闫炎;武爱文;李忠武;李永恒;王维虎;李子禹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4833,
+            "end_char": 5035
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic significance of            albumin–bilirubin            score in patients with unresectable hepatocellular carcinoma undergoing combined immunotherapy and radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dezuo Dong;Xianggao Zhu;Hongzhi Wang;Lijuan Li;Meng Wan;Shuai Li;Yangzi Zhang;Jianhao Geng;Yongheng Li;Weihu Wang",
+      "id": "out-a9b6b0546bf3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic significance of            albumin–bilirubin            score in patients with unresectable hepatocellular carcinoma undergoing combined immunotherapy and radiotherapy — Dezuo Dong;Xianggao Zhu;Hongzhi Wang;Lijuan Li;Meng Wan;Shuai Li;Yangzi Zhang;Jianhao Geng;Yongheng Li;Weihu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5040,
+            "end_char": 5340
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "4D-MRI guided stereotactic body radiation therapy for unresectable colorectal liver metastases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王洪智;郑宣;孙佳文;朱向高;董德左;杜乙;冯仲苏;弓健;吴昊;耿建昊;李帅;宋马小薇;张扬子;刘志艳;蔡勇;李永恒;王维虎",
+      "id": "out-900b0c1a5f71",
+      "evidence": [
+        {
+          "quote": "[会议论文] 4D-MRI guided stereotactic body radiation therapy for unresectable colorectal liver metastases — 王洪智;郑宣;孙佳文;朱向高;董德左;杜乙;冯仲苏;弓健;吴昊;耿建昊;李帅;宋马小薇;张扬子;刘志艳;蔡勇;李永恒;王维虎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5510
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishment of prognostic models for adenocarcinoma of oesophagogastric junction patients with neoadjuvant chemoradiotherapy: a real-world study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rongxu Du;Jiao Ming;Jianhao Geng;Xianggao Zhu;Yangzi Zhang;Shuai Li;Zhiyan Liu;Hongzhi Wang;Zhilong Wang;Lei Tang;Xiaotian Zhang;Aiwen Wu;Zhaode Bu;Yan Yan;Zhongwu Li;Yongheng Li;Ziyu Li;Weihu Wang",
+      "id": "out-d623b9537fb1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishment of prognostic models for adenocarcinoma of oesophagogastric junction patients with neoadjuvant chemoradiotherapy: a real-world study — Rongxu Du;Jiao Ming;Jianhao Geng;Xianggao Zhu;Yangzi Zhang;Shuai Li;Zhiyan Liu;Hongzhi Wang;Zhilong Wang;Lei Tang;Xiaotian Zhang;Aiwen Wu;Zhaode Bu;Yan Yan;Zhongwu Li;Yongheng Li;Ziyu Li;Weihu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5515,
+            "end_char": 5867
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phase 2 Evaluation of Neoadjuvant Intensity-Modulated Radiotherapy in Centrally Located Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Wu;Bo Chen;Dezuo Dong;Weiqi Rong;Hongzhi Wang;Liming Wang;Shulian Wang;Jing Jin;Yongwen Song;Yueping Liu;Hui Fang;Yuan Tang;Ning Li;Xianggao Zhu;Yexiong Li;Weihu Wang;Jianxiong Wu",
+      "id": "out-7b027348bd19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phase 2 Evaluation of Neoadjuvant Intensity-Modulated Radiotherapy in Centrally Located Hepatocellular Carcinoma — Fan Wu;Bo Chen;Dezuo Dong;Weiqi Rong;Hongzhi Wang;Liming Wang;Shulian Wang;Jing Jin;Yongwen Song;Yueping Liu;Hui Fang;Yuan Tang;Ning Li;Xianggao Zhu;Yexiong Li;Weihu Wang;Jianxiong Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5872,
+            "end_char": 6176
+          },
+          "version": "22a49ba89e78bb37114b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

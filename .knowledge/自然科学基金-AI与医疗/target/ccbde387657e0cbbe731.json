@@ -2,15 +2,20 @@
   "doc_id": "ccbde387657e0cbbe731",
   "version": "d1a8c220e08b7ef19e83",
   "source_hash": "0cefd8270471feaa88d9df3074bd0e034a66d79913c2c2c849172c64bb033891",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.322414+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.393892+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bca6063c852f",
-          "name": "NSCLC免疫治疗疗效预测TME图谱",
-          "desc": "免疫治疗为NSCLC患者带来长期生存可能，但有效率不足20%，获益人群筛选至关重要。",
+          "id": "item-cbe7838d1268",
+          "name": "NSCLC免疫治疗疗效预测",
+          "desc": "H&E病理组学",
           "evidence": [
             {
-              "quote": "免疫治疗为非小细胞肺癌（NSCLC）患者带来长期生存的可能，但有效率不足20%，获益人群的筛选至关重要",
+              "quote": "精准筛选免疫治疗的获益人群实现疗效最大化，是改善患者预后的关键",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 682,
-                "end_char": 732
-              },
-              "version": "d1a8c220e08b7ef19e83"
-            }
-          ]
-        },
-        {
-          "id": "item-da5f105ac0b9",
-          "name": "指导免疫治疗个体化临床实践",
-          "desc": "期待提供具有生物学可解释性的新型智能预后工具，指导免疫治疗的个体化临床实践。",
-          "evidence": [
-            {
-              "quote": "并提供具有生物学可解释性的新型智能预后工具指导免疫治疗的个体化临床实践，改善NSCLC患者生存",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1028,
-                "end_char": 1074
+                "start_char": 2956,
+                "end_char": 2986
               },
               "version": "d1a8c220e08b7ef19e83"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad4157891f7c",
-          "name": "TME分析数据来源单一无法量化",
-          "desc": "目前肿瘤微环境分析存在数据来源单一、无法量化且不能反映空间特征等问题。",
+          "id": "item-38afc849e962",
+          "name": "PD-L1与TMB单一特征预测欠佳",
+          "desc": "亟需可靠标志物",
           "evidence": [
             {
-              "quote": "目前TME分析存在数据来源单一、无法量化且不能反映空间特征等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 785,
-                "end_char": 816
-              },
-              "version": "d1a8c220e08b7ef19e83"
-            }
-          ]
-        },
-        {
-          "id": "item-12e098a07f7a",
-          "name": "单一特征疗效预测性能欠佳",
-          "desc": "单独依靠肿瘤组织PD-L1表达及TMB水平等单一特征疗效预测性能欠佳，亟需更可靠标志物。",
-          "evidence": [
-            {
-              "quote": "然而单独依靠肿瘤组织PD-L1表达及TMB水平等单一特征疗效预测性能欠佳，亟需寻找更为可靠的疗效预测标志物",
+              "quote": "然而单独依靠肿瘤组织PD-L1表达及TMB水平等单一特征疗效预测性能欠佳",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2988,
-                "end_char": 3040
+                "end_char": 3023
               },
               "version": "d1a8c220e08b7ef19e83"
             }
@@ -95,41 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fda8b825316f",
-          "name": "Mask-RCNN识别TME细胞组分",
-          "desc": "应用Mask-RCNN算法自动识别TME细胞组分并解析空间特征，定量描绘TME生态图谱。",
+          "id": "item-3c5c2c209ff2",
+          "name": "ViT-RNN病理组学模型",
+          "desc": "228名患者353个WSI",
           "evidence": [
             {
-              "quote": "应用Mask-RCNN算法自动识别TME细胞组分，并解析其空间特征，定量描绘TME生态图谱",
+              "quote": "构建基于Vision Transformer（ViT）算法的病理组学模型精准预测免疫治疗疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 860,
-                "end_char": 904
-              },
-              "version": "d1a8c220e08b7ef19e83"
-            }
-          ]
-        },
-        {
-          "id": "item-5c1f448ffd13",
-          "name": "ViT算法病理组学模型",
-          "desc": "利用H&E染色组织标本构建基于Vision Transformer算法的病理组学模型，在补丁层面与患者层面分别训练并验证。",
-          "evidence": [
-            {
-              "quote": "本研究利用NSCLC患者H&E染色的组织标本，构建基于Vision Transformer（ViT）算法的病理组学模型精准预测免疫治疗疗效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3146,
+                "start_char": 3169,
                 "end_char": 3214
               },
               "version": "d1a8c220e08b7ef19e83"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-d370fef74e69",
           "name": "生成式自监督病理组学基础模型",
-          "desc": "收集多中心4405名肿瘤患者10539张病理图像，利用生成式自监督算法构建病理组学基础模型并进行下游任务训练。",
+          "desc": "4405名患者10539张病理图像",
           "evidence": [
             {
               "quote": "本课题组收集多中心的4405名肿瘤患者的10539张病理图像，利用生成式自监督算法构建病理组学基础模型",
@@ -140,7 +98,8 @@
               },
               "version": "d1a8c220e08b7ef19e83"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc1663d79ad1",
-          "name": "ViT-RNN模型内外验证准确率",
-          "desc": "ViT-RNN模型在内部验证队列准确率88.6%、外部验证队列准确率81%，并可独立预测接受免疫治疗患者的生存。",
+          "id": "item-71dec76c0c59",
+          "name": "ViT-RNN预测准确率",
+          "desc": "内部88.6%，外部81%",
           "evidence": [
             {
               "quote": "该模型在内部验证队列中的准确率为 88.6%，在外部验证队列中的准确率为 81%",
@@ -163,12 +122,14 @@
               "version": "d1a8c220e08b7ef19e83"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-89b92c1f0572",
-          "name": "自监督病理组学模型外部测试AUC",
-          "desc": "自监督病理组学模型在独立外部测试集准确率0.681、AUC 0.692，显著优于利用初始权重的模型（AUC 0.426）。",
+          "id": "item-61cf2cc3415c",
+          "name": "基础模型外部测试AUC",
+          "desc": "0.692，而初始权重0.426",
           "evidence": [
             {
               "quote": "在独立的外部测试集中，预测准确率为0.681，AUC为0.692",
@@ -180,72 +141,115 @@
               "version": "d1a8c220e08b7ef19e83"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6b09131be6bf",
-          "name": "明确H1.2阳性CD8 Teff细胞关键作用",
-          "desc": "结合单细胞转录组测序分析明确模型的生物学解释及H1.2+CD8+Teff细胞群的关键作用。",
-          "evidence": [
-            {
-              "quote": "结合单细胞转录组测序分析明确了模型的生物学解释及H1.2+CD8+Teff细胞群的关键作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3707,
-                "end_char": 3751
-              },
-              "version": "d1a8c220e08b7ef19e83"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bca6063c852f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ad4157891f7c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and safety of thoracic radiotherapy in extensive-stage small-cell lung cancer patients receiving first-line immunotherapy plus chemotherapy: a propensity score matched multicentre retrospective analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao·Yueyuan;Li·Butuo;Song·Ruiting;Yang·Linlin;Zou·Bing;Wang·Linlin",
+      "id": "out-e81529719758",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and safety of thoracic radiotherapy in extensive-stage small-cell lung cancer patients receiving first-line immunotherapy plus chemotherapy: a propensity score matched multicentre retrospective analysis — Yao·Yueyuan;Li·Butuo;Song·Ruiting;Yang·Linlin;Zou·Bing;Wang·Linlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3847,
+            "end_char": 4133
+          },
+          "version": "d1a8c220e08b7ef19e83"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ad4157891f7c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fda8b825316f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From pixels to patient care: deep learning-enabled pathomics signature offers precise outcome predictions for immunotherapy in esophageal squamous cell cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butuo Li;Wenru Qin;Linlin Yang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+      "id": "out-ad2153cc03ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] From pixels to patient care: deep learning-enabled pathomics signature offers precise outcome predictions for immunotherapy in esophageal squamous cell cancer — Butuo Li;Wenru Qin;Linlin Yang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4138,
+            "end_char": 4428
+          },
+          "version": "d1a8c220e08b7ef19e83"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5c1f448ffd13"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dc1663d79ad1"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于病理组学深度神经网络模型的免疫治疗疗效预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琳琳;李步托;董涛涛;徐一月;高爱琴;范秉杰;余以珊",
+      "id": "out-635afeabe819",
+      "evidence": [
+        {
+          "quote": "[专利] 基于病理组学深度神经网络模型的免疫治疗疗效预测方法 — 王琳琳;李步托;董涛涛;徐一月;高爱琴;范秉杰;余以珊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4492
+          },
+          "version": "d1a8c220e08b7ef19e83"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d370fef74e69"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-89b92c1f0572"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Outcome Supervised Deep Learning on Pathological Whole Slide Images for Survival Prediction of Immunotherapy in Non-Small Cell Lung Cancer Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Butuo Li;Linlin Yang;Huan Zhang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+      "id": "out-2eedf137670c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Outcome Supervised Deep Learning on Pathological Whole Slide Images for Survival Prediction of Immunotherapy in Non-Small Cell Lung Cancer Patients — Butuo Li;Linlin Yang;Huan Zhang;Haoqian Li;Chao Jiang;Yueyuan Yao;Shuping Cheng;Bing Zou;Bingjie Fan;Taotao Dong;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4497,
+            "end_char": 4777
+          },
+          "version": "d1a8c220e08b7ef19e83"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

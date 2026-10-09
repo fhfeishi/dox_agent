@@ -2,15 +2,20 @@
   "doc_id": "87e8358651f0efe5c007",
   "version": "71d50f9165a63c31aab3",
   "source_hash": "9045ba2ee5f5545862c86bb874dafc4668504a44e6f4675e004a8b081537e8f1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.620358+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:47:17.010926+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-750556110591",
-          "name": "儿童脑发育障碍性疾病智能诊疗",
-          "desc": "面向儿童癫痫与自闭症的早期识别和诊断，构建多源异构信息整合的儿童脑发育障碍智能诊疗系统。",
+          "id": "item-233b12c4af5a",
+          "name": "儿童脑发育障碍性疾病癫痫诊断",
+          "desc": "癫痫发病率约7‰",
           "evidence": [
             {
-              "quote": "儿童癫痫、自闭症的早期识别和诊断对患儿的治疗及预后十分重要",
+              "quote": "癫痫是一种重大脑疾病，发病率约7‰，影响全球约5000万人，占全球疾病负担的0.5%以上",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 683
+                "start_char": 3070,
+                "end_char": 3113
               },
               "version": "71d50f9165a63c31aab3"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ab324a00c74",
-          "name": "儿童EEG研究较少且方法不成熟",
-          "desc": "国内外研究主要面向成人EEG，对于儿童EEG的研究较少且方法不成熟；儿童EEG随成长变化且个体差异大，亟需新模型与算法。",
+          "id": "item-2a82e168b31c",
+          "name": "癫痫发作期自动标注与致痫灶识别算法泛化性不足",
+          "desc": "现有算法可解释性差",
           "evidence": [
             {
-              "quote": "目前国内外研究主要致力于对成人脑电图（EEG）的自动识别和诊断分类，对于儿童EEG的研究较少且方法不成熟",
+              "quote": "解决现有算法模型可解释性差，泛化性不强的问题，同时提升诊断精度以达到临床实用要求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
-                "end_char": 736
+                "start_char": 3266,
+                "end_char": 3305
               },
               "version": "71d50f9165a63c31aab3"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8c9c03f9b33a",
-          "name": "多尺度统计检验与模型驱动深度学习神经机制建模",
-          "desc": "结合EEG等电生理数据与基因、影像、临床多源异构数据，用统计学与模型驱动深度学习方法建立微观、介观、宏观多尺度大脑皮层电生理变化规律的神经机制模型。",
+          "id": "item-b47a366b8ddc",
+          "name": "EEG/SEEG多尺度统计检验与区制转移模型",
+          "desc": "时空统计、变点检测",
           "evidence": [
             {
-              "quote": "通过使用统计学与模型驱动的深度学习方法建立微观、介观、宏观不同尺度下大脑皮层的电生理变化规律的神经机制模型",
+              "quote": "基于 EEG/SEEG分析的多尺度统计检验模型及区制转移模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 886,
-                "end_char": 938
+                "start_char": 3333,
+                "end_char": 3362
               },
               "version": "71d50f9165a63c31aab3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9371579d6032",
+          "name": "数据驱动及模型驱动深度学习",
+          "desc": "融合临床知识与领域泛化",
+          "evidence": [
+            {
+              "quote": "所提出算法融合了临床知识和最新的领域泛化技术，具有领先的精度和良好的可解释性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3522,
+                "end_char": 3559
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-69913cdcc4c5",
+          "name": "多源异构数据融合与智能决策算法",
+          "desc": "癫痫诊疗",
+          "evidence": [
+            {
+              "quote": "多源异构数据融合算法及智能决策算法研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3387,
+                "end_char": 3405
+              },
+              "version": "71d50f9165a63c31aab3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dd476566dfce",
-          "name": "突破复杂癫痫波识别与定位实现自动标注溯源",
-          "desc": "突破复杂癫痫波识别和定位难点，实现癫痫信号自动标注和病灶溯源；所提算法融合临床知识与领域泛化技术，兼具领先精度与良好可解释性，并产出癫痫间期脑电异常信号定位、脑电溯源定位等专利。",
+          "id": "item-c855d402d93d",
+          "name": "癫痫信号自动标注与病灶溯源",
+          "desc": "突破复杂癫痫波识别和定位难点",
           "evidence": [
             {
               "quote": "本论文突破了复杂癫痫波的识别和定位难点，实现了癫痫信号的自动标注和病灶溯源",
@@ -99,44 +139,728 @@
               "version": "71d50f9165a63c31aab3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-750556110591"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3ab324a00c74"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multivariate Calibrations with Auxiliary Information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Feng Tong;Song Xi Chen;Cheng Yong Tang",
+      "id": "out-428bdf9a0bd4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multivariate Calibrations with Auxiliary Information — Pei Feng Tong;Song Xi Chen;Cheng Yong Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3636,
+            "end_char": 3739
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3ab324a00c74"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8c9c03f9b33a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Better Strategies for Containing COVID-19 Pandemic: a Study of 25 Countries via a vSIADR Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Yan;Yuru Zhu;Jia Gu;Yaxuan Huang;Haoxuan Sun;Xinyu Zhang;Yuqing Wang;Yumou Qiu;Song Xi Chen",
+      "id": "out-bfb29bd9df61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Better Strategies for Containing COVID-19 Pandemic: a Study of 25 Countries via a vSIADR Model — Han Yan;Yuru Zhu;Jia Gu;Yaxuan Huang;Haoxuan Sun;Xinyu Zhang;Yuqing Wang;Yumou Qiu;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3942
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8c9c03f9b33a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dd476566dfce"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ensembled Seizure Detection based on Small Training Samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Feng Tong;Hao Xiang Zhan;Song Xi Chen",
+      "id": "out-a2e5422f68f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ensembled Seizure Detection based on Small Training Samples — Pei Feng Tong;Hao Xiang Zhan;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3947,
+            "end_char": 4056
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Parameter estimation of mixed two distributions based on EM algorithm and Nelder-Mead algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+      "id": "out-a84a44e6aac8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Parameter estimation of mixed two distributions based on EM algorithm and Nelder-Mead algorithm — Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4061,
+            "end_char": 4210
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of epileptogenicity in patients with tuberous sclerosis complex using multimodal cerebral MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wanling Li;Leihao Sha;Jiayu Zhu;Fan Long;Lei Chen",
+      "id": "out-81128508138a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of epileptogenicity in patients with tuberous sclerosis complex using multimodal cerebral MRI — Wanling Li;Leihao Sha;Jiayu Zhu;Fan Long;Lei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4377
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal Medical Image Fusion Network Based on Target Information Enhancement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+      "id": "out-df94522b8cf3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal Medical Image Fusion Network Based on Target Information Enhancement — Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4382,
+            "end_char": 4515
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑电信号数据处理方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈松蹊;童培峰",
+      "id": "out-6b5d12a8a81f",
+      "evidence": [
+        {
+          "quote": "[专利] 脑电信号数据处理方法及装置 — 陈松蹊;童培峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4520,
+            "end_char": 4547
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Concentration Inequalities for Statistical Inference",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiming Zhang;Song Xi Chen",
+      "id": "out-272df5623a6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Concentration Inequalities for Statistical Inference — Huiming Zhang;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4552,
+            "end_char": 4639
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "COVID-19 positive cases prediction based on LSTM algorithm and its variants",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiqi Liu;Yuting Zhou;Xuemei Yang;Junping Yin",
+      "id": "out-9bc6a309ac9c",
+      "evidence": [
+        {
+          "quote": "[会议论文] COVID-19 positive cases prediction based on LSTM algorithm and its variants — Shiqi Liu;Yuting Zhou;Xuemei Yang;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4644,
+            "end_char": 4773
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cirrus Band-to-Band Registration of Landsat-8 OLI for Thin Cirrus Remova",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yingxin Zhang;Wenxing Zhang;Fen Chen;Junping Yin",
+      "id": "out-cdf86e437ce4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cirrus Band-to-Band Registration of Landsat-8 OLI for Thin Cirrus Remova — Yingxin Zhang;Wenxing Zhang;Fen Chen;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4779,
+            "end_char": 4908
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessing Local Emission for Air Pollution via Data Experiments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuru Zhu;Yinshuang Liang;Song Xi Chen",
+      "id": "out-caa33582258b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessing Local Emission for Air Pollution via Data Experiments — Yuru Zhu;Yinshuang Liang;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4914,
+            "end_char": 5023
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "癫痫间期脑电波异常信号的定位方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈松蹊;童培峰;陈蕾",
+      "id": "out-8353866f1369",
+      "evidence": [
+        {
+          "quote": "[专利] 癫痫间期脑电波异常信号的定位方法、装置、设备及介质 — 陈松蹊;童培峰;陈蕾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5029,
+            "end_char": 5071
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detection of interictal epileptiform discharges using transformer based deep neural network for patients with self-limited epilepsy with centrotemporal spikes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Feng Tong;Bosi Dong;Xiangdong Zeng;Lei Chen;Song Xi Chen",
+      "id": "out-4b19383cf3b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Detection of interictal epileptiform discharges using transformer based deep neural network for patients with self-limited epilepsy with centrotemporal spikes — Pei Feng Tong;Bosi Dong;Xiangdong Zeng;Lei Chen;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5304
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detecting and Evaluating Dust‐Events in North China With Ground Air Quality Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Feng Tong;Song Xi Chen;Cheng Yong Tang",
+      "id": "out-6ec03da95a81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Detecting and Evaluating Dust‐Events in North China With Ground Air Quality Data — Pei Feng Tong;Song Xi Chen;Cheng Yong Tang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5310,
+            "end_char": 5441
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Two-Layer Ensemble Method for Detecting Epileptic Seizures Using a Self-Annotation Bracelet with Motor Sensors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunjiao Dong;Tianchun Ye;Xi Long;Ronald M. Aarts;Johannes P. van Dijk;Chunheng Shang;Xiwen Liao;Wei Chen;Wanlin Lai;Lei Chen;Yunfeng Wang",
+      "id": "out-da274993520f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Two-Layer Ensemble Method for Detecting Epileptic Seizures Using a Self-Annotation Bracelet with Motor Sensors — Chunjiao Dong;Tianchun Ye;Xi Long;Ronald M. Aarts;Johannes P. van Dijk;Chunheng Shang;Xiwen Liao;Wei Chen;Wanlin Lai;Lei Chen;Yunfeng Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5447,
+            "end_char": 5706
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiation of Epilepsy and Psychogenic Nonepileptic Events Based on Body Fluid Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yilin Xia;Wanlin Lai;Shihai Li;Zhining Wen;Lei Chen",
+      "id": "out-b38c3e39b189",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiation of Epilepsy and Psychogenic Nonepileptic Events Based on Body Fluid Characteristics — Yilin Xia;Wanlin Lai;Shihai Li;Zhining Wen;Lei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5712,
+            "end_char": 5871
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spurious functional-coefficient regression models and robust inference with marginal integration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yundong Tu;Ying Wang",
+      "id": "out-fa87de8f5f1f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spurious functional-coefficient regression models and robust inference with marginal integration — Yundong Tu;Ying Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5877,
+            "end_char": 6002
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Debiased Estimation and Inference for Spatial-Temporal EEG/MEG Source Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pei Feng Tong;Haoran Yang;Xinru Ding;Yuchuan Ding;Xiaokun Geng;Shan An;Guoxin Wang;Song Xi Chen",
+      "id": "out-c5592460f5ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Debiased Estimation and Inference for Spatial-Temporal EEG/MEG Source Imaging — Pei Feng Tong;Haoran Yang;Xinru Ding;Yuchuan Ding;Xiaokun Geng;Shan An;Guoxin Wang;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6008,
+            "end_char": 6189
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved Image Compressive Sensing Recovery with Low-Rank Prior and Deep Image Prior",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yumo Wu;Jianing Sun;Wengu Chen;Junping Yin",
+      "id": "out-e4fd8eea8f66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improved Image Compressive Sensing Recovery with Low-Rank Prior and Deep Image Prior — Yumo Wu;Jianing Sun;Wengu Chen;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6195,
+            "end_char": 6330
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nonparametric inference for quantile cointegrations with stationary covariates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yundong Tu;Han-Ying Liang;Qiying Wang",
+      "id": "out-6b70cb685a18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nonparametric inference for quantile cointegrations with stationary covariates — Yundong Tu;Han-Ying Liang;Qiying Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6336,
+            "end_char": 6460
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-paced learning for instantaneous frequencies estimation in heavy noise environments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiantao Wang;Xiaobo Wang;Junping Yin",
+      "id": "out-28443b619090",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-paced learning for instantaneous frequencies estimation in heavy noise environments — Jiantao Wang;Xiaobo Wang;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6466,
+            "end_char": 6599
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "癫痫发作预测的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "巴桑斯甲;沙雷皓;陈蕾",
+      "id": "out-41bae4f00f92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 癫痫发作预测的研究进展 — 巴桑斯甲;沙雷皓;陈蕾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6605,
+            "end_char": 6636
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑电溯源定位方法、装置、设备、介质及程序产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈松蹊;童培峰",
+      "id": "out-5e2929d6513f",
+      "evidence": [
+        {
+          "quote": "[专利] 脑电溯源定位方法、装置、设备、介质及程序产品 — 陈松蹊;童培峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6642,
+            "end_char": 6678
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stacking algorithm based on naive Bayes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Huang;Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+      "id": "out-e0bc424775b5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Stacking algorithm based on naive Bayes — Chen Huang;Yuting Zhou;Xuemei Yang;Shiqi Liu;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6684,
+            "end_char": 6788
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "心因性非痫性发作与癫痫的精准鉴别诊断研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏逸林;廖兴月;李运龙;杨可;陈蕾",
+      "id": "out-8e57d651fec6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 心因性非痫性发作与癫痫的精准鉴别诊断研究进展 — 夏逸林;廖兴月;李运龙;杨可;陈蕾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6794,
+            "end_char": 6842
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightened Context Extraction Network for Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Jiaxuan;Yu Lei;Yin Junping",
+      "id": "out-f0976403e65e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lightened Context Extraction Network for Object Detection — Huang Jiaxuan;Yu Lei;Yin Junping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6848,
+            "end_char": 6946
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A utopia point method-based robust vector polynomial optimization scheme",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyi Han;Liguo Jiao;Jae Hyoung Lee;Junping Yin",
+      "id": "out-d249fdcce5c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A utopia point method-based robust vector polynomial optimization scheme — Tianyi Han;Liguo Jiao;Jae Hyoung Lee;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6952,
+            "end_char": 7081
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Testing and signal identification for two-sample high-dimensional covariances via multi-level thresholding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Xi Chen;Bin Guo;Yumou Qiu",
+      "id": "out-3c20e73a6ffc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Testing and signal identification for two-sample high-dimensional covariances via multi-level thresholding — Song Xi Chen;Bin Guo;Yumou Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7087,
+            "end_char": 7232
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于鲁棒损失函数的标签有噪信号调制方式识别",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓波;尹俊平;徐岩",
+      "id": "out-281d37cb9752",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于鲁棒损失函数的标签有噪信号调制方式识别 — 王晓波;尹俊平;徐岩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7238,
+            "end_char": 7278
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiative Effects of Particular Matters on Ozone Pollution in Six North China Cities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaomin Li;Rui Liu;Shuai Wang;Song Xi Chen",
+      "id": "out-019262ea0ef4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiative Effects of Particular Matters on Ozone Pollution in Six North China Cities — Shaomin Li;Rui Liu;Shuai Wang;Song Xi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7284,
+            "end_char": 7419
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Robust Automatic Epilepsy Seizure Detection Algorithm Based on Interpretable Features and Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiqi Liu;Yuting Zhou;Xuemei Yang;Xiaoying Wang;Junping Yin",
+      "id": "out-8e1de317b272",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Robust Automatic Epilepsy Seizure Detection Algorithm Based on Interpretable Features and Machine Learning — Shiqi Liu;Yuting Zhou;Xuemei Yang;Xiaoying Wang;Junping Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7425,
+            "end_char": 7601
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Air pollution estimation under air stagnation—A case study of Beijing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Zhang;Song Xi Chen;Le Bao",
+      "id": "out-3461377b8813",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Air pollution estimation under air stagnation—A case study of Beijing — Ying Zhang;Song Xi Chen;Le Bao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7607,
+            "end_char": 7715
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of antiseizure medication withdrawal during the first trimester of pregnancy on seizure control and offspring outcomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yutong Fu;Fanfan Shi;Leihao Sha;Ximeng Yang;Rui Li;Lei Chen",
+      "id": "out-dadbd48b8411",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of antiseizure medication withdrawal during the first trimester of pregnancy on seizure control and offspring outcomes — Yutong Fu;Fanfan Shi;Leihao Sha;Ximeng Yang;Rui Li;Lei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7721,
+            "end_char": 7915
+          },
+          "version": "71d50f9165a63c31aab3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 33,
+    "listed": 33,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 26,
+        "extracted": 26
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "b0032f12738eaec5f559",
   "version": "5821e99afecdec35b7b1",
   "source_hash": "45b9a1ebcdc22e79de46c49ac578c16dd3fdb2cb8aa7192fd42c5394def5bd60",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.773020+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:52:16.590907+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8c254afb5699",
-          "name": "肺部感染性疾病大数据智能预测",
-          "desc": "面向肺部感染性疾病的诊断与病情评估，构建大数据驱动的智能预测决策模型。",
+          "id": "item-c346dd4e8c0b",
+          "name": "肺部感染性疾病智能预测",
+          "desc": "大数据驱动",
           "evidence": [
             {
-              "quote": "肺部感染性是常见的呼吸系统疾病，明确该疾病诊断及病情评估对治疗和控制疾病具有重要意义",
+              "quote": "本项目针对肺部感染性疾病大数据的特点，致力于研究和开发智能决策新方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 690
+                "start_char": 2866,
+                "end_char": 2899
               },
               "version": "5821e99afecdec35b7b1"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ea7b43a38b66",
-          "name": "仅靠专家诊断难以满足现代需求",
-          "desc": "仅依靠医学专家进行诊断已不能满足现代社会发展需求，基于人工智能大数据分析的预测将成为主要应用场景与发展趋势。",
+          "id": "item-4ac5c8943e1e",
+          "name": "仅依靠医学专家诊断不能满足需求",
+          "desc": "大数据特征表示、噪声与泛化",
           "evidence": [
             {
-              "quote": "仅仅依靠医学专家进行诊断已不能满足现代社会发展的需求，基于人工智能大数据分析的肺部感染性疾病预测将逐渐成为主要的应用场景和发展趋势",
+              "quote": "仅仅依靠医学专家进行诊断已不能满足现代社会发展的需求",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 720,
-                "end_char": 784
+                "end_char": 745
               },
               "version": "5821e99afecdec35b7b1"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-063e825e22f0",
-          "name": "迁移学习稀疏张量特征与自适应多核决策",
-          "desc": "提出基于迁移学习和稀疏张量的完备特征提取方法、基于协同演化和增量机制的在线样本与属性同步建模方法，以及基于主动学习机制的并行自适应多核学习决策模型。",
+          "id": "item-3605c2cc5e33",
+          "name": "进化核极限学习机与集成多算法诊断模型",
+          "desc": "RIME算法与改进鲸鱼优化算法",
           "evidence": [
             {
-              "quote": "重点提出基于迁移学习和稀疏张量的完备特征提取方法，基于协同演化和增量机制的在线样本和属性同步建模方法，基于主动学习机制的并行自适应多核学习决策模型",
+              "quote": "我们从基于进化核极限学习机的模型起步，逐步发展到集成多算法的医学诊断模型，开发了基于RIME算法和改进鲸鱼优化算法的模型，显著提升了分类性能和诊断精度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 879,
-                "end_char": 951
+                "start_char": 2982,
+                "end_char": 3056
               },
               "version": "5821e99afecdec35b7b1"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-92128375b947",
+          "name": "动态空间分组增强轻量级UNet",
+          "desc": "医学图像分割",
+          "evidence": [
+            {
+              "quote": "从基于黏菌觅食行为的多阈值分割模型，发展到基于动态空间分组增强的轻量级UNet网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3154,
+                "end_char": 3194
+              },
+              "version": "5821e99afecdec35b7b1"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6a7f63e9638",
-          "name": "授权国家发明专利7项并获软著4项",
-          "desc": "授权国家发明专利7项（多项已转化）、取得4项软件著作权；开发基于RIME与改进鲸鱼优化算法的COVID-19等肺部疾病预测模型，并与医院合作开发多套AI辅助诊断系统。",
+          "id": "item-0a3067717666",
+          "name": "专利与软著",
+          "desc": "授权发明专利7项，软著4项",
           "evidence": [
             {
               "quote": "授权了7项国家发明专利，多项成功过获得了转化，取得了4项软件著作权",
@@ -99,44 +122,974 @@
               "version": "5821e99afecdec35b7b1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ae67cd0e9b82",
+          "name": "肺部感染性疾病辅助诊断系统",
+          "desc": "与医院合作开发多套",
+          "evidence": [
+            {
+              "quote": "项目团队还与医院合作开发了多套基于人工智能技术的肺部感染性疾病辅助诊断系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3469,
+                "end_char": 3505
+              },
+              "version": "5821e99afecdec35b7b1"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8c254afb5699"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ea7b43a38b66"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Random following ant colony optimization: Continuous and binary variants for global optimization and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinsen Zhou;Wenyong Gui;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen",
+      "id": "out-8aff360dffb6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Random following ant colony optimization: Continuous and binary variants for global optimization and feature selection — Xinsen Zhou;Wenyong Gui;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3656,
+            "end_char": 3862
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ea7b43a38b66"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-063e825e22f0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Topological search and gradient descent boosted Runge–Kutta optimiser with application to engineering design and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinge Shi;Yi Chen;Ali Asghar Heidari;Zhennao Cai;Huiling Chen;Guoxi Liang",
+      "id": "out-3e750470d415",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Topological search and gradient descent boosted Runge–Kutta optimiser with application to engineering design and feature selection — Jinge Shi;Yi Chen;Ali Asghar Heidari;Zhennao Cai;Huiling Chen;Guoxi Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 4079
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-063e825e22f0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c6a7f63e9638"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dispersed foraging slime mould algorithm: Continuous and binary variants for global optimization and wrapper-based feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiao Hu;Wenyong Gui;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen;Zhifang Pan",
+      "id": "out-098a7a89a22d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dispersed foraging slime mould algorithm: Continuous and binary variants for global optimization and wrapper-based feature selection — Jiao Hu;Wenyong Gui;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen;Zhifang Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4084,
+            "end_char": 4312
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A machine learning framework for identifying influenza pneumonia from bacterial pneumonia for medical decision making",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Zhang;Anran Huang;Lianyou Shao;Peiliang Wu;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen;Fahd S. Alotaibi;Majdi Mafarja;Jinsheng Ouyang",
+      "id": "out-5912ad851ec7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A machine learning framework for identifying influenza pneumonia from bacterial pneumonia for medical decision making — Qian Zhang;Anran Huang;Lianyou Shao;Peiliang Wu;Ali Asghar Heidari;Zhennao Cai;Guoxi Liang;Huiling Chen;Fahd S. Alotaibi;Majdi Mafarja;Jinsheng Ouyang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4317,
+            "end_char": 4593
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Orthogonal learning covariance matrix for defects of grey wolf optimizer: Insights, balance, diversity, and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiao Hu;Huiling Chen;Ali Asghar Heidari;Mingjing Wang;Xiaoqin Zhang;Ying Chen;Zhifang Pan",
+      "id": "out-64088d0bc9b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Orthogonal learning covariance matrix for defects of grey wolf optimizer: Insights, balance, diversity, and feature selection — Jiao Hu;Huiling Chen;Ali Asghar Heidari;Mingjing Wang;Xiaoqin Zhang;Ying Chen;Zhifang Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4598,
+            "end_char": 4821
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进蚱蜢算法的多阈值医学图像的二维分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈慧灵;赵松伟;李成业;汪鹏君",
+      "id": "out-7e574fdcd460",
+      "evidence": [
+        {
+          "quote": "[专利] 基于改进蚱蜢算法的多阈值医学图像的二维分割方法 — 陈慧灵;赵松伟;李成业;汪鹏君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4826,
+            "end_char": 4871
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PRCNet: A parallel reverse convolutional attention network for colorectal polyp segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Li;Jiawei Wang;Fengwu Lin;Ali Asghar Heidari;Yi Chen;Huiling Chen;Wenqi Wu",
+      "id": "out-c987282efade",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PRCNet: A parallel reverse convolutional attention network for colorectal polyp segmentation — Jian Li;Jiawei Wang;Fengwu Lin;Ali Asghar Heidari;Yi Chen;Huiling Chen;Wenqi Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4876,
+            "end_char": 5056
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chaotic diffusion‐limited aggregation enhanced grey wolf optimizer: Insights, analysis, binarization, and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiao Hu;Ali Asghar Heidari;Lejun Zhang;Xiao Xue;Wenyong Gui;Huiling Chen;Zhifang Pan",
+      "id": "out-23486eeb6e50",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chaotic diffusion‐limited aggregation enhanced grey wolf optimizer: Insights, analysis, binarization, and feature selection — Jiao Hu;Ali Asghar Heidari;Lejun Zhang;Xiao Xue;Wenyong Gui;Huiling Chen;Zhifang Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5277
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic mechanism-assisted artificial bee colony optimization for image segmentation of COVID-19 chest X-ray",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaochen Chen;Zhennao Cai;Ali Asghar Heidari;Lei Liu;Huiling Chen;Jingye Pan",
+      "id": "out-a5b9ce6916ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic mechanism-assisted artificial bee colony optimization for image segmentation of COVID-19 chest X-ray — Jiaochen Chen;Zhennao Cai;Ali Asghar Heidari;Lei Liu;Huiling Chen;Jingye Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5282,
+            "end_char": 5475
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weighted mean of vectors algorithm with neighborhood information interaction and vertical and horizontal crossover mechanism for feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhilin Wang;Yi Chen;Zhennao Cai;Ali Asghar Heidari;Lei Liu;Huiling Chen",
+      "id": "out-1fbbee688634",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weighted mean of vectors algorithm with neighborhood information interaction and vertical and horizontal crossover mechanism for feature selection — Zhilin Wang;Yi Chen;Zhennao Cai;Ali Asghar Heidari;Lei Liu;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5481,
+            "end_char": 5707
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Q-Learning Guided Mutational Harris Hawk Optimizer for High-dimensional Gene Data Feature Selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lemin Peng;Xinru Li;Liang Yu;Ali Asghar Heidari;Huiling Chen;Guoxi Liang",
+      "id": "out-fb6ba8da3071",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Q-Learning Guided Mutational Harris Hawk Optimizer for High-dimensional Gene Data Feature Selection — Lemin Peng;Xinru Li;Liang Yu;Ali Asghar Heidari;Huiling Chen;Guoxi Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5713,
+            "end_char": 5893
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical machine learning based on multiobjective evolutionary algorithm using learning decomposition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingjing Wang;Xiaoping Li;Long Chen;Huiling Chen",
+      "id": "out-889c84baf5df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical machine learning based on multiobjective evolutionary algorithm using learning decomposition — Mingjing Wang;Xiaoping Li;Long Chen;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5899,
+            "end_char": 6056
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ant colony optimization with horizontal and vertical crossover search: Fundamental visions for multi-threshold image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Dong;Liu Lei;Yu Fanhua;Heidari Ali Asghar;Wang Mingjing;Oliva Diego;Muhammad Khan;Chen Huiling",
+      "id": "out-34907082842e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ant colony optimization with horizontal and vertical crossover search: Fundamental visions for multi-threshold image segmentation — Zhao Dong;Liu Lei;Yu Fanhua;Heidari Ali Asghar;Wang Mingjing;Oliva Diego;Muhammad Khan;Chen Huiling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6062,
+            "end_char": 6299
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Harris hawks optimizer for feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lemin Peng;Zhennao Cai;Ali Asghar Heidari;Lejun Zhang;Huiling Chen",
+      "id": "out-6902ecb72e9a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hierarchical Harris hawks optimizer for feature selection — Lemin Peng;Zhennao Cai;Ali Asghar Heidari;Lejun Zhang;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6305,
+            "end_char": 6437
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An enhanced Moth-Flame optimizer with quality enhancement and directional crossover: optimizing classic engineering problems",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Helong Yu;Jiale Quan;Yongqi Han;Ali Asghar Heidari;Huiling Chen",
+      "id": "out-6d5f22f1d2b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An enhanced Moth-Flame optimizer with quality enhancement and directional crossover: optimizing classic engineering problems — Helong Yu;Jiale Quan;Yongqi Han;Ali Asghar Heidari;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6443,
+            "end_char": 6639
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于改进樽海鞘群算法的医学疾病特征选择方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪鹏君;赵松伟;陈慧灵;许素玲;何文明;施一剑",
+      "id": "out-0393bb49ddeb",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于改进樽海鞘群算法的医学疾病特征选择方法 — 汪鹏君;赵松伟;陈慧灵;许素玲;何文明;施一剑",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6645,
+            "end_char": 6698
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OCRUN: An oppositional Runge–Kutta optimizer with cuckoo search for global optimization and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meilin Zhang;Huiling Chen;Ali Asghar Heidari;Zhennao Cai;Nojood O. Aljehane;Romany F. Mansour",
+      "id": "out-ba7c9e43a641",
+      "evidence": [
+        {
+          "quote": "[期刊论文] OCRUN: An oppositional Runge–Kutta optimizer with cuckoo search for global optimization and feature selection — Meilin Zhang;Huiling Chen;Ali Asghar Heidari;Zhennao Cai;Nojood O. Aljehane;Romany F. Mansour",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6704,
+            "end_char": 6915
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-core sine cosine optimization: Methods and inclusive analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Wei;Pengjun Wang;Ali Asghar Heidari;Mingjing Wang;Xuehua Zhao;Huiling Chen",
+      "id": "out-9d669a0010fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-core sine cosine optimization: Methods and inclusive analysis — Zhou Wei;Pengjun Wang;Ali Asghar Heidari;Mingjing Wang;Xuehua Zhao;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6921,
+            "end_char": 7076
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Salp swarm algorithm with iterative mapping and local escaping for multi-level threshold image segmentation: A skin cancer dermoscopic case study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuhui Hao;Changcheng Huang;Ali Asghar Heidari;Huiling Chen;Lingzhi Li;Abeer D Algarni;Hela Elmannai;Suling Xu",
+      "id": "out-74190ee9267c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Salp swarm algorithm with iterative mapping and local escaping for multi-level threshold image segmentation: A skin cancer dermoscopic case study — Shuhui Hao;Changcheng Huang;Ali Asghar Heidari;Huiling Chen;Lingzhi Li;Abeer D Algarni;Hela Elmannai;Suling Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7082,
+            "end_char": 7346
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "INFO: An efficient optimization algorithm based on weighted mean of vectors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Iman Ahmadianfar;Ali Asghar Heidari;Saeed Noshadian;Huiling Chen;Amir H Gandomi",
+      "id": "out-e11b38f572c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] INFO: An efficient optimization algorithm based on weighted mean of vectors — Iman Ahmadianfar;Ali Asghar Heidari;Saeed Noshadian;Huiling Chen;Amir H Gandomi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7352,
+            "end_char": 7515
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "WTC3D: An Efficient Neural Network for Noncontact Pulse Acquisition in Internet of Medical Things",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changchen Zhao;Pengcheng Cao;Meng Hu;Bin Huang;Huiling Chen;Jing Li",
+      "id": "out-4aa6804ed34a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] WTC3D: An Efficient Neural Network for Noncontact Pulse Acquisition in Internet of Medical Things — Changchen Zhao;Pengcheng Cao;Meng Hu;Bin Huang;Huiling Chen;Jing Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7521,
+            "end_char": 7694
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint margin adaption and multiscale feature fusion for COVID-19 CT images segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Chen;Wei Zhang;Taohui Zhou;Honping Lin;Ali Asghar Heidari;Huiling Chen;Lan Liu",
+      "id": "out-ea8fa0687cc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint margin adaption and multiscale feature fusion for COVID-19 CT images segmentation — Ying Chen;Wei Zhang;Taohui Zhou;Honping Lin;Ali Asghar Heidari;Huiling Chen;Lan Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7700,
+            "end_char": 7879
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosted crow search algorithm for handling multi-threshold image problems with application to X-ray images of COVID-19",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Songwei Zhao;Pengjun Wang;Ali Asghar Heidari;Xuehua Zhao;Huiling Chen",
+      "id": "out-015399ba42df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boosted crow search algorithm for handling multi-threshold image problems with application to X-ray images of COVID-19 — Songwei Zhao;Pengjun Wang;Ali Asghar Heidari;Xuehua Zhao;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7885,
+            "end_char": 8081
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于改进樽海鞘群算法的医学图像多阈值分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪鹏君;赵松伟;陈慧灵;许素玲;何文明;李刚",
+      "id": "out-10e694e8f18c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于改进樽海鞘群算法的医学图像多阈值分割方法 — 汪鹏君;赵松伟;陈慧灵;许素玲;何文明;李刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8087,
+            "end_char": 8140
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DSEUNet: A lightweight UNet for dynamic space grouping enhancement for skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Li;Jiawei Wang;Fengwu Lin;Wenqi Wu;Zhaomin Chen;Ali Asghar Heidari;Huiling Chen",
+      "id": "out-a9870e4c3110",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DSEUNet: A lightweight UNet for dynamic space grouping enhancement for skin lesion segmentation — Jian Li;Jiawei Wang;Fengwu Lin;Wenqi Wu;Zhaomin Chen;Ali Asghar Heidari;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8146,
+            "end_char": 8334
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards augmented kernel extreme learning models for bankruptcy prediction: Algorithmic behavior and comprehensive analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanan Zhang;Renjing Liu;Ali Asghar Heidari;Xin Wang;Ying Chen;Mingjing Wang;Huiling Chen",
+      "id": "out-634f87bc3ec6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Towards augmented kernel extreme learning models for bankruptcy prediction: Algorithmic behavior and comprehensive analysis — Yanan Zhang;Renjing Liu;Ali Asghar Heidari;Xin Wang;Ying Chen;Mingjing Wang;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8340,
+            "end_char": 8560
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A bioinformatic variant fruit fly optimizer for tackling optimization problems",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Fan;Pengjun Wang;Majdi Mafarja;Mingjing Wang;Xuehua Zhao;Huiling Chen",
+      "id": "out-e687290f736e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A bioinformatic variant fruit fly optimizer for tackling optimization problems — Yi Fan;Pengjun Wang;Majdi Mafarja;Mingjing Wang;Xuehua Zhao;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8566,
+            "end_char": 8725
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-objective evolutionary algorithm with decomposition and the information feedback for high-dimensional medical data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingjing Wang;Ali Asghar Heidari;Huiling Chen",
+      "id": "out-68c20b67a129",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-objective evolutionary algorithm with decomposition and the information feedback for high-dimensional medical data — Mingjing Wang;Ali Asghar Heidari;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8731,
+            "end_char": 8907
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hunger games search: Visions, conception, implementation, deep analysis, perspectives, and towards performance shifts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yutao;Chen Huiling;Heidari Ali Asghar;Gandomi Amir H.",
+      "id": "out-f56f7a755021",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hunger games search: Visions, conception, implementation, deep analysis, perspectives, and towards performance shifts — Yang Yutao;Chen Huiling;Heidari Ali Asghar;Gandomi Amir H.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8913,
+            "end_char": 9097
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rough hypervolume-driven feature selection with groupwise intelligent sampling for detecting clinical characterization of lupus nephritis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinsen Zhou;Yi Chen;Ali Asghar Heidari;Huiling Chen;Xiaowei Chen",
+      "id": "out-332ecce2acf1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rough hypervolume-driven feature selection with groupwise intelligent sampling for detecting clinical characterization of lupus nephritis — Xinsen Zhou;Yi Chen;Ali Asghar Heidari;Huiling Chen;Xiaowei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9103,
+            "end_char": 9313
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RIME: A physics-based optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hang Su;Dong Zhao;Ali Asghar Heidari;Lei Liu;Xiaoqin Zhang;Majdi Mafarja;Huiling Chen",
+      "id": "out-7e66e841b12a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RIME: A physics-based optimization — Hang Su;Dong Zhao;Ali Asghar Heidari;Lei Liu;Xiaoqin Zhang;Majdi Mafarja;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9319,
+            "end_char": 9447
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MOQEA/D: Multi-Objective QEA With Decomposition Mechanism and Excellent Global Search and Its Application",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Deng;Xing Cai;Daqing Wu;Yingjie Song;Huiling Chen;Xiaojuan Ran;Xiangb",
+      "id": "out-5b89dce89800",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MOQEA/D: Multi-Objective QEA With Decomposition Mechanism and Excellent Global Search and Its Application — Wu Deng;Xing Cai;Daqing Wu;Yingjie Song;Huiling Chen;Xiaojuan Ran;Xiangb",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9453,
+            "end_char": 9639
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image segmentation of Intracerebral hemorrhage patients based on enhanced hunger Games search Optimizer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingxian Hou;Ruohe Li;Majdi Mafarja;Ali Asghar Heidari;Liping Liu;Congcong Jin;Shanshan Zhou;Huiling Chen;Zhennao Cai;Chengye Li",
+      "id": "out-3afaa6269175",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image segmentation of Intracerebral hemorrhage patients based on enhanced hunger Games search Optimizer — Lingxian Hou;Ruohe Li;Majdi Mafarja;Ali Asghar Heidari;Liping Liu;Congcong Jin;Shanshan Zhou;Huiling Chen;Zhennao Cai;Chengye Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9665,
+            "end_char": 9905
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature selection in high-dimensional data: an enhanced RIME optimization with information entropy pruning and DBSCAN clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huangying Wu;Yi Chen;Wei Zhu;Zhennao Cai;Ali Asghar Heidari;Huiling Chen",
+      "id": "out-405a5f3e3933",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature selection in high-dimensional data: an enhanced RIME optimization with information entropy pruning and DBSCAN clustering — Huangying Wu;Yi Chen;Wei Zhu;Zhennao Cai;Ali Asghar Heidari;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9911,
+            "end_char": 10120
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reinforced covariance weighted mean of vectors optimizer: insight, diversity, deep analysis and feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Boyang Xu;Ali Asghar Heidari;Huiling Chen",
+      "id": "out-97e888cb8b26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reinforced covariance weighted mean of vectors optimizer: insight, diversity, deep analysis and feature selection — Boyang Xu;Ali Asghar Heidari;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10126,
+            "end_char": 10289
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Double adaptive weights for stabilization of moth flame optimizer: Balance analysis, engineering cases, and medical diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weifeng Shan;Zenglin Qiao;Ali Asghar Heidari;Huiling Chen;Hamza Turabieh;Yuntian Teng",
+      "id": "out-fa98c1c38845",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Double adaptive weights for stabilization of moth flame optimizer: Balance analysis, engineering cases, and medical diagnosis — Weifeng Shan;Zenglin Qiao;Ali Asghar Heidari;Huiling Chen;Hamza Turabieh;Yuntian Teng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10295,
+            "end_char": 10514
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dimension decided Harris hawks optimization with Gaussian mutation: Balance analysis and diversity patterns",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiming Song;Pengjun Wang;Ali Asghar Heidari;Mingjing Wang;Xuehua Zhao;Huiling Chen;Wenming He;Suling Xu",
+      "id": "out-b808c063f7af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dimension decided Harris hawks optimization with Gaussian mutation: Balance analysis and diversity patterns — Shiming Song;Pengjun Wang;Ali Asghar Heidari;Mingjing Wang;Xuehua Zhao;Huiling Chen;Wenming He;Suling Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10520,
+            "end_char": 10740
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M3FuNet:An Unsupervised Multivariate Feature Fusion Network for Hyperspectral Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huayue Chen;Haoyu Long;Tao Chen;Yingjie Song;Huiling Chen;Xiangbing Zhou;Wu Deng",
+      "id": "out-35fb0d29507e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M3FuNet:An Unsupervised Multivariate Feature Fusion Network for Hyperspectral Image Classification — Huayue Chen;Haoyu Long;Tao Chen;Yingjie Song;Huiling Chen;Xiangbing Zhou;Wu Deng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10746,
+            "end_char": 10933
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MFeature: Towards high performance evolutionary tools for feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Yueting;Huang Hui;Heidari Ali Asghar;Gui Wenyong;Ye Xiaojia;Chen Ying;Chen Huiling;Pan Zhifang",
+      "id": "out-7b2de4107532",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MFeature: Towards high performance evolutionary tools for feature selection — Xu Yueting;Huang Hui;Heidari Ali Asghar;Gui Wenyong;Ye Xiaojia;Chen Ying;Chen Huiling;Pan Zhifang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10939,
+            "end_char": 11120
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chaotic random spare ant colony optimization for multi-threshold image segmentation of 2D Kapur entropy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong Zhao;Lei Liu;Fanhua Yu;Ali Asghar Heidari;Mingjing Wang;Guoxi Liang;Sung Wook Baik;Huiling Chen",
+      "id": "out-729f2581f3e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chaotic random spare ant colony optimization for multi-threshold image segmentation of 2D Kapur entropy — Dong Zhao;Lei Liu;Fanhua Yu;Ali Asghar Heidari;Mingjing Wang;Guoxi Liang;Sung Wook Baik;Huiling Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11126,
+            "end_char": 11338
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced Gaussian bare-bones grasshopper optimization: Mitigating the performance concerns for feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhangze Xu;Ali Asghar Heidari;Fangjun Kuang;Ashraf Khalil;Majdi Mafarja;Siyang Zhang;Huiling Chen;Zhifang Pan",
+      "id": "out-4c77ee90120b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhanced Gaussian bare-bones grasshopper optimization: Mitigating the performance concerns for feature selection — Zhangze Xu;Ali Asghar Heidari;Fangjun Kuang;Ashraf Khalil;Majdi Mafarja;Siyang Zhang;Huiling Chen;Zhifang Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11344,
+            "end_char": 11574
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Eres-UNet++: Liver CT image segmentation based on high-efficiency channel attention and Res-UNet++",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Li;Kongyu Liu;Yating Hu;Hongchen Zhang;Ali Asghar Heidari;Huiling Chen;Weijiang Zhang;Abeer D. Algarni;Hela Elmannai",
+      "id": "out-65cc2114f5e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Eres-UNet++: Liver CT image segmentation based on high-efficiency channel attention and Res-UNet++ — Jian Li;Kongyu Liu;Yating Hu;Hongchen Zhang;Ali Asghar Heidari;Huiling Chen;Weijiang Zhang;Abeer D. Algarni;Hela Elmannai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11580,
+            "end_char": 11808
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进樽海鞘群算法的医学疾病特征选择方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪鹏君;赵松伟;陈慧灵;许素玲;何文明;施一剑",
+      "id": "out-5784b2a8ee68",
+      "evidence": [
+        {
+          "quote": "[专利] 基于改进樽海鞘群算法的医学疾病特征选择方法 — 汪鹏君;赵松伟;陈慧灵;许素玲;何文明;施一剑",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11814,
+            "end_char": 11865
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基因选择方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈慧灵;陈丽燕;张维溪;余素丹;陈翼",
+      "id": "out-eb5ba8b4aa8a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基因选择方法及装置 — 陈慧灵;陈丽燕;张维溪;余素丹;陈翼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11871,
+            "end_char": 11907
+          },
+          "version": "5821e99afecdec35b7b1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 44,
+    "listed": 44,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 39,
+        "extracted": 39
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

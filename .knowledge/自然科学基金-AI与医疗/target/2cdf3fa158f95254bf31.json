@@ -2,15 +2,20 @@
   "doc_id": "2cdf3fa158f95254bf31",
   "version": "fa6dbdf92e1b0a022c7d",
   "source_hash": "25f654791634160f0d565b698a1c65a37333ba22c9209a9af35a52919ab2236b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.063803+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:44.864195+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fea1cf811cda",
-          "name": "代谢综合征相关结直肠癌风险预测",
-          "desc": "结直肠癌受复杂环境因素影响且难以早期诊断，需针对代谢综合征相关高风险人群做发病风险评估。",
+          "id": "item-60514c2d954a",
+          "name": "代谢综合征相关结直肠癌",
+          "desc": "因果机制与AI预测",
+          "evidence": [
+            {
+              "quote": "本项目按计划执行，围绕代谢综合征与结直肠癌发生发展的因果机制及其人工智能预测应用开展系统研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2694,
+                "end_char": 2739
+              },
+              "version": "fa6dbdf92e1b0a022c7d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b567623c8b4a",
+          "name": "结直肠癌受复杂环境因素影响且难早期诊断",
+          "desc": "需因果证据和预测",
           "evidence": [
             {
               "quote": "结直肠癌发病受到复杂的环境因素影响且难以做到早期诊断",
@@ -37,67 +64,30 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6cd597321aa1",
-          "name": "代谢综合征与结直肠癌因果不明",
-          "desc": "代谢综合征及其代谢异常与结直肠癌发生密切相关，但无法确定是否存在真实因果关联。",
-          "evidence": [
-            {
-              "quote": "但是无法确定其间是否存在真实的因果关联",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 745,
-                "end_char": 763
-              },
-              "version": "fa6dbdf92e1b0a022c7d"
-            }
-          ]
-        },
-        {
-          "id": "item-d0e5ec118d7a",
-          "name": "异常代谢产物作用机制缺乏验证",
-          "desc": "代谢综合征伴随复杂代谢紊乱，其对肿瘤发生的影响及预测能力仍缺乏研究。",
-          "evidence": [
-            {
-              "quote": "其在结直肠癌发病中起到的影响以及是否能够用于预测肿瘤发生，目前仍缺乏相关研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 784,
-                "end_char": 821
-              },
-              "version": "fa6dbdf92e1b0a022c7d"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-8d15dc090d49",
-          "name": "孟德尔随机化因果推断",
-          "desc": "运用全基因组关联分析及孟德尔随机化研究分析代谢综合征与结直肠癌的因果关联。",
+          "id": "item-0802fed4df5e",
+          "name": "双样本孟德尔随机化",
+          "desc": "欧洲及东亚人群GWAS",
           "evidence": [
             {
-              "quote": "运用全基因组关联分析及孟德尔随机化研究，分析代谢综合征与结直肠癌的因果关联",
+              "quote": "基于欧洲及东亚人群大型GWAS数据库开展双样本孟德尔随机化分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 934
+                "start_char": 2744,
+                "end_char": 2774
               },
               "version": "fa6dbdf92e1b0a022c7d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-620111739292",
-          "name": "病理图像基础模型判别网络",
-          "desc": "构建基于病理图像基础模型的深度学习判别网络，学习代谢综合征相关结直肠癌的高维形态差异。",
+          "id": "item-d49243cedc62",
+          "name": "病理图像基础模型深度学习判别网络",
+          "desc": "代谢综合征相关结直肠癌形态差异",
           "evidence": [
             {
               "quote": "构建基于病理图像基础模型的深度学习判别网络",
@@ -108,51 +98,13 @@
               },
               "version": "fa6dbdf92e1b0a022c7d"
             }
-          ]
-        },
-        {
-          "id": "item-c13a5cd9c87c",
-          "name": "3D类器官机制探索",
-          "desc": "采用3D类器官技术探索关键异常代谢产物影响肿瘤发生的潜在机制。",
-          "evidence": [
-            {
-              "quote": "同时采用3D类器官技术探索关键异常代谢产物影响肿瘤发生的潜在机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 976,
-                "end_char": 1007
-              },
-              "version": "fa6dbdf92e1b0a022c7d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d8c641b7c9a4",
-          "name": "初筛74种潜在因果关联代谢物",
-          "desc": "对1400种血浆代谢物系统筛查，鉴定出74种与结直肠癌风险存在潜在因果关联的代谢物。",
-          "evidence": [
-            {
-              "quote": "鉴定出74种与结直肠癌风险存在潜在因果关联的代谢物",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2840,
-                "end_char": 2864
-              },
-              "version": "fa6dbdf92e1b0a022c7d"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-362e1ea863cc",
-          "name": "泛肿瘤图文基础模型与临床注册",
-          "desc": "构建泛肿瘤图文基础模型并注册开展临床研究，实现病灶定位分割与分期生存预测。",
+          "id": "item-d8f851b34562",
+          "name": "泛肿瘤图文基础模型",
+          "desc": "病灶定位分割与分期、生存预测",
           "evidence": [
             {
               "quote": "构建了泛肿瘤图文基础模型，并注册开展相关临床研究（ChiCTR2500101081）",
@@ -164,72 +116,151 @@
               "version": "fa6dbdf92e1b0a022c7d"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-24a84ac0e7e7",
-          "name": "直肠癌分期与生存预测AUC",
-          "desc": "直肠癌分期预测AUC达0.738，生存预测AUC达0.759，整体性能优于对比模型。",
+          "id": "item-b443e5983783",
+          "name": "肥胖与结直肠癌因果关联",
+          "desc": "代谢综合征组分中仅肥胖稳定显著",
           "evidence": [
             {
-              "quote": "其中直肠癌分期预测AUC达到0.738，生存预测AUC达到0.759，整体性能优于对比模型",
+              "quote": "明确代谢综合征各组分中仅肥胖与结直肠癌发生存在稳定且显著的因果关联",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3294,
-                "end_char": 3338
+                "start_char": 2776,
+                "end_char": 2808
               },
               "version": "fa6dbdf92e1b0a022c7d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-99ec4722198f",
+          "name": "74种潜在因果代谢物",
+          "desc": "1,400种血浆代谢物筛查",
+          "evidence": [
+            {
+              "quote": "鉴定出74种与结直肠癌风险存在潜在因果关联的代谢物",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2840,
+                "end_char": 2864
+              },
+              "version": "fa6dbdf92e1b0a022c7d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0c6427f3e55a",
+          "name": "分期与生存预测AUC",
+          "desc": "直肠癌分期0.738，生存0.759",
+          "evidence": [
+            {
+              "quote": "其中直肠癌分期预测AUC达到0.738，生存预测AUC达到0.759",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3294,
+                "end_char": 3327
+              },
+              "version": "fa6dbdf92e1b0a022c7d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fea1cf811cda"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6cd597321aa1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Synthetic Data-Driven Radiology Foundation Model for Pan-tumor Clinical Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhui Lei;Hanyu Chen;Zitian Zhang;Luyang Luo;Qiong Xiao;Yannian Gu;Peng Gao;Yankai Jiang;Ci Wang;Guangtao Wu;Tongjia Xu;Yingjie Zhang;Pranav Rajpurkar;Xiaofan Zhang;Shaoting Zhang;Zhenning Wan",
+      "id": "out-8ced69ec871b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Synthetic Data-Driven Radiology Foundation Model for Pan-tumor Clinical Diagnosis — Wenhui Lei;Hanyu Chen;Zitian Zhang;Luyang Luo;Qiong Xiao;Yannian Gu;Peng Gao;Yankai Jiang;Ci Wang;Guangtao Wu;Tongjia Xu;Yingjie Zhang;Pranav Rajpurkar;Xiaofan Zhang;Shaoting Zhang;Zhenning Wan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3357,
+            "end_char": 3642
+          },
+          "version": "fa6dbdf92e1b0a022c7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6cd597321aa1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8d15dc090d49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LesionDiffusion: Towards Text-controlled General Lesion Synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hengrui Tian;Wenhui Lei;Linrui Dai;Hanyu Chen;Xiaofan Zhang",
+      "id": "out-213075897a82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LesionDiffusion: Towards Text-controlled General Lesion Synthesis — Hengrui Tian;Wenhui Lei;Linrui Dai;Hanyu Chen;Xiaofan Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3647,
+            "end_char": 3780
+          },
+          "version": "fa6dbdf92e1b0a022c7d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8d15dc090d49"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d8c641b7c9a4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-620111739292"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-24a84ac0e7e7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ct synthesis with conditional diffusion models for abdominal lymph node segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongrui Yu;Hanyu Chen;Zitian Zhang;Qiong Xiao;Wenhui Lei;Linrui Dai;Yu Fu;Hui Tan;Guan Wang;Peng Gao;Xiaofan Zhang",
+      "id": "out-89e13b1ca018",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ct synthesis with conditional diffusion models for abdominal lymph node segmentation — Yongrui Yu;Hanyu Chen;Zitian Zhang;Qiong Xiao;Wenhui Lei;Linrui Dai;Yu Fu;Hui Tan;Guan Wang;Peng Gao;Xiaofan Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3785,
+            "end_char": 3992
+          },
+          "version": "fa6dbdf92e1b0a022c7d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

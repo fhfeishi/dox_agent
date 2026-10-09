@@ -2,15 +2,20 @@
   "doc_id": "9722f909e8eae5de4b24",
   "version": "63c40f197e6a7b42b5ca",
   "source_hash": "4236039107b5d04fc47d255c09ffda88ac51a04d4a1f6c3e00ae643941c89d32",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.205035+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.657339+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02a09fecd05e",
-          "name": "iNPH分流术预后预测",
-          "desc": "脑脊液分流术可改善部分特发性正常压力脑积水患者临床症状，但哪些患者能从手术中获益暂无可靠预测标准。",
+          "id": "item-a1034c008411",
+          "name": "特发性正常压力脑积水分流术预后预测",
+          "desc": "分流术可改善部分患者症状",
           "evidence": [
             {
-              "quote": "脑脊液分流术可改善部分特发性正常压力脑积水（iNPH）患者的临床症状，但哪些患者能从手术中获益暂无可靠预测标准",
+              "quote": "脑脊液分流术可改善部分特发性正常压力脑积水（iNPH）患者的临床症状",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 679,
-                "end_char": 733
-              },
-              "version": "63c40f197e6a7b42b5ca"
-            }
-          ]
-        },
-        {
-          "id": "item-a5d2deff3108",
-          "name": "为iNPH精准诊疗提供客观依据",
-          "desc": "建立神经影像特征与症状表型及疗效预后的内在关联，为iNPH精准诊疗提供更客观的依据。",
-          "evidence": [
-            {
-              "quote": "为iNPH精准诊疗提供更客观的依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3730,
-                "end_char": 3746
+                "end_char": 712
               },
               "version": "63c40f197e6a7b42b5ca"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-67979b9ab08d",
-          "name": "放液试验与长期疗效并不总一致",
-          "desc": "既往研究提示脑脊液放液试验结果与分流术后长期疗效并非总能一致，凸显建立稳健预后预测模型的临床需求。",
+          "id": "item-90507037ea95",
+          "name": "缺乏可靠标准术前预测获益人群",
+          "desc": "分流术获益预测",
           "evidence": [
             {
-              "quote": "既往研究提示，脑脊液放液试验结果与分流术后的长期疗效并非总能一致，进一步凸显了建立稳健预后预测模型的临床需求",
+              "quote": "但目前仍缺乏可靠标准用于术前预测获益人群",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3176,
-                "end_char": 3229
-              },
-              "version": "63c40f197e6a7b42b5ca"
-            }
-          ]
-        },
-        {
-          "id": "item-db6ed10dfde8",
-          "name": "需整合多层次参数预测疗效",
-          "desc": "推测整合脑室容积/脑脊液动力学、脑灰白质结构、大脑连接与症状多层次参数可准确预测分流术疗效。",
-          "evidence": [
-            {
-              "quote": "据此推测，整合脑室容积/脑脊液动力学—脑灰白质结构—大脑连接—症状多层次参数可准确预测iNPH脑脊液分流术的疗效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 892
+                "start_char": 3155,
+                "end_char": 3174
               },
               "version": "63c40f197e6a7b42b5ca"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-40baaf542aee",
-          "name": "多模态脑室分割与影像定量",
-          "desc": "从iNPH结构MRI入手构建具有高泛化能力的多模态脑室分割模型，实现三维相对脑室容积的精准自动化定量。",
+          "id": "item-a9bb8bccba6f",
+          "name": "多模态脑室分割模型",
+          "desc": "三维相对脑室容积自动化定量",
           "evidence": [
             {
-              "quote": "从iNPH结构MRI入手，构建了具有高泛化能力的多模态脑室分割模型，实现三维相对脑室容积的精准自动化定量，为后续研究提供关键技术支撑",
+              "quote": "构建了具有高泛化能力的多模态脑室分割模型，实现三维相对脑室容积的精准自动化定量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3297,
-                "end_char": 3362
+                "start_char": 3310,
+                "end_char": 3348
               },
               "version": "63c40f197e6a7b42b5ca"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5cfd0c736fcd",
-          "name": "机器学习整合多模态数据构建预后模型",
-          "desc": "基于机器学习整合人口学特征、临床量表评估、共病信息及多模态影像数据，构建iNPH综合预后预测模型。",
+          "id": "item-80cd34a05d6e",
+          "name": "临床信息与多模态影像融合综合预后预测模型",
+          "desc": "机器学习",
           "evidence": [
             {
               "quote": "基于机器学习方法，整合人口学特征、临床量表评估、共病信息及多模态影像数据，构建iNPH综合预后预测模型",
@@ -124,7 +98,8 @@
               },
               "version": "63c40f197e6a7b42b5ca"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,255 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f942d293da86",
-          "name": "多模态脑室分割模型实现自动定量",
-          "desc": "构建具高泛化能力的多模态脑室分割模型实现三维相对脑室容积精准自动化定量，并阐明脑室形变程度在分流术预后预测中的价值。",
+          "id": "item-558b813719bf",
+          "name": "融合模型对长期预后的预测能力",
+          "desc": "初步结果",
           "evidence": [
             {
-              "quote": "构建了具有高泛化能力的多模态脑室分割模型，实现三维相对脑室容积的精准自动化定量，为后续研究提供关键技术支撑；同时阐明脑室形变程度在分流术预后预测中的价值",
+              "quote": "“临床信息+多模态影像学”的融合模型对iNPH长期预后具有一定预测能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3310,
-                "end_char": 3385
+                "start_char": 3558,
+                "end_char": 3592
               },
               "version": "63c40f197e6a7b42b5ca"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3c27e208b808",
-          "name": "揭示脑脊液动力学与类淋巴功能障碍",
-          "desc": "综合多种成像技术揭示iNPH的脑脊液动力学异常、灰白质改变及类淋巴功能障碍，筛选确立与临床症状高度相关的功能影像学指标。",
-          "evidence": [
-            {
-              "quote": "综合多种成像技术揭示iNPH的脑脊液动力学异常、灰白质改变及类淋巴功能障碍，筛选并确立与临床症状高度相关的功能影像学指标",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3408,
-                "end_char": 3467
-              },
-              "version": "63c40f197e6a7b42b5ca"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1a6322389e05",
-          "name": "临床与影像融合模型具预测能力",
-          "desc": "初步结果表明临床信息加多模态影像学融合模型对iNPH长期预后具有一定预测能力，可为临床无创筛选分流术候选者提供影像学证据。",
-          "evidence": [
-            {
-              "quote": "初步结果表明，“临床信息+多模态影像学”的融合模型对iNPH长期预后具有一定预测能力，可为临床无创筛选分流术候选者提供影像学证据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3551,
-                "end_char": 3614
-              },
-              "version": "63c40f197e6a7b42b5ca"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-02a09fecd05e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-67979b9ab08d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Are preoperative phase-contrast CSF flow parameters ideal for predicting the outcome of shunt surgery in patients with idiopathic normal pressure hydrocephalus?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-Jie·He;Xie-Jun·Zhang;Qi-Zhong·Xu;Run-Tao·Bai;Jia-Kuan·Chen;Xi·Zhou;Jun·Xia",
+      "id": "out-043a636d0651",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Are preoperative phase-contrast CSF flow parameters ideal for predicting the outcome of shunt surgery in patients with idiopathic normal pressure hydrocephalus? — Wen-Jie·He;Xie-Jun·Zhang;Qi-Zhong·Xu;Run-Tao·Bai;Jia-Kuan·Chen;Xi·Zhou;Jun·Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3766,
+            "end_char": 4013
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-67979b9ab08d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-40baaf542aee"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种核磁共振图像中全脑血管周围间隙的分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏军;何文杰;潘敏敏;刘梦汀",
+      "id": "out-9a4706bf3d51",
+      "evidence": [
+        {
+          "quote": "[专利] 一种核磁共振图像中全脑血管周围间隙的分割方法及系统 — 夏军;何文杰;潘敏敏;刘梦汀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4018,
+            "end_char": 4064
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-40baaf542aee"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f942d293da86"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion spectrum imaging in patients with idiopathic normal pressure hydrocephalus: correlation with ventricular enlargement.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian·Wu;Wenjie·He;Chenyuan·Liu;Xiaolin·Yang;Jiakuan·Chen;Boyan·Xu;Xi·Zhou;Guodong·Huang;Jun·Xia",
+      "id": "out-ac5e57cfb9b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion spectrum imaging in patients with idiopathic normal pressure hydrocephalus: correlation with ventricular enlargement. — Qian·Wu;Wenjie·He;Chenyuan·Liu;Xiaolin·Yang;Jiakuan·Chen;Boyan·Xu;Xi·Zhou;Guodong·Huang;Jun·Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4069,
+            "end_char": 4300
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5cfd0c736fcd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1a6322389e05"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic value of magnetic resonance imaging-visible perivascular spaces in patients with idiopathic normal pressure hydrocephalus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He·Wenjie;Xu·Qizhong;Yuan·Jichun;Cai·Die;Chen·Zekai;Xia·Jun;Jiang·Guihua",
+      "id": "out-045d5722ec65",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic value of magnetic resonance imaging-visible perivascular spaces in patients with idiopathic normal pressure hydrocephalus — He·Wenjie;Xu·Qizhong;Yuan·Jichun;Cai·Die;Chen·Zekai;Xia·Jun;Jiang·Guihua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4305,
+            "end_char": 4518
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态的评估老年人认知能力的智能检测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏军;李晓涛;何文杰;马庆国;冯博;胡海波;丁澄;陈家宽;林伟珍;黄耀辉",
+      "id": "out-147a5020e8c8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态的评估老年人认知能力的智能检测系统 — 夏军;李晓涛;何文杰;马庆国;冯博;胡海波;丁澄;陈家宽;林伟珍;黄耀辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4523,
+            "end_char": 4590
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of MRI-based semi-quantitative structural neuroimaging in predicting the prognosis of patients with idiopathic normal pressure hydrocephalus after shunt surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Jiakuan;He Wenjie;Zhang Xiejun;Lv Minrui;Zhou Xi;Yang Xiaolin;Wei Haihua;Ma Haiqin;Li Hongbing;Xia Jun",
+      "id": "out-80486f7be7d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of MRI-based semi-quantitative structural neuroimaging in predicting the prognosis of patients with idiopathic normal pressure hydrocephalus after shunt surgery — Chen Jiakuan;He Wenjie;Zhang Xiejun;Lv Minrui;Zhou Xi;Yang Xiaolin;Wei Haihua;Ma Haiqin;Li Hongbing;Xia Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4877
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Associations of ventriculomegaly and white matter hyperintensities with glymphatic dysfunction in idiopathic normal pressure hydrocephalus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Qian;Chen Jiakuan;Yang Xiaolin;Zhang Xiejun;He Wenjie;Xia Jun",
+      "id": "out-9b36ba98e22b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Associations of ventriculomegaly and white matter hyperintensities with glymphatic dysfunction in idiopathic normal pressure hydrocephalus — Wu Qian;Chen Jiakuan;Yang Xiaolin;Zhang Xiejun;He Wenjie;Xia Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4882,
+            "end_char": 5093
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gray matter volume of cerebellum associated with idiopathic normal pressure hydrocephalus: A cross-sectional analysis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minrui·Lv;Xiaolin·Yang;Xi·Zhou;Jiakuan·Chen;Haihua·Wei;Duanming·Du;Hai·Lin;Jun·Xia",
+      "id": "out-770495193951",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gray matter volume of cerebellum associated with idiopathic normal pressure hydrocephalus: A cross-sectional analysis. — Minrui·Lv;Xiaolin·Yang;Xi·Zhou;Jiakuan·Chen;Haihua·Wei;Duanming·Du;Hai·Lin;Jun·Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5098,
+            "end_char": 5307
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic value of perivascular spaces·diffusion tensor imaging-derived indices·and choroid plexus in idiopathic normal pressure hydrocephalus.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjie·He;Zekai·Chen;Pujie·Qiu;Jialing·Lv;Qizhong·Xu;Jun·Xia;Guihua·Jiang",
+      "id": "out-25d8a9fdfb27",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic value of perivascular spaces·diffusion tensor imaging-derived indices·and choroid plexus in idiopathic normal pressure hydrocephalus. — Wenjie·He;Zekai·Chen;Pujie·Qiu;Jialing·Lv;Qizhong·Xu;Jun·Xia;Guihua·Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5312,
+            "end_char": 5538
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep-learning-based segmentation of perivascular spaces on T2-Weighted 3T magnetic resonance images.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Die·Cai;Minmin·Pan;Chenyuan·Liu;Wenjie·He;Xinting·Ge;Jiaying·Lin;Rui·Li;Mengting·Liu;Jun·Xia",
+      "id": "out-81e3f5e8f746",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep-learning-based segmentation of perivascular spaces on T2-Weighted 3T magnetic resonance images. — Die·Cai;Minmin·Pan;Chenyuan·Liu;Wenjie·He;Xinting·Ge;Jiaying·Lin;Rui·Li;Mengting·Liu;Jun·Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5544,
+            "end_char": 5745
+          },
+          "version": "63c40f197e6a7b42b5ca"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

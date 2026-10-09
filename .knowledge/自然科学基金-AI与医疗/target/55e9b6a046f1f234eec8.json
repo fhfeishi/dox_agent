@@ -2,15 +2,20 @@
   "doc_id": "55e9b6a046f1f234eec8",
   "version": "640436719ccb8d99a9a2",
   "source_hash": "2ff48dda641ff108a6d7b46d2c467dddca43ea6bd6bdb367774b9e3d767f362b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.428937+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:41:37.880575+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb6575723343",
-          "name": "肝细胞癌免疫基因表型MRI预测",
-          "desc": "面向肝细胞癌免疫治疗人群筛选，建立基于MRI的免疫基因表型无创预测模型。",
+          "id": "item-0b9f43f9ca4f",
+          "name": "肝细胞癌免疫基因表型预测",
+          "desc": "免疫治疗在中晚期HCC中有潜力",
           "evidence": [
             {
-              "quote": "肝细胞癌（HCC）是我国最常见的恶性肿瘤之一，预后差",
+              "quote": "免疫治疗通过恢复机体正常的抗肿瘤免疫反应控制或清除肿瘤，在中晚期HCC治疗中显示出巨大发展潜力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 688
+                "start_char": 706,
+                "end_char": 752
               },
               "version": "640436719ccb8d99a9a2"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-04fb0a342e1c",
-          "name": "免疫基因表型异质且活检难以准确反映",
-          "desc": "并非所有HCC患者均能发生免疫应答；免疫基因表型是疗效特异预测因子，但存在高度异质性与动态变化，活检难以准确反映。",
+          "id": "item-73b6415a4511",
+          "name": "并非所有HCC患者发生免疫应答",
+          "desc": "需筛选合适免疫治疗人群",
           "evidence": [
             {
-              "quote": "HCC的免疫基因表型是免疫治疗疗效的特异预测因子，存在高度异质性和动态变化的特点，活检难以准确反映",
+              "quote": "但并非所有的HCC患者均能发生免疫应答",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 775,
-                "end_char": 823
+                "start_char": 2636,
+                "end_char": 2654
               },
               "version": "640436719ccb8d99a9a2"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d319ee7af005",
-          "name": "计算机深度迁移学习免疫基因表型预测",
-          "desc": "利用计算机深度迁移学习建立HCC免疫基因表型的MRI预测模型，围绕多参数MRI数据特征的网络结构设计与训练策略，并前瞻性进行模型验证。",
+          "id": "item-6d26104458a0",
+          "name": "MRI免疫细胞浸润全瘤评估模型",
+          "desc": "Kep、T1pos定量参数",
           "evidence": [
             {
-              "quote": "本项目拟利用计算机深度迁移学习的方法建立HCC免疫基因表型的MRI预测模型",
+              "quote": "构建了MRI免疫细胞浸润的全瘤评估模型，基于Kep、T1pos定量参数的MRI免疫细胞浸润评估模型可以评价免疫细胞浸润水平的高低",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 841,
-                "end_char": 877
+                "start_char": 2765,
+                "end_char": 2828
               },
               "version": "640436719ccb8d99a9a2"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3123cf7058b1",
+          "name": "钆塞酸二钠增强MRI HCC免疫评分评估模型",
+          "desc": "影像特征",
+          "evidence": [
+            {
+              "quote": "本项目组还建立了基于钆塞酸二钠增强磁共振成像影像特征的HCC免疫评分评估模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2966,
+                "end_char": 3003
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-42dac75caef9",
+          "name": "CT影像组学评估T cell-inflamed GEP",
+          "desc": "预测免疫治疗反应",
+          "evidence": [
+            {
+              "quote": "基于计算机断层成像的影像组学建立了评估T细胞炎性基因表达谱（T cell-inflamed gene expression profile, T cell-inflamed GEP）的模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3006,
+                "end_char": 3099
+              },
+              "version": "640436719ccb8d99a9a2"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2ac5d8ee43ef",
-          "name": "GEP影像组学模型训练与验证AUC 0.824/0.827",
-          "desc": "建立基于CT影像组学评估T细胞炎性基因表达谱（GEP）的模型，训练组与验证组AUC分别为0.824和0.827；GEP高表达组病灶治疗后6个月客观缓解率显著高于低表达组。",
+          "id": "item-9e72940d37cc",
+          "name": "T cell-inflamed GEP评估模型性能",
+          "desc": "训练组0.824，验证组0.827",
           "evidence": [
             {
               "quote": "该模型在训练组和验证组中的AUC分别为0.824和0.827",
@@ -99,44 +139,488 @@
               "version": "640436719ccb8d99a9a2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cb6575723343"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-04fb0a342e1c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Degree of Creeping Fat Assessed by CT Enterography is Associated with Intestinal Fibrotic Stricture in Patients with Crohn’s Disease: A Potentially Novel Mesenteric Creeping Fat Index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue-Hua Li;Shi-Ting Feng;Qing-Hua Cao;J Calvin Coffey;Mark E. Baker;Li Huang;Zhuang- Nian Fang;Yun Qiu;Bao-Lan Lu;Zhi-Hui Chen;Yi Li;Dominik Bettenworth;Marietta Iacucci;Can-Hui Sun;Subrata Ghosh;Florian Rieder;Min-Hu Chen;Zi-Ping Li;Ren Mao",
+      "id": "out-7e258ff071f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Degree of Creeping Fat Assessed by CT Enterography is Associated with Intestinal Fibrotic Stricture in Patients with Crohn’s Disease: A Potentially Novel Mesenteric Creeping Fat Index — Xue-Hua Li;Shi-Ting Feng;Qing-Hua Cao;J Calvin Coffey;Mark E. Baker;Li Huang;Zhuang- Nian Fang;Yun Qiu;Bao-Lan Lu;Zhi-Hui Chen;Yi Li;Dominik Bettenworth;Marietta Iacucci;Can-Hui Sun;Subrata Ghosh;Florian Rieder;Min-Hu Chen;Zi-Ping Li;Ren Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3334,
+            "end_char": 3767
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-04fb0a342e1c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d319ee7af005"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feasibility of multi-parametric magnetic resonance imaging combined with machine learning in the assessment of necrosis of osteosarcoma after neoadjuvant chemotherapy: a preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingsheng Huang;Jifei Wang;Meili Sun;Xin Chen;Danyang Xu;Zi-Ping Li;Jinting Ma;Shi-Ting Feng;Zhenhua Gao",
+      "id": "out-d72377202403",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feasibility of multi-parametric magnetic resonance imaging combined with machine learning in the assessment of necrosis of osteosarcoma after neoadjuvant chemotherapy: a preliminary study — Bingsheng Huang;Jifei Wang;Meili Sun;Xin Chen;Danyang Xu;Zi-Ping Li;Jinting Ma;Shi-Ting Feng;Zhenhua Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 4072
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d319ee7af005"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2ac5d8ee43ef"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the recurrence risk of pancreatic neuroendocrine neoplasms after radical resection using deep learning radiomics with preoperative computed tomography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Chenyu;Wang Mingyu;Luo Yanji;Chen Jie;Peng Zhenpeng;Wang Yangdi;Zhang Hongyuan;Li Zi-Ping;Shen Jingxian;Huang Bingsheng;Feng Shi-Ting",
+      "id": "out-73ef74fbb451",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the recurrence risk of pancreatic neuroendocrine neoplasms after radical resection using deep learning radiomics with preoperative computed tomography images — Song Chenyu;Wang Mingyu;Luo Yanji;Chen Jie;Peng Zhenpeng;Wang Yangdi;Zhang Hongyuan;Li Zi-Ping;Shen Jingxian;Huang Bingsheng;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4077,
+            "end_char": 4392
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatocellular carcinoma with hilar bile duct tumor thrombus versus hilar Cholangiocarcinoma on enhanced computed tomography: a diagnostic challenge",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoqi Zhou;Jifei Wang;Mimi Tang;Mengqi Huang;Ling Xu;Zhenpeng Peng;Zi-Ping Li;Shi-Ting Feng",
+      "id": "out-78204f04a422",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatocellular carcinoma with hilar bile duct tumor thrombus versus hilar Cholangiocarcinoma on enhanced computed tomography: a diagnostic challenge — Xiaoqi Zhou;Jifei Wang;Mimi Tang;Mengqi Huang;Ling Xu;Zhenpeng Peng;Zi-Ping Li;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4397,
+            "end_char": 4646
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Regional liver function analysis with gadoxetic acid-enhanced MRI and virtual hepatectomy: prediction of postoperative short-term outcomes for HCC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Mengqi;Shen Shunli;Cai Huasong;Peng Zhenpeng;Chiu Wan Hang Keith;Li Zi-Ping;Peng Baogang;Feng Shi-Ting",
+      "id": "out-088fa0acf313",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Regional liver function analysis with gadoxetic acid-enhanced MRI and virtual hepatectomy: prediction of postoperative short-term outcomes for HCC — Huang Mengqi;Shen Shunli;Cai Huasong;Peng Zhenpeng;Chiu Wan Hang Keith;Li Zi-Ping;Peng Baogang;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 4914
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Interpretability of Deep Learning for Predicting Microvascular Invasion in Hepatocellular Carcinoma by Using Attention Mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huayu You;Jifei Wang;Ruixia Ma;Yuying Chen;Lujie Li;Chenyu Song;Zhi Dong;Shiting Feng;Xiaoqi Zhou",
+      "id": "out-dd8752964382",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Interpretability of Deep Learning for Predicting Microvascular Invasion in Hepatocellular Carcinoma by Using Attention Mechanism — Huayu You;Jifei Wang;Ruixia Ma;Yuying Chen;Lujie Li;Chenyu Song;Zhi Dong;Shiting Feng;Xiaoqi Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4919,
+            "end_char": 5162
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI动脉期强化模式预测肝内胆管细胞癌患者的预后",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈美成;周小琦;马瑞霞;冯仕庭;马玲",
+      "id": "out-4a3eb8ab63f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI动脉期强化模式预测肝内胆管细胞癌患者的预后 — 陈美成;周小琦;马瑞霞;冯仕庭;马玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5167,
+            "end_char": 5218
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tumor fibrosis correlates with the survival of patients with pancreatic adenocarcinoma and is predictable using clinicoradiological features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siya Shi;Yanji Luo;Meng Wang;Zhi Lin;Meiyi Song;Ziping Li;Zhenpeng Peng;Shi-Ting Feng",
+      "id": "out-9feaa1b47170",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tumor fibrosis correlates with the survival of patients with pancreatic adenocarcinoma and is predictable using clinicoradiological features — Siya Shi;Yanji Luo;Meng Wang;Zhi Lin;Meiyi Song;Ziping Li;Zhenpeng Peng;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5223,
+            "end_char": 5457
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diameter of Superior Rectal Vein--CT Predictor of KRAS Mutation in Rectal Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyu Song;Bingqi Shen;Zhi Dong;Zhenzhen Fan;Xu Ling;Zi-Ping Li;Yin Li;Shi-Ting Feng",
+      "id": "out-06eeb53a6768",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diameter of Superior Rectal Vein--CT Predictor of KRAS Mutation in Rectal Carcinoma — Chenyu Song;Bingqi Shen;Zhi Dong;Zhenzhen Fan;Xu Ling;Zi-Ping Li;Yin Li;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5462,
+            "end_char": 5639
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Segmentation Feature-Based Radiomics Improves Recurrence Prediction of Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jifei Wang;Dasheng Wu;Meili Sun;Zhenpeng Peng;Yingyu Lin;Hongxin Lin;Jiazhao Chen;Tingyu Long;Zi-Ping Li;Chuanmiao Xie;Bingsheng Huang;Shi-Ting Feng",
+      "id": "out-4c13dee5026a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Segmentation Feature-Based Radiomics Improves Recurrence Prediction of Hepatocellular Carcinoma — Jifei Wang;Dasheng Wu;Meili Sun;Zhenpeng Peng;Yingyu Lin;Hongxin Lin;Jiazhao Chen;Tingyu Long;Zi-Ping Li;Chuanmiao Xie;Bingsheng Huang;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5645,
+            "end_char": 5902
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving Tumor Classification by Reusing Self-Predicted Segmentation of Medical Images as Guiding Knowledge",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyi Lin;Mingyu Wang;Fei Li;Ziyue Xu;Jia Chen;Xin Chen;Chenglang Yuan;Songxiong Wu;Yanji Luo;Jingxian Shen;Shi-Ting Feng;Bingsheng Huang",
+      "id": "out-47d3118efb5b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving Tumor Classification by Reusing Self-Predicted Segmentation of Medical Images as Guiding Knowledge — Xiaoyi Lin;Mingyu Wang;Fei Li;Ziyue Xu;Jia Chen;Xin Chen;Chenglang Yuan;Songxiong Wu;Yanji Luo;Jingxian Shen;Shi-Ting Feng;Bingsheng Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5908,
+            "end_char": 6163
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative Prediction of Pancreatic Neuroendocrine Neoplasms Grading Based on Enhanced Computed Tomography Imaging: Validation of Deep Learning with a Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo Yanji;Chen Xin;Chen Jie;Song Chenyu;Shen Jingxian;Xiao Huanhui;Chen Minhu;Li Zi-Ping;Huang Bingsheng;Feng Shi-Ting",
+      "id": "out-d4739ad64127",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative Prediction of Pancreatic Neuroendocrine Neoplasms Grading Based on Enhanced Computed Tomography Imaging: Validation of Deep Learning with a Convolutional Neural Network — Luo Yanji;Chen Xin;Chen Jie;Song Chenyu;Shen Jingxian;Xiao Huanhui;Chen Minhu;Li Zi-Ping;Huang Bingsheng;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6169,
+            "end_char": 6477
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Considerable effects of imaging sequences, feature extraction, feature selection, and classifiers on radiomics-based prediction of microvascular invasion in hepatocellular carcinoma using magnetic resonance imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Houjiao Dai;Minhua Lu;Bingsheng Huang;Mimi Tang;Tiantian Pang;Bing Liao;Huasong Cai;Mengqi Huang;Yongjin Zhou;Xin Chen;Huijun Ding;Shi-Ting Feng",
+      "id": "out-b3ae0d407b17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Considerable effects of imaging sequences, feature extraction, feature selection, and classifiers on radiomics-based prediction of microvascular invasion in hepatocellular carcinoma using magnetic resonance imaging — Houjiao Dai;Minhua Lu;Bingsheng Huang;Mimi Tang;Tiantian Pang;Bing Liao;Huasong Cai;Mengqi Huang;Yongjin Zhou;Xin Chen;Huijun Ding;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6483,
+            "end_char": 6850
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nomogram development and validation to predict hepatocellular carcinoma tumor behavior by preoperative gadoxetic acid-enhanced MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mimi Tang;Qian Zhou;Mengqi Huang;Kaiyu Sun;Tingfan Wu;Xin Li;Bing Liao;Lili Chen;Junbin Liao;Sui Peng;Shuling Chen;Shi-Ting Feng",
+      "id": "out-bfe407806ec0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nomogram development and validation to predict hepatocellular carcinoma tumor behavior by preoperative gadoxetic acid-enhanced MRI — Mimi Tang;Qian Zhou;Mengqi Huang;Kaiyu Sun;Tingfan Wu;Xin Li;Bing Liao;Lili Chen;Junbin Liao;Sui Peng;Shuling Chen;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6856,
+            "end_char": 7123
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative Prediction of Cytokeratin 19 Expression for Hepatocellular Carcinoma with Deep Learning Radiomics Based on Gadoxetic Acid-Enhanced Magnetic Resonance Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yuying;Chen Jia;Zhang Yu;Lin Zhi;Wang Meng;Huang Lifei;Huang Mengqi;Tang Mimi;Zhou Xiaoqi;Peng Zhenpeng;Huang Bingsheng;Feng Shi-Ting",
+      "id": "out-0e6e622f053c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative Prediction of Cytokeratin 19 Expression for Hepatocellular Carcinoma with Deep Learning Radiomics Based on Gadoxetic Acid-Enhanced Magnetic Resonance Imaging — Chen Yuying;Chen Jia;Zhang Yu;Lin Zhi;Wang Meng;Huang Lifei;Huang Mengqi;Tang Mimi;Zhou Xiaoqi;Peng Zhenpeng;Huang Bingsheng;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7129,
+            "end_char": 7446
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying patients with Crohn's disease at high risk of primary nonresponse to infliximab using a radiomic‐clinical model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Yingkui Zhong;Chenglang Yuan;Jinjiang Lin;Xiaodi Shen;Minyi Guo;Baolan Lu;Jixin Meng;Yangdi Wang;Naiwen Zhang;Zixin Luo;Guimeng Hu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Qing‐hua Cao;Baili Chen;Zhihui Chen;Bingsheng Huang;Shi‐Ting Feng",
+      "id": "out-c110aee418f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying patients with Crohn's disease at high risk of primary nonresponse to infliximab using a radiomic‐clinical model — Xuehua Li;Yingkui Zhong;Chenglang Yuan;Jinjiang Lin;Xiaodi Shen;Minyi Guo;Baolan Lu;Jixin Meng;Yangdi Wang;Naiwen Zhang;Zixin Luo;Guimeng Hu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Qing‐hua Cao;Baili Chen;Zhihui Chen;Bingsheng Huang;Shi‐Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7452,
+            "end_char": 7830
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive diagnosis strategy of hepatocellular carcinoma in low-risk population",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zonglin Xie;Zhenpeng Peng;Yujian Zou;Han Xiao;Bin Li;Qian Zhou;Shuling Chen;Lixia Xu;Jingxian Shen;Yunxian Mo;Sui Peng;Ming Kuang;Jianting Long;Shi-Ting Feng",
+      "id": "out-bf2ce3426575",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive diagnosis strategy of hepatocellular carcinoma in low-risk population — Zonglin Xie;Zhenpeng Peng;Yujian Zou;Han Xiao;Bin Li;Qian Zhou;Shuling Chen;Lixia Xu;Jingxian Shen;Yunxian Mo;Sui Peng;Ming Kuang;Jianting Long;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7836,
+            "end_char": 8084
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatic nodules with arterial phase hyperenhancement and washout on enhanced computed tomography/magnetic resonance imaging: how to avoid pitfalls",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Mimi;Li Yin;Lin Zhi;Shen Bingqi;Huang Mengqi;Li Zi-Ping;Li Xuehua;Feng Shi-Ting",
+      "id": "out-eae88717d5fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatic nodules with arterial phase hyperenhancement and washout on enhanced computed tomography/magnetic resonance imaging: how to avoid pitfalls — Tang Mimi;Li Yin;Lin Zhi;Shen Bingqi;Huang Mengqi;Li Zi-Ping;Li Xuehua;Feng Shi-Ting",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8090,
+            "end_char": 8329
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Semantic Segmentation Feature-Based Radiomics for the Classification Tasks in Medical Image Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bingsheng Huang;Junru Tian;Zhang Hongyuan;Luo Zixin;Jing Qin;Huang Chen;He Xueping;Yanji Luo;Yongjin Zhou;Guo Dan;Hanwei Chen;Shi-Ting Feng;Chenglang Yuan",
+      "id": "out-8c972d2e8e03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Semantic Segmentation Feature-Based Radiomics for the Classification Tasks in Medical Image Analysis — Bingsheng Huang;Junru Tian;Zhang Hongyuan;Luo Zixin;Jing Qin;Huang Chen;He Xueping;Yanji Luo;Yongjin Zhou;Guo Dan;Hanwei Chen;Shi-Ting Feng;Chenglang Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8335,
+            "end_char": 8603
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Novel Computed-Tomography Enterography Radiomic Approach for Characterization of Intestinal Fibrosis in Crohn’s Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Dong Liang;Jixin Meng;Jie Zhou;Zhao Chen;Siyun Huang;Baolan Lu;Yun Qiu;Mark E. Baker;Ziying Ye;Qinghua Cao;Mingyu Wang;Chenglang Yuan;Zhihui Chen;Shengyu Feng;Yuxuan Zhang;Marietta Iacucci;Subrata Ghosh;Florian Rieder;Canhui Sun;Minhu Chen;Ziping Li;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+      "id": "out-62479b4d1c4a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Novel Computed-Tomography Enterography Radiomic Approach for Characterization of Intestinal Fibrosis in Crohn’s Disease — Xuehua Li;Dong Liang;Jixin Meng;Jie Zhou;Zhao Chen;Siyun Huang;Baolan Lu;Yun Qiu;Mark E. Baker;Ziying Ye;Qinghua Cao;Mingyu Wang;Chenglang Yuan;Zhihui Chen;Shengyu Feng;Yuxuan Zhang;Marietta Iacucci;Subrata Ghosh;Florian Rieder;Canhui Sun;Minhu Chen;Ziping Li;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8609,
+            "end_char": 9066
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative assessment of peripheral vascular invasion of pancreatic ductal adenocarcinoma based on high-resolution MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoqi Zhou;Danyang Xu;Meng Wang;Ruixia Ma;Chenyu Song;Zhi Dong;Yanji Luo;Jifei Wang;Shi-Ting Feng",
+      "id": "out-deb3af422421",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative assessment of peripheral vascular invasion of pancreatic ductal adenocarcinoma based on high-resolution MRI — Xiaoqi Zhou;Danyang Xu;Meng Wang;Ruixia Ma;Chenyu Song;Zhi Dong;Yanji Luo;Jifei Wang;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9072,
+            "end_char": 9299
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comput",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-05a630fdb458",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comput",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9305,
+            "end_char": 9317
+          },
+          "version": "640436719ccb8d99a9a2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 22,
+        "extracted": 22
+      }
+    },
+    "consistent": true
+  }
 }

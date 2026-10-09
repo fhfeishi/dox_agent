@@ -2,15 +2,20 @@
   "doc_id": "4934f5433cfaef4f51bb",
   "version": "746d50a5cf04698c5d15",
   "source_hash": "a8073c64f0593ccb0ec260b793c83fb9094f29175bc2514ec163d867a7bce192",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.221279+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.289406+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-e6966aba26bc",
           "name": "低级别胶质瘤MGMT启动子甲基化预测",
-          "desc": "低级别胶质瘤生物学行为具有显著异质性、生存期差异大，替莫唑胺可改善MGMT启动子甲基化患者预后。",
+          "desc": "多模态MRI影像组学",
           "evidence": [
             {
-              "quote": "低级别胶质瘤（LGG）生物学行为具有显著异质性，生存期差异大",
+              "quote": "该项目主要开展了基于多模态磁共振影像组学构建低级别胶质瘤MGMT启动子甲基化预测模型研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 681,
-                "end_char": 710
-              },
-              "version": "746d50a5cf04698c5d15"
-            }
-          ]
-        },
-        {
-          "id": "item-6a243c998965",
-          "name": "为LGG精准诊疗提供依据",
-          "desc": "实现MGMT启动子甲基化状态的术前无创定量评估，为LGG精准诊疗提供依据，对延长患者生存期有重要价值。",
-          "evidence": [
-            {
-              "quote": "实现MGMT启动子甲基化状态的术前无创定量评估，为LGG的精准诊疗提供依据，对延长患者生存期有重要价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1026,
-                "end_char": 1076
+                "start_char": 2682,
+                "end_char": 2725
               },
               "version": "746d50a5cf04698c5d15"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2110489f8149",
-          "name": "测序评估MGMT有创昂贵且难体现异质性",
-          "desc": "目前主要由测序评估MGMT启动子甲基化，其有创、昂贵且不能全面体现LGG异质性。",
+          "id": "item-4a0bbe10d83e",
+          "name": "测序评估MGMT甲基化有创昂贵",
+          "desc": "不能体现LGG异质性",
           "evidence": [
             {
               "quote": "目前，主要由测序评估MGMT启动子甲基化，其有创、昂贵且不能全面体现LGG异质性",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 807,
                 "end_char": 846
-              },
-              "version": "746d50a5cf04698c5d15"
-            }
-          ]
-        },
-        {
-          "id": "item-1daee6822300",
-          "name": "常规序列组学无法针对LGG精准预测",
-          "desc": "基于MRI常规序列影像组学可提高胶质瘤MGMT甲基化诊断效能，但无法针对LGG精准预测。",
-          "evidence": [
-            {
-              "quote": "本课题组前期研究结果表明，基于MRI常规序列影像组学可以提高胶质瘤MGMT甲基化的诊断效能，但无法针对LGG精准预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 974
               },
               "version": "746d50a5cf04698c5d15"
             }
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d89abf4d983b",
-          "name": "多模态MRI影像组学建模",
-          "desc": "应用多模态MRI影像组学方法构建低级别胶质瘤MGMT启动子甲基化的早期诊疗预测模型。",
-          "evidence": [
-            {
-              "quote": "本研究拟应用多模态MRI影像组学方法，构建低级别胶质瘤MGMT启动子甲基化的早期诊疗预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 979,
-                "end_char": 1024
-              },
-              "version": "746d50a5cf04698c5d15"
-            }
-          ]
-        },
-        {
-          "id": "item-80f18dcd2bfd",
-          "name": "影像基因组联合预后预测模型",
-          "desc": "将影像组学特征与MGMT关键分子标记物相结合构建影像-基因联合预后预测模型。",
-          "evidence": [
-            {
-              "quote": "将影像组学特征与MGMT关键分子标记物相结合构建影像-基因联合预后预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3032,
-                "end_char": 3068
-              },
-              "version": "746d50a5cf04698c5d15"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-bbbc2388f9d4",
-          "name": "预测IDH突变AUC 0.831与MGMT甲基化0.835",
-          "desc": "基于DKI和DTI功能MRI采用影像组学构建预测模型，预测IDH突变AUC达0.831，预测MGMT启动子甲基化AUC达0.835。",
+          "id": "item-ee38703205ec",
+          "name": "DKI与DTI功能MRI影像组学预测模型",
+          "desc": "预测IDH突变与MGMT甲基化",
           "evidence": [
             {
               "quote": "基于DKI和DTI功能MRI，采用影像组学分析方法构建预测模型，预测IDH突变的AUC值达到0.831，预测MGMT启动子甲基化的AUC值达到0.835",
@@ -147,29 +82,71 @@
               "version": "746d50a5cf04698c5d15"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-3fc99dfd59de",
-          "name": "影像基因组联合模型C-index 0.752与0.792",
-          "desc": "影像-基因联合预后预测模型在训练集和验证集的C-index分别达0.752和0.792，实现总生存期预测和风险分层。",
+          "id": "item-cf25c8fea7ae",
+          "name": "影像-基因联合预后预测模型",
+          "desc": "影像组学特征结合MGMT分子标记物",
           "evidence": [
             {
-              "quote": "联合模型在训练集和验证集的C-index分别达到0.752和0.792，实现了对脑胶质瘤预后总生存期的预测和风险分层",
+              "quote": "将影像组学特征与MGMT关键分子标记物相结合构建影像-基因联合预后预测模型，联合模型在训练集和验证集的C-index分别达到0.752和0.792",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3070,
-                "end_char": 3127
+                "start_char": 3032,
+                "end_char": 3104
               },
               "version": "746d50a5cf04698c5d15"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-8a9e9961db29",
-          "name": "分子亚型预测AUC最高0.936",
-          "desc": "影像组学模型实现脑胶质瘤IDH突变合并MGMT启动子甲基化分子亚型的术前预测，各集AUC分别达0.936、0.932、0.916和0.866。",
+          "id": "item-51ba440bd480",
+          "name": "IDH突变合并MGMT甲基化分子亚型影像组学模型",
+          "desc": "术前预测",
+          "evidence": [
+            {
+              "quote": "基于多模态MRI影像组学方法构建影像组学模型实现了脑胶质瘤IDH突变合并MGMT启动子甲基化分子亚型的术前预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3170,
+                "end_char": 3224
+              },
+              "version": "746d50a5cf04698c5d15"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0bc2133ae1c5",
+          "name": "IDH与MGMT预测AUC",
+          "desc": "0.831与0.835",
+          "evidence": [
+            {
+              "quote": "预测IDH突变的AUC值达到0.831，预测MGMT启动子甲基化的AUC值达到0.835",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2759,
+                "end_char": 2802
+              },
+              "version": "746d50a5cf04698c5d15"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-dad0029d413c",
+          "name": "分子亚型模型各集AUC",
+          "desc": "0.936、0.932、0.916、0.866",
           "evidence": [
             {
               "quote": "模型在SMOTE训练集、UNSMOTE训练集、测试集和独立验证集中的AUC分别达到0.936、0.932、0.916和0.866",
@@ -181,55 +158,413 @@
               "version": "746d50a5cf04698c5d15"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e6966aba26bc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2110489f8149"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Primitive neuroectodermal tumor of the prostate in a 58-year-old man: A case report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dawei Tian;Xiaochun Wang;Hui Zhang;Yan Tan",
+      "id": "out-d3d742b0119a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Primitive neuroectodermal tumor of the prostate in a 58-year-old man: A case report — Dawei Tian;Xiaochun Wang;Hui Zhang;Yan Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3443,
+            "end_char": 3577
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2110489f8149"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d89abf4d983b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole-tumor radiomics analysis of DKI and DTI may improve the prediction of genotypes for astrocytomas: A preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Tan;Wei Mu;Xiaochun Wang;Guoqiang Yang;Robert James Gillies;Hui Zhang",
+      "id": "out-b72e76085df9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole-tumor radiomics analysis of DKI and DTI may improve the prediction of genotypes for astrocytomas: A preliminary study — Yan Tan;Wei Mu;Xiaochun Wang;Guoqiang Yang;Robert James Gillies;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 3787
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d89abf4d983b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bbbc2388f9d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI影像组学术前预测较低级别胶质瘤IDH突变合并MGMT启动子甲基化亚型的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沙永建;王效春;谭艳;张辉;杨国强",
+      "id": "out-53d99245b516",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI影像组学术前预测较低级别胶质瘤IDH突变合并MGMT启动子甲基化亚型的价值 — 沙永建;王效春;谭艳;张辉;杨国强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3858
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-80f18dcd2bfd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3fc99dfd59de"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI radiomics for predicting poor disease-free survival in muscle invasive bladder cancer: the results of the retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhichang Fan;Lu Zhang;Guoqiang Yang;Shuo Li;Junting Guo;Jingjing Bai;Bin Wang;Yan Li;Le Wang;Xiaochun Wang",
+      "id": "out-3695c9105406",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI radiomics for predicting poor disease-free survival in muscle invasive bladder cancer: the results of the retrospective cohort study — Zhichang Fan;Lu Zhang;Guoqiang Yang;Shuo Li;Junting Guo;Jingjing Bai;Bin Wang;Yan Li;Le Wang;Xiaochun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 4114
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of the Molecular Subtype of IDH Mutation Combined with MGMT Promoter Methylation in Gliomas via Radiomics Based on Preoperative MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongjian Sha;Qianqian Yan;Yan Tan;Xiaochun Wang;Hui Zhang;Guoqiang Yang",
+      "id": "out-a7ee7fde4612",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of the Molecular Subtype of IDH Mutation Combined with MGMT Promoter Methylation in Gliomas via Radiomics Based on Preoperative MRI — Yongjian Sha;Qianqian Yan;Yan Tan;Xiaochun Wang;Hui Zhang;Guoqiang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4119,
+            "end_char": 4341
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiating high-grade glioma recurrence from pseudoprogression: Comparing diffusion kurtosis imaging and diffusion tensor imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaofeng Wu;Xiao Liang;Xiaochun Wang;Jiangbo Qin;Lei Zhang;Yan Tan;Hui Zhang",
+      "id": "out-bf793c42590f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiating high-grade glioma recurrence from pseudoprogression: Comparing diffusion kurtosis imaging and diffusion tensor imaging — Xiaofeng Wu;Xiao Liang;Xiaochun Wang;Jiangbo Qin;Lei Zhang;Yan Tan;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4346,
+            "end_char": 4565
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Monitoring mild cognitive impairment of workers exposed to occupational aluminium based on quantitative susceptibility mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyi Zhang;Haoru Jiang;Xiangru Sun;Xiaochun Wang;Qiao Niu;Huaxing Meng;Jiangfeng Du;Guoqiang Yang;Hui Zhang;Yan Tan",
+      "id": "out-fe0d6b740659",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Monitoring mild cognitive impairment of workers exposed to occupational aluminium based on quantitative susceptibility mapping — Zhiyi Zhang;Haoru Jiang;Xiangru Sun;Xiaochun Wang;Qiao Niu;Huaxing Meng;Jiangfeng Du;Guoqiang Yang;Hui Zhang;Yan Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4570,
+            "end_char": 4821
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "颅内动脉粥样硬化影像评估新进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周慧;王效春",
+      "id": "out-0f68d94bf64f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 颅内动脉粥样硬化影像评估新进展 — 周慧;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4826,
+            "end_char": 4856
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑小血管病影像学标志物对脑卒中影响的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑文乔;王效春",
+      "id": "out-55d37884f6eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑小血管病影像学标志物对脑卒中影响的研究进展 — 郑文乔;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4861,
+            "end_char": 4899
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磁共振影像组学预测脑胶质瘤MGMT启动子甲基化状态的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李鼎;王效春",
+      "id": "out-766c9144fffe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 磁共振影像组学预测脑胶质瘤MGMT启动子甲基化状态的研究进展 — 李鼎;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4905,
+            "end_char": 4950
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "前庭阵发症的MRI研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杜彦瑶;刘擘;王效春",
+      "id": "out-da71eb14ba65",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 前庭阵发症的MRI研究进展 — 杜彦瑶;刘擘;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 4988
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膳食改善认知障碍的神经影像学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘林翰;王效春",
+      "id": "out-f4d0fadd73c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 膳食改善认知障碍的神经影像学研究进展 — 刘林翰;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5028
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "高分辨率磁共振血管壁成像在缺血性脑卒中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨丽;王效春",
+      "id": "out-2159394936b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 高分辨率磁共振血管壁成像在缺血性脑卒中的应用进展 — 杨丽;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5034,
+            "end_char": 5073
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intrahepatic biliary cystadenoma: A case report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruomei Xu;Xiaoru Li;Linhan Liu;Wenqiao Zheng;Hui Zhou;Xiaochun Wang",
+      "id": "out-dcebd4a46621",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intrahepatic biliary cystadenoma: A case report — Ruomei Xu;Xiaoru Li;Linhan Liu;Wenqiao Zheng;Hui Zhou;Xiaochun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5079,
+            "end_char": 5202
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磁共振安全监控系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王效春;雷颖;张辉;丁辉;吴晓峰",
+      "id": "out-cd2b78cfca47",
+      "evidence": [
+        {
+          "quote": "[专利] 磁共振安全监控系统 — 王效春;雷颖;张辉;丁辉;吴晓峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5208,
+            "end_char": 5240
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑静脉窦血栓形成预后评估的影像学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许若梅;王效春",
+      "id": "out-05ba6163fe46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑静脉窦血栓形成预后评估的影像学研究进展 — 许若梅;王效春",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5282
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑胶质瘤功能磁共振影像基因组学研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王效春;张辉;谭艳;杨国强;秦江波;吴晓峰;王乐",
+      "id": "out-45bfd41328bb",
+      "evidence": [
+        {
+          "quote": "[奖励] 脑胶质瘤功能磁共振影像基因组学研究 — 王效春;张辉;谭艳;杨国强;秦江波;吴晓峰;王乐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5288,
+            "end_char": 5336
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics proﬁling identiﬁes the value of CT features for the preoperative evaluation of lymph node metastasis in papillary thyroid carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoqiang Yang;Fan Yang;Fengyan Zhang;Xiaochun Wang;Yan Tan;Ying Qiao;Hui Zhang",
+      "id": "out-0305539ac7f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics proﬁling identiﬁes the value of CT features for the preoperative evaluation of lymph node metastasis in papillary thyroid carcinoma — Guoqiang Yang;Fan Yang;Fengyan Zhang;Xiaochun Wang;Yan Tan;Ying Qiao;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5342,
+            "end_char": 5570
+          },
+          "version": "746d50a5cf04698c5d15"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "05f5b036d370bb0fb6d8",
   "version": "51328923c96b9a4794cb",
   "source_hash": "e26eda768e0a471429b37aabf423f2ea7c47e422534e8bc002f774a93a4e8dcf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.553023+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 7
+  },
+  "generated_at": "2026-10-09T11:47:34.567384+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 7,
+      "total": 7,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f2714eb19c7",
-          "name": "肝癌演进超声造影智能诊断与消融决策",
-          "desc": "面向肝癌精准诊疗，建立覆盖诊断、演进监测、消融决策与预后评估的CEUS智能诊疗一体化技术。",
+          "id": "item-f34a980dccf7",
+          "name": "肝癌超声造影智能诊断与消融决策",
+          "desc": "CEUS",
           "evidence": [
             {
               "quote": "超声造影（CEUS）是肝癌诊断、消融引导和疗效评估的主要影像，具有实时动态、安全便捷优势",
@@ -41,12 +46,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0ce2587b6163",
-          "name": "高年资与低年资医生诊断准确率差20-30%",
-          "desc": "超声诊断肝占位高低年资医生诊断准确率相差20-30%，超声难以判识肝癌分子侵袭特征，消融方案套餐化导致复发结局差异。",
+          "id": "item-3466123376a6",
+          "name": "CEUS依赖医生技术水平，诊断和消融规划效能差异大",
+          "desc": "时空灌注信息未能精确捕捉",
           "evidence": [
             {
-              "quote": "超声诊断肝占位高低年资医生诊断准确率相差20-30%",
+              "quote": "然而，CEUS高度依赖医生技术水平，大量时空灌注信息未能精确捕捉，导致肝癌检出、诊断和消融热场规划、判识效能差异大",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "1fb91f571119606b857bf58798c4ac97757d5bd5"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ]
+        },
+        {
+          "id": "item-6e519a985da3",
+          "name": "消融方案套餐化致复发结局不同",
+          "desc": "超声不能判识分子侵袭特征",
+          "evidence": [
+            {
+              "quote": "由于超声不能判识肝癌分子侵袭特征，消融方案套餐化，导致肿瘤消融后复发结局截然不同",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -63,34 +84,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f291932ae2a4",
-          "name": "时空特征增强深度网络与消融智能决策",
-          "desc": "创建以多尺度分析和注意力机制为基础的时空特征增强表示深度网络模型实现肝癌与消融残癌的CEUS智能诊断与可视监测，并构建肝癌CEUS特征与最优消融参数关联的智能决策系统。",
+          "id": "item-c0a240c9dd07",
+          "name": "融合时间运动注意力的孪生网络跟踪模型",
+          "desc": "病灶跟踪精度86.43%",
           "evidence": [
             {
-              "quote": "创建以多尺度分析和注意力机制为基础的时空特征增强表示深度网络模型，实现不同演进肝癌和消融残癌的CEUS智能诊断和可视监测",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "1fb91f571119606b857bf58798c4ac97757d5bd5"
-              },
-              "version": "51328923c96b9a4794cb"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dd2f5220e8c2",
-          "name": "CEUS六分类诊断平均AUC 0.91",
-          "desc": "建立超5000例肝占位超声数据库与2644例消融数据库；CEUS肝脏结节六分类平均AUC 0.91；灰阶超声智能诊断≤3cm肝癌AUC 0.899；MVI模型外部验证AUC 0.835-0.858；发表SCI论文35篇。",
-          "evidence": [
-            {
-              "quote": "超声造影对肝脏结节六分类诊断的平均AUC为0.91，显著优于低年资医生",
+              "quote": "构建了融合时间运动注意力的孪生网络跟踪模型，病灶跟踪精度 86.43%",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -99,44 +98,416 @@
               "version": "51328923c96b9a4794cb"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8bd969dd4412",
+          "name": "肝癌微波消融参数规划系统",
+          "desc": "消融时间、功率、针数、针型和针距",
+          "evidence": [
+            {
+              "quote": "肝癌微波消融参数规划系统可为消融医生提供消融时间、功率、针数、针型和针距在内的多项参数",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-667f8bc0bb0c",
+          "name": "肝癌侵袭能力预测模型",
+          "desc": "CEUS+MRI+病理免疫组化RNA测序",
+          "evidence": [
+            {
+              "quote": "利用肝癌的多模态影像（超声造影+MRI）、生物信息（病理+免疫组化+RNA测序）和预后信息，建立肝癌侵袭能力预测模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-aab84a1f826a",
+          "name": "Mamba状态空间选择性多尺度融合分割网络",
+          "desc": "B-mode超声与CEUS肝脏及病灶分割",
+          "evidence": [
+            {
+              "quote": "开发基于 Mamba 状态空间建模的选择性多尺度融合分割网络，以及模仿人类视觉感知的多特征压缩分割网络，用于在 B-mode超声、CEUS等不同影像场景中实现高精度的肝脏及病灶分割",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "549709941487827892bb05ec06c7932313e3acee"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-41f1464aa1e9",
+          "name": "结合超声影像与临床信息的消融参数预测模型",
+          "desc": "自动推荐功率、时间、针数与针距",
+          "evidence": [
+            {
+              "quote": "提出了结合超声影像与临床信息的消融参数预测模型， 自动推荐消融功率、时间、针数与针距",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "549709941487827892bb05ec06c7932313e3acee"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fb838a01b99b",
+          "name": "小肝癌ModelURC联合模型",
+          "desc": "XGBoost，融合影像组学、报告语义与临床特征",
+          "evidence": [
+            {
+              "quote": "通过融合影像组学、报告语义与临床特征，构建并比较了8种机器学习模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "fafc264b27ab79f9557771f21ef2852591fc891b"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2252b6673f97",
+          "name": "MAP-USE肝癌微血管浸润临床-视觉征象模型",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "建立 HCC微血管浸润 MVI基于临床特征及人工读图传统视觉征象特征的临床-视觉征象模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 8,
+                "chunk_id": "b800a9a30e4c469f52fd2147337a2c64c8ad4ed1"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0e596176e9da",
+          "name": "肝包虫病超声智能诊断系统",
+          "desc": "全球首个",
+          "evidence": [
+            {
+              "quote": "团队开发了全球首个肝包虫病超声智能诊断系统",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "e31abb3258d78baa02efec3b2d9db2efcc797010"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-261f25eec6e7",
+          "name": "ICC超声造影诊断模型",
+          "desc": "ResNet-50，8帧关键帧",
+          "evidence": [
+            {
+              "quote": "模型基于 ResNet-50，采用8帧关键帧策略，外部测试集AUC 达 0.91",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 8,
+                "chunk_id": "b800a9a30e4c469f52fd2147337a2c64c8ad4ed1"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-13d250c7a43e",
+          "name": "腹腔镜切除与微波消融治疗决策系统",
+          "desc": "LH-XGB与MWA-SGB混合",
+          "evidence": [
+            {
+              "quote": "LH-XGB（AUC 0.744）与MWA-SGB（AUC 0.750）最优，并联成混合模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "40ceca88f4e1fb714fa9957ab2a73198f35d559e"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3fc8d25c09f4",
+          "name": "LTP风险多模态预测模型",
+          "desc": "LSTM提取CEUS特征，pyradiomics提取MRI特征，逻辑回归融合",
+          "evidence": [
+            {
+              "quote": "模型构建基于术前CEUS、MRI及临床信息，采用LSTM提取 CEUS 特征，pyradiomics 提取 MRI 特征，并通过逻辑回归融合多模态信息",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "bae380b0263b64fba634d9619ed42bfc07256858"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ef7edab11222",
+          "name": "LTP动态预后风险分级系统",
+          "desc": "全国多中心2772例，表型无监督聚类",
+          "evidence": [
+            {
+              "quote": "基于全国多中心共2772 例接受热消融治疗的 HCC 患者数据，通过对消融后肿瘤局部进展（LTP）病灶进行表型无监督聚类分析，首次建立了LTP动态预后风险分级系统",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "3a63b8775177852ce57bc1ae44d8a5186d0f769b"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5461c9667ed6",
+          "name": "肝占位超声影像数据库与肝癌消融数据库",
+          "desc": "超声病例大于5000，消融数据2644例，817个字段",
+          "evidence": [
+            {
+              "quote": "建立了2个标准化数据库，一是肝占位超声影像数据库，病例大于5000，同时制定了规范化语义特征模版，二是肝癌消融数据库，含有标准字段817个，数据2644例",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ed973c0f39c0",
+          "name": "超声造影六分类诊断",
+          "desc": "平均AUC 0.91",
+          "evidence": [
+            {
+              "quote": "超声造影对肝脏结节六分类诊断的平均AUC为0.91，显著优于低年资医生，并与高年资医师和增强MRI相当",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-cb1d6c6f6a20",
+          "name": "复发率降低",
+          "desc": "高侵袭肝癌复发率42.4%降至10.5%",
+          "evidence": [
+            {
+              "quote": "指导临床优化高侵袭肝癌治疗方案，复发率从42.4%降至10.5%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e11dcde9ed68",
+          "name": "论文专利与转化",
+          "desc": "SCI论文35篇，发明专利4项，中国抗癌协会科技一等奖",
+          "evidence": [
+            {
+              "quote": "发表项目资助SCI论文35篇，IF最高33分，IF>10分10篇，包括Lancet digital health、J hepatology；Hepatology等，申请国家发明专利4项，获得中国抗癌协会科技一等奖1项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "693fca1e8decde66b6e0b2aadfed085b6303d7d0"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-bf6881979ae9",
+          "name": "全国多中心CEUS视频",
+          "desc": "59家医院，11种品牌设备，5082个肝结节患者",
+          "evidence": [
+            {
+              "quote": "收集全国59家医院，11种品牌超声设备的5082个肝结节患者的超声造影（CEUS）视频，收集消融治疗及影像数据2644例",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "549709941487827892bb05ec06c7932313e3acee"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3b01b4fbf929",
+          "name": "肝占位超声标准化数据库",
+          "desc": "标准字段181个，数据5082个",
+          "evidence": [
+            {
+              "quote": "含有标准字段181个，数据5082个",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "549709941487827892bb05ec06c7932313e3acee"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f66f66d718f7",
+          "name": "CEUS肝局灶性结节多分类模型",
+          "desc": "外部测试平均AUC 0.91",
+          "evidence": [
+            {
+              "quote": "在多中心前瞻性外部测试集中，模型平均AUC为0.91(0.86-0.96)",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 7,
+                "chunk_id": "322a31d4f5aeb85eab983970b1f61318c02985c7"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-223e292ebf66",
+          "name": "小肝癌诊断",
+          "desc": "准确率85.9%",
+          "evidence": [
+            {
+              "quote": "基于XGBoost的联合模型ModelURC诊断准确率达85.9%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "fafc264b27ab79f9557771f21ef2852591fc891b"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3271f6b80fb8",
+          "name": "早期复发率降低",
+          "desc": "整体由38.2%降至25.6%",
+          "evidence": [
+            {
+              "quote": "若全体患者遵循推荐，整体 ER概率可由 38.2%降至25.6%（p<0.001）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "40ceca88f4e1fb714fa9957ab2a73198f35d559e"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-82c7a870f7ef",
+          "name": "高侵袭肝癌LTP率降低",
+          "desc": "8mm最小消融边界，42.4%降至10.5%",
+          "evidence": [
+            {
+              "quote": "通过8mm最小消融边界策略，高侵袭组LTP率由42.4%降至10.5%，与低侵袭组相当（p=0.613）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "bae380b0263b64fba634d9619ed42bfc07256858"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-892d29c405e5",
+          "name": "LTP风险分类准确性",
+          "desc": "超过90%，动态预后预测效能80%以上",
+          "evidence": [
+            {
+              "quote": "经多中心外部验证，其LTP风险分类准确性超过90%，动态预后预测效能达80%以上",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "3a63b8775177852ce57bc1ae44d8a5186d0f769b"
+              },
+              "version": "51328923c96b9a4794cb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5f2714eb19c7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0ce2587b6163"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0ce2587b6163"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f291932ae2a4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f291932ae2a4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dd2f5220e8c2"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "1efd250c0a2e295ef136",
   "version": "68f73c65c710317b6909",
   "source_hash": "126c8ea5bb118909d0dabd9f2e4d2457b95218b8e94894bbd7b21a264232daf4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.749879+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.129432+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-10cdf1a0de6c",
           "name": "2型糖尿病患者冠心病智能筛查",
-          "desc": "冠心病是2型糖尿病人群首要非自然死亡原因且极易漏诊，T2DM发病率高并呈上升趋势。",
+          "desc": "以眼底影像为载体",
           "evidence": [
             {
-              "quote": "冠心病（CHD）是2型糖尿病（T2DM）人群的首要非自然死亡原因，极易漏诊，T2DM发病率高并呈上升趋势，已成为中国主要公共难题之一",
+              "quote": "本项目围绕2型糖尿病（T2DM）患者冠心病（CHD）智能筛查的临床需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 733
-              },
-              "version": "68f73c65c710317b6909"
-            }
-          ]
-        },
-        {
-          "id": "item-c643851a672c",
-          "name": "眼底影像可视化血管与病变信息",
-          "desc": "探索以眼底影像为载体可视化血管与病变信息，融合临床变量与多模态数据构建可解释可推广的智能筛查方法。",
-          "evidence": [
-            {
-              "quote": "探索以眼底影像为载体可视化血管与病变信息，融合临床变量与多模态数据，构建可解释、可推广的智能筛查方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2792,
-                "end_char": 2841
+                "start_char": 2756,
+                "end_char": 2790
               },
               "version": "68f73c65c710317b6909"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a82a1da6b3fa",
-          "name": "CHD极易漏诊需提升特异敏感度",
-          "desc": "CHD在T2DM人群中极易漏诊，需提升筛查的特异性和敏感性。",
+          "id": "item-091ad60ac209",
+          "name": "T2DM人群冠心病易漏诊",
+          "desc": "CHD是首要非自然死亡原因",
           "evidence": [
             {
-              "quote": "提升CHD筛查的特异性和敏感性",
+              "quote": "冠心病（CHD）是2型糖尿病（T2DM）人群的首要非自然死亡原因，极易漏诊",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1023,
-                "end_char": 1037
-              },
-              "version": "68f73c65c710317b6909"
-            }
-          ]
-        },
-        {
-          "id": "item-669869951d4a",
-          "name": "需构建多模态可解释筛查体系",
-          "desc": "为后续多中心扩样与多模态融合的鲁棒筛查体系奠定基础。",
-          "evidence": [
-            {
-              "quote": "为后续多中心扩样与多模态融合的鲁棒筛查体系奠定基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3065,
-                "end_char": 3089
+                "start_char": 668,
+                "end_char": 704
               },
               "version": "68f73c65c710317b6909"
             }
@@ -95,36 +68,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a77a512ec96d",
-          "name": "多任务视网膜血管参数测定与病变分割",
-          "desc": "研究基于多任务视网膜血管参数测定及多尺度感知推理视网膜病变精确分割方法，提高血管测定模型的可解释性、易用性与精度。",
+          "id": "item-64e2823b058e",
+          "name": "椭圆拟合视盘视杯联合分割",
+          "desc": "空间几何约束",
           "evidence": [
             {
-              "quote": "研究基于多任务视网膜血管参数测定及多尺度感知推理视网膜病变精确分割方法，提高血管测定模型的可解释性、易用性与精度，保证不同尺度病变分割的准确性和鲁棒性",
+              "quote": "提出基于椭圆拟合与空间几何约束的联合分割方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 885,
-                "end_char": 959
+                "start_char": 3102,
+                "end_char": 3123
               },
               "version": "68f73c65c710317b6909"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9736d5c61040",
-          "name": "多模态信息挖掘CHD筛查方法",
-          "desc": "对CHD传统危险因素、视网膜形态关键指标与隐藏信息进行多模态数据深度挖掘，提升筛查特异性和敏感性。",
+          "id": "item-3b1b55339e08",
+          "name": "血管拓扑动静脉分类优化",
+          "desc": "视网膜血管分析",
           "evidence": [
             {
-              "quote": "最后研究基于多模态信息挖掘的CHD筛查方法，对CHD传统危险因素、视网膜形态关键指标、视网膜隐藏信息进行多模态数据深度挖掘，提升CHD筛查的特异性和敏感性",
+              "quote": "构建基于血管拓扑结构的动静脉分类优化算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 961,
-                "end_char": 1037
+                "start_char": 3175,
+                "end_char": 3194
               },
               "version": "68f73c65c710317b6909"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e7ce910de997",
+          "name": "监督Sigmoid对比损失多病灶分割网络",
+          "desc": "DR病灶分割",
+          "evidence": [
+            {
+              "quote": "开发基于监督Sigmoid对比损失的多病灶分割网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3260,
+                "end_char": 3284
+              },
+              "version": "68f73c65c710317b6909"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5230689d1dd8",
+          "name": "CNN–Transformer融合DR分级",
+          "desc": "DR分级模型",
+          "evidence": [
+            {
+              "quote": "并构建CNN–Transformer融合的DR分级模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3327,
+                "end_char": 3353
+              },
+              "version": "68f73c65c710317b6909"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +142,230 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1844330e1a1b",
-          "name": "视盘视杯分割Dice 96.34%与89.27%",
-          "desc": "提出基于椭圆拟合与空间几何约束的联合分割方法，在ORIGA数据集上视盘与视杯Dice系数分别达96.34%和89.27%。",
+          "id": "item-461475d18050",
+          "name": "视盘视杯分割性能",
+          "desc": "ORIGA数据集Dice 96.34%和89.27%",
           "evidence": [
             {
-              "quote": "提出基于椭圆拟合与空间几何约束的联合分割方法，在ORIGA数据集上视盘与视杯Dice系数分别达到96.34%和89.27%",
+              "quote": "在ORIGA数据集上视盘与视杯Dice系数分别达到96.34%和89.27%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3102,
+                "start_char": 3125,
                 "end_char": 3162
               },
               "version": "68f73c65c710317b6909"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-e3147ea690c0",
-          "name": "视网膜动静脉分类BACC 97.86%",
-          "desc": "构建基于血管拓扑结构的动静脉分类优化算法，在临床数据集上平衡准确率达97.86%，敏感性与特异性分别为97.40%和98.31%。",
+          "id": "item-b0cf8c1a25cf",
+          "name": "动静脉分类性能",
+          "desc": "BACC 97.86%",
           "evidence": [
             {
-              "quote": "在视网膜血管分析方面，构建基于血管拓扑结构的动静脉分类优化算法，在临床数据集（CY-BIT）上平衡准确率（BACC）达到97.86%，敏感性与特异性分别为97.40%和98.31%",
+              "quote": "在临床数据集（CY-BIT）上平衡准确率（BACC）达到97.86%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3164,
-                "end_char": 3253
+                "start_char": 3196,
+                "end_char": 3229
               },
               "version": "68f73c65c710317b6909"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7a7aa9dc9db8",
-          "name": "DR分级模型准确率85.31%",
-          "desc": "开发基于监督Sigmoid对比损失的多病灶分割网络，并构建CNN–Transformer融合的DR分级模型，外部验证集准确率85.31%、AUC 95.79%。",
+          "id": "item-07aa9280c261",
+          "name": "DR分级外部验证",
+          "desc": "准确率85.31%，AUC 95.79%",
           "evidence": [
             {
-              "quote": "并构建CNN–Transformer融合的DR分级模型，在外部临床验证集中准确率达到85.31%，AUC为95.79%",
+              "quote": "在外部临床验证集中准确率达到85.31%，AUC为95.79%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3327,
+                "start_char": 3355,
                 "end_char": 3385
               },
               "version": "68f73c65c710317b6909"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-10cdf1a0de6c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a82a1da6b3fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint optic disc and cup segmentation based on elliptical-like morphological feature and spatial geometry constraint",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao A;Su H;She C;Huang X;Li H;Qiu H;Jiang Z;Huang G",
+      "id": "out-bfba10e849c4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint optic disc and cup segmentation based on elliptical-like morphological feature and spatial geometry constraint — Zhao A;Su H;She C;Huang X;Li H;Qiu H;Jiang Z;Huang G",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3743,
+            "end_char": 3920
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a82a1da6b3fa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a77a512ec96d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种青光眼识别方法、系统及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨贺捷;杨明轩;佘重阳",
+      "id": "out-f1b5194ac4f7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种青光眼识别方法、系统及电子设备 — 杨贺捷;杨明轩;佘重阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3925,
+            "end_char": 3960
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a77a512ec96d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1844330e1a1b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于视网膜形态的2型糖尿病患者冠心病筛查方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "佘重阳;卢弘;陶勇",
+      "id": "out-0f6279c5dbd1",
+      "evidence": [
+        {
+          "quote": "[专利] 基于视网膜形态的2型糖尿病患者冠心病筛查方法及系统 — 佘重阳;卢弘;陶勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3965,
+            "end_char": 4006
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9736d5c61040"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7a7aa9dc9db8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Diabetic Retinopathy Using a Machine Learning Approach Informed by Whole-Exome Sequencing Studies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "She Chongyang;Fan Wenying;Li Yunyun;Tao Yong;Li Zufei",
+      "id": "out-699e227304ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Diabetic Retinopathy Using a Machine Learning Approach Informed by Whole-Exome Sequencing Studies — She Chongyang;Fan Wenying;Li Yunyun;Tao Yong;Li Zufei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4011,
+            "end_char": 4181
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimization of retinal artery/vein classification based on vascular topology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aidi Zhao;Hong Su;Chongyang She;Hui Li;Huaiyu Qiu;Xiao Huang;Zhihong Jiang",
+      "id": "out-71e2b327831c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimization of retinal artery/vein classification based on vascular topology — Aidi Zhao;Hong Su;Chongyang She;Hui Li;Huaiyu Qiu;Xiao Huang;Zhihong Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4186,
+            "end_char": 4346
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Supervised sigmoid contrastive loss driven multi-lesion segmentation in fundus images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Aidi;Li·Na;Huang·Xiao;Li·Hui;She·Chongyang;Jiang·Zhihong",
+      "id": "out-ab425db2fc0f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Supervised sigmoid contrastive loss driven multi-lesion segmentation in fundus images — Zhao·Aidi;Li·Na;Huang·Xiao;Li·Hui;She·Chongyang;Jiang·Zhihong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4351,
+            "end_char": 4506
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CNN-Transformer fusion network for Diabetic retinopathy image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang·Xuan;Ai·Zhuang;She·Chongyang;Li·Qi;Wei·Qihao;Xu·Sha;Lu·Yaping;Zeng·Fanxin",
+      "id": "out-7b4500ceed81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CNN-Transformer fusion network for Diabetic retinopathy image classification — Huang·Xuan;Ai·Zhuang;She·Chongyang;Li·Qi;Wei·Qihao;Xu·Sha;Lu·Yaping;Zeng·Fanxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4511,
+            "end_char": 4677
+          },
+          "version": "68f73c65c710317b6909"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "b4058d08f51b2dd33f5b",
   "version": "ebe7201172baec412169",
   "source_hash": "ea9b15adaa48c1e4720e4eb2414d193906076d50aa28d960ec2be6ba3f2f5fdd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.546016+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.914590+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bad7d9496e24",
-          "name": "黄斑新生血管性疾病AI诊疗管理",
-          "desc": "黄斑新生血管严重影响视功能，多模影像时代下其获取与识别更加全面，抗VEGF治疗已成为一线方案。",
+          "id": "item-8963966181b3",
+          "name": "黄斑新生血管性疾病智能诊疗",
+          "desc": "多模影像",
           "evidence": [
             {
-              "quote": "黄斑新生血管(MNV)严重影响视功能。多模影像时代下MNV的获取与识别更加全面。抗血管内皮生长因子(VEGF)治疗已成为MNV的一线治疗方案",
+              "quote": "本项目围绕“多模影像下人工智能综合管理黄斑新生血管性疾病的诊疗”开展系统研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 724
-              },
-              "version": "ebe7201172baec412169"
-            }
-          ]
-        },
-        {
-          "id": "item-d66f5362456f",
-          "name": "制定个性化治疗方案",
-          "desc": "分析预测MNV发展转归、制定个性化治疗方案具有重要意义，最终完善现有MNV治疗方案并综合管理诊疗。",
-          "evidence": [
-            {
-              "quote": "分析预测MNV的发展转归，制定个性化治疗方案具有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 738,
-                "end_char": 765
+                "start_char": 2843,
+                "end_char": 2880
               },
               "version": "ebe7201172baec412169"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f21a25d6dfe6",
-          "name": "需预测发展转归制定个体化方案",
-          "desc": "为更好挽救患者视功能，需分析预测MNV发展转归并制定个性化治疗方案。",
+          "id": "item-8b9e1858c3f7",
+          "name": "黄斑新生血管严重影响视功能",
+          "desc": "需预测转归并个性化治疗",
           "evidence": [
             {
-              "quote": "为更好地挽救患者视功能，分析预测MNV的发展转归，制定个性化治疗方案具有重要意义",
+              "quote": "黄斑新生血管(MNV)严重影响视功能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 726,
-                "end_char": 765
-              },
-              "version": "ebe7201172baec412169"
-            }
-          ]
-        },
-        {
-          "id": "item-649c5ed61b60",
-          "name": "需整合多模影像与随访应答信息",
-          "desc": "需将MNV分型及血管结构基本参数、诊疗过程中各随访点MNV发生发展及各类MNV对不同抗VEGF的应答情况整合进神经网络。",
-          "evidence": [
-            {
-              "quote": "并将MNV的分型及血管结构的基本参数、诊疗过程中各随访点MNV的发生发展及各类MNV对不同抗VEGF的应答情况整合进神经网络中",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 878,
-                "end_char": 940
+                "start_char": 655,
+                "end_char": 672
               },
               "version": "ebe7201172baec412169"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11dfb320cb46",
-          "name": "多模影像标准化数据库与神经网络优化",
-          "desc": "整合构建MNV多模影像标准化数据库，优化前期开发的神经网络算法框架，实现新生血管精确定位、边界识别及形态特征参数提取分析。",
-          "evidence": [
-            {
-              "quote": "整合构建MNV多模影像标准化数据库，优化前期开发的神经网络算法框架，实现新生血管的精确定位、边界识别及形态特征参数提取分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 787,
-                "end_char": 847
-              },
-              "version": "ebe7201172baec412169"
-            }
-          ]
-        },
-        {
-          "id": "item-9246d698d80a",
-          "name": "三类预测模型体系构建",
-          "desc": "基于深度训练结果建立MNV发生发展的预测模型、MNV抗VEGF治疗的应答模型、MNV治疗策略的评估模型。",
-          "evidence": [
-            {
-              "quote": "建立MNV发生发展的预测模型、MNV抗VEGF治疗的应答模型、MNV治疗策略的评估模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 951,
-                "end_char": 993
-              },
-              "version": "ebe7201172baec412169"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-562c5c2a3a51",
-          "name": "国内首个多模态MNV影像数据库",
-          "desc": "构建国内首个标准化、多中心、多模态黄斑新生血管影像数据库，涵盖彩色眼底照相、OCT/OCTA、FFA/ICGA等影像数据及完整临床信息。",
-          "evidence": [
-            {
-              "quote": "项目构建了国内首个标准化、多中心、多模态黄斑新生血管影像数据库，涵盖彩色眼底照相、OCT/OCTA、FFA/ICGA等影像数据及完整临床信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2922,
-                "end_char": 2991
-              },
-              "version": "ebe7201172baec412169"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-dfa113fabe4d",
-          "name": "DeepMyopia预测近视发生风险AUC 0.908",
-          "desc": "开发DeepMyopia系统，可基于眼底图像与非睫状肌麻痹参数预测儿童未来1-3年近视发生风险，AUC最高达0.908并实现风险分层与干预指导。",
+          "id": "item-77793bae1688",
+          "name": "DeepMyopia近视风险预测系统",
+          "desc": "基于眼底图像与非睫状肌麻痹参数",
           "evidence": [
             {
               "quote": "开发了DeepMyopia系统，可基于眼底图像与非睫状肌麻痹参数预测儿童未来1–3年近视发生风险（AUC最高达0.908），并实现风险分层与干预指导",
@@ -164,12 +82,12 @@
               "version": "ebe7201172baec412169"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-bfb98aec9f9c",
-          "name": "GMMN诊断黄斑水肿准确率超91%",
-          "desc": "提出图映射Mamba网络，实现从眼底彩照中高精度诊断黄斑水肿，准确率超过91%。",
+          "id": "item-c0935794c6e1",
+          "name": "图映射Mamba网络GMMN",
+          "desc": "眼底彩照诊断黄斑水肿",
           "evidence": [
             {
               "quote": "提出了图映射Mamba网络（GMMN），实现从眼底彩照中高精度诊断黄斑水肿（准确率＞91%）",
@@ -181,55 +99,261 @@
               "version": "ebe7201172baec412169"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-08f90e7d7cbf",
+          "name": "黄斑新生血管多中心多模态影像数据库",
+          "desc": "国内首个标准化",
+          "evidence": [
+            {
+              "quote": "项目构建了国内首个标准化、多中心、多模态黄斑新生血管影像数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2922,
+                "end_char": 2952
+              },
+              "version": "ebe7201172baec412169"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-82880ec35e1a",
+          "name": "专利与论文",
+          "desc": "国家专利2项，SCI论文7篇",
+          "evidence": [
+            {
+              "quote": "获得国家专利2项，发表SCI论文7篇，包括NPJ Digital Medicine、JAMA Network Open、IEEE TMI等高影响力期刊",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3289,
+                "end_char": 3363
+              },
+              "version": "ebe7201172baec412169"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bad7d9496e24"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f21a25d6dfe6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy of a Deep Learning System for Screening Myopic Maculopathy Based on Color Fundus Photographs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruonan Wang;Jiangnan He;Qiuying Chen;Luyao Ye;Dandan Sun;Lili Yin;Hao Zhou;Lijun Zhao;Jianfeng Zhu;Haidong Zou;Qichao Tan;Difeng Huang;Bo Liang;Lin He;Weijun Wang;Ying Fan;Xun Xu",
+      "id": "out-d511d7af6541",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy of a Deep Learning System for Screening Myopic Maculopathy Based on Color Fundus Photographs — Ruonan Wang;Jiangnan He;Qiuying Chen;Luyao Ye;Dandan Sun;Lili Yin;Hao Zhou;Lijun Zhao;Jianfeng Zhu;Haidong Zou;Qichao Tan;Difeng Huang;Bo Liang;Lin He;Weijun Wang;Ying Fan;Xun Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3590,
+            "end_char": 3878
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f21a25d6dfe6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-11dfb320cb46"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Evidential Fusion of Light–Dark Features With Multi-Scan Mamba for Automated Macular Edema Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiming Zhang;Hongqing Zhu;Tianwei Qian;Tong Hou;Ning Chen;Xun Xu;Bingcang Huang",
+      "id": "out-049abf77f597",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive Evidential Fusion of Light–Dark Features With Multi-Scan Mamba for Automated Macular Edema Diagnosis — Yiming Zhang;Hongqing Zhu;Tianwei Qian;Tong Hou;Ning Chen;Xun Xu;Bingcang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3883,
+            "end_char": 4080
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-11dfb320cb46"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-562c5c2a3a51"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Conditional prompt guided mamba di usion for OCT to OCTA image generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qing Liu;Hongqing Zhu;Tianwei Qian;Xun Xu;Bingcang Huang",
+      "id": "out-be5aff41bcd7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Conditional prompt guided mamba di usion for OCT to OCTA image generation — Qing Liu;Hongqing Zhu;Tianwei Qian;Xun Xu;Bingcang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4085,
+            "end_char": 4223
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9246d698d80a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dfa113fabe4d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of macular outward scleral height with axial length, macular choroidal thickness and morphologic characteristics of the optic disc in Chinese adults",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Menghan Li;Hannan Xu;Luyao Ye;Siheng Zhou;Jiamin Xie;Chen Liu;Jianfeng Zhu;Jiangnan He;Ying Fan;Xun Xu",
+      "id": "out-79b483cbd2a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of macular outward scleral height with axial length, macular choroidal thickness and morphologic characteristics of the optic disc in Chinese adults — Menghan Li;Hannan Xu;Luyao Ye;Siheng Zhou;Jiamin Xie;Chen Liu;Jianfeng Zhu;Jiangnan He;Ying Fan;Xun Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4228,
+            "end_char": 4499
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning system for myopia onset prediction and intervention effectiveness evaluation in children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-b64dc27d2e8e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning system for myopia onset prediction and intervention effectiveness evaluation in children — Ziyi Qi;Tingyao Li;Jun Chen;Jason C Yam;Yang Wen;Gengyou Huang;Hua Zhong;Mingguang He;Dan Zhu;Rongping Dai;Bo Qian;Jingjing Wang;Chaoxu Qian;Wei Wang;Yanfei Zheng;Jian Zhang;Xianglong Yi;Zheyuan Wang;Bo Zhang;Chunyu Liu;Tianyu Cheng;Xiaokang Yang;Jun Li;Yan-Ting Pan;Xiaohu Ding;Ruilin Xiong;Yan Wang;Yan Zhou;Dagan Feng;Sichen Liu;Linlin Du;Jinliuxing Yang;Zhuoting Zhu;Lei Bi;Jinman Kim;Fangyao Tang;Yuzhou Zhang...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4504,
+            "end_char": 5034
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Smartwatch Measures of Outdoor Exposure and Myopia in Children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Chen;Jingjing Wang;Ziyi Qi;Shang Liu;Lingyi Zhao;Bo Zhang;Kaige Dong;Linlin Du;Jinliuxing Yang;Haidong Zou;Xiangui He;Xun Xu",
+      "id": "out-f744f096d440",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Smartwatch Measures of Outdoor Exposure and Myopia in Children — Jun Chen;Jingjing Wang;Ziyi Qi;Shang Liu;Lingyi Zhao;Bo Zhang;Kaige Dong;Linlin Du;Jinliuxing Yang;Haidong Zou;Xiangui He;Xun Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5039,
+            "end_char": 5238
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Individualized Statistical Modeling of Lesions in Fundus Images for Anomaly Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuchen Du;Lisheng Wang;Deyu Meng;Benzhi Chen;Chengyang An;Hao Liu;Weiping Liu;Yupeng Xu;Ying Fan;Dagan Feng;Xiuying Wang;Xun Xu",
+      "id": "out-0d4471687770",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Individualized Statistical Modeling of Lesions in Fundus Images for Anomaly Detection — Yuchen Du;Lisheng Wang;Deyu Meng;Benzhi Chen;Chengyang An;Hao Liu;Weiping Liu;Yupeng Xu;Ying Fan;Dagan Feng;Xiuying Wang;Xun Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5243,
+            "end_char": 5464
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于决策规则和深度神经网络的眼底图像视野分类方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "余奇;杨杰;郭天骄;刘堃;许迅",
+      "id": "out-77d82c80fee0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于决策规则和深度神经网络的眼底图像视野分类方法及装置 — 余奇;杨杰;郭天骄;刘堃;许迅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5469,
+            "end_char": 5518
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph mapping Mamba network for automated macular edema diagnosis from fundus images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiming Zhang;Hongqing Zhu;Tianwei Qian;Xun Xu;Ning Chen;Bingcang Huang",
+      "id": "out-7213dba35657",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graph mapping Mamba network for automated macular edema diagnosis from fundus images — Yiming Zhang;Hongqing Zhu;Tianwei Qian;Xun Xu;Ning Chen;Bingcang Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5523,
+            "end_char": 5686
+          },
+          "version": "ebe7201172baec412169"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

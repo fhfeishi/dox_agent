@@ -2,15 +2,20 @@
   "doc_id": "59086c27d42d72f1f131",
   "version": "96a0353989f62cfb38f9",
   "source_hash": "a563281e95477b0056221f605f7ba5818ef10f20fec8a07f00e134d15661f72c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.481166+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.357675+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e54a9ce24d8",
-          "name": "脑胶质瘤疗效预测",
-          "desc": "面向高级别胶质瘤替莫唑胺化疗，联合影像-病理组学与肿瘤微环境构建疗效预测模型。",
+          "id": "item-a69df84ee810",
+          "name": "脑胶质瘤疗效与预后预测",
+          "desc": "治疗疗效和预后仍是临床难点",
           "evidence": [
             {
-              "quote": "高级别胶质瘤(High-grade Glioma,HGG)是成人颅脑最常见的原发恶性肿瘤，替莫唑胺是NCCN指南推荐的标准化疗药物",
+              "quote": "脑胶质瘤患者的治疗疗效和预后仍然是临床难点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 729
+                "start_char": 2490,
+                "end_char": 2510
               },
               "version": "96a0353989f62cfb38f9"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b7a1b519396",
-          "name": "肿瘤异质性使影像指标难以准确预测疗效",
-          "desc": "由于肿瘤异质性，相同WHO分级的HGG患者疗效并不完全相同，而基于单纯影像指标的方法尚不能准确预测疗效。",
+          "id": "item-53d26525493a",
+          "name": "准确评估肿瘤异质性对预测疗效和预后至关重要",
+          "desc": "肿瘤异质性",
           "evidence": [
             {
-              "quote": "由于肿瘤异质性，相同WHO分级的HGG患者疗效并不完全相同。但目前基于单纯影像指标的方法尚不能准确预测疗效",
+              "quote": "如何准确评估脑胶质瘤肿瘤异质性对早期预测治疗疗效及预后至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 731,
-                "end_char": 783
+                "start_char": 2512,
+                "end_char": 2542
               },
               "version": "96a0353989f62cfb38f9"
             }
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dfab4f9b0685",
-          "name": "影像-病理组学与肿瘤微环境融合建模",
-          "desc": "通过影像组学和深度学习提取MRI与病理图像特征并构建卷积神经网络，筛选与疗效强相关的影像-病理组学特征，融合影像表型、临床指标、基因表达与肿瘤微环境信息建模。",
+          "id": "item-67d6866f033d",
+          "name": "影像-病理组学及肿瘤微环境预后预测模型",
+          "desc": "联合MRI影像组学、病理图像及肿瘤微环境特征",
           "evidence": [
             {
-              "quote": "通过影像组学和深度学习提取MRI和病理图像特征，构建卷积神经网络，筛选与疗效强相关的影像-病理组学特征",
+              "quote": "本项目联合MRI影像组学、病理图像及肿瘤微环境特征与脑胶质瘤患者预后进行对照并建立预后预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 943,
-                "end_char": 993
+                "start_char": 2684,
+                "end_char": 2730
               },
               "version": "96a0353989f62cfb38f9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,801 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4a7d38ca010",
-          "name": "治疗前实现脑胶质瘤预后精准预测",
-          "desc": "基于影像-病理组学及肿瘤微环境的预后预测模型能够在治疗前对脑胶质瘤患者预后精准预测，并阐释多种免疫细胞与预后的关系。",
+          "id": "item-018d2aec9080",
+          "name": "治疗前精准预测预后",
+          "desc": "阐释多种免疫细胞与预后的关系",
           "evidence": [
             {
-              "quote": "结果表明基于影像-病理组学及肿瘤微环境的脑胶质瘤预后预测模型能够实现在治疗前对脑胶质瘤患者预后情况的精准预测",
+              "quote": "基于影像-病理组学及肿瘤微环境的脑胶质瘤预后预测模型能够实现在治疗前对脑胶质瘤患者预后情况的精准预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2732,
+                "start_char": 2736,
                 "end_char": 2785
               },
               "version": "96a0353989f62cfb38f9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5e54a9ce24d8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5b7a1b519396"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Utility of Apparent Diffusion Coefficient Histogram Analysis in Differentiating Microcystic Meningioma from Intracranial Solitary Fibrous Tumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xianwang;Han Tao;Wang Yuzhu;Ke Xiaoai;Xue Caiqiang;Deng Juan;Li Shenglin;Sun Qiu;Liu Hong;Zhou Junlin",
+      "id": "out-acec0340f7ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Utility of Apparent Diffusion Coefficient Histogram Analysis in Differentiating Microcystic Meningioma from Intracranial Solitary Fibrous Tumor — Liu Xianwang;Han Tao;Wang Yuzhu;Ke Xiaoai;Xue Caiqiang;Deng Juan;Li Shenglin;Sun Qiu;Liu Hong;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2969,
+            "end_char": 3226
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5b7a1b519396"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dfab4f9b0685"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation of tumor-associated macrophage infiltration in glioblastoma with magnetic resonance imaging characteristics: a retrospective cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Qing;Xue Caiqiang;Man Jiangwei;Zhang Peng;Ke Xiaoai;Zhao Jun;Zhang Bin;Zhou Junlin",
+      "id": "out-2e04582c07a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation of tumor-associated macrophage infiltration in glioblastoma with magnetic resonance imaging characteristics: a retrospective cross-sectional study — Zhou Qing;Xue Caiqiang;Man Jiangwei;Zhang Peng;Ke Xiaoai;Zhao Jun;Zhang Bin;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3231,
+            "end_char": 3485
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dfab4f9b0685"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d4a7d38ca010"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于T_1WI增强全域直方图分析术前预测脑膜瘤脑侵犯的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘显旺;谢一婧;韩涛;孙秋;薛彩强;李昇霖;邓娟;周俊林",
+      "id": "out-c6de2ac8a507",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于T_1WI增强全域直方图分析术前预测脑膜瘤脑侵犯的价值 — 刘显旺;谢一婧;韩涛;孙秋;薛彩强;李昇霖;邓娟;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3490,
+            "end_char": 3556
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习在脑胶质瘤影像学的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张斌;薛彩强;林晓强;景梦园;邓靓娜;韩涛;周俊林",
+      "id": "out-d8057722ffee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 深度学习在脑胶质瘤影像学的研究进展 — 张斌;薛彩强;林晓强;景梦园;邓靓娜;韩涛;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3561,
+            "end_char": 3612
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Apparent diffusion coefficient values effectively predict cell proliferation and determine oligodendroglioma grade",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ke Xiaoai;Zhao Jun;Liu Xianwang;Zhou Qing;Cheng Wen;Zhang Peng;Zhou Junlin",
+      "id": "out-c0bbe4cd0c71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Apparent diffusion coefficient values effectively predict cell proliferation and determine oligodendroglioma grade — Ke Xiaoai;Zhao Jun;Liu Xianwang;Zhou Qing;Cheng Wen;Zhang Peng;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3617,
+            "end_char": 3814
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "腰椎良性脊索细胞瘤一例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柳庆;景梦园;雒攀;周俊林",
+      "id": "out-a4c5c1409790",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 腰椎良性脊索细胞瘤一例 — 柳庆;景梦园;雒攀;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3852
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiating angiomatous meningioma from atypical meningioma using histogram analysis of apparent diffusion coefficient maps",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xianwang;Han Tao;Wang Yuzhu;Liu Hong;Huang Xiaoyu;Zhou Junlin",
+      "id": "out-08c9b2c81931",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiating angiomatous meningioma from atypical meningioma using histogram analysis of apparent diffusion coefficient maps — Liu Xianwang;Han Tao;Wang Yuzhu;Liu Hong;Huang Xiaoyu;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3857,
+            "end_char": 4058
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胶质瘤异柠檬酸脱氢酶基因型与影像学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋健;张学凌;周俊林",
+      "id": "out-ec2fa5ffa48c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胶质瘤异柠檬酸脱氢酶基因型与影像学研究进展 — 蒋健;张学凌;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4063,
+            "end_char": 4103
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT能谱成像参数定量评价大鼠C6胶质瘤替莫唑胺疗效",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邓娟;李昇霖;黄晓宇;韩蕾;薛彩强;刘显旺;周俊林",
+      "id": "out-86a07e2e3302",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT能谱成像参数定量评价大鼠C6胶质瘤替莫唑胺疗效 — 邓娟;李昇霖;黄晓宇;韩蕾;薛彩强;刘显旺;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4108,
+            "end_char": 4167
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "颈髓弥漫性中线胶质瘤伴H3 K27改变一例并文献复习",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董文洁;周凤瑜;周青;薛彩强;张鹏;周俊林",
+      "id": "out-6a4453ca8ba3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 颈髓弥漫性中线胶质瘤伴H3 K27改变一例并文献复习 — 董文洁;周凤瑜;周青;薛彩强;张鹏;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4173,
+            "end_char": 4229
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "表观扩散系数直方图分析鉴别间变型脑膜瘤和非典型脑膜瘤",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩涛;龙昌友;刘显旺;张斌;邓靓娜;景梦园;周俊林",
+      "id": "out-faa4423e7fc2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 表观扩散系数直方图分析鉴别间变型脑膜瘤和非典型脑膜瘤 — 韩涛;龙昌友;刘显旺;张斌;邓靓娜;景梦园;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4235,
+            "end_char": 4295
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of whole-volume apparent diffusion coefficient histogram analysis in preoperatively distinguishing intracranial solitary fibrous tumor and transitional meningioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Gang;Zhou Junlin",
+      "id": "out-487d1f7bc229",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The value of whole-volume apparent diffusion coefficient histogram analysis in preoperatively distinguishing intracranial solitary fibrous tumor and transitional meningioma — Wang Gang;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4301,
+            "end_char": 4503
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "表观扩散系数在预测非典型脑膜瘤脑组织侵犯中的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛彩强;刘宏;邓娟;李昇霖;刘显旺;周俊林",
+      "id": "out-3184a90d93eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 表观扩散系数在预测非典型脑膜瘤脑组织侵犯中的价值 — 薛彩强;刘宏;邓娟;李昇霖;刘显旺;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4509,
+            "end_char": 4563
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Clinical-Based Signature to Predict the 90-Day Functional Outcome for Spontaneous Intracerebral Hemorrhage",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xiaoyu;Wang Dan;Zhang Qiaoying;Ma Yaqiong;Li Shenglin;Zhao Hui;Deng Juan;Yang Jingjing;Ren JiaLiang;Xu Min;Xi Huaze;Li Fukai;Zhang Hongyu;Xie Yijing;Yuan Long;Hai Yucheng;Yue Mengying;Zhou Qing;Zhou Junlin",
+      "id": "out-72ad5375ea6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Clinical-Based Signature to Predict the 90-Day Functional Outcome for Spontaneous Intracerebral Hemorrhage — Huang Xiaoyu;Wang Dan;Zhang Qiaoying;Ma Yaqiong;Li Shenglin;Zhao Hui;Deng Juan;Yang Jingjing;Ren JiaLiang;Xu Min;Xi Huaze;Li Fukai;Zhang Hongyu;Xie Yijing;Yuan Long;Hai Yucheng;Yue Mengying;Zhou Qing;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4569,
+            "end_char": 4927
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics: A review of current applications and possibilities in the assessment of tumor microenvironment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue Caiqiang;Zhou Qing;Xi Huaze;Zhou Junlin",
+      "id": "out-4a6f5db95507",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics: A review of current applications and possibilities in the assessment of tumor microenvironment — Xue Caiqiang;Zhou Qing;Xi Huaze;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4933,
+            "end_char": 5090
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiation of intracranial solitary fibrous tumor/hemangiopericytoma from atypical meningioma using apparent diffusion coefficient histogram analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xianwang;Deng Juan;Sun Qiu;Xue Caiqiang;Li Shenglin;Zhou Qing;Huang Xiaoyu;Liu Hong;Zhou Junlin",
+      "id": "out-c6fe3b8a08f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiation of intracranial solitary fibrous tumor/hemangiopericytoma from atypical meningioma using apparent diffusion coefficient histogram analysis — Liu Xianwang;Deng Juan;Sun Qiu;Xue Caiqiang;Li Shenglin;Zhou Qing;Huang Xiaoyu;Liu Hong;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5096,
+            "end_char": 5358
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "T1WI增强直方图分析鉴别血管瘤型脑膜瘤和非典型脑膜瘤",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩涛;刘显旺;蒋健;周凤瑜;董文洁;张斌;周俊林",
+      "id": "out-79a94d87b602",
+      "evidence": [
+        {
+          "quote": "[期刊论文] T1WI增强直方图分析鉴别血管瘤型脑膜瘤和非典型脑膜瘤 — 韩涛;刘显旺;蒋健;周凤瑜;董文洁;张斌;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5364,
+            "end_char": 5424
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiating between adult intracranial medulloblastoma and ependymoma using MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deng J.;Xue C.;Liu X.;Li S.;Zhou J.",
+      "id": "out-199ea011fc29",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiating between adult intracranial medulloblastoma and ependymoma using MRI — Deng J.;Xue C.;Liu X.;Li S.;Zhou J.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5430,
+            "end_char": 5557
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advances in computed tomography-based prognostic methods for intracerebral hemorrhage",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyu Huang;Dan Wang;Shenglin Li;Qing Zhou;Junlin Zhou",
+      "id": "out-50f0cc2f0ed4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advances in computed tomography-based prognostic methods for intracerebral hemorrhage — Xiaoyu Huang;Dan Wang;Shenglin Li;Qing Zhou;Junlin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5563,
+            "end_char": 5712
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation analysis of tumor purity with clinicopathological, molecular, and imaging features in high-grade gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Qing;Zhang Peng;Man Jiangwei;Zhang Bin;Xue Caiqiang;Ke Xiaoai;Zhou Junlin",
+      "id": "out-5c2f713c6400",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation analysis of tumor purity with clinicopathological, molecular, and imaging features in high-grade gliomas — Zhou Qing;Zhang Peng;Man Jiangwei;Zhang Bin;Xue Caiqiang;Ke Xiaoai;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5718,
+            "end_char": 5921
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于MRI特征预测脑膜瘤PR表达状态的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李政晓;薛彩强;李昇霖;孙嘉晨;刘苏卫;任铁柱;周俊林",
+      "id": "out-c9413e2d7131",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于MRI特征预测脑膜瘤PR表达状态的价值 — 李政晓;薛彩强;李昇霖;孙嘉晨;刘苏卫;任铁柱;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5927,
+            "end_char": 5984
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "分形维数对高级别胶质瘤异柠檬酸脱氢酶-1基因突变状态和Ki-67指数的评估价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "席华泽;周俊林",
+      "id": "out-08d7fdfd0b35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 分形维数对高级别胶质瘤异柠檬酸脱氢酶-1基因突变状态和Ki-67指数的评估价值 — 席华泽;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5990,
+            "end_char": 6045
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI征象及表观弥散系数预测高级别胶质瘤O6-甲基鸟嘌呤DNA甲基转移酶启动子甲基化",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李昇霖;薛彩强;柯晓艾;邓娟;刘显旺;周俊林",
+      "id": "out-1341d7453ec6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI征象及表观弥散系数预测高级别胶质瘤O6-甲基鸟嘌呤DNA甲基转移酶启动子甲基化 — 李昇霖;薛彩强;柯晓艾;邓娟;刘显旺;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6051,
+            "end_char": 6124
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of O(6)-methylguanine-DNA methyltransferase promoter methylation status in IDH-wildtype glioblastoma using MRI histogram analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xianwang;Han Tao;Wang Yuzhu;Liu Hong;Zhou Junlin",
+      "id": "out-eade90e3fe97",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of O(6)-methylguanine-DNA methyltransferase promoter methylation status in IDH-wildtype glioblastoma using MRI histogram analysis — Liu Xianwang;Han Tao;Wang Yuzhu;Liu Hong;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6130,
+            "end_char": 6331
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nomogram of magnetic resonance imaging (MRI) histogram analysis to predict telomerase reverse transcriptase promoter mutation status in glioblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Zhang;Qing Zhou;Caiqiang Xue;Xiaoai Ke;Peng Zhang;Tao Han;Liangna Deng;Mengyuan Jing;Junlin Zhou",
+      "id": "out-3a8a4f9c4682",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nomogram of magnetic resonance imaging (MRI) histogram analysis to predict telomerase reverse transcriptase promoter mutation status in glioblastoma — Bin Zhang;Qing Zhou;Caiqiang Xue;Xiaoai Ke;Peng Zhang;Tao Han;Liangna Deng;Mengyuan Jing;Junlin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6337,
+            "end_char": 6594
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "能谱CT的临床应用及技术创新",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周俊林",
+      "id": "out-62401699dbf0",
+      "evidence": [
+        {
+          "quote": "[奖励] 能谱CT的临床应用及技术创新 — 周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6600,
+            "end_char": 6624
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Nomogram for Predicting Early Recurrence in Patients with High-Grade Gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Qing;Ke Xiaoai;Xue Caiqiang;Li Shenglin;Huang Xiaoyu;Zhang Bin;Zhou Junlin",
+      "id": "out-1525c847cc20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Nomogram for Predicting Early Recurrence in Patients with High-Grade Gliomas — Zhou Qing;Ke Xiaoai;Xue Caiqiang;Li Shenglin;Huang Xiaoyu;Zhang Bin;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6630,
+            "end_char": 6796
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ADC histogram parameters differentiating atypical from transitional meningiomas: correlation with Ki-67 proliferation index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Tao;Liu Xianwang;Jing Mengyuan;Zhang Yuting;Zhang Bin;Deng Liangna;Zhou Junlin",
+      "id": "out-d35c347fd1dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ADC histogram parameters differentiating atypical from transitional meningiomas: correlation with Ki-67 proliferation index — Han Tao;Liu Xianwang;Jing Mengyuan;Zhang Yuting;Zhang Bin;Deng Liangna;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6802,
+            "end_char": 7016
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differential diagnosis of atypical and anaplastic meningiomas based on conventional MRI features and ADC histogram parameters using a logistic regression model nomogram",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Tao;Long Changyou;Liu Xianwang;Jing Mengyuan;Zhang Yuting;Deng Liangna;Zhang Bin;Zhou Junlin",
+      "id": "out-bfa2b8edda52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differential diagnosis of atypical and anaplastic meningiomas based on conventional MRI features and ADC histogram parameters using a logistic regression model nomogram — Han Tao;Long Changyou;Liu Xianwang;Jing Mengyuan;Zhang Yuting;Deng Liangna;Zhang Bin;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7022,
+            "end_char": 7295
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The role of apparent diffusion coefficient in the grading of adult isocitrate dehydrogenase-mutant astrocytomas: relationship with the Ki-67 proliferation index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "She Yingxia;Liu Xianwang;Jiang Jian;Wang Xuwen;Niu Qian;Zhou Junlin",
+      "id": "out-b4d147062b9b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The role of apparent diffusion coefficient in the grading of adult isocitrate dehydrogenase-mutant astrocytomas: relationship with the Ki-67 proliferation index — She Yingxia;Liu Xianwang;Jiang Jian;Wang Xuwen;Niu Qian;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7301,
+            "end_char": 7537
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Perihematomal edema-based CT-radiomics model to predict functional outcome in patients with intracerebral hemorrhage",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xiaoyu;Wang Dan;Ma Yaqiong;Zhang Qiaoying;Ren Jialiang;Zhao Hui;Li Shenglin;Deng Juan;Yang Jingjing;Zhao Zhiyong;Xu Min;Zhou Qing;Zhou Junlin",
+      "id": "out-5c3c13878367",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Perihematomal edema-based CT-radiomics model to predict functional outcome in patients with intracerebral hemorrhage — Huang Xiaoyu;Wang Dan;Ma Yaqiong;Zhang Qiaoying;Ren Jialiang;Zhao Hui;Li Shenglin;Deng Juan;Yang Jingjing;Zhao Zhiyong;Xu Min;Zhou Qing;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7543,
+            "end_char": 7815
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Magnetic resonance imaging-based radiomics for predicting infiltration levels of CD68+ tumor-associated macrophages in glioblastomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qing Zhou;Bin Zhang;Caiqiang Xue;Jialiang Ren;Peng Zhang;Xiaoai Ke;Jiangwei Man;Junlin Zhou",
+      "id": "out-42e07c155214",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Magnetic resonance imaging-based radiomics for predicting infiltration levels of CD68+ tumor-associated macrophages in glioblastomas — Qing Zhou;Bin Zhang;Caiqiang Xue;Jialiang Ren;Peng Zhang;Xiaoai Ke;Jiangwei Man;Junlin Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7821,
+            "end_char": 8053
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于三维密集连接卷积网络鉴别高级别胶质瘤与单发脑转移瘤",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张斌;黄陈翠;薛彩强;李昇霖;周俊林",
+      "id": "out-1b0b7fc36324",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于三维密集连接卷积网络鉴别高级别胶质瘤与单发脑转移瘤 — 张斌;黄陈翠;薛彩强;李昇霖;周俊林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8059,
+            "end_char": 8113
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics for prediction of intracerebral hemorrhage outcomes: A retrospective multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xiaoyu;Wang Dan;Zhang Qiaoying;Ma Yaqiong;Zhao Hui;Li Shenglin;Deng Juan;Ren Jialiang;Yang Jingjing;Zhao Zhiyong;Xu Min;Zhou Qing;Zhou Junlin",
+      "id": "out-b1dfda958e1c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics for prediction of intracerebral hemorrhage outcomes: A retrospective multicenter study — Huang Xiaoyu;Wang Dan;Zhang Qiaoying;Ma Yaqiong;Zhao Hui;Li Shenglin;Deng Juan;Ren Jialiang;Yang Jingjing;Zhao Zhiyong;Xu Min;Zhou Qing;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8119,
+            "end_char": 8371
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vasari-Based Features Nomogram to Predict the Tumor-Infiltrating CD8+T Cell Levels in Glioblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue Caiqiang;Zhou Qing;Zhang Bin;Ke Xiaoai;Zhang Peng;Liu Xianwang;Li Shenglin;Deng Juan;Zhou Junlin",
+      "id": "out-d663597ff2c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vasari-Based Features Nomogram to Predict the Tumor-Infiltrating CD8+T Cell Levels in Glioblastoma — Xue Caiqiang;Zhou Qing;Zhang Bin;Ke Xiaoai;Zhang Peng;Liu Xianwang;Li Shenglin;Deng Juan;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8377,
+            "end_char": 8584
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole-tumor histogram analysis of multi-parametric MRI for differentiating brain metastases histological subtypes in lung cancers: relationship with the Ki-67 proliferation index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Bin;Zhou Fengyu;Zhou Qing;Xue Caiqiang;Ke Xiaoai;Zhang Peng;Han Tao;Deng Liangna;Jing Mengyuan;Zhou Junlin",
+      "id": "out-d8357c54e987",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole-tumor histogram analysis of multi-parametric MRI for differentiating brain metastases histological subtypes in lung cancers: relationship with the Ki-67 proliferation index — Zhang Bin;Zhou Fengyu;Zhou Qing;Xue Caiqiang;Ke Xiaoai;Zhang Peng;Han Tao;Deng Liangna;Jing Mengyuan;Zhou Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8590,
+            "end_char": 8889
+          },
+          "version": "96a0353989f62cfb38f9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 36,
+    "listed": 36,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 35,
+        "extracted": 35
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

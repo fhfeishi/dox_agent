@@ -2,15 +2,20 @@
   "doc_id": "e0233bc6cb446beb1745",
   "version": "f7ad04eaa45d3cc6a9c7",
   "source_hash": "a8e6e6e67d6a8a5eaab617fdba03c7b3286b8c0477ee8079c9930bc40c74001a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:12.191007+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.222172+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-afec24a77453",
           "name": "肝细胞癌免疫治疗疗效预测",
-          "desc": "PD-1/PD-L1抑制剂免疫疗法可将肝细胞癌患者生存延长11月以上，但有效率不足30%，临床上亟需疗效预测手段。",
+          "desc": "MRI影像组学亚型",
           "evidence": [
             {
-              "quote": "新兴的PD-1/PD-L1抑制剂免疫疗法可将肝细胞癌（HCC）患者生存延长11月以上，但有效率不足30%。临床上亟需寻找理想的疗效预测手段。",
+              "quote": "目前临床上缺乏可广泛应用的标记物预测肝细胞癌免疫治疗疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 755
-              },
-              "version": "f7ad04eaa45d3cc6a9c7"
-            }
-          ]
-        },
-        {
-          "id": "item-82d8f8eb667b",
-          "name": "肝细胞癌治疗方案选择",
-          "desc": "研究结果将为指导HCC治疗方案选择提供科学依据。",
-          "evidence": [
-            {
-              "quote": "本项目研究结果将为指导HCC治疗方案选择提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1056,
-                "end_char": 1081
+                "start_char": 2713,
+                "end_char": 2740
               },
               "version": "f7ad04eaa45d3cc6a9c7"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e72175d1f926",
-          "name": "MRI影像组学预测疗效未见报道",
-          "desc": "基于MRI影像组学能否预测HCC免疫治疗疗效，目前未见报道。",
+          "id": "item-cf027c730708",
+          "name": "缺乏可广泛应用的免疫治疗疗效标记物",
+          "desc": "HCC",
           "evidence": [
             {
-              "quote": "基于MRI影像组学能否预测HCC免疫治疗疗效，目前未见报道。",
+              "quote": "目前临床上缺乏可广泛应用的标记物预测肝细胞癌免疫治疗疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 818,
-                "end_char": 847
-              },
-              "version": "f7ad04eaa45d3cc6a9c7"
-            }
-          ]
-        },
-        {
-          "id": "item-7df70c71f64c",
-          "name": "免疫治疗抵抗机制待探究",
-          "desc": "需要验证预测模型的免疫分子基础，探究免疫治疗抵抗的分子机制。",
-          "evidence": [
-            {
-              "quote": "验证预测模型的免疫分子基础，探究免疫治疗抵抗的分子机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1015,
-                "end_char": 1041
+                "start_char": 2713,
+                "end_char": 2740
               },
               "version": "f7ad04eaa45d3cc6a9c7"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f25eab0a8ac6",
-          "name": "传统影像组学与深度特征整合",
-          "desc": "整合传统影像组学特征与深度特征，训练与优化预测模型。",
+          "id": "item-f994476ea413",
+          "name": "定量影像特征无监督聚类影像亚型",
+          "desc": "3种亚型",
           "evidence": [
             {
-              "quote": "整合传统影像组学特征与深度特征，训练与优化预测模型",
+              "quote": "提取出定量的影像特征进行无监督聚类，最终发现了3种不同的影像亚型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 963,
-                "end_char": 987
-              },
-              "version": "f7ad04eaa45d3cc6a9c7"
-            }
-          ]
-        },
-        {
-          "id": "item-e6d07fdf0663",
-          "name": "影像特征无监督聚类分型",
-          "desc": "在影像上对肿瘤区域进行勾画，提取定量影像特征进行无监督聚类，发现影像亚型。",
-          "evidence": [
-            {
-              "quote": "在影像上对肿瘤区域进行勾画，并提取出定量的影像特征进行无监督聚类，最终发现了3种不同的影像亚型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2797,
+                "start_char": 2812,
                 "end_char": 2843
               },
               "version": "f7ad04eaa45d3cc6a9c7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-04646b9342ea",
-          "name": "转录组测序与免疫组化解析",
-          "desc": "应用转录组测序、免疫组化染色等解析HCC免疫微环境，并利用外部数据独立验证模型。",
+          "id": "item-b2e33f584e0b",
+          "name": "基因富集与免疫细胞浸润分析",
+          "desc": "解析免疫微环境",
           "evidence": [
             {
-              "quote": "应用转录组测序、免疫组化染色等解析HCC免疫微环境",
+              "quote": "基因富集以及免疫细胞浸润分析显示：影像亚型1和3中B细胞、淋巴细胞介导的免疫和免疫反应显著激活",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 989,
-                "end_char": 1013
+                "start_char": 2895,
+                "end_char": 2941
               },
               "version": "f7ad04eaa45d3cc6a9c7"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8d96db37a6e4",
-          "name": "三种影像亚型发现",
-          "desc": "对103例发现集、110例验证集、551例基因验证集开展研究，发现3种不同的影像亚型。",
-          "evidence": [
-            {
-              "quote": "本研究纳入103例肝细胞癌作为发现集，110例肝细胞癌作为免疫治疗疗效验证集，551例肝细胞癌作为基因验证集。在影像上对肿瘤区域进行勾画，并提取出定量的影像特征进行无监督聚类，最终发现了3种不同的影像亚型。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2742,
-                "end_char": 2844
-              },
-              "version": "f7ad04eaa45d3cc6a9c7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f8fd77f0c13b",
-          "name": "影像亚型与生存疗效相关",
-          "desc": "影像亚型与肝细胞癌患者总体生存、免疫治疗疗效显著相关。",
+          "id": "item-79a8277812cf",
+          "name": "影像亚型与OS和免疫治疗疗效相关",
+          "desc": "作为生存和免疫治疗有效性标记物",
           "evidence": [
             {
               "quote": "进一步研究发现影像亚型与肝细胞癌患者OS（overall survival）、免疫治疗疗效显著相关",
@@ -180,72 +122,69 @@
               "version": "f7ad04eaa45d3cc6a9c7"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-84467fbc4d00",
-          "name": "免疫微环境差异揭示",
-          "desc": "影像亚型2显示最少的活化CD8+T细胞、最低细胞溶解活性以及最高的中性粒细胞和调节性T细胞浸润。",
-          "evidence": [
-            {
-              "quote": "影像亚型2则显示出最少的活化CD8+T细胞、最低的细胞溶解活性以及最高的中性粒细胞和调节性T细胞浸润",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2967,
-                "end_char": 3016
-              },
-              "version": "f7ad04eaa45d3cc6a9c7"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-afec24a77453"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e72175d1f926"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "p120 RasGAP and ZO-2 are essential for Hippo signaling and tumor-suppressor function mediated by p190A RhoGAP",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ouyang Hanyue;Wu Shuang;Li Wangji;Grey Michael J.;Wu Wenchao;Hansen Steen H.",
+      "id": "out-f22a00abae30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] p120 RasGAP and ZO-2 are essential for Hippo signaling and tumor-suppressor function mediated by p190A RhoGAP — Ouyang Hanyue;Wu Shuang;Li Wangji;Grey Michael J.;Wu Wenchao;Hansen Steen H.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3317,
+            "end_char": 3511
+          },
+          "version": "f7ad04eaa45d3cc6a9c7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7df70c71f64c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-04646b9342ea"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e6d07fdf0663"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8d96db37a6e4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f25eab0a8ac6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f8fd77f0c13b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "COVID-19 vaccination perception and uptake among cancer patients in Guangzhou, China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fu Leiwen;Wu Shuang;Wang Bingyi;Zheng Weiran;Sun Yinghui;Tian Tian;Zhang Xiaoyue;Xu Lingrui;Sun Yukun;Zhan Jie;Peng Zhenwei;Chen Yong;Zou Huachun",
+      "id": "out-efadd6ce985d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] COVID-19 vaccination perception and uptake among cancer patients in Guangzhou, China — Fu Leiwen;Wu Shuang;Wang Bingyi;Zheng Weiran;Sun Yinghui;Tian Tian;Zhang Xiaoyue;Xu Lingrui;Sun Yukun;Zhan Jie;Peng Zhenwei;Chen Yong;Zou Huachun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3516,
+            "end_char": 3754
+          },
+          "version": "f7ad04eaa45d3cc6a9c7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "177cdfb6e83bb746078c",
   "version": "760b1e35c9475efada75",
   "source_hash": "70c3ea55d47f789b6389609cd17f9f83b612adaa99a9f4b8cfdee6fce25371f7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.741675+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:29:25.020082+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e509ce6b345",
-          "name": "纵向医学影像个体化疾病预测",
-          "desc": "基于医学影像随访序列预测个体疾病类型与未来发展，以阿尔兹海默病为验证场景支撑个性化医疗。",
+          "id": "item-a2f418b1602c",
+          "name": "纵向医学影像分析与疾病预测",
+          "desc": "刻画疾病演化动态过程",
           "evidence": [
             {
-              "quote": "基于医学影像随访序列准确预测个体疾病类型和未来发展是个性化医疗的基础",
+              "quote": "纵向医学影像能够刻画疾病随时间演化的动态过程",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 633,
-                "end_char": 666
+                "start_char": 2914,
+                "end_char": 2935
               },
               "version": "760b1e35c9475efada75"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2c9c413d67ac",
-          "name": "纵向影像回归受群体趋势干扰且缺乏几何敏感性",
-          "desc": "现有纵向影像回归方法停留于原影像空间，受群体趋势干扰难以捕捉个体疾病时空影像表现；深度学习模型缺乏几何敏感性导致精度与泛化受限。",
+          "id": "item-84329261d43f",
+          "name": "纵向影像分析的四类挑战",
+          "desc": "随访不一致、个体差异、计算复杂度高、多模态融合困难",
           "evidence": [
             {
-              "quote": "但现有纵向影像回归方法停留于原影像空间，因受群体趋势干扰而难以准确捕捉个体疾病的时空影像表现",
+              "quote": "纵向影像分析在实际应用中仍面临随访时间不一致、个体差异显著、三维影像计算复杂度高以及多模态信息融合困难等挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 794
+                "start_char": 2961,
+                "end_char": 3014
               },
               "version": "760b1e35c9475efada75"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a846c9d015b5",
-          "name": "知识与数据双驱动的两阶段影像动态回归模型",
-          "desc": "在群体与个体两个层面开展回归分析提取去除群体趋势的个性化表征，融合微分同胚影像演化微分方程与数据驱动深度神经网络。",
+          "id": "item-2ba8137f17ad",
+          "name": "配准与回归时空建模",
+          "desc": "兼顾几何拓扑一致性与计算效率",
           "evidence": [
             {
-              "quote": "本课题提出基于知识和数据双驱动的两阶段影像动态回归模型",
+              "quote": "构建了兼顾几何拓扑一致性与计算效率的时空建模方法体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 860,
-                "end_char": 886
+                "start_char": 3123,
+                "end_char": 3148
               },
               "version": "760b1e35c9475efada75"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a92976e25ab3",
+          "name": "视觉–语言模型与弱监督表征分割",
+          "desc": "降低人工标注依赖",
+          "evidence": [
+            {
+              "quote": "探索了结合视觉–语言模型与弱监督学习的表征与分割方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3232,
+                "end_char": 3257
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-cdc30cbd1bae",
+          "name": "多模态融合与信息精炼",
+          "desc": "提升稳定性与可解释性",
+          "evidence": [
+            {
+              "quote": "通过多模态融合与信息精炼机制，提高了模型在复杂临床环境下的稳定性与可解释性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3328,
+                "end_char": 3364
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74ec8e605696",
-          "name": "发表期刊论文4篇与会议论文15篇",
-          "desc": "项目执行期间发表期刊论文4篇（含IEEE TMI、Medical Image Analysis等顶级期刊）及国际会议论文15篇，核心模型与算法已开源并在真实临床数据验证。",
+          "id": "item-5da4362d02a1",
+          "name": "期刊论文",
+          "desc": "发表期刊论文4篇",
           "evidence": [
             {
               "quote": "项目执行期间共发表期刊论文4篇",
@@ -99,44 +139,472 @@
               "version": "760b1e35c9475efada75"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-293e6f6e86e1",
+          "name": "国际会议论文",
+          "desc": "发表15篇",
+          "evidence": [
+            {
+              "quote": "同时发表国际会议论文15篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3511,
+                "end_char": 3523
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-fb909c73aadd",
+          "name": "核心模型与算法开源",
+          "desc": "已开源发布",
+          "evidence": [
+            {
+              "quote": "项目形成的核心模型与算法均已开源发布",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3546,
+                "end_char": 3563
+              },
+              "version": "760b1e35c9475efada75"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3e509ce6b345"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2c9c413d67ac"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Epicardial Adipose Tissue Segmentation in MRIs Using Text-Prompted Pretraining Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huping Ye;Yushan Deng;Yi Hong",
+      "id": "out-4d05d25efd06",
+      "evidence": [
+        {
+          "quote": "[会议论文] Epicardial Adipose Tissue Segmentation in MRIs Using Text-Prompted Pretraining Model — Huping Ye;Yushan Deng;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3745,
+            "end_char": 3867
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2c9c413d67ac"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a846c9d015b5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NODER: Image Sequence Regression Based on Neural Ordinary Differential Equations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Bai;Yi Hong",
+      "id": "out-00d11cc0778b",
+      "evidence": [
+        {
+          "quote": "[会议论文] NODER: Image Sequence Regression Based on Neural Ordinary Differential Equations — Hao Bai;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3872,
+            "end_char": 3976
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a846c9d015b5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-74ec8e605696"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain MRI Segmentation with Language-Driven Detection and Context-Aware Descriptions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiang Fu;Xinyuan Xia;Yi Hong",
+      "id": "out-3065a8cb09b9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain MRI Segmentation with Language-Driven Detection and Context-Aware Descriptions — Qiang Fu;Xinyuan Xia;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3981,
+            "end_char": 4102
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SMART: Self-Weighted Multimodal Fusion for Diagnostics of Neurodegenerative Disorders",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Yi Hong",
+      "id": "out-94c61b7fc495",
+      "evidence": [
+        {
+          "quote": "[会议论文] SMART: Self-Weighted Multimodal Fusion for Diagnostics of Neurodegenerative Disorders — Qiuhui Chen;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4107,
+            "end_char": 4220
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "R2Net: Efficient and flexible diffeomorphic image registration using Lipschitz continuous residual networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ankita Joshi;Yi Hong",
+      "id": "out-178e450f6e3d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] R2Net: Efficient and flexible diffeomorphic image registration using Lipschitz continuous residual networks — Ankita Joshi;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4225,
+            "end_char": 4361
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing Atlas Construction via Edge-Assisted 3D Latent Diffusion Models for Brain MRI Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sheng Xu;Yi Hong",
+      "id": "out-782b233e93df",
+      "evidence": [
+        {
+          "quote": "[会议论文] Enhancing Atlas Construction via Edge-Assisted 3D Latent Diffusion Models for Brain MRI Generation — Sheng Xu;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4489
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态学习与时序分析的阿尔兹海默病智能辅助诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "洪义",
+      "id": "out-275ea9771d8d",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于多模态学习与时序分析的阿尔兹海默病智能辅助诊断 — 洪义",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4494,
+            "end_char": 4528
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Volumetric medical image segmentation via scribble annotations and shape priors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Hiaying Lyu;Xinyue Hu;Yong Lu;Yi Hong",
+      "id": "out-464dc3a8557d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Volumetric medical image segmentation via scribble annotations and shape priors — Qiuhui Chen;Hiaying Lyu;Xinyue Hu;Yong Lu;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4533,
+            "end_char": 4670
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于自监督预训练的3D脑MRI分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "洪义",
+      "id": "out-55c53b60c858",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于自监督预训练的3D脑MRI分割 — 洪义",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4675,
+            "end_char": 4701
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alifuse: Aligning and Fusing Multimodal Medical Data for Computer-Aided Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Yi Hong",
+      "id": "out-099e4993da0f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Alifuse: Aligning and Fusing Multimodal Medical Data for Computer-Aided Diagnosis — Qiuhui Chen;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4707,
+            "end_char": 4816
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DiffLGE: Diffusion-Based Image Generation for Synthesizing Late Gadolinium Enhancement Scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yushan Deng;Yuqiu Jiang;Yi Hong",
+      "id": "out-25c629d17776",
+      "evidence": [
+        {
+          "quote": "[会议论文] DiffLGE: Diffusion-Based Image Generation for Synthesizing Late Gadolinium Enhancement Scans — Yushan Deng;Yuqiu Jiang;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4822,
+            "end_char": 4954
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing 3D Medical Image Understanding with Pretraining Aided by 2D Multimodal Large Language Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Xuancheng Yao;Huping Ye;Yi Hong",
+      "id": "out-6b36e6755562",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancing 3D Medical Image Understanding with Pretraining Aided by 2D Multimodal Large Language Models — Qiuhui Chen;Xuancheng Yao;Huping Ye;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4960,
+            "end_char": 5114
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LongFormer: Longitudinal Transformer for Alzheimer’s Disease Classification with Structural MRIs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Qiang Fu;Hao Bai;Yi Hong",
+      "id": "out-a82b8b422c17",
+      "evidence": [
+        {
+          "quote": "[会议论文] LongFormer: Longitudinal Transformer for Alzheimer’s Disease Classification with Structural MRIs — Qiuhui Chen;Qiang Fu;Hao Bai;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5120,
+            "end_char": 5261
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Metamorphic Registration for Tumor-Affected Medical Image Alignment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Jie Pan;Yi Hong",
+      "id": "out-6aa2edbd46c1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Deep Metamorphic Registration for Tumor-Affected Medical Image Alignment — Wei Jie Pan;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5267,
+            "end_char": 5367
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pretrain Once and Finetune Many Times: How Pretraining Benefits Brain MRI Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Zhang;Sheng Xu;Wei Ren;Huping Ye;Yi Hong",
+      "id": "out-1d92b148d7f9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Pretrain Once and Finetune Many Times: How Pretraining Benefits Brain MRI Segmentation — Hao Zhang;Sheng Xu;Wei Ren;Huping Ye;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5373,
+            "end_char": 5512
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A2FSeg: Adaptive Multi-Modal Fusion Network for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zirui Wang;Yi Hong",
+      "id": "out-76b9119a3830",
+      "evidence": [
+        {
+          "quote": "[会议论文] A2FSeg: Adaptive Multi-Modal Fusion Network for Medical Image Segmentation — Zirui Wang;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5518,
+            "end_char": 5619
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HoloDx: Knowledge- and Data-Driven Multimodal Diagnosis of Alzheimer's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Jintao Wang;Gang Wang;Yi Hong",
+      "id": "out-bcf865d45433",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HoloDx: Knowledge- and Data-Driven Multimodal Diagnosis of Alzheimer's Disease — Qiuhui Chen;Jintao Wang;Gang Wang;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5625,
+            "end_char": 5753
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MedBLIP: Bootstrapping Language-Image Pretraining from 3D Medical Images and Texts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhui Chen;Yi Hong",
+      "id": "out-285bbf5eed9a",
+      "evidence": [
+        {
+          "quote": "[会议论文] MedBLIP: Bootstrapping Language-Image Pretraining from 3D Medical Images and Texts — Qiuhui Chen;Yi Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5759,
+            "end_char": 5869
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UP-SAM: Uncertainty-Informed Adaptation of Segment Anything Model for Semi-Supervised Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjing Lu;Yi Hong;Yang Yang",
+      "id": "out-fcb74ae51d73",
+      "evidence": [
+        {
+          "quote": "[会议论文] UP-SAM: Uncertainty-Informed Adaptation of Segment Anything Model for Semi-Supervised Medical Image Segmentation — Wenjing Lu;Yi Hong;Yang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5875,
+            "end_char": 6024
+          },
+          "version": "760b1e35c9475efada75"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "会议论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

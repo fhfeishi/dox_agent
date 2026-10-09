@@ -2,15 +2,20 @@
   "doc_id": "b605f1a3dc12bc8e5904",
   "version": "162c812265171d2399e2",
   "source_hash": "b5406bfe3eb4da900c7325a0dbfb0c35bfdeb7364651b4917614ef27fff06a0a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:54.693180+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:36.006735+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-fec2714ad9b5",
           "name": "胃癌PD-1抑制剂疗效预测",
-          "desc": "以PD-1抑制剂为代表的肿瘤免疫疗法在多种实体瘤中显示疗效，需预测胃癌疗效并识别获益人群。",
+          "desc": "PD-1抑制剂应答率约20%",
           "evidence": [
             {
-              "quote": "以PD-1抑制剂为代表的肿瘤免疫疗法在多种实体瘤中显示出令人振奋的疗效",
+              "quote": "对于多数晚期实体瘤患者，PD-1抑制剂的应答率仅为20%左右",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 672,
-                "end_char": 706
-              },
-              "version": "162c812265171d2399e2"
-            }
-          ]
-        },
-        {
-          "id": "item-072922037828",
-          "name": "胃癌Treg细胞浸润评估",
-          "desc": "调节性T细胞在胃癌组织中大量浸润并塑造抑制性肿瘤微环境，可作为疗效与预后预测标志物。",
-          "evidence": [
-            {
-              "quote": "研究表明，调节性T(Regulatory T，Treg)细胞在胃癌组织中大量浸润并在塑造抑制性肿瘤微环境中发挥重要作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 832,
-                "end_char": 890
+                "start_char": 711,
+                "end_char": 740
               },
               "version": "162c812265171d2399e2"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99f3a2f54e01",
-          "name": "PD-1抑制剂应答率仅约20%",
-          "desc": "多数晚期实体瘤患者PD-1抑制剂应答率仅为20%左右，需寻找预测疗效的生物标志物。",
+          "id": "item-0129ceb0dc6e",
+          "name": "缺乏预测PD-1抑制剂疗效的生物标志物",
+          "desc": "胃癌",
           "evidence": [
             {
-              "quote": "然而，对于多数晚期实体瘤患者，PD-1抑制剂的应答率仅为20%左右",
+              "quote": "寻找用于预测PD-1抑制剂疗效的生物标志物仍是目前胃癌PD-1抑制剂治疗亟待解决的重要问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 708,
-                "end_char": 740
-              },
-              "version": "162c812265171d2399e2"
-            }
-          ]
-        },
-        {
-          "id": "item-2183ae8e0b70",
-          "name": "复杂响应模式难以实时评价",
-          "desc": "部分患者出现延迟响应、假进展及超进展等复杂响应模式，对治疗过程难以实时监测与准确评价。",
-          "evidence": [
-            {
-              "quote": "部分接受PD-1抑制剂治疗的患者会出现延迟响应、假进展及超进展等多种新型的复杂响应模式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 742,
-                "end_char": 784
+                "start_char": 786,
+                "end_char": 830
               },
               "version": "162c812265171d2399e2"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f30e9027b343",
-          "name": "影像组学评估Treg细胞含量",
-          "desc": "利用影像组学技术建立并验证评估胃癌组织浸润Treg细胞含量的模型。",
+          "id": "item-34168dc200b8",
+          "name": "Radiomics-score评估胃癌浸润Treg细胞模型",
+          "desc": "CT影像组学",
           "evidence": [
             {
-              "quote": "本课题利用影像组学技术，建立并验证一种评估胃癌组织浸润Treg细胞含量的模型",
+              "quote": "根据项目前期建立的评价模型计算Radiomics-score评分，对患者相应的组织标本Treg细胞的含量进行评价",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 920,
-                "end_char": 957
+                "start_char": 2972,
+                "end_char": 3027
               },
               "version": "162c812265171d2399e2"
             }
-          ]
-        },
-        {
-          "id": "item-ee90ff31d874",
-          "name": "影像驱动的无创疗效预测",
-          "desc": "以接受PD-1抑制剂治疗的胃癌患者为对象，建立影像驱动的、无创便捷的疗效预测与疾病进展监测方法。",
-          "evidence": [
-            {
-              "quote": "以期建立一种影像驱动的、无创的、便捷的预测PD-1抑制剂治疗胃癌疗效及监测疾病进展的方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 988,
-                "end_char": 1031
-              },
-              "version": "162c812265171d2399e2"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b5454da170d4",
-          "name": "模型有效评价Treg丰度",
-          "desc": "模型可有效评价胃癌浸润Treg细胞丰度，回顾性队列AUC 0.791、前瞻性队列AUC 0.815。",
+          "id": "item-fa11cca004ad",
+          "name": "评估Treg丰度的影像组学模型",
+          "desc": "回顾性队列AUC 0.791，前瞻性队列0.815",
           "evidence": [
             {
               "quote": "该模型可有效评价胃癌浸润Treg细胞的丰度（回顾性队列，AUC=0.791；前瞻性队列，AUC=0.815）",
@@ -147,29 +105,14 @@
               "version": "162c812265171d2399e2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3adb8010b331",
-          "name": "高评分与不良OS相关",
-          "desc": "较高的Radiomics-score评分与患者不良总生存相关，验证模型预后预测能力。",
-          "evidence": [
-            {
-              "quote": "较高的Radiomics-score评分与患者的不良OS相关（回顾性队列，P=0.038；前瞻性队列，P=0.029）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3132,
-                "end_char": 3190
-              },
-              "version": "162c812265171d2399e2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-800ad16f834c",
-          "name": "影像组学预测PD-1疗效AUC 0.786",
-          "desc": "接受PD-1抑制剂治疗的100例胃癌患者入组完成，影像组学模型评价疗效AUC为0.786。",
+          "id": "item-c94354c3a626",
+          "name": "预测PD-1抑制剂疗效",
+          "desc": "AUC=0.786",
           "evidence": [
             {
               "quote": "影像组学模型可有效评价可有效预防胃癌患者PD-1抑制剂疗效（AUC=0.786）",
@@ -181,55 +124,111 @@
               "version": "162c812265171d2399e2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fec2714ad9b5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-99f3a2f54e01"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based radiomics signature for prediction of HER2 overexpression and treatment efficacy of trastuzumab in advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Ma;Jingli Cui;Lingwei Wang;Hui Li;Zhaoxiang Ye;Xujie Gao",
+      "id": "out-09db48f331f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based radiomics signature for prediction of HER2 overexpression and treatment efficacy of trastuzumab in advanced gastric cancer — Tingting Ma;Jingli Cui;Lingwei Wang;Hui Li;Zhaoxiang Ye;Xujie Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3710
+          },
+          "version": "162c812265171d2399e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-99f3a2f54e01"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f30e9027b343"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT的人工智能技术在胃癌中的研究进展_",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高绪杰;叶露;叶兆祥",
+      "id": "out-02e1383728dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT的人工智能技术在胃癌中的研究进展_ — 高绪杰;叶露;叶兆祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3755
+          },
+          "version": "162c812265171d2399e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f30e9027b343"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5454da170d4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of machine learning based radiomics model in preoperative detection of perineural invasion in gastric cancer: a two-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xujie Gao;Jingli Cui;Lingwei Wang;Qiuyan Wang;Tingting Ma;Jilong Yang;Zhaoxiang Ye",
+      "id": "out-303761ceb93a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The value of machine learning based radiomics model in preoperative detection of perineural invasion in gastric cancer: a two-center study — Xujie Gao;Jingli Cui;Lingwei Wang;Qiuyan Wang;Tingting Ma;Jilong Yang;Zhaoxiang Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3760,
+            "end_char": 3989
+          },
+          "version": "162c812265171d2399e2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ee90ff31d874"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-800ad16f834c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multiphase contrast-enhanced CT radiomics model for prediction of human epidermal growth factor receptor 2 status in advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Ma;Jingli Cui;Lingwei Wang;Hui Li;Zhaoxiang Ye;Xujie Gao",
+      "id": "out-45c4b30e83bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multiphase contrast-enhanced CT radiomics model for prediction of human epidermal growth factor receptor 2 status in advanced gastric cancer — Tingting Ma;Jingli Cui;Lingwei Wang;Hui Li;Zhaoxiang Ye;Xujie Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3994,
+            "end_char": 4210
+          },
+          "version": "162c812265171d2399e2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

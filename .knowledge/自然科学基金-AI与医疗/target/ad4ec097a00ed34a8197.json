@@ -2,15 +2,20 @@
   "doc_id": "ad4ec097a00ed34a8197",
   "version": "ef662a6394d01dd018c9",
   "source_hash": "3fc02fd70f656bf3db51b86b0ca30e71401b1ee99c141157a72f336854b88d71",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.186251+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.514840+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-197b038a257e",
-          "name": "儿童良性癫痫多模态脑网络辅助诊断",
-          "desc": "儿童良性癫痫是常见局灶性癫痫，通常5-10岁发病，严重影响患者脑发育。",
+          "id": "item-5d7d73d75da4",
+          "name": "儿童良性癫痫辅助诊断",
+          "desc": "局灶性癫痫，通常5-10岁发病",
           "evidence": [
             {
-              "quote": "儿童良性癫痫是一种常见的局灶性癫痫，通常在5-10岁发病，严重影响患者脑发育",
+              "quote": "儿童良性癫痫作为一种常见的局灶性癫痫，对患儿的脑发育构成严重威胁",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 694
-              },
-              "version": "ef662a6394d01dd018c9"
-            }
-          ]
-        },
-        {
-          "id": "item-f1cd55480185",
-          "name": "辅助临床更准确快速诊断",
-          "desc": "项目提出的关键技术可辅助临床医生对儿童良性癫痫进行更准确、更快速的诊断。",
-          "evidence": [
-            {
-              "quote": "本课题提出的关键技术可以辅助临床医生对儿童良性癫痫进行更准确、更快速的诊断",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1012,
-                "end_char": 1048
+                "start_char": 2935,
+                "end_char": 2966
               },
               "version": "ef662a6394d01dd018c9"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9f64c40e17af",
-          "name": "视频脑电图诊断准确性低周期长",
-          "desc": "视频脑电图确诊准确性低、周期冗长，约30%患儿在采集过程中未表现出可确诊痫状放电，导致漏诊误诊。",
+          "id": "item-cf1d08b15709",
+          "name": "视频脑电图诊断准确性低、周期长、漏诊误诊率高",
+          "desc": "传统方法",
           "evidence": [
             {
-              "quote": "目前，临床上主要通过视频脑电图对儿童良性癫痫进行确诊，但该方法准确性低，周期冗长，且有约30%的患儿在采集过程中未表现出可确诊的痫状放电，导致漏诊、误诊",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 696,
-                "end_char": 771
-              },
-              "version": "ef662a6394d01dd018c9"
-            }
-          ]
-        },
-        {
-          "id": "item-74639f4d656c",
-          "name": "传统诊断方法亟需新辅助诊断技术",
-          "desc": "传统视频脑电图方法存在准确性低、周期长及漏诊误诊率高问题，需新辅助诊断技术提高效率与准确性。",
-          "evidence": [
-            {
-              "quote": "传统视频脑电图诊断方法存在准确性低、周期长以及漏诊、误诊率高等问题，亟需新的辅助诊断技术以提高诊断效率和准确性",
+              "quote": "传统视频脑电图诊断方法存在准确性低、周期长以及漏诊、误诊率高等问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2968,
-                "end_char": 3022
+                "end_char": 3000
               },
               "version": "ef662a6394d01dd018c9"
             }
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-06f3acfbe84b",
-          "name": "图卷积神经网络多模态整合",
-          "desc": "基于图卷积对弥散张量成像、脑电图、功能磁共振图像等多模态数据进行分析。",
+          "id": "item-a88afdfb44de",
+          "name": "基于图卷积的多模态脑网络辅助诊断",
+          "desc": "弥散张量与同步脑电-fMRI构建结构与功能脑网络",
           "evidence": [
             {
-              "quote": "本课题基于图卷积对弥散张量成像、脑电图、功能磁共振图像等多模态数据进行分析",
+              "quote": "旨在通过图卷积技术实现对多模态医学影像数据的分析，从而辅助诊断儿童良性癫痫",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 893
-              },
-              "version": "ef662a6394d01dd018c9"
-            }
-          ]
-        },
-        {
-          "id": "item-e45dca0e219f",
-          "name": "结构连接与功能连接静息态脑网络",
-          "desc": "使用弥散张量图像构建结构连接的静息态脑网络，结合同步脑电图-功能磁共振图像构建功能连接的静息态脑网络。",
-          "evidence": [
-            {
-              "quote": "使用弥散张量图像构建结构连接的静息态脑网络，使用同步脑电图-功能磁共振图像构建功能连接的静息态脑网络",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 914,
-                "end_char": 963
-              },
-              "version": "ef662a6394d01dd018c9"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-13d50e2c2ce7",
-          "name": "建立多模态医学影像数据集",
-          "desc": "收集整理弥散张量成像、脑电图和功能磁共振图像等多模态医学影像数据，为研究提供数据基础。",
-          "evidence": [
-            {
-              "quote": "建立多模态医学影像数据集：收集并整理了包括弥散张量成像、脑电图和功能磁共振图像在内的多模态医学影像数据，为后续研究提供了坚实的数据基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3099,
-                "end_char": 3165
+                "start_char": 3052,
+                "end_char": 3088
               },
               "version": "ef662a6394d01dd018c9"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-7248a293b384",
-          "name": "实现正常与患者有效分类",
-          "desc": "设计搭建图卷积神经网络模型，通过训练实现对正常受试者和儿童良性癫痫患者的有效分类，显著缩短诊断周期。",
+          "id": "item-143d457dfd3b",
+          "name": "图卷积神经网络分类模型",
+          "desc": "区分正常受试者与患者",
           "evidence": [
             {
               "quote": "基于多模态医学影像数据，设计并搭建了图卷积神经网络模型，通过训练实现对正常受试者和儿童良性癫痫患者的有效分类",
@@ -164,72 +99,373 @@
               "version": "ef662a6394d01dd018c9"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-7087fcf78f97",
-          "name": "ESES脑电波形识别分析",
-          "desc": "基于图卷积神经网络实现睡眠期电持续状态脑电波形识别与分析。",
+          "id": "item-31073302297d",
+          "name": "多模态医学影像数据集",
+          "desc": "弥散张量成像、脑电图和功能磁共振图像",
           "evidence": [
             {
-              "quote": "Electrical status epilepticus during sleep electroencephalogram waveform identification and analysis based on a graph convolutional neural network",
+              "quote": "收集并整理了包括弥散张量成像、脑电图和功能磁共振图像在内的多模态医学影像数据，为后续研究提供了坚实的数据基础",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4759,
-                "end_char": 4904
+                "start_char": 3112,
+                "end_char": 3165
               },
               "version": "ef662a6394d01dd018c9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-197b038a257e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9f64c40e17af"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "结合Fabric和IPFS的去中心化存储系统及其数据存储方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟琭;孙斌",
+      "id": "out-e0c33791cf31",
+      "evidence": [
+        {
+          "quote": "[专利] 结合Fabric和IPFS的去中心化存储系统及其数据存储方法 — 孟琭;孙斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3635,
+            "end_char": 3677
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9f64c40e17af"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-06f3acfbe84b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "尺度自适应的多特征融合相关滤波目标跟踪算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵浩光;孟琭;耿欢;杨旭;尚洋",
+      "id": "out-a7fa3a488304",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 尺度自适应的多特征融合相关滤波目标跟踪算法 — 赵浩光;孟琭;耿欢;杨旭;尚洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3727
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-06f3acfbe84b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7248a293b384"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HABA: A High-speed Animal Behavior Acquisition and Analysis System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lijun Zhou;Wenqiang Xuan;Shuang Hao;Lu Meng",
+      "id": "out-69e30cbfd65b",
+      "evidence": [
+        {
+          "quote": "[奖励] HABA: A High-speed Animal Behavior Acquisition and Analysis System — Lijun Zhou;Wenqiang Xuan;Shuang Hao;Lu Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3732,
+            "end_char": 3848
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e45dca0e219f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7087fcf78f97"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fabric区块链中的快速日志复制方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟琭;谷自远",
+      "id": "out-99cb640ff3d5",
+      "evidence": [
+        {
+          "quote": "[专利] Fabric区块链中的快速日志复制方法及装置 — 孟琭;谷自远",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3853,
+            "end_char": 3888
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Wearable Electrocardiogram Signal Monitoring and Analysis Based on Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Lu;Ge Kang;Song Yang;Yang Dongming;Lin Zihuai",
+      "id": "out-1552e9ebd12f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Wearable Electrocardiogram Signal Monitoring and Analysis Based on Convolutional Neural Network — Meng Lu;Ge Kang;Song Yang;Yang Dongming;Lin Zihuai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3893,
+            "end_char": 4047
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semantics-Guided Hierarchical Feature Encoding Generative Adversarial Network for Visual Image Reconstruction From Brain Activity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Chuanhao Yang",
+      "id": "out-57ff5be0df5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semantics-Guided Hierarchical Feature Encoding Generative Adversarial Network for Visual Image Reconstruction From Brain Activity — Lu Meng;Chuanhao Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4052,
+            "end_char": 4211
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sign language recognition and translation network based on multi-view data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ronghui Li;Lu Meng",
+      "id": "out-93afc6da5bea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sign language recognition and translation network based on multi-view data — Ronghui Li;Lu Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4216,
+            "end_char": 4317
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoding Visual fMRI Stimuli from Human Brain Based on Graph Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Kang Ge",
+      "id": "out-f0522b62b411",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decoding Visual fMRI Stimuli from Human Brain Based on Graph Convolutional Neural Network — Lu Meng;Kang Ge",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4435
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SODCNN: A Convolutional Neural Network Model for Small Object Detection in Drone-Captured Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Lijun Zhou;Yangqian Liu",
+      "id": "out-51652d07b139",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SODCNN: A Convolutional Neural Network Model for Small Object Detection in Drone-Captured Images — Lu Meng;Lijun Zhou;Yangqian Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4440,
+            "end_char": 4576
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D Human Pose Estimation Based on a Fully Connected Neural Network With Adversarial Learning Prior Knowledge",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Hengshang Gao",
+      "id": "out-8ee9b115b87d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D Human Pose Estimation Based on a Fully Connected Neural Network With Adversarial Learning Prior Knowledge — Lu Meng;Hengshang Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4582,
+            "end_char": 4720
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "目标跟踪算法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟琭;杨旭",
+      "id": "out-1d1e13f900f0",
+      "evidence": [
+        {
+          "quote": "[奖励] 目标跟踪算法综述 — 孟琭;杨旭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4726,
+            "end_char": 4746
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Electrical status epilepticus during sleep electroencephalogram waveform identification and analysis based on a graph convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Jinzhou Hu;Yu Deng;Yue Hu",
+      "id": "out-73d36ff45923",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Electrical status epilepticus during sleep electroencephalogram waveform identification and analysis based on a graph convolutional neural network — Lu Meng;Jinzhou Hu;Yu Deng;Yue Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4752,
+            "end_char": 4940
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-Guided Brain Diffusion Model: Natural Image Reconstruction from Human Visual Stimulus fMRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Chuanhao Yang",
+      "id": "out-3581aedd3222",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-Guided Brain Diffusion Model: Natural Image Reconstruction from Human Visual Stimulus fMRI — Lu Meng;Chuanhao Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4946,
+            "end_char": 5071
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reconstruction of natural images from human fMRI using a three-stage multi-level deep fusion model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Meng;Zhenxuan Tang;Yangqian Liu",
+      "id": "out-c7d168f15dc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reconstruction of natural images from human fMRI using a three-stage multi-level deep fusion model — Lu Meng;Zhenxuan Tang;Yangqian Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5218
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种面向婴幼儿癫痫的可穿戴微创闭环调控装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟琭;郝爽",
+      "id": "out-be9858756fec",
+      "evidence": [
+        {
+          "quote": "[专利] 一种面向婴幼儿癫痫的可穿戴微创闭环调控装置 — 孟琭;郝爽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5224,
+            "end_char": 5257
+          },
+          "version": "ef662a6394d01dd018c9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

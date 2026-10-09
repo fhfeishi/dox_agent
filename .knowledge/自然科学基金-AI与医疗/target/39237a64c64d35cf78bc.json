@@ -2,15 +2,20 @@
   "doc_id": "39237a64c64d35cf78bc",
   "version": "06a71bf800b77e76bc07",
   "source_hash": "8fb6aebbd2aa13d80b9466822bf872ab7a1562bf66ce06577de9437f1b777236",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.219832+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:20.110278+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7536efcf2543",
-          "name": "进展期胃腺癌HER2状态与新辅助化疗疗效",
-          "desc": "目前对进展期胃癌的新辅助化疗疗效评估尚未取得突破性进展，需及时准确评价胃癌组织功能变化。",
+          "id": "item-e0b615bc92e3",
+          "name": "进展期胃腺癌新辅助化疗与HER2",
+          "desc": "疗效评估尚未突破",
           "evidence": [
             {
               "quote": "目前对进展期胃癌的新辅助化疗疗效评估尚未取得突破性进展",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 685,
                 "end_char": 711
-              },
-              "version": "06a71bf800b77e76bc07"
-            }
-          ]
-        },
-        {
-          "id": "item-68dd5fe01bc3",
-          "name": "个体化新辅助化疗方案选择",
-          "desc": "研究为进展期胃腺癌不同HER2基因表达预测提供新思路，有助于个体化新辅助化疗方案选择与早期疗效评估。",
-          "evidence": [
-            {
-              "quote": "为进展期胃腺癌不同 HER2 基因表达预测提供了新的思路，有助于个体化新辅助化疗方案的选择，早期评估疗效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2614,
-                "end_char": 2665
               },
               "version": "06a71bf800b77e76bc07"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7e9f9c1d33d3",
-          "name": "需及时准确评价胃癌组织功能变化",
-          "desc": "需及时准确评价胃癌组织本身的功能变化，给予早期诊断、及时治疗并实时监测疗效、评估预后。",
+          "id": "item-43bd8fa17ee0",
+          "name": "新辅助化疗疗效评估缺乏突破",
+          "desc": "需及时准确评价功能变化",
           "evidence": [
             {
-              "quote": "及时准确的评价胃癌组织本身的功能变化，给予早期诊断、及时治疗，并实时监测疗效、评估患者预后就显得尤其重要",
+              "quote": "目前对进展期胃癌的新辅助化疗疗效评估尚未取得突破性进展",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 713,
-                "end_char": 764
-              },
-              "version": "06a71bf800b77e76bc07"
-            }
-          ]
-        },
-        {
-          "id": "item-bde4e6383b25",
-          "name": "推测CT组学差异源于基因表达不同",
-          "desc": "前期研究表明基于CT影像组学能有效预测胃腺癌淋巴结和腹膜转移，推测CT影像组学特征差异的基础是肿瘤基因表达的不同。",
-          "evidence": [
-            {
-              "quote": "我们推测CT影像组学特征差异的基础是肿瘤基因表达的不同",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 799,
-                "end_char": 825
+                "start_char": 685,
+                "end_char": 711
               },
               "version": "06a71bf800b77e76bc07"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ea6c0827dd2",
-          "name": "CT功能成像多参数影像组学",
-          "desc": "基于肿瘤直径、体积、CT值、碘基值、标化碘基值、有效原子序数、能谱曲线等参数应用影像组学方法全面挖掘CT图像特征信息。",
+          "id": "item-3281bb00fac6",
+          "name": "CT功能成像影像组学",
+          "desc": "碘基值、有效原子序数、能谱曲线等参数",
           "evidence": [
             {
               "quote": "本研究基于肿瘤直径、体积、CT值、碘基值、标化碘基值、有效原子序数、能谱曲线等参数，并应用影像组学方法全面挖掘CT图像特征信息",
@@ -108,23 +81,8 @@
               },
               "version": "06a71bf800b77e76bc07"
             }
-          ]
-        },
-        {
-          "id": "item-a68fb67adddd",
-          "name": "按HER2表达分组预测化疗疗效",
-          "desc": "根据患者HER2基因表达分组，探讨影像组学在预测不同HER2基因表达进展期胃腺癌患者新辅助化疗疗效中的价值。",
-          "evidence": [
-            {
-              "quote": "根据患者HER2基因表达分组，探讨影像组学在预测不同HER2基因表达进展期胃腺癌患者新辅助化疗疗效中的价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 923,
-                "end_char": 975
-              },
-              "version": "06a71bf800b77e76bc07"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-34ccf7a60154",
-          "name": "CT影像组学评估HER2状态具临床价值",
-          "desc": "结果显示CT影像组学在评估进展期胃腺癌HER2基因状态及预测不同HER2表达患者新辅助化疗疗效中具有重要临床价值。",
+          "id": "item-6afbfd67be17",
+          "name": "CT影像组学评估HER2与疗效预测价值",
+          "desc": "重要临床价值",
           "evidence": [
             {
               "quote": "结果显示CT影像组学在评估进展期胃腺癌HER2基因状态及预测不同HER2基因表达进展期胃腺癌患者新辅助化疗疗效中具有重要临床价值",
@@ -147,29 +105,33 @@
               "version": "06a71bf800b77e76bc07"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-aed9ec8fb1b0",
-          "name": "双能CT诺模图解码HER2状态",
-          "desc": "构建基于双能CT的诺模图用于解码胃癌患者HER2状态。",
+          "id": "item-1492ac67c480",
+          "name": "省部级科技进步一等奖",
+          "desc": "获批1项",
           "evidence": [
             {
-              "quote": "Dual-Energy CT–Based Nomogram for Decoding HER2 Status in Patients With Gastric Cancer",
+              "quote": "获批的1项省部级科技进步一等奖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4945,
-                "end_char": 5030
+                "start_char": 2706,
+                "end_char": 2720
               },
               "version": "06a71bf800b77e76bc07"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-9f43bb0b18c4",
-          "name": "论文著作与专利成果",
-          "desc": "发表23篇论文（SCI收录14篇），出版7部影像学著作，申请成功专利5项，并获省部级科技进步一等奖1项。",
+          "id": "item-e910f1576d12",
+          "name": "论文与著作",
+          "desc": "23篇论文（SCI 14篇）、7部著作",
           "evidence": [
             {
               "quote": "发表的23篇论文，其中SCI收录14篇，出版7部影像学著作",
@@ -181,55 +143,604 @@
               "version": "06a71bf800b77e76bc07"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-960b2bac5780",
+          "name": "专利",
+          "desc": "申请成功5项",
+          "evidence": [
+            {
+              "quote": "申请成功的专利5项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2789,
+                "end_char": 2797
+              },
+              "version": "06a71bf800b77e76bc07"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7536efcf2543"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7e9f9c1d33d3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "腹膜转移分期对胃癌患者预后的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李莉明;黄文鹏;韩懿静;王 睿;李爱云;赵慧萍;梁 盼;高剑波",
+      "id": "out-333ef3cff2d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 腹膜转移分期对胃癌患者预后的影响 — 李莉明;黄文鹏;韩懿静;王 睿;李爱云;赵慧萍;梁 盼;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2852,
+            "end_char": 2908
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7e9f9c1d33d3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3ea6c0827dd2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of CT-Based Imaging Signature for Preoperative Prediction of Invasive Behavior in Pancreatic Solid Pseudopapillary Neoplasm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-peng Huang;Si-yun Liu;Yi-jing Han;Li-ming Li;Pan Liang;Jian-bo Gao",
+      "id": "out-75c2c7843388",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of CT-Based Imaging Signature for Preoperative Prediction of Invasive Behavior in Pancreatic Solid Pseudopapillary Neoplasm — Wen-peng Huang;Si-yun Liu;Yi-jing Han;Li-ming Li;Pan Liang;Jian-bo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2913,
+            "end_char": 3127
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3ea6c0827dd2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-34ccf7a60154"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography features and clinicopathological characteristics of gastric glomus tumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing-jing Xing;Wen-peng Huang;Fang Wang;Ya-ru Chai;Jian-bo Gao",
+      "id": "out-1f5e086ed09f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography features and clinicopathological characteristics of gastric glomus tumor — Jing-jing Xing;Wen-peng Huang;Fang Wang;Ya-ru Chai;Jian-bo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3132,
+            "end_char": 3295
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a68fb67adddd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aed9ec8fb1b0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种医学影像系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕培杰;张芮;王会霞;刘娜娜;刘星;高剑波",
+      "id": "out-377ba5f4a923",
+      "evidence": [
+        {
+          "quote": "[专利] 一种医学影像系统 — 吕培杰;张芮;王会霞;刘娜娜;刘星;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3300,
+            "end_char": 3336
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT影像组学模型预测人表皮生长因子 受体-2弱阳性胃癌患者基因扩增的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄文鹏;李林峰;刘晨晨;赵慧萍;李莉明;于扬;高剑波",
+      "id": "out-17522979892d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT影像组学模型预测人表皮生长因子 受体-2弱阳性胃癌患者基因扩增的价值 — 黄文鹏;李林峰;刘晨晨;赵慧萍;李莉明;于扬;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3341,
+            "end_char": 3414
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic value of computed tomography radiomics features in patients with gastric neuroendocrine neoplasm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi-hao Yang;Yi-jing Han;Ming Cheng;Rui Wang;Jing Li;Hui-ping Zhao;Jian-bo Gao",
+      "id": "out-3c8cc05a3539",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic value of computed tomography radiomics features in patients with gastric neuroendocrine neoplasm — Zhi-hao Yang;Yi-jing Han;Ming Cheng;Rui Wang;Jing Li;Hui-ping Zhao;Jian-bo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3419,
+            "end_char": 3613
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and external validation of a radiomics model for assessment of HER2 positivity in men and women presenting with gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiping Zhao;Pan Liang;Liuliang Yong;Ming Cheng;Yan Zhang;Minggang Huang;Jianbo Gao",
+      "id": "out-c1e7c8de5572",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and external validation of a radiomics model for assessment of HER2 positivity in men and women presenting with gastric cancer — Huiping Zhao;Pan Liang;Liuliang Yong;Ming Cheng;Yan Zhang;Minggang Huang;Jianbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3618,
+            "end_char": 3848
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《放射影像学》第2版",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王振常;龚启勇;高剑波",
+      "id": "out-76ad3199cba0",
+      "evidence": [
+        {
+          "quote": "[专著] 《放射影像学》第2版 — 王振常;龚启勇;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3853,
+            "end_char": 3881
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed Tomography Features and Clinical Prognostic Characteristics of Hepatoid Adenocarcinoma of the Stomach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-peng Huang;Li-ming Li;Jing Li;Jun-hui Yuan;Ping Hou;Chen-chen Liu;Yi-hui Ma;Xiao-nan Liu;Yi-jing Han;Pan Liang;Jian-bo Gao",
+      "id": "out-399106787d89",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed Tomography Features and Clinical Prognostic Characteristics of Hepatoid Adenocarcinoma of the Stomach — Wen-peng Huang;Li-ming Li;Jing Li;Jun-hui Yuan;Ping Hou;Chen-chen Liu;Yi-hui Ma;Xiao-nan Liu;Yi-jing Han;Pan Liang;Jian-bo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3886,
+            "end_char": 4131
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "标本定位装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张慧宇;高剑波;于湛;周燕",
+      "id": "out-506ee2124d17",
+      "evidence": [
+        {
+          "quote": "[专利] 标本定位装置 — 张慧宇;高剑波;于湛;周燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4137,
+            "end_char": 4163
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种静脉血栓检测用下肢静脉造影装置及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李莉明;冯雷雨;黄文鹏;李蕊;梁盼;高剑波",
+      "id": "out-6c6c761cfc16",
+      "evidence": [
+        {
+          "quote": "[专利] 一种静脉血栓检测用下肢静脉造影装置及方法 — 李莉明;冯雷雨;黄文鹏;李蕊;梁盼;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4169,
+            "end_char": 4217
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于病灶与瘤周放射组学预测进展期胃癌新辅助化疗病理反应的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘晨晨;李莉明;黄文鹏;王 睿;梁 盼;高剑波",
+      "id": "out-393af036a30b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于病灶与瘤周放射组学预测进展期胃癌新辅助化疗病理反应的价值 — 刘晨晨;李莉明;黄文鹏;王 睿;梁 盼;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4223,
+            "end_char": 4285
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic value of dual-energy CT and clinicopathological and imaging feature analysis of mixed endometrial stromal and smooth muscle tumors with intracardiac extension",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi-yang Liu;Zhan Yu;Rui Wang;Kui-sheng Chen;Song-wei Yue;Jun Li;Xue-mei Gao;Chang-mao Ding;Zi-xin Wu;Xi Zhao;Jian-bo Gao",
+      "id": "out-d4ab8aaf3a66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic value of dual-energy CT and clinicopathological and imaging feature analysis of mixed endometrial stromal and smooth muscle tumors with intracardiac extension — Yi-yang Liu;Zhan Yu;Rui Wang;Kui-sheng Chen;Song-wei Yue;Jun Li;Xue-mei Gao;Chang-mao Ding;Zi-xin Wu;Xi Zhao;Jian-bo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4291,
+            "end_char": 4589
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《消化系统与疾病(第2版)》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕毅;董卫国;兰平;魏云巍;杨丽;许文燮;高剑波;张进祥",
+      "id": "out-5f7498bf24c2",
+      "evidence": [
+        {
+          "quote": "[专著] 《消化系统与疾病(第2版)》 — 吕毅;董卫国;兰平;魏云巍;杨丽;许文燮;高剑波;张进祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4644
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "碘美普尔400全身应用病例荟萃",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋彬;李真林;高剑波;居胜红;夏黎明",
+      "id": "out-bf2b8f7fcbad",
+      "evidence": [
+        {
+          "quote": "[专著] 碘美普尔400全身应用病例荟萃 — 宋彬;李真林;高剑波;居胜红;夏黎明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4650,
+            "end_char": 4690
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像技术学名词",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "医学名词审定委员会;医学影像技术学名词审定分委员会",
+      "id": "out-baa607acf92c",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像技术学名词 — 医学名词审定委员会;医学影像技术学名词审定分委员会",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4696,
+            "end_char": 4737
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography-based deep-learning prediction of lymph node metastasis risk in locally advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "An-qi Zhang;Hui-ping Zhao;Fei Li;Pan Liang;Jian-bo Gao;Ming Cheng",
+      "id": "out-b9dd627164a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography-based deep-learning prediction of lymph node metastasis risk in locally advanced gastric cancer — An-qi Zhang;Hui-ping Zhao;Fei Li;Pan Liang;Jian-bo Gao;Ming Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4743,
+            "end_char": 4932
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-Energy CT–Based Nomogram for Decoding HER2 Status in Patients With Gastric Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiping Zhao;Weiran Li;Wenpeng Huang;Yujiao Yang;Wei Shen;Pan Liang;Jianbo Gao",
+      "id": "out-f7382d3b2021",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-Energy CT–Based Nomogram for Decoding HER2 Status in Patients With Gastric Cancer — Huiping Zhao;Weiran Li;Wenpeng Huang;Yujiao Yang;Wei Shen;Pan Liang;Jianbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4938,
+            "end_char": 5111
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多维度功能CT消化系统疾病及并发症精准诊断技术创新与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高剑波",
+      "id": "out-629808b14891",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于多维度功能CT消化系统疾病及并发症精准诊断技术创新与应用 — 高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5117,
+            "end_char": 5157
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胃癌靶向治疗标志物人类表皮生长因子受体-2的影像学研究现状和进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁盼;高剑波",
+      "id": "out-2d8faefb9c10",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胃癌靶向治疗标志物人类表皮生长因子受体-2的影像学研究现状和进展 — 梁盼;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5163,
+            "end_char": 5210
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced CT-based radiomics predicts pathological complete response after neoadjuvant chemotherapy for advanced adenocarcinoma of the esophagogastric junction: a two-center study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenpeng Huang;Liming Li;Siyun Liu;Yunjin Chen;Chenchen Liu;Yijing Han;Fang Wang;Pengchao Zhan;Huiping Zhao;Jing Li;Jianbo Gao",
+      "id": "out-1446fe1e11c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhanced CT-based radiomics predicts pathological complete response after neoadjuvant chemotherapy for advanced adenocarcinoma of the esophagogastric junction: a two-center study — Wenpeng Huang;Liming Li;Siyun Liu;Yunjin Chen;Chenchen Liu;Yijing Han;Fang Wang;Pengchao Zhan;Huiping Zhao;Jing Li;Jianbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5216,
+            "end_char": 5528
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态CT成像结合影像组学技术助力胃癌精准TNM分期",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高剑波;孙应实;赵心明",
+      "id": "out-e6e3c0f7a451",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态CT成像结合影像组学技术助力胃癌精准TNM分期 — 高剑波;孙应实;赵心明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5534,
+            "end_char": 5580
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "内脏脂肪组织对胃癌隐匿性腹膜转移的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘晨晨;李莉明;黄文鹏;刘娜娜;梁盼;高剑波",
+      "id": "out-e2ced24b7739",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 内脏脂肪组织对胃癌隐匿性腹膜转移的预测价值 — 刘晨晨;李莉明;黄文鹏;刘娜娜;梁盼;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5586,
+            "end_char": 5638
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "X线/CT医学影像诊断学(案例版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高剑波;杜勇",
+      "id": "out-69be5aee78c6",
+      "evidence": [
+        {
+          "quote": "[专著] X线/CT医学影像诊断学(案例版) — 高剑波;杜勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5644,
+            "end_char": 5674
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "微卫星高度不稳定型胃癌的CT及临床病理学特征分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "詹鹏超;邱庆雅;刘珂衍;沈佳宁;赵慧萍;娄楚韵;刘娜娜;吕培杰;高剑波",
+      "id": "out-03ab7971e788",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 微卫星高度不稳定型胃癌的CT及临床病理学特征分析 — 詹鹏超;邱庆雅;刘珂衍;沈佳宁;赵慧萍;娄楚韵;刘娜娜;吕培杰;高剑波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5680,
+            "end_char": 5748
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2023-12-09",
+      "precision": "日",
+      "desc": "获中华医学杂志“金笔奖”",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-cf39eefd5daa",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "2023年12月9日被中华医学会《中华医学杂志》编辑委员会授予“金笔奖”",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2752,
+            "end_char": 2787
+          },
+          "version": "06a71bf800b77e76bc07"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

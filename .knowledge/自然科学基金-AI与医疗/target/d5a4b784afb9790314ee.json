@@ -2,15 +2,20 @@
   "doc_id": "d5a4b784afb9790314ee",
   "version": "e50ff4f919e87ebc038b",
   "source_hash": "883e7ee9f0ee72fa49bb2dc177bc8115b74a898525527117ee70245c76f62af2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.580001+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:41:55.861373+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0233231074f3",
-          "name": "CBCT影像处理与根管结构智能识别",
-          "desc": "面向牙髓根尖周病诊疗决策，融合Micro-CT提升CBCT影像质量并实现根管结构精准识别。",
+          "id": "item-e20626b213c8",
+          "name": "口腔CBCT根管结构与龋病智能分析",
+          "desc": "融合Micro-CT",
           "evidence": [
             {
-              "quote": "牙髓根尖周病是口腔科最常见疾病之一，影像学检查对根管结构的呈现会直接影响该类疾病的诊疗决策",
+              "quote": "本研究通过四项关联性工作，系统探索了深度学习在口腔三维影像智能分析中的应用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
-                "end_char": 721
+                "start_char": 2846,
+                "end_char": 2882
               },
               "version": "e50ff4f919e87ebc038b"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4ab654cf7b6d",
-          "name": "CBCT分辨率低与伪影限制根管结构诊断",
-          "desc": "CBCT较低的分辨率和多因素形成的伪影，限制了临床医师对侧副管、根裂等根管复杂结构的诊断。",
+          "id": "item-6c583b69c6d8",
+          "name": "CBCT分辨率低、伪影限制根管复杂结构诊断",
+          "desc": "传统方法效率低依赖经验",
           "evidence": [
             {
               "quote": "但较低的分辨率和多因素形成的伪影，限制了临床医师根据CBCT对侧副管、根裂等根管复杂结构的诊断",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-819c45e7644c",
-          "name": "Micro-CT融合的CBCT超分辨率与跨模态学习",
-          "desc": "融合Micro-CT，通过深度学习使CBCT达到超分辨率成像并同步校正伪影，再构建跨模态学习模型纳入Micro-CT分析方法识别根管结构并提取形态属性。",
+          "id": "item-f7ccef6b7a6f",
+          "name": "Edge-SRGAN CBCT超分辨率重建",
+          "desc": "融合边缘检测算子的损失函数",
           "evidence": [
             {
-              "quote": "通过深度学习使CBCT达到超分辨率成像的同时进行图像伪影校正，再构建跨模态学习模型纳入Micro-CT分析方法",
+              "quote": "提出了Edge-SRGAN模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 924,
-                "end_char": 978
+                "start_char": 3179,
+                "end_char": 3193
               },
               "version": "e50ff4f919e87ebc038b"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-70bdcfe36a1f",
+          "name": "Micro-CT到临床影像的迁移学习根管形态识别",
+          "desc": "跨模态",
+          "evidence": [
+            {
+              "quote": "建立了从高精度Micro-CT到临床X线片及CBCT的迁移学习路径",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3311,
+                "end_char": 3343
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-55016e56396d",
+          "name": "nnU-Net根管自动分割与难度聚类模型",
+          "desc": "自研算法提取弯曲度、直径变化",
+          "evidence": [
+            {
+              "quote": "本项目采用nnU-Net对CBCT影像进行根管自动分割，精度（DSC=0.9195）远超传统3D U-Net",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3475,
+                "end_char": 3528
+              },
+              "version": "e50ff4f919e87ebc038b"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,528 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9111011f494e",
-          "name": "Edge-SRGAN将CBCT重建至接近Micro-CT质量",
-          "desc": "提出Edge-SRGAN，通过融合边缘检测算子的新型损失函数与精简网络结构，将离体牙CBCT影像重建至接近Micro-CT质量；跨模态迁移模型对根管形态识别准确率显著高于住院医师，nnU-Net分割DSC达0.9195。",
+          "id": "item-d950e14f6745",
+          "name": "牙位检测与龋齿识别",
+          "desc": "YOLOv3 mAP 0.9087，DenseNet169指标均超0.9",
           "evidence": [
             {
-              "quote": "通过设计融合边缘检测算子的新型损失函数，并精简网络结构，成功将离体牙的CBCT影像重建至接近Micro-CT的影像质量",
+              "quote": "改进的YOLOv3模型在牙位检测中取得最高0.9087的mAP值；DenseNet169模型对单牙龋齿识别性能指标均超过0.9",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3195,
-                "end_char": 3253
+                "start_char": 2936,
+                "end_char": 2998
               },
               "version": "e50ff4f919e87ebc038b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0233231074f3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4ab654cf7b6d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effect of acidity on the physicochemical properties of two hydraulic calcium silicate-based cements and two calcium phosphate silicate-based cements",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yan;Liu He;Wang Zhe-Jun;Hu Pei;Haapasalo Markus;Manso Adriana;Ma Jing-Zhi;Shen Ya",
+      "id": "out-f196cd8f89bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effect of acidity on the physicochemical properties of two hydraulic calcium silicate-based cements and two calcium phosphate silicate-based cements — Yang Yan;Liu He;Wang Zhe-Jun;Hu Pei;Haapasalo Markus;Manso Adriana;Ma Jing-Zhi;Shen Ya",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3753,
+            "end_char": 4000
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4ab654cf7b6d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-819c45e7644c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Finite Element Analysis of Endodontically Treated Mandibular Second Molars With Variable Root Morphologies: Endocrown vs. Post-And-Core Crown Restorations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiu Shenghao;Long Ziteng;Chen Min;Wu Weiwei;Ma Jingzhi;Gao Yuan;Peng Lin",
+      "id": "out-6216e3e4d549",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Finite Element Analysis of Endodontically Treated Mandibular Second Molars With Variable Root Morphologies: Endocrown vs. Post-And-Core Crown Restorations — Qiu Shenghao;Long Ziteng;Chen Min;Wu Weiwei;Ma Jingzhi;Gao Yuan;Peng Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4240
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-819c45e7644c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9111011f494e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Beyond ER Stress: The Pleiotropic Roles of XBP1 in Development and Regeneration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Delan Huang;Fan Gu;Jingzhi Ma;Zhi Chen",
+      "id": "out-eb8876895173",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Beyond ER Stress: The Pleiotropic Roles of XBP1 in Development and Regeneration — Delan Huang;Fan Gu;Jingzhi Ma;Zhi Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4371
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning super-resolution for dental CBCT using micro-CT reference and edge loss function",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Pan;Shen Bowen;Yang Yan;Wu Weiwei;Chen Surong;Zhou Gengyu;Malik Tayyib;Kalathingal Sajitha;Hu Jingyu;Tay Franklin R.;Ma Jingzhi",
+      "id": "out-168466c75a95",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning super-resolution for dental CBCT using micro-CT reference and edge loss function — Chen Pan;Shen Bowen;Yang Yan;Wu Weiwei;Chen Surong;Zhou Gengyu;Malik Tayyib;Kalathingal Sajitha;Hu Jingyu;Tay Franklin R.;Ma Jingzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4376,
+            "end_char": 4611
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于头影测量的深度学习技术在口腔正畸治疗中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈苏蓉;马净植;杨焰;邬微微;胡靖宇",
+      "id": "out-7a0113d3515f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于头影测量的深度学习技术在口腔正畸治疗中的应用 — 陈苏蓉;马净植;杨焰;邬微微;胡靖宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4616,
+            "end_char": 4667
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Covalent Immobilization of Natural Biomolecules on Chitin Nanocrystals",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yiming;Yang Yan;Tuersun Yueernisa;Du Wei;Xu Yuanhang;Zhao Xiaoping;Zhu Ge;Ma Jingzhi;Lin Ning",
+      "id": "out-4b6d04901f37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Covalent Immobilization of Natural Biomolecules on Chitin Nanocrystals — Liu Yiming;Yang Yan;Tuersun Yueernisa;Du Wei;Xu Yuanhang;Zhao Xiaoping;Zhu Ge;Ma Jingzhi;Lin Ning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4672,
+            "end_char": 4848
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unveiling Sec31: The regulator of COPII vesicle-dependent secretion and beyond",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaming Nie;Jingzhi Ma",
+      "id": "out-a2c3297d1e9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unveiling Sec31: The regulator of COPII vesicle-dependent secretion and beyond — Jiaming Nie;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4853,
+            "end_char": 4962
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bacteria debridement efficacy of two sonic root canal irrigant activation systems",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chang Zeng;Pei Hu;Colin P. Egan;Brian E. Bergeron;Franklin Tay;Jingzhi Ma",
+      "id": "out-7beb71242ed4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bacteria debridement efficacy of two sonic root canal irrigant activation systems — Chang Zeng;Pei Hu;Colin P. Egan;Brian E. Bergeron;Franklin Tay;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4967,
+            "end_char": 5130
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of DJK-5 and chlorhexidine on exopolysaccharide volume and pH in oral biofilms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Binwen;Liu He;Wang Zhejun;Ma Jingzhi;Shen Ya",
+      "id": "out-b74275e39b87",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of DJK-5 and chlorhexidine on exopolysaccharide volume and pH in oral biofilms — Chen Binwen;Liu He;Wang Zhejun;Ma Jingzhi;Shen Ya",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5135,
+            "end_char": 5279
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Micro-computed tomography analysis of calcium hydroxide delivery efficacy in C-shaped canal system of mandibular second molars",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Min;Pradhan Babita;Meng Yajun;Tsauo Chialing;Zhou Xuedong;Huang Dingming;Ma Jingzhi;Gao Yuan",
+      "id": "out-5a662395f1bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Micro-computed tomography analysis of calcium hydroxide delivery efficacy in C-shaped canal system of mandibular second molars — Chen Min;Pradhan Babita;Meng Yajun;Tsauo Chialing;Zhou Xuedong;Huang Dingming;Ma Jingzhi;Gao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5285,
+            "end_char": 5517
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The path to biotechnological singularity: Current breakthroughs and outlook",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhihao Wen;Damin Yang;Yan Yang;Jingyu Hu;Anna Parviainen;Xin Chen;Qiuhui Li;Elizabeth VanDeusen;Jingzhi Ma;Franklin Tay",
+      "id": "out-f5af88860517",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The path to biotechnological singularity: Current breakthroughs and outlook — Zhihao Wen;Damin Yang;Yan Yang;Jingyu Hu;Anna Parviainen;Xin Chen;Qiuhui Li;Elizabeth VanDeusen;Jingzhi Ma;Franklin Tay",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5523,
+            "end_char": 5726
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of Caries Based on CBCT: A Deep Learning Network Interpretability Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Surong Chen;Yan Yang;Weiwei Wu;Ruonan Wei;Zezhou Wang;Franklin R. Tay;Jingyu Hu;Jingzhi Ma",
+      "id": "out-9fafcbf27b76",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classification of Caries Based on CBCT: A Deep Learning Network Interpretability Study — Surong Chen;Yan Yang;Weiwei Wu;Ruonan Wei;Zezhou Wang;Franklin R. Tay;Jingyu Hu;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5732,
+            "end_char": 5917
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Microcomputed tomography analysis of the radicular residual dentin thickness in mandibular second molars after virtual fiber post placement: Identification of danger zones",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiu Shenghao;Chen Yue;Tsauo Chialing;Wu Weiwei;Huang Dingming;Zhou Xuedong;Peng Lin;Gao Yuan",
+      "id": "out-854e3dda1d7a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Microcomputed tomography analysis of the radicular residual dentin thickness in mandibular second molars after virtual fiber post placement: Identification of danger zones — Qiu Shenghao;Chen Yue;Tsauo Chialing;Wu Weiwei;Huang Dingming;Zhou Xuedong;Peng Lin;Gao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5923,
+            "end_char": 6195
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Constructing two bifunctional tooth-targeting antimicrobial peptides for caries management: an in vitro study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Pei;Chen Pan;Zhou Gengyu;Hu Jingyu;Chen Surong;Li Yingjie;Yang Yan;Ma Jingzhi",
+      "id": "out-0a436126fdb4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Constructing two bifunctional tooth-targeting antimicrobial peptides for caries management: an in vitro study — Hu Pei;Chen Pan;Zhou Gengyu;Hu Jingyu;Chen Surong;Li Yingjie;Yang Yan;Ma Jingzhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6201,
+            "end_char": 6399
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of Root Canal Morphology in Fused-rooted Mandibular Second Molars From X-ray Images Based on Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiwei Wu;Surong Chen;Pan Chen;Min Chen;Yan Yang;Yuan Gao;Jingyu Hu;Jingzhi Ma",
+      "id": "out-cd3f0673d797",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of Root Canal Morphology in Fused-rooted Mandibular Second Molars From X-ray Images Based on Deep Learning — Weiwei Wu;Surong Chen;Pan Chen;Min Chen;Yan Yang;Yuan Gao;Jingyu Hu;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6405,
+            "end_char": 6613
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A facile method for rejuvenating the bonding efficacy of root canal sealer-smeared dentine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenqing Lin;Yuan Gao;Surong Chen;Yan Yang;Weihu Ye;Diana Tran;Brian E. Bergeron;Franklin R. Tay;Jingzhi Ma",
+      "id": "out-401da49df066",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A facile method for rejuvenating the bonding efficacy of root canal sealer-smeared dentine — Wenqing Lin;Yuan Gao;Surong Chen;Yan Yang;Weihu Ye;Diana Tran;Brian E. Bergeron;Franklin R. Tay;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6619,
+            "end_char": 6824
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于Micro-CT和迁移学习的口腔影像分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马净植;胡靖宇;邬微微;杨焰;陈苏蓉;陈盼;胡佩;周耕宇",
+      "id": "out-b3e0b0417fc3",
+      "evidence": [
+        {
+          "quote": "[专利] 基于Micro-CT和迁移学习的口腔影像分析方法 — 马净植;胡靖宇;邬微微;杨焰;陈苏蓉;陈盼;胡佩;周耕宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6830,
+            "end_char": 6889
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the Activity of Oral Lichen Planus with Glycolysis-related Molecules: A Scikit-learn-based Function",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yang;Pei Hu;Surong Chen;Weiwei Wu;Pan Chen;Shiwen Wang;Jingzhi Ma;Jingyu Hu",
+      "id": "out-dc621cdf050b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the Activity of Oral Lichen Planus with Glycolysis-related Molecules: A Scikit-learn-based Function — Yan Yang;Pei Hu;Surong Chen;Weiwei Wu;Pan Chen;Shiwen Wang;Jingzhi Ma;Jingyu Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6895,
+            "end_char": 7093
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advances in nanomaterials for the diagnosis and treatment of head and neck cancers: A review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Yu;Long Li;Shiwen Wang;Yuanhang Xu;Lu Wang;Yongbiao Huang;Jolanta Aleksejuniene;He Liu;Jingzhi Ma",
+      "id": "out-7058bae291b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advances in nanomaterials for the diagnosis and treatment of head and neck cancers: A review — Cheng Yu;Long Li;Shiwen Wang;Yuanhang Xu;Lu Wang;Yongbiao Huang;Jolanta Aleksejuniene;He Liu;Jingzhi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7099,
+            "end_char": 7303
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的龋病三维影像自动分类及辅助决策方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马净植;胡靖宇;陈苏蓉;杨焰;邬微微",
+      "id": "out-3df6874910ff",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的龋病三维影像自动分类及辅助决策方法 — 马净植;胡靖宇;陈苏蓉;杨焰;邬微微",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7309,
+            "end_char": 7360
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An application framework of 3D assessment image registration accuracy and untouched surface area in canal instrumentation laboratory research with micro-computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lui Kayi;Liu He;Wang Hao;Yang Xueqin;Huang Dingming;Zhou Xuedong;Gao Yuan;Shen Ya",
+      "id": "out-bded53f14e51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An application framework of 3D assessment image registration accuracy and untouched surface area in canal instrumentation laboratory research with micro-computed tomography — Lui Kayi;Liu He;Wang Hao;Yang Xueqin;Huang Dingming;Zhou Xuedong;Gao Yuan;Shen Ya",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7366,
+            "end_char": 7628
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cellulose nanocrystals-based fluorescent biocarrier binding GAPDH protein with high affinity in cancer-target doxorubicin delivery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoping Zhao;Qin Wang;Ning Wang;Ge Zhu;Jingzhi Ma;Ning Lin",
+      "id": "out-389238fd6a44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cellulose nanocrystals-based fluorescent biocarrier binding GAPDH protein with high affinity in cancer-target doxorubicin delivery — Xiaoping Zhao;Qin Wang;Ning Wang;Ge Zhu;Jingzhi Ma;Ning Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7634,
+            "end_char": 7832
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于生成对抗网络的CBCT超分辨率方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马净植;胡靖宇;陈盼;申博文;杨焰;邬微微",
+      "id": "out-60feb3a60c40",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于生成对抗网络的CBCT超分辨率方法 — 马净植;胡靖宇;陈盼;申博文;杨焰;邬微微",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7838,
+            "end_char": 7887
+          },
+          "version": "e50ff4f919e87ebc038b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

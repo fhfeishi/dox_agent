@@ -2,15 +2,20 @@
   "doc_id": "a1f8a32165823458413d",
   "version": "6fe77e84441af5648946",
   "source_hash": "af2eaea10a8f1ec9cec7603d01e9f645c50c1f62fa43cb3978a3e7f276840ec2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.887987+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.995114+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a768cd60e83a",
-          "name": "复发缓解型多发性硬化影像分型",
-          "desc": "多发性硬化是免疫介导的中枢神经系统炎症和退行性疾病，约85%患者为复发-缓解型且异质性很强。",
+          "id": "item-92d2b23a72fa",
+          "name": "复发-缓解型多发性硬化影像分型",
+          "desc": "RRMS异质性强",
           "evidence": [
             {
-              "quote": "多发性硬化（multiple sclerosis，MS）是一种免疫介导的中枢神经系统炎症和退行性疾病，约85%MS患者为复发-缓解型",
+              "quote": "本研究建立并验证一套基于人工智能与磁共振成像（MRI）的复发缓解型多发性硬化（RRMS）影像精准分型新方法，以揭示其疾病异质性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 729
-              },
-              "version": "6fe77e84441af5648946"
-            }
-          ]
-        },
-        {
-          "id": "item-945e1abff038",
-          "name": "RRMS精准治疗与预后判断",
-          "desc": "揭示RRMS异质性与潜在病理机制，指导RRMS的精准治疗和预后判断。",
-          "evidence": [
-            {
-              "quote": "揭示RRMS异质性和潜在病理机制，指导RRMS的精准治疗和预后判断",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1030,
-                "end_char": 1062
+                "start_char": 2661,
+                "end_char": 2723
               },
               "version": "6fe77e84441af5648946"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da3be5a0496b",
-          "name": "RRMS异质性导致分型困难",
-          "desc": "RRMS异质性很强，不同患者临床表现、最佳治疗方式和预后有显著差异，如何准确分型是亟待解决的临床问题。",
+          "id": "item-c02a4a115e26",
+          "name": "RRMS临床表现、治疗和预后差异显著",
+          "desc": "如何准确分型",
           "evidence": [
             {
-              "quote": "RRMS有很强异质性，不同患者的临床表现、最佳治疗方式和预后有显著差异。如何准确对RRMS进行分型、指导治疗和判断预后是神经免疫疾病领域亟待解决的科学和临床问题",
+              "quote": "如何准确对RRMS进行分型、指导治疗和判断预后是神经免疫疾病领域亟待解决的科学和临床问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 761,
+                "start_char": 797,
                 "end_char": 840
-              },
-              "version": "6fe77e84441af5648946"
-            }
-          ]
-        },
-        {
-          "id": "item-ff3b15f46858",
-          "name": "需揭示亚型病理机制与临床价值",
-          "desc": "需揭示RRMS异质性及不同亚型的病理机制与临床价值。",
-          "evidence": [
-            {
-              "quote": "以揭示其疾病异质性，并探索不同亚型的病理机制与临床价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2715,
-                "end_char": 2741
               },
               "version": "6fe77e84441af5648946"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-795422461db5",
-          "name": "深度学习与NMF影像亚型分析框架",
-          "desc": "开发基于深度学习、Sustain模型及非负矩阵分解等多种机器学习算法的RRMS影像亚型分析框架。",
+          "id": "item-1e0c542fdac0",
+          "name": "深度学习、Sustain与NMF影像亚型分析框架",
+          "desc": "首次系统性揭示脑结构损伤多种影像亚型",
           "evidence": [
             {
               "quote": "本研究成功开发了基于深度学习、Sustain模型及非负矩阵分解（NMF）等多种机器学习算法的RRMS影像亚型分析框架",
@@ -108,23 +81,25 @@
               },
               "version": "6fe77e84441af5648946"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-371107c26507",
-          "name": "影像-基因关联图谱构建",
-          "desc": "通过关联人脑基因表达图谱及单细胞测序数据构建影像-基因关联图谱，发现不同萎缩模式背后的特异细胞病理机制。",
+          "id": "item-9dd64dc45c6e",
+          "name": "影像-基因关联图谱",
+          "desc": "关联人脑基因表达图谱与单细胞测序",
           "evidence": [
             {
-              "quote": "研究通过关联人脑基因表达图谱及单细胞测序数据，创新性地构建了“影像-基因”关联图谱",
+              "quote": "创新性地构建了“影像-基因”关联图谱，发现不同萎缩模式背后潜藏着特异的细胞病理机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3102,
-                "end_char": 3142
+                "start_char": 3125,
+                "end_char": 3165
               },
               "version": "6fe77e84441af5648946"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ffc5f5f25f31",
-          "name": "多中心大规模RRMS研究资源",
-          "desc": "整合国内八家医疗中心的回顾性影像数据库，并在北京天坛医院前瞻性入组251例RRMS患者基线队列，完成91例患者1年随访。",
+          "id": "item-44ac91a3ac90",
+          "name": "RRMS多中心研究资源",
+          "desc": "回顾性数据库超500例，前瞻性基线队列251例",
           "evidence": [
             {
               "quote": "整合了覆盖国内八家顶尖医疗中心的回顾性影像数据库（患者与健康对照均超过500例），并在北京天坛医院前瞻性入组了251例RRMS患者基线队列",
@@ -147,89 +122,155 @@
               "version": "6fe77e84441af5648946"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-af00b0539b4e",
-          "name": "分型与残疾及生物标志物相关",
-          "desc": "分型与扩展残疾状态量表评分、特定认知域损害及脑脊液中神经炎症与神经变性标志物水平密切相关。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文5篇，发明专利1项，软著1项",
           "evidence": [
             {
-              "quote": "这些分型不仅具有高度的影像学可区分性，更与患者的扩展残疾状态量表评分、特定认知域损害及脑脊液中的神经炎症与神经变性标志物（如神经丝轻链蛋白、胶质纤维酸性蛋白）水平密切相关",
+              "quote": "共发表高水平SCI论文5篇（其中中科院一区3篇，包括Brain和BMC Medicine），获国家发明专利1项，软件著作权1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3006,
-                "end_char": 3090
-              },
-              "version": "6fe77e84441af5648946"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d93df81c20e7",
-          "name": "SCI论文5篇与专利软著",
-          "desc": "共发表高水平SCI论文5篇（中科院一区3篇，包括Brain和BMC Medicine），获国家发明专利1项、软件著作权1项。",
-          "evidence": [
-            {
-              "quote": "项目成果丰硕，共发表高水平SCI论文5篇（其中中科院一区3篇，包括Brain和BMC Medicine），获国家发明专利1项，软件著作权1项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3302,
+                "start_char": 3309,
                 "end_char": 3371
               },
               "version": "6fe77e84441af5648946"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a768cd60e83a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-da3be5a0496b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Distinct virtual histology of grey matter atrophy in four neuroinflammatory diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Sun;Min Guo;Li Chai;Siyao Xu;Yuerong Lizhu;Yuna Li;Yunyun Duan;Xiaolu Xu;Shan Lv;Jinyuan Weng;Kuncheng Li;Fuqing Zhou;Haiqing Li;Yongmei Li;Xuemei Han;Fu-Dong Shi;Xinghu Zhang;Decai Tian;Zhizheng Zhuo;Yaou Liu",
+      "id": "out-7a69fbe75925",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Distinct virtual histology of grey matter atrophy in four neuroinflammatory diseases — Jun Sun;Min Guo;Li Chai;Siyao Xu;Yuerong Lizhu;Yuna Li;Yunyun Duan;Xiaolu Xu;Shan Lv;Jinyuan Weng;Kuncheng Li;Fuqing Zhou;Haiqing Li;Yongmei Li;Xuemei Han;Fu-Dong Shi;Xinghu Zhang;Decai Tian;Zhizheng Zhuo;Yaou Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3527,
+            "end_char": 3833
+          },
+          "version": "6fe77e84441af5648946"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-da3be5a0496b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-795422461db5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种影像处理方法和影像处理装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卓芝政;刘亚欧;柴丽;段云云;李玉娜;华田田",
+      "id": "out-91d24509e8e9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种影像处理方法和影像处理装置 — 卓芝政;刘亚欧;柴丽;段云云;李玉娜;华田田",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3838,
+            "end_char": 3882
+          },
+          "version": "6fe77e84441af5648946"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-795422461db5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-af00b0539b4e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spinal cord and brain atrophy patterns in neuromyelitis optica spectrum disorder and multiple sclerosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tiantian Hua;Houyou Fan;Yunyun Duan;Decai Tian;Zhenpeng Chen;Xiaolu Xu;Yutong Bai;Yuna Li;Ningnannan Zhang;Jie Sun;Haiqing Li;Yuxin Li;Yongmei Li;Chun Zeng;Xuemei Han;Fuqing Zhou;Muhua Huang;Siyao Xu;Ying Jin;Hongfang Li;Zhizheng Zhuo;Xinghu Zhang;Yaou Liu",
+      "id": "out-65c1f0ce3e41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spinal cord and brain atrophy patterns in neuromyelitis optica spectrum disorder and multiple sclerosis — Tiantian Hua;Houyou Fan;Yunyun Duan;Decai Tian;Zhenpeng Chen;Xiaolu Xu;Yutong Bai;Yuna Li;Ningnannan Zhang;Jie Sun;Haiqing Li;Yuxin Li;Yongmei Li;Chun Zeng;Xuemei Han;Fuqing Zhou;Muhua Huang;Siyao Xu;Ying Jin;Hongfang Li;Zhizheng Zhuo;Xinghu Zhang;Yaou Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3887,
+            "end_char": 4255
+          },
+          "version": "6fe77e84441af5648946"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-371107c26507"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d93df81c20e7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Periventricular gradient of normal-appearing white matter in normal aging and multiple neurological diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhizheng Zhuo;Xiaolu Xu;Decai Tian;Runzhi Li;Yutong Bai;Yulu Shi;Siyao Xu;Shan Lv;Guanmei Cao;Geli Hu;Jun Xu;Jianguo Zhang;Fu-dong Shi;Declan Chard;Frederik Barkhof;Sven Haller;Xinghu Zhang;Yunyun Duan;Yaou Liu",
+      "id": "out-19abd627ef79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Periventricular gradient of normal-appearing white matter in normal aging and multiple neurological diseases — Zhizheng Zhuo;Xiaolu Xu;Decai Tian;Runzhi Li;Yutong Bai;Yulu Shi;Siyao Xu;Shan Lv;Guanmei Cao;Geli Hu;Jun Xu;Jianguo Zhang;Fu-dong Shi;Declan Chard;Frederik Barkhof;Sven Haller;Xinghu Zhang;Yunyun Duan;Yaou Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4587
+          },
+          "version": "6fe77e84441af5648946"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatiotemporal subtypes of brain and spinal cord atrophy in neuromyelitis optica spectrum disorders and multiple sclerosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuo Zhizheng;Xu Xiaolu;Xu Siyao;Yao Shi;Weng Jinyuan;Zhou Fuqing;Hua Tiantian;Sun Jun;Cheng Dan;Cao Guanmei;Zhang Xinghu;Shi Fudong;Yang Tielin;Haller Sven;Altmann Andre;Li Yuehua;Tian Decai;Duan Yunyun;Liu Yaou",
+      "id": "out-b496e90d207e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatiotemporal subtypes of brain and spinal cord atrophy in neuromyelitis optica spectrum disorders and multiple sclerosis — Zhuo Zhizheng;Xu Xiaolu;Xu Siyao;Yao Shi;Weng Jinyuan;Zhou Fuqing;Hua Tiantian;Sun Jun;Cheng Dan;Cao Guanmei;Zhang Xinghu;Shi Fudong;Yang Tielin;Haller Sven;Altmann Andre;Li Yuehua;Tian Decai;Duan Yunyun;Liu Yaou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4592,
+            "end_char": 4935
+          },
+          "version": "6fe77e84441af5648946"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

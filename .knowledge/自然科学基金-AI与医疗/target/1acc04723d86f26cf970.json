@@ -2,15 +2,20 @@
   "doc_id": "1acc04723d86f26cf970",
   "version": "313ace1ed89f2eb5003d",
   "source_hash": "da2946cbf1aa909e66cc93747185fabd91239788a78c495555b5d093e544db1e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.283206+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:31:10.449363+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-02fff9aa962e",
           "name": "局部进展期胃癌新辅助化疗疗效预测",
-          "desc": "面向局部进展期胃癌新辅助化疗，联合影像组学与病理组学预测疗效以指导个体化治疗。",
+          "desc": "新辅助化疗可提高R0切除率和总生存期，但对部分患者无效",
           "evidence": [
             {
               "quote": "新辅助化疗可提高局部进展期胃癌（LAGC）患者R0切除率和总生存期，但对部分患者无效",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9a473edab36b",
-          "name": "部分患者无效致手术时机延误与毒性负担",
-          "desc": "新辅助化疗对部分患者无效，耽搁手术时机并造成不必要的化疗毒性和经济负担，提前预测疗效极为重要。",
+          "id": "item-09b384ca1510",
+          "name": "部分患者无效且延误手术、增加毒性与负担",
+          "desc": "需提前预测疗效",
           "evidence": [
             {
-              "quote": "但对部分患者无效，耽搁了手术时机，并造成不必要的化疗毒性和经济负担，提前预测其疗效极为重要",
+              "quote": "对部分患者无效，耽搁了手术时机，并造成不必要的化疗毒性和经济负担",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 697,
-                "end_char": 741
+                "start_char": 698,
+                "end_char": 729
               },
               "version": "313ace1ed89f2eb5003d"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bd98815eccc9",
-          "name": "影像-病理组学标签融合疗效预测模型",
-          "desc": "采用传统方法与卷积神经网络提取CT影像组学手工与深度特征，用CellProfiler提取病理细胞与微环境特征，经mRMR筛选并以XGBoost构建影像-病理组学标签后融合建模并外部验证。",
+          "id": "item-9e5d553bb643",
+          "name": "影像-病理组学标签",
+          "desc": "mRMR筛选特征并用机器学习构建标签",
           "evidence": [
             {
-              "quote": "融合影像-病理组学标签、临床病理信息及分子标志物，建立LAGC新辅助化疗疗效预测模型并对其进行外部验证",
+              "quote": "利用mRMR法筛选与LAGC新辅助化疗疗效高度关联的特征，使用机器学习构建影像-病理组学标签",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3233,
-                "end_char": 3283
+                "start_char": 3186,
+                "end_char": 3231
               },
               "version": "313ace1ed89f2eb5003d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0d282e785d01",
+          "name": "CT影像组学手工特征与深度特征",
+          "desc": "传统方法与卷积神经网络提取",
+          "evidence": [
+            {
+              "quote": "采用传统方法与卷积神经网络提取CT图像影像组学手工特征和深度特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 863,
+                "end_char": 894
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7a6b67741eaf",
+          "name": "CellProfiler病理图像特征提取",
+          "desc": "肿瘤细胞与肿瘤微环境特征",
+          "evidence": [
+            {
+              "quote": "同时通过CellProfiler平台提取病理图像肿瘤细胞特征和肿瘤微环境特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 896,
+                "end_char": 933
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-04b12f9ea2b8",
-          "name": "发表课题相关文章24篇含SCI 18篇",
-          "desc": "发表课题相关文章24篇，其中SCI文章18篇，获国家发明专利1项；负责人获云南省应用基础研究优秀青年基金及“兴滇英才”青年拔尖人才等支持。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "课题相关文章24篇，SCI 18篇，发明专利1项",
           "evidence": [
             {
               "quote": "本项目组发表课题相关文章24篇，其中SCI文章18篇，国家发明专利1项",
@@ -99,44 +139,491 @@
               "version": "313ace1ed89f2eb5003d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-674d3bd20c16",
+          "name": "预后预测模型良好效能",
+          "desc": "影像组学与病理组学联合模型",
+          "evidence": [
+            {
+              "quote": "基于影像组学与病理组学特征构建的预测模型对局部进展期胃癌的预后预测具有良好的效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3292,
+                "end_char": 3331
+              },
+              "version": "313ace1ed89f2eb5003d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-02fff9aa962e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9a473edab36b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale pathology image texture  signature is a prognostic factor for resectable  lung adenocarcinoma: a multi-center,  retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+      "id": "out-2b1dd1a82be3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale pathology image texture  signature is a prognostic factor for resectable  lung adenocarcinoma: a multi-center,  retrospective study — Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3990
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9a473edab36b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bd98815eccc9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trajectories of perioperative serum carcinoembryonic antigen and colorectal cancer outcome: A retrospective, multicenter longitudinal cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenhui Li;Chunxia Li;Hongjiang Pu;Xiaolin Pang;Yingyi Wang;Dafu Zhang;Ming Lei;Xianshuo Cheng;Yanrong Zhao;Guiyu Lu;Yingying Ding;Le Cai;Zaiyi Liu;Tao Zhang;Dingying You",
+      "id": "out-631d2026f874",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trajectories of perioperative serum carcinoembryonic antigen and colorectal cancer outcome: A retrospective, multicenter longitudinal cohort study — Zhenhui Li;Chunxia Li;Hongjiang Pu;Xiaolin Pang;Yingyi Wang;Dafu Zhang;Ming Lei;Xianshuo Cheng;Yanrong Zhao;Guiyu Lu;Yingying Ding;Le Cai;Zaiyi Liu;Tao Zhang;Dingying You",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4320
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bd98815eccc9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-04b12f9ea2b8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Perioperative changing patterns and longitudinal trajectories of CA242 with colorectal cancer prognosis: a retrospective longitudinal cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxia Li;Ruimin You;Lizhu Liu;Yanli Li;Hongjiang Pu;Ming Lei;Zhenhui Li;Dingyun You;Qiuxia Xiong;Tao Zhang",
+      "id": "out-5c3828f01974",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Perioperative changing patterns and longitudinal trajectories of CA242 with colorectal cancer prognosis: a retrospective longitudinal cohort study — Chunxia Li;Ruimin You;Lizhu Liu;Yanli Li;Hongjiang Pu;Ming Lei;Zhenhui Li;Dingyun You;Qiuxia Xiong;Tao Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4588
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction models of colorectal cancer prognosis incorporating perioperative longitudinal serum tumor markers: a retrospective longitudinal cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxia Li;Ke Zhao;Dafu Zhang;Xiaolin Pang;Hongjiang Pu;Ming Lei;Bingbing Fan;Jiali Lv;Dingyun You;Zhenhui Li;Tao Zhang",
+      "id": "out-65f076cfe294",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction models of colorectal cancer prognosis incorporating perioperative longitudinal serum tumor markers: a retrospective longitudinal cohort study — Chunxia Li;Ke Zhao;Dafu Zhang;Xiaolin Pang;Hongjiang Pu;Ming Lei;Bingbing Fan;Jiali Lv;Dingyun You;Zhenhui Li;Tao Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4593,
+            "end_char": 4873
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Breast Fibroglandular Tissue Segmentation for Automated BPE Quantification With Iterative Cycle-Consistent Semi-Supervised Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiadong Zhang;Zhiming Cui;Luping Zhou;Yiqun Sun;Zhenhui Li;Zaiyi Liu;Dinggang Shen",
+      "id": "out-728220f761f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Breast Fibroglandular Tissue Segmentation for Automated BPE Quantification With Iterative Cycle-Consistent Semi-Supervised Learning — Jiadong Zhang;Zhiming Cui;Luping Zhou;Yiqun Sun;Zhenhui Li;Zaiyi Liu;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4878,
+            "end_char": 5100
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of initial recurrence site on the prognosis of different tissue types of non-small cell lung cancer: a retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanli Li;Lizhu Liu;Ruiming You;Qingwan Li;Zhaojuan Jiang;Hongjiang Pu;Zhenhui Li;Xiaobo Chen",
+      "id": "out-b24ddcbe9a63",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of initial recurrence site on the prognosis of different tissue types of non-small cell lung cancer: a retrospective cohort study — Yanli Li;Lizhu Liu;Ruiming You;Qingwan Li;Zhaojuan Jiang;Hongjiang Pu;Zhenhui Li;Xiaobo Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5105,
+            "end_char": 5342
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+      "id": "out-f0d8fd4c5b18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study — Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5347,
+            "end_char": 5575
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Prognostic Significance of Postoperative  Adjuvant Chemotherapy in the Population Aged 75  Years and Older with Stage II–III Colorectal Cancer:  A Retrospective Multi-Center Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lizhu Liu;Xiaolin Pang;Ke Zhao;Yaxue Chen;Yanli Li;Ruimin You;Tingting Xu;Mengmei Liu;Lin Wu;Zhenhui Li;Hongjiang Pu",
+      "id": "out-7922a8b84284",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Prognostic Significance of Postoperative  Adjuvant Chemotherapy in the Population Aged 75  Years and Older with Stage II–III Colorectal Cancer:  A Retrospective Multi-Center Cohort Study — Lizhu Liu;Xiaolin Pang;Ke Zhao;Yaxue Chen;Yanli Li;Ruimin You;Tingting Xu;Mengmei Liu;Lin Wu;Zhenhui Li;Hongjiang Pu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5580,
+            "end_char": 5895
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative splenic area as a prognostic biomarker of early-stage non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengmei Liu;Guanghong Yan;Yanli Li;Ruiming You;Lizhu Liu;Dafu Zhang;Guangjun Yang;Xingxiang Dong;Yingying Ding;Shan Yan;Dingyun You;Zhenhui Li",
+      "id": "out-306ac0d41d0f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative splenic area as a prognostic biomarker of early-stage non-small cell lung cancer — Mengmei Liu;Guanghong Yan;Yanli Li;Ruiming You;Lizhu Liu;Dafu Zhang;Guangjun Yang;Xingxiang Dong;Yingying Ding;Shan Yan;Dingyun You;Zhenhui Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5900,
+            "end_char": 6144
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT影像组学标签预测局部进展期胃癌新辅助化疗疗效的多中心分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李清婉;张治平;高德培;张大福;谢锟;崔艳芬;代佑果;李振辉",
+      "id": "out-d432aad354e6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT影像组学标签预测局部进展期胃癌新辅助化疗疗效的多中心分析 — 李清婉;张治平;高德培;张大福;谢锟;崔艳芬;代佑果;李振辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6150,
+            "end_char": 6219
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trajectories of Perioperative Serum Tumor Markers and Colorectal Cancer Outcomes: A Retrospective, Multicenter Longitudinal Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxia Li;Dafu Zhang;Xiaolin Pang;Hongjiang Pu;Ming Lei;Bingbing Fan;Jiali Lv;Dingyun You;Zhenhui Li;Tao Zhang",
+      "id": "out-e056b93cca91",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trajectories of Perioperative Serum Tumor Markers and Colorectal Cancer Outcomes: A Retrospective, Multicenter Longitudinal Cohort Study — Chunxia Li;Dafu Zhang;Xiaolin Pang;Hongjiang Pu;Ming Lei;Bingbing Fan;Jiali Lv;Dingyun You;Zhenhui Li;Tao Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6225,
+            "end_char": 6481
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于病理图像集成深度学习的胃癌预后预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金怀平;薛飞跃;李振辉;陶海波;王彬",
+      "id": "out-3ef9a169ff05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于病理图像集成深度学习的胃癌预后预测方法 — 金怀平;薛飞跃;李振辉;陶海波;王彬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6487,
+            "end_char": 6535
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于集成深度学习的全视野数字切片图像分类建模方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金怀平;薛飞跃;李振辉;陶海波",
+      "id": "out-9c412000921a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于集成深度学习的全视野数字切片图像分类建模方法及装置 — 金怀平;薛飞跃;李振辉;陶海波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6541,
+            "end_char": 6590
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI对T3与T4a期胃腺癌的诊断和鉴别诊断价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢锟;田川;张治平;张大福;李振辉;高德培",
+      "id": "out-0c905104b5bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI对T3与T4a期胃腺癌的诊断和鉴别诊断价值 — 谢锟;田川;张治平;张大福;李振辉;高德培",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6596,
+            "end_char": 6650
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "治疗前CECT影像组学预测进展期胃癌患者新 辅助化疗后有无淋巴结转移的多中心研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢锟;高德培;李清婉;张大福;崔艳芬;代佑果;李振辉;张治平",
+      "id": "out-2b4487372694",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 治疗前CECT影像组学预测进展期胃癌患者新 辅助化疗后有无淋巴结转移的多中心研究 — 谢锟;高德培;李清婉;张大福;崔艳芬;代佑果;李振辉;张治平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6656,
+            "end_char": 6735
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "扩散加权成像预测胃腺癌淋巴结转移的价值初探",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢锟;张治平;田川;张大福;李振辉;高德培",
+      "id": "out-42d4b5ba5c1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 扩散加权成像预测胃腺癌淋巴结转移的价值初探 — 谢锟;张治平;田川;张大福;李振辉;高德培",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6741,
+            "end_char": 6792
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving prognosis and assessing adjuvant chemotherapy benefit in locally advanced rectal cancer with deep learning for MRI: a retrospective, multi-cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Zhang;Guoxiang Cai;Peiyi Xie;Caixia Sun;Bao Li;Weixing Dai;Xiangyu Liu;Qi Qiu;Yang Du;Zhenhui Li;Zhenyu Liu;Jie Tian",
+      "id": "out-735250d95f83",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving prognosis and assessing adjuvant chemotherapy benefit in locally advanced rectal cancer with deep learning for MRI: a retrospective, multi-cohort study — Song Zhang;Guoxiang Cai;Peiyi Xie;Caixia Sun;Bao Li;Weixing Dai;Xiangyu Liu;Qi Qiu;Yang Du;Zhenhui Li;Zhenyu Liu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6798,
+            "end_char": 7089
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative serum CA19-9 should be routinely measured in the colorectal patients with preoperative normal serum CEA: a multicenter retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenhui Li;Haibin Zhu;Xiaolin Pang;Yun Mao;Xiaoping Yi;Chunxia Li;Ming Lei;Xianshuo Cheng;Lei Liang;Jiamei Wu;Yingying Ding;Jun Yang;Yingshi Sun;Tao Zhang;Dingyun You;Zaiyi Liu",
+      "id": "out-4557003972b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative serum CA19-9 should be routinely measured in the colorectal patients with preoperative normal serum CEA: a multicenter retrospective cohort study — Zhenhui Li;Haibin Zhu;Xiaolin Pang;Yun Mao;Xiaoping Yi;Chunxia Li;Ming Lei;Xianshuo Cheng;Lei Liang;Jiamei Wu;Yingying Ding;Jun Yang;Yingshi Sun;Tao Zhang;Dingyun You;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7095,
+            "end_char": 7438
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a radiopathomics model to predict pathological complete response to neoadjuvant chemoradiotherapy in locally advanced rectal cancer: a multicentre observational study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lili Feng;Zhenyu Liu;Chaofeng Li;Zhenhui Li;Xiaoying Lou;Lizhi Shao;Yunlong Wang;Yan Huang;Haiyang Chen;Xiaolin Pang;Shuai Liu;Fang He;Jian Zheng;Xiaochun Meng;Peiyi Xie;Guanyu Yang;Yi Ding;Mingbiao Wei;Jingping Yun;Mien-Chie Hung;Weihua Zhou;Daniel R Wahl;Ping Lan;Jie Tian;Xiangbo Wan",
+      "id": "out-0602718a427c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a radiopathomics model to predict pathological complete response to neoadjuvant chemoradiotherapy in locally advanced rectal cancer: a multicentre observational study — Lili Feng;Zhenyu Liu;Chaofeng Li;Zhenhui Li;Xiaoying Lou;Lizhi Shao;Yunlong Wang;Yan Huang;Haiyang Chen;Xiaolin Pang;Shuai Liu;Fang He;Jian Zheng;Xiaochun Meng;Peiyi Xie;Guanyu Yang;Yi Ding;Mingbiao Wei;Jingping Yun;Mien-Chie Hung;Weihua Zhou;Daniel R Wahl;Ping Lan;Jie Tian;Xiangbo Wan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7444,
+            "end_char": 7935
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-quantified tumour-lymphocyte spatial interaction predicts disease-free survival in resected lung adenocarcinoma: A graph-based, multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhengyun Feng;Huan Lin;Zaiyi Liu;Lixu Yan;Yumeng Wang;Bingbing Li;Entao Liu;Chu Han;Zhenwei Shi;Cheng Lu;Zhenbing Liu;Cheng Pang;Zhenhui Li;Yanfen Cui;Xipeng Pan;Xin Chen",
+      "id": "out-1f035912cec2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-quantified tumour-lymphocyte spatial interaction predicts disease-free survival in resected lung adenocarcinoma: A graph-based, multicentre study — Zhengyun Feng;Huan Lin;Zaiyi Liu;Lixu Yan;Yumeng Wang;Bingbing Li;Entao Liu;Chu Han;Zhenwei Shi;Cheng Lu;Zhenbing Liu;Cheng Pang;Zhenhui Li;Yanfen Cui;Xipeng Pan;Xin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7941,
+            "end_char": 8289
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cognitive changes are associated with increased blood‑brain barrier  leakage in non‑brain metastases lung cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "DaFu Zhang;ZhenHui Li;ZhiPing Zhang;YinFu He;BinLi Shang;XiuFeng Xu;YingYing Ding;YuQi Cheng",
+      "id": "out-f197a035c310",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cognitive changes are associated with increased blood‑brain barrier  leakage in non‑brain metastases lung cancer patients — DaFu Zhang;ZhenHui Li;ZhiPing Zhang;YinFu He;BinLi Shang;XiuFeng Xu;YingYing Ding;YuQi Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8295,
+            "end_char": 8517
+          },
+          "version": "313ace1ed89f2eb5003d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "5cb6f763e6f02dae3584",
   "version": "5674642314a8322d66f4",
   "source_hash": "96a280591cf07c4f9c570d5fbc20b4ad79c65494c59adb58a802aadb23be550c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.121150+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.522393+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a0caa611c06c",
-          "name": "糖尿病视网膜病变自动分析",
-          "desc": "糖尿病视网膜病变发病率高，对视力损伤具有不可逆性，已成为致盲重要病因之一。",
+          "id": "item-d7caf44f5273",
+          "name": "糖尿病视网膜病变辅助诊断",
+          "desc": "彩色眼底图像分析",
           "evidence": [
             {
-              "quote": "糖尿病视网膜病变发病率高，对视力损伤具有不可逆性，已经成为致盲的重要病因之一",
+              "quote": "本项目围绕着糖尿病视网膜病变自动分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 661,
-                "end_char": 698
-              },
-              "version": "5674642314a8322d66f4"
-            }
-          ]
-        },
-        {
-          "id": "item-0e5ab17d45ac",
-          "name": "眼科大规模DR筛查自动化工具",
-          "desc": "为眼科糖尿病视网膜病变诊断提供新方法和依据，为大规模筛查提供自动化分析工具。",
-          "evidence": [
-            {
-              "quote": "并可望为眼科大规模糖尿病视网膜病变筛查提供自动化分析工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 940,
-                "end_char": 967
+                "start_char": 1991,
+                "end_char": 2008
               },
               "version": "5674642314a8322d66f4"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fc2c3b0e3687",
-          "name": "需挖掘眼底图像蕴含病变信息",
-          "desc": "需通过研究挖掘彩色眼底图像中蕴含的糖尿病视网膜病变信息，建立相应分析模型。",
+          "id": "item-ecedb8da114d",
+          "name": "视网膜血管分割、信息增强与自动分析",
+          "desc": "彩色眼底图像",
           "evidence": [
             {
-              "quote": "通过本项目的研究挖掘彩色眼底图像中蕴含的糖尿病视网膜病变信息，建立相应的分析模型",
+              "quote": "本项目围绕着糖尿病视网膜病变自动分析，研究了（1）彩色眼底图像中视网膜血管分割",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 847,
-                "end_char": 886
-              },
-              "version": "5674642314a8322d66f4"
-            }
-          ]
-        },
-        {
-          "id": "item-e83bb974932d",
-          "name": "眼底图像质量影响分析准确性",
-          "desc": "彩色眼底图像存在模糊与噪声问题，需建立图像增强与预处理工具支撑。",
-          "evidence": [
-            {
-              "quote": "（2）彩色眼底图像的有效增强，建立了基于分叉点和SURF算法的图像配准模型、基于卷积神经网络的图像配准模型、基于多尺度融合的图像去模糊网络模型、基于多尺度和残差学习的图像去噪网络模型等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2123,
-                "end_char": 2214
+                "start_char": 1991,
+                "end_char": 2029
               },
               "version": "5674642314a8322d66f4"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2bdcd419b24",
-          "name": "分层循环卷积网络HR-Net血管分割",
-          "desc": "建立基于U-Net的分层循环卷积网络用于彩色眼底图像视网膜血管分割。",
+          "id": "item-bbe4e88ec67f",
+          "name": "基于U-Net的分层循环卷积网络HR-Net",
+          "desc": "视网膜血管分割",
           "evidence": [
             {
-              "quote": "建立了基于 U-Net 的分层循环卷积网络（HR-Net）",
+              "quote": "建立了基于 U-Net 的分层循环卷积网络（HR-Net），将DRIVE、CHASE_DB1和STARE彩色眼底数据集中血管分割精度分别提升至96.21%、97.02%和97.15%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2031,
-                "end_char": 2059
+                "end_char": 2121
               },
               "version": "5674642314a8322d66f4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-15212c1eb9bd",
-          "name": "多尺度融合去模糊与残差去噪网络",
-          "desc": "建立基于分叉点与SURF、卷积网络配准、多尺度融合去模糊及多尺度残差学习去噪等图像增强模型。",
+          "id": "item-5979f3aa9756",
+          "name": "眼底图像增强模型",
+          "desc": "配准、去模糊、去噪",
           "evidence": [
             {
               "quote": "建立了基于分叉点和SURF算法的图像配准模型、基于卷积神经网络的图像配准模型、基于多尺度融合的图像去模糊网络模型、基于多尺度和残差学习的图像去噪网络模型等",
@@ -124,35 +98,13 @@
               },
               "version": "5674642314a8322d66f4"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5928ca9aad95",
-          "name": "血管分割精度提升至96.21%至97.15%",
-          "desc": "在DRIVE、CHASE_DB1和STARE三个数据集中血管分割精度分别提升至96.21%、97.02%和97.15%。",
-          "evidence": [
-            {
-              "quote": "将DRIVE、CHASE_DB1和STARE彩色眼底数据集中血管分割精度分别提升至96.21%、97.02%和97.15%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2061,
-                "end_char": 2121
-              },
-              "version": "5674642314a8322d66f4"
-            }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-7a921270c56b",
-          "name": "微动脉瘤与出血点检测分类",
-          "desc": "设计基于卷积神经网络的检测、分类模型，实现微动脉瘤、出血点、病变等级等的检测或分类。",
+          "id": "item-a6ee5c06780f",
+          "name": "糖尿病视网膜病变检测与分类模型",
+          "desc": "微动脉瘤、出血点、病变等级",
           "evidence": [
             {
               "quote": "设计出基于卷积神经网络的检测、分类模型，实现了彩色眼底图像中微动脉瘤、出血点、病变等级等的检测或分类",
@@ -164,72 +116,541 @@
               "version": "5674642314a8322d66f4"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-83b159eebd62",
-          "name": "多尺度分割分类网络检测微动脉瘤",
-          "desc": "提出面向眼底图像微小动脉瘤检测的多尺度分割到分类网络。",
+          "id": "item-b65acb006524",
+          "name": "血管分割精度",
+          "desc": "DRIVE 96.21%、CHASE_DB1 97.02%、STARE 97.15%",
           "evidence": [
             {
-              "quote": "A multi-scale segmentation-to-classification network for tiny microaneurysm detection in fundus images",
+              "quote": "将DRIVE、CHASE_DB1和STARE彩色眼底数据集中血管分割精度分别提升至96.21%、97.02%和97.15%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4317,
-                "end_char": 4418
+                "start_char": 2061,
+                "end_char": 2121
               },
               "version": "5674642314a8322d66f4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a0caa611c06c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fc2c3b0e3687"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于MaskRcnn的膀胱肿瘤检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏海英;孙伟凡;夏伟;丁志峰",
+      "id": "out-97f07bb72d70",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于MaskRcnn的膀胱肿瘤检测方法 — 夏海英;孙伟凡;夏伟;丁志峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2347,
+            "end_char": 2389
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fc2c3b0e3687"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e2bdcd419b24"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MFC-Net: Multi-scale fusion coding network for Image Deblurring",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Bo Wu;Yumei Tan;Xiaohu Tang;Shuxiang Song",
+      "id": "out-e9f78c87967e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MFC-Net: Multi-scale fusion coding network for Image Deblurring — Haiying Xia;Bo Wu;Yumei Tan;Xiaohu Tang;Shuxiang Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2394,
+            "end_char": 2519
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e2bdcd419b24"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5928ca9aad95"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single Image Rain Removal via A Simplified Residual Dense Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Ruibin Zhuge;Haisheng Li;Shuxiang Song;Frank Jiang;Min Xu",
+      "id": "out-5ccba97cb9b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single Image Rain Removal via A Simplified Residual Dense Network — Haiying Xia;Ruibin Zhuge;Haisheng Li;Shuxiang Song;Frank Jiang;Min Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2524,
+            "end_char": 2667
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-15212c1eb9bd"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7a921270c56b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Md-Net: Multi-scale Dilated Convolution Network for CT Images Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Weifan Sun;Shuxiang Song;Xiangwei Mou",
+      "id": "out-4e9ea2e1dd4b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Md-Net: Multi-scale Dilated Convolution Network for CT Images Segmentation — Haiying Xia;Weifan Sun;Shuxiang Song;Xiangwei Mou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2672,
+            "end_char": 2804
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantum Implementation Circuits of Quantum Signal Representation and Type Conversion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Hai Sheng;Fan Ping;Xia Hai Ying;Peng Huiling;Song Shuxiang",
+      "id": "out-1dd411a4a360",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantum Implementation Circuits of Quantum Signal Representation and Type Conversion — Li Hai Sheng;Fan Ping;Xia Hai Ying;Peng Huiling;Song Shuxiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2809,
+            "end_char": 2963
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ensemble One-Dimensional Convolution Neural Networks for Skeleton-based Action Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yangyang Xu;Jun Cheng;Lei Wang;Haiying Xia;Feng Liu;Datao Peng",
+      "id": "out-42091df69ed8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ensemble One-Dimensional Convolution Neural Networks for Skeleton-based Action Recognition — Yangyang Xu;Jun Cheng;Lei Wang;Haiying Xia;Feng Liu;Datao Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2968,
+            "end_char": 3129
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于盲解卷积的彩色图像去模糊的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏海英;刘晨旭;黎海生;陆辉辉",
+      "id": "out-7849890c3347",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于盲解卷积的彩色图像去模糊的方法 — 夏海英;刘晨旭;黎海生;陆辉辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3134,
+            "end_char": 3175
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多尺度并行融合的轻量级卷积神经网络设计",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范瑞;蒋品群;曾上游;夏海英;廖志贤;李鹏",
+      "id": "out-9fc78666a81f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多尺度并行融合的轻量级卷积神经网络设计 — 范瑞;蒋品群;曾上游;夏海英;廖志贤;李鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3180,
+            "end_char": 3229
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fast Template Matching Based on Deformable Best-Buddies Similarity Measure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Wenxian Zhao;Frank Jiang;Haisheng Li;Jing Xin;Zheng Zhou",
+      "id": "out-b980b1672b0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fast Template Matching Based on Deformable Best-Buddies Similarity Measure — Haiying Xia;Wenxian Zhao;Frank Jiang;Haisheng Li;Jing Xin;Zheng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3234,
+            "end_char": 3385
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantum circuit design of approximate median filtering with noise tolerance threshold",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Yufang Xiao;Shuxiang Song;Hai-Sheng Li",
+      "id": "out-ce4696e33b79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantum circuit design of approximate median filtering with noise tolerance threshold — Haiying Xia;Yufang Xiao;Shuxiang Song;Hai-Sheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3391,
+            "end_char": 3535
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Remote Sensing Image Deblurring Algorithm Based on WGAN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Chenxu Liu",
+      "id": "out-c87b58b2a52a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Remote Sensing Image Deblurring Algorithm Based on WGAN — Haiying Xia;Chenxu Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3541,
+            "end_char": 3627
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Raindrop removal from a single image using a two-step generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Yang Lan;Haisheng Li;Shuxiang Song",
+      "id": "out-f145a38567a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Raindrop removal from a single image using a two-step generative adversarial network — Haiying Xia;Yang Lan;Haisheng Li;Shuxiang Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3633,
+            "end_char": 3772
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Expanded Mask R-CNN's Retinal Edema Detection Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Fuyu Zhu",
+      "id": "out-cd17601e16b8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Expanded Mask R-CNN's Retinal Edema Detection Network — Haiying Xia;Fuyu Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3860
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Retinal vessel segmentation via a coarse-to-fine convolutinal neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Ruibin Zhuge;Haisheng Li",
+      "id": "out-1d70994a715e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Retinal vessel segmentation via a coarse-to-fine convolutinal neural network — Haiying Xia;Ruibin Zhuge;Haisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3987
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mapping Functions Driven Robust Retinal Vessel Segmentation via Training Patches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Frank Jiang;Shuaifei Deng;Jing Xin;Robin Doss",
+      "id": "out-abb6d1c7ddd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mapping Functions Driven Robust Retinal Vessel Segmentation via Training Patches — Haiying Xia;Frank Jiang;Shuaifei Deng;Jing Xin;Robin Doss",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3993,
+            "end_char": 4139
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HT-Net: hierarchical context-attention transformer network for medical ct image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingjun Ma;Haiying Xia;Yumei Tan;Haisheng Li;Shuxiang Song",
+      "id": "out-959fad78aeee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HT-Net: hierarchical context-attention transformer network for medical ct image segmentation — Mingjun Ma;Haiying Xia;Yumei Tan;Haisheng Li;Shuxiang Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4145,
+            "end_char": 4304
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-scale segmentation-to-classification network for tiny microaneurysm detection in fundus images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Yang Lan;Shuxiang Song;Hai-Sheng Li",
+      "id": "out-3e0c0a37030b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-scale segmentation-to-classification network for tiny microaneurysm detection in fundus images — Haiying Xia;Yang Lan;Shuxiang Song;Hai-Sheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4310,
+            "end_char": 4468
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The quantum Fourier transform based on quantum vision representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Hai-Sheng;Fan Ping;Xia Hai-ying;Song Shuxiang;He Xiangjian",
+      "id": "out-0c195a900871",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The quantum Fourier transform based on quantum vision representation — Li Hai-Sheng;Fan Ping;Xia Hai-ying;Song Shuxiang;He Xiangjian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4612
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Combination of multi-scale and residual learning in deep CNN for image denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Fuyu Zhu;Haisheng Li;Shuxiang Song;Xiangwei Mou",
+      "id": "out-9543fc060d2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Combination of multi-scale and residual learning in deep CNN for image denoising — Haiying Xia;Fuyu Zhu;Haisheng Li;Shuxiang Song;Xiangwei Mou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4618,
+            "end_char": 4766
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于网格变形和余弦函数权重的图像拼接方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李加亮;蒋品群;夏海英",
+      "id": "out-fcee612739c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于网格变形和余弦函数权重的图像拼接方法 — 李加亮;蒋品群;夏海英",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4772,
+            "end_char": 4812
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel multi-bit quantum comparators and their application in image binarization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Hai-Sheng Li;Han Zhang;Yan Liang;Jing Xin",
+      "id": "out-0fee3666e1c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel multi-bit quantum comparators and their application in image binarization — Haiying Xia;Hai-Sheng Li;Han Zhang;Yan Liang;Jing Xin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4818,
+            "end_char": 4959
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Retinal Image Registration Based on Bifurcation Point and SURF",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Danhua Chen",
+      "id": "out-d942d1fb9900",
+      "evidence": [
+        {
+          "quote": "[会议论文] Retinal Image Registration Based on Bifurcation Point and SURF — Haiying Xia;Danhua Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4965,
+            "end_char": 5059
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An efficient design of quantum comparator via only a single ancilary bit",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiying Xia;Haisheng Li;Han Zhang;Yan Liang;Jing Xin",
+      "id": "out-f2ee77776e52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An efficient design of quantum comparator via only a single ancilary bit — Haiying Xia;Haisheng Li;Han Zhang;Yan Liang;Jing Xin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5065,
+            "end_char": 5198
+          },
+          "version": "5674642314a8322d66f4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

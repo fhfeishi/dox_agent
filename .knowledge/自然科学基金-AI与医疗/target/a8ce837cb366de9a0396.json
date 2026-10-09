@@ -2,15 +2,20 @@
   "doc_id": "a8ce837cb366de9a0396",
   "version": "cd4e64ddd9b86770a05d",
   "source_hash": "bbdb8cf12ae783c76063b989eb856825735276875ba6a87bfeb8406150bd1872",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.953348+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.406630+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d93cad2e71d4",
-          "name": "年轻乳腺癌术后复发风险精准预测",
-          "desc": "年轻乳腺癌在我国发病率显著高于欧美且逐渐增加，既有易复发预后差的特点又有生育需求特殊性，临床决策复杂。",
+          "id": "item-e07d672a5f1b",
+          "name": "年轻乳腺癌术后复发风险预测",
+          "desc": "基于多模态超声影像组学与基因组学",
           "evidence": [
             {
-              "quote": "年轻乳腺癌在我国发病率显著高于欧美且逐渐增加。其既有易复发、预后差的特点，又有生育需求的特殊性，临床决策复杂",
+              "quote": "乳腺癌是女性发病率最高的恶性肿瘤，但乳腺癌的高度异质性使基于病理标本的评估方法不能准确预测复发",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 709,
-                "end_char": 762
-              },
-              "version": "cd4e64ddd9b86770a05d"
-            }
-          ]
-        },
-        {
-          "id": "item-bfd2281f556e",
-          "name": "指导治疗决策量化分层",
-          "desc": "精准预测年轻乳腺癌复发风险并量化分层，为指导治疗决策提供新途径。",
-          "evidence": [
-            {
-              "quote": "精准预测年轻乳腺癌复发风险并量化分层，为指导治疗决策提供新途径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1077,
-                "end_char": 1107
+                "start_char": 2746,
+                "end_char": 2792
               },
               "version": "cd4e64ddd9b86770a05d"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d835191afd03",
-          "name": "乳腺癌异质性使病理评估难准确预测复发",
-          "desc": "乳腺癌高度异质性使基于病理标本的评估方法不能准确预测复发。",
+          "id": "item-e61acaea7b35",
+          "name": "病理标本评估方法不能准确预测复发",
+          "desc": "乳腺癌高度异质性",
           "evidence": [
             {
-              "quote": "但乳腺癌的高度异质性使基于病理标本的评估方法不能准确预测复发",
+              "quote": "乳腺癌的高度异质性使基于病理标本的评估方法不能准确预测复发",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 776,
+                "start_char": 777,
                 "end_char": 805
-              },
-              "version": "cd4e64ddd9b86770a05d"
-            }
-          ]
-        },
-        {
-          "id": "item-48b7d3dabc2a",
-          "name": "需融合多模态信息提升预测准确性",
-          "desc": "需融合影像组学特征、基因组学和临床病理指标构建复发预测模型。",
-          "evidence": [
-            {
-              "quote": "融合影像组学特征、基因组学和临床病理指标，构建并验证复发预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1044,
-                "end_char": 1075
               },
               "version": "cd4e64ddd9b86770a05d"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1c6b0c2fc8a7",
-          "name": "多模态影像组学与深度学习挖掘特征",
-          "desc": "基于深度学习卷积神经网络技术高通量挖掘并筛选年轻乳腺癌多模态图像（灰阶、mv-flow、弹性）中与复发高度关联的影像组学特征。",
+          "id": "item-97180d182eab",
+          "name": "超声影像组学与Oncotype DX 21基因复发风险评分联合预测模型",
+          "desc": "523例患者",
           "evidence": [
             {
-              "quote": "基于深度学习卷积神经网络技术，高通量挖掘并筛选年轻乳腺癌多模态图像中（灰阶、mv-flow、弹性）与复发高度关联的影像组学特征",
+              "quote": "对523例乳腺癌患者的超声图像进行了影像组学分析，并进行了这些患者的Oncotype DX 21-基因复发风险评分检测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 941,
-                "end_char": 1003
+                "start_char": 2975,
+                "end_char": 3033
               },
               "version": "cd4e64ddd9b86770a05d"
             }
-          ]
-        },
-        {
-          "id": "item-5967ce911dcf",
-          "name": "融合组学基因组与临床的复发预测模型",
-          "desc": "检测OncotypeDX21基因组学计算复发风险评分，融合影像组学特征、基因组学与临床病理指标构建并验证复发预测模型。",
-          "evidence": [
-            {
-              "quote": "融合影像组学特征、基因组学和临床病理指标，构建并验证复发预测模型，精准预测年轻乳腺癌复发风险并量化分层",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1044,
-                "end_char": 1094
-              },
-              "version": "cd4e64ddd9b86770a05d"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +91,320 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e87fae9fb150",
-          "name": "乳腺癌病例数据库建立",
-          "desc": "建立包含临床信息、影像、基因、病理、随访结果的乳腺癌病例数据库。",
+          "id": "item-7c6eebc6e301",
+          "name": "低风险人群中识别高风险患者",
+          "desc": "风险评分RS≥26，将从辅助化疗中获益",
           "evidence": [
             {
-              "quote": "本课题建立乳腺癌病例数据库（临床信息、影像、基因、病理、随访结果）",
+              "quote": "本研究结果表明，本研究建立的模型有助于在低风险人群中识别出高风险（风险评分RS≥26）的患者，这些患者术后将从辅助化疗中获益",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2794,
-                "end_char": 2826
-              },
-              "version": "cd4e64ddd9b86770a05d"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6be847fd4782",
-          "name": "超声模型识别高风险RS患者",
-          "desc": "对523例乳腺癌患者进行超声影像组学分析与Oncotype DX21基因复发风险评分检测，所建模型有助于在低风险人群中识别出高风险（RS≥26）患者。",
-          "evidence": [
-            {
-              "quote": "本研究建立的模型有助于在低风险人群中识别出高风险（风险评分RS≥26）的患者，这些患者术后将从辅助化疗中获益",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3179,
+                "start_char": 3171,
                 "end_char": 3232
               },
               "version": "cd4e64ddd9b86770a05d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-44b0774ae2c9",
-          "name": "腋窝淋巴结转移为PABC预后关键因素",
-          "desc": "年轻女性妊娠哺乳期乳腺癌患者表现出较差临床病理特征，腋窝淋巴结转移是其预后的关键决定因素。",
+          "id": "item-51b0d0528da2",
+          "name": "PABC预后因素",
+          "desc": "75例年轻妊娠哺乳期乳腺癌，腋窝淋巴结转移是关键",
           "evidence": [
             {
-              "quote": "腋窝淋巴结转移是妊娠哺乳期乳腺癌预后的关键决定因素，因此需要对广泛淋巴结转移患者进行妊娠或哺乳期继续和更积极治疗之间的多学科风险-收益评估",
+              "quote": "腋窝淋巴结转移是妊娠哺乳期乳腺癌预后的关键决定因素",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3384,
-                "end_char": 3452
+                "end_char": 3408
               },
               "version": "cd4e64ddd9b86770a05d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d93cad2e71d4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d835191afd03"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting three or more metastatic nodes using contrast-enhanced lymphatic US findings in early breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zihan Niu;Yunxia Hao;Yuanjing Gao;Jing Zhang;Mengsu Xiao;Feng Mao;Yidong Zhou;Ligang Cui;Yuxin Jiang;Qingli Zhu",
+      "id": "out-fe21f7943aea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting three or more metastatic nodes using contrast-enhanced lymphatic US findings in early breast cancer — Zihan Niu;Yunxia Hao;Yuanjing Gao;Jing Zhang;Mengsu Xiao;Feng Mao;Yidong Zhou;Ligang Cui;Yuxin Jiang;Qingli Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3472,
+            "end_char": 3702
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d835191afd03"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1c6b0c2fc8a7"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《超声菜鸟成长记》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜玉新;张波;刘如玉;薛军;韩晶;孝梦甦;王铭;刘真真",
+      "id": "out-1240043628f6",
+      "evidence": [
+        {
+          "quote": "[专著] 《超声菜鸟成长记》 — 姜玉新;张波;刘如玉;薛军;韩晶;孝梦甦;王铭;刘真真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3750
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1c6b0c2fc8a7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6be847fd4782"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The added value of ultrasound imaging biomarkers to clinicopathological factors for th e prediction of high-risk Oncotype DX recurrence scores in patients with breast cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo YW;Gao YJ;Niu ZH;Zhang J;Liu ZZ;Zhang YN;Shen SJ;Jiang YX;Xiao MS;Zhu QL",
+      "id": "out-cdd0c1f89241",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The added value of ultrasound imaging biomarkers to clinicopathological factors for th e prediction of high-risk Oncotype DX recurrence scores in patients with breast cancer. — Luo YW;Gao YJ;Niu ZH;Zhang J;Liu ZZ;Zhang YN;Shen SJ;Jiang YX;Xiao MS;Zhu QL",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 4014
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5967ce911dcf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e87fae9fb150"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《乳腺疾病超声图解100例》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张波;杨高怡;孝梦甦",
+      "id": "out-cdeae4aed52e",
+      "evidence": [
+        {
+          "quote": "[专著] 《乳腺疾病超声图解100例》 — 张波;杨高怡;孝梦甦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4019,
+            "end_char": 4050
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《损容性皮肤病影像诊断》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘洁;朱庆莉;孝梦甦;高远菁;周梦园;罗众文;牛梓涵",
+      "id": "out-f8ac14d09ee6",
+      "evidence": [
+        {
+          "quote": "[专著] 《损容性皮肤病影像诊断》 — 刘洁;朱庆莉;孝梦甦;高远菁;周梦园;罗众文;牛梓涵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4055,
+            "end_char": 4100
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal Deep Learning-Based Classification of Breast Non-Mass Lesions Using Gray Scale and Color Doppler Ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianjiao Wang;Qingli Zhu;Tianxiang Yu;Denis Leonov;Xinran Shi;Zhuhuang Zhou;Ke Lv;Mengsu Xiao;Jianchu Li",
+      "id": "out-44a2810d8e7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal Deep Learning-Based Classification of Breast Non-Mass Lesions Using Gray Scale and Color Doppler Ultrasound — Tianjiao Wang;Qingli Zhu;Tianxiang Yu;Denis Leonov;Xinran Shi;Zhuhuang Zhou;Ke Lv;Mengsu Xiao;Jianchu Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4105,
+            "end_char": 4336
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌超声筛查的自动识别与精准诊断装置的研发及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孝梦甦;朱庆莉;毛新生;马春娥;颜丹",
+      "id": "out-4d1bf6143806",
+      "evidence": [
+        {
+          "quote": "[奖励] 乳腺癌超声筛查的自动识别与精准诊断装置的研发及应用 — 孝梦甦;朱庆莉;毛新生;马春娥;颜丹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4391
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole-lesion-aware network based on freehand ultrasound video for breast cancer assessment: a prospective multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Han;Yuanjing Gao;Mengsu Xiao;Qingli Zhu;Yong Wang",
+      "id": "out-a53e67f94995",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole-lesion-aware network based on freehand ultrasound video for breast cancer assessment: a prospective multicenter study — Jie Han;Yuanjing Gao;Mengsu Xiao;Qingli Zhu;Yong Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4396,
+            "end_char": 4581
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Contrast-enhanced lymphatic US can improve the preoperative diagnostic performance for sentinel lymph nodes in early breast cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zihan Niu;Yuanjing Gao;Mengsu Xiao;Feng Mao;Yidong Zhou;Qingli Zhu;Yuxin Jiang",
+      "id": "out-6173e21736d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Contrast-enhanced lymphatic US can improve the preoperative diagnostic performance for sentinel lymph nodes in early breast cancer. — Zihan Niu;Yuanjing Gao;Mengsu Xiao;Feng Mao;Yidong Zhou;Qingli Zhu;Yuxin Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4804
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种乳腺良性结节的随访数据处理及结节风险预警方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱庆莉;孝梦甦;周梦园;牛梓涵;陶佳;赵佳琳",
+      "id": "out-930158645188",
+      "evidence": [
+        {
+          "quote": "[专利] 一种乳腺良性结节的随访数据处理及结节风险预警方法 — 朱庆莉;孝梦甦;周梦园;牛梓涵;陶佳;赵佳琳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4810,
+            "end_char": 4863
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "先天性阴道斜隔综合征临床特征及影像学诊断价值的初步研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孝梦甦;戴晴;齐振红",
+      "id": "out-9742dba8639e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 先天性阴道斜隔综合征临床特征及影像学诊断价值的初步研究 — 孝梦甦;戴晴;齐振红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4869,
+            "end_char": 4915
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种前哨淋巴结图像分析的方法、装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "牛梓涵;孝梦甦;高远菁;朱庆莉;罗焱文",
+      "id": "out-3d96f292212f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种前哨淋巴结图像分析的方法、装置及存储介质 — 牛梓涵;孝梦甦;高远菁;朱庆莉;罗焱文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4921,
+            "end_char": 4969
+          },
+          "version": "cd4e64ddd9b86770a05d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

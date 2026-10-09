@@ -2,15 +2,20 @@
   "doc_id": "900a177ea2d1719490e5",
   "version": "69e61ac50b9bc5555dba",
   "source_hash": "2a198fe7677b1167dc7149704fac7417333ded1c178f071b469802aae8502093",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.112299+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.403671+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af9371cbd06a",
-          "name": "骨质疏松诊断与脆性骨折风险监测",
-          "desc": "早期发现与监测脆性骨折是骨健康领域的重点问题，需提高基层诊疗能力。",
+          "id": "item-fa0127540dcf",
+          "name": "骨质疏松与脆性骨折风险评估",
+          "desc": "中药抗骨折能力评价",
           "evidence": [
             {
               "quote": "早期发现与监测脆性骨折是骨健康领域的重点问题",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 663,
                 "end_char": 684
-              },
-              "version": "69e61ac50b9bc5555dba"
-            }
-          ]
-        },
-        {
-          "id": "item-cef2e7c1fc7c",
-          "name": "中医药抗骨折疗效客观评价",
-          "desc": "研究为脆性骨折早期监测及中医药抗骨折疗效的客观评价提供新技术路径与方法学基础。",
-          "evidence": [
-            {
-              "quote": "研究为脆性骨折的早期监测及中医药抗骨折疗效的客观评价提供了新的技术路径和方法学基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3033,
-                "end_char": 3073
               },
               "version": "69e61ac50b9bc5555dba"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf8811f69225",
-          "name": "骨强度评价技术限制缺临床证据",
-          "desc": "多项研究已证实中药能提高骨质疏松模型动物骨强度，但囿于骨强度评价技术限制而缺少临床证据。",
+          "id": "item-c10b325f94e1",
+          "name": "骨强度评价技术限制致缺少中药抗骨折临床证据",
+          "desc": "早期发现与监测",
           "evidence": [
             {
-              "quote": "但囿于骨强度评价技术的限制而缺少临床证据",
+              "quote": "早期发现与监测脆性骨折是骨健康领域的重点问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 718,
-                "end_char": 737
-              },
-              "version": "69e61ac50b9bc5555dba"
-            }
-          ]
-        },
-        {
-          "id": "item-6c994b6d9546",
-          "name": "现有骨强度评估工具存在局限",
-          "desc": "需突破现有骨强度评估工具限制，实现建立脆性骨折监测新技术的可能。",
-          "evidence": [
-            {
-              "quote": "突破现有骨强度评估工具限制，实现建立脆性骨折监测新技术的可能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1021,
-                "end_char": 1050
+                "start_char": 663,
+                "end_char": 684
               },
               "version": "69e61ac50b9bc5555dba"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96224272cc63",
-          "name": "腰椎CT深度学习骨质疏松分类",
-          "desc": "基于腰椎CT图像构建骨质疏松、低骨量及正常骨量自动分类模型，并建立骨密度值预测模型。",
+          "id": "item-24928922a85f",
+          "name": "腰椎CT骨质疏松自动分类与骨密度预测模型",
+          "desc": "深度学习",
           "evidence": [
             {
-              "quote": "基于腰椎CT图像，构建了骨质疏松、低骨量及正常骨量的自动分类模型，并建立了骨密度值预测模型",
+              "quote": "基于腰椎CT图像，构建了骨质疏松、低骨量及正常骨量的自动分类模型，并建立了骨密度值预测模型，实现了在常规CT检查中对骨质状况的自动识别与定量评估",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2648,
-                "end_char": 2692
+                "end_char": 2719
               },
               "version": "69e61ac50b9bc5555dba"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2a54b772365b",
-          "name": "Logistic回归与深度学习骨折风险评估",
-          "desc": "建立基于Logistic回归和深度学习的骨折风险评估模型，实现脆性骨折风险综合判别与预测。",
+          "id": "item-635787380d7d",
+          "name": "Logistic回归与深度学习骨折风险评估模型",
+          "desc": "综合判别脆性骨折风险",
           "evidence": [
             {
               "quote": "建立基于Logistic回归和深度学习的骨折风险评估模型，实现对脆性骨折风险的综合判别与预测",
@@ -124,23 +98,8 @@
               },
               "version": "69e61ac50b9bc5555dba"
             }
-          ]
-        },
-        {
-          "id": "item-1696fa1d2a5d",
-          "name": "证方效数据库与辅助决策系统",
-          "desc": "结合已建立的证-方-效数据库，将临床特征、骨密度、骨代谢、骨折风险作为输入形成诊疗辅助决策支持系统。",
-          "evidence": [
-            {
-              "quote": "结合课题组已建立的“证-方-效”数据库，将个体临床特征、骨密度、骨代谢、骨折风险评估等信息作为输入",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 965
-              },
-              "version": "69e61ac50b9bc5555dba"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d395b2f68e39",
-          "name": "骨质疏松诊断准确率88.89%",
-          "desc": "模型诊断骨质疏松准确率88.89%，预测骨质疏松AUC为0.873、预测低骨量AUC为0.891。",
+          "id": "item-b283c03ed667",
+          "name": "骨质疏松诊断模型性能",
+          "desc": "准确率88.89%，AUC 0.873",
           "evidence": [
             {
               "quote": "模型诊断骨质疏松的准确率88.89%，预测骨质疏松的AUC为0.873，预测低骨量的AUC为0.891",
@@ -163,106 +122,279 @@
               "version": "69e61ac50b9bc5555dba"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c90cbb48986f",
-          "name": "骨折风险模型AUC 0.95",
-          "desc": "深度学习模型预测高骨折风险敏感性0.8、特异性0.967、AUC为0.95。",
+          "id": "item-936a005e1aa5",
+          "name": "深度学习骨折风险模型",
+          "desc": "敏感性0.8，特异性0.967，AUC 0.95",
           "evidence": [
             {
-              "quote": "深度学习模型预测高骨折风险的敏感性为0.8，特异性为0.967，AUC为0.95",
+              "quote": "其中深度学习模型预测高骨折风险的敏感性为0.8，特异性为0.967，AUC为0.95",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2822,
+                "start_char": 2820,
                 "end_char": 2861
               },
               "version": "69e61ac50b9bc5555dba"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-fb768a934a9b",
-          "name": "诊疗辅助决策软件系统",
-          "desc": "形成集数据采集、骨密度预测和骨折风险评估于一体的骨质疏松症临床诊疗辅助决策软件系统，获软件著作权3项并在社区推广。",
+          "id": "item-83d47bf6e0d0",
+          "name": "骨质疏松症临床诊疗辅助决策软件系统",
+          "desc": "获软件著作权3项",
           "evidence": [
             {
-              "quote": "项目最终形成一套集数据采集、骨密度预测和骨折风险评估于一体的骨质疏松症临床诊疗辅助决策软件系统，获得软件著作权3项，并在社区人群中开展推广应用",
+              "quote": "项目最终形成一套集数据采集、骨密度预测和骨折风险评估于一体的骨质疏松症临床诊疗辅助决策软件系统，获得软件著作权3项",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2919,
-                "end_char": 2989
+                "end_char": 2975
               },
               "version": "69e61ac50b9bc5555dba"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-171b9a4898c0",
-          "name": "论文与人才培养成果",
-          "desc": "项目共发表SCI论文5篇、国内一级期刊论文3篇，培养博士研究生5名、硕士研究生3名。",
-          "evidence": [
-            {
-              "quote": "项目共发表SCI论文5篇、国内一级期刊论文3篇，培养博士研究生5名、硕士研究生3名",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2991,
-                "end_char": 3031
-              },
-              "version": "69e61ac50b9bc5555dba"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-af9371cbd06a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bf8811f69225"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Characterization of the integrated gut microbiota and metabolite profiles in osteoporosis patients with different traditional Chinese medicine syndromes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Zixiang;Yuan Long;See Dihang;Zhao Yongfang",
+      "id": "out-e57f3c016b20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Characterization of the integrated gut microbiota and metabolite profiles in osteoporosis patients with different traditional Chinese medicine syndromes — Geng Zixiang;Yuan Long;See Dihang;Zhao Yongfang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3120,
+            "end_char": 3328
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bf8811f69225"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-96224272cc63"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "健脾方对废用性肌肉萎缩小鼠Akt/FOXO3a通路表达的机制研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李小凯;丁劼;孙雯;高洒洒;杨光月;郭海玲;赵咏芳",
+      "id": "out-5bbe5254cff5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 健脾方对废用性肌肉萎缩小鼠Akt/FOXO3a通路表达的机制研究 — 李小凯;丁劼;孙雯;高洒洒;杨光月;郭海玲;赵咏芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3333,
+            "end_char": 3399
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-96224272cc63"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d395b2f68e39"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "社区居住老年人跌倒风险及中医体质评估研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柴琼;徐喜瑞;郭海玲;赵咏芳",
+      "id": "out-c4cab5f5dfae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 社区居住老年人跌倒风险及中医体质评估研究 — 柴琼;徐喜瑞;郭海玲;赵咏芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3404,
+            "end_char": 3447
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2a54b772365b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c90cbb48986f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "密骨胶囊通过NF-κB和AKT-mTOR信号通路对肌少症的作用机制",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙雯;丁劼;王培歌;李小凯;郭海玲;赵咏芳",
+      "id": "out-7523cf15d7e3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 密骨胶囊通过NF-κB和AKT-mTOR信号通路对肌少症的作用机制 — 孙雯;丁劼;王培歌;李小凯;郭海玲;赵咏芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3452,
+            "end_char": 3515
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Circulating Hsa-miR499a-5p as markers in dysmobility syndrome patients: a new index for diagnosing dysmobility syndrome based on osteoporosis and predicting fracture risk",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zixiang Geng;Peige Wang;Guangyue Yang;Yifei Li;Yongfang Zhao",
+      "id": "out-a0c36d738154",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Circulating Hsa-miR499a-5p as markers in dysmobility syndrome patients: a new index for diagnosing dysmobility syndrome based on osteoporosis and predicting fracture risk — Zixiang Geng;Peige Wang;Guangyue Yang;Yifei Li;Yongfang Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3520,
+            "end_char": 3759
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of osteoporosis and osteopenia by routine computed tomography of the lumbar spine in different regions of interest",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guangyue;Wang Hansong;Wu Zhufeng;Shi Yinyu;Zhao Yongfang",
+      "id": "out-30f827e00c07",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of osteoporosis and osteopenia by routine computed tomography of the lumbar spine in different regions of interest — Yang Guangyue;Wang Hansong;Wu Zhufeng;Shi Yinyu;Zhao Yongfang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3764,
+            "end_char": 3959
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cinobufagin Suppresses Lipid Peroxidation and Inflammation in Osteoporotic Mice by Promoting the Delivery of miR-3102-5p by Macrophage-Derived Exosomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Geng Zixiang;Sun Tiancheng;Yu Jie;Wang Ning;Jiang Qiang;Wang Peige;Yang Guangyue;Li Yifei;Ding Yue;Zhang Jiange;Lin Guoqiang;Zhao Yongfang",
+      "id": "out-b752ebd59c3d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cinobufagin Suppresses Lipid Peroxidation and Inflammation in Osteoporotic Mice by Promoting the Delivery of miR-3102-5p by Macrophage-Derived Exosomes — Geng Zixiang;Sun Tiancheng;Yu Jie;Wang Ning;Jiang Qiang;Wang Peige;Yang Guangyue;Li Yifei;Ding Yue;Zhang Jiange;Lin Guoqiang;Zhao Yongfang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3964,
+            "end_char": 4262
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "石氏伤科诊治筋骨病损核心技术体系构建与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵咏芳;詹红生;石印玉;石瑛;墙世发;郭海玲;曹月龙;庞坚",
+      "id": "out-fe296252969f",
+      "evidence": [
+        {
+          "quote": "[奖励] 石氏伤科诊治筋骨病损核心技术体系构建与应用 — 赵咏芳;詹红生;石印玉;石瑛;墙世发;郭海玲;曹月龙;庞坚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4324
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2023-浦东新区科技精英奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵咏芳",
+      "id": "out-cc4b10fc773d",
+      "evidence": [
+        {
+          "quote": "[奖励] 2023-浦东新区科技精英奖 — 赵咏芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4353
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2024浦东新区明珠领军人才",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵咏芳",
+      "id": "out-fc9bcdac7087",
+      "evidence": [
+        {
+          "quote": "[奖励] 2024浦东新区明珠领军人才 — 赵咏芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4359,
+            "end_char": 4383
+          },
+          "version": "69e61ac50b9bc5555dba"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

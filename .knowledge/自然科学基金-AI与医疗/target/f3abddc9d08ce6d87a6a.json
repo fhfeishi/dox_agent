@@ -2,15 +2,20 @@
   "doc_id": "f3abddc9d08ce6d87a6a",
   "version": "9f329266f90c411f3985",
   "source_hash": "000741a11b8037b70a786ee001edaf3e1a2614b6c509d9912a4febc27d3c7462",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.491493+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.457166+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-818f88b87a34",
-          "name": "基于靶点结构的智能药物设计",
-          "desc": "新药研发投资高、时间长、风险大，项目研究基于靶点结构从头生长、互补匹配的化合物的药物设计理论、算法工具及原型系统。",
+          "id": "item-3e2a8ec24bb8",
+          "name": "基于靶点结构的药物设计",
+          "desc": "分子生成与逆合成规划",
           "evidence": [
             {
-              "quote": "新药研发具有投资高、时间长、风险大的困难",
+              "quote": "基于靶点结构的药物设计面临“化学数据繁、候选分子多、设计不够准”等挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 668
-              },
-              "version": "9f329266f90c411f3985"
-            }
-          ]
-        },
-        {
-          "id": "item-02233a22da03",
-          "name": "服务药物设计与药物性质预测",
-          "desc": "兼顾模型与生物化学知识规则结合以提高可解释性与可合成性，服务于药物设计、药物合成、药物性质预测等。",
-          "evidence": [
-            {
-              "quote": "我们力图兼顾模型与生物化学知识规则的结合，以提高可解释性、药物分子的可合成性，使之能服务于药物设计、药物合成、药物性质预测等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 929,
-                "end_char": 990
+                "start_char": 2254,
+                "end_char": 2288
               },
               "version": "9f329266f90c411f3985"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe54b15d89ef",
-          "name": "传统方法效率低精准度差",
-          "desc": "传统药物设计方法效率低、受限于已有分子库、精准度差，难以满足生化实验大数据建模需求。",
-          "evidence": [
-            {
-              "quote": "传统药物设计方法效率低、受限于已有分子库、精准度差，难以满足快速增长的、繁杂异质的生化实验大数据的建模需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 722
-              },
-              "version": "9f329266f90c411f3985"
-            }
-          ]
-        },
-        {
-          "id": "item-2692441bc8ea",
-          "name": "分子靶向性不足与多目标优化难",
-          "desc": "面临分子生成靶向性不足、合成路线搜索低效、多目标协同优化难等关键瓶颈。",
+          "id": "item-5d00276111b4",
+          "name": "分子生成靶向性不足、合成路线搜索低效、多目标协同优化难",
+          "desc": "瓶颈",
           "evidence": [
             {
               "quote": "本项目针对分子生成靶向性不足、合成路线搜索低效、多目标协同优化难等关键瓶颈开展研究",
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-077cb5fc5b7d",
-          "name": "深度学习与启发式搜索双向协调",
-          "desc": "以深度学习对数据建模，通过归纳与认知学习形成启发式搜索策略，辅助构建具有前瞻搜索能力的化合物分子逐步生长算法，并将搜索结果反馈到深度学习。",
+          "id": "item-08c83221d346",
+          "name": "PAFlow流匹配、KGDiff扩散与AlphaDrug模型",
+          "desc": "分子生成",
           "evidence": [
             {
-              "quote": "以模型容量高、拟合能力强的深度学习对数据建模，通过归纳、认知学习形成启发式搜索策略，辅助构建高效的、具有前瞻搜索能力的化合物分子逐步生长算法；同时，研究特征富集和融合技术将前瞻搜索的结果反馈到深度学习，双向互补协调",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 801,
-                "end_char": 907
-              },
-              "version": "9f329266f90c411f3985"
-            }
-          ]
-        },
-        {
-          "id": "item-e1f52a477ab9",
-          "name": "流匹配与知识引导扩散模型",
-          "desc": "提出基于流匹配的PAFlow模型、知识引导的KGDiff扩散模型及Lmser Transformer融合MCTS的AlphaDrug模型，构建高效分子生成技术体系。",
-          "evidence": [
-            {
-              "quote": "提出了基于流匹配的PAFlow模型、知识引导的KGDiff扩散模型、及Lmser Transformer融合MCTS的AlphaDrug模型，构建了一系列高效分子生成技术体系",
+              "quote": "提出了基于流匹配的PAFlow模型、知识引导的KGDiff扩散模型、及Lmser Transformer融合MCTS的AlphaDrug模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2332,
-                "end_char": 2418
+                "end_char": 2401
               },
               "version": "9f329266f90c411f3985"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-163bccd1a07a",
-          "name": "A星启发式逆合成规划SeeA*",
-          "desc": "研发基于A*启发式搜索的逆合成规划SeeA*算法，突破启发式搜索效率与鲁棒性瓶颈。",
+          "id": "item-3478cdebf4b0",
+          "name": "SeeA*逆合成规划算法",
+          "desc": "A*启发式搜索",
           "evidence": [
             {
-              "quote": "研发了基于A*启发式搜索的逆合成规划SeeA*算法，突破启发式搜索效率与鲁棒性瓶颈",
+              "quote": "研发了基于A*启发式搜索的逆合成规划SeeA*算法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2420,
-                "end_char": 2460
+                "end_char": 2444
               },
               "version": "9f329266f90c411f3985"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2d5d2d2ccb54",
+          "name": "MoC因果发现多目标分子生成与NeBC强化学习多目标优化",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "建立因果发现驱动的多目标分子生成MoC方法与新颖性增强的基于强化学习多目标优化NeBC算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2462,
+                "end_char": 2506
+              },
+              "version": "9f329266f90c411f3985"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,43 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dffa87d1092f",
-          "name": "PAFlow平均Vina评分-8.31",
-          "desc": "PAFlow在CrossDocked2020基准实现-8.31平均Vina评分（超当前最优方法17.5%），80.8%分子亲和力优于参考配体。",
+          "id": "item-59220af80dca",
+          "name": "SeeA*成功率",
+          "desc": "USPTO 98.95%",
           "evidence": [
             {
-              "quote": "PAFlow在CrossDocked2020基准实现-8.31平均Vina评分（超当前最优方法17.5%），80.8%分子亲和力优于数据中的参考配体",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2522,
-                "end_char": 2595
-              },
-              "version": "9f329266f90c411f3985"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3e6b60fc010b",
-          "name": "SeeA星逆合成成功率98.95%",
-          "desc": "SeeA*在USPTO基准成功率98.95%、路线长度6.36；MEEA*实现100%成功率，天然产物合成成功率97.68%。",
-          "evidence": [
-            {
-              "quote": "SeeA*在USPTO基准成功率98.95%，路线长度6.36；MEEA*实现100%成功率，天然产物合成成功率97.68%",
+              "quote": "SeeA*在USPTO基准成功率98.95%，路线长度6.36",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2685,
-                "end_char": 2746
+                "end_char": 2715
               },
               "version": "9f329266f90c411f3985"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b25c67591ae7",
-          "name": "论文与吴文俊奖成果",
-          "desc": "发表27篇高水平期刊或国际会议论文，包括NeurIPS等CCF-A类论文8篇，项目成果荣获2024年度吴文俊人工智能自然科学二等奖。",
+          "id": "item-f18960d8be31",
+          "name": "论文与奖项",
+          "desc": "27篇，吴文俊人工智能自然科学二等奖",
           "evidence": [
             {
               "quote": "研究成果发表了27篇高水平期刊或国际会议论文，包括NeurIPS等CCF-A类论文8篇",
@@ -197,55 +158,543 @@
               "version": "9f329266f90c411f3985"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-818f88b87a34"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fe54b15d89ef"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "THFlow: A Temporally Hierarchical Flow Matching Framework for 3D Peptide Design",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengdeng Huang;Shikui Tu",
+      "id": "out-4f0641da7cc7",
+      "evidence": [
+        {
+          "quote": "[会议论文] THFlow: A Temporally Hierarchical Flow Matching Framework for 3D Peptide Design — Dengdeng Huang;Shikui Tu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3167,
+            "end_char": 3279
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fe54b15d89ef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-077cb5fc5b7d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度双向神经网络的蛋白质配体结合位点检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李培莹;曹博恒;涂仕奎;徐雷",
+      "id": "out-206bda37560a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度双向神经网络的蛋白质配体结合位点检测方法 — 李培莹;曹博恒;涂仕奎;徐雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3284,
+            "end_char": 3331
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e1f52a477ab9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dffa87d1092f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KeeA: Epistemic Exploratory A Search via Knowledge Calibration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengwei Zhao;Shikui Tu;Yanan Sun;Lei Xu",
+      "id": "out-39b35bcf3da6",
+      "evidence": [
+        {
+          "quote": "[会议论文] KeeA: Epistemic Exploratory A Search via Knowledge Calibration — Dengwei Zhao;Shikui Tu;Yanan Sun;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3336,
+            "end_char": 3446
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-163bccd1a07a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b25c67591ae7"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2024年度吴文俊人工智能科学技术奖自然科学奖二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "章文;刘娟;涂仕奎;刘世超;刘峰",
+      "id": "out-205670d50cc4",
+      "evidence": [
+        {
+          "quote": "[奖励] 2024年度吴文俊人工智能科学技术奖自然科学奖二等奖 — 章文;刘娟;涂仕奎;刘世超;刘峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3451,
+            "end_char": 3500
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cauchy-Schwarz bounded trade-oﬀ weighting for causal inference with small sample sizes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Ma;Shikui Tu;Lei Xu",
+      "id": "out-b401e329fec9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cauchy-Schwarz bounded trade-oﬀ weighting for causal inference with small sample sizes — Qin Ma;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3505,
+            "end_char": 3623
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning method for end-to-end prediction of intracranial aneurysm rupture risk",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiying Li;Yongchang Liu;Jiafeng Zhou;Shikui Tu;Bing Zhao;Jieqing Wan;Yunjun Yang;Lei Xu",
+      "id": "out-c59c0b7d9fe6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning method for end-to-end prediction of intracranial aneurysm rupture risk — Peiying Li;Yongchang Liu;Jiafeng Zhou;Shikui Tu;Bing Zhao;Jieqing Wan;Yunjun Yang;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3628,
+            "end_char": 3811
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient retrosynthetic planning with MCTS exploration enhanced A search",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengwei Zhao;Shikui Tu;Lei Xu",
+      "id": "out-24ae4d1c1246",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient retrosynthetic planning with MCTS exploration enhanced A search — Dengwei Zhao;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3816,
+            "end_char": 3927
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SeeA: Efficient Exploration-Enhanced A Search by Selective Sampling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengwei Zhao;Shikui Tu;Lei Xu",
+      "id": "out-9dbd9d16d3d6",
+      "evidence": [
+        {
+          "quote": "[会议论文] SeeA: Efficient Exploration-Enhanced A Search by Selective Sampling — Dengwei Zhao;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4037
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "S3GA: Towards Scalable Self-Supervised Learning for Large Scale Graph Alignment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenqi Guo;Shikui Tu;Lei Xu",
+      "id": "out-ea14e7a638d3",
+      "evidence": [
+        {
+          "quote": "[会议论文] S3GA: Towards Scalable Self-Supervised Learning for Large Scale Graph Alignment — Wenqi Guo;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4042,
+            "end_char": 4156
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习和树搜索的计算机辅助药物设计系统和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钱浩;林铖;赵登伟;涂仕奎;徐雷",
+      "id": "out-c590d6621e62",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习和树搜索的计算机辅助药物设计系统和方法 — 钱浩;林铖;赵登伟;涂仕奎;徐雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4162,
+            "end_char": 4210
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图神经网络和启发式搜索的药物分子设计系统和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林铖;涂仕奎;徐雷",
+      "id": "out-4bd4453c3f5b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于图神经网络和启发式搜索的药物分子设计系统和方法 — 林铖;涂仕奎;徐雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4216,
+            "end_char": 4257
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MGAE-DC: Predicting the synergistic effects of drug combinations through multi-channel graph autoencoders",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Zhang;Shikui Tu",
+      "id": "out-514d30a3f4ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MGAE-DC: Predicting the synergistic effects of drug combinations through multi-channel graph autoencoders — Peng Zhang;Shikui Tu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4397
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KGDiff: towards explainable target-aware molecule generation with knowledge guidance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Qian;Wenjing Huang;Shikui Tu;Lei Xu",
+      "id": "out-80c5865bfc68",
+      "evidence": [
+        {
+          "quote": "[期刊论文] KGDiff: towards explainable target-aware molecule generation with knowledge guidance — Hao Qian;Wenjing Huang;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4403,
+            "end_char": 4535
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SketchMLP: effectively utilize rasterized images and drawing sequences for sketch recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tengjie Li;Shikui Tu;Lei Xu",
+      "id": "out-3ee7d57eed7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SketchMLP: effectively utilize rasterized images and drawing sequences for sketch recognition — Tengjie Li;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4541,
+            "end_char": 4670
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prior-Guided Flow Matching for Target-Aware Molecule Design with Learnable Atom Number",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingyuan Zhou;Hao Qian;Shikui Tu;Lei Xu",
+      "id": "out-46e6eb8c8af8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Prior-Guided Flow Matching for Target-Aware Molecule Design with Learnable Atom Number — Jingyuan Zhou;Hao Qian;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4676,
+            "end_char": 4810
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An EEG-based dual-stream spatial-spectral-temporal large model for self-limited epilepsy with centrotemporal spikes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Zhang;Yun Ren;Fang Yuan;Xuqin Chen;Shikui Tu;Lei Xu",
+      "id": "out-191a651e1f76",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An EEG-based dual-stream spatial-spectral-temporal large model for self-limited epilepsy with centrotemporal spikes — Lin Zhang;Yun Ren;Fang Yuan;Xuqin Chen;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4816,
+            "end_char": 4995
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种进行化学有机分子多步逆合成规划的高效系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵登伟;涂仕奎;徐雷",
+      "id": "out-3e32b3663b93",
+      "evidence": [
+        {
+          "quote": "[专利] 一种进行化学有机分子多步逆合成规划的高效系统 — 赵登伟;涂仕奎;徐雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5001,
+            "end_char": 5040
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Text to Sketch Generation with Multi-Styles",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tengjie Li;Shikui Tu;Lei Xu",
+      "id": "out-f677b0c339a6",
+      "evidence": [
+        {
+          "quote": "[会议论文] Text to Sketch Generation with Multi-Styles — Tengjie Li;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5046,
+            "end_char": 5125
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MulMol: Transformer-based Multi-Task Molecular Representation Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengdeng Huang;Shikui Tu",
+      "id": "out-b68ded132ba2",
+      "evidence": [
+        {
+          "quote": "[会议论文] MulMol: Transformer-based Multi-Task Molecular Representation Learning — Dengdeng Huang;Shikui Tu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5131,
+            "end_char": 5234
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Objective Structure-Based Drug Design Using Causal Discovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingyuan Zhou;Dengwei Zhao;Hao Qian;Shikui Tu;Lei Xu",
+      "id": "out-aa23ef138a8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Objective Structure-Based Drug Design Using Causal Discovery — Jingyuan Zhou;Dengwei Zhao;Hao Qian;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5240,
+            "end_char": 5367
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DrugGen: a database of de novo-generated molecular binders for specified target proteins",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Hao;Zhou Jingyuan;Tu Shikui;Xu Lei",
+      "id": "out-3c5ef1715952",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DrugGen: a database of de novo-generated molecular binders for specified target proteins — Qian Hao;Zhou Jingyuan;Tu Shikui;Xu Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5373,
+            "end_char": 5509
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Generalized Weighted Path Consistency for Mastering Atari Games",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengwei Zhao;Shikui Tu;Lei Xu",
+      "id": "out-d5dddee51b79",
+      "evidence": [
+        {
+          "quote": "[会议论文] Generalized Weighted Path Consistency for Mastering Atari Games — Dengwei Zhao;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5515,
+            "end_char": 5616
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GraphFusion: Integrative prediction of drug synergy using multi-scale graph representations and cell line contexts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Biyang Zeng;Shikui Tu;Lei Xu",
+      "id": "out-48db90a5d2ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GraphFusion: Integrative prediction of drug synergy using multi-scale graph representations and cell line contexts — Biyang Zeng;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5622,
+            "end_char": 5773
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Learning for AlphaZero via Path Consistency",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dengwei Zhao;Shikui Tu;Lei Xu",
+      "id": "out-8ddf82acd7f3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Learning for AlphaZero via Path Consistency — Dengwei Zhao;Shikui Tu;Lei Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5779,
+            "end_char": 5870
+          },
+          "version": "9f329266f90c411f3985"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

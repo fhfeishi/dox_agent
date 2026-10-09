@@ -2,15 +2,20 @@
   "doc_id": "1c5c4cbfac57313bfdac",
   "version": "e9adfb93c82f326158df",
   "source_hash": "fd9c7b18bddb601aa03a0360fa62410686f70f4253df21e9f2ffcd0e18c149a4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.808397+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:31:10.529315+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-885c8c3d7bb7",
-          "name": "COPD早期功能小气道评价与预测",
-          "desc": "面向慢性阻塞性肺疾病的发生发展，评价功能小气道与小气道阻力并预测COPD风险。",
+          "id": "item-c67fbc70ad13",
+          "name": "COPD功能小气道与小气道阻力",
+          "desc": "定量可视化评价预测COPD发生发展",
           "evidence": [
             {
-              "quote": "小气道评价在慢性阻塞性肺疾病的发生发展中具有重要的意义",
+              "quote": "本项目聚焦功能小气道和小气道阻力的定量可视化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 683,
-                "end_char": 709
+                "start_char": 2473,
+                "end_char": 2494
               },
               "version": "e9adfb93c82f326158df"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-48872c020204",
-          "name": "功能小气道异常难以早期精准发现",
-          "desc": "功能小气道病变具有可逆性，但早期精准发现功能小气道异常困难；现有密度评价需呼吸双相CT扫描，辐射剂量高。",
+          "id": "item-078c1bd07f3b",
+          "name": "早期精准发现功能小气道异常",
+          "desc": "小气道评价重中之重",
           "evidence": [
             {
               "quote": "如何早期、精准发现功能小气道的异常，是小气道评价的重中之重",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e41f067e1f49",
-          "name": "深度学习与气流动力学驱动的功能小气道定量可视化",
-          "desc": "依托深度学习和流体力学技术，构建单一吸气相CT预测功能小气道及肺功能的模型，并实现小气道阻力的区域性定量可视化评价。",
+          "id": "item-98375d953f78",
+          "name": "单呼吸相CT功能小气道生成模型",
+          "desc": "降低辐射剂量",
           "evidence": [
             {
-              "quote": "本项目拟依托深度学习和流体力学技术，聚焦小气道功能和阻力的定量可视化研究",
+              "quote": "研发单呼吸相 CT 扫描评价功能小气道疾病的模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 967,
-                "end_char": 1002
+                "start_char": 2853,
+                "end_char": 2876
               },
               "version": "e9adfb93c82f326158df"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1dda9ebced2c",
+          "name": "PRM参数肺功能预测模型",
+          "desc": "预测FEV1/FVC与FEV1%",
+          "evidence": [
+            {
+              "quote": "构建了基于PRM参数的肺功能预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2547,
+                "end_char": 2564
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b993e10f5af4",
+          "name": "CT结合气道CFD小气道阻力评估",
+          "desc": "与肺功能指标相关",
+          "evidence": [
+            {
+              "quote": "表明CT结合气道CFD与PFT可有效评估小气道阻力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3124,
+                "end_char": 3148
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ce67f0249af",
-          "name": "单呼吸相CT生成模型检测功能小气道病变AUC 0.86",
-          "desc": "生成模型检测功能性小气道病变性能显著优于传统预测模型（敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70），并在多个内部及外部测试集中保持稳定。",
+          "id": "item-0d88f884cad4",
+          "name": "生成模型检测功能性小气道病变",
+          "desc": "敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70",
           "evidence": [
             {
               "quote": "生成模型在功能性小气道病变检测中的性能显著优于传统预测模型（敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70）",
@@ -99,7 +139,28 @@
               "version": "e9adfb93c82f326158df"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3cf020b2f0bb",
+          "name": "PRM联合临床信息模型",
+          "desc": "敏感度0.85、特异度0.90、准确度0.88",
+          "evidence": [
+            {
+              "quote": "由PRM参数联合4项临床信息构建的联合模型在正常组与高危组分类中敏感度0.85、特异度0.90、准确度0.88",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2634,
+                "end_char": 2688
+              },
+              "version": "e9adfb93c82f326158df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +168,406 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-885c8c3d7bb7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-48872c020204"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-48872c020204"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e41f067e1f49"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e41f067e1f49"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-1ce67f0249af"
+        "item_id": "item-0d88f884cad4"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-98375d953f78"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "生成模型在功能性小气道病变检测中的性能显著优于传统预测模型（敏感度86.3% vs 38.9%，AUC 0.86 vs 0.70）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2878,
+            "end_char": 2942
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT影像和深度学习的慢性阻塞性肺疾病预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范丽;刘士远;周陶胡;周秀秀;张迪",
+      "id": "out-c450f3538d28",
+      "evidence": [
+        {
+          "quote": "[专利] 基于CT影像和深度学习的慢性阻塞性肺疾病预测系统 — 范丽;刘士远;周陶胡;周秀秀;张迪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3255,
+            "end_char": 3303
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The characteristics of emphysema and pulmonary perfusion derived from spectral CT in smokers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Guan;Xiuxiu Zhou;Di Zhang;Yi Xia;Shiyuan Liu;Li Fan",
+      "id": "out-ee1c7b663646",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The characteristics of emphysema and pulmonary perfusion derived from spectral CT in smokers — Yu Guan;Xiuxiu Zhou;Di Zhang;Yi Xia;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3308,
+            "end_char": 3463
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上海市东方英才计划拔尖人才",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范丽",
+      "id": "out-e6770e89fed4",
+      "evidence": [
+        {
+          "quote": "[奖励] 上海市东方英才计划拔尖人才 — 范丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3468,
+            "end_char": 3490
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single Inspiratory Chest CT–based Generative Deep Learning Models to Evaluate Functional Small Airways Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Zhang;Mingyue Zhao;Xiuxiu Zhou;Yiwei Li;Yu Guan;Yi Xia;Jin Zhang;Qi Dai;Jingfeng Zhang;Li Fan;S.Kevin Zhou;Shiyuan Liu",
+      "id": "out-5ecd217a83d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single Inspiratory Chest CT–based Generative Deep Learning Models to Evaluate Functional Small Airways Disease — Di Zhang;Mingyue Zhao;Xiuxiu Zhou;Yiwei Li;Yu Guan;Yi Xia;Jin Zhang;Qi Dai;Jingfeng Zhang;Li Fan;S.Kevin Zhou;Shiyuan Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3495,
+            "end_char": 3735
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A computed tomography-based lung radiomics nomogram to identify acute exacerbation of chronic obstructive pulmonary disease: a multi-institutional validation study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuxiu Zhou;Yanqing Ma;Taohu Zhou;Xiaoxia Xie;Yueze Li;Yu Guan;Yi Wang;Jie Li;Hanxiao Zhang;Shiyuan Liu;Li Fan",
+      "id": "out-97530d4134c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A computed tomography-based lung radiomics nomogram to identify acute exacerbation of chronic obstructive pulmonary disease: a multi-institutional validation study — Xiuxiu Zhou;Yanqing Ma;Taohu Zhou;Xiaoxia Xie;Yueze Li;Yu Guan;Yi Wang;Jie Li;Hanxiao Zhang;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3740,
+            "end_char": 4022
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-Based Radiomic Nomogram for the Prediction of Chronic Obstructive Pulmonary Disease in Patients with Lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "TaoHu Zhou;WenTing Tu;Peng Dong;ShaoFeng Duan;XiuXiu Zhou;YanQing Ma;Yun Wang;Tian Liu;HanXiao Zhang;Yan Feng;WenJun Huang;YanMing Ge;Shiyuan Liu;Zhaobin Li;Li Fan",
+      "id": "out-0964492992e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-Based Radiomic Nomogram for the Prediction of Chronic Obstructive Pulmonary Disease in Patients with Lung cancer — TaoHu Zhou;WenTing Tu;Peng Dong;ShaoFeng Duan;XiuXiu Zhou;YanQing Ma;Yun Wang;Tian Liu;HanXiao Zhang;Yan Feng;WenJun Huang;YanMing Ge;Shiyuan Liu;Zhaobin Li;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4314
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上海市医学科技奖 二等奖;肺部重大疾病智能影像诊疗关键技术研究及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘士远;范丽;萧毅;王少康;王祥;望云;涂文婷",
+      "id": "out-ded63c374ecd",
+      "evidence": [
+        {
+          "quote": "[奖励] 上海市医学科技奖 二等奖;肺部重大疾病智能影像诊疗关键技术研究及应用 — 刘士远;范丽;萧毅;王少康;王祥;望云;涂文婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4319,
+            "end_char": 4383
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative Assessment Characteristics of Small Pulmonary Vessel Remodelling in Populations at High Risk for COPD and Smokers Using Low-Dose CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Shiyuan Liu;Li Fan",
+      "id": "out-7a3a53ad8736",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative Assessment Characteristics of Small Pulmonary Vessel Remodelling in Populations at High Risk for COPD and Smokers Using Low-Dose CT — Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4601
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上海市医苑新星杰出青年",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范丽",
+      "id": "out-6c5bc89596d6",
+      "evidence": [
+        {
+          "quote": "[奖励] 上海市医苑新星杰出青年 — 范丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4606,
+            "end_char": 4626
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based whole lung radiomics nomogram for identification of PRISm from non-COPD subjects",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Taohu Zhou;Yu Guan;XiaoQing Lin;XiuXiu Zhou;Liang Mao;YanQing Ma;Bing Fan;Jie Li;ShiYuan Liu;Li Fan",
+      "id": "out-9ae94975faef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based whole lung radiomics nomogram for identification of PRISm from non-COPD subjects — Taohu Zhou;Yu Guan;XiaoQing Lin;XiuXiu Zhou;Liang Mao;YanQing Ma;Bing Fan;Jie Li;ShiYuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4829
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Re-Defining High Risk COPD with Parameter Response Mapping Based on Machine Learning Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Wenting Tu;Yang Lu;Weidong Zhang;Chi-Cheng Fu;Qu Fang;Geertruida H de Bock;Shiyuan Liu;Li Fan",
+      "id": "out-9e3b14cb60bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Re-Defining High Risk COPD with Parameter Response Mapping Based on Machine Learning Models — Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Wenting Tu;Yang Lu;Weidong Zhang;Chi-Cheng Fu;Qu Fang;Geertruida H de Bock;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4835,
+            "end_char": 5070
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A predictive system for chronic obstructive pulmonary disease based on CT imaging and deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan li;Liu shiyuan;Zhou taohu;Zhou xiuxiu;Zhang Di",
+      "id": "out-6aed314a5825",
+      "evidence": [
+        {
+          "quote": "[专利] A predictive system for chronic obstructive pulmonary disease based on CT imaging and deep learning — Fan li;Liu shiyuan;Zhou taohu;Zhou xiuxiu;Zhang Di",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5076,
+            "end_char": 5232
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A new method to screen high-risk COPD populations: machine learning-based cascade classification models based on low-dose CT scan",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Yang Lu;Xuebin Zheng;Chuan He;Shiyuan Liu;Li Fan",
+      "id": "out-4a7f9951c427",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A new method to screen high-risk COPD populations: machine learning-based cascade classification models based on low-dose CT scan — Yu Pu;Xiuxiu Zhou;Di Zhang;Yu Guan;Yi Xia;Yang Lu;Xuebin Zheng;Chuan He;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5238,
+            "end_char": 5466
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT whole lung radiomic nomogram: a potential biomarker for lung function evaluation and identification of COPD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Taohu Zhou;Xiuxiu Zhou;Jiong Ni;Yanqing Ma;Fangyi Xu;Bing Fan;Yu Guan;Xinang Jiang;Xiaoqing Lin;Jie Li;Yi Xia;Xiang Wang;Yun Wang;Wenjun Huang;Wenting Tu;Peng Dong;Zhaobin Li;Shiyuan Liu;Li Fan",
+      "id": "out-5a2056f3caf8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT whole lung radiomic nomogram: a potential biomarker for lung function evaluation and identification of COPD — Taohu Zhou;Xiuxiu Zhou;Jiong Ni;Yanqing Ma;Fangyi Xu;Bing Fan;Yu Guan;Xinang Jiang;Xiaoqing Lin;Jie Li;Yi Xia;Xiang Wang;Yun Wang;Wenjun Huang;Wenting Tu;Peng Dong;Zhaobin Li;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5784
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of machine learning model to predict pulmonary function with low‐dose CT‐derived parameter response mapping in a community‐based chest screening cohort",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuxiu Zhou;Yu Pu;Di Zhang;Yu Guan;Yang Lu;Weidong Zhang;Chi‐Cheng Fu;Qu Fang;Hanxiao Zhang;Shiyuan Liu;Li Fan",
+      "id": "out-fb904912849c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of machine learning model to predict pulmonary function with low‐dose CT‐derived parameter response mapping in a community‐based chest screening cohort — Xiuxiu Zhou;Yu Pu;Di Zhang;Yu Guan;Yang Lu;Weidong Zhang;Chi‐Cheng Fu;Qu Fang;Hanxiao Zhang;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5790,
+            "end_char": 6072
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "慢性阻塞性肺疾病胸部CT检查及评价中国专家共识",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "（第一执笔人 范丽）中华医学会放射学分会心胸学组;（执笔人 金晨望）;（执笔人 刘敏）",
+      "id": "out-df40d1e4510d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 慢性阻塞性肺疾病胸部CT检查及评价中国专家共识 — （第一执笔人 范丽）中华医学会放射学分会心胸学组;（执笔人 金晨望）;（执笔人 刘敏）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6078,
+            "end_char": 6153
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation of pulmonary small vessels of QCT with emphysema and pulmonary function in 894 COPD patients: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuxiu Zhou;Yu Guan;Yu Pu;Di Zhang;Yi Xia;Wenting Tu;Shiyuan Liu;Li Fan",
+      "id": "out-ffa8e1eec5e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation of pulmonary small vessels of QCT with emphysema and pulmonary function in 894 COPD patients: a systematic review and meta-analysis — Xiuxiu Zhou;Yu Guan;Yu Pu;Di Zhang;Yi Xia;Wenting Tu;Shiyuan Liu;Li Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6159,
+            "end_char": 6382
+          },
+          "version": "e9adfb93c82f326158df"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

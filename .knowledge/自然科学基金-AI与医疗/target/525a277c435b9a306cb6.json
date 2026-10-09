@@ -2,15 +2,20 @@
   "doc_id": "525a277c435b9a306cb6",
   "version": "5844a673fc02d37cd5ef",
   "source_hash": "ba9492b3302148a6eb33d81457ce1b3f57c626db40aca1bf37141a93c045e5f6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.948556+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:12:53.802198+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 41,
+      "total": 41,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-83f04eb80c45",
-          "name": "SCA3/MJD修饰基因鉴定与疾病预警",
-          "desc": "基于全基因组测序和人工智能鉴定SCA3/MJD修饰基因并建立疾病风险预警平台。",
+          "id": "item-1aa114bd1b88",
+          "name": "SCA3/MJD遗传修饰与发病年龄预测",
+          "desc": "在全球最大样本量的SCA3/MJD队列中鉴定修饰位点基因，构建临床预测模型与风险预警平台",
           "evidence": [
             {
-              "quote": "遗传性脊髓小脑型共济失调3型/马查多-约瑟夫病（SCA3/MJD）是一种具有高度临床和遗传异质性的神经退行性疾病，致死率和致残率高，发病机制未完全阐明，尚无有效治疗方法",
+              "quote": "在全球最大样本量的SCA3/MJD队列中，鉴定新的修饰位点、基因，阐明其分子发病机制，探索新的干预靶点，构建临床预测模型，建立风险预警平台",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        },
+        {
+          "id": "item-ee9293b79d1b",
+          "name": "中国SCA3精准医学",
+          "desc": "从修饰基因角度为SCA3/MJD的发病机制和治疗提供新思路",
+          "evidence": [
+            {
+              "quote": "本研究将从修饰基因角度为SCA3/MJD的发病机制和治疗提供新思路",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -41,16 +62,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f4a00cb66ef",
-          "name": "缺乏全基因组水平修饰基因研究",
-          "desc": "迄今尚无在全基因组水平从常见、低频和罕见变异角度开展SCA3/MJD修饰基因的研究，具有较大局限性。",
+          "id": "item-8f5e8013e082",
+          "name": "修饰基因研究局限于候选基因策略",
+          "desc": "既往研究多基于候选基因策略，局限性明显，缺乏从全基因组层面系统探索",
           "evidence": [
             {
-              "quote": "尚无在全基因组水平，常见、低频和罕见变异角度，开展SCA3/MJD修饰基因的研究，具有较大的局限性",
+              "quote": "然而，既往研究多基于候选基因策略，局限性明显，缺乏从全基因组层面系统探索常见与罕见变异对中国SCA3人群发病年龄修饰作用的研究",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f7723f7a4b6bfc99ff6b16b9eda88dbc529910a8"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        },
+        {
+          "id": "item-9e347848826d",
+          "name": "罕见变异修饰作用缺乏系统研究",
+          "desc": "尚无在全基因组水平，常见、低频和罕见变异角度，开展SCA3/MJD修饰基因的研究",
+          "evidence": [
+            {
+              "quote": "迄今，尚无在全基因组水平，常见、低频和罕见变异角度，开展SCA3/MJD修饰基因的研究，具有较大的局限性",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ]
+        },
+        {
+          "id": "item-8ecd5f7c72b7",
+          "name": "疾病缺乏有效疗法",
+          "desc": "SCA3由ATXN3基因CAG异常扩增导致，目前尚无有效疗法",
+          "evidence": [
+            {
+              "quote": "由ATXN3基因CAG异常扩增导致，目前尚无有效疗法",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "f7723f7a4b6bfc99ff6b16b9eda88dbc529910a8"
               },
               "version": "5844a673fc02d37cd5ef"
             }
@@ -63,34 +116,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dafbde9cd318",
-          "name": "全基因组测序关联分析与AI预测建模",
-          "desc": "应用生物信息学与AI方法，基于全基因组测序的全基因组关联分析策略，在全球最大样本量的SCA3/MJD队列中鉴定新的修饰位点与基因，构建临床预测模型和风险预警平台。",
+          "id": "item-db96af8fa5d0",
+          "name": "WGS-GWAS全基因组关联分析",
+          "desc": "基于全基因组测序的全基因组关联分析策略，从常见变异层面系统研究发病年龄修饰因素",
           "evidence": [
             {
-              "quote": "本项目拟进一步应用生物信息学、AI等方法，基于全基因组测序的全基因组关联分析（WGS-GWAS）研究策略，在全球最大样本量的SCA3/MJD队列中，鉴定新的修饰位点、基因",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
-              },
-              "version": "5844a673fc02d37cd5ef"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-24762bcdc3a9",
-          "name": "鉴定两个全基因组显著修饰位点",
-          "desc": "在1248例发现队列中鉴定出两个全基因组显著修饰位点（rs28801081、rs142932360）及FBXO33、NDUFB1、SULF2三个关键修饰基因，并从罕见变异与候选基因角度解析修饰机制，为干预靶点与风险预测提供遗传学线索。",
-          "evidence": [
-            {
-              "quote": "鉴定出两个达到全基因组显著水平的修饰位点（rs28801081，rs142932360）以及FBX033、NDUFB1、SULF2三个关键修饰基因",
+              "quote": "本项目基于大规模中国SCA3患者队列的深度全基因组测序数据，从三个层面展开研究",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -99,7 +130,140 @@
               "version": "5844a673fc02d37cd5ef"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2d4761c399f4",
+          "name": "罕见变异全基因组关联分析",
+          "desc": "在基因水平与基因组区域水平发现罕见变异修饰作用",
+          "evidence": [
+            {
+              "quote": "第二部分，从罕见变异角度开展全基因组关联研究，在基因水平发现PTER、LM07、PMFBP1、SLC35F3、RALYL与CFAP57基因显示出潜在潜在修饰作用",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fc676a1fbb36",
+          "name": "GLS基因GCA重复序列分析",
+          "desc": "从候选基因角度探讨GLS基因GCA重复序列对发病年龄的修饰作用",
+          "evidence": [
+            {
+              "quote": "第三部分，从候选基因角度探讨了GLS基因的GCA重复序列的修饰作用，发现中等长度重复（9-13次）可能具有延迟发病的保护效应",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-8030d996d37a",
+          "name": "空间转录组学映射与多层面机制解析",
+          "desc": "通过性别分层、极端表型分析及空间转录组学映射解析遗传修饰机制，提示小脑等组织为易感脑区",
+          "evidence": [
+            {
+              "quote": "通过性别分层、极端表型分析及空间转录组学映射，从多层面解析了遗传修饰机制，并提示小脑等组织为易感脑区",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-272da0ff50ab",
+          "name": "常见变异修饰位点与基因",
+          "desc": "在1248例患者发现队列中鉴定出两个全基因组显著修饰位点与三个关键修饰基因",
+          "evidence": [
+            {
+              "quote": "在包含1248例患者的发现队列中，鉴定出两个达到全基因组显著水平的修饰位点（rs28801081，rs142932360）以及FBX033、NDUFB1、SULF2三个关键修饰基因",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "鉴定出",
+          "self_reported": false
+        },
+        {
+          "id": "item-306d906a2733",
+          "name": "罕见变异修饰基因与区域",
+          "desc": "发现六个基因及三个基因组区域与发病年龄存在潜在关联",
+          "evidence": [
+            {
+              "quote": "在基因水平发现PTER、LM07、PMFBP1、SLC35F3、RALYL与CFAP57基因显示出潜在潜在修饰作用",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "发现",
+          "self_reported": false
+        },
+        {
+          "id": "item-739de099c664",
+          "name": "GLS GCA重复序列保护效应",
+          "desc": "发现中等长度重复（9-13次）可能具有延迟发病的保护效应",
+          "evidence": [
+            {
+              "quote": "发现中等长度重复（9-13次）可能具有延迟发病的保护效应",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "发现",
+          "self_reported": false
+        },
+        {
+          "id": "item-b2f510e2b2f7",
+          "name": "中国SCA3遗传修饰图谱",
+          "desc": "首次从全基因组常见与罕见变异视角系统揭示中国SCA3患者发病年龄的复杂遗传修饰图谱",
+          "evidence": [
+            {
+              "quote": "本项目首次从全基因组常见与罕见变异视角，系统揭示了中国SCA3患者发病年龄的复杂遗传修饰图谱",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+              },
+              "version": "5844a673fc02d37cd5ef"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "首次",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +271,287 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-db96af8fa5d0"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-8f5e8013e082"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，既往研究多基于候选基因策略，局限性明显，缺乏从全基因组层面系统探索常见与罕见变异对中国SCA3人群发病年龄修饰作用的研究",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "f7723f7a4b6bfc99ff6b16b9eda88dbc529910a8"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2d4761c399f4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9e347848826d"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "第二部分，从罕见变异角度开展全基因组关联研究，在基因水平发现PTER、LM07、PMFBP1、SLC35F3、RALYL与CFAP57基因显示出潜在潜在修饰作用",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-83f04eb80c45"
+        "item_id": "item-1aa114bd1b88"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-4f4a00cb66ef"
+        "item_id": "item-9e347848826d"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "迄今，尚无在全基因组水平，常见、低频和罕见变异角度，开展SCA3/MJD修饰基因的研究，具有较大的局限性",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "881410a2c1832e87038f609cd3f119ea764b7f18"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-4f4a00cb66ef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dafbde9cd318"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dafbde9cd318"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-24762bcdc3a9"
+        "item_id": "item-272da0ff50ab"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-db96af8fa5d0"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在包含1248例患者的发现队列中，鉴定出两个达到全基因组显著水平的修饰位点（rs28801081，rs142932360）以及FBX033、NDUFB1、SULF2三个关键修饰基因",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-8030d996d37a"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-db96af8fa5d0"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "通过性别分层、极端表型分析及空间转录组学映射，从多层面解析了遗传修饰机制",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "cb1b51fd8ca0f79a01ee3fbf2e3175a25df8f78a"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "中国遗传性共济失调诊治专家共识2024",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "中华神经科杂志",
+      "id": "out-88cec51888b6",
+      "evidence": [
+        {
+          "quote": "中国遗传性共济失调诊治专家共识2024，中华神经科杂志，2024，57(4):315-325. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 138,
+            "chunk_id": "97ad38e8dbf519bdc0c3cca2665e9217fc7609c2"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Genetic Analysis of GCA Repeats in the GLS Gene: Implications for Undiagnosed Ataxia and Spinocerebellar Ataxia 3 in Mainland China",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Movement Disorders",
+      "id": "out-d14ae4abaf19",
+      "evidence": [
+        {
+          "quote": "Genetic Analysis of GCA Repeats in the GLS Gene: Implications for Undiagnosed Ataxia and Spinocerebellar Ataxia 3 in Mainland China, Movement Disorders, 2025, 40(2). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 136,
+            "chunk_id": "2f351190b566cbcf310a7e67c6c4a516eb6047af"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "The Natural History of Spinocerebellar Ataxia Type 3 in Mainland China: A 2-Year Cohort Study",
+      "status_raw": "2022",
+      "year": "2022",
+      "identifiers": {},
+      "venue": "Frontiers in Aging Neuroscience",
+      "id": "out-7e02728949a4",
+      "evidence": [
+        {
+          "quote": "The Natural History of Spinocerebellar Ataxia Type 3 in Mainland China: A 2-Year Cohort Study, Frontiers in Aging Neuroscience, 2022, 14: 917126. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 134,
+            "chunk_id": "1cf97fe013e985a53d6902b62f545f09f36103b2"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "基于CRISPR/Cas9的人源化ATXN3基因敲入小鼠模型的构建方法及应用",
+      "status_raw": "2024-07-02",
+      "year": "2024",
+      "identifiers": {
+        "application_no": "CN202211587327.4"
+      },
+      "id": "out-1ed9a757b889",
+      "evidence": [
+        {
+          "quote": "基于CRISPR/Cas9的人源化ATXN3基因敲入小鼠模型的构建方法及应用 2024-07-02至2042-12-09，中国，CN202211587327.4.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 138,
+            "chunk_id": "97ad38e8dbf519bdc0c3cca2665e9217fc7609c2"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "SCA临床与遗传数据一站式查询分析平台",
+      "status_raw": "构建",
+      "identifiers": {},
+      "id": "out-dcfc24e9e629",
+      "evidence": [
+        {
+          "quote": "SCA临床与遗传数据一站式查询分析平台的构建",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 132,
+            "chunk_id": "3f755e7f6709c64707cfa3279696b134bd3343e3"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "专利申请",
+      "status": "已取得",
+      "date": "2024-07-02",
+      "precision": "日",
+      "desc": "申请基于CRISPR/Cas9的人源化ATXN3基因敲入小鼠模型专利",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-edfc37b3dda2",
+      "tech_ids": [],
+      "output_ids": [
+        "out-1ed9a757b889"
+      ],
+      "evidence": [
+        {
+          "quote": "基于CRISPR/Cas9的人源化ATXN3基因敲入小鼠模型的构建方法及应用 2024-07-02至2042-12-09，中国，CN202211587327.4.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 138,
+            "chunk_id": "97ad38e8dbf519bdc0c3cca2665e9217fc7609c2"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    },
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2025",
+      "precision": "年",
+      "desc": "GLS基因GCA重复序列遗传分析成果发表于Movement Disorders",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-39af68584728",
+      "tech_ids": [
+        "item-fc676a1fbb36"
+      ],
+      "output_ids": [
+        "out-d14ae4abaf19"
+      ],
+      "evidence": [
+        {
+          "quote": "Genetic Analysis of GCA Repeats in the GLS Gene: Implications for Undiagnosed Ataxia and Spinocerebellar Ataxia 3 in Mainland China, Movement Disorders, 2025, 40(2). SCIE. 第二标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 136,
+            "chunk_id": "2f351190b566cbcf310a7e67c6c4a516eb6047af"
+          },
+          "version": "5844a673fc02d37cd5ef"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": null
 }

@@ -2,15 +2,20 @@
   "doc_id": "be5329c842deb4631712",
   "version": "8bf4e02ba3c3cd6adbd9",
   "source_hash": "4e91fd0fc88af14343054125ee12d023a2503cab4363781858e3b497190b5a0a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.137034+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:56:10.001583+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f49b5ca3a959",
-          "name": "移动网络化ACT干预PTSD",
-          "desc": "面向疫情后PTSD干预需求，研发并验证基于接纳承诺疗法的移动网络化心理干预程序及其心理与神经机制。",
+          "id": "item-8ca6d531e156",
+          "name": "PTSD移动网络化ACT干预",
+          "desc": "情绪调节与神经机制",
           "evidence": [
             {
-              "quote": "COVID-19增加了公众罹患创伤后应激障碍(PTSD)的风险，尤其是重灾区武汉",
+              "quote": "本项目围绕PTSD的病理机制、隐性情绪调节异常及网络化心理干预效果与机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 714
+                "start_char": 3284,
+                "end_char": 3319
               },
               "version": "8bf4e02ba3c3cd6adbd9"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f4bc5d8a915",
-          "name": "国内未实证检验网络化ACT干预PTSD效果",
-          "desc": "基于接纳承诺疗法的移动网络化干预是疫情后PTSD干预的重要方式，但国内尚未实证检验其效果及作用机制。",
+          "id": "item-52decf76c3c4",
+          "name": "PTSD情绪调节缺陷的神经机制及可干预性不明",
+          "desc": "国内未检验网络化ACT效果",
           "evidence": [
             {
-              "quote": "但目前国内还未实证检验网络化ACT干预PTSD的效果及作用机制",
+              "quote": "然而，PTSD情绪调节缺陷的神经机制及其可干预性仍有待系统阐明",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 783
+                "start_char": 3252,
+                "end_char": 3282
               },
               "version": "8bf4e02ba3c3cd6adbd9"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-891271511b11",
-          "name": "移动网络化ACT程序结合fMRI与机器学习匹配建模",
-          "desc": "整合临床与咨询心理学、神经科学与计算机科学方法，研发移动网络化ACT程序，用多点瞬时评价探究心理机制、fMRI探索神经机制，并以SMART与有监督机器学习做患者特征与治疗匹配建模。",
+          "id": "item-5f28b86906fe",
+          "name": "移动网络化ACT干预程序",
+          "desc": "随机对照试验评估",
           "evidence": [
             {
-              "quote": "研发国内首个ACT干预PTSD的移动网络化程序并考察其效果",
+              "quote": "项目完成了移动网络化接纳与承诺疗法（Acceptance and Commitment Therapy, ACT）干预程序的开发与优化，并通过随机对照试验系统评估了其对PTSD症状及情绪调节功能的干预效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 821,
-                "end_char": 849
+                "start_char": 3548,
+                "end_char": 3649
               },
               "version": "8bf4e02ba3c3cd6adbd9"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c952dd928af1",
+          "name": "多模态神经影像与机器学习",
+          "desc": "静息态与任务态fMRI",
+          "evidence": [
+            {
+              "quote": "项目通过静息态和任务态功能磁共振成像，揭示了PTSD在白质微结构及隐性情绪调节相关脑网络中的异常特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3369,
+                "end_char": 3418
+              },
+              "version": "8bf4e02ba3c3cd6adbd9"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-03680ca556ad",
-          "name": "移动网络化ACT显著改善PTSD核心症状",
-          "desc": "随机对照试验表明移动网络化ACT能显著改善PTSD核心症状，并在隐性情绪调节相关行为与脑功能指标上诱发可测量变化；心理灵活性发挥重要中介作用。",
+          "id": "item-27cdf83b2207",
+          "name": "移动网络化ACT改善PTSD核心症状",
+          "desc": "并引起隐性情绪调节行为与脑功能变化",
           "evidence": [
             {
               "quote": "结果表明，移动网络化ACT能够显著改善PTSD核心症状，并在隐性情绪调节相关行为与脑功能指标上诱发可测量的变化",
@@ -99,44 +122,321 @@
               "version": "8bf4e02ba3c3cd6adbd9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f49b5ca3a959"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4f4bc5d8a915"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PTSD易感性人格特质、工作记忆能力和创伤期间认知加工对模拟创伤闪回的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王铭;孙启武;柳静;任志洪;江光荣",
+      "id": "out-39a569cb934a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PTSD易感性人格特质、工作记忆能力和创伤期间认知加工对模拟创伤闪回的影响 — 王铭;孙启武;柳静;任志洪;江光荣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3861,
+            "end_char": 3924
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4f4bc5d8a915"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-891271511b11"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Speech-based recognition and estimating severity of PTSD using machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiawei Hu;Chunxiao Zhao;Congrong Shi;Ziyi Zhao;Zhihong Ren",
+      "id": "out-87866cfc0d49",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Speech-based recognition and estimating severity of PTSD using machine learning — Jiawei Hu;Chunxiao Zhao;Congrong Shi;Ziyi Zhao;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3929,
+            "end_char": 4075
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-891271511b11"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-03680ca556ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the development of posttraumatic stress disorder symptoms in COVID-19 epidemic in China: a network analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxiao Zhao;Wanyue Jiang;Hanshu Zhang;Ziyi Zhao;Congrong Shi;Zhihong Ren",
+      "id": "out-da85452d2bb7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the development of posttraumatic stress disorder symptoms in COVID-19 epidemic in China: a network analysis — Chunxiao Zhao;Wanyue Jiang;Hanshu Zhang;Ziyi Zhao;Congrong Shi;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4080,
+            "end_char": 4280
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interplay among attention, appraisal, and memory bias in provisional posttraumatic stress disorder: Exploring the combined cognitive biases hypothesis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziyi Zhao;Chunxiao Zhao;Lizu Lai;Congrong Shi;Xu Li;Shan Lu;Siyuan Guo;Zhihong Ren",
+      "id": "out-d8ed0d766493",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interplay among attention, appraisal, and memory bias in provisional posttraumatic stress disorder: Exploring the combined cognitive biases hypothesis. — Ziyi Zhao;Chunxiao Zhao;Lizu Lai;Congrong Shi;Xu Li;Shan Lu;Siyuan Guo;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4285,
+            "end_char": 4527
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "创伤后应激障碍的网络化心理干预及起效机制",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杜夏雨;赛力古·亚力坤;袁洁莹;任志洪",
+      "id": "out-a61d12a747e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 创伤后应激障碍的网络化心理干预及起效机制 — 杜夏雨;赛力古·亚力坤;袁洁莹;任志洪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4532,
+            "end_char": 4580
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and acceptability of mobile application-delivered acceptance and commitment therapy for posttraumatic stress disorder in China: A randomized controlled trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxiao Zhao;Ziyi Zhao;Michael E. Levin;Lizu Lai;Congrong Shi;Jiawei Hu;Wenke Chen;Zhihong Ren",
+      "id": "out-a0036acb6626",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and acceptability of mobile application-delivered acceptance and commitment therapy for posttraumatic stress disorder in China: A randomized controlled trial — Chunxiao Zhao;Ziyi Zhao;Michael E. Levin;Lizu Lai;Congrong Shi;Jiawei Hu;Wenke Chen;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4585,
+            "end_char": 4855
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring emotion regulation in PTSD with Insomnia: A task-based fMRI study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yuyi;Guo Yunxiao;Wang Xiaoqin;Liu Yinong;Liu Sijun;Zhao Junrong;Liu Lianzhong;Yu Ping;Ren Zhihong",
+      "id": "out-d40e556c0073",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring emotion regulation in PTSD with Insomnia: A task-based fMRI study — Zhang Yuyi;Guo Yunxiao;Wang Xiaoqin;Liu Yinong;Liu Sijun;Zhao Junrong;Liu Lianzhong;Yu Ping;Ren Zhihong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4860,
+            "end_char": 5047
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Attentional bias toward health-threat in health anxiety: A systematic review and three-level meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Congrong Shi;Steven Taylor;Michael Witthöft;Xiayu Du;Tao Zhang;Shan Lu;Zhihong Ren",
+      "id": "out-ca32436bbb44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Attentional bias toward health-threat in health anxiety: A systematic review and three-level meta-analysis — Congrong Shi;Steven Taylor;Michael Witthöft;Xiayu Du;Tao Zhang;Shan Lu;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5052,
+            "end_char": 5249
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mechanisms of change in an Internet-Based ACT study for depression in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunxiao Zhao;Zhihong Ren;Guangrong Jiang;Lin Zhang",
+      "id": "out-52a2a95396f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mechanisms of change in an Internet-Based ACT study for depression in China — Chunxiao Zhao;Zhihong Ren;Guangrong Jiang;Lin Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5254,
+            "end_char": 5389
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Structural brain correlates in major depressive disorder, anxiety disorders, and post-traumatic stress disorder: a diffusion tensor imaging meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunxiao Guo;Sijun Liu;Sara Poletti;Wei Liu;Yinong Liu;Junrong Zhao;Qian Xiong;Haixia Zheng;Dongtao Wei;Jiayi Li;Yuyi Zhang;Jun Ruan;Zhihong Ren",
+      "id": "out-038d48672224",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Structural brain correlates in major depressive disorder, anxiety disorders, and post-traumatic stress disorder: a diffusion tensor imaging meta-analysis — Yunxiao Guo;Sijun Liu;Sara Poletti;Wei Liu;Yinong Liu;Junrong Zhao;Qian Xiong;Haixia Zheng;Dongtao Wei;Jiayi Li;Yuyi Zhang;Jun Ruan;Zhihong Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5395,
+            "end_char": 5700
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and mechanisms of mobile application-delivered Acceptance and Commitment Therapy for posttraumatic stress disorder in China: Study protocol for a randomized controlled trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Ziyi;Zhao Chunxiao;Ren Zhihong;Shi Congrong;Lai Lizu",
+      "id": "out-9170634e5984",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and mechanisms of mobile application-delivered Acceptance and Commitment Therapy for posttraumatic stress disorder in China: Study protocol for a randomized controlled trial — Zhao Ziyi;Zhao Chunxiao;Ren Zhihong;Shi Congrong;Lai Lizu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5706,
+            "end_char": 5954
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neural mechanisms underlying implicit emotion regulation deficit in relational and nonrelational trauma PTSD: Insights from the Nested Hierarchical Model of Self",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guo Yunxiao;Xiong Qian;Tan Yafei;Zhao Junrong;Liu Sijun;Jia Jiaojiao;Zhang Zhihui;Zhang Yuyi;Ren Zhihong",
+      "id": "out-94f3c99a6aeb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neural mechanisms underlying implicit emotion regulation deficit in relational and nonrelational trauma PTSD: Insights from the Nested Hierarchical Model of Self — Guo Yunxiao;Xiong Qian;Tan Yafei;Zhao Junrong;Liu Sijun;Jia Jiaojiao;Zhang Zhihui;Zhang Yuyi;Ren Zhihong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5960,
+            "end_char": 6234
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The efficacy and optimal matching of an Internet-based acceptance and commitment therapy intervention for depressive symptoms among university students: A randomized controlled trial in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Chunxiao;Wampold Bruce E.;Ren Zhihong;Zhang Lin;Jiang Guangrong",
+      "id": "out-7b05020a2361",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The efficacy and optimal matching of an Internet-based acceptance and commitment therapy intervention for depressive symptoms among university students: A randomized controlled trial in China — Zhao Chunxiao;Wampold Bruce E.;Ren Zhihong;Zhang Lin;Jiang Guangrong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6240,
+            "end_char": 6508
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trauma Timing and Its Impact on Brain Activation During Flexible Emotion Regulation in PTSD: Insights From Functional MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Sijun;Guo Yunxiao;Liu Wei;Zhang Yuyi;Zhao Junrong;Liu Yinong;Liu Lianzhong;Ren Zhihong",
+      "id": "out-e58a19885a01",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trauma Timing and Its Impact on Brain Activation During Flexible Emotion Regulation in PTSD: Insights From Functional MRI — Liu Sijun;Guo Yunxiao;Liu Wei;Zhang Yuyi;Zhao Junrong;Liu Yinong;Liu Lianzhong;Ren Zhihong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6514,
+            "end_char": 6734
+          },
+          "version": "8bf4e02ba3c3cd6adbd9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      }
+    },
+    "consistent": true
+  }
 }

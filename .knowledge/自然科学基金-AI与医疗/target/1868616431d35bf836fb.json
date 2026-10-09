@@ -2,15 +2,20 @@
   "doc_id": "1868616431d35bf836fb",
   "version": "978b547e87577ee0ce60",
   "source_hash": "b8ff77bb29bb47f3f72b0d7808a7f52dc6238a8d56f1b4f338fa7eff7117ef24",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:09.071440+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.374983+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-87352c786120",
-          "name": "晚期NSCLC EGFR-TKI耐药预测",
-          "desc": "以EGFR-TKI为代表的靶向治疗为晚期NSCLC患者带来希望，但耐药不可避免需预测。",
+          "id": "item-484e1b8df725",
+          "name": "晚期NSCLC EGFR-TKI靶向治疗",
+          "desc": "EGFR-TKI为晚期NSCLC患者带来曙光",
           "evidence": [
             {
               "quote": "以EGFR-TKI为代表的靶向治疗为晚期非小细胞肺癌（NSCLC）患者带来了曙光",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 670,
                 "end_char": 709
-              },
-              "version": "978b547e87577ee0ce60"
-            }
-          ]
-        },
-        {
-          "id": "item-c52eaeefcc3a",
-          "name": "EGFR可视化定量检测",
-          "desc": "构建肺癌EGFR靶向分子探针实现EGFR可视化定量检测。",
-          "evidence": [
-            {
-              "quote": "构建肺癌EGFR靶向分子探针，实现肺癌EGFR的可视化定量检测肺",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3098,
-                "end_char": 3129
               },
               "version": "978b547e87577ee0ce60"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a774e8b2cf7",
-          "name": "靶向治疗耐药不可避免且时间各异",
-          "desc": "由于肿瘤细胞演化与异质性，靶向治疗不可避免会耐药，且不同患者出现耐药时间各异。",
+          "id": "item-02e2e7b7afb2",
+          "name": "靶向治疗不可避免耐药且耐药时间各异",
+          "desc": "需准确预测耐药快慢",
           "evidence": [
             {
-              "quote": "但由于肿瘤细胞演化与异质性，靶向治疗不可避免会耐药，且不同患者出现耐药的时间各异",
+              "quote": "靶向治疗不可避免会耐药，且不同患者出现耐药的时间各异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 711,
+                "start_char": 725,
                 "end_char": 750
-              },
-              "version": "978b547e87577ee0ce60"
-            }
-          ]
-        },
-        {
-          "id": "item-9dcbdecc4c4c",
-          "name": "前期模型准确度不足且波动大",
-          "desc": "前期建立的耐药预测模型准确度尚待提高，且在不同队列中预测准确性波动较大，缺乏对不同耐药机制的深入探讨。",
-          "evidence": [
-            {
-              "quote": "但其预测准确度尚待提高，且在不同队列中的预测准确性波动较大，推测可能与患者个体差异、肿瘤异质性、复杂分子网络及仅利用常规影像组学方法对胸部CT与临床病理信息进行关联分析，缺乏对不同耐药机制深入探讨有关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 893
               },
               "version": "978b547e87577ee0ce60"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-386dd52295c6",
-          "name": "扩大影像组学样本与多组学筛选",
-          "desc": "扩大影像组学研究样本量，采用单细胞全外显子测序及转录组测序多组学筛选耐药关键分子标志物。",
+          "id": "item-b2a6fd98ffd7",
+          "name": "全肺分析模型Lung-proposed",
+          "desc": "联合临床指标预测EGFR突变",
           "evidence": [
             {
-              "quote": "利用已建立的晚期NSCLC EGFR-TKI靶向治疗临床队列，扩大影像组学研究样本量；同时采用单细胞全外显子测序及转录组测序，多组学筛选介导靶向治疗耐药的关键分子标志物",
+              "quote": "基于课题组研发的全肺分析模型（Lung-proposed）联合临床指标，可以较好地预测肺癌EGFR突变",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 911,
-                "end_char": 994
+                "start_char": 2849,
+                "end_char": 2899
               },
               "version": "978b547e87577ee0ce60"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-62eab5f3b155",
-          "name": "多维度耐药预测模型构建",
-          "desc": "利用人工智能挖掘影像组学与临床、病理、基因多组学大数据之间的关系，构建更精准的耐药预测模型。",
+          "id": "item-b604815047ec",
+          "name": "单细胞外显子与转录组测序",
+          "desc": "发现TKI诱导去分化、WNT/β-catenin激活导致耐药",
           "evidence": [
             {
-              "quote": "构建了晚期非小细胞肺癌EGFR-TKI靶向治疗耐药的多维度预测模型",
+              "quote": "课题组基于253例单细胞外显子及转录组测序和数据分析，发现EGFR-TKI靶向治疗可诱导肺癌细胞去分化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2803,
-                "end_char": 2835
+                "start_char": 2641,
+                "end_char": 2691
               },
               "version": "978b547e87577ee0ce60"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-40328fe29010",
+          "name": "EGFR靶向分子探针",
+          "desc": "可视化定量检测EGFR",
+          "evidence": [
+            {
+              "quote": "构建肺癌EGFR靶向分子探针，实现肺癌EGFR的可视化定量检测肺",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3098,
+                "end_char": 3129
+              },
+              "version": "978b547e87577ee0ce60"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,232 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cca14bda06fe",
-          "name": "全肺分析模型预测EGFR突变",
-          "desc": "基于全肺分析模型联合临床指标预测肺癌EGFR突变，验证集、测试集和TCIA的AUC分别为0.81、0.80、0.79。",
+          "id": "item-3ba8b8115b80",
+          "name": "EGFR-TKI治疗临床研究队列",
+          "desc": "全国20多个省市近30万例患者多维信息",
           "evidence": [
             {
-              "quote": "纳入7055例肺癌患者，基于课题组研发的全肺分析模型（Lung-proposed）联合临床指标，可以较好地预测肺癌EGFR突变，其在验证集、测试集和TCIA的AUC分别为0.81、0.80、0.79",
+              "quote": "纳入全国20多个省市的近30万例肺结节/肺癌患者的人口学资料、临床、实验室检查、影像学、病理学及随访等多维信息",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2837,
+                "start_char": 2517,
+                "end_char": 2571
+              },
+              "version": "978b547e87577ee0ce60"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-02756f74f10b",
+          "name": "EGFR突变预测AUC",
+          "desc": "验证集、测试集和TCIA分别0.81、0.80、0.79",
+          "evidence": [
+            {
+              "quote": "其在验证集、测试集和TCIA的AUC分别为0.81、0.80、0.79",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2901,
                 "end_char": 2935
               },
               "version": "978b547e87577ee0ce60"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-6ea14ccc914e",
-          "name": "耐药预测AUC 0.748至0.813",
-          "desc": "针对554例接受EGFR-TKI治疗患者构建模型预测耐药，AUC范围为0.748到0.813，优于常用深度学习模型。",
+          "id": "item-c19d81c934bf",
+          "name": "EGFR TKI耐药预测AUC",
+          "desc": "AUC范围0.748到0.813",
           "evidence": [
             {
-              "quote": "再针对554例接受EGFR-TKI靶向治疗的肺癌患者，构建模型预测EGFR TKI耐药，其AUC范围为0.748到0.813，优于常用的基于肿瘤的深度学习模型",
+              "quote": "构建模型预测EGFR TKI耐药，其AUC范围为0.748到0.813",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 3015
+                "start_char": 2964,
+                "end_char": 2998
               },
               "version": "978b547e87577ee0ce60"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d336cac46694",
-          "name": "揭示去分化与巨噬细胞耐药机制",
-          "desc": "发现EGFR-TKI可诱导肺癌细胞去分化、激活WNT/β-catenin通路导致干样增强而耐药，TAM亚群与免疫异质性调节T细胞增加降低治疗反应性。",
+          "id": "item-e90bd7467564",
+          "name": "国家科技进步二等奖",
+          "desc": "2020年",
           "evidence": [
             {
-              "quote": "发现EGFR-TKI靶向治疗可诱导肺癌细胞去分化，WNT/β-catenin信号通路被激活，导致肺癌细胞干样增强，进而出现耐药",
+              "quote": "成果获2020年国家科技进步二等奖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2668,
-                "end_char": 2730
+                "start_char": 3227,
+                "end_char": 3243
               },
               "version": "978b547e87577ee0ce60"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-87352c786120"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4a774e8b2cf7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinically Applicable AI System for Accurate Diagnosis, Quantitative Measurements, and Prognosis of COVID-19 Pneumonia Using Computed Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang K;Liu X;Shen J;Li Z;Sang Y;Wu X;Zha Y;Liang W;Wang C;Wang K;Ye L;Gao M;Zhou Z;Li L;Wang J;Yang Z;Cai H;Xu J;Yang L;Cai W;Xu W;Wu S;Zhang W;Jiang S;Zheng L;Zhang X;Wang L;Lu L;Li J;Yin H;Wang W;Li O;Zhang C;Liang L;Wu T;Deng R;Wei K;Zhou Y;Chen T;Lau JY;Fok M;He J;Lin T;Li W;Wang G",
+      "id": "out-d76ee7e8541e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinically Applicable AI System for Accurate Diagnosis, Quantitative Measurements, and Prognosis of COVID-19 Pneumonia Using Computed Tomography — Zhang K;Liu X;Shen J;Li Z;Sang Y;Wu X;Zha Y;Liang W;Wang C;Wang K;Ye L;Gao M;Zhou Z;Li L;Wang J;Yang Z;Cai H;Xu J;Yang L;Cai W;Xu W;Wu S;Zhang W;Jiang S;Zheng L;Zhang X;Wang L;Lu L;Li J;Yin H;Wang W;Li O;Zhang C;Liang L;Wu T;Deng R;Wei K;Zhou Y;Chen T;Lau JY;Fok M;He J;Lin T;Li W;Wang G",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3262,
+            "end_char": 3702
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4a774e8b2cf7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-386dd52295c6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Factors associated with concurrent malignancy risk among patients with incidental solitary pulmonary nodule: A systematic review taskforce for developing rapid recommendations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuqi Zhu;Lan Yang;Qianrui Li;Bojiang Chen;Qiukui Hao;Xin Sun;Jing Tan;Weimin Li",
+      "id": "out-e61b474d851a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Factors associated with concurrent malignancy risk among patients with incidental solitary pulmonary nodule: A systematic review taskforce for developing rapid recommendations — Yuqi Zhu;Lan Yang;Qianrui Li;Bojiang Chen;Qiukui Hao;Xin Sun;Jing Tan;Weimin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 3970
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-386dd52295c6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d336cac46694"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RNA-Seq profiling of circular RNA in human lung adenocarcinoma and squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang C;Tan S;Liu WR;Lei Q;Qiao W;Wu Y;Liu X;Cheng W;Wei YQ;Peng Y;Li W",
+      "id": "out-0c10cb24c28c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RNA-Seq profiling of circular RNA in human lung adenocarcinoma and squamous cell carcinoma — Wang C;Tan S;Liu WR;Lei Q;Qiao W;Wu Y;Liu X;Cheng W;Wei YQ;Peng Y;Li W",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3975,
+            "end_char": 4144
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-62eab5f3b155"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6ea14ccc914e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deciphering cell lineage specification of human lung adenocarcinoma with single-cell RNA sequencing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Z;Li Z;Zhou K;Wang C;Jiang L;Zhang L;Yang Y;Luo W;Qiao W;Wang G;Ni Y;Dai S;Guo T;Ji G;Xu M;Liu Y;Su Z;Che G;Li W",
+      "id": "out-dd6a1f8303fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deciphering cell lineage specification of human lung adenocarcinoma with single-cell RNA sequencing — Wang Z;Li Z;Zhou K;Wang C;Jiang L;Zhang L;Yang Y;Luo W;Qiao W;Wang G;Ni Y;Dai S;Guo T;Ji G;Xu M;Liu Y;Su Z;Che G;Li W",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4149,
+            "end_char": 4374
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌早期精准诊断关键技术的建立与临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李为民;彭勇;张立;刘丹;陈勃江;田攀文;王业;王成弟;郑永升;王思振",
+      "id": "out-6e63f46736fb",
+      "evidence": [
+        {
+          "quote": "[奖励] 肺癌早期精准诊断关键技术的建立与临床应用 — 李为民;彭勇;张立;刘丹;陈勃江;田攀文;王业;王成弟;郑永升;王思振",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4379,
+            "end_char": 4441
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2020",
+      "precision": "年",
+      "desc": "成果获国家科技进步二等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-7fcb5ba2d187",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "成果获2020年国家科技进步二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3227,
+            "end_char": 3243
+          },
+          "version": "978b547e87577ee0ce60"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

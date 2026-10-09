@@ -2,15 +2,20 @@
   "doc_id": "7b2f0e82a70801715885",
   "version": "ea4b3a2f78d13d28f5d2",
   "source_hash": "0051259ce7dc98a85bdb36baea19962be5477bef825fddf409b7f48d9f273771",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.798579+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.594432+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-290292297fca",
-          "name": "腰椎椎间融合术后并发症",
-          "desc": "老年患者腰椎椎间融合术后容易出现椎体终板塌陷和融合器下沉，影响手术疗效。",
+          "id": "item-93ad582de3d6",
+          "name": "腰椎椎间融合术后终板并发症风险评估",
+          "desc": "终板塌陷与融合器下沉",
           "evidence": [
             {
-              "quote": "老年患者在腰椎椎间融合术后容易出现椎体终板塌陷和融合器下沉，影响手术疗效。",
+              "quote": "其术后终板塌陷与融合器下沉等并发症严重影响手术疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 700
-              },
-              "version": "ea4b3a2f78d13d28f5d2"
-            }
-          ]
-        },
-        {
-          "id": "item-67bb68f035f8",
-          "name": "老年脊柱疾病精准诊疗",
-          "desc": "为临床医师制定个性化手术方案、选择适配内植物提供科学依据。",
-          "evidence": [
-            {
-              "quote": "该技术为临床医师制定个性化手术方案、选择适配内植物提供了科学依据，在老年脊柱疾病的精准诊疗中具有重要的科学意义与应用价值。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2921,
-                "end_char": 2981
+                "start_char": 2547,
+                "end_char": 2571
               },
               "version": "ea4b3a2f78d13d28f5d2"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2be1d532f081",
-          "name": "缺乏精准测量终板骨密度工具",
-          "desc": "目前尚缺乏精准测量终板骨密度的有效工具，已有临床影像学评价方法无法精准选择与终板解剖外形一致的测量区域。",
+          "id": "item-4dad4eeaf343",
+          "name": "传统骨密度评估缺乏终板局部区域测量精度",
+          "desc": "难以实现精准术前风险评估",
           "evidence": [
             {
-              "quote": "然而，目前尚缺乏精准测量终板骨密度的有效工具。已有的临床影像学评价方法无法精准选择与终板解剖外形一致的测量区域。",
+              "quote": "传统的骨密度评估方法因缺乏对终板局部区域的测量精度，难以实现精准的术前风险评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 729,
-                "end_char": 784
-              },
-              "version": "ea4b3a2f78d13d28f5d2"
-            }
-          ]
-        },
-        {
-          "id": "item-1c2cec5b283c",
-          "name": "脊柱亚结构精准分割瓶颈",
-          "desc": "基于CT影像深度学习的脊柱图像分割仍无法实现对椎体终板等脊柱亚结构的精准分割。",
-          "evidence": [
-            {
-              "quote": "但仍然无法实现对椎体终板等脊柱亚结构的精准分割",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 829,
-                "end_char": 851
+                "start_char": 2573,
+                "end_char": 2611
               },
               "version": "ea4b3a2f78d13d28f5d2"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-967fb4e15758",
-          "name": "深度学习三维自动分割",
-          "desc": "研发基于深度学习的自动化三维分割算法，实现L1-S1椎体终板的精准分割。",
+          "id": "item-cca4f2d8885c",
+          "name": "深度学习三维椎体终板自动分割",
+          "desc": "L1-S1，上下终板Dice均超0.9",
           "evidence": [
             {
-              "quote": "研发了基于深度学习的自动化三维分割算法，实现了L1-S1椎体终板的精准分割",
+              "quote": "研发了基于深度学习的自动化三维分割算法，实现了L1-S1椎体终板的精准分割，上、下终板的Dice值均超过0.9",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2657,
-                "end_char": 2693
+                "end_char": 2711
               },
               "version": "ea4b3a2f78d13d28f5d2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c41d15422a4c",
-          "name": "主成分分析空间坐标系",
-          "desc": "利用主成分分析构建空间坐标系，针对Cage接触区域及松质骨区域实现多方向多层次的亚解剖分区。",
+          "id": "item-2e7e08a34166",
+          "name": "主成分分析空间坐标系亚解剖分区",
+          "desc": "局部体积骨密度智能评估",
           "evidence": [
             {
-              "quote": "利用主成分分析构建空间坐标系，针对手术中Cage接触区域及松质骨区域实现了多方向、多层次的亚解剖分区",
+              "quote": "利用主成分分析构建空间坐标系，针对手术中Cage接触区域及松质骨区域实现了多方向、多层次的亚解剖分区,实现了局部体积骨密度的智能化评估",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2719,
-                "end_char": 2768
+                "end_char": 2785
               },
               "version": "ea4b3a2f78d13d28f5d2"
             }
-          ]
-        },
-        {
-          "id": "item-42a734dd51a3",
-          "name": "CT值转化体积骨密度",
-          "desc": "将分割区域内的平均CT值转化为体积骨密度，实现与椎间融合器植入方案匹配的个性化测量。",
-          "evidence": [
-            {
-              "quote": "同时将分割区域内的平均CT值转化为体积骨密度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 994,
-                "end_char": 1015
-              },
-              "version": "ea4b3a2f78d13d28f5d2"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e40a556425ab",
-          "name": "终板分割Dice值超0.9",
-          "desc": "构建包含319例腰椎CT影像及3509个终板标注的大型数据集，上下终板Dice值均超过0.9。",
+          "id": "item-e96ce767abad",
+          "name": "腰椎CT终板标注数据集",
+          "desc": "319例CT、3509个终板标注",
           "evidence": [
             {
               "quote": "构建了包含319例腰椎CT影像及3509个终板标注的大型数据集",
@@ -163,89 +122,73 @@
               "version": "ea4b3a2f78d13d28f5d2"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-df1725882fb3",
-          "name": "椎体终板Dice值均超过0.9",
-          "desc": "上、下终板的Dice值均超过0.9。",
-          "evidence": [
-            {
-              "quote": "上、下终板的Dice值均超过0.9",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2695,
-                "end_char": 2711
-              },
-              "version": "ea4b3a2f78d13d28f5d2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-68c5aa8613bf",
-          "name": "终板骨密度与退变显著相关",
-          "desc": "临床研究显示终板体积骨密度与腰椎退变显著相关，松质骨HU值能更敏感反映全身性骨量流失。",
-          "evidence": [
-            {
-              "quote": "终板体积骨密度与腰椎退变显著相关，能精准反映手术区域的局部硬化状态；而松质骨HU值则能更敏感地反映随年龄增长的全身性系统骨量流失",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2798,
-                "end_char": 2861
-              },
-              "version": "ea4b3a2f78d13d28f5d2"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-290292297fca"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2be1d532f081"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种CT图像椎弓根分割方法、装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李危石;邹达;黄冕",
+      "id": "out-56544b6b7af2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种CT图像椎弓根分割方法、装置及存储介质 — 李危石;邹达;黄冕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2999,
+            "end_char": 3036
+          },
+          "version": "ea4b3a2f78d13d28f5d2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c2cec5b283c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-967fb4e15758"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c41d15422a4c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e40a556425ab"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-42a734dd51a3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e40a556425ab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of lumbar degeneration on the global and regional bone mineral density in osteoporotic patients requiring lumbar interbody fusion for degenerative lumbar diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Yi;Zou Da;He Hongbin;Shang Zesen;Li Weishi",
+      "id": "out-37dcb77cc624",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of lumbar degeneration on the global and regional bone mineral density in osteoporotic patients requiring lumbar interbody fusion for degenerative lumbar diseases — Zhao Yi;Zou Da;He Hongbin;Shang Zesen;Li Weishi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3041,
+            "end_char": 3267
+          },
+          "version": "ea4b3a2f78d13d28f5d2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

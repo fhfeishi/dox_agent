@@ -2,15 +2,20 @@
   "doc_id": "7292f27cae0a8ed66596",
   "version": "93d6c7f72eb5749aa33a",
   "source_hash": "7b349381e01c1bde2821c2ad22e4f746bff742d30101c0dcb13ba204618bedd0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:15.991448+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:45:44.179793+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a9f403f9381",
-          "name": "胶质母细胞瘤多指标联合诊疗模型",
-          "desc": "胶质母细胞瘤是星形细胞肿瘤中恶性度最高的脑胶质瘤，早期发现并精准治疗成为关键。",
+          "id": "item-214a09ff7b15",
+          "name": "胶质母细胞瘤早期诊断与预后预测",
+          "desc": "多序列MRI与临床信息协同",
           "evidence": [
             {
-              "quote": "胶质母细胞瘤（GBM）是星形细胞肿瘤中恶性度最高的脑胶质瘤，目前最有效的治疗方案是在GBM形成的早期及时发现并实施针对性的治疗，因此，早期发现肿瘤并精准治疗成为关键",
+              "quote": "本项目致力于通过多序列磁共振影像（MRI）与临床信息的协同融合，提升胶质母细胞瘤（GBM）的早期诊断与生存预后预测能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 744
-              },
-              "version": "93d6c7f72eb5749aa33a"
-            }
-          ]
-        },
-        {
-          "id": "item-c3956ff9b1b1",
-          "name": "多指标联合诊疗预测模型构建",
-          "desc": "构建GBM多指标联合诊疗预测模型，对更好地诊疗和处理肿瘤疾病具有重要学术研究价值和广泛应用前景。",
-          "evidence": [
-            {
-              "quote": "本项目研究成果对于更好地诊疗和处理肿瘤疾病具有重要学术研究价值和广泛应用前景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1024,
-                "end_char": 1061
+                "start_char": 2967,
+                "end_char": 3025
               },
               "version": "93d6c7f72eb5749aa33a"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6edc24cc06ad",
-          "name": "影像序列单一与尺度单一导致精度低",
-          "desc": "现有影像组学GBM诊疗存在影像序列单一、肿瘤表型分析尺度单一及诊疗模型预测指标单一等问题，导致表型刻画偏倚、诊疗精准度偏低。",
+          "id": "item-7d321ded04c6",
+          "name": "影像序列单一、尺度单一、预测指标单一",
+          "desc": "表型刻画偏倚、诊疗精准度偏低",
           "evidence": [
             {
-              "quote": "但现有基于影像组学的GBM诊疗存在所利用的影像序列单一、肿瘤表型分析尺度单一以及所构建的诊疗模型预测指标单一等问题，导致GBM表型刻画出现偏倚，诊疗精准度偏低",
+              "quote": "现有基于影像组学的GBM诊疗存在所利用的影像序列单一、肿瘤表型分析尺度单一以及所构建的诊疗模型预测指标单一等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 772,
-                "end_char": 850
-              },
-              "version": "93d6c7f72eb5749aa33a"
-            }
-          ]
-        },
-        {
-          "id": "item-5d4358802a21",
-          "name": "需从瘤体拓展至亚区域与生境区域",
-          "desc": "需研究影像多尺度解析方法，将基于瘤体剖析方式拓展至瘤内亚区域和空间生境区域。",
-          "evidence": [
-            {
-              "quote": "研究影像多尺度解析方法，将以往基于GBM瘤体剖析方式拓展至瘤内亚区域和空间生境区域",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 918,
-                "end_char": 958
+                "start_char": 773,
+                "end_char": 828
               },
               "version": "93d6c7f72eb5749aa33a"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0e4aa3def05c",
-          "name": "多序列MRI多尺度影像组学",
-          "desc": "根据不同影像序列特性进行GBM表型分析，研究影像多尺度解析方法并挖掘不同序列与尺度的相关性和互补性。",
-          "evidence": [
-            {
-              "quote": "根据不同影像序列特性进行GBM表型分析，研究影像多尺度解析方法，将以往基于GBM瘤体剖析方式拓展至瘤内亚区域和空间生境区域，并深入挖掘不同影像序列和不同尺度的GBM表征的相关性和互补性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 989
-              },
-              "version": "93d6c7f72eb5749aa33a"
-            }
-          ]
-        },
-        {
-          "id": "item-e8c32cb3697e",
-          "name": "K-均值聚类量化生境区域",
-          "desc": "针对GBM肿瘤空间生境区域和亚区域，通过K-均值聚类对不同序列影像中的肿瘤区域进行量化分析。",
-          "evidence": [
-            {
-              "quote": "在多尺度影像特征提取与分析方面，项目组针对GBM肿瘤的空间生境区域和亚区域进行了深入研究。通过K-均值聚类方法，对不同序列影像中的肿瘤区域进行了量化分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3438,
-                "end_char": 3513
-              },
-              "version": "93d6c7f72eb5749aa33a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-461424a9195a",
-          "name": "多序列影像与临床数据库构建",
-          "desc": "收集整理2449例GBM病例数据，涵盖T1、T1c、T2和FLAIR四个序列MRI影像及临床信息，并结合BraTS系列与私有数据集构建专业数据库。",
-          "evidence": [
-            {
-              "quote": "项目组成功收集并整理了2449例GBM病例数据，涵盖了T1、T1c、T2和FLAIR四个序列的MRI影像及相关临床信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3098,
-                "end_char": 3156
-              },
-              "version": "93d6c7f72eb5749aa33a"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e04bf09125be",
-          "name": "多种自动分割创新方法",
-          "desc": "提出多编码器网络框架、scSE-NL V-Net、AGSE-VNet、NLCA VNet、分类器权重转换器、多尺度蒸馏、局部-全局表示、深度多任务学习、三维半监督分割及稀疏监督分割等方法。",
+          "id": "item-855190b827ad",
+          "name": "GBM多序列MRI自动分割方法",
+          "desc": "多编码器、scSE-NL V-Net、AGSE-VNet等",
           "evidence": [
             {
               "quote": "项目组提出了多种创新方法，包括多编码器网络框架、scSE-NL V-Net结构、AGSE-VNet框架、NLCA VNet结构、分类器权重转换器、基于多尺度蒸馏的方法、融合局部-全局表示架构、深度多任务学习框架、集成Transformer和非对称数据增强的三维半监督分割，以及基于双重检查一致性学习的稀疏监督分割",
@@ -164,72 +82,359 @@
               "version": "93d6c7f72eb5749aa33a"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-460be132c088",
-          "name": "多指标联合生存预测模型",
-          "desc": "构建结合影像学特征和临床数据的多临床指标联合诊疗预测模型，通过Cox比例风险回归提升生存期预测精度。",
+          "id": "item-0a308429fe7f",
+          "name": "生境与亚区域K-均值聚类量化分析",
+          "desc": "肿瘤生物学特征与预后相关",
           "evidence": [
             {
-              "quote": "项目组构建了结合影像学特征和临床数据的多临床指标联合诊疗预测模型。通过使用Cox比例风险回归模型，提升了生存期预测的精度",
+              "quote": "通过K-均值聚类方法，对不同序列影像中的肿瘤区域进行了量化分析，揭示了不同生境区域与肿瘤生物学特征、治疗反应及预后之间的相关性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3568,
-                "end_char": 3627
+                "start_char": 3483,
+                "end_char": 3545
               },
               "version": "93d6c7f72eb5749aa33a"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-aed910358754",
+          "name": "自注意力与门控混合专家MGMT预测模型",
+          "desc": "BraTS2021与TCGA-GBM",
+          "evidence": [
+            {
+              "quote": "提出了多任务学习架构和基于自注意力机制及门控混合专家框架的预测模型，应用于MGMT启动子甲基化状态的预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3636,
+                "end_char": 3687
+              },
+              "version": "93d6c7f72eb5749aa33a"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-dee2829041ef",
+          "name": "GBM多序列MRI与临床数据库",
+          "desc": "2449例",
+          "evidence": [
+            {
+              "quote": "项目组成功收集并整理了2449例GBM病例数据，涵盖了T1、T1c、T2和FLAIR四个序列的MRI影像及相关临床信息",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3098,
+                "end_char": 3156
+              },
+              "version": "93d6c7f72eb5749aa33a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文9篇，发明专利7项（授权4项）",
+          "evidence": [
+            {
+              "quote": "资助项目已发表SCI收录期刊论文9篇，其中2篇为高被引论文，此外，4篇正在审稿中；项目还申请了7项发明专利，已授权4项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3817,
+                "end_char": 3875
+              },
+              "version": "93d6c7f72eb5749aa33a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8a9f403f9381"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6edc24cc06ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Staged cluster transformers for intracranial aneurysms segmentation from structure fused 3D MRA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guo Lilin;Liang Yu;Guo Ruichao;Cao Zhijian;Ye Jianming;Lai Xiaobo",
+      "id": "out-80276a190d63",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Staged cluster transformers for intracranial aneurysms segmentation from structure fused 3D MRA — Guo Lilin;Liang Yu;Guo Ruichao;Cao Zhijian;Ye Jianming;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3895,
+            "end_char": 4064
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6edc24cc06ad"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0e4aa3def05c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3D AGSE-VNet: an automatic brain tumor MRI data segmentation framework",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guan Xi;Yang Guang;Ye Jianming;Yang Weiji;Xu Xiaomei;Jiang Weiwei;Lai Xiaobo",
+      "id": "out-bcf8b5d965fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3D AGSE-VNet: an automatic brain tumor MRI data segmentation framework — Guan Xi;Yang Guang;Ye Jianming;Yang Weiji;Xu Xiaomei;Jiang Weiwei;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4069,
+            "end_char": 4224
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0e4aa3def05c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e04bf09125be"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向青光眼的视网膜血管自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赖小波;徐小媚;金波;刘玉凤;吕莉莉",
+      "id": "out-b2049b965b17",
+      "evidence": [
+        {
+          "quote": "[专利] 面向青光眼的视网膜血管自动分割方法 — 赖小波;徐小媚;金波;刘玉凤;吕莉莉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4229,
+            "end_char": 4271
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e8c32cb3697e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-460be132c088"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based deep learning for differentiating between bipolar and major depressive disorders",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Ruipeng;Huang Yueqi;Wang Yanbin;Song Chen;Lai Xiaobo",
+      "id": "out-507f43e0dfae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based deep learning for differentiating between bipolar and major depressive disorders — Li Ruipeng;Huang Yueqi;Wang Yanbin;Song Chen;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4276,
+            "end_char": 4430
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于E2C-Transformer网络的胶质瘤MRI数据分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赖小波;王卓雅;杜羽;徐鹏;黄河;金伟",
+      "id": "out-aa760aa97b4a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于E2C-Transformer网络的胶质瘤MRI数据分割方法 — 赖小波;王卓雅;杜羽;徐鹏;黄河;金伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4435,
+            "end_char": 4493
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nonlocal            convolutional block attention module            VNet            for gliomas automatic segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fang Ying;Huang He;Yang Weiji;Xu Xiaomei;Jiang Weiwei;Lai Xiaobo",
+      "id": "out-3699ed54a09d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nonlocal            convolutional block attention module            VNet            for gliomas automatic segmentation — Fang Ying;Huang He;Yang Weiji;Xu Xiaomei;Jiang Weiwei;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4498,
+            "end_char": 4689
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ME-Net: Multi-encoder net framework for brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Wenbo;Yang Guang;Huang He;Yang Weiji;Xu Xiaomei;Liu Yongkai;Lai Xiaobo",
+      "id": "out-c7ab3cc9a0e5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ME-Net: Multi-encoder net framework for brain tumor segmentation — Zhang Wenbo;Yang Guang;Huang He;Yang Weiji;Xu Xiaomei;Liu Yongkai;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4694,
+            "end_char": 4843
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于分类器权重转换器的GBM多模态MR图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赖小波;董乐水;吴彦;王健庆;徐小媚;赵佳璐;金伟;梁钰",
+      "id": "out-f0bc5ec757c0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于分类器权重转换器的GBM多模态MR图像分割方法 — 赖小波;董乐水;吴彦;王健庆;徐小媚;赵佳璐;金伟;梁钰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4848,
+            "end_char": 4908
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep multi-task learning framework for brain tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang He;Yang Guang;Zhang Wenbo;Xu Xiaomei;Yang Weiji;Jiang Weiwei;Lai Xiaobo",
+      "id": "out-09832afeba0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep multi-task learning framework for brain tumor segmentation — Huang He;Yang Guang;Zhang Wenbo;Xu Xiaomei;Yang Weiji;Jiang Weiwei;Lai Xiaobo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4913,
+            "end_char": 5064
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度残差网络的乳腺钼靶图像肿块语义分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赖小波;许茂盛;徐小媚;吕莉莉;刘玉凤",
+      "id": "out-9834ed87e8aa",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度残差网络的乳腺钼靶图像肿块语义分割方法 — 赖小波;许茂盛;徐小媚;吕莉莉;刘玉凤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5070,
+            "end_char": 5119
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度蒸馏的脑肿瘤MRI图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赖小波;王磊;金伟;刘剑东;吴彦;徐小媚;王健庆;赵佳璐;梁钰",
+      "id": "out-5a609e58b5d9",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多尺度蒸馏的脑肿瘤MRI图像分割方法 — 赖小波;王磊;金伟;刘剑东;吴彦;徐小媚;王健庆;赵佳璐;梁钰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5125,
+            "end_char": 5183
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scSE-NL V-Net: A brain tumor automatic segmentation method based on spatial and channel “squeeze-and-excitation” network with non-local block",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Juhua;Ye Jianming;Liang Yu;Zhao Jialu;Wu Yan;Luo Siyuan;Lai Xiaobo;Wang Jianqing",
+      "id": "out-0b52c8f3c5a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scSE-NL V-Net: A brain tumor automatic segmentation method based on spatial and channel “squeeze-and-excitation” network with non-local block — Zhou Juhua;Ye Jianming;Liang Yu;Zhao Jialu;Wu Yan;Luo Siyuan;Lai Xiaobo;Wang Jianqing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5189,
+            "end_char": 5424
+          },
+          "version": "93d6c7f72eb5749aa33a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

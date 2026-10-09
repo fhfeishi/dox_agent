@@ -2,15 +2,20 @@
   "doc_id": "1366a541694bb8df8382",
   "version": "f09cc5e920d5fe2b3e06",
   "source_hash": "1a5bdf49b0a454b7b3667ff39880da2bf1f5a889382f69bcc0a9db81ed506107",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.704868+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:29:24.820140+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,29 +26,7 @@
         {
           "id": "item-e0771a29a2f9",
           "name": "非转移性肾透明细胞癌预后评估",
-          "desc": "针对非转移性ccRCC患者，利用多模态磁共振影像组学在术前进行复发转移风险的定量预后评估。",
-          "evidence": [
-            {
-              "quote": "如何准确地对非转移性ccRCC患者的预后做出预测是当前研究的热点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 780,
-                "end_char": 811
-              },
-              "version": "f09cc5e920d5fe2b3e06"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-fbde2ed0a33a",
-          "name": "非转移性ccRCC术后复发转移率高且缺乏预测手段",
-          "desc": "初诊未转移的ccRCC患者术后约30%发生复发转移，临床上缺乏准确、早期的预后预测方法。",
+          "desc": "术后约30%发生复发转移",
           "evidence": [
             {
               "quote": "初诊时未发生转移的ccRCC患者（即非转移性ccRCC）术后约30%发生复发转移",
@@ -59,20 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-9eb5450b02c7",
-          "name": "多模态MRI影像组学预后评估模型",
-          "desc": "利用多模态磁共振成像影像组学新技术提取术前MR影像组学特征，筛选与预后高度相关的特征并与临床、病理指标联合建模。",
+          "id": "item-c2003ef7d8f7",
+          "name": "准确预测非转移性ccRCC预后",
+          "desc": "当前研究热点",
           "evidence": [
             {
-              "quote": "利用基于多模态磁共振成像的影像组学新技术，回顾性提取非转移性ccRCC病变术前MR图像的影像组学特征",
+              "quote": "如何准确地对非转移性ccRCC患者的预后做出预测是当前研究的热点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 833,
-                "end_char": 882
+                "start_char": 780,
+                "end_char": 811
               },
               "version": "f09cc5e920d5fe2b3e06"
             }
@@ -81,25 +64,122 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-e9a17c09cbd4",
-          "name": "影像组学联合模型多中心预测效能AUC 0.816–0.914",
-          "desc": "结合年龄、区域淋巴结、假包膜及影像组学评分的联合模型在训练集、内部验证集与外部验证集AUC分别为0.914、0.854、0.816。",
+          "id": "item-11bc1c722152",
+          "name": "影像组学联合预测模型",
+          "desc": "结合年龄、区域淋巴结、假包膜与影像组学评分",
           "evidence": [
             {
-              "quote": "结合年龄、区域淋巴结、假包膜及影像组学评分构建的影像组学联合模型在不同数据集中均获得良好的预测效能（训练集，AUC=0.914；内部验证集，AUC=0.854；外部验证集，AUC=0.816）",
+              "quote": "最终结合年龄、区域淋巴结、假包膜及影像组学评分构建的影像组学联合模型在不同数据集中均获得良好的预测效能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3035,
-                "end_char": 3130
+                "start_char": 3033,
+                "end_char": 3083
               },
               "version": "f09cc5e920d5fe2b3e06"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-42e89b38dfc9",
+          "name": "WHO/ISUP核分级预测模型",
+          "desc": "基于多参数MRI影像组学",
+          "evidence": [
+            {
+              "quote": "利用影像组学方法成功构建ccRCC的WHO/ISUP核分级预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3163,
+                "end_char": 3195
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c977303d9551",
+          "name": "VHL突变MRI语义特征",
+          "desc": "多参数MRI语义特征反映VHL突变状态",
+          "evidence": [
+            {
+              "quote": "证实了多参数MRI语义特征可有效反映散发性ccRCC的VHL突变状态",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3304,
+                "end_char": 3337
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3131cb9b2c73",
+          "name": "联合模型多数据集AUC",
+          "desc": "训练集0.914，内部验证0.854，外部验证0.816",
+          "evidence": [
+            {
+              "quote": "训练集，AUC=0.914；内部验证集，AUC=0.854；外部验证集，AUC=0.816",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3085,
+                "end_char": 3129
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-1e599c296d3e",
+          "name": "核分级模型测试集性能",
+          "desc": "敏感性77.3%、特异性80.0%、AUC 0.842",
+          "evidence": [
+            {
+              "quote": "敏感性、特异性及AUC分别为77.3%、80.0%及0.842",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3242,
+                "end_char": 3272
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5af2b8b998aa",
+          "name": "VHL突变预测",
+          "desc": "多特征联合AUC可达0.80~0.83",
+          "evidence": [
+            {
+              "quote": "AUC可达0.80~0.83",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3373,
+                "end_char": 3386
+              },
+              "version": "f09cc5e920d5fe2b3e06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +187,293 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-e0771a29a2f9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fbde2ed0a33a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fbde2ed0a33a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9eb5450b02c7"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9eb5450b02c7"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-e9a17c09cbd4"
+        "item_id": "item-3131cb9b2c73"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-11bc1c722152"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "训练集，AUC=0.914；内部验证集，AUC=0.854；外部验证集，AUC=0.816",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3085,
+            "end_char": 3129
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based Bosniak Classification of Cystic Renal Masses, Version 2019: Interobserver Agreement, Impact of Readers' Experience, and Diagnostic Performance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Bai;Song-Mei Sun;Wei Xu;Huan-Huan Kang;Lin Li;Ye-Qiang Jin;Qing-Ge-Le Gong;Guo-Cheng Liang;Hong-Yan Liu;Lin-Lin Liu;Si-Lu Chen;Qing-Rong Wang;Peng Wu;Ai-Tao Guo;Qing-Bo Huang;Xiao-Jing Zhang;Hui-Yi Ye;Hai-Yi Wang",
+      "id": "out-5a45b38241b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based Bosniak Classification of Cystic Renal Masses, Version 2019: Interobserver Agreement, Impact of Readers' Experience, and Diagnostic Performance — Xu Bai;Song-Mei Sun;Wei Xu;Huan-Huan Kang;Lin Li;Ye-Qiang Jin;Qing-Ge-Le Gong;Guo-Cheng Liang;Hong-Yan Liu;Lin-Lin Liu;Si-Lu Chen;Qing-Rong Wang;Peng Wu;Ai-Tao Guo;Qing-Bo Huang;Xiao-Jing Zhang;Hui-Yi Ye;Hai-Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3575,
+            "end_char": 3952
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiation between renal epithelioid angiomyolipoma and clear cell renal cell carcinoma using clear cell likelihood score",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Wei Hao;Yun Zhang;Hui-Ping Guo;Wei Xu;Xu Bai;Jian Zhao;Xiao-Hui Ding;Sheng Gao;Meng-Qiu Cui;Bai-Chuan Liu;Hui-Yi Ye;Hai-Yi Wang",
+      "id": "out-ddaed1d83015",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiation between renal epithelioid angiomyolipoma and clear cell renal cell carcinoma using clear cell likelihood score — Yu-Wei Hao;Yun Zhang;Hui-Ping Guo;Wei Xu;Xu Bai;Jian Zhao;Xiao-Hui Ding;Sheng Gao;Meng-Qiu Cui;Bai-Chuan Liu;Hui-Yi Ye;Hai-Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3957,
+            "end_char": 4222
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2019版Bosniak Ⅱ、ⅡF及Ⅲ类肾脏囊性病变观察者间一致性评估中MR减影技术的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "康欢欢;许伟;白旭;王松;郭慧萍;周少鹏;叶慧义;王海屹",
+      "id": "out-db88f2ee550f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 2019版Bosniak Ⅱ、ⅡF及Ⅲ类肾脏囊性病变观察者间一致性评估中MR减影技术的价值 — 康欢欢;许伟;白旭;王松;郭慧萍;周少鹏;叶慧义;王海屹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4227,
+            "end_char": 4309
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-Based Machine Learning Models for the Characterization of Cystic Renal Masses Compared to the Bosniak Classification, Version 2019: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huanhuan Kang;Wanfang Xie;He Wang;Huiping Guo;Jiahui Jiang;Zhe Liu;Xiaohui Ding;Lin Li;Wei Xu;Jian Zhao;Xu Bai;Mengqiu Cui;Huiyi Ye;Haiyi Wang",
+      "id": "out-40ba816ef8e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-Based Machine Learning Models for the Characterization of Cystic Renal Masses Compared to the Bosniak Classification, Version 2019: A Multicenter Study — Huanhuan Kang;Wanfang Xie;He Wang;Huiping Guo;Jiahui Jiang;Zhe Liu;Xiaohui Ding;Lin Li;Wei Xu;Jian Zhao;Xu Bai;Mengqiu Cui;Huiyi Ye;Haiyi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4314,
+            "end_char": 4636
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肾脏囊性病变2019版Bosniak分类中MRI标准的观察者重测信度分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "白旭;孙松梅;康欢欢;李林;许伟;赵春刚;朴勇男;王英;王小娜;于梅艳;王美凤;贾凯强;郭爱桃;叶慧义;王海屹",
+      "id": "out-46fdd9445ffe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肾脏囊性病变2019版Bosniak分类中MRI标准的观察者重测信度分析 — 白旭;孙松梅;康欢欢;李林;许伟;赵春刚;朴勇男;王英;王小娜;于梅艳;王美凤;贾凯强;郭爱桃;叶慧义;王海屹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4641,
+            "end_char": 4741
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "增强MRI定量参数预测肾癌合并下腔静脉癌栓患者侧支循环建立的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵建;王美凤;方圆;段峰;白旭;许伟;张晓晶;周少鹏;李林;马鑫;张旭;叶慧义;王海屹",
+      "id": "out-be5f4b18a246",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 增强MRI定量参数预测肾癌合并下腔静脉癌栓患者侧支循环建立的价值 — 赵建;王美凤;方圆;段峰;白旭;许伟;张晓晶;周少鹏;李林;马鑫;张旭;叶慧义;王海屹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4746,
+            "end_char": 4830
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bosniak Classification Version 2019: Point-Early Validation of The Updated Classification System Supports Clinical Application",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Bai;Hai-Yi Wang",
+      "id": "out-41bd2abeadf0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bosniak Classification Version 2019: Point-Early Validation of The Updated Classification System Supports Clinical Application — Xu Bai;Hai-Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4835,
+            "end_char": 4988
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI Radiomic Model for Preoperative Predicting WHO/ISUP Nuclear Grade of Clear Cell Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiong Li;Yu-Jia Liu;Di Dong;Xu Bai;Qing-Bo Huang;Ai-Tao Guo;Hui-Yi Ye;Jie Tian;Hai-Yi Wang",
+      "id": "out-0e2756d2f01a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI Radiomic Model for Preoperative Predicting WHO/ISUP Nuclear Grade of Clear Cell Renal Cell Carcinoma — Qiong Li;Yu-Jia Liu;Di Dong;Xu Bai;Qing-Bo Huang;Ai-Tao Guo;Hui-Yi Ye;Jie Tian;Hai-Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4993,
+            "end_char": 5212
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intravoxel Incoherent Motion Diffusion-Weighted MR Imaging and Venous Tumor Thrombus Consistency in Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Zhao;Meifeng Wang;Xiaohui Ding;Yonggui Fu;Cheng Peng;Huanhuan Kang;Huiping Guo;Xu Bai;Qingbo Huang;Shaopeng Zhou;Xiaojing Zhang;Kan Liu;Lin Li;Huiyi Ye;Xu Zhang;Xin Ma;Haiyi Wang",
+      "id": "out-b0c70ffb9cf6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intravoxel Incoherent Motion Diffusion-Weighted MR Imaging and Venous Tumor Thrombus Consistency in Renal Cell Carcinoma — Jian Zhao;Meifeng Wang;Xiaohui Ding;Yonggui Fu;Cheng Peng;Huanhuan Kang;Huiping Guo;Xu Bai;Qingbo Huang;Shaopeng Zhou;Xiaojing Zhang;Kan Liu;Lin Li;Huiyi Ye;Xu Zhang;Xin Ma;Haiyi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5217,
+            "end_char": 5529
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "透明细胞癌可能性评分v1.0和v2.0的应用价值对比",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郝雨薇;高升;张潇月;崔梦秋;丁效蕙;王鹤;杨大为;叶慧义;王海屹",
+      "id": "out-7960c395b2b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 透明细胞癌可能性评分v1.0和v2.0的应用价值对比 — 郝雨薇;高升;张潇月;崔梦秋;丁效蕙;王鹤;杨大为;叶慧义;王海屹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5535,
+            "end_char": 5603
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "透明细胞癌可能性评分系统在肾嗜酸细胞腺瘤和肾透明细胞癌鉴别诊断中的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔梦秋;何兵;许伟;郝雨薇;丁效蕙;王松;白旭;刘百川;叶慧义;王海屹",
+      "id": "out-ad4743271f86",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 透明细胞癌可能性评分系统在肾嗜酸细胞腺瘤和肾透明细胞癌鉴别诊断中的价值 — 崔梦秋;何兵;许伟;郝雨薇;丁效蕙;王松;白旭;刘百川;叶慧义;王海屹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5609,
+            "end_char": 5688
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI radiomics-based nomogram for individualised prediction of synchronous distant metastasis in patients with clear cell renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Bai;Qing-Bo Huang;Pan-Li Zuo;Xiao-Jing Zhang;Jing Yuan;Xu Zhang;Mei-Feng Wang;Wei Xu;Hui-Yi Ye;Jin-Kun Zhao;Hao-Ran Sun;Bin Shao;Hai-Yi Wang",
+      "id": "out-6a3b8abc3b70",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI radiomics-based nomogram for individualised prediction of synchronous distant metastasis in patients with clear cell renal cell carcinoma — Xu Bai;Qing-Bo Huang;Pan-Li Zuo;Xiao-Jing Zhang;Jing Yuan;Xu Zhang;Mei-Feng Wang;Wei Xu;Hui-Yi Ye;Jin-Kun Zhao;Hao-Ran Sun;Bin Shao;Hai-Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5694,
+            "end_char": 5987
+          },
+          "version": "f09cc5e920d5fe2b3e06"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

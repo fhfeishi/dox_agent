@@ -2,15 +2,20 @@
   "doc_id": "37e87c10bd3eedab8c58",
   "version": "6fe35070fca2e995e872",
   "source_hash": "480146c8b192b1e03753dcfb1a0bc4a10eaccadb4931a85959c6fc751a6be042",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:16.088850+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:20.002744+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-c28158d4a79c",
           "name": "微生物代谢工程菌株设计",
-          "desc": "微生物代谢工程是生物能源、精细化工及生物制药生产过程中的关键技术手段。",
+          "desc": "生物能源、精细化工、生物制药的关键技术",
           "evidence": [
             {
               "quote": "微生物代谢工程是生物能源，精细化工以及生物制药，如生物乙醇，化妆品，抗生素等生产过程中的关键技术手段",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 2539,
                 "end_char": 2588
-              },
-              "version": "6fe35070fca2e995e872"
-            }
-          ]
-        },
-        {
-          "id": "item-4e5a71fe2270",
-          "name": "代谢异常疾病机制研究延伸",
-          "desc": "研究成果展现了在未来可以应用到诸如肿瘤等代谢异常疾病的机制研究中。",
-          "evidence": [
-            {
-              "quote": "并展现了在未来可以应用到诸如肿瘤等代谢异常疾病的机制研究中",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3173,
-                "end_char": 3201
               },
               "version": "6fe35070fca2e995e872"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9440e2717681",
-          "name": "无法刻画代谢网络动态自适应调控",
-          "desc": "现有方法无法有效刻画代谢网络在细胞微环境发生改变后导致的复杂动态自适应调控过程，难以预测突变株的系统水平代谢调整。",
+          "id": "item-0c9e9bf0c031",
+          "name": "难以预测突变株系统水平代谢调整",
+          "desc": "无法刻画细胞微环境改变后的动态自适应调控",
           "evidence": [
             {
-              "quote": "现有的微生物代谢工程设计方法无法有效刻画代谢网络在细胞微环境发生改变后导致的复杂动态自适应调控过程，难以预测突变株的系统水平代谢调整，因而可能导致工程菌株设计失败。",
+              "quote": "现有的微生物代谢工程设计方法无法有效刻画代谢网络在细胞微环境发生改变后导致的复杂动态自适应调控过程，难以预测突变株的系统水平代谢调整",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2658,
-                "end_char": 2739
-              },
-              "version": "6fe35070fca2e995e872"
-            }
-          ]
-        },
-        {
-          "id": "item-c22ba0c03aa3",
-          "name": "代谢流分布关键原则不明",
-          "desc": "需要识别不同生长条件下对生长率变化起关键作用的代谢通路和基因。",
-          "evidence": [
-            {
-              "quote": "同时识别出在不同的生长条件下对生长率变化起关键作用的代谢通路和基因",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3056,
-                "end_char": 3088
+                "end_char": 2723
               },
               "version": "6fe35070fca2e995e872"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9bd4571deda0",
-          "name": "图卷积神经网络与多组学融合",
-          "desc": "采用图卷积神经网络和多组学数据量化代谢网络的酶调控及反应动力学过程。",
+          "id": "item-5195898d764c",
+          "name": "Decrem代谢网络突变效应模型",
+          "desc": "整合流平衡约束、调控子与反应动力学",
           "evidence": [
             {
-              "quote": "该模型采用图卷积神经网络和多组学数据量化代谢网络的酶调控及反应动力学过程",
+              "quote": "本项目提出了Decrem模型，该模型在E.coli，Yeast，Bacillus subtili等多个工程菌的突变株以及不同营养条件下均表现出和实验测定的13C代谢流高度的一致性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 853,
-                "end_char": 888
+                "start_char": 2966,
+                "end_char": 3054
               },
               "version": "6fe35070fca2e995e872"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-22726e5e1b9b",
-          "name": "Decrem代谢网络分析框架",
-          "desc": "提出Decrem模型，集成代谢网络流平衡约束、调控子信息以及反应动力学模型。",
+          "id": "item-a846714cb9c7",
+          "name": "含调控关系的米氏反应动力学系统",
+          "desc": "代谢网络重构表示",
           "evidence": [
             {
-              "quote": "最终形成一个集成代谢网络流平衡约束，调控子信息，以及反应动力学模型的全基因组水平代谢网络突变效应计算分析框架",
+              "quote": "探索包含完整调控关系的米氏反应动力学系统及其对应的代谢网络重构表示",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2868,
-                "end_char": 2921
-              },
-              "version": "6fe35070fca2e995e872"
-            }
-          ]
-        },
-        {
-          "id": "item-f300b34f2953",
-          "name": "米氏反应动力学系统重构",
-          "desc": "整合代谢物与酶调控关系，探索包含完整调控关系的米氏反应动力学系统及其代谢网络重构表示。",
-          "evidence": [
-            {
-              "quote": "系统地整合代谢物—酶调控关系，探索包含完整调控关系的米氏反应动力学系统及其对应的代谢网络重构表示",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2769,
+                "start_char": 2784,
                 "end_char": 2816
               },
               "version": "6fe35070fca2e995e872"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2a1648c9ea9c",
-          "name": "多菌株13C代谢流一致性",
-          "desc": "Decrem模型在E.coli、Yeast、Bacillus subtili等多个工程菌的突变株以及不同营养条件下均表现出与实验测定的13C代谢流高度的一致性。",
+          "id": "item-d38ede0897ce",
+          "name": "Decrem与13C代谢流一致性",
+          "desc": "多个工程菌与营养条件",
           "evidence": [
             {
               "quote": "该模型在E.coli，Yeast，Bacillus subtili等多个工程菌的突变株以及不同营养条件下均表现出和实验测定的13C代谢流高度的一致性",
@@ -163,89 +122,113 @@
               "version": "6fe35070fca2e995e872"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0a00b07fe88f",
-          "name": "丙酮酸代谢通路调控原则",
-          "desc": "识别出代谢流分布的关键原则：丙酮酸代谢通路调控的营养富集浓度介导了物质合成和能量代谢的流分配比例。",
+          "id": "item-76301cd9d475",
+          "name": "Nature Communications论文",
+          "desc": "相关研究发表",
           "evidence": [
             {
-              "quote": "识别出代谢流分布的关键原则： 丙酮酸代谢通路调控的营养富集浓度介导了微生物细胞中物质合成和能量代谢的流分配比例",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3095,
-                "end_char": 3149
-              },
-              "version": "6fe35070fca2e995e872"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9eeae979249b",
-          "name": "Nature Communications等期刊发表",
-          "desc": "相关研究工作已发表在Nature Communications等期刊并已开展更加深入的机制研究。",
-          "evidence": [
-            {
-              "quote": "相关研究工作已经发表在Nature Communications等期刊并已经开展了更加深入的机制研究。",
+              "quote": "相关研究工作已经发表在Nature Communications等期刊",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3203,
-                "end_char": 3253
+                "end_char": 3237
               },
               "version": "6fe35070fca2e995e872"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c28158d4a79c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9440e2717681"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人参皂苷合成下游途径转录调控机制的预测方法和系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任艳姣;杨倩倩;李高阳;曹丽英;高春雷;梁雪梅;李维;杨明来;李国峰;徐兴梅;郭宏亮",
+      "id": "out-c60b7b1dc6ec",
+      "evidence": [
+        {
+          "quote": "[专利] 人参皂苷合成下游途径转录调控机制的预测方法和系统 — 任艳姣;杨倩倩;李高阳;曹丽英;高春雷;梁雪梅;李维;杨明来;李国峰;徐兴梅;郭宏亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3271,
+            "end_char": 3344
+          },
+          "version": "6fe35070fca2e995e872"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c22ba0c03aa3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-22726e5e1b9b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classifying breast cancer using multi-view graph neural network based on multi-omics data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanjiao Ren;Yimeng Gao;Wei Du;Weibo Qiao;Wei Li;Qianqian Yang;Yanchun Liang;Gaoyang Li",
+      "id": "out-0cf66368818b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Classifying breast cancer using multi-view graph neural network based on multi-omics data — Yanjiao Ren;Yimeng Gao;Wei Du;Weibo Qiao;Wei Li;Qianqian Yang;Yanchun Liang;Gaoyang Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3349,
+            "end_char": 3533
+          },
+          "version": "6fe35070fca2e995e872"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9bd4571deda0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2a1648c9ea9c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f300b34f2953"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0a00b07fe88f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Local flux coordination and global gene expression regulation in metabolic modeling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gaoyang Li;Li Liu;Wei Du;Huansheng Cao",
+      "id": "out-041c5e24c6a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Local flux coordination and global gene expression regulation in metabolic modeling — Gaoyang Li;Li Liu;Wei Du;Huansheng Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3538,
+            "end_char": 3668
+          },
+          "version": "6fe35070fca2e995e872"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

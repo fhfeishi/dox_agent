@@ -2,15 +2,20 @@
   "doc_id": "2ba6794cf08a2950607d",
   "version": "d71b501fcd15050ae449",
   "source_hash": "275970ed7045826b17258ab6c909c114eb4e9d86203d9469362f7ad11fea3b2e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.593365+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:34:11.813506+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4955a8705745",
-          "name": "人工智能角膜病辅助诊断",
-          "desc": "面向我国首位不可逆致盲性眼病角膜病，研发知识引导与数据驱动融合的AI辅助诊断体系。",
+          "id": "item-216c241bbeb6",
+          "name": "角膜病精准诊断",
+          "desc": "重要致盲性眼病",
           "evidence": [
             {
-              "quote": "角膜疾病是我国首位不可逆致盲性眼病,其诊治水平的规范和提高与我国防盲治盲工作直接相关",
+              "quote": "本项目利用计算机科学新型模型算法和图像处理技术解决眼科临床实际难题，聚焦重要致盲性眼病——角膜病的精准诊断",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 704
+                "start_char": 2787,
+                "end_char": 2839
               },
               "version": "d71b501fcd15050ae449"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6a52de1f9223",
-          "name": "角膜病诊断水平参差且AI辅助诊治缺失",
-          "desc": "我国角膜病临床诊断水平存在差异、诊疗规范不完善、人工智能辅助诊治尚未涉及，亟需研发辅助诊断体系。",
+          "id": "item-8f6836d51ff7",
+          "name": "感染性角膜炎病因诊断困难且致盲性高",
+          "desc": "病原学诊断",
           "evidence": [
             {
-              "quote": "针对目前我国角膜病临床诊断水平存在差异、诊疗规范不完善、人工智能辅助诊治尚未涉及等问题",
+              "quote": "针对感染性角膜炎病因诊断困难、致盲性高的特点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 799
+                "start_char": 3087,
+                "end_char": 3108
               },
               "version": "d71b501fcd15050ae449"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-de211e8ed650",
-          "name": "知识引导与多模态数据融合的角膜病诊断算法",
-          "desc": "构建大规模角膜病多模态数据库，研究融合专业知识和多模态临床数据的新型人工智能诊断算法，构建基于因果关系的诊断推理模型，并设计云/边智能诊断体系。",
+          "id": "item-8b93aaca006a",
+          "name": "自监督对比学习图像质量评估与眼前节疾病筛查",
+          "desc": "图像、结构、病灶三尺度",
           "evidence": [
             {
-              "quote": "研发人工智能角膜病辅助诊断体系；构建大规模角膜病多模态数据库，研究融合专业知识和多模态临床数据的新型人工智能诊断算法",
+              "quote": "构建自监督对比学习图像质量评估系统，并进一步构建基于图像尺度、结构尺度和病灶尺度的眼前节疾病智能筛查和病灶识别系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 817,
-                "end_char": 874
+                "start_char": 3010,
+                "end_char": 3066
               },
               "version": "d71b501fcd15050ae449"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e57dd19f8351",
+          "name": "单模态细粒度分类与多模态元数据融合",
+          "desc": "角膜炎病原学诊断",
+          "evidence": [
+            {
+              "quote": "建立基于单模态细粒度分类及多模态元数据智能融合技术的算法框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3110,
+                "end_char": 3139
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9e6527afc3c2",
+          "name": "眼前节OCT自动分割与重建",
+          "desc": "量化坐标体系",
+          "evidence": [
+            {
+              "quote": "提出眼前节解剖结构和角膜炎病灶的自动分割和重建模型，建立量化坐标体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3187,
+                "end_char": 3220
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,759 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7ee6c330a57b",
-          "name": "实现涵盖13种眼前节疾病的可视化诊断",
-          "desc": "构建基于图像尺度、结构尺度和病灶尺度的眼前节疾病智能筛查与病灶识别系统，实现涵盖13种眼前节疾病的可视化诊断；建立角膜炎病原学诊断分类框架与眼前节OCT分割重建模型。",
+          "id": "item-16f1c818d392",
+          "name": "13种眼前节疾病可视化诊断",
+          "desc": "筛查与病灶识别系统",
           "evidence": [
             {
-              "quote": "构建基于图像尺度、结构尺度和病灶尺度的眼前节疾病智能筛查和病灶识别系统，实现涵盖13种眼前节疾病的可视化诊断",
+              "quote": "实现涵盖13种眼前节疾病的可视化诊断",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3032,
+                "start_char": 3068,
                 "end_char": 3085
               },
               "version": "d71b501fcd15050ae449"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-67c915c9b8ea",
+          "name": "寒武纪智能终端处理平台",
+          "desc": "云/边协同框架",
+          "evidence": [
+            {
+              "quote": "自主研发集成国产人工智能处理芯片——寒武纪的智能终端处理平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3245,
+                "end_char": 3274
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3236792b497e",
+          "name": "角膜病多模态云端数据库",
+          "desc": "浙二眼科中心与山东眼科研究所",
+          "evidence": [
+            {
+              "quote": "构建角膜病规范化多模态数据云端数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2931,
+                "end_char": 2948
+              },
+              "version": "d71b501fcd15050ae449"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4955a8705745"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6a52de1f9223"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于特征交叉变压器的裂隙灯图像质量评估方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王艺臻;王亚奇;贾刚勇;饶欢乐;柯怡然;徐佩芳",
+      "id": "out-35811e7ab0ae",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于特征交叉变压器的裂隙灯图像质量评估方法 — 王艺臻;王亚奇;贾刚勇;饶欢乐;柯怡然;徐佩芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3403,
+            "end_char": 3456
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6a52de1f9223"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-de211e8ed650"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alterations of conjunctival microbiota associated with orthokeratology lens wearing in myopic children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ju Zhang;Xiuhai Lu;Zhiwei Cheng;Dulei Zou;Weiyun Shi;Ting Wang",
+      "id": "out-21647360e87b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Alterations of conjunctival microbiota associated with orthokeratology lens wearing in myopic children — Ju Zhang;Xiuhai Lu;Zhiwei Cheng;Dulei Zou;Weiyun Shi;Ting Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3461,
+            "end_char": 3634
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-de211e8ed650"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7ee6c330a57b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic quantifying and monitoring follow-ups for implantable collamer lens implantation using AS-OCT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiming Sun;Jinhao Li;Peifang Xu;Pengjie Chen;Yaqi Wang;Shaodan Hu;Gangyong Jia;Shuai Wang;Juan Ye",
+      "id": "out-c4f2baac0420",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic quantifying and monitoring follow-ups for implantable collamer lens implantation using AS-OCT images — Yiming Sun;Jinhao Li;Peifang Xu;Pengjie Chen;Yaqi Wang;Shaodan Hu;Gangyong Jia;Shuai Wang;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3639,
+            "end_char": 3855
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型角膜供体材料的关键技术创新及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "史伟云;周庆军;高华;谢立信;王婷",
+      "id": "out-dfe38cbae2c6",
+      "evidence": [
+        {
+          "quote": "[奖励] 新型角膜供体材料的关键技术创新及临床应用 — 史伟云;周庆军;高华;谢立信;王婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3860,
+            "end_char": 3904
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种面向边缘I/O密集型应用的混合CPU调度方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾刚勇;周俶易;乐柯磊;李佳伟;洪陈杰;蒋从锋",
+      "id": "out-be401dd95a31",
+      "evidence": [
+        {
+          "quote": "[专利] 一种面向边缘I/O密集型应用的混合CPU调度方法 — 贾刚勇;周俶易;乐柯磊;李佳伟;洪陈杰;蒋从锋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3963
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CDNet: Contrastive Disentangled Network for Fine-Grained Image Categorization of Ocular B-Scan Ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruilong Dan;Yunxiang Li;Yijie Wang;Xiaodiao Chen;Gangyong Jia;Shuai Wang;Ruiquan Ge;Guiping Qian;Qun Jin;Juan Ye;Yaqi Wang",
+      "id": "out-7e7b0b11fc44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CDNet: Contrastive Disentangled Network for Fine-Grained Image Categorization of Ocular B-Scan Ultrasound — Ruilong Dan;Yunxiang Li;Yijie Wang;Xiaodiao Chen;Gangyong Jia;Shuai Wang;Ruiquan Ge;Guiping Qian;Qun Jin;Juan Ye;Yaqi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3968,
+            "end_char": 4204
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种大直径人工角膜内皮片及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王婷;史伟云;周庆军;张晓玉;王红卫",
+      "id": "out-f8a65b2d2ddf",
+      "evidence": [
+        {
+          "quote": "[专利] 一种大直径人工角膜内皮片及其应用 — 王婷;史伟云;周庆军;张晓玉;王红卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4209,
+            "end_char": 4250
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Fully Automatic Postoperative Appearance Prediction System for Blepharoptosis Surgery with Image-based Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiming Sun;Xingru Huang;Qianni Zhang;Sang Yeul Lee;Yaqi Wang;Kai Jin;Lixia Lou;Juan Ye",
+      "id": "out-892643fe320f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Fully Automatic Postoperative Appearance Prediction System for Blepharoptosis Surgery with Image-based Deep Learning — Yiming Sun;Xingru Huang;Qianni Zhang;Sang Yeul Lee;Yaqi Wang;Kai Jin;Lixia Lou;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4255,
+            "end_char": 4468
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于不确定性的半监督OCT图像视网膜分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘现文;王亚奇;贾刚勇;顾人舒",
+      "id": "out-88f2fcbc3b75",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于不确定性的半监督OCT图像视网膜分割方法 — 刘现文;王亚奇;贾刚勇;顾人舒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4473,
+            "end_char": 4519
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于字典学习的氨基酸序列特征提取方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "葛瑞泉;黄润根;王普;贾刚勇;程雨夏;徐岗",
+      "id": "out-60cbbe1b091d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于字典学习的氨基酸序列特征提取方法 — 葛瑞泉;黄润根;王普;贾刚勇;程雨夏;徐岗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4525,
+            "end_char": 4573
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence in Ophthalmic Surgery: Current Applications and Expectations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nuliqiman Maimaiti;Mingyu Xu;Yiming Sun;Jing Cao;Pengjie Chen;Qi Gao;Peifang Xu;Juan Ye",
+      "id": "out-e04d9de0c8b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Intelligence in Ophthalmic Surgery: Current Applications and Expectations — Nuliqiman Maimaiti;Mingyu Xu;Yiming Sun;Jing Cao;Pengjie Chen;Qi Gao;Peifang Xu;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4579,
+            "end_char": 4759
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Computation Offloading for Service Workflow of Mobile Applications in Mobile Edge Computing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Youwei;Qian Lu;Jia Gangyong;Yu Longxuan;Yu Zixuan;Zhao Qi",
+      "id": "out-afb6052c8b53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient Computation Offloading for Service Workflow of Mobile Applications in Mobile Edge Computing — Yuan Youwei;Qian Lu;Jia Gangyong;Yu Longxuan;Yu Zixuan;Zhao Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4765,
+            "end_char": 4937
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The short-term effects of blood donation on the ocular parameters including blood flow of the retina and choroid in healthy people using OCT- angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengmeng Yu;Xiaolei Sun;Fanxing Zeng;Xiang Gao;Zhenzhen Li;Gongqiang Yuan;Ting Wang",
+      "id": "out-020c1a4bb907",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The short-term effects of blood donation on the ocular parameters including blood flow of the retina and choroid in healthy people using OCT- angiography — Mengmeng Yu;Xiaolei Sun;Fanxing Zeng;Xiang Gao;Zhenzhen Li;Gongqiang Yuan;Ting Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4943,
+            "end_char": 5188
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A cascade eye diseases screening system with interpretability and expandability in ultra-wide field fundus images: A multicentre diagnostic accuracy study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Cao;Kun You;Jinqiong Zhou;Mingyu Xu;Peifang Xu;Lei Wen;Shengzhan Wang;Kai Jin;Lixia Lou;Yao Wang;Juan Ye",
+      "id": "out-d9815c223ca8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A cascade eye diseases screening system with interpretability and expandability in ultra-wide field fundus images: A multicentre diagnostic accuracy study — Jing Cao;Kun You;Jinqiong Zhou;Mingyu Xu;Peifang Xu;Lei Wen;Shengzhan Wang;Kai Jin;Lixia Lou;Yao Wang;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5194,
+            "end_char": 5466
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cascade spatial and channel-wise multifusion network with criss cross augmentation for corneal segmentation and reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guiping Qian;Huaqiong Wang;Yaqi Wang;Xiaodiao Chen;Dingguo Yu;Shan Luo;Yiming Sun;Peifang Xu;Juan Ye",
+      "id": "out-18ba47ee8293",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cascade spatial and channel-wise multifusion network with criss cross augmentation for corneal segmentation and reconstruction — Guiping Qian;Huaqiong Wang;Yaqi Wang;Xiaodiao Chen;Dingguo Yu;Shan Luo;Yiming Sun;Peifang Xu;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5707
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Real-time corneal thickness changes during phacoemulsification cataract surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Hu;Can Zhao;Yan Luo;Jun Kong;Weiyun Shi;Ting Wang",
+      "id": "out-07d546c08d0f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Real-time corneal thickness changes during phacoemulsification cataract surgery — Jia Hu;Can Zhao;Yan Luo;Jun Kong;Weiyun Shi;Ting Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5713,
+            "end_char": 5854
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative analysis of real-time performance and hardware requirements for edge computing platform",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kangkang Shi;Gangyong Jia;Youhuizi Li;Yuyu Yin;Congfeng Jiang;Li Zhou",
+      "id": "out-1eb0afab6d7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative analysis of real-time performance and hardware requirements for edge computing platform — Kangkang Shi;Gangyong Jia;Youhuizi Li;Yuyu Yin;Congfeng Jiang;Li Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5860,
+            "end_char": 6038
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于标签融合的半监督开集目标检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆展昀;顾人舒;徐佩芳;王亚奇;木下雄一郎;叶娟;贾刚勇;吴卿",
+      "id": "out-b510b927a1aa",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于标签融合的半监督开集目标检测方法 — 陆展昀;顾人舒;徐佩芳;王亚奇;木下雄一郎;叶娟;贾刚勇;吴卿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6044,
+            "end_char": 6102
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种高粘附的人工角膜内皮片及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王婷;史伟云;周庆军;张晓玉;王红卫",
+      "id": "out-6cce2866744a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种高粘附的人工角膜内皮片及其制备方法和应用 — 王婷;史伟云;周庆军;张晓玉;王红卫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6108,
+            "end_char": 6155
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic interpretation and clinical evaluation for fundus fluorescein angiography images of diabetic retinopathy patients by deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyuan Gao;Xiangji Pan;Ji Shao;Xiaoyu Jiang;Zhaoan Su;Kai Jin;Juan Ye",
+      "id": "out-8fc66b92087e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic interpretation and clinical evaluation for fundus fluorescein angiography images of diabetic retinopathy patients by deep learning — Zhiyuan Gao;Xiangji Pan;Ji Shao;Xiaoyu Jiang;Zhaoan Su;Kai Jin;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6161,
+            "end_char": 6380
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "角膜炎前房图像多模态多尺度特征分支融合分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柯怡然;王亚奇;王艺臻;贾刚勇;饶欢乐",
+      "id": "out-fa8eefa5a3e6",
+      "evidence": [
+        {
+          "quote": "[专利] 角膜炎前房图像多模态多尺度特征分支融合分类方法 — 柯怡然;王亚奇;王艺臻;贾刚勇;饶欢乐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6386,
+            "end_char": 6435
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation Study Between Abnormal Morphology of Meibomian Glands and Meibum in Patients With Dry Eye Disease Under in vivo Confocal Microscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Zheng;Yuanyuan Xue;Xiaowei Zhong;Guangwei Li;Weiyun Shi;Ting Wang",
+      "id": "out-39188243db93",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation Study Between Abnormal Morphology of Meibomian Glands and Meibum in Patients With Dry Eye Disease Under in vivo Confocal Microscopy — Qian Zheng;Yuanyuan Xue;Xiaowei Zhong;Guangwei Li;Weiyun Shi;Ting Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6441,
+            "end_char": 6663
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Diagnosis of Infectious Keratitis Based on Slit Lamp Images Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaodan Hu;Yiming Sun;Jinhao Li;Peifang Xu;Mingyu Xu;Yifan Zhou;Yaqi Wang;Shuai Wang;Juan Ye",
+      "id": "out-18a6ee7db0b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Diagnosis of Infectious Keratitis Based on Slit Lamp Images Analysis — Shaodan Hu;Yiming Sun;Jinhao Li;Peifang Xu;Mingyu Xu;Yifan Zhou;Yaqi Wang;Shuai Wang;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6669,
+            "end_char": 6848
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的全自动眼睑疾病术后外观预测系统和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "楼丽霞;叶娟;张烜;孙一鸣;黄星儒;邵霁",
+      "id": "out-b4dd250d94eb",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习的全自动眼睑疾病术后外观预测系统和方法 — 楼丽霞;叶娟;张烜;孙一鸣;黄星儒;邵霁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6854,
+            "end_char": 6906
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对抗注意机制和深度判别的自适应医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金鹏;王亚奇;贾刚勇;顾人舒",
+      "id": "out-8ce90a4fbfff",
+      "evidence": [
+        {
+          "quote": "[专利] 基于对抗注意机制和深度判别的自适应医学图像分割方法 — 金鹏;王亚奇;贾刚勇;顾人舒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6912,
+            "end_char": 6958
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BathNet: A network to classification of fundus and contrast images using label transfer and multi-branch transformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaqi Wang;Zihao Xv;Yizhen Wang;Kai Jin;Zhiyuan Gao;Yiran Ke;Chengyu Wu;Xiaodiao Chen;Dechao Chen;Juan Ye;Gangyong Jia",
+      "id": "out-f85ba88b42aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BathNet: A network to classification of fundus and contrast images using label transfer and multi-branch transformer — Yaqi Wang;Zihao Xv;Yizhen Wang;Kai Jin;Zhiyuan Gao;Yiran Ke;Chengyu Wu;Xiaodiao Chen;Dechao Chen;Juan Ye;Gangyong Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6964,
+            "end_char": 7206
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于循环残差卷积神经网络的眼球运动分割定位方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "楼丽霞;叶娟;王亚奇;黄星儒;孙一鸣;杨泽华",
+      "id": "out-4fc6e87e3e9a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于循环残差卷积神经网络的眼球运动分割定位方法 — 楼丽霞;叶娟;王亚奇;黄星儒;孙一鸣;杨泽华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7212,
+            "end_char": 7266
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FIVES: A Fundus Image Dataset for Artificial Intelligence based Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Jin;Xingru Huang;Jingxing Zhou;Yunxiang Li;Yan Yan;Yibao Sun;Qianni Zhang;Yaqi Wang;Juan Ye",
+      "id": "out-275af8b5cca4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FIVES: A Fundus Image Dataset for Artificial Intelligence based Vessel Segmentation — Kai Jin;Xingru Huang;Jingxing Zhou;Yunxiang Li;Yan Yan;Yibao Sun;Qianni Zhang;Yaqi Wang;Juan Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7272,
+            "end_char": 7459
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Edge Network Routing Protocol Base on Target Tracking Scenario",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhongyi Zhang;Weihua Zhao;Ouhan Huang;Gangyong Jia;Youhuizi Li;Songzhu Mei;Duan Zhao",
+      "id": "out-c4a75cd8e1d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Edge Network Routing Protocol Base on Target Tracking Scenario — Zhongyi Zhang;Weihua Zhao;Ouhan Huang;Gangyong Jia;Youhuizi Li;Songzhu Mei;Duan Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7465,
+            "end_char": 7620
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种提高数据密集型应用实时性的CPU调度方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾刚勇;乐柯磊;周俶易;蒋从锋;万健",
+      "id": "out-a40581c91a99",
+      "evidence": [
+        {
+          "quote": "[专利] 一种提高数据密集型应用实时性的CPU调度方法 — 贾刚勇;乐柯磊;周俶易;蒋从锋;万健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7626,
+            "end_char": 7673
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双分支交叉注意力池化的眼前节疾病多标签分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王莉莎;顾人舒;陈德潮;高红依;贾刚勇",
+      "id": "out-5154f0829559",
+      "evidence": [
+        {
+          "quote": "[专利] 基于双分支交叉注意力池化的眼前节疾病多标签分类方法 — 王莉莎;顾人舒;陈德潮;高红依;贾刚勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7679,
+            "end_char": 7730
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Time-based Calibration: A Way to Ensure that Stitched Images are Captured Simultaneously",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziwei Song;Xiaowen Cai;Xiaoying Zhang;Jiaxiang Zong;Gangyong Jia",
+      "id": "out-dee64ac2e4f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Time-based Calibration: A Way to Ensure that Stitched Images are Captured Simultaneously — Ziwei Song;Xiaowen Cai;Xiaoying Zhang;Jiaxiang Zong;Gangyong Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7736,
+            "end_char": 7897
+          },
+          "version": "d71b501fcd15050ae449"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "专利": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

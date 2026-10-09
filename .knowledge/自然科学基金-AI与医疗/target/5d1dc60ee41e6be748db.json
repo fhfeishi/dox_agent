@@ -2,15 +2,20 @@
   "doc_id": "5d1dc60ee41e6be748db",
   "version": "1cec5bf275e9a64068e7",
   "source_hash": "a6b9c3c6d79dbea8e1deedb945c669f7dd269d6c73645619481b8c8098d1508c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.196235+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.558213+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-f41965ec2aa6",
           "name": "弱标注肿瘤病理图像分析",
-          "desc": "我国是全球新发癌症最多的国家，病理医师缺口严重，深度学习落地依赖大量精标注样本。",
+          "desc": "病理医师缺口严重",
           "evidence": [
             {
               "quote": "我国是全球新发癌症最多的国家，而相应的病理医师缺口严重",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 658,
                 "end_char": 684
-              },
-              "version": "1cec5bf275e9a64068e7"
-            }
-          ]
-        },
-        {
-          "id": "item-a459c213297c",
-          "name": "多中心异构数据高效辅助诊断",
-          "desc": "让人工智能在少量弱标注下精准定位诊断关键区域、应对多中心异构数据高效实时辅助诊断。",
-          "evidence": [
-            {
-              "quote": "如何让人工智能在少量弱标注下精准定位诊断关键区域、应对临床多中心异构数据进行高效实时辅助诊断，是面向临床应用亟需解决的首要问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3250,
-                "end_char": 3312
               },
               "version": "1cec5bf275e9a64068e7"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-08941275216a",
-          "name": "精标注成本高且样本缺关联性",
-          "desc": "满足临床应用的深度学习系统需大量精标注样本，人工标注成本不比实际诊断低，且图像切分模式导致样本间缺失关联性。",
+          "id": "item-80447644ed3a",
+          "name": "病理深度学习需要大量精标注、多中心差异大",
+          "desc": "标注成本",
           "evidence": [
             {
-              "quote": "能够满足临床应用的深度学习系统需要大量精标注样本，其人工标注成本并不比实际诊断低。其次，目前的图像切分模式导致样本间缺失关联性，并没有借鉴医师的临床经验",
+              "quote": "目前医学病理图像的深度学习模型普遍存在训练数据量大、不同数据中心差异化严重的挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 742,
-                "end_char": 817
-              },
-              "version": "1cec5bf275e9a64068e7"
-            }
-          ]
-        },
-        {
-          "id": "item-1666864bae9c",
-          "name": "高通量病理图像预测耗时",
-          "desc": "大规模高通量病理图像的预测十分耗时，面向全视野图像的异构系统优化研究依然欠缺。",
-          "evidence": [
-            {
-              "quote": "再者，大规模高通量病理图像的预测十分耗时，而面向全视野图像的异构系统优化研究依然欠缺",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 819,
-                "end_char": 860
+                "start_char": 3209,
+                "end_char": 3248
               },
               "version": "1cec5bf275e9a64068e7"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-84aa12fc0fdb",
-          "name": "弱标注WSI肿瘤识别与染色归一化",
-          "desc": "研究基于弱标注的整张病理图像WSI肿瘤识别与不同数据中心病理图像染色归一化。",
+          "id": "item-92ee73e5d8d4",
+          "name": "潜在特征空间半监督弱标注WSI肿瘤识别",
+          "desc": "减少标注量并降低标注难度",
           "evidence": [
             {
-              "quote": "1）基于弱标注的整张病理图像WSI肿瘤识别；2）不同数据中心的病理图像染色归一化；3）病理图像的高通量诊断",
+              "quote": "首先在潜在特征空间允许未标注样本之间、标注和未标注样本之间建立映射关系，从而减少标注量并降低标注难度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3340,
-                "end_char": 3392
+                "start_char": 3425,
+                "end_char": 3474
               },
               "version": "1cec5bf275e9a64068e7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-88b6b10af657",
-          "name": "联邦学习染色归一化GAN",
-          "desc": "实现基于联邦学习数据隐私的染色归一化，并在图像生成上尽可能保留微组织结构一致性以提升可解释性。",
+          "id": "item-f52f6c4cfb8a",
+          "name": "联邦学习数据隐私染色归一化",
+          "desc": "保留微组织结构一致性",
           "evidence": [
             {
-              "quote": "对于不同数据中心，我们实现了基于联邦学习数据隐私的染色归一化，并在图像生成上尽可能保留微组织结构的一致性，使得结果更具备可解释性",
+              "quote": "我们实现了基于联邦学习数据隐私的染色归一化，并在图像生成上尽可能保留微组织结构的一致性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3489,
-                "end_char": 3552
+                "start_char": 3498,
+                "end_char": 3540
               },
               "version": "1cec5bf275e9a64068e7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d94a85122c54",
+          "name": "GPU架构加速AI诊断",
+          "desc": "辅助诊断软件",
+          "evidence": [
+            {
+              "quote": "我们开发辅助诊断软件，基于GPU架构和数据存储模式加速AI诊断速度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3561,
+                "end_char": 3593
+              },
+              "version": "1cec5bf275e9a64068e7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,211 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b68a12fe5944",
-          "name": "显著降低人工标注成本",
-          "desc": "在潜在特征空间允许未标注样本之间、标注与未标注样本之间建立映射关系，减少标注量并降低标注难度。",
+          "id": "item-e910f1576d12",
+          "name": "论文与著作",
+          "desc": "17篇SCI/EI论文，1部著作",
           "evidence": [
             {
-              "quote": "首先在潜在特征空间允许未标注样本之间、标注和未标注样本之间建立映射关系，从而减少标注量并降低标注难度，因此显著降低人工标注成本",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3425,
-                "end_char": 3487
-              },
-              "version": "1cec5bf275e9a64068e7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b13f85f04ddd",
-          "name": "GPU架构加速AI诊断软件",
-          "desc": "开发辅助诊断软件，基于GPU架构和数据存储模式加速AI诊断速度。",
-          "evidence": [
-            {
-              "quote": "在临床检测上，我们开发辅助诊断软件，基于GPU架构和数据存储模式加速AI诊断速度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3554,
-                "end_char": 3593
-              },
-              "version": "1cec5bf275e9a64068e7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-397c98d26def",
-          "name": "论文著作与临床检验",
-          "desc": "相关模型算法和测试结果发表在17篇SCI/EI权威期刊会议论文与1部著作，并在6家合作医院临床数据中得到检验。",
-          "evidence": [
-            {
-              "quote": "相关模型算法和测试结果发表在17篇领域内SCI/EI权威期刊会议论文，1部著作，并在6家合作医院的临床数据中得到检验",
+              "quote": "相关模型算法和测试结果发表在17篇领域内SCI/EI权威期刊会议论文，1部著作",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3595,
+                "end_char": 3633
+              },
+              "version": "1cec5bf275e9a64068e7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-b75440562cba",
+          "name": "6家合作医院临床数据检验",
+          "desc": "临床检验",
+          "evidence": [
+            {
+              "quote": "并在6家合作医院的临床数据中得到检验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3635,
                 "end_char": 3652
               },
               "version": "1cec5bf275e9a64068e7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f41965ec2aa6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-08941275216a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种甲状腺病理图像多模态检索系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柯晶;杨鑫",
+      "id": "out-400205add90c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种甲状腺病理图像多模态检索系统 — 柯晶;杨鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3671,
+            "end_char": 3699
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-08941275216a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-84aa12fc0fdb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病理图像分级方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柯晶;鲁亦舟;蒋伏松;黄琴",
+      "id": "out-4ad4ae35509b",
+      "evidence": [
+        {
+          "quote": "[专利] 病理图像分级方法及装置 — 柯晶;鲁亦舟;蒋伏松;黄琴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3704,
+            "end_char": 3735
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-84aa12fc0fdb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b68a12fe5944"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ClusterSeg: A crowd cluster pinpointed nucleus segmentation framework with cross-modality datasets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Ke;Yizhou Lu;Yiqing Shen;Junchao Zhu;Yijin Zhou;Jinghan Huang;Jieteng Yao;Xiaoyao Liang;Yi Guo;Zhonghua Wei;Sheng Liu;Qin Huang;Fusong Jiang;Dinggang Shen",
+      "id": "out-25398154f133",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ClusterSeg: A crowd cluster pinpointed nucleus segmentation framework with cross-modality datasets — Jing Ke;Yizhou Lu;Yiqing Shen;Junchao Zhu;Yijin Zhou;Jinghan Huang;Jieteng Yao;Xiaoyao Liang;Yi Guo;Zhonghua Wei;Sheng Liu;Qin Huang;Fusong Jiang;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3740,
+            "end_char": 4006
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-88b6b10af657"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b13f85f04ddd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Federated Learning System for Histopathology Image Analysis with an Orchestral Stain-Normalization GAN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiqing Shen;Arcot Sowmya;Yulin Luo;Xiaoyao Liang;Dinggang Shen;Jing Ke",
+      "id": "out-61e728ef6ee4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Federated Learning System for Histopathology Image Analysis with an Orchestral Stain-Normalization GAN — Yiqing Shen;Arcot Sowmya;Yulin Luo;Xiaoyao Liang;Dinggang Shen;Jing Ke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4011,
+            "end_char": 4194
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artifact Detection and Restoration in Histology Images With Stain-Style and Structural Preservation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Ke;Kai Liu;Yuxiang Sun;Yuying Xue;Jiaxuan Huang;Yizhou Lu;Jun Dai;Yaobing Chen;Xiaodan Han;Yiqing Shen;Dinggang Shen",
+      "id": "out-a48224de6e87",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artifact Detection and Restoration in Histology Images With Stain-Style and Structural Preservation — Jing Ke;Kai Liu;Yuxiang Sun;Yuying Xue;Jiaxuan Huang;Yizhou Lu;Jun Dai;Yaobing Chen;Xiaodan Han;Yiqing Shen;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4428
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病理图像瑕疵修复方法、装置、电子设备和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "柯晶;孙宇翔",
+      "id": "out-09c3c7414d22",
+      "evidence": [
+        {
+          "quote": "[专利] 病理图像瑕疵修复方法、装置、电子设备和存储介质 — 柯晶;孙宇翔",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4469
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identify Representative Samples by Conditional Random Field of Cancer Histology Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiqing Shen;Dinggang Shen;Jing Ke",
+      "id": "out-159eaaa08f5a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identify Representative Samples by Conditional Random Field of Cancer Histology Images — Yiqing Shen;Dinggang Shen;Jing Ke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4602
+          },
+          "version": "1cec5bf275e9a64068e7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "4825e80b200a7680d2ab",
   "version": "20dd24ae9c2ffc9737ec",
   "source_hash": "1421e745e2cf3f2cee9e3fd0a55cbdfc49d2f9abe9dcec1e7a276bdc845d21d5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.380737+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.251811+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5237e475dff8",
-          "name": "肝细胞癌肿瘤异质性量化",
-          "desc": "肝细胞癌细胞内异质性高，是靶向治疗耐药的重要原因，准确量化有助于个体化诊疗。",
+          "id": "item-2e64090b2351",
+          "name": "肝癌肿瘤异质性量化",
+          "desc": "HCC和ICC是最常见原发性肝癌",
           "evidence": [
             {
-              "quote": "肝细胞癌（HCC）是严重影响国民健康的杀手之一，其高度的细胞内异质性（ITH）是导致靶向治疗耐药的重要原因",
+              "quote": "肝细胞癌（HCC）和肝内胆管癌（ICC）是最常见的原发性肝癌类型，其高度的肿瘤异质性严重影响了临床预后和治疗效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 710
-              },
-              "version": "20dd24ae9c2ffc9737ec"
-            }
-          ]
-        },
-        {
-          "id": "item-9bcfc991b6ca",
-          "name": "肝癌病理图像辅助诊断",
-          "desc": "以大规模HCC病理图像及预后信息为基础，探索表征与量化ITH的新方法。",
-          "evidence": [
-            {
-              "quote": "本项目拟采用深度弱监督与无监督学习，以大规模HCC病理图像及预后信息为基础，探索表征、量化ITH的新方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 976
+                "start_char": 2708,
+                "end_char": 2763
               },
               "version": "20dd24ae9c2ffc9737ec"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b7a94220056e",
-          "name": "现有ITH评估成本高或不够准",
-          "desc": "基因组、转录组、蛋白组学方法成本高昂难以推广，医学影像方法又往往不够准确。",
-          "evidence": [
-            {
-              "quote": "现有ITH评估方法主要基于基因组、转录组、蛋白组学方法，成本高昂，难于临床推广应用；基于医学影像的方法则往往不够准确",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 743,
-                "end_char": 800
-              },
-              "version": "20dd24ae9c2ffc9737ec"
-            }
-          ]
-        },
-        {
-          "id": "item-34adf389462f",
-          "name": "传统方法难解析异质性空间分布",
-          "desc": "传统研究方法难以系统解析肿瘤异质性的空间分布特征及其临床意义。",
+          "id": "item-b4a419f29172",
+          "name": "传统方法难以系统解析肿瘤异质性空间分布",
+          "desc": "临床意义",
           "evidence": [
             {
               "quote": "传统的研究方法难以系统解析肿瘤异质性的空间分布特征及其临床意义",
@@ -97,45 +70,41 @@
         {
           "id": "item-e0cf6b98d5f7",
           "name": "肿瘤空间形态组学",
-          "desc": "提出新的形态相似度度量指标，结合无监督表征学习与聚类算法挖掘肿瘤细胞区域级亚型。",
+          "desc": "无监督表征学习与聚类，HCC 16种、ICC 13种亚型",
           "evidence": [
             {
-              "quote": "我们提出了全新的肿瘤空间形态组学，通过新的形态相似度度量指标，结合无监督表征学习与聚类算法",
+              "quote": "我们提出了全新的肿瘤空间形态组学，通过新的形态相似度度量指标，结合无监督表征学习与聚类算法，在HCC和ICC中分别发现了16种和13种肿瘤细胞区域级别亚型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2907,
-                "end_char": 2951
+                "end_char": 2983
               },
               "version": "20dd24ae9c2ffc9737ec"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-326f10f7b605",
-          "name": "AI引导空间深度蛋白组分析",
-          "desc": "通过AI引导的空间深度蛋白组和转录组分析，关联形态学子型与分子标志物。",
+          "id": "item-2b2bc9db34c5",
+          "name": "AI引导空间深度蛋白组与转录组分析",
+          "desc": "7000余分子标志物",
           "evidence": [
             {
-              "quote": "通过AI 引导的空间深度蛋白组和转录组分析，我们发现超过7000个分子标志物与形态学亚型显著相关（P<0.05）",
+              "quote": "通过AI 引导的空间深度蛋白组和转录组分析，我们发现超过7000个分子标志物与形态学亚型显著相关",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3014,
-                "end_char": 3069
+                "end_char": 3061
               },
               "version": "20dd24ae9c2ffc9737ec"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-c1f4cb8bf749",
+          "id": "item-64ee7af41944",
           "name": "肝癌病理图像标注与可视化平台",
-          "desc": "开发基于深度学习的肝癌病理图像数据标注与可视化平台，可通过少量标注自动识别肿瘤区域。",
+          "desc": "少量标注自动识别肿瘤区域",
           "evidence": [
             {
               "quote": "我们开发了基于深度学习的肝癌病理图像数据标注与可视化平台",
@@ -147,89 +116,135 @@
               "version": "20dd24ae9c2ffc9737ec"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-23e6b6cc49be",
-          "name": "HCC与ICC区域级亚型体系",
-          "desc": "在HCC和ICC中分别发现16种和13种肿瘤细胞区域级别亚型，并在多个大型多中心队列显示显著预后相关性。",
+          "id": "item-033e0bef1f5e",
+          "name": "CAF-FAP抑制剂联合抗PD-1",
+          "desc": "肿瘤体积减少68%",
           "evidence": [
             {
-              "quote": "在HCC和ICC中分别发现了16种和13种肿瘤细胞区域级别亚型",
+              "quote": "动物实验表明，CAF-FAP抑制剂联合抗PD-1治疗可使肿瘤体积减少68%，显著优于单药治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2953,
-                "end_char": 2983
-              },
-              "version": "20dd24ae9c2ffc9737ec"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1a24f9b8bf7d",
-          "name": "CAF抑制剂联合抗PD-1减瘤68%",
-          "desc": "定义FR+与FR-两种CAF亚型并证实其与免疫浸润关联，动物实验显示联合治疗使肿瘤体积减少68%。",
-          "evidence": [
-            {
-              "quote": "CAF-FAP抑制剂联合抗PD-1治疗可使肿瘤体积减少68%，显著优于单药治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3286,
+                "start_char": 3279,
                 "end_char": 3324
               },
               "version": "20dd24ae9c2ffc9737ec"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5a111d5616a9",
+          "name": "肿瘤异质性评分指标",
+          "desc": "多个独立队列验证预后价值",
+          "evidence": [
+            {
+              "quote": "我们构建了肿瘤异质性评分指标，并在多个独立队列中验证了其预后价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3147,
+                "end_char": 3178
+              },
+              "version": "20dd24ae9c2ffc9737ec"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5237e475dff8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b7a94220056e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图神经网络的乳腺癌病理图像分析方法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈思硕;王晓东;刘西洋",
+      "id": "out-a6c2ecc2e78d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于图神经网络的乳腺癌病理图像分析方法综述 — 陈思硕;王晓东;刘西洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3471,
+            "end_char": 3512
+          },
+          "version": "20dd24ae9c2ffc9737ec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b7a94220056e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e0cf6b98d5f7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stromal architecture and broblast subpopulations with opposing effects on outcomes in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-8454baf7dae0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stromal architecture and broblast subpopulations with opposing effects on outcomes in hepatocellular carcinoma — Yifei Cheng;Xiaofang Chen;Li Feng;Zhicheng Yang;Liyun Xiao;Bin Xiang;Xiaodong Wang;Dongbin Liu;Penghui Lin;Jieyi Shi;Guohe Song;Wulei Qian;Boan Zhang;Yanan Xu;Zheng Gao;Lv Chen;Yingcheng Wu;Jiaqiang Ma;Youpei Lin;Haichao Zhao;Lihua Peng;Xuebin Mao;Yang Liu;Hao Hou;Mingyu Yang;Yuan Ji;Xiaoying Wang;Jian Zhou;Xun Xu;Xiyang Liu;Wu Wei;Xiaoming Zhang;Qiang Gao;Hu Zhou;Yidi Sun;Kui Wu;Jia Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3517,
+            "end_char": 4026
+          },
+          "version": "20dd24ae9c2ffc9737ec"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e0cf6b98d5f7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23e6b6cc49be"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-326f10f7b605"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1a24f9b8bf7d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于最优传输的病理图像区域级相似度检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓东;高强;刘西洋;施杰毅;丁光宇;李津达",
+      "id": "out-63abbea9a304",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于最优传输的病理图像区域级相似度检索方法 — 王晓东;高强;刘西洋;施杰毅;丁光宇;李津达",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4031,
+            "end_char": 4083
+          },
+          "version": "20dd24ae9c2ffc9737ec"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

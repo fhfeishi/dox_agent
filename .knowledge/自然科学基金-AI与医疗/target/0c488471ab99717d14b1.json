@@ -2,15 +2,20 @@
   "doc_id": "0c488471ab99717d14b1",
   "version": "7ee0879bf8b2dc97a167",
   "source_hash": "10238369d1e26eccb3f6777a03d72ee1278f13041a2e77dec7677640d199c3c1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.585619+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.071640+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-51e341ac8c8c",
-          "name": "儿童喘息症状可解释AI辅助诊断",
-          "desc": "儿童喘息发病率极高且持续上升，年幼时喘息控制不佳会影响成年肺功能甚至与COPD发生密切相关。",
+          "id": "item-ef2cbffa497f",
+          "name": "儿童喘息症状辅助诊断",
+          "desc": "以难治性肺炎支原体肺炎为例",
           "evidence": [
             {
-              "quote": "儿童喘息发病率极高且持续上升。年幼时喘息控制不佳，会影响成年时的肺功能，甚至与COPD的发生密切相关",
+              "quote": "本项目以儿童喘息的重要病因之一——难治性肺炎支原体肺炎（RMPP）为例",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 718
-              },
-              "version": "7ee0879bf8b2dc97a167"
-            }
-          ]
-        },
-        {
-          "id": "item-de3920b9b2da",
-          "name": "提升儿科诊断水平",
-          "desc": "研究实现面向儿童喘息诊断的全局可解释性框架，带动国内儿科诊断水平提升。",
-          "evidence": [
-            {
-              "quote": "实现基于病历文本-影像数据临床真实应用场景的面向儿童喘息诊断的全局可解释性框架，带动国内儿科诊断水平的提升",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1010,
-                "end_char": 1062
+                "start_char": 2923,
+                "end_char": 2957
               },
               "version": "7ee0879bf8b2dc97a167"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-299bc91395f9",
-          "name": "儿科医生缺乏且诊断黑盒缺可解释性",
-          "desc": "我国儿科医生极度缺乏且多数缺少规范的喘息症状诊断培训，难以完成准确诊断；AI相关研究尚处起步阶段且诊断过程黑盒、缺乏可解释性。",
+          "id": "item-6a1255320469",
+          "name": "诊断过程黑盒、缺乏可解释性",
+          "desc": "AI辅助诊断相关研究起步阶段",
           "evidence": [
             {
-              "quote": "然而，我国儿科医生极度缺乏且多数缺少规范的喘息症状诊断培训，难以完成准确诊断",
+              "quote": "诊断过程黑盒、难以控制，且缺乏可解释性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 747,
-                "end_char": 784
-              },
-              "version": "7ee0879bf8b2dc97a167"
-            }
-          ]
-        },
-        {
-          "id": "item-ddea335e2e25",
-          "name": "儿童喘息病因复杂早期诊断困难",
-          "desc": "儿童喘息病因复杂，早期精准诊断困难，临床亟需高可解释性的辅助诊断技术。",
-          "evidence": [
-            {
-              "quote": "儿童喘息病因复杂，早期精准诊断困难，临床亟需高可解释性的辅助诊断技术",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2888,
-                "end_char": 2921
+                "start_char": 828,
+                "end_char": 846
               },
               "version": "7ee0879bf8b2dc97a167"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-64f783191ffe",
-          "name": "症状级病灶级与全局可解释性框架",
-          "desc": "从症状级、病灶级和全局可解释性三个角度入手，以临床病历文本和影像为基础建立基于文本数据的可解释模型。",
-          "evidence": [
-            {
-              "quote": "从“症状级可解释性”、“病灶级可解释性”和“全局可解释性”三个角度入手，以临床病历文本和影像为基础，建立基于文本数据的可解释模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 988
-              },
-              "version": "7ee0879bf8b2dc97a167"
-            }
-          ]
-        },
-        {
-          "id": "item-ac2c0acb4479",
-          "name": "Transformer全自动端到端预警模型",
-          "desc": "构建基于Transformer架构的全自动端到端预警模型Trans-DLF，实现基于基线CT的早期RMPP风险分层。",
+          "id": "item-17e3471ce12e",
+          "name": "Trans-DLF早期预警模型",
+          "desc": "基于Transformer的端到端模型，基线CT做RMPP风险分层",
           "evidence": [
             {
               "quote": "构建基于Transformer架构的全自动端到端预警模型（Trans-DLF），实现基于基线CT的早期RMPP风险分层",
@@ -124,7 +81,42 @@
               },
               "version": "7ee0879bf8b2dc97a167"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-988194af7c02",
+          "name": "因果森林治疗效应异质性分析",
+          "desc": "识别支气管镜治疗获益亚群",
+          "evidence": [
+            {
+              "quote": "利用因果森林算法，分析支气管镜介入治疗的异质性效应，识别获益患者亚群",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3195
+              },
+              "version": "7ee0879bf8b2dc97a167"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5cb3dbe32ce4",
+          "name": "定量CT微血管分析",
+          "desc": "揭示RMPP肺微血管重塑模式",
+          "evidence": [
+            {
+              "quote": "应用定量CT技术揭示RMPP肺微血管重塑模式，验证微循环障碍假说",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3065,
+                "end_char": 3096
+              },
+              "version": "7ee0879bf8b2dc97a167"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +125,80 @@
       "state": "has",
       "items": [
         {
-          "id": "item-45574f5ff444",
-          "name": "揭示RMPP肺微血管重塑模式",
-          "desc": "首先发现RMPP患儿存在特征性微血管减少伴大血管相对扩张的肺血容量重分布。",
+          "id": "item-40d6bc679232",
+          "name": "多模态数据库",
+          "desc": "覆盖2000余例患儿",
           "evidence": [
             {
-              "quote": "首先发现RMPP患儿存在特征性“微血管减少（BV5%降低）伴大血管相对扩张”的肺血容量重分布",
+              "quote": "构建了覆盖2000余例患儿的多模态数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3296,
-                "end_char": 3341
+                "start_char": 2978,
+                "end_char": 2997
               },
               "version": "7ee0879bf8b2dc97a167"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b97da49216d5",
-          "name": "Trans-DLF模型AUC 0.89至0.90",
-          "desc": "Trans-DLF模型在内外测试集上均表现稳健，AUC达0.89-0.90，决策热图与临床关注病灶吻合。",
+          "id": "item-c1341fe4e84d",
+          "name": "Trans-DLF内外测试性能",
+          "desc": "AUC 0.89-0.90",
           "evidence": [
             {
-              "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90），决策热图与临床关注病灶吻合，具良好可解释性与泛化能力",
+              "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3350,
-                "end_char": 3425
+                "end_char": 3398
               },
               "version": "7ee0879bf8b2dc97a167"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-4b35ae45db9c",
-          "name": "因果模型识别治疗获益亚群",
-          "desc": "因果模型识别出的获益亚群经支气管镜治疗后发热时长显著缩短（平均缩短1.16天），非获益亚群无效。",
+          "id": "item-b54d28f80345",
+          "name": "获益亚群发热时长缩短",
+          "desc": "平均缩短1.16天",
           "evidence": [
             {
-              "quote": "因果模型识别出的获益亚群，经支气管镜治疗后发热时长显著缩短（平均缩短1.16天），而非获益亚群无效，为精准干预提供依据",
+              "quote": "经支气管镜治疗后发热时长显著缩短（平均缩短1.16天）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3434,
-                "end_char": 3492
+                "start_char": 3447,
+                "end_char": 3473
               },
               "version": "7ee0879bf8b2dc97a167"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e5eca119fd9c",
+          "name": "COVID-19成人队列泛化",
+          "desc": "小血管占比BV5%预测临床结局AUC=0.79",
+          "evidence": [
+            {
+              "quote": "证实小血管占比（BV5%）对临床结局具高预测价值（AUC=0.79）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3561,
+                "end_char": 3594
+              },
+              "version": "7ee0879bf8b2dc97a167"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +206,234 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-51e341ac8c8c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-299bc91395f9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-299bc91395f9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-64f783191ffe"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac2c0acb4479"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-b97da49216d5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-64f783191ffe"
+        "item_id": "item-c1341fe4e84d"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-4b35ae45db9c"
+        "dimension": "技术",
+        "item_id": "item-17e3471ce12e"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "所构建的Trans-DLF模型在内外测试集上均表现稳健（曲线下面积[AUC]达0.89-0.90）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3350,
+            "end_char": 3398
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessing the Heterogeneous Treatment Effects of Glucocorticoids in Infants and Toddlers with Severe Pneumonia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Zhoumeng;Ge Haiyan;Han Wei;Hu Ge;Zhu Zhenchen;Wang Jinhua;Song Lan;Qu Dong;Jin Zhengyu",
+      "id": "out-d723cb8ae604",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessing the Heterogeneous Treatment Effects of Glucocorticoids in Infants and Toddlers with Severe Pneumonia — Ying Zhoumeng;Ge Haiyan;Han Wei;Hu Ge;Zhu Zhenchen;Wang Jinhua;Song Lan;Qu Dong;Jin Zhengyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3768,
+            "end_char": 3978
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of mycoplasma pneumonia in children based on fusion of multi-modal clinical free-text description and structured test data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Jingna;Wang Yingshuo;Sheng Qiuyang;Liu Xiaoqing;Li Jing;Sun Fenglei;Wang Yuqi;Li Shuxian;Li Yiming;Yu Yizhou;Yu Gang",
+      "id": "out-4c9e9d8ee0ad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of mycoplasma pneumonia in children based on fusion of multi-modal clinical free-text description and structured test data — Xie Jingna;Wang Yingshuo;Sheng Qiuyang;Liu Xiaoqing;Li Jing;Sun Fenglei;Wang Yuqi;Li Shuxian;Li Yiming;Yu Yizhou;Yu Gang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4249
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative analysis of pulmonary vascular alterations in children with refractory Mycoplasma pneumoniae pneumonia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Zhoumeng;Li Zheming;Li Jing;Yang Fei;Zhu Zhu;Hu Ge;Han Wei;Zhu Zhenchen;Zhang Baofeng;Zhou Zhen;Duan Mengyu;Tan Weixiong;Li Xinxin;Jin Zhengyu;Song Lan;Yu Gang",
+      "id": "out-92a80d40d96a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative analysis of pulmonary vascular alterations in children with refractory Mycoplasma pneumoniae pneumonia — Ying Zhoumeng;Li Zheming;Li Jing;Yang Fei;Zhu Zhu;Hu Ge;Han Wei;Zhu Zhenchen;Zhang Baofeng;Zhou Zhen;Duan Mengyu;Tan Weixiong;Li Xinxin;Jin Zhengyu;Song Lan;Yu Gang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4254,
+            "end_char": 4542
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "儿童川崎病休克综合征与脓毒性休克的早期鉴别探讨",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "戈海延;刘霜;陈静;高文萍;黄偲元;李芳;吕芳;曲东",
+      "id": "out-e291bc1290dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 儿童川崎病休克综合征与脓毒性休克的早期鉴别探讨 — 戈海延;刘霜;陈静;高文萍;黄偲元;李芳;吕芳;曲东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4547,
+            "end_char": 4605
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种类别预测模型的生成方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金征宇;毛丽;李秀丽;宋兰;俞益州;李一鸣;乔昕",
+      "id": "out-304674a5c8ae",
+      "evidence": [
+        {
+          "quote": "[专利] 一种类别预测模型的生成方法及装置 — 金征宇;毛丽;李秀丽;宋兰;俞益州;李一鸣;乔昕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 4657
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of deep learning reconstruction of chest low-dose CT for image quality improvement and lung parenchyma assessment on lung window",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jinhua;Sui Xin;Zhao Ruijie;Du Huayang;Wang Jiaru;Wang Yun;Qin Ruiyao;Lu Xiaoping;Ma Zhuangfei;Xu Yinghao;Jin Zhengyu;Song Lan;Song Wei",
+      "id": "out-3b1fcedd34f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of deep learning reconstruction of chest low-dose CT for image quality improvement and lung parenchyma assessment on lung window — Wang Jinhua;Sui Xin;Zhao Ruijie;Du Huayang;Wang Jiaru;Wang Yun;Qin Ruiyao;Lu Xiaoping;Ma Zhuangfei;Xu Yinghao;Jin Zhengyu;Song Lan;Song Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4662,
+            "end_char": 4944
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种难治性肺炎支原体肺炎预测模型的构建方法、设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋兰;应周梦;朱振宸;胡歌;周振;谭卫雄",
+      "id": "out-0c29d2891464",
+      "evidence": [
+        {
+          "quote": "[专利] 一种难治性肺炎支原体肺炎预测模型的构建方法、设备 — 宋兰;应周梦;朱振宸;胡歌;周振;谭卫雄",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4949,
+            "end_char": 5000
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于肺微血管变化预测 RMPP 的方法、设备、介质和程序产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋兰;应周梦;胡歌;朱振宸;周振;谭卫雄",
+      "id": "out-994692791e4a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于肺微血管变化预测 RMPP 的方法、设备、介质和程序产品 — 宋兰;应周梦;胡歌;朱振宸;周振;谭卫雄",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5005,
+            "end_char": 5062
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "U-Net-based computed tomography quantification of viral pneumonia can predict fibrotic interstitial lung abnormalities at 3-month follow-up",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhoumeng Ying;Zhenchen Zhu;Ge Hu;Zhengsong Pan;Weixiong Tan;Wei Han;Zifeng Wu;Zhen Zhou;Jinhua Wang;Wei Song;Lan Song;Zhengyu Jin",
+      "id": "out-0c8503841604",
+      "evidence": [
+        {
+          "quote": "[期刊论文] U-Net-based computed tomography quantification of viral pneumonia can predict fibrotic interstitial lung abnormalities at 3-month follow-up — Zhoumeng Ying;Zhenchen Zhu;Ge Hu;Zhengsong Pan;Weixiong Tan;Wei Han;Zifeng Wu;Zhen Zhou;Jinhua Wang;Wei Song;Lan Song;Zhengyu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5067,
+            "end_char": 5344
+          },
+          "version": "7ee0879bf8b2dc97a167"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

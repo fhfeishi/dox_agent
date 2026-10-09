@@ -2,15 +2,20 @@
   "doc_id": "ec9c4b38d3e0d438d20e",
   "version": "52474ef2b4049f5ad79f",
   "source_hash": "7a3abe81b6522340c726527654c4999f23ac53bdec5b1604e45cceb91e3352df",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.141039+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.579511+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-617e49154620",
-          "name": "运动想像脑电解码与脑机接口康复",
-          "desc": "面向基于脑机接口的主动式智能运动康复，建立精度高、泛化能力强的运动想像解码方法。",
+          "id": "item-e07056e3e734",
+          "name": "运动想像脑电解码",
+          "desc": "脑源域",
           "evidence": [
             {
-              "quote": "利用运动想像脑电(MI-EEG)解码人的运动意图是基于脑机接口的智能康复方法的核心",
+              "quote": "运动想像（MI）解码是基于脑机接口技术的主动式智能运动康复方法的核心",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 695
+                "start_char": 2714,
+                "end_char": 2747
               },
               "version": "52474ef2b4049f5ad79f"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-38cc2de9eb62",
-          "name": "MI-EEG低信噪比致特征可分性与表达受限",
-          "desc": "MI-EEG信噪比和空间分辨率低，削弱与脑活动的信息相关性且难以准确定位脑活动位置，导致特征可分性降低和特征表达不完整，成为传感器域解码的瓶颈。",
+          "id": "item-a4508b47d37b",
+          "name": "头皮MI-EEG空间分辨率低、个体差异致泛化弱",
+          "desc": "解码性能",
           "evidence": [
             {
-              "quote": "因MI-EEG信噪比和空间分辨率低,削弱与脑活动间的信息相关性,且难以准确定位脑活动位置,导致特征可分性降低和特征表达不完整,这正是传感器域MI解码的瓶颈",
+              "quote": "为解决解码性能受头皮MI-EEG低空间分辨率的影响，及受试者个体差异导致解码模型泛化能力弱的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 726,
-                "end_char": 802
+                "start_char": 2791,
+                "end_char": 2838
               },
               "version": "52474ef2b4049f5ad79f"
             }
@@ -63,80 +68,947 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8c3e37cd1835",
-          "name": "脑源成像与深度迁移学习的脑源域MI解码",
-          "desc": "从交叉学科角度研究脑源域MI解码，利用镜像神经元机理与VR改善采集质量，用生成对抗网络扩增数据，基于ESI在皮层空间进行脑源时空估计并设计域对抗三维卷积网络与参数迁移策略。",
+          "id": "item-9f3b878b29e5",
+          "name": "脑源成像偶极子时空估计与中心偶极子、代表性偶极子",
+          "desc": "脑源域数据表达",
           "evidence": [
             {
-              "quote": "本项目将从交叉学科角度研究脑源域MI解码方法",
+              "quote": "利用ESI技术进行偶极子时空估计，基于Desikan-Killiany和Destrieux分区创新性地提出中心偶极子（CD）和代表性偶极子（RD）的概念",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 804,
-                "end_char": 825
-              },
-              "version": "52474ef2b4049f5ad79f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cd11ba235bb9",
-          "name": "提出中心偶极子与代表性偶极子概念及4种脑源域解码方法",
-          "desc": "基于Desikan-Killiany与Destrieux分区提出中心偶极子与代表性偶极子概念，利用挤压-激励模块量化频带与ROI重要性，获得4种脑源域MI-EEG数据表达与解码方法，并提出脑源空间域适应网络提升泛化能力。",
-          "evidence": [
-            {
-              "quote": "基于Desikan-Killiany和Destrieux分区创新性地提出中心偶极子（CD）和代表性偶极子（RD）的概念",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3088,
+                "start_char": 3071,
                 "end_char": 3146
               },
               "version": "52474ef2b4049f5ad79f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c6a1035921b1",
+          "name": "时频变换与黎曼流形脑源空间域适应网络",
+          "desc": "减小负迁移",
+          "evidence": [
+            {
+              "quote": "提出一种基于时频变换和黎曼流行的脑源空间域适应网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3277,
+                "end_char": 3301
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f3d3031ff93b",
+          "name": "VR镜像神经元MI-EEG采集系统",
+          "desc": "单侧上肢",
+          "evidence": [
+            {
+              "quote": "完成单侧上肢MI-EEG采集系统的设计与开发",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2926,
+                "end_char": 2947
+              },
+              "version": "52474ef2b4049f5ad79f"
+            }
+          ],
+          "role": "配套-感知"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor imagery decoding network with multisubject dynamic transfer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi Li;Mingai Li",
+      "id": "out-8e028f29a898",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motor imagery decoding network with multisubject dynamic transfer — Zhi Li;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3542,
+            "end_char": 3632
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于偶极子成像和3D卷积神经网络的源域运动想象解码方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;李翔宇",
+      "id": "out-10909d8406d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于偶极子成像和3D卷积神经网络的源域运动想象解码方法 — 李明爱;李翔宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3637,
+            "end_char": 3680
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive epilepsy detection based on channel selection and dynamic CNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingai Li;Ziyue Zhang",
+      "id": "out-ae333d66b6ae",
+      "evidence": [
+        {
+          "quote": "[会议论文] Adaptive epilepsy detection based on channel selection and dynamic CNN — Mingai Li;Ziyue Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3685,
+            "end_char": 3785
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于信息最大化生成对抗网络的运动想象脑电信号数据增强",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖楠;李明爱",
+      "id": "out-d33fe5a2f2db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于信息最大化生成对抗网络的运动想象脑电信号数据增强 — 肖楠;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3790,
+            "end_char": 3831
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An adaptive session-incremental broad learning system for continuous motor imagery EEG classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufei Yang;Mingai Li;Linlin Wang",
+      "id": "out-b79194c06f3a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An adaptive session-incremental broad learning system for continuous motor imagery EEG classification — Yufei Yang;Mingai Li;Linlin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3978
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cortical ROI importance improves MI decoding from EEG using fused light neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linlin Wang;Mingai Li;Dongqin Xu;Yufei Yang",
+      "id": "out-ec66a34efd18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cortical ROI importance improves MI decoding from EEG using fused light neural network — Linlin Wang;Mingai Li;Dongqin Xu;Yufei Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3983,
+            "end_char": 4121
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoding motor imagery with a simplified distributed dipoles model at source level",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Mjing-ai;Ruan Zi-wei",
+      "id": "out-07a8427dbcfd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decoding motor imagery with a simplified distributed dipoles model at source level — Li Mjing-ai;Ruan Zi-wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4126,
+            "end_char": 4240
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MAML-EEG: A Meta-learning Strategy Based Domain Generalization Framework for Unseen Subject Motor Imagery Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhi;Li Mingai",
+      "id": "out-8b354cf3bc7c",
+      "evidence": [
+        {
+          "quote": "[会议论文] MAML-EEG: A Meta-learning Strategy Based Domain Generalization Framework for Unseen Subject Motor Imagery Classification — Li Zhi;Li Mingai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4390
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Apllying 3DCNN to Recognize the weighted Time-frequencyApplyingFeatures by Phase Locking Value for Epilepsy Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingai Li;Ziyue Zhang",
+      "id": "out-6c5bac8d9295",
+      "evidence": [
+        {
+          "quote": "[会议论文] Apllying 3DCNN to Recognize the weighted Time-frequencyApplyingFeatures by Phase Locking Value for Epilepsy Prediction — Mingai Li;Ziyue Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4395,
+            "end_char": 4543
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An adaptive cross-class transfer learning framework with two-level alignment,",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dong-qin Xu;Yang-jun Sun;Ming-ai Li",
+      "id": "out-90ff74799021",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An adaptive cross-class transfer learning framework with two-level alignment, — Dong-qin Xu;Yang-jun Sun;Ming-ai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4549,
+            "end_char": 4670
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CASCE: A Contrastive Representation Learning Framework for Motor Imagery EEG-Based Unilateral Upper Limb Decoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junhui Wang;Mingai Li",
+      "id": "out-8b7763d3a607",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CASCE: A Contrastive Representation Learning Framework for Motor Imagery EEG-Based Unilateral Upper Limb Decoding — Junhui Wang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4676,
+            "end_char": 4819
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于知识蒸馏和注意力损失的时间增量学习系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;徐裕超",
+      "id": "out-9b241f6ce733",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 一种基于知识蒸馏和注意力损失的时间增量学习系统 — 李明爱;徐裕超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4864
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进型生成式对抗网络的EEG-fNIRS多模态信号数据增广研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王鹏举;李明爱",
+      "id": "out-f68db5ecf112",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于改进型生成式对抗网络的EEG-fNIRS多模态信号数据增广研究 — 王鹏举;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4870,
+            "end_char": 4919
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DA-META: A Dual Attention Meta-Learning Framework for Unsupervised Motor Imagery Decoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinanhang Liu;Mingai Li;Zhi Li;Yufei Yang;Qi Qi",
+      "id": "out-804aa2976451",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DA-META: A Dual Attention Meta-Learning Framework for Unsupervised Motor Imagery Decoding — Jinanhang Liu;Mingai Li;Zhi Li;Yufei Yang;Qi Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4925,
+            "end_char": 5070
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decoding motor imagery based on dipole feature imaging and a hybrid CNN with embedded squeeze-and-excitation block",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linlin Wang;Mingai Li",
+      "id": "out-d6132191b7cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decoding motor imagery based on dipole feature imaging and a hybrid CNN with embedded squeeze-and-excitation block — Linlin Wang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5076,
+            "end_char": 5220
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于动态多尺度卷积和多头时间注意力的运动想象分类",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖楠;李明爱",
+      "id": "out-6ab83842075d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于动态多尺度卷积和多头时间注意力的运动想象分类 — 肖楠;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5226,
+            "end_char": 5265
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于连续小波变换和符号传递熵的脑功能网络构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;张圆圆",
+      "id": "out-579f5531a52d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于连续小波变换和符号传递熵的脑功能网络构建方法 — 李明爱;张圆圆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5271,
+            "end_char": 5311
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The quantitative application of channel importance in movement intention decoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Linlin;Li Mingai",
+      "id": "out-5616e76d416e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The quantitative application of channel importance in movement intention decoding — Wang Linlin;Li Mingai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5317,
+            "end_char": 5428
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An EEG-based dynamic task-incremental learning method for decoding ADL-oriented motor imagery pairs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufei Yang;Mingai Li;Fubiao Huang",
+      "id": "out-bccb214c54ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An EEG-based dynamic task-incremental learning method for decoding ADL-oriented motor imagery pairs — Yufei Yang;Mingai Li;Fubiao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5434,
+            "end_char": 5575
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于3D插值和3DCNN的运动想象任务分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;张京;孙炎珺",
+      "id": "out-e732ad91b482",
+      "evidence": [
+        {
+          "quote": "[专利] 基于3D插值和3DCNN的运动想象任务分类方法 — 李明爱;张京;孙炎珺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5581,
+            "end_char": 5621
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recognize enhanced temporal-spatial-spectral features with a parallel multi-branch CNN and GRU",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linlin Wang;Mingai Li",
+      "id": "out-01424cd8d9b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recognize enhanced temporal-spatial-spectral features with a parallel multi-branch CNN and GRU — Linlin Wang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5627,
+            "end_char": 5751
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor Imagery Classification Based on A Plain Convolutional Neural Network and Linear Interpolation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Mingai;Wei Lina",
+      "id": "out-d31e0c69f8b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Motor Imagery Classification Based on A Plain Convolutional Neural Network and Linear Interpolation — Li Mingai;Wei Lina",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5757,
+            "end_char": 5883
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Generative Diffusion-Based Task Incremental Learning Method for Decoding Motor Imagery EEG",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufei Yang;Mingai Li;Jianhang Liu",
+      "id": "out-3086f7fda6ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Generative Diffusion-Based Task Incremental Learning Method for Decoding Motor Imagery EEG — Yufei Yang;Mingai Li;Jianhang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5889,
+            "end_char": 6021
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Multi-Domain Feature Extraction Method with Improved LMD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ming-ai Li;Mengqi He",
+      "id": "out-e46d677cb2a0",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Multi-Domain Feature Extraction Method with Improved LMD — Ming-ai Li;Mengqi He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6027,
+            "end_char": 6114
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度特征映射和关键特征蒸馏的时间增量宽度学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;杨雨菲",
+      "id": "out-150846a1c3cf",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多尺度特征映射和关键特征蒸馏的时间增量宽度学习方法 — 李明爱;杨雨菲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6120,
+            "end_char": 6161
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "应用基于注意力的多尺度残差网络实现癫痫脑电自动检测",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王兴起;李明爱",
+      "id": "out-a2ad58e5ccea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 应用基于注意力的多尺度残差网络实现癫痫脑电自动检测 — 王兴起;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6167,
+            "end_char": 6208
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Domain Adaptation Method with Domain Selection in brain source space for Motor Imagery EEG",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Qi;Mingiai Li",
+      "id": "out-9aab93d4762a",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Domain Adaptation Method with Domain Selection in brain source space for Motor Imagery EEG — Qi Qi;Mingiai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6214,
+            "end_char": 6331
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于脑源域ROI重要性的MI解码方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;王林林",
+      "id": "out-b345fe05a90c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于脑源域ROI重要性的MI解码方法 — 李明爱;王林林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6337,
+            "end_char": 6369
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Applying correlation analysis to electrode optimization in source domain",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxin Dong;Linlin Wang;Mingai Li",
+      "id": "out-69b75c16665a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Applying correlation analysis to electrode optimization in source domain — Yuxin Dong;Linlin Wang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6375,
+            "end_char": 6488
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Approach to MI-EEG Classification via 3D Interpolation and 3DCNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingai Li;Jing Zhang",
+      "id": "out-f4a39ab6747b",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Novel Approach to MI-EEG Classification via 3D Interpolation and 3DCNN — Mingai Li;Jing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6494,
+            "end_char": 6595
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于浅层视觉几何组网络的参数迁移学习及其在运动想象分类中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许冬芹;李明爱",
+      "id": "out-6132f05dda47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于浅层视觉几何组网络的参数迁移学习及其在运动想象分类中的应用 — 许冬芹;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6601,
+            "end_char": 6648
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Domain Adaptation Method Based on Domain Reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Zhang;Mingai Li",
+      "id": "out-eb4ed9db253c",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Domain Adaptation Method Based on Domain Reconstruction — Lu Zhang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6654,
+            "end_char": 6738
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于堆叠宽度学习系统的运动想象任务增量学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;杨雨菲;孙炎珺",
+      "id": "out-52a832846007",
+      "evidence": [
+        {
+          "quote": "[专利] 基于堆叠宽度学习系统的运动想象任务增量学习方法 — 李明爱;杨雨菲;孙炎珺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6744,
+            "end_char": 6785
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor lmagery Recognition Based on an Optimized ProbabilisticNeural Network with the Particle Swarm Optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufei Yang;Mingai Li",
+      "id": "out-289744411680",
+      "evidence": [
+        {
+          "quote": "[会议论文] Motor lmagery Recognition Based on an Optimized ProbabilisticNeural Network with the Particle Swarm Optimization — Yufei Yang;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6791,
+            "end_char": 6932
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于残差模块和自注意力机制GAN 的脑电信号增广方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;彭伟民",
+      "id": "out-bb93479cb7e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于残差模块和自注意力机制GAN 的脑电信号增广方法 — 李明爱;彭伟民",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6938,
+            "end_char": 6980
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Dual Attention Rhythm-Driven Multi-Branch Network For Motor Imagery Decoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianhan Liu;Mingai Li",
+      "id": "out-304de03c8b88",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Dual Attention Rhythm-Driven Multi-Branch Network For Motor Imagery Decoding — Jianhan Liu;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6986,
+            "end_char": 7094
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于通道优选和动态卷积神经网络的癫痫检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;张紫钺;孙炎珺",
+      "id": "out-4f4d7c884f0f",
+      "evidence": [
+        {
+          "quote": "[专利] 基于通道优选和动态卷积神经网络的癫痫检测方法 — 李明爱;张紫钺;孙炎珺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7100,
+            "end_char": 7140
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于动态卷积和注意力机制的多域特征融合与运动想象解码",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张美晨;李明爱",
+      "id": "out-bb28a7a846ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于动态卷积和注意力机制的多域特征融合与运动想象解码 — 张美晨;李明爱",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7146,
+            "end_char": 7188
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于D-K分区的简化分布式偶极子模型建立与识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;阮秭威;孙炎珺",
+      "id": "out-142b663cace3",
+      "evidence": [
+        {
+          "quote": "[专利] 基于D-K分区的简化分布式偶极子模型建立与识别方法 — 李明爱;阮秭威;孙炎珺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7194,
+            "end_char": 7237
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多尺度注意力的癫痫自动检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李明爱;王兴起;孙炎珺",
+      "id": "out-1c7c05895416",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多尺度注意力的癫痫自动检测方法 — 李明爱;王兴起;孙炎珺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7243,
+            "end_char": 7278
+          },
+          "version": "52474ef2b4049f5ad79f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Domain Adaptation Method Based on Domain Selection and dual-space feature extractor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nan Xiao;Mingai Li",
+      "id": "out-82ca4d52573c",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Domain Adaptation Method Based on Domain Selection and dual-space feature extractor — Nan Xiao;Mingai Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7284,
+            "end_char": 7396
+          },
+          "version": "52474ef2b4049f5ad79f"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-617e49154620"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 41,
+    "listed": 41,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 24,
+        "extracted": 24
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-38cc2de9eb62"
+      "会议论文": {
+        "listed": 10,
+        "extracted": 10
       },
-      "basis": "原文明示"
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-38cc2de9eb62"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8c3e37cd1835"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8c3e37cd1835"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cd11ba235bb9"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

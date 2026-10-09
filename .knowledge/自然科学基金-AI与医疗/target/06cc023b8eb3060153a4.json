@@ -2,15 +2,20 @@
   "doc_id": "06cc023b8eb3060153a4",
   "version": "c163c335db7f9497cef1",
   "source_hash": "4807188e3b35107df5dc4f49302cc033b4fd151ec15326bb2d68efe9fb9725e2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.548364+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:26:17.361927+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-443ad9c6fa2f",
-          "name": "亚临床颈动脉斑块量化评估与心血管预警",
-          "desc": "亚临床动脉粥样硬化起病隐匿，一旦发生心血管事件预后较差；颈动脉超声是筛查亚临床动脉粥样硬化的有效方法。",
+          "id": "item-38105b4b66b8",
+          "name": "亚临床动脉粥样硬化心脑血管疾病预警",
+          "desc": "亚临床动脉粥样硬化起病隐匿，发生心血管事件后预后较差",
           "evidence": [
             {
               "quote": "亚临床动脉粥样硬化起病隐匿，一旦发生心血管事件，预后较差",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 693,
                 "end_char": 720
-              },
-              "version": "c163c335db7f9497cef1"
-            }
-          ]
-        },
-        {
-          "id": "item-dc64e44a32d4",
-          "name": "为早期个体化诊疗提供依据",
-          "desc": "创建精准的心脑血管疾病预警模型，为亚临床动脉粥样硬化患者制定早期个体化诊疗方案提供依据。",
-          "evidence": [
-            {
-              "quote": "旨在为亚临床动脉粥样硬化患者制定早期个体化诊疗方案提供依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1063,
-                "end_char": 1091
               },
               "version": "c163c335db7f9497cef1"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e6e854cfd2ac",
-          "name": "传统危险因素模型评估准确性差",
-          "desc": "心脑血管疾病预测模型主要建立在传统危险因素基础上，对亚临床动脉粥样硬化人群评估的准确性差。",
+          "id": "item-871fa12ae92e",
+          "name": "传统危险因素模型评估亚临床人群准确性差",
+          "desc": "预测模型主要建立在传统危险因素基础上",
           "evidence": [
             {
               "quote": "目前心脑血管疾病预测模型主要建立在传统危险因素基础上，对亚临床动脉粥样硬化人群评估的准确性差",
@@ -73,15 +62,15 @@
           ]
         },
         {
-          "id": "item-895aff9fe3c6",
-          "name": "图像识别准确性低且数据融合差",
-          "desc": "颈动脉超声检查因图像识别准确性低且超声数据与传统危险因素融合差，在心脑血管疾病评估中应用受限。",
+          "id": "item-abe238b2a547",
+          "name": "超声图像识别准确性低且与危险因素融合差",
+          "desc": "限制颈动脉超声在心脑血管评估中的应用",
           "evidence": [
             {
-              "quote": "然而，由于图像识别准确性低，且超声数据与传统危险因素融合差，在心脑血管疾病评估中应用受限",
+              "quote": "由于图像识别准确性低，且超声数据与传统危险因素融合差，在心脑血管疾病评估中应用受限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 794,
+                "start_char": 797,
                 "end_char": 837
               },
               "version": "c163c335db7f9497cef1"
@@ -95,25 +84,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3fea0991490c",
-          "name": "U-Net神经网络ALDA-UNet斑块分割",
-          "desc": "引入U-Net神经网络架构开发ALDA-UNet模型，通过集成多尺度主动学习与形变注意力模块提升斑块分割精度。",
+          "id": "item-f8ee452a57a8",
+          "name": "ALDA-UNet斑块分割模型",
+          "desc": "集成多尺度主动学习与形变注意力模块",
           "evidence": [
             {
-              "quote": "本研究创新性地引入了U-Net神经网络架构，开发了ALDA-UNet模型，通过集成多尺度主动学习与形变注意力模块，显著提升了斑块分割的精度",
+              "quote": "开发了ALDA-UNet模型，通过集成多尺度主动学习与形变注意力模块，显著提升了斑块分割的精度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2843,
+                "start_char": 2865,
                 "end_char": 2911
               },
               "version": "c163c335db7f9497cef1"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-1e8fb86eb95d",
-          "name": "矩阵多模态深度融合预警模型",
-          "desc": "构建多模态融合预警模型，利用超声图像和临床表格数据对颈动脉粥样硬化患者进行生存预测。",
+          "id": "item-f06566d0df1d",
+          "name": "超声与临床表格多模态融合预警模型",
+          "desc": "利用超声图像和临床表格数据做生存预测",
           "evidence": [
             {
               "quote": "项目构建了多模态融合预警模型，用于利用超声图像和临床表格数据对颈动脉粥样硬化患者进行生存预测",
@@ -124,7 +114,8 @@
               },
               "version": "c163c335db7f9497cef1"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +124,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02cd32949650",
-          "name": "ALDA-UNet提升斑块分割精度",
-          "desc": "显著提升斑块分割精度，准确量化心肌缺损程度并可精确分割缺损心肌轮廓。",
-          "evidence": [
-            {
-              "quote": "显著提升了斑块分割的精度，准确量化心肌缺损程度，还可以精确分割缺损心肌的轮廓，增强了其在心血管疾病中的临床和研究意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2900,
-                "end_char": 2957
-              },
-              "version": "c163c335db7f9497cef1"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
           "id": "item-b5f8228eb42c",
           "name": "融合模型提升风险预测效能",
-          "desc": "验证结果显示多模态融合模型能显著提升风险预测效能。",
+          "desc": "多模态融合模型显著提升风险预测效能",
           "evidence": [
             {
               "quote": "验证结果显示，该融合模型能显著提升风险预测效能",
@@ -164,24 +138,28 @@
               "version": "c163c335db7f9497cef1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
           "id": "item-28515142ac2b",
           "name": "颈总动脉直径增大为独立危险因素",
-          "desc": "基于大样本队列的分析证实，颈总动脉直径增大是心血管事件发生的独立危险因素。",
+          "desc": "大样本队列分析证实",
           "evidence": [
             {
-              "quote": "而基于大样本队列的分析证实，颈总动脉直径增大是心血管事件发生的独立危险因素",
+              "quote": "颈总动脉直径增大是心血管事件发生的独立危险因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3068,
+                "start_char": 3082,
                 "end_char": 3104
               },
               "version": "c163c335db7f9497cef1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +167,280 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-443ad9c6fa2f"
+        "dimension": "技术",
+        "item_id": "item-f8ee452a57a8"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-e6e854cfd2ac"
+        "item_id": "item-abe238b2a547"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e6e854cfd2ac"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3fea0991490c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3fea0991490c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-02cd32949650"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1e8fb86eb95d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5f8228eb42c"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "为此，本研究创新性地引入了U-Net神经网络架构，开发了ALDA-UNet模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2840,
+            "end_char": 2878
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种颈动脉斑块超声量化方法、系统及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘爽;马贺;贾娜娜;秦思文;邢立莹",
+      "id": "out-d62e1f35c340",
+      "evidence": [
+        {
+          "quote": "[专利] 一种颈动脉斑块超声量化方法、系统及电子设备 — 刘爽;马贺;贾娜娜;秦思文;邢立莹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3238,
+            "end_char": 3283
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于DP-LSTM的颈动脉斑块超声量化评估方法与系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘爽;邢立莹;马贺;秦思文",
+      "id": "out-3200b0869c25",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于DP-LSTM的颈动脉斑块超声量化评估方法与系统 — 刘爽;邢立莹;马贺;秦思文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3288,
+            "end_char": 3336
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sex-specific prediction value of common carotid artery diameter for stroke risk in a hypertensive population: a cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weishuang Xue;Yuanmeng Tian;Li Jing;Guangxiao Li;Han Yan;Boqiang Zhang;Liying Xing;Shuang Liu",
+      "id": "out-78e0d1220434",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sex-specific prediction value of common carotid artery diameter for stroke risk in a hypertensive population: a cross-sectional study — Weishuang Xue;Yuanmeng Tian;Li Jing;Guangxiao Li;Han Yan;Boqiang Zhang;Liying Xing;Shuang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3341,
+            "end_char": 3576
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neck circumference as an additional predictor of cardiovascular disease mortality: A multi-center prospective population-based study in northeastern China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangxiao Li;Han Yan;Li Jing;Yuanmeng Tian;Ying Li;Qun Sun;Jixu Sun;Ling Yue;Liying Xing;Shuang Liu",
+      "id": "out-b4eeb2f8f6fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neck circumference as an additional predictor of cardiovascular disease mortality: A multi-center prospective population-based study in northeastern China — Guangxiao Li;Han Yan;Li Jing;Yuanmeng Tian;Ying Li;Qun Sun;Jixu Sun;Ling Yue;Liying Xing;Shuang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3581,
+            "end_char": 3843
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "美国超声心动图学会Early Career Research Award-1st Prize for Cardiovascular Research",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘爽",
+      "id": "out-2dfb4d87621f",
+      "evidence": [
+        {
+          "quote": "[奖励] 美国超声心动图学会Early Career Research Award-1st Prize for Cardiovascular Research — 刘爽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3931
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M3T-CKD: A multi-modal multi-teacher contrastive knowledge distillation framework for survival prediction of patients with carotid atherosclerosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Nana;Jia Tong;Zhang Zhiao;Zhang Yanchao;Xing Liying;Liu Shuang",
+      "id": "out-b38394d3dc7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M3T-CKD: A multi-modal multi-teacher contrastive knowledge distillation framework for survival prediction of patients with carotid atherosclerosis — Jia Nana;Jia Tong;Zhang Zhiao;Zhang Yanchao;Xing Liying;Liu Shuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3936,
+            "end_char": 4157
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-enhanced three-dimensional echocardiography reveals left atrial-ventricular coupling index as a novel prognostic marker in coronary artery disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siwen Qin;Difei Li;Qin Feng;Yanchao Zhang;Donghui Zhou;Shuang Liu",
+      "id": "out-093107294c44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-enhanced three-dimensional echocardiography reveals left atrial-ventricular coupling index as a novel prognostic marker in coronary artery disease — Siwen Qin;Difei Li;Qin Feng;Yanchao Zhang;Donghui Zhou;Shuang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4162,
+            "end_char": 4406
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incremental significance and sex discrepancies of neck circumference on the odds of ischaemic stroke: a multistage, population-based, cross-sectional study from Northeast China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangxiao Li;Ying Li;Li Jing;Yuanmeng Tian;Lei Shi;Cuiqin Jiang;Qun Sun;Guocheng Ren;Dong Dai;Jixu Sun;Weizhong Wang;Weishuang Xue;Zuosen Yang;Shuang Liu;Liying Xing",
+      "id": "out-874f451b08ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incremental significance and sex discrepancies of neck circumference on the odds of ischaemic stroke: a multistage, population-based, cross-sectional study from Northeast China — Guangxiao Li;Ying Li;Li Jing;Yuanmeng Tian;Lei Shi;Cuiqin Jiang;Qun Sun;Guocheng Ren;Dong Dai;Jixu Sun;Weizhong Wang;Weishuang Xue;Zuosen Yang;Shuang Liu;Liying Xing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4411,
+            "end_char": 4761
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Common carotid artery diameter and the risk of cardiovascular disease mortality: a prospective cohort study in northeast China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziyi Yin;Jiajing Guo;Ru Li;Hong Zhou;Xue Zhang;Shanshan Guan;Yuanmeng Tian;Li Jing;Qun Sun;Guangxiao Li;Liying Xing;Shuang Liu",
+      "id": "out-456b7b11757b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Common carotid artery diameter and the risk of cardiovascular disease mortality: a prospective cohort study in northeast China — Ziyi Yin;Jiajing Guo;Ru Li;Hong Zhou;Xue Zhang;Shanshan Guan;Yuanmeng Tian;Li Jing;Qun Sun;Guangxiao Li;Liying Xing;Shuang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4766,
+            "end_char": 5027
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prevalence of Prediabetes and Risk of CVD Mortality in Individuals with Prediabetes Alone or Plus Hypertension in Northeast China: Insight from a Population Based Cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ling Yue;Yuanmeng Tian;Mingxi Ma;Li Jing;Qun Sun;Lei Shi;Jixu Sun;Weizhong Wang;Guangxiao Li;Liying Xing;Shuang Liu",
+      "id": "out-5ab598c3c5cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prevalence of Prediabetes and Risk of CVD Mortality in Individuals with Prediabetes Alone or Plus Hypertension in Northeast China: Insight from a Population Based Cohort study — Ling Yue;Yuanmeng Tian;Mingxi Ma;Li Jing;Qun Sun;Lei Shi;Jixu Sun;Weizhong Wang;Guangxiao Li;Liying Xing;Shuang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5033,
+            "end_char": 5332
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于人群的脑卒中综合防控策略及关键技术创新推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘爽",
+      "id": "out-9b62137ca5a0",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于人群的脑卒中综合防控策略及关键技术创新推广应用 — 刘爽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5338,
+            "end_char": 5372
+          },
+          "version": "c163c335db7f9497cef1"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

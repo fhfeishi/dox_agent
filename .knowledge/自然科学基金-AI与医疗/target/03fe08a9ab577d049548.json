@@ -2,15 +2,20 @@
   "doc_id": "03fe08a9ab577d049548",
   "version": "2a44da96fd127334b681",
   "source_hash": "ecac9294a4e6a56577a720c94bb6811e43f00c551572f55b988f5d91af6ed353",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.366611+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.225558+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-c57c16018a4e",
           "name": "早期胃癌内镜切除术前决策",
-          "desc": "内镜微创切除是治疗不伴淋巴结转移早期胃癌的金标准，术前需判断淋巴结转移风险。",
+          "desc": "内镜微创切除是不伴淋巴结转移早期胃癌的金标准",
           "evidence": [
             {
-              "quote": "内镜微创切除是治疗不伴淋巴结转移早期胃癌的金标准，通过病灶范围、浸润深度和病理 分型对淋巴结转移风险进行判断是术前决策的关键",
+              "quote": "内镜微创切除是治疗不伴淋巴结转移早期胃癌的金标准",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 664,
-                "end_char": 725
+                "end_char": 687
               },
               "version": "2a44da96fd127334b681"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-48f082a427ca",
-          "name": "既往术前判断主观准确率低",
-          "desc": "既往通过病灶范围、浸润深度与病理分型判断转移风险的方法主观且准确率较低。",
+          "id": "item-83ec38ca6e09",
+          "name": "既往术前判断方法主观、准确率较低",
+          "desc": "淋巴结转移风险判断方法主观",
           "evidence": [
             {
               "quote": "然而既往判断方法主观，准确率较低",
@@ -57,9 +62,9 @@
           ]
         },
         {
-          "id": "item-3a2147e8a583",
-          "name": "图像异质高标注成本高",
-          "desc": "早期胃癌内镜下精准诊疗面临图像异质性高、标注成本高及单一模态诊断局限等关键问题。",
+          "id": "item-f49d647dd8b3",
+          "name": "图像异质性高、标注成本高、单模态局限",
+          "desc": "早期胃癌内镜精准诊疗的关键科学问题",
           "evidence": [
             {
               "quote": "针对早期胃癌内镜下精准诊疗面临的图像异质性高、标注成本高及单一模态诊断局限等关键科学问题",
@@ -81,7 +86,7 @@
         {
           "id": "item-1fef8f828091",
           "name": "深度多模态融合网络",
-          "desc": "采用深度多模态融合网络对白光内镜及超声内镜成像融合，提高浸润深度识别准确率。",
+          "desc": "融合白光内镜与超声内镜成像，提高浸润深度识别",
           "evidence": [
             {
               "quote": "采用深度多模态融合网络对白光内镜及超声内镜成像融合，进一步提高胃癌浸润深度的识别准确率",
@@ -92,12 +97,13 @@
               },
               "version": "2a44da96fd127334b681"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-266c3529785a",
-          "name": "无监督自动标注技术",
-          "desc": "基于大语言模型与视觉模型开发无监督自动标注技术，解决医学图像标注难题。",
+          "id": "item-b33baf4abc96",
+          "name": "大语言模型与视觉模型无监督自动标注",
+          "desc": "解决医学图像标注难题",
           "evidence": [
             {
               "quote": "创新性开发了基于大语言模型与视觉模型的无监督自动标注技术，有效解决了医学图像标注难题",
@@ -108,23 +114,42 @@
               },
               "version": "2a44da96fd127334b681"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-11934b8d27cc",
-          "name": "图卷积活检病理诊断模型",
-          "desc": "基于H&E染色结合免疫组化多模态信息，构建图卷积网络活检病理诊断模型。",
+          "id": "item-71c05b64f36f",
+          "name": "CNN浸润深度与病变范围评估模型",
+          "desc": "优化的卷积神经网络评估模型",
           "evidence": [
             {
-              "quote": "构建了基于图卷积网络的活检病理诊断模型",
+              "quote": "优化了基于卷积神经网络的浸润深度与病变范围评估模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3084,
+                "start_char": 3029,
+                "end_char": 3053
+              },
+              "version": "2a44da96fd127334b681"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3bf6ca4a4f7c",
+          "name": "图卷积网络活检病理诊断模型",
+          "desc": "基于图卷积网络的病理诊断",
+          "evidence": [
+            {
+              "quote": "同时构建了基于图卷积网络的活检病理诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3082,
                 "end_char": 3102
               },
               "version": "2a44da96fd127334b681"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +158,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-db7c6ee7acfc",
-          "name": "早期胃癌一站式决策系统",
-          "desc": "将各模型集成为早期胃癌内镜切除术前一站式决策系统，并开展多中心前瞻性随机对照试验。",
-          "evidence": [
-            {
-              "quote": "将上述模型集成为“早期胃癌内镜切除术前一站式决策系统”，并开展了多中心前瞻性随机对照试验",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3107,
-                "end_char": 3150
-              },
-              "version": "2a44da96fd127334b681"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-54fb7b193d3f",
-          "name": "病理诊断模型AUC 0.979",
-          "desc": "病理诊断模型在验证集中AUC达0.979（95%CI 0.958-0.990），精准预测分化程度、浸润深度及边界。",
-          "evidence": [
-            {
-              "quote": "病理诊断模型在验证集中表现优异，AUC达到 0.979（95% CI: 0.958-0.990）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3165,
-                "end_char": 3212
-              },
-              "version": "2a44da96fd127334b681"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
           "id": "item-dd7924d83bbb",
           "name": "多模态胃黏膜病变标准数据集",
-          "desc": "建立包含白光、超声及色素内镜图像的多模态胃黏膜病变标准数据集。",
+          "desc": "包含白光、超声及色素内镜图像",
           "evidence": [
             {
               "quote": "建立了包含白光、超声及色素内镜图像的多模态胃黏膜病变标准数据集",
@@ -181,7 +172,47 @@
               "version": "2a44da96fd127334b681"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0e4586479c26",
+          "name": "早期胃癌内镜切除术前一站式决策系统",
+          "desc": "集成模型并开展多中心前瞻性随机对照试验",
+          "evidence": [
+            {
+              "quote": "并开展了多中心前瞻性随机对照试验",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3135,
+                "end_char": 3150
+              },
+              "version": "2a44da96fd127334b681"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a5575747d60f",
+          "name": "病理诊断模型验证集AUC",
+          "desc": "AUC达到0.979",
+          "evidence": [
+            {
+              "quote": "病理诊断模型在验证集中表现优异，AUC达到 0.979",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3165,
+                "end_char": 3191
+              },
+              "version": "2a44da96fd127334b681"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +220,234 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-c57c16018a4e"
+        "dimension": "技术",
+        "item_id": "item-b33baf4abc96"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-48f082a427ca"
+        "item_id": "item-f49d647dd8b3"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-48f082a427ca"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1fef8f828091"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1fef8f828091"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-54fb7b193d3f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-266c3529785a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dd7924d83bbb"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "创新性开发了基于大语言模型与视觉模型的无监督自动标注技术，有效解决了医学图像标注难题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2983,
+            "end_char": 3024
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于眼动仪的内镜检查质量控制系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "诸炎;李全林;周平红",
+      "id": "out-9f29c6151d0d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于眼动仪的内镜检查质量控制系统 — 诸炎;李全林;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3368,
+            "end_char": 3403
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于无监督大模型训练肠镜下病变检出的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "诸炎;李全林;周平红",
+      "id": "out-f8fcf1bbad21",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于无监督大模型训练肠镜下病变检出的方法 — 诸炎;李全林;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3408,
+            "end_char": 3447
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving bowel preparation for colonoscopy with a smartphone application driven by artificial intelligence",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Zhu;Dan-Feng Zhang;Hui-Li Wu;Pei-Yao Fu;Li Feng;Kun Zhuang;Zi-Han Geng;Kun-Kun Li;Xiao-Hong Zhang;Bo-Qun Zhu;Wen-Zheng Qin;Sheng-Li Lin;Zhen Zhang;Tian-Yin Chen;Yuan Huang;Xiao-Yue Xu;Jin-Zheng Liu;Shuo Wang;Wei Zhang;Quan-Lin Li;Ping-Hong Zhou",
+      "id": "out-8a88a23fd155",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving bowel preparation for colonoscopy with a smartphone application driven by artificial intelligence — Yan Zhu;Dan-Feng Zhang;Hui-Li Wu;Pei-Yao Fu;Li Feng;Kun Zhuang;Zi-Han Geng;Kun-Kun Li;Xiao-Hong Zhang;Bo-Qun Zhu;Wen-Zheng Qin;Sheng-Li Lin;Zhen Zhang;Tian-Yin Chen;Yuan Huang;Xiao-Yue Xu;Jin-Zheng Liu;Shuo Wang;Wei Zhang;Quan-Lin Li;Ping-Hong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3452,
+            "end_char": 3816
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种食管癌ESD术后食管狭窄的预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "耿子寒;诸炎;付佩尧;李全林;周平红",
+      "id": "out-422aede8544f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种食管癌ESD术后食管狭窄的预测系统 — 耿子寒;诸炎;付佩尧;李全林;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3821,
+            "end_char": 3865
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于消化内镜报告图文纠错的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李全林;诸炎;周平红",
+      "id": "out-58a0c765967b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于消化内镜报告图文纠错的方法 — 李全林;诸炎;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3870,
+            "end_char": 3904
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种消化内镜手术操作视频库的建立方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周平红;诸炎;李全林",
+      "id": "out-5254711d6457",
+      "evidence": [
+        {
+          "quote": "[专利] 一种消化内镜手术操作视频库的建立方法 — 周平红;诸炎;李全林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3909,
+            "end_char": 3944
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种食管STER手术过程中隧道内黏膜下肿瘤组织的识别系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "诸炎;李全林;周平红",
+      "id": "out-09d05c583dc6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种食管STER手术过程中隧道内黏膜下肿瘤组织的识别系统 — 诸炎;李全林;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3949,
+            "end_char": 3994
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于无监督大模型训练肠镜下病变检出的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李全林;诸炎;周平红",
+      "id": "out-3ceb3d2e1e2e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于无监督大模型训练肠镜下病变检出的方法 — 李全林;诸炎;周平红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3999,
+            "end_char": 4036
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图像属性信息的设备控制方法、相关装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周平红;诸炎;李全林",
+      "id": "out-7fa575d2e7ad",
+      "evidence": [
+        {
+          "quote": "[专利] 基于图像属性信息的设备控制方法、相关装置及存储介质 — 周平红;诸炎;李全林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4083
+          },
+          "version": "2a44da96fd127334b681"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

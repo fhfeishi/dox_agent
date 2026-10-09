@@ -2,15 +2,20 @@
   "doc_id": "5ab31792dbd9ed4c9e14",
   "version": "5639735411d4a05edaab",
   "source_hash": "47429754eb58a90acdd09322475f271eac33dd8bd4d6b538804b33ee3cf276aa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.767917+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.433008+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96738e97eabf",
-          "name": "鼻咽癌诱导化疗早期反应疗效评价",
-          "desc": "面向鼻咽癌诱导化疗的早期疗效评估，构建三维空间+时间+肿瘤内部特征的多维度疗效评价模型。",
+          "id": "item-887342cde649",
+          "name": "鼻咽癌诱导化疗疗效评价",
+          "desc": "RECIST标准局限",
           "evidence": [
             {
-              "quote": "如何实现鼻咽癌精准疗效评估是一重大临床科学问题",
+              "quote": "鼻咽癌疗效评价长期受限于个体解剖差异显著以及传统评价标准（如 RECIST 1.1）以单一尺寸变化为核心的局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 693
+                "start_char": 2948,
+                "end_char": 3003
               },
               "version": "5639735411d4a05edaab"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7bee77d0989c",
-          "name": "RECIST标准仅用径线测量不反映肿瘤内部变化",
-          "desc": "疗效评价RECIST标准仅采用径线测量，未考虑个体间头颅形状与大小差异，也不反映治疗后肿瘤内部特征变化；传统影像组学缺乏三维空间位置信息。",
+          "id": "item-419e64ad1db9",
+          "name": "传统评价标准难反映诱导化疗真实治疗效应",
+          "desc": "个体解剖差异显著",
           "evidence": [
             {
-              "quote": "疗效评价RECIST标准仅采用径线测量，没考虑到个体间头颅形状和大小的差异，不反映后肿瘤内部特征变化",
+              "quote": "难以全面、精准反映诱导化疗（IC）的真实治疗效应，进而制约个体化治疗决策",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 695,
-                "end_char": 744
+                "start_char": 3005,
+                "end_char": 3040
               },
               "version": "5639735411d4a05edaab"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c110c952e2a1",
-          "name": "三维标化头颈部肿瘤影像定量分析方法",
-          "desc": "基于自建标准三维坐标系与自动分割配准，研发三维标化的头颈部肿瘤影像定量分析方法，获取化疗前后三维标化定量参数与影像组学参数。",
+          "id": "item-ed9093335179",
+          "name": "鼻咽三维坐标系统空间标准化",
+          "desc": "解剖标志点配准",
           "evidence": [
             {
-              "quote": "研发基于三维标化的头颈部肿瘤影像定量分析方法，获取化疗前后三维标化定量参数和影像组学参数",
+              "quote": "研究成功建立了基于鼻咽三维坐标系统的空间标准化方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 937
+                "start_char": 3075,
+                "end_char": 3099
               },
               "version": "5639735411d4a05edaab"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f1022b20425e",
+          "name": "体素级肿瘤侵袭风险图TIR与体素入侵率VIR",
+          "desc": "20个关键解剖结构定量描述",
+          "evidence": [
+            {
+              "quote": "创新性提出体素级肿瘤侵袭风险（TIR）图及体素入侵率（VIR）分析体系，实现了对肿瘤侵犯20个关键解剖结构的定量化描述",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3182,
+                "end_char": 3240
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-734ed4398f18",
+          "name": "个体治疗效果PITE三元分类模型",
+          "desc": "IC推荐、中性、反对",
+          "evidence": [
+            {
+              "quote": "进一步构建了个体治疗效果（PITE）三元分类模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3366,
+                "end_char": 3389
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb27c20b50dc",
-          "name": "三维标化方法20个解剖结构平均准确率81.1%",
-          "desc": "三维标化方法在20个解剖结构上平均准确率81.1%、整体AUC 0.791；构建PITE三元分类模型并确定IC后肿瘤退缩最优截断值20%。成果发表SCI论文10篇、申请发明专利1项。",
+          "id": "item-845428fd43e3",
+          "name": "三维标化方法性能",
+          "desc": "20个解剖结构平均准确率81.1%，整体AUC 0.791",
           "evidence": [
             {
               "quote": "该三维标化方法在20个解剖结构上的平均准确率为81.1%，整体AUC为0.791",
@@ -99,44 +139,260 @@
               "version": "5639735411d4a05edaab"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-107bfdf2d43b",
+          "name": "IC后肿瘤退缩最优截断值",
+          "desc": "20%，优于RECIST的30%",
+          "evidence": [
+            {
+              "quote": "研究确定IC后肿瘤退缩的最优疗效评价截断值为20%，较RECIST 1.1标准（30%）在预测生存结局方面表现出显著优势",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3423,
+                "end_char": 3482
+              },
+              "version": "5639735411d4a05edaab"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-96738e97eabf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7bee77d0989c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Guiding induction chemotherapy of locoregionally advanced nasopharyngeal carcinoma with ternary classification of predicted individual treatment effect",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Zhiying;Luo Chao;Li Shuqi;Zhu Yuliang;Huang Wenjie;Cao Di;Liu Yifei;Ruan Guangying;Liang Shaobo;Chen Xi;Kou Kit-Ian;Zhang Guoyi;Liu Lizhi;Li Haojiang",
+      "id": "out-dd045cdf66d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Guiding induction chemotherapy of locoregionally advanced nasopharyngeal carcinoma with ternary classification of predicted individual treatment effect — Liang Zhiying;Luo Chao;Li Shuqi;Zhu Yuliang;Huang Wenjie;Cao Di;Liu Yifei;Ruan Guangying;Liang Shaobo;Chen Xi;Kou Kit-Ian;Zhang Guoyi;Liu Lizhi;Li Haojiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 4074
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7bee77d0989c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c110c952e2a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel fully automatic segmentation and counting system for metastatic lymph nodes on multimodal magnetic resonance imaging: Evaluation and prognostic implications in nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Haoyang;Zhao Qin;Huang Wenjie;Liang Zhiying;Cui Chunyan;Ma Huali;Luo Chao;Li Shuqi;Ruan Guangying;Chen Hongbo;Zhu Yuliang;Zhang Guoyi;Liu Shanshan;Liu Lizhi;Li Haojiang;Yang Hui;Xie Hui",
+      "id": "out-46b46fdf3e03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel fully automatic segmentation and counting system for metastatic lymph nodes on multimodal magnetic resonance imaging: Evaluation and prognostic implications in nasopharyngeal carcinoma — Zhou Haoyang;Zhao Qin;Huang Wenjie;Liang Zhiying;Cui Chunyan;Ma Huali;Luo Chao;Li Shuqi;Ruan Guangying;Chen Hongbo;Zhu Yuliang;Zhang Guoyi;Liu Shanshan;Liu Lizhi;Li Haojiang;Yang Hui;Xie Hui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4079,
+            "end_char": 4470
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c110c952e2a1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb27c20b50dc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于MRI生境空间交互特征的鼻咽癌预后预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘鹏;陈洪波;罗梅兰;陈树超;陈树;李赛;李奕杉",
+      "id": "out-c8e742ca5f05",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于MRI生境空间交互特征的鼻咽癌预后预测方法 — 刘鹏;陈洪波;罗梅兰;陈树超;陈树;李赛;李奕杉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4531
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiscale feature fusion network for 3D head MRI image registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shixin Yang;Haojiang Li;Shuchao Chen;Wenjie Huang;Demin Liu;Guangying Ruan;Qiangyang Huang;Qiong Gong;Lizhi Liu;Hongbo Chen",
+      "id": "out-08e0eab9d0dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiscale feature fusion network for 3D head MRI image registration — Shixin Yang;Haojiang Li;Shuchao Chen;Wenjie Huang;Demin Liu;Guangying Ruan;Qiangyang Huang;Qiong Gong;Lizhi Liu;Hongbo Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4536,
+            "end_char": 4736
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimal cut-off value for identifying objective response in patients with nasopharyngeal carcinoma after induction chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo Chao;Huang Wenjie;Li Shuqi;Li Haojiang;Ruan Guangying;Fu Gui;Liu Lizhi",
+      "id": "out-4d60f9b1baa8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimal cut-off value for identifying objective response in patients with nasopharyngeal carcinoma after induction chemotherapy — Luo Chao;Huang Wenjie;Li Shuqi;Li Haojiang;Ruan Guangying;Fu Gui;Liu Lizhi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4741,
+            "end_char": 4951
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synergistic Association of Hepatitis B Surface Antigen and Plasma Epstein-Barr Virus DNA Load on Distant Metastasis in Patients With Nasopharyngeal Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haojiang Li;Di Cao;Shuqi Li;Binghong Chen;Yun Zhang;Yuliang Zhu;Chao Luo;Weiqun Lin;Wenjie Huang;Guangying Ruan;Rong Zhang;Jiang Li;Lizhi Liu",
+      "id": "out-6338be59cdaf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synergistic Association of Hepatitis B Surface Antigen and Plasma Epstein-Barr Virus DNA Load on Distant Metastasis in Patients With Nasopharyngeal Carcinoma — Haojiang Li;Di Cao;Shuqi Li;Binghong Chen;Yun Zhang;Yuliang Zhu;Chao Luo;Weiqun Lin;Wenjie Huang;Guangying Ruan;Rong Zhang;Jiang Li;Lizhi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 5263
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-Based Metastatic Nodal Number and Associated Nomogram Improve Stratification of Nasopharyngeal Carcinoma Patients: Potential Indications for Individual Induction Chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Qin;Dong Annan;Cui Chunyan;Ou Qiaowen;Ruan Guangying;Zhou Jian;Tian Li;Liu Lizhi;Ma Huali;Li Haojiang",
+      "id": "out-9b55d37605c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-Based Metastatic Nodal Number and Associated Nomogram Improve Stratification of Nasopharyngeal Carcinoma Patients: Potential Indications for Individual Induction Chemotherapy — Zhao Qin;Dong Annan;Cui Chunyan;Ou Qiaowen;Ruan Guangying;Zhou Jian;Tian Li;Liu Lizhi;Ma Huali;Li Haojiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5268,
+            "end_char": 5561
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A coordinate registration-based structured magnetic resonance  imaging reporting method for nasopharyngeal carcinoma: a  preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shanshan Liu;Yifei Liu;Qiong Gong;Haojiang Li;Shixin Yang;Lizhi Liu;Hongbo Chen",
+      "id": "out-454c0644218a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A coordinate registration-based structured magnetic resonance  imaging reporting method for nasopharyngeal carcinoma: a  preliminary study — Shanshan Liu;Yifei Liu;Qiong Gong;Haojiang Li;Shixin Yang;Lizhi Liu;Hongbo Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5566,
+            "end_char": 5792
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel genetic algorithm-based individual treatment effectscoring model for optimizing decision-making: Inductionchemotherapy in nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Luo;Haojiang Li;Shuchao Chen;Hongchuang Chen;Haoyang Zhou;Shuqi Li;Wenjie Huang;Zhiyin Liang;Guangying Ruan;Shaobo Liang;Yuliang Zhu;Di Cao;Ge Ren;Kit Lan Kou;Xin Yang;Guoyi Zhang;Jun Shen;Hongbo Chen;Lizhi Liu",
+      "id": "out-7a5a8b847bb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel genetic algorithm-based individual treatment effectscoring model for optimizing decision-making: Inductionchemotherapy in nasopharyngeal carcinoma — Chao Luo;Haojiang Li;Shuchao Chen;Hongchuang Chen;Haoyang Zhou;Shuqi Li;Wenjie Huang;Zhiyin Liang;Guangying Ruan;Shaobo Liang;Yuliang Zhu;Di Cao;Ge Ren;Kit Lan Kou;Xin Yang;Guoyi Zhang;Jun Shen;Hongbo Chen;Lizhi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5797,
+            "end_char": 6173
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of Skull Base Foramen Invasion Subclassification in T Category Modification and Induction Chemotherapy Management for Nasopharyngeal Carcinoma: Post-Hoc Analysis of a Dual-Center Retrospective Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu Siyu;Li Shuqi;Cao Di;Luo Chao;Liang Zhiying;Liang Shaobo;Zhang Guoyi;Zhao Qin;Ruan Guangying;Liu Lizhi;Fu Gui;Li Haojiang",
+      "id": "out-a2bef225717f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of Skull Base Foramen Invasion Subclassification in T Category Modification and Induction Chemotherapy Management for Nasopharyngeal Carcinoma: Post-Hoc Analysis of a Dual-Center Retrospective Cohort Study — Zhu Siyu;Li Shuqi;Cao Di;Luo Chao;Liang Zhiying;Liang Shaobo;Zhang Guoyi;Zhao Qin;Ruan Guangying;Liu Lizhi;Fu Gui;Li Haojiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6179,
+            "end_char": 6535
+          },
+          "version": "5639735411d4a05edaab"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

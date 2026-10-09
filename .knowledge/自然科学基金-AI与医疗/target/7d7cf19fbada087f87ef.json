@@ -2,15 +2,20 @@
   "doc_id": "7d7cf19fbada087f87ef",
   "version": "a372c182e1472b2fc3d6",
   "source_hash": "b10477f709249cf1c687936ee9ef35e360ac8003a6fc2bfe7429de222d356e56",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.414119+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:47:16.738635+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2b14b614683a",
-          "name": "EGFR突变肺癌脑转移动态演进预测",
-          "desc": "面向EGFR突变NSCLC脑转移的精准诊治，构建脑转移发生与TKI耐药的动态演进预测模型。",
+          "id": "item-06ec4498c842",
+          "name": "EGFR突变NSCLC脑转移动态演进",
+          "desc": "发生率高，疗效异质性大",
+          "evidence": [
+            {
+              "quote": "EGFR突变NSCLC脑转移发生率高，疗效异质性大",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2868,
+                "end_char": 2892
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-c3a17ee5a5eb",
+          "name": "脑转移发生与TKI耐药关键节点难以精准预测",
+          "desc": "精准诊治",
           "evidence": [
             {
               "quote": "EGFR突变NSCLC脑转移发生率高，对TKI治疗反应的异质性大，如何实现精准诊治是亟待解决的临床难题",
@@ -37,46 +64,25 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-617f4848d0f1",
-          "name": "脑转移精准诊治亟待解决",
-          "desc": "EGFR突变NSCLC脑转移发生率高、疗效异质性大，需要利用多维异构信息精准预测疾病转归并在关键节点前干预。",
-          "evidence": [
-            {
-              "quote": "如何实现精准诊治是亟待解决的临床难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 696,
-                "end_char": 713
-              },
-              "version": "a372c182e1472b2fc3d6"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-fdb4ef61a820",
-          "name": "智能组学融合的脑转移动态预测模型",
-          "desc": "应用神经网络与机器学习深度融合NGS检测和影像组学等多维纵向异构信息，构建脑转移发生风险、局部和/或全身耐药的动态预测模型并建立PDX动物模型验证。",
+          "id": "item-792523affdbc",
+          "name": "多模态影像组学与临床-基因组融合预测模型",
+          "desc": "CT、PET/CT、MRI",
           "evidence": [
             {
-              "quote": "应用神经网络、机器学习等智能组学技术深度融合NGS检测和影像组学等多维纵向异构信息，构建脑转移发生风险、局部和/或全身耐药的动态预测模型",
+              "quote": "通过整合CT、PET/CT及MRI影像组学特征，并结合临床与基因数据，成功构建了一系列脑转移风险、EGFR-TKI疗效及颅内无进展生存期的预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 899,
-                "end_char": 966
+                "start_char": 2974,
+                "end_char": 3046
               },
               "version": "a372c182e1472b2fc3d6"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,781 @@
       "state": "has",
       "items": [
         {
-          "id": "item-162cd6ce0826",
-          "name": "MRI影像组学有效预测EGFR-TKI疗效",
-          "desc": "整合CT、PET/CT及MRI影像组学与临床基因数据构建脑转移风险、TKI疗效及颅内无进展生存期预测模型，融合模型预测性能优异；并证实三代TKI一线治疗优于序贯使用。",
+          "id": "item-16d677ffdb56",
+          "name": "MRI影像组学预测EGFR-TKI疗效",
+          "desc": "融合模型性能优异",
           "evidence": [
             {
-              "quote": "融合模型预测性能优异，MRI影像组学可有效预测EGFR-TKI疗效",
+              "quote": "融合模型预测性能优异，MRI影像组学可有效预测EGFR-TKI疗效，PET/CT肿瘤播散特征是晚期NSCLC生存的独立预后因素",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3055,
-                "end_char": 3087
+                "end_char": 3117
               },
               "version": "a372c182e1472b2fc3d6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f464082cb7ee",
+          "name": "三代EGFR-TKI一线治疗优于序贯使用",
+          "desc": "治疗分析",
+          "evidence": [
+            {
+              "quote": "治疗分析表明，三代EGFR-TKI一线治疗优于序贯使用，耐药后免疫联合方案可改善生存",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3119,
+                "end_char": 3160
+              },
+              "version": "a372c182e1472b2fc3d6"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2b14b614683a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-617f4848d0f1"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态影像组学引导肿瘤个体化放疗的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "尹勇;邢力刚;章真;巩贯忠;王利生;胡伟刚;仇清涛;段敬豪;卢洁",
+      "id": "out-2b1ecc708134",
+      "evidence": [
+        {
+          "quote": "[奖励] 多模态影像组学引导肿瘤个体化放疗的研究 — 尹勇;邢力刚;章真;巩贯忠;王利生;胡伟刚;仇清涛;段敬豪;卢洁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3272,
+            "end_char": 3330
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-617f4848d0f1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fdb4ef61a820"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI radiomics predicts the efficacy of EGFR-TKI in EGFR-mutant non-small-cell lung cancer with brain metastasis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Haoran;Hou Yichen;Zheng Zhonghang;Zheng Mei;Sun Xiaorong;Xing Ligang",
+      "id": "out-6429c4dacc88",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI radiomics predicts the efficacy of EGFR-TKI in EGFR-mutant non-small-cell lung cancer with brain metastasis — Qi Haoran;Hou Yichen;Zheng Zhonghang;Zheng Mei;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3335,
+            "end_char": 3526
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fdb4ef61a820"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-162cd6ce0826"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CAFs-TAECs空间距离预测肺鳞状细胞癌新辅助化免病理缓解",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "叶笃明;杨丽颖;赵亦民;文印会;赵苗青;邢力刚;孙晓蓉",
+      "id": "out-1da56939e85a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CAFs-TAECs空间距离预测肺鳞状细胞癌新辅助化免病理缓解 — 叶笃明;杨丽颖;赵亦民;文印会;赵苗青;邢力刚;孙晓蓉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3598
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimizing the spatial immune landscape of CD103+CD8+ tissue-resident memory T cells in non-small cell lung cancer by neoadjuvant chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guanqun;Hu Mengyu;Cai Siqi;Li Chaozhuo;Yang Liying;Zhao Miaoqing;Jing Hongbiao;Xing Ligang;Sun Xiaorong",
+      "id": "out-3ce0ee708272",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimizing the spatial immune landscape of CD103+CD8+ tissue-resident memory T cells in non-small cell lung cancer by neoadjuvant chemotherapy — Yang Guanqun;Hu Mengyu;Cai Siqi;Li Chaozhuo;Yang Liying;Zhao Miaoqing;Jing Hongbiao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3862
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial features of specific CD103+CD8+ tissue-resident memory T cell subsets define the prognosis in patients with non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guanqun;Cai Siqi;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+      "id": "out-2261c4f3b5cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial features of specific CD103+CD8+ tissue-resident memory T cell subsets define the prognosis in patients with non-small cell lung cancer — Yang Guanqun;Cai Siqi;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 4130
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Characterization and clinical verification of immune-related genes in hepatocellular carcinoma to aid prognosis evaluation and immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qu Jialin;Sun Fenghao;Hou Yichen;Qi Haoran;Sun Xiaorong;Xing Ligang",
+      "id": "out-8c27819be975",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Characterization and clinical verification of immune-related genes in hepatocellular carcinoma to aid prognosis evaluation and immunotherapy — Qu Jialin;Sun Fenghao;Hou Yichen;Qi Haoran;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4135,
+            "end_char": 4351
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Survival Outcomes in EGFR-Mutant Non-Small Cell Lung Cancer With Brain Metastases: Kaplan-Meier and Cox Regression Analyses Across Treatment Stages",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Haoran;Qiao Qiang;Sun Xiaorong;Xing Ligang",
+      "id": "out-74cd4bcfe80e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Survival Outcomes in EGFR-Mutant Non-Small Cell Lung Cancer With Brain Metastases: Kaplan-Meier and Cox Regression Analyses Across Treatment Stages — Qi Haoran;Qiao Qiang;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4557
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The role of spatial interplay patterns between PD-L1-positive tumor cell and T cell in recurrence of locally advanced non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Liying;Zhang Wei;Sun Jujie;Yang Guanqun;Cai Siqi;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+      "id": "out-63a3382bdfdb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The role of spatial interplay patterns between PD-L1-positive tumor cell and T cell in recurrence of locally advanced non-small cell lung cancer — Yang Liying;Zhang Wei;Sun Jujie;Yang Guanqun;Cai Siqi;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4562,
+            "end_char": 4805
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography-based radiomics and clinical-genetic features for brain metastasis prediction in patients with stage III/IV epidermal growth factor receptor-mutant non-small-cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Mei;Sun Xiaorong;Qi Haoran;Zhang Mingzhu;Xing Ligang",
+      "id": "out-4ff2097c3948",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography-based radiomics and clinical-genetic features for brain metastasis prediction in patients with stage III/IV epidermal growth factor receptor-mutant non-small-cell lung cancer — Zheng Mei;Sun Xiaorong;Qi Haoran;Zhang Mingzhu;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4810,
+            "end_char": 5071
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种医学图像的识别与分类的方法及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢力刚;于金明;尹勇;巩贯中;黄雪芳;谢宝文;雷国胜",
+      "id": "out-a9b9da34b8e1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种医学图像的识别与分类的方法及终端 — 邢力刚;于金明;尹勇;巩贯中;黄雪芳;谢宝文;雷国胜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5077,
+            "end_char": 5128
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "99Tcm-亚甲基双膦酸盐SPECT/CT全身断层显像适宜程序探索",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨昊;卞传彬;吴庆伟;王炎;马国帅;王晓慧;邢力刚;孙晓蓉",
+      "id": "out-b9558129cbcb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 99Tcm-亚甲基双膦酸盐SPECT/CT全身断层显像适宜程序探索 — 杨昊;卞传彬;吴庆伟;王炎;马国帅;王晓慧;邢力刚;孙晓蓉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5134,
+            "end_char": 5205
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "磁共振引导肿瘤放射治疗学",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于金明;邢力刚;尹勇",
+      "id": "out-90107d62b913",
+      "evidence": [
+        {
+          "quote": "[专著] 磁共振引导肿瘤放射治疗学 — 于金明;邢力刚;尹勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5211,
+            "end_char": 5240
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "瘤内PD-L1+巨噬细胞的浸润与非小细胞肺癌新辅助免疫治疗的关系",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "颜育杉;杨丽颖;耿家晓;伍力;孙晓蓉;邢力刚",
+      "id": "out-9cd766b0b21b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 瘤内PD-L1+巨噬细胞的浸润与非小细胞肺癌新辅助免疫治疗的关系 — 颜育杉;杨丽颖;耿家晓;伍力;孙晓蓉;邢力刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5309
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸部CT影像组学预测EGFR阳性非小细胞肺癌患者脑转移风险",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张明珠;孙晓蓉;侯懿宸;郑梅;邢力刚",
+      "id": "out-24d00fc08961",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胸部CT影像组学预测EGFR阳性非小细胞肺癌患者脑转移风险 — 张明珠;孙晓蓉;侯懿宸;郑梅;邢力刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5315,
+            "end_char": 5371
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FDG PET/CT Tumor Dissemination Characteristic Predicts the Outcome of First-Line Systemic Therapy in Non-small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tan Weiyue;Zhang Yi;Wang Jie;Zheng Zhonghang;Xing Ligang;Sun Xiaorong",
+      "id": "out-cfbb160bf553",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FDG PET/CT Tumor Dissemination Characteristic Predicts the Outcome of First-Line Systemic Therapy in Non-small Cell Lung Cancer — Tan Weiyue;Zhang Yi;Wang Jie;Zheng Zhonghang;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5377,
+            "end_char": 5582
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "18F-FDG PET/CT radiomics predicts brain metastasis in I-IIIA resected Non-Small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Zhonghang;Wang Jie;Tan Weiyue;Zhang Yi;Li Jing;Song Ruiting;Xing Ligang;Sun Xiaorong",
+      "id": "out-2db7bcb822cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 18F-FDG PET/CT radiomics predicts brain metastasis in I-IIIA resected Non-Small cell lung cancer — Zheng Zhonghang;Wang Jie;Tan Weiyue;Zhang Yi;Li Jing;Song Ruiting;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5588,
+            "end_char": 5783
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Navigate Towards the Immunotherapy Era: Value of Immune Checkpoint Inhibitors in Non-Small Cell Lung Cancer Patients With Brain Metastases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guanqun;Xing Ligang;Sun Xiaorong",
+      "id": "out-01a949b20862",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Navigate Towards the Immunotherapy Era: Value of Immune Checkpoint Inhibitors in Non-Small Cell Lung Cancer Patients With Brain Metastases — Yang Guanqun;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5789,
+            "end_char": 5973
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The analysis of multiple omics and examination of pathological images revealed the prognostic and therapeutic significances of CD93 in lung squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qu Jialin;Lin Li;Fu Guangming;Zheng Mei;Geng Jiaxiao;Sun Xiaorong;Xing Ligang",
+      "id": "out-74c097e8ff95",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The analysis of multiple omics and examination of pathological images revealed the prognostic and therapeutic significances of CD93 in lung squamous cell carcinoma — Qu Jialin;Lin Li;Fu Guangming;Zheng Mei;Geng Jiaxiao;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5979,
+            "end_char": 6228
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiation combined with KRAS-MEK inhibitors enhances anticancer immunity in KRAS-mutated tumor models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yawen;Liu Yanan;Zhang Fang;Su Chen;Chen Xiaozheng;Zhang Mingyan;Sun Meili;Sun Yuping;Xing Ligang",
+      "id": "out-ea77137fa037",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiation combined with KRAS-MEK inhibitors enhances anticancer immunity in KRAS-mutated tumor models — Zheng Yawen;Liu Yanan;Zhang Fang;Su Chen;Chen Xiaozheng;Zhang Mingyan;Sun Meili;Sun Yuping;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6234,
+            "end_char": 6446
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Modified spatial architecture of regulatory T cells after neoadjuvant chemotherapy in non-small cell lung cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cai Siqi;Zhao Miaoqing;Yang Guanqun;Li Chaozhuo;Hu Mengyu;Yang Liying;Xing Ligang;Sun Xiaorong",
+      "id": "out-e51d69c4aa70",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Modified spatial architecture of regulatory T cells after neoadjuvant chemotherapy in non-small cell lung cancer patients — Cai Siqi;Zhao Miaoqing;Yang Guanqun;Li Chaozhuo;Hu Mengyu;Yang Liying;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6452,
+            "end_char": 6676
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated nomogram for predicting intracranial progression-free survival with EGFR-TKI combined with cranial radiotherapy: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Haoran;Hou Yichen;Zheng Zhonghang;Qiao Qiang;Wang Zihao;Liu Xiao;Sun Xiaorong;Xing Ligang",
+      "id": "out-56d4dc11f081",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated nomogram for predicting intracranial progression-free survival with EGFR-TKI combined with cranial radiotherapy: a multicenter study — Qi Haoran;Hou Yichen;Zheng Zhonghang;Qiao Qiang;Wang Zihao;Liu Xiao;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6682,
+            "end_char": 6926
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial cell interplay networks of regulatory T cells predict recurrence in patients with operable non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cai Siqi;Yang Guanqun;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+      "id": "out-4ca1d648e49c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial cell interplay networks of regulatory T cells predict recurrence in patients with operable non-small cell lung cancer — Cai Siqi;Yang Guanqun;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6932,
+            "end_char": 7178
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dysfunction of CD8+ T cells around tumor cells leads to occult lymph node metastasis in NSCLC patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaozhuo Li;Mengyu Hu;Siqi Cai;Guanqun Yang;Liying Yang;Hongbiao Jing;Ligang Xing;Xiaorong Sun",
+      "id": "out-82eb000158ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dysfunction of CD8+ T cells around tumor cells leads to occult lymph node metastasis in NSCLC patients — Chaozhuo Li;Mengyu Hu;Siqi Cai;Guanqun Yang;Liying Yang;Hongbiao Jing;Ligang Xing;Xiaorong Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7184,
+            "end_char": 7389
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CD8+T细胞癌巢/间质比对早期非小细胞肺癌隐匿性淋巴结转移的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李超卓;景洪标;胡梦钰;杨丽颖;孙晓蓉;邢力刚",
+      "id": "out-49a8108319bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CD8+T细胞癌巢/间质比对早期非小细胞肺癌隐匿性淋巴结转移的影响 — 李超卓;景洪标;胡梦钰;杨丽颖;孙晓蓉;邢力刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7395,
+            "end_char": 7460
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional status and spatial architecture of tumor-infiltrating CD8+T cells are associated with lymph node metastases in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guanqun;Cai Siqi;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+      "id": "out-daa963e246bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional status and spatial architecture of tumor-infiltrating CD8+T cells are associated with lymph node metastases in non-small cell lung cancer — Yang Guanqun;Cai Siqi;Hu Mengyu;Li Chaozhuo;Yang Liying;Zhang Wei;Sun Jujie;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7466,
+            "end_char": 7735
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤放疗损伤机制与精准防治技术体系研究及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢力刚;张舒羽;赵汉玺;曹建平;朱婉琦;孙晓蓉;尹勇;许亚萍;孟雪;巩贯忠",
+      "id": "out-065e304c02be",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤放疗损伤机制与精准防治技术体系研究及临床应用 — 邢力刚;张舒羽;赵汉玺;曹建平;朱婉琦;孙晓蓉;尹勇;许亚萍;孟雪;巩贯忠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7741,
+            "end_char": 7809
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and safety of immunoradiotherapy for advanced non-small cell lung cancer: a retrospective comparative cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao yifan;Sun Xiaorong;Hou Yichen;Zhang Mingzhu;Tan Weiyue;Zhang Yi;Wang Jie;Zheng Zhonghang;Li Chaozhuo;Qi Haoran;Hu Mengyu;Xing Ligang",
+      "id": "out-9669f2d08306",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and safety of immunoradiotherapy for advanced non-small cell lung cancer: a retrospective comparative cohort study — Gao yifan;Sun Xiaorong;Hou Yichen;Zhang Mingzhu;Tan Weiyue;Zhang Yi;Wang Jie;Zheng Zhonghang;Li Chaozhuo;Qi Haoran;Hu Mengyu;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7815,
+            "end_char": 8083
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Closer proximity of pre-treatment CD4+ T cells to CD8+ T cells favor response to neoadjuvant immunotherapy in patients with PD-L1 low-expressing non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Liying;Geng Jiaxiao;Yang Hao;Zhao Miaoqing;Yuan Hongtu;Yan Yushan;Wu Li;Cao Fanghan;Xing Ligang;Sun Xiaorong",
+      "id": "out-f2deead24b59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Closer proximity of pre-treatment CD4+ T cells to CD8+ T cells favor response to neoadjuvant immunotherapy in patients with PD-L1 low-expressing non-small cell lung cancer — Yang Liying;Geng Jiaxiao;Yang Hao;Zhao Miaoqing;Yuan Hongtu;Yan Yushan;Wu Li;Cao Fanghan;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8089,
+            "end_char": 8382
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CD8+Trm与肿瘤细胞空间分布特征对局部晚期非小细胞肺癌复发的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨丽颖;薛洪范;张薇;孙菊杰;蔡思琪;邢力刚;孙晓蓉",
+      "id": "out-465ab5e8ee00",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CD8+Trm与肿瘤细胞空间分布特征对局部晚期非小细胞肺癌复发的预测价值 — 杨丽颖;薛洪范;张薇;孙菊杰;蔡思琪;邢力刚;孙晓蓉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8388,
+            "end_char": 8459
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Synergistic changes in bystander CD8 and conventional CD4 T cells during neoadjuvant chemoimmunotherapy for non-small cell lung cancer reveal treatment response",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Li;Yang Liying;Sun Jian;Zhao Miaoqing;Geng Jiaxiao;Cao Fanghan;Chen Qianhui;Yan Yushan;Yang Hao;Sun Xiaorong;Xing Ligang",
+      "id": "out-a1bd28f3f9a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Synergistic changes in bystander CD8 and conventional CD4 T cells during neoadjuvant chemoimmunotherapy for non-small cell lung cancer reveal treatment response — Wu Li;Yang Liying;Sun Jian;Zhao Miaoqing;Geng Jiaxiao;Cao Fanghan;Chen Qianhui;Yan Yushan;Yang Hao;Sun Xiaorong;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8465,
+            "end_char": 8757
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "18F-FDG PET/CT radiomics for prediction of lymphovascular invasion in patients with early stage non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jie;Zheng Zhonghang;Zhang Yi;Tan Weiyue;Li Jing;Xing Ligang;Sun Xiaorong",
+      "id": "out-f0acaff825ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 18F-FDG PET/CT radiomics for prediction of lymphovascular invasion in patients with early stage non-small cell lung cancer — Wang Jie;Zheng Zhonghang;Zhang Yi;Tan Weiyue;Li Jing;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8763,
+            "end_char": 8971
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Organoids in lung cancer brain metastasis: Foundational research, clinical translation, and prospective outlooks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Mei;Qu Jialin;Xiang Dongxi;Xing Ligang",
+      "id": "out-83fef3b4538b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Organoids in lung cancer brain metastasis: Foundational research, clinical translation, and prospective outlooks — Zheng Mei;Qu Jialin;Xiang Dongxi;Xing Ligang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8977,
+            "end_char": 9142
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Body Composition and Radiomics From 18F-FDG PET/CT Together Help Predict Prognosis for Patients With",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-4613412a23b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Body Composition and Radiomics From 18F-FDG PET/CT Together Help Predict Prognosis for Patients With",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9148,
+            "end_char": 9254
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional status and spatial interaction of T cell subsets driven by specific tumor microenvironment correlate with recurrence of non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Liying;Zhang Wei;Sun Jujie;Yang Guanqun;Cai Siqi;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+      "id": "out-443f02027587",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional status and spatial interaction of T cell subsets driven by specific tumor microenvironment correlate with recurrence of non-small cell lung cancer — Yang Liying;Zhang Wei;Sun Jujie;Yang Guanqun;Cai Siqi;Sun Fenghao;Xing Ligang;Sun Xiaorong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9368,
+            "end_char": 9624
+          },
+          "version": "a372c182e1472b2fc3d6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 30,
+        "extracted": 30
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

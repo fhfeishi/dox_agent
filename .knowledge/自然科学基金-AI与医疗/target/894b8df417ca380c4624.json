@@ -2,15 +2,20 @@
   "doc_id": "894b8df417ca380c4624",
   "version": "27b0ab5911c67c17de4f",
   "source_hash": "1b86fe3d0cedaabbeeae91091b10d51ed9d9cfcd0119b916b86981daf82eb563",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:54.773704+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.250876+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,23 +26,7 @@
         {
           "id": "item-a6869f25a560",
           "name": "CDK4/6抑制剂治疗晚期乳腺癌",
-          "desc": "CDK4/6抑制剂可显著提高晚期乳腺癌患者无进展生存，已成为国内一线用药。",
-          "evidence": [
-            {
-              "quote": "CDK4/6抑制剂可显著提高晚期乳腺癌患者的无进展生存，2018年国内批准其成为治疗晚期乳腺癌的一线用药",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 727
-              },
-              "version": "27b0ab5911c67c17de4f"
-            }
-          ]
-        },
-        {
-          "id": "item-923e81f8a151",
-          "name": "HR阳性乳腺癌精准诊疗",
-          "desc": "以HR+/HER2-乳腺癌为研究对象，融合影像、临床病理等特征开展研究。",
+          "desc": "HR+/HER2-乳腺癌",
           "evidence": [
             {
               "quote": "该项目以HR+/HER2-乳腺癌为研究对象，融合影像、临床病理等特征",
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8ef2f86cbff",
-          "name": "缺乏获益人群筛选与疗效评估标志物",
-          "desc": "目前并无生物标志物可进行获益人群筛选、精准疗效评估及耐药时间预测。",
+          "id": "item-b945e612945e",
+          "name": "缺乏获益人群筛选、精准疗效评估及耐药时间预测的生物标志物",
+          "desc": "目前",
           "evidence": [
             {
               "quote": "然而，目前为止并没有生物标志物可进行获益人群的筛选、精准的疗效评估及耐药时间的预测",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 729,
                 "end_char": 769
-              },
-              "version": "27b0ab5911c67c17de4f"
-            }
-          ]
-        },
-        {
-          "id": "item-d0f37f3aa655",
-          "name": "药物作用下肿瘤演进模式不明",
-          "desc": "需探索该药物作用下肿瘤的演进模式并建立动态、多点位疗效评价体系。",
-          "evidence": [
-            {
-              "quote": "探索该药物作用下肿瘤的演进模式，建立动态、多点位的疗效评价体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 923
               },
               "version": "27b0ab5911c67c17de4f"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-14a4818f8314",
-          "name": "深度学习与影像组学优势互补建模",
-          "desc": "将深度学习与影像组学两大技术优势互补，对乳腺癌PET-CT和MRI图像进行肿瘤表型全方位定量描述。",
+          "id": "item-43541646b983",
+          "name": "18F-FDG PET/CT多元影像组学预测HER-2状态",
+          "desc": "273例，十折交叉验证",
           "evidence": [
             {
-              "quote": "本项目拟将深度学习与影像组学两大人工智能技术进行优势互补，对乳腺癌PET-CT和MRI图像进行肿瘤表型全方位定量描述",
+              "quote": "基于18F-FDG PET/CT图像建立了多元影像组学模型，可有效的预测乳腺癌原发灶HER-2表达状态",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 771,
-                "end_char": 828
+                "start_char": 2266,
+                "end_char": 2316
               },
               "version": "27b0ab5911c67c17de4f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6a986db7ff9a",
-          "name": "ConvRNN动力学异质性建模",
-          "desc": "提出深度学习模型ConvRNN，输出KHimage评分作为表征肿瘤动力学异质性的定量成像生物标志物。",
+          "id": "item-977d2fa203ba",
+          "name": "ConvRNN深度学习模型与KHimage评分",
+          "desc": "预测腋下淋巴结转移风险",
           "evidence": [
             {
               "quote": "团队提出了一个深度学习模型ConvRNN，该模型输出的KHimage评分可以作为表征乳腺肿瘤动力学异质性的定量成像生物标志物",
@@ -124,12 +98,13 @@
               },
               "version": "27b0ab5911c67c17de4f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-6b090df1e341",
-          "name": "栖息地影像组学分析",
-          "desc": "对肺转移CT图像进行栖息地影像组学分析，评估CDK4/6抑制剂疗效。",
+          "id": "item-28527c3684c2",
+          "name": "栖息地影像组学预测CDK4/6抑制剂疗效",
+          "desc": "乳腺癌肺转移患者",
           "evidence": [
             {
               "quote": "对患者肺转移的CT图像进行栖息地影像组学分析，结果显示当聚类数为10时，模型的预测效果最佳",
@@ -140,7 +115,8 @@
               },
               "version": "27b0ab5911c67c17de4f"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,211 @@
       "state": "has",
       "items": [
         {
-          "id": "item-358b5afa2174",
-          "name": "HER-2状态预测平均AUC 0.818",
-          "desc": "基于18F-FDG PET/CT的多元影像组学模型预测HER-2表达状态平均AUC为0.818、准确率0.847，优于传统代谢参数。",
+          "id": "item-61a191bf024c",
+          "name": "HER-2预测模型性能",
+          "desc": "平均AUC 0.818，准确率0.847",
           "evidence": [
             {
-              "quote": "使用十折交叉验证来计算该模型的平均预测性能，结果显示该预测模型的平均AUC为0.818，准确率平均值为0.847",
+              "quote": "该预测模型的平均AUC为0.818，准确率平均值为0.847，灵敏度平均值为0.908，特异度平均值为0.764",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2455,
-                "end_char": 2510
+                "start_char": 2481,
+                "end_char": 2536
               },
               "version": "27b0ab5911c67c17de4f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-dad190e89ede",
-          "name": "KHimage评分预测腋窝淋巴结转移",
-          "desc": "KHimage评分能够准确预测乳腺癌患者腋窝淋巴结状态，具有为临床医师提供参考的潜力。",
+          "id": "item-a8ca82619977",
+          "name": "肺转移疗效预测模型",
+          "desc": "训练集AUC 0.78，测试集0.73",
           "evidence": [
             {
-              "quote": "KHimage评分能够准确预测乳腺癌患者的ALN状态，具有为临床医师提供有价值参考意见的潜力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2653,
-                "end_char": 2698
-              },
-              "version": "27b0ab5911c67c17de4f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-91d376a40029",
-          "name": "肺转移疗效预测AUC 0.78与0.73",
-          "desc": "栖息地影像组学模型在训练集和测试集预测CDK4/6抑制剂疗效AUC分别为0.78和0.73。",
-          "evidence": [
-            {
-              "quote": "AUC在训练集和测试集中分别为0.78和0.73，十折交叉验证证实了模型的泛化性能",
+              "quote": "AUC在训练集和测试集中分别为0.78和0.73",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2809,
-                "end_char": 2849
+                "end_char": 2832
               },
               "version": "27b0ab5911c67c17de4f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a6869f25a560"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d8ef2f86cbff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative magnetic resonance imaging identify feasibility of breast-conserving surgery for breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liangsheng Liu;Shanshan He;Zhenhua Niu;Rui Yin;Yijun Guo;Zhaoxiang Dou;Wenjuan Ma;Zhaoxiang Ye;Hong Lu",
+      "id": "out-e351ce45b13a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative magnetic resonance imaging identify feasibility of breast-conserving surgery for breast cancer patients — Liangsheng Liu;Shanshan He;Zhenhua Niu;Rui Yin;Yijun Guo;Zhaoxiang Dou;Wenjuan Ma;Zhaoxiang Ye;Hong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2868,
+            "end_char": 3095
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d8ef2f86cbff"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-14a4818f8314"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "瘤内联合瘤周动态对比增强 MRI乳腺癌 腋窝淋巴结转移深度学习预测模型研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭一君;尹 蕊;韩琚琪;豆兆祥;陈静静;刘佩芳;路红;马文娟",
+      "id": "out-b536188e42c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 瘤内联合瘤周动态对比增强 MRI乳腺癌 腋窝淋巴结转移深度学习预测模型研究 — 郭一君;尹 蕊;韩琚琪;豆兆祥;陈静静;刘佩芳;路红;马文娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3100,
+            "end_char": 3176
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-14a4818f8314"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-358b5afa2174"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌精准诊疗中多模态影像关键技术的创新与推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "路红;邵真真;马文娟;刘佩芳;朱鹰;柳杰;季宇",
+      "id": "out-20ffb17cf300",
+      "evidence": [
+        {
+          "quote": "[奖励] 乳腺癌精准诊疗中多模态影像关键技术的创新与推广 — 路红;邵真真;马文娟;刘佩芳;朱鹰;柳杰;季宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3181,
+            "end_char": 3234
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6a986db7ff9a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dad190e89ede"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-Based Kinetic Heterogeneity Evaluation in the Accurate Access of Axillary Lymph Node Status in Breast Cancer Using a Hybrid CNN-RNN Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yijun Guo;Rui Yin;Qian Zhang;Junqi Han;Zhaoxiang Dou;Pengbo Wang;Hong Lu;Peifang Liu;Jingjing Chen;Wenjuan Ma",
+      "id": "out-6f3b7c74de7f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-Based Kinetic Heterogeneity Evaluation in the Accurate Access of Axillary Lymph Node Status in Breast Cancer Using a Hybrid CNN-RNN Model — Yijun Guo;Rui Yin;Qian Zhang;Junqi Han;Zhaoxiang Dou;Pengbo Wang;Hong Lu;Peifang Liu;Jingjing Chen;Wenjuan Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3239,
+            "end_char": 3498
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive value of radiomic signature based on 2-[18F]FDG PET/CT in HER2 status determination for primary breast cancer with equivocal IHC results",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu J;Zhang Z; Bian H; Zhang Y;Ma W;Wang Z;Yin G;Dai D;Chen W;Zhu L;Xu W;Zhang H;Li X",
+      "id": "out-edc064b47d12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive value of radiomic signature based on 2-[18F]FDG PET/CT in HER2 status determination for primary breast cancer with equivocal IHC results — Liu J;Zhang Z; Bian H; Zhang Y;Ma W;Wang Z;Yin G;Dai D;Chen W;Zhu L;Xu W;Zhang H;Li X",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3503,
+            "end_char": 3744
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinicomics-guided distant metastasis prediction in breast cancer via artificial intelligence.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Zhang;Lisha Qi;Jun Cai;Haixiao Wu;Yao Xu;Yile Lin;Zhijun Li;Vladimir P. Chekhonin;Karl Peltzer;Manqing Cao;Zhuming Yin;Xin Wang;Wenjuan Ma",
+      "id": "out-0541cb29266e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinicomics-guided distant metastasis prediction in breast cancer via artificial intelligence. — Chao Zhang;Lisha Qi;Jun Cai;Haixiao Wu;Yao Xu;Yile Lin;Zhijun Li;Vladimir P. Chekhonin;Karl Peltzer;Manqing Cao;Zhuming Yin;Xin Wang;Wenjuan Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3749,
+            "end_char": 3995
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-based strategies in breast mass ≤ 2 cm classification with mammography and tomosynthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenzhen Shao;Yuxin Cai;Yujuan Hao;Congyi Hu;Ziling Yu;Yue Shen;Fei Gao;Fandong Zhang;Wenjuan Ma;Qian Zhou;Jingjing Chen;Hong Lu",
+      "id": "out-c2e340291433",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI-based strategies in breast mass ≤ 2 cm classification with mammography and tomosynthesis — Zhenzhen Shao;Yuxin Cai;Yujuan Hao;Congyi Hu;Ziling Yu;Yue Shen;Fei Gao;Fandong Zhang;Wenjuan Ma;Qian Zhou;Jingjing Chen;Hong Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4228
+          },
+          "version": "27b0ab5911c67c17de4f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

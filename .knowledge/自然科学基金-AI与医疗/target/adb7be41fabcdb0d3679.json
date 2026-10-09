@@ -2,15 +2,20 @@
   "doc_id": "adb7be41fabcdb0d3679",
   "version": "5b28f639f0c4089a69bc",
   "source_hash": "7816a17d21fa3d41a932b156ad1a99491be1fecd87303ac2fa7620fd90285434",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:44.544622+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.532915+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-204319999f06",
           "name": "乳腺癌分子分型预测",
-          "desc": "乳腺癌分子分型对患者术前治疗方案选择及预后判断起关键作用。",
+          "desc": "分子分型对术前治疗与预后关键",
           "evidence": [
             {
-              "quote": "乳腺癌分子分型对患者术前治疗方案选择及预后判断起着关键作用。",
+              "quote": "乳腺癌分子分型预测对患者术前治疗方案选择及预后起着至关重要的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 646,
-                "end_char": 675
-              },
-              "version": "5b28f639f0c4089a69bc"
-            }
-          ]
-        },
-        {
-          "id": "item-e9e47c977d95",
-          "name": "乳腺癌精准治疗与预后判断",
-          "desc": "为乳腺癌精准治疗及预后判断提供理论基础和技术支持。",
-          "evidence": [
-            {
-              "quote": "为乳腺癌精准治疗及预后判断提供理论基础和技术支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 940
+                "start_char": 2195,
+                "end_char": 2226
               },
               "version": "5b28f639f0c4089a69bc"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a3f4fc84346",
-          "name": "单模态影像建模局限",
-          "desc": "现有研究主要利用单模态医学影像，存在特征提取效率低下、模型预测精度不高、易过拟合等问题。",
+          "id": "item-374db1800b59",
+          "name": "单模态影像组学特征提取效率低、预测精度不高、易过拟合",
+          "desc": "现有研究",
           "evidence": [
             {
-              "quote": "目前基于影像组学的乳腺癌分子分型研究主要利用单模态医学影像，存在特征提取效率低下、模型预测精度不高、易产生过拟合等问题。",
+              "quote": "目前基于影像组学的乳腺癌分子分型研究主要利用单模态医学影像，存在特征提取效率低下、模型预测精度不高、易产生过拟合等问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 695,
-                "end_char": 754
-              },
-              "version": "5b28f639f0c4089a69bc"
-            }
-          ]
-        },
-        {
-          "id": "item-0b0c512829f4",
-          "name": "跨模态分割领域偏移",
-          "desc": "跨模态医学图像分割存在领域偏移及类别样本不平衡问题。",
-          "evidence": [
-            {
-              "quote": "针对跨模态医学图像分割中的领域偏移及类别样本不平衡问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2296,
-                "end_char": 2322
+                "end_char": 753
               },
               "version": "5b28f639f0c4089a69bc"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a0e34de7860",
-          "name": "CNN迁移网络多模态特征融合",
-          "desc": "优化CNN迁移网络结构提取深度特征，与人工定义特征融合实现特征互补。",
-          "evidence": [
-            {
-              "quote": "通过优化CNN迁移网络结构，提取乳腺癌深度特征，并将其与人工定义特征进行融合以实现特征互补",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 773,
-                "end_char": 817
-              },
-              "version": "5b28f639f0c4089a69bc"
-            }
-          ]
-        },
-        {
-          "id": "item-a675ed3ee7b1",
-          "name": "类别中心原型对齐领域自适应",
-          "desc": "提出基于类别中心原型对齐器的无监督领域自适应医学图像分割算法。",
+          "id": "item-7ce6d0985b5c",
+          "name": "类别中心原型对齐器无监督领域自适应分割算法",
+          "desc": "解决领域偏移与类别样本不平衡",
           "evidence": [
             {
               "quote": "提出了一种基于类别中心原型对齐器的无监督领域自适应医学图像分割算法",
@@ -124,12 +81,30 @@
               },
               "version": "5b28f639f0c4089a69bc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bac123af7311",
-          "name": "跨模态张量与注意力融合",
-          "desc": "提出跨模态张量融合法与注意力融合方法，捕获模态间高阶关系并自动学习特征权重。",
+          "id": "item-d15837b82ce0",
+          "name": "注意力与自适应图卷积组学特征提取方法",
+          "desc": "融合样本关系",
+          "evidence": [
+            {
+              "quote": "提出了可用于融合样本关系的基于注意力机制与自适应图卷积的组学特征提取方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2467,
+                "end_char": 2502
+              },
+              "version": "5b28f639f0c4089a69bc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-44d51bf1f3f9",
+          "name": "跨模态张量融合与注意力融合",
+          "desc": "多模态互补信息",
           "evidence": [
             {
               "quote": "提出了可用于捕获标签域不同模态之间高阶关系的跨模态张量融合法和可用于自动学习不同组学特征权重的注意力融合方法",
@@ -140,7 +115,8 @@
               },
               "version": "5b28f639f0c4089a69bc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98d51b5f4cf0",
-          "name": "三种分子亚型预测模型",
-          "desc": "设计了三种不同的基于深度学习的乳腺癌分子亚型预测模型。",
-          "evidence": [
-            {
-              "quote": "在此基础上设计了三种不同的基于深度学习的乳腺癌分子亚型预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2607,
-                "end_char": 2637
-              },
-              "version": "5b28f639f0c4089a69bc"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-187980829cb4",
-          "name": "模块化预测系统",
-          "desc": "利用Python、MATLAB等开发了模块化的乳腺癌分子分型预测系统。",
+          "id": "item-de81855c576d",
+          "name": "模块化乳腺癌分子分型预测系统",
+          "desc": "Python与MATLAB开发",
           "evidence": [
             {
               "quote": "最后利用Python、MATLAB等编程语言，开发了模块化的乳腺癌分子分型预测系统",
@@ -180,72 +139,73 @@
               "version": "5b28f639f0c4089a69bc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1ea88052d08f",
-          "name": "专利与论文成果",
-          "desc": "产出多组学癌症分型数据处理专利1项及无监督领域自适应分割论文1篇。",
-          "evidence": [
-            {
-              "quote": "一种基于多组学癌症分型的数据处理方法、装置及设备",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2735,
-                "end_char": 2758
-              },
-              "version": "5b28f639f0c4089a69bc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-204319999f06"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8a3f4fc84346"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多组学癌症分型的数据处理方法、装置及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "巩萍;程磊;李亚男;孟傲;葛海涛;陈洁;徐禹勰;曹逸;邵志猛;吴雨杭;陈铭;章龙珍",
+      "id": "out-a9f728554548",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多组学癌症分型的数据处理方法、装置及设备 — 巩萍;程磊;李亚男;孟傲;葛海涛;陈洁;徐禹勰;曹逸;邵志猛;吴雨杭;陈铭;章龙珍",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2730,
+            "end_char": 2802
+          },
+          "version": "5b28f639f0c4089a69bc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b0c512829f4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a675ed3ee7b1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8a0e34de7860"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-98d51b5f4cf0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bac123af7311"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-187980829cb4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Domain Adaptation Network With Category-Centric Prototype Aligner for Biomedical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Gong;Wenwen Yu;Qiuwen Sun;Ruohan Zhao;Junfeng Hu",
+      "id": "out-2cac91d3407d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised Domain Adaptation Network With Category-Centric Prototype Aligner for Biomedical Image Segmentation — Ping Gong;Wenwen Yu;Qiuwen Sun;Ruohan Zhao;Junfeng Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2807,
+            "end_char": 2981
+          },
+          "version": "5b28f639f0c4089a69bc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

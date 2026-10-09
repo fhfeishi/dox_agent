@@ -2,15 +2,20 @@
   "doc_id": "3c078f40de9bfeac30ee",
   "version": "8a27981d3eea22b76d03",
   "source_hash": "e5a5f96f8946ff945bdab389af3cbe3daaf8968657e8b4a4f7ccd7dee34b151e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.799489+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.046857+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-435c539b6d25",
-          "name": "公共卫生食源性疾病预测",
-          "desc": "在公共卫生领域，跨地区、跨人群、跨疾病种类的发病率预测是典型的大跨度迁移学习问题。",
+          "id": "item-2c9b0131c81c",
+          "name": "食源性疾病发病率预测",
+          "desc": "跨地区、跨人群、跨疾病种类",
           "evidence": [
             {
-              "quote": "在公共卫生领域，跨地区、跨人群、跨疾病种类的发病率预测就是典型的大跨度迁移学习问题。",
+              "quote": "公共卫生领域中对跨地区、跨人群、跨疾病种类的发病率进行精准预测的实际需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 711
-              },
-              "version": "8a27981d3eea22b76d03"
-            }
-          ]
-        },
-        {
-          "id": "item-cfbedc511658",
-          "name": "疾病高发预警与防控",
-          "desc": "为公共卫生管理部门提供疾病高发预警和防控建议。",
-          "evidence": [
-            {
-              "quote": "为公共卫生管理部门提供疾病高发预警和防控建议",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 975,
-                "end_char": 996
+                "start_char": 2672,
+                "end_char": 2707
               },
               "version": "8a27981d3eea22b76d03"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-814563998d05",
-          "name": "迁移学习大跨度性能下降",
-          "desc": "迁移学习的难度随着领域跨度的增加而增加，现有方法在领域跨度过大时存在性能瓶颈。",
+          "id": "item-b1989c428107",
+          "name": "迁移学习跨大跨度领域性能显著下降",
+          "desc": "领域跨度大",
           "evidence": [
             {
-              "quote": "迁移学习的难度随着领域跨度的增加而增加",
+              "quote": "本项目针对迁移学习在跨大跨度领域时模型性能显著下降的挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 650,
-                "end_char": 668
-              },
-              "version": "8a27981d3eea22b76d03"
-            }
-          ]
-        },
-        {
-          "id": "item-b6f54a59ae53",
-          "name": "迁移跨度难以度量",
-          "desc": "需要研究迁移学习中领域的子域划分与跨度度量方法。",
-          "evidence": [
-            {
-              "quote": "本项目将首先研究迁移学习中领域的子域划分与跨度度量方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 795,
-                "end_char": 821
+                "start_char": 2641,
+                "end_char": 2668
               },
               "version": "8a27981d3eea22b76d03"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-42593ee6af81",
-          "name": "子域跨度度量方法",
-          "desc": "提出基于机器学习特征集的子域跨度度量方法，通过层次敏感度分析估算特征重要性权重以量化迁移跨度。",
+          "id": "item-664e9b8ac3dc",
+          "name": "子域跨度（迁移难度）度量方法",
+          "desc": "基于特征集层次敏感度分析",
           "evidence": [
             {
-              "quote": "研究首先提出了基于机器学习特征集的子域跨度（迁移难度）度量方法，该方法通过层次敏感度分析估算特征重要性权重，并利用领域间独有特征与共享特征的权重差异来量化迁移跨度",
+              "quote": "首先提出了基于机器学习特征集的子域跨度（迁移难度）度量方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2784,
-                "end_char": 2864
+                "start_char": 2786,
+                "end_char": 2814
               },
               "version": "8a27981d3eea22b76d03"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d84f5d443ac9",
-          "name": "分解与归并迁移合成",
-          "desc": "提出分解与归并相结合的迁移合成方法，形成从度量、合成到路径优化的完整跨域迁移学习框架。",
+          "id": "item-01819c5991a6",
+          "name": "分解与归并的迁移合成方法",
+          "desc": "高阶迁移路径规划建模为置换优化问题",
           "evidence": [
             {
-              "quote": "项目提出了分解与归并相结合的迁移合成方法",
+              "quote": "项目提出了分解与归并相结合的迁移合成方法，并通过将高阶迁移路径规划建模为置换优化问题，设计了遗传算法与蚁群算法进行求解",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2898,
-                "end_char": 2917
-              },
-              "version": "8a27981d3eea22b76d03"
-            }
-          ]
-        },
-        {
-          "id": "item-16b27de74f00",
-          "name": "置换优化路径规划",
-          "desc": "将高阶迁移路径规划建模为置换优化问题，设计遗传算法与蚁群算法进行求解。",
-          "evidence": [
-            {
-              "quote": "并通过将高阶迁移路径规划建模为置换优化问题，设计了遗传算法与蚁群算法进行求解",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2919,
                 "end_char": 2956
               },
               "version": "8a27981d3eea22b76d03"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ee14f87ca27b",
-          "name": "特定人群发病率预测模型",
-          "desc": "构建了针对外卖消费人群、夜班人群等特定群体的胃肠道疾病与肝炎发病率预测模型。",
+          "id": "item-2dd31184dee9",
+          "name": "特定人群胃肠道疾病与肝炎发病率预测模型",
+          "desc": "外卖消费人群、夜班人群",
           "evidence": [
             {
               "quote": "项目成功构建了针对外卖消费人群、夜班人群等特定群体的胃肠道疾病与肝炎发病率预测模型",
@@ -163,12 +122,14 @@
               "version": "8a27981d3eea22b76d03"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-760e7dcd3774",
-          "name": "软件原型被卫健部门采纳",
-          "desc": "开发的软件原型被杭州市卫健委疾病预防控制与职业健康部门采纳，用于流行性肝病风险预警与特定人群健康干预。",
+          "id": "item-fd624f8bf770",
+          "name": "软件原型被杭州市卫健部门采纳",
+          "desc": "用于流行性肝病风险预警",
           "evidence": [
             {
               "quote": "该原型系统已被杭州市卫健委疾病预防控制与职业健康部门采纳，用于流行性肝病风险预警与特定人群健康干预",
@@ -180,72 +141,94 @@
               "version": "8a27981d3eea22b76d03"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8033e75f5bb2",
-          "name": "迁移合成框架扩展应用",
-          "desc": "跨领域迁移合成方法扩展了迁移学习在公共卫生领域中的应用范围，便于建立快速反应机制。",
-          "evidence": [
-            {
-              "quote": "本研究中的跨领域迁移合成方法扩展了迁移学习在公共卫生领域中的应用范围",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3122,
-                "end_char": 3155
-              },
-              "version": "8a27981d3eea22b76d03"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-435c539b6d25"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-814563998d05"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The association between low-concentration heavy metal exposure and chronic kidney disease risk through α-klotho",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sishi Liu;Hao Wang;Yifei Cao;Liping Lu;Yinyin Wu;Fuzhi Lian;Jun Yang;Qin Song",
+      "id": "out-8af19ca5469c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The association between low-concentration heavy metal exposure and chronic kidney disease risk through α-klotho — Sishi Liu;Hao Wang;Yifei Cao;Liping Lu;Yinyin Wu;Fuzhi Lian;Jun Yang;Qin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3216,
+            "end_char": 3413
+          },
+          "version": "8a27981d3eea22b76d03"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b6f54a59ae53"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-42593ee6af81"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Morbidity prediction and risk analysis of second primary malignancies of lung cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sishi Liu;Hao Wang;Yifei Cao;Qin Song",
+      "id": "out-eefe07a3e8a8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Morbidity prediction and risk analysis of second primary malignancies of lung cancer patients — Sishi Liu;Hao Wang;Yifei Cao;Qin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3418,
+            "end_char": 3557
+          },
+          "version": "8a27981d3eea22b76d03"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d84f5d443ac9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee14f87ca27b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-16b27de74f00"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-760e7dcd3774"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Safety and Antiaging Effects of Nicotinamide Mononucleotide in Human Clinical Trials: an Update",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Song;Xiaofeng Zhou;Kexin Xu;Sishi Liu;Xinqiang Zhu;Jun Yang",
+      "id": "out-78630724dc03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Safety and Antiaging Effects of Nicotinamide Mononucleotide in Human Clinical Trials: an Update — Qin Song;Xiaofeng Zhou;Kexin Xu;Sishi Liu;Xinqiang Zhu;Jun Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3562,
+            "end_char": 3733
+          },
+          "version": "8a27981d3eea22b76d03"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

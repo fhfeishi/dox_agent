@@ -2,15 +2,20 @@
   "doc_id": "cb1e4f1218169e352845",
   "version": "3d852f83a5aaae2274e8",
   "source_hash": "b49280f1a9c81f79b7e9c74d62d7b654cb66420e1f54bb33ab43c537f8f723bc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.684370+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.322155+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8570213916c",
-          "name": "肿瘤微环境景观检测与免疫亚型识别",
-          "desc": "免疫疗法广泛用于癌症临床治疗，识别免疫亚型是提高免疫治疗效果的重要工作。",
+          "id": "item-c05c7113b05b",
+          "name": "肿瘤微环境与免疫亚型识别",
+          "desc": "泛癌多组学",
           "evidence": [
             {
-              "quote": "免疫疗法被广泛应用于癌症的临床治疗中，很多晚期癌症病人由此受益",
+              "quote": "围绕肿瘤微环境细胞异质性与免疫亚型识别这一核心科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 692
-              },
-              "version": "3d852f83a5aaae2274e8"
-            }
-          ]
-        },
-        {
-          "id": "item-0b644c965df4",
-          "name": "低成本数据免疫分型系统开发",
-          "desc": "基于特定基因表达检测数据与数字病理图像开发癌症免疫亚型分型、预后风险预测及AI亚型诊断系统。",
-          "evidence": [
-            {
-              "quote": "探索基于临床治疗中容易获得且成本较低的特定基因表达检测数据和数字病理图像数据开发癌症免疫亚型分型系统、病人预后风险预测系统及基于数字病理图像的人工智能癌症亚型诊断系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 882,
-                "end_char": 964
+                "start_char": 2338,
+                "end_char": 2364
               },
               "version": "3d852f83a5aaae2274e8"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-595ca7a8ce47",
-          "name": "肿瘤微环境高度异质性致疗效有限",
-          "desc": "癌症病人肿瘤微环境的高度异质性导致仅少数病人对免疫治疗有效。",
+          "id": "item-03ee8c18801b",
+          "name": "肿瘤微环境高度异质性",
+          "desc": "仅少数病人对免疫治疗有效",
           "evidence": [
             {
-              "quote": "但癌症病人肿瘤微环境的高度异质性导致了仅少数病人对免疫治疗有效果",
+              "quote": "开发了多种基于深度学习的生物信息学方法，系统构建了肿瘤微环境的多维分子图谱",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 725
-              },
-              "version": "3d852f83a5aaae2274e8"
-            }
-          ]
-        },
-        {
-          "id": "item-bfcf159ace05",
-          "name": "免疫微环境景观缺乏系统解析",
-          "desc": "需更好地了解肿瘤病人的免疫微环境景观并识别癌症免疫亚型。",
-          "evidence": [
-            {
-              "quote": "因此，更好地了解肿瘤病人的免疫微环境景观，识别癌症免疫亚型是提高免疫治疗效果的一项极为重要的工作，在癌症临床诊断、治疗中具有紧迫和现实的重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 727,
-                "end_char": 798
+                "start_char": 2366,
+                "end_char": 2402
               },
               "version": "3d852f83a5aaae2274e8"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-993795c269fa",
-          "name": "自编码器识别微环境景观",
-          "desc": "应用深度学习自编码器深度神经网络方法，识别病人特异的肿瘤微环境景观并研究基于微环境相近性的癌症分型方法。",
-          "evidence": [
-            {
-              "quote": "应用深度学习中自编码器深度神经网络方法，识别病人特异的肿瘤微环境景观，研究基于病人肿瘤微环境的相近性进行癌症分型的方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 822,
-                "end_char": 880
-              },
-              "version": "3d852f83a5aaae2274e8"
-            }
-          ]
-        },
-        {
-          "id": "item-96c8a11d49c4",
-          "name": "细胞组成解析模型DCNet",
-          "desc": "将细胞类型-标志基因先验知识嵌入神经网络，实现Bulk表达谱数据中434种细胞类型浸润比例的定量。",
+          "id": "item-ba4432ddca24",
+          "name": "DCNet细胞组成解析模型",
+          "desc": "Bulk表达谱中434种细胞类型",
           "evidence": [
             {
               "quote": "开发了将细胞类型-标志基因先验知识嵌入神经网络的细胞组成解析模型DCNet，实现了Bulk表达谱数据中434种细胞类型浸润比例的定量",
@@ -124,12 +81,13 @@
               },
               "version": "3d852f83a5aaae2274e8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a3b6a7125471",
-          "name": "变分图自编码器细胞互作推断",
-          "desc": "开发基于变分图自编码器的细胞间相互作用推断模型DeepPNCC，重建伪空间细胞互作网络。",
+          "id": "item-9dd3162b536b",
+          "name": "DeepPNCC变分图自编码器细胞互作推断",
+          "desc": "重建伪空间细胞互作网络",
           "evidence": [
             {
               "quote": "开发了基于变分图⾃编码器的细胞间相互作⽤推断模型DeepPNCC，⽤于重建伪空间细胞互作⽹络",
@@ -140,7 +98,25 @@
               },
               "version": "3d852f83a5aaae2274e8"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-905b2b1be484",
+          "name": "CenSCAPE泛癌单细胞癌症标志分析框架",
+          "desc": "自编码器",
+          "evidence": [
+            {
+              "quote": "开发了基于⾃编码器的泛癌单细胞癌症标志分析框架CenSCAPE，实现了对癌症标志活性的定量评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2524,
+                "end_char": 2570
+              },
+              "version": "3d852f83a5aaae2274e8"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-298de6f8e98a",
-          "name": "泛癌T细胞功能障碍图谱",
-          "desc": "构建泛癌T细胞功能障碍图谱，识别出T细胞功能障碍亚型。",
+          "id": "item-df4ff7c840a1",
+          "name": "论文与软著",
+          "desc": "SCI论文7篇，软著9项",
+          "evidence": [
+            {
+              "quote": "发表SCI论文7篇（均标注项目号）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2978,
+                "end_char": 2994
+              },
+              "version": "3d852f83a5aaae2274e8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-10e06faf2978",
+          "name": "T细胞功能障碍亚型",
+          "desc": "泛癌T细胞功能障碍图谱",
           "evidence": [
             {
               "quote": "构建了泛癌T细胞功能障碍图谱，识别出T细胞功能障碍亚型",
@@ -163,89 +158,157 @@
               "version": "3d852f83a5aaae2274e8"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-24729d6393bd",
-          "name": "识别高免疫浸润伴功能障碍亚型",
-          "desc": "识别基于免疫微环境特征的免疫相关癌症亚型，发现高免疫浸润伴随T细胞功能障碍的免疫亚型。",
-          "evidence": [
-            {
-              "quote": "识别了基于免疫微环境特征的免疫相关癌症亚型，发现了高免疫浸润伴随T细胞功能障碍的免疫亚型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2737,
-                "end_char": 2780
-              },
-              "version": "3d852f83a5aaae2274e8"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e9928514c3f2",
-          "name": "SCI论文与软著培养成果",
-          "desc": "发表SCI论文7篇，获得软件著作权9项，开发多个开源分析工具及预后预测平台，培养硕士、博士17人。",
-          "evidence": [
-            {
-              "quote": "发表SCI论文7篇（均标注项目号），发表在《Briefings in Bioinformatics》（IF：7.70）、《Journal of Translational Medicine》（IF：7.40）、《Oncoimmunology》（IF：7.20）等期刊上；获得软件著作权9项，开发了多个开源分析工具及预后预测平台；培养硕士、博士17人",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2978,
-                "end_char": 3151
-              },
-              "version": "3d852f83a5aaae2274e8"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c8570213916c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-595ca7a8ce47"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ChromoPattern: characterizing chromosomal rearrangement patterns of copy number alteration in heterogeneous tumor cell populations at single-cell resolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Xin;Zhang Min;Li Hang;Deng Yuhao;Wang Ying;Zhang Yanru;Wang Hongjiu;Wang Zhenzhen;Wang Fang;Zhang Shaojun",
+      "id": "out-046d77fc9a8f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ChromoPattern: characterizing chromosomal rearrangement patterns of copy number alteration in heterogeneous tumor cell populations at single-cell resolution — Wang Xin;Zhang Min;Li Hang;Deng Yuhao;Wang Ying;Zhang Yanru;Wang Hongjiu;Wang Zhenzhen;Wang Fang;Zhang Shaojun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3237,
+            "end_char": 3512
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-595ca7a8ce47"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-993795c269fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DeepPNCC: reconstructing pseudo-spatial cell-cell interaction landscapes from single-cell data to decipher breast cancer pathogenesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu-hua Li;Xiao-ling Gao;Deng-hui Guo;Jie Shen;Si-rui Li;Na Wang;Xiao-ling Wen;Jiang-ying Liang;Hong-jiu Wang;Zhen-zhen Wang",
+      "id": "out-5182a8d1246f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DeepPNCC: reconstructing pseudo-spatial cell-cell interaction landscapes from single-cell data to decipher breast cancer pathogenesis — Xu-hua Li;Xiao-ling Gao;Deng-hui Guo;Jie Shen;Si-rui Li;Na Wang;Xiao-ling Wen;Jiang-ying Liang;Hong-jiu Wang;Zhen-zhen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3517,
+            "end_char": 3782
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-993795c269fa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-298de6f8e98a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integration of multi-omics data reveals a novel hybrid breast cancer subtype and its biomarkers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen-zhen Wang4;Xu-hua Li;Xiao-ling Wen;Na Wang;Yu Guo;Xu Zhu;Shu-heng Fu;Fei-fan Xiong;Jing Bai;Xiao-ling Gao;Hong-jiu Wang",
+      "id": "out-b9ea9396a250",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integration of multi-omics data reveals a novel hybrid breast cancer subtype and its biomarkers — Zhen-zhen Wang4;Xu-hua Li;Xiao-ling Wen;Na Wang;Yu Guo;Xu Zhu;Shu-heng Fu;Fei-fan Xiong;Jing Bai;Xiao-ling Gao;Hong-jiu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3787,
+            "end_char": 4015
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-96c8a11d49c4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e9928514c3f2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Oncogenic signaling pathway dysregulation landscape reveals the role of pathways at multiple omics levels in pan-cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Na Wang;Dan-Ni He;Zhe-Yu Wu;Xu Zhu;Xiao-Ling Wen;Xu-Hua Li;Yu Guo;Hong-Jiu Wang;Zhen-Zhen Wang",
+      "id": "out-e8ef5542538d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Oncogenic signaling pathway dysregulation landscape reveals the role of pathways at multiple omics levels in pan-cancer — Na Wang;Dan-Ni He;Zhe-Yu Wu;Xu Zhu;Xiao-Ling Wen;Xu-Hua Li;Yu Guo;Hong-Jiu Wang;Zhen-Zhen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4020,
+            "end_char": 4242
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "网络生物分子数据库的全面探索资源与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王宏久;王珍珍",
+      "id": "out-d1d24802ad5d",
+      "evidence": [
+        {
+          "quote": "[专著] 网络生物分子数据库的全面探索资源与应用 — 王宏久;王珍珍",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4247,
+            "end_char": 4280
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-omics analysis reveals a molecular landscape of the early recurrence and early metastasis in pan-cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Dan-ni;Wang Na;Wen Xiao-Ling;Li Xu-Hua;Guo Yu;Fu Shu-heng;Xiong Fei-fan;Wu Zhe-yu;Zhu Xu;Gao Xiao-ling;Wang Zhen-zhen;Wang Hong-jiu",
+      "id": "out-696b2657a544",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-omics analysis reveals a molecular landscape of the early recurrence and early metastasis in pan-cancer — He Dan-ni;Wang Na;Wen Xiao-Ling;Li Xu-Hua;Guo Yu;Fu Shu-heng;Xiong Fei-fan;Wu Zhe-yu;Zhu Xu;Gao Xiao-ling;Wang Zhen-zhen;Wang Hong-jiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4285,
+            "end_char": 4537
+          },
+          "version": "3d852f83a5aaae2274e8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

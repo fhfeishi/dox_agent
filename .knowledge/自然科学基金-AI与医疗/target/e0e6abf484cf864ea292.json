@@ -2,15 +2,20 @@
   "doc_id": "e0e6abf484cf864ea292",
   "version": "7e2c0d80b7b39947ae60",
   "source_hash": "1f4571538217d0c62c1954aab65c093ed55181ed3f40924ac93e781c6b3f13fb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.888913+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.260213+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4612932ac742",
-          "name": "脑胶质瘤复发的早期无创预测",
-          "desc": "针对术后放化疗早期MRI首发强化病灶，鉴别肿瘤复发与假性进展，为患者个体化诊疗方案制定提供依据。",
+          "id": "item-1a3f8c5cb587",
+          "name": "脑胶质瘤复发早期预测",
+          "desc": "功能MRI与影像组学融合分子分型",
           "evidence": [
             {
-              "quote": "针对术后放化疗早期MRI首发强化病灶，明确肿瘤是否复发有利于患者个体化诊疗方案制定",
+              "quote": "该项目主要开展了磁共振影像组学融合分子分型对脑胶质瘤复发的早期预测研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 734
+                "start_char": 2823,
+                "end_char": 2857
               },
               "version": "7e2c0d80b7b39947ae60"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e5a71d75393c",
-          "name": "脑胶质瘤复发缺乏有效早期诊断方法",
-          "desc": "脑胶质瘤易复发、预后差，现有方法难以早期鉴别肿瘤复发与治疗相关性改变，缺乏有效的早期诊断手段。",
+          "id": "item-fa6f64db9b7f",
+          "name": "复发与假性进展早期难以鉴别",
+          "desc": "缺乏有效早期诊断方法",
           "evidence": [
             {
               "quote": "然而目前缺乏有效的早期诊断方法",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ee483c6bdc3",
-          "name": "多模态MRI影像组学融合分子分型预测模型",
-          "desc": "动态分析术前与术后多模态MRI，提取肿瘤区与水肿区多维度影像组学特征量化肿瘤微环境，融合IDH和MGMT关键分子信息构建机器学习与深度学习预测模型。",
+          "id": "item-1e5c8985cd70",
+          "name": "DKI与DSC联合",
+          "desc": "rMK与rCBV",
           "evidence": [
             {
-              "quote": "采用影像组学方法动态分析术前和术后多模态MRI图像，提取肿瘤区和水肿区多层次、多维度的影像组学特征来量化肿瘤微环境",
+              "quote": "DKI与DSC联合可进一步提高复发早期诊断效能，rMK和rCBV联合应用使得AUC提高到0.924 (P<0.001)",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 899,
-                "end_char": 955
+                "start_char": 3005,
+                "end_char": 3063
               },
               "version": "7e2c0d80b7b39947ae60"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-13b6ca764ad5",
+          "name": "DCE-MRI早期鉴别",
+          "desc": "Ktrans与iAUC",
+          "evidence": [
+            {
+              "quote": "DCE-MRI在早期鉴别脑胶质瘤复发和假性进展方面具有一定诊断价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3099,
+                "end_char": 3131
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-175ef3b92686",
+          "name": "多元逻辑回归临床-影像联合模型",
+          "desc": "预测IDH突变合并MGMT甲基化亚型",
+          "evidence": [
+            {
+              "quote": "通过多元逻辑回归构建临床-影像联合模型在非SMOTE训练集、测试集和独立验证集中AUC分别达到0.936、0.918和0.930",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3571,
+                "end_char": 3634
+              },
+              "version": "7e2c0d80b7b39947ae60"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,360 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc83c8880f12",
-          "name": "DKI与DSC联合诊断效能AUC提高到0.924",
-          "desc": "rMK和rCBV联合应用使复发与假性进展鉴别的AUC提高到0.924，诊断准确率提高到88.24%；影像组学联合模型预测IDH合并MGMT亚型AUC达0.930。",
+          "id": "item-188a122a2417",
+          "name": "DKI优于DTI",
+          "desc": "rMK为最佳独立预测因素",
           "evidence": [
             {
-              "quote": "rMK和rCBV联合应用使得AUC提高到0.924",
+              "quote": "率先证实在高级别脑胶质瘤复发与假性进展鉴别中，DKI成像相比于DTI成像具有更高的诊断效能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3029,
-                "end_char": 3053
+                "start_char": 2922,
+                "end_char": 2966
               },
               "version": "7e2c0d80b7b39947ae60"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4612932ac742"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e5a71d75393c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The value of dynamic contrast-enhanced magnetic resonance imaging (DCE-MRI) in the differentiation of pseudoprogression and recurrence of intracranial gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui Jing;Xuhong Yan;Junjie Li;Danlei Qin;Ning Zhang;Hui Zhang",
+      "id": "out-db830cdfa90f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The value of dynamic contrast-enhanced magnetic resonance imaging (DCE-MRI) in the differentiation of pseudoprogression and recurrence of intracranial gliomas — Hui Jing;Xuhong Yan;Junjie Li;Danlei Qin;Ning Zhang;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3772,
+            "end_char": 4000
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e5a71d75393c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9ee483c6bdc3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of the Molecular Subtype of IDH Mutation Combined with MGMT Promoter Methylation in Gliomas via Radiomics Based on Preoperative MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongjian Sha;Qianqian Yan;Yan Tan;Xiaochun Wang;Hui Zhang;Guoqiang Yang",
+      "id": "out-a7ee7fde4612",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of the Molecular Subtype of IDH Mutation Combined with MGMT Promoter Methylation in Gliomas via Radiomics Based on Preoperative MRI — Yongjian Sha;Qianqian Yan;Yan Tan;Xiaochun Wang;Hui Zhang;Guoqiang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4227
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9ee483c6bdc3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc83c8880f12"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of CT features in the diagnosis of papillary thyroid tumors in incidental thyroid nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fengyan Zhang;Ying Qiao;Hui Zhang",
+      "id": "out-eef6b9c4da24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of CT features in the diagnosis of papillary thyroid tumors in incidental thyroid nodules — Fengyan Zhang;Ying Qiao;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4232,
+            "end_char": 4369
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DKI预测脑胶质瘤IDH和TERT分子分型的应用价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晓姝;赵慧敏;董庆榕;张辉",
+      "id": "out-58eef29829bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DKI预测脑胶质瘤IDH和TERT分子分型的应用价值 — 吕晓姝;赵慧敏;董庆榕;张辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4374,
+            "end_char": 4423
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence imaging for predicting high-risk molecular markers of gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Liang;Hui Jing;Yingbo Shao;Yinhua Wang;Hui Zhang",
+      "id": "out-fd97d2de3270",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence imaging for predicting high-risk molecular markers of gliomas — Qian Liang;Hui Jing;Yingbo Shao;Yinhua Wang;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4428,
+            "end_char": 4575
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiating high-grade glioma recurrence from pseudoprogression: comparing diffusion kurtosis imaging and diffusion tensor imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaofeng Wu;Xiao Liang;Xiaochun Wang;Jiangbo Qin;Lei Zhang;Yan Tan;Hui Zhang",
+      "id": "out-bf793c42590f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiating high-grade glioma recurrence from pseudoprogression: comparing diffusion kurtosis imaging and diffusion tensor imaging — Xiaofeng Wu;Xiao Liang;Xiaochun Wang;Jiangbo Qin;Lei Zhang;Yan Tan;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4580,
+            "end_char": 4799
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiotherapy combined with nano-biomaterials for cancer radio-immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qingrong Dong;Tingyu Xue;Haili Yan;Fang Liu;Ruixue Liu;Kun Zhang;Yu Chong;Jiangfeng Du;Hui Zhang",
+      "id": "out-5f79e419cf28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiotherapy combined with nano-biomaterials for cancer radio-immunotherapy — Qingrong Dong;Tingyu Xue;Haili Yan;Fang Liu;Ruixue Liu;Kun Zhang;Yu Chong;Jiangfeng Du;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 4984
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics proﬁling identiﬁes the value of CT features for the preoperative evaluation of lymph node metastasis in papillary thyroid carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoqiang Yang;Fan Yang;Fengyan Zhang;Xiaochun Wang;Yan Tan;Ying Qiao;Hui Zhang",
+      "id": "out-0305539ac7f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics proﬁling identiﬁes the value of CT features for the preoperative evaluation of lymph node metastasis in papillary thyroid carcinoma — Guoqiang Yang;Fan Yang;Fengyan Zhang;Xiaochun Wang;Yan Tan;Ying Qiao;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4989,
+            "end_char": 5217
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ependymoma of the spinal cord with multiple intradural extramedullary ependymomas: The first case report and literature review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yinhua Wang;Jian Luo;Yan Tan;Hui Zhang",
+      "id": "out-49e84486f16d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ependymoma of the spinal cord with multiple intradural extramedullary ependymomas: The first case report and literature review — Yinhua Wang;Jian Luo;Yan Tan;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5222,
+            "end_char": 5395
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI影像组学术前预测较低级别胶质瘤IDH突变合并MGMT启动子甲基化亚型的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沙永建;王效春;谭艳;张辉;杨国强",
+      "id": "out-53d99245b516",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI影像组学术前预测较低级别胶质瘤IDH突变合并MGMT启动子甲基化亚型的价值 — 沙永建;王效春;谭艳;张辉;杨国强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5401,
+            "end_char": 5467
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "智能影像预测高级别脑胶质瘤MGMT启动子甲基化状态的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵慧敏;张辉",
+      "id": "out-390d44ef0abc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 智能影像预测高级别脑胶质瘤MGMT启动子甲基化状态的研究进展 — 赵慧敏;张辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5473,
+            "end_char": 5518
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学在预测脑胶质瘤基因分型中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "董庆榕;王效春;谭艳;张辉",
+      "id": "out-3428808f4606",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像组学在预测脑胶质瘤基因分型中的研究进展 — 董庆榕;王效春;谭艳;张辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5524,
+            "end_char": 5567
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Monitoring mild cognitive impairment of workers exposed to occupational aluminium based on quantitative susceptibility mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyi Zhang;Haoru Jiang;Xiangru Sun;Xiaochun Wang;Qiao Niu;Huaxing Meng;Jiangfeng Du;Guoqiang Yang;Hui Zhang;Yan Tan",
+      "id": "out-fe0d6b740659",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Monitoring mild cognitive impairment of workers exposed to occupational aluminium based on quantitative susceptibility mapping — Zhiyi Zhang;Haoru Jiang;Xiangru Sun;Xiaochun Wang;Qiao Niu;Huaxing Meng;Jiangfeng Du;Guoqiang Yang;Hui Zhang;Yan Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5573,
+            "end_char": 5824
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《全国高级卫生专业技术资格考试指导——放射医学》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘士远;金征宇;陈敏;洪楠;王培军;宋彬;张惠茅;萧毅;张辉（参编）等",
+      "id": "out-37ef5a9a5e9f",
+      "evidence": [
+        {
+          "quote": "[专著] 《全国高级卫生专业技术资格考试指导——放射医学》 — 刘士远;金征宇;陈敏;洪楠;王培军;宋彬;张惠茅;萧毅;张辉（参编）等",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5896
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole-tumor radiomics analysis of DKI and DTI may improve the prediction of genotypes for astrocytomas: a preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Tan;Wei Mu;Xiaochun Wang;Guoqiang Yang;Robert James Gillies;Hui Zhang",
+      "id": "out-b72e76085df9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole-tumor radiomics analysis of DKI and DTI may improve the prediction of genotypes for astrocytomas: a preliminary study — Yan Tan;Wei Mu;Xiaochun Wang;Guoqiang Yang;Robert James Gillies;Hui Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5902,
+            "end_char": 6107
+          },
+          "version": "7e2c0d80b7b39947ae60"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

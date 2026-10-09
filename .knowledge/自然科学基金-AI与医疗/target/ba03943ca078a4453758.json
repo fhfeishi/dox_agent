@@ -2,15 +2,20 @@
   "doc_id": "ba03943ca078a4453758",
   "version": "00e9b9d56092d1cb0695",
   "source_hash": "be593c245ef41e3c7d173e8eb518ce4fefcfdded0a626a9f034c02fabbf31a5b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.129124+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:09.777813+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-26d354046721",
-          "name": "鼻咽癌复发早诊早治动态监测",
-          "desc": "复发鼻咽癌患者预后差，早诊早治复发是改善患者预后的关键。",
+          "id": "item-fa05441fdccc",
+          "name": "鼻咽癌复发动态监测",
+          "desc": "时序MRI随访",
           "evidence": [
             {
-              "quote": "复发鼻咽癌患者预后差，早诊早治复发是改善患者预后的关键",
+              "quote": "本项目核心目标为基于时序MR影像构建复发动态监测AI辅助模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 666,
-                "end_char": 692
-              },
-              "version": "00e9b9d56092d1cb0695"
-            }
-          ]
-        },
-        {
-          "id": "item-bf0c24da8597",
-          "name": "肿瘤随访AI辅助临床转化",
-          "desc": "缓解影像科医师工作负荷，推动AI技术在肿瘤随访领域的临床转化。",
-          "evidence": [
-            {
-              "quote": "既缓解了影像科医师的工作负荷，也推动了AI技术在肿瘤随访领域的临床转化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3173,
-                "end_char": 3207
+                "start_char": 2613,
+                "end_char": 2642
               },
               "version": "00e9b9d56092d1cb0695"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-872d0d0f2095",
-          "name": "复发患者早诊率低",
-          "desc": "目前复发患者早诊率低，如何提高鼻咽癌复发早诊率是亟需解决的临床难题。",
+          "id": "item-a9a3cfe7e4cf",
+          "name": "复发鼻咽癌早期诊断率偏低",
+          "desc": "早期复发病灶影像特征不典型",
           "evidence": [
             {
-              "quote": "但目前复发患者早诊率低。如何提高鼻咽癌复发的早诊率是亟需解决的临床难题",
+              "quote": "目前复发患者早期诊断率偏低，因此提升复发早诊率成为临床亟待解决的关键难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 728
-              },
-              "version": "00e9b9d56092d1cb0695"
-            }
-          ]
-        },
-        {
-          "id": "item-0b3fe8109588",
-          "name": "早期复发病灶影像特征不典型",
-          "desc": "早期复发病灶影像特征不典型，诊断依赖医师主观经验。",
-          "evidence": [
-            {
-              "quote": "但早期复发病灶影像特征不典型，且诊断依赖医师主观经验",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2542,
-                "end_char": 2567
+                "start_char": 2481,
+                "end_char": 2516
               },
               "version": "00e9b9d56092d1cb0695"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-94b7c3844c76",
-          "name": "时序MR复发动态监测AI模型",
-          "desc": "深入挖掘复发鼻咽癌时间序列MRI数据，量化复发肿瘤影像特征并建立复发动态监测AI辅助模型。",
-          "evidence": [
-            {
-              "quote": "本项目拟深入挖掘复发鼻咽癌的时间序列MRI数据，量化复发肿瘤影像学特征，明确其动态演变规律，建立复发动态监测人工智能辅助模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 867,
-                "end_char": 928
-              },
-              "version": "00e9b9d56092d1cb0695"
-            }
-          ]
-        },
-        {
-          "id": "item-ece1649aaf35",
-          "name": "3D-DenseNet复发灶检测模型MODERN",
-          "desc": "基于3D-DenseNet架构开发MODERN模型，自动检测复发灶并实现可视化定位。",
+          "id": "item-2046353a9748",
+          "name": "MODERN模型",
+          "desc": "3D-DenseNet自动检测复发灶并可视化定位",
           "evidence": [
             {
               "quote": "基于3D-DenseNet架构开发MODERN模型，可自动检测复发灶并实现可视化定位",
@@ -124,12 +81,13 @@
               },
               "version": "00e9b9d56092d1cb0695"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-44296ae50815",
-          "name": "RAINMAN半自动化分流工作流",
-          "desc": "整合ResNet18与Transformer研发RAINMAN半自动化工作流，通过三级分流策略分析随访扫描。",
+          "id": "item-31269e7038b6",
+          "name": "RAINMAN半自动化工作流",
+          "desc": "ResNet18与Transformer，三级分流策略",
           "evidence": [
             {
               "quote": "研发整合ResNet18与Transformer的RAINMAN半自动化工作流，通过三级分流策略分析内外部中心随访扫描",
@@ -140,7 +98,25 @@
               },
               "version": "00e9b9d56092d1cb0695"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2945efbc11fd",
+          "name": "DARNDEST分层策略",
+          "desc": "整合非增强与增强MRI",
+          "evidence": [
+            {
+              "quote": "构建基于3D-DenseNet架构的DARNDEST分层策略，整合非增强与增强MRI实现复发高敏检测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2959,
+                "end_char": 3008
+              },
+              "version": "00e9b9d56092d1cb0695"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,148 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a77f210369b",
-          "name": "MODERN模型AUC 0.88与0.85",
-          "desc": "MODERN模型内部与外部ROC-AUC分别达0.88、0.85，独立诊断准确率84.1%优于中级放射科医师，联合模型可将专家准确率提升至87.7%。",
+          "id": "item-7bd1f9c085c6",
+          "name": "MODERN内外部AUC",
+          "desc": "0.88、0.85，独立诊断准确率84.1%",
           "evidence": [
             {
-              "quote": "该模型内部与外部ROC-AUC分别达0.88、0.85，独立诊断准确率84.1%（优于中级放射科医师的80.9%），且联合模型辅助可将专家诊断准确率进一步提升至87.7%",
+              "quote": "该模型内部与外部ROC-AUC分别达0.88、0.85，独立诊断准确率84.1%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2737,
-                "end_char": 2821
+                "end_char": 2776
               },
               "version": "00e9b9d56092d1cb0695"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-dd155fbeb2e9",
-          "name": "减少76.2%至83.6%人工复核量",
-          "desc": "RAINMAN工作流减少76.2%~83.6%人工复核量，并同步提升诊断敏感度与特异度。",
+          "id": "item-7af4a6b2f84a",
+          "name": "RAINMAN减少人工复核量",
+          "desc": "76.2%~83.6%，已获中国发明专利授权",
           "evidence": [
             {
-              "quote": "不仅减少76.2%~83.6%的人工复核量，还同步提升诊断敏感度1.5%~3.2%、特异度0.3%~2.9%",
+              "quote": "不仅减少76.2%~83.6%的人工复核量，还同步提升诊断敏感度1.5%~3.2%、特异度0.3%~2.9%，相关技术已获中国发明专利授权",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2886,
-                "end_char": 2939
+                "end_char": 2954
               },
               "version": "00e9b9d56092d1cb0695"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f753fac8572f",
-          "name": "DARNDEST高敏且成本更优",
-          "desc": "DARNDEST分层策略在内部、外部测试集灵敏度均超90%，每千例可节省10.1~11.9千美元成本及35.7~41.9小时扫描时间。",
-          "evidence": [
-            {
-              "quote": "该策略在内部、外部测试集的灵敏度均超90%，相较于传统方案，每千例可节省10.1~11.9千美元成本及35.7~41.9小时扫描时间",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3010,
-                "end_char": 3075
-              },
-              "version": "00e9b9d56092d1cb0695"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-26d354046721"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-872d0d0f2095"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "动态分析时序MR图像的方法、系统、设备和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕星;邓一术;经秉中;陈浩华;柯梁汝;李超峰;谢传淼;孙颖",
+      "id": "out-17ad740581c7",
+      "evidence": [
+        {
+          "quote": "[专利] 动态分析时序MR图像的方法、系统、设备和存储介质 — 吕星;邓一术;经秉中;陈浩华;柯梁汝;李超峰;谢传淼;孙颖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3259,
+            "end_char": 3319
+          },
+          "version": "00e9b9d56092d1cb0695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-872d0d0f2095"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-94b7c3844c76"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep learning-based semiautomated workflow for triaging follow-up MR scans in treated nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Ying-Ying;Deng Yi-Shu;Liu Yang;Qiang Meng-Yun;Qiu Wen-Ze;Xia Wei-Xiong;Jing Bing-Zhong;Feng Chen-Yang;Chen Hao-Hua;Cao Xun;Zhou Jia-Yu;Huang Hao-Yang;Zhan Ze-Jiang;Deng Ying;Tang Lin-Quan;Mai Hai-Qiang;Sun Ying;Xie Chuan-Miao;Guo Xiang;Ke Liang-Ru;Lv Xing;Li Chao-Feng",
+      "id": "out-cb8a181c5ceb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep learning-based semiautomated workflow for triaging follow-up MR scans in treated nasopharyngeal carcinoma — Huang Ying-Ying;Deng Yi-Shu;Liu Yang;Qiang Meng-Yun;Qiu Wen-Ze;Xia Wei-Xiong;Jing Bing-Zhong;Feng Chen-Yang;Chen Hao-Hua;Cao Xun;Zhou Jia-Yu;Huang Hao-Yang;Zhan Ze-Jiang;Deng Ying;Tang Lin-Quan;Mai Hai-Qiang;Sun Ying;Xie Chuan-Miao;Guo Xiang;Ke Liang-Ru;Lv Xing;Li Chao-Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3324,
+            "end_char": 3719
+          },
+          "version": "00e9b9d56092d1cb0695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ece1649aaf35"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4a77f210369b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based recurrence detector on magnetic resonance scans in nasopharyngeal carcinoma: A multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deng Yishu;Huang Yingying;Jing Bingzhong;Wu Haijun;Qiu Wenze;Chen Haohua;Li Bin;Guo Xiang;Xie Chuanmiao;Sun Ying;Dai Xianhua;Lv Xing;Li Chaofeng;Ke Liangru",
+      "id": "out-607e20bf83de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based recurrence detector on magnetic resonance scans in nasopharyngeal carcinoma: A multicenter study — Deng Yishu;Huang Yingying;Jing Bingzhong;Wu Haijun;Qiu Wenze;Chen Haohua;Li Bin;Guo Xiang;Xie Chuanmiao;Sun Ying;Dai Xianhua;Lv Xing;Li Chaofeng;Ke Liangru",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3724,
+            "end_char": 4004
+          },
+          "version": "00e9b9d56092d1cb0695"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-44296ae50815"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dd155fbeb2e9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishment of a deep-learning-assisted recurrent nasopharyngeal carcinoma detecting simultaneous tactic (DARNDEST) with high cost-effectiveness based on magnetic resonance images: a multicenter study in an endemic area",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deng Yishu;Huang Yingying;Wu Haijun;He Dongxia;Qiu Wenze;Jing Bingzhong;Lv Xing;Xia Weixiong;Li Bin;Sun Ying;Li Chaofeng;Xie Chuanmiao;Ke Liangru",
+      "id": "out-787cb8d1d162",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishment of a deep-learning-assisted recurrent nasopharyngeal carcinoma detecting simultaneous tactic (DARNDEST) with high cost-effectiveness based on magnetic resonance images: a multicenter study in an endemic area — Deng Yishu;Huang Yingying;Wu Haijun;He Dongxia;Qiu Wenze;Jing Bingzhong;Lv Xing;Xia Weixiong;Li Bin;Sun Ying;Li Chaofeng;Xie Chuanmiao;Ke Liangru",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4009,
+            "end_char": 4384
+          },
+          "version": "00e9b9d56092d1cb0695"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

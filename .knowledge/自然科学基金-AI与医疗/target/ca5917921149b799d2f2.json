@@ -2,15 +2,20 @@
   "doc_id": "ca5917921149b799d2f2",
   "version": "6ad0bfb46cc708aeb5e3",
   "source_hash": "387899ccc9244aced0bf1f4efdd95afe8b0c91f926ccb2513a8c20c3340b2dbd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.522532+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.285098+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b322a5daf00",
-          "name": "泛癌淋巴结转移识别与预后预测",
-          "desc": "癌症淋巴结病理诊断是基于TNM分期诊疗决策系统的关键环节。",
+          "id": "item-938fedb0505c",
+          "name": "泛癌淋巴结转移智能诊断",
+          "desc": "病理WSI",
           "evidence": [
             {
-              "quote": "癌症淋巴结病理诊断是基于TNM分期诊疗决策系统的关键环节",
+              "quote": "本项目旨在研发一套具备高泛化能力、临床级安全性的泛癌种淋巴结智能诊断系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 685
-              },
-              "version": "6ad0bfb46cc708aeb5e3"
-            }
-          ]
-        },
-        {
-          "id": "item-eb2d6868348a",
-          "name": "病理淋巴结AI系统临床落地",
-          "desc": "推动病理淋巴结人工智能分析系统的临床落地，提升临床诊断效率及癌症预后预测性能。",
-          "evidence": [
-            {
-              "quote": "推动病理淋巴结人工智能分析系统的临床落地，提升临床诊断效率以及癌症预后预测性能，为精准医疗提供支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1002,
-                "end_char": 1050
+                "start_char": 2932,
+                "end_char": 2967
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e47190ba6e43",
-          "name": "人工目视检查耗时且准确性受影响",
-          "desc": "人工目视检查淋巴结病理组织是获得N分期的主要方法，过程耗时费力且准确性受医生水平影响。",
+          "id": "item-9c1a447b228d",
+          "name": "阅片任务繁重与罕见癌种亚型漏诊",
+          "desc": "长尾效应",
           "evidence": [
             {
-              "quote": "但是，人工目视检查淋巴结病理组织是当前获得N分期的主要方法，这个过程耗时费力且准确性受医生水平的影响",
+              "quote": "病理医生面临阅片任务繁重及罕见癌种亚型易漏诊的“长尾效应”挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 687,
-                "end_char": 736
-              },
-              "version": "6ad0bfb46cc708aeb5e3"
-            }
-          ]
-        },
-        {
-          "id": "item-00cd58b0783b",
-          "name": "罕见癌种亚型易漏诊的长尾效应",
-          "desc": "病理医生面临阅片任务繁重及罕见癌种亚型易漏诊的长尾效应挑战。",
-          "evidence": [
-            {
-              "quote": "然而，病理医生面临阅片任务繁重及罕见癌种亚型易漏诊的“长尾效应”挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2897,
+                "start_char": 2900,
                 "end_char": 2930
               },
               "version": "6ad0bfb46cc708aeb5e3"
@@ -97,7 +70,7 @@
         {
           "id": "item-e33dd2348d99",
           "name": "UPATHLN泛癌辅助诊断平台",
-          "desc": "研发统一的泛癌辅助诊断平台，集成病理大模型特征提取、多尺度跨注意力机制及不确定性驱动的主动学习框架。",
+          "desc": "UNI特征提取、多尺度跨注意力、不确定性主动学习",
           "evidence": [
             {
               "quote": "研发了统一的泛癌辅助诊断平台 UPATHLN，该平台创新性地集成了病理大模型（UNI）特征提取模块、多尺度跨注意力机制以及不确定性驱动的主动学习框架",
@@ -108,12 +81,13 @@
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-fa8fb072d355",
-          "name": "空间转录组学挖掘转移表型",
-          "desc": "结合AI生成的空间转移热图与空间转录组测序，深入探究癌症转移的空间生物学机制。",
+          "id": "item-b2b8837c41fc",
+          "name": "AI热图结合空间转录组",
+          "desc": "发现空间转移亚型",
           "evidence": [
             {
               "quote": "结合AI生成的空间转移热图与空间转录组测序，本项目在国际上首创性发现并定义了两种空间转移亚型",
@@ -124,7 +98,8 @@
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,120 +108,255 @@
       "state": "has",
       "items": [
         {
-          "id": "item-070b14859df6",
-          "name": "14种实体瘤8294张WSI数据集",
-          "desc": "构建包含14种实体瘤、8294张全玻片影像及26229个淋巴结的多中心大规模病理数据集。",
+          "id": "item-47371b20ad61",
+          "name": "多中心泛癌病理数据集",
+          "desc": "14种实体瘤，8,294张WSI，26,229个淋巴结",
           "evidence": [
             {
-              "quote": "项目组构建了包含14种实体瘤（如胃、结直肠、乳腺、胰腺、甲状腺癌等）、涵盖8,294张全玻片影像（WSI）及26,229个淋巴结的多中心大规模病理数据集",
+              "quote": "构建了包含14种实体瘤（如胃、结直肠、乳腺、胰腺、甲状腺癌等）、涵盖8,294张全玻片影像（WSI）及26,229个淋巴结的多中心大规模病理数据集",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2987,
+                "start_char": 2990,
                 "end_char": 3062
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0039793fcd73",
-          "name": "实现100%条件敏感性",
-          "desc": "通过不确定性量化模块捕获非典型病灶，实现100%条件敏感性，有效杜绝罕见亚型漏诊风险。",
+          "id": "item-3a844a9ef862",
+          "name": "条件敏感性与复核量降低",
+          "desc": "100%条件敏感性，复核量降至26.8%",
           "evidence": [
             {
-              "quote": "通过不确定性量化模块捕获非典型病灶，实现了 100% 的条件敏感性（Conditional Sensitivity），有效杜绝了罕见亚型的漏诊风险",
+              "quote": "实现了 100% 的条件敏感性（Conditional Sensitivity）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3212,
-                "end_char": 3284
+                "start_char": 3230,
+                "end_char": 3269
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0494de1aa149",
-          "name": "复核工作量降低至26.8%",
-          "desc": "临床验证显示系统在确保极高安全性前提下，将病理专家手动复核工作量大幅降低至26.8%。",
+          "id": "item-857f19831fc5",
+          "name": "预后预测目标调整",
+          "desc": "改为空间转录组挖掘",
           "evidence": [
             {
-              "quote": "临床验证显示，系统在确保极高安全性的前提下，将病理专家的手动复核工作量大幅降低至 26.8%",
+              "quote": "针对原计划的预后预测目标，本项目科学调整为结合空间转录组学技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3286,
-                "end_char": 3331
+                "start_char": 3139,
+                "end_char": 3169
               },
               "version": "6ad0bfb46cc708aeb5e3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1fbb1d105964",
-          "name": "发现两种空间转移亚型",
-          "desc": "首创性发现并定义管腔受限型与基质浸润型两种空间转移亚型，分子层面证实两类亚型在血管重构抑制与ECM交互方面存在显著差异。",
-          "evidence": [
-            {
-              "quote": "本项目在国际上首创性发现并定义了两种空间转移亚型：管腔受限型（Roaming-type）与基质浸润型（Settling-type）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3367,
-                "end_char": 3431
-              },
-              "version": "6ad0bfb46cc708aeb5e3"
-            }
-          ],
-          "status": "已取得"
+          "status": "在研",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7b322a5daf00"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e47190ba6e43"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于不确定性增强和主动学习优化的医学图像标注方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘西洋;王黎明;王晓东;于观贞;陈颖;黄廷贵",
+      "id": "out-3d7c2473ca68",
+      "evidence": [
+        {
+          "quote": "[专利] 基于不确定性增强和主动学习优化的医学图像标注方法 — 刘西洋;王黎明;王晓东;于观贞;陈颖;黄廷贵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3665,
+            "end_char": 3718
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e47190ba6e43"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e33dd2348d99"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图神经网络的乳腺癌病理图像分析方法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈思硕;王晓东;刘西洋",
+      "id": "out-a6c2ecc2e78d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于图神经网络的乳腺癌病理图像分析方法综述 — 陈思硕;王晓东;刘西洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3764
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e33dd2348d99"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0039793fcd73"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prototypes-oriented Transductive Few-shot Learning with Conditional Transport",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Tian;Jingyi Feng;Wenchao Chen;Xiaoqiang Chai;Liming Wang;Xiyang Liu;Bo Chen",
+      "id": "out-7bcc28ba6c5e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Prototypes-oriented Transductive Few-shot Learning with Conditional Transport — Long Tian;Jingyi Feng;Wenchao Chen;Xiaoqiang Chai;Liming Wang;Xiyang Liu;Bo Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3769,
+            "end_char": 3935
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fa8fb072d355"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1fbb1d105964"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FOCT: Few-shot Industrial Anomaly Detection with Foreground-aware Online Conditional Transport",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Tian;Hongyi Zhao;Ruiying Lu;Rongrong Wang;YuJie Wu;Liming Wang;Xiongpeng He;Xiyang Liu",
+      "id": "out-fe74c2009e97",
+      "evidence": [
+        {
+          "quote": "[会议论文] FOCT: Few-shot Industrial Anomaly Detection with Foreground-aware Online Conditional Transport — Long Tian;Hongyi Zhao;Ruiying Lu;Rongrong Wang;YuJie Wu;Liming Wang;Xiongpeng He;Xiyang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3940,
+            "end_char": 4134
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Spatial-temporal Deep Probabilistic Diffusion Model for Reliable Hail Nowcasting with Radar Echo Extrapolation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haonan Shi;Long Tian;Jie Tao;Yufei Li;Liming Wang;Xiyang Liu",
+      "id": "out-60fdcc59d9fd",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Spatial-temporal Deep Probabilistic Diffusion Model for Reliable Hail Nowcasting with Radar Echo Extrapolation — Haonan Shi;Long Tian;Jie Tao;Yufei Li;Liming Wang;Xiyang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4320
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multimodal uncertainty-aware AI system optimizes ovarian cancer risk assessment workflow",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaodong Wang;Xiaohui Lv;Jingwen Wang;Lulu Zou;Zijun Chen;Ruiyu Zhao;Lisha Zhao;Min Zhao;Xinlei Zhang;Boan Zhang;Jiahao Zhang;Yiteng Zhu;Xin Shi;Yan'e Gao;Minghui Liu;Lirong Ai;Liming Wang;Xiyang Liu;Hong Yang",
+      "id": "out-399f83ba064b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multimodal uncertainty-aware AI system optimizes ovarian cancer risk assessment workflow — Xiaodong Wang;Xiaohui Lv;Jingwen Wang;Lulu Zou;Zijun Chen;Ruiyu Zhao;Lisha Zhao;Min Zhao;Xinlei Zhang;Boan Zhang;Jiahao Zhang;Yiteng Zhu;Xin Shi;Yan'e Gao;Minghui Liu;Lirong Ai;Liming Wang;Xiyang Liu;Hong Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4633
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hierarchical Vector Quantized Transformer for Multi-class Unsupervised Anomaly Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiying Lu;YuJie Wu;Long Tian;Dongsheng Wang;Bo Chen;Xiyang Liu;Ruimin Hu",
+      "id": "out-f87b63caae9e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hierarchical Vector Quantized Transformer for Multi-class Unsupervised Anomaly Detection — Ruiying Lu;YuJie Wu;Long Tian;Dongsheng Wang;Bo Chen;Xiyang Liu;Ruimin Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4638,
+            "end_char": 4808
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于离散分布相似度比较的病理图像检索方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘西洋;王黎明;王晓东;于观贞;陈颖;黄廷贵",
+      "id": "out-02153a681da3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于离散分布相似度比较的病理图像检索方法及装置 — 刘西洋;王黎明;王晓东;于观贞;陈颖;黄廷贵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4813,
+            "end_char": 4867
+          },
+          "version": "6ad0bfb46cc708aeb5e3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "34a7ca1ec3bd17b0a76e",
   "version": "950c9603d4c41d8ca210",
   "source_hash": "e246c823d2a101aabe01cd56546bd620eee5ceefed9ee66be59360afdd2c641b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.686101+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:37:19.781638+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-d09890ba017e",
           "name": "人机协同影像辅助诊断",
-          "desc": "从诊断认知任务分析出发，建立以医生工作流程为主线的交互式影像诊断系统模型。",
+          "desc": "以医生工作流程为主线",
           "evidence": [
             {
-              "quote": "医学影像诊断需要大量知识积累、实践经验及决策推理能力",
+              "quote": "构建以医为主的智能辅助诊断系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 674
+                "start_char": 2861,
+                "end_char": 2875
               },
               "version": "950c9603d4c41d8ca210"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-94e50374ff3a",
-          "name": "智能算法无法提升医生诊断准确率与效率",
-          "desc": "现有智能算法不能完全替代医生，只能扮演计算工具或独立计算后医生再次阅片的角色，无法帮助医生提高诊断准确率和工作效率。",
+          "id": "item-053818a93cb1",
+          "name": "智能算法只能充当计算工具",
+          "desc": "无法帮助医生提高准确率和效率",
           "evidence": [
             {
-              "quote": "目前的智能算法还不能完全替代医生，只能扮演“计算工具”或“独立计算后医生再次阅片”的角色，无法帮助医生提高诊断准确率和工作效率",
+              "quote": "目前的智能算法还不能完全替代医生，只能扮演“计算工具”或“独立计算后医生再次阅片”的角色",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 676,
-                "end_char": 738
+                "end_char": 719
               },
               "version": "950c9603d4c41d8ca210"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7e8e6f777807",
-          "name": "认知图谱与交互意图感知的人机协同工作流",
-          "desc": "建立以元知识为基础的影像诊断认知图谱，设计融合双向驱动和注意力机制的影像筛查与微小病灶检测算法工具箱，构建医生诊断意图感知模型与柔性人机协同工作流。",
+          "id": "item-144458af7294",
+          "name": "影像诊断认知图谱",
+          "desc": "以元知识为基础",
           "evidence": [
             {
-              "quote": "设计融合双向驱动和注意力机制的正常影像筛查和微小病灶检测算法工具箱",
+              "quote": "建立了以元知识为基础的影像诊断认知图谱",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 860,
-                "end_char": 892
+                "start_char": 3074,
+                "end_char": 3092
               },
               "version": "950c9603d4c41d8ca210"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-865cb68c98e6",
+          "name": "医生诊断意图感知模型",
+          "desc": "基于交互手势库与认知图谱",
+          "evidence": [
+            {
+              "quote": "形成了协同诊断模式下的医生诊断意图感知模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3179,
+                "end_char": 3199
+              },
+              "version": "950c9603d4c41d8ca210"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-19ca9465421f",
-          "name": "研发两套人机协同影像诊断系统并广泛应用",
-          "desc": "产出29篇学术论文（期刊13篇、会议16篇），申请5项专利（授权2项），获2项软件著作权并撰写学术专著1部；研发两套人机协同影像诊断系统并在多家医院广泛应用，显著提高诊断准确率与效率、减少漏诊。",
+          "id": "item-624438c61cda",
+          "name": "两套人机协同影像诊断系统",
+          "desc": "应用于多个医院",
           "evidence": [
             {
               "quote": "项目组研发了两套“人机协同”的影像诊断系统，并广泛应用于多个医院",
@@ -99,44 +122,688 @@
               "version": "950c9603d4c41d8ca210"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ac983d3d6c15",
+          "name": "论文专利软著专著",
+          "desc": "29篇论文、5项专利（授权2项）、2项软著、专著1部",
+          "evidence": [
+            {
+              "quote": "共产出了29篇学术论文，其中包括13篇期刊论文和16篇会议论文，申请5项专利，其中授权2项，取得了2项软件著作权，撰写相关领域学术专著1部",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3206,
+                "end_char": 3274
+              },
+              "version": "950c9603d4c41d8ca210"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-d09890ba017e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-94e50374ff3a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Invariant Content Synergistic Learning for Domain Generalization on Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxin Kang;Hansheng Li;Xuan Zhao;Xiaoshuang Shi;Feihong Liu;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-a55f23a6e2d4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Invariant Content Synergistic Learning for Domain Generalization on Medical Image Segmentation — Yuxin Kang;Hansheng Li;Xuan Zhao;Xiaoshuang Shi;Feihong Liu;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3408,
+            "end_char": 3617
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-94e50374ff3a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7e8e6f777807"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种结合显著特征的图像检索器、数据库及检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯宏伟;侯刚;冯筠;刘建妮;韩健",
+      "id": "out-3f9d5a2d03b8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种结合显著特征的图像检索器、数据库及检索方法 — 冯宏伟;侯刚;冯筠;刘建妮;韩健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3622,
+            "end_char": 3668
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7e8e6f777807"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-19ca9465421f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SPR-Net: Structural Points Based Registration for Coronary Arteries Across Systolic and Diastolic Phases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Zhang;Feihong Liu;Yuning Gu;Xiaosong Xiong;Caiwen Jiang;Jun Feng;Dinggang Shen",
+      "id": "out-66a4f949cf90",
+      "evidence": [
+        {
+          "quote": "[会议论文] SPR-Net: Structural Points Based Registration for Coronary Arteries Across Systolic and Diastolic Phases — Xiao Zhang;Feihong Liu;Yuning Gu;Xiaosong Xiong;Caiwen Jiang;Jun Feng;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3869
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Random Feature Augmentation for Domain Generalization in Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuan Zhao;Yuxin Kang;Hansheng Li;Jiayu Luo;Lei Cui;Jun Feng",
+      "id": "out-bfe1a8425f28",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Random Feature Augmentation for Domain Generalization in Medical Image Segmentation — Xuan Zhao;Yuxin Kang;Hansheng Li;Jiayu Luo;Lei Cui;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 4027
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying Alzheimer's Disease-Induced Topology Alterations in Structural Networks Using Convolutional Neural Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feihong Liu;Yongsheng Pan;Junwei Yang;Fang Xie;Xiaowei He;Han Zhang;Feng Shi;Jun Feng;Qihao Guo;Dinggang Shen",
+      "id": "out-4f2cb9d5ef2e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Identifying Alzheimer's Disease-Induced Topology Alterations in Structural Networks Using Convolutional Neural Networks — Feihong Liu;Yongsheng Pan;Junwei Yang;Fang Xie;Xiaowei He;Han Zhang;Feng Shi;Jun Feng;Qihao Guo;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4032,
+            "end_char": 4269
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于鼠标轨迹语义理解的医学影像阅片交互意图识别",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨晨希;乔栋;牛怡;崔磊;冯筠",
+      "id": "out-3a94538b1d92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于鼠标轨迹语义理解的医学影像阅片交互意图识别 — 杨晨希;乔栋;牛怡;崔磊;冯筠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4274,
+            "end_char": 4321
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态医学图像配准算法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯筠;邓佳慧;周末;陈宝莹",
+      "id": "out-1f45646ef97c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态医学图像配准算法综述 — 冯筠;邓佳慧;周末;陈宝莹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4326,
+            "end_char": 4361
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gaze-Directed Vision GNN for Mitigating Shortcut Learning in Medical Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaoxuan Wu;Xiao Zhang;Bin Wang;Zhuo Jin;Hansheng Li;Jun Feng",
+      "id": "out-4e136a9faf24",
+      "evidence": [
+        {
+          "quote": "[会议论文] Gaze-Directed Vision GNN for Mitigating Shortcut Learning in Medical Image — Shaoxuan Wu;Xiao Zhang;Bin Wang;Zhuo Jin;Hansheng Li;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4510
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Progressive Deep Segmentation of Coronary Artery via Hierarchical Topology Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Zhang;Jingyang Zhang;Lei Ma;Peng Xue;Yan Hu;Dijia Wu;Yiqiang Zhan;Jun Feng;Dinggang Shen",
+      "id": "out-42cb4344715c",
+      "evidence": [
+        {
+          "quote": "[会议论文] Progressive Deep Segmentation of Coronary Artery via Hierarchical Topology Learning — Xiao Zhang;Jingyang Zhang;Lei Ma;Peng Xue;Yan Hu;Dijia Wu;Yiqiang Zhan;Jun Feng;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4515,
+            "end_char": 4700
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种医学影像报告生成方法、系统及计算机存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯筠;李泓钊;孙霞;何花",
+      "id": "out-9171a39831f7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种医学影像报告生成方法、系统及计算机存储介质 — 冯筠;李泓钊;孙霞;何花",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4706,
+            "end_char": 4748
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosting Boundary Representation for Gland Instance Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxin Kang;Hansheng Li;Zhuoyue Wu;Feihong Liu;Dongqing Hu;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-1a720c558736",
+      "evidence": [
+        {
+          "quote": "[会议论文] Boosting Boundary Representation for Gland Instance Segmentation — Yuxin Kang;Hansheng Li;Zhuoyue Wu;Feihong Liu;Dongqing Hu;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4754,
+            "end_char": 4910
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度网络的冠心病智能辅助诊断研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯筠;张晓;赵凤军;黄影",
+      "id": "out-598ba4eae97c",
+      "evidence": [
+        {
+          "quote": "[专著] 基于深度网络的冠心病智能辅助诊断研究 — 冯筠;张晓;赵凤军;黄影",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4916,
+            "end_char": 4953
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BBW: a batch balance wrapper for training deep neural networks on extremely imbalanced datasets with few minority samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingzhao Hu;Hao Zhang;Yang Liu;Richard Sutcliffe;Jun Feng",
+      "id": "out-1364c1e49933",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BBW: a batch balance wrapper for training deep neural networks on extremely imbalanced datasets with few minority samples — Jingzhao Hu;Hao Zhang;Yang Liu;Richard Sutcliffe;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4959,
+            "end_char": 5146
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CorLab-Net: Anatomical Dependency-Aware Point-Cloud Learning for Automatic Labeling of Coronary Arteries",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Zhang;Zhiming Cui;Jun Feng;Yanli Song;DiJia Wu;Dinggang Shen",
+      "id": "out-8c03ec0686a5",
+      "evidence": [
+        {
+          "quote": "[会议论文] CorLab-Net: Anatomical Dependency-Aware Point-Cloud Learning for Automatic Labeling of Coronary Arteries — Xiao Zhang;Zhiming Cui;Jun Feng;Yanli Song;DiJia Wu;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5152,
+            "end_char": 5330
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enabling AI-Generated Content for Gadolinium-Free Contrast-Enhanced Breast Magnetic Resonance Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pingping Wang;Hongyu Wang;Pin Nie;Yanli Dang;Rumei Liu;Mingzhu Qu;Jiawei Wang;Gengming Mu;Tianju Jia;Lei Shang;Kaiguo Zhu;Jun Feng;Baoying Chen",
+      "id": "out-d0c4aecb8e78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enabling AI-Generated Content for Gadolinium-Free Contrast-Enhanced Breast Magnetic Resonance Imaging — Pingping Wang;Hongyu Wang;Pin Nie;Yanli Dang;Rumei Liu;Mingzhu Qu;Jiawei Wang;Gengming Mu;Tianju Jia;Lei Shang;Kaiguo Zhu;Jun Feng;Baoying Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5336,
+            "end_char": 5589
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CAMS-Net: An attention-guided feature selection network for rib segmentation in chest X-rays",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dandan Zhang;Hongyu Wang;Jiahui Deng;Tonghui Wang;Cong Shen;Jun Feng",
+      "id": "out-bbc30678f225",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CAMS-Net: An attention-guided feature selection network for rib segmentation in chest X-rays — Dandan Zhang;Hongyu Wang;Jiahui Deng;Tonghui Wang;Cong Shen;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5595,
+            "end_char": 5764
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于鼠标轨迹的医学影像阅片交互行为预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张蕾;杨晨希;冯筠;崔磊",
+      "id": "out-c207ddf8d0fa",
+      "evidence": [
+        {
+          "quote": "[专利] 基于鼠标轨迹的医学影像阅片交互行为预测方法 — 张蕾;杨晨希;冯筠;崔磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5770,
+            "end_char": 5810
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GO: A two-step generative optimization method for point cloud registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Zhao;Jiahui Deng;Feihong Liu;Wen Tang;Jun Feng",
+      "id": "out-9db6045f9688",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GO: A two-step generative optimization method for point cloud registration — Yan Zhao;Jiahui Deng;Feihong Liu;Wen Tang;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5816,
+            "end_char": 5949
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gaussianization of Diffusion MRI Data Using Spatially Adaptive Filtering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feihong Liu;Jun Feng;Geng Chen;Dinggang Shen;Pew-Thian Yap",
+      "id": "out-87eb6fcc1410",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gaussianization of Diffusion MRI Data Using Spatially Adaptive Filtering — Feihong Liu;Jun Feng;Geng Chen;Dinggang Shen;Pew-Thian Yap",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5955,
+            "end_char": 6094
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scribble-Based Medical Image Segmentation via Shape Perturbation Consistency and Boundary Enhancement Constraint",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaoxuan Wu;Xiao Zhang;Ying Huang;Xia Sun;Jun Feng",
+      "id": "out-78df2211dd4a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scribble-Based Medical Image Segmentation via Shape Perturbation Consistency and Boundary Enhancement Constraint — Shaoxuan Wu;Xiao Zhang;Ying Huang;Xia Sun;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6100,
+            "end_char": 6271
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SACH-Net: Shape-Adaptive Convolution and Hierarchical Topology Constraints Framework for Coronary Artery Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuo Jin;Shaoxuan Wu;Zhizezhang Gao;Xiaosong Xiong;Xiao Zhang;Jun Feng",
+      "id": "out-a26fb0b44e3a",
+      "evidence": [
+        {
+          "quote": "[会议论文] SACH-Net: Shape-Adaptive Convolution and Hierarchical Topology Constraints Framework for Coronary Artery Segmentation — Zhuo Jin;Shaoxuan Wu;Zhizezhang Gao;Xiaosong Xiong;Xiao Zhang;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6277,
+            "end_char": 6473
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segment Membranes and Nuclei from Histopathological Images via Nuclei Point-Level Supervision",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hansheng Li;Zhengyang Xu;Mo Zhou;Xiaoshuang Shi;Yuxin Kang;Qirong Bu;Hong Lv;Ming Li;Mingzhen Lin;Lei Cui;Jun Feng;Wentao Yang;Lin Yang",
+      "id": "out-d7f12d7c376e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Segment Membranes and Nuclei from Histopathological Images via Nuclei Point-Level Supervision — Hansheng Li;Zhengyang Xu;Mo Zhou;Xiaoshuang Shi;Yuxin Kang;Qirong Bu;Hong Lv;Ming Li;Mingzhen Lin;Lei Cui;Jun Feng;Wentao Yang;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6479,
+            "end_char": 6716
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature generation and multi-sequence fusion based deep convolutional network for breast tumor diagnosis with missing MR sequences",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tonghui Wang;Hongyu Wang;Jiahui Deng;Dandan Zhang;Jun Feng;Baoying Chen",
+      "id": "out-faf8ed7e1c02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature generation and multi-sequence fusion based deep convolutional network for breast tumor diagnosis with missing MR sequences — Tonghui Wang;Hongyu Wang;Jiahui Deng;Dandan Zhang;Jun Feng;Baoying Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6722,
+            "end_char": 6932
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Addressing Sparse Annotation: a Novel Semantic Energy Loss for Tumor Cell Detection from Histopathologic Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhengyang Xu;XiangLong Du;Yuxin Kang;Hong Lv;Ming Li;Wentao Yang;Lei Cui;Hansheng Li;Yaqiong Xing;Jun Feng",
+      "id": "out-ca1885459f1f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Addressing Sparse Annotation: a Novel Semantic Energy Loss for Tumor Cell Detection from Histopathologic Images — Zhengyang Xu;XiangLong Du;Yuxin Kang;Hong Lv;Ming Li;Wentao Yang;Lei Cui;Hansheng Li;Yaqiong Xing;Jun Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6938,
+            "end_char": 7164
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Anatomy- and Topology-Preserving Framework for Coronary Artery Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Zhang;Kaicong Sun;Dijia Wu;Xiaosong Xiong;Jiameng Liu;Linlin Yao;Shufang Li;Yining Wang;Jun Feng;Dinggang Shen",
+      "id": "out-090e4793b5aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Anatomy- and Topology-Preserving Framework for Coronary Artery Segmentation — Xiao Zhang;Kaicong Sun;Dijia Wu;Xiaosong Xiong;Jiameng Liu;Linlin Yao;Shufang Li;Yining Wang;Jun Feng;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7170,
+            "end_char": 7372
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合多层次特征的X光片肺部疾病筛查系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张蕾;牛怡;冯筠",
+      "id": "out-b41d8b9c543d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合多层次特征的X光片肺部疾病筛查系统 — 张蕾;牛怡;冯筠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7378,
+            "end_char": 7414
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Morphology-Guided Prostate MRI Segmentation with Multi-slice Association",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianping Li;Zhiming Cui;Shuain Wang;Jie Wei;Jun Feng;Shu Liao;Dinggang Shen",
+      "id": "out-92548e6e34eb",
+      "evidence": [
+        {
+          "quote": "[会议论文] Morphology-Guided Prostate MRI Segmentation with Multi-slice Association — Jianping Li;Zhiming Cui;Shuain Wang;Jie Wei;Jun Feng;Shu Liao;Dinggang Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7420,
+            "end_char": 7576
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AUTOMATED REGION LEARNING VIA CELL-LEVEL LABELS TO MODIFY CELL DETECTION PROCESS FOR HISTOPATHOLOGICAL IMAGES",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongqing Hu;Hansheng Li;Yuxin Kang;Jiayu Luo;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-02172ae6fafb",
+      "evidence": [
+        {
+          "quote": "[会议论文] AUTOMATED REGION LEARNING VIA CELL-LEVEL LABELS TO MODIFY CELL DETECTION PROCESS FOR HISTOPATHOLOGICAL IMAGES — Dongqing Hu;Hansheng Li;Yuxin Kang;Jiayu Luo;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7582,
+            "end_char": 7791
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸腹部医学图像智能分析关键技术研究与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯筠;陈宝莹;贺小伟;崔磊;刘飞鸿;李涵生;杨林",
+      "id": "out-e66d3a4b163b",
+      "evidence": [
+        {
+          "quote": "[奖励] 胸腹部医学图像智能分析关键技术研究与应用 — 冯筠;陈宝莹;贺小伟;崔磊;刘飞鸿;李涵生;杨林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7797,
+            "end_char": 7848
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robust Pathological Detector Training Method on Sparsely Annotated Datasets via Spatial Cues",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hansheng Li;Yuxin Kang;Lingyu Hu;Qian Ma;Lei Cui;Jun Feng;Lin Yang;Wentao Yang",
+      "id": "out-8ee8b16f6ed1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Robust Pathological Detector Training Method on Sparsely Annotated Datasets via Spatial Cues — Hansheng Li;Yuxin Kang;Lingyu Hu;Qian Ma;Lei Cui;Jun Feng;Lin Yang;Wentao Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7854,
+            "end_char": 8033
+          },
+          "version": "950c9603d4c41d8ca210"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "会议论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

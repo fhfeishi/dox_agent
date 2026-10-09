@@ -2,15 +2,20 @@
   "doc_id": "3064869cac2ad05599bd",
   "version": "f3d15eeeadd983d3f76d",
   "source_hash": "788594e9fa0ca49053e2357369b39893e943d0270920955db00d6dfd6e96112f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.912872+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:45.035035+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be1f0495ff8a",
-          "name": "肝癌放疗呼吸运动管理与靶区勾画",
-          "desc": "面向肝癌放疗中呼吸运动管理的核心难题，开发四维定量影像以提升靶区勾画与运动管理效率。",
+          "id": "item-3469e6994293",
+          "name": "肝癌放疗呼吸运动管理",
+          "desc": "放射毒性与呼吸运动限制",
           "evidence": [
             {
-              "quote": "因此在肝癌放疗中，肿瘤的呼吸运动管理是至关重要的",
+              "quote": "肝癌放疗疗效长期受制于正常肝组织的放射毒性，而显著的呼吸运动进一步限制了剂量提升和靶区勾画精度",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 712,
-                "end_char": 735
+                "start_char": 2445,
+                "end_char": 2491
               },
               "version": "f3d15eeeadd983d3f76d"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc0cb28bde70",
-          "name": "现有四维核磁共振成像质量不稳定",
-          "desc": "现有四维核磁共振技术存在肿瘤对比度不一致、呼吸运动伪影严重、时空分辨率低与重建耗时过长等问题，难以广泛临床应用。",
+          "id": "item-54e037d20501",
+          "name": "四维MRI对比度不稳、运动伪影、分辨率不足、重建耗时",
+          "desc": "难以广泛临床应用",
           "evidence": [
             {
-              "quote": "现有的四维核磁共振技术因为不一致的肿瘤对比度、呼吸运动引起的伪影和较低的时空分辨率等原因使其仍然不能提供优质的和稳定的图像质量",
+              "quote": "现有技术普遍存在肿瘤对比度不稳定、运动伪影严重、时空分辨率不足及重建耗时过长等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 795,
-                "end_char": 857
+                "start_char": 2582,
+                "end_char": 2622
               },
               "version": "f3d15eeeadd983d3f76d"
             }
@@ -63,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-565c7cbb796d",
-          "name": "磁共振指纹结合AI的四维定量成像与DeepMocor重建",
-          "desc": "结合核磁共振指纹与人工智能开展四维磁共振指纹成像方法学与临床验证，提出分三阶段的深度学习运动补偿加速重建方法DeepMocor。",
+          "id": "item-d64c6939c41f",
+          "name": "DeepMocor运动补偿加速重建",
+          "desc": "三阶段：运动场初始化、精化、重建",
           "evidence": [
             {
               "quote": "提出基于深度学习的运动补偿加速重建方法 DeepMocor",
@@ -76,7 +81,25 @@
               },
               "version": "f3d15eeeadd983d3f76d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dc05a1248e4d",
+          "name": "四维磁共振指纹成像",
+          "desc": "核磁共振指纹与AI结合",
+          "evidence": [
+            {
+              "quote": "结合核磁共振指纹与人工智能技术，开展四维磁共振指纹成像的方法学研究与临床验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2643,
+                "end_char": 2680
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,21 +108,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aa0e6f574380",
-          "name": "四维核磁共振重建提速约24倍至约40秒",
-          "desc": "该方法将单层四维核磁共振成像重建时间由约17分钟缩短至约40秒，实现约24倍加速，同时保持定量精度与影像可靠性。",
+          "id": "item-fa3bbb3145d6",
+          "name": "重建加速约24倍",
+          "desc": "17分钟缩短至40秒",
           "evidence": [
             {
-              "quote": "该方法将单层四维核磁共振成像重建时间由约17分钟显著缩短至约40秒，实现约24倍加速",
+              "quote": "将单层四维核磁共振成像重建时间由约17分钟显著缩短至约40秒，实现约24倍加速",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3016,
+                "start_char": 3019,
                 "end_char": 3057
               },
               "version": "f3d15eeeadd983d3f76d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文12篇、核心期刊1篇、会议摘要8篇、专利2项",
+          "evidence": [
+            {
+              "quote": "本课题共署名发表SCI论文12篇，国家级核心期刊论文1篇，国际会议论文摘要8篇，申请专利2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3084,
+                "end_char": 3129
+              },
+              "version": "f3d15eeeadd983d3f76d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +151,322 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-be1f0495ff8a"
+        "dimension": "技术",
+        "item_id": "item-d64c6939c41f"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-cc0cb28bde70"
+        "item_id": "item-54e037d20501"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cc0cb28bde70"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-565c7cbb796d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-565c7cbb796d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aa0e6f574380"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出基于深度学习的运动补偿加速重建方法 DeepMocor",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2808,
+            "end_char": 2836
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图像配准模型的训练方法、图像配准模型、电子设备和计算机可读介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黎田;蔡璟;王沛林",
+      "id": "out-2c61a8c721e6",
+      "evidence": [
+        {
+          "quote": "[专利] 图像配准模型的训练方法、图像配准模型、电子设备和计算机可读介质 — 黎田;蔡璟;王沛林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3260,
+            "end_char": 3307
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence in four-dimensional imaging for motion management in radiation therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yinghui;Xiao Haonan;Wang Jing;Wang Lu;Li Wen;Jiang Zhuoran;Ren Ge;Zhi Shaohua;Qian Josh;Dai Jianrong;Men Kuo;Ren Lei;Yang Xiaofeng;Li Tian;Cai Jing",
+      "id": "out-1602ae6b44d0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence in four-dimensional imaging for motion management in radiation therapy — Wang Yinghui;Xiao Haonan;Wang Jing;Wang Lu;Li Wen;Jiang Zhuoran;Ren Ge;Zhi Shaohua;Qian Josh;Dai Jianrong;Men Kuo;Ren Lei;Yang Xiaofeng;Li Tian;Cai Jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3312,
+            "end_char": 3567
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Young Innovative Researcher Award",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian Li",
+      "id": "out-d316cc6ebaab",
+      "evidence": [
+        {
+          "quote": "[奖励] Young Innovative Researcher Award — Tian Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3572,
+            "end_char": 3619
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High spatiotemporal-resolution abdominal 4D-MRI through respiratory-synchronized frame collaborative reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yinghui;Wang Lu;Feng Yidan;Chen Zhi;Qin Jing;Li Tian;Cai Jing",
+      "id": "out-314ee4310b09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High spatiotemporal-resolution abdominal 4D-MRI through respiratory-synchronized frame collaborative reconstruction — Wang Yinghui;Wang Lu;Feng Yidan;Chen Zhi;Qin Jing;Li Tian;Cai Jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3624,
+            "end_char": 3814
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical validation of MR-generated synthetic CT by MRCAT for brain tumor radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yip Tyrone Tsz Yeung;Li Zhichun;Li Tian",
+      "id": "out-734e9ac3fa98",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical validation of MR-generated synthetic CT by MRCAT for brain tumor radiotherapy — Yip Tyrone Tsz Yeung;Li Zhichun;Li Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3953
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning-Based Motion-Compensated Reconstruction for Accelerating 4-Dimensional Magnetic Resonance Fingerprinting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Wang;Chenyang Liu;Yinghui Wang;Xiang Wang;Peilin Wang;Weihang Liao;Xinzhi Teng;Andy Lai-Yin Cheung;Victor Ho-Fun Lee;Shaohua Zhi;Ge Ren;Jing Qin;Peng Cao;Tian Li;Jing Cai",
+      "id": "out-70b16ed952c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning-Based Motion-Compensated Reconstruction for Accelerating 4-Dimensional Magnetic Resonance Fingerprinting — Lu Wang;Chenyang Liu;Yinghui Wang;Xiang Wang;Peilin Wang;Weihang Liao;Xinzhi Teng;Andy Lai-Yin Cheung;Victor Ho-Fun Lee;Shaohua Zhi;Ge Ren;Jing Qin;Peng Cao;Tian Li;Jing Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 4258
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Respiratory-Correlated 4-Dimensional Magnetic Resonance Fingerprinting for Liver Cancer Radiation Therapy Motion Management",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyang Liu;Tian Li;Peng Cao;Edward S. Hui;Yat-Lam Wong;Zuojun Wang;Haonan Xiao;Shaohua Zhi;Ta Zhou;Wen Li;Sai Kit Lam;Andy Lai-Yin Cheung;Victor Ho-Fun Lee;Michael Ying;Jing Cai",
+      "id": "out-ee107529796e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Respiratory-Correlated 4-Dimensional Magnetic Resonance Fingerprinting for Liver Cancer Radiation Therapy Motion Management — Chenyang Liu;Tian Li;Peng Cao;Edward S. Hui;Yat-Lam Wong;Zuojun Wang;Haonan Xiao;Shaohua Zhi;Ta Zhou;Wen Li;Sai Kit Lam;Andy Lai-Yin Cheung;Victor Ho-Fun Lee;Michael Ying;Jing Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4263,
+            "end_char": 4574
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of a fast-volumetric four-dimensional magnetic resonance imaging technique for abdominal radiotherapy tumor motion management",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Peilin;Liu Weiwei;Xiao Haonan;Liu Chenyang;Li Wen;Ren Ge;Zhang Yibao;Wu Hao;Wang Weihu;Cai Jing;Li Tian",
+      "id": "out-0bc071b487af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of a fast-volumetric four-dimensional magnetic resonance imaging technique for abdominal radiotherapy tumor motion management — Wang Peilin;Liu Weiwei;Xiao Haonan;Liu Chenyang;Li Wen;Ren Ge;Zhang Yibao;Wu Hao;Wang Weihu;Cai Jing;Li Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4579,
+            "end_char": 4832
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessment and correction of the respiratory phase misalignment using different signals in 4-dimensional imaging and free-breathing gated radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Lekang;Yu Shutong;Zhao Qicheng;Yu Songmao;Yang Junqian;Xiao Jie;Yu Zijian;Ni Qianxi;Li Tian;Lin Chen;Le Xiaoyun;Yao Xinghong;Zhang Yibao",
+      "id": "out-2dae33b5285d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessment and correction of the respiratory phase misalignment using different signals in 4-dimensional imaging and free-breathing gated radiotherapy — Chen Lekang;Yu Shutong;Zhao Qicheng;Yu Songmao;Yang Junqian;Xiao Jie;Yu Zijian;Ni Qianxi;Li Tian;Lin Chen;Le Xiaoyun;Yao Xinghong;Zhang Yibao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4837,
+            "end_char": 5137
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional Dose-Volume Analysis Based on a Novel Image Biomarker Derived From Dynamic Contrast-Enhanced Magnetic Resonance Imaging for Predicting Poststereotactic Body Radiation Therapy Liver Function Preservation in Patients With Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ni Yimin;Lee Ho-Fun Victor;Chiang Chi-leung;Cheung Lai-Yin Andy;Huang Zhengxing;Teng Xinzhi;Zhang Jiang;Ren Ge;Cai Jing;Li Tian",
+      "id": "out-da001b28cd89",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional Dose-Volume Analysis Based on a Novel Image Biomarker Derived From Dynamic Contrast-Enhanced Magnetic Resonance Imaging for Predicting Poststereotactic Body Radiation Therapy Liver Function Preservation in Patients With Hepatocellular Carcinoma — Ni Yimin;Lee Ho-Fun Victor;Chiang Chi-leung;Cheung Lai-Yin Andy;Huang Zhengxing;Teng Xinzhi;Zhang Jiang;Ren Ge;Cai Jing;Li Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5143,
+            "end_char": 5534
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An End-to-End Abdominal Cross-Modality Image Alignment Framework",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Tian;Cai Jing;Wang Peilin",
+      "id": "out-7df962f40b40",
+      "evidence": [
+        {
+          "quote": "[专利] An End-to-End Abdominal Cross-Modality Image Alignment Framework — Li Tian;Cai Jing;Wang Peilin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5540,
+            "end_char": 5639
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion Model-based Medical Image Generation as a Potential Data Augmentation Strategy for AI Applications",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cao Zijian;Zhang Jueye;Lin Chen;Li Tian;Wu Hao;Zhang Yibao",
+      "id": "out-eba5c3022a0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion Model-based Medical Image Generation as a Potential Data Augmentation Strategy for AI Applications — Cao Zijian;Zhang Jueye;Lin Chen;Li Tian;Wu Hao;Zhang Yibao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5645,
+            "end_char": 5820
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artifacts map-guided nonlocal mean denoising for abdominal 4-dimensional magnetic resonance imaging using view-sharing acquisition for radiotherapy motion management",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yat Lam Wong;Hing Chiu Chang;Weiwei Liu;Weihu Wang;Yibao Zhang;Hao Wu;Ho-Fun Victor Lee;Lai-Yin Andy Cheung;Tian Li;Jing Cai",
+      "id": "out-ea824513d551",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artifacts map-guided nonlocal mean denoising for abdominal 4-dimensional magnetic resonance imaging using view-sharing acquisition for radiotherapy motion management — Yat Lam Wong;Hing Chiu Chang;Weiwei Liu;Weihu Wang;Yibao Zhang;Hao Wu;Ho-Fun Victor Lee;Lai-Yin Andy Cheung;Tian Li;Jing Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5826,
+            "end_char": 6124
+          },
+          "version": "f3d15eeeadd983d3f76d"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

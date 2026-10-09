@@ -2,15 +2,20 @@
   "doc_id": "1210cf19fe9ed31110c9",
   "version": "896e0aa5d033161b05c5",
   "source_hash": "e0de72d91e26f8c59ef3dff005174eb6932de0d47019f7fef22977388f6a2669",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.447215+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.188686+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f921209db336",
-          "name": "NSCLC免疫治疗肿瘤表型演化研究",
-          "desc": "免疫检查点抑制剂投入临床并取得超出预期的效果，免疫治疗成为肿瘤研究热点。",
+          "id": "item-794d4c5988c8",
+          "name": "晚期NSCLC免疫治疗疗效预测",
+          "desc": "进入免疫检查点抑制剂治疗时代",
           "evidence": [
             {
-              "quote": "随着如PD-1阻断剂等免疫检查点抑制剂投入临床使用并取得超出预期的临床效果，免疫治疗成为当下肿瘤研究热点",
+              "quote": "晚期肺癌的治疗已经全面进入以免疫检查点抑制剂为代表的新型免疫治疗时代",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 680,
-                "end_char": 731
-              },
-              "version": "896e0aa5d033161b05c5"
-            }
-          ]
-        },
-        {
-          "id": "item-7f44d4177a3a",
-          "name": "肺癌治疗决策向精准医学靠拢",
-          "desc": "研究结果指导临床医师识别免疫治疗潜在受益人群，使肺癌治疗决策向精准医学水平靠拢。",
-          "evidence": [
-            {
-              "quote": "本项目研究结果将指导临床医师识别免疫治疗潜在受益人群，使肺癌治疗决策向精准医学水平靠拢",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1025,
-                "end_char": 1067
+                "start_char": 2832,
+                "end_char": 2865
               },
               "version": "896e0aa5d033161b05c5"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae441923fb3d",
-          "name": "免疫治疗仅20%-50%晚期患者有效",
-          "desc": "临床统计显示免疫治疗只能在20%-50%的晚期实体瘤病人中发挥作用，需筛选获益人群。",
-          "evidence": [
-            {
-              "quote": "然而目前临床统计显示，免疫治疗只能在20%-50%的晚期实体瘤病人中发挥作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 770
-              },
-              "version": "896e0aa5d033161b05c5"
-            }
-          ]
-        },
-        {
-          "id": "item-d5a2dce85b20",
-          "name": "需捕捉肿瘤表型宏观演变规律",
-          "desc": "如何更好地捕捉NSCLC免疫治疗过程中肿瘤表型变化规律并开发疗效预测标志物是临床亟需解决的问题。",
+          "id": "item-cb4a064d008a",
+          "name": "免疫治疗潜在获益人群筛选",
+          "desc": "捕捉肿瘤表型变化规律并开发预测标志物",
           "evidence": [
             {
               "quote": "如何更好地捕捉NSCLC免疫治疗过程中肿瘤表型变化的规律，开发基于临床和影像的免疫治疗疗效预测标志物，以进一步实现潜在获益人群筛选，是临床亟需解决的问题",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0f1b6bdbc5bc",
-          "name": "影像组学与深度学习捕捉表型演化",
-          "desc": "借助影像组学和深度学习技术，探讨CT图像信息是否能反映NSCLC在免疫治疗药物作用下肿瘤病灶表型的宏观演变模式。",
+          "id": "item-fb2d1956f284",
+          "name": "平扫CT deltaRadiomics",
+          "desc": "基线与首次随访deltaRadiomics预测6个月DCR",
           "evidence": [
             {
-              "quote": "借助影像组学和深度学习技术，探讨CT图像信息中包含的潜在信息是否可以反映NSCLC在免疫治疗药物作用下肿瘤病灶表型的宏观演变模式",
+              "quote": "基于平扫CT的基线与首次随访deltaRadiomics预测晚期NSCLC 6个月疾病控制率（disease control rate，DCR）优于基线数据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 907,
-                "end_char": 970
+                "start_char": 3124,
+                "end_char": 3201
               },
               "version": "896e0aa5d033161b05c5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-4c91dee4e42b",
-          "name": "临床影像实验室联合预测模型",
-          "desc": "构建基于临床-影像-实验室的联合预测模型，前瞻性预测和评价接受PD-1抑制剂治疗的NSCLC患者疗效。",
+          "id": "item-296b9968ecd8",
+          "name": "平扫+增强CT联合Radiomics列线图",
+          "desc": "联合模态预测6个月DCR",
           "evidence": [
             {
-              "quote": "构建基于临床-影像-实验室的联合预测模型，前瞻性预测和评价接受PD-1抑制剂治疗的NSCLC患者治疗效果",
+              "quote": "基于平扫+增强CT联合Radiomics预测晚期NSCLC 6个月DCR优于单一模态",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 972,
-                "end_char": 1023
+                "start_char": 3293,
+                "end_char": 3334
               },
               "version": "896e0aa5d033161b05c5"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,165 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f8a984721609",
-          "name": "deltaRadiomics预测6个月DCR",
-          "desc": "基于平扫CT基线与首次随访deltaRadiomics的联合模型在训练集与测试集AUC分别为0.83和0.81，诊断准确度0.78。",
+          "id": "item-5de518b641ad",
+          "name": "联合模型诊断准确度0.78",
+          "desc": "以全部靶病灶构建的联合模型",
           "evidence": [
             {
-              "quote": "基于平扫CT的基线与首次随访deltaRadiomics预测晚期NSCLC 6个月疾病控制率（disease control rate，DCR）优于基线数据，以全部靶病灶为研究对象构建联合模型在训练集和测试集AUC值分别为0.83(95%CI, 0.75–0.91)、0.81(95%CI,0.68–0.95)，诊断准确度为0.78",
+              "quote": "诊断准确度为0.78",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3124,
+                "start_char": 3280,
                 "end_char": 3289
               },
               "version": "896e0aa5d033161b05c5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-232cfb25b467",
-          "name": "平扫联合增强列线图AUC",
-          "desc": "基于平扫与增强CT图像联合的combined-radiomics列线图在训练集与测试集AUC分别为0.85和0.81。",
+          "id": "item-da8220c6b744",
+          "name": "免疫相关肺炎分析",
+          "desc": "轻症肺炎占79.46%",
           "evidence": [
             {
-              "quote": "采用最大病灶方法建立的基于平扫和增强CT图像联合的combined-radiomics列线图在训练集和测试集中的AUC值分别为0.85（95%CI, 0.77- 0.92）和0.81（95%CI, 0.67-0.94）",
+              "quote": "CIP严重程度以轻症肺炎（1级和2级）居多，占比79.46%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3336,
-                "end_char": 3444
+                "start_char": 3725,
+                "end_char": 3754
               },
               "version": "896e0aa5d033161b05c5"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-027790c1b2d2",
-          "name": "CIP影像分型分布特征",
-          "desc": "免疫检查点抑制剂相关肺炎患者中，OP型占49.11%、NSIP型占41.07%，轻症肺炎居多占比79.46%。",
-          "evidence": [
-            {
-              "quote": "CIP影像分型主要表现为OP型（49.11%）及NSIP型（41.07%）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3776,
-                "end_char": 3812
-              },
-              "version": "896e0aa5d033161b05c5"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f921209db336"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ae441923fb3d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在肺部肿瘤影像诊断中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李倩;刘颖;张宇威;叶兆祥",
+      "id": "out-180b09e8fa81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在肺部肿瘤影像诊断中的研究进展 — 李倩;刘颖;张宇威;叶兆祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3890
+          },
+          "version": "896e0aa5d033161b05c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ae441923fb3d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0f1b6bdbc5bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT影像的人工智能在晚期非小细胞肺癌免疫治疗疗效评价中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘颖;李倩;张宇威;叶兆祥",
+      "id": "out-a428ab1a8189",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT影像的人工智能在晚期非小细胞肺癌免疫治疗疗效评价中的应用进展 — 刘颖;李倩;张宇威;叶兆祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3895,
+            "end_char": 3951
+          },
+          "version": "896e0aa5d033161b05c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0f1b6bdbc5bc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f8a984721609"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Combined-Radiomics Approach of CT Images to Predict Response to Anti-PD-1 Immunotherapy in NSCLC: A Retrospective Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minghao Wu;Yanyan Zhang;Jianing Zhang;Yuwei Zhang;Yina Wang;Feng Chen;Yahong Luo;Shuai He;Yulin Liu;Qian Yang;Yanying Li;Hong Wei;Hong Zhang;Nian Lu;Sicong Wang;Yan Guo;Zhaoxiang Ye;Ying Liu",
+      "id": "out-8b5469912ad5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Combined-Radiomics Approach of CT Images to Predict Response to Anti-PD-1 Immunotherapy in NSCLC: A Retrospective Multicenter Study — Minghao Wu;Yanyan Zhang;Jianing Zhang;Yuwei Zhang;Yina Wang;Feng Chen;Yahong Luo;Shuai He;Yulin Liu;Qian Yang;Yanying Li;Hong Wei;Hong Zhang;Nian Lu;Sicong Wang;Yan Guo;Zhaoxiang Ye;Ying Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3956,
+            "end_char": 4288
+          },
+          "version": "896e0aa5d033161b05c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4c91dee4e42b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-232cfb25b467"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非小细胞肺癌新辅助免疫治疗进展及影像学疗效评价挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘颖;张宇威;叶兆祥",
+      "id": "out-a3a38d452231",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 非小细胞肺癌新辅助免疫治疗进展及影像学疗效评价挑战 — 刘颖;张宇威;叶兆祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4293,
+            "end_char": 4337
+          },
+          "version": "896e0aa5d033161b05c5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imaging Biomarkers to Predict and Evaluate the Effectiveness of Immunotherapy in Advanced Non-Small-Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Liu;Minghao Wu;Yuwei Zhang;Yahong Luo;Shuai He;Yina Wang;Feng Chen;Yulin Liu;Qian Yang;Yanying Li;Hong Wei;Hong Zhang;Chenwang Jin;Nian Lu;Wanhu Li;Sicong Wang;Yan Guo;Zhaoxiang Ye",
+      "id": "out-af9be761636d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Imaging Biomarkers to Predict and Evaluate the Effectiveness of Immunotherapy in Advanced Non-Small-Cell Lung Cancer — Ying Liu;Minghao Wu;Yuwei Zhang;Yahong Luo;Shuai He;Yina Wang;Feng Chen;Yulin Liu;Qian Yang;Yanying Li;Hong Wei;Hong Zhang;Chenwang Jin;Nian Lu;Wanhu Li;Sicong Wang;Yan Guo;Zhaoxiang Ye",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4342,
+            "end_char": 4652
+          },
+          "version": "896e0aa5d033161b05c5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

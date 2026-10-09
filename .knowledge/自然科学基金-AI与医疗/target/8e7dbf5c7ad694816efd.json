@@ -2,15 +2,20 @@
   "doc_id": "8e7dbf5c7ad694816efd",
   "version": "83c31973dbaea511a49e",
   "source_hash": "d26e6d03101cf5602a09fcf58d79d35897c5e6ebdea2a38280e49488109ad5af",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.130632+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.385947+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-1bce7dc2dd10",
           "name": "颈动脉症状性狭窄预测",
-          "desc": "动脉粥样硬化发病中血管周围脂肪组织免疫微环境受影响，需预测颈动脉症状性狭窄。",
+          "desc": "血管周围脂肪组织免疫微环境",
           "evidence": [
             {
               "quote": "在动脉粥样硬化发病过程中，血管周围脂肪组织（perivascular adipose tissue,PVAT）的免疫细胞与其分泌的细胞因子相互作用构成的免疫微环境受到影响",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 688,
                 "end_char": 772
-              },
-              "version": "83c31973dbaea511a49e"
-            }
-          ]
-        },
-        {
-          "id": "item-f724e376a22a",
-          "name": "脑血管病变风险预测指标",
-          "desc": "未来有望建立新的脑血管病变风险预测生物学指标及预测模型。",
-          "evidence": [
-            {
-              "quote": "未来有望对PCaFRP进行深入研究，建立新的脑血管病变风险预测的生物学指标及预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3003,
-                "end_char": 3044
               },
               "version": "83c31973dbaea511a49e"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-28bc3d65e56b",
-          "name": "PVAT影像组学与免疫微环境关系不明",
-          "desc": "PVAT影像组学特征与免疫微环境的关系及在颈动脉症状性狭窄中的作用机制尚不明确。",
+          "id": "item-9e486dece619",
+          "name": "PVAT影像组学特征与免疫微环境关系及机制不明",
+          "desc": "颈动脉症状性狭窄中的作用",
           "evidence": [
             {
               "quote": "然而，PVAT的影像组学特征与PVAT免疫微环境的关系，以及在颈动脉症状性狭窄中的作用机制尚不明确",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 875,
                 "end_char": 923
-              },
-              "version": "83c31973dbaea511a49e"
-            }
-          ]
-        },
-        {
-          "id": "item-bfeec9f55368",
-          "name": "症状与无症状狭窄难以区分",
-          "desc": "有症状组颈动脉周围脂肪密度显著高于无症状组，需影像组学特征辅助区分。",
-          "evidence": [
-            {
-              "quote": "对于颈动脉中重度狭窄的患者，有症状组的颈动脉周围脂肪密度显著高于无症状组（-66.2±19.2 vs-77.1±20.4，P=0.009）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 781,
-                "end_char": 849
               },
               "version": "83c31973dbaea511a49e"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-270f9e988c93",
-          "name": "PCaFRP特征提取与LASSO选优",
-          "desc": "回顾性分析颈动脉狭窄头颈CTA图像，提取颈动脉周围脂肪影像组学特征，用LASSO进行特征选择建立影像组学分数。",
+          "id": "item-16bbcf130aec",
+          "name": "颈动脉周围脂肪影像组学特征PCaFRP与影像组学分数",
+          "desc": "LASSO特征选择",
           "evidence": [
             {
-              "quote": "本研究回顾性分析颈动脉狭窄的头颈CTA图像，并且提取颈动脉周围脂肪影像组学特征（PCaFRP），使用最小绝对收缩和选择算子（LASSO）方法进行特征选择，建立影像组学分数",
+              "quote": "提取颈动脉周围脂肪影像组学特征（PCaFRP），使用最小绝对收缩和选择算子（LASSO）方法进行特征选择，建立影像组学分数",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2399,
+                "start_char": 2423,
                 "end_char": 2483
               },
               "version": "83c31973dbaea511a49e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e39acb12dcb0",
-          "name": "深度学习重建优化CTA图像质量",
-          "desc": "采用深度学习重建技术优化头颈CTA扫描图像质量，提高脑血管小分支显示。",
+          "id": "item-f1f8cc88e42d",
+          "name": "深度学习重建DLR优化头颈CTA",
+          "desc": "降低噪声、提高小分支显示",
           "evidence": [
             {
-              "quote": "课题组开展前瞻性研究，采用深度学习重建（DLR）技术优化头颈CTA扫描的图像质量",
+              "quote": "采用深度学习重建（DLR）技术优化头颈CTA扫描的图像质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3049,
+                "start_char": 3060,
                 "end_char": 3088
               },
               "version": "83c31973dbaea511a49e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4057af7415b2",
-          "name": "影像组学分数模型AUC 0.921与0.801",
-          "desc": "影像组学分数模型在验证队列AUC为0.921、测试队列AUC为0.801，优于仅基于临床特征或PFD的模型。",
+          "id": "item-ed5bfbdd2de4",
+          "name": "影像组学分数模型区分症状性与无症状狭窄",
+          "desc": "验证队列AUC 0.921，测试队列0.801",
           "evidence": [
             {
               "quote": "影像组学分数模型在验证队列中的表现（AUC为0.921）和测试队列（AUC为0.801）优于仅基于临床特征或PFD的模型",
@@ -147,89 +122,203 @@
               "version": "83c31973dbaea511a49e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-979374711726",
-          "name": "GLCM与PSV呈负相关",
-          "desc": "在颈内动脉起始部有症状患者中，灰度共生矩阵对比度平方根与狭窄侧收缩期最大流速呈负相关。",
-          "evidence": [
-            {
-              "quote": "GLCM（灰度共生矩阵对比度的平方根）与狭窄侧的PSV呈负相关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2739,
-                "end_char": 2769
-              },
-              "version": "83c31973dbaea511a49e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-07ff57939f7b",
-          "name": "DLR降低噪声提高小分支显示",
-          "desc": "与混合迭代重建相比，DLR在常规及低辐射剂量条件下可降低图像噪声、提高脑血管小分支显示。",
-          "evidence": [
-            {
-              "quote": "与临床常用的混合迭代重建（HIR）相比，DLR在常规及低辐射剂量扫描条件下，可以降低图像噪声，提高脑血管小分支的显示",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3095,
-                "end_char": 3152
-              },
-              "version": "83c31973dbaea511a49e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1bce7dc2dd10"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-28bc3d65e56b"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effect of deep learning-based reconstruction on cerebral CT perfusion: cerebral parameters and imaging quality",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈钰;王彦玲;徐敏;王剑;陆晓平;金征宇",
+      "id": "out-18b8d3f2789f",
+      "evidence": [
+        {
+          "quote": "[会议论文] The effect of deep learning-based reconstruction on cerebral CT perfusion: cerebral parameters and imaging quality — 陈钰;王彦玲;徐敏;王剑;陆晓平;金征宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3244,
+            "end_char": 3387
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-28bc3d65e56b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-270f9e988c93"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dark-blood computed tomography angiography combined with deep learning reconstruction for carotid artery wall imaging in Takayasu arteries patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "苏童;张哲;陈钰;金征宇",
+      "id": "out-7da20ef66cb9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dark-blood computed tomography angiography combined with deep learning reconstruction for carotid artery wall imaging in Takayasu arteries patients — 苏童;张哲;陈钰;金征宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3392,
+            "end_char": 3560
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-270f9e988c93"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4057af7415b2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "100kVp条件下全模型迭代技术对头颈CTA图像质量的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆晓平;王沄;徐敏;马壮飞;王彦玲;付海鸿;陈钰;金征宇",
+      "id": "out-03b0e98da2ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 100kVp条件下全模型迭代技术对头颈CTA图像质量的影响 — 陆晓平;王沄;徐敏;马壮飞;王彦玲;付海鸿;陈钰;金征宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3565,
+            "end_char": 3631
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e39acb12dcb0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-07ff57939f7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "100kVp条件下深度学习重建算法对头颈CT血管造影图像质量的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆晓平;王沄;陈钰;王彦玲;徐敏;金征宇",
+      "id": "out-131275034216",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 100kVp条件下深度学习重建算法对头颈CT血管造影图像质量的影响 — 陆晓平;王沄;陈钰;王彦玲;徐敏;金征宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3636,
+            "end_char": 3698
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种带支架的头托",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李玉梅;陈钰;金征宇;张洪芝",
+      "id": "out-fa321b7708f6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种带支架的头托 — 李玉梅;陈钰;金征宇;张洪芝",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3876,
+            "end_char": 3905
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习重建算法对80kVp、低对比剂用量的头颈CTA图像质量的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张欣玥;陈钰;王沄",
+      "id": "out-acd5fb82ff98",
+      "evidence": [
+        {
+          "quote": "[会议论文] 深度学习重建算法对80kVp、低对比剂用量的头颈CTA图像质量的影响 — 张欣玥;陈钰;王沄",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 3962
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习重建算法对头CT灌注重建参数及图像质量影响探讨",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈钰;王彦玲;苏童;徐敏;闫静;王剑;陆晓平;王沄;李玉梅;金征宇",
+      "id": "out-f09e14729966",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 深度学习重建算法对头CT灌注重建参数及图像质量影响探讨 — 陈钰;王彦玲;苏童;徐敏;闫静;王剑;陆晓平;王沄;李玉梅;金征宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3967,
+            "end_char": 4036
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning reconstruction improves the image quality of CT angiography derived from 80-kVp cerebral CT perfusion data.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Chen;Yanling Wang;Tong Su;Min Xu;Jing Yan;Jian Wang;Haozhe Liu;Xiaoping Lu;Yun Wang;Zhengyu Jin",
+      "id": "out-f7f3b9fd7fce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning reconstruction improves the image quality of CT angiography derived from 80-kVp cerebral CT perfusion data. — Yu Chen;Yanling Wang;Tong Su;Min Xu;Jing Yan;Jian Wang;Haozhe Liu;Xiaoping Lu;Yun Wang;Zhengyu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4269
+          },
+          "version": "83c31973dbaea511a49e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

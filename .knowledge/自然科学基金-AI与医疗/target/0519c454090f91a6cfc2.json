@@ -2,15 +2,20 @@
   "doc_id": "0519c454090f91a6cfc2",
   "version": "1abb661302edaf0bf976",
   "source_hash": "b616edaa26f9fb0bb0f39bc215ed97678aac39bd083eb58245e0d4bb1aff3cf9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.692420+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:26:17.227007+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0f506c2a072",
-          "name": "多中心眼底图像视网膜血管自动分割",
-          "desc": "眼底视网膜血管分割是大规模眼底疾病筛查及多种相关疾病辅助诊断的关键技术。",
+          "id": "item-62186f3a5e1b",
+          "name": "眼底视网膜血管分割与多中心联邦学习",
+          "desc": "视网膜血管自动分割是大规模眼底疾病筛查和辅助诊断的关键技术",
           "evidence": [
             {
               "quote": "基于眼底图像的视网膜血管自动分割是大规模眼底疾病筛查及多种相关疾病辅助诊断的关键技术之一",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-75636e60719d",
-          "name": "联邦学习框架下的泛化、收敛与分割完整度局限",
-          "desc": "现有联邦学习框架应用于视网膜血管分割任务存在泛化能力不足、收敛困难、分割完整度不高导致临床价值受限三大局限。",
+          "id": "item-a632b07d6bff",
+          "name": "联邦学习用于血管分割泛化不足、收敛困难、完整度不高",
+          "desc": "现有联邦学习框架的三点局限",
           "evidence": [
             {
               "quote": "现有联邦学习框架应用于视网膜血管分割任务存在以下局限性：1）泛化能力不足；2）收敛困难；3）分割完整度不高临床价值受限",
@@ -51,6 +56,22 @@
                 "basis": "parsed_text",
                 "start_char": 796,
                 "end_char": 854
+              },
+              "version": "1abb661302edaf0bf976"
+            }
+          ]
+        },
+        {
+          "id": "item-d5c2aa9de6a1",
+          "name": "跨中心差异与临床标注条件下的鲁棒训练",
+          "desc": "隐私约束下跨中心差异与标注不完整两类关键问题",
+          "evidence": [
+            {
+              "quote": "重点解决“跨中心差异下的可靠学习”与“真实临床标注条件下的鲁棒训练”两类关键问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2937,
+                "end_char": 2976
               },
               "version": "1abb661302edaf0bf976"
             }
@@ -63,20 +84,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2db24946a841",
-          "name": "联邦学习下自适应多模型参数融合方法",
-          "desc": "在联邦学习框架下研究自适应多模型参数融合以提升高质量数据利用效率、增强模型特征鲁棒性，并配套多中心数据一致化与结构感知分割模型。",
+          "id": "item-f7b6ca40e043",
+          "name": "自适应多模型参数融合",
+          "desc": "提升高质量数据利用效率，增强特征鲁棒性",
           "evidence": [
             {
-              "quote": "在联邦学习框架下重点探索：1）自适应多模型参数融合方法，提升高质量数据利用效率，增强联邦学习模型特征鲁棒性",
+              "quote": "自适应多模型参数融合方法，提升高质量数据利用效率，增强联邦学习模型特征鲁棒性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 867,
+                "start_char": 882,
                 "end_char": 919
               },
               "version": "1abb661302edaf0bf976"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ed3905913c6e",
+          "name": "多中心数据一致化",
+          "desc": "消除数据差异，提升收敛效率",
+          "evidence": [
+            {
+              "quote": "多中心数据一致化方法，消除数据差异提升联邦学习收敛效率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 923,
+                "end_char": 949
+              },
+              "version": "1abb661302edaf0bf976"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d6579c610f01",
+          "name": "结构感知分割模型",
+          "desc": "多角度刻画视网膜血管结构完整性",
+          "evidence": [
+            {
+              "quote": "结构感知分割模型，多角度刻画视网膜血管结构完整性提升临床应用价值",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 953,
+                "end_char": 984
+              },
+              "version": "1abb661302edaf0bf976"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-edd50c960c9f",
+          "name": "弱监督与基础模型适配",
+          "desc": "降低标注成本",
+          "evidence": [
+            {
+              "quote": "探索降低标注成本的弱监督与基础模型适配方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3197,
+                "end_char": 3217
+              },
+              "version": "1abb661302edaf0bf976"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -85,9 +158,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d1b4fb6d32eb",
-          "name": "发表期刊论文7篇、会议论文11篇并申请发明专利2项",
-          "desc": "项目期内共发表/录用期刊论文7篇、会议论文11篇共18篇，申请/授权发明专利2项，显著超过申请书预期指标。",
+          "id": "item-d6ab588a519b",
+          "name": "多中心联邦分割原型流程与评测体系",
+          "desc": "覆盖多器官、多病灶、模态缺失等场景并完成系统验证",
+          "evidence": [
+            {
+              "quote": "构建了可复用的多中心联邦分割原型流程与评测体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3228,
+                "end_char": 3250
+              },
+              "version": "1abb661302edaf0bf976"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "发表/录用论文18篇，申请/授权发明专利2项",
           "evidence": [
             {
               "quote": "项目期内发表/录用期刊论文7篇、会议论文11篇，共18篇，申请/授权发明专利2项",
@@ -99,7 +191,9 @@
               "version": "1abb661302edaf0bf976"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +201,429 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-f0f506c2a072"
+        "dimension": "技术",
+        "item_id": "item-ed3905913c6e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-75636e60719d"
+        "item_id": "item-a632b07d6bff"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "多中心数据一致化方法，消除数据差异提升联邦学习收敛效率",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 923,
+            "end_char": 949
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-d6579c610f01"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-75636e60719d"
+        "item_id": "item-a632b07d6bff"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2db24946a841"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2db24946a841"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d1b4fb6d32eb"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结构感知分割模型，多角度刻画视网膜血管结构完整性提升临床应用价值",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 953,
+            "end_char": 984
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ConvFormer: Plug-and-Play CNN-Style Transformers for Improving Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Zengqiang Yan;Xianbo Deng;Chuansheng Zheng;Li Yu",
+      "id": "out-db64304f6082",
+      "evidence": [
+        {
+          "quote": "[会议论文] ConvFormer: Plug-and-Play CNN-Style Transformers for Improving Medical Image Segmentation — Xian Lin;Zengqiang Yan;Xianbo Deng;Chuansheng Zheng;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3478,
+            "end_char": 3633
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Beyond Adapting SAM: Towards End-to-End Ultrasound Image Segmentation via Auto Prompting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Yangyang Xiang;Li Yu;Zengqiang Yan",
+      "id": "out-04f578288eaa",
+      "evidence": [
+        {
+          "quote": "[会议论文] Beyond Adapting SAM: Towards End-to-End Ultrasound Image Segmentation via Auto Prompting — Xian Lin;Yangyang Xiang;Li Yu;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3638,
+            "end_char": 3778
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SAMCT: Segment Any CT Allowing Labor-Free Task-Indicator Prompts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Yangyang Xiang;Zhehao Wang;Kwang-Ting Cheng;Zengqiang Yan;Li Yu",
+      "id": "out-a2af13375e33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SAMCT: Segment Any CT Allowing Labor-Free Task-Indicator Prompts — Xian Lin;Yangyang Xiang;Zhehao Wang;Kwang-Ting Cheng;Zengqiang Yan;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3783,
+            "end_char": 3928
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脑出血分类模型建立方法及脑出血区域分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "喻莉;胡禹仁;闫增强",
+      "id": "out-832f834e0350",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脑出血分类模型建立方法及脑出血区域分割方法 — 喻莉;胡禹仁;闫增强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3933,
+            "end_char": 3973
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DTMFormer: Dynamic Token Merging for Boosting Transformer-Based Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhehao Wang;Xian Lin;Nannan Wu;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-419623049ece",
+      "evidence": [
+        {
+          "quote": "[会议论文] DTMFormer: Dynamic Token Merging for Boosting Transformer-Based Medical Image Segmentation — Zhehao Wang;Xian Lin;Nannan Wu;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3978,
+            "end_char": 4144
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedIIC: Towards Robust Federated Learning for Class-Imbalanced Medical Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nannan Wu;Li Yu;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-8171a22a90c3",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedIIC: Towards Robust Federated Learning for Class-Imbalanced Medical Image Classification — Nannan Wu;Li Yu;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4149,
+            "end_char": 4304
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From Optimization to Generalization: Fair Federated Learning against Quality Shift via Inter-Client Sharpness Matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nannan Wu;Zhuo Kuang;Zengqiang Yan;Li Yu",
+      "id": "out-53a14b31f674",
+      "evidence": [
+        {
+          "quote": "[会议论文] From Optimization to Generalization: Fair Federated Learning against Quality Shift via Inter-Client Sharpness Matching — Nannan Wu;Zhuo Kuang;Zengqiang Yan;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4309,
+            "end_char": 4476
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedIA: Federated Medical Image Segmentation with Heterogeneous Annotation Completeness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yangyang Xiang;Nannan Wu;Li Yu;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-5437879eb18c",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedIA: Federated Medical Image Segmentation with Heterogeneous Annotation Completeness — Yangyang Xiang;Nannan Wu;Li Yu;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4481,
+            "end_char": 4646
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards Robust Medical Image Referring Segmentation with Incomplete Textual Prompts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qijie Wang;Xian Lin;Zengqiang Yan",
+      "id": "out-71690c6e81ba",
+      "evidence": [
+        {
+          "quote": "[会议论文] Towards Robust Medical Image Referring Segmentation with Incomplete Textual Prompts — Qijie Wang;Xian Lin;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 4776
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cluster-Re-Supervision: Bridging the Gap Between Image-Level and Pixel-Wise Labels for Weakly Supervised Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuo Kuang;Zengqiang Yan;Huiyu Zhou;Li Yu",
+      "id": "out-b988ed5b1de5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cluster-Re-Supervision: Bridging the Gap Between Image-Level and Pixel-Wise Labels for Weakly Supervised Medical Image Segmentation — Zhuo Kuang;Zengqiang Yan;Huiyu Zhou;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4782,
+            "end_char": 4963
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DSA序列影像的子宫动脉开口识别方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑传胜;杨欣;张靓;赵煌旋;闫增强;孙涛;向俊杰;史天意;李丙生",
+      "id": "out-11b1a113a7e8",
+      "evidence": [
+        {
+          "quote": "[专利] 基于DSA序列影像的子宫动脉开口识别方法及系统 — 郑传胜;杨欣;张靓;赵煌旋;闫增强;孙涛;向俊杰;史天意;李丙生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4969,
+            "end_char": 5031
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedIOD: Federated Multi-Organ Segmentation From Partial Labels by Exploring Inter-Organ Dependency",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qin Wan;Zengqiang Yan;Li Yu",
+      "id": "out-0f9603c35971",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedIOD: Federated Multi-Organ Segmentation From Partial Labels by Exploring Inter-Organ Dependency — Qin Wan;Zengqiang Yan;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5037,
+            "end_char": 5171
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UCTNet: Uncertainty-guided CNN-Transformer Hybrid Networks for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiayu Guo;Xian Lin;Xin Yang;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-68414e67c038",
+      "evidence": [
+        {
+          "quote": "[期刊论文] UCTNet: Uncertainty-guided CNN-Transformer Hybrid Networks for Medical Image Segmentation — Xiayu Guo;Xian Lin;Xin Yang;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5177,
+            "end_char": 5339
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Revisiting Self-attention in Medical Transformers via Dependency Sparsification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Zhehao Wang;Zengqiang Yan;Li Yu",
+      "id": "out-074ae071cfc7",
+      "evidence": [
+        {
+          "quote": "[会议论文] Revisiting Self-attention in Medical Transformers via Dependency Sparsification — Xian Lin;Zhehao Wang;Zengqiang Yan;Li Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5345,
+            "end_char": 5473
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M2FTrans: Modality-Masked Fusion Transformer for Incomplete Multi-Modality Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Shi;Li Yu;Qimin Cheng;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-acc19182c0d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M2FTrans: Modality-Masked Fusion Transformer for Incomplete Multi-Modality Brain Tumor Segmentation — Junjie Shi;Li Yu;Qimin Cheng;Xin Yang;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5479,
+            "end_char": 5655
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BATFormer: Towards Boundary-Aware Lightweight Transformer for Efficient Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-a5886cc5bbd1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BATFormer: Towards Boundary-Aware Lightweight Transformer for Efficient Medical Image Segmentation — Xian Lin;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5661,
+            "end_char": 5813
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Lighter the Better: Rethinking Transformers in Medical Image Segmentation Through Adaptive Pruning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xian Lin;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+      "id": "out-68b407435e51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Lighter the Better: Rethinking Transformers in Medical Image Segmentation Through Adaptive Pruning — Xian Lin;Li Yu;Kwang-Ting Cheng;Zengqiang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5819,
+            "end_char": 5975
+          },
+          "version": "1abb661302edaf0bf976"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

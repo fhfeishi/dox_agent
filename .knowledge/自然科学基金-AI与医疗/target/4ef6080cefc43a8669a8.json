@@ -2,15 +2,20 @@
   "doc_id": "4ef6080cefc43a8669a8",
   "version": "c9e4f5d71fa1c8180b8e",
   "source_hash": "ef54181dde0c46b28e8b83646fc9bff0d39c76cc6e89b70d9e18806cd92b8146",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:12.253619+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.643523+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-53ab9fca1b9c",
-          "name": "局部晚期宫颈癌新辅助化疗",
-          "desc": "局部晚期宫颈癌的首选治疗方案是同步根治性放化疗，WHO推荐在缺少放疗资源的医疗欠发达地区可行新辅助化疗后续手术治疗或放化疗。",
+          "id": "item-e47f0c9d26b6",
+          "name": "局部晚期宫颈癌新辅助化疗疗效预测",
+          "desc": "早期识别化疗敏感患者",
           "evidence": [
             {
-              "quote": "局部晚期宫颈癌（LACC）的首选治疗方案是同步根治性放化疗。WHO推荐在缺少放疗资源的医疗欠发达地区对LACC可行新辅助化疗后续手术治疗或放化疗。",
+              "quote": "早期识别对新辅助化疗敏感的患者，避免耽误患者的治疗时机至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 666,
-                "end_char": 738
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ]
-        },
-        {
-          "id": "item-2ba4949ebc6e",
-          "name": "宫颈癌精准分层治疗",
-          "desc": "为局部晚期宫颈癌新辅助化疗的疗效预测提供更准确可靠的预测工具，推动临床精准分层治疗的发展。",
-          "evidence": [
-            {
-              "quote": "为局部晚期宫颈癌新辅助化疗的疗效预测提供更准确、更可靠的预测工具，推动临床精准分层治疗的发展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2951,
-                "end_char": 2996
+                "start_char": 741,
+                "end_char": 771
               },
               "version": "c9e4f5d71fa1c8180b8e"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3a2cbe3b4124",
-          "name": "疗效预测价值未充分挖掘",
-          "desc": "治疗前多参数MRI图像以及患者活检样本病理对新辅助化疗疗效的预测价值并未得到充分挖掘。",
+          "id": "item-a5c884debc3f",
+          "name": "治疗前MRI与活检病理的预测价值未充分挖掘",
+          "desc": "新辅助化疗疗效预测",
           "evidence": [
             {
-              "quote": "然而目前治疗前多参数MRI图像以及患者活检样本病理对新辅助化疗疗效的预测价值并未得到充分挖掘。",
+              "quote": "然而目前治疗前多参数MRI图像以及患者活检样本病理对新辅助化疗疗效的预测价值并未得到充分挖掘",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 773,
-                "end_char": 819
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ]
-        },
-        {
-          "id": "item-8956cf5606c3",
-          "name": "需早期识别化疗敏感患者",
-          "desc": "早期识别对新辅助化疗敏感的患者、避免耽误治疗时机至关重要。",
-          "evidence": [
-            {
-              "quote": "因此早期识别对新辅助化疗敏感的患者，避免耽误患者的治疗时机至关重要。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 739,
-                "end_char": 772
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ]
-        },
-        {
-          "id": "item-625bc3befa36",
-          "name": "模型缺乏外部验证与泛化性",
-          "desc": "由于数据库规模限制，所构建模型在实际应用中仍缺乏足够的外部验证和泛化性。",
-          "evidence": [
-            {
-              "quote": "然而，由于目前数据库规模的限制，本项目所构建的模型在实际应用中仍缺乏足够的外部验证和泛化性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2875,
-                "end_char": 2920
+                "end_char": 818
               },
               "version": "c9e4f5d71fa1c8180b8e"
             }
@@ -111,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-93b05711d7a3",
-          "name": "多参数MRI影像组学建模",
-          "desc": "基于治疗前基线多参数MRI图像，利用影像组学方法筛选与疗效相关的组学特征。",
+          "id": "item-b6854001dda8",
+          "name": "MRI组学模型识别化疗后危险因素",
+          "desc": "淋巴结转移和脉管癌栓浸润",
           "evidence": [
             {
-              "quote": "本研究拟基于治疗前基线多参数MRI图像，利用影像组学方法筛选与宫颈癌新辅助化疗疗效相关的组学特征",
+              "quote": "基于这一数据库，我们构建了MRI组学模型，能够在化疗前即识别出化疗后可能出现的危险因素，如淋巴结转移和脉管癌栓浸润",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 823,
-                "end_char": 870
+                "start_char": 2618,
+                "end_char": 2674
               },
               "version": "c9e4f5d71fa1c8180b8e"
             }
-          ]
-        },
-        {
-          "id": "item-6b0715c5fed9",
-          "name": "免疫组化微环境标签筛选",
-          "desc": "通过量化分析VEGF、Ki67、ERCC1、CD68、CD20、CD4、CD8以及FoxP3等免疫组化染色筛选微环境标签。",
-          "evidence": [
-            {
-              "quote": "同时通过量化分析VEGF、Ki67、ERCC1、CD68、CD20、CD4、CD8以及FoxP3等免疫组化染色来反映宫颈活检样本内新生血管、细胞增殖活性、细胞核苷酸切除修复能力以及免疫微环境",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 872,
-                "end_char": 966
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ]
-        },
-        {
-          "id": "item-bfb0f0f9cdb2",
-          "name": "Node-RADS评分评估",
-          "desc": "探讨最新提出的Node-RADS评分系统在诊断宫颈癌淋巴结转移中的表现性能及改进空间。",
-          "evidence": [
-            {
-              "quote": "此外我们也探讨了最新提出的Node-RADS评分系统在诊断宫颈癌淋巴结转移中的表现性能，揭示了此评分系统目前存在的短板及可能的改进空间",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2998,
-                "end_char": 3064
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,103 +91,123 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e977b1489c13",
-          "name": "化疗前识别危险因素",
-          "desc": "构建的MRI组学模型能在化疗前识别出化疗后可能出现的淋巴结转移和脉管癌栓浸润等危险因素。",
+          "id": "item-fd54732e1b54",
+          "name": "局部晚期宫颈癌新辅助化疗手术患者数据库",
+          "desc": "已建立",
           "evidence": [
             {
-              "quote": "我们构建了MRI组学模型，能够在化疗前即识别出化疗后可能出现的危险因素，如淋巴结转移和脉管癌栓浸润",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2626,
-                "end_char": 2674
-              },
-              "version": "c9e4f5d71fa1c8180b8e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9c53238bcf79",
-          "name": "数据库构建完成",
-          "desc": "成功构建了局部晚期宫颈癌新辅助化疗后手术患者的数据库。",
-          "evidence": [
-            {
-              "quote": "本项目成功构建了局部晚期宫颈癌新辅助化疗后手术患者的数据库。",
+              "quote": "本项目成功构建了局部晚期宫颈癌新辅助化疗后手术患者的数据库",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2588,
-                "end_char": 2617
+                "end_char": 2616
               },
               "version": "c9e4f5d71fa1c8180b8e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d4ba07022260",
-          "name": "淋巴结状态预后研究",
-          "desc": "探索基线影像学评估的淋巴结状态及术后病理淋巴结状态对患者预后的作用。",
+          "id": "item-042844efd916",
+          "name": "Node-RADS评分系统评估",
+          "desc": "揭示短板与改进空间",
           "evidence": [
             {
-              "quote": "我们还基于此数据库，深入探索了基线影像学（MRI）所评估的淋巴结状态，以及新辅助化疗及手术后病理淋巴结状态对患者预后影响方面的作用",
+              "quote": "我们也探讨了最新提出的Node-RADS评分系统在诊断宫颈癌淋巴结转移中的表现性能，揭示了此评分系统目前存在的短板及可能的改进空间",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2765,
-                "end_char": 2829
+                "start_char": 3000,
+                "end_char": 3064
               },
               "version": "c9e4f5d71fa1c8180b8e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-53ab9fca1b9c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3a2cbe3b4124"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multifunctional nanomedicines-enabled chemodynamic-synergized multimodal tumor therapy via Fenton and Fenton-like reactions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haiyan Gao;Zhiping Cao;Huanhuan Liu;Lijuan Chen;Yan Bai;Qingxia Wu;Xuan Yu;Wei Wei;Meiyun Wang",
+      "id": "out-3272d853d0d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multifunctional nanomedicines-enabled chemodynamic-synergized multimodal tumor therapy via Fenton and Fenton-like reactions — Haiyan Gao;Zhiping Cao;Huanhuan Liu;Lijuan Chen;Yan Bai;Qingxia Wu;Xuan Yu;Wei Wei;Meiyun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3083,
+            "end_char": 3309
+          },
+          "version": "c9e4f5d71fa1c8180b8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8956cf5606c3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-93b05711d7a3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The prognostic value of radiological and pathological lymph node status in patients with cervical cancer who underwent neoadjuvant chemotherapy and followed hysterectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianghua Lou;Xiaoxian Zhang;Jinjin Liu;Linxiao Dong;Qingxia Wu;LiangLiangYan;Chunmiao Xu;Qingxia Wu;Meiyun Wang",
+      "id": "out-e6ca0207f2fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The prognostic value of radiological and pathological lymph node status in patients with cervical cancer who underwent neoadjuvant chemotherapy and followed hysterectomy — Jianghua Lou;Xiaoxian Zhang;Jinjin Liu;Linxiao Dong;Qingxia Wu;LiangLiangYan;Chunmiao Xu;Qingxia Wu;Meiyun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3603
+          },
+          "version": "c9e4f5d71fa1c8180b8e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6b0715c5fed9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e977b1489c13"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bfb0f0f9cdb2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d4ba07022260"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Performance of node reporting and data system (node-RADS): a preliminary study in cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qingxia Wu;Jianghua Lou;Jinjin Liu;Linxiao Dong;Qingxia Wu;Yaping Wu;Xuan Yu;Meiyun Wang",
+      "id": "out-1efd5db5a9de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Performance of node reporting and data system (node-RADS): a preliminary study in cervical cancer — Qingxia Wu;Jianghua Lou;Jinjin Liu;Linxiao Dong;Qingxia Wu;Yaping Wu;Xuan Yu;Meiyun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3608,
+            "end_char": 3802
+          },
+          "version": "c9e4f5d71fa1c8180b8e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "cba9639367b54dd902ab",
   "version": "70a5b5d69110ae6cc7fe",
   "source_hash": "1b7e5b96f3124f8939e636641b6f20ae4209fd9d9aa76ced3f51464357c0cde2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.068361+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:57:24.357241+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3969cfa7e34f",
-          "name": "慢性偏头痛针刺疗效差异与适宜人群筛选",
-          "desc": "以脑-肠轴为切入点，研究针刺治疗慢性偏头痛的疗效差异机制并筛选适宜针刺治疗的人群。",
+          "id": "item-03a484a5a9e1",
+          "name": "慢性偏头痛针刺疗效预测",
+          "desc": "脑-肠-菌特征",
           "evidence": [
             {
-              "quote": "本项目以慢性偏头痛为研究对象，结合课题组发现的偏头痛针刺治疗具有显著个体疗效差异",
+              "quote": "本项目以偏头痛患者为研究对象，以健康受试者为对照",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 714
+                "start_char": 2926,
+                "end_char": 2949
               },
               "version": "70a5b5d69110ae6cc7fe"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2886972aabb",
-          "name": "针刺疗效个体差异显著的机制不明",
-          "desc": "偏头痛针刺治疗存在显著个体疗效差异，需从临床行为学、大脑结构与功能网络、肠道菌群等多维度刻画差异来源。",
+          "id": "item-5b6b7525e0bd",
+          "name": "针刺疗效存在个体差异",
+          "desc": "需筛选适宜针刺人群",
           "evidence": [
             {
-              "quote": "通过分析针刺疗效不同的慢性偏头痛患者的临床行为学，大脑结构与功能网络个体化神经影像特征，肠道菌群结构和生物多样性等的区别",
+              "quote": "筛选适宜针刺治疗的偏头痛患者",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 904,
-                "end_char": 963
+                "start_char": 3085,
+                "end_char": 3098
               },
               "version": "70a5b5d69110ae6cc7fe"
             }
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-20e4c5029cc8",
-          "name": "脑-肠-菌影像组学与机器学习疗效预测建模",
-          "desc": "以针刺、安慰针刺与阳性药物对照，融合影像学特征与肠道菌群特征，采用偏最小二乘相关分析、整合链接ICA及机器学习构建针刺疗效预测模型。",
+          "id": "item-829fcbfe1aff",
+          "name": "偏最小二乘相关与整合链接ICA融合影像与肠道菌群特征",
+          "desc": "针刺疗效预测模型",
           "evidence": [
             {
-              "quote": "并结合机器学习等分析技术，构建基于脑-肠-菌特征的针刺疗效预测模型，筛选适宜针刺治疗的偏头痛患者",
+              "quote": "综合采用基于偏最小二乘相关分析方法、整合链接ICA分析方法，融合影像学特征和肠道菌群特征，构建了针刺疗效预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3051,
-                "end_char": 3098
+                "start_char": 3659,
+                "end_char": 3714
               },
               "version": "70a5b5d69110ae6cc7fe"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,465 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c5e108facb5a",
-          "name": "构建脑-肠-菌针刺疗效预测模型",
-          "desc": "融合影像学特征与肠道菌群特征构建针刺疗效预测模型，发现大脑灰质体积改变、度中心性变化与粪杆菌属α多样性变化均与针刺后疗效密切相关，头痛频率高但抑郁分数低的患者更适宜针刺治疗。",
+          "id": "item-bf59a95ba8ae",
+          "name": "适宜针刺人群特征",
+          "desc": "头痛频率发作高但抑郁分数低",
           "evidence": [
             {
-              "quote": "融合影像学特征和肠道菌群特征，构建了针刺疗效预测模型",
+              "quote": "其中头痛频率发作高但抑郁分数低的患者更适宜于接受针刺治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3689,
-                "end_char": 3714
+                "start_char": 3765,
+                "end_char": 3792
               },
               "version": "70a5b5d69110ae6cc7fe"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3969cfa7e34f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e2886972aabb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain structural and functional changes during menstrual migraine: Relationships with pain",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zi-wen Wang;Zi-han Yin;Xiao Wang;Yu-tong Zhang;Tao Xu;Jia-rong Du;Yi Wen;Hua-qiang Liao;Yu Zhao;Fan-rong Liang;Ling Zhao",
+      "id": "out-a355f51c7064",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain structural and functional changes during menstrual migraine: Relationships with pain — Zi-wen Wang;Zi-han Yin;Xiao Wang;Yu-tong Zhang;Tao Xu;Jia-rong Du;Yi Wen;Hua-qiang Liao;Yu Zhao;Fan-rong Liang;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3812,
+            "end_char": 4031
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e2886972aabb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-20e4c5029cc8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neuroimaging features of whole-brain functional connectivity predict attack frequency of migraine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mu Junya;Chen Tao;Quan Shilan;Wang Chen;Zhao Ling;Liu Jixin",
+      "id": "out-4c951d3c8dab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neuroimaging features of whole-brain functional connectivity predict attack frequency of migraine — Mu Junya;Chen Tao;Quan Shilan;Wang Chen;Zhao Ling;Liu Jixin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4036,
+            "end_char": 4201
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-20e4c5029cc8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c5e108facb5a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肠道菌群应用于针灸临床及机理研究的文献计量学分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗月红;金芮玉;陈丹;刘庆;余阳;陈星宇;赵凌",
+      "id": "out-595c22d0b9f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肠道菌群应用于针灸临床及机理研究的文献计量学分析 — 罗月红;金芮玉;陈丹;刘庆;余阳;陈星宇;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4206,
+            "end_char": 4262
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Regulatory Effects of Acupuncture on Emotional Disorders in Patients With Menstrual Migraine Without Aura: A Resting-State fMRI Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yutong Zhang;Ziwen Wang;Jiarong Du;Jixin Liu;Tao Xu;Xiao Wang;Mingsheng Sun;Yi Wen;Dehua Li;Huaqiang Liao;Yu Zhao;Ling Zhao",
+      "id": "out-196caf691a13",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Regulatory Effects of Acupuncture on Emotional Disorders in Patients With Menstrual Migraine Without Aura: A Resting-State fMRI Study — Yutong Zhang;Ziwen Wang;Jiarong Du;Jixin Liu;Tao Xu;Xiao Wang;Mingsheng Sun;Yi Wen;Dehua Li;Huaqiang Liao;Yu Zhao;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4267,
+            "end_char": 4532
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differences in topological properties of functional brain networks between menstrually-related and non-menstrual migraine without aura",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yutong Zhang;Tao Xu;Ziwen Wang;Dehua Li;Jiarong Du;Yi Wen;Yu Zhao;Huaqiang Liao;Fanrong Liang;Ling Zhao",
+      "id": "out-199d912c9d14",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differences in topological properties of functional brain networks between menstrually-related and non-menstrual migraine without aura — Yutong Zhang;Tao Xu;Ziwen Wang;Dehua Li;Jiarong Du;Yi Wen;Yu Zhao;Huaqiang Liao;Fanrong Liang;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4537,
+            "end_char": 4783
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "孟德尔随机化研究及其在中医药领域的应用展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢朝荣;陶庆锋;胡缤予;周梦荻;郑晖;赵凌",
+      "id": "out-15e4bce80cc2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 孟德尔随机化研究及其在中医药领域的应用展望 — 谢朝荣;陶庆锋;胡缤予;周梦荻;郑晖;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4788,
+            "end_char": 4839
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Astrocyte-Microglia Crosstalk: A Novel Target for the Treatment of Migraine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Mingsheng;Rong Jing;Zhou Mengdi;Liu Yi;Sun Shiqi;Liu Lu;Cai Dingjun;Liang Fanrong;Zhao Ling",
+      "id": "out-864cd65edd43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Astrocyte-Microglia Crosstalk: A Novel Target for the Treatment of Migraine — Sun Mingsheng;Rong Jing;Zhou Mengdi;Liu Yi;Sun Shiqi;Liu Lu;Cai Dingjun;Liang Fanrong;Zhao Ling",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 5023
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "偏头痛相关外泌体miRNAs表达谱研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何振曦;高山;倪夕秀;刘路;郭莎;王亚楠;孙铭声;赵凌",
+      "id": "out-4ae94e27bcaa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 偏头痛相关外泌体miRNAs表达谱研究现状 — 何振曦;高山;倪夕秀;刘路;郭莎;王亚楠;孙铭声;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5028,
+            "end_char": 5085
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trigger points and sensitized acupoints: same book, different covers?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingsheng Sun;Mingxiao Yang;Jing Rong;Xingsha Ma;Hui Zheng;Dingjun Cai;Ling Zhao",
+      "id": "out-f46d288b21b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trigger points and sensitized acupoints: same book, different covers? — Mingsheng Sun;Mingxiao Yang;Jing Rong;Xingsha Ma;Hui Zheng;Dingjun Cai;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5090,
+            "end_char": 5248
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺对偏头痛治疗机制的神经影像学研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘路;田甜;徐韬;王亚楠;倪夕秀;李晓;何振曦;高山;梁繁荣;赵凌",
+      "id": "out-167cde32a086",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针刺对偏头痛治疗机制的神经影像学研究现状 — 刘路;田甜;徐韬;王亚楠;倪夕秀;李晓;何振曦;高山;梁繁荣;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5254,
+            "end_char": 5316
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of a Clustering Approach to Define Distinct Subgroups of Patients With Migraine to Select Electroacupuncture Treatments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jixin Liu;Shilan Quan;Ling Zhao;Kai Yuan;Yanan Wang;Yutong Zhang;Ziwen Wang;Mingsheng Sun;Li Hu",
+      "id": "out-dc65fc9929c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of a Clustering Approach to Define Distinct Subgroups of Patients With Migraine to Select Electroacupuncture Treatments — Jixin Liu;Shilan Quan;Ling Zhao;Kai Yuan;Yanan Wang;Yutong Zhang;Ziwen Wang;Mingsheng Sun;Li Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5322,
+            "end_char": 5556
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "经皮神经电刺激治疗偏头痛的研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何振曦;倪夕秀;赵凌;高山;刘庆;罗月红",
+      "id": "out-251f7815f782",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 经皮神经电刺激治疗偏头痛的研究现状 — 何振曦;倪夕秀;赵凌;高山;刘庆;罗月红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5562,
+            "end_char": 5608
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alteration in Functional Magnetic Resonance Imaging Signal Complexity Across Multiple Time Scales in Patients With Migraine Without Aura",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Wang;Yutong Zhang;Wenchuan Qi;Tao Xu;Ziwen Wang;Huaqiang Liao;Yanan Wang;Jie Liu;Yang Yu;Zhenxi He;Shan Gao;Dehua Li;Guilin Zhang;Ling Zhao",
+      "id": "out-fab2022bb119",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Alteration in Functional Magnetic Resonance Imaging Signal Complexity Across Multiple Time Scales in Patients With Migraine Without Aura — Xiao Wang;Yutong Zhang;Wenchuan Qi;Tao Xu;Ziwen Wang;Huaqiang Liao;Yanan Wang;Jie Liu;Yang Yu;Zhenxi He;Shan Gao;Dehua Li;Guilin Zhang;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5614,
+            "end_char": 5903
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "fMRI技术在基于临床针刺镇痛机制研究领域的文献计量学分析及评述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢玉洁;曾倩;王林嘉;陈丹;赵凌",
+      "id": "out-58613fadc84f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] fMRI技术在基于临床针刺镇痛机制研究领域的文献计量学分析及评述 — 谢玉洁;曾倩;王林嘉;陈丹;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5909,
+            "end_char": 5966
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺调控偏头痛大鼠三叉神经脊束核中星形胶质细胞缝隙连接蛋白43抑制干扰素-γ的抗炎镇痛机制",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘一;周梦荻;郑宇琦;孙铭声;王姿雯;蔡定均;赵凌",
+      "id": "out-f1a6792d0f75",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针刺调控偏头痛大鼠三叉神经脊束核中星形胶质细胞缝隙连接蛋白43抑制干扰素-γ的抗炎镇痛机制 — 刘一;周梦荻;郑宇琦;孙铭声;王姿雯;蔡定均;赵凌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5972,
+            "end_char": 6051
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针刺穴位效应循经特异性及生物学基础研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁繁荣;曾芳;赵凌;吴曦;姚伟;蔡定均;孙鑫;洪肖娟;兰蕾;孙睿睿",
+      "id": "out-757c1ef52fed",
+      "evidence": [
+        {
+          "quote": "[奖励] 针刺穴位效应循经特异性及生物学基础研究 — 梁繁荣;曾芳;赵凌;吴曦;姚伟;蔡定均;孙鑫;洪肖娟;兰蕾;孙睿睿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6057,
+            "end_char": 6116
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Structural and functional changes of anterior cingulate cortex subregions in migraine without aura: relationships with pain sensation and pain emotion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yangxu Ou;Xixiu Ni;Xiaoyu Gao;Yang Yu;Yutong Zhang;Yanan Wang;Jie Liu;Zihan Yin;Jing Rong;Mingsheng Sun;Jiao Chen;Zili Tang;Xiao Wang;Ling Zhao",
+      "id": "out-ea401b585bf9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Structural and functional changes of anterior cingulate cortex subregions in migraine without aura: relationships with pain sensation and pain emotion — Yangxu Ou;Xixiu Ni;Xiaoyu Gao;Yang Yu;Yutong Zhang;Yanan Wang;Jie Liu;Zihan Yin;Jing Rong;Mingsheng Sun;Jiao Chen;Zili Tang;Xiao Wang;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6122,
+            "end_char": 6424
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Relationship between individual differences in pain empathy and task- and resting-state EEG",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiqiang Pan;Chuan Zhang;Wenjie Su;Xingang Qi;Xinyue Feng;Lanqi Gao;Xiaoxue Xu;Jixin Liu",
+      "id": "out-e39bd7d13fd6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Relationship between individual differences in pain empathy and task- and resting-state EEG — Zhiqiang Pan;Chuan Zhang;Wenjie Su;Xingang Qi;Xinyue Feng;Lanqi Gao;Xiaoxue Xu;Jixin Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6430,
+            "end_char": 6618
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Circulating exosomal microRNA profiles in migraine patients receiving acupuncture treatment: A placebo-controlled clinical trial",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Liu;Wenchuan Qi;Yanan Wang;Xixiu Ni;Shan Gao;Ziyang Zhou;Daohong Chen;Zhenxi He;Mingsheng Sun;Ziwen Wang;Dingjun Cai;Ling Zhao",
+      "id": "out-912e2c51213c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Circulating exosomal microRNA profiles in migraine patients receiving acupuncture treatment: A placebo-controlled clinical trial — Lu Liu;Wenchuan Qi;Yanan Wang;Xixiu Ni;Shan Gao;Ziyang Zhou;Daohong Chen;Zhenxi He;Mingsheng Sun;Ziwen Wang;Dingjun Cai;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6624,
+            "end_char": 6890
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Revealing the Neural Mechanism Underlying the Effects of Acupuncture on Migraine: A Systematic Review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Liu;Tian Tian;Xiang Li;Yanan Wang;Tao Xu;Xixiu Ni;Xiao Li;Zhenxi He;Shan Gao;Mingsheng Sun;Fanrong Liang;Ling Zhao",
+      "id": "out-d9a4215aa0ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Revealing the Neural Mechanism Underlying the Effects of Acupuncture on Migraine: A Systematic Review — Lu Liu;Tian Tian;Xiang Li;Yanan Wang;Tao Xu;Xixiu Ni;Xiao Li;Zhenxi He;Shan Gao;Mingsheng Sun;Fanrong Liang;Ling Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6896,
+            "end_char": 7123
+          },
+          "version": "70a5b5d69110ae6cc7fe"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 20,
+    "listed": 20,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

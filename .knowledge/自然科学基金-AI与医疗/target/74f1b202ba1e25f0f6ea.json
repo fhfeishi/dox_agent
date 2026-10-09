@@ -2,15 +2,20 @@
   "doc_id": "74f1b202ba1e25f0f6ea",
   "version": "1dbc6f4d8d4561a12531",
   "source_hash": "3d33a91b3462edf506d45a4ff54d9014c83d8fd94fcc1ea8213bcf49e434b811",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.717541+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:44.286415+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fea6860ee11f",
-          "name": "不明原因肺炎智能监测与预警",
-          "desc": "面向突发传染病防控与公共卫生应急，对影像表现复杂、早期缺乏明确病因标签的不明原因肺炎进行监测与预警。",
+          "id": "item-f8631271b2c3",
+          "name": "不明原因肺炎监测预警",
+          "desc": "突发传染病防控",
           "evidence": [
             {
               "quote": "不明原因肺炎在突发传染病防控和公共卫生应急体系中具有重要的监测与预警价值",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-136ffa39a2fb",
-          "name": "现有PUE监测机制漏诊漏报",
-          "desc": "现行不明原因肺炎监测机制存在明显漏诊漏报，且AI肺炎诊断模型在鉴别不同类型肺炎时敏感性较低。",
+          "id": "item-fd03970d45e0",
+          "name": "影像表现复杂多样且早期缺乏病因标签",
+          "desc": "识别和风险评估挑战",
           "evidence": [
             {
-              "quote": "但现有PUE监测机制存在明显漏诊漏报，改善现行监测系统具有非常重要意义",
+              "quote": "其影像表现复杂、多样，且早期缺乏明确病因标签，给临床识别和风险评估带来重大挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 735,
-                "end_char": 769
+                "start_char": 2727,
+                "end_char": 2765
               },
               "version": "1dbc6f4d8d4561a12531"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-70586803a7aa",
-          "name": "自训练半监督深度学习肺炎鉴别诊断模型RadGuide-S3P-Net",
-          "desc": "依托iCTCF多中心数据平台整合胸部CT、结构化临床指标与临床文本，构建软标签蒸馏的自训练半监督模型实现多分类肺炎诊断与异常检测。",
+          "id": "item-1a5285ebd3fc",
+          "name": "RadGuide-S3P-Net自训练半监督深度学习模型",
+          "desc": "软标签蒸馏引入放射组学先验",
           "evidence": [
             {
-              "quote": "项目构建了一种基于自训练半监督的深度学习模型RadGuide-S3P-Net，用于不同类型肺炎的自动分类与智能诊断",
+              "quote": "构建了一种基于自训练半监督的深度学习模型RadGuide-S3P-Net，用于不同类型肺炎的自动分类与智能诊断。该模型通过软标签蒸馏将放射组学模型的先验知识引入深度学习网络",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2938,
-                "end_char": 2994
+                "start_char": 2940,
+                "end_char": 3025
               },
               "version": "1dbc6f4d8d4561a12531"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7cb593fa1767",
+          "name": "度量学习与异常检测识别不明原因肺炎",
+          "desc": "自动识别与预警",
+          "evidence": [
+            {
+              "quote": "项目进一步引入度量学习与异常检测方法，针对现有分类体系难以覆盖的不明原因肺炎病例，探索并实现了基于人工智能的自动识别与预警策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3143,
+                "end_char": 3205
+              },
+              "version": "1dbc6f4d8d4561a12531"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,301 @@
       "state": "has",
       "items": [
         {
-          "id": "item-316c4bffa949",
-          "name": "30%标注样本下测试集macro-AUC达0.9170",
-          "desc": "训练集仅使用30%标注样本时，模型在测试集取得macro-AUC 0.9170，与全监督训练表现相当。",
+          "id": "item-099ba27f3797",
+          "name": "30%标注样本下macro-AUC",
+          "desc": "0.9170，与全监督相当",
           "evidence": [
             {
-              "quote": "在训练集中仅使用30%标注样本的情况下，模型在测试集上取得macro-AUC为0.9170的分类性能",
+              "quote": "在训练集中仅使用30%标注样本的情况下，模型在测试集上取得macro-AUC为0.9170的分类性能，与使用全部标注数据进行全监督训练的模型表现相当",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3057,
-                "end_char": 3106
+                "end_char": 3130
               },
               "version": "1dbc6f4d8d4561a12531"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fea6860ee11f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-136ffa39a2fb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The lung immune prognostic index stratifies the occurrence of checkpoint inhibitor pneumonitis in advanced non-small cell lung cancer patients: a multi-institutional cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gong Bingxin;Guo Yusheng;Wan Qi;Lou Jie;Zhang Guisheng;Li Yi;Pan Feng;Yang Lian",
+      "id": "out-2bbc90b3f4a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The lung immune prognostic index stratifies the occurrence of checkpoint inhibitor pneumonitis in advanced non-small cell lung cancer patients: a multi-institutional cohort study — Gong Bingxin;Guo Yusheng;Wan Qi;Lou Jie;Zhang Guisheng;Li Yi;Pan Feng;Yang Lian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3529,
+            "end_char": 3795
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-136ffa39a2fb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-70586803a7aa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Metagenomic next-generation sequencing for accurate diagnosis and management of lower respiratory tract infections",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Mengyuan;Fan Yamin;Zhang Dongmei;Yang Lian;Wang Xiaorong;Wang Sufei;Xu Juanjuan;Zhang Jianchu",
+      "id": "out-3e735f8dea39",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Metagenomic next-generation sequencing for accurate diagnosis and management of lower respiratory tract infections — Liang Mengyuan;Fan Yamin;Zhang Dongmei;Yang Lian;Wang Xiaorong;Wang Sufei;Xu Juanjuan;Zhang Jianchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3800,
+            "end_char": 4022
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-70586803a7aa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-316c4bffa949"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-enhanced super-resolution diffusion-weighted liver MRI: improved image quality, diagnostic performance, and acceleration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "dan zhao;xiangchuang kong;kun yang;jiayu wan;ziyi liu;feng pan;peng sun;chuansheng zheng;Lian Yang",
+      "id": "out-d8242e3ce520",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-enhanced super-resolution diffusion-weighted liver MRI: improved image quality, diagnostic performance, and acceleration — dan zhao;xiangchuang kong;kun yang;jiayu wan;ziyi liu;feng pan;peng sun;chuansheng zheng;Lian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4027,
+            "end_char": 4268
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像信息与人工智能技术学",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘景鑫;陈 峰;杨晓鹏;郭建新;张 翼;杨 炼",
+      "id": "out-cea3cae67ed7",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像信息与人工智能技术学 — 刘景鑫;陈 峰;杨晓鹏;郭建新;张 翼;杨 炼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4273,
+            "end_char": 4317
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A semiautomated radiomics model based on multimodal  dual-layer spectral CT for preoperative discrimination of the  invasiveness of pulmonary ground-glass nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Wang;Hebing Chen;Yuyang Chen;Zhenguang Zhong;Haoyu Huang;Peng Sun;Xiaohui Zhang;Yiliang Wan;Lingli Li;Tianhe Ye;Feng Pan;Lian Yang",
+      "id": "out-7552df296d25",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A semiautomated radiomics model based on multimodal  dual-layer spectral CT for preoperative discrimination of the  invasiveness of pulmonary ground-glass nodules — Yue Wang;Hebing Chen;Yuyang Chen;Zhenguang Zhong;Haoyu Huang;Peng Sun;Xiaohui Zhang;Yiliang Wan;Lingli Li;Tianhe Ye;Feng Pan;Lian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4627
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal integration to identify the invasion status of lung adenocarcinoma intraoperatively",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "xueyun tan;feng pan;na zhan;sufei wang;Zegang Dong;Yan Li;Guanghai Yang;Bo Huang;Yanran Duan;Hui Xia;Yaqi Cao;Min Zhou;Zhilei Lv;Qi Huang;Shan Tian;Liang Zhang;Mengmeng Zhou;Lian Yang;Yang Jin",
+      "id": "out-468cf638dbd1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal integration to identify the invasion status of lung adenocarcinoma intraoperatively — xueyun tan;feng pan;na zhan;sufei wang;Zegang Dong;Yan Li;Guanghai Yang;Bo Huang;Yanran Duan;Hui Xia;Yaqi Cao;Min Zhou;Zhilei Lv;Qi Huang;Shan Tian;Liang Zhang;Mengmeng Zhou;Lian Yang;Yang Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4632,
+            "end_char": 4927
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive prediction of NSCLC immunotherapy efficacy and tumor microenvironment through unsupervised machine learning-driven CT radiomic subtypes: a multi-cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guo Yusheng;Gong Bingxin;Li Yi;Mo Peng;Chen Yiqun;Fan Qianqian;Sun Qing;Miao Lianwei;Li Yuanxi;Liu Yunting;Tan Wei;Yang Lian;Zheng Chuansheng",
+      "id": "out-6b1b1668e059",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive prediction of NSCLC immunotherapy efficacy and tumor microenvironment through unsupervised machine learning-driven CT radiomic subtypes: a multi-cohort study — Guo Yusheng;Gong Bingxin;Li Yi;Mo Peng;Chen Yiqun;Fan Qianqian;Sun Qing;Miao Lianwei;Li Yuanxi;Liu Yunting;Tan Wei;Yang Lian;Zheng Chuansheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4932,
+            "end_char": 5252
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RadCLARE: an automated clinical language engine for detecting semantic errors in radiology reports",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Pan;Jie Lou;Yusheng Guo;Wang Du;Zhonghua Wang;Qianqian Fan;Hao Wang;Chuansheng Zheng;Lian Yang",
+      "id": "out-18d1f0519ba5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RadCLARE: an automated clinical language engine for detecting semantic errors in radiology reports — Feng Pan;Jie Lou;Yusheng Guo;Wang Du;Zhonghua Wang;Qianqian Fan;Hao Wang;Chuansheng Zheng;Lian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5257,
+            "end_char": 5463
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing Chest X-ray Diagnosis with a Multimodal Deep Learning Network by Integrating Clinical History to Refine Attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lian Yang;Yiliang Wan;Feng Pan",
+      "id": "out-6ac1c85a2286",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancing Chest X-ray Diagnosis with a Multimodal Deep Learning Network by Integrating Clinical History to Refine Attention — Lian Yang;Yiliang Wan;Feng Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5468,
+            "end_char": 5630
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From Images to Genes: Radiogenomics Based on Artificial Intelligence to Achieve Non‐Invasive Precision Medicine in Cancer Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yusheng Guo;Tianxiang Li;Bingxin Gong;Yan Hu;Sichen Wang;Lian Yang;Chuansheng Zheng",
+      "id": "out-285c5ed27c60",
+      "evidence": [
+        {
+          "quote": "[期刊论文] From Images to Genes: Radiogenomics Based on Artificial Intelligence to Achieve Non‐Invasive Precision Medicine in Cancer Patients — Yusheng Guo;Tianxiang Li;Bingxin Gong;Yan Hu;Sichen Wang;Lian Yang;Chuansheng Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5636,
+            "end_char": 5858
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于联邦学习模型的急性传染性肺炎智能监测系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨炼;潘峰;刘威葳;龚冰鑫;郭煜升;娄杰;任懿;范茜茜;李灵丽;陈铨",
+      "id": "out-d74a88a30692",
+      "evidence": [
+        {
+          "quote": "[专利] 基于联邦学习模型的急性传染性肺炎智能监测系统及方法 — 杨炼;潘峰;刘威葳;龚冰鑫;郭煜升;娄杰;任懿;范茜茜;李灵丽;陈铨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5864,
+            "end_char": 5930
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态AI大数据的不明原因肺炎智能监测预警方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘峰;杨炼;刘威葳;郭煜升;龚冰鑫;任懿;娄杰;李灵丽;范茜茜;叶天和",
+      "id": "out-6c468a95d8e1",
+      "evidence": [
+        {
+          "quote": "[专利] 基于多模态AI大数据的不明原因肺炎智能监测预警方法 — 潘峰;杨炼;刘威葳;郭煜升;龚冰鑫;任懿;娄杰;李灵丽;范茜茜;叶天和",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5936,
+            "end_char": 6003
+          },
+          "version": "1dbc6f4d8d4561a12531"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

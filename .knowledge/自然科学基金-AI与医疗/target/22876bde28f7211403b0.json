@@ -2,15 +2,20 @@
   "doc_id": "22876bde28f7211403b0",
   "version": "912e13ae53eb334708cf",
   "source_hash": "3a6503baf63f74c9f9b4ea379ae8ec284f057c95cb03188f3c4109159e7de99f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.749652+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.334226+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d578fa88d603",
-          "name": "转移性肾癌一线靶免联合治疗",
-          "desc": "免疫检查点抑制剂联合抗血管生成药物治疗转移性肾癌已成为标准一线治疗方案。",
+          "id": "item-f495b052bfe0",
+          "name": "转移性肾癌靶免联合一线治疗",
+          "desc": "ICI联合TKI为标准一线方案",
           "evidence": [
             {
-              "quote": "免疫检查点抑制剂（ICI）联合抗血管生成药物（TKI）治疗转移性肾癌（mRCC）已成为标准的一线治疗方案",
+              "quote": "欧美指南已将免疫检查点抑制剂（ICI）联合抗血管生成药物（TKI）治疗作为进展期肾透明细胞癌的标准的一线治疗方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 722
-              },
-              "version": "912e13ae53eb334708cf"
-            }
-          ]
-        },
-        {
-          "id": "item-9bf55973d644",
-          "name": "肾癌疗效与预后评估",
-          "desc": "构建评估ICI联合TKI治疗mRCC疗效和预后的智能诊断模型。",
-          "evidence": [
-            {
-              "quote": "构建评估ICI联合TKI治疗mRCC疗效和预后的智能诊断模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 923
+                "start_char": 2570,
+                "end_char": 2625
               },
               "version": "912e13ae53eb334708cf"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5b11088421b3",
-          "name": "现有实体瘤评估方法不准确",
-          "desc": "现有的实体瘤疗效评估方法无法准确评估肿瘤的疗效，RECIST 1.1低估了ICI治疗的疗效。",
+          "id": "item-f858b8e3198e",
+          "name": "RECIST 1.1低估ICI疗效",
+          "desc": "常用疗效评估方法局限",
           "evidence": [
             {
-              "quote": "但现有的实体瘤疗效评估方法无法准确评估肿瘤的疗效。",
+              "quote": "目前常用的实体瘤疗效评估方法RECIST 1.1低估了ICI治疗的疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 724,
-                "end_char": 748
-              },
-              "version": "912e13ae53eb334708cf"
-            }
-          ]
-        },
-        {
-          "id": "item-1d37d4e79079",
-          "name": "基于大小密度的标准存在局限",
-          "desc": "临床常用的基于肿瘤大小和密度的评估标准（MASS、SACT、Choi和Modified Choi）存在局限性。",
-          "evidence": [
-            {
-              "quote": "临床常用的基于肿瘤大小和密度的评估标准（MASS、SACT、Choi和Modified Choi）存在局限性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2627,
-                "end_char": 2681
+                "start_char": 2682,
+                "end_char": 2716
               },
               "version": "912e13ae53eb334708cf"
             }
@@ -95,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4210af31ebd2",
-          "name": "双能CT多参数与影像组学建模",
-          "desc": "基于双能CT多参数及影像组学特征构建诊断模型用于疗效预测及预后评估。",
+          "id": "item-d6de92dcd271",
+          "name": "双能CT多参数与影像组学诊断模型",
+          "desc": "疗效预测及预后评估",
           "evidence": [
             {
-              "quote": "本项目成功构建了基于双能CT多参数及影像组学特征的诊断模型，用于接受一线靶免联合治疗的转移性肾癌患者的疗效预测及预后评估。",
+              "quote": "本项目成功构建了基于双能CT多参数及影像组学特征的诊断模型，用于接受一线靶免联合治疗的转移性肾癌患者的疗效预测及预后评估",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2718,
-                "end_char": 2778
+                "end_char": 2777
               },
               "version": "912e13ae53eb334708cf"
             }
-          ]
-        },
-        {
-          "id": "item-14b980e47736",
-          "name": "多平台多维度评估",
-          "desc": "采用eXamine、Radiomics和联影智能平台对基线及治疗后3个月的DECT图像进行多维度评估。",
-          "evidence": [
-            {
-              "quote": "采用多种肿瘤评估软件（eXamine、Radiomics和联影智能平台）对患者基线水平及治疗后3个月的DECT图像进行多维度的评估",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 817
-              },
-              "version": "912e13ae53eb334708cf"
-            }
-          ]
-        },
-        {
-          "id": "item-b504a43d0de1",
-          "name": "免疫微环境相关性分析",
-          "desc": "评估DECT影像生物标志物与肿瘤微血管密度及免疫微环境（PD-L1、CTLA-4等）之间的相关性。",
-          "evidence": [
-            {
-              "quote": "评估DECT影像生物标志物与肿瘤的微血管密度和免疫微环境（PD-L1、CTLA-4等）之间的相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 968,
-                "end_char": 1016
-              },
-              "version": "912e13ae53eb334708cf"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,55 +91,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a2a38f2b6731",
-          "name": "中位生存期21.2个月",
-          "desc": "本研究患者中位生存期为21.2个月。",
+          "id": "item-33e6571387e4",
+          "name": "碘值等指标与疗效预后相关",
+          "desc": "基线病灶大小、碘值、标准化碘值及有效原子序数变化率",
           "evidence": [
             {
-              "quote": "本研究的患者中位生存期为21.2个月",
+              "quote": "基线水平病灶大小、碘值、标准化碘值和治疗3个月后的有效原子序数变化率与患者的疗效和预后具有明显的相关性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2779,
-                "end_char": 2796
+                "start_char": 2804,
+                "end_char": 2854
               },
               "version": "912e13ae53eb334708cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-aaa518ccf1e8",
-          "name": "碘值与微血管密度强相关",
-          "desc": "治疗有效患者肿瘤内碘浓度值在早期显著下降，且与病理证实的微血管密度降低呈强相关。",
+          "id": "item-01f0572c7c5c",
+          "name": "碘浓度下降与微血管密度降低相关",
+          "desc": "有效患者早期显著下降",
           "evidence": [
             {
-              "quote": "治疗有效患者的肿瘤内碘浓度值在早期显著下降，且与病理证实的微血管密度降低呈强相关",
+              "quote": "且与病理证实的微血管密度降低呈强相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2856,
+                "start_char": 2878,
                 "end_char": 2895
               },
               "version": "912e13ae53eb334708cf"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e86c29fe98ab",
-          "name": "影像组学特征与免疫标志物相关",
-          "desc": "部分反映肿瘤异质性的影像组学特征与肿瘤免疫微环境中PD-1和PD-L1的表达水平存在统计学相关性。",
-          "evidence": [
-            {
-              "quote": "部分反映肿瘤异质性的影像组学特征与肿瘤免疫微环境中PD-1和PD-L1的表达水平存在统计学相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2897,
-                "end_char": 2944
-              },
-              "version": "912e13ae53eb334708cf"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +134,146 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-d578fa88d603"
+        "dimension": "技术",
+        "item_id": "item-d6de92dcd271"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-5b11088421b3"
+        "item_id": "item-f858b8e3198e"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1d37d4e79079"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4210af31ebd2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b504a43d0de1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e86c29fe98ab"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-14b980e47736"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a2a38f2b6731"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目成功构建了基于双能CT多参数及影像组学特征的诊断模型，用于接受一线靶免联合治疗的转移性肾癌患者的疗效预测及预后评估",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2718,
+            "end_char": 2777
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肾嗜酸细胞腺瘤与肾嫌色细胞癌的MRI表现对照分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡东方;冒炜;陆秀良;周建军;曾蒙苏;丁玉芹",
+      "id": "out-a81b019328cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肾嗜酸细胞腺瘤与肾嫌色细胞癌的MRI表现对照分析 — 胡东方;冒炜;陆秀良;周建军;曾蒙苏;丁玉芹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3100,
+            "end_char": 3155
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Potential of quantitative T1 mapping to serve as a novel prognostic predictor of clear cell renal cell carcinoma after nephrectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhong Lianting;Wang Ruiting;Tang Qiying;Huang Shunfa;Dai Chenchen;Ding Yuqin;Zhou Jianjun",
+      "id": "out-f5da93c77976",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Potential of quantitative T1 mapping to serve as a novel prognostic predictor of clear cell renal cell carcinoma after nephrectomy — Zhong Lianting;Wang Ruiting;Tang Qiying;Huang Shunfa;Dai Chenchen;Ding Yuqin;Zhou Jianjun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3160,
+            "end_char": 3388
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "14例肠道神经鞘瘤的影像学表现",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于泳;龚沈初;王睿婷;侯凯;陆秀良;刘立恒;周建军;丁玉芹",
+      "id": "out-3ed3811fdb79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 14例肠道神经鞘瘤的影像学表现 — 于泳;龚沈初;王睿婷;侯凯;陆秀良;刘立恒;周建军;丁玉芹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3393,
+            "end_char": 3446
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性腹膜后平滑肌肉瘤的MRI表现",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘珊妹;丁玉芹;陆秀良;侯凯;陈亮;周建军;曾蒙苏",
+      "id": "out-a025d1c16002",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 原发性腹膜后平滑肌肉瘤的MRI表现 — 刘珊妹;丁玉芹;陆秀良;侯凯;陈亮;周建军;曾蒙苏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3451,
+            "end_char": 3502
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based radiomics machine learning model to differentiate non-clear cell renal cell carcinoma from benign renal tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Ruiting;Zhong Lianting;Zhu Pingyi;Pan Xianpan;Chen Lei;Zhou Jianjun;Ding Yuqin",
+      "id": "out-ae1234768630",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based radiomics machine learning model to differentiate non-clear cell renal cell carcinoma from benign renal tumors — Wang Ruiting;Zhong Lianting;Zhu Pingyi;Pan Xianpan;Chen Lei;Zhou Jianjun;Ding Yuqin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3507,
+            "end_char": 3719
+          },
+          "version": "912e13ae53eb334708cf"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

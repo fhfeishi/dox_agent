@@ -2,15 +2,20 @@
   "doc_id": "d8580b76e34694c7bbf0",
   "version": "270c990f38cf9da87c57",
   "source_hash": "dc2eae93b14431767b7e0daa3a283a14cecb25ff934d98780cd405e71dbcc85a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.786075+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T11:41:55.970610+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02c4078f9fb0",
-          "name": "鼻咽癌乏氧微环境影像组学评估",
-          "desc": "以MRI影像组学定量评价鼻咽癌乏氧微环境并改善乏氧的分子机制研究。",
+          "id": "item-b1e6514a27e4",
+          "name": "鼻咽癌治疗抵抗与乏氧评估",
+          "desc": "多模MRI影像组学",
           "evidence": [
             {
-              "quote": "乏氧微环境是肿瘤细胞的基本特征及增殖条件",
+              "quote": "本项目从“技术创新-智能诊疗-创新应用”三个层次进行研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 686
+                "start_char": 2506,
+                "end_char": 2533
               },
               "version": "270c990f38cf9da87c57"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-67421474be74",
-          "name": "鼻咽癌治疗后复发转移率高",
-          "desc": "局部晚期鼻咽癌患者有20-30%在治疗后出现复发转移，成为治疗失败的主要原因，需精准评估乏氧微环境以指导放疗增敏。",
+          "id": "item-1356ae1bb0e8",
+          "name": "局部晚期鼻咽癌复发转移",
+          "desc": "治疗失败主要原因",
           "evidence": [
             {
               "quote": "目前局部晚期鼻咽癌患者有20-30%在治疗后会出现复发转移，成为治疗失败的主要原因",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-db5152efae05",
-          "name": "BOLD MRI与IVIM DWI乏氧影像组学模型",
-          "desc": "首次以MRI影像组学为方法分类解析鼻咽癌细胞灌注缺氧和弥散缺氧的微观体系，融合定量功能影像参数与HIF-1α、VEGF等蛋白基因指标构建乏氧微环境影像组学可视化评估体系。",
+          "id": "item-78015ee40d7f",
+          "name": "影像组学鼻咽癌治疗抵抗定量评估",
+          "desc": "精准预测",
           "evidence": [
             {
-              "quote": "本项目首次以MRI影像组学为研究方法，分类解析鼻咽癌细胞灌注缺氧和弥散缺氧的微观体系",
+              "quote": "基于影像组学技术实现鼻咽癌治疗抵抗定量评估及精准预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 688,
-                "end_char": 729
+                "start_char": 2622,
+                "end_char": 2647
               },
               "version": "270c990f38cf9da87c57"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-680c22b4b3d5",
+          "name": "分子影像乏氧鼻咽癌在体评估",
+          "desc": "治疗抵抗",
+          "evidence": [
+            {
+              "quote": "基于分子影像技术实现乏氧鼻咽癌治疗抵抗在体精准评估",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2650,
+                "end_char": 2674
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8eba5578b586",
+          "name": "全链条鼻咽癌智能诊疗模型",
+          "desc": "精准诊断、疗效评估、预后预测",
+          "evidence": [
+            {
+              "quote": "构建全链条的鼻咽癌智能诊疗模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2677,
+                "end_char": 2691
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,1012 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b3b17def1e6",
-          "name": "实现鼻咽癌治疗抵抗定量评估与智能诊疗",
-          "desc": "基于影像组学实现鼻咽癌治疗抵抗定量评估与精准预测，基于分子影像实现乏氧治疗抵抗在体精准评估，构建全链条智能诊疗模型；成果被CSCO和ASCO鼻咽癌联合国际指南引用，获广东省科技进步奖一等奖。",
+          "id": "item-084464b81210",
+          "name": "国际指南引用与专家共识",
+          "desc": "CSCO和ASCO联合指南引用，7项专家共识",
           "evidence": [
             {
-              "quote": "①基于影像组学技术实现鼻咽癌治疗抵抗定量评估及精准预测",
+              "quote": "相关研究被CSCO和ASCO鼻咽癌联合国际指南引用，4项研究被国际指南及专家共识引用，达成7项头颈部影像国内专家共识",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2621,
-                "end_char": 2647
+                "start_char": 2727,
+                "end_char": 2784
               },
               "version": "270c990f38cf9da87c57"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0a3067717666",
+          "name": "专利与软著",
+          "desc": "发明专利2项，实用新型10项，软著18项",
+          "evidence": [
+            {
+              "quote": "授权2项发明专利、10项实用新型专利和18项软件著作",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
+                "end_char": 3018
+              },
+              "version": "270c990f38cf9da87c57"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-02c4078f9fb0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-67421474be74"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Real-time automatic prediction of treatment response to transcatheter arterial chemoembolization in patients with hepatocellular carcinoma using deep learning based on digital subtraction angiography videos",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Zhang;Yicheng Jiang;Zhe Jin;Wenting Jiang;Bin Zhang;Changmiao Wang;Lingeng Wu;Luyan Chen;Qiuying Chen;Shuyi Liu;Jingjing You;Xiaokai Mo;Jing Liu;Zhiyuan Xiong;Tao Huang;Liyang Yang;Xiang Wan;Ge Wen;Xiao Guang Han;Weijun Fan;Shuixing Zhang",
+      "id": "out-a65c7a7d7766",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Real-time automatic prediction of treatment response to transcatheter arterial chemoembolization in patients with hepatocellular carcinoma using deep learning based on digital subtraction angiography videos — Lu Zhang;Yicheng Jiang;Zhe Jin;Wenting Jiang;Bin Zhang;Changmiao Wang;Lingeng Wu;Luyan Chen;Qiuying Chen;Shuyi Liu;Jingjing You;Xiaokai Mo;Jing Liu;Zhiyuan Xiong;Tao Huang;Liyang Yang;Xiang Wan;Ge Wen;Xiao Guang Han;Weijun Fan;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3136,
+            "end_char": 3592
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-67421474be74"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-db5152efae05"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning classifiers for predicting 3-year progression-free survival and overall survival in patients with gliomas after surgery.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Bin;Yan Jing;Chen Weiqi;Dong Yuhao;Zhang Lu;Mo Xiaokai;Chen Qiuying;Cheng Jingliang;Liu Xianzhi;Wang Weiwei;Zhang Zhenyu;Zhang Shuixing",
+      "id": "out-f484535fc641",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning classifiers for predicting 3-year progression-free survival and overall survival in patients with gliomas after surgery. — Zhang Bin;Yan Jing;Chen Weiqi;Dong Yuhao;Zhang Lu;Mo Xiaokai;Chen Qiuying;Cheng Jingliang;Liu Xianzhi;Wang Weiwei;Zhang Zhenyu;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3597,
+            "end_char": 3884
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-db5152efae05"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b3b17def1e6"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于影像组学的头颈部肿瘤精准决策体系建立及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;刘春玲;张斌;梁长虹;张璐;莫笑开;刘静;裴书芳;连舟洋;张静;罗小宁",
+      "id": "out-bee209a848c1",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于影像组学的头颈部肿瘤精准决策体系建立及应用 — 张水兴;刘春玲;张斌;梁长虹;张璐;莫笑开;刘静;裴书芳;连舟洋;张静;罗小宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3889,
+            "end_char": 3958
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of chemoradiotherapy regimens and survival among patients with nasopharyngeal carcinoma: a systematic review with meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang B;Li MM;Chen WH;Zhao JF;Chen WQ;Dong YH;Gong X;Chen QY;Zhang L;Mo XK;Luo XN;Tian J;Zhang SX",
+      "id": "out-6bdc8e760fbe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of chemoradiotherapy regimens and survival among patients with nasopharyngeal carcinoma: a systematic review with meta-analysis — Zhang B;Li MM;Chen WH;Zhao JF;Chen WQ;Dong YH;Gong X;Chen QY;Zhang L;Mo XK;Luo XN;Tian J;Zhang SX",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3963,
+            "end_char": 4208
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种辅助治疗鼻咽癌的系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌;陈秋颖;方进",
+      "id": "out-b561959b2670",
+      "evidence": [
+        {
+          "quote": "[专利] 一种辅助治疗鼻咽癌的系统 — 张水兴;张斌;陈秋颖;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4213,
+            "end_char": 4245
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "鼻咽病变的影像诊断思路",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "方进;张斌;金哲;伍雪威;陈立婷;张水兴",
+      "id": "out-fc966b7ac0a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 鼻咽病变的影像诊断思路 — 方进;张斌;金哲;伍雪威;陈立婷;张水兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4250,
+            "end_char": 4290
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatocellular Carcinoma Segmentation fromDigital Subtraction Angiography Videos usingLearnable Temporal Difference",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenting Jiang;Yicheng Jiang;Lu Zhang;Changmiao Wang;Xiaoguang Han;Shuixing Zhang;Xiang Wan;Shuguang Cui",
+      "id": "out-45293a4c07c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatocellular Carcinoma Segmentation fromDigital Subtraction Angiography Videos usingLearnable Temporal Difference — Wenting Jiang;Yicheng Jiang;Lu Zhang;Changmiao Wang;Xiaoguang Han;Shuixing Zhang;Xiang Wan;Shuguang Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4295,
+            "end_char": 4522
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of MRI-derived radiomic biomarker with disease-free survival in patients with early-stage cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fang Jin;Zhang Bin;Wang Shuo;Jin Yan;Wang Fei;Ding Yingying;Chen Qiuying;Chen Liting;Li Yueyue;Li Minmin;Chen Zhuozhi;Liu Lizhi;Liu Zhenyu;Tian Jie;Zhang Shuixing",
+      "id": "out-d2b3f08fb554",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of MRI-derived radiomic biomarker with disease-free survival in patients with early-stage cervical cancer — Fang Jin;Zhang Bin;Wang Shuo;Jin Yan;Wang Fei;Ding Yingying;Chen Qiuying;Chen Liting;Li Yueyue;Li Minmin;Chen Zhuozhi;Liu Lizhi;Liu Zhenyu;Tian Jie;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4527,
+            "end_char": 4815
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Carbonic anhydrase IX stratifies patient prognosis and identifies nodal status in animal models of nasopharyngeal carcinoma using a targeted imaging strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhui Huang;Kun Wang;Weiyuan Huang;Zicong He;Jingming Zhang;Bin Zhang;Zhiyuan Xiong;Kelly McCabe Gillen;Wenzhe Li;Feng Chen;Xing Yang;Shuixing Zhang;Jie Tian",
+      "id": "out-1850bfaa62cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Carbonic anhydrase IX stratifies patient prognosis and identifies nodal status in animal models of nasopharyngeal carcinoma using a targeted imaging strategy — Wenhui Huang;Kun Wang;Weiyuan Huang;Zicong He;Jingming Zhang;Bin Zhang;Zhiyuan Xiong;Kelly McCabe Gillen;Wenzhe Li;Feng Chen;Xing Yang;Shuixing Zhang;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4820,
+            "end_char": 5144
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Current status and quality of radiomic studies for predicting immunotherapy response and outcome in patients with non-small cell lung cancer: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuying Chen;Lu Zhang;Xiaokai Mo;Jingjing You;Luyan Chen;Jin Fang;Fei Wang;Zhe Jin;Bin Zhang;Shuixing Zhang",
+      "id": "out-e86d73d93d6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Current status and quality of radiomic studies for predicting immunotherapy response and outcome in patients with non-small cell lung cancer: a systematic review and meta-analysis — Qiuying Chen;Lu Zhang;Xiaokai Mo;Jingjing You;Luyan Chen;Jin Fang;Fei Wang;Zhe Jin;Bin Zhang;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5150,
+            "end_char": 5445
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种骨密度的AI诊断系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张斌;张水兴;陈秋颖;方进",
+      "id": "out-dfe77a15d00e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种骨密度的AI诊断系统 — 张斌;张水兴;陈秋颖;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5451,
+            "end_char": 5483
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Changes in the topological organization of the default mode network in autism spectrum disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Liting;Chen Yunmi;Zheng Huang;Zhang Bin;Wang Fei;Fang Jin;Li Yueyue;Chen Qiuyin;Zhang Shuixing",
+      "id": "out-d3be3f208b52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Changes in the topological organization of the default mode network in autism spectrum disorder — Chen Liting;Chen Yunmi;Zheng Huang;Zhang Bin;Wang Fei;Fang Jin;Li Yueyue;Chen Qiuyin;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5489,
+            "end_char": 5692
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "甲状腺超声检查及AI辅助诊断仿真实验系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;方进;张斌;昌伟;钟兴",
+      "id": "out-564d9c16312f",
+      "evidence": [
+        {
+          "quote": "[奖励] 甲状腺超声检查及AI辅助诊断仿真实验系统 — 张水兴;方进;张斌;昌伟;钟兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5698,
+            "end_char": 5740
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning‐Assisted System for Thyroid Nodule Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Bin;Tian Jie;Pei Shufang;Chen Yubing;He Xin;Dong Yuhao;Zhang Lu;Mo Xiaokai;Huang Wenhui;Cong Shuzhen;Zhang Shuixing",
+      "id": "out-0fb8ad13b158",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine Learning‐Assisted System for Thyroid Nodule Diagnosis — Zhang Bin;Tian Jie;Pei Shufang;Chen Yubing;He Xin;Dong Yuhao;Zhang Lu;Mo Xiaokai;Huang Wenhui;Cong Shuzhen;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5746,
+            "end_char": 5937
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种头颈肿瘤精准重建模型系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌;陈秋颖;方进",
+      "id": "out-5cd8a5ee19b5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种头颈肿瘤精准重建模型系统 — 张水兴;张斌;陈秋颖;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5943,
+            "end_char": 5977
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immune-checkpoint inhibitor plus chemotherapy versus conventional chemotherapy for treatment of recurrent or metastatic head and neck squamous cell carcinoma: a systematic review and network meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhe Jin;Bin Zhang;Lu Zhang;Wenhui Huang;Xiaokai Mo;Qiuyin Chen;Fei Wang;Zhuozhi Chen;Minmin Li;Shuixing Zhang",
+      "id": "out-4514b47d4c11",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immune-checkpoint inhibitor plus chemotherapy versus conventional chemotherapy for treatment of recurrent or metastatic head and neck squamous cell carcinoma: a systematic review and network meta-analysis — Zhe Jin;Bin Zhang;Lu Zhang;Wenhui Huang;Xiaokai Mo;Qiuyin Chen;Fei Wang;Zhuozhi Chen;Minmin Li;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5983,
+            "end_char": 6305
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种碘对比剂外渗药物处置系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌;张璐;黄文慧;莫笑开;陈秋颖;方进;陈露燕;游荆晶;金哲",
+      "id": "out-9b028e0900da",
+      "evidence": [
+        {
+          "quote": "[专利] 一种碘对比剂外渗药物处置系统 — 张水兴;张斌;张璐;黄文慧;莫笑开;陈秋颖;方进;陈露燕;游荆晶;金哲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6311,
+            "end_char": 6367
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT影像组学模型对食管癌术后个体化辅助治疗的评估价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "莫笑开;林少帆;伍光恒;陈焯枝;郑旭峰;胡泽桓;肖健宁;林黛英;张水兴",
+      "id": "out-5a520cc68b97",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT影像组学模型对食管癌术后个体化辅助治疗的评估价值 — 莫笑开;林少帆;伍光恒;陈焯枝;郑旭峰;胡泽桓;肖健宁;林黛英;张水兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6373,
+            "end_char": 6443
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of Clinical Features and CT Temporal Changes Between Familial Clusters and Non-familial Patients With COVID-19 Pneumonia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Shuyi;Yuan Huanchu;Zhang Bin;Li Wei;You Jingjing;Liu Jing;Zhong Qingyang;Zhang Lu;Chen Luyan;Li Shaolin;Zou Yujian;Zhang Shuixing",
+      "id": "out-95cff53960df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of Clinical Features and CT Temporal Changes Between Familial Clusters and Non-familial Patients With COVID-19 Pneumonia — Liu Shuyi;Yuan Huanchu;Zhang Bin;Li Wei;You Jingjing;Liu Jing;Zhong Qingyang;Zhang Lu;Chen Luyan;Li Shaolin;Zou Yujian;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6449,
+            "end_char": 6722
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ABI2 ‐mediated MEOX2 / KLF4‐NANOG axis promotes liver cancer stem cell and drives tumour recurrence",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiandi Chen;Hui-Zi Li;Bin Zhang;Zhiyuan Xiong;Zhe Jin;Jiaxi Chen;Yang Zheng;Xiangnan Zhu;Shuixing Zhang",
+      "id": "out-5d016858d134",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ABI2 ‐mediated MEOX2 / KLF4‐NANOG axis promotes liver cancer stem cell and drives tumour recurrence — Jiandi Chen;Hui-Zi Li;Bin Zhang;Zhiyuan Xiong;Zhe Jin;Jiaxi Chen;Yang Zheng;Xiangnan Zhu;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6728,
+            "end_char": 6939
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "In vivo three-dimensional evaluation of tumour hypoxia in nasopharyngeal carcinomas using FMT-CT and MSOT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Wenhui;Wang Kun;An Yu;Meng Hui;Gao Yuan;Xiong Zhiyuan;Yan Hao;Wang Qian;Cai Xuekang;Yang Xin;Zhang Bin;Chen Qiuying;Yang Xing;Tian Jie;Zhang Shuixing",
+      "id": "out-2d6f5ac43ec7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] In vivo three-dimensional evaluation of tumour hypoxia in nasopharyngeal carcinomas using FMT-CT and MSOT — Huang Wenhui;Wang Kun;An Yu;Meng Hui;Gao Yuan;Xiong Zhiyuan;Yan Hao;Wang Qian;Cai Xuekang;Yang Xin;Zhang Bin;Chen Qiuying;Yang Xing;Tian Jie;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6945,
+            "end_char": 7214
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Intensive Care Unit Length of Stay After Acute Type A Aortic Dissection Surgery Using Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Qiuying;Zhang Bin;Yang Jue;Mo Xiaokai;Zhang Lu;Li Minmin;Chen Zhuozhi;Fang Jin;Wang Fei;Huang Wenhui;Fan Ruixin;Zhang Shuixing",
+      "id": "out-9df0af7a044b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Intensive Care Unit Length of Stay After Acute Type A Aortic Dissection Surgery Using Machine Learning — Chen Qiuying;Zhang Bin;Yang Jue;Mo Xiaokai;Zhang Lu;Li Minmin;Chen Zhuozhi;Fang Jin;Wang Fei;Huang Wenhui;Fan Ruixin;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7220,
+            "end_char": 7473
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种可调节的鼻咽癌张口训练装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌;莫笑开;方进",
+      "id": "out-ece66660eca6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种可调节的鼻咽癌张口训练装置 — 张水兴;张斌;莫笑开;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7479,
+            "end_char": 7514
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic value of the radiomics-based model in progression-free survival of hypopharyngeal cancer treated with chemoradiation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mo Xiaokai;Wu Xiangjun;Dong Di;Guo Baoliang;Liang Changhong;Luo Xiaoning;Zhang Bin;Zhang Lu;Dong Yuhao;Lian Zhouyang;Liu Jing;Pei Shufang;Huang Wenhui;Ouyang Fusheng;Tian Jie;Zhang Shuixing",
+      "id": "out-03bef364f1a0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic value of the radiomics-based model in progression-free survival of hypopharyngeal cancer treated with chemoradiation — Mo Xiaokai;Wu Xiangjun;Dong Di;Guo Baoliang;Liang Changhong;Luo Xiaoning;Zhang Bin;Zhang Lu;Dong Yuhao;Lian Zhouyang;Liu Jing;Pei Shufang;Huang Wenhui;Ouyang Fusheng;Tian Jie;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7520,
+            "end_char": 7845
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "头颈部肿瘤影像组学研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "金哲;张璐;张斌;莫笑开;黄文慧;方进;汪飞;张水兴",
+      "id": "out-99be2cb9cbd8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 头颈部肿瘤影像组学研究进展 — 金哲;张璐;张斌;莫笑开;黄文慧;方进;汪飞;张水兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7851,
+            "end_char": 7899
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a Web-based malignancy risk-stratification system of thyroid nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Bin;Pei Shufang;Chen Qiuying;Dong Yuhao;Zhang Lu;Mo Xiaokai;Cong Shuzhen;Zhang Shuixing",
+      "id": "out-ab3a23928479",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a Web-based malignancy risk-stratification system of thyroid nodules — Zhang Bin;Pei Shufang;Chen Qiuying;Dong Yuhao;Zhang Lu;Mo Xiaokai;Cong Shuzhen;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7905,
+            "end_char": 8105
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种治疗放射性肾损伤的药物组合物及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌",
+      "id": "out-9603b487197f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种治疗放射性肾损伤的药物组合物及其制备方法和应用 — 张水兴;张斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8111,
+            "end_char": 8149
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting hyperprogressive disease in patients with advanced hepatocellular carcinoma treated with anti-programmed cell death 1 therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Lu;Wu Lingeng;Chen Qiuying;Zhang Bin;Liu Jing;Liu Shuyi;Mo Xiaokai;Li Minmin;Chen Zhuozhi;Chen Luyan;You Jingjing;Jin Zhe;Chen Xudong;Zhou Zejian;Zhang Shuixing",
+      "id": "out-3d09e825669b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting hyperprogressive disease in patients with advanced hepatocellular carcinoma treated with anti-programmed cell death 1 therapy — Zhang Lu;Wu Lingeng;Chen Qiuying;Zhang Bin;Liu Jing;Liu Shuyi;Mo Xiaokai;Li Minmin;Chen Zhuozhi;Chen Luyan;You Jingjing;Jin Zhe;Chen Xudong;Zhou Zejian;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8155,
+            "end_char": 8466
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肩关节MRI的AI诊断系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张斌;张水兴;陈秋颖;方进",
+      "id": "out-821b23b47ab2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肩关节MRI的AI诊断系统 — 张斌;张水兴;陈秋颖;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8472,
+            "end_char": 8507
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel coronavirus disease 2019 (COVID-19): relationship between chest CT scores and laboratory parameters",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Bin;Zhang Jue;Chen Hui;Chen Luyan;Chen Qiuying;Li Minmin;Chen Zhuozhi;You Jingjing;Yang Ke;Zhang Shuixing",
+      "id": "out-5476aa7b5509",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel coronavirus disease 2019 (COVID-19): relationship between chest CT scores and laboratory parameters — Zhang Bin;Zhang Jue;Chen Hui;Chen Luyan;Chen Qiuying;Li Minmin;Chen Zhuozhi;You Jingjing;Yang Ke;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8513,
+            "end_char": 8738
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种碘对比剂诱导肾功能损伤检测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;张斌;陈秋颖;方进",
+      "id": "out-8f320a8736f2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种碘对比剂诱导肾功能损伤检测系统 — 张水兴;张斌;陈秋颖;方进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8744,
+            "end_char": 8781
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluating primary intra-arterial chemotherapy versus intravenous plus intra-arterial chemotherapy for advanced intraocular retinoblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Qiuying;Zhang Bin;Dong Yuhao;Mo Xiaokai;Zhang Lu;Xia Jiejun;Zhang Jing;Zhang Shuixing",
+      "id": "out-2d2ef781dba2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluating primary intra-arterial chemotherapy versus intravenous plus intra-arterial chemotherapy for advanced intraocular retinoblastoma — Chen Qiuying;Zhang Bin;Dong Yuhao;Mo Xiaokai;Zhang Lu;Xia Jiejun;Zhang Jing;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8787,
+            "end_char": 9024
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical utility of a nomogram for predicting 30-day poor outcome in hospitalized p",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-a22ad6f91740",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical utility of a nomogram for predicting 30-day poor outcome in hospitalized p",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9030,
+            "end_char": 9119
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "深度学习在X线诊断新生儿肺炎中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "莫琦岚;张水兴",
+      "id": "out-55fd5eb4cebc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 深度学习在X线诊断新生儿肺炎中的应用 — 莫琦岚;张水兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9365,
+            "end_char": 9399
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning With 3D Convolutional Neural Network for Noninvasive Prediction of Microvascular Invasion in Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yongxin;Lv Xiaofei;Qiu Jiliang;Zhang Bin;Zhang Lu;Fang Jin;Li Minmin;Chen Luyan;Wang Fei;Liu Shuyi;Zhang Shuixing",
+      "id": "out-2d5d9d27bd17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning With 3D Convolutional Neural Network for Noninvasive Prediction of Microvascular Invasion in Hepatocellular Carcinoma — Zhang Yongxin;Lv Xiaofei;Qiu Jiliang;Zhang Bin;Zhang Lu;Fang Jin;Li Minmin;Chen Luyan;Wang Fei;Liu Shuyi;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9405,
+            "end_char": 9664
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Potential value of non-echo-planar diffusion-weighted imaging of the nasopharynx: a primary study for differential diagnosis between recurrent nasopharyngeal carcinoma and post-chemoradiation fibrosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenhui Huang;Jing Liu;Bin Zhang;Long Liang;Xiaoning Luo;Yingjie Mei;Shuixing Zhang",
+      "id": "out-154aaa9c96f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Potential value of non-echo-planar diffusion-weighted imaging of the nasopharynx: a primary study for differential diagnosis between recurrent nasopharyngeal carcinoma and post-chemoradiation fibrosis — Wenhui Huang;Jing Liu;Bin Zhang;Long Liang;Xiaoning Luo;Yingjie Mei;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9670,
+            "end_char": 9961
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic Nomogram: Pretreatment Evaluation of Local Recurrence in Nasopharyngeal Carcinoma based on MR Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Zhang;Hongyu Zhou;Dongsheng Gu;Jie Tian;Bin Zhang;Di Dong;Xiaokai Mo;Jing Liu;Xiaoning Luo;Shufang Pei;Yuhao Dong;Wenhui Huang;Qiuyin Chen;Changhong Liang;Zhouyang Lian;Shuixing Zhang",
+      "id": "out-9b95004d30f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic Nomogram: Pretreatment Evaluation of Local Recurrence in Nasopharyngeal Carcinoma based on MR Imaging — Lu Zhang;Hongyu Zhou;Dongsheng Gu;Jie Tian;Bin Zhang;Di Dong;Xiaokai Mo;Jing Liu;Xiaoning Luo;Shufang Pei;Yuhao Dong;Wenhui Huang;Qiuyin Chen;Changhong Liang;Zhouyang Lian;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9967,
+            "end_char": 10272
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Concurrent chemoradiotherapy with additional chemotherapy for nasopharyngeal carcinoma: A pooled analysis of propensity score‐matching studies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minmin Li;Bin Zhang;Qiuying Chen;Lu Zhang;Xiaokai Mo;Zhuozhi Chen;Zhe Jin;Luyan Chen;Jingjing You;Shuixing Zhang",
+      "id": "out-276d1b5ecfc7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Concurrent chemoradiotherapy with additional chemotherapy for nasopharyngeal carcinoma: A pooled analysis of propensity score‐matching studies — Minmin Li;Bin Zhang;Qiuying Chen;Lu Zhang;Xiaokai Mo;Zhuozhi Chen;Zhe Jin;Luyan Chen;Jingjing You;Shuixing Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10278,
+            "end_char": 10541
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative MRI-based radiomics for noninvasively predicting molecular subtypes and survival in glioma patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Yan;Bin Zhang;Shuaitong Zhang;Jingliang Cheng;Xianzhi Liu;Weiwei Wang;Yuhao Dong;Lu Zhang;Xiaokai Mo;Qiuying Chen;Jin Fang;Fei Wang;Jie Tian;Shuixing Zhang;Zhenyu Zhang",
+      "id": "out-00011120a11d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative MRI-based radiomics for noninvasively predicting molecular subtypes and survival in glioma patients — Jing Yan;Bin Zhang;Shuaitong Zhang;Jingliang Cheng;Xianzhi Liu;Weiwei Wang;Yuhao Dong;Lu Zhang;Xiaokai Mo;Qiuying Chen;Jin Fang;Fei Wang;Jie Tian;Shuixing Zhang;Zhenyu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10547,
+            "end_char": 10841
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics in precision medicine for gastric cancer: opportunities and challenges",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuying Chen;Lu Zhang;Shuyi Liu;Jingjing You;Luyan Chen;Zhe Jin;Shuixing Zhang;Bin Zhang",
+      "id": "out-ba54c96bd37b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics in precision medicine for gastric cancer: opportunities and challenges — Qiuying Chen;Lu Zhang;Shuyi Liu;Jingjing You;Luyan Chen;Zhe Jin;Shuixing Zhang;Bin Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10847,
+            "end_char": 11024
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Harnessing the 2D Structure-Enabled Viscoelasticity of Graphene-Based Hydrogel Membranes for Chronic Neural Interfacing.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyuan Xiong;Wenhui Huang;Qinghua Liang;Yang Cao;Shuyi Liu;Zicong He;Ranran Zhang;Bin Zhang;Rylie Green;Shuixing Zhang;Dan Li",
+      "id": "out-f782146d0d24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Harnessing the 2D Structure-Enabled Viscoelasticity of Graphene-Based Hydrogel Membranes for Chronic Neural Interfacing. — Zhiyuan Xiong;Wenhui Huang;Qinghua Liang;Yang Cao;Shuyi Liu;Zicong He;Ranran Zhang;Bin Zhang;Rylie Green;Shuixing Zhang;Dan Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11030,
+            "end_char": 11285
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomic association between the T2-FLAIR mismatch sign and IDH mutation status in adult patients with lower-grade gliomas: an updated systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziqin Han;Qiuying Chen;Lu Zhang;Xiaokai Mo;Jingjing You;Luyan Chen;Jin Fang;Fei Wang;Zhe Jin;Shuixing Zhang;Bin Zhang",
+      "id": "out-7d57bffb1b9c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomic association between the T2-FLAIR mismatch sign and IDH mutation status in adult patients with lower-grade gliomas: an updated systematic review and meta-analysis — Ziqin Han;Qiuying Chen;Lu Zhang;Xiaokai Mo;Jingjing You;Luyan Chen;Jin Fang;Fei Wang;Zhe Jin;Shuixing Zhang;Bin Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11291,
+            "end_char": 11591
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three-Dimensional CT for Quantification of Longitudinal Lung and Pneumonia Variations in COVID-19 Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Qiuying;Chen Lv;Liu Shuyi;Chen Luyan;Li Minmin;Chen Zhuozhi;You Jingjing;Zhang Bin;Zhang Shuixing",
+      "id": "out-17a4e749fee9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three-Dimensional CT for Quantification of Longitudinal Lung and Pneumonia Variations in COVID-19 Patients — Chen Qiuying;Chen Lv;Liu Shuyi;Chen Luyan;Li Minmin;Chen Zhuozhi;You Jingjing;Zhang Bin;Zhang Shuixing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11597,
+            "end_char": 11814
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "体素内不相干运动MRI预测鼻咽癌放疗化疗敏感性的初步研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈文波;蔡冠晖;张斌;蓝博文;张水兴",
+      "id": "out-bd1f5d96ee92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 体素内不相干运动MRI预测鼻咽癌放疗化疗敏感性的初步研究 — 陈文波;蔡冠晖;张斌;蓝博文;张水兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11820,
+            "end_char": 11875
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "小剂量对比剂恒温保持系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张水兴;黎倩;周尚文",
+      "id": "out-37ef279b273e",
+      "evidence": [
+        {
+          "quote": "[专利] 小剂量对比剂恒温保持系统 — 张水兴;黎倩;周尚文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11881,
+            "end_char": 11910
+          },
+          "version": "270c990f38cf9da87c57"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 45,
+    "listed": 45,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 34,
+        "extracted": 34
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

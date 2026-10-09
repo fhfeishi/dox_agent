@@ -2,15 +2,20 @@
   "doc_id": "9f77ba660e54b5572645",
   "version": "ddb648b9fb7d3385341c",
   "source_hash": "53fb0b70133f15e15f9fc326baacc3986f5fd090c9a79732749627afa52d9ca7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.912830+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.908773+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8046aa021190",
-          "name": "冠周脂肪影像组学预警不良心血管事件",
-          "desc": "冠心病是危害人类健康与生命的重大疾病，目前风险分层仍存在不确定性。",
+          "id": "item-3af01be13969",
+          "name": "冠心病不良心血管事件预警",
+          "desc": "风险分层存在不确定性",
           "evidence": [
             {
-              "quote": "冠心病（CAD）是危害人类健康与生命的重大疾病，目前仍存在风险分层的不确定性",
+              "quote": "冠心病（CAD）是危害人类健康和生命的重大疾病，目前其风险分层仍存在不确定性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 694
-              },
-              "version": "ddb648b9fb7d3385341c"
-            }
-          ]
-        },
-        {
-          "id": "item-e42a3e39da16",
-          "name": "提升CCTA对MACE风险评估能力",
-          "desc": "研究有助于筛查CAD高风险人群，提升CCTA对MACE发生的风险评估和预警能力。",
-          "evidence": [
-            {
-              "quote": "研究将有助于筛查CAD中的高风险人群，有利于提升CCTA对MACE发生的风险评估和预警能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 994,
-                "end_char": 1038
+                "start_char": 2712,
+                "end_char": 2749
               },
               "version": "ddb648b9fb7d3385341c"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e5d1d9c5a13f",
-          "name": "缺乏准确动态评价PVAT指标",
-          "desc": "促使冠脉粥样硬化的因素不只是炎症，也与PVAT不良纤维化和微血管重塑有关，但缺乏准确动态的评价指标。",
+          "id": "item-97d02df4e4ed",
+          "name": "缺乏准确动态的PVAT评价指标",
+          "desc": "炎症、纤维化与微血管重塑",
           "evidence": [
             {
               "quote": "然而促使冠脉粥样硬化的因素并不只是炎症，也与PVAT的不良纤维化和微血管重塑有关，但目前缺乏准确、动态的评价指标",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 810,
                 "end_char": 865
-              },
-              "version": "ddb648b9fb7d3385341c"
-            }
-          ]
-        },
-        {
-          "id": "item-bce2bddcd5d6",
-          "name": "FAI指标预测效能有限",
-          "desc": "既往研究显示FAI在不同冠脉狭窄程度及CAD类型中存在差异，但预测效能有限。",
-          "evidence": [
-            {
-              "quote": "我们前期研究显示，在不同冠脉狭窄程度及CAD不同类型中FAI存在差异",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 775,
-                "end_char": 808
               },
               "version": "ddb648b9fb7d3385341c"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7fee2b498144",
-          "name": "PCAT影像组学与基因表达关联分析",
-          "desc": "提取CAD人体脂肪组织，通过RT-qPCR、ELISA及免疫组化筛选PCAT中与CAD相关的炎症、纤维化及微血管重塑因子，并分析其与影像组学特征的相关性。",
-          "evidence": [
-            {
-              "quote": "研究提取CAD人体脂肪组织，通过RT-qPCR、ELISA及免疫组化，筛选出冠状动脉周围脂肪组织（PCAT）中与CAD相关的炎症、纤维化及微血管重塑因子",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2817,
-                "end_char": 2892
-              },
-              "version": "ddb648b9fb7d3385341c"
-            }
-          ]
-        },
-        {
-          "id": "item-26d22690d039",
-          "name": "LASSO构建多支血管模型并整合",
-          "desc": "采用LASSO算法基于左前降支、左回旋支、右冠状动脉近端PCAT影像组学特征构建独立模型并整合成整体模型。",
+          "id": "item-79beb7890404",
+          "name": "基于CCTA的PCAT影像组学MACE预警模型",
+          "desc": "LAD、LCX、RCA近端特征整合",
           "evidence": [
             {
               "quote": "采用LASSO算法基于左前降支（LAD）、左回旋支（LCX）、右冠状动脉（RCA）近端PCAT影像组学特征构建3个独立模型并整合成整体模型",
@@ -124,7 +81,8 @@
               },
               "version": "ddb648b9fb7d3385341c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +91,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1b18f3ba5d7b",
-          "name": "综合影像组学模型AUC 0.923与0.871",
-          "desc": "综合影像组学模型在训练集和测试集AUC分别为0.923和0.871，显著优于FAI模型，整合模型AUC高于单一冠脉模型。",
+          "id": "item-c1e1ef7ff5a5",
+          "name": "综合影像组学模型性能",
+          "desc": "训练集AUC 0.923，测试集0.871，优于FAI",
           "evidence": [
             {
-              "quote": "回顾性研究结果显示，综合影像组学模型AUC在训练集和测试集中为0.923和0.871，显著优于FAI模型",
+              "quote": "综合影像组学模型AUC在训练集和测试集中为0.923和0.871，显著优于FAI模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3321,
+                "start_char": 3331,
                 "end_char": 3372
               },
               "version": "ddb648b9fb7d3385341c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-436fd9897dcd",
-          "name": "PCAT高风险组MACE风险显著增高",
-          "desc": "前瞻性研究发现PCAT影像组学高风险组发生MACE的风险显著增高（HR=3.78），而FAI高风险组无统计学差异。",
+          "id": "item-78b1dd824ac3",
+          "name": "PCAT影像组学高风险组MACE风险",
+          "desc": "HR=3.78",
           "evidence": [
             {
               "quote": "PCAT影像组学高风险组发生MACE的风险显著增高（HR=3.78，95%CI: 2.23–6.43，P<0.001），而FAI高风险组无统计学差异",
@@ -164,72 +124,283 @@
               "version": "ddb648b9fb7d3385341c"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5844662731c5",
-          "name": "CD31与PCAT纹理特征高度相关",
-          "desc": "组织层面CAD患者PCAT中CD31、MCP-1及瘦素表达显著升高，CD31与PCAT纹理特征高度相关，MCP-1与一阶特征明显相关。",
-          "evidence": [
-            {
-              "quote": "其中CD31与PCAT的纹理特征高度相关，MCP-1与一阶特征明显相关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3187,
-                "end_char": 3221
-              },
-              "version": "ddb648b9fb7d3385341c"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8046aa021190"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e5d1d9c5a13f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CCTA的冠状动脉周围脂肪影像组学模型预测主要心血管不良事件:前瞻性队列研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张新伟;吴月;张瑜;刘俊诗;邢艳",
+      "id": "out-92181c6ea33d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CCTA的冠状动脉周围脂肪影像组学模型预测主要心血管不良事件:前瞻性队列研究 — 张新伟;吴月;张瑜;刘俊诗;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3708,
+            "end_char": 3773
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e5d1d9c5a13f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7fee2b498144"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT检测非酒精性脂肪肝严重程度与冠状动脉周围脂肪组织衰减相关性的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张瑜;刘俊诗;张新伟;吴月;朱筱潇;邢艳",
+      "id": "out-423dc920781a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT检测非酒精性脂肪肝严重程度与冠状动脉周围脂肪组织衰减相关性的研究 — 张瑜;刘俊诗;张新伟;吴月;朱筱潇;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3843
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7fee2b498144"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5844662731c5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive Value of CCTA-based Pericoronary Adipose Tissue Imaging for Major Adverse Cardiovascular Events",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Yue;Qi Haicheng;Zhang Xinwei;Xing Yan",
+      "id": "out-4db1b871f674",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive Value of CCTA-based Pericoronary Adipose Tissue Imaging for Major Adverse Cardiovascular Events — Wu Yue;Qi Haicheng;Zhang Xinwei;Xing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 4003
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-26d22690d039"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b18f3ba5d7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "全模型迭代算法改善冠状动脉CT血管成像中斑块图像质量的可行性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "栗岩;辛娟;齐海成;胡亚辉;邢艳",
+      "id": "out-5f30e7de7728",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 全模型迭代算法改善冠状动脉CT血管成像中斑块图像质量的可行性研究 — 栗岩;辛娟;齐海成;胡亚辉;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4008,
+            "end_char": 4065
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT非对比增强扫描测量冠脉周围脂肪衰减的可行性研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "辛娟;齐海成;伊力亚·阿洪江;刘倩;栗岩;李杉;邢艳",
+      "id": "out-acfd59b54f58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT非对比增强扫描测量冠脉周围脂肪衰减的可行性研究 — 辛娟;齐海成;伊力亚·阿洪江;刘倩;栗岩;李杉;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4130
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CCTA的冠状动脉周围脂肪组织影像组学对不良心血管事件的预测价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴月;胡亚辉;张新伟;栗岩;邢艳",
+      "id": "out-77c0e6bb5e5d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CCTA的冠状动脉周围脂肪组织影像组学对不良心血管事件的预测价值 — 吴月;胡亚辉;张新伟;栗岩;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4135,
+            "end_char": 4194
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pericoronary adipose tissue radiomics features as imaging markers for coronary artery disease risk assessment: insights from gene expression analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yan;Zhang Weimin;Hu Yahui;Xu Zheng;Huo Qiang;Qi Haicheng;Liu Qian;Xing Yan",
+      "id": "out-57cddfab33fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pericoronary adipose tissue radiomics features as imaging markers for coronary artery disease risk assessment: insights from gene expression analysis — Li Yan;Zhang Weimin;Hu Yahui;Xu Zheng;Huo Qiang;Qi Haicheng;Liu Qian;Xing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4434
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "冠心病合并2型糖尿病患者冠状动脉周围脂肪组织关键差异表达基因筛选及分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡亚辉;张林鑫;陈盈;栗岩;邢艳",
+      "id": "out-150b56a0f191",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 冠心病合并2型糖尿病患者冠状动脉周围脂肪组织关键差异表达基因筛选及分析 — 胡亚辉;张林鑫;陈盈;栗岩;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4499
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "单能量去金属伪影算法在心脏起搏器中去伪影效果评价",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡亚辉;吴月;张新伟;栗岩;邢艳",
+      "id": "out-e907a493228e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 单能量去金属伪影算法在心脏起搏器中去伪影效果评价 — 胡亚辉;吴月;张新伟;栗岩;邢艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4504,
+            "end_char": 4553
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "心血管系统影像诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢艳;李小虎;薛蕴菁;祝因苏",
+      "id": "out-72f336898997",
+      "evidence": [
+        {
+          "quote": "[专著] 心血管系统影像诊断 — 邢艳;李小虎;薛蕴菁;祝因苏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4559,
+            "end_char": 4589
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reduction of metallic artifacts from the novel leadless pacemaker using single-energy metal artifact reduction algorithm in coronary CT angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yahui;Chen Ying;Huo Jianjun;Zhang Linxin;Li Yan;Liu Qian;Yu Yaohui;Qi Haicheng;Zhao Zicheng;Zhang Jiaojiao;Xu Min;Xing Yan",
+      "id": "out-dee9a7e851a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reduction of metallic artifacts from the novel leadless pacemaker using single-energy metal artifact reduction algorithm in coronary CT angiography — Hu Yahui;Chen Ying;Huo Jianjun;Zhang Linxin;Li Yan;Liu Qian;Yu Yaohui;Qi Haicheng;Zhao Zicheng;Zhang Jiaojiao;Xu Min;Xing Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4876
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "冠心病的危险因素、风险评估及相关机制研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高颖;沙吉旦·阿不都热衣木;高鸿亮;邢艳;王玎羽;蒲红伟;帕丽达·阿布来提;李辉;曹艳",
+      "id": "out-a404e4611e48",
+      "evidence": [
+        {
+          "quote": "[奖励] 冠心病的危险因素、风险评估及相关机制研究 — 高颖;沙吉旦·阿不都热衣木;高鸿亮;邢艳;王玎羽;蒲红伟;帕丽达·阿布来提;李辉;曹艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4882,
+            "end_char": 4952
+          },
+          "version": "ddb648b9fb7d3385341c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

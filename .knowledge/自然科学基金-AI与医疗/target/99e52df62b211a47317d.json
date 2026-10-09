@@ -2,15 +2,20 @@
   "doc_id": "99e52df62b211a47317d",
   "version": "e6fb966f531f699d084d",
   "source_hash": "c3508f082838081a866e8e375e09f440906a6e447771caf63d4b0ffbd5b41af0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.737281+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:50:36.692094+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-5d4ad7b2d417",
           "name": "生物医学时变流场复杂数据智能处理",
-          "desc": "面向心血管疾病诊断中的时变流场复杂数据，研究智能分析理论与处理技术及应用。",
+          "desc": "精准医疗",
           "evidence": [
             {
-              "quote": "时变流场数据是生物医学领域中一类重要的非图像复杂数据,在心血管疾病诊断中起着重要作用",
+              "quote": "生物医学领域中时变流场数据的高维数字化表示、仿真，以及相应的人工智能分析诊断、多模态大数据融合问题，是精准医疗和生物医学领域中亟需解决的重要问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 660,
-                "end_char": 701
+                "start_char": 2889,
+                "end_char": 2960
               },
               "version": "e6fb966f531f699d084d"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1eec261eb63",
-          "name": "时变流场动态高维且拓扑复杂分析困难",
-          "desc": "时变流场数据因其动态性、高维度和拓扑复杂，处理与分析十分困难，制约其在医疗辅助决策中的应用。",
+          "id": "item-de00d433c1fc",
+          "name": "时变流场数据动态性、高维度和拓扑复杂",
+          "desc": "处理与分析困难",
           "evidence": [
             {
-              "quote": "但因其动态性、高维度和拓扑复杂，时变流场数据的处理与分析十分困难",
+              "quote": "时变流场数据的处理与分析十分困难",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 703,
+                "start_char": 719,
                 "end_char": 734
               },
               "version": "e6fb966f531f699d084d"
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b207a4b201a0",
-          "name": "高维参数化表示与等几何智能仿真",
-          "desc": "研究时变流场复杂数据的高维参数化表示与基于等几何分析的高精度模拟仿真，建立数据表示集并研究智能融合、深度学习过程可视化溯因分析与医疗辅助决策支持平台。",
+          "id": "item-02c5bf918856",
+          "name": "高维样条参数化与体细分样条模型",
+          "desc": "时变流场几何基础理论",
           "evidence": [
             {
-              "quote": "研究时变流场复杂数据的高维参数化表示与基于等几何分析技术的高精度模拟仿真方法,建立时变流场数据表示集",
+              "quote": "提出了新的高维样条参数化理论及体细分样条模型构造、六面体结构网格简化、高质量四边网格生成理论",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 837
+                "start_char": 3124,
+                "end_char": 3169
               },
               "version": "e6fb966f531f699d084d"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a5c4cef9c296",
+          "name": "心脏瓣膜流固耦合快速数值求解",
+          "desc": "时变流场高精度仿真",
+          "evidence": [
+            {
+              "quote": "提出了心脏瓣膜流固耦合问题快速数值求解方法、时变流场等几何数值智能求解方法及超分辨率仿真方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3210,
+                "end_char": 3255
+              },
+              "version": "e6fb966f531f699d084d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-818590ee854f",
+          "name": "双流时间卷积网络与混合专家系统",
+          "desc": "面向高维参数化数据的深度学习模型",
+          "evidence": [
+            {
+              "quote": "提出了新的双流时间卷积网络、基于注意力机制的混合专家系统、自定步调和自一致的协同训练方法以及研发了面向深度学习的可视分析软件平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3423,
+                "end_char": 3486
+              },
+              "version": "e6fb966f531f699d084d"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,1166 @@
       "state": "has",
       "items": [
         {
-          "id": "item-798e0112cf22",
-          "name": "发表标注学术论文57篇含SCI 51篇",
-          "desc": "发表标注学术论文57篇（SCI期刊51篇，其中中科院TOP期刊18篇），申请/授权发明专利9项、授权软著5项；负责人入选浙江省首批高校创新领军人才，项目组成员获2022年山东省科技进步二等奖。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "标注论文57篇（SCI 51篇），专利9项，软著5项",
           "evidence": [
             {
-              "quote": "在国内外重要期刊和会议上发表标注学术论文共57篇，其中 SCI期刊论文51篇（其中中科院TOP期刊论文18篇）",
+              "quote": "在国内外重要期刊和会议上发表标注学术论文共57篇，其中 SCI期刊论文51篇（其中中科院TOP期刊论文18篇），国内Top或一级学术期刊6篇，申请/授权发明专利9项，授权软件专著权5项",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3513,
-                "end_char": 3567
+                "end_char": 3604
               },
               "version": "e6fb966f531f699d084d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5d4ad7b2d417"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b1eec261eb63"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "显著性目标检测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高珊珊;张晨昊;毛德乾;刘峥;迟静",
+      "id": "out-1fcd396e3948",
+      "evidence": [
+        {
+          "quote": "[专利] 显著性目标检测方法及系统 — 高珊珊;张晨昊;毛德乾;刘峥;迟静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 3791
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b1eec261eb63"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b207a4b201a0"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于体细分的超弹性材料模型等几何分析仿真方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐岗;王宁;黄浩;许金兰;吴海燕",
+      "id": "out-73118cc3e6f8",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于体细分的超弹性材料模型等几何分析仿真方法 — 徐岗;王宁;黄浩;许金兰;吴海燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3796,
+            "end_char": 3843
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b207a4b201a0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-798e0112cf22"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coarse to Fine: Weak Feature Boosting Network for Salient Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenhao Zhang;Shanshan Gao;Xiao Pan;Yuting Wang;Yuanfeng Zhou",
+      "id": "out-79d16c04969b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coarse to Fine: Weak Feature Boosting Network for Salient Object Detection — Chenhao Zhang;Shanshan Gao;Xiao Pan;Yuting Wang;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3992
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Complementarity is the king: Multi-modal and multi-grained hierarchical semantic enhancement network for cross-modal retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinlei Pei;Zheng Liu;Shanshan Gao;Yijun Su",
+      "id": "out-a5d1896a478f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Complementarity is the king: Multi-modal and multi-grained hierarchical semantic enhancement network for cross-modal retrieval — Xinlei Pei;Zheng Liu;Shanshan Gao;Yijun Su",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3997,
+            "end_char": 4174
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Compact joints encoding for skeleton-based dynamic hand gesture recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yangke;Ma Dongyang;Yu Yuhang;Wei Guangshun;Zhou Yuanfeng",
+      "id": "out-236574cb2f52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Compact joints encoding for skeleton-based dynamic hand gesture recognition — Li Yangke;Ma Dongyang;Yu Yuhang;Wei Guangshun;Zhou Yuanfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4179,
+            "end_char": 4322
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge graph and deep learning combined with a stock price prediction network focusing on related stocks and mutation points",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meiyao Tao;Shanshan Gao;Deqian Mao;Hong Huang",
+      "id": "out-c36c97163436",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge graph and deep learning combined with a stock price prediction network focusing on related stocks and mutation points — Meiyao Tao;Shanshan Gao;Deqian Mao;Hong Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4327,
+            "end_char": 4508
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A boundary element-based automatic domain partitioning approach for semi-structured quad mesh generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Zhoufang;He Shouping;Xu Gang;Chen Jianjun;Wu Qing",
+      "id": "out-72bbee5051fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A boundary element-based automatic domain partitioning approach for semi-structured quad mesh generation — Xiao Zhoufang;He Shouping;Xu Gang;Chen Jianjun;Wu Qing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4513,
+            "end_char": 4680
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Flux-aligned Quad Mesh Generation in Magnetohydrodynamic Simulation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wu;Xuhui Wang;Boniface Nkonga;Bernard Mourrain;Gang Xu;Jiansong Deng;Yuan Liu",
+      "id": "out-d56ba8cfc87a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Flux-aligned Quad Mesh Generation in Magnetohydrodynamic Simulation — Meng Wu;Xuhui Wang;Boniface Nkonga;Bernard Mourrain;Gang Xu;Jiansong Deng;Yuan Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4685,
+            "end_char": 4843
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Singularity Structure Simplification of Hexahedral Meshes via Weighted Ranking",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐岗;Ling Ran;Zhang Yongjie Jessica;Xiao Zhoufang;Ji Zhongping;Rabczuk Timon",
+      "id": "out-7c2fc6822e58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Singularity Structure Simplification of Hexahedral Meshes via Weighted Ranking — 徐岗;Ling Ran;Zhang Yongjie Jessica;Xiao Zhoufang;Ji Zhongping;Rabczuk Timon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4848,
+            "end_char": 5009
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skeletonization via Dual of Shape Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingliang Cheng;Xinyu Zheng;Shuangmin Chen;Guozhu Liu;Shiqing Xin;Lin Lu;Yuanfeng Zhou;Changhe Tu",
+      "id": "out-1f0ce51cd5d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Skeletonization via Dual of Shape Segmentation — Jingliang Cheng;Xinyu Zheng;Shuangmin Chen;Guozhu Liu;Shiqing Xin;Lin Lu;Yuanfeng Zhou;Changhe Tu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5167
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "预训练模型特征提取的双对抗磁共振图像融合网络研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘慧;李珊珊;高珊珊;邓凯;徐岗;张彩明",
+      "id": "out-080eec7dead4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 预训练模型特征提取的双对抗磁共振图像融合网络研究 — 刘慧;李珊珊;高珊珊;邓凯;徐岗;张彩明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5173,
+            "end_char": 5226
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Convex and Compact Superpixels by Edge- Constrained Centroidal Power Diagram",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Dongyang;Zhou Yuanfeng;Xin Shiqing;Wang Wenping",
+      "id": "out-43c2b4854b93",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Convex and Compact Superpixels by Edge- Constrained Centroidal Power Diagram — Ma Dongyang;Zhou Yuanfeng;Xin Shiqing;Wang Wenping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5232,
+            "end_char": 5367
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robust Hybrid Learning for Automatic Teeth Segmentation and Labeling on 3D Dental Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shaojie Zhuang;Guangshun Wei;Zhiming Cui;周元峰",
+      "id": "out-8360d630b38c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Robust Hybrid Learning for Automatic Teeth Segmentation and Labeling on 3D Dental Models — Shaojie Zhuang;Guangshun Wei;Zhiming Cui;周元峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5373,
+            "end_char": 5514
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interpolatory Catmull-Clark volumetric subdivision over unstructured hexahedral meshes for modeling and simulation applications",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xie Jin;Xu Jinlan;Dong Zhenyu;Xu Gang;Deng Chongyang;Mourrain Bernard;Zhang Yongjie Jessica",
+      "id": "out-8aa131619f29",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interpolatory Catmull-Clark volumetric subdivision over unstructured hexahedral meshes for modeling and simulation applications — Xie Jin;Xu Jinlan;Dong Zhenyu;Xu Gang;Deng Chongyang;Mourrain Bernard;Zhang Yongjie Jessica",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5520,
+            "end_char": 5747
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Att-MoE: Attention-based Mixture of Experts for nuclear and cytoplasmic segmentation Att-MoE: Attention-based Mixture of Experts for nuclear and cytoplasmic segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Jinhua;Desrosiers Christian;Zhou Yuanfeng",
+      "id": "out-4d00983896c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Att-MoE: Attention-based Mixture of Experts for nuclear and cytoplasmic segmentation Att-MoE: Attention-based Mixture of Experts for nuclear and cytoplasmic segmentation — Liu Jinhua;Desrosiers Christian;Zhou Yuanfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5753,
+            "end_char": 5976
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向计算机辅助舌诊关键问题的解决方案综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张丽倩;李孟航;高珊珊;张彩明",
+      "id": "out-db5ea67faae2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向计算机辅助舌诊关键问题的解决方案综述 — 张丽倩;李孟航;高珊珊;张彩明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5982,
+            "end_char": 6026
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image-based textile decoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Siqiang;Toyoura Masahiro;Terada Takamasa;Mao Xiaoyang;Xu Gang",
+      "id": "out-6c4edaf58aca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image-based textile decoding — Chen Siqiang;Toyoura Masahiro;Terada Takamasa;Mao Xiaoyang;Xu Gang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6032,
+            "end_char": 6135
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于等几何分析的心脏瓣膜流固耦合快速仿真方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐岗;马书豪;许金兰;顾人舒",
+      "id": "out-23a5fdf6f2f6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于等几何分析的心脏瓣膜流固耦合快速仿真方法 — 徐岗;马书豪;许金兰;顾人舒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6141,
+            "end_char": 6186
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "结合L_0优化与拉普拉斯算子的图像平滑方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李孟航;高珊珊;韩慧健;张彩明",
+      "id": "out-0b34f2e326c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 结合L_0优化与拉普拉斯算子的图像平滑方法 — 李孟航;高珊珊;韩慧健;张彩明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6192,
+            "end_char": 6237
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于血液动力学仿真的时变流场超分辨率重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐岗;蒋志争;顾人舒;高飞;王丹丹;许金兰",
+      "id": "out-2ec96adb469f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于血液动力学仿真的时变流场超分辨率重建方法 — 徐岗;蒋志争;顾人舒;高飞;王丹丹;许金兰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6243,
+            "end_char": 6295
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised Medical Image Segmentation Using Cross-Model Pseudo-Supervision with Shape Awareness and Local Context Constraints",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinhua Liu;Christian Desrosiers;Yuanfeng Zhou",
+      "id": "out-e3dc5588b0ce",
+      "evidence": [
+        {
+          "quote": "[会议论文] Semi-supervised Medical Image Segmentation Using Cross-Model Pseudo-Supervision with Shape Awareness and Local Context Constraints — Jinhua Liu;Christian Desrosiers;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6301,
+            "end_char": 6485
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种面向深度神经网络可解释性的可视分析系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "单海军;俞再亮;徐岗;吴向阳;刘真",
+      "id": "out-a8b3d9ce76f4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种面向深度神经网络可解释性的可视分析系统 — 单海军;俞再亮;徐岗;吴向阳;刘真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6491,
+            "end_char": 6536
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "具有保面积参数化的双二次Bézier曲面",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李效伟;赵庆辉;杨义军;曾薇;孙黎;李缨;徐岗",
+      "id": "out-509947232667",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 具有保面积参数化的双二次Bézier曲面 — 李效伟;赵庆辉;杨义军;曾薇;孙黎;李缨;徐岗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6542,
+            "end_char": 6594
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LASOR: Learning Accurate 3D Human Pose and Shape Via Synthetic Occlusion-Aware Data and Neural Mesh Rendering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaibing Yang;Renshu Gu;Maoyu Wang;Masahiro Toyoura;Gang Xu",
+      "id": "out-22d49d749934",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LASOR: Learning Accurate 3D Human Pose and Shape Via Synthetic Occlusion-Aware Data and Neural Mesh Rendering — Kaibing Yang;Renshu Gu;Maoyu Wang;Masahiro Toyoura;Gang Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6600,
+            "end_char": 6776
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Two-Stream Temporal Convolutional Networks for Skeleton-Based Human Action Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Jingong;Zhou Yuanfeng;Hao Xingwei;Li Feng;Desrosiers Christian;Zhang Caiming",
+      "id": "out-0894b61d0d12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Two-Stream Temporal Convolutional Networks for Skeleton-Based Human Action Recognition — Jia Jingong;Zhou Yuanfeng;Hao Xingwei;Li Feng;Desrosiers Christian;Zhang Caiming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6782,
+            "end_char": 6957
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Construction of Bézier surfaces with energy-minimizing diagonal curves from given boundary",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaowei Li;Yufan Zhu;Haiyan Wu;Jinlan Xu;Ran Ling;Xiangyang Wu;Gang Xu",
+      "id": "out-44221b97c4d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Construction of Bézier surfaces with energy-minimizing diagonal curves from given boundary — Xiaowei Li;Yufan Zhu;Haiyan Wu;Jinlan Xu;Ran Ling;Xiangyang Wu;Gang Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6963,
+            "end_char": 7132
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SRF‐Net: Spatial Relationship Feature Network for Tooth Point Cloud Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Ma;Guangshun Wei;Yuanfeng Zhou;Xiao Pan;Shiqing Xin;Wenping Wang",
+      "id": "out-ca075bf28b21",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SRF‐Net: Spatial Relationship Feature Network for Tooth Point Cloud Classification — Qian Ma;Guangshun Wei;Yuanfeng Zhou;Xiao Pan;Shiqing Xin;Wenping Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7138,
+            "end_char": 7298
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fast generation of superpixels with lattice topology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Pan;Yuanfeng Zhou;Yunfeng Zhang;Caiming Zhang",
+      "id": "out-45893fab884f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fast generation of superpixels with lattice topology — Xiao Pan;Yuanfeng Zhou;Yunfeng Zhang;Caiming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7304,
+            "end_char": 7415
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于自注意力与感受野调整的牙齿实例分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高珊珊;窦文涵;迟静;周元峰",
+      "id": "out-817a419bd7d0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于自注意力与感受野调整的牙齿实例分割方法及系统 — 高珊珊;窦文涵;迟静;周元峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7421,
+            "end_char": 7466
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "iPUNet: Iterative Cross Field Guided Point Cloud Upsampling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangshun Wei;Hao Pan;Shaojie Zhuang;周元峰;Changjian Li",
+      "id": "out-545248699a7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] iPUNet: Iterative Cross Field Guided Point Cloud Upsampling — Guangshun Wei;Hao Pan;Shaojie Zhuang;周元峰;Changjian Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7472,
+            "end_char": 7593
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TAD-Net: tooth axis detection network based on rotation transformation encoding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yeying Fan;Qian Ma;Guangshun Wei;Zhiming Cui;Yuanfeng Zhou;Wenping Wang",
+      "id": "out-e099e6f631d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TAD-Net: tooth axis detection network based on rotation transformation encoding — Yeying Fan;Qian Ma;Guangshun Wei;Zhiming Cui;Yuanfeng Zhou;Wenping Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7599,
+            "end_char": 7758
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LSM-SEC: Tongue Segmentation by the Level Set Model with Symmetry and Edge Constraints",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Shanshan;Guo Ningning;Mao Deqian",
+      "id": "out-9c53e454ef95",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LSM-SEC: Tongue Segmentation by the Level Set Model with Symmetry and Edge Constraints — Gao Shanshan;Guo Ningning;Mao Deqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7764,
+            "end_char": 7895
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向智能化服务的复杂虚拟环境构建与人体特征识别关键技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周元峰;李峰;孙涛;朱锦雷;张彩明;马龙;郝兴伟;许野平;贾广胜;范林海",
+      "id": "out-e0e9b4131ad3",
+      "evidence": [
+        {
+          "quote": "[奖励] 面向智能化服务的复杂虚拟环境构建与人体特征识别关键技术及应用 — 周元峰;李峰;孙涛;朱锦雷;张彩明;马龙;郝兴伟;许野平;贾广胜;范林海",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7901,
+            "end_char": 7974
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robustly computing restricted Voronoi diagrams (RVD) on thin-plate models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pengfei Wang;Shiqing Xin;Changhe Tu;Dong-Ming Yan;Yuanfeng Zhou;Caiming Zhang",
+      "id": "out-a5f5a2acd3db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Robustly computing restricted Voronoi diagrams (RVD) on thin-plate models — Pengfei Wang;Shiqing Xin;Changhe Tu;Dong-Ming Yan;Yuanfeng Zhou;Caiming Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7980,
+            "end_char": 8139
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Grayscale self-adjusting network with weak feature enhancement for 3D lumbar anatomy segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinhua Liu;Zhiming Cui;Christian Desrosiers;Shuyi Lu;Yuanfeng Zhou",
+      "id": "out-30f86ac2b215",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Grayscale self-adjusting network with weak feature enhancement for 3D lumbar anatomy segmentation — Jinhua Liu;Zhiming Cui;Christian Desrosiers;Shuyi Lu;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8145,
+            "end_char": 8317
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于矢量场的二维区域全自动四边网格生成",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何寿平;肖周芳;陈建军;徐岗;郑耀",
+      "id": "out-bd20c2b69bd7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于矢量场的二维区域全自动四边网格生成 — 何寿平;肖周芳;陈建军;徐岗;郑耀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8323,
+            "end_char": 8368
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic spline bas-relief modeling with isogeometric collocation method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Jinlan;Ling Chengnan;Xu Gang;Ji Zhongping;Wu Xiangyang;Rabczuk Timon",
+      "id": "out-5ebef79eb8da",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic spline bas-relief modeling with isogeometric collocation method — Xu Jinlan;Ling Chengnan;Xu Gang;Ji Zhongping;Wu Xiangyang;Rabczuk Timon",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8374,
+            "end_char": 8525
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale joint feature network for micro-expression recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinyu;Wei Guangshun;Wang Jie;Zhou Yuanfeng",
+      "id": "out-e427023c3491",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale joint feature network for micro-expression recognition — Li Xinyu;Wei Guangshun;Wang Jie;Zhou Yuanfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8531,
+            "end_char": 8651
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hybrid Optimization-based Cutting Simulation for Soft Objects",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Chen;Runze Yang;Long Ma;Minfeng Xu;Yuanfeng Zhou",
+      "id": "out-9afde2766335",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hybrid Optimization-based Cutting Simulation for Soft Objects — Shi Chen;Runze Yang;Long Ma;Minfeng Xu;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8657,
+            "end_char": 8779
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进的L0梯度最小化模型的图像平滑方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高珊珊;李孟航;张丽倩",
+      "id": "out-0c89c13b3770",
+      "evidence": [
+        {
+          "quote": "[专利] 基于改进的L0梯度最小化模型的图像平滑方法及系统 — 高珊珊;李孟航;张丽倩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8785,
+            "end_char": 8827
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Task Joint Learning of 3D Keypoint Saliency and Correspondence Estimation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangshun Wei;Long Ma;Chen Wang;Christian Desrosiers;Yuanfeng Zhou",
+      "id": "out-066362f4eb8b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Task Joint Learning of 3D Keypoint Saliency and Correspondence Estimation — Guangshun Wei;Long Ma;Chen Wang;Christian Desrosiers;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8833,
+            "end_char": 8987
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IGA-suitable planar parameterization with patch structure simplification of closed-form polysquare",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shiyi Wang;Jingwen Ren;Xianzhong Fang;Hongwei Lin;Gang Xu;Hujun Bao;Jin Huang",
+      "id": "out-f25278ed61a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IGA-suitable planar parameterization with patch structure simplification of closed-form polysquare — Shiyi Wang;Jingwen Ren;Xianzhong Fang;Hongwei Lin;Gang Xu;Hujun Bao;Jin Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8993,
+            "end_char": 9177
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Textile image recoloring by polarization observation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haipeng Luan;Masahiro Toyoura;Renshu Gu;Takamasa Terada;Haiyan Wu;Takuya Funatomi;Gang Xu",
+      "id": "out-5cea8fd8343c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Textile image recoloring by polarization observation — Haipeng Luan;Masahiro Toyoura;Renshu Gu;Takamasa Terada;Haiyan Wu;Takuya Funatomi;Gang Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9183,
+            "end_char": 9333
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fast Isogeometric Method for Fluid–Structure Interaction Simulation of Heart Valves with GIFT Framework",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马书豪;许金兰;徐岗",
+      "id": "out-f1dd167a6ae5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fast Isogeometric Method for Fluid–Structure Interaction Simulation of Heart Valves with GIFT Framework — 马书豪;许金兰;徐岗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9339,
+            "end_char": 9461
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Probability driven approach for point cloud registration of indoor scene",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kun Dong;Shanshan Gao;Shiqing Xin;Yuanfeng Zhou",
+      "id": "out-7423c7c70156",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Probability driven approach for point cloud registration of indoor scene — Kun Dong;Shanshan Gao;Shiqing Xin;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9467,
+            "end_char": 9595
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Area-Preserving Hierarchical NURBS Surfaces Computed by the Optimal Freeform Transformation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao-Wei Li;Yi-Jun Yang;Wei Zeng;Yu-L",
+      "id": "out-750465e0fe47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Area-Preserving Hierarchical NURBS Surfaces Computed by the Optimal Freeform Transformation — Xiao-Wei Li;Yi-Jun Yang;Wei Zeng;Yu-L",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9601,
+            "end_char": 9738
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Collaborative Multi-Metadata Fusion to Improve the Classification of Lumbar Disc Herniation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuyi Lu;Jinhua Liu;Xiaojie Wang;Yuanfeng Zhou",
+      "id": "out-ca0400d1d9ad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Collaborative Multi-Metadata Fusion to Improve the Classification of Lumbar Disc Herniation — Shuyi Lu;Jinhua Liu;Xiaojie Wang;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9782,
+            "end_char": 9928
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "去光源影响的加权导向滤波图像去雾算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毛德乾;高珊珊;张晨昊;张彩明",
+      "id": "out-956994964f6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 去光源影响的加权导向滤波图像去雾算法 — 毛德乾;高珊珊;张晨昊;张彩明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9934,
+            "end_char": 9976
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双分支网络的三维点云上采样方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周元峰;孙彦增;魏广顺",
+      "id": "out-4b103839db03",
+      "evidence": [
+        {
+          "quote": "[专利] 基于双分支网络的三维点云上采样方法及系统 — 周元峰;孙彦增;魏广顺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9982,
+            "end_char": 10020
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-media Retrieval via Fusing Multi-modality and Multi-grained Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Z. Liu;S. Yuan;X. Pei;高珊珊;H. Han",
+      "id": "out-d1f3b1158b9d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-media Retrieval via Fusing Multi-modality and Multi-grained Data — Z. Liu;S. Yuan;X. Pei;高珊珊;H. Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10026,
+            "end_char": 10137
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An adaptive Bernstein-Bezier finite element method for heat transfer analysis in welding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Xuan;Xu Gang;Zhou Ao;Yang Yong;Ma Zhenwu",
+      "id": "out-8df88d28808d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An adaptive Bernstein-Bezier finite element method for heat transfer analysis in welding — Peng Xuan;Xu Gang;Zhou Ao;Yang Yong;Ma Zhenwu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10143,
+            "end_char": 10285
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Two-Stage Point Cloud Super Resolution with Local Interpolation and Readjustment via Outer-Product Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Guangyu;Xu Gang;Wu Qing;Wu Xundong",
+      "id": "out-2c6688e72699",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Two-Stage Point Cloud Super Resolution with Local Interpolation and Readjustment via Outer-Product Neural Network — Wang Guangyu;Xu Gang;Wu Qing;Wu Xundong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10291,
+            "end_char": 10452
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DHNet: Salient Object Detection With Dynamic Scale-Aware Learning and Hard-Sample Refinement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenhao Zhang;Shanshan Gao;Deqian Mao;Yuanfeng Zhou",
+      "id": "out-3fc8f9e891f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DHNet: Salient Object Detection With Dynamic Scale-Aware Learning and Hard-Sample Refinement — Chenhao Zhang;Shanshan Gao;Deqian Mao;Yuanfeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10458,
+            "end_char": 10610
+          },
+          "version": "e6fb966f531f699d084d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 53,
+    "listed": 53,
+    "by_kind": {
+      "专利": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 43,
+        "extracted": 43
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

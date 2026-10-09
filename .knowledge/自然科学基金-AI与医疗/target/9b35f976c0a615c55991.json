@@ -2,15 +2,20 @@
   "doc_id": "9b35f976c0a615c55991",
   "version": "0fdfca6bc6fa1d439bbb",
   "source_hash": "a83ae9f2162e2cc918d65a80fc4e332b5dbfa57c13b59580cebd1c1b0240ef9d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.141876+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.709995+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4df2baf83f47",
-          "name": "先心病相关肺动脉高压机器辅助诊断",
-          "desc": "云南为先心病高发区，约20%未及时救治患者会发展到肺动脉高压，严重时可致右心衰竭、致残甚至死亡。",
+          "id": "item-1fd033cefdfe",
+          "name": "先心病相关肺动脉高压心音辅助诊断",
+          "desc": "云南先心病高发",
           "evidence": [
             {
-              "quote": "云南为先心病（CHD）高发区,先心病是出生首要先天性缺陷，而其中20%未得到及时救治的患者会发展到肺动脉高压（PAH），严重时可导致右心衰竭、致残，甚至死亡，及早干预十分重要",
+              "quote": "云南为先心病高发区,先心病是出生首要先天性缺陷",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 755
-              },
-              "version": "0fdfca6bc6fa1d439bbb"
-            }
-          ]
-        },
-        {
-          "id": "item-e5418d86d05f",
-          "name": "CHD-PAH新筛查方法探索",
-          "desc": "研究并实现基于人工智能的先心病相关肺动脉高压机器辅助诊断算法与检测技术，为CHD-PAH寻找新的筛查方法。",
-          "evidence": [
-            {
-              "quote": "研究并实现基于人工智能的先心病相关肺动脉高压机器辅助诊断算法和检测技术，为CHD-PAH寻找新的筛查方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 961,
-                "end_char": 1012
+                "start_char": 2511,
+                "end_char": 2533
               },
               "version": "0fdfca6bc6fa1d439bbb"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-23866d98dd4a",
-          "name": "确诊方法不便早期筛查",
-          "desc": "目前仅在发现先心病后行超声或右心导管检查诊断肺动脉高压，不便在排查和筛查中早期发现PAH患者。",
+          "id": "item-1b51905d8154",
+          "name": "现有确诊方法不便早期筛查PAH",
+          "desc": "超声或右心导管检查",
           "evidence": [
             {
               "quote": "目前仅在发现先心病后，行超声检查或行右心导管检查来诊断肺动脉高压，此确诊方法不便在排查和筛查中早期发现PAH患者",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 757,
                 "end_char": 812
-              },
-              "version": "0fdfca6bc6fa1d439bbb"
-            }
-          ]
-        },
-        {
-          "id": "item-d86aae4045c0",
-          "name": "肺高压心音特征需机器识别",
-          "desc": "预实验证实先心病相关肺动脉高压患者肺动脉瓣区心音图有明显特征，需通过AI识别。",
-          "evidence": [
-            {
-              "quote": "在预实验中证实先心病相关肺动脉高压患者肺动脉瓣区心音图有明显特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 854,
-                "end_char": 885
               },
               "version": "0fdfca6bc6fa1d439bbb"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-27f4bee3e98e",
-          "name": "心音AI学习与CHD-PAH数据库",
-          "desc": "通过提取心音进行人工智能学习实现CHD机器辅助诊断，并建立CHD-PAH病例数据库。",
-          "evidence": [
-            {
-              "quote": "课题组通过提取心音进行人工智能学习，可以对CHD实现机器辅助诊断",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 821,
-                "end_char": 852
-              },
-              "version": "0fdfca6bc6fa1d439bbb"
-            }
-          ]
-        },
-        {
-          "id": "item-37234f3b5ed9",
-          "name": "时频与深度融合特征分类",
-          "desc": "使用混合时频域特征和深度学习特征的融合特征，并采用v-SVM、KNN、AdaBoost及XGBoost等方法进行分类。",
+          "id": "item-32de8c954ebc",
+          "name": "融合时频域与深度学习特征的XGBoost心音分类",
+          "desc": "心音分割扩充数据集",
           "evidence": [
             {
               "quote": "通过使用混合了时频域特征和深度学习特征的融合特征，显示了能够反映不同方法性能的受试者工作特征曲线(ROC曲线)，其中显示了本研究的关于v-SVM、KNN、AdaBoost及XGBoost方法的ROC曲线",
@@ -124,7 +81,8 @@
               },
               "version": "0fdfca6bc6fa1d439bbb"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b02d8d5db05d",
-          "name": "XGBoost分类性能最优",
-          "desc": "XGBoost方案ROC曲线比KNN和AdaBoost更接近左上角，说明该方法分类性能更好。",
-          "evidence": [
-            {
-              "quote": "XGBoost方案的ROC曲线比KNN和AdaBoost更接近左上角，说明该方法的分类性能比其他方法更好",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3114,
-                "end_char": 3165
-              },
-              "version": "0fdfca6bc6fa1d439bbb"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-cf52aa073a15",
-          "name": "二分法准确率87.80%三分法88.61%",
-          "desc": "该算法在二分法测试集准确率为87.80%，在三分法测试集准确率为88.61%，证明可实现无创初步分类诊断。",
+          "id": "item-ec390cbffe3d",
+          "name": "XGBoost分类准确率",
+          "desc": "二分类87.80%，三分类88.61%",
           "evidence": [
             {
               "quote": "该算法在二分法测试集上的准确率为87.80%，在三分法测试集上的准确率为88.61%",
@@ -164,72 +105,386 @@
               "version": "0fdfca6bc6fa1d439bbb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-b5d79b24ad20",
-          "name": "心音分割与分类算法系列成果",
-          "desc": "提出多特征输入与注意力机制神经网络的心音分割算法等系列成果。",
+          "id": "item-0d8bb6975ee2",
+          "name": "CHD-PAH心音数据集",
+          "desc": "每患者5个20秒心音样本",
           "evidence": [
             {
-              "quote": "A novel heart sound segmentation algorithm via multi-feature input and neural network with attention mechanism",
+              "quote": "对于每个患者，我们有五个相关的样本数据，每个心音样本持续20秒，并可能包含20到33个心脏周期",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 4235,
-                "end_char": 4344
+                "start_char": 2939,
+                "end_char": 2985
               },
               "version": "0fdfca6bc6fa1d439bbb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4df2baf83f47"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-23866d98dd4a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于时频组合特征与自适应模糊神经网络的心音分类算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪琴;杨宏波;潘家华;田英杰;郭涛;王威廉",
+      "id": "out-755bfd7f2969",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于时频组合特征与自适应模糊神经网络的心音分类算法 — 汪琴;杨宏波;潘家华;田英杰;郭涛;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3276,
+            "end_char": 3331
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-23866d98dd4a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-27f4bee3e98e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "可实时心率检测的远程心音采集系统设计",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "熊艾;赵征鹏;杨宏波;潘家华;孙柯;王威廉",
+      "id": "out-97721eb41a92",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 可实时心率检测的远程心音采集系统设计 — 熊艾;赵征鹏;杨宏波;潘家华;孙柯;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3336,
+            "end_char": 3384
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-37234f3b5ed9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b02d8d5db05d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于高阶统计量的心音特征提取与分类研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱燕琼;潘家华;杨宏波;王威廉",
+      "id": "out-93540b539373",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于高阶统计量的心音特征提取与分类研究 — 朱燕琼;潘家华;杨宏波;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3389,
+            "end_char": 3432
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-27f4bee3e98e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf52aa073a15"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FrFT-Bark 域特征提取与CNN残差收缩网络心音分类算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "樊庆玲;杨宏波;郭涛;张伟;王威廉",
+      "id": "out-db860f0d37cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FrFT-Bark 域特征提取与CNN残差收缩网络心音分类算法 — 樊庆玲;杨宏波;郭涛;张伟;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3437,
+            "end_char": 3494
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于TK能量算子和包络融合的心音分割算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张欣;孙 静;杨宏波;潘家华;郭涛;王威廉",
+      "id": "out-ce5b12446a67",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于TK能量算子和包络融合的心音分割算法 — 张欣;孙 静;杨宏波;潘家华;郭涛;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3499,
+            "end_char": 3549
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CRNN心音分类系统硬件加速及实现",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周李敏;孙静;杨宏波;潘家华;王威廉",
+      "id": "out-c3d9189031f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CRNN心音分类系统硬件加速及实现 — 周李敏;孙静;杨宏波;潘家华;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3554,
+            "end_char": 3598
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种可听呼吸音的新型听诊器",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨宏波;潘家华;郭涛;王威廉",
+      "id": "out-9ae252eeb114",
+      "evidence": [
+        {
+          "quote": "[专利] 一种可听呼吸音的新型听诊器 — 杨宏波;潘家华;郭涛;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3637
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于子带包络和卷积神经网络的心音分类算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王幸之;杨宏波;宗容;潘家华;王威廉",
+      "id": "out-214bddde7519",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于子带包络和卷积神经网络的心音分类算法 — 王幸之;杨宏波;宗容;潘家华;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3642,
+            "end_char": 3689
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于 APSoC 的异构实时心音心电采集系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙柯;潘家华;姚如苹;张强;陈成;杨宏波;王威廉",
+      "id": "out-d7f7c91436ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于 APSoC 的异构实时心音心电采集系统 — 孙柯;潘家华;姚如苹;张强;陈成;杨宏波;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3694,
+            "end_char": 3749
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of time-frequency domain and deep learning fusion feature in non-invasive diagnosis of congenital heart disease-related pulmonary arterial hypertension",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pengyue Ma;Bingbing Ge;Hongbo Yang;Tao Guo;Jiahua Pan;Weilian Wang",
+      "id": "out-be8e68b43bd3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of time-frequency domain and deep learning fusion feature in non-invasive diagnosis of congenital heart disease-related pulmonary arterial hypertension — Pengyue Ma;Bingbing Ge;Hongbo Yang;Tao Guo;Jiahua Pan;Weilian Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 3993
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于MFCC与GFCC混合特征的先心病心音分类研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈 成;潘家华;孙 静;杨宏波",
+      "id": "out-35b88f9b25cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于MFCC与GFCC混合特征的先心病心音分类研究 — 陈 成;潘家华;孙 静;杨宏波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3999,
+            "end_char": 4048
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of Artificial Intelligence-Based  Auxiliary Diagnosis in Congenital Heart Disease  Screening",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongbo Yang;Jiahua Pan;Weilian Wang;Tao Guo;Tengyuan Ma",
+      "id": "out-881e77f88122",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of Artificial Intelligence-Based  Auxiliary Diagnosis in Congenital Heart Disease  Screening — Hongbo Yang;Jiahua Pan;Weilian Wang;Tao Guo;Tengyuan Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4054,
+            "end_char": 4222
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel heart sound segmentation algorithm via multi-feature input and neural network with attention mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guo;Hongbo Yang;Tao Guo;Jiahua Pan;Weilian Wang",
+      "id": "out-cdbbf03e1b7d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel heart sound segmentation algorithm via multi-feature input and neural network with attention mechanism — Yang Guo;Hongbo Yang;Tao Guo;Jiahua Pan;Weilian Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4228,
+            "end_char": 4399
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "先心病心音CNN分类算法的硬件加速",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "粟炜;宗容;张强;奎皓然;杨宏波;王威廉",
+      "id": "out-741f41c4f4b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 先心病心音CNN分类算法的硬件加速 — 粟炜;宗容;张强;奎皓然;杨宏波;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4405,
+            "end_char": 4451
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进 MFCC 与 IMFCC 的心音分类研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张 伟;杨宏波;潘家华;王威廉",
+      "id": "out-97a56d3ed5a6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于改进 MFCC 与 IMFCC 的心音分类研究 — 张 伟;杨宏波;潘家华;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4457,
+            "end_char": 4506
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于改进梅尔频谱倒谱系数和集成决策 网络的心音分类算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王原林;孙静;杨宏波;郭涛;潘家华;王威廉",
+      "id": "out-00844d680420",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于改进梅尔频谱倒谱系数和集成决策 网络的心音分类算法 — 王原林;孙静;杨宏波;郭涛;潘家华;王威廉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4512,
+            "end_char": 4569
+          },
+          "version": "0fdfca6bc6fa1d439bbb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

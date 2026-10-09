@@ -2,15 +2,20 @@
   "doc_id": "1e97789e1e7d28d9eea5",
   "version": "3b948f8a1cd6d0bd2cd5",
   "source_hash": "d724b4062d5dcbeca4e7ace840816c36c9bea0ff67fbf13d2a0e31543763e2db",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.038453+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.583946+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b697ccf9c5ca",
-          "name": "肾部分切除术缺血再灌注损伤",
-          "desc": "肾部分切除术中肾脏缺血再灌注损伤导致术后急慢性肾损害，限定缺血时间影响复杂术式开展。",
+          "id": "item-c1293fe58a8f",
+          "name": "肾脏缺血再灌注损伤药物远期疗效评估",
+          "desc": "无创评估IRI远期损害",
           "evidence": [
             {
-              "quote": "肾部分切除术中肾脏缺血再灌注损伤（IRI）导致术后急、慢性肾损害，限定缺血时间影响了复杂术式的开展",
+              "quote": "探索无创性评估肾脏缺血再灌注（IRI）远期损害的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 718
+                "start_char": 2867,
+                "end_char": 2892
               },
               "version": "3b948f8a1cd6d0bd2cd5"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3833bb1f051f",
-          "name": "无创监测远期肾损害困难",
-          "desc": "筛选IRI治疗药物是热点，但无创性监测单侧肾远期肾损害是难点。",
+          "id": "item-77e635f83b41",
+          "name": "无创监测单侧肾远期肾损害困难",
+          "desc": "是当前难点",
           "evidence": [
             {
               "quote": "筛选IRI治疗药物是当前热点，无创性监测单侧肾远期肾损害是难点",
@@ -51,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 720,
                 "end_char": 750
-              },
-              "version": "3b948f8a1cd6d0bd2cd5"
-            }
-          ]
-        },
-        {
-          "id": "item-de482eeb01df",
-          "name": "慢性肾病IRI耐受性未知",
-          "desc": "慢性肾病患者是否对肾IRI具耐受性有待研究。",
-          "evidence": [
-            {
-              "quote": "再者，慢性肾病患者是否对肾IRI具耐受性有待研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 752,
-                "end_char": 775
               },
               "version": "3b948f8a1cd6d0bd2cd5"
             }
@@ -79,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f2e563ce65e1",
-          "name": "多模态MRI影像组学连续监测",
-          "desc": "构建肾脏热缺血动物模型，利用多模态MRI影像组学连续监测IRI远期变化。",
+          "id": "item-445bc4e970c3",
+          "name": "多模态MRI监测IRI",
+          "desc": "T2WI、IVIM、BOLD、23Na-MRI和DCE",
           "evidence": [
             {
-              "quote": "利用基于多模态MRI的影像组学，连续监测正常及肾间质纤维化大鼠的IRI远期变化",
+              "quote": "进行肾脏多模态 MRI 检查（T2WI、IVIM、BOLD、23Na-MRI和DCE）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 908,
-                "end_char": 946
-              },
-              "version": "3b948f8a1cd6d0bd2cd5"
-            }
-          ]
-        },
-        {
-          "id": "item-ac88e0a8ff6c",
-          "name": "IRI远期损害预测模型",
-          "desc": "评估不同机制保护性药物的远期疗效，建立IRI远期损害预测模型。",
-          "evidence": [
-            {
-              "quote": "评估不同机制保护性药物对于IRI的远期疗效，建立IRI远期损害的预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 948,
-                "end_char": 983
-              },
-              "version": "3b948f8a1cd6d0bd2cd5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b4e170dd8e06",
-          "name": "BOLD与IVIM区分损伤肾",
-          "desc": "注射呋塞米前后BOLD和IVIM参数变化可区分健康肾脏与缺血再灌注损伤肾脏。",
-          "evidence": [
-            {
-              "quote": "发现注射呋塞米前、后BOLD和IVIM参数指标的变化可以区分健康肾脏与缺血再灌注损伤肾脏",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3118,
-                "end_char": 3161
+                "start_char": 3027,
+                "end_char": 3069
               },
               "version": "3b948f8a1cd6d0bd2cd5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-7badb22e4372",
-          "name": "DCE计算的Kcl为最稳定指标",
-          "desc": "最稳定精确的影像学指标为基于DCE计算的Kcl，钆喷酸葡胺剂量应限制≤0.04 mmol/kg。",
+          "id": "item-edb7c2d713b1",
+          "name": "基于DCE的滤过分数Kcl",
+          "desc": "最稳定和精确的影像学指标",
           "evidence": [
             {
               "quote": "最稳定和精确的影像学指标为基于DCE计算的Kcl",
@@ -148,12 +99,35 @@
               "version": "3b948f8a1cd6d0bd2cd5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-c8303fce3434",
-          "name": "肾纤维化对IRI具耐受性",
-          "desc": "肾间质纤维化大鼠对30min以内热缺血的IRI具有耐受性，对术中热缺血时间设定有指导意义。",
+          "id": "item-0b328e70d61e",
+          "name": "CEST-MRI与蛋白质组学",
+          "desc": "揭示CEST效应对应的蛋白质通路",
+          "evidence": [
+            {
+              "quote": "利用 CEST-MRI与蛋白质组学揭示了可逆急性尿路梗阻模型中CEST效应在体内变化所对应的蛋白质通路",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3746,
+                "end_char": 3796
+              },
+              "version": "3b948f8a1cd6d0bd2cd5"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-d6df285dd9a8",
+          "name": "肾间质纤维化大鼠热缺血耐受",
+          "desc": "30min之内的IRI具有耐受性",
           "evidence": [
             {
               "quote": "肾间质纤维化大鼠肾脏对于热缺血时间30min之内的IRI具有耐受性",
@@ -165,55 +139,67 @@
               "version": "3b948f8a1cd6d0bd2cd5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-d2fe34e2a1dc",
+          "name": "利多卡因联合丙泊酚肾保护",
+          "desc": "对肾纤维化合并IRI模型更优",
+          "evidence": [
+            {
+              "quote": "利多卡因联合丙泊酚的麻醉方案通过抗炎、抗氧化的协同作用，对肾纤维化合并 IRI 模型展现出更优的肾保护效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3535,
+                "end_char": 3587
+              },
+              "version": "3b948f8a1cd6d0bd2cd5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b697ccf9c5ca"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3833bb1f051f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3833bb1f051f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f2e563ce65e1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f2e563ce65e1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7badb22e4372"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac88e0a8ff6c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c8303fce3434"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肾脏功能 MRI 的基础与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙浩然",
+      "id": "out-a912801ac2f7",
+      "evidence": [
+        {
+          "quote": "[会议论文] 肾脏功能 MRI 的基础与应用 — 孙浩然",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3876,
+            "end_char": 3903
+          },
+          "version": "3b948f8a1cd6d0bd2cd5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "会议论文": {
+        "listed": 3,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

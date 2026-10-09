@@ -2,15 +2,20 @@
   "doc_id": "a3c7dcf09a809b4143f2",
   "version": "afcfe6c4ab67bdd627b5",
   "source_hash": "f0c6ac7b671d07cd3e87306d11bb020d0d946e9b4b9b4aae9f2e7185a1dd06ee",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.840953+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 4
+  },
+  "generated_at": "2026-10-09T10:50:37.033283+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-b42fbc5ef9f8",
           "name": "疑难生物物证法医精准鉴识",
-          "desc": "面向微量、降解和混合等疑难生物物证的精准个体识别，整合多组学与人工智能开展法医鉴识研究。",
+          "desc": "微量、降解和混合检材",
           "evidence": [
             {
-              "quote": "实现对微量、降解和混合等疑难生物物证进行精准个体识别，一直是法医学亟需解决的关键科学问题",
+              "quote": "法医检验所面临的检材往往是微量、降解和混合等疑难生物物证",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 710
+                "start_char": 2489,
+                "end_char": 2516
               },
               "version": "afcfe6c4ab67bdd627b5"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a1c4a51637fc",
-          "name": "现场检材多为微量降解混合疑难物证",
-          "desc": "受反侦查意识、案件性质与现场环境复杂性影响，法医检验面临的检材往往是微量、降解和混合等疑难生物物证。",
+          "id": "item-6cbe5688faa7",
+          "name": "疑难生物物证精准个体识别",
+          "desc": "法医学亟需解决的关键科学问题",
           "evidence": [
             {
-              "quote": "由于犯罪嫌疑人的反侦查意识、案件性质和案发现场环境的复杂性等因素使得法医检验所面临的检材往往是微量、降解和混合等疑难生物物证",
+              "quote": "对疑难生物物证进行精准个体识别，一直是法医学亟需解决的关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2455,
-                "end_char": 2516
+                "start_char": 2518,
+                "end_char": 2550
               },
               "version": "afcfe6c4ab67bdd627b5"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf8993428886",
-          "name": "多组学标记联合AI的个体识别体系",
-          "desc": "整合多组学和人工智能分析方法，挖掘适用于法医同一认定和混合样本溯源的多组学分子标记，构建多组学标记共检测方法与法庭证据解析体系。",
+          "id": "item-5b0b436d4f30",
+          "name": "基于甲基化的年龄推断模型",
+          "desc": "多组学标记联合人工智能",
           "evidence": [
             {
-              "quote": "本课题创新性地整合多组学标记与人工智能分析对疑难生物物证进行法医个体精准识别证据解析",
+              "quote": "其中开发的基于甲基化的年龄推断模型，实现了不同检材年龄推断平均绝对误差低至1.16岁",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2615,
-                "end_char": 2656
+                "start_char": 2719,
+                "end_char": 2760
               },
               "version": "afcfe6c4ab67bdd627b5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7d9ede18bae9",
+          "name": "基于转录组的体液溯源与混合斑解析体系",
+          "desc": "可检出低至1%目标体液成分",
+          "evidence": [
+            {
+              "quote": "其中建立的基于转录组的体液溯源与混合斑解析体系，突破了混合检材鉴识瓶颈，可检出低至1%的目标体液成分，并进行个体识别",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2814,
+                "end_char": 2871
+              },
+              "version": "afcfe6c4ab67bdd627b5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4e7ee13ec9cb",
+          "name": "尸体分解微生物绝对定量",
+          "desc": "降低死亡时间推断误差",
+          "evidence": [
+            {
+              "quote": "首次以绝对定量技术描绘了尸体分解微生物的真实动态，并将死亡时间推断误差由4.05天降至2.21天",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2921,
+                "end_char": 2968
+              },
+              "version": "afcfe6c4ab67bdd627b5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,2251 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc2097193179",
-          "name": "甲基化年龄推断平均绝对误差低至1.16岁",
-          "desc": "构建系列法医年龄与遗留时间推断模型，基于甲基化的年龄推断模型平均绝对误差低至1.16岁；转录组体液溯源体系可检出低至1%的目标体液成分；死亡时间推断误差由4.05天降至2.21天。",
+          "id": "item-2859bae5099c",
+          "name": "年龄推断平均绝对误差",
+          "desc": "1.16岁",
           "evidence": [
             {
-              "quote": "开发的基于甲基化的年龄推断模型，实现了不同检材年龄推断平均绝对误差低至1.16岁",
+              "quote": "实现了不同检材年龄推断平均绝对误差低至1.16岁",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2721,
+                "start_char": 2737,
                 "end_char": 2760
               },
               "version": "afcfe6c4ab67bdd627b5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2a83d02566a6",
+          "name": "死亡时间推断误差降低",
+          "desc": "4.05天降至2.21天",
+          "evidence": [
+            {
+              "quote": "并将死亡时间推断误差由4.05天降至2.21天",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2946,
+                "end_char": 2968
+              },
+              "version": "afcfe6c4ab67bdd627b5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b42fbc5ef9f8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a1c4a51637fc"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2025第十一届“创青春”山西青年创新创业大赛二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘毅恒;范浩亮;严江伟",
+      "id": "out-69bd2b9f7684",
+      "evidence": [
+        {
+          "quote": "[奖励] 2025第十一届“创青春”山西青年创新创业大赛二等奖 — 刘毅恒;范浩亮;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3226,
+            "end_char": 3270
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a1c4a51637fc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf8993428886"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Forensic analysis of a parthenogenetic 46, XX/46, XY congenital chimera: A case report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Linlin;Li Chenxia;Xiao Yuntian;Ren Wenyan;Ma Shujuan;Zhang Jingjing;Yan Jiangwei",
+      "id": "out-2780a261f13f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Forensic analysis of a parthenogenetic 46, XX/46, XY congenital chimera: A case report — Gao Linlin;Li Chenxia;Xiao Yuntian;Ren Wenyan;Ma Shujuan;Zhang Jingjing;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3275,
+            "end_char": 3454
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf8993428886"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc2097193179"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于cas9捕获结合纳米孔测序富集法医个体识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;杨婷婷;张家榕;赵梦阳;胡文静;石林玉;李俊丽;袁飘",
+      "id": "out-ab714d857900",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于cas9捕获结合纳米孔测序富集法医个体识别方法 — 严江伟;杨婷婷;张家榕;赵梦阳;胡文静;石林玉;李俊丽;袁飘",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3459,
+            "end_char": 3523
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantifying the relative contributions of bacterial and fungal communities to carcass decomposition using a quantitative microbiome profiling approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang J;Yu D;Zhang L;Wang T;Zhang L;Yan J",
+      "id": "out-eb64ccf8f9c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantifying the relative contributions of bacterial and fungal communities to carcass decomposition using a quantitative microbiome profiling approach — Zhang J;Yu D;Zhang L;Wang T;Zhang L;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3528,
+            "end_char": 3728
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "山西省自然科学二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张更谦;李泽琴;刘晋玎;刘紫东;严江伟;贠克明",
+      "id": "out-1f28abb11a96",
+      "evidence": [
+        {
+          "quote": "[奖励] 山西省自然科学二等奖 — 张更谦;李泽琴;刘晋玎;刘紫东;严江伟;贠克明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3733,
+            "end_char": 3773
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rapid sequencing and identification for 18-STRs long amplicon panel using portable devices and nanopore sequencer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jiarong;Yang Tingting;Xie Zihan;Ren Zilin;Shi Linyu;Yan Jiang-wei;Ni Ming",
+      "id": "out-933a2f30df99",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rapid sequencing and identification for 18-STRs long amplicon panel using portable devices and nanopore sequencer — Zhang Jiarong;Yang Tingting;Xie Zihan;Ren Zilin;Shi Linyu;Yan Jiang-wei;Ni Ming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3979
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DNA methylation-based age prediction with bloodstains using pyrosequencing and random forest regression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Fenglong;Qian Jialin;Qu Hongzhu;Ji Zhimin;Li Junli;Hu Wenjing;Cheng Feng;Fang Xiangdong;Yan Jiangwei",
+      "id": "out-466b4f46f941",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DNA methylation-based age prediction with bloodstains using pyrosequencing and random forest regression — Yang Fenglong;Qian Jialin;Qu Hongzhu;Ji Zhimin;Li Junli;Hu Wenjing;Cheng Feng;Fang Xiangdong;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3984,
+            "end_char": 4201
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "高等学校医药类虚拟仿真实验教学项目作品展示全国一等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;范浩亮",
+      "id": "out-7209f0c310d4",
+      "evidence": [
+        {
+          "quote": "[奖励] 高等学校医药类虚拟仿真实验教学项目作品展示全国一等奖 — 严江伟;范浩亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4206,
+            "end_char": 4246
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "用于 STR 精细化分型的高通量测序复合扩增体系及其应用和产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;赵梦阳;石林玉;陈静;胡文静;周浒云;许晶晶",
+      "id": "out-9108f5d358d6",
+      "evidence": [
+        {
+          "quote": "[专利] 用于 STR 精细化分型的高通量测序复合扩增体系及其应用和产品 — 严江伟;赵梦阳;石林玉;陈静;胡文静;周浒云;许晶晶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4251,
+            "end_char": 4315
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DLRAPom: A hybrid pipeline of optimized-XGBoost guided integrative multiomics analysis for identifying targetable disease-related lncRNA-miRNA-mRNA regulatory axes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shen Chen;Li Huiyu;Li Miao;Niu Yu;Liu Jing;Zhu Li;Gui Hongsheng;Han Wei;Wang Huiying;Zhang Wenpei;Wang Xiaochen;Luo Xiao;Sun Yu;Yan Jiangwei;Guan Fanglin",
+      "id": "out-879b532755c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DLRAPom: A hybrid pipeline of optimized-XGBoost guided integrative multiomics analysis for identifying targetable disease-related lncRNA-miRNA-mRNA regulatory axes — Shen Chen;Li Huiyu;Li Miao;Niu Yu;Liu Jing;Zhu Li;Gui Hongsheng;Han Wei;Wang Huiying;Zhang Wenpei;Wang Xiaochen;Luo Xiao;Sun Yu;Yan Jiangwei;Guan Fanglin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4321,
+            "end_char": 4646
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Body fluids should be identified before estimating the time since deposition (TsD) in microbiome-based stain analyses for forensics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jun;Yu Daijing;Wang Tian;Gao Niu;Shi Linyu;Wang Yaya;Huo Yumei;Ji Zhimin;Li Junli;Zhang Xiaomeng;Zhang Liwei;Yan Jiangwei",
+      "id": "out-87d8f5c19b28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Body fluids should be identified before estimating the time since deposition (TsD) in microbiome-based stain analyses for forensics — Zhang Jun;Yu Daijing;Wang Tian;Gao Niu;Shi Linyu;Wang Yaya;Huo Yumei;Ji Zhimin;Li Junli;Zhang Xiaomeng;Zhang Liwei;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4652,
+            "end_char": 4919
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Forensic STR and SNP Genotyping of Formalin-Fixed Skeleton Samples With Illumina's ForenSeq System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Tingting;Gao Linlin;Zhang Jiarong;Xie Wei;Hu Wenjing;Yan Jiangwei",
+      "id": "out-dde19d28c3af",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Forensic STR and SNP Genotyping of Formalin-Fixed Skeleton Samples With Illumina's ForenSeq System — Yang Tingting;Gao Linlin;Zhang Jiarong;Xie Wei;Hu Wenjing;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4925,
+            "end_char": 5102
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于法医亲子鉴定的长片段STR复合扩增体系及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;张家榕;杨婷婷;石林玉;赵梦阳;胡文静;袁飘;霍雨美",
+      "id": "out-3fe0df7ff395",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于法医亲子鉴定的长片段STR复合扩增体系及其应用 — 严江伟;张家榕;杨婷婷;石林玉;赵梦阳;胡文静;袁飘;霍雨美",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5108,
+            "end_char": 5172
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of Occupations in Different Populations Based on Skin Microbial Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang K;Zhang J;Yu D;Wang T;Zhang L;Zhao X;Su L;Yan J",
+      "id": "out-d0044ec29cc0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of Occupations in Different Populations Based on Skin Microbial Characteristics — Zhang K;Zhang J;Yu D;Wang T;Zhang L;Zhao X;Su L;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5178,
+            "end_char": 5334
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differential diagnosis of acute myocardial infarction based on plasma Exosomal MicroRNA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou P;Zhang J;Wu X;Zhang L;Liu Q;Xiong R;Wang Y;Li M;Wei R;Xu X;Meng D;Yu C;Yan J;Fang C",
+      "id": "out-e77de903b00c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differential diagnosis of acute myocardial infarction based on plasma Exosomal MicroRNA — Zhou P;Zhang J;Wu X;Zhang L;Liu Q;Xiong R;Wang Y;Li M;Wei R;Xu X;Meng D;Yu C;Yan J;Fang C",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5340,
+            "end_char": 5525
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AISNP标记组合与多维度祖源和地理推断模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;陈静;何光林;王萌鸽;赵梦阳",
+      "id": "out-459229c5106e",
+      "evidence": [
+        {
+          "quote": "[专利] AISNP标记组合与多维度祖源和地理推断模型 — 严江伟;陈静;何光林;王萌鸽;赵梦阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5531,
+            "end_char": 5578
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种月经血和外周血分类鉴别模型及其构建方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;余代静;张君;高妞",
+      "id": "out-bd42d73e61dc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种月经血和外周血分类鉴别模型及其构建方法和应用 — 严江伟;余代静;张君;高妞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5584,
+            "end_char": 5628
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "生物入侵与生态安全",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;王江峰;许永玉",
+      "id": "out-7a4e2028684b",
+      "evidence": [
+        {
+          "quote": "[专著] 生物入侵与生态安全 — 严江伟;王江峰;许永玉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5634,
+            "end_char": 5661
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种防止核酸扩增中气溶胶污染的体系及其方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘枭男;周浒云;胡文静;张佳幸;严江伟",
+      "id": "out-9f52c9fecd9f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种防止核酸扩增中气溶胶污染的体系及其方法与应用 — 刘枭男;周浒云;胡文静;张佳幸;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5667,
+            "end_char": 5717
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Distinguishing between monozygotic twins' blood samples through immune repertoire sequencing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Deping Meng;Peng Zhou;Min Li;Jie Xu;Linchao Lu;Yilin Guo;Chunjiang Yu;Yuliu Xu;Xiaoqun Xu;Fang Chen;Yan Jiangwei",
+      "id": "out-6e75f49528a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Distinguishing between monozygotic twins' blood samples through immune repertoire sequencing — Deping Meng;Peng Zhou;Min Li;Jie Xu;Linchao Lu;Yilin Guo;Chunjiang Yu;Yuliu Xu;Xiaoqun Xu;Fang Chen;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5723,
+            "end_char": 5936
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DNA and protein analyses of hair in forensic genetics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Zhiyong;Halimureti ·Simayijiang;Qiangwei Wang;Jingyi Yang;Hongyu Sun;Riga Wu;Yan Jiangwei",
+      "id": "out-4e10a9e084a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DNA and protein analyses of hair in forensic genetics — Liu Zhiyong;Halimureti ·Simayijiang;Qiangwei Wang;Jingyi Yang;Hongyu Sun;Riga Wu;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5942,
+            "end_char": 6097
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The mechanisms and application prospects of exosomes in acute myocardial infarction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou P;Zhang J;Zhang L;Yan J;Fang C",
+      "id": "out-80fcedb65f38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The mechanisms and application prospects of exosomes in acute myocardial infarction — Zhou P;Zhang J;Zhang L;Yan J;Fang C",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6103,
+            "end_char": 6230
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a novel forensic age estimation strategy for aged blood samples by combining piRNA and miRNA markers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fang Chen;Zhou Peng;Li Ran;Guo Jinghan;Qiu Huixian;Zhang Jingjuan;Li Min;Yu Chunjiang;Meng Deping;Xu Xiaoqun;Liu Xu;Guan Di;Yan Jiangwei",
+      "id": "out-9f0f09ea25bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a novel forensic age estimation strategy for aged blood samples by combining piRNA and miRNA markers — Fang Chen;Zhou Peng;Li Ran;Guo Jinghan;Qiu Huixian;Zhang Jingjuan;Li Min;Yu Chunjiang;Meng Deping;Xu Xiaoqun;Liu Xu;Guan Di;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6236,
+            "end_char": 6496
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of body fluid sources based on microbiome antibiotic resistance genes using high-throughput qPCR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu D;Wang T;Zhang L;Gao N;Huang Y;Zhang J;Yan J",
+      "id": "out-eb4cc2bbb3c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of body fluid sources based on microbiome antibiotic resistance genes using high-throughput qPCR — Yu D;Wang T;Zhang L;Gao N;Huang Y;Zhang J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6502,
+            "end_char": 6669
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Estimating the time since deposition (TsD) in saliva stains using temporal changes in microbial markers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaqi Wang;Xiaojuan Cheng;Jun Zhang;Zidong Liu;Feng Cheng;Jiangwei Yan;Gengqian Zhang",
+      "id": "out-7dae4ec2fd45",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Estimating the time since deposition (TsD) in saliva stains using temporal changes in microbial markers — Jiaqi Wang;Xiaojuan Cheng;Jun Zhang;Zidong Liu;Feng Cheng;Jiangwei Yan;Gengqian Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6675,
+            "end_char": 6872
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the postmortem interval of burial cadavers based on microbial community succession",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jun;Wang Mengchun;Qi Xiaoqin;Shi Linyu;Zhang Jiarong;Zhang Xiaomeng;Yang Tingting;Ren Jianbo;Liu Feng;Zhang Gengqian;Yan Jiangwei",
+      "id": "out-3668fa30fdd4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the postmortem interval of burial cadavers based on microbial community succession — Zhang Jun;Wang Mengchun;Qi Xiaoqin;Shi Linyu;Zhang Jiarong;Zhang Xiaomeng;Yang Tingting;Ren Jianbo;Liu Feng;Zhang Gengqian;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6878,
+            "end_char": 7115
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国国际大学生创新大赛(2024),山西赛区金奖(教育部A类)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范浩亮;严江伟;贠克明;杨冰月;牛益睿;贾亿维;刘欣宇;周宇轩;杨慧茹;郑琦;李凯鹤;张若兰;余凌;杨正琰;刘金岁月;刘毅恒",
+      "id": "out-30bcb158c6f6",
+      "evidence": [
+        {
+          "quote": "[奖励] 中国国际大学生创新大赛(2024),山西赛区金奖(教育部A类) — 范浩亮;严江伟;贠克明;杨冰月;牛益睿;贾亿维;刘欣宇;周宇轩;杨慧茹;郑琦;李凯鹤;张若兰;余凌;杨正琰;刘金岁月;刘毅恒",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7121,
+            "end_char": 7221
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于一步建库的多重 SNP 联合微单倍型的扩增体系及构建方法、产品和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;石林玉;范浩亮;赵梦阳;许晶晶;张家榕;丰晓晓;袁飘;韦安婕;张欣懿",
+      "id": "out-255e1818c20e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于一步建库的多重 SNP 联合微单倍型的扩增体系及构建方法、产品和应用 — 严江伟;石林玉;范浩亮;赵梦阳;许晶晶;张家榕;丰晓晓;袁飘;韦安婕;张欣懿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7227,
+            "end_char": 7310
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种个体生物学年龄预测的方法及检测试剂、试剂盒",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;高妞;李俊丽;刘晋玎;杨丰隆;余代静;霍雨美;冀志敏;邢杨峰",
+      "id": "out-7fafca6ff71c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种个体生物学年龄预测的方法及检测试剂、试剂盒 — 严江伟;高妞;李俊丽;刘晋玎;杨丰隆;余代静;霍雨美;冀志敏;邢杨峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7316,
+            "end_char": 7380
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "法医物证司法鉴定实务",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;李成涛;孙宏钰;谢建辉",
+      "id": "out-3fb937420639",
+      "evidence": [
+        {
+          "quote": "[专著] 法医物证司法鉴定实务 — 严江伟;李成涛;孙宏钰;谢建辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7386,
+            "end_char": 7418
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiplex lateral flow biosensor based on isothermal amplification for on-site body fluid identification by microbial signature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaomeng Zhang;Huyun Zhou;Wenjing Hu;Jiaxing Zhang;Jingjing Xu;Xiaonan Liu;Jiangwei Yan",
+      "id": "out-89dd3c2489dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiplex lateral flow biosensor based on isothermal amplification for on-site body fluid identification by microbial signature — Xiaomeng Zhang;Huyun Zhou;Wenjing Hu;Jiaxing Zhang;Jingjing Xu;Xiaonan Liu;Jiangwei Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7424,
+            "end_char": 7647
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于快速核酸扩增分析系统的猪源性成分检测的样本预处理方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;霍雨美;郭相杰;刘晋玎;高妞;张晓萌;王甜",
+      "id": "out-766a3cc7fa0d",
+      "evidence": [
+        {
+          "quote": "[专利] 基于快速核酸扩增分析系统的猪源性成分检测的样本预处理方法和应用 — 严江伟;霍雨美;郭相杰;刘晋玎;高妞;张晓萌;王甜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7653,
+            "end_char": 7716
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genetic history and biological adaptive landscape of the Tujia people inferred from shared haplotypes and alleles",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Jing;Wang Mengge;Duan Shuhan;Yang Qingxin;Liu Yan;Zhao Mengyang;Sun Qiuxia;Li Xiangping;Sun Yuntao;Su Haoran;Wang Zhiyong;Huang Yuguo;Zhong Jie;Feng Yuhang;Zhang Xiaomeng;He Guanglin;Yan Jiangwei",
+      "id": "out-b7796b64182e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genetic history and biological adaptive landscape of the Tujia people inferred from shared haplotypes and alleles — Chen Jing;Wang Mengge;Duan Shuhan;Yang Qingxin;Liu Yan;Zhao Mengyang;Sun Qiuxia;Li Xiangping;Sun Yuntao;Su Haoran;Wang Zhiyong;Huang Yuguo;Zhong Jie;Feng Yuhang;Zhang Xiaomeng;He Guanglin;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7722,
+            "end_char": 8044
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "首届全国研究生学术创新与成果转化大赛铜奖(基于血液mtDNA的年龄推断新方法探究)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文佳佳;赵锦飞;禹雪;刘若涵;贾晓珂;方晨;严江伟;周鹏",
+      "id": "out-59ba0f6730bd",
+      "evidence": [
+        {
+          "quote": "[奖励] 首届全国研究生学术创新与成果转化大赛铜奖(基于血液mtDNA的年龄推断新方法探究) — 文佳佳;赵锦飞;禹雪;刘若涵;贾晓珂;方晨;严江伟;周鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8050,
+            "end_char": 8126
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习技术通过精液miRNA推断个体年龄",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何星鸿;冯继乾;张恒溢;严江伟",
+      "id": "out-14ffee842d8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于机器学习技术通过精液miRNA推断个体年龄 — 何星鸿;冯继乾;张恒溢;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8132,
+            "end_char": 8179
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2025第四届全国仿真创新应用大赛一等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范浩亮;张欣懿;刘毅恒;严江伟",
+      "id": "out-d3ea5b948eae",
+      "evidence": [
+        {
+          "quote": "[奖励] 2025第四届全国仿真创新应用大赛一等奖 — 范浩亮;张欣懿;刘毅恒;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8185,
+            "end_char": 8227
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-destructive identification of forensically relevant body fluid stains using a portable electronic nose: A pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu D;Gao N;Wang T;Zhang L;Zhang J;Yan J",
+      "id": "out-71cebcd80927",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-destructive identification of forensically relevant body fluid stains using a portable electronic nose: A pilot study — Yu D;Gao N;Wang T;Zhang L;Zhang J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8233,
+            "end_char": 8402
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2025司法鉴定理论与实践研讨会优秀论文",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周浒云;胡文静;严江伟;刘枭男",
+      "id": "out-3c2d51d7b9dd",
+      "evidence": [
+        {
+          "quote": "[奖励] 2025司法鉴定理论与实践研讨会优秀论文 — 周浒云;胡文静;严江伟;刘枭男",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8408,
+            "end_char": 8450
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Viral community succession during cadaver decomposition and its potential for estimating postmortem intervals",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu D;Mai Y;Zhang L;Xiao Y;Zhang M;Shao B;Chen B;Wang T;Zhang K;Zhang L;Gao N;Zhang J;Yan J",
+      "id": "out-97f6dbeb8c1b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Viral community succession during cadaver decomposition and its potential for estimating postmortem intervals — Yu D;Mai Y;Zhang L;Xiao Y;Zhang M;Shao B;Chen B;Wang T;Zhang K;Zhang L;Gao N;Zhang J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8456,
+            "end_char": 8664
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Lateral Flow Biosensor Based on Isothermal Amplification for Visual Identification of Species and Sex from Bloodstain",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Huyun;Hu Wenjing;Zhang Jiaxing;Ma Ting;Liu Xiaonan;Yan Jiangwei",
+      "id": "out-e42a0da1e448",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Lateral Flow Biosensor Based on Isothermal Amplification for Visual Identification of Species and Sex from Bloodstain — Zhou Huyun;Hu Wenjing;Zhang Jiaxing;Ma Ting;Liu Xiaonan;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8670,
+            "end_char": 8866
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Roles of Myokines and Muscle-derived extracellular vesicles in musculoskeletal deterioration under disuse conditions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jie;Gao Yunfang;Yan Jiangwei",
+      "id": "out-56f8604f9c33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Roles of Myokines and Muscle-derived extracellular vesicles in musculoskeletal deterioration under disuse conditions — Zhang Jie;Gao Yunfang;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8872,
+            "end_char": 9031
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "miRNA quantification based on hairpin probe-triggered isothermal amplification for bloodstain identification and age range prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjing Hu;Huyun Zhou;Xiaomen",
+      "id": "out-ebe34e60d4e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] miRNA quantification based on hairpin probe-triggered isothermal amplification for bloodstain identification and age range prediction — Wenjing Hu;Huyun Zhou;Xiaomen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9037,
+            "end_char": 9208
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "混合检材分析微单倍型复合扩增体系及构建及单倍型频率",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;石林玉;张更谦;王萌春;程凤;李万婷;张家榕;张晓梦",
+      "id": "out-81ca19e7606b",
+      "evidence": [
+        {
+          "quote": "[专利] 混合检材分析微单倍型复合扩增体系及构建及单倍型频率 — 严江伟;石林玉;张更谦;王萌春;程凤;李万婷;张家榕;张晓梦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9266,
+            "end_char": 9328
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习的法医微生物研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张立为;王甜;余代静;张君;严江伟",
+      "id": "out-b7442bb406bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于机器学习的法医微生物研究现状 — 张立为;王甜;余代静;张君;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9334,
+            "end_char": 9376
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Proteomic signature of aging in bloodstain samples: a preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao N;Yu D;Xu J;Hao J;Liu J;Yan J",
+      "id": "out-a76aac7ab8ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Proteomic signature of aging in bloodstain samples: a preliminary study — Gao N;Yu D;Xu J;Hao J;Liu J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9382,
+            "end_char": 9495
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "首届全国研究生学术创新与成果转化大赛铜奖(基于唾液miRNA和piRNA的同卵双胞胎鉴别方法研究)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "禹雪;周洋洋;王洪梅;方晨浠;贾晓珂;方晨;严江伟;李敏",
+      "id": "out-982bc3cfe1c9",
+      "evidence": [
+        {
+          "quote": "[奖励] 首届全国研究生学术创新与成果转化大赛铜奖(基于唾液miRNA和piRNA的同卵双胞胎鉴别方法研究) — 禹雪;周洋洋;王洪梅;方晨浠;贾晓珂;方晨;严江伟;李敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9501,
+            "end_char": 9585
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effects of polycyclic aromatic hydrocarbons on ecological assembly processes and co-occurrence patterns differ between soil bacterial and fungal communities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jun;Yu Daijing;Zhang Liwei;Wang Tian;Zhang Liuyaoxing;Wang Lei;Liu Aiqin;Yan Jiangwei",
+      "id": "out-6e07a52fc14a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effects of polycyclic aromatic hydrocarbons on ecological assembly processes and co-occurrence patterns differ between soil bacterial and fungal communities — Zhang Jun;Yu Daijing;Zhang Liwei;Wang Tian;Zhang Liuyaoxing;Wang Lei;Liu Aiqin;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9591,
+            "end_char": 9851
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A new set of 20 multi-InDel markers for forensic application",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Jinding;Zhang Xiuying;Zhang Xiaomeng;Li Wenyan;Gao Linlin;Li Jing;Wang Jiaqi;Liu Zidong;Liu Yao;Yan Jianwei;Zhang Gengqian",
+      "id": "out-fe03db962b05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A new set of 20 multi-InDel markers for forensic application — Liu Jinding;Zhang Xiuying;Zhang Xiaomeng;Li Wenyan;Gao Linlin;Li Jing;Wang Jiaqi;Liu Zidong;Liu Yao;Yan Jianwei;Zhang Gengqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9857,
+            "end_char": 10052
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种鉴定血痕遗留时间的方法及其mRNA组合",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;程凤;李万婷;漆小琴;张晓梦;李娜;党丽虹",
+      "id": "out-d6eb2272642c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种鉴定血痕遗留时间的方法及其mRNA组合 — 严江伟;程凤;李万婷;漆小琴;张晓梦;李娜;党丽虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10058,
+            "end_char": 10111
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "机器学习技术结合Y染色体CpG位点推断男性年龄",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢杨峰;冀志敏;李俊丽;杨丰隆;何裕栋;孙林峰;刘龙;严江伟",
+      "id": "out-45f429b29c9b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 机器学习技术结合Y染色体CpG位点推断男性年龄 — 邢杨峰;冀志敏;李俊丽;杨丰隆;何裕栋;孙林峰;刘龙;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10117,
+            "end_char": 10179
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于肉类掺假鉴别的组合物及含其试剂盒与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘枭男;周浒云;胡文静;严江伟;赵梦阳;王敏",
+      "id": "out-c358c0e54f8b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于肉类掺假鉴别的组合物及含其试剂盒与应用 — 刘枭男;周浒云;胡文静;严江伟;赵梦阳;王敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10185,
+            "end_char": 10237
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ArtIﬁcial intelligence applications for oncological positron emission tomography imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wanting;Liu Haiyan;Cheng Feng;Li Yehua;Li Sijin;Yan Jiangwei",
+      "id": "out-05f322956738",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ArtIﬁcial intelligence applications for oncological positron emission tomography imaging — Li Wanting;Liu Haiyan;Cheng Feng;Li Yehua;Li Sijin;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10243,
+            "end_char": 10403
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第三届海峡两岸法医学术交流会获壁报展示/口头汇报奖3项",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "余代静;高妞;王甜;严江伟",
+      "id": "out-e5c491828416",
+      "evidence": [
+        {
+          "quote": "[奖励] 第三届海峡两岸法医学术交流会获壁报展示/口头汇报奖3项 — 余代静;高妞;王甜;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10409,
+            "end_char": 10456
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于唾液微生物的甲状腺癌分子标志物及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;李万婷;程凤;张君;刘海燕;李彩红;张晓梦;漆小琴",
+      "id": "out-8591b9bfe12d",
+      "evidence": [
+        {
+          "quote": "[专利] 基于唾液微生物的甲状腺癌分子标志物及其应用 — 严江伟;李万婷;程凤;张君;刘海燕;李彩红;张晓梦;漆小琴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10462,
+            "end_char": 10519
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effects of drug addiction and detoxification on the human oral microbiota",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jun;Liu Wenli;Shi Linyu;Liu Xu;Wang Mengchun;Li Wangting;Yu Daijing;Wang Yaya;Zhang Jingjing;Yun Keming;Yan Jiangwei",
+      "id": "out-1c95c3aa5f86",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effects of drug addiction and detoxification on the human oral microbiota — Zhang Jun;Liu Wenli;Shi Linyu;Liu Xu;Wang Mengchun;Li Wangting;Yu Daijing;Wang Yaya;Zhang Jingjing;Yun Keming;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10525,
+            "end_char": 10733
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于微滴式数字PCR的法医多种体液年龄预测方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;赵旭东;杨丰隆;苏丽娟;张君;张科文;余代静;肖云天;买亚茹;许晶晶",
+      "id": "out-3bc251567d52",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于微滴式数字PCR的法医多种体液年龄预测方法及应用 — 严江伟;赵旭东;杨丰隆;苏丽娟;张君;张科文;余代静;肖云天;买亚茹;许晶晶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10739,
+            "end_char": 10812
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "游离DNA最新研究进展及法医学应用展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡文静;杨婷婷;王雅雅;严江伟",
+      "id": "out-5413fe947804",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 游离DNA最新研究进展及法医学应用展望 — 胡文静;杨婷婷;王雅雅;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10818,
+            "end_char": 10861
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A recombinase polymerase amplification (RPA) combined with strip visualization method for RNA-based presumptive tests of saliva and vaginal secretion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Jinding;Zhang Xiuying;Liu Yao;Fan Jiajia;Zhang Mingming;Zhang Mingming;Yu Huan;Li Wenyan;Li Jing;Li Zeqin;Yan Jiangwei;Zhang Gengqian",
+      "id": "out-19378d909ee5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A recombinase polymerase amplification (RPA) combined with strip visualization method for RNA-based presumptive tests of saliva and vaginal secretion — Liu Jinding;Zhang Xiuying;Liu Yao;Fan Jiajia;Zhang Mingming;Zhang Mingming;Yu Huan;Li Wenyan;Li Jing;Li Zeqin;Yan Jiangwei;Zhang Gengqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10867,
+            "end_char": 11162
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrative analysis of gut microbiome and host transcriptome reveal novel molecular signatures in Hashimoto's thyroiditis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Miao;Chen Ke;Chen Yuqi;Zhang Lei;Cui Yipeng;Xiao Fengxu;Liu Zhenting;Zhang Wen;Jiang Jue;Zhou Qi;Yan Jiangwei;Sun Yu;Guan Fanglin",
+      "id": "out-3ef1b165223a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrative analysis of gut microbiome and host transcriptome reveal novel molecular signatures in Hashimoto's thyroiditis — Li Miao;Chen Ke;Chen Yuqi;Zhang Lei;Cui Yipeng;Xiao Fengxu;Liu Zhenting;Zhang Wen;Jiang Jue;Zhou Qi;Yan Jiangwei;Sun Yu;Guan Fanglin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11168,
+            "end_char": 11431
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "强奸致孕形成完全性葡萄胎亲子鉴定2例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任贺;刘志勇;石妍;陈冲;贾莉;陈滢;刘雅诚;严江伟",
+      "id": "out-e31cd212264c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 强奸致孕形成完全性葡萄胎亲子鉴定2例 — 任贺;刘志勇;石妍;陈冲;贾莉;陈滢;刘雅诚;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11437,
+            "end_char": 11490
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "法医微生物与生物安全",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;胡松年;赵东",
+      "id": "out-01730c758079",
+      "evidence": [
+        {
+          "quote": "[专著] 法医微生物与生物安全 — 严江伟;胡松年;赵东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11496,
+            "end_char": 11523
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated Transcriptome Analysis Reveals Novel Molecular Signatures for Schizophrenia Characterization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ni Tong;Sun Yu;Li Zefeng;Tan Tao;Han Wei;Li Miao;Zhu Li;Xiao Jing;Wang Huiying;Zhang Wenpei;Ma Yitian;Wang Biao;Wen Di;Chen Teng;Tubbs Justin;Zeng Xiaofeng;Yan Jiangwei;Gui Hongsheng;Sham Pak;Guan Fanglin",
+      "id": "out-58bd5dabd064",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated Transcriptome Analysis Reveals Novel Molecular Signatures for Schizophrenia Characterization — Ni Tong;Sun Yu;Li Zefeng;Tan Tao;Han Wei;Li Miao;Zhu Li;Xiao Jing;Wang Huiying;Zhang Wenpei;Ma Yitian;Wang Biao;Wen Di;Chen Teng;Tubbs Justin;Zeng Xiaofeng;Yan Jiangwei;Gui Hongsheng;Sham Pak;Guan Fanglin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11529,
+            "end_char": 11845
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of an MPS-based 513-Plex SNP identity panel for degraded forensic samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi L;Feng X;Zhao M;Wei A;Zhang J;Yuan P;Fan H;Yan J",
+      "id": "out-03ba0c2aef7a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of an MPS-based 513-Plex SNP identity panel for degraded forensic samples — Shi L;Feng X;Zhao M;Wei A;Zhang J;Yuan P;Fan H;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11851,
+            "end_char": 12012
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CRISPR-Cas9-Targeted Nanopore Sequencing for STR Typing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang TT;Zhang JR;Xie ZH;Ren ZL;Zhao MY;Hu WJ;Yan JW;Ni M",
+      "id": "out-0c9a1c9be617",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CRISPR-Cas9-Targeted Nanopore Sequencing for STR Typing — Yang TT;Zhang JR;Xie ZH;Ren ZL;Zhao MY;Hu WJ;Yan JW;Ni M",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12018,
+            "end_char": 12138
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于有限突变模型和大规模数据的19个常染色体STR的实际突变率研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘志勇;任贺;陈冲;张京晶;张晓梦;石妍;石林玉;陈滢;程凤;贾莉;陈曼;范庆炜;张家榕;李万婷;王萌春;任子林;刘雅诚;倪铭;孙宏钰;严江伟",
+      "id": "out-1be46ea8c603",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于有限突变模型和大规模数据的19个常染色体STR的实际突变率研究 — 刘志勇;任贺;陈冲;张京晶;张晓梦;石妍;石林玉;陈滢;程凤;贾莉;陈曼;范庆炜;张家榕;李万婷;王萌春;任子林;刘雅诚;倪铭;孙宏钰;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12144,
+            "end_char": 12257
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第十四届“挑战杯”山西省大学生创业计划竞赛,山西省金奖(教育部A类)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范浩亮;严江伟;贠克明;刘毅恒;杨冰月;李博超;邓思雨;穆卓群;李佳怡;刘欣宇;周萍榕;张欣懿;杨慧茹;热孜古力·吾斯曼;朱卢义;石林玉;张家榕;韦安婕",
+      "id": "out-1e6a59e98640",
+      "evidence": [
+        {
+          "quote": "[奖励] 第十四届“挑战杯”山西省大学生创业计划竞赛,山西省金奖(教育部A类) — 范浩亮;严江伟;贠克明;刘毅恒;杨冰月;李博超;邓思雨;穆卓群;李佳怡;刘欣宇;周萍榕;张欣懿;杨慧茹;热孜古力·吾斯曼;朱卢义;石林玉;张家榕;韦安婕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12263,
+            "end_char": 12380
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fourth-degree kinship analysis using 5198 single nucleotide polymorphisms detected by nanopore sequencing platform",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang J;Yang T;Shan T;Wei Y;Zhu Q;Zhang J;Yan J",
+      "id": "out-8c7f0130ccd6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fourth-degree kinship analysis using 5198 single nucleotide polymorphisms detected by nanopore sequencing platform — Zhang J;Yang T;Shan T;Wei Y;Zhu Q;Zhang J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12386,
+            "end_char": 12556
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于埋葬大鼠的骨骼微生物群落演替规律推断死亡时间",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王雅雅;张君;余代静;漆小琴;王萌春;王艳;严江伟",
+      "id": "out-a47813f706d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于埋葬大鼠的骨骼微生物群落演替规律推断死亡时间 — 王雅雅;张君;余代静;漆小琴;王萌春;王艳;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12562,
+            "end_char": 12620
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Visual identification for species and sex derived from bloodstain based on phosphate-mediated isothermal amplification colorimetric system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Wenjing;Zhou Huyun;Li Junli;Yuan Piao;Zhang Liwei;Liu Xiaonan;Yan Jiangwei",
+      "id": "out-2110e15f5ee2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Visual identification for species and sex derived from bloodstain based on phosphate-mediated isothermal amplification colorimetric system — Hu Wenjing;Zhou Huyun;Li Junli;Yuan Piao;Zhang Liwei;Liu Xiaonan;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12626,
+            "end_char": 12850
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于AR眼镜的法医精神病学司法鉴定辅助评定方法和系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;郝博;后晟烨;刘奕璇;郑梦阳;刘盛鑫;贾娟;刘枭男",
+      "id": "out-992f316ea11b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于AR眼镜的法医精神病学司法鉴定辅助评定方法和系统 — 严江伟;郝博;后晟烨;刘奕璇;郑梦阳;刘盛鑫;贾娟;刘枭男",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12856,
+            "end_char": 12920
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "复杂DNA图谱解释法医实践指导",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;哈力木热提·司马义江",
+      "id": "out-97ef5a916ac9",
+      "evidence": [
+        {
+          "quote": "[专著] 复杂DNA图谱解释法医实践指导 — 严江伟;哈力木热提·司马义江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12926,
+            "end_char": 12962
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SNP标记组合、及构建方法和人群生物地理来源推断的产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;陈静;何光林;王萌鸽;赵梦阳;许晶晶",
+      "id": "out-47e18bcbb686",
+      "evidence": [
+        {
+          "quote": "[专利] SNP标记组合、及构建方法和人群生物地理来源推断的产品 — 严江伟;陈静;何光林;王萌鸽;赵梦阳;许晶晶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 12968,
+            "end_char": 13024
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于CpG-SNP连锁标记的血液来源鉴定及个人识别的试剂盒以及检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李泽琴;刘娜;原芳;张更谦;严江伟;贠克明;刘晋玎",
+      "id": "out-aea00c34daf2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于CpG-SNP连锁标记的血液来源鉴定及个人识别的试剂盒以及检测方法 — 李泽琴;刘娜;原芳;张更谦;严江伟;贠克明;刘晋玎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13030,
+            "end_char": 13099
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nanopore sequencing of forensic short tandem repeats using QNome of Qitan Technology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang TingTing;Zhang JiaRong;Xie ZiHan;Ren ZiLin;Yan JiangWei;Ni Ming",
+      "id": "out-9b3630c94828",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nanopore sequencing of forensic short tandem repeats using QNome of Qitan Technology — Yang TingTing;Zhang JiaRong;Xie ZiHan;Ren ZiLin;Yan JiangWei;Ni Ming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13105,
+            "end_char": 13266
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a multiplex 19 X-chromosomal short tandem repeats typing system for forensic purposes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Juan;Liu Xu;Fan Qingwei;Fang Chen;Wang Mengchun;Zhang Jiarong;Li Wanting;Shi Linyu;Zhang Xiaomeng;Chen Chuguang;Yu Zailiang;Li Chen;Yun Keming;Yan Jiangwei",
+      "id": "out-66440f893fdd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a multiplex 19 X-chromosomal short tandem repeats typing system for forensic purposes — Jia Juan;Liu Xu;Fan Qingwei;Fang Chen;Wang Mengchun;Zhang Jiarong;Li Wanting;Shi Linyu;Zhang Xiaomeng;Chen Chuguang;Yu Zailiang;Li Chen;Yun Keming;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13272,
+            "end_char": 13555
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Environmental microbiota from substrate may interfere with microbiome-based identification of forensically relevant body fluids: A pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jun;Yu Daijing;Zhang Liwei;Wang Tian;Yan Jiangwei",
+      "id": "out-1d076acc7a81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Environmental microbiota from substrate may interfere with microbiome-based identification of forensically relevant body fluids: A pilot study — Zhang Jun;Yu Daijing;Zhang Liwei;Wang Tian;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13561,
+            "end_char": 13767
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种鉴定血痕遗留时间的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;程凤;李万婷;漆小琴;张晓梦;李娜;党丽虹",
+      "id": "out-24b2a1676d8d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种鉴定血痕遗留时间的方法 — 严江伟;程凤;李万婷;漆小琴;张晓梦;李娜;党丽虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13773,
+            "end_char": 13818
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种用于食品肉源性检测的组合物及含其试剂盒与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘枭男;胡文静;周浒云;严江伟;赵梦阳;王敏",
+      "id": "out-34ea5481d5b5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种用于食品肉源性检测的组合物及含其试剂盒与应用 — 刘枭男;胡文静;周浒云;严江伟;赵梦阳;王敏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13824,
+            "end_char": 13877
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第三届“全国仿真创新应用大赛”全国二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范浩亮;严江伟",
+      "id": "out-2854ed0729d8",
+      "evidence": [
+        {
+          "quote": "[奖励] 第三届“全国仿真创新应用大赛”全国二等奖 — 范浩亮;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13883,
+            "end_char": 13917
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bioinformatic insights into five Chinese population substructures inferred from the East Asian-specific AISNP panel",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen J;Huang Y;Zhong J;Wang M;He G;Yan J",
+      "id": "out-29c80747792c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bioinformatic insights into five Chinese population substructures inferred from the East Asian-specific AISNP panel — Chen J;Huang Y;Zhong J;Wang M;He G;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 13923,
+            "end_char": 14087
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An integrated biosensor and mobile workstation for on-site species and sex identification from bloodstains",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou H;Hu W;Zhang J;Zhang X;Liu X;Yan J.",
+      "id": "out-b9fd2716c801",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An integrated biosensor and mobile workstation for on-site species and sex identification from bloodstains — Zhou H;Hu W;Zhang J;Zhang X;Liu X;Yan J.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14093,
+            "end_char": 14248
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Typing of semen-containing mixtures using ARMS-based semen-specific CpG-InDel/STR markers.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zeqin;Li Yidan;Liu Na;Yuan Fang;Liu Feng;Liu Jinding;Yun Kemin;Yan Jiangwei;Zhang Gengqian",
+      "id": "out-195e99b0156a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Typing of semen-containing mixtures using ARMS-based semen-specific CpG-InDel/STR markers. — Li Zeqin;Li Yidan;Liu Na;Yuan Fang;Liu Feng;Liu Jinding;Yun Kemin;Yan Jiangwei;Zhang Gengqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14254,
+            "end_char": 14446
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Changes in Gut Microbiota and Metabolites in Papillary Thyroid Carcinoma Patients Following Radioactive Iodine Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wangting;Cheng Feng;Zhang Jun;Li Caihong;Yu Daijing;Halimureti ·SMYJ;Liu Haiyan;Li Sijin;Yan Jiangwei",
+      "id": "out-9f5545c80718",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Changes in Gut Microbiota and Metabolites in Papillary Thyroid Carcinoma Patients Following Radioactive Iodine Therapy — Li Wangting;Cheng Feng;Zhang Jun;Li Caihong;Yu Daijing;Halimureti ·SMYJ;Liu Haiyan;Li Sijin;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14452,
+            "end_char": 14683
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated genetic and geographic ancestry prediction via large-scale genomic data and machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen J;Huang Y;Fan H;Wang M;He G;Yan J",
+      "id": "out-b61d53be2b47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated genetic and geographic ancestry prediction via large-scale genomic data and machine learning — Chen J;Huang Y;Fan H;Wang M;He G;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14689,
+            "end_char": 14839
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种降解检材分析微单倍型复合扩增体系及其构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;王萌春;张更谦;石林玉;程凤;李万婷;张君;漆小琴;杨婷婷",
+      "id": "out-37c38e958d5d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种降解检材分析微单倍型复合扩增体系及其构建方法 — 严江伟;王萌春;张更谦;石林玉;程凤;李万婷;张君;漆小琴;杨婷婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14845,
+            "end_char": 14909
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Male-specific age prediction based on Y-chromosome DNA methylation with blood using pyrosequencing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji Zhimin;Xing Yangfeng;Li Junli;Feng Xiaoxiao;Yang Fenglong;Zhu Bofeng;Yan Jiangwei",
+      "id": "out-331685c9bbec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Male-specific age prediction based on Y-chromosome DNA methylation with blood using pyrosequencing — Ji Zhimin;Xing Yangfeng;Li Junli;Feng Xiaoxiao;Yang Fenglong;Zhu Bofeng;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 14915,
+            "end_char": 15106
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcriptomic profiling and machine learning reveal novel RNA signatures for enhanced mol",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-4a780011b73e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcriptomic profiling and machine learning reveal novel RNA signatures for enhanced mol",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15112,
+            "end_char": 15208
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Forensic Age Estimation From Blood Samples by Combining DNA Methylation and MicroRNA Markers Using Droplet Digital PCR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao N;Li J;Yang F;Yu D;Huo Y;Liu X;Ji Z;Xing Y;Zhang X;Yuan P;Liu J;Yan J",
+      "id": "out-373ec28678cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Forensic Age Estimation From Blood Samples by Combining DNA Methylation and MicroRNA Markers Using Droplet Digital PCR — Gao N;Li J;Yang F;Yu D;Huo Y;Liu X;Ji Z;Xing Y;Zhang X;Yuan P;Liu J;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15354,
+            "end_char": 15554
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于组学技术的法医体液斑精准溯源的研究进展和挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高妞;刘晋玎;严江伟",
+      "id": "out-0da4672659ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于组学技术的法医体液斑精准溯源的研究进展和挑战 — 高妞;刘晋玎;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15560,
+            "end_char": 15603
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Estimation of bloodstain deposition time within a 24-h day-night cycle with rhythmic mRNA based on a machine learning algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Feng;Li Wangting;Ji Zhimin;Li Junli;Hu Wenjing;Zhao Mengyang;Yu Daijing;Halimureti Simayijiang;Yan Jiangwei",
+      "id": "out-3cd5cff099a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Estimation of bloodstain deposition time within a 24-h day-night cycle with rhythmic mRNA based on a machine learning algorithm — Cheng Feng;Li Wangting;Ji Zhimin;Li Junli;Hu Wenjing;Zhao Mengyang;Yu Daijing;Halimureti Simayijiang;Yan Jiangwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15609,
+            "end_char": 15858
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于Y-CpG位点及其组合的年龄推断方法、试剂盒及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;冀志敏;邢杨峰;杨丰隆;李俊丽;丰晓晓;袁飘",
+      "id": "out-7022eaa172e0",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于Y-CpG位点及其组合的年龄推断方法、试剂盒及应用 — 严江伟;冀志敏;邢杨峰;杨丰隆;李俊丽;丰晓晓;袁飘",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15864,
+            "end_char": 15926
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting human age by detecting DNA methylation status in hair",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Ting;Guo Jiangling;Liu Jinding;Wang Jiaqi;Liu Zidong;Cheng Xiaojuan;Li Jintao;Ren Jianbo;Li Zeqin;Yan Jiangwei;Zhang Gengqian",
+      "id": "out-6a16f1e75459",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting human age by detecting DNA methylation status in hair — Hao Ting;Guo Jiangling;Liu Jinding;Wang Jiaqi;Liu Zidong;Cheng Xiaojuan;Li Jintao;Ren Jianbo;Li Zeqin;Yan Jiangwei;Zhang Gengqian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 15932,
+            "end_char": 16134
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“第九届全国大学生基础医学创新暨实验设计论坛” 本科院校总决赛,国家级金奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋高;刘毅恒;邓思雨;张欣懿;杨冰月;严江伟;范浩亮",
+      "id": "out-586d5b501a3a",
+      "evidence": [
+        {
+          "quote": "[奖励] “第九届全国大学生基础医学创新暨实验设计论坛” 本科院校总决赛,国家级金奖 — 宋高;刘毅恒;邓思雨;张欣懿;杨冰月;严江伟;范浩亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16140,
+            "end_char": 16210
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第十四届“挑战杯”秦创原中国大学生创业计划竞赛,全国铜奖(教育部A类)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "范浩亮;严江伟;贠克明;刘毅恒;石林玉;李博超;杨冰月;刘欣宇;穆卓群;余凌;邓思雨;张欣懿;杨慧茹;热孜古力·吾斯曼;周萍榕;张家榕;韦安婕;李佳怡",
+      "id": "out-865156511928",
+      "evidence": [
+        {
+          "quote": "[奖励] 第十四届“挑战杯”秦创原中国大学生创业计划竞赛,全国铜奖(教育部A类) — 范浩亮;严江伟;贠克明;刘毅恒;石林玉;李博超;杨冰月;刘欣宇;穆卓群;余凌;邓思雨;张欣懿;杨慧茹;热孜古力·吾斯曼;周萍榕;张家榕;韦安婕;李佳怡",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16216,
+            "end_char": 16333
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "氰化物急性中毒大鼠的血浆代谢组学研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾娟;超忍;尉志文;曹洁;牛卫芬;张枫林;严江伟;贠克明",
+      "id": "out-389a9ef6db91",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 氰化物急性中毒大鼠的血浆代谢组学研究 — 贾娟;超忍;尉志文;曹洁;牛卫芬;张枫林;严江伟;贠克明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16339,
+            "end_char": 16394
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于现场快速核酸扩增分析系统的沙门氏菌的快速检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;霍雨美;郭相杰;刘晋玎;高妞;张晓萌;王甜",
+      "id": "out-493e659775fc",
+      "evidence": [
+        {
+          "quote": "[专利] 基于现场快速核酸扩增分析系统的沙门氏菌的快速检测方法 — 严江伟;霍雨美;郭相杰;刘晋玎;高妞;张晓萌;王甜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16400,
+            "end_char": 16458
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种唾液斑DNA、RNA和蛋白质同时提取的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王昕宇;严江伟;方晨;周鹏;李敏;许晓群;王盈;郭艺琳;孟德萍;于春江;熊若彤;王嘉慧",
+      "id": "out-421a58f40387",
+      "evidence": [
+        {
+          "quote": "[专利] 一种唾液斑DNA、RNA和蛋白质同时提取的方法 — 王昕宇;严江伟;方晨;周鹏;李敏;许晓群;王盈;郭艺琳;孟德萍;于春江;熊若彤;王嘉慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16464,
+            "end_char": 16537
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于高通量测序技术的 STR 自动分型及命名的分析方法及其系统、终端设备和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;赵梦阳;陈静;杨婷婷;石林玉;张家榕;张晓萌",
+      "id": "out-12b532e20ee5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于高通量测序技术的 STR 自动分型及命名的分析方法及其系统、终端设备和存储介质 — 严江伟;赵梦阳;陈静;杨婷婷;石林玉;张家榕;张晓萌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16543,
+            "end_char": 16619
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "On the influence of various factors on the recovery efficiency and individual identification capability of exfoliated cells on chopsticks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang F;Li J;Wang J;Ji Z;Zhao X;Zhang G;Yan J",
+      "id": "out-2230d01651dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] On the influence of various factors on the recovery efficiency and individual identification capability of exfoliated cells on chopsticks — Yang F;Li J;Wang J;Ji Z;Zhao X;Zhang G;Yan J",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16625,
+            "end_char": 16815
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Elimination of carryover contamination and detection of DNA methylation based on multiplex lateral flow assay",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaonan Liu;Jiaxing Zhang;Huyun Zhou;Wenjing Hu;Xiaomeng Zhang;Jiangwei Yan",
+      "id": "out-e0a0b4456ba0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Elimination of carryover contamination and detection of DNA methylation based on multiplex lateral flow assay — Xiaonan Liu;Jiaxing Zhang;Huyun Zhou;Wenjing Hu;Xiaomeng Zhang;Jiangwei Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 16822,
+            "end_char": 17015
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国国际大学生创新大赛(山西)赛区金奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郝博;严江伟;杨蓉;王小广;谌霞灿;后晟烨;吕云娇;张芝妍;金烨莹;卫辰冉;马若文;王艺璇;王艺璁;刘盛鑫;刘奕璇;段蕾;任炀铭;王雯婧",
+      "id": "out-042ef8345848",
+      "evidence": [
+        {
+          "quote": "[奖励] 中国国际大学生创新大赛(山西)赛区金奖 — 郝博;严江伟;杨蓉;王小广;谌霞灿;后晟烨;吕云娇;张芝妍;金烨莹;卫辰冉;马若文;王艺璇;王艺璁;刘盛鑫;刘奕璇;段蕾;任炀铭;王雯婧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17022,
+            "end_char": 17116
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于微滴数字 PCR 检测线粒体 DNA 低频异质性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "漆小琴;王嘉慧;王雅雅;方晨;程凤;张晓梦;李娜;马鲁豫;王艳;严江伟",
+      "id": "out-45dfe4281b2d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于微滴数字 PCR 检测线粒体 DNA 低频异质性 — 漆小琴;王嘉慧;王雅雅;方晨;程凤;张晓梦;李娜;马鲁豫;王艳;严江伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17123,
+            "end_char": 17193
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing testing efficacy of high-density SNP microarrays to distinguish pedigrees belonging to the same kinship class",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mo ShaoKang;Fan QingWei;Ma XiaoYan;Zhang YueWen;Jiao MengWen;Wang Ling;Yan JiangWei",
+      "id": "out-9d2c50e416a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancing testing efficacy of high-density SNP microarrays to distinguish pedigrees belonging to the same kinship class — Mo ShaoKang;Fan QingWei;Ma XiaoYan;Zhang YueWen;Jiao MengWen;Wang Ling;Yan JiangWei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17200,
+            "end_char": 17411
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "利用纳米孔测序技术进行复杂亲缘关系鉴定的SNP位点组合、试剂盒及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严江伟;张家榕;杨婷婷;赵梦阳;石林玉;许晶晶;袁飘;胡文静;高妞;张晓萌",
+      "id": "out-622efcdd0f75",
+      "evidence": [
+        {
+          "quote": "[专利] 利用纳米孔测序技术进行复杂亲缘关系鉴定的SNP位点组合、试剂盒及其应用 — 严江伟;张家榕;杨婷婷;赵梦阳;石林玉;许晶晶;袁飘;胡文静;高妞;张晓萌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 17418,
+            "end_char": 17497
+          },
+          "version": "afcfe6c4ab67bdd627b5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 104,
+    "listed": 104,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 18,
+        "extracted": 18
+      },
+      "期刊论文": {
+        "listed": 61,
+        "extracted": 61
+      },
+      "专利": {
+        "listed": 25,
+        "extracted": 25
+      }
+    },
+    "consistent": true
+  }
 }

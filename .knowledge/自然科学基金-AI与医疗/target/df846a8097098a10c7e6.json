@@ -2,15 +2,20 @@
   "doc_id": "df846a8097098a10c7e6",
   "version": "8b218246cf3e1187e8b7",
   "source_hash": "dce56170c1f2059424efc805549987734f1194a2c64ed641c9b71f5ebc9c9426",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:09.023115+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:56.165775+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-51c1b88f5cb3",
-          "name": "NSCLC免疫治疗疗效与预后预测",
-          "desc": "NSCLC患者靶向治疗对未突变者无效，免疫治疗成为新方向，需预测疗效与预后。",
+          "id": "item-d955ba35bec0",
+          "name": "NSCLC PD-1/PD-L1抑制剂疗效预后预测",
+          "desc": "CT影像组学与多模态MRI",
           "evidence": [
             {
-              "quote": "NSCLC是最常见的肺癌类型，靶向治疗对患者预后有较大改善，但对基因未突变的患者无效",
+              "quote": "PD-1或PD-L1抑制剂成为无靶向治疗选择的NSCLC患者的主要治疗手段，仅少数患者获益",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 716,
-                "end_char": 757
-              },
-              "version": "8b218246cf3e1187e8b7"
-            }
-          ]
-        },
-        {
-          "id": "item-84df6de642c2",
-          "name": "假性进展与超进展鉴别预测",
-          "desc": "免疫治疗具有特殊反应模式，需要方法鉴别假性进展并预测超进展。",
-          "evidence": [
-            {
-              "quote": "同时亦可能鉴别假性进展和预测超进展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1098,
-                "end_char": 1114
+                "start_char": 2894,
+                "end_char": 2938
               },
               "version": "8b218246cf3e1187e8b7"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be794a12f0bc",
-          "name": "免疫治疗仅20-50%患者有效",
-          "desc": "目前免疫治疗药物主要为PD-1/PD-L1抑制剂，但仅有20-50%的患者有效。",
+          "id": "item-269328bac39b",
+          "name": "PD-L1与TMB等组织标志物受限",
+          "desc": "活检不足与异质性",
           "evidence": [
             {
-              "quote": "目前免疫治疗已成为治疗的新方向，但仅有20-50%的患者有效，目前免疫治疗药物主要为PD-1/PD-L1抑制剂",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 759,
-                "end_char": 813
-              },
-              "version": "8b218246cf3e1187e8b7"
-            }
-          ]
-        },
-        {
-          "id": "item-fd4c91bba86a",
-          "name": "现有生物标志物效果不佳",
-          "desc": "用于疗效预测的生物学标志物主要为PD-L1表达、TMB、dMMR，但均效果不佳。",
-          "evidence": [
-            {
-              "quote": "用于疗效预测的生物学标志物主要为PD-L1表达、TMB、dMMR，但均效果不佳",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 815,
-                "end_char": 853
-              },
-              "version": "8b218246cf3e1187e8b7"
-            }
-          ]
-        },
-        {
-          "id": "item-bd52835ea651",
-          "name": "组织标志物受活检与异质性限制",
-          "desc": "基于组织的生物学标志物受活检标本不足、肿瘤内时空异质性和高成本限制，不能精准覆盖治疗结果差异。",
-          "evidence": [
-            {
-              "quote": "基于组织的生物学标志物（PD-L1表达和TMB）受到活检标本不足、肿瘤内时空异质性和高成本的限制，并不能精准覆盖治疗结果的差异",
+              "quote": "基于组织的生物学标志物（PD-L1表达和TMB）受到活检标本不足、肿瘤内时空异质性和高成本的限制",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2940,
-                "end_char": 3002
+                "end_char": 2987
               },
               "version": "8b218246cf3e1187e8b7"
             }
@@ -111,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-05e977e10fae",
-          "name": "影像组学联合CT与多模态MR",
-          "desc": "首次将影像组学方法与CT及多模态MR技术联合，开发疗效预后观察与预测。",
-          "evidence": [
-            {
-              "quote": "本项目首次将影像组学方法和CT与多模态MR技术联合，旨在开发对NSCLC患者PD-1/PD-L1抑制剂治疗的疗效预后观察与预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1034,
-                "end_char": 1096
-              },
-              "version": "8b218246cf3e1187e8b7"
-            }
-          ]
-        },
-        {
-          "id": "item-65948fde3f8a",
-          "name": "集成学习CT深度学习分层模型",
-          "desc": "使用集成学习方案建立可靠的CT衍生深度学习模型，对免疫检查点抑制剂治疗后的PFS和OS进行分层。",
+          "id": "item-8aaa11efa589",
+          "name": "CT衍生深度学习集成模型",
+          "desc": "PFS与OS分层",
           "evidence": [
             {
               "quote": "使用集成学习方案建立可靠的CT衍生的深度学习模型，以对患者在免疫检查点抑制剂治疗后的预后（PFS和OS）进行分层",
@@ -140,7 +81,25 @@
               },
               "version": "8b218246cf3e1187e8b7"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ece64af6028d",
+          "name": "肺腺癌影像组学预后模型与混合模型",
+          "desc": "TCIA 114例",
+          "evidence": [
+            {
+              "quote": "构建了预测肺腺癌患者术后预后的影像组学模型和临床-影像组学混合模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3314,
+                "end_char": 3346
+              },
+              "version": "8b218246cf3e1187e8b7"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dd61fddc886c",
-          "name": "肺腺癌预后影像组学模型AUC 0.728与0.739",
-          "desc": "影像组学模型与临床-影像组学混合模型预测未接受免疫治疗的肺腺癌术后预后AUC分别为0.728和0.739。",
+          "id": "item-276d434857ba",
+          "name": "预后模型AUC",
+          "desc": "影像组学0.728，混合模型0.739",
           "evidence": [
             {
-              "quote": "发现影像组学模型和混合模型预测未接受免疫治疗的肺腺癌术后患者的预后有较高的效能（AUC分别为0.728、0.739）",
+              "quote": "AUC分别为0.728、0.739",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3381,
-                "end_char": 3438
+                "start_char": 3421,
+                "end_char": 3437
               },
               "version": "8b218246cf3e1187e8b7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-f9aa576421fc",
-          "name": "肺腺癌谱病变术前诊断效能",
-          "desc": "采用逻辑回归、随机森林和极致梯度提升分类器进行术前病理诊断，诊断效能与高年资医生相当。",
+          "id": "item-044463844109",
+          "name": "肺腺癌谱病变诊断模型",
+          "desc": "AUC 0.921、0.956、0.958",
           "evidence": [
             {
               "quote": "发现其诊断效能与高年资医生相当（AUC分别为0.921、0.956和0.958）",
@@ -180,72 +141,69 @@
               "version": "8b218246cf3e1187e8b7"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-666bda72388c",
-          "name": "FGF11在NSCLC中上调促进进展",
-          "desc": "检测发现FGF11在NSCLC肿瘤组织中上调，其上调HIF-1α并增加缺氧信号通路促进NSCLC进展。",
-          "evidence": [
-            {
-              "quote": "发现FGF11在NSCLC肿瘤组织中上调，提示FGF11具有致癌作用，其上调HIF-1α，增加缺氧信号通路，促进NSCLC进展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3690,
-                "end_char": 3752
-              },
-              "version": "8b218246cf3e1187e8b7"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-51c1b88f5cb3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-be794a12f0bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fibroblast growth factor 11 (FGF11) promotes non-small cell lung cancer (NSCLC) progression by regulating hypoxia signaling pathway",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaowei Wu;Minjie Li;Ying Li;Yu Deng;Shun Ke;Fan Li;Yujin Wang;Shuchang Zhou",
+      "id": "out-98f554afced2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fibroblast growth factor 11 (FGF11) promotes non-small cell lung cancer (NSCLC) progression by regulating hypoxia signaling pathway — Xiaowei Wu;Minjie Li;Ying Li;Yu Deng;Shun Ke;Fan Li;Yujin Wang;Shuchang Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 4065
+          },
+          "version": "8b218246cf3e1187e8b7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-be794a12f0bc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-05e977e10fae"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-05e977e10fae"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dd61fddc886c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-65948fde3f8a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f9aa576421fc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EGFR-TKIs plus stereotactic body radiation therapy (SBRT) for stage IV Non-small cell lung cancer (NSCLC): A prospective, multicenter, randomized, controlled phase II study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Peng;Juejun Gong;Yujie Zhang;Shuchang Zhou;Yichen Li;Guang Han;Rui Meng;Yongshun Chen;Ming Yang;Qian Shen;Qian Chu;Shu Xia;Peng Zhang;Lu Zhang;Yuan Chen;Li Zhang",
+      "id": "out-4b6fd490e50d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] EGFR-TKIs plus stereotactic body radiation therapy (SBRT) for stage IV Non-small cell lung cancer (NSCLC): A prospective, multicenter, randomized, controlled phase II study — Ping Peng;Juejun Gong;Yujie Zhang;Shuchang Zhou;Yichen Li;Guang Han;Rui Meng;Yongshun Chen;Ming Yang;Qian Shen;Qian Chu;Shu Xia;Peng Zhang;Lu Zhang;Yuan Chen;Li Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4417
+          },
+          "version": "8b218246cf3e1187e8b7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

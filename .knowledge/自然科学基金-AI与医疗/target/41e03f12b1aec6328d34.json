@@ -2,15 +2,20 @@
   "doc_id": "41e03f12b1aec6328d34",
   "version": "ebef06c8691cbf82ebf2",
   "source_hash": "12a80f3c03040bc9f298b24a3dd666c8cd8476bab388706b9d9f8d6e1dd843a0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:14.082639+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.173123+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da81cd46b51c",
-          "name": "乳腺癌新辅助治疗pCR评价",
-          "desc": "乳腺癌位列全球女性癌症发病率第一位，术前新辅助治疗是否达到病理学完全缓解对预测预后及治疗方案选择至关重要。",
+          "id": "item-b16a13d946bd",
+          "name": "乳腺癌新辅助治疗疗效评估",
+          "desc": "pCR对预后和治疗选择至关重要",
           "evidence": [
             {
-              "quote": "乳腺癌位列全球女性癌症发病率第一位。术前新辅助治疗是否达到病理学完全缓解（pCR）对预测患者预后及治疗方案的选择至关重要",
+              "quote": "术前新辅助治疗是否达到病理学完全缓解（pCR）对预测患者预后及治疗方案的选择至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
+                "start_char": 696,
                 "end_char": 737
-              },
-              "version": "ebef06c8691cbf82ebf2"
-            }
-          ]
-        },
-        {
-          "id": "item-d22595a7a3df",
-          "name": "实现新辅助治疗精准智能评价",
-          "desc": "研究成果有望实现乳腺癌术前新辅助治疗的精准、智能评价。",
-          "evidence": [
-            {
-              "quote": "本项目的研究成果有望实现乳腺癌术前新辅助治疗的精准、智能评价",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1039,
-                "end_char": 1068
               },
               "version": "ebef06c8691cbf82ebf2"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d3e17c01fdcc",
-          "name": "临床尚无精准智能评价pCR方法",
-          "desc": "目前临床尚无较好方法在患者接受新辅助治疗过程中精准、智能地评价pCR。",
+          "id": "item-8e4e800b8a58",
+          "name": "缺乏精准智能评价pCR的方法",
+          "desc": "治疗过程中",
           "evidence": [
             {
               "quote": "但目前临床上尚无较好的方法在患者接受新辅助治疗过程中精准、智能地评价pCR",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 739,
                 "end_char": 775
-              },
-              "version": "ebef06c8691cbf82ebf2"
-            }
-          ]
-        },
-        {
-          "id": "item-6a5eb11e2670",
-          "name": "单尺度指标评估存在局限",
-          "desc": "需打破使用单尺度指标评估新辅助治疗疗效的局限，弥补单时序影像信息不足的缺陷。",
-          "evidence": [
-            {
-              "quote": "创新性的打破使用单尺度指标评估新辅助治疗疗效的局限",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2900,
-                "end_char": 2924
               },
               "version": "ebef06c8691cbf82ebf2"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbd474e05251",
-          "name": "多尺度信息融合pCR评价模型",
-          "desc": "挖掘筛选MRI影像组学特征及活检病理TIL空间分布特征，融合影像组学特征、病理TIL特征与临床诊疗信息构建并验证pCR评价模型。",
+          "id": "item-4f60c24da784",
+          "name": "MR影像特征与病理TIL信息多尺度融合评估模型",
+          "desc": "影像特征谱、临床信息、病理TIL",
           "evidence": [
             {
-              "quote": "融合影像组学特征、病理TIL特征与临床诊疗信息等多尺度信息，构建并验证pCR评价模型，最终建立乳腺癌新辅助治疗患者疗效评价的新方法",
+              "quote": "将影像特征谱、临床诊疗信息及病理TIL信息等多尺度信息融合，构建新辅助治疗疗效的评估模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 973,
-                "end_char": 1037
+                "start_char": 2926,
+                "end_char": 2969
               },
               "version": "ebef06c8691cbf82ebf2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-970cf9d3f02d",
-          "name": "多时序影像特征差异挖掘",
-          "desc": "对患者治疗前和治疗中多次影像学图像进行深层特征挖掘，并对同一特征在不同时期图像上的差异进行比较并加以利用。",
+          "id": "item-6f8be76553d6",
+          "name": "多时相影像特征差异比较",
+          "desc": "治疗前和治疗中",
           "evidence": [
             {
               "quote": "对患者治疗前和治疗中多次影像学图像进行深层特征挖掘，并对同一特征在不同时期图像上的差异进行比较并加以利用",
@@ -124,112 +98,182 @@
               },
               "version": "ebef06c8691cbf82ebf2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An MRI-based Scoring System for Preoperative Prediction of Axillary Response to Neoadjuvant Chemotherapy in Node-Positive Breast Cancer: A Multicenter Retrospective Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaomei Huang;Zhenwei Shi;Jinhai Mai;Chunling Liu;Chen Liu;Shuting Chen;Hong Lu;Yanbo Li;Bo He;Jun Li;Hanxue Cun;Chu Han;Xin Chen;Changhong Liang;Zaiyi Liu",
+      "id": "out-447318ebe24d",
+      "evidence": [
         {
-          "id": "item-4884fc55b1ca",
-          "name": "多模态预测模型精准评估疗效",
-          "desc": "结合MR定量影像信息与活检病理免疫微环境信息构建多模态预测模型，实现乳腺癌新辅助治疗疗效的精准评估。",
-          "evidence": [
-            {
-              "quote": "结合MR定量影像信息、活检病理免疫微环境信息，构建多模态预测模型，实现乳腺癌新辅助治疗疗效的精准评估",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2732,
-                "end_char": 2781
-              },
-              "version": "ebef06c8691cbf82ebf2"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] An MRI-based Scoring System for Preoperative Prediction of Axillary Response to Neoadjuvant Chemotherapy in Node-Positive Breast Cancer: A Multicenter Retrospective Study — Xiaomei Huang;Zhenwei Shi;Jinhai Mai;Chunling Liu;Chen Liu;Shuting Chen;Hong Lu;Yanbo Li;Bo He;Jun Li;Hanxue Cun;Chu Han;Xin Chen;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3124,
+            "end_char": 3458
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An integrated deep learning model for the prediction of pathological complete response to neoadjuvant chemotherapy with serial ultrasonography in breast cancer patients: a multicentre, retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Wu;Weitao Ye;Yu Lu;Dong Chen;Yuxiang Wang;Yanfen Cui;Zhenhui Li;Pinxiong Li;Zhen Li;Zaiyi Liu;Min Liu;Changhong Liang;Xiaotang Yang;Yu Xie;Ying Wang",
+      "id": "out-aedb26100426",
+      "evidence": [
         {
-          "id": "item-b7e82b75a736",
-          "name": "打破单尺度评估局限",
-          "desc": "创新性打破使用单尺度指标评估疗效的局限，将影像特征谱、临床诊疗信息及病理TIL信息等多尺度信息融合。",
-          "evidence": [
-            {
-              "quote": "创新性的打破使用单尺度指标评估新辅助治疗疗效的局限，将影像特征谱、临床诊疗信息及病理TIL信息等多尺度信息融合，构建新辅助治疗疗效的评估模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2900,
-                "end_char": 2969
-              },
-              "version": "ebef06c8691cbf82ebf2"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] An integrated deep learning model for the prediction of pathological complete response to neoadjuvant chemotherapy with serial ultrasonography in breast cancer patients: a multicentre, retrospective study — Lei Wu;Weitao Ye;Yu Lu;Dong Chen;Yuxiang Wang;Yanfen Cui;Zhenhui Li;Pinxiong Li;Zhen Li;Zaiyi Liu;Min Liu;Changhong Liang;Xiaotang Yang;Yu Xie;Ying Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3463,
+            "end_char": 3828
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI characteristics of breast edema for assessing axillary lymph node burden in early-stage breast cancer: a retrospective bicentric study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeyan Xu;Yingying Ding;Ke Zhao;Chu Han;Zhenwei Shi;Yanfen Cui;Chunling Liu;Huan Lin;Xipeng Pan;Pinxiong Li;Minglei Chen;Huihui Wang;Xiaohui Deng;Changhong Liang;Yu Xie;Zaiyi Liu",
+      "id": "out-b9d8a1e04bb4",
+      "evidence": [
         {
-          "id": "item-86af685c591c",
-          "name": "MRI评分系统预测腋窝反应",
-          "desc": "构建基于MRI的评分系统用于淋巴结阳性乳腺癌新辅助化疗腋窝反应的多中心术前预测。",
-          "evidence": [
-            {
-              "quote": "An MRI-based Scoring System for Preoperative Prediction of Axillary Response to Neoadjuvant Chemotherapy in Node-Positive Breast Cancer: A Multicenter Retrospective Study",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3131,
-                "end_char": 3300
-              },
-              "version": "ebef06c8691cbf82ebf2"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] MRI characteristics of breast edema for assessing axillary lymph node burden in early-stage breast cancer: a retrospective bicentric study — Zeyan Xu;Yingying Ding;Ke Zhao;Chu Han;Zhenwei Shi;Yanfen Cui;Chunling Liu;Huan Lin;Xipeng Pan;Pinxiong Li;Minglei Chen;Huihui Wang;Xiaohui Deng;Changhong Liang;Yu Xie;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3833,
+            "end_char": 4157
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤影像组学创新技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁长虹",
+      "id": "out-0159bf7201fe",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤影像组学创新技术及应用 — 梁长虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4162,
+            "end_char": 4185
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of machine learning models for predicting HER2-zero and HER2-low breast cancers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Xu;Wu Lei;Liu Yu;Xu Zeyan;Liu Chunling;Liu Zaiyi;Liang Changhong",
+      "id": "out-547bf1ac5014",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of machine learning models for predicting HER2-zero and HER2-low breast cancers — Huang Xu;Wu Lei;Liu Yu;Xu Zeyan;Liu Chunling;Liu Zaiyi;Liang Changhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4375
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chu Han;Jiatai Lin;Jinhai Mai;Yi Wang;Qingling Zhang;Bingchao Zhao;Xin Chen;Xipeng Pan;Zhenwei Shi;Zeyan Xu;Su Yao;Lixu Yan;Huan Lin;Xiaomei Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu",
+      "id": "out-60b4e0d24438",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels — Chu Han;Jiatai Lin;Jinhai Mai;Yi Wang;Qingling Zhang;Bingchao Zhao;Xin Chen;Xipeng Pan;Zhenwei Shi;Zeyan Xu;Su Yao;Lixu Yan;Huan Lin;Xiaomei Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4380,
+            "end_char": 4692
+          },
+          "version": "ebef06c8691cbf82ebf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early prediction of treatment response to neoadjuvant chemotherapy based on longitudinal ultrasound images of HER2-positive breast cancer patients by Siamese multi-task network: A multicentre, retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Liu;Ying Wang;Yuxiang Wang;Yu Xie;Yanfen Cui;Senwen Feng;Mengxia Yao;Bingjiang Qiu;Wenqian Shen;Dong Chen;Guoqing Du;Xin Chen;Zaiyi Liu;Zhenhui Li;Xiaotang Yang;Changhong Liang;Lei Wu",
+      "id": "out-f8e84272b2dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early prediction of treatment response to neoadjuvant chemotherapy based on longitudinal ultrasound images of HER2-positive breast cancer patients by Siamese multi-task network: A multicentre, retrospective cohort study — Yu Liu;Ying Wang;Yuxiang Wang;Yu Xie;Yanfen Cui;Senwen Feng;Mengxia Yao;Bingjiang Qiu;Wenqian Shen;Dong Chen;Guoqing Du;Xin Chen;Zaiyi Liu;Zhenhui Li;Xiaotang Yang;Changhong Liang;Lei Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4697,
+            "end_char": 5111
+          },
+          "version": "ebef06c8691cbf82ebf2"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-da81cd46b51c"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d3e17c01fdcc"
-      },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d3e17c01fdcc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fbd474e05251"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fbd474e05251"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4884fc55b1ca"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-970cf9d3f02d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-86af685c591c"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

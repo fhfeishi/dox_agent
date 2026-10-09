@@ -2,15 +2,20 @@
   "doc_id": "c4eaab9de504cc4f35e6",
   "version": "93e67b83f4db60bd1b0d",
   "source_hash": "12410979cd5a98c2794866cc0b3d1ad5380e06a470abf5d1dbf46a8491ae84fb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.274085+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.218910+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7f08cfdf3bea",
-          "name": "多中心异质医学图像联邦学习",
-          "desc": "医学图像正朝大数据方向加速迈进，保护数据隐私的联邦学习技术为多中心协同计算提供新途径。",
+          "id": "item-9bddbd97cfe9",
+          "name": "多中心医学影像联邦学习",
+          "desc": "成像设备与参数异质",
           "evidence": [
             {
-              "quote": "医学图像正朝大数据方向加速迈进，保护数据隐私的联邦学习技术为多中心协同计算提供新途径",
+              "quote": "不同医院在成像设备与采集参数上的差异使数据分布呈现显著异质性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 643,
-                "end_char": 684
-              },
-              "version": "93e67b83f4db60bd1b0d"
-            }
-          ]
-        },
-        {
-          "id": "item-2ef14f6d4d16",
-          "name": "构建新一代大数据智能诊疗系统",
-          "desc": "项目为构建新一代更高效、精准、安全的大数据智能医学诊疗系统提供技术支撑。",
-          "evidence": [
-            {
-              "quote": "本项目将为构建新一代更高效、精准、安全的大数据智能医学诊疗系统提供技术支撑，具有重要的科学意义和临床价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 959,
-                "end_char": 1010
+                "start_char": 2827,
+                "end_char": 2856
               },
               "version": "93e67b83f4db60bd1b0d"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-338483d129f2",
-          "name": "多中心数据异质性影响效率与泛化",
-          "desc": "由于成像设备和参数设置各异，多中心数据普遍存在异质性问题，影响模型训练效率并降低泛化性能。",
+          "id": "item-ab701eb343a3",
+          "name": "联邦训练收敛慢聚合不稳与部署泛化差",
+          "desc": "异质性",
           "evidence": [
             {
-              "quote": "然而，由于成像设备和参数设置各异，多中心数据普遍存在异质性问题，不但影响模型训练效率，而且降低模型泛化性能，导致大数据潜力得不到充分发挥",
+              "quote": "既会造成联邦训练中的收敛变慢与聚合不稳，也会在模型部署到测试数据时引发泛化问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 753
-              },
-              "version": "93e67b83f4db60bd1b0d"
-            }
-          ]
-        },
-        {
-          "id": "item-1e0978d7cccb",
-          "name": "训练收敛慢聚合不稳与部署泛化难",
-          "desc": "数据分布异质性既造成联邦训练收敛变慢与聚合不稳，也会在模型部署到测试数据时引发泛化问题。",
-          "evidence": [
-            {
-              "quote": "不同医院在成像设备与采集参数上的差异使数据分布呈现显著异质性，既会造成联邦训练中的收敛变慢与聚合不稳，也会在模型部署到测试数据时引发泛化问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2827,
+                "start_char": 2858,
                 "end_char": 2896
               },
               "version": "93e67b83f4db60bd1b0d"
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-63b52d5236b4",
-          "name": "局部批归一化与全局聚合约束优化",
-          "desc": "提出局部模型特征本地批归一化与全局模型聚合约束优化新方法，并进行收敛性理论分析。",
-          "evidence": [
-            {
-              "quote": "提出局部模型特征本地批归一化与全局模型聚合约束优化新方法，并理论分析收敛性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 875
-              },
-              "version": "93e67b83f4db60bd1b0d"
-            }
-          ]
-        },
-        {
-          "id": "item-6aada063c762",
-          "name": "个性化初始化与自监督推理自适应",
-          "desc": "将模型个性化初始化与自监督推理自适应相结合，并推导泛化误差上界。",
-          "evidence": [
-            {
-              "quote": "提升模型在异质测试数据上的泛化精度，将模型个性化初始化与自监督推理自适应相结合，并推导泛化误差上界",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 879,
-                "end_char": 927
-              },
-              "version": "93e67b83f4db60bd1b0d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-38118f9c8256",
-          "name": "个性化训练与高效聚合方法",
-          "desc": "提出面向异质数据的个性化训练与高效聚合方法，提升联邦内部训练收敛速度、稳定性并降低通信开销。",
+          "id": "item-2a3df97e6bf7",
+          "name": "异质数据个性化训练与高效聚合方法",
+          "desc": "提升收敛速度并降低通信开销",
           "evidence": [
             {
               "quote": "提出了面向异质数据的个性化训练与高效聚合方法，以提升联邦内部训练的收敛速度、稳定性并降低通信开销",
@@ -147,12 +82,12 @@
               "version": "93e67b83f4db60bd1b0d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-2cb66d7b620c",
+          "id": "item-55a1420747fc",
           "name": "无监督测试时自适应框架",
-          "desc": "实现面向未知外部站点的无监督测试时自适应框架，支持无标注快速适配与稳健泛化。",
+          "desc": "面向未知外部站点",
           "evidence": [
             {
               "quote": "实现了面向未知外部站点的无监督测试时自适应框架，支持无标注快速适配与稳健泛化",
@@ -164,12 +99,12 @@
               "version": "93e67b83f4db60bd1b0d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-3e5adec0587f",
-          "name": "可靠联邦协作机制与全球部署验证",
-          "desc": "构建面向临床落地的可靠联邦协作机制，实现可解释贡献度量、可执行公平性与隐私保护，并参与全球大规模医学影像联邦学习真实世界部署验证。",
+          "id": "item-73e4a2e01523",
+          "name": "可靠联邦协作机制",
+          "desc": "可解释贡献度量、公平性与隐私保护",
           "evidence": [
             {
               "quote": "构建了面向临床落地的可靠联邦协作机制，实现可解释贡献度量、可执行公平性与隐私保护",
@@ -181,55 +116,313 @@
               "version": "93e67b83f4db60bd1b0d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "8篇，含NEJM AI、ICLR、CVPR，专利1项",
+          "evidence": [
+            {
+              "quote": "发表期刊及会议论文共8篇，其中包括NEJM AI 1篇、ICLR 1篇、CVPR 1篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3138,
+                "end_char": 3180
+              },
+              "version": "93e67b83f4db60bd1b0d"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7f08cfdf3bea"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-338483d129f2"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fair Federated Medical Image Segmentation via Client Contribution Estimation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang;Holger R. Roth;Wenqi Li;Dong Yang;Can Zhao;Vishwesh Nath;Daguang Xu;Qi Dou;Ziyue Xu",
+      "id": "out-344b8a66afa9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fair Federated Medical Image Segmentation via Client Contribution Estimation — Meirui Jiang;Holger R. Roth;Wenqi Li;Dong Yang;Can Zhao;Vishwesh Nath;Daguang Xu;Qi Dou;Ziyue Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3422,
+            "end_char": 3603
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-338483d129f2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-63b52d5236b4"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chapter 7 - Improving performance fairness in federated learning for heterogeneous medical images, Federated Learning for Medical Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang;Qi Dou",
+      "id": "out-fe29d461f3ad",
+      "evidence": [
+        {
+          "quote": "[专著] Chapter 7 - Improving performance fairness in federated learning for heterogeneous medical images, Federated Learning for Medical Imaging — Meirui Jiang;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3608,
+            "end_char": 3771
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-63b52d5236b4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-38118f9c8256"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MICCAI 2024 博士论文竞赛冠军 (Federated Learning for Medical Image Computing: Robustness, Generalization, and Privacy)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang",
+      "id": "out-52a4468d3609",
+      "evidence": [
+        {
+          "quote": "[奖励] MICCAI 2024 博士论文竞赛冠军 (Federated Learning for Medical Image Computing: Robustness, Generalization, and Privacy) — Meirui Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3776,
+            "end_char": 3905
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6aada063c762"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2cb66d7b620c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IOP-FL: Inside-Outside Personalization for Federated Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang;Hongzheng Yang;Chen Cheng;Qi Dou",
+      "id": "out-1fc560094d69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IOP-FL: Inside-Outside Personalization for Federated Medical Image Segmentation — Meirui Jiang;Hongzheng Yang;Chen Cheng;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 4043
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Client-Level Differential Privacy via Adaptive Intermediary in Federated Medical Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang;Yuan Zhong;Anjie Le;Xiaoxiao Li;Qi Dou",
+      "id": "out-c6e40e1bf26d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Client-Level Differential Privacy via Adaptive Intermediary in Federated Medical Imaging — Meirui Jiang;Yuan Zhong;Anjie Le;Xiaoxiao Li;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4196
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Heterogeneous Personalized Federated Learning by Local-Global Updates Mixing via Convergence Rate",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meirui Jiang;Anjie Le;Xiaoxiao Li;Qi Dou",
+      "id": "out-1e5c86bf19d4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Heterogeneous Personalized Federated Learning by Local-Global Updates Mixing via Convergence Rate — Meirui Jiang;Anjie Le;Xiaoxiao Li;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4201,
+            "end_char": 4347
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advancing Diabetic Macular Edema Detection from 3D Optical Coherence Tomography Scans: Integrating Privacy-Preserving AI and Generalizability Techniques",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-2dafce3a4ee7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advancing Diabetic Macular Edema Detection from 3D Optical Coherence Tomography Scans: Integrating Privacy-Preserving AI and Generalizability Techniques — A Prospective Validation in Vietnam — Truong X Nguyen;Meirui Jiang;Dawei Yang;An Ran Ran;Ziqi Tang;Shuyi Zhang;Xiaoyan Hu;Vy T Tran;Tran B.L. Dai;Diem T. Le;Nguyen T. Tan;Simon KH Szeto;Cherie YK Wong;Vivian WK Hui;Ken Tsang;Carmen KM Chan;Hunter Kwok-Lai Yuen;Victor TT Chan;Andrew CY Mak;Mary Ho;Wilson WK Yip;Alvin L Young;Theodore Leng;Gavin Siew Wei Tan;Tien Yin Wong;Peng-Ann Heng;Clement C Tham;Timothy YY Lai;Triet Thanh Nguyen;Qi Dou;Carol Y Cheung",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4352,
+            "end_char": 4970
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chapter 8 - Deep model adaptation without target labels on cross-domain medical images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Chen;Quande Liu;Qi Dou;Pheng Ann Heng",
+      "id": "out-51c4b1809a17",
+      "evidence": [
+        {
+          "quote": "[专著] Chapter 8 - Deep model adaptation without target labels on cross-domain medical images — Cheng Chen;Quande Liu;Qi Dou;Pheng Ann Heng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4975,
+            "end_char": 5111
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "System and method for heterogeneous personalized federated learning by local-global updates mixing via convergence rate",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "窦琪;姜美锐",
+      "id": "out-1d894e4f5fb1",
+      "evidence": [
+        {
+          "quote": "[专利] System and method for heterogeneous personalized federated learning by local-global updates mixing via convergence rate — 窦琪;姜美锐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5116,
+            "end_char": 5248
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HealthCards: Exploring Text-to-Image Generation as Visual Aids for Healthcare Knowledge Democratizing and Education",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Wu;Zheyao Gao;Longfei Gou;Yifan Hou;Ann Sin Nga Lau;Qi Dou",
+      "id": "out-f9df8f8997fb",
+      "evidence": [
+        {
+          "quote": "[会议论文] HealthCards: Exploring Text-to-Image Generation as Visual Aids for Healthcare Knowledge Democratizing and Education — Qian Wu;Zheyao Gao;Longfei Gou;Yifan Hou;Ann Sin Nga Lau;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5254,
+            "end_char": 5441
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedSoup: Improving generalization and personalization in federated learning via selective model interpolation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minghui Chen;Meirui Jiang;Qi Dou;Zehua Wang;Xiaoxiao Li",
+      "id": "out-0b04334af2fb",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedSoup: Improving generalization and personalization in federated learning via selective model interpolation — Minghui Chen;Meirui Jiang;Qi Dou;Zehua Wang;Xiaoxiao Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5447,
+            "end_char": 5620
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3DSAM-adapter: Holistic adaptation of SAM from 2D to 3D for promptable tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shizhan Gong;Yuan Zhong;Wenao Ma;Jinpeng Li;Zhao Wang;Jingyang Zhang;Pheng-Ann Heng;Qi Dou",
+      "id": "out-32a41d865998",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3DSAM-adapter: Holistic adaptation of SAM from 2D to 3D for promptable tumor segmentation — Shizhan Gong;Yuan Zhong;Wenao Ma;Jinpeng Li;Zhao Wang;Jingyang Zhang;Pheng-Ann Heng;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5626,
+            "end_char": 5814
+          },
+          "version": "93e67b83f4db60bd1b0d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

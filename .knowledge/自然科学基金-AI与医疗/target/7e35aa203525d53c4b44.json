@@ -2,15 +2,20 @@
   "doc_id": "7e35aa203525d53c4b44",
   "version": "d66ed2cfe44b331e7065",
   "source_hash": "ee93f81f36ffdcdffbcaefa2b74ab7bfa434102dd1cb561a4a315576f47dcca8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.155172+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:47:16.776237+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b536499bbc9e",
-          "name": "激酶药物发现与多重药理学分析",
-          "desc": "面向激酶多靶标选择性药物设计，研发人工智能驱动的激酶谱建模与多药理学分析技术体系。",
+          "id": "item-abc3a36a03cb",
+          "name": "激酶多靶标药物发现",
+          "desc": "多重药理学",
           "evidence": [
             {
-              "quote": "激酶靶向药物仍面临同质化竞争、获得性耐药和毒副作用导致的研发失败",
+              "quote": "本项目围绕人工智能辅助的多靶标药物发现方法研究，聚焦激酶谱建模与药物脱靶效应分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 701
+                "start_char": 2768,
+                "end_char": 2807
               },
               "version": "d66ed2cfe44b331e7065"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2d4f66153514",
-          "name": "缺乏高精度多重药理学方法与易用筛选软件",
-          "desc": "激酶多靶标选择性药物设计缺乏高精度的系统性评价多重药理学的药物设计方法，也缺乏兼具可定制化和高易用性的激酶多靶标活性筛选软件。",
+          "id": "item-e731f885baad",
+          "name": "传统方法难以系统刻画小分子多靶标作用谱",
+          "desc": "激酶家族规模庞大、结构保守、突变多",
           "evidence": [
             {
-              "quote": "围绕激酶多靶标选择性药物设计中的两个关键问题，即缺乏高精度的系统性评价激酶多重药理学的药物设计方法，缺乏兼具可定制化和高易用性的激酶多靶标活性筛选软件",
+              "quote": "传统方法难以系统刻画小分子的多靶标作用谱与多药理学特征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 834
+                "start_char": 2740,
+                "end_char": 2766
               },
               "version": "d66ed2cfe44b331e7065"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7928705f87f3",
-          "name": "图神经网络激酶活性预测与元学习激酶谱分析平台",
-          "desc": "发展基于图神经网络的高可信度小分子激酶活性预测方法，构建基于元学习的大规模激酶谱分析流程，并搭建可定制化小分子激酶谱多重药理学预测分析云平台。",
+          "id": "item-8e8965e6f9b8",
+          "name": "元学习与图神经网络激酶谱建模及KinomeMETA平台",
+          "desc": "覆盖661种野生型及突变激酶",
           "evidence": [
             {
-              "quote": "发展基于图神经网络的高可信度小分子激酶活性预测方法",
+              "quote": "本项目发展了基于元学习和图神经网络的高精度激酶谱建模方法，并搭建了云计算驱动的定制化预测平台KinomeMETA，覆盖661种野生型及临床相关突变激酶",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 922
+                "start_char": 2837,
+                "end_char": 2911
               },
               "version": "d66ed2cfe44b331e7065"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c367768803bc",
+          "name": "TranSiGen与PertKGE",
+          "desc": "微扰转录组预测与多靶标作用机制解析",
+          "evidence": [
+            {
+              "quote": "提出了表型驱动的微扰转录组预测模型TranSiGen和基于知识图谱的多靶标作用机制解析方法PertKGE",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2966,
+                "end_char": 3017
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,421 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95044326b69c",
-          "name": "KinomeMETA覆盖661种激酶并支撑1.7万余次建模",
-          "desc": "搭建云计算驱动的定制化预测平台KinomeMETA，覆盖661种野生型及临床相关突变激酶，已支撑全球1.7万余次建模任务；暗激酶PKMYT1筛选Top20命中率较传统方法提升约3倍；发表论文15篇，申请专利2项、软著1项。",
+          "id": "item-d8334dd9ca89",
+          "name": "KinomeMETA平台使用",
+          "desc": "1.7万余次建模任务，暗激酶PKMYT1命中率提升约3倍",
           "evidence": [
             {
-              "quote": "并搭建了云计算驱动的定制化预测平台KinomeMETA，覆盖661种野生型及临床相关突变激酶",
+              "quote": "KinomeMETA平台已支撑全球1.7万余次建模任务，在“暗激酶”PKMYT1筛选中Top20命中率较传统方法提升约3倍",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2911
+                "start_char": 3020,
+                "end_char": 3080
               },
               "version": "d66ed2cfe44b331e7065"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "论文15篇，专利2项，软著1项",
+          "evidence": [
+            {
+              "quote": "项目执行期间累计发表学术论文15篇，其中影响因子10以上论文4篇，发表综述论文2篇，申请专利2项并获软件著作权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3258,
+                "end_char": 3314
+              },
+              "version": "d66ed2cfe44b331e7065"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b536499bbc9e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2d4f66153514"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovery and characterization of a novel HIF-2α agonist for the treatment of CKD-related renal anemia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chu Shu-qing;Chen Yi-jie;Yang Rui-rui;Teng Dan;Zhou Gui-zhen;Zhang Ying-ying;Niu Bu-ying;Xu Jia-hang;Lin Ke-xin;Yang Xin-yu;Li Xu-tong;Zheng Ming-yue;Zhang Su-lin",
+      "id": "out-b0fdbfde47c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovery and characterization of a novel HIF-2α agonist for the treatment of CKD-related renal anemia — Chu Shu-qing;Chen Yi-jie;Yang Rui-rui;Teng Dan;Zhou Gui-zhen;Zhang Ying-ying;Niu Bu-ying;Xu Jia-hang;Lin Ke-xin;Yang Xin-yu;Li Xu-tong;Zheng Ming-yue;Zhang Su-lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3447,
+            "end_char": 3720
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2d4f66153514"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7928705f87f3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep representation learning of chemical-induced transcriptional profile for phenotype-based drug discovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaochu Tong;Ning Qu;Xiangtai Kong;Shengkun Ni;Jingyi Zhou;Kun Wang;Lehan Zhang;Yiming Wen;Jiangshan Shi;Sulin Zhang;Xutong Li;Mingyue Zheng",
+      "id": "out-7e578706dcba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep representation learning of chemical-induced transcriptional profile for phenotype-based drug discovery — Xiaochu Tong;Ning Qu;Xiangtai Kong;Shengkun Ni;Jingyi Zhou;Kun Wang;Lehan Zhang;Yiming Wen;Jiangshan Shi;Sulin Zhang;Xutong Li;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3725,
+            "end_char": 3981
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7928705f87f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-95044326b69c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LogD7.4 prediction enhanced by transferring knowledge from chromatographic retention time, microscopic pKa and logP",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yitian Wang;Jiacheng Xiong;Fu Xiao;Wei Zhang;Kaiyang Cheng;Jingxin Rao;Buying Niu;Xiaochu Tong;Ning Qu;Runze Zhang;Dingyan Wang;Kaixian Chen;Xutong Li;Mingyue Zheng",
+      "id": "out-770290a86382",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LogD7.4 prediction enhanced by transferring knowledge from chromatographic retention time, microscopic pKa and logP — Yitian Wang;Jiacheng Xiong;Fu Xiao;Wei Zhang;Kaiyang Cheng;Jingxin Rao;Buying Niu;Xiaochu Tong;Ning Qu;Runze Zhang;Dingyan Wang;Kaixian Chen;Xutong Li;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4274
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种药物重定向预测方法及预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑明月;蒋华良;杨天标;李叙潼;王刚",
+      "id": "out-23a2631e1243",
+      "evidence": [
+        {
+          "quote": "[专利] 一种药物重定向预测方法及预测系统 — 郑明月;蒋华良;杨天标;李叙潼;王刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4279,
+            "end_char": 4320
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种化合物安全性预测方法、装置及计算设备集群",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郑明月;李叙潼;刘金;归一珂;熊招平;乔楠",
+      "id": "out-96fba7dce43a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种化合物安全性预测方法、装置及计算设备集群 — 郑明月;李叙潼;刘金;归一珂;熊招平;乔楠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4325,
+            "end_char": 4375
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KinomeMETA: meta-learning enhanced kinome-wide polypharmacology profiling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qun Ren;Ning Qu;Jingjing Sun;Jingyi Zhou;Jin Liu;Lin Ni;Xiaochu Tong;Zimei Zhang;Xiangtai Kong;Yiming Wen;Yitian Wang;Dingyan Wang;Xiaomin Luo;Sulin Zhang;Mingyue Zheng;Xutong Li",
+      "id": "out-01d827eaa7c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] KinomeMETA: meta-learning enhanced kinome-wide polypharmacology profiling — Qun Ren;Ning Qu;Jingjing Sun;Jingyi Zhou;Jin Liu;Lin Ni;Xiaochu Tong;Zimei Zhang;Xiangtai Kong;Yiming Wen;Yitian Wang;Dingyan Wang;Xiaomin Luo;Sulin Zhang;Mingyue Zheng;Xutong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4380,
+            "end_char": 4640
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "In silico off-target profiling for enhanced drug safety assessment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Liu;Yike Gui;Jingxin Rao;Jingjing Sun;Gang Wang;Qun Ren;Ning Qu;Buying Niu;Zhiyi Chen;Xia Sheng;Yitian Wang;Mingyue Zheng;Xutong Li",
+      "id": "out-828a4396c86c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] In silico off-target profiling for enhanced drug safety assessment — Jin Liu;Yike Gui;Jingxin Rao;Jingjing Sun;Gang Wang;Qun Ren;Ning Qu;Buying Niu;Zhiyi Chen;Xia Sheng;Yitian Wang;Mingyue Zheng;Xutong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4645,
+            "end_char": 4855
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimizing blood-brain barrier permeability in KRAS inhibitors: A structure-constrained molecular generation approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sheng Xia;Gui Yike;Yu Jie;Wang Yitian;Li Zhenghao;Zhang Xiaoya;Xing Yuxin;Wang Yuqing;Li Zhaojun;Zheng Mingyue;Yang Liquan;Li Xutong",
+      "id": "out-c26f054abd9b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimizing blood-brain barrier permeability in KRAS inhibitors: A structure-constrained molecular generation approach — Sheng Xia;Gui Yike;Yu Jie;Wang Yitian;Li Zhenghao;Zhang Xiaoya;Xing Yuxin;Wang Yuqing;Li Zhaojun;Zheng Mingyue;Yang Liquan;Li Xutong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4860,
+            "end_char": 5118
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovery of novel covalent stabilizers for p53 Y220C using structure-based drug discovery methods",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen Yiming;Xu Peijia;Chen Yijie;Meng Jingyi;Zheng Mingyue;Zhang Sulin;Teng Dan;Li Xutong",
+      "id": "out-aca18018b9bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovery of novel covalent stabilizers for p53 Y220C using structure-based drug discovery methods — Wen Yiming;Xu Peijia;Chen Yijie;Meng Jingyi;Zheng Mingyue;Zhang Sulin;Teng Dan;Li Xutong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5123,
+            "end_char": 5318
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The emergence of machine learning force fields in drug design",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingan Chen;Xinyu Jiang;Lehan Zhang;Xiaoxu Chen;Yiming Wen;Zhiyong Gu;Xutong Li;Mingyue Zheng",
+      "id": "out-73dafd7750f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The emergence of machine learning force fields in drug design — Mingan Chen;Xinyu Jiang;Lehan Zhang;Xiaoxu Chen;Yiming Wen;Zhiyong Gu;Xutong Li;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5324,
+            "end_char": 5487
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KinomeMETA: a web platform for kinome-wide polypharmacology profiling with meta-learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhaojun Li;Ning Qu;Jingyi Zhou;Jingjing Sun;Qun Ren;Jingyi Meng;Guangchao Wang;Rongyan Wang;Jin Liu;Yijie Chen;Sulin Zhang;Mingyue Zheng;Xutong Li",
+      "id": "out-fe9cfe1120b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] KinomeMETA: a web platform for kinome-wide polypharmacology profiling with meta-learning — Zhaojun Li;Ning Qu;Jingyi Zhou;Jingjing Sun;Qun Ren;Jingyi Meng;Guangchao Wang;Rongyan Wang;Jin Liu;Yijie Chen;Sulin Zhang;Mingyue Zheng;Xutong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5493,
+            "end_char": 5736
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "miCGR: interpretable deep neural network for predicting both site-level and gene-level functional targets of microRNA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaolong Wu;Lehan Zhang;Xiaochu Tong;Yitian Wang;Zimei Zhang;Xiangtai Kong;Shengkun Ni;Xiaomin Luo;Mingyue Zheng;Yun Tang;Xutong Li",
+      "id": "out-8284c66d3e0e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] miCGR: interpretable deep neural network for predicting both site-level and gene-level functional targets of microRNA — Xiaolong Wu;Lehan Zhang;Xiaochu Tong;Yitian Wang;Zimei Zhang;Xiangtai Kong;Shengkun Ni;Xiaomin Luo;Mingyue Zheng;Yun Tang;Xutong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5742,
+            "end_char": 5999
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying compound-protein interactions with knowledge graph embedding of perturbation transcriptomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shengkun Ni;Xiangtai Kong;Yingying Zhang;Zhengyang Chen;Zhaokun Wang;Zunyun Fu;Ruifeng Huo;Xiaochu Tong;Ning Qu;Xiaolong Wu;Kun Wang;Wei Zhang;Runze Zhang;Zimei Zhang;Jiangshan Shi;Yitian Wang;Ruirui Yang;Xutong Li;Sulin Zhang;Mingyue Zheng",
+      "id": "out-e8a075b48798",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying compound-protein interactions with knowledge graph embedding of perturbation transcriptomics — Shengkun Ni;Xiangtai Kong;Yingying Zhang;Zhengyang Chen;Zhaokun Wang;Zunyun Fu;Ruifeng Huo;Xiaochu Tong;Ning Qu;Xiaolong Wu;Kun Wang;Wei Zhang;Runze Zhang;Zimei Zhang;Jiangshan Shi;Yitian Wang;Ruirui Yang;Xutong Li;Sulin Zhang;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6005,
+            "end_char": 6358
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MolFilterGAN: a progressively augmented generative adversarial network for triaging AI-designed molecules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaohong Liu;Wei Zhang;Xiaochu Tong;Feisheng Zhong;Zhaojun Li;Zhaoping Xiong;Jiacheng Xiong;Xiaolong Wu;Zunyun Fu;Xiaoqin Tan;Zhiguo Liu;Sulin Zhang;Hualiang Jiang;Xutong Li;Mingyue Zheng",
+      "id": "out-b8c44b723752",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MolFilterGAN: a progressively augmented generative adversarial network for triaging AI-designed molecules — Xiaohong Liu;Wei Zhang;Xiaochu Tong;Feisheng Zhong;Zhaojun Li;Zhaoping Xiong;Jiacheng Xiong;Xiaolong Wu;Zunyun Fu;Xiaoqin Tan;Zhiguo Liu;Sulin Zhang;Hualiang Jiang;Xutong Li;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6364,
+            "end_char": 6665
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computing the relative binding affinity of ligands based on a pairwise binding comparison network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Yu;Zhaojun Li;Geng Chen;Xiangtai Kong;Jie Hu;Dingyan Wang;Duanhua Cao;Yanbei L;Ruifeng Huo;Gang Wang;Xiaohong Liu;Hualiang Jiang;Xutong Li;Xiaomin Luo;Mingyue Zheng",
+      "id": "out-b6043bfe8e61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computing the relative binding affinity of ligands based on a pairwise binding comparison network — Jie Yu;Zhaojun Li;Geng Chen;Xiangtai Kong;Jie Hu;Dingyan Wang;Duanhua Cao;Yanbei L;Ruifeng Huo;Gang Wang;Xiaohong Liu;Hualiang Jiang;Xutong Li;Xiaomin Luo;Mingyue Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6671,
+            "end_char": 6945
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gram matrix: an efficient representation of molecular conformation and learning objective for molecular pretraining",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Wenkai;Zhong Feisheng;Ni Lin;Zheng Mingyue;Li Xutong;Shi Qian;Wang Dingyan",
+      "id": "out-c981fe54a0de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gram matrix: an efficient representation of molecular conformation and learning objective for molecular pretraining — Xiang Wenkai;Zhong Feisheng;Ni Lin;Zheng Mingyue;Li Xutong;Shi Qian;Wang Dingyan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6951,
+            "end_char": 7155
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tora3D: an autoregressive torsion angle prediction model for molecular 3D conformation generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zimei Zhang;Gang Wang;Rui Li;Lin Ni;RunZe Zhang;Kaiyang Cheng;Qun Ren;Xiangtai Kong;Shengkun Ni;Xiaochu Tong;Li Luo;Dingyan Wang;Xiaojie Lu;Mingyue Zheng;Xutong Li",
+      "id": "out-e0f6133aad8b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tora3D: an autoregressive torsion angle prediction model for molecular 3D conformation generation — Zimei Zhang;Gang Wang;Rui Li;Lin Ni;RunZe Zhang;Kaiyang Cheng;Qun Ren;Xiangtai Kong;Shengkun Ni;Xiaochu Tong;Li Luo;Dingyan Wang;Xiaojie Lu;Mingyue Zheng;Xutong Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7161,
+            "end_char": 7430
+          },
+          "version": "d66ed2cfe44b331e7065"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

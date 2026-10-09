@@ -2,15 +2,20 @@
   "doc_id": "2a7f7b37626d857b7842",
   "version": "caee0dac1fcfd9e0d0d5",
   "source_hash": "66152d53a0aee574b9f31dc3a886ec59deadcb1255558d1fc3954e9a55d42b9b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.947603+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:34:11.758542+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b710dc2b83e",
-          "name": "医学影像病灶精准分割",
-          "desc": "面向医学影像病灶分割任务，针对“大数据、小任务”范式下精度与泛化不足、落地困难的问题开展研究。",
+          "id": "item-8205f49306fd",
+          "name": "医学影像病灶分割",
+          "desc": "形态多变、边界模糊",
           "evidence": [
             {
-              "quote": "医学影像病灶分割是一项具有挑战性的任务",
+              "quote": "医学影像病灶分割面临病灶形态多变、边界模糊与低对比度、部分容积效应等成像退化影响",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 673
+                "start_char": 2733,
+                "end_char": 2772
               },
               "version": "caee0dac1fcfd9e0d0d5"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1ef82b12cd6",
-          "name": "病灶形态多变与数据不均衡导致模型泛化受限",
-          "desc": "病灶数据变化性大、样本不均衡、多中心分布以及成像质量差，数据驱动的深度学习模型难以有效应对，标注依赖强、跨域泛化能力受限。",
+          "id": "item-bf8737cc89e4",
+          "name": "高质量标注依赖强、跨域泛化受限",
+          "desc": "数据驱动分割方法局限",
           "evidence": [
             {
-              "quote": "其难点来源于病灶数据的变化性大、样本不均衡、多中心分布以及成像质量差等",
+              "quote": "导致现有数据驱动的分割方法对高质量标注依强赖强、跨域泛化能力受限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 709
+                "start_char": 2799,
+                "end_char": 2830
               },
               "version": "caee0dac1fcfd9e0d0d5"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af6b38def263",
-          "name": "伪健康图像生成与知识嵌入分割框架",
-          "desc": "挖掘健康图像、器官、区域与像素中蕴藏的知识，提出生成与分割任务对抗、解耦健康与病灶特征生成等方案，将伪健康图像嵌入分割模型输入、输出与中间特征层。",
+          "id": "item-47c8b080a7c1",
+          "name": "伪健康图像生成",
+          "desc": "深度挖掘健康图像中的领域知识",
           "evidence": [
             {
-              "quote": "项目通过挖掘健康图像、器官、区域和像素中蕴藏的知识，提出生成任务与分割任务对抗",
+              "quote": "本项目以伪健康图像生成为主要技术手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 781,
-                "end_char": 819
+                "start_char": 2832,
+                "end_char": 2849
               },
               "version": "caee0dac1fcfd9e0d0d5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-60a5158cec84",
+          "name": "分割器替代判别器的局部对抗学习",
+          "desc": "病灶擦除与周围组织和谐一致",
+          "evidence": [
+            {
+              "quote": "项目提出以分割器替代传统判别器的局部对抗学习机制，增强病灶擦除与周围组织的和谐一致性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2894,
+                "end_char": 2935
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3165ad830d91",
+          "name": "知识嵌入弱标注与混合监督分割框架",
+          "desc": "解剖先验以伪标签融入",
+          "evidence": [
+            {
+              "quote": "构建知识嵌入的弱标注与混合监督病灶分割框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2998,
+                "end_char": 3018
+              },
+              "version": "caee0dac1fcfd9e0d0d5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dfc410995df3",
-          "name": "发表学术论文20篇含IEEE Trans 5篇与CCF-A会议6篇",
-          "desc": "项目期间共发表学术论文20篇，其中IEEE Trans期刊论文5篇、CCF推荐A类国际会议论文6篇，形成可复现可推广的算法方法与实验结论。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表论文20篇，IEEE Trans 5篇、CCF-A会议6篇",
           "evidence": [
             {
               "quote": "项目期间共发表学术论文20篇，其中IEEE Trans期刊论文5篇、CCF推荐A类国际会议论文6篇",
@@ -99,44 +139,392 @@
               "version": "caee0dac1fcfd9e0d0d5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0b710dc2b83e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b1ef82b12cd6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhanced features in image manipulation detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Chuchu;Chen Yunshu;Pan Jie;Huang Yue;Tu Xiaotong;Ding Xinghao",
+      "id": "out-bb8fdb3f8769",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhanced features in image manipulation detection — He Chuchu;Chen Yunshu;Pan Jie;Huang Yue;Tu Xiaotong;Ding Xinghao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3251,
+            "end_char": 3373
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b1ef82b12cd6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-af6b38def263"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Towards Better Generalization Using Synthetic Data: A Domain Adaptation Framework for T2 Mapping via Multiple Overlapping-Echo Acquisition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chi Zhang;Qizhi Yang;Linyu Fan;Shaocong Yu;Liyan Sun;Congbo Cai;Xinghao Ding",
+      "id": "out-1ba5072bf601",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Towards Better Generalization Using Synthetic Data: A Domain Adaptation Framework for T2 Mapping via Multiple Overlapping-Echo Acquisition — Chi Zhang;Qizhi Yang;Linyu Fan;Shaocong Yu;Liyan Sun;Congbo Cai;Xinghao Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3378,
+            "end_char": 3601
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-af6b38def263"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dfc410995df3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Few-shot medical image segmentation using a global correlation network with discriminative embedding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liyan Sun;Chenxin Li;Xinghao Ding;Yue Huang;Zhong Chen;Guisheng Wang;Yizhou Yu;John Paisley",
+      "id": "out-a4399c434528",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Few-shot medical image segmentation using a global correlation network with discriminative embedding — Liyan Sun;Chenxin Li;Xinghao Ding;Yue Huang;Zhong Chen;Guisheng Wang;Yizhou Yu;John Paisley",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3806
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Image Denoising Using Implicit Deep Denoiser Prior",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Huangxing;Zhuang Yihong;Ding Xinghao;Zeng Delu;Huang Yue;Tu Xiaotong;Paisley John",
+      "id": "out-ba80799e079a",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-Supervised Image Denoising Using Implicit Deep Denoiser Prior — Lin Huangxing;Zhuang Yihong;Ding Xinghao;Zeng Delu;Huang Yue;Tu Xiaotong;Paisley John",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3811,
+            "end_char": 3971
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dissecting Generalized Category Discovery: Multiplex Consensus under Self-Deconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luyao Tang;Kunze Huang;Chaoqi Chen;Yuxuan Yuan;Chenxin Li;Xiaotong Tu;Xinghao Ding;Yue Huang",
+      "id": "out-997008a702e2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dissecting Generalized Category Discovery: Multiplex Consensus under Self-Deconstruction — Luyao Tang;Kunze Huang;Chaoqi Chen;Yuxuan Yuan;Chenxin Li;Xiaotong Tu;Xinghao Ding;Yue Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3976,
+            "end_char": 4165
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Track Any Anomalous Object:A Granular Video Anomaly Detection Pipeline",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuzhi Huang;Chenxin Li;Haitao Zhang;Zixu Lin;Yunlong Lin;Hengyu Liu;Wuyang Li;Xinyu Liu;Jiechao Gao;Yue Huang;Xinghao Ding;Yixuan Yuan",
+      "id": "out-c86c09f403ad",
+      "evidence": [
+        {
+          "quote": "[会议论文] Track Any Anomalous Object:A Granular Video Anomaly Detection Pipeline — Yuzhi Huang;Chenxin Li;Haitao Zhang;Zixu Lin;Yunlong Lin;Hengyu Liu;Wuyang Li;Xinyu Liu;Jiechao Gao;Yue Huang;Xinghao Ding;Yixuan Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4170,
+            "end_char": 4383
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于双阶段个性化联邦学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁兴号;黄悦;易鸿;井长兴",
+      "id": "out-0521d307d4d9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于双阶段个性化联邦学习方法 — 丁兴号;黄悦;易鸿;井长兴",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4388,
+            "end_char": 4424
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AFSC: Adaptive Fourier Space Compression for Anomaly Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Haote;Zhang Yunlong;Chen Xiaolu;Jing Changxing;Sun Liyan;Huang Yue;Ding Xinghao",
+      "id": "out-3f58357d9ca1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AFSC: Adaptive Fourier Space Compression for Anomaly Detection — Xu Haote;Zhang Yunlong;Chen Xiaolu;Jing Changxing;Sun Liyan;Huang Yue;Ding Xinghao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4429,
+            "end_char": 4582
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "P2SAM: Probabilistically Prompted SAMs Are Efficient Segmentator for Ambiguous Medical Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Yuzhi;Li Chenxin;Lin Zixu;Liu Hengyu;Xu Haote;Liu Yifan;Huang Yue;Ding Xinghao;Tu Xiaotong;Yuan Yixuan",
+      "id": "out-33980c189f14",
+      "evidence": [
+        {
+          "quote": "[会议论文] P2SAM: Probabilistically Prompted SAMs Are Efficient Segmentator for Ambiguous Medical Images — Huang Yuzhi;Li Chenxin;Lin Zixu;Liu Hengyu;Xu Haote;Liu Yifan;Huang Yue;Ding Xinghao;Tu Xiaotong;Yuan Yixuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4797
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dataset Distillation with Channel Efficient Process",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenbo Zhou;Guoqing Zheng;Xinghao Ding",
+      "id": "out-fca5bb77b76f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dataset Distillation with Channel Efficient Process — Wenbo Zhou;Guoqing Zheng;Xinghao Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4803,
+            "end_char": 4900
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DPLUT: Unsupervised Low-light Image Enhancement with Lookup Tables and Diffusion Priors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Yunlong;Fu Zhenqi;Wen Kairun;Ye Tian;Chen Sixiang;Meng Ge;Wang Yingying;Kong Chui;Huang Yue;Tu Xiaotong;Ding Xinghao",
+      "id": "out-b05b9557001e",
+      "evidence": [
+        {
+          "quote": "[会议论文] DPLUT: Unsupervised Low-light Image Enhancement with Lookup Tables and Diffusion Priors — Lin Yunlong;Fu Zhenqi;Wen Kairun;Ye Tian;Chen Sixiang;Meng Ge;Wang Yingying;Kong Chui;Huang Yue;Tu Xiaotong;Ding Xinghao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4906,
+            "end_char": 5122
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Implicit Foreground-Guided Network for Anomaly Detection and Localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiaolu;Xu Haote;Deng Chenghao;Tu Xiaotong;Ding Xinghao;Huang Yue",
+      "id": "out-8d4839dd2293",
+      "evidence": [
+        {
+          "quote": "[会议论文] Implicit Foreground-Guided Network for Anomaly Detection and Localization — Chen Xiaolu;Xu Haote;Deng Chenghao;Tu Xiaotong;Ding Xinghao;Huang Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5128,
+            "end_char": 5279
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Harmonizing Pathological and Normal Pixels for Pseudo-healthy Synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunlong Zhang;Xin Lin;Yihong Zhuang;Liyan Sun;Yue Huang;Xinghao Ding;Guisheng Wang;Lin Yang;Yizhou Yu",
+      "id": "out-4eaff66653f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Harmonizing Pathological and Normal Pixels for Pseudo-healthy Synthesis — Yunlong Zhang;Xin Lin;Yihong Zhuang;Liyan Sun;Yue Huang;Xinghao Ding;Guisheng Wang;Lin Yang;Yizhou Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5285,
+            "end_char": 5466
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Domain generalization on medical imaging classification using episodic training with task augmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Chenxin;Lin Xin;Mao Yijin;Lin Wei;Qi Qi;Ding Xinghao;Huang Yue;Liang Dong;Yu Yizhou",
+      "id": "out-8d0ec8304def",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Domain generalization on medical imaging classification using episodic training with task augmentation — Li Chenxin;Lin Xin;Mao Yijin;Lin Wei;Qi Qi;Ding Xinghao;Huang Yue;Liang Dong;Yu Yizhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5669
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Dataset Distillation through Low-Rank Space Sampling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hangyang Kong;Wenbo Zhou;Xuxiang He;Xiaotong Tu;Xinghao Ding",
+      "id": "out-be262d979b07",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Dataset Distillation through Low-Rank Space Sampling — Hangyang Kong;Wenbo Zhou;Xuxiang He;Xiaotong Tu;Xinghao Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5675,
+            "end_char": 5806
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A teacher-student framework for liver and tumor segmentation under mixed supervision from abdominal CT scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Liyan;Wu Jianxiong;Ding Xinghao;Huang Yue;Chen Zhong;Wang Guisheng;Yu Yizhou",
+      "id": "out-ba130ddae806",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A teacher-student framework for liver and tumor segmentation under mixed supervision from abdominal CT scans — Sun Liyan;Wu Jianxiong;Ding Xinghao;Huang Yue;Chen Zhong;Wang Guisheng;Yu Yizhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5812,
+            "end_char": 6009
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge condensation distillation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenxin Li;Mingbao Lin;Zhiyuan Ding;Nie Lin;Yihong Zhuang;Yue Huang;Xinghao Ding;Liujuan Cao",
+      "id": "out-553b405fd12b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Knowledge condensation distillation — Chenxin Li;Mingbao Lin;Zhiyuan Ding;Nie Lin;Yihong Zhuang;Yue Huang;Xinghao Ding;Liujuan Cao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6015,
+            "end_char": 6151
+          },
+          "version": "caee0dac1fcfd9e0d0d5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

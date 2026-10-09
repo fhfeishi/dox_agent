@@ -2,15 +2,20 @@
   "doc_id": "289c69d9deb331e27ba3",
   "version": "d42093cc3538a05b9ee9",
   "source_hash": "48b9448f2aaf63e25c4d3e2d9cbb429d05d014766d9783b940746d3c63026598",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.611580+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:34:11.682696+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b561b3fe1dc",
-          "name": "乳腺癌复发转移风险预测",
-          "desc": "面向乳腺癌术后复发转移这一主要致死原因，基于多源异构数据开展复发与远端转移风险预测。",
+          "id": "item-e2688db0be4e",
+          "name": "乳腺癌术后复发转移风险预测",
+          "desc": "术后复发转移是主要死因",
           "evidence": [
             {
-              "quote": "精准预测局部复发及远端转移是当前乳腺癌相关研究的关键问题",
+              "quote": "乳腺癌是女性发病率最高的恶性肿瘤，术后复发转移是导致患者死亡的主要原因",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 732
+                "start_char": 669,
+                "end_char": 703
               },
               "version": "d42093cc3538a05b9ee9"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fbde2d5a33be",
-          "name": "单一数据源难以解析肿瘤异质性",
-          "desc": "传统预测方法依赖单一数据源，难以全面解析肿瘤高度异质性，导致复发转移预测准确率受限。",
+          "id": "item-dd2554b5a96e",
+          "name": "传统方法依赖单一数据源难以解析异质性",
+          "desc": "多源异构数据融合",
           "evidence": [
             {
               "quote": "针对传统方法依赖单一数据源、难以全面解析肿瘤高度异质性的局限",
@@ -63,31 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b72d34c80526",
-          "name": "组学与病理图像多源异构融合深度学习预测算法",
-          "desc": "筛选正则化模型并构建缺失数据矩阵填充，通过跨源一致性选择共享特征子集，用条件对抗生成网络平衡样本，混合DenseNet与ResNet提取病理底层形态与高层语义特征后融合建模。",
+          "id": "item-00eec021bb93",
+          "name": "ICSDA多模态融合模型",
+          "desc": "病理图像、临床与基因数据，注意力定位",
           "evidence": [
             {
-              "quote": "研究流行的DenseNet和ResNet网络模型混合方法，提取病理图像的底层形态特征和高层语义特征",
+              "quote": "其中，ICSDA模型融合病理图像、临床与基因数据，采用注意力机制实现关键区域定位，在TCGA数据集上AUC提升至0.75",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 897,
-                "end_char": 945
+                "start_char": 3101,
+                "end_char": 3160
               },
               "version": "d42093cc3538a05b9ee9"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-6e5897bfa827",
-          "name": "PCGMMF模型乳腺癌预后准确率90.3%、分层AUC 0.924",
-          "desc": "PCGMMF模型在乳腺癌预后预测中准确率90.3%、风险分层AUC 0.924；项目共发表SCI论文19篇，申请发明专利1项，获软件著作权1项。",
+          "id": "item-3fc2d96ef5e5",
+          "name": "MMsurv多癌种生存预测框架",
+          "desc": "六种癌症平均C-index",
+          "evidence": [
+            {
+              "quote": "MMsurv模型扩展为多癌症生存预测框架，在六种癌症中平均C-index达0.7283",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3162,
+                "end_char": 3204
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-797513fe0a99",
+          "name": "PCGMMF双向自注意力融合模型",
+          "desc": "乳腺癌预后预测",
           "evidence": [
             {
               "quote": "PCGMMF模型通过双向-自注意力融合模块，在乳腺癌预后预测中取得准确率90.3%、其风险分层的AUC达到0.924的优异性能",
@@ -99,44 +116,447 @@
               "version": "d42093cc3538a05b9ee9"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-b574448ae0b5",
+          "name": "miRNA标志物与预测模型",
+          "desc": "15个关键miRNA，AUC 0.70",
+          "evidence": [
+            {
+              "quote": "基于miRNA表达数据筛选出15个关键miRNA标志物，构建的预测模型AUC达0.70",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2946,
+                "end_char": 2988
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-03d0861f5ecf",
+          "name": "泛癌微生物组图谱",
+          "desc": "新型微生物标志物",
+          "evidence": [
+            {
+              "quote": "绘制了泛癌微生物组图谱",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3019,
+                "end_char": 3029
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-30c1e901606b",
+          "name": "多模态乳腺癌数据集",
+          "desc": "基因组、转录组、病理图像及临床信息",
+          "evidence": [
+            {
+              "quote": "项目成功构建了涵盖基因组、转录组、病理图像及临床信息的高质量多模态乳腺癌数据集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2883,
+                "end_char": 2921
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文19篇，发明专利1项，软著1项",
+          "evidence": [
+            {
+              "quote": "项目共发表SCI论文19篇，申请发明专利1项，获得软件著作权登记1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3279,
+                "end_char": 3312
+              },
+              "version": "d42093cc3538a05b9ee9"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8b561b3fe1dc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-fbde2d5a33be"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tumor-resident Malassezia can promote hepatocellular carcinoma development by downregulating bile acid synthesis and modulating tumor microenvironment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weixi Shen;Zhihong Li;Lei Wang;Qi Liu;Renjie Zhang;Yuhua Yao;Zhicheng Zhao;Lei Ji",
+      "id": "out-d8b0d47ca822",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tumor-resident Malassezia can promote hepatocellular carcinoma development by downregulating bile acid synthesis and modulating tumor microenvironment — Weixi Shen;Zhihong Li;Lei Wang;Qi Liu;Renjie Zhang;Yuhua Yao;Zhicheng Zhao;Lei Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3453,
+            "end_char": 3693
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-fbde2d5a33be"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b72d34c80526"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Fast Approach for Protein Classification and Evolutionary Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Ai;Jie Feng;Yuhua Yao",
+      "id": "out-ee2c98518a37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Fast Approach for Protein Classification and Evolutionary Analysis — Liang Ai;Jie Feng;Yuhua Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3808
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b72d34c80526"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6e5897bfa827"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PCGMMF: a prediction method for breast cancer prognostic recurrence and metastasis risk based on enhanced multimodal feature fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Du Wei;Gao Liang;Xu Xianhua;Yao Yuhua;Li Zhong",
+      "id": "out-a614a2f18930",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PCGMMF: a prediction method for breast cancer prognostic recurrence and metastasis risk based on enhanced multimodal feature fusion — Du Wei;Gao Liang;Xu Xianhua;Yao Yuhua;Li Zhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3813,
+            "end_char": 3999
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rich-Neighborhood Contrastive Learning Framework for Drug Repositioning via Structural and Semantic Neighbor Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuhua Yao;Hao Zhang;Xianfang Tang;Jincan Li;Junlin Xu;Jialiang Yang;Yajie Meng",
+      "id": "out-e8e50c7d373c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rich-Neighborhood Contrastive Learning Framework for Drug Repositioning via Structural and Semantic Neighbor Fusion — Yuhua Yao;Hao Zhang;Xianfang Tang;Jincan Li;Junlin Xu;Jialiang Yang;Yajie Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4004,
+            "end_char": 4206
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single-cell RNA-seq data analysis using graph autoencoders and graph attention networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Feng;Fang Fang;Haixia Long;Rao Zeng;Yuhua Yao",
+      "id": "out-68adb53f8030",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single-cell RNA-seq data analysis using graph autoencoders and graph attention networks — Xiang Feng;Fang Fang;Haixia Long;Rao Zeng;Yuhua Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4211,
+            "end_char": 4358
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ICSDA: a multi-modal deep learning model to predict breast cancer recurrence and metastasis risk by integrating pathological, clinical and gene expression data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuhua Yao;Yaping Lv;Ling Tong;Yuebin Liang;Shuxue Xi;Binbin Ji;Guanglu Zhang;Ling Li;Geng Tian;Min Tang;Xiyue Hu;Shijun Li;Jialiang Yang",
+      "id": "out-cb117e1050dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ICSDA: a multi-modal deep learning model to predict breast cancer recurrence and metastasis risk by integrating pathological, clinical and gene expression data — Yuhua Yao;Yaping Lv;Ling Tong;Yuebin Liang;Shuxue Xi;Binbin Ji;Guanglu Zhang;Ling Li;Geng Tian;Min Tang;Xiyue Hu;Shijun Li;Jialiang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4363,
+            "end_char": 4667
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LangMoDHS: A deep learning language model for predicting DNase I hypersensitive sites in mouse genome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang Xingyu;Zheng Peijie;Liu Yuewu;Yao Yuhua;Huang Guohua",
+      "id": "out-09c09a65ed17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LangMoDHS: A deep learning language model for predicting DNase I hypersensitive sites in mouse genome — Tang Xingyu;Zheng Peijie;Liu Yuewu;Yao Yuhua;Huang Guohua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4672,
+            "end_char": 4839
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Landscape of the intratumoral microbiota acting on the tumor immune microenvironment in LUAD and LUSC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Zhang;Yanfeng Wang;Jiankun Yang;Lei Ji;Yuhua Yao;Dan Ren;Jian Zhang",
+      "id": "out-7f88bd8f0b60",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Landscape of the intratumoral microbiota acting on the tumor immune microenvironment in LUAD and LUSC — Yan Zhang;Yanfeng Wang;Jiankun Yang;Lei Ji;Yuhua Yao;Dan Ren;Jian Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 5025
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Convolution neural network with batch normalization and inception-residual modules for Android malware classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "TianYue Liu;HongQi Zhang;HaiXia Long;Jinmei Shi;YuHua Yao",
+      "id": "out-d357dfdd4bd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Convolution neural network with batch normalization and inception-residual modules for Android malware classification — TianYue Liu;HongQi Zhang;HaiXia Long;Jinmei Shi;YuHua Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5030,
+            "end_char": 5213
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the risk of breast cancer recurrence and metastasis based on miRNA expression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaping Lv;Yanfeng Wang;Yumeng Zhang;Shuzhen Chen;Yuhua Yao",
+      "id": "out-4dec9a6832e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the risk of breast cancer recurrence and metastasis based on miRNA expression — Yaping Lv;Yanfeng Wang;Yumeng Zhang;Shuzhen Chen;Yuhua Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5219,
+            "end_char": 5374
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Protein structure prediction via deep learning: an in-depth review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yajie Meng;Zhuang Zhang;Chang Zhou;Xianfang Tang;Xinrong Hu;Geng Tian;Jialiang Yang;Yuhua Yao",
+      "id": "out-9220d134fd09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Protein structure prediction via deep learning: an in-depth review — Yajie Meng;Zhuang Zhang;Chang Zhou;Xianfang Tang;Xinrong Hu;Geng Tian;Jialiang Yang;Yuhua Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5380,
+            "end_char": 5548
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种循环微生物丰度预后评分模型的构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚玉华;温华凯;张钰萌",
+      "id": "out-0fa63009df80",
+      "evidence": [
+        {
+          "quote": "[专利] 一种循环微生物丰度预后评分模型的构建方法 — 姚玉华;温华凯;张钰萌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5554,
+            "end_char": 5592
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A capsule network-based method for identifying transcription factors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peijie Zheng;Yue Qi;Xueyong Li;Yuewu Liu;Yuhua Yao;Guohua Huang",
+      "id": "out-638460460ace",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A capsule network-based method for identifying transcription factors — Peijie Zheng;Yue Qi;Xueyong Li;Yuewu Liu;Yuhua Yao;Guohua Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5598,
+            "end_char": 5738
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pan-cancer analyses reveal the stratification of patient prognosis by viral composition in tumor tissues",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yumeng Zhang;Lei Ji;Huakai Wen;Yuwen Chu;Weipeng Xing;Geng Tian;Yuhua Yao;Jialiang Yang",
+      "id": "out-79cc5cd5da52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pan-cancer analyses reveal the stratification of patient prognosis by viral composition in tumor tissues — Yumeng Zhang;Lei Ji;Huakai Wen;Yuwen Chu;Weipeng Xing;Geng Tian;Yuhua Yao;Jialiang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5744,
+            "end_char": 5944
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive debiasing learning for drug repositioning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Yajie;Wang Yi;Hu Xinrong;Lu Changcheng;Tang Xianfang;Cui Feifei;Zeng Pan;Yao Yuhua;Yang Jialiang;Xu Junlin",
+      "id": "out-fd82826be938",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive debiasing learning for drug repositioning — Meng Yajie;Wang Yi;Hu Xinrong;Lu Changcheng;Tang Xianfang;Cui Feifei;Zeng Pan;Yao Yuhua;Yang Jialiang;Xu Junlin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5950,
+            "end_char": 6120
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancer-LSTMAtt: A Bi-LSTM and Attention-Based Deep Learning Method for Enhancer Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guohua Huang;Wei Luo;Guiyang Zhang;Peijie Zheng;Yuhua Yao;Jianyi Lyu;Yuewu Liu;Dong-Qing Wei",
+      "id": "out-2c2a5542e9f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancer-LSTMAtt: A Bi-LSTM and Attention-Based Deep Learning Method for Enhancer Recognition — Guohua Huang;Wei Luo;Guiyang Zhang;Peijie Zheng;Yuhua Yao;Jianyi Lyu;Yuewu Liu;Dong-Qing Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6126,
+            "end_char": 6320
+          },
+          "version": "d42093cc3538a05b9ee9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

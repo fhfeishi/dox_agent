@@ -2,15 +2,20 @@
   "doc_id": "a8943e3c32e65c28792c",
   "version": "b67e802b48846d8d8304",
   "source_hash": "4aab401670139af8cc3caa5341ede9030f327a42ff708c278e168fad621f0fc4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:34.856531+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:10:11.642560+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 10,
+      "total": 10,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,48 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b49e16ac870",
-          "name": "冠状动脉微血管疾病超声影像组学诊断",
-          "desc": "面向冠状动脉微血管疾病的无创早期精准诊断，基于超快成像构建多模态超声影像组学模型。",
+          "id": "item-f3f08ceefa7a",
+          "name": "冠状动脉微血管疾病无创诊断",
+          "desc": "CMVD可显著增加不良心血管事件风险，对CMVD的无创精准诊断是冠心病领域新的突破点",
           "evidence": [
             {
-              "quote": "冠状动脉微血管疾病(CMVD)可显著增加不良心血管事件的发生风险",
+              "quote": "冠状动脉微血管疾病(CMVD)可显著增加不良心血管事件的发生风险，得到临床高度关注，对CMVD的无创、早期精准诊断将是冠心病领域新的突破点",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        },
+        {
+          "id": "item-cc65a1009b44",
+          "name": "超声心肌微血流成像",
+          "desc": "超声虽是无创简便诊断心血管疾病的首选方法，但CMVD面临心肌微血流成像困难的挑战",
+          "evidence": [
+            {
+              "quote": "超声是无创、简便诊断心血管疾病的首选方法，但CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        },
+        {
+          "id": "item-8ccc9f071551",
+          "name": "基层医疗与分级诊疗",
+          "desc": "依托超声可及性强、成本较低的优势，为基层医疗与分级诊疗体系建设提供支持",
+          "evidence": [
+            {
+              "quote": "有望为CMVD的精准诊断提供可推广的辅助诊断工具，并为基层医疗与分级诊疗体系建设提供支持",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
               },
               "version": "b67e802b48846d8d8304"
             }
@@ -41,12 +78,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e58514f8783",
-          "name": "心肌微血流成像困难且单一影像效能低",
-          "desc": "CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低，亟需多模态超声组学新模型提高诊断效能。",
+          "id": "item-ccaba87fbe32",
+          "name": "心肌微血流超声成像困难",
+          "desc": "CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
           "evidence": [
             {
-              "quote": "但CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
+              "quote": "CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -55,20 +92,30 @@
               "version": "b67e802b48846d8d8304"
             }
           ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
+        },
         {
-          "id": "item-38865d125813",
-          "name": "超快心肌微血流成像UF-MFI关键技术",
-          "desc": "在超快超声平台上开展基于数字通道信号的超快心肌微血流成像关键技术研究，实现超快图像采集、多普勒与组织信号有效分离及全视野多普勒参数计算。",
+          "id": "item-9d26ab91ebdc",
+          "name": "多源异质性小样本特征学习",
+          "desc": "需针对多源异质性特征进行小样本特征学习，构建多模态融合诊断模型",
           "evidence": [
             {
-              "quote": "首先在超快超声平台上开展基于数字通道信号的超快心肌微血流成像(UF-MFI)关键技术研究",
+              "quote": "针对多源异质性特征进行小样本特征学习，构建并验证多模态超声影像组学诊断模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "a7ee0d05308c5ac94ad7f6b1c15ea193413c80bc"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ]
+        },
+        {
+          "id": "item-befd4fbde183",
+          "name": "CMVD影像特征变化规律不明",
+          "desc": "需明确生理状态下UF-MFI影像特征与心肌微血流定量信息的关系及CMVD特征变化机制",
+          "evidence": [
+            {
+              "quote": "揭示CMVD相关UF-MFI影像特征的变化规律，并从微血管功能与结构层面阐明其生物学机制",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -81,13 +128,87 @@
       ]
     },
     {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-0d98c12020f4",
+          "name": "UF-MFI超快心肌微血流成像",
+          "desc": "基于数字通道信号的超快心肌微血流成像，实现超快图像采集与多普勒信号分离",
+          "evidence": [
+            {
+              "quote": "项目攻克了基于数字通道信号的UF-MFI关键技术，建立了一种无创、简便且不依赖增强剂的心肌微血流超声成像新方法",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b276e3b86b55",
+          "name": "SVD组织与血流自适应分离",
+          "desc": "基于SVD的组织与血流自适应分离，构建时空数据矩阵完成信号分离",
+          "evidence": [
+            {
+              "quote": "3 基于 SVD的组织与血流自适应分离",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "7e4165056984ef02896ffe1264359c46d62443cb"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-946da418287e",
+          "name": "CMVD猪模型机制研究",
+          "desc": "构建不同病情进展程度及治疗状态的CMVD猪模型，比较不同病程阶段特征变化",
+          "evidence": [
+            {
+              "quote": "构建不同病情进展程度及治疗状态的CMVD猪模型，比较不同病程阶段及治疗前后UF-MFI影像特征的变化",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "a7ee0d05308c5ac94ad7f6b1c15ea193413c80bc"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-df533723717d",
+          "name": "多模态超声影像组学融合模型",
+          "desc": "融合微血流特征、功能与结构影像及临床信息构建CMVD诊断模型",
+          "evidence": [
+            {
+              "quote": "探索异质性、小样本数据时序/时空特征学习方法，融合多模态数据特征，建立CMVD多模态超声组学诊断模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
       "key": "成果",
       "state": "has",
       "items": [
         {
-          "id": "item-f11f8d99bda6",
-          "name": "多模态超声组学模型诊断准确率超90%",
-          "desc": "攻克UF-MFI关键技术，建立不依赖增强剂的心肌微血流超声成像新方法，构建诊断准确率超过90%的CMVD多模态超声影像组学模型并研发诊断软件系统；发表SCI论文10篇、授权专利4项，获辽宁省科技进步二等奖。",
+          "id": "item-ec3fcebc98cd",
+          "name": "CMVD多模态超声影像组学诊断模型",
+          "desc": "诊断准确率超过90%的CMVD多模态超声影像组学模型",
           "evidence": [
             {
               "quote": "构建了诊断准确率超过90%的C MVD多模态超声影像组学模型",
@@ -99,7 +220,66 @@
               "version": "b67e802b48846d8d8304"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "构建了",
+          "self_reported": false
+        },
+        {
+          "id": "item-360d12eac519",
+          "name": "CMVD无创精准诊断软件系统",
+          "desc": "可用于病情评估、疗效监测的软件系统",
+          "evidence": [
+            {
+              "quote": "并研发了一套CMVD无创、简便和精准诊断的软件系统，可用于病情评估、疗效监测",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "研发了",
+          "self_reported": false
+        },
+        {
+          "id": "item-2d2fdf3a33a2",
+          "name": "辽宁省科技进步二等奖",
+          "desc": "获辽宁省科技进步二等奖1项",
+          "evidence": [
+            {
+              "quote": "获辽宁省科技进步二等奖1项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "获辽宁省科技进步二等奖1项",
+          "self_reported": false
+        },
+        {
+          "id": "item-ca560b93ed52",
+          "name": "论文专利与人才培养",
+          "desc": "发表SCI论文10篇，授权专利4项，申请专利1项，申请软件著作权1项，培养博硕士研究生8名",
+          "evidence": [
+            {
+              "quote": "依托该项目已发表SCI论文10篇，授权专利4项，申请专利1项，申请软件著作权1项，获辽宁省科技进步二等奖1项，培养博硕士研究生8名",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+              },
+              "version": "b67e802b48846d8d8304"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "已发表",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +287,447 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-0d98c12020f4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-ccaba87fbe32"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目攻克了基于数字通道信号的UF-MFI关键技术，建立了一种无创、简便且不依赖增强剂的心肌微血流超声成像新方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-df533723717d"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9d26ab91ebdc"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对多源异质性特征进行小样本特征学习，构建并验证多模态超声影像组学诊断模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a7ee0d05308c5ac94ad7f6b1c15ea193413c80bc"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-946da418287e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-befd4fbde183"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建不同病情进展程度及治疗状态的CMVD猪模型，比较不同病程阶段及治疗前后UF-MFI影像特征的变化，揭示CMVD相关UF-MFI影像特征的变化规律",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a7ee0d05308c5ac94ad7f6b1c15ea193413c80bc"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-4b49e16ac870"
+        "item_id": "item-cc65a1009b44"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-3e58514f8783"
+        "item_id": "item-ccaba87fbe32"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "CMVD面临心肌微血流成像困难的问题，且单一影像方法效能低",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "5fe5488e3ae9b12b92922de1b95c2ea0905b9dbd"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-3e58514f8783"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-38865d125813"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-38865d125813"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-f11f8d99bda6"
+        "item_id": "item-ec3fcebc98cd"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-df533723717d"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了诊断准确率超过90%的C MVD多模态超声影像组学模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Soluble Vascular Cell Adhesion Molecule-1 as an Inflammation-Related Biomarker of Coronary Slow Flow",
+      "status_raw": "2023",
+      "year": "2023",
+      "identifiers": {},
+      "venue": "JOURNAL OF CLINICAL MEDICINE",
+      "id": "out-9abe6fad3c74",
+      "evidence": [
+        {
+          "quote": "Soluble Vascular Cell Adhesion Molecule-1 as an Inflammation-Related Biomarker of Coronary Slow Flow, JOURNAL OF CLINICAL MEDICINE, 2023, 12(2). SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 35,
+            "chunk_id": "55232928fa9b058a8ff10c4a0e252b332e456c1d"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A spatio-temporal graph convolutional network for ultrasound echocardiographic landmark detection",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "MEDICAL IMAGE ANALYSIS",
+      "id": "out-9586250174e5",
+      "evidence": [
+        {
+          "quote": "A spatio-temporal graph convolutional network for ultrasound echocardiographic landmark detection, MEDICAL IMAGE ANALYSIS, 2024, 97. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 35,
+            "chunk_id": "55232928fa9b058a8ff10c4a0e252b332e456c1d"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Learning what and where to segment: A new perspective on medical image few-shot segmentation",
+      "status_raw": "2023",
+      "year": "2023",
+      "identifiers": {},
+      "venue": "MEDICAL IMAGE ANALYSIS",
+      "id": "out-8a0578eb4763",
+      "evidence": [
+        {
+          "quote": "Learning what and where to segment: A new perspective on medical image few-shot segmentation, MEDICAL IMAGE ANALYSIS, 2023, 87. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 35,
+            "chunk_id": "178bf092bc6f2db80fc592e4a6140616e9c3aa84"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "Ultrafast Doppler imaging using P-th root frame-and-sum nonlinear compounding based on clutter filtering baseband channel data",
+      "status_raw": "2025",
+      "year": "2025",
+      "identifiers": {},
+      "venue": "Journal of Mechanics in Medicine and Biology",
+      "id": "out-951d852b5d3f",
+      "evidence": [
+        {
+          "quote": "Ultrafast Doppler imaging using P-th root frame-and-sum nonlinear compounding based on clutter filtering baseband channel data, Journal of Mechanics in Medicine and Biology, 2025, 25(2). SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "7912bc8f867979a3303ec7396b7fe8f30fce4bbf"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "A Bayesian network for simultaneous keyframe and landmark detection in ultrasonic cine",
+      "status_raw": "2024",
+      "year": "2024",
+      "identifiers": {},
+      "venue": "MEDICAL IMAGE ANALYSIS",
+      "id": "out-65c6d238591e",
+      "evidence": [
+        {
+          "quote": "A Bayesian network for simultaneous keyframe and landmark detection in ultrasonic cine, MEDICAL IMAGE ANALYSIS, 2024, 97. SCIE. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "7912bc8f867979a3303ec7396b7fe8f30fce4bbf"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "已发表",
+      "title": "应用于超声微血管成像的壁滤波算法对比研究",
+      "status_raw": "2022",
+      "year": "2022",
+      "identifiers": {},
+      "venue": "生物医学工程学杂志",
+      "id": "out-07d6f984e6a1",
+      "evidence": [
+        {
+          "quote": "应用于超声微血管成像的壁滤波算法对比研究，生物医学工程学杂志，2022，39(04):740. 北大中文核心期刊. 第一标注",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 35,
+            "chunk_id": "178bf092bc6f2db80fc592e4a6140616e9c3aa84"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "种基于虚源的基带延时乘累加超声波束形成方法",
+      "status_raw": "2022-06-08",
+      "year": "2022",
+      "identifiers": {
+        "application_no": "CN202210 652905.1"
+      },
+      "id": "out-068bbe0eb189",
+      "evidence": [
+        {
+          "quote": "种基于虚源的基带延时乘累加超声波束形成方法，2022-06-08至，中国，CN202210 652905.1.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "7912bc8f867979a3303ec7396b7fe8f30fce4bbf"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "一种基于超声波的心脏冠脉微细血流采集处理方法",
+      "status_raw": "2024-11-21",
+      "year": "2024",
+      "identifiers": {
+        "application_no": "CN202411668079.5"
+      },
+      "id": "out-1aeb8f1f524f",
+      "evidence": [
+        {
+          "quote": "王宝宇；张石；一种基于超声波的心脏冠脉微细血流采集处理方法，2024-11-21至，中国，CN202411668079.5.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "7912bc8f867979a3303ec7396b7fe8f30fce4bbf"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "申请",
+      "title": "一种超声高帧率采集系统",
+      "status_raw": "2024-12-05",
+      "year": "2024",
+      "identifiers": {
+        "application_no": "CN202411781753.0"
+      },
+      "id": "out-15840e37569c",
+      "evidence": [
+        {
+          "quote": "一种超声高帧率采集系统，2024-12-05至，中国，CN202411781753.0.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "23503e2aa550364dcd7c348dc7dd99759016b6fd"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "辽宁省科技进步二等奖",
+      "status_raw": "",
+      "identifiers": {},
+      "id": "out-26caec083805",
+      "evidence": [
+        {
+          "quote": "获辽宁省科技进步二等奖1项",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "CMVD无创精准诊断软件系统",
+      "status_raw": "软件著作权1项",
+      "identifiers": {},
+      "id": "out-9958862e198f",
+      "evidence": [
+        {
+          "quote": "并研发了一套CMVD无创、简便和精准诊断的软件系统，可用于病情评估、疗效监测",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "专利申请",
+      "status": "已取得",
+      "date": "2024-11-21",
+      "precision": "日",
+      "desc": "申请心脏冠脉微细血流采集处理方法发明专利",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-c2ed19d30e77",
+      "tech_ids": [
+        "item-0d98c12020f4"
+      ],
+      "output_ids": [
+        "out-1aeb8f1f524f"
+      ],
+      "evidence": [
+        {
+          "quote": "王宝宇；张石；一种基于超声波的心脏冠脉微细血流采集处理方法，2024-11-21至，中国，CN202411668079.5.",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 36,
+            "chunk_id": "7912bc8f867979a3303ec7396b7fe8f30fce4bbf"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "type": "试验",
+      "status": "已取得",
+      "date": "",
+      "precision": "未知",
+      "desc": "CMVD多模态超声影像组学模型完成构建并达到诊断准确率要求",
+      "result": "诊断准确率超过90%",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-a7961b8dc67c",
+      "tech_ids": [
+        "item-df533723717d"
+      ],
+      "output_ids": [
+        "out-9abe6fad3c74"
+      ],
+      "evidence": [
+        {
+          "quote": "构建了诊断准确率超过90%的C MVD多模态超声影像组学模型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    },
+    {
+      "type": "样机",
+      "status": "已取得",
+      "date": "",
+      "precision": "未知",
+      "desc": "研发CMVD无创、简便和精准诊断软件系统",
+      "result": "",
+      "environment": "",
+      "self_reported": true,
+      "id": "evt-129609484db0",
+      "tech_ids": [],
+      "output_ids": [
+        "out-9958862e198f"
+      ],
+      "evidence": [
+        {
+          "quote": "并研发了一套CMVD无创、简便和精准诊断的软件系统，可用于病情评估、疗效监测",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "f02c967131da5ca52ae390347d82c94757b7f7a8"
+          },
+          "version": "b67e802b48846d8d8304"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": null
 }

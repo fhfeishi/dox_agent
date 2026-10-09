@@ -2,15 +2,20 @@
   "doc_id": "96d6e6f621bbe9c1aae0",
   "version": "b177be30e2de752b0b7b",
   "source_hash": "e95a27e3b87e4e0411f9f50043e945acf03b3ee29b18a575501747ba4fc29f78",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.835912+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.639830+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dcf8bcedebfc",
-          "name": "细菌耐药性与MRSA感染",
-          "desc": "细菌耐药性日益加剧已成为全球公共卫生领域重大挑战，耐甲氧西林金黄色葡萄球菌等多重耐药菌严重制约临床抗感染治疗。",
+          "id": "item-0067dba33150",
+          "name": "猴耳环提取物S20b抗耐药菌",
+          "desc": "MRSA等多重耐药菌",
           "evidence": [
             {
-              "quote": "细菌耐药性日益加剧，已成为全球公共卫生领域面临的重大挑战，尤其是耐甲氧西林金黄色葡萄球菌（MRSA）等多重耐药菌的广泛传播，严重制约了临床抗感染治疗效果。",
+              "quote": "本项目以猴耳环活性提取部位S20b为研究对象，围绕其抗耐药菌及逆转耐药作用机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2800,
-                "end_char": 2876
-              },
-              "version": "b177be30e2de752b0b7b"
-            }
-          ]
-        },
-        {
-          "id": "item-6ef61fdaf074",
-          "name": "传统岭南中药抗感染应用",
-          "desc": "猴耳环作为传统岭南中药，在清热解毒和抗感染治疗中具有长期临床应用基础。",
-          "evidence": [
-            {
-              "quote": "猴耳环（Pithecellobium clypearia）作为传统岭南中药，在清热解毒和抗感染治疗中具有长期临床应用基础。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2877,
-                "end_char": 2937
+                "start_char": 2938,
+                "end_char": 2976
               },
               "version": "b177be30e2de752b0b7b"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f89fb036d3f",
-          "name": "中药作用机制研究缺方法",
-          "desc": "中药成分复杂、多靶点同时作用，目前缺乏高效准确的作用机制研究方法。",
+          "id": "item-3cd020900d81",
+          "name": "细菌耐药性日益加剧",
+          "desc": "重大公共卫生挑战",
           "evidence": [
             {
-              "quote": "受制于中药混合物成分复杂，本课题中的S20b和其他效果显著的中药的作用机制仍没有一种高效准确的方法进行深入研究",
+              "quote": "细菌耐药性日益加剧，已成为全球公共卫生领域面临的重大挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 742,
-                "end_char": 796
-              },
-              "version": "b177be30e2de752b0b7b"
-            }
-          ]
-        },
-        {
-          "id": "item-5f167c740cb7",
-          "name": "逆转耐药物质基础不明",
-          "desc": "需要明确哪些化合物真正能抑制细菌生长、逆转细菌耐药。",
-          "evidence": [
-            {
-              "quote": "最终明确哪些化合物真正能抑制细菌生长，逆转细菌耐药。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 987,
-                "end_char": 1012
+                "start_char": 2800,
+                "end_char": 2827
               },
               "version": "b177be30e2de752b0b7b"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-740525648eb3",
-          "name": "UFLC-Q-TOF-MS/MS全成分解析",
-          "desc": "基于UFLC-Q-TOF-MS/MS技术对S20b进行全成分解析，构建含36种化合物的化学成分数据库。",
+          "id": "item-8e40c31d6757",
+          "name": "S20b全成分解析与化学成分数据库",
+          "desc": "UFLC-Q-TOF-MS/MS，36种化合物",
           "evidence": [
             {
               "quote": "本研究首先基于UFLC-Q-TOF-MS/MS技术对S20b进行全成分解析，构建包含36种化合物的化学成分数据库",
@@ -108,12 +81,13 @@
               },
               "version": "b177be30e2de752b0b7b"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-0d7468275428",
-          "name": "人工智能药物设计与网络药理学",
-          "desc": "结合分子对接、机器学习和网络药理学投票算法，对S20b各成分潜在作用靶点及关键信号通路进行高通量预测与筛选。",
+          "id": "item-d9fbb2450d5a",
+          "name": "分子对接、机器学习与网络药理学投票算法",
+          "desc": "高通量预测靶点与通路",
           "evidence": [
             {
               "quote": "结合分子对接、机器学习和网络药理学投票算法，对S20b各成分潜在作用靶点及关键信号通路进行高通量预测与筛选",
@@ -124,23 +98,8 @@
               },
               "version": "b177be30e2de752b0b7b"
             }
-          ]
-        },
-        {
-          "id": "item-66ae4887863e",
-          "name": "实验验证机制",
-          "desc": "通过实验验证S20b及其关键化合物对PBP2a蛋白表达、多药外排泵活性及相关耐药基因的调控作用。",
-          "evidence": [
-            {
-              "quote": "重点考察S20b及其关键化合物对PBP2a蛋白表达、多药外排泵活性及相关耐药基因的调控作用。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3219
-              },
-              "version": "b177be30e2de752b0b7b"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7fc2c6f92e0d",
-          "name": "多成分多靶点协同抑制作用",
-          "desc": "S20b通过多成分、多靶点协同作用显著抑制MRSA等耐药菌生长，并可逆转抗生素诱导的细菌耐药性。",
+          "id": "item-c26abc4cc8cc",
+          "name": "S20b抗MRSA并逆转耐药",
+          "desc": "多成分多靶点协同",
           "evidence": [
             {
               "quote": "S20b通过多成分、多靶点协同作用，显著抑制MRSA 等耐药菌生长，并可逆转抗生素诱导的细菌耐药性",
@@ -163,89 +122,21 @@
               "version": "b177be30e2de752b0b7b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-552e003585ed",
-          "name": "化合物-靶点-机制作用网络",
-          "desc": "构建了S20b化合物、靶点、机制作用网络，明确其抗耐药作用的物质基础与机制特征。",
-          "evidence": [
-            {
-              "quote": "本研究构建了 S20b “化合物—靶点—机制”作用网络，明确了其抗耐药作用的物质基础与机制特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3317,
-                "end_char": 3363
-              },
-              "version": "b177be30e2de752b0b7b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-45eab0e80354",
-          "name": "中药抗生素佐剂新路径",
-          "desc": "为中药作为抗生素佐剂及耐药菌感染防治提供了新的理论依据和技术路径。",
-          "evidence": [
-            {
-              "quote": "为中药作为抗生素佐剂及耐药菌感染防治提供了新的理论依据和技术路径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3365,
-                "end_char": 3396
-              },
-              "version": "b177be30e2de752b0b7b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-dcf8bcedebfc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8f89fb036d3f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5f167c740cb7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0d7468275428"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-740525648eb3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7fc2c6f92e0d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-66ae4887863e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-552e003585ed"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 0,
+    "listed": 0,
+    "by_kind": {},
+    "consistent": true
+  }
 }

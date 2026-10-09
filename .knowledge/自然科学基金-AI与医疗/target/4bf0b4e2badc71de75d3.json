@@ -2,15 +2,20 @@
   "doc_id": "4bf0b4e2badc71de75d3",
   "version": "89b327f023a9e8be38d6",
   "source_hash": "722510c78fd2b339c205ee9fa06ddda61e5b7f714bef84abd56fe31176daf030",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:27.834243+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.528564+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-2cb66059c542",
           "name": "HCC切除术后复发预测",
-          "desc": "HCC切除术后复发是导致患者治疗失败和死亡的主要原因，需为个体化治疗提供决策支持。",
+          "desc": "复发是治疗失败和死亡主要原因",
           "evidence": [
             {
-              "quote": "HCC切除术后复发是导致患者治疗失败和死亡的主要原因",
+              "quote": "肝细胞癌（HCC）外科切除术后复发是导致患者治疗失败和死亡的主要原因",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 702,
-                "end_char": 727
-              },
-              "version": "89b327f023a9e8be38d6"
-            }
-          ]
-        },
-        {
-          "id": "item-4e2a785b5897",
-          "name": "多中心多模态数据研究",
-          "desc": "整合多中心常规临床、病理、随访资料及术前增强CT、MRI与病理全玻片成像数据开展研究。",
-          "evidence": [
-            {
-              "quote": "本研究最终纳入本院171例、中心二303例、中心三95例的多模态数据，均含常规临床、病理和随访资料，及术前增强CT图像、Gd-EOB-DTPA增强MRI图像和术后病理全玻片成像",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3034,
-                "end_char": 3121
+                "start_char": 2843,
+                "end_char": 2876
               },
               "version": "89b327f023a9e8be38d6"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af454fcb2c63",
-          "name": "分期系统无法准确预测复发",
-          "desc": "目前主要根据分期系统危险分层，但尚无法准确预测且不能提供可量化的风险指标。",
+          "id": "item-fe49d4873135",
+          "name": "缺乏准确预测和可量化风险指标",
+          "desc": "目前主要依据分期系统",
           "evidence": [
             {
               "quote": "目前主要根据分期系统进行危险分层，但尚无法准确预测且不能提供可量化的风险指标",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 729,
                 "end_char": 766
-              },
-              "version": "89b327f023a9e8be38d6"
-            }
-          ]
-        },
-        {
-          "id": "item-002bb437979b",
-          "name": "深度迁移学习用于增强MRI尚属空白",
-          "desc": "尚未有将深度迁移学习应用于多参数Gd-EOB-DTPA增强MRI挖掘特征预测HCC复发风险的报道。",
-          "evidence": [
-            {
-              "quote": "但目前尚未有将深度迁移学习应用于多参数Gd-EOB-DTPA增强MRI图像挖掘特征以预测HCC复发风险的报道",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 874,
-                "end_char": 927
               },
               "version": "89b327f023a9e8be38d6"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c1aa3efb15e1",
-          "name": "深度迁移学习挖掘增强MRI特征",
-          "desc": "利用深度迁移学习提取多参数增强MRI图像数字特征并构建HCC自动分割模型。",
+          "id": "item-3ab04e4f9678",
+          "name": "MRI肝脏与肿瘤自动分割",
+          "desc": "肝脏、肝段、HCC肿瘤区域",
           "evidence": [
             {
-              "quote": "本研究拟利用深度迁移学习提取多参数Gd-EOB-DTPA增强MRI图像数字特征,构建HCC自动分割模型",
+              "quote": "完成了基于MRI图像的肝脏、肝段、HCC肿瘤区域的自动识别和分割",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 929,
-                "end_char": 979
+                "start_char": 3123,
+                "end_char": 3154
               },
               "version": "89b327f023a9e8be38d6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-a5cf8d94525a",
           "name": "复合早期复发预测模型",
-          "desc": "结合MRI影像特征、临床-病理指标与分子标记物建立复合早期复发预测模型。",
+          "desc": "结合多参数MRI特征、临床-病理指标和分子标记物",
           "evidence": [
             {
               "quote": "建立了结合多参数Gd-EOB-DTPA动态增强MRI影像特征、临床-病理指标和分子标记物的复合早期复发预测模型",
@@ -124,23 +98,25 @@
               },
               "version": "89b327f023a9e8be38d6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5f99731eb343",
-          "name": "ATLS-8肿瘤浸润淋巴细胞评分",
-          "desc": "开发智能分析框架全自动量化WSI上CD8+密度，构建肿瘤浸润淋巴细胞评分系统ATLS-8。",
+          "id": "item-4bb44715e3df",
+          "name": "肿瘤浸润淋巴细胞评分系统ATLS-8",
+          "desc": "全自动量化CD8+ TIL密度",
           "evidence": [
             {
-              "quote": "全自动量化HCC患者手术病理组织WSI上的肿瘤浸润淋巴细胞CD8+的密度，并构建肿瘤浸润淋巴细胞评分系统（ATLS-8）",
+              "quote": "开发了一个基于机器学习和深度学习的智能分析框架，全自动量化HCC患者手术病理组织WSI上的肿瘤浸润淋巴细胞CD8+的密度，并构建肿瘤浸润淋巴细胞评分系统（ATLS-8）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3236,
+                "start_char": 3212,
                 "end_char": 3295
               },
               "version": "89b327f023a9e8be38d6"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-80940c66e3f7",
-          "name": "肝脏与HCC分割Dice表现",
-          "desc": "AI模型肝脏分割Dice平均达0.96±0.02，HCC分割Dice平均为0.82±0.25。",
+          "id": "item-1b30c4dcbf3a",
+          "name": "肝脏与HCC分割性能",
+          "desc": "Dice 0.96±0.02与0.82±0.25",
           "evidence": [
             {
-              "quote": "在测试数据上，我们的AI模型肝脏分割的Dice相似性系数平均达到了0.96±0.02，HCC分割的Dice相似性系数平均为0.82±0.25",
+              "quote": "我们的AI模型肝脏分割的Dice相似性系数平均达到了0.96±0.02，HCC分割的Dice相似性系数平均为0.82±0.25",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3319,
+                "start_char": 3326,
                 "end_char": 3388
               },
               "version": "89b327f023a9e8be38d6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-880109e27dc0",
-          "name": "复发列线图优于临床病理模型",
-          "desc": "构建的复发列线图在训练集与验证集中均优于目前常用的临床-病理指标列线图。",
+          "id": "item-94b80e43b730",
+          "name": "早期复发列线图优于临床病理列线图",
+          "desc": "训练集AUC 0.920 vs 0.748，验证集 0.906 vs 0.705",
           "evidence": [
             {
               "quote": "该列线图在训练集（AUC：0.920 vs. 0.748; p＜0.001）和验证集（AUC：0.906 vs. 0.705; p = 0.002） 中均优于目前常用的临床-病理指标列线图",
@@ -180,24 +158,9 @@
               "version": "89b327f023a9e8be38d6"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-efea85761567",
-          "name": "ATLS-8为独立预后因素",
-          "desc": "单变量与多变量Cox回归显示ATLS-8是独立预后因素，与临床模型整合后区分度更高。",
-          "evidence": [
-            {
-              "quote": "单变量和多变量cox回归分析显示ATLS-8是独立预后因素",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3540,
-                "end_char": 3568
-              },
-              "version": "89b327f023a9e8be38d6"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +168,62 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-2cb66059c542"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-af454fcb2c63"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-af454fcb2c63"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c1aa3efb15e1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c1aa3efb15e1"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-80940c66e3f7"
+        "item_id": "item-94b80e43b730"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
+      "to": {
         "dimension": "技术",
         "item_id": "item-a5cf8d94525a"
       },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-880109e27dc0"
-      },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "该列线图在训练集（AUC：0.920 vs. 0.748; p＜0.001）和验证集（AUC：0.906 vs. 0.705; p = 0.002） 中均优于目前常用的临床-病理指标列线图",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3445,
+            "end_char": 3538
+          },
+          "version": "89b327f023a9e8be38d6"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-based tumor-infiltrating lymphocytes scoring system for assessing HCC prognosis in patients undergoing liver resection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiyang Chen;Tingting Xie;Shuting Chen;Zhenhui Li;Su Yao;Xuanjun Lu;Wenfeng He;Chao Tang;Dacheng Yang;Shaohua Li;Feng Shi;Huan Lin;Zipei Li;Anant Madabhushi;Xiangtian Zhao;Zaiyi Liu;Cheng Lu",
+      "id": "out-529986f1f81b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI-based tumor-infiltrating lymphocytes scoring system for assessing HCC prognosis in patients undergoing liver resection — Zhiyang Chen;Tingting Xie;Shuting Chen;Zhenhui Li;Su Yao;Xuanjun Lu;Wenfeng He;Chao Tang;Dacheng Yang;Shaohua Li;Feng Shi;Huan Lin;Zipei Li;Anant Madabhushi;Xiangtian Zhao;Zaiyi Liu;Cheng Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 4178
+          },
+          "version": "89b327f023a9e8be38d6"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

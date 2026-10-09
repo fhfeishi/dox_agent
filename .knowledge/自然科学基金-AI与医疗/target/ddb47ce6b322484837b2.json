@@ -2,15 +2,20 @@
   "doc_id": "ddb47ce6b322484837b2",
   "version": "56c560bc0704f99892f5",
   "source_hash": "0c772261f5b727de55c1d27d3ab22bd5be1d5c9707f6ecc32f7fd850302a0876",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.797347+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:56.113865+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-76d1b61202db",
           "name": "早期口腔鳞癌隐匿性淋巴结转移预测",
-          "desc": "口腔鳞癌侵袭转移能力强，区域性淋巴结转移是最明确的预后因素，早期隐匿性转移是颈部手术方式争议根源。",
+          "desc": "多序列MRI与深度学习",
           "evidence": [
             {
-              "quote": "口腔鳞癌（OSCC）侵袭转移能力强，区域性淋巴结转移是最明确的预后因素",
+              "quote": "本研究整合多模态影像与人工智能技术，系统开展了隐匿性淋巴结转移预测、免疫微环境评估及免疫治疗反应预测三方面研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 724
-              },
-              "version": "56c560bc0704f99892f5"
-            }
-          ]
-        },
-        {
-          "id": "item-594cf7f11736",
-          "name": "术前淋巴结状态无创评估",
-          "desc": "临床亟需更准确的术前评估淋巴结状态新方法，为个体化诊疗提供支持。",
-          "evidence": [
-            {
-              "quote": "临床亟需更准确的术前评估淋巴结状态的新方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 786,
-                "end_char": 806
+                "start_char": 2702,
+                "end_char": 2756
               },
               "version": "56c560bc0704f99892f5"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e18259c84ed0",
-          "name": "常规影像对早期隐匿性转移漏诊率高",
-          "desc": "目前常规影像对早期OSCC隐匿性转移漏诊率高。",
+          "id": "item-8cfca345efc0",
+          "name": "常规影像对早期OSCC隐匿性转移漏诊率高",
+          "desc": "颈部手术方式争议",
           "evidence": [
             {
               "quote": "目前常规影像对早期（cT1-2N0）OSCC隐匿性转移漏诊率高",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2667,
                 "end_char": 2697
-              },
-              "version": "56c560bc0704f99892f5"
-            }
-          ]
-        },
-        {
-          "id": "item-87b5cf994be9",
-          "name": "早期隐匿性颈淋巴结转移率高",
-          "desc": "早期OSCC约20～40%存在无法由常规影像学检出的隐匿性颈淋巴结转移。",
-          "evidence": [
-            {
-              "quote": "早期OSCC（cT1-2N0）约20～40%存在无法由常规影像学检出的隐匿性颈淋巴结转移，是导致颈部手术方式争议的根源",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 726,
-                "end_char": 784
               },
               "version": "56c560bc0704f99892f5"
             }
@@ -95,81 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b21bc37fab9b",
-          "name": "多序列MRI影像组学与深度学习建模",
-          "desc": "结合深度学习卷积神经网络并增加对功能MRI（弥散加权和动态增强MRI）的分析，提升模型预测效能。",
+          "id": "item-77d942b8a378",
+          "name": "YOLOv8结合ViT全自动深度学习列线图",
+          "desc": "全流程自动化",
           "evidence": [
             {
-              "quote": "本研究拟结合深度学习卷积神经网络、增加对功能MRI（弥散加权和动态增强MRI）的分析，提升模型预测效能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 848,
-                "end_char": 898
-              },
-              "version": "56c560bc0704f99892f5"
-            }
-          ]
-        },
-        {
-          "id": "item-51831dd7bb7e",
-          "name": "YOLOv8与ViT全自动深度学习框架",
-          "desc": "基于YOLOv8结合ViT网络的全自动深度学习框架构建列线图模型，实现从影像获取到风险预测的全流程自动化。",
-          "evidence": [
-            {
-              "quote": "基于全自动深度学习框架（YOLOv8结合ViT网络）构建的列线图模型，在内部及外部测试中均表现出优异性能（AUC最高达0.909），实现了从影像获取到风险预测的全流程自动化",
+              "quote": "基于全自动深度学习框架（YOLOv8结合ViT网络）构建的列线图模型，在内部及外部测试中均表现出优异性能（AUC最高达0.909）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2908,
-                "end_char": 2993
-              },
-              "version": "56c560bc0704f99892f5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-17599d6d1521",
-          "name": "T2WI与T1WI模型AUC 0.83与0.78",
-          "desc": "采用常规T2WI和增强T1WI影像组学特征的模型，训练集AUC 0.83、验证集0.78，显著优于传统淋巴结短径测量。",
-          "evidence": [
-            {
-              "quote": "其预测效能（AUC：训练集0.83，验证集0.78）显著优于传统淋巴结短径测量",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2825,
-                "end_char": 2863
+                "end_char": 2972
               },
               "version": "56c560bc0704f99892f5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-81c2d4ab53b2",
-          "name": "融合DWI与DCE模型AUC提升至0.87",
-          "desc": "进一步融合DWI和DCE-MRI参数图直方图特征的组合模型，预测AUC提升至0.87。",
-          "evidence": [
-            {
-              "quote": "进一步融合DWI和DCE-MRI参数图直方图特征的组合模型，预测AUC提升至0.87",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2865,
-                "end_char": 2906
-              },
-              "version": "56c560bc0704f99892f5"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e699feaa940b",
-          "name": "TILs预测模型AUC 0.846",
-          "desc": "基于T2WI和增强T1WI影像组学特征构建预测肿瘤浸润淋巴细胞水平的模型，逻辑回归性能最佳，AUC 0.846、准确率80.9%。",
+          "id": "item-b4af254d783d",
+          "name": "T2WI与增强T1WI影像组学预测TILs水平",
+          "desc": "逻辑回归",
           "evidence": [
             {
               "quote": "采用逻辑回归构建的模型预测性能最佳，AUC为0.846，准确率达80.9%",
@@ -181,55 +99,218 @@
               "version": "56c560bc0704f99892f5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-36ec2cc21643",
+          "name": "治疗前CT影像组学预测免疫治疗反应",
+          "desc": "神经网络",
+          "evidence": [
+            {
+              "quote": "通过特征筛选构建的神经网络模型预测效能良好，AUC为0.864，准确率为82.5%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3188,
+                "end_char": 3228
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文6篇，专利2项",
+          "evidence": [
+            {
+              "quote": "项目共发表SCI论文6篇，申请专利2项（授权1项）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3258,
+                "end_char": 3282
+              },
+              "version": "56c560bc0704f99892f5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-76d1b61202db"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e18259c84ed0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Near-infrared fluorescence imaging with an MET-targeting probe for biopsy site selection in patients with oral potentially malignant disorders",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang J;Shen X;Ma Q;Yang L;Zhou X;Wang L;Cui J;Zhang C;Li G;Gross N;Li S;Huang R;Zhan C;Cheng Z;Wang K;Tian J;Yuan Y;Tao X",
+      "id": "out-e175305ee70d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Near-infrared fluorescence imaging with an MET-targeting probe for biopsy site selection in patients with oral potentially malignant disorders — Wang J;Shen X;Ma Q;Yang L;Zhou X;Wang L;Cui J;Zhang C;Li G;Gross N;Li S;Huang R;Zhan C;Cheng Z;Wang K;Tian J;Yuan Y;Tao X",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3395,
+            "end_char": 3667
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e18259c84ed0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b21bc37fab9b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of in vitro and in vivo c-Met targeted dual-modal nanoprobes for NIR II fluorescent bioimaging and magnetic resonance imaging of breast carcinoma metastasis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang J;Yang L;Ding W;Tang W;Yuan Y;Tao X",
+      "id": "out-ff17fa1b2b7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of in vitro and in vivo c-Met targeted dual-modal nanoprobes for NIR II fluorescent bioimaging and magnetic resonance imaging of breast carcinoma metastasis — Wang J;Yang L;Ding W;Tang W;Yuan Y;Tao X",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3672,
+            "end_char": 3889
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b21bc37fab9b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-81c2d4ab53b2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning-based MRI radiomics for assessing the level of tumor infiltrating lymphocytes in oral tongue squamous cell carcinoma: a pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ren J;Yang G;Song Y;Zhang C;Yuan Y",
+      "id": "out-daec4add296b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning-based MRI radiomics for assessing the level of tumor infiltrating lymphocytes in oral tongue squamous cell carcinoma: a pilot study — Ren J;Yang G;Song Y;Zhang C;Yuan Y",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3894,
+            "end_char": 4085
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-51831dd7bb7e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e699feaa940b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Combined Deep Learning Image Reconstruction and Metal Artifact Reduction Algorithm on CT Image Quality in Different Scanning Conditions for Maxillofacial Region with Metal Implants: A Phantom Study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang G;Wang H;Liu L;Ma Q;Shi H;Yuan Y",
+      "id": "out-8dfcca3c61f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Combined Deep Learning Image Reconstruction and Metal Artifact Reduction Algorithm on CT Image Quality in Different Scanning Conditions for Maxillofacial Region with Metal Implants: A Phantom Study. — Yang G;Wang H;Liu L;Ma Q;Shi H;Yuan Y",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4090,
+            "end_char": 4344
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting response to immunotherapy in oral squamous cell carcinoma via a CT-based radiomics model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Q;Ren J;Wang R;Yuan Y;Tao X",
+      "id": "out-4e43e551bca5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting response to immunotherapy in oral squamous cell carcinoma via a CT-based radiomics model — Ma Q;Ren J;Wang R;Yuan Y;Tao X",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4349,
+            "end_char": 4487
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning using nasal endoscopy and T2-weighted MRI for prediction of sinonasal inverted papilloma-associated squamous cell carcinoma: an exploratory study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ren J;Ren Z;Zhang D;Yuan Y;Qi M",
+      "id": "out-a30f77e85605",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning using nasal endoscopy and T2-weighted MRI for prediction of sinonasal inverted papilloma-associated squamous cell carcinoma: an exploratory study — Ren J;Ren Z;Zhang D;Yuan Y;Qi M",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4492,
+            "end_char": 4691
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "早期舌癌隐匿性淋巴结转移预测系统、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任继亮;袁瑛;齐萌",
+      "id": "out-6ced9a9886f0",
+      "evidence": [
+        {
+          "quote": "[专利] 早期舌癌隐匿性淋巴结转移预测系统、电子设备及存储介质 — 任继亮;袁瑛;齐萌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4696,
+            "end_char": 4738
+          },
+          "version": "56c560bc0704f99892f5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

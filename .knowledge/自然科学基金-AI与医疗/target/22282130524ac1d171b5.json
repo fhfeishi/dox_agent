@@ -2,15 +2,20 @@
   "doc_id": "22282130524ac1d171b5",
   "version": "2c6abcf3fca5014d3a97",
   "source_hash": "731838f0488a94139c7a4e6c99082a4cb193eefe2161d862f3328ec8fcd61624",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.383785+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.260848+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-f78a667a2b13",
           "name": "三阴性乳腺癌药物重定位与组合发现",
-          "desc": "三阴性乳腺癌是最具侵袭性的乳腺癌亚型，缺少靶向药物，需开发已上市药物新用途。",
+          "desc": "靶向治疗匮乏",
           "evidence": [
             {
-              "quote": "三阴性乳腺癌（TNBC）是最具侵袭性的乳腺癌亚型，缺少靶向药物",
+              "quote": "三阴性乳腺癌（TNBC）面临靶向治疗匮乏、新药研发困难的重大临床挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 700,
-                "end_char": 730
-              },
-              "version": "2c6abcf3fca5014d3a97"
-            }
-          ]
-        },
-        {
-          "id": "item-31b10cfa1521",
-          "name": "基于RWD评估候选药物疗效",
-          "desc": "真实世界数据可用于评估潜在药物及组合的疗效，帮助后续研究快速推进。",
-          "evidence": [
-            {
-              "quote": "真实世界数据（RWD）可用于评估潜在药物及组合的疗效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 928,
-                "end_char": 953
+                "start_char": 2907,
+                "end_char": 2940
               },
               "version": "2c6abcf3fca5014d3a97"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e8840dab7270",
-          "name": "计算方法受限于缺乏TNBC针对性",
-          "desc": "当前计算方法的预测能力受限于缺少TNBC针对性、TNBC缺少标注药物、临床试验漫长昂贵难以充分验证候选药物。",
-          "evidence": [
-            {
-              "quote": "但当前相关计算方法的预测能力受限于缺少对TNBC的针对性、TNBC缺少标注药物、且临床试验漫长昂贵，难以充分验证候选药物",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 778,
-                "end_char": 837
-              },
-              "version": "2c6abcf3fca5014d3a97"
-            }
-          ]
-        },
-        {
-          "id": "item-69b4f57dc71e",
-          "name": "TNBC靶向治疗匮乏新药研发困难",
-          "desc": "三阴性乳腺癌面临靶向治疗匮乏、新药研发困难的重大临床挑战。",
+          "id": "item-0c9e4fc3278f",
+          "name": "TNBC靶向治疗匮乏、新药研发困难",
+          "desc": "重大临床挑战",
           "evidence": [
             {
               "quote": "三阴性乳腺癌（TNBC）面临靶向治疗匮乏、新药研发困难的重大临床挑战",
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2039f51b2910",
-          "name": "TNBC药物作用知识图谱构建",
-          "desc": "基于药物机制、蛋白间互作等信息建立TNBC药物作用知识图谱，整合药物-靶点、蛋白互作、基因表达谱及生物功能等多维度数据。",
+          "id": "item-f38ded5e413e",
+          "name": "TNBC知识图谱图神经网络与主动学习",
+          "desc": "预测药物潜在治疗活性",
           "evidence": [
             {
-              "quote": "基于药物机制、蛋白间互作等信息建立TNBC药物作用知识图谱",
+              "quote": "并在此基础上开发了图神经网络预测模型，结合主动学习策略实现了对药物潜在治疗活性的预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 959,
-                "end_char": 987
+                "start_char": 3136,
+                "end_char": 3177
               },
               "version": "2c6abcf3fca5014d3a97"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5de4b2fe06b9",
-          "name": "图神经网络与主动学习融合预测",
-          "desc": "融合深度学习和主动学习整合TNBC知识图谱及拓扑特征，建立药物重定位及组合预测模型。",
+          "id": "item-708c1474aecb",
+          "name": "药物-细胞系异质协同知识图谱与图卷积",
+          "desc": "预测药物组合协同效果",
           "evidence": [
             {
-              "quote": "融合深度学习和主动学习整合TNBC知识图谱及其拓扑特征，建立TNBC药物重定位及组合预测模型，结合RWD和深度学习评估预测所得药物及组合的疗效",
+              "quote": "构建了药物-细胞系异质协同知识图谱，开发了图卷积神经网络预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 989,
-                "end_char": 1059
+                "start_char": 3271,
+                "end_char": 3302
               },
               "version": "2c6abcf3fca5014d3a97"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +108,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f098049e040c",
-          "name": "TNBC知识图谱含超2万条关联关系",
-          "desc": "构建包含超过2万条关联关系的TNBC知识图谱并开发图神经网络预测模型，结合主动学习筛选候选药物，多项预测获独立临床试验或文献支持。",
+          "id": "item-2c623ea07d4e",
+          "name": "TNBC知识图谱",
+          "desc": "超过2万条关联关系",
           "evidence": [
             {
-              "quote": "构建了一个包含超过2万条关联关系的TNBC知识图谱，并在此基础上开发了图神经网络预测模型，结合主动学习策略实现了对药物潜在治疗活性的预测",
+              "quote": "构建了一个包含超过2万条关联关系的TNBC知识图谱",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3110,
-                "end_char": 3177
+                "end_char": 3134
               },
               "version": "2c6abcf3fca5014d3a97"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-2cae14f27773",
-          "name": "药物-细胞系异质协同知识图谱",
-          "desc": "收集38种癌症治疗药物在多个TNBC及其他癌细胞系的大规模高通量筛选数据，构建药物-细胞系异质协同知识图谱并开发图卷积网络模型。",
+          "id": "item-b0d289a7f1ef",
+          "name": "候选药物清单",
+          "desc": "具转化前景",
           "evidence": [
             {
-              "quote": "收集涵盖了38种癌症治疗药物在多个TNBC细胞系及其他癌细胞系中的大规模高通量筛选数据，构建了药物-细胞系异质协同知识图谱",
+              "quote": "产出了具有转化前景的候选药物清单",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3227,
-                "end_char": 3287
+                "start_char": 3650,
+                "end_char": 3665
               },
               "version": "2c6abcf3fca5014d3a97"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-119d8b9be78b",
-          "name": "计算框架迁移至真实世界预后预测",
-          "desc": "为验证计算框架在复杂异质真实世界数据中的稳健性，成功迁移应用于恶性肿瘤患者重症感染预后预测，评分模型展现优异预测能力。",
-          "evidence": [
-            {
-              "quote": "我们将其成功迁移应用于恶性肿瘤患者重症感染预后预测，预后评分模型展现出了优异的预测能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3501,
-                "end_char": 3543
-              },
-              "version": "2c6abcf3fca5014d3a97"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +151,125 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-f78a667a2b13"
+        "dimension": "技术",
+        "item_id": "item-f38ded5e413e"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-e8840dab7270"
+        "item_id": "item-0c9e4fc3278f"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e8840dab7270"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2039f51b2910"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2039f51b2910"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f098049e040c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5de4b2fe06b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2cae14f27773"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "并在此基础上开发了图神经网络预测模型，结合主动学习策略实现了对药物潜在治疗活性的预测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3136,
+            "end_char": 3177
+          },
+          "version": "2c6abcf3fca5014d3a97"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The role of metabolites in the causal effect of immune cell phenotypes on immunotherapy toxicity risk",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang·Meng;Mu·Fei;Yan·Zhen;Gong·Rui;Cui·Chen;Sun·KeXin;Zhao·JinYi;Wang·JingWen",
+      "id": "out-5b1ae6ce388c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The role of metabolites in the causal effect of immune cell phenotypes on immunotherapy toxicity risk — Tang·Meng;Mu·Fei;Yan·Zhen;Gong·Rui;Cui·Chen;Sun·KeXin;Zhao·JinYi;Wang·JingWen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 3942
+          },
+          "version": "2c6abcf3fca5014d3a97"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interpretable machine learning based comorbidity specific mortality risk score for bloodstream infections",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui·Chen;Zhao·Jinyi;Mu·Fei;Wang·Dahua;Li·Yamei;Tang·Meng;Sun·Kexin;Gong·Rui;Yan·Zhen;Wang·Jingwen",
+      "id": "out-d8698f52b4ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interpretable machine learning based comorbidity specific mortality risk score for bloodstream infections — Cui·Chen;Zhao·Jinyi;Mu·Fei;Wang·Dahua;Li·Yamei;Tang·Meng;Sun·Kexin;Gong·Rui;Yan·Zhen;Wang·Jingwen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3947,
+            "end_char": 4158
+          },
+          "version": "2c6abcf3fca5014d3a97"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between sodium level trajectories and clinical prognosis in patients with sepsis: A longitudinal retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ke-Xin Sun;Chen Cui;Zhen Yan;Fei Mu;Meng Tang;Rui Gong;Jin-Yi Zhao;Jing-Wen Wang",
+      "id": "out-ee57f9ae61ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between sodium level trajectories and clinical prognosis in patients with sepsis: A longitudinal retrospective cohort study — Ke-Xin Sun;Chen Cui;Zhen Yan;Fei Mu;Meng Tang;Rui Gong;Jin-Yi Zhao;Jing-Wen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4163,
+            "end_char": 4387
+          },
+          "version": "2c6abcf3fca5014d3a97"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vitamin C is associated with improved outcomes in patients with sepsis-induced myocardial injury: insights from the MIMIC-IV database",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gong·Rui;Huang·Zifeng;Zhao·Jinyi;Tang·Meng;Mu·Fei;Sun·Kexin;Cui·Chen;Yan·Zhen;Wang·Jingwen",
+      "id": "out-fb2568ec7b5b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vitamin C is associated with improved outcomes in patients with sepsis-induced myocardial injury: insights from the MIMIC-IV database — Gong·Rui;Huang·Zifeng;Zhao·Jinyi;Tang·Meng;Mu·Fei;Sun·Kexin;Cui·Chen;Yan·Zhen;Wang·Jingwen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4392,
+            "end_char": 4624
+          },
+          "version": "2c6abcf3fca5014d3a97"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

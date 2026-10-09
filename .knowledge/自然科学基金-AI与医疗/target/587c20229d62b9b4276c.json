@@ -2,15 +2,20 @@
   "doc_id": "587c20229d62b9b4276c",
   "version": "63ef81869b3160b6df02",
   "source_hash": "960564a41be0416b13abcd2a025f2b8d296583ac40afecc4585545eb8c250101",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.217388+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.299493+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6d3e6fbca981",
-          "name": "阿尔茨海默病认知分析与辅助诊断",
-          "desc": "面向AD病理复杂、长潜伏期的特点，用多模态脑影像与异构数据分析支撑AD认知与辅助诊断。",
+          "id": "item-18033044374a",
+          "name": "阿尔茨海默病认知与辅助诊断",
+          "desc": "多模态多流形多深度神经网络",
           "evidence": [
             {
-              "quote": "阿尔茨海默病（AD）具有病理复杂、长潜伏期等特点，在临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题",
+              "quote": "本项目研究了多模态多流形多深度神经网络的协同建模机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 697,
-                "end_char": 751
+                "start_char": 3035,
+                "end_char": 3060
               },
               "version": "63ef81869b3160b6df02"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10b909a49170",
-          "name": "AD病情发展规律不清与早期诊断不及时",
-          "desc": "AD临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题，且脑影像常存在缺失。",
+          "id": "item-40e17d5a0dc8",
+          "name": "AD演变规律不清、早期诊断不及时",
+          "desc": "临床诊断问题",
           "evidence": [
             {
               "quote": "在临床诊断中存在病情发展变化规律不清楚、早期诊断不及时等问题",
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3e435d7a1200",
-          "name": "多流形多深度神经网络协同-对抗建模",
-          "desc": "采用流形学习与深度学习分析多模态脑影像及异构数据，研究多流形轨迹模型、双向多生成多对抗网络、端到端诊断报告生成及多深度神经网络协同的疾病分型与症状评估方法。",
+          "id": "item-c8b4e4e4b71e",
+          "name": "知识驱动的多图卷积神经网络与多流形多模态哈希检索",
+          "desc": "多深度神经网络协同模型",
           "evidence": [
             {
-              "quote": "采用流形学习、深度学习分析多模态脑影像及相关异构数据,研究多模态数据的多流形多深度神经网络的协同-对抗建模与优化算法,为AD认知和辅助诊断提供解决方案",
+              "quote": "构建了知识驱动的多图卷积神经网络模型、多流形多模态哈希检索模型、非完整图像的多生成对抗网络哈希检索模型、双向哈希码-图像转换模型、在线深度跨模态哈希检索模型、知识与数据联合驱动的目标检测模型等多深度神经网络协同模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 827
+                "start_char": 3102,
+                "end_char": 3208
               },
               "version": "63ef81869b3160b6df02"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb57ff3bc26c",
-          "name": "发表学术论文32篇并受理授权发明专利10项",
-          "desc": "发表学术论文32篇（SCI期刊论文27篇），受理/授权国家发明专利10项，登记软件著作权3件，实现以阿尔茨海默病为代表的多种疾病辅助诊断与预测。",
+          "id": "item-3e80312d3276",
+          "name": "论文与专利软著",
+          "desc": "论文32篇（SCI 27篇），专利10项，软著3件",
           "evidence": [
             {
               "quote": "发表学术论文32篇（其中SCI期刊论文27篇），受理/授权国家发明专利10项，登记软件著作权3件",
@@ -99,44 +105,724 @@
               "version": "63ef81869b3160b6df02"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6d3e6fbca981"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-10b909a49170"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种流形约束的医学图像合成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;李彪;卢博文;王新宇",
+      "id": "out-e40727dc54c9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种流形约束的医学图像合成方法 — 曾宪华;李彪;卢博文;王新宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3717,
+            "end_char": 3753
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-10b909a49170"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3e435d7a1200"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge-driven multi-graph convolutional network for brain network analysis and potential biomarker discovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Jianhua Gong;Weisheng Li;Zhuoya Yang",
+      "id": "out-da1abddeefb0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge-driven multi-graph convolutional network for brain network analysis and potential biomarker discovery — Xianhua Zeng;Jianhua Gong;Weisheng Li;Zhuoya Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3758,
+            "end_char": 3927
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3e435d7a1200"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb57ff3bc26c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于自监督迁移和全域注意力的胎儿心脏分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;高歌",
+      "id": "out-8d0af36cd25d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于自监督迁移和全域注意力的胎儿心脏分割方法 — 曾宪华;高歌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 3969
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于无监督自适应权重的心脏数据异常检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;陈素心",
+      "id": "out-1282f5aca814",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于无监督自适应权重的心脏数据异常检测方法 — 曾宪华;陈素心",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3974,
+            "end_char": 4011
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多注意力融合的超声图像去噪方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;李彦澄;祝庆;董倩;郭珏秋",
+      "id": "out-d5c15bef86e7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多注意力融合的超声图像去噪方法 — 曾宪华;李彦澄;祝庆;董倩;郭珏秋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4016,
+            "end_char": 4059
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical object detector jointly driven by knowledge and data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Yuhang Liu;Jian Zhang;Yongli Guo",
+      "id": "out-fa29b9d9fffe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical object detector jointly driven by knowledge and data — Xianhua Zeng;Yuhang Liu;Jian Zhang;Yongli Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4064,
+            "end_char": 4178
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IDHashGAN: Deep Hashing with Generative Adversarial Nets for Incomplete Data Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Xianhua Zeng;Weisheng Li;Ling Bai",
+      "id": "out-a97145843a28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IDHashGAN: Deep Hashing with Generative Adversarial Nets for Incomplete Data Retrieval — Liming Xu;Xianhua Zeng;Weisheng Li;Ling Bai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4321
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical image synthesis algorithm based on vision graph neural network with manifold matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Bowen Lu;Jian Zhang",
+      "id": "out-7f7e26259bff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical image synthesis algorithm based on vision graph neural network with manifold matching — Xianhua Zeng;Bowen Lu;Jian Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4326,
+            "end_char": 4460
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep consistency-preserving hash auto-encoders for neuroimage cross-modal retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyu Wang;Xianhua Zeng",
+      "id": "out-399074184d5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep consistency-preserving hash auto-encoders for neuroimage cross-modal retrieval — Xinyu Wang;Xianhua Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4465,
+            "end_char": 4580
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep hybrid manifold for image set classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Jueqiu Guo;Yifan Wei;Yang Zhuo",
+      "id": "out-450ed088a911",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep hybrid manifold for image set classification — Xianhua Zeng;Jueqiu Guo;Yifan Wei;Yang Zhuo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4586,
+            "end_char": 4687
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cloud-GAN: Cloud Generation Adversarial Networks for anomaly detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Yang Zhuo;Tianxing Liao;Jueqiu Guo",
+      "id": "out-982d17579544",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cloud-GAN: Cloud Generation Adversarial Networks for anomaly detection — Xianhua Zeng;Yang Zhuo;Tianxing Liao;Jueqiu Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4693,
+            "end_char": 4819
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiple Pseudo-Siamese Network with Supervised Contrast Learning for Medical Multi-modal Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Xinyu Wang;Yicai Xie",
+      "id": "out-8185f8d77e55",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiple Pseudo-Siamese Network with Supervised Contrast Learning for Medical Multi-modal Retrieval — Xianhua Zeng;Xinyu Wang;Yicai Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4966
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-manifold Deep Discriminative Cross-modal Hashing for Medical Image Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Xianhua Zeng;Bochuan Zheng;Weisheng Li",
+      "id": "out-05a11c7313db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-manifold Deep Discriminative Cross-modal Hashing for Medical Image Retrieval — Liming Xu;Xianhua Zeng;Bochuan Zheng;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4972,
+            "end_char": 5111
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种胎儿心脏超声图像诊断报告自动生成系统的实现方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;黄海云",
+      "id": "out-8dded31f8ed9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种胎儿心脏超声图像诊断报告自动生成系统的实现方法 — 曾宪华;黄海云",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5117,
+            "end_char": 5156
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MG-CNFNet: A multiple grained channel normalized fusion networks for medical image deblurring",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Qian Dong;Yancheng Li",
+      "id": "out-579b99615887",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MG-CNFNet: A multiple grained channel normalized fusion networks for medical image deblurring — Xianhua Zeng;Qian Dong;Yancheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5162,
+            "end_char": 5298
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于网络协同的医学图像多任务去噪方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;郭永丽;刘宇航",
+      "id": "out-4bd722133f32",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于网络协同的医学图像多任务去噪方法及系统 — 曾宪华;郭永丽;刘宇航",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5304,
+            "end_char": 5345
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RED-MAM: A residual encoder-decoder network based on multi-attention fusion for ultrasound image denoising",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yancheng LI;Xianhua Zeng;Qian Dong;Xinyu Wang",
+      "id": "out-047d7582031f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RED-MAM: A residual encoder-decoder network based on multi-attention fusion for ultrasound image denoising — Yancheng LI;Xianhua Zeng;Qian Dong;Xinyu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5351,
+            "end_char": 5511
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Online deep hashing for both uni-modal and cross-modal retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yicai Xie;Xianhua Zeng;Tinghua Wang;Yun Yi",
+      "id": "out-4d277eb618b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Online deep hashing for both uni-modal and cross-modal retrieval — Yicai Xie;Xianhua Zeng;Tinghua Wang;Yun Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5517,
+            "end_char": 5632
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AMIM: An Adaptive Weighted Multimodal Integration Model for Alzheimer's Disease Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dewen Ding;Xianhua Zeng;Xinyu Wang;Jian Zhang",
+      "id": "out-df53d0398a50",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AMIM: An Adaptive Weighted Multimodal Integration Model for Alzheimer's Disease Classification — Dewen Ding;Xianhua Zeng;Xinyu Wang;Jian Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5638,
+            "end_char": 5786
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CGFTrans: Cross-Modal Global Feature Fusion Transformer for Medical Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Quan Tang;Bochuan Zheng;Jiancheng Lv;Weisheng Li;Xianhua Zeng",
+      "id": "out-3382a8ed71eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CGFTrans: Cross-Modal Global Feature Fusion Transformer for Medical Report Generation — Liming Xu;Quan Tang;Bochuan Zheng;Jiancheng Lv;Weisheng Li;Xianhua Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5792,
+            "end_char": 5957
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BH2I-GAN: Bidirectional Hash_code-to-Image Translation using Multi-Generative Multi-Adversarial Nets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liming Xu;Xianhua Zeng;Weisheng Li;Yicai Xie",
+      "id": "out-5ec99f75271f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BH2I-GAN: Bidirectional Hash_code-to-Image Translation using Multi-Generative Multi-Adversarial Nets — Liming Xu;Xianhua Zeng;Weisheng Li;Yicai Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5963,
+            "end_char": 6116
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Scale Orthogonal Model CNN-Transformer for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wuyi Zhou;Xianhua Zeng;Mingkun Zhou",
+      "id": "out-25293fb25a1e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Scale Orthogonal Model CNN-Transformer for Medical Image Segmentation — Wuyi Zhou;Xianhua Zeng;Mingkun Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6122,
+            "end_char": 6241
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于残差编解码器的通道自适应超声图像去噪方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;李彦澄;高歌;赵雪婷",
+      "id": "out-b263ee49c2de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于残差编解码器的通道自适应超声图像去噪方法 — 曾宪华;李彦澄;高歌;赵雪婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6247,
+            "end_char": 6292
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-modal variable-length hashing based on hierarchy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaojun Qi;Xianhua Zeng;Shumin Wang;Yicai Xie;Liming Xu",
+      "id": "out-4f2a27c79561",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-modal variable-length hashing based on hierarchy — Xiaojun Qi;Xianhua Zeng;Shumin Wang;Yicai Xie;Liming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6298,
+            "end_char": 6416
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient model-informed co-segmentation of tumors on PET/CT driven by clustering and classification information",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Laquan Li;Chuangbo Jiang;Lei Yu;Xianhua Zeng;Shenhai Zheng",
+      "id": "out-3d73cb6df71c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient model-informed co-segmentation of tumors on PET/CT driven by clustering and classification information — Laquan Li;Chuangbo Jiang;Lei Yu;Xianhua Zeng;Shenhai Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6422,
+            "end_char": 6601
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MMNet: a medical image-to-image translation network based on manifold-value correction and manifold matching",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Biao Li;Xinyu Wang",
+      "id": "out-870d61008704",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MMNet: a medical image-to-image translation network based on manifold-value correction and manifold matching — Xianhua Zeng;Biao Li;Xinyu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6607,
+            "end_char": 6755
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Continual medical image denoising based on triplet neural networks collaboration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Yongli Guo;Laquan Li;Yuhang Liu",
+      "id": "out-7408b9fd8142",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Continual medical image denoising based on triplet neural networks collaboration — Xianhua Zeng;Yongli Guo;Laquan Li;Yuhang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6761,
+            "end_char": 6894
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AERMNet: Attention-enhanced relational memory network for medical image report generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Tianxing Liao;Liming Xu;Zhiqiang Wang",
+      "id": "out-d4973484c329",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AERMNet: Attention-enhanced relational memory network for medical image report generation — Xianhua Zeng;Tianxing Liao;Liming Xu;Zhiqiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6900,
+            "end_char": 7048
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CP‐GAN: Meet the high requirements of diagnose report to medical image by content preservation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Zhengyi Huang;Liming Xu;Yicai Xie",
+      "id": "out-55ce911b61fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CP‐GAN: Meet the high requirements of diagnose report to medical image by content preservation — Xianhua Zeng;Zhengyi Huang;Liming Xu;Yicai Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7054,
+            "end_char": 7203
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiple deep neural networks with multiple labels for cross-modal hashing retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yicai Xie;Xianhua Zeng;Tinghua Wang;Liming Xu;Dingjie Wang",
+      "id": "out-65c59c9e3e5a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiple deep neural networks with multiple labels for cross-modal hashing retrieval — Yicai Xie;Xianhua Zeng;Tinghua Wang;Liming Xu;Dingjie Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7209,
+            "end_char": 7360
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep online cross-modal hashing by a co-training mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yicai Xie;Xianhua Zeng;Tinghua Wang;Yun Yi;Liming Xu",
+      "id": "out-8e8e8db7de04",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep online cross-modal hashing by a co-training mechanism — Yicai Xie;Xianhua Zeng;Tinghua Wang;Yun Yi;Liming Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7366,
+            "end_char": 7485
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于胎儿先心病超声图像—诊断报告的跨模态检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "曾宪华;王鼎杰",
+      "id": "out-bfc6175df107",
+      "evidence": [
+        {
+          "quote": "[专利] 基于胎儿先心病超声图像—诊断报告的跨模态检索方法 — 曾宪华;王鼎杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7491,
+            "end_char": 7529
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-strategy continual learning for knowledge refinement and consolidation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianhua Zeng;Xueyun Nie;Laquan Li;Mingkun Zhou",
+      "id": "out-db8a47597452",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-strategy continual learning for knowledge refinement and consolidation — Xianhua Zeng;Xueyun Nie;Laquan Li;Mingkun Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7535,
+            "end_char": 7666
+          },
+          "version": "63ef81869b3160b6df02"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 33,
+    "listed": 33,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "期刊论文": {
+        "listed": 26,
+        "extracted": 26
+      }
+    },
+    "consistent": true
+  }
 }

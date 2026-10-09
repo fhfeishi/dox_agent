@@ -2,15 +2,20 @@
   "doc_id": "dd00b4ef27a8998a5be2",
   "version": "3220523574ba2ba12436",
   "source_hash": "70a31ff4fba5de9eac646c0c7931ed6b7f3f6e59ea506dd867589ff5c5cec26a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.454257+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:56.079051+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b40cc9913133",
-          "name": "胶质瘤分子标记物诊断",
-          "desc": "胶质瘤是严重危害人类健康的重大脑疾病，部分分子标记物是胶质瘤诊断及预后分析的重要因素。",
+          "id": "item-86192b276368",
+          "name": "脑胶质瘤分子标志物无创预测",
+          "desc": "融合组织病理的影像组学",
           "evidence": [
             {
               "quote": "胶质瘤是严重危害人类健康的重大脑疾病，部分分子标记物是胶质瘤诊断及预后分析的重要因素",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 676,
                 "end_char": 717
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ]
-        },
-        {
-          "id": "item-87a7f7351c67",
-          "name": "脑胶质瘤定量诊断与疗效评估",
-          "desc": "最终实现对脑胶质瘤定量诊断及疗效评估。",
-          "evidence": [
-            {
-              "quote": "最终实现对脑胶质瘤定量诊断及疗效评估",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1037,
-                "end_char": 1054
               },
               "version": "3220523574ba2ba12436"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-82a3d7960fb4",
-          "name": "影像组学预测准确率待提升",
-          "desc": "磁共振影像组学特征能反映关键分子生物学特征，但准确率仍需提升。",
+          "id": "item-04d911d1167a",
+          "name": "磁共振影像组学预测分子标志物准确率仍需提升",
+          "desc": "需融合病理信息",
           "evidence": [
             {
-              "quote": "我们前期研究表明磁共振影像组学特征能够反映脑胶质瘤的关键分子生物学特征，但准确率仍需提升。",
+              "quote": "但准确率仍需提升",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 719,
-                "end_char": 763
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ]
-        },
-        {
-          "id": "item-ae3580872933",
-          "name": "单一模态信息不足",
-          "desc": "影像学和组织病理学从不同角度反映脑胶质瘤特性，需融合二者提高预测准确性。",
-          "evidence": [
-            {
-              "quote": "影像学和组织病理学从不同角度反映脑胶质瘤的特性，融合二者有可能提高分子标记物预测准确性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 764,
-                "end_char": 807
+                "start_char": 755,
+                "end_char": 762
               },
               "version": "3220523574ba2ba12436"
             }
@@ -97,7 +70,7 @@
         {
           "id": "item-8584081038f9",
           "name": "改进卷积神经网络与多模融合分类器",
-          "desc": "利用深度学习方法包括改进的卷积神经网络、多模融合分类器等构建预测模型。",
+          "desc": "影像融合病理预测分子标志物",
           "evidence": [
             {
               "quote": "利用深度学习方法，包括改进的卷积神经网络、多模融合分类器等，构建高效、客观的磁共振影像学融合组织病理学对脑胶质瘤关键分子标志物信息的预测模型",
@@ -108,12 +81,13 @@
               },
               "version": "3220523574ba2ba12436"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-661739ba9206",
-          "name": "生成对抗网络融合病理先验",
-          "desc": "运用生成对抗网络建立融合组织病理先验的影像独立预测脑胶质瘤分子标志物信息模型。",
+          "id": "item-f0a8c53bebb5",
+          "name": "生成对抗网络融合病理先验的影像独立预测模型",
+          "desc": "",
           "evidence": [
             {
               "quote": "并进一步运用生成对抗网络，建立融合组织病理先验的影像独立预测脑胶质瘤分子标志物信息模型",
@@ -124,128 +98,73 @@
               },
               "version": "3220523574ba2ba12436"
             }
-          ]
-        },
-        {
-          "id": "item-e84b2da784f0",
-          "name": "200例影像与病理数据采集",
-          "desc": "收集200例脑胶质瘤患者磁共振影像及病理信息。",
-          "evidence": [
-            {
-              "quote": "本研究拟收集200例脑胶质瘤患者磁共振影像及病理信息",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 920
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiation of Neoplastic and Non-neoplastic Intracranial Enhancement Lesions Using Three-Dimensional Pseudo-Continuous Arterial Spin Labeling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen-zhong Hu;Fan Guo;Yong-qiang Xu;Yi-bin Xi;Bei He;Hong Yin;Xiao-wei Kang",
+      "id": "out-fe349fff8f9d",
+      "evidence": [
         {
-          "id": "item-78d05e49e350",
-          "name": "颅内强化病变鉴别论文",
-          "desc": "发表三维伪连续动脉自旋标记鉴别肿瘤性与非肿瘤性颅内强化病变的研究论文。",
-          "evidence": [
-            {
-              "quote": "Differentiation of Neoplastic and Non-neoplastic Intracranial Enhancement Lesions Using Three-Dimensional Pseudo-Continuous Arterial Spin Labeling",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3231,
-                "end_char": 3376
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] Differentiation of Neoplastic and Non-neoplastic Intracranial Enhancement Lesions Using Three-Dimensional Pseudo-Continuous Arterial Spin Labeling — Wen-zhong Hu;Fan Guo;Yong-qiang Xu;Yi-bin Xi;Bei He;Hong Yin;Xiao-wei Kang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3224,
+            "end_char": 3453
+          },
+          "version": "3220523574ba2ba12436"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "无明显强化的胶质母细胞瘤的 MRI特点分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡文鐘;徐永强;郭 钒;康晓伟;李 陈;印 弘;席一斌",
+      "id": "out-6131422a9280",
+      "evidence": [
         {
-          "id": "item-8ecb74e2539a",
-          "name": "无明显强化胶质母细胞瘤MRI特点",
-          "desc": "发表无明显强化的胶质母细胞瘤MRI特点分析论文。",
-          "evidence": [
-            {
-              "quote": "无明显强化的胶质母细胞瘤的 MRI特点分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3465,
-                "end_char": 3485
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2ae1dcf5edd7",
-          "name": "量化成果未披露",
-          "desc": "结题摘要与中文摘要内容一致，未披露模型性能等量化指标。",
-          "evidence": [
-            {
-              "quote": "融合二者有可能提高分子标记物预测准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 806
-              },
-              "version": "3220523574ba2ba12436"
-            }
-          ],
-          "status": "原文未明确"
+          "quote": "[期刊论文] 无明显强化的胶质母细胞瘤的 MRI特点分析 — 胡文鐘;徐永强;郭 钒;康晓伟;李 陈;印 弘;席一斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3458,
+            "end_char": 3515
+          },
+          "version": "3220523574ba2ba12436"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b40cc9913133"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-82a3d7960fb4"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ae3580872933"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-661739ba9206"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8584081038f9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-78d05e49e350"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-661739ba9206"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8ecb74e2539a"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

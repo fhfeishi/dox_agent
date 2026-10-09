@@ -2,15 +2,20 @@
   "doc_id": "bdb6dca4cb7281da7536",
   "version": "1a7cf59decaf079cdd51",
   "source_hash": "c01b6c42bb96bed1e273d025bbd01da04ab963d6d75c27121a47c9f748f53309",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.467203+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:09.946967+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,101 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-27515f64499c",
-          "name": "中晚期肝癌PD-1免疫治疗疗效预测",
-          "desc": "肝癌是我国常见恶性肿瘤，死亡率高，免疫治疗显著改善中晚期预后但需要疗效预测。",
-          "evidence": [
-            {
-              "quote": "肝癌是我国常见的恶性肿瘤之一，死亡率高。近年来，免疫治疗快速发展，显著改善了中晚期肝癌的预后",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 680,
-                "end_char": 725
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ]
-        },
-        {
-          "id": "item-e4cbaec82a23",
-          "name": "肝癌精准免疫治疗与耐药机制",
-          "desc": "研究有助于揭示肝癌免疫治疗耐药分子机制，寻找敏感性生物学标志物与增强疗效靶点，为中晚期肝癌个体化治疗提供指导。",
-          "evidence": [
-            {
-              "quote": "本课题有助于揭示肝癌免疫治疗耐药的分子机制，寻找提示免疫治疗响应的敏感性生物学标志物，寻找增强免疫治疗疗效的靶点，为中晚期肝癌的个体化治疗提供指导",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 978,
-                "end_char": 1050
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-49c2fbfbcaae",
-          "name": "PD-1抗体治疗肝癌有效率低",
-          "desc": "PD-1抗体治疗肝癌有效率仍较低且存在耐药率，目前仍缺乏有效的疗效预测模型。",
-          "evidence": [
-            {
-              "quote": "但是，PD-1抗体治疗肝癌的有效率仍较低，肝癌对免疫治疗具有一定的耐药率。目前，仍缺乏有效的PD-1抗体疗效预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 727,
-                "end_char": 784
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ]
-        },
-        {
-          "id": "item-d5de6efe9cad",
-          "name": "类器官模型优势尚未用于疗效预测",
-          "desc": "类器官体模型保持原有组织细胞成分与空间构象，对肿瘤细胞-免疫细胞相互作用分析有独特优势，推测可用于PD-1疗效预测。",
-          "evidence": [
-            {
-              "quote": "类器官体模型保持了原有组织的细胞成分和空间构象，因此对肿瘤细胞-免疫细胞相互作用的分析具有独特的优势，由此推测它可能用于PD-1抗体免疫治疗疗效预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 818,
-                "end_char": 891
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-dca64f92ee27",
-          "name": "肝癌类器官体模型构建与验证",
-          "desc": "在建立肝癌类器官体模型基础上，验证其与原发肿瘤基因表型和免疫表型的一致性，评价PD-1抗体体外应答与临床应答的一致性。",
-          "evidence": [
-            {
-              "quote": "本课题拟在建立类器官体模型的基础上，验证该模型与原发肿瘤基因表型和免疫表型的一致性，评价PD-1抗体体外应答与临床应答的一致性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 893,
-                "end_char": 955
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ]
-        },
-        {
-          "id": "item-67bdbd05fbeb",
-          "name": "驱动基因差异与富集分析",
-          "desc": "对肝癌免疫治疗耐药或敏感病例分组进行驱动基因差异化分析及GO、KEGG富集分析。",
+          "id": "item-be475f451b8b",
+          "name": "中晚期肝癌PD-1免疫治疗",
+          "desc": "类器官与耐药生物标志物",
           "evidence": [
             {
               "quote": "本课题采用回顾性研究方法对肝癌免疫治疗耐药或敏感病例分组进行驱动基因差异化分析",
@@ -129,47 +42,35 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-6cc7c7275998",
-          "name": "11q13共扩增为免疫耐药高危人群",
-          "desc": "发现11q13共扩增患者是肝癌免疫耐药或超进展的高危人群，Foxp3+Treg细胞密度增加可能是潜在机制之一。",
+          "id": "item-3df082dca160",
+          "name": "肝癌PD-1抗体有效率低且缺乏疗效预测",
+          "desc": "耐药",
           "evidence": [
             {
-              "quote": "发现11q13共扩增患者是肝癌免疫耐药或超进展的高危人群，Foxp3+Treg细胞密度增加可能是潜在机制之一",
+              "quote": "PD-1抗体治疗肝癌的有效率仍较低，肝癌对免疫治疗具有一定的耐药率",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3366,
-                "end_char": 3419
+                "start_char": 730,
+                "end_char": 762
               },
               "version": "1a7cf59decaf079cdd51"
             }
-          ],
-          "status": "已取得"
-        },
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
         {
-          "id": "item-6a5bfe5aab49",
-          "name": "5个差异mRNA与PD1敏感性相关",
-          "desc": "5个显著差异表达的mRNA与PD1敏感性密切相关，GO与KEGG富集分析显示其在MAPK均有较强富集。",
-          "evidence": [
-            {
-              "quote": "5个显著差异表达的mRNA（REG3A、SLC2A5、ITGA6、FGF1和CRYBG2）与PD1敏感性密切相关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3421,
-                "end_char": 3476
-              },
-              "version": "1a7cf59decaf079cdd51"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1c83fcf8fb03",
-          "name": "类器官模型药物反应与临床一致",
-          "desc": "构建肝癌类器官体模型制备优化体系并经典型临床病例验证，类器官模型药物反应筛查结果与临床一致。",
+          "id": "item-28f70077b186",
+          "name": "肝癌类器官体模型药物反应筛查",
+          "desc": "制备优化体系",
           "evidence": [
             {
               "quote": "通过构建肝癌类器官体模型制备优化体系与验证，对典型临床病例同步开展的类器官模型药物反应筛查结果与临床一致",
@@ -181,55 +82,174 @@
               "version": "1a7cf59decaf079cdd51"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-476fc8927b49",
+          "name": "免疫耐药高危人群与潜在机制",
+          "desc": "11q13共扩增，Foxp3+Treg密度增加",
+          "evidence": [
+            {
+              "quote": "发现11q13共扩增患者是肝癌免疫耐药或超进展的高危人群，Foxp3+Treg细胞密度增加可能是潜在机制之一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3366,
+                "end_char": 3419
+              },
+              "version": "1a7cf59decaf079cdd51"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-91c5393815bb",
+          "name": "PD1敏感性相关mRNA",
+          "desc": "REG3A、SLC2A5、ITGA6、FGF1、CRYBG2",
+          "evidence": [
+            {
+              "quote": "5个显著差异表达的mRNA（REG3A、SLC2A5、ITGA6、FGF1和CRYBG2）与PD1敏感性密切相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3421,
+                "end_char": 3476
+              },
+              "version": "1a7cf59decaf079cdd51"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-27515f64499c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-49c2fbfbcaae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The association of chromosome 11q13 amplification with the hyperprogressive disease in unresectable hepatocellular carcinoma patients underwent the immunotherapy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haibin Zhang;Kai Yan;Ding Zhang;Yanan Chen;Mengli Huang;Yong Fu;Wenfeng Lu",
+      "id": "out-e4a914e2b1a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The association of chromosome 11q13 amplification with the hyperprogressive disease in unresectable hepatocellular carcinoma patients underwent the immunotherapy. — Haibin Zhang;Kai Yan;Ding Zhang;Yanan Chen;Mengli Huang;Yong Fu;Wenfeng Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3966
+          },
+          "version": "1a7cf59decaf079cdd51"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-49c2fbfbcaae"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dca64f92ee27"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early Explosive Recurrence of Hepatocellular Carcinoma after Radical Resection: Risk Factors and Clinical Significance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Yan;Wei Dong;Xiaowei Li;Zhe Han;Si Li;Guoyi Wu;Haibin Zhang;Yong Fu",
+      "id": "out-4ba8df68d635",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early Explosive Recurrence of Hepatocellular Carcinoma after Radical Resection: Risk Factors and Clinical Significance — Kai Yan;Wei Dong;Xiaowei Li;Zhe Han;Si Li;Guoyi Wu;Haibin Zhang;Yong Fu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3971,
+            "end_char": 4169
+          },
+          "version": "1a7cf59decaf079cdd51"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-dca64f92ee27"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1c83fcf8fb03"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stathmin 1 is a biomarker for diagnosis of microvascular invasion to predict prognosis of early hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongchao Cai;Yong Fu;Changcheng Liu;Xicheng Wang;Pu You;Xiuhua Li;Yanxiang Song;Xiaolan Mu;Ting Fang;Yang Yang;Yuying Gu;Haibin Zhang;Zhiying He",
+      "id": "out-acfd52be45b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stathmin 1 is a biomarker for diagnosis of microvascular invasion to predict prognosis of early hepatocellular carcinoma — Yongchao Cai;Yong Fu;Changcheng Liu;Xicheng Wang;Pu You;Xiuhua Li;Yanxiang Song;Xiaolan Mu;Ting Fang;Yang Yang;Yuying Gu;Haibin Zhang;Zhiying He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4174,
+            "end_char": 4447
+          },
+          "version": "1a7cf59decaf079cdd51"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-67bdbd05fbeb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6cc7c7275998"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Introduction of the Chinese expert consensus on postoperative adjuvant therapy for hepatocellular carcinoma (2023 Edition)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haibin Zhang",
+      "id": "out-474916fd8387",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Introduction of the Chinese expert consensus on postoperative adjuvant therapy for hepatocellular carcinoma (2023 Edition) — Haibin Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4452,
+            "end_char": 4595
+          },
+          "version": "1a7cf59decaf079cdd51"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中晚期肝癌疗效预测模型暨肝癌类器官模型 研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "阎凯;付雍;章正涛;卢文峰;王毅州;巫国谊;张海斌",
+      "id": "out-7de1dc46010c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中晚期肝癌疗效预测模型暨肝癌类器官模型 研究进展 — 阎凯;付雍;章正涛;卢文峰;王毅州;巫国谊;张海斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4600,
+            "end_char": 4658
+          },
+          "version": "1a7cf59decaf079cdd51"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

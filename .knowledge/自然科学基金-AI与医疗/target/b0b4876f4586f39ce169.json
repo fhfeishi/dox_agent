@@ -2,15 +2,20 @@
   "doc_id": "b0b4876f4586f39ce169",
   "version": "cc723f3923aa6910c741",
   "source_hash": "4b1d28c723e89af671840097670c5cf8347d6af44cff9aa161ba48bdcc24a789",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.695561+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.661188+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-59f1d8caf162",
-          "name": "个体化肠道菌群代谢网络建模",
-          "desc": "肠道菌群功能失衡会造成多器官免疫失调或代谢紊乱，需定量描述个体化菌群代谢网络。",
+          "id": "item-41541f76da0b",
+          "name": "个体化肠道菌群代谢网络",
+          "desc": "菌群失衡与疾病",
           "evidence": [
             {
-              "quote": "肠道菌群的功能失衡会造成全身多个器官的免疫失调或代谢紊乱进而影响人类健康",
+              "quote": "肠道菌群的功能失衡与多种疾病密切相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 683
-              },
-              "version": "cc723f3923aa6910c741"
-            }
-          ]
-        },
-        {
-          "id": "item-c397dbff22ba",
-          "name": "个体化智能医学与数基生命系统",
-          "desc": "项目实施将促进数基生命系统的建立及个体化智能医学的发展。",
-          "evidence": [
-            {
-              "quote": "该项目的实施将促进数基生命系统的建立及个体化智能医学的发展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1013,
-                "end_char": 1041
+                "start_char": 2737,
+                "end_char": 2754
               },
               "version": "cc723f3923aa6910c741"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e8a08ba46160",
-          "name": "群体相关性研究忽略菌群代谢互作",
-          "desc": "现有研究多侧重群体层面相关性分析，仅关注单一差异微生物或基因，忽略全局菌群代谢互作网络与微生物-宿主互作。",
+          "id": "item-8f9330f621df",
+          "name": "现有研究多为群体层面相关性分析",
+          "desc": "缺乏个体化菌群代谢网络定量表征",
           "evidence": [
             {
-              "quote": "现有研究多侧重于群体层面的相关性分析，仅关注单一的差异微生物或者基因，忽略了全局的菌群代谢互作网络，以及微生物与宿主的代谢互作",
+              "quote": "现有研究多侧重于群体层面的相关性分析，仅关注单一的差异微生物或者基因，忽略了全局的菌群代谢互作网络",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2756,
-                "end_char": 2818
-              },
-              "version": "cc723f3923aa6910c741"
-            }
-          ]
-        },
-        {
-          "id": "item-b25ff05e5805",
-          "name": "缺乏个体化代谢网络定量表征",
-          "desc": "缺乏对个体化肠道菌群代谢网络的定量表征。",
-          "evidence": [
-            {
-              "quote": "缺乏对个体化肠道菌群代谢网络的定量表征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2820,
-                "end_char": 2838
+                "end_char": 2804
               },
               "version": "cc723f3923aa6910c741"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c79988a129a7",
-          "name": "双优化代谢通量平衡分析",
-          "desc": "设计支持个体饮食及多组学数据为约束条件的菌群生物量及菌株生物量最大化双优化算法，构建个体化代谢网络模型。",
+          "id": "item-cffce481c50c",
+          "name": "约束通量平衡分析ctFBA",
+          "desc": "基于AGORA数据库属水平泛物种代谢模型库",
           "evidence": [
             {
-              "quote": "设计支持个体饮食及多组学数据为约束条件的代谢通量平衡分析双优化（菌群生物量及菌株生物量最大化）算法，以构建个体化肠道菌群代谢网络模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 812,
-                "end_char": 877
-              },
-              "version": "cc723f3923aa6910c741"
-            }
-          ]
-        },
-        {
-          "id": "item-682779007d78",
-          "name": "约束通量平衡分析与L2正则化",
-          "desc": "基于AGORA数据库构建属水平泛物种代谢模型库，通过ctFBA求解通量分布并结合L2正则化约束精准预测代谢通量特征。",
-          "evidence": [
-            {
-              "quote": "基于AGORA数据库，我们成功构建了属水平泛物种代谢模型库，并通过约束通量平衡分析（ctFBA）求解个体化肠道菌群代谢通量分布，结合L2正则化约束",
+              "quote": "基于AGORA数据库，我们成功构建了属水平泛物种代谢模型库，并通过约束通量平衡分析（ctFBA）求解个体化肠道菌群代谢通量分布，结合L2正则化约束，精准预测了肠道菌群的代谢通量特征",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2986,
-                "end_char": 3058
+                "end_char": 3075
               },
               "version": "cc723f3923aa6910c741"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a34b8e1c6606",
-          "name": "菌群-肠脑轴知识图谱与可视化平台",
-          "desc": "针对肠脑轴相关精神类疾病构建菌群-肠脑轴知识图谱，并开发基于代谢特征与知识图谱的在线交互可视化平台。",
+          "id": "item-ed10f42119ec",
+          "name": "菌群-肠脑轴知识图谱与在线交互可视化平台",
+          "desc": "代谢特征与知识图谱",
           "evidence": [
             {
-              "quote": "针对肠脑轴相关精神类疾病，构建了菌群-肠脑轴知识图谱，并开发了基于代谢特征和知识图谱的在线交互可视化平台",
+              "quote": "我们针对肠脑轴相关精神类疾病，构建了菌群-肠脑轴知识图谱，并开发了基于代谢特征和知识图谱的在线交互可视化平台",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3155,
+                "start_char": 3153,
                 "end_char": 3206
               },
               "version": "cc723f3923aa6910c741"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +108,171 @@
       "state": "has",
       "items": [
         {
-          "id": "item-759823562885",
-          "name": "疾病分类模型与菌群标志物",
-          "desc": "基于菌群代谢及结构特征运用机器学习构建抑郁症、高血压等典型疾病分类模型，并挖掘相关菌群标志物。",
+          "id": "item-7bd267d46038",
+          "name": "抑郁症、高血压分类模型与菌群标志物",
+          "desc": "机器学习",
           "evidence": [
             {
-              "quote": "运用机器学习方法，构建了针对抑郁症、高血压等典型疾病的分类模型，并挖掘出与这些疾病相关的肠道菌群标志物",
+              "quote": "构建了针对抑郁症、高血压等典型疾病的分类模型，并挖掘出与这些疾病相关的肠道菌群标志物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3098,
+                "start_char": 3107,
                 "end_char": 3148
               },
               "version": "cc723f3923aa6910c741"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ccc77181efeb",
-          "name": "全链条知识发现研究框架",
-          "desc": "提出数据驱动疾病标志物挖掘、已有知识验证、新机制假设产生的全链条知识发现研究框架。",
-          "evidence": [
-            {
-              "quote": "本研究提出了“数据驱动的疾病标志物挖掘-已有知识验证-新机制假设产生”的全链条知识发现研究框架",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3278,
-                "end_char": 3324
-              },
-              "version": "cc723f3923aa6910c741"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-36a5c0b5bbfe",
-          "name": "菌群-精神疾病知识图谱平台",
-          "desc": "构建基于知识图谱的菌群-精神疾病互作路径挖掘平台MMiKG。",
-          "evidence": [
-            {
-              "quote": "MMiKG: a knowledge graph-based platform for path mining of microbiota–mental diseases interactions",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3686,
-                "end_char": 3783
-              },
-              "version": "cc723f3923aa6910c741"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-59f1d8caf162"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e8a08ba46160"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Insights into the biodegradation of pentachlorobiphenyl by Microbacterium paraoxydans: proteomic and metabolomic studies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Ji;Xiaoyu Chang;Leilei Wang;Xiaowen Fu;Wenkai Lai;Liwen Zheng;Qi Li;Yingna Xing;Zhongfeng Yang;Yuyao Guan;Fenglong Yang",
+      "id": "out-73135064e77e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Insights into the biodegradation of pentachlorobiphenyl by Microbacterium paraoxydans: proteomic and metabolomic studies — Lei Ji;Xiaoyu Chang;Leilei Wang;Xiaowen Fu;Wenkai Lai;Liwen Zheng;Qi Li;Yingna Xing;Zhongfeng Yang;Yuyao Guan;Fenglong Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3422,
+            "end_char": 3674
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e8a08ba46160"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c79988a129a7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MMiKG: a knowledge graph-based platform for path mining of microbiota–mental diseases interactions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoran Sun;Zhaoqi Song;Qiuming Chen;Meiling Wang;Furong Tang;Lijun Dou;Quan Zou;Fenglong Yang",
+      "id": "out-79e53fd3a1da",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MMiKG: a knowledge graph-based platform for path mining of microbiota–mental diseases interactions — Haoran Sun;Zhaoqi Song;Qiuming Chen;Meiling Wang;Furong Tang;Lijun Dou;Quan Zou;Fenglong Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3679,
+            "end_char": 3879
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-682779007d78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-759823562885"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于肠道菌群物种谱的代谢通量预测及健康指数评价系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨凤龙;张宇辰;陈文琪;赖煜萱;黄宇",
+      "id": "out-60a3912cc917",
+      "evidence": [
+        {
+          "quote": "[专利] 基于肠道菌群物种谱的代谢通量预测及健康指数评价系统 — 杨凤龙;张宇辰;陈文琪;赖煜萱;黄宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 3934
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a34b8e1c6606"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-36a5c0b5bbfe"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ResNet for Histopathologic Cancer Detection, the Deeper, the Better?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziying Wang;Jinghong Gao;Hangyi Kan;Yang Huang;Furong Tang;Wen Li;Fenglong Yang",
+      "id": "out-cbaf84c432e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ResNet for Histopathologic Cancer Detection, the Deeper, the Better? — Ziying Wang;Jinghong Gao;Hangyi Kan;Yang Huang;Furong Tang;Wen Li;Fenglong Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3939,
+            "end_char": 4095
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Depression-associated gut microbes, metabolites and clinical trials",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meiling Wang;Zhaoqi Song;Shirong Lai;Furong Tang;Lijun Dou;Fenglong Yang",
+      "id": "out-84c6b41f1060",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Depression-associated gut microbes, metabolites and clinical trials — Meiling Wang;Zhaoqi Song;Shirong Lai;Furong Tang;Lijun Dou;Fenglong Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4100,
+            "end_char": 4248
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种针对肠-脑轴的知识图谱构建方法及知识图谱系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋兆祺;孙浩然;陈秋鸣;王美玲;杨凤龙",
+      "id": "out-6ca7ab916ebf",
+      "evidence": [
+        {
+          "quote": "[专利] 一种针对肠-脑轴的知识图谱构建方法及知识图谱系统 — 宋兆祺;孙浩然;陈秋鸣;王美玲;杨凤龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4253,
+            "end_char": 4303
+          },
+          "version": "cc723f3923aa6910c741"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "92762fdc64e21229d2a0",
   "version": "29353ed1d19ead6938c8",
   "source_hash": "bc1ceb6cd28d0807271bf9a7ef00e127315f581fd9ccdf6845f9a64986d13d99",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.496914+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.586710+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf8f8cd4231a",
-          "name": "儿童发育性髋关节脱位AI辅助诊断",
-          "desc": "发育性髋关节脱位是儿童骨骼肌肉系统最常见疾病之一，需对不同发育阶段儿童进行髋关节X光和超声影像关键点提取与病情诊断。",
+          "id": "item-c145dec91156",
+          "name": "儿童发育性髋关节脱位影像辅助诊断",
+          "desc": "髋关节X光与超声关键点提取和病情诊断",
           "evidence": [
             {
-              "quote": "发育性髋关节脱位是儿童骨骼肌肉系统的最常见疾病之一",
+              "quote": "本项目旨在解决儿童发育性髋关节脱位的诊断难题，已经成功地应用了先进的人工智能技术，对不同发育阶段的儿童分别进行髋关节X光和超声影像中关键点提取和病情诊断",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 679
-              },
-              "version": "29353ed1d19ead6938c8"
-            }
-          ]
-        },
-        {
-          "id": "item-48946d2aa87b",
-          "name": "髋关节影像智能分析技术突破",
-          "desc": "在医院临床环境下验证系统性能，为儿童发育性髋关节脱位影像学AI辅助诊断提供核心技术支持。",
-          "evidence": [
-            {
-              "quote": "为儿童发育性髋关节脱位影像学的人工智能辅助诊断提供核心技术支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1011,
-                "end_char": 1041
+                "start_char": 2779,
+                "end_char": 2854
               },
               "version": "29353ed1d19ead6938c8"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d6240bcbcea",
-          "name": "诊断标准不一易受噪声干扰",
-          "desc": "现有诊断方法诊断标准不一，易受影像噪声干扰，诊断耗时长、精度低。",
+          "id": "item-6b4c60dac474",
+          "name": "现有诊断标准不一、易受噪声干扰、耗时精度低",
+          "desc": "现状",
           "evidence": [
             {
               "quote": "本项目针对现有诊断方法诊断标准不一，易受影像噪声干扰，诊断耗时长、精度低的现状",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 681,
                 "end_char": 719
-              },
-              "version": "29353ed1d19ead6938c8"
-            }
-          ]
-        },
-        {
-          "id": "item-99bea5bbf088",
-          "name": "医学影像噪声分布带来模糊与复杂",
-          "desc": "医学影像中不同噪声分布带来模糊性和复杂性，影响关键点提取与诊断准确性。",
-          "evidence": [
-            {
-              "quote": "针对医学影像中不同噪声分布带来的模糊性和复杂性，设计生成对抗网络构造增广的带噪数据集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 776,
-                "end_char": 817
               },
               "version": "29353ed1d19ead6938c8"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-28c3ba48d7c6",
-          "name": "生成对抗网络构造带噪数据与去噪",
-          "desc": "设计生成对抗网络构造增广带噪数据集，训练全卷积网络进行影像去噪，提升影像质量。",
+          "id": "item-60f86a614075",
+          "name": "全卷积网络影像去噪",
+          "desc": "针对带噪声医学影像",
           "evidence": [
             {
-              "quote": "设计生成对抗网络构造增广的带噪数据集，训练全卷积网络进行影像去噪，提升影像质量",
+              "quote": "项目组专注于开发和训练全卷积网络，专门针对这些带噪声的医学影像进行了高效的去噪处理",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 800,
-                "end_char": 838
+                "start_char": 2891,
+                "end_char": 2931
               },
               "version": "29353ed1d19ead6938c8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-207aebe2b267",
-          "name": "逐级监督关键点精细定位",
-          "desc": "对X光影像通过数据扩充强化疑难病例学习，再使用逐级监督结构对关键点进行精细定位。",
+          "id": "item-2ce9fecf85a1",
+          "name": "X光逐级监督关键点精细定位",
+          "desc": "数据扩充强化疑难病例",
           "evidence": [
             {
-              "quote": "对于X光影像，通过数据扩充强化对疑难病例的学习，再使用逐级监督结构对关键点进行精细定位",
+              "quote": "通过采用逐级监督结构，项目成功实现了影像中关键点的精细定位",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 843,
-                "end_char": 885
+                "start_char": 3017,
+                "end_char": 3045
               },
               "version": "29353ed1d19ead6938c8"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-190ee0cad451",
+          "name": "超声多时刻多尺度特征融合与压缩",
+          "desc": "提高定位精度与运行速度",
+          "evidence": [
+            {
+              "quote": "在处理超声影像方面，项目团队采取了多时刻、多尺度医学影像特征的融合与压缩方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3062,
+                "end_char": 3099
+              },
+              "version": "29353ed1d19ead6938c8"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10009d97c8fb",
-          "name": "超声影像多尺度特征融合定位",
-          "desc": "对超声影像采取多时刻、多尺度医学影像特征融合与压缩，提升关键点和组织轮廓定位精度并优化算法运行速度。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文19篇，授权专利4项",
           "evidence": [
             {
-              "quote": "对于超声影像，通过多时刻、多尺度的医学影像特征的融合与压缩，提升关键点和组织轮廓的定位精度和算法运行速度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 890,
-                "end_char": 941
-              },
-              "version": "29353ed1d19ead6938c8"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ca560b93ed52",
-          "name": "论文专利与人才培养",
-          "desc": "发表19篇高水平研究论文（国际会议论文7篇、期刊论文12篇），授权专利4项、申请1项；培养4名博士、8名硕士研究生。",
-          "evidence": [
-            {
-              "quote": "本项目在发表19篇高水平研究论文，其中国际著名会议论文7篇和期刊论文12篇、授权专利4项、申请专利1项；培养4名博士研究生、8名硕士研究生",
+              "quote": "本项目在发表19篇高水平研究论文，其中国际著名会议论文7篇和期刊论文12篇、授权专利4项、申请专利1项",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3165,
-                "end_char": 3233
+                "end_char": 3215
               },
               "version": "29353ed1d19ead6938c8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c8f78c33a285",
-          "name": "AI辅助诊断临床验证",
-          "desc": "研究成果已试行应用于安徽省儿童医院内网，为辅助医生DDH筛查发挥有效作用。",
+          "id": "item-5346e023e0ac",
+          "name": "安徽省儿童医院内网试行应用",
+          "desc": "辅助DDH筛查",
           "evidence": [
             {
               "quote": "本项目研究成果已经试行应用于在安徽省儿童医院内网，为辅助医生DDH筛查发挥了有效作用",
@@ -181,55 +158,354 @@
               "version": "29353ed1d19ead6938c8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cf8f8cd4231a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4d6240bcbcea"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Global Characteristic Guided Landmark Detection for Genu Valgus and Varus Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lingfeng Ma;Lingfeng Ma;Lingfeng Ma;Yizhi Liu;Hongtao Xie",
+      "id": "out-0307c3519359",
+      "evidence": [
+        {
+          "quote": "[会议论文] Global Characteristic Guided Landmark Detection for Genu Valgus and Varus Diagnosis — Lingfeng Ma;Lingfeng Ma;Lingfeng Ma;Yizhi Liu;Hongtao Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3459,
+            "end_char": 3608
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4d6240bcbcea"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-28c3ba48d7c6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Global Context and Boundary Structure-Guided Network for Cross-Modal Organ Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaonan Guo;Hongtao Xie;Hai Xu;Yongdong Zhang",
+      "id": "out-c5c25c4f7786",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Global Context and Boundary Structure-Guided Network for Cross-Modal Organ Segmentation — Xiaonan Guo;Hongtao Xie;Hai Xu;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3613,
+            "end_char": 3754
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-28c3ba48d7c6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-10009d97c8fb"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning rich attention for pediatric bone age assessment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu C.;Xie H.;Yan Y.;Mao Z.;Zhang Y.",
+      "id": "out-73ab57b6dd72",
+      "evidence": [
+        {
+          "quote": "[会议论文] Learning rich attention for pediatric bone age assessment — Liu C.;Xie H.;Yan Y.;Mao Z.;Zhang Y.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 3861
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-207aebe2b267"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c8f78c33a285"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Filter Pruning Using Expectation Value of Feature Map's Summation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hai Wu;Chuanbin Liu;Fanchao Lin;Yizhi Liu",
+      "id": "out-669ac30df690",
+      "evidence": [
+        {
+          "quote": "[会议论文] Filter Pruning Using Expectation Value of Feature Map's Summation — Hai Wu;Chuanbin Liu;Fanchao Lin;Yizhi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3981
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积神经网络和多重注意力机制的骨骼年龄评估方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢洪涛;张勇东;孙军;刘传彬;毛震东",
+      "id": "out-b0d58ec94f8a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于卷积神经网络和多重注意力机制的骨骼年龄评估方法 — 谢洪涛;张勇东;孙军;刘传彬;毛震东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4036
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning–guided postoperative pain assessment in children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jihong Fang;Wei Wu;Jiawei Liu;Sicheng Zhang",
+      "id": "out-21aa5d35f6c8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning–guided postoperative pain assessment in children — Jihong Fang;Wei Wu;Jiawei Liu;Sicheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4155
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Meta semi-supervised medical image segmentation with label hierarchy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hai Xu;Hongtao Xie;Qingfeng Tan;Yongdong Zhang",
+      "id": "out-d33a6d9746b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Meta semi-supervised medical image segmentation with label hierarchy — Hai Xu;Hongtao Xie;Qingfeng Tan;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4160,
+            "end_char": 4283
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "安徽地区发育性髋关节发育不良早期筛查和治疗的标准化及推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙军;方继红;梁立科;陈文建;张思成;刘永",
+      "id": "out-b3e98f51644f",
+      "evidence": [
+        {
+          "quote": "[奖励] 安徽地区发育性髋关节发育不良早期筛查和治疗的标准化及推广 — 孙军;方继红;梁立科;陈文建;张思成;刘永",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4344
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical application of artificial intelligence-assisted diagnosis using anteroposterior pelvic radiographs in children with developmental dysplasia of the hip",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang S-C;Sun J.;Liu C-B;Fang J-H;Xie H-T;Ning B.",
+      "id": "out-97d5219c16b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical application of artificial intelligence-assisted diagnosis using anteroposterior pelvic radiographs in children with developmental dysplasia of the hip — Zhang S-C;Sun J.;Liu C-B;Fang J-H;Xie H-T;Ning B.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4349,
+            "end_char": 4566
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GH-DDM: the generalized hybrid denoising diffusion model for medical image generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sicheng Zhang;Jin Liu;Bo Hu;Zhendong Mao",
+      "id": "out-076df4967729",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GH-DDM: the generalized hybrid denoising diffusion model for medical image generation — Sicheng Zhang;Jin Liu;Bo Hu;Zhendong Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4572,
+            "end_char": 4706
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的人工智能在髋臼指数测量中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴青杰;张思成;刘传彬;谢洪涛;马海龙;孙军",
+      "id": "out-f1e1e09899ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于深度学习的人工智能在髋臼指数测量中的应用 — 吴青杰;张思成;刘传彬;谢洪涛;马海龙;孙军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4712,
+            "end_char": 4765
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of deep-learning–based artificial intelligence in acetabular index measurement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qingjie Wu;Hailong Ma;Jun Sun;Chuanbin Liu;Jihong Fang;Hongtao Xie;Sicheng Zhang",
+      "id": "out-01f025d03eba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of deep-learning–based artificial intelligence in acetabular index measurement — Qingjie Wu;Hailong Ma;Jun Sun;Chuanbin Liu;Jihong Fang;Hongtao Xie;Sicheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4771,
+            "end_char": 4950
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "髋关节超声图像自动分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "谢洪涛;张勇东;孙军;徐静远;毛震东",
+      "id": "out-fd628bced20f",
+      "evidence": [
+        {
+          "quote": "[专利] 髋关节超声图像自动分析方法 — 谢洪涛;张勇东;孙军;徐静远;毛震东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4956,
+            "end_char": 4994
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly Supervised Pediatric Bone Age Assessment Using Ultrasonic Images via Automatic Anatomical RoI Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunyan Yan;Chuanbin Liu;Hongtao Xie;Sicheng Zhang;Zhendong Mao",
+      "id": "out-8c63a29af340",
+      "evidence": [
+        {
+          "quote": "[会议论文] Weakly Supervised Pediatric Bone Age Assessment Using Ultrasonic Images via Automatic Anatomical RoI Detection — Yunyan Yan;Chuanbin Liu;Hongtao Xie;Sicheng Zhang;Zhendong Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5000,
+            "end_char": 5181
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CircleNet for Hip Landmark Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hai Wu;Hongtao Xie;Chuanbin Liu;Zheng-Jun Zha;Jun Sun;Yongdong Zhang",
+      "id": "out-f553077dbfc5",
+      "evidence": [
+        {
+          "quote": "[会议论文] CircleNet for Hip Landmark Detection — Hai Wu;Hongtao Xie;Chuanbin Liu;Zheng-Jun Zha;Jun Sun;Yongdong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5187,
+            "end_char": 5300
+          },
+          "version": "29353ed1d19ead6938c8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "会议论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

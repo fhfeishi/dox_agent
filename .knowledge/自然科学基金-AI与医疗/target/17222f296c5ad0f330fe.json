@@ -2,15 +2,20 @@
   "doc_id": "17222f296c5ad0f330fe",
   "version": "c6fa5b1dc3473e805afc",
   "source_hash": "d91456f1711187d34d7082d7d03434a80fd4cc7b777d2c5bae2ed868c497a86e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.856171+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:29:25.002982+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d1a1dde08a8",
-          "name": "亚临床冠状动脉粥样硬化斑块进展早期预警",
-          "desc": "面向心血管不良事件前的可修改窗口期，利用跨尺度影像组学早期预警亚临床冠脉斑块进展并评估预后。",
+          "id": "item-4805d754cb6a",
+          "name": "亚临床冠状动脉粥样硬化斑块进展预警",
+          "desc": "斑块进展是心血管不良事件前必经可干预过程",
           "evidence": [
             {
               "quote": "亚临床冠状动脉动脉粥样硬化斑块进展是大部分心血管不良事件发生前必经但可被修改的过程",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c96fac8eabf6",
-          "name": "斑块形态变化作为进展表征较滞后",
-          "desc": "斑块负荷和脂质核心增大是斑块进展后发生不良事件的关键，而斑块形态变化作为进展表征较滞后，亟需影像组学早期检测手段。",
+          "id": "item-7e9cde75a596",
+          "name": "斑块形态变化表征滞后",
+          "desc": "需影像组学早期检测斑块负荷和脂质核心进展",
           "evidence": [
             {
-              "quote": "斑块形态变化作为斑块进展的表征较滞后，利用影像组学特征早期检测斑块负荷和脂质核心进展，指导临床干预可望改善患者的预后",
+              "quote": "斑块形态变化作为斑块进展的表征较滞后",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 790,
-                "end_char": 847
+                "end_char": 807
               },
               "version": "c6fa5b1dc3473e805afc"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-165dcf4c81c2",
-          "name": "CCTA影像组学检测斑块负荷与脂质核心进展",
-          "desc": "基于冠状动脉及斑块全自动化提取，利用影像组学精准检测斑块负荷及脂质核心进展，并研究其预后价值与指导临床干预的作用。",
-          "evidence": [
-            {
-              "quote": "利用影像组学精准检测斑块负荷及脂质核心进展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 909,
-                "end_char": 929
-              },
-              "version": "c6fa5b1dc3473e805afc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-3bac47d0840d",
-          "name": "XGBoost影像组学模型预测斑块快速进展优于形态学参数",
-          "desc": "构建并验证基于XGBoost的影像组学模型预测斑块快速进展，开发组与验证组AUC（0.82、0.81）均显著优于传统形态学参数；发表SCI论文18篇，培养硕博研究生4名。",
+          "id": "item-7368e3f062ef",
+          "name": "XGBoost影像组学斑块快速进展模型",
+          "desc": "预测斑块快速进展",
           "evidence": [
             {
               "quote": "构建并验证基于XGBoost的影像组学模型用于预测斑块快速进展",
@@ -99,7 +82,123 @@
               "version": "c6fa5b1dc3473e805afc"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8411e6f8042d",
+          "name": "CCTA血管影像组学模型",
+          "desc": "预测左前降支心肌桥近端斑块形成",
+          "evidence": [
+            {
+              "quote": "开发基于CCTA的血管影像组学模型，成功预测左前降支心肌桥近端斑块形成",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3638,
+                "end_char": 3672
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-97dca7ee6743",
+          "name": "易损斑块影像组学模型",
+          "desc": "外部验证识别易损斑块",
+          "evidence": [
+            {
+              "quote": "建立了易损斑块影像组学模型，在外部验证中识别易损斑块的AUC为0.801",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3688,
+                "end_char": 3723
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-99d45b15d6cd",
+          "name": "斑块快速进展模型性能",
+          "desc": "开发组与验证组均优于传统形态学参数",
+          "evidence": [
+            {
+              "quote": "模型在开发组（AUC：0.82 vs. 0.74；P=0.04）和验证组（AUC：0.81 vs. 0.69；P=0.04）均显著优于传统形态学参数",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3562,
+                "end_char": 3635
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-76f82fc8aa00",
+          "name": "斑块智能分析工具原型",
+          "desc": "基于约8500例数据分析初步研发",
+          "evidence": [
+            {
+              "quote": "初步研发了斑块智能分析工具原型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3841,
+                "end_char": 3855
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-17ae846c38b7",
+          "name": "SUCCESS随机对照试验",
+          "desc": "已完成610例患者入组",
+          "evidence": [
+            {
+              "quote": "目前已完成610例患者入组",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3937,
+                "end_char": 3949
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "status": "在研",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-068e5620f49e",
+          "name": "论文与科技奖励",
+          "desc": "发表SCI论文18篇，省部级科技奖励2项",
+          "evidence": [
+            {
+              "quote": "研究团队发表SCI论文18篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3958,
+                "end_char": 3971
+              },
+              "version": "c6fa5b1dc3473e805afc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +206,327 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-9d1a1dde08a8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c96fac8eabf6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c96fac8eabf6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-165dcf4c81c2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-165dcf4c81c2"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-3bac47d0840d"
+        "item_id": "item-99d45b15d6cd"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-7368e3f062ef"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "模型在开发组（AUC：0.82 vs. 0.74；P=0.04）和验证组（AUC：0.81 vs. 0.69；P=0.04）均显著优于传统形态学参数",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3562,
+            "end_char": 3635
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The prognostic value of CT-derived fractional flow reserve in coronary artery bypass graft: a retrospective multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zi Yue Zu;Peng Peng Xu;Qian Chen;Yan Chun Chen;Jian Chen Qi;Chun Xiang Tang;Chang Sheng Zhou;Cheng Xu;Xin Jie Sun;Meng Jie Lu;Guang Ming Lu;Yi Ning Wang;Yi Xu;Long Jiang Zhang",
+      "id": "out-9e485aadb982",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The prognostic value of CT-derived fractional flow reserve in coronary artery bypass graft: a retrospective multicenter study — Zi Yue Zu;Peng Peng Xu;Qian Chen;Yan Chun Chen;Jian Chen Qi;Chun Xiang Tang;Chang Sheng Zhou;Cheng Xu;Xin Jie Sun;Meng Jie Lu;Guang Ming Lu;Yi Ning Wang;Yi Xu;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4281,
+            "end_char": 4590
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coronary CT angiography derived fractional flow reserve: An expert consensus document of Chinese Society of Radiology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang LJ;Tang CX;Xu PP;Guo BJ;Zhou F;Xue Y;Zhang JY;Zheng MW;Xu L;Hou Y;Lu B;Guo YM;Cheng JL;Liang CH;Song B;Zhang HM;Hong N;Wang PJ;Chen M;Xu K;Liu SY;Jin ZY;Lu GM",
+      "id": "out-1554acaf5e1e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coronary CT angiography derived fractional flow reserve: An expert consensus document of Chinese Society of Radiology — Zhang LJ;Tang CX;Xu PP;Guo BJ;Zhou F;Xue Y;Zhang JY;Zheng MW;Xu L;Hou Y;Lu B;Guo YM;Cheng JL;Liang CH;Song B;Zhang HM;Hong N;Wang PJ;Chen M;Xu K;Liu SY;Jin ZY;Lu GM",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4595,
+            "end_char": 4885
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Late gadolinium enhanced cardiac MR derived radiomics approach for predicting all‑cause mortality in cardiac amyloidosis: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xi Yang Zhou;Chun Xiang Tang;Ying Kun Guo;Wen Cui Chen;Jin Zhou Guo;Gui Sheng Ren;Xiao Li;Jun Hao Li;Guang Ming Lu;Xiang Hua Huang;Yi Ning Wang;Long Jiang Zhang;Gui Fen Yang",
+      "id": "out-f09ad89695ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Late gadolinium enhanced cardiac MR derived radiomics approach for predicting all‑cause mortality in cardiac amyloidosis: a multicenter study — Xi Yang Zhou;Chun Xiang Tang;Ying Kun Guo;Wen Cui Chen;Jin Zhou Guo;Gui Sheng Ren;Xiao Li;Jun Hao Li;Guang Ming Lu;Xiang Hua Huang;Yi Ning Wang;Long Jiang Zhang;Gui Fen Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4890,
+            "end_char": 5213
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FFRCT and Static Computed Tomography Myocardial Perfusion Imaging for Therapeutic Decision-making and Prognosis in Patients With Coronary Artery Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Yu Li;Jian Zhong;Hong Yan Qiao;U Joseph Schoepf;Tilman Emrich;W Nicholas Butler;Rui Zuo;Yi Xue;Ya Liu;Li Yan Dai;Chang Sheng Zhou;Guang Ming Lu;Chun Xiang Tang;Long Jiang Zhan",
+      "id": "out-ec6e9d8229d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FFRCT and Static Computed Tomography Myocardial Perfusion Imaging for Therapeutic Decision-making and Prognosis in Patients With Coronary Artery Disease — Su Yu Li;Jian Zhong;Hong Yan Qiao;U Joseph Schoepf;Tilman Emrich;W Nicholas Butler;Rui Zuo;Yi Xue;Ya Liu;Li Yan Dai;Chang Sheng Zhou;Guang Ming Lu;Chun Xiang Tang;Long Jiang Zhan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5218,
+            "end_char": 5557
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "全身CT血管成像诊断学第2版",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江;卢光明;沈文;柳澄;王锡明;陈国中;陈丽华;程晓青;程悦;程召平;代旭;段艳华;高扬;郭瑜;黄伟;季倩;林竹潇;刘丽华;吕滨;罗松;祁丽;乔红艳;唐春香;陶淑敏;王怡宁;翁艺菲;徐磊;杨桂芬;杨亚英;尹建忠;张瀚;张佳胤;张薇;赵艳娥;赵玉娇;郑丽娟;郑玲;周长圣;周帆;朱飞鹏",
+      "id": "out-c62f46ca70a6",
+      "evidence": [
+        {
+          "quote": "[专著] 全身CT血管成像诊断学第2版 — 张龙江;卢光明;沈文;柳澄;王锡明;陈国中;陈丽华;程晓青;程悦;程召平;代旭;段艳华;高扬;郭瑜;黄伟;季倩;林竹潇;刘丽华;吕滨;罗松;祁丽;乔红艳;唐春香;陶淑敏;王怡宁;翁艺菲;徐磊;杨桂芬;杨亚英;尹建忠;张瀚;张佳胤;张薇;赵艳娥;赵玉娇;郑丽娟;郑玲;周长圣;周帆;朱飞鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5562,
+            "end_char": 5726
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重大心脑血管病功能和智能CT技术创新和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江;唐春香;杨桂芬;施昭;马春娥;周长圣;刘通源;郑超;程晓青",
+      "id": "out-6384d07bdbc5",
+      "evidence": [
+        {
+          "quote": "[奖励] 重大心脑血管病功能和智能CT技术创新和应用 — 张龙江;唐春香;杨桂芬;施昭;马春娥;周长圣;刘通源;郑超;程晓青",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5731,
+            "end_char": 5792
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        },
+        {
+          "quote": "[奖励] 重大心脑血管病功能和智能CT技术创新和应用 — 张龙江;唐春香;施昭;马春娥;周长圣;刘通源;郑超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7046,
+            "end_char": 7099
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of CT-FFR-Based Functional Duke Jeopardy Score in Patients With Suspected CAD",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu TY;Tang CX;Zhang DM;Zhang B;Schoepf UJ;Griffith JP;Qiao HY;Wang YN;Zhang J;Hu XH;Xu L;Li JH;Xu PP;Chen YC;Zhou F;Zhong J;Liu Y;Xue Y;Hou Y;Zhang LJ",
+      "id": "out-2e045f7b225b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of CT-FFR-Based Functional Duke Jeopardy Score in Patients With Suspected CAD — Liu TY;Tang CX;Zhang DM;Zhang B;Schoepf UJ;Griffith JP;Qiao HY;Wang YN;Zhang J;Hu XH;Xu L;Li JH;Xu PP;Chen YC;Zhou F;Zhong J;Liu Y;Xue Y;Hou Y;Zhang LJ",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5797,
+            "end_char": 6051
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of CCTA-based Radiomics Signature for Predicting Coronary Plaques With Rapid Progression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Chen;Guanghui Xie;Chun Xiang Tang;Liu Yang;Pengpeng Xu;Xiaofei Gao;Mengjie Lu;Yunlei Fu;Yingsong Huo;Shaoqing Zheng;Xinwei Tao;Hui Xu;Xindao Yin;Long Jiang Zhang",
+      "id": "out-ccb5fb9778a5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of CCTA-based Radiomics Signature for Predicting Coronary Plaques With Rapid Progression — Qian Chen;Guanghui Xie;Chun Xiang Tang;Liu Yang;Pengpeng Xu;Xiaofei Gao;Mengjie Lu;Yunlei Fu;Yingsong Huo;Shaoqing Zheng;Xinwei Tao;Hui Xu;Xindao Yin;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6056,
+            "end_char": 6346
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cardiovascular Imaging in China: Yesterday, Today and Tomorrow",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang CX;Zhou Z;Zhang JY;Zhang LJ;Xu L;Lu B",
+      "id": "out-21b163f1a1ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cardiovascular Imaging in China: Yesterday, Today and Tomorrow — Tang CX;Zhou Z;Zhang JY;Zhang LJ;Xu L;Lu B",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6351,
+            "end_char": 6464
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于冠状动脉CT血管成像的冠状动脉粥样硬化斑块进程研究现状和进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘海欣;唐璐瑶;张龙江;唐春香",
+      "id": "out-3773fb91d35b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于冠状动脉CT血管成像的冠状动脉粥样硬化斑块进程研究现状和进展 — 刘海欣;唐璐瑶;张龙江;唐春香",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6470,
+            "end_char": 6526
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像学在动脉粥样硬化性冠状动脉疾病概念框架重构中的新使命",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐春香;张龙江",
+      "id": "out-ad54943181f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像学在动脉粥样硬化性冠状动脉疾病概念框架重构中的新使命 — 唐春香;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6532,
+            "end_char": 6576
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional CAD-RADS using FFRCT on therapeutic management and prognosis in patients with coronary artery disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tang CX;Qiao HY;Zhang XL;Jiang MD;Schoepg UJ;Rudzinsk PN;Giovagnoli DP;Lu MJ;Li JH;Wang YN;Zhang JY;Hou Y;Zheng MW;Zhang B;Zhang DM;Hu XH;Xu L;Liu H;Lu GM;Zhang LJ",
+      "id": "out-6f5d551997a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional CAD-RADS using FFRCT on therapeutic management and prognosis in patients with coronary artery disease — Tang CX;Qiao HY;Zhang XL;Jiang MD;Schoepg UJ;Rudzinsk PN;Giovagnoli DP;Lu MJ;Li JH;Wang YN;Zhang JY;Hou Y;Zheng MW;Zhang B;Zhang DM;Hu XH;Xu L;Liu H;Lu GM;Zhang LJ",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6582,
+            "end_char": 6866
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-PCI CT-FFR Predicts Target Vessel Failure After Stent Implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zewen Wang;Chunxiang Tang;Rui Zuo;Aiming Zhou;Wei Xu;Jian Zhong;Zhihan Xu;Longjiang Zhang",
+      "id": "out-044dfc66e8a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-PCI CT-FFR Predicts Target Vessel Failure After Stent Implantation — Zewen Wang;Chunxiang Tang;Rui Zuo;Aiming Zhou;Wei Xu;Jian Zhong;Zhihan Xu;Longjiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6872,
+            "end_char": 7040
+          },
+          "version": "c6fa5b1dc3473e805afc"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

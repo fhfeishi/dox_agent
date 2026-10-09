@@ -2,15 +2,20 @@
   "doc_id": "6364dec79d1e52e32045",
   "version": "b30e5ca92f5c485f5e9b",
   "source_hash": "e768d6859f665b7230f564bb78136cf481ad29cb9007a18d215927f39edd4d22",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.736949+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.735578+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8e2c811d6995",
-          "name": "脓毒症危重病诊疗",
-          "desc": "脓毒症是当今危重病医学面临的棘手问题，缺乏快速准确的病原体鉴定手段和预后结果预测是制约治疗的主要因素。",
+          "id": "item-05aca3491cea",
+          "name": "脓毒症病原体早期识别与预后预测",
+          "desc": "脓毒症缺乏快速病原体鉴定",
           "evidence": [
             {
-              "quote": "脓毒症是当今危重病医学面临的棘手问题，缺乏快速准确的病原体鉴定手段和预后结果预测是制约该病治疗的主要因素。",
+              "quote": "针对脓毒症缺乏快速病原体鉴定及精准预后预测的临床瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 688,
-                "end_char": 740
-              },
-              "version": "b30e5ca92f5c485f5e9b"
-            }
-          ]
-        },
-        {
-          "id": "item-6fbfea40e562",
-          "name": "重症医学多组学基础设施",
-          "desc": "建成反映中国人群特征的重症监护信息数据库并建立多组学生物样本库。",
-          "evidence": [
-            {
-              "quote": "建成了反映中国人群特征的重症监护信息数据库（CCID），整合了39,762例患者的多源异构数据，并建立了包含1,600例样本的多组学生物样本库",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2379,
-                "end_char": 2449
+                "start_char": 2306,
+                "end_char": 2331
               },
               "version": "b30e5ca92f5c485f5e9b"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aad1ae1b2a64",
-          "name": "缺乏快速病原体鉴定手段",
-          "desc": "不同类型的病原体感染导致机体在多层次产生特异性的差异化调节应答，需要建立鉴别手段。",
-          "evidence": [
-            {
-              "quote": "因此推测不同类型的病原体会导致机体在多个层次产生特异性的差异化调节应答，并动态而精确地反映在患者基因、免疫和代谢的复杂相互作用中。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 786,
-                "end_char": 850
-              },
-              "version": "b30e5ca92f5c485f5e9b"
-            }
-          ]
-        },
-        {
-          "id": "item-66a6b0fff878",
-          "name": "预后预测精度不足",
-          "desc": "缺乏精准预后预测是制约脓毒症治疗的主要因素之一。",
+          "id": "item-1fae43286620",
+          "name": "缺乏快速病原体鉴定及精准预后预测",
+          "desc": "临床瓶颈",
           "evidence": [
             {
               "quote": "针对脓毒症缺乏快速病原体鉴定及精准预后预测的临床瓶颈",
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7446912630c8",
-          "name": "多组学特征与机器学习整合",
-          "desc": "通过多种机器学习算法整合多组学数据和临床指标，揭示病原体特异性复合分子模式。",
+          "id": "item-c676f5f8b693",
+          "name": "MDR细菌及真菌感染血浆代谢标志物诊断模型",
+          "desc": "机器学习筛选",
           "evidence": [
             {
-              "quote": "通过多种机器学习算法整合多组学数据和临床指标，揭示病原体特异性复合分子模式，构建多维度预后预测模型",
+              "quote": "利用机器学习筛选出针对多重耐药（MDR）细菌及真菌感染的特异性血浆代谢标志物，构建的诊断模型AUC最高可达0.885",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 912,
-                "end_char": 960
+                "start_char": 2535,
+                "end_char": 2592
               },
               "version": "b30e5ca92f5c485f5e9b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7f8bb0e51e37",
-          "name": "OMICS-DIT多模态深度学习",
-          "desc": "开发OMICS-DIT多模态深度学习算法（AUC>0.9）及Causal SurvivalNet因果生存模型。",
+          "id": "item-a9ffcc635c4c",
+          "name": "OMICS-DIT多模态深度学习与Causal SurvivalNet",
+          "desc": "预后预测与因果分析",
           "evidence": [
             {
               "quote": "开发了OMICS-DIT多模态深度学习算法（AUC>0.9）及Causal SurvivalNet因果生存模型",
@@ -124,23 +98,8 @@
               },
               "version": "b30e5ca92f5c485f5e9b"
             }
-          ]
-        },
-        {
-          "id": "item-a246d0581b0f",
-          "name": "血浆代谢标志物筛选",
-          "desc": "利用机器学习筛选针对多重耐药细菌及真菌感染的特异性血浆代谢标志物。",
-          "evidence": [
-            {
-              "quote": "利用机器学习筛选出针对多重耐药（MDR）细菌及真菌感染的特异性血浆代谢标志物",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2535,
-                "end_char": 2572
-              },
-              "version": "b30e5ca92f5c485f5e9b"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-35a066669f51",
-          "name": "诊断模型AUC最高0.885",
-          "desc": "构建的诊断模型AUC最高可达0.885。",
+          "id": "item-f5571ec83df1",
+          "name": "中国人群重症监护信息数据库CCID",
+          "desc": "39,762例患者",
           "evidence": [
             {
-              "quote": "构建的诊断模型AUC最高可达0.885",
+              "quote": "建成了反映中国人群特征的重症监护信息数据库（CCID），整合了39,762例患者的多源异构数据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2574,
-                "end_char": 2592
+                "start_char": 2379,
+                "end_char": 2425
               },
               "version": "b30e5ca92f5c485f5e9b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
           "id": "item-efa6142e2a74",
           "name": "快速分型检测试剂盒",
-          "desc": "转化的快速分型检测试剂盒将诊断时间缩短至30分钟以内，准确率超80%。",
+          "desc": "诊断时间缩短至30分钟以内",
           "evidence": [
             {
               "quote": "据此转化的快速分型检测试剂盒将诊断时间缩短至30分钟以内，准确率超80%",
@@ -180,72 +141,178 @@
               "version": "b30e5ca92f5c485f5e9b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-894a32b2d21d",
-          "name": "免疫代谢紊乱机制揭示",
-          "desc": "揭示脓毒症是以线粒体功能失调为核心的系统性免疫-代谢紊乱综合征，阐明肠-肺轴双相调节机制。",
-          "evidence": [
-            {
-              "quote": "揭示了脓毒症是以线粒体功能失调为核心的“系统性免疫-代谢紊乱综合征”，阐明了肠道代谢物介导的肠-肺轴在脓毒症进展中的双相调节机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2459,
-                "end_char": 2522
-              },
-              "version": "b30e5ca92f5c485f5e9b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8e2c811d6995"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-aad1ae1b2a64"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent application of metabolomics in the diagnosis, pathogenesis, treatment, and prognosis of sepsis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaofei Li;Jing Wang",
+      "id": "out-59eb57d4b424",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent application of metabolomics in the diagnosis, pathogenesis, treatment, and prognosis of sepsis — Xiaofei Li;Jing Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2844,
+            "end_char": 2974
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-66a6b0fff878"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7f8bb0e51e37"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting In-Hospital Mortality in Intensive Care Unit Patients Using Causal SurvivalNet With Serum Chloride and Other Causal Factors: Cross-Country Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jing;Li Qixiu;Xie Can;Li Xiaofei;Wang Huikao;Xu Wei;Lv Ruyan;Zhai Xiaobing;Xu Ping;Li Kefeng;Song Xi-Cheng",
+      "id": "out-2b5c08c38b53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting In-Hospital Mortality in Intensive Care Unit Patients Using Causal SurvivalNet With Serum Chloride and Other Causal Factors: Cross-Country Study — Wang Jing;Li Qixiu;Xie Can;Li Xiaofei;Wang Huikao;Xu Wei;Lv Ruyan;Zhai Xiaobing;Xu Ping;Li Kefeng;Song Xi-Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2979,
+            "end_char": 3254
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a246d0581b0f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-efa6142e2a74"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中性粒细胞CD64与白细胞介素-6和降钙素原对ICU脓毒症患者的诊断及预后评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李晓飞;王静",
+      "id": "out-f9cb32b2f9fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中性粒细胞CD64与白细胞介素-6和降钙素原对ICU脓毒症患者的诊断及预后评估 — 李晓飞;王静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3259,
+            "end_char": 3313
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7446912630c8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-894a32b2d21d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脓毒症患者免疫指标与预后的关系 —基于 MIMIC-Ⅳ数据库的资料分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王静;张毅;高艳玲",
+      "id": "out-d86d272121ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脓毒症患者免疫指标与预后的关系 —基于 MIMIC-Ⅳ数据库的资料分析 — 王静;张毅;高艳玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3318,
+            "end_char": 3371
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gut-lung immunometabolic crosstalk in sepsis: from microbiota to respiratory failure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qixiu Li;Xi-Cheng Song;Kefeng Li;Jing Wang",
+      "id": "out-fd439ceb2ace",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gut-lung immunometabolic crosstalk in sepsis: from microbiota to respiratory failure — Qixiu Li;Xi-Cheng Song;Kefeng Li;Jing Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3376,
+            "end_char": 3511
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "用于鉴别脓毒症感染类型的生物标志物以及成套用具",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王静;李克峰",
+      "id": "out-eb474956fa82",
+      "evidence": [
+        {
+          "quote": "[专利] 用于鉴别脓毒症感染类型的生物标志物以及成套用具 — 王静;李克峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3516,
+            "end_char": 3552
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The emerging roles of next-generation metabolomics in critical care nutrition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kefeng Li;Henry Hoi Yee Tong;Yuwei Chen;Yizhu Sun;Jing Wang",
+      "id": "out-1d83fa9e1bbc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The emerging roles of next-generation metabolomics in critical care nutrition — Kefeng Li;Henry Hoi Yee Tong;Yuwei Chen;Yizhu Sun;Jing Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3557,
+            "end_char": 3702
+          },
+          "version": "b30e5ca92f5c485f5e9b"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

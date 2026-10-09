@@ -2,15 +2,20 @@
   "doc_id": "5a32a2f39b3f35a63011",
   "version": "4b025d4f3dde9b26815c",
   "source_hash": "1ca700a6a8eebb53127948b7a0732e89e94a6982029a4e917af1f3afdedab8b2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.056771+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:43:06.396038+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3dec45ba6e73",
-          "name": "产前先天性心脏病影像导航与细化分型",
-          "desc": "面向产前先心病筛查诊断准确率偏低的现状，建立结构影像获取标准与多粒度综合诊断能力。",
+          "id": "item-bb62bcd4c8e3",
+          "name": "产前先天性心脏病筛查",
+          "desc": "数据与知识双重不确定性",
           "evidence": [
             {
-              "quote": "先天性心脏病居出生缺陷之首，发病率约1%，致残致死率高，但国际平均诊断准确率仅为43%，远低于其他疾病",
+              "quote": "针对产前先天性心脏病筛查中因胎儿心脏结构复杂、切面获取难及诊断高度依赖经验而导致的数据与知识“双重不确定性”瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 691,
-                "end_char": 741
+                "start_char": 2797,
+                "end_char": 2852
               },
               "version": "4b025d4f3dde9b26815c"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-efb62e9e0194",
-          "name": "胎儿心脏数据与母胎医学知识双重不确定性",
-          "desc": "胎儿心脏数据获取不确定性及母胎医学知识不确定性，导致临床干预决策及妊娠结局的不确定性，难以将现有知识表达与推理方法融入临床过程。",
+          "id": "item-6adfb2b419a0",
+          "name": "胎儿心脏结构复杂、切面获取难、诊断依赖经验",
+          "desc": "双重不确定性瓶颈",
           "evidence": [
             {
-              "quote": "究其原因是胎儿心脏数据获取不确定性及母胎医学知识不确定性导致了临床干预决策及妊娠结局的不确定性",
+              "quote": "针对产前先天性心脏病筛查中因胎儿心脏结构复杂、切面获取难及诊断高度依赖经验而导致的数据与知识“双重不确定性”瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 743,
-                "end_char": 789
+                "start_char": 2797,
+                "end_char": 2852
               },
               "version": "4b025d4f3dde9b26815c"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2ec5621cfd0",
-          "name": "数据标准+2D-3D跨模态配准导航+多粒度诊断模型",
-          "desc": "建立胎儿心脏人工智能研究数据标准，建立胎儿心脏2D-3D跨模态双向时空配准的切面导航推理模型，并建立融合多源多粒度特征的胎儿心脏病诊断模型与双重评估验证体系。",
+          "id": "item-443d199bd553",
+          "name": "知识增强的细粒度多模态大语言模型",
+          "desc": "智能导航与诊断",
           "evidence": [
             {
-              "quote": "基于切面获取不确定性建立胎儿心脏2D-3D跨模态双向时空配准的切面导航推理模型",
+              "quote": "紧跟前沿构建了知识增强的细粒度多模态大语言模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 955
+                "start_char": 3022,
+                "end_char": 3044
               },
               "version": "4b025d4f3dde9b26815c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e1183ccfd6ab",
+          "name": "无源域无监督适应与联邦互学习",
+          "desc": "解决跨中心异质性与隐私",
+          "evidence": [
+            {
+              "quote": "提出了无源域无监督适应与联邦互学习策略，有效解决了跨中心数据异质性与隐私保护难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3046,
+                "end_char": 3085
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,587 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2fdc25364748",
-          "name": "建立国际首个胎儿心脏三维高清解剖金标准",
-          "desc": "利用铸型与CT成像技术建立国际首个胎儿心脏三维高清解剖金标准及3D数字化模型，构建覆盖近300种细化病理分型的知识图谱与含10万余例数据的多模态大数据库；发表高水平论文30篇，申请发明专利4项。",
+          "id": "item-7466158c196b",
+          "name": "胎儿心脏三维高清解剖金标准与知识图谱",
+          "desc": "近300种细化病理分型、10万余例数据",
           "evidence": [
             {
-              "quote": "建立了国际首个胎儿心脏三维高清解剖金标准及3D数字化模型，填补了该领域解剖的空白",
+              "quote": "构建了覆盖近300种细化病理分型的知识图谱及包含10万余例数据的多模态大数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2920,
-                "end_char": 2959
+                "start_char": 2961,
+                "end_char": 2999
               },
               "version": "4b025d4f3dde9b26815c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-f490ae3570e1",
+          "name": "智能平台软硬件系统",
+          "desc": "辅助筛查、诊断、决策，全国多中心验证推广",
+          "evidence": [
+            {
+              "quote": "开发了集辅助筛查、诊断、决策于一体的智能平台软硬件系统，依托全国多中心协作网络完成验证推广",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3103,
+                "end_char": 3147
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文30篇，发明专利4项",
+          "evidence": [
+            {
+              "quote": "项目累计发表高水平论文30篇（含The Lancet Child & Adolescent Health, IEEE TMI），申请发明专利4项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3149,
+                "end_char": 3220
+              },
+              "version": "4b025d4f3dde9b26815c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3dec45ba6e73"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-efb62e9e0194"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prenatal diagnosis of criss-cross heart - case series and review of the literature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Qi;Zhang Ye;Zhao Ying;Liu Xiaowei;Sun Lin;Gu Xiaoyan;Yang Xu;Han Jiancheng;He Yihua",
+      "id": "out-342717083792",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prenatal diagnosis of criss-cross heart - case series and review of the literature — Yang Qi;Zhang Ye;Zhao Ying;Liu Xiaowei;Sun Lin;Gu Xiaoyan;Yang Xu;Han Jiancheng;He Yihua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3254,
+            "end_char": 3433
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-efb62e9e0194"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e2ec5621cfd0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "C2RG: Parameter-efficient Adaptation of 3D Vision and Language Foundation Model for Coronary CTA Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Zhiyu;Sun Yue;Shi Wei;Yang Bang;Wu Shibin;Wang Hancong;Xu Cheng;Zheng Hairong;Wang Yining;Zhang Tong",
+      "id": "out-5c7cdcef902e",
+      "evidence": [
+        {
+          "quote": "[会议论文] C2RG: Parameter-efficient Adaptation of 3D Vision and Language Foundation Model for Coronary CTA Report Generation — Ye Zhiyu;Sun Yue;Shi Wei;Yang Bang;Wu Shibin;Wang Hancong;Xu Cheng;Zheng Hairong;Wang Yining;Zhang Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3438,
+            "end_char": 3664
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e2ec5621cfd0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2fdc25364748"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PCLmed: Champion Solution for ImageCLEFmedical 2024 Caption Prediction Challenge via Medical Vision-Language Foundation Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bang Yang;Yue Yu;Yuexian Zou;Tong Zhang",
+      "id": "out-19bbcbb9b1de",
+      "evidence": [
+        {
+          "quote": "[会议论文] PCLmed: Champion Solution for ImageCLEFmedical 2024 Caption Prediction Challenge via Medical Vision-Language Foundation Models — Bang Yang;Yue Yu;Yuexian Zou;Tong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3669,
+            "end_char": 3843
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "房室间隔缺损胎儿的超声心动图定量参数分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周小雪;阮燕萍;张烨;韩建成;谷孝艳;赵映;何怡华",
+      "id": "out-1d44fc1be51f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 房室间隔缺损胎儿的超声心动图定量参数分析 — 周小雪;阮燕萍;张烨;韩建成;谷孝艳;赵映;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3902
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FLNA基因在先天性心脏病的遗传基础及预后管理研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨鲜;解娇阳;何怡华",
+      "id": "out-a39132130fe5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FLNA基因在先天性心脏病的遗传基础及预后管理研究进展 — 杨鲜;解娇阳;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3907,
+            "end_char": 3953
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "不同亚型房室间隔缺损胎儿的超声心动图定量参数分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周小雪;阮燕萍;张烨;韩建成;谷孝艳;赵映;何怡华",
+      "id": "out-8664cc9be9de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 不同亚型房室间隔缺损胎儿的超声心动图定量参数分析 — 周小雪;阮燕萍;张烨;韩建成;谷孝艳;赵映;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3958,
+            "end_char": 4016
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSGAN: Multi-Stage Generative Adversarial Networks for Cross-Modality Domain Adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yan;Chen Yixin;Wang Wenjun;Zhu Haogang",
+      "id": "out-9ec71cad6c2e",
+      "evidence": [
+        {
+          "quote": "[会议论文] MSGAN: Multi-Stage Generative Adversarial Networks for Cross-Modality Domain Adaptation — Wang Yan;Chen Yixin;Wang Wenjun;Zhu Haogang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4021,
+            "end_char": 4160
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "VF-Mask-Net: A Visual Field Noise Reduction Method Using Neural Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Zhenyu;Zhu Haogang;Li Lei",
+      "id": "out-ad82c8efada2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] VF-Mask-Net: A Visual Field Noise Reduction Method Using Neural Networks — Zhang Zhenyu;Zhu Haogang;Li Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4277
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AVP-AP: Self-Supervised Automatic View Positioning in 3D Cardiac CT via Atlas Prompting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Xiaolin;Wang Yan;Zhang Yingying;Bao Mingkun;Jia Bosen;Lu Dong;Gu Yifan;Cheng Jian;Zhu Haogang",
+      "id": "out-7591e8f895be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AVP-AP: Self-Supervised Automatic View Positioning in 3D Cardiac CT via Atlas Prompting — Fan Xiaolin;Wang Yan;Zhang Yingying;Bao Mingkun;Jia Bosen;Lu Dong;Gu Yifan;Cheng Jian;Zhu Haogang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4282,
+            "end_char": 4475
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving the Quality of Fetal Heart Ultrasound Imaging With Multihead Enhanced Self-Attention and Contrastive Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yingying;Zhu Haogang;Cheng Jian;Wang Jingyi;Gu Xiaoyan;Han Jiancheng;Zhang Ye;Zhao Ying;He Yihua;Zhang Hongjia",
+      "id": "out-368dd5a01525",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving the Quality of Fetal Heart Ultrasound Imaging With Multihead Enhanced Self-Attention and Contrastive Learning — Zhang Yingying;Zhu Haogang;Cheng Jian;Wang Jingyi;Gu Xiaoyan;Han Jiancheng;Zhang Ye;Zhao Ying;He Yihua;Zhang Hongjia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4481,
+            "end_char": 4725
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "孕前体质指数对胎儿先天性心脏病影响及疾病谱分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晨雨;阮燕萍;谷孝艳;郝晓艳;张烨;赵映;何怡华",
+      "id": "out-4ea03c97dffc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 孕前体质指数对胎儿先天性心脏病影响及疾病谱分析 — 王晨雨;阮燕萍;谷孝艳;郝晓艳;张烨;赵映;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4788
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interaction between ozone and paternal smoking on fetal congenital heart defects among pregnant women at high risk: a multicenter maternal–fetal medicine study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Wang;Yan-Ping Ruan;Sheng Ma;Ya-Qi Wang;Xiao-Yu Wan;Yi-Hua He;Jing Li;Zhi-Yong Zou",
+      "id": "out-1678cadef110",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interaction between ozone and paternal smoking on fetal congenital heart defects among pregnant women at high risk: a multicenter maternal–fetal medicine study — Huan Wang;Yan-Ping Ruan;Sheng Ma;Ya-Qi Wang;Xiao-Yu Wan;Yi-Hua He;Jing Li;Zhi-Yong Zou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4794,
+            "end_char": 5048
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnosis of fetal arrhythmia in echocardiography imaging using deep learning with cyclic loss",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiangyu;Zhang Yingying;Zhu Haogang;Yang Xu;Cheng Jian;Jin Jishuo;Jia Bosen;He Yihua;Zhang Hongjia",
+      "id": "out-27395667a82d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnosis of fetal arrhythmia in echocardiography imaging using deep learning with cyclic loss — Liu Xiangyu;Zhang Yingying;Zhu Haogang;Yang Xu;Cheng Jian;Jin Jishuo;Jia Bosen;He Yihua;Zhang Hongjia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5054,
+            "end_char": 5258
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Digital Twin-Based Skill Training With a Hands-On User Interaction Device to Assist in Manual and Robotic Ultrasound Scanning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dang Ziyue;Yang Qi;Deng Zhaokun;Han Jiancheng;He Yihua;Wang Shuangyi",
+      "id": "out-20d4b33bde4b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Digital Twin-Based Skill Training With a Hands-On User Interaction Device to Assist in Manual and Robotic Ultrasound Scanning — Dang Ziyue;Yang Qi;Deng Zhaokun;Han Jiancheng;He Yihua;Wang Shuangyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5264,
+            "end_char": 5466
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Applications of artificial intelligence-powered prenatal diagnosis for congenital heart disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyu Liu;Yingying Zhang;Haogang Zhu;Bosen Jia;Jingyi Wang;Yihua He;Hongjia Zhang",
+      "id": "out-9db63355e588",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Applications of artificial intelligence-powered prenatal diagnosis for congenital heart disease — Xiangyu Liu;Yingying Zhang;Haogang Zhu;Bosen Jia;Jingyi Wang;Yihua He;Hongjia Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5472,
+            "end_char": 5659
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of Digital Fetal Heart Models with Virtual Ultrasound Function Based on Cardiovascular Casting and Computed Tomography Scan",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Qi;Han Jiancheng;Wang Rui;Zhang Tong;Zhang Yingying;Wang Jingyi;Xu Lei;Hou Zengguang;Wang Shuangyi;He Yihua",
+      "id": "out-131c097ce2b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of Digital Fetal Heart Models with Virtual Ultrasound Function Based on Cardiovascular Casting and Computed Tomography Scan — Yang Qi;Han Jiancheng;Wang Rui;Zhang Tong;Zhang Yingying;Wang Jingyi;Xu Lei;Hou Zengguang;Wang Shuangyi;He Yihua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5665,
+            "end_char": 5921
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved Multi-Head Self-Attention Classification Network for Multi-View Fetal Echocardiography Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yingying;Zhu Haogang;Wang Yan;Wang Jingyi;He Yihua",
+      "id": "out-a450b552cf9b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improved Multi-Head Self-Attention Classification Network for Multi-View Fetal Echocardiography Recognition — Zhang Yingying;Zhu Haogang;Wang Yan;Wang Jingyi;He Yihua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5927,
+            "end_char": 6099
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "孤立型房间隔缺损术后发生心力衰竭的临床风险因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许新新;金鹏;潘晓洁;杜桂彬;袁静;阮艳萍;何怡华",
+      "id": "out-adba3ff5ef49",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 孤立型房间隔缺损术后发生心力衰竭的临床风险因素分析 — 许新新;金鹏;潘晓洁;杜桂彬;袁静;阮艳萍;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6105,
+            "end_char": 6164
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PCLmed at ImageCLEFmedical 2023: Customizing General-Purpose Foundation Models for Medical Report Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bang Yang;Asif Raza;Yuexian Zou;Tong Zhang",
+      "id": "out-10c1a3367e12",
+      "evidence": [
+        {
+          "quote": "[会议论文] PCLmed at ImageCLEFmedical 2023: Customizing General-Purpose Foundation Models for Medical Report Generation — Bang Yang;Asif Raza;Yuexian Zou;Tong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6170,
+            "end_char": 6329
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MAKEN: IMPROVING MEDICAL REPORT GENERATION WITH ADAPTER TUNING AND KNOWLEDGE ENHANCEMENT IN VISION-LANGUAGE FOUNDATION MODELS",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Shibin;Yang Bang;Ye Zhiyu;Wang Haoqian;Zheng Hairong;Zhang Tong",
+      "id": "out-cea315da826c",
+      "evidence": [
+        {
+          "quote": "[会议论文] MAKEN: IMPROVING MEDICAL REPORT GENERATION WITH ADAPTER TUNING AND KNOWLEDGE ENHANCEMENT IN VISION-LANGUAGE FOUNDATION MODELS — Wu Shibin;Yang Bang;Ye Zhiyu;Wang Haoqian;Zheng Hairong;Zhang Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6335,
+            "end_char": 6535
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Universal Frequency Domain Perturbation for Single-Source Domain Generalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Chuang;Cao Yichao;Su Xiu;Zhu Haogang",
+      "id": "out-01f66e3177cb",
+      "evidence": [
+        {
+          "quote": "[会议论文] Universal Frequency Domain Perturbation for Single-Source Domain Generalization — Liu Chuang;Cao Yichao;Su Xiu;Zhu Haogang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6541,
+            "end_char": 6669
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Real-World Visual Navigation for Cardiac Ultrasound View Planning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bao Mingkun;Wang Yan;Wei Xinlong;Jia Bosen;Fan Xiaolin;Lu Dong;Gu Yifan;Cheng Jian;Zhang Yingying;Wang Chuanyu;Zhu Haogang",
+      "id": "out-cfa733e7046e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Real-World Visual Navigation for Cardiac Ultrasound View Planning — Bao Mingkun;Wang Yan;Wei Xinlong;Jia Bosen;Fan Xiaolin;Lu Dong;Gu Yifan;Cheng Jian;Zhang Yingying;Wang Chuanyu;Zhu Haogang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6675,
+            "end_char": 6871
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胎儿超声心动图Z评分的临床应用及研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "彭霓;王海蕊;何怡华",
+      "id": "out-cbb9df5248a3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胎儿超声心动图Z评分的临床应用及研究进展 — 彭霓;王海蕊;何怡华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6877,
+            "end_char": 6916
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Perturbating, Tuning, and Collaborating: Harnessing Vision Foundation Models for Single Domain Generalization on Medical Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuang Liu;Yichao Cao;YingYing Zhang;Xiu Su;Haogang Zhu",
+      "id": "out-e1d517f9da08",
+      "evidence": [
+        {
+          "quote": "[会议论文] Perturbating, Tuning, and Collaborating: Harnessing Vision Foundation Models for Single Domain Generalization on Medical Imaging — Chuang Liu;Yichao Cao;YingYing Zhang;Xiu Su;Haogang Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6922,
+            "end_char": 7114
+          },
+          "version": "4b025d4f3dde9b26815c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "b5982fae4b6d56c5aa00",
   "version": "07ee2e7108c38387e15a",
   "source_hash": "797a92b5fde53d1ee8fa40fd946c20db94307642316cfe73701f203f2fb7fd6f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.555850+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:54:35.988092+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a5005e90776b",
-          "name": "肺结节持续监测与肺癌早期预警",
-          "desc": "采用电阻抗层析成像（EIT）对肺结节进行持续监测，实现肺癌的早发现、早治疗。",
+          "id": "item-c9dd4456c777",
+          "name": "肺结节持续监测电阻抗成像",
+          "desc": "首次提出采用EIT监测肺结节",
           "evidence": [
             {
-              "quote": "肺结节为肺癌的早期表现形态，短期内快速增长会大概率转变为肺癌，对此过程目前尚无有效的持续监测方法",
+              "quote": "本项目首次提出采用电阻抗层析成像（EIT）来实现肺结节的监测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 651,
-                "end_char": 698
+                "start_char": 700,
+                "end_char": 729
               },
               "version": "07ee2e7108c38387e15a"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6c195a8611b0",
-          "name": "EIT图像重建空间分辨率低",
-          "desc": "受强噪声、弱信号影响，电阻抗层析成像的图像重建空间分辨率不足，难以支撑肺结节的持续监测。",
+          "id": "item-2f85c29476eb",
+          "name": "提高EIT图像重建空间分辨率",
+          "desc": "强噪声弱信号",
           "evidence": [
             {
               "quote": "主要难点是提高图像重建的空间分辨率",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-562a38126567",
-          "name": "基于贝叶斯学习的大样本EIT图像重建模型",
-          "desc": "利用人体内噪声与肺结节生长的先验知识，基于统计学习提出大样本图像重建模型，用贝叶斯公式将后验概率转化为似然函数与先验概率求解。",
+          "id": "item-32a280c34fdb",
+          "name": "深度块稀疏阻抗成像与改进CGAN肺部病灶EIT成像",
+          "desc": "肺部EIT图像重建",
           "evidence": [
             {
-              "quote": "本项目利用人体内噪声和肺结节生长的先验知识，基于统计学习提出了大样本图像重建模型",
+              "quote": "提出了深度块稀疏阻抗成像方法、基于改进 CGAN 网络的肺部病灶EIT 成像方法、基于胶囊网络的电阻抗成像等",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 764,
-                "end_char": 803
+                "start_char": 3287,
+                "end_char": 3340
               },
               "version": "07ee2e7108c38387e15a"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-418ec7764e42",
+          "name": "基于贝叶斯决策与基于图结构的EIT架构",
+          "desc": "两种EIT技术架构",
+          "evidence": [
+            {
+              "quote": "提出了两种EIT技术架构：基于贝叶斯决策的EIT架构和基于图结构的EIT架构",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3184,
+                "end_char": 3221
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e43a06e4e127",
-          "name": "发表学术论文20篇并申请发明专利5项",
-          "desc": "发表学术论文20篇（期刊论文15篇、会议论文5篇），申请发明专利5项（授权1项），培养毕业博士1人、硕士8人。",
+          "id": "item-6bf614ef96b6",
+          "name": "FPGA主控EIT成像系统",
+          "desc": "设计",
+          "evidence": [
+            {
+              "quote": "采用FPGA作为主控芯片，设计了EIT成像系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3359,
+                "end_char": 3381
+              },
+              "version": "07ee2e7108c38387e15a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "学术论文20篇，发明专利5项（授权1项）",
           "evidence": [
             {
               "quote": "发表学术论文20篇，其中期刊论文15篇，会议论文5篇；申请发明专利5项，其中获得授权1项",
@@ -99,44 +141,497 @@
               "version": "07ee2e7108c38387e15a"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a5005e90776b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6c195a8611b0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Residual Convolutional Graph Neural Network with Subgraph Attention Pooling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Duan Yutai;Wang Jianming;Ma Haoran;Sun Yukuan",
+      "id": "out-487f0f8cf52e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Residual Convolutional Graph Neural Network with Subgraph Attention Pooling — Duan Yutai;Wang Jianming;Ma Haoran;Sun Yukuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3667,
+            "end_char": 3796
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6c195a8611b0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-562a38126567"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于位置融合的高效点云分类方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙玉宽;刘云铭;陈婷;汪剑鸣",
+      "id": "out-1fad7f11dafb",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于位置融合的高效点云分类方法及系统 — 孙玉宽;刘云铭;陈婷;汪剑鸣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 3842
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-562a38126567"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e43a06e4e127"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Research on Three-Dimensional Imaging Method Using Tensor for Electrical Impedance Tomography(EIT)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Qi;Lei Yu;Li Xiuyan;Duan Xiaojie;Li xiaojie;Wang Jianming;Wang Huaxiang",
+      "id": "out-8181ae533c44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Research on Three-Dimensional Imaging Method Using Tensor for Electrical Impedance Tomography(EIT) — Wang Qi;Lei Yu;Li Xiuyan;Duan Xiaojie;Li xiaojie;Wang Jianming;Wang Huaxiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3847,
+            "end_char": 4030
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于模型驱动的深度ADMM展开EIT成像方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琦;王子辰;赵天晨;李秀艳;孙玉宽",
+      "id": "out-aacb2fe8f592",
+      "evidence": [
+        {
+          "quote": "[专利] 基于模型驱动的深度ADMM展开EIT成像方法 — 王琦;王子辰;赵天晨;李秀艳;孙玉宽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4035,
+            "end_char": 4082
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "high-frequency and low-frequency dual-channel graph attention network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Yukuan;Duan Yutai;Ma Haoran;Li Xuelong;Wang Jianming",
+      "id": "out-b13cae6508cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] high-frequency and low-frequency dual-channel graph attention network — Sun Yukuan;Duan Yutai;Ma Haoran;Li Xuelong;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4087,
+            "end_char": 4221
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于条纹等值线方向的干涉条纹图像相位展开方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "段晓杰;汪剑鸣;王琦",
+      "id": "out-84d6e53d7997",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于条纹等值线方向的干涉条纹图像相位展开方法 — 段晓杰;汪剑鸣;王琦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4226,
+            "end_char": 4267
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RHex-T3: A Transformable Hexapod Robot With Ladder Climbing Function",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhu Sun;Guiyu Yang;Senge Yao;Qi Liu;Jianming Wang;Xuan Xiao",
+      "id": "out-d5ae111e6e66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RHex-T3: A Transformable Hexapod Robot With Ladder Climbing Function — Chunhu Sun;Guiyu Yang;Senge Yao;Qi Liu;Jianming Wang;Xuan Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4272,
+            "end_char": 4411
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种电阻抗图像重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王子辰;王琦;张涛;李秀艳;段晓杰;孙玉宽;汪剑鸣",
+      "id": "out-9fa3c34136fe",
+      "evidence": [
+        {
+          "quote": "[专利] 一种电阻抗图像重建方法 — 王子辰;王琦;张涛;李秀艳;段晓杰;孙玉宽;汪剑鸣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4416,
+            "end_char": 4459
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LNGAT: local neighborhood graph attention network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Yukuan;Ma Haoran;Ko Young-bae;Wang Jianming",
+      "id": "out-71d446097978",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LNGAT: local neighborhood graph attention network — Sun Yukuan;Ma Haoran;Ko Young-bae;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4464,
+            "end_char": 4569
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "On-Line Monitoring of Ultrafiltration Membrane Fouling Based on EIT Sparse Imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Qi;Wang Jie;Zhang Ronghua;Li xiuyan;Duan Xiaojie;Sun Yukuan;Wang Jianming",
+      "id": "out-22183cfa3d2c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] On-Line Monitoring of Ultrafiltration Membrane Fouling Based on EIT Sparse Imaging — Wang Qi;Wang Jie;Zhang Ronghua;Li xiuyan;Duan Xiaojie;Sun Yukuan;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4575,
+            "end_char": 4744
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多尺度注意力融合与视觉 Transformer 方法优化的 电阻抗层析成像深度学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琦;张涛;徐超炜;卢梦凡;王子辰",
+      "id": "out-d7728c72acff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多尺度注意力融合与视觉 Transformer 方法优化的 电阻抗层析成像深度学习方法 — 王琦;张涛;徐超炜;卢梦凡;王子辰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4750,
+            "end_char": 4819
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EIT Image Reconstruction Method Based on DnCNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Qi;Zhang hanyu;Zhang Ronghua;Li xiuyan;Wang Jianming",
+      "id": "out-a075fca808b5",
+      "evidence": [
+        {
+          "quote": "[会议论文] EIT Image Reconstruction Method Based on DnCNN — Wang Qi;Zhang hanyu;Zhang Ronghua;Li xiuyan;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4825,
+            "end_char": 4937
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EIT Gesture Recognition Method With Stronger Robustness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiuyan;Sun Jiarui;Wang Qi;Duan Xiaojie;Wang Jianming",
+      "id": "out-eb257c62b765",
+      "evidence": [
+        {
+          "quote": "[会议论文] EIT Gesture Recognition Method With Stronger Robustness — Li Xiuyan;Sun Jiarui;Wang Qi;Duan Xiaojie;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4943,
+            "end_char": 5062
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺部电阻抗成像电极阵列优化方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王琦;尹鑫铭;李晓捷;李秀艳;段晓杰;汪剑鸣;张荣华;王华祥",
+      "id": "out-3febe9aa55c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺部电阻抗成像电极阵列优化方法研究 — 王琦;尹鑫铭;李晓捷;李秀艳;段晓杰;汪剑鸣;张荣华;王华祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5068,
+            "end_char": 5124
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于图结构的肺部EIT图像重建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪剑鸣;张明进;孙玉宽;王琦;段晓杰",
+      "id": "out-1e26385bc87c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于图结构的肺部EIT图像重建方法 — 汪剑鸣;张明进;孙玉宽;王琦;段晓杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5130,
+            "end_char": 5174
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Electromagnetic Imaging of Metal Defects Based on Bayesian Statistical Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Qi;Liu Kexin;Zhang Ronghua;Li xiuyan;Duan Xiaojie;Wang Jianming",
+      "id": "out-cd4b9b49d3cc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Electromagnetic Imaging of Metal Defects Based on Bayesian Statistical Model — Wang Qi;Liu Kexin;Zhang Ronghua;Li xiuyan;Duan Xiaojie;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5180,
+            "end_char": 5333
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "On-line monitoring of membrane fouling based on an improved electrical measurement method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Bo;Wang Jianming;Wang Qi;Zhang Ronghua",
+      "id": "out-85463790c155",
+      "evidence": [
+        {
+          "quote": "[期刊论文] On-line monitoring of membrane fouling based on an improved electrical measurement method — Li Bo;Wang Jianming;Wang Qi;Zhang Ronghua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5339,
+            "end_char": 5478
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于轮廓形状的肺部电阻抗成像三维插值方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李秀艳;马会梅;王琦;尉蕾;陆纪璇;汪剑鸣;王化祥",
+      "id": "out-7f5adf276cc1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于轮廓形状的肺部电阻抗成像三维插值方法 — 李秀艳;马会梅;王琦;尉蕾;陆纪璇;汪剑鸣;王化祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5484,
+            "end_char": 5538
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring Respiratory Motion Tracking through Electrical Impedance Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Wang;Jianming Wang;Xiuyan Li;Xiaojie Duan;Ronghua Zhang;Hong Zhang;Yanhe Ma;Huaxiang Wang",
+      "id": "out-53a3427e8694",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring Respiratory Motion Tracking through Electrical Impedance Tomography — Qi Wang;Jianming Wang;Xiuyan Li;Xiaojie Duan;Ronghua Zhang;Hong Zhang;Yanhe Ma;Huaxiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5544,
+            "end_char": 5722
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SAR-CGAN: Improved generative adversarial network for EIT reconstruction of lung diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiuyan;Zhang ruzhi;Wang Qi;Duan Xiaojie;Sun Yukuan;Wang Jianming",
+      "id": "out-9922b385b18b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SAR-CGAN: Improved generative adversarial network for EIT reconstruction of lung diseases — Li Xiuyan;Zhang ruzhi;Wang Qi;Duan Xiaojie;Sun Yukuan;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5728,
+            "end_char": 5893
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Direct May Not Be the Best: An Incremental Evolution View of Pose Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yuelong;Xiao Tengfei;Geng Lei;Wang Jianming",
+      "id": "out-91e663e740ea",
+      "evidence": [
+        {
+          "quote": "[会议论文] Direct May Not Be the Best: An Incremental Evolution View of Pose Generation — Li Yuelong;Xiao Tengfei;Geng Lei;Wang Jianming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5899,
+            "end_char": 6030
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Error-constraint deep learning scheme for electrical impedance tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Wang;Hanyu Zhang;Xiuyan Li;Xiaojie Duan;Jianming Wang;Ronghua Zhang;Hong Zhang;Yanhe Ma;Huaxiang Wang;Jiabin Jia",
+      "id": "out-38c349726396",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Error-constraint deep learning scheme for electrical impedance tomography — Qi Wang;Hanyu Zhang;Xiuyan Li;Xiaojie Duan;Jianming Wang;Ronghua Zhang;Hong Zhang;Yanhe Ma;Huaxiang Wang;Jiabin Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6036,
+            "end_char": 6233
+          },
+          "version": "07ee2e7108c38387e15a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

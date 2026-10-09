@@ -2,15 +2,20 @@
   "doc_id": "154878d47cd264298516",
   "version": "45df19782d73a61389a8",
   "source_hash": "2e77cc3189ef14672846f4b705cb27f9f1e8af48efb0034fb99780413db26c10",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.859557+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:29:24.967101+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95715bcadac5",
-          "name": "肺大疱微创治疗",
-          "desc": "肺大疱是慢性阻塞性肺疾病最常见的肺部表现，严重影响肺功能且治疗手段有限。",
+          "id": "item-c51660a41b6f",
+          "name": "肺大疱评估与治疗",
+          "desc": "COPD最常见肺部表现，严重影响肺功能",
           "evidence": [
             {
-              "quote": "肺大疱是慢性阻塞性肺疾病最常见的肺部表现，严重影响肺功能，且治疗手段有限。",
+              "quote": "肺大疱是慢性阻塞性肺疾病最常见的肺部表现，严重影响肺功能",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 739,
-                "end_char": 775
-              },
-              "version": "45df19782d73a61389a8"
-            }
-          ]
-        },
-        {
-          "id": "item-3acab7cbb44b",
-          "name": "医学手术微创化精准化",
-          "desc": "医学手术呈现微创化、精准化、个性化发展趋势，如何通过人工智能技术降低手术风险、提高效率是焦点问题。",
-          "evidence": [
-            {
-              "quote": "随着临床医学的不断进步，医学手术呈现出微创化、精准化、个性化的发展趋势。如何通过人工智能技术降低手术操作风险、提高效率，从而达到精准治疗是临床医学、影像学、自动化、信息学等多学科关注的焦点问题。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 642,
-                "end_char": 738
+                "end_char": 766
               },
               "version": "45df19782d73a61389a8"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb62f929b9a7",
-          "name": "缺乏影像导航与评估指标",
-          "desc": "由于缺乏针对肺大疱的有效医学影像导航系统，导致缺乏有效的影像学评估指标和对靶位支气管准确定位的手段。",
+          "id": "item-bd3180be8a84",
+          "name": "缺乏定量可靠的影像评估和靶支气管识别方法",
+          "desc": "国内外缺乏",
           "evidence": [
             {
-              "quote": "由于缺乏针对肺大疱的有效医学影像导航系统，导致缺乏有效的影像学评估指标，也缺少对肺大疱段及亚段靶位支气管准确定位的有效手段。",
+              "quote": "目前国内外缺乏一种定量且可靠的肺大疱影像学评估及识别通向肺大疱靶支气管的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 866,
-                "end_char": 927
-              },
-              "version": "45df19782d73a61389a8"
-            }
-          ]
-        },
-        {
-          "id": "item-1e59877deb51",
-          "name": "内镜下治疗疗效一般",
-          "desc": "现有内镜下治疗肺大疱的疗效一般。",
-          "evidence": [
-            {
-              "quote": "而且现有内镜下治疗肺大疱的疗效一般",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2839,
-                "end_char": 2855
+                "start_char": 2800,
+                "end_char": 2837
               },
               "version": "45df19782d73a61389a8"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-087f3513bbc3",
-          "name": "AI识别肺大疱与靶支气管",
-          "desc": "利用人工智能技术对肺大疱CT图像进行处理，识别并准确定位肺大疱及通向靶支气管。",
+          "id": "item-6cb21d62f522",
+          "name": "肺大疱及靶支气管AI识别模型",
+          "desc": "依托慢阻肺专病数据库",
           "evidence": [
             {
-              "quote": "本研究拟利用人工智能技术对肺大疱CT图像进行处理，通过识别及准确定位肺大疱",
+              "quote": "建立人工智能模型，反复训练和验证，开发出一套可快速识别肺大疱及通向靶支气管的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 928,
-                "end_char": 964
+                "start_char": 2939,
+                "end_char": 2978
               },
               "version": "45df19782d73a61389a8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-222d007e2d32",
-          "name": "电磁导航支气管镜联合",
-          "desc": "联合国产自主研发的电磁导航支气管镜实现术中实时精准定位肺大疱靶位支气管。",
+          "id": "item-f1c99c72261e",
+          "name": "定量CT评估肺气肿表型",
+          "desc": "M型表型与全肺气肿比例等相关",
           "evidence": [
             {
-              "quote": "联合国产自主研发的电磁导航支气管镜，以达到术中实时精准定位肺大疱靶位支气管",
+              "quote": "证明定量CT评估可描绘肺气肿表型特征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 966,
-                "end_char": 1002
+                "start_char": 3041,
+                "end_char": 3058
               },
               "version": "45df19782d73a61389a8"
             }
-          ]
-        },
-        {
-          "id": "item-593b36bea459",
-          "name": "靶支气管内注射生物胶",
-          "desc": "在X线/CBCT下经支气管直刺肺大疱，抽吸气体后注射自体血到大疱内，辅助靶支气管内注射生物胶。",
-          "evidence": [
-            {
-              "quote": "后期更改为在X线/CBCT下经支气管下直刺肺大疱，并抽吸肺大疱气体后注射自体血到大疱内，辅助在靶支气管内注射生物胶",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3115,
-                "end_char": 3171
-              },
-              "version": "45df19782d73a61389a8"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,55 +108,61 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f20d8352ecd6",
-          "name": "肺大疱识别模型开发",
-          "desc": "利用慢阻肺专病数据库对200例肺大疱影像进行分割和系统描述，建立并验证人工智能模型。",
+          "id": "item-00458fc31584",
+          "name": "200例肺大疱影像分割与描述",
+          "desc": "慢阻肺专病数据库",
           "evidence": [
             {
-              "quote": "利用慢阻肺专病数据库，对200例肺大疱影像进行了分割和系统描述，建立人工智能模型，反复训练和验证，开发出一套可快速识别肺大疱及通向靶支气管的方法",
+              "quote": "对200例肺大疱影像进行了分割和系统描述",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2907,
-                "end_char": 2978
+                "start_char": 2918,
+                "end_char": 2937
               },
               "version": "45df19782d73a61389a8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7aa92073f515",
-          "name": "M型影像表型量化发现",
-          "desc": "对288例慢阻肺影像量化分析，发现M型影像表型与全肺气肿比例较高、管腔体积比例较小相关。",
+          "id": "item-cade8a718d01",
+          "name": "自体血联合生物胶封堵治疗",
+          "desc": "随访1、3、6月仍有效",
           "evidence": [
             {
-              "quote": "对288例慢阻肺影像学数据进行量化分析，发现M型影像表型与全肺气肿比例较高、管腔体积比例较小以及更明显的间质性肺改变相关",
+              "quote": "随访1月，3月，6月仍有效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2980,
-                "end_char": 3039
-              },
-              "version": "45df19782d73a61389a8"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2f2c3b7a84b2",
-          "name": "术后指标明显改善",
-          "desc": "患者肺大疱明显缩小，气喘症状、生活质量、6分钟步行试验、呼吸困难指数评分及肺功能指标均较前明显改善，随访6个月仍有效。",
-          "evidence": [
-            {
-              "quote": "患者的气喘症状、生活质量、6分钟步行试验、呼吸困难指数评分、肺功能指标（FEV1、FVC、RV、TLC）均较前明显改善，随访1月，3月，6月仍有效",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3185,
+                "start_char": 3245,
                 "end_char": 3257
               },
               "version": "45df19782d73a61389a8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-6be9f6b5923a",
+          "name": "磁导航下注射生物胶治疗7例",
+          "desc": "效果不理想后改变术式",
+          "evidence": [
+            {
+              "quote": "前期我们在国产磁导航引导下经支气管镜注射生物胶治7例肺大疱，但效果并不理想",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3077,
+                "end_char": 3113
+              },
+              "version": "45df19782d73a61389a8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +170,108 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-95715bcadac5"
+        "dimension": "技术",
+        "item_id": "item-6cb21d62f522"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-cb62f929b9a7"
+        "item_id": "item-bd3180be8a84"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1e59877deb51"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-593b36bea459"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-087f3513bbc3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f20d8352ecd6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-222d007e2d32"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2f2c3b7a84b2"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "开发出一套可快速识别肺大疱及通向靶支气管的方法",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2956,
+            "end_char": 2978
+          },
+          "version": "45df19782d73a61389a8"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "介入呼吸病学技术在肺大疱治疗中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱晶;尹雯;肖阳;袁明丽;倪芳;胡轶",
+      "id": "out-ded86e69c51b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 介入呼吸病学技术在肺大疱治疗中的研究进展 — 朱晶;尹雯;肖阳;袁明丽;倪芳;胡轶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3318,
+            "end_char": 3365
+          },
+          "version": "45df19782d73a61389a8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "武汉市卫健委系统医学拔尖人才共育计划",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡轶",
+      "id": "out-e4d913b387cc",
+      "evidence": [
+        {
+          "quote": "[奖励] 武汉市卫健委系统医学拔尖人才共育计划 — 胡轶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3370,
+            "end_char": 3397
+          },
+          "version": "45df19782d73a61389a8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "荆楚工匠",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡轶",
+      "id": "out-78c705a406b7",
+      "evidence": [
+        {
+          "quote": "[奖励] 荆楚工匠 — 胡轶",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3402,
+            "end_char": 3415
+          },
+          "version": "45df19782d73a61389a8"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

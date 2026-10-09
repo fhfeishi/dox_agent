@@ -2,15 +2,20 @@
   "doc_id": "e688bdc0b225e3e0c6bd",
   "version": "e803519687989eb8f965",
   "source_hash": "ceb608f26455aa74dce0e984c50e5f83a0cabee6ab9c141c13f14b2b38e87502",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:44.079808+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.441483+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc5634b89894",
-          "name": "晚期结直肠癌肝转移疗效评估",
-          "desc": "如何有效评估结直肠癌肝转移疗效是临床上迫切需要解决的问题之一。",
+          "id": "item-8a7653b0eada",
+          "name": "结直肠癌肝转移HAIC疗效评价",
+          "desc": "多模态影像组学",
           "evidence": [
             {
-              "quote": "如何有效评估结直肠癌肝转移疗效是临床上迫切需要解决的问题之一",
+              "quote": "本课题以肝动脉灌注化疗（Hepatic arterial infusion chemotherapy，HAIC）治疗晚期结直肠癌肝转移的临床多模态影像数据为基础",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 719
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ]
-        },
-        {
-          "id": "item-b8cf12514a5d",
-          "name": "介入治疗疗效评价系统",
-          "desc": "目前介入治疗领域基于影像组学和人工智能建立肿瘤临床疗效评价系统的研究工作较少。",
-          "evidence": [
-            {
-              "quote": "目前介入治疗领域，基于影像组学和人工智能建立肿瘤临床疗效评价系统的研究工作较少。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 799
+                "start_char": 2955,
+                "end_char": 3034
               },
               "version": "e803519687989eb8f965"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e5346e03482e",
-          "name": "海量数据计算费时",
-          "desc": "基于影像组学大数据研发的模型可以有效辅助医生进行评价，但海量数据计算较为费时。",
+          "id": "item-cd03ad45331e",
+          "name": "缺乏基于影像组学和AI的介入疗效评价",
+          "desc": "海量数据计算费时",
           "evidence": [
             {
-              "quote": "基于影像组学大数据研发的模型可以有效辅助医生进行评价，但海量数据计算较为费时。",
+              "quote": "目前介入治疗领域，基于影像组学和人工智能建立肿瘤临床疗效评价系统的研究工作较少",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 721,
-                "end_char": 759
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ]
-        },
-        {
-          "id": "item-0fc48b56ebbe",
-          "name": "缺乏术前疗效评估方法",
-          "desc": "旨在为术前评估结直肠癌肝转移HAIC疗效及预后提供一种新的评估方法。",
-          "evidence": [
-            {
-              "quote": "旨在为术前评估结直肠癌肝转移HAIC疗效及预后提供一种新的评估方法，为临床治疗提供理论和方法上的依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1039,
-                "end_char": 1088
+                "start_char": 760,
+                "end_char": 798
               },
               "version": "e803519687989eb8f965"
             }
@@ -95,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1598d7189ffb",
-          "name": "多模态影像组学特征提取",
-          "desc": "高通量提取肿瘤治疗前后的低阶特征、视觉特征和高阶特征等海量影像组学特征，深度挖掘HAIC疗效相关特征及术前临床因素。",
+          "id": "item-0282b1524e5f",
+          "name": "影像组学预测HAIC预后模型",
+          "desc": "回顾性与前瞻性CT",
           "evidence": [
             {
-              "quote": "高通量提取肿瘤治疗前后的低阶特征、视觉特征和高阶特征等海量影像组学特征，深度挖掘HAIC疗效相关的影像组学特征及术前临床因素",
+              "quote": "目前已经通过回顾性和前瞻性CT影像数据通过影像组学方法建立相关模型预测HAIC治疗晚期结直肠癌肝转移的预后",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 905,
-                "end_char": 966
+                "start_char": 3132,
+                "end_char": 3184
               },
               "version": "e803519687989eb8f965"
             }
-          ]
-        },
-        {
-          "id": "item-03660f8f27ed",
-          "name": "三维区域生长病灶分割",
-          "desc": "率先采用三维区域生长等方法进行病灶精确分割并提取高稳定性和独立性的定量图像特征，利用人工智能技术构建影像组学综合模型。",
-          "evidence": [
-            {
-              "quote": "率先采用三维区域生长等方法进行病灶精确分割并提取高稳定性和独立性的定量图像特征，利用人工智能技术构建影像组学综合模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 980,
-                "end_char": 1037
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ]
-        },
-        {
-          "id": "item-5619415ec3d3",
-          "name": "高速人工智能系统平台",
-          "desc": "已成功构建新型人工智能高速系统平台。",
-          "evidence": [
-            {
-              "quote": "且已成功构建新型人工智能高速系统平台",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 856
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +91,83 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ea821650076",
-          "name": "回顾性模型已发表",
-          "desc": "已通过回顾性和前瞻性CT影像数据通过影像组学方法建立相关模型预测HAIC治疗晚期结直肠癌肝转移的预后，回顾性病例相关工作已经发表。",
+          "id": "item-efca2da836de",
+          "name": "前瞻性MR数据入组",
+          "desc": "126例",
           "evidence": [
             {
-              "quote": "目前已经通过回顾性和前瞻性CT影像数据通过影像组学方法建立相关模型预测HAIC治疗晚期结直肠癌肝转移的预后，目前回顾性病例相关的工作已经发表，前瞻性病例相关的工作正在投稿中",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3132,
-                "end_char": 3217
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f2c87ed063f2",
-          "name": "126例前瞻性MRI入组",
-          "desc": "已完成前瞻性患者的核磁数据入组126例，收集治疗前基线MR图像和治疗后MR检查图像及临床疗效评价、生存资料情况。",
-          "evidence": [
-            {
-              "quote": "我们已经完成前瞻性患者的核磁数据入组126例，收集患者治疗前基线MR图像和治疗后MR检查图像及临床疗效评价、生存资料情况",
+              "quote": "我们已经完成前瞻性患者的核磁数据入组126例",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3222,
-                "end_char": 3281
+                "end_char": 3243
               },
               "version": "e803519687989eb8f965"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-412b852040ce",
-          "name": "两项HAIC临床研究论文",
-          "desc": "发表肝动脉灌注奥沙利铂联合雷替曲塞对比5-氟尿嘧啶随机II期试验及HAIC联合瑞戈非尼真实世界研究论文。",
-          "evidence": [
-            {
-              "quote": "A randomized phase II trial of hepatic arterial infusion of oxaliplatin plus raltitrexed versus oxaliplatin plus 5-fluorouracil for unresectable colorectal cancer liver metastases",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3390,
-                "end_char": 3568
-              },
-              "version": "e803519687989eb8f965"
-            }
-          ],
-          "status": "已取得"
+          "status": "在研",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cc5634b89894"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e5346e03482e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A randomized phase II trial of hepatic arterial infusion of oxaliplatin plus raltitrexed versus oxaliplatin plus 5-fluorouracil for unresectable colorectal cancer liver metastases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ai-Wei Feng;Jian-Hai Guo;Song Gao;Fu-xin Kou;Shao-xin-Liu;Peng Liu;Hui Chen;Xiao-dong Wang;Hai-feng Xu;Guang Cao;Xu Zhu",
+      "id": "out-66891d542a2c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A randomized phase II trial of hepatic arterial infusion of oxaliplatin plus raltitrexed versus oxaliplatin plus 5-fluorouracil for unresectable colorectal cancer liver metastases — Ai-Wei Feng;Jian-Hai Guo;Song Gao;Fu-xin Kou;Shao-xin-Liu;Peng Liu;Hui Chen;Xiao-dong Wang;Hai-feng Xu;Guang Cao;Xu Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3383,
+            "end_char": 3690
+          },
+          "version": "e803519687989eb8f965"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0fc48b56ebbe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-03660f8f27ed"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1598d7189ffb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5ea821650076"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5619415ec3d3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f2c87ed063f2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatic arterial infusion chemotherapy Open Access plus regorafenib in advanced colorectal cancer: a real-world retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guang Cao;Xiaodong Wang;Hui Chen;Song Goo;Jianhai Guo;Peng Liu;Haifeng Xu;Liang Xu;Xu Zhu;Renjie Yang",
+      "id": "out-96698a83b08b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatic arterial infusion chemotherapy Open Access plus regorafenib in advanced colorectal cancer: a real-world retrospective study — Guang Cao;Xiaodong Wang;Hui Chen;Song Goo;Jianhai Guo;Peng Liu;Haifeng Xu;Liang Xu;Xu Zhu;Renjie Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3695,
+            "end_char": 3936
+          },
+          "version": "e803519687989eb8f965"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

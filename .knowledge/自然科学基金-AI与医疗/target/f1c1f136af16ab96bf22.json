@@ -2,15 +2,20 @@
   "doc_id": "f1c1f136af16ab96bf22",
   "version": "6cf893b21c81153ad539",
   "source_hash": "37730f451e5bcea5b22bbb50df9394bdfc81159cbfb62f073045ade7f4fc6794",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.236222+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.387387+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-48cb4c8f1fd6",
-          "name": "高度近视ICL手术人工智能预测",
-          "desc": "面向高度近视ICL植入手术，用人工智能开展眼底并发症、拱高与屈光度预测研究。",
+          "id": "item-2c90bacd0c34",
+          "name": "高度近视ICL手术AI预测",
+          "desc": "拱高与屈光度",
           "evidence": [
             {
-              "quote": "近视是全球性的健康问题，中国高度近视患病率高，亟待防治",
+              "quote": "本课题旨在探讨人工智能高度近视眼的机器学习特点及ICL拱高预测规律",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 674
+                "start_char": 2338,
+                "end_char": 2370
               },
               "version": "6cf893b21c81153ad539"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-98441d2c9cb5",
-          "name": "ICL拱高预测与眼底并发症风险评估不足",
-          "desc": "需探讨人工智能高度近视眼底并发症的机器学习特点及ICL拱高预测规律，以改善拱高、提高手术安全性并降低并发症。",
+          "id": "item-8265a62aa3e0",
+          "name": "高度近视患病率高需防治",
+          "desc": "ICL拱高与屈光度预测",
           "evidence": [
             {
-              "quote": "本课题将在申请人前期研究及已建立的高度近视ICL信息库基础上，旨在探讨人工智能高度近视眼底并发症的机器学习特点及ICL拱高预测规律",
+              "quote": "中国高度近视患病率高，亟待防治",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 740
+                "start_char": 660,
+                "end_char": 674
               },
               "version": "6cf893b21c81153ad539"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4888df0b59cb",
-          "name": "万眼大数据多模态机器学习ICL预测模型",
-          "desc": "完善1万眼高度近视眼大数据库，在眼底OCT与眼前节数据上进行机器学习，探讨ICL尺寸选择、拱高预测与屈光度预测的优化特征。",
+          "id": "item-39d18f4d23c0",
+          "name": "随机森林拱高与ICL直径预测",
+          "desc": "STS优化",
           "evidence": [
             {
-              "quote": "通过完善1万眼高度近视眼大数据库,利用多模态机器学习的人工智能模型，探讨ICL尺寸选择、拱高预测与屈光度预测的优化特征",
+              "quote": "采用随机森林回归模型和分类模型进行拱高和ICL直径预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2372,
-                "end_char": 2430
+                "start_char": 2754,
+                "end_char": 2780
               },
               "version": "6cf893b21c81153ad539"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-00c97dde1d4b",
+          "name": "SVR、LASSO、随机森林和XGBoost预测术后等效球镜",
+          "desc": "2767眼",
+          "evidence": [
+            {
+              "quote": "分别使用ML模型[支持向量回归（SVR）、LASSO、随机森林和XGBoost]和基于NT-ICL和TICL病例的眼部维度参数的训练来预测术后等效球镜（SE）和球镜",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2508,
+                "end_char": 2589
+              },
+              "version": "6cf893b21c81153ad539"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,574 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1d0a395fe353",
-          "name": "STS优化ICL拱高预测软件投入临床应用",
-          "desc": "基于5873眼构建随机森林回归与分类模型，开发的STS优化ICL直径及拱高预测软件投入临床应用；屈光度预测研究发表于E&V，拱高与屈光误差研究发表于JCRS。",
+          "id": "item-72657fcac63e",
+          "name": "STS优化ICL直径及拱高预测软件",
+          "desc": "投入临床应用",
           "evidence": [
             {
-              "quote": "开发的STS优化的ICL直径及拱高预测软件投入临床应用，可为手术设计提供参考",
+              "quote": "开发的STS优化的ICL直径及拱高预测软件投入临床应用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2841,
-                "end_char": 2878
+                "end_char": 2867
               },
               "version": "6cf893b21c81153ad539"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-48cb4c8f1fd6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-98441d2c9cb5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工晶体植入后的屈光度预测方法、存储介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沈阳;王崇阳;周行涛;王晓瑛;陈珣;蒋寅婕;牛凌凌;姚佩君;李慧杰",
+      "id": "out-192e577cbc6f",
+      "evidence": [
+        {
+          "quote": "[专利] 人工晶体植入后的屈光度预测方法、存储介质及电子设备 — 沈阳;王崇阳;周行涛;王晓瑛;陈珣;蒋寅婕;牛凌凌;姚佩君;李慧杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3288,
+            "end_char": 3353
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-98441d2c9cb5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4888df0b59cb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-Term Clinical Outcomes of Posterior Chamber Phakic Refractive Lens Implantation for Correction of Super-High Myopia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Boliang;Chen Xun;Zhu Ran;Liao Rongfeng;Liu Caiyuan;Zhou Xingtao;Wang Xiaoying",
+      "id": "out-f0efbc205c26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-Term Clinical Outcomes of Posterior Chamber Phakic Refractive Lens Implantation for Correction of Super-High Myopia — Li Boliang;Chen Xun;Zhu Ran;Liao Rongfeng;Liu Caiyuan;Zhou Xingtao;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3358,
+            "end_char": 3567
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4888df0b59cb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1d0a395fe353"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anterior segment pharmacological accommodative changes and its impact on the circumferential anterior chamber angle after ICL V4c implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Shengtao;Cheng Mingrui;Liu Fang;Lin Feng;Xiao Yichen;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-bed76991875e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anterior segment pharmacological accommodative changes and its impact on the circumferential anterior chamber angle after ICL V4c implantation — Liu Shengtao;Cheng Mingrui;Liu Fang;Lin Feng;Xiao Yichen;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3572,
+            "end_char": 3806
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Immediate versus delayed sequential bilateral ICL implantation: A retrospective comparison of vault height and visual outcomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yinjie;Chen Xun;Cheng Mingrui;Li Boliang;Lei Yadi;Lin I-Chun;Xu Guanghan;Mingwei Li;Zhou Xingtao;Wang Xiaoying",
+      "id": "out-3c47a94aa779",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Immediate versus delayed sequential bilateral ICL implantation: A retrospective comparison of vault height and visual outcomes — Jiang Yinjie;Chen Xun;Cheng Mingrui;Li Boliang;Lei Yadi;Lin I-Chun;Xu Guanghan;Mingwei Li;Zhou Xingtao;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3811,
+            "end_char": 4062
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "眼前节综合诊断分析仪临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄锦海;周行涛;王晓瑛",
+      "id": "out-58309f6c60e8",
+      "evidence": [
+        {
+          "quote": "[专著] 眼前节综合诊断分析仪临床应用 — 黄锦海;周行涛;王晓瑛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4067,
+            "end_char": 4099
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Safety of intraocular pressure measurement using air-puff tonometer after implantable collamer lens implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shen Yang;Chen Xun;Xian Yiyong;Wang Xuanqi;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-dbe045070881",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Safety of intraocular pressure measurement using air-puff tonometer after implantable collamer lens implantation — Shen Yang;Chen Xun;Xian Yiyong;Wang Xuanqi;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4104,
+            "end_char": 4294
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pharmacological Accommodative Changes of the Anterior Segment and Its Impact on the Vault in Implantable Collamer Lens Implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Mingrui;Liu Shengtao;Chen Xun;Zhou Xiaodong;Zhou Xingtao;Wang Xiaoying",
+      "id": "out-e8a4dc836579",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pharmacological Accommodative Changes of the Anterior Segment and Its Impact on the Vault in Implantable Collamer Lens Implantation — Cheng Mingrui;Liu Shengtao;Chen Xun;Zhou Xiaodong;Zhou Xingtao;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4299,
+            "end_char": 4515
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SMILE and ICL implantation on the ocular surface and meibomian glands in patients with postoperative myopia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao Juan;Feng Jianghong;Li Weijie;Liu Chang;Li Yanlei;Wang Xiaoying",
+      "id": "out-50eb6639f2c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SMILE and ICL implantation on the ocular surface and meibomian glands in patients with postoperative myopia — Yao Juan;Feng Jianghong;Li Weijie;Liu Chang;Li Yanlei;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4520,
+            "end_char": 4703
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-term changes in classified higher-order aberrations after implanting an EVO intraocular collamer lens",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Miao Huamao;Li Boliang;Cheng Mingrui;Lin I-Chun;Lei Yadi;Jiang Yinjie;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-19cea9ee01c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-term changes in classified higher-order aberrations after implanting an EVO intraocular collamer lens — Chen Xun;Miao Huamao;Li Boliang;Cheng Mingrui;Lin I-Chun;Lei Yadi;Jiang Yinjie;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4708,
+            "end_char": 4928
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "有晶状体眼后房型人工晶状体放置轴向对术后早期拱高变化的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐伊琳;蹇骞;陈珣;蒋寅婕;牛凌凌;王晓瑛",
+      "id": "out-4e37f31902fe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 有晶状体眼后房型人工晶状体放置轴向对术后早期拱高变化的影响 — 徐伊琳;蹇骞;陈珣;蒋寅婕;牛凌凌;王晓瑛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4934,
+            "end_char": 4993
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Vault and Size of Posterior Chamber Phakic Intraocular Lens Using Sulcus to Sulcus-Optimized Artificial Intelligence Technology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Shen Yang;Jiang Yinjie;Cheng Mingrui;Lei Yadi;Li Boliang;Niu Lingling;Chen Junqiang;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-04e168810d4a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting Vault and Size of Posterior Chamber Phakic Intraocular Lens Using Sulcus to Sulcus-Optimized Artificial Intelligence Technology — Chen Xun;Shen Yang;Jiang Yinjie;Cheng Mingrui;Lei Yadi;Li Boliang;Niu Lingling;Chen Junqiang;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5265
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Haptics and axis stability of customized vertical implantable collamer lens implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Boliang;Cheng Mingrui;Lei Yadi;Lin I-Chun;Chen Xun;Wang Xiaoying",
+      "id": "out-02c2361700aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Haptics and axis stability of customized vertical implantable collamer lens implantation — Li Boliang;Cheng Mingrui;Lei Yadi;Lin I-Chun;Chen Xun;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5271,
+            "end_char": 5435
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Safety and anterior chamber structure of evolution implantable Collamer lens implantation with short white-to-white corneal diameters",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Chen Fang;Wang Xuanqi;Xu Yilin;Cheng Mingrui;Han Tian;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-8ecc8b927899",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Safety and anterior chamber structure of evolution implantable Collamer lens implantation with short white-to-white corneal diameters — Chen Xun;Chen Fang;Wang Xuanqi;Xu Yilin;Cheng Mingrui;Han Tian;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5441,
+            "end_char": 5672
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "关注有晶状体眼后房型人工晶状体植入术后白内障手术要点",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王晓瑛;周行涛;竺向佳;蒋永祥;陈珣",
+      "id": "out-4199831cbe19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 关注有晶状体眼后房型人工晶状体植入术后白内障手术要点 — 王晓瑛;周行涛;竺向佳;蒋永祥;陈珣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5678,
+            "end_char": 5731
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparisons of objective and subjective refraction with and without cycloplegia using binocular wavefront optometer with autorefraction and retinoscopy in school-age children",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Yadi;Chen Xun;Cheng Mingrui;Li Boliang;Jiang Yinjie;Xu Yilin;Wang Xiaoying",
+      "id": "out-6dd5e5181cdc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparisons of objective and subjective refraction with and without cycloplegia using binocular wavefront optometer with autorefraction and retinoscopy in school-age children — Lei Yadi;Chen Xun;Cheng Mingrui;Li Boliang;Jiang Yinjie;Xu Yilin;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5737,
+            "end_char": 5998
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anterior Chamber Angle Changes and Its Associated Factor After Posterior Chamber Phakic Intraocular Lens Implantation in Eyes With Shallow Anterior Chambers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Shengtao;Liu Fang;Cheng Mingrui;Cheng Chiwen;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-75177deddb9d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Anterior Chamber Angle Changes and Its Associated Factor After Posterior Chamber Phakic Intraocular Lens Implantation in Eyes With Shallow Anterior Chambers — Liu Shengtao;Liu Fang;Cheng Mingrui;Cheng Chiwen;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6004,
+            "end_char": 6244
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-term Comparison of Vault and Complications of Implantable Collamer Lens with and without a Central Hole for High Myopia Correction: 5 Years",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Wang Xuanqi;Xu Yilin;Cheng Mingrui;Han Tian;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-5e0cbe8fb990",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-term Comparison of Vault and Complications of Implantable Collamer Lens with and without a Central Hole for High Myopia Correction: 5 Years — Chen Xun;Wang Xuanqi;Xu Yilin;Cheng Mingrui;Han Tian;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6250,
+            "end_char": 6482
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "One-year analysis of the refractive stability, axial elongation and related factors in a high myopia population after Implantable Collamer Lens implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Chen Zhi;Miao Huamao;Wang Xuanqi;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-6be9f2a40ae1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] One-year analysis of the refractive stability, axial elongation and related factors in a high myopia population after Implantable Collamer Lens implantation — Chen Xun;Chen Zhi;Miao Huamao;Wang Xuanqi;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6488,
+            "end_char": 6721
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based refractive error prediction and EVO-implantable collamer lens power calculation for myopia correction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yinjie;Shen Yang;Chen Xun;Niu Lingling;Li Boliang;Cheng Mingrui;Lei Yadi;Xu Yilin;Wang Chongyang;Zhou Xingtao;Wang Xiaoying",
+      "id": "out-b9b095c0bfb2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based refractive error prediction and EVO-implantable collamer lens power calculation for myopia correction — Jiang Yinjie;Shen Yang;Chen Xun;Niu Lingling;Li Boliang;Cheng Mingrui;Lei Yadi;Xu Yilin;Wang Chongyang;Zhou Xingtao;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6727,
+            "end_char": 6996
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of long-term visual quality after keratorefractive lenticule extraction and implantable collamer lens V4c for high myopia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhan Biyun;Huang Yangyi;Chen Xun;Aruma Aruma;Cheng Mingrui;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-1dfe05b09fdc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of long-term visual quality after keratorefractive lenticule extraction and implantable collamer lens V4c for high myopia — Zhan Biyun;Huang Yangyi;Chen Xun;Aruma Aruma;Cheng Mingrui;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7002,
+            "end_char": 7228
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of Decentration of Implantable Collamer Lens V4c on Visual Quality With the OPD-Scan III Aberrometer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xun;Lin I-chun;Miao Huamao;Cheng Mingrui;Li Boliang;Jiang Yinjie;Lei Yadi;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-c5f7251afb64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of Decentration of Implantable Collamer Lens V4c on Visual Quality With the OPD-Scan III Aberrometer — Chen Xun;Lin I-chun;Miao Huamao;Cheng Mingrui;Li Boliang;Jiang Yinjie;Lei Yadi;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7234,
+            "end_char": 7456
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of vault on predicting postoperative refractive error for posterior chamber phakic intraocular lens based on a machine learning model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yinjie;Shen Yang;Wang Lin;Chen Xun;Tang Jing;Liu Liu;Ma Tong;Ju Lie;Chen Yuzhong;Ge Zongyuan;Zhou Xingtao;Wang Xiaoying",
+      "id": "out-bf48171d65e4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of vault on predicting postoperative refractive error for posterior chamber phakic intraocular lens based on a machine learning model — Jiang Yinjie;Shen Yang;Wang Lin;Chen Xun;Tang Jing;Liu Liu;Ma Tong;Ju Lie;Chen Yuzhong;Ge Zongyuan;Zhou Xingtao;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7462,
+            "end_char": 7736
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Big-data and artificial-intelligence-assisted vault prediction and EVO-ICL size selection for myopia correction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shen Yang;Wang Lin;Jian Weijun;Shang Jianmin;Wang Xin;Ju Lie;Li Meiyan;Zhao Jing;Chen Xun;Ge Zongyuan;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-5de78fc07322",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Big-data and artificial-intelligence-assisted vault prediction and EVO-ICL size selection for myopia correction — Shen Yang;Wang Lin;Jian Weijun;Shang Jianmin;Wang Xin;Ju Lie;Li Meiyan;Zhao Jing;Chen Xun;Ge Zongyuan;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7742,
+            "end_char": 7990
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Refractive Outcomes of Implantable Collamer Lens Implantation in 1212 Eyes with Suboptimal Corrected Distance Vision Acuity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han Tian;Chen Xun;Xu Ye;Niu Lingling;Wang Xiaoying;Zhou Xingtao",
+      "id": "out-1acef2b0a807",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Refractive Outcomes of Implantable Collamer Lens Implantation in 1212 Eyes with Suboptimal Corrected Distance Vision Acuity — Han Tian;Chen Xun;Xu Ye;Niu Lingling;Wang Xiaoying;Zhou Xingtao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7996,
+            "end_char": 8191
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Evaluation Of a 0.05 D-step Binocular Wavefront Optometer in Young Adults in China",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Mingrui;Chen Xun;Lei Yadi;Li Bailiang;Jiang Yinjie;Xu Yilin;Zhou Xiaodong;Wang Xiaoying",
+      "id": "out-d27ee8a6f046",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Evaluation Of a 0.05 D-step Binocular Wavefront Optometer in Young Adults in China — Cheng Mingrui;Chen Xun;Lei Yadi;Li Bailiang;Jiang Yinjie;Xu Yilin;Zhou Xiaodong;Wang Xiaoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8197,
+            "end_char": 8390
+          },
+          "version": "6cf893b21c81153ad539"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 25,
+    "listed": 25,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 23,
+        "extracted": 23
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "448e3d033898373ffe3f",
   "version": "bfe716d27ecd35fd7cf2",
   "source_hash": "f5716338b14804a52df22f771e32d5151ba1337021402617f92b5c691d478dbc",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.883471+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:40:11.047341+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c35e738e4a97",
-          "name": "结直肠癌肝转移共识分子分型与靶向治疗预后预测",
-          "desc": "面向CRLM靶向治疗个体差异大的问题，借助多参数MRI无创监测共识分子分型并预测靶向治疗预后。",
+          "id": "item-c3d246f0d71e",
+          "name": "结直肠癌肝转移靶向治疗预后预测",
+          "desc": "共识分子分型指导靶向治疗",
           "evidence": [
             {
-              "quote": "结直肠癌肝转移（CRLM）靶向治疗效果个体差异较大，共识分子分型（CMS）是指导靶向治疗的重要指标，与其预后显著相关",
+              "quote": "共识分子分型（CMS）是指导靶向治疗的重要指标，与其预后显著相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
+                "start_char": 711,
                 "end_char": 742
               },
               "version": "bfe716d27ecd35fd7cf2"
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-089a3a5359e0",
-          "name": "基因检测有创且忽略肿瘤空间异质性",
-          "desc": "现有基因检测方法有创且不能动态反映肿瘤整体基因状态；预后研究多采用单一时间点靶转移灶影像特征，忽略了肿瘤空间异质性及其变化。",
+          "id": "item-e25a72bd80c9",
+          "name": "基因检测有创且不能动态反映，预后研究忽略空间异质性",
+          "desc": "现有方法局限",
           "evidence": [
             {
-              "quote": "但现有的基因检测方法存在有创且不能动态反映肿瘤整体基因状态的局限性，预后研究则多采用单一时间点靶转移灶的影像特征，忽略了肿瘤的空间异质性及其变化",
+              "quote": "现有的基因检测方法存在有创且不能动态反映肿瘤整体基因状态的局限性，预后研究则多采用单一时间点靶转移灶的影像特征，忽略了肿瘤的空间异质性及其变化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 826,
+                "start_char": 827,
                 "end_char": 897
               },
               "version": "bfe716d27ecd35fd7cf2"
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac1ac5de12a9",
-          "name": "多参数MRI深度影像组学无创CMS影像标记物",
-          "desc": "借助多参数MRI与深度影像组学方法提出无创监测CMS的影像标记物，并融合全肝转移灶亚区域空间异质性特征与治疗早期变化特征构建预后融合模型。",
+          "id": "item-5e3abeb058c8",
+          "name": "MRI深度影像组学CMS影像标记物",
+          "desc": "无创监测CMS",
           "evidence": [
             {
-              "quote": "本项目拟借助多参数MRI，采用深度影像组学方法，提出一种无创性监测CMS的影像标记物",
+              "quote": "挖掘CRLM影像组学和深度图像特征，提出一种无创性监测CMS分子型的影像标记物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 902,
-                "end_char": 943
+                "start_char": 3196,
+                "end_char": 3234
               },
               "version": "bfe716d27ecd35fd7cf2"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3a61d672f2a7",
+          "name": "融合亚区域空间异质性与早期变化的深度影像组学模型",
+          "desc": "整合CMS、MRI特征与临床信息",
+          "evidence": [
+            {
+              "quote": "提出一种融合CRLM全肝转移灶的亚区域空间异质性特征和治疗早期空间异质性变化特征的深度影像组学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3254,
+                "end_char": 3302
+              },
+              "version": "bfe716d27ecd35fd7cf2"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,317 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e028c3be7d49",
-          "name": "发表SCI论文13篇与中文核心5篇",
-          "desc": "依托项目以第一或通讯作者（含共同）发表高水平SCI论文13篇、中文核心期刊5篇，并获山西省科技进步二等奖2项。",
+          "id": "item-34ce084481db",
+          "name": "论文与科技进步奖",
+          "desc": "SCI论文13篇，中文核心5篇，山西省科技进步二等奖2项",
           "evidence": [
             {
-              "quote": "以第一或通讯作者（含共同）发表在本领域高水平SCI论文13篇，中文核心期刊5篇，申报并成功获得山西省科技进步二等奖2项",
+              "quote": "在胃肠道肿瘤影像学研究方面以第一或通讯作者（含共同）发表在本领域高水平SCI论文13篇，中文核心期刊5篇，申报并成功获得山西省科技进步二等奖2项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3402,
+                "start_char": 3389,
                 "end_char": 3460
               },
               "version": "bfe716d27ecd35fd7cf2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c35e738e4a97"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-089a3a5359e0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative MRI Features Associated With Axillary Nodal Burden and Disease-Free Survival in Patients With Early-Stage Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Junjie;Yin Zhi;Zhang Jianxin;Song Ruirui;Cui Yanfen;Yang Xiaotang",
+      "id": "out-bff23a03e943",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative MRI Features Associated With Axillary Nodal Burden and Disease-Free Survival in Patients With Early-Stage Breast Cancer — Zhang Junjie;Yin Zhi;Zhang Jianxin;Song Ruirui;Cui Yanfen;Yang Xiaotang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3480,
+            "end_char": 3692
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-089a3a5359e0"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac1ac5de12a9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based deep learning radiomics nomogram for predicting the response to neoadjuvant chemotherapy in patients with locally advanced gastric cancer: A multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Jiayi Zhang;Zhenhui Li;Kaikai Wei;Ye Lei;Jialiang Ren;Lei Wu;Zhenwei Shi;Xiaochun Meng;Xiaotang Yang;Xin Gao",
+      "id": "out-38bcd36c5f3a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based deep learning radiomics nomogram for predicting the response to neoadjuvant chemotherapy in patients with locally advanced gastric cancer: A multicenter cohort study — Yanfen Cui;Jiayi Zhang;Zhenhui Li;Kaikai Wei;Ye Lei;Jialiang Ren;Lei Wu;Zhenwei Shi;Xiaochun Meng;Xiaotang Yang;Xin Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3697,
+            "end_char": 4001
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac1ac5de12a9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e028c3be7d49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A transformer-based deep learning model for early prediction of lymph node metastasis in locally advanced gastric cancer after neoadjuvant chemotherapy using pretreatment CT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Yunlin;Qiu Bingjiang;Liu Shunli;Song Ruirui;Yang Xianqi;Wu Lei;Chen Zhihong;Tuersun Abudouresuli;Yang Xiaotang;Wang Wei;Liu Zaiyi",
+      "id": "out-92df038e9126",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A transformer-based deep learning model for early prediction of lymph node metastasis in locally advanced gastric cancer after neoadjuvant chemotherapy using pretreatment CT images — Zheng Yunlin;Qiu Bingjiang;Liu Shunli;Song Ruirui;Yang Xianqi;Wu Lei;Chen Zhihong;Tuersun Abudouresuli;Yang Xiaotang;Wang Wei;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4006,
+            "end_char": 4330
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based multitask deep learning model for predicting tumor stroma ratio and treatment outcomes in patients with colorectal cancer: a multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Ke Zhao;Xiaochun Meng;Yun Mao;Chu Han;Zhenwei Shi;Xiaotang Yang;Tong Tong;Lei Wu;Zaiyi Liu",
+      "id": "out-db38d28ee61c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based multitask deep learning model for predicting tumor stroma ratio and treatment outcomes in patients with colorectal cancer: a multicenter cohort study — Yanfen Cui;Ke Zhao;Xiaochun Meng;Yun Mao;Chu Han;Zhenwei Shi;Xiaotang Yang;Tong Tong;Lei Wu;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4335,
+            "end_char": 4605
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal radiopathological integration for prognosis and prediction of adjuvant chemotherapy benefit in resectable lung adenocarcinoma: A multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-c9bd6949a5f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal radiopathological integration for prognosis and prediction of adjuvant chemotherapy benefit in resectable lung adenocarcinoma: A multicentre study — Lin Huan;Hua Junjie;Gong Zhengze;Chen Mingwei;Qiu Bingjiang;Wu Yuxin;He Wenfeng;Wang Yumeng;Feng Zhengyun;Liang Yanting;Long Wansheng;Li Ronggang;Kuang Qionglian;Chen Yingxin;Lu Jiawei;Luo Shiwei;Zhao Wei;Yan Lixu;Chen Xin;Shi Zhenwei;Xu Zeyan;Mo Ziyang;Liu Entao;Han Chu;Cui Yanfen;Yang Xiaotang;Chen Xiangmeng;Liu Jun;Pan Xipeng;Madabhushi Anant;Lu Cheng;Liu Zaiyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4610,
+            "end_char": 5142
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint-phase attention network for breast cancer segmentation in DCE-MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rian Huang;Zeyan Xu;Yu Xie;Hong Wu;Zixian Li;Yanfen Cui;Yingwen Huo;Chu Han;Xiaotang Yang;Zaiyi Liu;Yi Wang",
+      "id": "out-d7e1f2dd9b85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint-phase attention network for breast cancer segmentation in DCE-MRI — Rian Huang;Zeyan Xu;Yu Xie;Hong Wu;Zixian Li;Yanfen Cui;Yingwen Huo;Chu Han;Xiaotang Yang;Zaiyi Liu;Yi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5147,
+            "end_char": 5334
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multicenter evaluation of a weakly supervised deep learning model for lymph node diagnosis in rectal cancer on MRI.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Xia;Dandan Li;Wenguang He;Perry J Pickhardt;Junming Jian;Rui Zhang;Junjie Zhang;Ruirui Song;Tong Tong;Xiaotang Yang;Xin Gao;Yanfen Cui",
+      "id": "out-35f679da67db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multicenter evaluation of a weakly supervised deep learning model for lymph node diagnosis in rectal cancer on MRI. — Wei Xia;Dandan Li;Wenguang He;Perry J Pickhardt;Junming Jian;Rui Zhang;Junjie Zhang;Ruirui Song;Tong Tong;Xiaotang Yang;Xin Gao;Yanfen Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5339,
+            "end_char": 5601
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-based Radiomics Analysis for Prediction of Lymph Node Metastasis and Survival Outcome in Gastric Cancer: A Dual-center Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Ruirui;Chen Wujie;Zhang Junjie;Zhang Jianxin;Du Yan;Ren Jialiang;Shi Lei;Cui Yanfen;Yang Xiaotang",
+      "id": "out-d3c7fee16c2b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-based Radiomics Analysis for Prediction of Lymph Node Metastasis and Survival Outcome in Gastric Cancer: A Dual-center Study — Song Ruirui;Chen Wujie;Zhang Junjie;Zhang Jianxin;Du Yan;Ren Jialiang;Shi Lei;Cui Yanfen;Yang Xiaotang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5606,
+            "end_char": 5861
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "术前乳腺MRI联合腋窝超声预测乳腺浸润性导管癌脉管侵犯",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张俊杰;崔艳芬;杨晓棠;苗燕;张婷;杨钊",
+      "id": "out-db693562a297",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 术前乳腺MRI联合腋窝超声预测乳腺浸润性导管癌脉管侵犯 — 张俊杰;崔艳芬;杨晓棠;苗燕;张婷;杨钊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5866,
+            "end_char": 5922
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+      "id": "out-f0d8fd4c5b18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning predicts resistance to neoadjuvant chemotherapy for locally advanced gastric cancer: a multicenter study — Jiayi Zhang;Yanfen Cui;Kaikai Wei;Zhenhui Li;Dandan Li;Ruirui Song;Jialiang Ren;Xin Gao;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5928,
+            "end_char": 6156
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-based radiomics nomogram for preoperative prediction of lymphovascular invasion and clinical outcomes in patients with breast invasive ductal carcinoma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Zhang;Guanghui Wang;Jialiang Ren;Zhao Yang;Dandan Li;Yanfen Cui;Xiaotang Yang",
+      "id": "out-5f749ce75651",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-based radiomics nomogram for preoperative prediction of lymphovascular invasion and clinical outcomes in patients with breast invasive ductal carcinoma. — Junjie Zhang;Guanghui Wang;Jialiang Ren;Zhao Yang;Dandan Li;Yanfen Cui;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6162,
+            "end_char": 6427
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多参数MRI在预测及评估直肠癌靶向治疗疗效的影像基因组学研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨晓棠;崔艳芬;杜笑松;张建新;侯丽娜;辛磊;张俊杰;边泽宇",
+      "id": "out-e9f0ca45e83d",
+      "evidence": [
+        {
+          "quote": "[奖励] 基于多参数MRI在预测及评估直肠癌靶向治疗疗效的影像基因组学研究 — 杨晓棠;崔艳芬;杜笑松;张建新;侯丽娜;辛磊;张俊杰;边泽宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6433,
+            "end_char": 6502
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Features at Multiparametric MRI Predict Disease-Free Survival in Patients With Locally Advanced Rectal Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Guanghui Wang;Jialiang Ren;Lina Hou;Dandan Li;Qianfa Wen;Yanfeng Xi;Xiaotang Yang",
+      "id": "out-4113147e74f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Features at Multiparametric MRI Predict Disease-Free Survival in Patients With Locally Advanced Rectal Cancer — Yanfen Cui;Guanghui Wang;Jialiang Ren;Lina Hou;Dandan Li;Qianfa Wen;Yanfeng Xi;Xiaotang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6508,
+            "end_char": 6728
+          },
+          "version": "bfe716d27ecd35fd7cf2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

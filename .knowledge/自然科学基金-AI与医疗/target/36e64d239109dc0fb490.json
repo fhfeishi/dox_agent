@@ -2,15 +2,20 @@
   "doc_id": "36e64d239109dc0fb490",
   "version": "4a3b19b11bf6266ed2c5",
   "source_hash": "11bd6cb17956f3d7777c296a194bc6f20470f1ce26ad23c679fa21681280a4d0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.521562+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.967134+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f40250ff893",
-          "name": "NSCLC免疫微环境监测与疗效预测",
-          "desc": "PD-1/PD-L1免疫疗法在晚期非小细胞肺癌治疗中取得显著疗效，但存在超进展和假性进展等非常规应答现象，疗效早期精准预测至关重要。",
+          "id": "item-794d4c5988c8",
+          "name": "晚期NSCLC免疫治疗疗效预测",
+          "desc": "免疫抑制剂改善预后",
           "evidence": [
             {
-              "quote": "PD-1/PD-L1免疫疗法在晚期非小细胞肺癌治疗中取得显著的疗效，但存在超进展和假性进展等非常规应答现象，因此，疗效的早期精准预测至关重要",
+              "quote": "将免疫抑制剂应用于晚期NSCLC治疗中，能够改善患者的预后，显著延长生存期",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 680,
-                "end_char": 749
-              },
-              "version": "4a3b19b11bf6266ed2c5"
-            }
-          ]
-        },
-        {
-          "id": "item-89aabbd9db70",
-          "name": "辅助临床医生制定治疗决策",
-          "desc": "为监测晚期NSCLC免疫微环境提供无创可靠影像标志物，建立稳定高效疗效预测模型，辅助临床医生制定治疗决策。",
-          "evidence": [
-            {
-              "quote": "辅助临床医生制定治疗决策，具有较高的理论意义和应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1044,
-                "end_char": 1070
+                "start_char": 3138,
+                "end_char": 3174
               },
               "version": "4a3b19b11bf6266ed2c5"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b82404d51eb",
-          "name": "有创标志物无法全面表征微环境",
-          "desc": "有创性生物标志物既无法全面表征肿瘤微环境，也不适用于动态监测治疗效果。",
+          "id": "item-9272681bd7d5",
+          "name": "超进展、假性进展、耐药、毒副作用和价格昂贵",
+          "desc": "需无创疗效预测标志物",
           "evidence": [
             {
-              "quote": "运用病理检查监测肿瘤微环境中免疫特征可有效评估治疗疗效，但有创性的生物标志物既无法全面表征肿瘤微环境，也不适用于动态监测治疗效果",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 751,
-                "end_char": 814
-              },
-              "version": "4a3b19b11bf6266ed2c5"
-            }
-          ]
-        },
-        {
-          "id": "item-2ad44a5f9573",
-          "name": "亟需便捷无创疗效预测标志物",
-          "desc": "免疫治疗存在超进展、假性进展、耐药、毒副作用和药物价格昂贵等问题，亟需开发便捷无创的疗效预测标志物。",
-          "evidence": [
-            {
-              "quote": "但存在超进展、假性进展、耐药、毒副作用和药物价格昂贵等问题。因此，亟需开发便捷、无创的疗效预测标志物，建立预测模型评估治疗反应",
+              "quote": "但存在超进展、假性进展、耐药、毒副作用和药物价格昂贵等问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3176,
-                "end_char": 3238
+                "end_char": 3204
               },
               "version": "4a3b19b11bf6266ed2c5"
             }
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-316444c75218",
-          "name": "CT影像组学与深度特征挖掘",
-          "desc": "提取肺肿瘤的CT影像组学和深度图像特征，挖掘与免疫微环境特征高度相关的影像特征。",
-          "evidence": [
-            {
-              "quote": "提取肺肿瘤的CT影像组学和深度图像特征，挖掘与免疫微环境特征高度相关的影像特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 874,
-                "end_char": 912
-              },
-              "version": "4a3b19b11bf6266ed2c5"
-            }
-          ]
-        },
-        {
-          "id": "item-92de78c952c3",
-          "name": "动态变化特征与免疫微环境整合建模",
-          "desc": "量化分析治疗前和治疗中肺肿瘤影像动态变化特征，整合免疫微环境特征训练机器学习分类器构建疗效预测模型。",
-          "evidence": [
-            {
-              "quote": "量化分析治疗前和治疗中肺肿瘤影像的动态变化特征，并整合免疫微环境特征，训练机器学习分类器，构建疗效预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 914,
-                "end_char": 966
-              },
-              "version": "4a3b19b11bf6266ed2c5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-47def1f0ecab",
-          "name": "基线CT组学预测PFS平均AUC 0.73",
-          "desc": "开发基线CT影像组学模型预测晚期NSCLC免疫治疗疗效，预测无进展生存风险平均AUC为0.73。",
+          "id": "item-23281f116ca6",
+          "name": "基线CT影像组学模型",
+          "desc": "预测无进展生存风险",
           "evidence": [
             {
               "quote": "开发了基线CT影像组学模型预测晚期NSCLC免疫治疗疗效，结果显示预测无进展生存风险的平均AUC为0.73",
@@ -147,89 +82,273 @@
               "version": "4a3b19b11bf6266ed2c5"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-2b7c8b881f93",
-          "name": "短时随访CT模型AUC提升至0.82与0.87",
-          "desc": "构建短时随访CT影像组学模型，治疗前后影像组学变化特征所构建模型AUC可由0.64和0.52提升至0.82和0.87。",
+          "id": "item-4155c39c2606",
+          "name": "短时随访CT影像组学变化特征模型",
+          "desc": "治疗前后变化",
           "evidence": [
             {
-              "quote": "构建了短时随访CT影像组学模型无创预测晚期NSCLC免疫治疗疗效，在两个验证集中，相比于基线影像组学模型，运用治疗前后的影像组学变化特征所构建模型AUC可由0.64和0.52 提升至0.82和0.87",
+              "quote": "构建了短时随访CT影像组学模型无创预测晚期NSCLC免疫治疗疗效",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3505,
+                "end_char": 3536
+              },
+              "version": "4a3b19b11bf6266ed2c5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6c3b81a28e41",
+          "name": "注意力级联残差U-Net与CRF肺肿瘤分割",
+          "desc": "自动分割工具",
+          "evidence": [
+            {
+              "quote": "构建了基于注意力级联残差U-Net和条件随机场的肺肿瘤分割方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3607,
+                "end_char": 3637
+              },
+              "version": "4a3b19b11bf6266ed2c5"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-07c3e67946e1",
+          "name": "随访变化特征提升模型AUC",
+          "desc": "由0.64和0.52提升至0.82和0.87",
+          "evidence": [
+            {
+              "quote": "运用治疗前后的影像组学变化特征所构建模型AUC可由0.64和0.52 提升至0.82和0.87",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3558,
                 "end_char": 3604
               },
               "version": "4a3b19b11bf6266ed2c5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d5a43ee51d98",
-          "name": "肺肿瘤自动分割工具",
-          "desc": "构建基于注意力级联残差U-Net和条件随机场的肺肿瘤分割方法，两个中心数据集Dice系数分别为0.721和0.733。",
+          "id": "item-fcfae01e0a65",
+          "name": "EGFR突变状态预测",
+          "desc": "AUC 0.86和0.80",
           "evidence": [
             {
-              "quote": "构建了基于注意力级联残差U-Net和条件随机场的肺肿瘤分割方法，在两个中心的数据集测试，Dice系数为0.721和0.733，提供一个有效的肺肿瘤自动分割工具",
+              "quote": "在两个验证队列中AUC值可达0.86和0.80",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3607,
-                "end_char": 3685
+                "start_char": 3794,
+                "end_char": 3816
               },
               "version": "4a3b19b11bf6266ed2c5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文7篇、专利申请3项授权1项、软著1项",
+          "evidence": [
+            {
+              "quote": "发表SCI论文7篇，申请发明专利3项，授权1项，获得软件著作权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3910,
+                "end_char": 3942
+              },
+              "version": "4a3b19b11bf6266ed2c5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1f40250ff893"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0b82404d51eb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hybrid deep multi-task learning radiomics approach for predicting EGFR mutation status of non-small cell lung cancer in CT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Gong;Fangqiu Fu;Xiaowen Ma;Ting Wang;Xiangyi Ma;Chao You;Yang Zhang;Weijun Peng;Haiquan Chen;Yajia Gu",
+      "id": "out-7db81eef7853",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hybrid deep multi-task learning radiomics approach for predicting EGFR mutation status of non-small cell lung cancer in CT images — Jing Gong;Fangqiu Fu;Xiaowen Ma;Ting Wang;Xiangyi Ma;Chao You;Yang Zhang;Weijun Peng;Haiquan Chen;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4022,
+            "end_char": 4266
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b82404d51eb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-316444c75218"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多模态影像交互融合分析的肿瘤转移风险预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "龚敬;顾雅佳;朱正飞;童彤;倪建佼;王婷",
+      "id": "out-3f2bdebc3903",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多模态影像交互融合分析的肿瘤转移风险预测方法 — 龚敬;顾雅佳;朱正飞;童彤;倪建佼;王婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4271,
+            "end_char": 4324
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-316444c75218"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-47def1f0ecab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computer-aided diagnosis of ground glass pulmonary nodule by fusing deep learning and radiomics features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Xianfang;Gong Jing;Zhou Wei;Li Haiming;Wang Shengping;Wei Meng;Peng Weijun;Gu Yajia",
+      "id": "out-fc1666c94b42",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computer-aided diagnosis of ground glass pulmonary nodule by fusing deep learning and radiomics features — Hu Xianfang;Gong Jing;Zhou Wei;Li Haiming;Wang Shengping;Wei Meng;Peng Weijun;Gu Yajia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4528
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-92de78c952c3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2b7c8b881f93"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning-Based Stage-Wise Risk Stratification for Early Lung Adenocarcinoma in CT Images: A Multi-Center Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Gong;Jiyu Liu;Haiming Li;Hui Zhu;Tingting Wang;Tingdan Hu;Menglei Li;Xianwu Xia;Xianfang Hu;Weijun Peng;Shengping Wang;Tong Tong;Yajia Gu",
+      "id": "out-1d062b7dd09b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning-Based Stage-Wise Risk Stratification for Early Lung Adenocarcinoma in CT Images: A Multi-Center Study — Jing Gong;Jiyu Liu;Haiming Li;Hui Zhu;Tingting Wang;Tingdan Hu;Menglei Li;Xianwu Xia;Xianfang Hu;Weijun Peng;Shengping Wang;Tong Tong;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4533,
+            "end_char": 4799
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A “Seed-and-Soil” Radiomics Model Predicts Brain Metastasis Development in Lung Cancer: Implications for Risk-Stratified Prophylactic Cranial Irradiation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Chu;Jing Gong;Xi Yang;Jianjiao Ni;Yajia Gu;Zhengfei Zhu",
+      "id": "out-22d15d50f239",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A “Seed-and-Soil” Radiomics Model Predicts Brain Metastasis Development in Lung Cancer: Implications for Risk-Stratified Prophylactic Cranial Irradiation — Xiao Chu;Jing Gong;Xi Yang;Jianjiao Ni;Yajia Gu;Zhengfei Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 5026
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种磨玻璃肺结节分割方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "龚敬;顾雅佳;童彤;彭卫军;汤伟;李海明",
+      "id": "out-1d4bd987be7b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种磨玻璃肺结节分割方法及装置 — 龚敬;顾雅佳;童彤;彭卫军;汤伟;李海明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5031,
+            "end_char": 5073
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Volumetric segmentation of ground glass nodule based on 3D attentional cascaded residual U-Net and conditional random field",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hui Chen;Jiyu Liu;Liangjian Lu;Ting Wang;Xiaomin Xu;Aina Chu;Weijun Peng;Jing Gong;Wei Tang;Yajia Gu",
+      "id": "out-1968135a01e5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Volumetric segmentation of ground glass nodule based on 3D attentional cascaded residual U-Net and conditional random field — Hui Chen;Jiyu Liu;Liangjian Lu;Ting Wang;Xiaomin Xu;Aina Chu;Weijun Peng;Jing Gong;Wei Tang;Yajia Gu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5078,
+            "end_char": 5310
+          },
+          "version": "4a3b19b11bf6266ed2c5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

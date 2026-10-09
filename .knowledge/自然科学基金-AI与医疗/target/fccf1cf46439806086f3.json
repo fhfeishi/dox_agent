@@ -2,15 +2,20 @@
   "doc_id": "fccf1cf46439806086f3",
   "version": "3ab72fc660290bcd1e4e",
   "source_hash": "c2ab6b8e77229feeb465792e17d15057a2b4ee940b9046209a179547b9811595",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.212302+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:45:04.228576+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-64ec4da55b43",
-          "name": "IDH野生TERT突变型较低级别胶质瘤鉴别",
-          "desc": "存在IDH野生和TERT启动子突变的较低级别胶质瘤具有类似胶质母细胞瘤的分子特征且预后极差。",
-          "evidence": [
-            {
-              "quote": "存在IDH野生和TERT启动子突变的较低级别胶质瘤(IDHWT-TERTpMut LoG)具有类似胶质母细胞瘤的分子特征且预后极差",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 754
-              },
-              "version": "3ab72fc660290bcd1e4e"
-            }
-          ]
-        },
-        {
-          "id": "item-05f2d5388440",
-          "name": "胶质瘤精准治疗策略制定",
-          "desc": "对该亚型的早期预测将有助于制定精准治疗策略。",
-          "evidence": [
-            {
-              "quote": "对该亚型的早期预测将有助于制定精准治疗策略",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2562,
-                "end_char": 2582
-              },
-              "version": "3ab72fc660290bcd1e4e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-90647e9f02bb",
-          "name": "非增强GBM难与低级别星形细胞瘤鉴别",
-          "desc": "此类分子诊断GBM在术前MRI上常表现为非增强形式，使之难以同低级别星形细胞瘤鉴别。",
-          "evidence": [
-            {
-              "quote": "此类“分子诊断”的GBM在术前MRI上经常表现为非增强形式（NE-GBM），使之难以同低级别星形细胞瘤（LGA）鉴别",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2503,
-                "end_char": 2560
-              },
-              "version": "3ab72fc660290bcd1e4e"
-            }
-          ]
-        },
-        {
-          "id": "item-8b25698f5448",
-          "name": "需无创诊断NE-GBM",
-          "desc": "需通过对MRI数据行影像组学分析来实现NE-GBM无创性诊断。",
+          "id": "item-b9b84147da82",
+          "name": "NE-GBM无创诊断",
+          "desc": "IDH野生-TERT启动子突变",
           "evidence": [
             {
               "quote": "本课题紧随指南更新，通过对MRI数据行影像组学分析来实现NE-GBM无创性诊断",
@@ -91,36 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-d89abf4d983b",
-          "name": "多模态MRI影像组学建模",
-          "desc": "对T1、T2、FLAIR和ADC成像MRI数据进行影像组学分析，应用Scikit-Learn进行数据预处理和模型训练以鉴别NE-GBM。",
+          "id": "item-1a993545a641",
+          "name": "非增强GBM难以与低级别星形细胞瘤鉴别",
+          "desc": "分子诊断GBM",
           "evidence": [
             {
-              "quote": "对T1、T2、FLAIR和ADC成像MRI数据进行影像组学分析，应用Python中的Scikit-Learn模块进行数据预处理和模型训练以鉴别NE-GBM",
+              "quote": "此类“分子诊断”的GBM在术前MRI上经常表现为非增强形式（NE-GBM），使之难以同低级别星形细胞瘤（LGA）鉴别",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2776,
-                "end_char": 2852
-              },
-              "version": "3ab72fc660290bcd1e4e"
-            }
-          ]
-        },
-        {
-          "id": "item-8ffb4d23de71",
-          "name": "LASSO特征选择与多分类器比较",
-          "desc": "比较不同特征选择方法，其中LASSO回归表现最优，筛选出54个影像组学特征和年龄用于模型构建。",
-          "evidence": [
-            {
-              "quote": "将特征选择方法在不同的分类器下进行比较，其中LASSO回归方法表现最优，其筛选出54个影像组学特征和年龄用于模型构建",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3034,
-                "end_char": 3091
+                "start_char": 2503,
+                "end_char": 2560
               },
               "version": "3ab72fc660290bcd1e4e"
             }
@@ -129,30 +64,36 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-f1c8b2834b0a",
-          "name": "训练集AUC 1.000与准确率1.000",
-          "desc": "训练集中5个分类器平均曲线下面积和准确率分别为1.000和1.000，验证集中分别为0.998和0.980。",
+          "id": "item-312ede5c5803",
+          "name": "LASSO特征筛选与多分类器影像组学模型",
+          "desc": "T1、T2、FLAIR、ADC，54个特征与年龄",
           "evidence": [
             {
-              "quote": "在训练集中，5个分类器的平均曲线下面积和准确率分别为1.000和1.000；在验证集中分别为0.998和0.980",
+              "quote": "其中LASSO回归方法表现最优，其筛选出54个影像组学特征和年龄用于模型构建",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3230
+                "start_char": 3054,
+                "end_char": 3091
               },
               "version": "3ab72fc660290bcd1e4e"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-cf8634f977c9",
-          "name": "天坛与三博测试集表现",
-          "desc": "模型在天坛测试集上达到0.935和0.910，在三博测试集中分别为0.969和0.900。",
+          "id": "item-2d16d4f684db",
+          "name": "测试集性能",
+          "desc": "天坛测试集AUC 0.935，三博测试集0.969",
           "evidence": [
             {
               "quote": "在天坛测试集上分别达到0.935和0.910；在三博测试集中分别为0.969和0.900",
@@ -164,72 +105,174 @@
               "version": "3ab72fc660290bcd1e4e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-77ac67496e72",
-          "name": "NE-GBM与LGA临床影像差异",
-          "desc": "NE-GBM比LGA更容易发生在老年患者，且体积显著大于LGA，两者主要累及左侧额叶、岛叶和颞叶。",
-          "evidence": [
-            {
-              "quote": "NE-GBM比LGA更容易发生在老年患者（模型训练集，p<0.001；天坛测试集，p=0.005）。NE-GBM的体积显著大于LGA（模型训练集，p=0.015）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2861,
-                "end_char": 2941
-              },
-              "version": "3ab72fc660290bcd1e4e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-64ec4da55b43"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-90647e9f02bb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Depression, anxiety and health-related quality of life in paediatric intracranial germ cell tumor survivors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenyi Lv;Bo Li;Jin Feng;Li Chen;Xiaoguang Qiu;Shuai Liu",
+      "id": "out-449aade41928",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Depression, anxiety and health-related quality of life in paediatric intracranial germ cell tumor survivors — Wenyi Lv;Bo Li;Jin Feng;Li Chen;Xiaoguang Qiu;Shuai Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3393,
+            "end_char": 3564
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-90647e9f02bb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d89abf4d983b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Segmentation Framework With Unsupervised Learning-Based Label Mapper for the Ventricular Target of Intracranial Germ Cell Tumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianyu Wang;Shuai Liu;Ne Yang;Fang Chen;Longfei Ma;Guochen Ning;Hui Zhang;Xiaoguang Qiu;Hongen Liao",
+      "id": "out-bf82c0eb1c39",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Segmentation Framework With Unsupervised Learning-Based Label Mapper for the Ventricular Target of Intracranial Germ Cell Tumor — Xianyu Wang;Shuai Liu;Ne Yang;Fang Chen;Longfei Ma;Guochen Ning;Hui Zhang;Xiaoguang Qiu;Hongen Liao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3569,
+            "end_char": 3806
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d89abf4d983b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f1c8b2834b0a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The usefulness of [68Ga]Ga-DOTA-JR11 PET/CT in patients with meningioma: comparison with MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peipei Wang;Shuai Liu;Xiaojie Li;Xing Liu;Shaowu Li;Zhen Wu;Xin Cheng",
+      "id": "out-59de3e2cc647",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The usefulness of [68Ga]Ga-DOTA-JR11 PET/CT in patients with meningioma: comparison with MRI — Peipei Wang;Shuai Liu;Xiaojie Li;Xing Liu;Shaowu Li;Zhen Wu;Xin Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3811,
+            "end_char": 3981
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8ffb4d23de71"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf8634f977c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "T-Cell Exhaustion Status Under High and Low Levels of Hypoxia-Inducible Factor 1α Expression in Glioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Liu;Xing Liu;Chuanbao Zhang;Wei Shan;Xiaoguang Qiu",
+      "id": "out-072f37e46aa8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] T-Cell Exhaustion Status Under High and Low Levels of Hypoxia-Inducible Factor 1α Expression in Glioma — Shuai Liu;Xing Liu;Chuanbao Zhang;Wei Shan;Xiaoguang Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4153
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High-dose radiation associated with improved survival in IDH-wildtype low-grade glioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Liu;Yanwei Liu;Guanzhang Li;Jin Feng;Li Chen;Xiaoguang Qiu",
+      "id": "out-d159633dd5bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High-dose radiation associated with improved survival in IDH-wildtype low-grade glioma — Shuai Liu;Yanwei Liu;Guanzhang Li;Jin Feng;Li Chen;Xiaoguang Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4158,
+            "end_char": 4317
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "不同ATM基因表达水平的小脑幕上弥漫性胶质瘤中放射治疗剂量与生存预后的关系",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘帅;刘彦伟;刘幸;李一鸣;邱晓光",
+      "id": "out-5cbc67c4cd0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 不同ATM基因表达水平的小脑幕上弥漫性胶质瘤中放射治疗剂量与生存预后的关系 — 刘帅;刘彦伟;刘幸;李一鸣;邱晓光",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4322,
+            "end_char": 4385
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of high‐dose radiotherapy with improved survival in patients with newly diagnosed low‐grade gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanwei Liu;Shuai Liu;Guanzhang Li;Yanong Li;Li Chen;Jin Feng;Yong Yang;Tao Jiang;Xiaoguang Qiu",
+      "id": "out-df7c5bb95000",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of high‐dose radiotherapy with improved survival in patients with newly diagnosed low‐grade gliomas — Yanwei Liu;Shuai Liu;Guanzhang Li;Yanong Li;Li Chen;Jin Feng;Yong Yang;Tao Jiang;Xiaoguang Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4390,
+            "end_char": 4604
+          },
+          "version": "3ab72fc660290bcd1e4e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

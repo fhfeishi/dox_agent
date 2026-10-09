@@ -2,15 +2,20 @@
   "doc_id": "be80c9b2253d90eca7f3",
   "version": "7a383e3560b509fc47c9",
   "source_hash": "a2176b75c74b9c65b95a1deeb523fab5fcaaca3121944c2aeafaa6bfa3683426",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.209244+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:10.019763+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-494814c248be",
-          "name": "胰腺癌化疗耐药机制与超声预测",
-          "desc": "胰腺癌化疗耐药是其治疗领域最具挑战的科学问题，前期借助超声造影证实其微环境特征与化疗预后明显相关。",
+          "id": "item-ae077fa181c1",
+          "name": "胰腺癌新辅助化疗疗效预测",
+          "desc": "超声造影与外泌体蛋白组学",
           "evidence": [
             {
-              "quote": "胰腺癌化疗耐药是其治疗领域最具挑战的科学问题",
+              "quote": "胰腺癌恶性程度高、预后差，新辅助化疗是重要治疗手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 697,
-                "end_char": 718
-              },
-              "version": "7a383e3560b509fc47c9"
-            }
-          ]
-        },
-        {
-          "id": "item-65afb3708270",
-          "name": "为影像平台早期预测提供理论支撑",
-          "desc": "研究有望为胰腺癌化疗抵抗提供新的干预靶点，并为实现影像平台的早期预测及动态评估提供理论支撑。",
-          "evidence": [
-            {
-              "quote": "有望为胰腺癌化疗抵抗提供新的干预靶点，并为实现影像平台的早期预测及动态评估提供理论支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1053,
-                "end_char": 1095
+                "start_char": 2983,
+                "end_char": 3007
               },
               "version": "7a383e3560b509fc47c9"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1fa28a1fb875",
-          "name": "疗效个体差异显著且耐药机制复杂",
-          "desc": "胰腺癌恶性程度高、预后差，新辅助化疗疗效个体差异显著且耐药机制复杂，缺乏可靠的早期疗效预测工具和风险分层指标。",
+          "id": "item-53eb394d9cc0",
+          "name": "疗效个体差异显著、耐药机制复杂",
+          "desc": "缺乏可靠的早期疗效预测工具",
           "evidence": [
             {
-              "quote": "胰腺癌恶性程度高、预后差，新辅助化疗是重要治疗手段，但疗效个体差异显著且耐药机制复杂，缺乏可靠的早期疗效预测工具和风险分层指标",
+              "quote": "但疗效个体差异显著且耐药机制复杂，缺乏可靠的早期疗效预测工具和风险分层指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2983,
+                "start_char": 3009,
                 "end_char": 3045
-              },
-              "version": "7a383e3560b509fc47c9"
-            }
-          ]
-        },
-        {
-          "id": "item-ce2722c6f449",
-          "name": "CAFs亚型与通路转化调节影响耐药",
-          "desc": "CAFs的肌成纤维细胞与炎性成纤维细胞亚型可能从不同方向影响化疗耐药，TGF-β及IL-1/JAK/STAT通路对二者间转化调节起重要作用。",
-          "evidence": [
-            {
-              "quote": "最新研究提示CAFs的肌成纤维细胞与炎性成纤维细胞亚型可能从不同方向影响化疗耐药，TGF-β及IL-1/JAK/STAT通路则对二者间的转化调节起到重要作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 785,
-                "end_char": 862
               },
               "version": "7a383e3560b509fc47c9"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ce3ffc4b5713",
-          "name": "超声造影动态监测微环境影像表型",
-          "desc": "应用超声造影动态监测胰腺癌微环境影像表型变化，基于多模态超声影像和多尺度卷积神经网络挖掘高通量影像组学特征构建早期影像预测模型。",
+          "id": "item-85be60ca7ec5",
+          "name": "灰阶与超声造影多模态影像组学及视频深度学习预测模型",
+          "desc": "随机森林与视频深度学习",
           "evidence": [
             {
-              "quote": "同时应用超声造影动态监测胰腺癌微环境影像表型变化，并基于多模态超声影像和多尺度卷积神经网络（含残差机制），挖掘高通量影像组学特征，构建胰腺癌化疗耐药早期影像预测模型",
+              "quote": "基于灰阶及超声造影等多模态影像数据，构建了影像组学及深度学习预测模型，随机森林模型和基于视频的深度学习模型AUC分别达到0.88和0.90",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 944,
-                "end_char": 1025
+                "start_char": 3296,
+                "end_char": 3364
               },
               "version": "7a383e3560b509fc47c9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-beb580ed86f3",
-          "name": "外泌体蛋白组学解析通路调控",
-          "desc": "应用蛋白组学探讨外泌体中通路的调控变化与胰腺癌化疗耐药的相关性，构建动物模型结合超声影像进行机制探究。",
+          "id": "item-c29e5a6ba4fd",
+          "name": "外泌体蛋白组学分析",
+          "desc": "100例治疗前外周血",
           "evidence": [
             {
-              "quote": "应用蛋白组学探讨外泌体中上述通路的调控变化与胰腺癌化疗耐药的相关性，构建动物模型结合超声影像进行机制探究",
+              "quote": "项目完成100例患者治疗前外周血外泌体蛋白组学分析，系统探索影像表型与分子特征之间的关联",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 891,
-                "end_char": 942
+                "start_char": 3395,
+                "end_char": 3438
               },
               "version": "7a383e3560b509fc47c9"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,103 +108,274 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4567627254e",
-          "name": "超声造影血供模式与疗效预后相关",
-          "desc": "建立大规模胰腺癌新辅助化疗患者超声造影数据库，结果显示超声造影血供模式变化与化疗病理反应及预后密切相关。",
+          "id": "item-c99d5257c600",
+          "name": "胰腺癌新辅助化疗超声造影数据库",
+          "desc": "大规模",
           "evidence": [
             {
-              "quote": "对手术患者分析结果显示超声造影血供模式变化与化疗病理反应及预后密切相关",
+              "quote": "项目建立了大规模胰腺癌新辅助化疗患者超声造影数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3254,
-                "end_char": 3288
+                "start_char": 3162,
+                "end_char": 3186
               },
               "version": "7a383e3560b509fc47c9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-ec2693b12da1",
-          "name": "影像组学与深度学习模型AUC 0.88与0.90",
-          "desc": "基于多模态影像构建影像组学及深度学习预测模型，随机森林模型和基于视频的深度学习模型AUC分别达0.88和0.90。",
+          "id": "item-1e362f355e8a",
+          "name": "预测模型AUC",
+          "desc": "随机森林0.88，视频深度学习0.90",
           "evidence": [
             {
-              "quote": "构建了影像组学及深度学习预测模型，随机森林模型和基于视频的深度学习模型AUC分别达到0.88和0.90，显示出良好的预测性能和稳定性",
+              "quote": "随机森林模型和基于视频的深度学习模型AUC分别达到0.88和0.90",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3314,
-                "end_char": 3379
+                "start_char": 3331,
+                "end_char": 3364
               },
               "version": "7a383e3560b509fc47c9"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1701638a5a07",
-          "name": "Hippo通路差异蛋白表达",
-          "desc": "通路富集分析提示YWHAH、SMAD2及PPP1CA等关键蛋白在Hippo信号通路中差异表达，提示超声微血管表型可能通过Hippo-YAP/TAZ相关信号轴影响微环境。",
-          "evidence": [
-            {
-              "quote": "通路富集分析提示YWHAH、SMAD2及PPP1CA等关键蛋白在Hippo信号通路中差异表达",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3467,
-                "end_char": 3512
-              },
-              "version": "7a383e3560b509fc47c9"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-494814c248be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1fa28a1fb875"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "功能和定量影像学评估及预测新辅助治疗用于胰腺癌效果研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "颜晓一;桂阳;邵禹铭;姜玉新;吕珂",
+      "id": "out-ceb28854757b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 功能和定量影像学评估及预测新辅助治疗用于胰腺癌效果研究进展 — 颜晓一;桂阳;邵禹铭;姜玉新;吕珂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3770,
+            "end_char": 3825
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1fa28a1fb875"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ce3ffc4b5713"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy of color Doppler ultrasound and contrast-enhanced ultrasound in identifying vascular invasion in pancreatic ductal adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wan-Ying Jia;Yang Gui;Xue-Qi Chen;Li Tan;Jing Zhang;Meng-Su Xiao;Xiao-Yan Chang;Meng-Hua Dai;Jun-Chao Guo;Yue-Juan Cheng;Xiang Wang;Jia-Hui Zhang;Xiao-Qian Zhang;Ke Lv",
+      "id": "out-ada8554c1337",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy of color Doppler ultrasound and contrast-enhanced ultrasound in identifying vascular invasion in pancreatic ductal adenocarcinoma — Wan-Ying Jia;Yang Gui;Xue-Qi Chen;Li Tan;Jing Zhang;Meng-Su Xiao;Xiao-Yan Chang;Meng-Hua Dai;Jun-Chao Guo;Yue-Juan Cheng;Xiang Wang;Jia-Hui Zhang;Xiao-Qian Zhang;Ke Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 4144
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ce3ffc4b5713"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ec2693b12da1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声影像特征联合临床指标对胰腺导管腺癌预后的预测价值评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁华;吕珂;桂阳;陈雪琪;陈天娇;谭莉;戴梦华;王维斌;郭俊超;徐强;王浣钰;颜晓一;贾琬莹;邵禹铭",
+      "id": "out-8ff4b67f22ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声影像特征联合临床指标对胰腺导管腺癌预后的预测价值评估 — 梁华;吕珂;桂阳;陈雪琪;陈天娇;谭莉;戴梦华;王维斌;郭俊超;徐强;王浣钰;颜晓一;贾琬莹;邵禹铭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4149,
+            "end_char": 4236
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-beb580ed86f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1701638a5a07"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "从慢性胰腺炎到胰腺癌:转化机制、影像学评估及预防治疗策略",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁华;吕珂;姜玉新",
+      "id": "out-1eb329665069",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 从慢性胰腺炎到胰腺癌:转化机制、影像学评估及预防治疗策略 — 梁华;吕珂;姜玉新",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4241,
+            "end_char": 4287
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声造影临床应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕珂;李建初;姜玉新",
+      "id": "out-6eb72373ac78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声造影临床应用进展 — 吕珂;李建初;姜玉新",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4292,
+            "end_char": 4321
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pancreatic ductal adenocarcinoma with synchronous and metachronous hepatic metastasis predicted by contrast- enhanced ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾琬莹;吕珂",
+      "id": "out-dce02b6a8ada",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pancreatic ductal adenocarcinoma with synchronous and metachronous hepatic metastasis predicted by contrast- enhanced ultrasound — 贾琬莹;吕珂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4326,
+            "end_char": 4469
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of the diagnostic performance of the EFSUMB CEUS Pancreatic Applications guidelines (2017 version): a retrospective single-center analysis of 455 solid pancreatic masses.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wan-ying Jia;Yang Gui;Xue-qi Chen;Xiao-qian Zhang;Jia-hui Zhang;Meng-hua Dai;Jun-chao Guo;Xiao-yan Chang;Li Tan;Chun-mei Bai;Yue-juan Cheng;Jian-chu Cheng;Ke Lv;Yu-xin Jiang",
+      "id": "out-004b3e01afba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of the diagnostic performance of the EFSUMB CEUS Pancreatic Applications guidelines (2017 version): a retrospective single-center analysis of 455 solid pancreatic masses. — Wan-ying Jia;Yang Gui;Xue-qi Chen;Xiao-qian Zhang;Jia-hui Zhang;Meng-hua Dai;Jun-chao Guo;Xiao-yan Chang;Li Tan;Chun-mei Bai;Yue-juan Cheng;Jian-chu Cheng;Ke Lv;Yu-xin Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4837
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of the diagnostic efficacy of liquid-based cytology obtained via percutaneous ultrasound-guided fine-needle aspiration for pancreatic masses: a large tertiary center's 8-year experience",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Xiaoyi;Zhou Guili;Ji Jiaqi;Gui Yang;Chang Xiaoyan;Zhang Jing;Lv Ke;Tan Li",
+      "id": "out-6d86211b3ee3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of the diagnostic efficacy of liquid-based cytology obtained via percutaneous ultrasound-guided fine-needle aspiration for pancreatic masses: a large tertiary center's 8-year experience — Yan Xiaoyi;Zhou Guili;Ji Jiaqi;Gui Yang;Chang Xiaoyan;Zhang Jing;Lv Ke;Tan Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4842,
+            "end_char": 5124
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a nomogram model based on pretreatment ultrasound and contrast-enhanced ultrasound to predict the efficacy of neoadjuvant chemotherapy in patients with borderline resectable or locally advanced pancreatic cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyi Yan;Xianshui Fu;Yang Gui;Xueqi Chen;Yuejuan Cheng;Menghua Dai;Weibin Wang;Mengsu Xiao;Li Tan;Jing Zhang;Yuming Shao;Huanyu Wang;Xiaoyan Chang;Ke Lv",
+      "id": "out-1f937b2afad2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a nomogram model based on pretreatment ultrasound and contrast-enhanced ultrasound to predict the efficacy of neoadjuvant chemotherapy in patients with borderline resectable or locally advanced pancreatic cancer — Xiaoyi Yan;Xianshui Fu;Yang Gui;Xueqi Chen;Yuejuan Cheng;Menghua Dai;Weibin Wang;Mengsu Xiao;Li Tan;Jing Zhang;Yuming Shao;Huanyu Wang;Xiaoyan Chang;Ke Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5129,
+            "end_char": 5533
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胰腺疾病超声图解100例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕珂;蒋天安;王晓曼",
+      "id": "out-cedc4b72996f",
+      "evidence": [
+        {
+          "quote": "[专著] 胰腺疾病超声图解100例 — 吕珂;蒋天安;王晓曼",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5539,
+            "end_char": 5568
+          },
+          "version": "7a383e3560b509fc47c9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

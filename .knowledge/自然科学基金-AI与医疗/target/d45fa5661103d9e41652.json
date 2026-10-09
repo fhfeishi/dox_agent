@@ -2,15 +2,20 @@
   "doc_id": "d45fa5661103d9e41652",
   "version": "1ead106ee6813ba64828",
   "source_hash": "7c11748862b8e0cd95cdcfeaf8aaee3c7a5c07794d9c163be70eba70edef6683",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:22.761522+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:55.773262+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ddfb8a7dc7f",
-          "name": "糖尿病肾病早期诊断眼底筛查",
-          "desc": "糖尿病肾病患病率不断升高，早期干预可极大延缓疾病进程、改善预后。",
+          "id": "item-a368726462bf",
+          "name": "糖尿病肾病早期无创筛查",
+          "desc": "眼底图像",
           "evidence": [
             {
-              "quote": "近年来，糖尿病肾病患病率不断升高，为人群健康和社会经济造成巨大负担。早期干预可极大延缓疾病进程，改善预后",
+              "quote": "眼底照相具有无创筛查糖尿病肾病的潜在价值",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 650,
-                "end_char": 701
-              },
-              "version": "1ead106ee6813ba64828"
-            }
-          ]
-        },
-        {
-          "id": "item-f48a01578d5c",
-          "name": "社区筛查与早期辅助诊断",
-          "desc": "研究为糖尿病肾病的社区筛查和早期辅助诊断提供有效工具。",
-          "evidence": [
-            {
-              "quote": "为糖尿病肾病的社区筛查和早期辅助诊断提供有效工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1025,
-                "end_char": 1048
+                "start_char": 3588,
+                "end_char": 3607
               },
               "version": "1ead106ee6813ba64828"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6269e9ba9bf7",
-          "name": "肾活检有条件限制且依从性低",
-          "desc": "许多糖尿病肾病患者早期不出现蛋白尿，肾活检有条件限制和依从性低，给早期发现带来困难。",
+          "id": "item-def2685daca9",
+          "name": "确诊依赖肾穿刺活检，无法在早期筛查推广",
+          "desc": "早期诊断",
           "evidence": [
             {
-              "quote": "目前对糖尿病肾病的早期发现主要依靠尿蛋白和肾活检，由于许多患者早期不出现蛋白尿，肾活检又有条件限制和依从性低等缺点，给早期发现带来困难",
+              "quote": "临床确诊糖尿病肾病依赖肾脏穿刺活检手术，该方式对检查环境和医师技术均有极高要求，无法在疾病早期筛查中广泛推广",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 703,
-                "end_char": 769
-              },
-              "version": "1ead106ee6813ba64828"
-            }
-          ]
-        },
-        {
-          "id": "item-3f7f4dbbc4d3",
-          "name": "确诊依赖肾穿刺难以早期筛查推广",
-          "desc": "临床确诊糖尿病肾病依赖肾穿刺活检，对检查环境和医师技术均有极高要求，无法在疾病早期筛查中广泛推广。",
-          "evidence": [
-            {
-              "quote": "然而，临床确诊糖尿病肾病依赖肾脏穿刺活检手术，该方式对检查环境和医师技术均有极高要求，无法在疾病早期筛查中广泛推广",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2886,
+                "start_char": 2889,
                 "end_char": 2942
               },
               "version": "1ead106ee6813ba64828"
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f088bfa3f18",
-          "name": "深度卷积网络量化眼底微血管病变",
-          "desc": "应用深度卷积神经网络将眼底微小血管病变图像数字化为连续或有序变量，结合肾功能检查与肾活检构建机器学习模型。",
+          "id": "item-2b5d58ff3de8",
+          "name": "眼底血管形态学与肾脏病理形态学相关分析",
+          "desc": "线性相关分析",
           "evidence": [
             {
-              "quote": "本研究拟应用深度卷积神经网络算法，将糖尿病肾病患者眼底微小血管病变图像数字化为多个连续或有序变量，结合患者肾功能检查及肾活检，构建眼底镜检图像评判受检者肾脏功能的人工智能机器学习模型",
+              "quote": "将数据和眼底血管图像进行线性相关分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 806,
-                "end_char": 896
-              },
-              "version": "1ead106ee6813ba64828"
-            }
-          ]
-        },
-        {
-          "id": "item-5619dfe23f3e",
-          "name": "多种算法建立眼底肾功能预测模型",
-          "desc": "使用典型相关分析、偏最小二乘判别分析、随机森林和Lasso-cox比例风险回归建立眼底—肾功能预测模型。",
-          "evidence": [
-            {
-              "quote": "在前期所建立的“河南省慢性肾脏病队列”基础上，使用典型相关分析、偏最小二乘判别分析、随机森林和Lasso-cox比例风险回归，建立眼底—肾功能预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 972
-              },
-              "version": "1ead106ee6813ba64828"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-015909493017",
-          "name": "视网膜病变增加肾病风险",
-          "desc": "糖尿病肾病患者糖尿病视网膜病变患病率显著高于糖尿病患者，罹患视网膜病变会增加2.39倍肾病发生风险。",
-          "evidence": [
-            {
-              "quote": "糖尿病肾病患者糖尿病视网膜病变患病率显著高于糖尿病患者 （75.8% vs 46.7%），罹患糖尿病视网膜病变会增加2.39倍糖尿病肾病发生风险",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3120,
-                "end_char": 3191
+                "start_char": 3395,
+                "end_char": 3412
               },
               "version": "1ead106ee6813ba64828"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-f5604459c0a2",
-          "name": "孟德尔随机化提示因果关系",
-          "desc": "孟德尔随机化分析结果显示糖尿病视网膜病变与糖尿病肾病的发生具有因果关系。",
+          "id": "item-8a0e0ae48007",
+          "name": "孟德尔随机化分析",
+          "desc": "DR与DKD因果",
           "evidence": [
             {
               "quote": "孟德尔随机化分析结果显示，糖尿病视网膜病变和糖尿病肾病的发生具有因果关系",
@@ -164,72 +99,176 @@
               "version": "1ead106ee6813ba64828"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-d97f23cd9fae",
-          "name": "眼底参数与肾病理特征相关",
-          "desc": "眼底血管形态学指标与肾病发生、尿蛋白增加、肾功能下降进展相关，与肾小球系膜区宽度等病理参数相关系数均高于50%。",
+          "id": "item-1ba900c470ef",
+          "name": "DR患病率与肾病风险",
+          "desc": "75.8% vs 46.7%，风险增加2.39倍",
           "evidence": [
             {
-              "quote": "与肾小球系膜区宽度正负相关的眼底参数包括黄斑水肿、出血点个数、微血管瘤个数、动静脉比等",
+              "quote": "糖尿病肾病患者糖尿病视网膜病变患病率显著高于糖尿病患者 （75.8% vs 46.7%），罹患糖尿病视网膜病变会增加2.39倍糖尿病肾病发生风险",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3418,
-                "end_char": 3460
+                "start_char": 3120,
+                "end_char": 3191
               },
               "version": "1ead106ee6813ba64828"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3ddfb8a7dc7f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6269e9ba9bf7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习模型的2型糖尿病患者视网膜微血管形态学特征与糖尿病肾病的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨雪柯;刘章锁;李广普;段家宇;刘东伟",
+      "id": "out-26f3932c356c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于机器学习模型的2型糖尿病患者视网膜微血管形态学特征与糖尿病肾病的相关性 — 杨雪柯;刘章锁;李广普;段家宇;刘东伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3626,
+            "end_char": 3691
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6269e9ba9bf7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8f088bfa3f18"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interactions of Vitamin D Receptor Polymorphisms with Hypertriglyceridemia and Obesity in Chinese Individuals Susceptible to Hypertension and Diabetes Comorbidity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Hualei;Zhao Tong;Zhang Dongdong;Feng Mingming;Xu Ze;Huang Haoyue;Zhang Luoya;Li Wenjie;Li Xing;Duan Jiayu;Li Jia",
+      "id": "out-5874e3c7dded",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interactions of Vitamin D Receptor Polymorphisms with Hypertriglyceridemia and Obesity in Chinese Individuals Susceptible to Hypertension and Diabetes Comorbidity — Sun Hualei;Zhao Tong;Zhang Dongdong;Feng Mingming;Xu Ze;Huang Haoyue;Zhang Luoya;Li Wenjie;Li Xing;Duan Jiayu;Li Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3696,
+            "end_char": 3983
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8f088bfa3f18"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-015909493017"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel immune cross-talk between inflammatory bowel disease and IgA nephropathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qianqian Yan;Zihao Zhao;Dongwei Liu;Jia Li;Shaokang Pan;Jiayu Duan;Zhangsuo Liu",
+      "id": "out-36d58b05af12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel immune cross-talk between inflammatory bowel disease and IgA nephropathy — Qianqian Yan;Zihao Zhao;Dongwei Liu;Jia Li;Shaokang Pan;Jiayu Duan;Zhangsuo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4154
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5619dfe23f3e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d97f23cd9fae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "河南省城乡40岁以上糖尿病患者慢性肾脏病患病率及其相关因素",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "段家宇;刘东伟;潘少康;赵子豪;刘章锁",
+      "id": "out-10491a7fc4b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 河南省城乡40岁以上糖尿病患者慢性肾脏病患病率及其相关因素 — 段家宇;刘东伟;潘少康;赵子豪;刘章锁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4159,
+            "end_char": 4216
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated analysis of RNA methylation regulators crosstalk and immune infiltration for predictive and personalized therapy of diabetic nephropathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Li;Dongwei Liu;Jingjing Ren;Guangpu Li;Zihao Zhao;Huanhuan Zhao;Qianqian Yan;Jiayu Duan;Zhangsuo Liu",
+      "id": "out-ada962a0bbb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated analysis of RNA methylation regulators crosstalk and immune infiltration for predictive and personalized therapy of diabetic nephropathy — Jia Li;Dongwei Liu;Jingjing Ren;Guangpu Li;Zihao Zhao;Huanhuan Zhao;Qianqian Yan;Jiayu Duan;Zhangsuo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4481
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated analysis for treatment scheme of sodium–glucose cotransporter 2 inhibitors in patients with diabetic kidney disease: a real-world study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Fang;Guangpu Li;Jingjing Ren;Jiayu Duan;Jiancheng Dong;Zhangsuo Liu",
+      "id": "out-cece2a84bd0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated analysis for treatment scheme of sodium–glucose cotransporter 2 inhibitors in patients with diabetic kidney disease: a real-world study — Li Fang;Guangpu Li;Jingjing Ren;Jiayu Duan;Jiancheng Dong;Zhangsuo Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4486,
+            "end_char": 4711
+          },
+          "version": "1ead106ee6813ba64828"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

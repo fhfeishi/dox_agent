@@ -2,15 +2,20 @@
   "doc_id": "31b2d82daf4a759a8135",
   "version": "4cdbae750c2fd438a178",
   "source_hash": "c2b66bc87e01eb8a81e3c34e40ae97fcad13e5a8e6708c969f84573947c76461",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.842856+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:45.088724+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-786901a8f073",
           "name": "肺癌影像组学多视图学习",
-          "desc": "面向肺癌无创低成本精确诊断需求，研究影像组学多视图学习理论与算法并验证于免疫治疗标志物预测。",
+          "desc": "多视图完备表征",
           "evidence": [
             {
-              "quote": "肺癌是对我国人民生命健康危害最大的恶性肿瘤，利用影像组学进行无创、低成本、精确诊断已成为肺癌临床个性化精准治疗的迫切需求",
+              "quote": "项目围绕着肺癌影像数据的多视图完备表征这一科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 712
+                "start_char": 2915,
+                "end_char": 2939
               },
               "version": "4cdbae750c2fd438a178"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2af8e7d1bd3f",
-          "name": "影像组学特征关联复杂致综合分析能力不足",
-          "desc": "影像组学特征关联复杂，现有影像组学技术综合分析能力显著不足，亟需开展多视图学习理论与算法研究。",
+          "id": "item-80bc53580255",
+          "name": "冗余视图、标注受限与跨中心泛化三大难题",
+          "desc": "多视图学习瓶颈",
           "evidence": [
             {
-              "quote": "然而，影像组学特征关联复杂，现有影像组学技术综合分析能力显著不足",
+              "quote": "重点突破了多视图数据集冗余/噪声视图的约减提纯、标注资源受限条件下多视图学习、多视图学习模型跨中心部署的泛化性三个难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 714,
-                "end_char": 745
+                "start_char": 2941,
+                "end_char": 2999
               },
               "version": "4cdbae750c2fd438a178"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e8aa056978b",
-          "name": "结构+统计多视图完备表征与半监督结构化学习",
-          "desc": "研究肺癌影像“结构+统计”多视图完备表征模型，并突破特征提取与视图选择、多视图半监督高阶结构化表征学习、跨域自适应迁移等关键技术。",
+          "id": "item-c81db2bff6f6",
+          "name": "结构+统计多视图张量完备表征模型",
+          "desc": "联合约束",
           "evidence": [
             {
-              "quote": "研究肺癌影像“结构+统计”多视图完备表征模型，奠定项目的核心理论基础",
+              "quote": "建立了基于“结构+统计”联合约束的肺癌影像多视图张量完备表征模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 868,
-                "end_char": 901
+                "start_char": 3022,
+                "end_char": 3053
               },
               "version": "4cdbae750c2fd438a178"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c1bec24addc4",
+          "name": "多视图半监督高阶结构化表征学习",
+          "desc": "标注受限条件",
+          "evidence": [
+            {
+              "quote": "多视图半监督高阶结构化表征学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 922,
+                "end_char": 936
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-458b94d77b13",
+          "name": "多视图模型跨域自适应迁移",
+          "desc": "跨中心泛化",
+          "evidence": [
+            {
+              "quote": "多视图学习模型的跨域自适应迁移等关键技术的突破",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3117,
+                "end_char": 3139
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,662 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0bc42c95618a",
-          "name": "发表CCF A类会议与SCI论文30篇",
-          "desc": "以第一/通讯作者发表CCF A类会议和SCI高水平论文30篇（IEEE Transactions 10篇），申请国家发明专利2项、软件著作权1项，培养博士9人、硕士4人。",
+          "id": "item-fbf0658f5cb1",
+          "name": "医学影像智能标注系统与生存分析预测系统",
+          "desc": "原型系统",
           "evidence": [
             {
-              "quote": "以第一/通讯作者身份发表CCF A类会议和SCI高水平论文30篇，其中IEEE Transactions（国际电气工程师学会会刊）10篇",
+              "quote": "研发了医学影像智能标注系统以及肿瘤患者生存分析预测系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3237,
-                "end_char": 3304
+                "start_char": 3151,
+                "end_char": 3177
               },
               "version": "4cdbae750c2fd438a178"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "CCF A类会议与SCI论文30篇",
+          "evidence": [
+            {
+              "quote": "以第一/通讯作者身份发表CCF A类会议和SCI高水平论文30篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3237,
+                "end_char": 3268
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3732a1a3e9b6",
+          "name": "中国自动化学会自然科学二等奖",
+          "desc": "2024年",
+          "evidence": [
+            {
+              "quote": "相关研究成果荣获2024年“中国自动化学会自然科学二等奖”",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3367,
+                "end_char": 3395
+              },
+              "version": "4cdbae750c2fd438a178"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-786901a8f073"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2af8e7d1bd3f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Structure-Aware Invariant Learning Framework for Node-Level Graph OOD Generalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yongqiang Tang;Wensheng Zhang",
+      "id": "out-901f93a08ca2",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Structure-Aware Invariant Learning Framework for Node-Level Graph OOD Generalization — Ruiwen Yuan;Yongqiang Tang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3491,
+            "end_char": 3627
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2af8e7d1bd3f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5e8aa056978b"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2024年第九届全国大学生生物医学工程创新设计竞赛:二等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐永强;牛景昊;崔畅;任俊宏;王耘田;肖洋好;陈锐",
+      "id": "out-1c32face7b0f",
+      "evidence": [
+        {
+          "quote": "[奖励] 2024年第九届全国大学生生物医学工程创新设计竞赛:二等奖 — 唐永强;牛景昊;崔畅;任俊宏;王耘田;肖洋好;陈锐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3632,
+            "end_char": 3693
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e8aa056978b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0bc42c95618a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "北京市“青年人才托举工程”",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐永强",
+      "id": "out-aea9b8de7b23",
+      "evidence": [
+        {
+          "quote": "[奖励] 北京市“青年人才托举工程” — 唐永强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3698,
+            "end_char": 3721
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IDO: Instance Dual-Optimization for Weakly Supervised Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhida Ren;Yongqiang Tang;Wensheng Zhang",
+      "id": "out-ff0daf325405",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IDO: Instance Dual-Optimization for Weakly Supervised Object Detection — Zhida Ren;Yongqiang Tang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3726,
+            "end_char": 3844
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Constrained Maximum Cross-domain Likelihood for Domain Generalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianxin Lin;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+      "id": "out-32fa79410cf6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Constrained Maximum Cross-domain Likelihood for Domain Generalization — Jianxin Lin;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 3981
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Contrastive Survival Analysis with Dual-View Clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chang Cui;Yongqiang Tang;Wensheng Zhang",
+      "id": "out-75936fe8da41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Contrastive Survival Analysis with Dual-View Clustering — Chang Cui;Yongqiang Tang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3986,
+            "end_char": 4094
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Functional Connectivity Neural Network for Epileptic Seizure Prediction Using Multi-Channel EEG Signal",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Xu;Yajing Wu;Yongqiang Tang;Wensheng Zhang;Zhihua Cui",
+      "id": "out-3b446c766031",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic Functional Connectivity Neural Network for Epileptic Seizure Prediction Using Multi-Channel EEG Signal — Tao Xu;Yajing Wu;Yongqiang Tang;Wensheng Zhang;Zhihua Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4099,
+            "end_char": 4275
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IBCS: Learning Information Bottleneck-Constrained Denoised Causal Subgraph for Graph Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yongqiang Tang;Yanghao Xiao;Wensheng Zhang",
+      "id": "out-cfa53cf37b51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IBCS: Learning Information Bottleneck-Constrained Denoised Causal Subgraph for Graph Classification — Ruiwen Yuan;Yongqiang Tang;Yanghao Xiao;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4280,
+            "end_char": 4442
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Consistency and Adversarial Semi-supervised Learning for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongqiang Tang;Shilei Wang;Yuxun Qu;Zhihua Cui;Wensheng Zhang",
+      "id": "out-a6687be81fce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Consistency and Adversarial Semi-supervised Learning for Medical Image Segmentation — Yongqiang Tang;Shilei Wang;Yuxun Qu;Zhihua Cui;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4447,
+            "end_char": 4600
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LoRAP: Transformer Sub-Layers Deserve Differentiated Structured Compression for Large Language Models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangyan Li;Yongqiang Tang;Wensheng Zhang",
+      "id": "out-1abefb67e763",
+      "evidence": [
+        {
+          "quote": "[会议论文] LoRAP: Transformer Sub-Layers Deserve Differentiated Structured Compression for Large Language Models — Guangyan Li;Yongqiang Tang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4606,
+            "end_char": 4757
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-Supervised Graph Structure Learning via Dual Reinforcement of Label and Prior Structure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Jinghao Niu;Wensheng Zhang",
+      "id": "out-0646b9e384ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-Supervised Graph Structure Learning via Dual Reinforcement of Label and Prior Structure — Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Jinghao Niu;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4763,
+            "end_char": 4927
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Shapley Value-based Class Activation Mapping for Improved Explainability in Neural Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huaiguang Cai;Yang Yang;Yongqiang Tang;Zhengya Sun;Wensheng Zhang",
+      "id": "out-d508d50ef473",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Shapley Value-based Class Activation Mapping for Improved Explainability in Neural Networks — Huaiguang Cai;Yang Yang;Yongqiang Tang;Zhengya Sun;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4933,
+            "end_char": 5098
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mitigating Both Covariate and Conditional Shift for Domain Generalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianxin Lin;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+      "id": "out-b3177b94415f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Mitigating Both Covariate and Conditional Shift for Domain Generalization — Jianxin Lin;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5104,
+            "end_char": 5240
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于信息瓶颈与因果学习的因果子图提取方法、装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐永强;苑瑞文;张文生",
+      "id": "out-08722744ef5e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于信息瓶颈与因果学习的因果子图提取方法、装置 — 唐永强;苑瑞文;张文生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5287
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SASOD: Saliency-Aware Ship Object Detection in High-Resolution Optical Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhida Ren;Yongqiang Tang;Yang Yang;Wensheng Zhang",
+      "id": "out-ad961523b125",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SASOD: Saliency-Aware Ship Object Detection in High-Resolution Optical Images — Zhida Ren;Yongqiang Tang;Yang Yang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5293,
+            "end_char": 5428
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Open Set Domain Adaptation with Latent Structure Discovery and Kernelized Classifier Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongqiang Tang;Lei Tian;Wensheng Zhang",
+      "id": "out-13784de217cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Open Set Domain Adaptation with Latent Structure Discovery and Kernelized Classifier Learning — Yongqiang Tang;Lei Tian;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5434,
+            "end_char": 5574
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Active Learning with Effective Scoring Functions for Semi-supervised Temporal Action Localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Li;Xuebing Yang;Yongqiang Tang;Chenyang Zhang;Wensheng Zhang",
+      "id": "out-6f574b7adf4a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Active Learning with Effective Scoring Functions for Semi-supervised Temporal Action Localization — Ding Li;Xuebing Yang;Yongqiang Tang;Chenyang Zhang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5580,
+            "end_char": 5751
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph Structure Aware Contrastive Multi-view Clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Chen;Yongqiang Tang;Xiangrui Cai;Xiaojie Yuan;Wenlong Feng;Wensheng Zhang",
+      "id": "out-4638a5d5c810",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graph Structure Aware Contrastive Multi-view Clustering — Rui Chen;Yongqiang Tang;Xiangrui Cai;Xiaojie Yuan;Wenlong Feng;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5757,
+            "end_char": 5898
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Addressing Hidden Confounding with Heterogeneous Observational Datasets for Recommendation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanghao Xiao;Haoxuan Li;Yongqiang Tang;Wensheng Zhang",
+      "id": "out-a7e794ba2b2b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Addressing Hidden Confounding with Heterogeneous Observational Datasets for Recommendation — Yanghao Xiao;Haoxuan Li;Yongqiang Tang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5904,
+            "end_char": 6056
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Affine Subspace Robust Low-Rank Self-Representation: from Matrix to Tensor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongqiang Tang;Yuan Xie;Wensheng Zhang",
+      "id": "out-70be7098334f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Affine Subspace Robust Low-Rank Self-Representation: from Matrix to Tensor — Yongqiang Tang;Yuan Xie;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6062,
+            "end_char": 6183
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clustering Enhanced Multiplex Graph Contrastive Representation Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Wensheng Zhang",
+      "id": "out-faea741818c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clustering Enhanced Multiplex Graph Contrastive Representation Learning — Ruiwen Yuan;Yongqiang Tang;Yajing Wu;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6189,
+            "end_char": 6320
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Parallel Dual-Branch Fusion Network for Epileptic Seizure Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongcheng Ma;Yajing Wu;Yongqiang Tang;Rui Chen;Tao Xu;Wensheng Zhang",
+      "id": "out-9c0f6e1915c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Parallel Dual-Branch Fusion Network for Epileptic Seizure Prediction — Hongcheng Ma;Yajing Wu;Yongqiang Tang;Rui Chen;Tao Xu;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6326,
+            "end_char": 6471
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semi-supervised Progressive Representation Learning for Deep Multi-view Clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Chen;Yongqiang Tang;Wensheng Zhang;Wenlong Feng",
+      "id": "out-9abaeba35200",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semi-supervised Progressive Representation Learning for Deep Multi-view Clustering — Rui Chen;Yongqiang Tang;Wensheng Zhang;Wenlong Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6477,
+            "end_char": 6619
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-stream Contrastive Learning for Self-supervised Skeleton-based Action Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Li;Yongqiang Tang;Zhizhong Zhang;Wensheng Zhang",
+      "id": "out-395fa62fa64e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-stream Contrastive Learning for Self-supervised Skeleton-based Action Recognition — Ding Li;Yongqiang Tang;Zhizhong Zhang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6625,
+            "end_char": 6773
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive-Weighted Deep Multi-view Clustering with Uniform Scale Representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Chen;Yongqiang Tang;Wensheng Zhang;Wenlong Feng",
+      "id": "out-a27a0ff1055d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive-Weighted Deep Multi-view Clustering with Uniform Scale Representation — Rui Chen;Yongqiang Tang;Wensheng Zhang;Wenlong Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6779,
+            "end_char": 6917
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Meta-Path Infomax Joint Structure Enhancement for Multiplex Network Representation Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruiwen Yuan;Yajing Wu;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+      "id": "out-9076a81a005e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Meta-Path Infomax Joint Structure Enhancement for Multiplex Network Representation Learning — Ruiwen Yuan;Yajing Wu;Yongqiang Tang;Junping Wang;Wensheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6923,
+            "end_char": 7087
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2024",
+      "precision": "年",
+      "desc": "荣获中国自动化学会自然科学二等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-6e2ae96e4f42",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "相关研究成果荣获2024年“中国自动化学会自然科学二等奖”",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3367,
+            "end_char": 3395
+          },
+          "version": "4cdbae750c2fd438a178"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 26,
+    "listed": 26,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

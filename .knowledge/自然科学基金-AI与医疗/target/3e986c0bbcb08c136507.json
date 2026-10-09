@@ -2,15 +2,20 @@
   "doc_id": "3e986c0bbcb08c136507",
   "version": "a88f28799c8f18098517",
   "source_hash": "2fb21b8cf7571356515745e089ec1197efb7f82812943063c3cf950083d1044d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.765195+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.084088+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-131ebc9bd992",
-          "name": "晕厥临床不良事件风险评估与预警",
-          "desc": "我国严重晕厥患者超4000万，急诊患病率高达41%，晕厥不良事件如老年人摔倒带来严重健康伤害。",
+          "id": "item-d555116329ff",
+          "name": "晕厥临床不良事件风险评估",
+          "desc": "真实世界研究",
           "evidence": [
             {
-              "quote": "流行病学显示我国严重晕厥患者超过4000万，在急诊中晕厥的患病率高达41%",
+              "quote": "基于真实世界研究（Real World Study,RWS）引起越来越多的关注",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 700
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ]
-        },
-        {
-          "id": "item-e117367c538f",
-          "name": "真实世界研究与疾病早筛早治",
-          "desc": "基于真实世界研究为探索基于AI的疾病早筛早治和动态病情管理提供经验与技术积累。",
-          "evidence": [
-            {
-              "quote": "为探索基于人工智能技术的疾病早筛早治和动态病情管理提供经验与技术积累",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3009,
-                "end_char": 3042
+                "start_char": 809,
+                "end_char": 847
               },
               "version": "a88f28799c8f18098517"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9327b04def6",
-          "name": "人口老龄化下晕厥社会问题凸显",
-          "desc": "随人口老龄化，晕厥引起的社会民生问题日益凸显，需对不良事件进行风险评估和预警。",
+          "id": "item-af56df4234f1",
+          "name": "晕厥不良事件风险评估与预警",
+          "desc": "晕厥患者数量大、不良事件带来健康伤害",
           "evidence": [
             {
-              "quote": "随着我国进入人口老龄化时代，晕厥引起的社会民生问题日益凸显，对晕厥不良事件进行风险评估和预警具有重大科学和临床价值",
+              "quote": "晕厥的临床不良事件如老年人摔倒等，给患者带来严重的健康伤害与康复问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 737,
-                "end_char": 793
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ]
-        },
-        {
-          "id": "item-b541055410fb",
-          "name": "RWS数据缺乏结构化与知识支撑",
-          "desc": "需建立基于临床指南的晕厥医学知识库并对电子病历进行结构化处理。",
-          "evidence": [
-            {
-              "quote": "拟建立基于临床指南的晕厥医学知识库，通过自然语言处理（NLP）对电子病历进行结构化处理",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 945,
-                "end_char": 987
+                "start_char": 702,
+                "end_char": 735
               },
               "version": "a88f28799c8f18098517"
             }
@@ -95,80 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d8d43fd3c938",
-          "name": "基于RWS多源多模态建模",
-          "desc": "基于RWS的多源多模态医疗数据构建晕厥风险评估模型，并建立临床验证体系。",
-          "evidence": [
-            {
-              "quote": "基于RWS的多源多模态医疗数据构建晕厥风险评估模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 991,
-                "end_char": 1015
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ]
-        },
-        {
-          "id": "item-36af1b0ba981",
-          "name": "NLP结构化电子病历",
-          "desc": "通过自然语言处理对电子病历进行结构化处理。",
-          "evidence": [
-            {
-              "quote": "通过自然语言处理（NLP）对电子病历进行结构化处理",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 963,
-                "end_char": 987
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ]
-        },
-        {
-          "id": "item-66eab912e98a",
-          "name": "异常心电信号智能判读预警",
-          "desc": "对不明原因晕厥患者通过异常心电信号智能判读，实现院内或院外预警。",
-          "evidence": [
-            {
-              "quote": "对于不明原因晕厥患者通过异常心电信号（ECG）智能判读，实现院内或院外预警",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1019,
-                "end_char": 1055
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cdf8b10d20a1",
-          "name": "多模态医疗数据集整合标注",
-          "desc": "与国内三甲医院合作，汇聚和清洗数十万份急诊病历、心电数据，构建多中心多模态医疗数据集。",
-          "evidence": [
-            {
-              "quote": "大型、多中心的多模态医疗数据集整合和标注构建，与国内三甲医院合作，汇聚和清洗了数十万份急诊病历、心电数据等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2820,
-                "end_char": 2872
-              },
-              "version": "a88f28799c8f18098517"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f45dd831311e",
-          "name": "语义推断医学信息抽取框架",
-          "desc": "研究基于语义推断的医学信息抽取框架，对电子病历进行结构化处理。",
+          "id": "item-aa4e7535917f",
+          "name": "基于语义推断的医学信息抽取框架",
+          "desc": "电子病历结构化",
           "evidence": [
             {
               "quote": "研究基于语义推断的医学信息抽取框架，对电子病历进行结构化处理",
@@ -180,72 +82,221 @@
               "version": "a88f28799c8f18098517"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-58d00edc3702",
-          "name": "晕厥风险评估模型与验证体系",
-          "desc": "构建基于RWS的多源多模态医疗数据的晕厥风险评估模型及临床验证体系。",
+          "id": "item-6b5e31a97c1c",
+          "name": "ECG智能判读院内外预警",
+          "desc": "不明原因晕厥患者",
           "evidence": [
             {
-              "quote": "构建基于RWS的多源多模态医疗数据构建晕厥风险评估模型及临床验证体系",
+              "quote": "对于不明原因晕厥等心律失常患者通过异常心电信号（ECG）智能判读，实现对于院内或院外预警",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2966,
-                "end_char": 2999
+                "start_char": 2921,
+                "end_char": 2964
               },
               "version": "a88f28799c8f18098517"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-780e67f30aa5",
+          "name": "多中心多模态医疗数据集",
+          "desc": "数十万份急诊病历、心电数据",
+          "evidence": [
+            {
+              "quote": "汇聚和清洗了数十万份急诊病历、心电数据等基于高效医学知识图谱构建及标准化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2853,
+                "end_char": 2888
+              },
+              "version": "a88f28799c8f18098517"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-131ebc9bd992"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b9327b04def6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "针对心电图分类模型的平滑攻击算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘金桐;杨国兴;刘晓鸿;王光宇",
+      "id": "out-bef1578a89cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 针对心电图分类模型的平滑攻击算法 — 刘金桐;杨国兴;刘晓鸿;王光宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3061,
+            "end_char": 3101
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9327b04def6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d8d43fd3c938"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Anterior Segment Eye Lesion Segmentation with Advanced Fusion Strategies and Auxiliary Tasks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Ke;Liu Xiaohong;Zhang Kang;Chen Ting;Wang Guangyu",
+      "id": "out-3cb3d23dcd63",
+      "evidence": [
+        {
+          "quote": "[会议论文] Anterior Segment Eye Lesion Segmentation with Advanced Fusion Strategies and Auxiliary Tasks — Wang Ke;Liu Xiaohong;Zhang Kang;Chen Ting;Wang Guangyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3106,
+            "end_char": 3261
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-36af1b0ba981"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f45dd831311e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semantic Reasoning with NLI for Assertion Detection in Medical Text",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Du Zongxin;Liu Xiaohong;Xu Jie;Nan Guoshun;Wang Guangyu",
+      "id": "out-83fed963e85e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Semantic Reasoning with NLI for Assertion Detection in Medical Text — Du Zongxin;Liu Xiaohong;Xu Jie;Nan Guoshun;Wang Guangyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3266,
+            "end_char": 3397
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-66eab912e98a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-58d00edc3702"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep-learning models for the detection and incidence prediction of chronic kidney disease and type 2 diabetes from retinal fundus images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-c87eb668d53b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep-learning models for the detection and incidence prediction of chronic kidney disease and type 2 diabetes from retinal fundus images — Zhang Kang;Liu Xiaohong;Xu Jie;Yuan Jin;Cai Wenjia;Chen Ting;Wang Kai;Gao Yuanxu;Nie Sheng;Xu Xiaodong;Qin Xiaoqi;Su Yuandong;Xu Wenqin;Olvera Andrea;Xue Kanmin;Li Zhihuan;Zhang Meixia;Zeng Xiaoxi;Zhang Charlotte L.;Li Oulan;Zhang Edward E.;Zhu Jie;Xu Yiming;Kermany Daniel;Zhou Kaixin;Pan Ying;Li Shaoyun;Lai Iat Fan;Chi Ying;Wang Changuang;Pei Michelle;Zang Guangxi;Zhang Qi;Lau Johnson...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3402,
+            "end_char": 3938
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AIAT: Adaptive Iteration Adversarial Training for Robust Pulmonary Nodule Detection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Guoxing;Liu Xiaohong;Shi Jianyu;Zhang Xianchao;Wang Guangyu",
+      "id": "out-989a23f6bea4",
+      "evidence": [
+        {
+          "quote": "[会议论文] AIAT: Adaptive Iteration Adversarial Training for Robust Pulmonary Nodule Detection. — Yang Guoxing;Liu Xiaohong;Shi Jianyu;Zhang Xianchao;Wang Guangyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3943,
+            "end_char": 4100
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "麻省理工科技评论“35岁以下科技创新35人”",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王光宇",
+      "id": "out-80f7fc86b923",
+      "evidence": [
+        {
+          "quote": "[奖励] 麻省理工科技评论“35岁以下科技创新35人” — 王光宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4105,
+            "end_char": 4137
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AMAT-Net: An Unbiased Network with High Performance for Metabolic Diseases Prediction Using Facial Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Fajiin;Wang Kai;Liu Xiaohong;Gu Qifeng;Wang Guangyu",
+      "id": "out-d7869f839234",
+      "evidence": [
+        {
+          "quote": "[会议论文] AMAT-Net: An Unbiased Network with High Performance for Metabolic Diseases Prediction Using Facial Images — Feng Fajiin;Wang Kai;Liu Xiaohong;Gu Qifeng;Wang Guangyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4142,
+            "end_char": 4312
+          },
+          "version": "a88f28799c8f18098517"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "0e38ed59c8d1ffe0dc02",
   "version": "bd74378a9ac0d31e5ee6",
   "source_hash": "fee28f666bed54b7773bafed1a17c95a95b63a86dd97e48662e93a9960264279",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.156673+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.151940+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5653a1f69394",
-          "name": "肺癌放疗疗效预测与增敏",
-          "desc": "放疗是肺癌的重要治疗手段，早期疗效预测是治疗成功的关键。",
+          "id": "item-7d26856c24fd",
+          "name": "非小细胞肺癌放疗疗效与敏感性",
+          "desc": "放疗是NSCLC重要治疗手段",
           "evidence": [
             {
-              "quote": "放疗是肺癌的重要治疗手段，早期疗效预测是治疗成功的关键",
+              "quote": "放疗是非小细胞肺癌（NSCLC）的重要治疗手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 704,
-                "end_char": 730
-              },
-              "version": "bd74378a9ac0d31e5ee6"
-            }
-          ]
-        },
-        {
-          "id": "item-eb5d5f52ed65",
-          "name": "为肺癌增敏治疗提供思路",
-          "desc": "研究将联合生物标记物和功能影像组学为肺癌的增敏治疗提供思路。",
-          "evidence": [
-            {
-              "quote": "本研究将联合生物标记物和功能影像组学为肺癌的增敏治疗提供思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1071,
-                "end_char": 1100
+                "start_char": 2769,
+                "end_char": 2791
               },
               "version": "bd74378a9ac0d31e5ee6"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02a25e9cfda6",
-          "name": "尚无肺癌放疗疗效预测模型且机制未明",
-          "desc": "PET图像纹理可量化肿瘤内增殖异质性且优于传统指标，但尚无肺癌放疗疗效预测模型；影像组学预测疗效的生物学机制尚未明确。",
+          "id": "item-36169643f5ca",
+          "name": "NSCLC细胞放疗抵抗",
+          "desc": "临床亟待解决",
           "evidence": [
             {
-              "quote": "PET图像纹理量化肿瘤内增殖异质性，在疗效预测方面优于PET传统指标，但尚无肺癌的放疗疗效预测模型；目前已有影像组学预测疗效的报道，然而其生物学机制尚未明确",
+              "quote": "但NSCLC细胞的放疗抵抗是目前临床亟待解决的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 809
-              },
-              "version": "bd74378a9ac0d31e5ee6"
-            }
-          ]
-        },
-        {
-          "id": "item-d4d707db9399",
-          "name": "NSCLC放疗抵抗亟待解决",
-          "desc": "放疗是非小细胞肺癌重要治疗手段，但NSCLC细胞的放疗抵抗是临床亟待解决的问题。",
-          "evidence": [
-            {
-              "quote": "放疗是非小细胞肺癌（NSCLC）的重要治疗手段，但NSCLC细胞的放疗抵抗是目前临床亟待解决的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2769,
+                "start_char": 2793,
                 "end_char": 2817
               },
               "version": "bd74378a9ac0d31e5ee6"
@@ -95,36 +68,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-29371534e133",
-          "name": "LncRNA-DGCR5联合功能影像组学建模",
-          "desc": "提出LncRNA-DGCR5联合功能影像组学构建新的肺癌放疗疗效预测模型。",
+          "id": "item-9648b0f40213",
+          "name": "多模态影像结合机器学习预测放疗疗效",
+          "desc": "预测食管癌总生存率等",
           "evidence": [
             {
-              "quote": "我们提出LncRNA-DGCR5联合功能影像组学构建新的肺癌放疗疗效预测模型",
+              "quote": "多模态影像结合机器学习研究肿瘤放疗疗效",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 877,
-                "end_char": 914
+                "start_char": 3422,
+                "end_char": 3440
               },
               "version": "bd74378a9ac0d31e5ee6"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-49dbe4a708d3",
-          "name": "影像组学生物学机制探究",
-          "desc": "研究肿瘤增殖异质性与放疗敏感性的关系，阐明纹理预测放疗敏感性的生物学机制。",
+          "id": "item-b80828e9a9e1",
+          "name": "DGCR5基因机制研究",
+          "desc": "肺癌发生发展及放射抵抗关键分子机制",
           "evidence": [
             {
-              "quote": "研究肿瘤增殖异质性与放疗敏感性的关系，阐明纹理预测放疗敏感性的生物学机制",
+              "quote": "探讨了DGCR5基因在肺癌中的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 981,
-                "end_char": 1016
+                "start_char": 3064,
+                "end_char": 3080
               },
               "version": "bd74378a9ac0d31e5ee6"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f4240af0f1e1",
+          "name": "纳米材料增强放疗敏感性",
+          "desc": "石墨烯及氧化石墨烯纳米片增敏机制",
+          "evidence": [
+            {
+              "quote": "揭示了纳米材料石墨烯和氧化石墨烯纳米片增强放疗敏感性的机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3384,
+                "end_char": 3412
+              },
+              "version": "bd74378a9ac0d31e5ee6"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-724ad268c8dc",
+          "name": "miRNA微阵列血清检测",
+          "desc": "鉴定放疗前后血清miRNA表达",
+          "evidence": [
+            {
+              "quote": "使用 miRNA 微阵列技术来鉴定肺癌患者放疗前后血清 miRNAs 的表达",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3159,
+                "end_char": 3196
+              },
+              "version": "bd74378a9ac0d31e5ee6"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,43 +142,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-64bad3ff2a3d",
-          "name": "多模态影像特征与肿瘤生物学特性关联",
-          "desc": "明确具有放疗疗效预测能力的多模态影像特征参数与肿瘤病理类型、分化程度、乏氧、血供、增殖、凋亡及放疗反应之间的关系。",
+          "id": "item-aabadd336d2a",
+          "name": "食管癌总生存率预测",
+          "desc": "准确度达到90%以上",
           "evidence": [
             {
-              "quote": "明确了具有肿瘤放疗疗效预测能力的多模态影像特征参数与肿瘤的病理类型、分化程度、乏氧、血供、增殖、凋亡及放疗反应之间的关系",
+              "quote": "预测不同治疗方案食管癌患者的总生存率，准确度达到90%以上",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2957,
-                "end_char": 3016
-              },
-              "version": "bd74378a9ac0d31e5ee6"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-06149d665614",
-          "name": "多模态影像结合机器学习预测生存",
-          "desc": "多模态影像结合机器学习预测不同治疗方案食管癌患者的总生存率，准确度达90%以上。",
-          "evidence": [
-            {
-              "quote": "多模态影像结合机器学习研究肿瘤放疗疗效：(1)预测不同治疗方案食管癌患者的总生存率，准确度达到90%以上",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3422,
+                "start_char": 3445,
                 "end_char": 3473
               },
               "version": "bd74378a9ac0d31e5ee6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3b89fcdc09b1",
-          "name": "肺癌动态靶区放疗计划优化",
-          "desc": "肺癌动态靶区放疗计划准确度提高5%，放射性肺炎损伤降低20%。",
+          "id": "item-cd6d4eebc528",
+          "name": "动态靶区放疗计划",
+          "desc": "准确度提高5%，放射性肺炎损伤降低20%",
           "evidence": [
             {
               "quote": "肺癌动态靶区放疗计划准确度提高5%,放射性肺炎损伤降低20%",
@@ -181,55 +175,233 @@
               "version": "bd74378a9ac0d31e5ee6"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-56c5f78bb822",
+          "name": "含Au纳米粒子增敏",
+          "desc": "放疗敏感性提高50%",
+          "evidence": [
+            {
+              "quote": "离子注入法制备的含Mg:Er:LiNbO3 Au纳米粒子放疗敏感性提高50%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3643,
+                "end_char": 3680
+              },
+              "version": "bd74378a9ac0d31e5ee6"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-4d1da3683f6a",
+          "name": "中华医学科技奖提名",
+          "desc": "获得提名",
+          "evidence": [
+            {
+              "quote": "获得中华医学科技奖提名",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3682,
+                "end_char": 3692
+              },
+              "version": "bd74378a9ac0d31e5ee6"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5653a1f69394"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-02a25e9cfda6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M6A regulator expression patterns predict the immune microenvironment and prognosis of non-small cell lung cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue Liu;Changsheng Ma;Hui Liu;Zhiqiang Sun;Judong Luo",
+      "id": "out-1a25abd8b356",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M6A regulator expression patterns predict the immune microenvironment and prognosis of non-small cell lung cancer. — Xue Liu;Changsheng Ma;Hui Liu;Zhiqiang Sun;Judong Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3749,
+            "end_char": 3925
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-02a25e9cfda6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-29371534e133"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Induction Chemotherapy Followed by Chemoradiotherapy With or Without Consolidation Chemotherapy Versus Chemoradiotherapy Followed by Consolidation Chemotherapy for Esophageal Squamous Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingyue Xiang;Bo Liu;Guifang Zhang;Heyi Gong;Dali Han;Changsheng Ma",
+      "id": "out-5aae6730a6c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Induction Chemotherapy Followed by Chemoradiotherapy With or Without Consolidation Chemotherapy Versus Chemoradiotherapy Followed by Consolidation Chemotherapy for Esophageal Squamous Cell Carcinoma — Mingyue Xiang;Bo Liu;Guifang Zhang;Heyi Gong;Dali Han;Changsheng Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3930,
+            "end_char": 4204
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-29371534e133"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-06149d665614"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the Application of Bifunctional Metal Chelators in Treating Triple-Negative Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Kuo;Zhang Youjiu;Wang Xiaomei;Zhu Ran;Ma Changsheng;Hu Rui",
+      "id": "out-3d40371d79c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the Application of Bifunctional Metal Chelators in Treating Triple-Negative Breast Cancer — Li Kuo;Zhang Youjiu;Wang Xiaomei;Zhu Ran;Ma Changsheng;Hu Rui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4209,
+            "end_char": 4378
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-49dbe4a708d3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-64bad3ff2a3d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning models predict overall survival and progression free survival of non-surgical esophageal cancer patients with chemoradiotherapy based on CT image radiomics signatures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongbin Cui;Zhengjiang Li;Mingyue Xiang;Dali Han;Yong Yin;Changsheng Ma",
+      "id": "out-40ec91a40b6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning models predict overall survival and progression free survival of non-surgical esophageal cancer patients with chemoradiotherapy based on CT image radiomics signatures — Yongbin Cui;Zhengjiang Li;Mingyue Xiang;Dali Han;Yong Yin;Changsheng Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4646
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dosimetric analysis and biological evaluation between proton radiotherapy and photon radiotherapy for the long target of total esophageal squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongbin Cui;Yuteng Pan;Zhenjiang Li;Qiang Wu;Jingmin Zou;Dali Han;Yong Yin;Changsheng Ma",
+      "id": "out-24901afb8a13",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dosimetric analysis and biological evaluation between proton radiotherapy and photon radiotherapy for the long target of total esophageal squamous cell carcinoma — Yongbin Cui;Yuteng Pan;Zhenjiang Li;Qiang Wu;Jingmin Zou;Dali Han;Yong Yin;Changsheng Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 4909
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Study of the Cumulative Dose Between Fractions of Lung Cancer Radiotherapy Based on CT and CBCT Image Deformable Registration Technology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo Judong;Ma Changdong;Yu Shuang;Li Zhenjiang;Ma Changsheng",
+      "id": "out-fa1064f2eab4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Study of the Cumulative Dose Between Fractions of Lung Cancer Radiotherapy Based on CT and CBCT Image Deformable Registration Technology — Luo Judong;Ma Changdong;Yu Shuang;Li Zhenjiang;Ma Changsheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4914,
+            "end_char": 5119
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancement of near-infrared photoluminescence in Mg:Er:LiNbO3 containing Au nanoparticles synthesized by direct ion implantation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Changsheng;Yu Shuang;Lu Fei;Liu Kaijing;Xu Yuhang;Ma Changdong",
+      "id": "out-6a856a715b24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancement of near-infrared photoluminescence in Mg:Er:LiNbO3 containing Au nanoparticles synthesized by direct ion implantation — Ma Changsheng;Yu Shuang;Lu Fei;Liu Kaijing;Xu Yuhang;Ma Changdong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5124,
+            "end_char": 5327
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using CT texture analysis to differentiate between peripheral lung cancer and pulmonary inflammatory pseudotumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenlu Liu;Changsheng Ma;Jinghao Duan;Qingtao Qiu;Yanluan Guo;Zhenhua Zhang;Yong Yin",
+      "id": "out-31f5ce2a0b5f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using CT texture analysis to differentiate between peripheral lung cancer and pulmonary inflammatory pseudotumor — Chenlu Liu;Changsheng Ma;Jinghao Duan;Qingtao Qiu;Yanluan Guo;Zhenhua Zhang;Yong Yin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5332,
+            "end_char": 5537
+          },
+          "version": "bd74378a9ac0d31e5ee6"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

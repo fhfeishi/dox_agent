@@ -2,15 +2,20 @@
   "doc_id": "d525ea006fd7db71dccc",
   "version": "3e7a85e1b47bd2d9ffd2",
   "source_hash": "60c12705597d9820ff9c18eafd79a94ed10c3b8e85785a7be3ac6c80f5d01f2e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:42.663609+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:55.791410+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aa2784ea2745",
-          "name": "肝癌消融治疗术后评估",
-          "desc": "肝癌消融治疗的长期预后好，但存在术后局部肿瘤进展率高的预后难题。",
+          "id": "item-acc4f4727bef",
+          "name": "肝癌消融术评估与LTP预测",
+          "desc": "增强MRI肝胆特异期",
           "evidence": [
             {
-              "quote": "肝癌消融治疗的长期预后好，但存在术后局部肿瘤进展（LTP）率高的预后难题。",
+              "quote": "本项目围绕此开展多模态影像深度学习技术研发",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 722
-              },
-              "version": "3e7a85e1b47bd2d9ffd2"
-            }
-          ]
-        },
-        {
-          "id": "item-afe90895af34",
-          "name": "早期肝癌个体化治疗决策",
-          "desc": "实现精准个体化预测，辅助治疗决策。",
-          "evidence": [
-            {
-              "quote": "构建早期肝癌消融治疗LTP预后风险模型，实现精准个体化预测，辅助治疗决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1026,
-                "end_char": 1061
+                "start_char": 2377,
+                "end_char": 2397
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-181dc59a4a73",
-          "name": "消融区覆盖关系难以定量评价",
-          "desc": "目前缺乏定量评价消融区范围与肿瘤边缘的覆盖关系、难以精准预测LTP。",
+          "id": "item-d6ae852314db",
+          "name": "消融后局部肿瘤进展",
+          "desc": "精准分割与形变配准两大核心挑战",
           "evidence": [
             {
-              "quote": "针对目前缺乏定量评价消融区范围与肿瘤边缘的覆盖关系难以精准预测LTP的临床需求。",
+              "quote": "早期肝癌消融治疗虽有一定成效，但术后局部肿瘤进展等问题影响治疗效果与患者生存质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 827
-              },
-              "version": "3e7a85e1b47bd2d9ffd2"
-            }
-          ]
-        },
-        {
-          "id": "item-f21df7118fb2",
-          "name": "跨模态分割标注成本高",
-          "desc": "跨模态分割存在标注成本高的难题。",
-          "evidence": [
-            {
-              "quote": "（1）针对跨模态分割标注成本高的难题，提出基于 SAM 模型构建跨模态分割方案。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2433,
-                "end_char": 2472
-              },
-              "version": "3e7a85e1b47bd2d9ffd2"
-            }
-          ]
-        },
-        {
-          "id": "item-6ad8d95c748c",
-          "name": "消融后组织形变配准困难",
-          "desc": "消融后组织存在形变，配准精度影响疗效评估。",
-          "evidence": [
-            {
-              "quote": "（2）针对消融后组织形变难题，创新性提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法（DRRA - MaskVC）。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2627,
-                "end_char": 2689
+                "start_char": 2298,
+                "end_char": 2337
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
@@ -111,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ae9e2c0b2de4",
-          "name": "跨模态SAM分割方案",
-          "desc": "提出基于SAM模型构建跨模态分割方案，仅用单模态标注数据训练适配多模态的分割网络。",
+          "id": "item-6ea56ca70e4b",
+          "name": "基于SAM的跨模态分割方案",
+          "desc": "仅用单模态标注",
           "evidence": [
             {
-              "quote": "该方案利用多模态空间一致性分割，无需目标模态标注及复杂配准，仅用单模态标注数据就能训练适配多模态的分割网络",
+              "quote": "提出基于 SAM 模型构建跨模态分割方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2473,
-                "end_char": 2525
+                "start_char": 2452,
+                "end_char": 2471
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-02437a4a7d31",
-          "name": "刚柔混合配准方法",
-          "desc": "提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法DRRA-MaskVC。",
+          "id": "item-00b4c2b671cb",
+          "name": "DRRA - MaskVC刚柔混合配准方法",
+          "desc": "注意力引导特征屏蔽与体积保持约束",
           "evidence": [
             {
               "quote": "创新性提出基于注意力引导特征屏蔽与体积保持约束的刚柔混合配准方法（DRRA - MaskVC）",
@@ -140,23 +98,25 @@
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3a496e92a2fa",
-          "name": "术前影像组学评分系统",
-          "desc": "基于多中心临床研究开发基于钆塞酸增强MRI的术前影像组学评分系统I-score。",
+          "id": "item-e296c76dd887",
+          "name": "术前影像组学评分系统I - score",
+          "desc": "钆塞酸增强MRI",
           "evidence": [
             {
-              "quote": "（3）基于多中心临床研究，开发基于钆塞酸增强 MRI 的术前影像组学评分系统（I - score）",
+              "quote": "开发基于钆塞酸增强 MRI 的术前影像组学评分系统（I - score）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2824,
+                "start_char": 2837,
                 "end_char": 2872
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99676195dc78",
-          "name": "分割DSC 88.1±5.1",
-          "desc": "在钆塞酸增强HBP期肝脏局灶性病灶分割中DSC达88.1±5.1、NSD为89.9±6.7，显著优于其他方法并减少70%人工标注工作量。",
+          "id": "item-586c76d02429",
+          "name": "分割DSC",
+          "desc": "88.1 ± 5.1，减少70%人工标注工作量",
           "evidence": [
             {
               "quote": "DSC 达到 88.1 ± 5.1，NSD 为 89.9 ± 6.7，显著优于其他方法，且减少 70%人工标注工作量",
@@ -179,89 +139,109 @@
               "version": "3e7a85e1b47bd2d9ffd2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-70935718fe67",
-          "name": "配准效率0.21s与精度最优",
-          "desc": "配准方法计算效率仅需0.21s，肝脏配准精度DSC=0.97，肿瘤配准误差CMD=6.78mm，最小消融边界评估准确率提升至85%。",
+          "id": "item-476dc178cdac",
+          "name": "I-score AUC",
+          "desc": "0.93、0.86、0.84",
           "evidence": [
             {
-              "quote": "此方法在计算效率上仅需 0.21s，肝脏配准精度（DSC = 0.97）、肿瘤配准误差（CMD = 6.78mm）达到最优",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2690,
-                "end_char": 2750
-              },
-              "version": "3e7a85e1b47bd2d9ffd2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-da0a55db5a89",
-          "name": "复发风险预测AUC优异",
-          "desc": "I-score在训练集与两个外部验证集效能优异（AUC=0.93、0.86、0.84），早期复发预测C-index=0.84。",
-          "evidence": [
-            {
-              "quote": "在训练集与两个外部验证集中效能优异（AUC = 0.93，0.86，0.84），早期复发预测效能良好（C - index = 0.84）",
+              "quote": "在训练集与两个外部验证集中效能优异（AUC = 0.93，0.86，0.84）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2914,
-                "end_char": 2981
+                "end_char": 2952
               },
               "version": "3e7a85e1b47bd2d9ffd2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-aa2784ea2745"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-181dc59a4a73"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Cross-Modality MR Image Segmentation Via Prompt-Driven Foundation Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenao Ma;Kan He;Jingfeng Zhang;Hongbin Wang;Lei Zhang;Kun Zhang;Qi Yang;Lap Yin Wong;Wen Shen;Huimao Zhang;Qi Dou",
+      "id": "out-399458d3d7c4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised Cross-Modality MR Image Segmentation Via Prompt-Driven Foundation Model — Wenao Ma;Kan He;Jingfeng Zhang;Hongbin Wang;Lei Zhang;Kun Zhang;Qi Yang;Lap Yin Wong;Wen Shen;Huimao Zhang;Qi Dou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3101,
+            "end_char": 3307
+          },
+          "version": "3e7a85e1b47bd2d9ffd2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6ad8d95c748c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-02437a4a7d31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gadoxetic Acid-enhanced MRI Scoring Model to Predict Pathologic Features of Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Kun;He Kan;Zhang Lei;Li Wen-Cui;Xie Shuang-Shuang;Cui Ying-Zhu;Lin Li-Ying;Shen Zhi-Wei;Xia Shuang;Su Xiao-Min;Zhang Hui-Mao;Ye Zhao-Xiang;Shen Wen",
+      "id": "out-9c0e42f04da0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gadoxetic Acid-enhanced MRI Scoring Model to Predict Pathologic Features of Hepatocellular Carcinoma — Zhang Kun;He Kan;Zhang Lei;Li Wen-Cui;Xie Shuang-Shuang;Cui Ying-Zhu;Lin Li-Ying;Shen Zhi-Wei;Xia Shuang;Su Xiao-Min;Zhang Hui-Mao;Ye Zhao-Xiang;Shen Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3312,
+            "end_char": 3574
+          },
+          "version": "3e7a85e1b47bd2d9ffd2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ae9e2c0b2de4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-99676195dc78"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3a496e92a2fa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-da0a55db5a89"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Conventional and artificial intelligence-based computed tomography and magnetic resonance imaging quantitative techniques for non-invasive liver fibrosis staging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuang Zheng;Kan He;Lei Zhang;Mingyang Li;Huimao Zhang;Pujun Gao",
+      "id": "out-04633f582ee3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Conventional and artificial intelligence-based computed tomography and magnetic resonance imaging quantitative techniques for non-invasive liver fibrosis staging — Shuang Zheng;Kan He;Lei Zhang;Mingyang Li;Huimao Zhang;Pujun Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3579,
+            "end_char": 3813
+          },
+          "version": "3e7a85e1b47bd2d9ffd2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "3152dd796a940af05f88",
   "version": "8ce2782ac251a9046353",
   "source_hash": "2daddb41a64b0a81e26b64e06e56ee5c7386eb31e050ad0aaf14787ae446c94f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:14.584982+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:45.069959+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-cb7df62504de",
           "name": "早期NSCLC术后复发风险预测",
-          "desc": "早期非小细胞肺癌约占NSCLC总数25%，首选手术切除但术后复发率高达30-55%。",
+          "desc": "基于CT影像组学",
           "evidence": [
             {
-              "quote": "早期非小细胞肺癌（NSCLC）约占NSCLC总数的25%，首选手术切除治疗，但术后复发率高达30-55%",
+              "quote": "针对早期非小细胞肺癌（NSCLC）术后复发风险难以精准预测的临床挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 729
-              },
-              "version": "8ce2782ac251a9046353"
-            }
-          ]
-        },
-        {
-          "id": "item-e780de3684a8",
-          "name": "辅助临床决策筛选高复发个体",
-          "desc": "实现复发风险精准量化预测，指导临床筛选高复发风险个体，辅助临床决策。",
-          "evidence": [
-            {
-              "quote": "实现复发风险精准量化预测，指导临床筛选高复发风险个体，辅助临床决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1036,
-                "end_char": 1068
+                "start_char": 3271,
+                "end_char": 3304
               },
               "version": "8ce2782ac251a9046353"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2ddce56af701",
-          "name": "缺乏量化复发风险的方法",
-          "desc": "研究证实高复发风险者可从术后辅助化疗获益，但目前缺乏量化复发风险的方法。",
+          "id": "item-8b370a5cf7ad",
+          "name": "早期NSCLC术后复发风险难以精准预测",
+          "desc": "临床挑战",
           "evidence": [
             {
-              "quote": "研究证实高复发风险者可从术后辅助化疗获益，但目前缺乏量化复发风险的方法",
+              "quote": "针对早期非小细胞肺癌（NSCLC）术后复发风险难以精准预测的临床挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 731,
-                "end_char": 765
-              },
-              "version": "8ce2782ac251a9046353"
-            }
-          ]
-        },
-        {
-          "id": "item-3a063c31a7e9",
-          "name": "肿瘤免疫微环境需无创评估手段",
-          "desc": "肿瘤免疫微环境是预后的独立预测指标，假设基于影像组学可全面量化肿瘤免疫微环境。",
-          "evidence": [
-            {
-              "quote": "申请人及其他团队研究证实，肿瘤免疫微环境是预后的独立预测指标，且通过影像组学挖掘肿瘤影像特征可评估肿瘤异质性，我们研究假设基于影像组学可全面量化肿瘤免疫微环境",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 845
+                "start_char": 3271,
+                "end_char": 3304
               },
               "version": "8ce2782ac251a9046353"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5784151165b9",
-          "name": "影像组学量化肿瘤免疫微环境",
-          "desc": "基于影像组学提取并筛选与肿瘤免疫状态相关的CT影像组学特征，构建免疫相关影像组学标签。",
-          "evidence": [
-            {
-              "quote": "基于影像组学提取并筛选与肿瘤免疫状态相关的CT影像组学特征，构建免疫相关影像组学标签",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 921,
-                "end_char": 962
-              },
-              "version": "8ce2782ac251a9046353"
-            }
-          ]
-        },
-        {
-          "id": "item-5776bb05a305",
-          "name": "免疫组化数字病理评分量化",
-          "desc": "开发免疫组化染色的数字病理图像分析方法，实现肿瘤免疫微环境风险评分的精准量化。",
+          "id": "item-13b1ab2cc1a0",
+          "name": "免疫组化数字病理免疫微环境评分",
+          "desc": "量化肿瘤免疫微环境风险",
           "evidence": [
             {
               "quote": "开发免疫组化染色的数字病理图像分析方法，实现对肿瘤免疫微环境风险评分的精准量化",
@@ -124,7 +81,25 @@
               },
               "version": "8ce2782ac251a9046353"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6378d2e3b915",
+          "name": "肿瘤免疫生态影像学标签与预后模型",
+          "desc": "个体化预测",
+          "evidence": [
+            {
+              "quote": "成功建立可全面量化NSCLC患者的肿瘤免疫生态系统多样性的影像学标签，构建预后预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3497,
+                "end_char": 3539
+              },
+              "version": "8ce2782ac251a9046353"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4530fd9cfdfb",
-          "name": "建立免疫相关影像组学标签",
-          "desc": "成功建立可全面量化NSCLC患者肿瘤免疫生态系统多样性的影像学标签并构建预后预测模型，实现免疫状态与预后风险的个体化预测。",
-          "evidence": [
-            {
-              "quote": "成功建立可全面量化NSCLC患者的肿瘤免疫生态系统多样性的影像学标签，构建预后预测模型，可实现早期NSCLC患者的肿瘤免疫状态及预后风险的个体化预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3497,
-                "end_char": 3570
-              },
-              "version": "8ce2782ac251a9046353"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6aac41ba4ffb",
-          "name": "论文专利与奖励成果",
-          "desc": "共发表SCI文章8篇（合计影响因子42.036），获授权国家发明专利3项，获广东省科技进步奖1项。",
+          "id": "item-042f2eb26042",
+          "name": "论文专利与奖励",
+          "desc": "SCI文章8篇、授权发明专利3项、广东省科技进步奖1项",
           "evidence": [
             {
               "quote": "本项目共发表课题相关SCI文章8篇，合计影响因子42.036；获得授权国家发明专利3项；获得广东省科技进步奖1项",
@@ -164,72 +122,178 @@
               "version": "8ce2782ac251a9046353"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2984a6a0f9e6",
-          "name": "CT免疫生态系统多样性指数",
-          "desc": "开发并验证基于CT的免疫生态系统多样性指数作为NSCLC影像生物标志物。",
-          "evidence": [
-            {
-              "quote": "Development and validation of a computed tomography–based immune ecosystem diversity index as an imaging biomarker in non-small cell lung cancer",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4563,
-                "end_char": 4706
-              },
-              "version": "8ce2782ac251a9046353"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cb7df62504de"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2ddce56af701"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coupling radiomics analysis of CT image with diversification of tumor ecosystem: A new insight to overall survival in stage I−III colorectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanqi Huang;Lan He;Zhenhui Li;Xin Chen;Chu Han;Ke Zhao;Yuan Zhang;Jinrong Qu;Yun Mao;Changhong Liang;Zaiyi Liu",
+      "id": "out-91db3bf280ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coupling radiomics analysis of CT image with diversification of tumor ecosystem: A new insight to overall survival in stage I−III colorectal cancer — Yanqi Huang;Lan He;Zhenhui Li;Xin Chen;Chu Han;Ke Zhao;Yuan Zhang;Jinrong Qu;Yun Mao;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 4221
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2ddce56af701"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5784151165b9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A radiomics prognostic scoring system for predicting progression-free survival in patients with stage IV non-small cell lung cancer treated with platinum-based chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan He;Zhenhui Li;Xin Chen;Yanqi Huang;Lixu Yan;Changhong Liang;Zaiyi Liu",
+      "id": "out-3a4324b60a17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A radiomics prognostic scoring system for predicting progression-free survival in patients with stage IV non-small cell lung cancer treated with platinum-based chemotherapy — Lan He;Zhenhui Li;Xin Chen;Yanqi Huang;Lixu Yan;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4226,
+            "end_char": 4480
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5784151165b9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4530fd9cfdfb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "结直肠癌IHC染色图像肿瘤侵袭边缘和中心的检测系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;梁长虹;赵可;麦锦海;王广谊;姚溯;陈鑫;何兰;黄燕琪",
+      "id": "out-bf8506c2dd06",
+      "evidence": [
+        {
+          "quote": "[专利] 结直肠癌IHC染色图像肿瘤侵袭边缘和中心的检测系统及方法 — 刘再毅;梁长虹;赵可;麦锦海;王广谊;姚溯;陈鑫;何兰;黄燕琪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4485,
+            "end_char": 4551
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5776bb05a305"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2984a6a0f9e6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a computed tomography–based immune ecosystem diversity index as an imaging biomarker in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan He;Zhen-Hui Li;Li-Xu Yan;Xin Chen;Sebastian Sanduleanu;Wen-Zhao Zhong;Phillippe Lambin;Zhao-Xiang Ye;Ying-Shi Sun;Yu-Lin Liu;Jin-Rong Qu;Lin Wu;Chang-Ling Tu;Madeleine Scrivener;Thierry Pieters;Emmanuel Coche;Qian Yang;Mei Yang;Chang-Hong Liang;Yan-Qi Huang;Zai-Yi Liu",
+      "id": "out-5b4aaf727ac0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a computed tomography–based immune ecosystem diversity index as an imaging biomarker in non-small cell lung cancer — Lan He;Zhen-Hui Li;Li-Xu Yan;Xin Chen;Sebastian Sanduleanu;Wen-Zhao Zhong;Phillippe Lambin;Zhao-Xiang Ye;Ying-Shi Sun;Yu-Lin Liu;Jin-Rong Qu;Lin Wu;Chang-Ling Tu;Madeleine Scrivener;Thierry Pieters;Emmanuel Coche;Qian Yang;Mei Yang;Chang-Hong Liang;Yan-Qi Huang;Zai-Yi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4556,
+            "end_char": 4981
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种免疫组化病理图像CD4阳性细胞核分割方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁长虹;刘再毅;覃杰;赵可;王广谊;陈鑫;黄燕琪;何兰;颜黎栩;吴磊",
+      "id": "out-94d9b013d4dc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种免疫组化病理图像CD4阳性细胞核分割方法及系统 — 梁长虹;刘再毅;覃杰;赵可;王广谊;陈鑫;黄燕琪;何兰;颜黎栩;吴磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4986,
+            "end_char": 5052
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于影像组学量化肿瘤免疫状态的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;梁长虹;揭光灵;赵可;张芳;何兰;王瑛;陈鑫;黄燕琪;颜黎栩;李振辉",
+      "id": "out-e33433b17604",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于影像组学量化肿瘤免疫状态的方法 — 刘再毅;梁长虹;揭光灵;赵可;张芳;何兰;王瑛;陈鑫;黄燕琪;颜黎栩;李振辉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5057,
+            "end_char": 5121
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive prediction of microsatellite instability in colorectal cancer by a genetic algorithm–enhanced artificial neural network–based CT radiomics signature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaobo Chen;Lan He;Qingshu Li;Liu Liu;Suyun Li;Yuan Zhang;Zaiyi Liu;Yanqi Huang;Yun Mao;Xin Chen",
+      "id": "out-6d6c19d9478b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive prediction of microsatellite instability in colorectal cancer by a genetic algorithm–enhanced artificial neural network–based CT radiomics signature — Xiaobo Chen;Lan He;Qingshu Li;Liu Liu;Suyun Li;Yuan Zhang;Zaiyi Liu;Yanqi Huang;Yun Mao;Xin Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5126,
+            "end_char": 5392
+          },
+          "version": "8ce2782ac251a9046353"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

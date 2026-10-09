@@ -2,15 +2,20 @@
   "doc_id": "3b0540e731f5a884ae4d",
   "version": "66cfd20cdc1bd2e86306",
   "source_hash": "b04413a3b976363a7e8bdaab051c03ec248a4a1d8999abb73002dcf2b936fa44",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:36.080901+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:38:31.992473+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec5ae4195165",
-          "name": "全身淋巴瘤PET/CT影像组学智能诊断",
-          "desc": "面向全身性、多变性淋巴瘤的早期诊断，基于PET/CT影像组学与人工智能构建智能诊断新技术。",
+          "id": "item-f1a1cd8e075b",
+          "name": "全身淋巴瘤PET/CT智能诊断",
+          "desc": "早期诊断对降低死亡率至关重要",
           "evidence": [
             {
-              "quote": "PET/CT图像既能从分子水平反映淋巴瘤与正常组织的代谢活性差异又能显示解剖结构等信息，为全身性、多变性的淋巴瘤早期诊断提供了新手段",
+              "quote": "淋巴瘤是一种全身性恶性肿瘤，早期诊断对降低死亡率至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 751
+                "start_char": 2826,
+                "end_char": 2853
               },
               "version": "66cfd20cdc1bd2e86306"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-11647748660a",
-          "name": "淋巴瘤代谢指标特异性与早期癌灶敏感性低",
-          "desc": "淋巴瘤代谢指标特异性偏低、早期癌灶敏感性较低，同时存在无标注条件下自动检测与小样本不平衡分割等问题。",
+          "id": "item-ecb96a280645",
+          "name": "PET特异性低",
+          "desc": "淋巴瘤病例检测",
           "evidence": [
             {
-              "quote": "提出了基于健康人体全身SUV标准化和增强微小癌灶的细胞代谢活性定量化新方法，以解决淋巴瘤代谢指标特异性和早期癌灶敏感性较低的问题",
+              "quote": "针对PET特异性低的问题，提出了基于正常代谢/解剖平均模型和多阈值决策的淋巴瘤病例检测方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 804,
-                "end_char": 867
+                "start_char": 3085,
+                "end_char": 3129
               },
               "version": "66cfd20cdc1bd2e86306"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d20345dd01c6",
-          "name": "无监督检测与多网络协同分割及完全迁移学习",
-          "desc": "提出无监督淋巴瘤检测模型解决无标注自动检测，提出多种深度神经网络协同的分割方法解决小样本不平衡分割，并提出异质性表达与完全迁移学习特征提取方法。",
+          "id": "item-b2560f579633",
+          "name": "自适应加权泛化距离水平集分割",
+          "desc": "优化淋巴瘤分割模型",
           "evidence": [
             {
-              "quote": "提出了构建无监督检测淋巴瘤模型的新方法，以解决无标注条件下淋巴瘤的自动检测问题",
+              "quote": "提出了基于自适应加权的泛化距离水平集方法，优化淋巴瘤分割模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 869,
-                "end_char": 907
+                "start_char": 3151,
+                "end_char": 3180
               },
               "version": "66cfd20cdc1bd2e86306"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e149e106a285",
+          "name": "超密集编码器与孪生解码器分割网络",
+          "desc": "建立解码器特征间时空相关性",
+          "evidence": [
+            {
+              "quote": "设计了一个包括超密集编码器和孪生解码器的淋巴瘤分割网络，建立解码器特征间的空间-时间相关性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3197,
+                "end_char": 3241
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-74352ea08cc8",
+          "name": "融合PET-CT证据与不确定性交叉熵损失分割",
+          "desc": "PET引导CT分割",
+          "evidence": [
+            {
+              "quote": "提出了基于融合PET-CT证据与不确定性交叉熵损失的肿瘤分割模型，并利用PET引导CT分割，提高了肿瘤分割性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3341,
+                "end_char": 3395
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,570 @@
       "state": "has",
       "items": [
         {
-          "id": "item-59a045009d4a",
-          "name": "申请5项发明专利3项授权及5项软件著作权",
-          "desc": "申请5项国家发明专利（3项授权）及5项软件著作权，发表20篇学术论文（SCI收录15篇、EI收录2篇），开发了淋巴瘤智能CAD模型与软件；培养17名研究生。",
+          "id": "item-96677530aa45",
+          "name": "淋巴瘤PET/CT图像及诊断数据库",
+          "desc": "已建立",
           "evidence": [
             {
-              "quote": "申请了5项国家发明专利(3项授权)及5项软件著作权。发表了20篇学术论文，其中SCI收录15篇，EI收录2篇",
+              "quote": "建立了淋巴瘤PET/CT图像及诊断数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2957,
+                "end_char": 2976
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0a3067717666",
+          "name": "专利与软著",
+          "desc": "发明专利5项（授权3项），软著5项",
+          "evidence": [
+            {
+              "quote": "申请了5项国家发明专利(3项授权)及5项软件著作权",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3539,
+                "end_char": 3563
+              },
+              "version": "66cfd20cdc1bd2e86306"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "20篇，SCI 15篇",
+          "evidence": [
+            {
+              "quote": "发表了20篇学术论文，其中SCI收录15篇，EI收录2篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3565,
                 "end_char": 3592
               },
               "version": "66cfd20cdc1bd2e86306"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ec5ae4195165"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-11647748660a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DenseX-Net: An End-to-End Model for Lymphoma Segmentation in Whole-body PET/CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haoming Li;Huiyan Jiang;Siqi Li;Meng Wang;Zhiguo Wang;Guoxiu Lu;Jia Guo;Youchao Wang",
+      "id": "out-596dcfbc3408",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DenseX-Net: An End-to-End Model for Lymphoma Segmentation in Whole-body PET/CT Images — Haoming Li;Huiyan Jiang;Siqi Li;Meng Wang;Zhiguo Wang;Guoxiu Lu;Jia Guo;Youchao Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3649,
+            "end_char": 3827
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-11647748660a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d20345dd01c6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Stacked Generalization U-shape Network Based on Zoom Strategy and Its Application in Biomedical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyu Shi;Huiyan Jiang;Bin Zheng",
+      "id": "out-daaeb5b3ce6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Stacked Generalization U-shape Network Based on Zoom Strategy and Its Application in Biomedical Image Segmentation — Tianyu Shi;Huiyan Jiang;Bin Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3832,
+            "end_char": 3990
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d20345dd01c6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-59a045009d4a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于全卷积神经网络的PET与CT图像配准方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜慧研;康鸿健",
+      "id": "out-02385a41e8e7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于全卷积神经网络的PET与CT图像配准方法 — 姜慧研;康鸿健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4033
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Optimized Registration Method Based on Distribution Similarity and DVF Smoothness for 3D PET and CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongjian Kang;Huiyan Jiang;Xiangrong Zhou;Hengjian Yu;Takeshi Hara;Hiroshi Fujita;Yu-Dong Yao",
+      "id": "out-3ca2f52edb58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Optimized Registration Method Based on Distribution Similarity and DVF Smoothness for 3D PET and CT Images — Hongjian Kang;Huiyan Jiang;Xiangrong Zhou;Hengjian Yu;Takeshi Hara;Hiroshi Fujita;Yu-Dong Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4038,
+            "end_char": 4249
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AW-SDRLSE: Adaptive Weighting and Scalable Distance Regularized Level Set Evolution for Lymphoma Segmentation on PET Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siqi Li;Huiyan Jiang;Haoming Li",
+      "id": "out-500b7c06904c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AW-SDRLSE: Adaptive Weighting and Scalable Distance Regularized Level Set Evolution for Lymphoma Segmentation on PET Images — Siqi Li;Huiyan Jiang;Haoming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4254,
+            "end_char": 4417
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HD-RDS-UNet: Leveraging Spatial-Temporal Correlation between the Decoder Feature Maps for Lymphoma Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wang;Huiyan Jiang;Tianyu Shi;Yu-dong Yao",
+      "id": "out-16f453019534",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HD-RDS-UNet: Leveraging Spatial-Temporal Correlation between the Decoder Feature Maps for Lymphoma Segmentation — Meng Wang;Huiyan Jiang;Tianyu Shi;Yu-dong Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4587
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CBA-UNet: A context-coordination multi-atlas boundary-aware UNet-like method for PET/CT images based tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shijie Luo;Huiyan Jiang;Meng Wang",
+      "id": "out-80ad4bc8a13b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CBA-UNet: A context-coordination multi-atlas boundary-aware UNet-like method for PET/CT images based tumor segmentation — Shijie Luo;Huiyan Jiang;Meng Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4592,
+            "end_char": 4753
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对抗学习与自适应色度修正的CT图像自动着色方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜慧研;索冉修;张义韬",
+      "id": "out-f7149f8093fa",
+      "evidence": [
+        {
+          "quote": "[专利] 基于对抗学习与自适应色度修正的CT图像自动着色方法 — 姜慧研;索冉修;张义韬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4758,
+            "end_char": 4801
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于过度形变抑制的PET与CT图像配准方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜慧研;康鸿健",
+      "id": "out-267c81f5c938",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于过度形变抑制的PET与CT图像配准方法 — 姜慧研;康鸿健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4806,
+            "end_char": 4843
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised 3D PET-CT Image Registration Method Using a Metabolic Constraint Function and a Multi-domain Similarity Measure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hengjian Yu;Huiyan Jiang;Xiangrong Zhou;Takeshi Hara;Yu-dong Yao;Hiroshi Fujita",
+      "id": "out-aab0760a0717",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised 3D PET-CT Image Registration Method Using a Metabolic Constraint Function and a Multi-domain Similarity Measure — Hengjian Yu;Huiyan Jiang;Xiangrong Zhou;Takeshi Hara;Yu-dong Yao;Hiroshi Fujita",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4849,
+            "end_char": 5061
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning 3D non-rigid deformation based on an unsupervised deep learning for PET/CT image registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hengjian Yu;Xiangrong Zhou;Huiyan Jiang;Hongjian Kang;Zhiguo Wang;Takeshi Hara;Hiroshi Fujita",
+      "id": "out-7b40d89bae8e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Learning 3D non-rigid deformation based on an unsupervised deep learning for PET/CT image registration — Hengjian Yu;Xiangrong Zhou;Huiyan Jiang;Hongjian Kang;Zhiguo Wang;Takeshi Hara;Hiroshi Fujita",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5067,
+            "end_char": 5271
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于三级级联网络进行腹部CT肝脏病变图像的自动分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜慧研;史天予;白志奇;黄亮亮",
+      "id": "out-4f47443b624a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于三级级联网络进行腹部CT肝脏病变图像的自动分割方法 — 姜慧研;史天予;白志奇;黄亮亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5277,
+            "end_char": 5328
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving the Fidelity of CT Image Colorization based on Pseudo-intensity Model and Tumor Metabolism Enhancement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zexu Zhang;Huiyan Jiang;Jiaji Liu;Tianyu Shi",
+      "id": "out-f5a4bde281b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving the Fidelity of CT Image Colorization based on Pseudo-intensity Model and Tumor Metabolism Enhancement — Zexu Zhang;Huiyan Jiang;Jiaji Liu;Tianyu Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5334,
+            "end_char": 5499
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Visibility Attribute Extraction and Anomaly Detection for Chinese Diagnostic Report Based on Cascade Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jitong Zhang;Huiyan Jiang;Liangliang Huang;Yu-dong Yao;Siqi Li",
+      "id": "out-1edced67bb52",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Visibility Attribute Extraction and Anomaly Detection for Chinese Diagnostic Report Based on Cascade Networks — Jitong Zhang;Huiyan Jiang;Liangliang Huang;Yu-dong Yao;Siqi Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5505,
+            "end_char": 5685
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "NHL Pathological Image Classification Based on Hierarchical Local Information and GoogLeNet-Based Representations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bai Jie;Huiyan Jiang;Li Siqi;Xiaoqi Ma",
+      "id": "out-81a125ee21c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] NHL Pathological Image Classification Based on Hierarchical Local Information and GoogLeNet-Based Representations — Bai Jie;Huiyan Jiang;Li Siqi;Xiaoqi Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5691,
+            "end_char": 5851
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Two Stage Residual CNN for Texture Denoising and Structure Enhancement on Low Dose CT Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liangliang Huang;Huiyan Jiang;Shaojie Li;Zhiqi Bai;Jitong Zhang",
+      "id": "out-66138c67fc6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Two Stage Residual CNN for Texture Denoising and Structure Enhancement on Low Dose CT Image — Liangliang Huang;Huiyan Jiang;Shaojie Li;Zhiqi Bai;Jitong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5857,
+            "end_char": 6020
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "C2MA-Net: Cross-modal Cross-Attention Network for Acute Ischemic Stroke Lesion Segmentation based on CT Perfusion Scans",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianyu Shi;Huiyan Jiang;Bin Zheng",
+      "id": "out-40fff36152ad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] C2MA-Net: Cross-modal Cross-Attention Network for Acute Ischemic Stroke Lesion Segmentation based on CT Perfusion Scans — Tianyu Shi;Huiyan Jiang;Bin Zheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6026,
+            "end_char": 6187
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A unified uncertainty network for tumor segmentation using uncertainty cross entropy loss and prototype similarity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhaoshuo Diao;Huiyan Jiang;Tianyu Shi",
+      "id": "out-0f3e2ab4d753",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A unified uncertainty network for tumor segmentation using uncertainty cross entropy loss and prototype similarity — Zhaoshuo Diao;Huiyan Jiang;Tianyu Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6193,
+            "end_char": 6353
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning techniques for tumor segmentation: a review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiyan Jiang;Zhaoshuo Diao;Yu-Dong Yao",
+      "id": "out-7ba46a4fdfd9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning techniques for tumor segmentation: a review — Huiyan Jiang;Zhaoshuo Diao;Yu-Dong Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6359,
+            "end_char": 6463
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于增强学习型菌群觅食算法的特征选择方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜慧研;董万鹏;马连博",
+      "id": "out-2f4766a90f37",
+      "evidence": [
+        {
+          "quote": "[专利] 基于增强学习型菌群觅食算法的特征选择方法 — 姜慧研;董万鹏;马连博",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6469,
+            "end_char": 6507
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Classification of lymphoma subtypes in PET/CT images based on a bidirectional feature fusion method",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenbo Pang;Huiyan Jiang;Yonglong Zhang;Yizhou Chen;Zhiguo Wang;Jia Guo;Guoxiu Lu;Youchao Wang",
+      "id": "out-46be7f55b14f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Classification of lymphoma subtypes in PET/CT images based on a bidirectional feature fusion method — Wenbo Pang;Huiyan Jiang;Yonglong Zhang;Yizhou Chen;Zhiguo Wang;Jia Guo;Guoxiu Lu;Youchao Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6513,
+            "end_char": 6714
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PSR-Nets: Deep neural networks with prior shift regularization for PET/CT based automatic, accurate, and calibrated whole-body lymphoma segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Wang;Huiyan Jiang;Tianyu Shi;Zhiguo Wang;Jia Guo;Guoxiu Lu;Youchao Wang;Yu-dong Yao",
+      "id": "out-772de60d71df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PSR-Nets: Deep neural networks with prior shift regularization for PET/CT based automatic, accurate, and calibrated whole-body lymphoma segmentation — Meng Wang;Huiyan Jiang;Tianyu Shi;Zhiguo Wang;Jia Guo;Guoxiu Lu;Youchao Wang;Yu-dong Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6720,
+            "end_char": 6965
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Parallel ‘same’ and ‘valid’ convolutional block and input-collaboration strategy for histopathological image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiyan Jiang;Siqi Li;Haoming Li",
+      "id": "out-6f74afe85be3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Parallel ‘same’ and ‘valid’ convolutional block and input-collaboration strategy for histopathological image classification — Huiyan Jiang;Siqi Li;Haoming Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6971,
+            "end_char": 7134
+          },
+          "version": "66cfd20cdc1bd2e86306"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 23,
+    "listed": 23,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

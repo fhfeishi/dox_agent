@@ -2,15 +2,20 @@
   "doc_id": "f0362ec87e393f578bea",
   "version": "3a509f6369151a942dee",
   "source_hash": "22c86eee9d1a92876b4ee531ae6d9974899bc76d0099713626e79b3f35ad9699",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.468962+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.649712+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-07e45d3ce575",
-          "name": "面向肿瘤精准诊断的病理图像定量分析",
-          "desc": "针对肿瘤精准诊断对病理学的定量分析需求，基于乳腺癌、肺癌和胃癌数据开展跨学科研究。",
+          "id": "item-f91f625cbc41",
+          "name": "肿瘤精准诊断病理图像定量分析",
+          "desc": "乳腺癌、肺癌、胃癌",
           "evidence": [
             {
-              "quote": "在医学领域，病理诊断是迄今癌症诊断的金标准",
+              "quote": "本项目针对肿瘤精准诊断对病理学提出的定量分析需求，开展跨学科交叉研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 641,
-                "end_char": 661
+                "start_char": 2983,
+                "end_char": 3016
               },
               "version": "3a509f6369151a942dee"
             }
@@ -43,7 +48,7 @@
         {
           "id": "item-aa41b7e19e7d",
           "name": "人工定量分析精准度不高且可重复性差",
-          "desc": "人工定量分析几乎都面临精准度不高和可重复性差的问题，给病理诊断带来巨大风险。",
+          "desc": "诊断风险",
           "evidence": [
             {
               "quote": "然而大量证据表明，人工定量分析几乎都面临着精准度不高和可重复性差的问题，给诊断带来巨大风险",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96ef4933034a",
-          "name": "跨癌种跨染色分析与多尺度配准方法",
-          "desc": "研究高通用性的跨癌种跨染色细胞分析、典型免疫组化指标定量判读、基于多尺度结构与深度光流网络的相邻切片配准，以及基于深度表示学习的以图搜图检索方法。",
+          "id": "item-3a25c6baddba",
+          "name": "旋转等变多层特征聚合网络细胞核分割",
+          "desc": "病理图像",
           "evidence": [
             {
-              "quote": "研究高通用性的跨癌种跨染色细胞分析方法，准确快速的典型免疫组化指标定量判读方法，基于多尺度结构和深度光流网络的异质染色相邻切片图像配准方法",
+              "quote": "提出了一种旋转等变多层特征聚合神经网络的病理图像细胞核分割算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 867,
-                "end_char": 935
+                "start_char": 3140,
+                "end_char": 3170
               },
               "version": "3a509f6369151a942dee"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e6366d6826a7",
+          "name": "多阶段病理图像配准算法",
+          "desc": "异质染色相邻切片",
+          "evidence": [
+            {
+              "quote": "提出了一种多阶段的新型病理图像配准算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3118,
+                "end_char": 3136
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8acbec7950d1",
+          "name": "自蒸馏增强的病理图像掩码学习算法",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "提出了一种自蒸馏增强的病理图像掩码学习算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3257,
+                "end_char": 3277
+              },
+              "version": "3a509f6369151a942dee"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,679 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b5d00498ca0",
-          "name": "累计发表学术论文40篇含SCI 23篇",
-          "desc": "累计发表学术论文40篇（SCI期刊23篇，含CCF A类1篇、中科院一区8篇、二区9篇；EI 17篇），获湖南省优秀硕士学位论文奖2项；提出病理图像配准、细胞核分割、腺体分割与全切片诊断等算法。",
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "40篇，SCI 23篇",
           "evidence": [
             {
-              "quote": "课题组在国内外学术期刊和会议上累计发表学术论文40篇，其中SCI期刊论文23篇（包括CCF A类期刊论文1篇、中科院一区论文8篇、二区论文9篇）",
+              "quote": "课题组在国内外学术期刊和会议上累计发表学术论文40篇，其中SCI期刊论文23篇",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3543,
-                "end_char": 3614
+                "end_char": 3581
               },
               "version": "3a509f6369151a942dee"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-07e45d3ce575"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-aa41b7e19e7d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SPAE: Spatial Preservation-based Autoencoder for ADHD functional brain networks modelling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhong Cao;Gai Li;Huawei Fu;Xingxing Li;Xieping Gao",
+      "id": "out-3998804bb9e1",
+      "evidence": [
+        {
+          "quote": "[会议论文] SPAE: Spatial Preservation-based Autoencoder for ADHD functional brain networks modelling — Chunhong Cao;Gai Li;Huawei Fu;Xingxing Li;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3755,
+            "end_char": 3906
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-aa41b7e19e7d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-96ef4933034a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Polyp segmentation with distraction separation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongtong Liu;Xiongjun Ye;Kai Hu;Dapeng Xiong;Yuan Zhang;Xuanya Li;Xieping Gao",
+      "id": "out-468701dba332",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Polyp segmentation with distraction separation — Tongtong Liu;Xiongjun Ye;Kai Hu;Dapeng Xiong;Yuan Zhang;Xuanya Li;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3911,
+            "end_char": 4043
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-96ef4933034a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0b5d00498ca0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AS-Net: Attention Synergy Network for skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Jing Lu;Dongjin Lee;Dapeng Xiong;Zhineng Chen",
+      "id": "out-fa44f3af69c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AS-Net: Attention Synergy Network for skin lesion segmentation — Kai Hu;Jing Lu;Dongjin Lee;Dapeng Xiong;Zhineng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4171
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automated Segmentation of Lateral Ventricle in MR Images Using Multi-scale Feature Fusion Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Ye;Zhiqiang Wang;Kai Hu;Sheng Zhu;Xieping Gao",
+      "id": "out-c35bbf30c717",
+      "evidence": [
+        {
+          "quote": "[会议论文] Automated Segmentation of Lateral Ventricle in MR Images Using Multi-scale Feature Fusion Convolutional Neural Network — Fei Ye;Zhiqiang Wang;Kai Hu;Sheng Zhu;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4176,
+            "end_char": 4352
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Convolutional Neural Network Based on Adaptive Multi-Scale Aggregation and Boundary-Aware for Lateral Ventricle Segmentation on MR images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Ye;Zhiqiang Wang;Sheng Zhu;Xuanya Li;Kai Hu",
+      "id": "out-e2928be56e91",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Novel Convolutional Neural Network Based on Adaptive Multi-Scale Aggregation and Boundary-Aware for Lateral Ventricle Segmentation on MR images — Fei Ye;Zhiqiang Wang;Sheng Zhu;Xuanya Li;Kai Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4357,
+            "end_char": 4558
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LDNFSGB: prediction of long non-coding rna and disease association using network feature similarity and gradient boosting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Zhang;Fei Ye;Dapeng Xiong;Xieping Gao",
+      "id": "out-694aac8f10e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LDNFSGB: prediction of long non-coding rna and disease association using network feature similarity and gradient boosting — Yuan Zhang;Fei Ye;Dapeng Xiong;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4563,
+            "end_char": 4735
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MWG-Net: Multi-scale Wavelet Guidance Network for COVID-19 Lung Infection Segmentation from CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Hui Tan;Yuan Zhang;Wei Huang;Xieping Gao",
+      "id": "out-80754ef94da5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MWG-Net: Multi-scale Wavelet Guidance Network for COVID-19 Lung Infection Segmentation from CT Images — Kai Hu;Hui Tan;Yuan Zhang;Wei Huang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4740,
+            "end_char": 4897
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "I2-Net: Intra- and Inter-scale Collaborative Learning Network for Abdominal Multi-organ Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Suo;Xuanya Li;Donghui Tan;Yuan Zhang;Xieping Gao",
+      "id": "out-33b0925d19b4",
+      "evidence": [
+        {
+          "quote": "[会议论文] I2-Net: Intra- and Inter-scale Collaborative Learning Network for Abdominal Multi-organ Segmentation — Chao Suo;Xuanya Li;Donghui Tan;Yuan Zhang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4902,
+            "end_char": 5064
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hexagonal Convolutional Neural Network for Spatial Transcriptomics Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Gao;Fa Zhang;Kai Hu;Xuefeng Cui",
+      "id": "out-1fca997c7419",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hexagonal Convolutional Neural Network for Spatial Transcriptomics Classification — Jing Gao;Fa Zhang;Kai Hu;Xuefeng Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5069,
+            "end_char": 5195
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "EffiDiag: an Efficient Framework for Breast Cancer Diagnosis in Multi-Gigapixel Whole Slide Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuyan Liu;Junda Ren;Zhineng Chen;Kai Hu;Fen Xiao;Xuanya Li;Xieping Gao",
+      "id": "out-c3836f99974c",
+      "evidence": [
+        {
+          "quote": "[会议论文] EffiDiag: an Efficient Framework for Breast Cancer Diagnosis in Multi-Gigapixel Whole Slide Images — Shuyan Liu;Junda Ren;Zhineng Chen;Kai Hu;Fen Xiao;Xuanya Li;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5201,
+            "end_char": 5379
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BGRA-Net: Boundary-Guided and Region-Aware Convolutional Neural Network for the Segmentation of Breast Ultrasound Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang Zhang;Xuanya Li;Kai Hu;Xieping Gao",
+      "id": "out-856eb29f8b02",
+      "evidence": [
+        {
+          "quote": "[会议论文] BGRA-Net: Boundary-Guided and Region-Aware Convolutional Neural Network for the Segmentation of Breast Ultrasound Images — Xiang Zhang;Xuanya Li;Kai Hu;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5385,
+            "end_char": 5554
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Embedded Residual Recurrent Network and Graph Search for the Segmentation of Retinal Layer Boundaries in Optical Coherence Tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Dong Liu;Zhineng Chen;Xuanya Li;Yuan Zhang;Xieping Gao",
+      "id": "out-dfe937ec8eb5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Embedded Residual Recurrent Network and Graph Search for the Segmentation of Retinal Layer Boundaries in Optical Coherence Tomography — Kai Hu;Dong Liu;Zhineng Chen;Xuanya Li;Yuan Zhang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5560,
+            "end_char": 5763
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep supervised learning using self-adaptive auxiliary loss for COVID-19 diagnosis from imbalanced CT images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Yingjie Huang;Wei Huang;Hui Tan;Zhineng Chen;Zheng Zhong;Xuanya Li;Yuan Zhang;Xieping Gao",
+      "id": "out-4de2e8d51509",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep supervised learning using self-adaptive auxiliary loss for COVID-19 diagnosis from imbalanced CT images — Kai Hu;Yingjie Huang;Wei Huang;Hui Tan;Zhineng Chen;Zheng Zhong;Xuanya Li;Yuan Zhang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5769,
+            "end_char": 5982
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boundary-guided and region-aware network with global scale-adaptive for accurate segmentation of breast tumors in ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Xiang Zhang;Dongjin Lee;Dapeng Xiong;Yuan Zhang;Xieping Gao",
+      "id": "out-9642669f3be9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boundary-guided and region-aware network with global scale-adaptive for accurate segmentation of breast tumors in ultrasound images — Kai Hu;Xiang Zhang;Dongjin Lee;Dapeng Xiong;Yuan Zhang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5988,
+            "end_char": 6194
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Hybrid Feature Enhancement Method for Gland Segmentation In Histopathology Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangjiang Wu;Xuanya Li;Kai Hu;Zhineng Chen;Xieping Gao",
+      "id": "out-8c0cf2dc600a",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Hybrid Feature Enhancement Method for Gland Segmentation In Histopathology Images — Xiangjiang Wu;Xuanya Li;Kai Hu;Zhineng Chen;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6200,
+            "end_char": 6347
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DeepRibSt: a multi-feature convolutional neural network for predicting ribosome stalling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Zhang;Sai Zhang;Xizhi He;Jing Lu;Xieping Gao",
+      "id": "out-e54c3f60603a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DeepRibSt: a multi-feature convolutional neural network for predicting ribosome stalling — Yuan Zhang;Sai Zhang;Xizhi He;Jing Lu;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6353,
+            "end_char": 6499
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint-Seg: Treat Foveal Avascular Zone and Retinal Vessel Segmentation in OCTA Images as a Joint Task",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Shuai Jiang;Yuan Zhang;Xuanya Li;Xieping Gao",
+      "id": "out-2516e93aac0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint-Seg: Treat Foveal Avascular Zone and Retinal Vessel Segmentation in OCTA Images as a Joint Task — Kai Hu;Shuai Jiang;Yuan Zhang;Xuanya Li;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6505,
+            "end_char": 6666
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SDN Application Backdoor: Disrupting the Service via Poisoning the Topology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuhua Deng;Xian Qing;Xiaofan Li;Xing Gao;Xieping Gao",
+      "id": "out-e067ddcc76d1",
+      "evidence": [
+        {
+          "quote": "[会议论文] SDN Application Backdoor: Disrupting the Service via Poisoning the Topology — Shuhua Deng;Xian Qing;Xiaofan Li;Xing Gao;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6672,
+            "end_char": 6809
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Modeling Functional Brain Networks with Multi-Head Attention-based Region-Enhancement for ADHD Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhong Cao;Huawei Fu;Gai Li;Mengyang Wang;Xieping Gao",
+      "id": "out-7585b3fe7bb1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Modeling Functional Brain Networks with Multi-Head Attention-based Region-Enhancement for ADHD Classification — Chunhong Cao;Huawei Fu;Gai Li;Mengyang Wang;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6815,
+            "end_char": 6988
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nuclei Segmentation in Histopathology Images Using Rotation Equivariant and Multi-level Feature Aggregation Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiqi Chen;Xuanya Li;Kai Hu;Zhineng Chen;Xieping Gao",
+      "id": "out-49f6393a3e76",
+      "evidence": [
+        {
+          "quote": "[会议论文] Nuclei Segmentation in Histopathology Images Using Rotation Equivariant and Multi-level Feature Aggregation Neural Network — Yiqi Chen;Xuanya Li;Kai Hu;Zhineng Chen;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6994,
+            "end_char": 7176
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DSC-Net: A Novel Interactive Two-stream Network by Combining Transformer and CNN for Ultrasound Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Hu;Yadong Zhu;Tianxin Zhou;Yuan Zhang;Chunhong Cao;Fen Xiao;Xieping Gao",
+      "id": "out-6009cf1f74cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DSC-Net: A Novel Interactive Two-stream Network by Combining Transformer and CNN for Ultrasound Image Segmentation — Kai Hu;Yadong Zhu;Tianxin Zhou;Yuan Zhang;Chunhong Cao;Fen Xiao;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7182,
+            "end_char": 7380
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hyperspectral image classification based on three-dimensional adaptive sampling and improved iterative shrinkage-threshold algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhong Cao;Hongxuan Duan;Xieping Gao",
+      "id": "out-57f1f0da91ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hyperspectral image classification based on three-dimensional adaptive sampling and improved iterative shrinkage-threshold algorithm — Chunhong Cao;Hongxuan Duan;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7386,
+            "end_char": 7565
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MCA-Net: Multi-feature coding and attention convolutional neural network for predicting lncRNA-disease association",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan Zhang;Fei Ye;Xieping Gao",
+      "id": "out-a013b7112bc1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MCA-Net: Multi-feature coding and attention convolutional neural network for predicting lncRNA-disease association — Yuan Zhang;Fei Ye;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7571,
+            "end_char": 7723
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TransMixer: A Hybrid Transformer and CNN Architecture for Polyp Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanglin Huang;Donghui Tan;Yuan Zhang;Xuanya Li;Kai Hu",
+      "id": "out-5a16bf0d0fc0",
+      "evidence": [
+        {
+          "quote": "[会议论文] TransMixer: A Hybrid Transformer and CNN Architecture for Polyp Segmentation — Yanglin Huang;Donghui Tan;Yuan Zhang;Xuanya Li;Kai Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7729,
+            "end_char": 7867
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vulnerabilities in SDN Topology Discovery Mechanism: Novel Attacks and Countermeasures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuhua Deng;Wenjie Dai;Xian Qing;Xieping Gao",
+      "id": "out-d03c738c167c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vulnerabilities in SDN Topology Discovery Mechanism: Novel Attacks and Countermeasures — Shuhua Deng;Wenjie Dai;Xian Qing;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7873,
+            "end_char": 8012
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的颅内出血CT图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡凯;侯媛媛;张园;高协平",
+      "id": "out-6fd9268eb8d7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的颅内出血CT图像分割方法 — 胡凯;侯媛媛;张园;高协平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8018,
+            "end_char": 8059
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightweight Multiscale Neural Architecture Search With Spectral–Spatial Attention for Hyperspectral Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhong Cao;Han Xiang;Wei Song;Hongbo Yi;Fen Xiao;Xieping Gao",
+      "id": "out-23b19e0a2236",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lightweight Multiscale Neural Architecture Search With Spectral–Spatial Attention for Hyperspectral Image Classification — Chunhong Cao;Han Xiang;Wei Song;Hongbo Yi;Fen Xiao;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8065,
+            "end_char": 8256
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A new two-stream network based on feature separation and complementation for ultrasound image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yadong Zhu;Conghui Li;Kai Hu;Hongying Luo;Meijun Zhou;Xuanya Li;Xieping Gao",
+      "id": "out-1cd1946e4ea5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A new two-stream network based on feature separation and complementation for ultrasound image segmentation — Yadong Zhu;Conghui Li;Kai Hu;Hongying Luo;Meijun Zhou;Xuanya Li;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8262,
+            "end_char": 8452
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-distillation Augmented Masked Autoencoders for Histopathological Image Understanding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Luo;Zhineng Chen;Shengtian Zhou;Kai Hu;Xieping Gao",
+      "id": "out-8b18c30ff770",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-distillation Augmented Masked Autoencoders for Histopathological Image Understanding — Yang Luo;Zhineng Chen;Shengtian Zhou;Kai Hu;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8458,
+            "end_char": 8611
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification for the cortical 3-Hinges folding pattern based on cortical morphological and structural features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunhong Cao;Yongquan Li;Lele Zhang;Fang Hu;Xieping Gao",
+      "id": "out-6560dc27ac1e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification for the cortical 3-Hinges folding pattern based on cortical morphological and structural features — Chunhong Cao;Yongquan Li;Lele Zhang;Fang Hu;Xieping Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8617,
+            "end_char": 8793
+          },
+          "version": "3a509f6369151a942dee"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "会议论文": {
+        "listed": 13,
+        "extracted": 13
+      },
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

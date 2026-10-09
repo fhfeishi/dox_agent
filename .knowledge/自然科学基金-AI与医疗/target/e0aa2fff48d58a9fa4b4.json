@@ -2,15 +2,20 @@
   "doc_id": "e0aa2fff48d58a9fa4b4",
   "version": "508bf088b5747a7c07db",
   "source_hash": "d53bc2ef4e1f5c089a277e3e7700f2b5c32c2f4753c9cb68c36433cdda483027",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.351735+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.242566+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-03edb0624e10",
-          "name": "头颈鳞癌预后评估",
-          "desc": "头颈部鳞状细胞癌是全球第六大常见恶性肿瘤，侵袭性强、预后差，喉部与口腔为主要发病部位。",
+          "id": "item-d84565d962de",
+          "name": "头颈鳞癌免疫微环境术前评估与预后",
+          "desc": "影像组学免疫评分",
           "evidence": [
             {
-              "quote": "头颈部鳞状细胞癌（HNSCC）是全球第六大常见恶性肿瘤，具有侵袭强、预后差的特点",
+              "quote": "本项目旨在开创性地提供一种无创、定量的手段来评估头颈鳞癌的TIME，并辅助实现对患者预后的精确判断",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 717
+                "start_char": 2613,
+                "end_char": 2661
               },
               "version": "508bf088b5747a7c07db"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2fb19c5fb3f5",
-          "name": "缺乏术前免疫微环境评估方法",
-          "desc": "肿瘤免疫微环境具有预后价值，但作为其量化标准的免疫评分系统仍缺乏有效术前评估方法。",
+          "id": "item-4788e6b782ee",
+          "name": "缺乏有效的术前TIME评估方法",
+          "desc": "免疫评分需术后组织",
           "evidence": [
             {
-              "quote": "但目前仍然缺乏有效的术前评估方法",
+              "quote": "但目前缺乏有效的术前评估方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 791,
-                "end_char": 806
-              },
-              "version": "508bf088b5747a7c07db"
-            }
-          ]
-        },
-        {
-          "id": "item-c237a386912d",
-          "name": "免疫评分依赖有创病理评估",
-          "desc": "基于HE染色评估的TILs或CD3+/CD8+计数免疫评分需病理标本，难以术前无创获得。",
-          "evidence": [
-            {
-              "quote": "基于HE染色评估的肿瘤浸润淋巴细胞（TILs）水平或融合CD3+和CD8+淋巴细胞计数的免疫评分已被广泛采用为量化TIME的生物学标志",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2530,
-                "end_char": 2596
+                "start_char": 2598,
+                "end_char": 2611
               },
               "version": "508bf088b5747a7c07db"
             }
@@ -79,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f1defbfc7bb",
-          "name": "多参数MRI影像组学免疫评分体系",
-          "desc": "融合多参数MRI手工与深度学习特征，构建并验证基于影像组学的新型免疫评分体系。",
+          "id": "item-b55dc791c6ec",
+          "name": "CT影像组学新型免疫评分体系",
+          "desc": "喉癌，全瘤模型",
           "evidence": [
             {
-              "quote": "构建并验证基于影像组学的新型免疫评分体系",
+              "quote": "利用CT影像组学分析构建了一套新型的免疫评分体系，证实了传统的全瘤模型较生境模型在预测喉癌免疫评分上具有更高的可重复性和更优的性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 930,
-                "end_char": 949
-              },
-              "version": "508bf088b5747a7c07db"
-            }
-          ]
-        },
-        {
-          "id": "item-43a75c00abba",
-          "name": "全瘤与生境模型对比分析",
-          "desc": "对比全瘤模型与生境模型在预测喉癌免疫评分上的可重复性与性能。",
-          "evidence": [
-            {
-              "quote": "证实了传统的全瘤模型较生境模型在预测喉癌免疫评分上具有更高的可重复性和更优的性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2709,
+                "start_char": 2684,
                 "end_char": 2748
               },
               "version": "508bf088b5747a7c07db"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fddbd83c18b6",
+          "name": "T2WI与增强T1WI影像组学预测口腔癌TILs",
+          "desc": "逻辑回归，6个最佳特征",
+          "evidence": [
+            {
+              "quote": "基于联合两个序列筛选出6个最佳特征，采用逻辑回归分类器实现TILs水平的精准预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2859,
+                "end_char": 2898
+              },
+              "version": "508bf088b5747a7c07db"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a2f65de861f8",
+          "name": "CT影像组学预测免疫治疗反应",
+          "desc": "神经网络分类器，7个特征",
+          "evidence": [
+            {
+              "quote": "通过数据降维识别出7个最相关的影像组特征，而后采用神经网络分类器获得了最佳的预测效能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2959,
+                "end_char": 3000
+              },
+              "version": "508bf088b5747a7c07db"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d998b96eefc",
-          "name": "CT影像组学免疫评分AUC 0.741",
-          "desc": "喉癌免疫评分预测全瘤模型AUC为0.741、准确率75.5%，并被验证为无病生存期与总生存期的独立预测因素。",
+          "id": "item-91acd298c572",
+          "name": "喉癌免疫评分预测",
+          "desc": "AUC 0.741，准确率75.5%",
           "evidence": [
             {
               "quote": "其AUC值为0.741，准确率为75.5%",
@@ -131,106 +139,155 @@
               "version": "508bf088b5747a7c07db"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-49274fc519b0",
-          "name": "MRI预测口腔癌TILs水平",
-          "desc": "联合T2WI与增强T1WI筛选6个最佳特征，逻辑回归实现TILs水平预测AUC 0.846、准确度80.9%。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文5篇，专利2项",
           "evidence": [
             {
-              "quote": "其AUC值为0.846，准确度为80.9%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2900,
-                "end_char": 2920
-              },
-              "version": "508bf088b5747a7c07db"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-bda1cc901040",
-          "name": "CT影像组学预测免疫治疗反应",
-          "desc": "识别7个最相关影像组特征，神经网络分类器预测局部晚期口腔癌免疫治疗反应AUC达0.864。",
-          "evidence": [
-            {
-              "quote": "其AUC高达0.864，准确度高达82.5%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3002,
-                "end_char": 3023
-              },
-              "version": "508bf088b5747a7c07db"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c555ef21bfc8",
-          "name": "5篇SCI论文与2项专利",
-          "desc": "依托项目发表5篇SCI论文，申请2项专利，协助培养1名博士研究生。",
-          "evidence": [
-            {
-              "quote": "我们发表了5篇SCI论文，申请了2项专利，并协助培养了1名博士研究生",
+              "quote": "我们发表了5篇SCI论文，申请了2项专利",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3107,
-                "end_char": 3140
+                "end_char": 3126
               },
               "version": "508bf088b5747a7c07db"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-03edb0624e10"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2fb19c5fb3f5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An MRI-based radiomics nomogram for detecting cervical esophagus invasion in hypopharyngeal squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Qi;Yan Sha;Duo Zhang;Jiliang Ren",
+      "id": "out-ac34156e4b90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An MRI-based radiomics nomogram for detecting cervical esophagus invasion in hypopharyngeal squamous cell carcinoma — Meng Qi;Yan Sha;Duo Zhang;Jiliang Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3176,
+            "end_char": 3337
+          },
+          "version": "508bf088b5747a7c07db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2fb19c5fb3f5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4f1defbfc7bb"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "鼻内翻性乳头状瘤识别系统、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任继亮;齐萌;袁瑛",
+      "id": "out-695ee28f72bf",
+      "evidence": [
+        {
+          "quote": "[专利] 鼻内翻性乳头状瘤识别系统、电子设备及存储介质 — 任继亮;齐萌;袁瑛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3342,
+            "end_char": 3380
+          },
+          "version": "508bf088b5747a7c07db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4f1defbfc7bb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7d998b96eefc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of apparent diffusion coefficient histogram-based nomogram for predicting malignant transformation of sinonasal inverted papilloma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Qi;Zhipeng Xia;Fang Zhang;Yan Sha;Jiliang Ren",
+      "id": "out-5ec5447b05e0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of apparent diffusion coefficient histogram-based nomogram for predicting malignant transformation of sinonasal inverted papilloma — Meng Qi;Zhipeng Xia;Fang Zhang;Yan Sha;Jiliang Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3385,
+            "end_char": 3601
+          },
+          "version": "508bf088b5747a7c07db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-43a75c00abba"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-49274fc519b0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine learning-based MRI radiomics  for assessing the level of tumor infiltrating  lymphocytes in oral tongue squamous cell  carcinoma: a pilot study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiliang Ren;Gongxin Yang;Yang Song;Chunye Zhang;Ying Yuan",
+      "id": "out-daec4add296b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine learning-based MRI radiomics  for assessing the level of tumor infiltrating  lymphocytes in oral tongue squamous cell  carcinoma: a pilot study — Jiliang Ren;Gongxin Yang;Yang Song;Chunye Zhang;Ying Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3823
+          },
+          "version": "508bf088b5747a7c07db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography radiomics reveals prognostic value of immunophenotyping in laryngeal squamous cell carcinoma: a comparison of whole tumor- versus habitats-based approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Qi;Weiding Zhou;Ying Yuan;Yang Song;Duo Zhang;Jiliang Ren",
+      "id": "out-3453d7821249",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography radiomics reveals prognostic value of immunophenotyping in laryngeal squamous cell carcinoma: a comparison of whole tumor- versus habitats-based approaches — Meng Qi;Weiding Zhou;Ying Yuan;Yang Song;Duo Zhang;Jiliang Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3828,
+            "end_char": 4074
+          },
+          "version": "508bf088b5747a7c07db"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

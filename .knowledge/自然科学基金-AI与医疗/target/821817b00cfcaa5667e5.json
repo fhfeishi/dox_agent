@@ -2,15 +2,20 @@
   "doc_id": "821817b00cfcaa5667e5",
   "version": "caab5e3725a7713fe490",
   "source_hash": "4599e0b7770e71bd3caa7f3f0b2132c80932a98576d2c0e813a6d26f114d5a08",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.459805+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.884705+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-b0c38c89e9ce",
           "name": "局部进展期直肠癌预后预测",
-          "desc": "直肠癌是我国最常见的消化道恶性肿瘤之一，局部进展期直肠癌患者预后不佳。",
+          "desc": "肿瘤间质比TSR",
           "evidence": [
             {
-              "quote": "直肠癌是我国最常见的消化道恶性肿瘤之一，局部进展期直肠癌（LARC）患者预后不佳",
+              "quote": "肿瘤间质比（TSR）是肿瘤微环境的量化指标之一，目前已被证实可作为结直肠癌预后评估的有效危险因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 701
-              },
-              "version": "caab5e3725a7713fe490"
-            }
-          ]
-        },
-        {
-          "id": "item-98c88ff2d67d",
-          "name": "为直肠癌个体化精准治疗提供指导",
-          "desc": "在治疗前为LARC患者提供疾病发展和预后的准确预测，为直肠癌个体化精准治疗提供指导。",
-          "evidence": [
-            {
-              "quote": "在治疗前为LARC患者提供疾病发展和预后的准确预测，为直肠癌的个体化精准治疗提供指导",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1013,
-                "end_char": 1054
+                "start_char": 3080,
+                "end_char": 3127
               },
               "version": "caab5e3725a7713fe490"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8ac764c92866",
-          "name": "新辅助治疗影响术前间质含量评估",
-          "desc": "由于LARC患者通常在术前行新辅助放化疗，难以实现术前准确的间质含量评估。",
+          "id": "item-8f936f0b6285",
+          "name": "新辅助治疗破坏微环境使LARC治疗前TSR无法评估",
+          "desc": "开发治疗前TSR评估方法",
           "evidence": [
             {
-              "quote": "由于LARC患者通常在术前行新辅助放化疗，难以实现术前准确的间质含量评估",
+              "quote": "因此，开发LARC患者的治疗前TSR评估方法尤为必要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 769,
-                "end_char": 804
-              },
-              "version": "caab5e3725a7713fe490"
-            }
-          ]
-        },
-        {
-          "id": "item-ce718ce95f14",
-          "name": "多数患者未能达pCR且存在远处转移",
-          "desc": "LARC患者接受标准化治疗后大部分未能达到病理完全缓解，且部分患者术后五年内出现远处转移。",
-          "evidence": [
-            {
-              "quote": "局部进展期直肠癌（LARC）患者在接受标准化治疗后大部分患者均未能达到病理完全缓解且部分患者在术后五年内出现无可避免的远处转移",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3016,
-                "end_char": 3078
+                "start_char": 3140,
+                "end_char": 3165
               },
               "version": "caab5e3725a7713fe490"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-965d3505286a",
-          "name": "多参数MRI影像组学构建TSR模型",
-          "desc": "基于T2WI、DWI、ADC及T1增强图像构建多参数影像特征库，对5650个影像组学特征进行LASSO、多因素逻辑回归降维并十折交叉验证建模。",
+          "id": "item-1c3e693337d1",
+          "name": "多参数MRI影像组学rad-score评估TSR",
+          "desc": "5650个特征LASSO降维",
           "evidence": [
             {
               "quote": "通过基于T2WI、DWI、ADC及T1增强图像的多参数影像进行特征库构建，对5650个影像组学特征进行LASSO、多因素逻辑回归进行降维，并运用十折交叉验证法进行模型构建，成功构建影像组学模型rad-score",
@@ -108,23 +81,25 @@
               },
               "version": "caab5e3725a7713fe490"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-d93a6d4c8ff7",
-          "name": "影像临床联合预后模型",
-          "desc": "通过纳入临床危险因素构建融合模型Fusion-TSR，用于LARC患者预后评估。",
+          "id": "item-b015dca9ef4a",
+          "name": "MR-TSR与Fusion-TSR模型",
+          "desc": "小FOV T2WI，融合临床危险因素",
           "evidence": [
             {
-              "quote": "通过纳入临床危险因素构建融合模型Fusion-TSR",
+              "quote": "得到影像组学模型MR-TSR，通过纳入临床危险因素构建融合模型Fusion-TSR",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3537,
+                "start_char": 3522,
                 "end_char": 3562
               },
               "version": "caab5e3725a7713fe490"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,186 @@
       "state": "has",
       "items": [
         {
-          "id": "item-76456e14bee6",
-          "name": "rad-score诊断效能优于mean ADC",
-          "desc": "训练集rad-score诊断效能优于mean ADC（AUC 0.917 vs 0.776），验证集同样更优（0.787 vs 0.764）。",
+          "id": "item-96b6bb73f8df",
+          "name": "rad-score优于mean ADC",
+          "desc": "训练集AUC 0.917 vs 0.776",
           "evidence": [
             {
-              "quote": "结果显示在训练集及验证集中，rad-score诊断效能优于mean ADC（训练集 AUC=0.917 vs AUC=0.776，验证集 AUC=0.787 vs AUC=0.764）",
+              "quote": "在训练集及验证集中，rad-score诊断效能优于mean ADC（训练集 AUC=0.917 vs AUC=0.776，验证集 AUC=0.787 vs AUC=0.764）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3332,
+                "start_char": 3336,
                 "end_char": 3423
               },
               "version": "caab5e3725a7713fe490"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0d76e107eba9",
-          "name": "MR-TSR与Fusion-TSR为不良预后因素",
-          "desc": "MR-TSR为LARC患者DFS不良预后因素，Fusion-TSR为OS不良预后因素。",
+          "id": "item-647a6d209af0",
+          "name": "MR-TSR预后价值",
+          "desc": "LARC患者DFS不良预后因素",
           "evidence": [
             {
-              "quote": "MR-TSR为LARC患者DFS的不良预后因素（HR=1.662，95% CI=1.077-2.565，p=0.02），而Fusion-TSR为LARC患者OS的不良预后因素（HR=2.373，95% CI=1.281-4.396，p=0.005）",
+              "quote": "MR-TSR为LARC患者DFS的不良预后因素（HR=1.662，95% CI=1.077-2.565，p=0.02）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3650,
-                "end_char": 3773
+                "end_char": 3708
               },
               "version": "caab5e3725a7713fe490"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-fcdbe621e72b",
-          "name": "解决新辅助治疗破坏微环境难题",
-          "desc": "通过直接手术患者术后病理标本搭建TSR金标准，解决新辅助治疗破坏肿瘤微环境而使TSR无法在LARC患者中评估的难题。",
-          "evidence": [
-            {
-              "quote": "解决了新辅助治疗破坏肿瘤微环境而使TSR无法在LARC患者中评估的难题，并且基于影像组学及临床及影像组学联合模型所评估的TSR可以预测LARC患者的预后，以辅助治疗决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3829,
-                "end_char": 3912
-              },
-              "version": "caab5e3725a7713fe490"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b0c38c89e9ce"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8ac764c92866"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics based on readout-segmented echo-planar imaging (RS-EPI) diffusion-weighted imaging (DWI) for prognostic risk stratification of patients with rectal cancer: a two-centre, machine learning study using the framework of predictive, preventive, and personalized medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zonglin Liu;Yueming Wang;Fu Shen;Zhiyuan Zhang;Jing Gong;Caixia Fu;Changqing Shen;Rong Li;Guodong Jing;Sanjun Cai;Zhen Zhang;Yiqun Sun;Tong Tong",
+      "id": "out-291b1c23e316",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics based on readout-segmented echo-planar imaging (RS-EPI) diffusion-weighted imaging (DWI) for prognostic risk stratification of patients with rectal cancer: a two-centre, machine learning study using the framework of predictive, preventive, and personalized medicine — Zonglin Liu;Yueming Wang;Fu Shen;Zhiyuan Zhang;Jing Gong;Caixia Fu;Changqing Shen;Rong Li;Guodong Jing;Sanjun Cai;Zhen Zhang;Yiqun Sun;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3931,
+            "end_char": 4359
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8ac764c92866"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-965d3505286a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic prediction value of the clinical-radiomics tumour-stroma ratio in locally advanced rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chongpeng Cai;Tingdan Hu;Zening Rong;Jing Gong;Tong Tong",
+      "id": "out-8b77fdbb5f4c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic prediction value of the clinical-radiomics tumour-stroma ratio in locally advanced rectal cancer — Chongpeng Cai;Tingdan Hu;Zening Rong;Jing Gong;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4364,
+            "end_char": 4536
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-965d3505286a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-76456e14bee6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Special issue “The advance of solid tumor research in China”: Prognosis prediction for stage            II            colorectal cancer by fusing            CT            radiomics and deep‐learning features of primary lesions and peripheral lymph nodes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Menglei Li;Jing Gong;Yichao Bao;Dan Huang;Junjie Peng;Tong Tong",
+      "id": "out-76a577390d6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Special issue “The advance of solid tumor research in China”: Prognosis prediction for stage            II            colorectal cancer by fusing            CT            radiomics and deep‐learning features of primary lesions and peripheral lymph nodes — Menglei Li;Jing Gong;Yichao Bao;Dan Huang;Junjie Peng;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4541,
+            "end_char": 4866
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d93a6d4c8ff7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fcdbe621e72b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Whole tumor based texture analysis of magnetic resonance diffusion imaging for colorectal liver metastases: A prospective study for diffusion model comparison and early response biomarker",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Li;Huan Zhang;Lei Yue;Caixia Fu;Robert Grimm;Wenhua Li;Weijian Guo;Tong Tong",
+      "id": "out-a8c4b32b40b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Whole tumor based texture analysis of magnetic resonance diffusion imaging for colorectal liver metastases: A prospective study for diffusion model comparison and early response biomarker — Yue Li;Huan Zhang;Lei Yue;Caixia Fu;Robert Grimm;Wenhua Li;Weijian Guo;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4871,
+            "end_char": 5147
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative prediction of peritoneal metastasis in colorectal cancer using a clinical-radiomics model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Menglei Li;Kai Sun;Weixing Dai;Wenqiang Xiang;Zhaohe Zhang;Rui Zhang;Renjie Wang;Qingguo Li;Shaobo Mo;Lingyu Han;Tong Tong;Zhenyu Liu;Jie Tian;Guoxiang Cai",
+      "id": "out-b69e74ddd2fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative prediction of peritoneal metastasis in colorectal cancer using a clinical-radiomics model — Menglei Li;Kai Sun;Weixing Dai;Wenqiang Xiang;Zhaohe Zhang;Rui Zhang;Renjie Wang;Qingguo Li;Shaobo Mo;Lingyu Han;Tong Tong;Zhenyu Liu;Jie Tian;Guoxiang Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5152,
+            "end_char": 5418
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-based radiomics signature for preoperative estimation of tumor-stroma ratio in rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chongpeng Cai;Tingdan Hu;Jing Gong;Dan Huang;Fangqi Liu;Caixia Fu;Tong Tong",
+      "id": "out-8974dcae2020",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-based radiomics signature for preoperative estimation of tumor-stroma ratio in rectal cancer — Chongpeng Cai;Tingdan Hu;Jing Gong;Dan Huang;Fangqi Liu;Caixia Fu;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5423,
+            "end_char": 5619
+          },
+          "version": "caab5e3725a7713fe490"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

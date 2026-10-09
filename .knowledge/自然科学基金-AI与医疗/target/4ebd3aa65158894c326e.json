@@ -2,15 +2,20 @@
   "doc_id": "4ebd3aa65158894c326e",
   "version": "699727212ef839e05e52",
   "source_hash": "616747aa18b69bcb91a54d43b3892ea17ff1bcfff3a78d54fe86f2143894f1cb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.469377+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.626300+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-b5d0fb133bc0",
           "name": "胆道闭锁早期诊断",
-          "desc": "胆道闭锁是婴儿期先天性致死性肝病，最佳治疗窗口期仅有60天，早期识别对预后极为关键。",
+          "desc": "首要儿童肝移植原因",
           "evidence": [
             {
-              "quote": "胆道闭锁是婴儿期先天性、致死性肝病，最佳治疗窗口期仅有60天，早期识别对预后极为关键。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 706
-              },
-              "version": "699727212ef839e05e52"
-            }
-          ]
-        },
-        {
-          "id": "item-661e975e43d7",
-          "name": "儿童肝移植前筛查",
-          "desc": "胆道闭锁是导致儿童肝移植的首要原因，若未及时接受Kasai手术患儿通常在2岁内死亡。",
-          "evidence": [
-            {
-              "quote": "胆道闭锁（Biliary Atresia, BA）是导致儿童肝移植的首要原因，若不及时接受Kasai手术治疗，患儿通常在2岁内死亡。",
+              "quote": "胆道闭锁（Biliary Atresia, BA）是导致儿童肝移植的首要原因",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2448,
-                "end_char": 2513
+                "end_char": 2485
               },
               "version": "699727212ef839e05e52"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6b956259d641",
-          "name": "超声诊断受设备与经验限制",
-          "desc": "超声作为首选影像检查手段，很大程度上受限于医疗设备及检查人员经验。",
+          "id": "item-9832dcacba62",
+          "name": "缺乏早期无创筛查手段致诊断延迟",
+          "desc": "手术中位年龄约60天",
           "evidence": [
             {
-              "quote": "超声作为首选的影像检查手段，在很大程度上受限于医疗设备及检查人员经验。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 707,
-                "end_char": 741
-              },
-              "version": "699727212ef839e05e52"
-            }
-          ]
-        },
-        {
-          "id": "item-057f352afd55",
-          "name": "缺乏有效早期无创筛查手段",
-          "desc": "由于缺乏有效的早期无创筛查手段，诊断延迟仍是重大的医学挑战。",
-          "evidence": [
-            {
-              "quote": "由于缺乏有效的早期无创筛查手段，目前全球范围内手术中位年龄多在60天左右，诊断延迟仍是重大的医学挑战。",
+              "quote": "由于缺乏有效的早期无创筛查手段，目前全球范围内手术中位年龄多在60天左右，诊断延迟仍是重大的医学挑战",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2536,
-                "end_char": 2586
+                "end_char": 2585
               },
               "version": "699727212ef839e05e52"
             }
@@ -95,52 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9aa2fee26ce5",
-          "name": "Swin Transformer视觉特征提取",
-          "desc": "提出新型深度学习模型，利用Swin Transformer提取视觉特征。",
+          "id": "item-af5532216019",
+          "name": "Swin Transformer与自掩码注意力多模态模型",
+          "desc": "超声图像、临床特征与实验室指标融合",
           "evidence": [
             {
-              "quote": "研究提出了一种新型深度学习模型，利用Swin Transformer提取视觉特征",
+              "quote": "利用Swin Transformer提取视觉特征，并创新性地采用自掩码注意力机制（Self-Masked Attention）实现模态内与模态间的信息深度融合",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2729,
-                "end_char": 2768
+                "start_char": 2745,
+                "end_char": 2823
               },
               "version": "699727212ef839e05e52"
             }
-          ]
-        },
-        {
-          "id": "item-44aaabd9e56d",
-          "name": "自掩码注意力模态融合",
-          "desc": "创新性采用自掩码注意力机制实现模态内与模态间的信息深度融合，解决罕见病数据模态缺失难题。",
-          "evidence": [
-            {
-              "quote": "并创新性地采用自掩码注意力机制（Self-Masked Attention）实现模态内与模态间的信息深度融合，有效解决了罕见病数据模态缺失的难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2770,
-                "end_char": 2841
-              },
-              "version": "699727212ef839e05e52"
-            }
-          ]
-        },
-        {
-          "id": "item-065097125d3a",
-          "name": "多模态数据集构建",
-          "desc": "构建全球最大的胆道闭锁多模态数据集，包含超声图像、临床特征及14项实验室检查指标。",
-          "evidence": [
-            {
-              "quote": "研究团队构建了目前已知全球最大的BA多模态数据集，包含超声图像（胆囊、“三角条索”征、肝被膜及肝实质）、临床特征（性别、年龄、陶土便等）及实验室检查指标（胆红素、GGT等14项）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2633,
-                "end_char": 2721
-              },
-              "version": "699727212ef839e05e52"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,72 +91,61 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3aa2361f8135",
-          "name": "内部测试AUC 0.9870",
-          "desc": "在包含1579名病例的回顾性研究中，多模态模型内部测试集AUC达0.9870，敏感性0.9561，特异性0.9630，性能显著优于高年资超声专家。",
+          "id": "item-4f6e1f0f2276",
+          "name": "多模态模型内部测试性能",
+          "desc": "AUC 0.9870，敏感性0.9561，特异性0.9630",
           "evidence": [
             {
-              "quote": "在包含1579名病例的回顾性研究中，多模态模型在内部测试集实现了 0.9870 的曲线下面积（AUC），敏感性达0.9561，特异性达0.9630，性能显著优于高年资超声专家。",
+              "quote": "多模态模型在内部测试集实现了 0.9870 的曲线下面积（AUC），敏感性达0.9561，特异性达0.9630，性能显著优于高年资超声专家",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2864,
-                "end_char": 2951
+                "start_char": 2882,
+                "end_char": 2950
               },
               "version": "699727212ef839e05e52"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-96dc18f2c4ee",
-          "name": "外部验证AUC 0.9740",
-          "desc": "在包含171例病例的前瞻性外部测试中，模型AUC保持在0.9740。",
+          "id": "item-179734aee67b",
+          "name": "前瞻性外部测试",
+          "desc": "171例，AUC 0.9740",
           "evidence": [
             {
-              "quote": "在包含171例病例的前瞻性外部测试中，模型AUC保持在 0.9740。",
+              "quote": "在包含171例病例的前瞻性外部测试中，模型AUC保持在 0.9740",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2962,
-                "end_char": 2996
+                "end_char": 2995
               },
               "version": "699727212ef839e05e52"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-432f4b5acc32",
-          "name": "低资历医师诊断水平提升",
-          "desc": "AI系统使无经验放射科医师的诊断AUC从0.6667提升至0.9006。",
+          "id": "item-75b9d5bce670",
+          "name": "全球最大BA多模态数据集",
+          "desc": "超声、临床特征与实验室检查",
           "evidence": [
             {
-              "quote": "AI系统能显著提升低资历医师的诊断水平，使无经验放射科医师的诊断AUC从 0.6667 提升至 0.9006。",
+              "quote": "研究团队构建了目前已知全球最大的BA多模态数据集",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3009,
-                "end_char": 3063
+                "start_char": 2633,
+                "end_char": 2656
               },
               "version": "699727212ef839e05e52"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-df449183bb6b",
-          "name": "不依赖血液样本简化模型",
-          "desc": "开发了不依赖血液样本的简化模型，AUC仍可达0.9799，增强临床适用性。",
-          "evidence": [
-            {
-              "quote": "研究还开发了不依赖血液样本的简化模型，AUC仍可达 0.9799，增强了临床适用性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3074,
-                "end_char": 3115
-              },
-              "version": "699727212ef839e05e52"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -222,47 +153,125 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-b5d0fb133bc0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6b956259d641"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-057f352afd55"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-44aaabd9e56d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9aa2fee26ce5"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-3aa2361f8135"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-065097125d3a"
+        "item_id": "item-4f6e1f0f2276"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-432f4b5acc32"
+        "dimension": "技术",
+        "item_id": "item-af5532216019"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "多模态模型在内部测试集实现了 0.9870 的曲线下面积（AUC），敏感性达0.9561，特异性达0.9630，性能显著优于高年资超声专家",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2882,
+            "end_char": 2950
+          },
+          "version": "699727212ef839e05e52"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声医师对胆道闭锁了解程度调查分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘璐宇;王烨迪;张紫剑;靳泽隆;马亚",
+      "id": "out-42f7f0eee7cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声医师对胆道闭锁了解程度调查分析 — 刘璐宇;王烨迪;张紫剑;靳泽隆;马亚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3230,
+            "end_char": 3274
+          },
+          "version": "699727212ef839e05e52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声漏诊婴儿胆道闭锁特征",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邱志敏;马亚;王烨迪;刘璐宇;张紫剑;靳泽隆",
+      "id": "out-2b1c6389bce7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声漏诊婴儿胆道闭锁特征 — 邱志敏;马亚;王烨迪;刘璐宇;张紫剑;靳泽隆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3279,
+            "end_char": 3322
+          },
+          "version": "699727212ef839e05e52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of an artificial intelligence-based multimodal diagnostic system for early detection of biliary atresia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma·Ya;Yang·Yuancheng;others",
+      "id": "out-790676c49225",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of an artificial intelligence-based multimodal diagnostic system for early detection of biliary atresia — Ma·Ya;Yang·Yuancheng;others",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3327,
+            "end_char": 3478
+          },
+          "version": "699727212ef839e05e52"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "711例胆道闭锁患儿超声胆囊形态分型与比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘璐宇;王烨迪;张紫剑;靳泽隆;邱志敏;马亚",
+      "id": "out-74e6eb9952fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 711例胆道闭锁患儿超声胆囊形态分型与比较 — 刘璐宇;王烨迪;张紫剑;靳泽隆;邱志敏;马亚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3483,
+            "end_char": 3535
+          },
+          "version": "699727212ef839e05e52"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "4dec3c7c5969153db418",
   "version": "c46975fa70d402f9153f",
   "source_hash": "74291a19c9b58a210bdcf082d2fdb61d42704627209f8ef6afb9d3d6ce726e6c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.240796+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.608714+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-ab81da126df9",
           "name": "胰腺癌病理检测与多组学整合",
-          "desc": "项目以胰腺癌细胞组织为研究对象，开展基于深度学习模型的胰腺癌检测研究和基于多组学分析的新型分子分型研究。",
+          "desc": "深度卷积神经网络用于病理检测",
           "evidence": [
             {
-              "quote": "针对胰腺癌检测中的特征挖掘与识别器设计等关键技术和难点，本项目以胰腺癌细胞组织为研究对象，同时开展基于深度学习模型的胰腺癌检测研究和基于多组学分析的新型分子分型研究",
+              "quote": "深度卷积神经网络为胰腺癌病理检测提供了新的技术路径",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 667,
-                "end_char": 748
-              },
-              "version": "c46975fa70d402f9153f"
-            }
-          ]
-        },
-        {
-          "id": "item-c6d30d67d0a3",
-          "name": "为临床精准诊断与治疗提供技术支撑",
-          "desc": "提升胰腺癌检测与分型精准度，为临床精准诊断与治疗提供有效技术支撑。",
-          "evidence": [
-            {
-              "quote": "提升了胰腺癌检测与分型的精准度，为临床精准诊断与治疗提供了有效技术支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3200,
-                "end_char": 3234
+                "start_char": 2537,
+                "end_char": 2561
               },
               "version": "c46975fa70d402f9153f"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-77370f2c334b",
-          "name": "病理样本构造不合理与多组学融合不充分",
-          "desc": "临床应用中仍面临病理样本构造不合理、模型性能优化不足、多组学数据融合不充分等问题，导致检测精度、泛化能力及临床适配性受限。",
+          "id": "item-6f3c850a472e",
+          "name": "病理样本构造不合理、模型优化不足、多组学融合不充分",
+          "desc": "检测精度与泛化受限",
           "evidence": [
             {
-              "quote": "但临床应用中仍面临病理样本构造不合理、模型性能优化不足、多组学数据融合不充分等问题，导致检测精度、泛化能力及临床适配性受限",
+              "quote": "临床应用中仍面临病理样本构造不合理、模型性能优化不足、多组学数据融合不充分等问题，导致检测精度、泛化能力及临床适配性受限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2563,
+                "start_char": 2564,
                 "end_char": 2623
-              },
-              "version": "c46975fa70d402f9153f"
-            }
-          ]
-        },
-        {
-          "id": "item-5d513cfc12bb",
-          "name": "大尺寸切片直接输入算力消耗过大",
-          "desc": "大尺寸切片直接输入网络会导致算力消耗过大、训练效率低，需构建高质量数据支撑。",
-          "evidence": [
-            {
-              "quote": "解决了大尺寸切片直接输入网络导致的算力消耗过大、训练效率低的问题，为深度神经网络训练提供高质量数据支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2759,
-                "end_char": 2809
               },
               "version": "c46975fa70d402f9153f"
             }
@@ -95,141 +68,485 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb32b89212c8",
-          "name": "滑动窗口与面具匹配样本构造",
-          "desc": "提出滑动窗口与面具匹配相结合的样本构造方法，通过双尺度滑动窗口分割病理切片并筛除有效信息占比低于50%的图块。",
+          "id": "item-254609dbb04f",
+          "name": "滑动窗口与面具匹配样本构造方法",
+          "desc": "双尺度切片筛除低信息图块",
           "evidence": [
             {
-              "quote": "提出滑动窗口与面具匹配相结合的样本构造方法，通过299*299像素和512*512像素双尺度滑动窗口分割病理切片，筛除有效信息占比低于50%的图块，构建分布均匀的胰腺癌病理数据集",
+              "quote": "提出滑动窗口与面具匹配相结合的样本构造方法，通过299*299像素和512*512像素双尺度滑动窗口分割病理切片，筛除有效信息占比低于50%的图块",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2669,
-                "end_char": 2757
+                "end_char": 2741
               },
               "version": "c46975fa70d402f9153f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-d0907eafffee",
           "name": "递进式分组卷积目标检测模型",
-          "desc": "针对胰腺癌切片图像特性优化骨干网络与锚点回归策略，引入深度可分离卷积与分组卷积构建递进式分组卷积结构，兼顾检测精度与效率。",
+          "desc": "深度可分离卷积与分组卷积",
           "evidence": [
             {
-              "quote": "构建胰腺癌目标检测模型，针对胰腺癌切片图像特性优化骨干网络与锚点回归策略，引入深度可分离卷积与分组卷积构建递进式分组卷积结构，在保证检测精度的前提下减少模型参数量",
+              "quote": "引入深度可分离卷积与分组卷积构建递进式分组卷积结构，在保证检测精度的前提下减少模型参数量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2945,
+                "start_char": 2982,
                 "end_char": 3025
               },
               "version": "c46975fa70d402f9153f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a004cf161173",
+          "name": "病理图像与临床因素综合分期系统",
+          "desc": "预测化疗、免疫治疗应答",
+          "evidence": [
+            {
+              "quote": "联合病理图像特征与临床因素构建新型胰腺癌综合分期系统，实现对化疗、免疫治疗应答效果的精准预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3086,
+                "end_char": 3131
+              },
+              "version": "c46975fa70d402f9153f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像分割方法及装置、电子设备、可读存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵光哲;余东霖;陈嗣昊;林本旺;邱爽;王雪平;闫飞虎",
+      "id": "out-51efca7176b5",
+      "evidence": [
         {
-          "id": "item-03dcbad616db",
-          "name": "构建分布均匀的胰腺癌病理数据集",
-          "desc": "通过双尺度滑动窗口分割与图块筛选，构建分布均匀的胰腺癌病理数据集。",
-          "evidence": [
-            {
-              "quote": "筛除有效信息占比低于50%的图块，构建分布均匀的胰腺癌病理数据集",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2726,
-                "end_char": 2757
-              },
-              "version": "c46975fa70d402f9153f"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[专利] 医学图像分割方法及装置、电子设备、可读存储介质 — 赵光哲;余东霖;陈嗣昊;林本旺;邱爽;王雪平;闫飞虎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3288,
+            "end_char": 3344
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Syn-Net: A Synchronous Frequency-Perception Fusion Network for Breast Tumor Segmentation in Ultrasound Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Guangzhe;Zhu·Xingguo;Wang·Xueping;Yan·Feihu;Guo·Maozu",
+      "id": "out-173d5a26bdd0",
+      "evidence": [
         {
-          "id": "item-e7d303057393",
-          "name": "新型网络架构实现病灶特征精准提取",
-          "desc": "揭示网络结构、核心超参数及轻量化技术对模型性能的影响机制，创新构建新型网络架构实现病灶特征精准提取与高效捕捉。",
-          "evidence": [
-            {
-              "quote": "明确参数最优组合与轻量化技术搭配方案，创新构建新型网络架构以实现病灶特征精准提取与高效捕捉",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2866,
-                "end_char": 2910
-              },
-              "version": "c46975fa70d402f9153f"
-            }
-          ],
-          "status": "已取得"
-        },
+          "quote": "[期刊论文] Syn-Net: A Synchronous Frequency-Perception Fusion Network for Breast Tumor Segmentation in Ultrasound Images — Zhao·Guangzhe;Zhu·Xingguo;Wang·Xueping;Yan·Feihu;Guo·Maozu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3349,
+            "end_char": 3525
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Social-STGMLP: A Social Spatio-Temporal Graph Multi-Layer Perceptron for Pedestrian Trajectory Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng·Dexu;Zhao·Guangzhe;Yan·Feihu",
+      "id": "out-a916e0da8c21",
+      "evidence": [
         {
-          "id": "item-677c5c9d6aff",
-          "name": "胰腺癌综合分期系统",
-          "desc": "联合病理图像特征与临床因素构建新型胰腺癌综合分期系统，实现对化疗、免疫治疗应答效果的精准预测。",
-          "evidence": [
-            {
-              "quote": "建立多组学数据整合分析体系，联合病理图像特征与临床因素构建新型胰腺癌综合分期系统，实现对化疗、免疫治疗应答效果的精准预测，为个性化治疗方案制定提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3072,
-                "end_char": 3148
-              },
-              "version": "c46975fa70d402f9153f"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Social-STGMLP: A Social Spatio-Temporal Graph Multi-Layer Perceptron for Pedestrian Trajectory Prediction — Meng·Dexu;Zhao·Guangzhe;Yan·Feihu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3530,
+            "end_char": 3677
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种医学图像多器官分割识别方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵光哲;朱兴国;王雪平;闫飞虎;王财勇;林本旺;邱爽;张晓宇",
+      "id": "out-f7a3a0aa80cf",
+      "evidence": [
+        {
+          "quote": "[专利] 一种医学图像多器官分割识别方法及装置 — 赵光哲;朱兴国;王雪平;闫飞虎;王财勇;林本旺;邱爽;张晓宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3737
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于残差空间网络的建筑图像编辑",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "朱成;赵光哲;林本旺;王雪平",
+      "id": "out-05b24450a395",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于残差空间网络的建筑图像编辑 — 朱成;赵光哲;林本旺;王雪平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3742,
+            "end_char": 3780
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PMANet: Progressive multi-stage attention networks for skin disease classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Guangzhe;Zhang·Chen;Wang·Xueping;Lin·Benwang;Yan·Feihu",
+      "id": "out-15f8a032eb85",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PMANet: Progressive multi-stage attention networks for skin disease classification — Zhao·Guangzhe;Zhang·Chen;Wang·Xueping;Lin·Benwang;Yan·Feihu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3785,
+            "end_char": 3935
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种息肉图像分割方法及系统、电子设备、存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵光哲;陈嗣昊;黄天禹;余东霖;王雪平;闫飞虎",
+      "id": "out-a1c7ec6640e6",
+      "evidence": [
+        {
+          "quote": "[专利] 一种息肉图像分割方法及系统、电子设备、存储介质 — 赵光哲;陈嗣昊;黄天禹;余东霖;王雪平;闫飞虎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3940,
+            "end_char": 3993
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于组残差块生成对抗网络的面部表情生成",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林本旺;赵光哲;王雪平;李昊",
+      "id": "out-f983f4843c4c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于组残差块生成对抗网络的面部表情生成 — 林本旺;赵光哲;王雪平;李昊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3998,
+            "end_char": 4040
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PSAIP: Prior Structure-Assisted Identity-Preserving Network for Face Animation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangzhe Zhao;Jun Xu;Xueping Wang;Feihu Yan;Shuang Qiu",
+      "id": "out-9c9436a4977d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PSAIP: Prior Structure-Assisted Identity-Preserving Network for Face Animation — Guangzhe Zhao;Jun Xu;Xueping Wang;Feihu Yan;Shuang Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4045,
+            "end_char": 4186
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TGNF-Net: Two-Stage Geometric Neighborhood Fusion Network for Category-Level 6D Pose Estimation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaolong Zhao;Feihu Yan;Guangzhe Zhao;Caiyong Wang",
+      "id": "out-aae7ebfa899d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TGNF-Net: Two-Stage Geometric Neighborhood Fusion Network for Category-Level 6D Pose Estimation — Xiaolong Zhao;Feihu Yan;Guangzhe Zhao;Caiyong Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4192,
+            "end_char": 4346
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Instance-level cross-attention learning for fine-grained customizable face generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueping Wang;Yixuan Gao;Hang Li;Feihu Yan;Guangzhe Zhao",
+      "id": "out-5b207470ada8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Instance-level cross-attention learning for fine-grained customizable face generation — Xueping Wang;Yixuan Gao;Hang Li;Feihu Yan;Guangzhe Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4352,
+            "end_char": 4501
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "StableID: Multimodal learning for stable identity in personalized Text-to-Face generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueping Wang;Yixuan Gao;Yanan Liu;Feihu Yan;Guangzhe Zhao",
+      "id": "out-542a820fefd5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] StableID: Multimodal learning for stable identity in personalized Text-to-Face generation — Xueping Wang;Yixuan Gao;Yanan Liu;Feihu Yan;Guangzhe Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4507,
+            "end_char": 4662
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "YMamba: A Dual-Branch Network Fusing State Space Model and CNN for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Guangzhe;Chen·Sihao;Yan·Feihu;Wang·Xueping;Guo·Maozu",
+      "id": "out-456fa14e0e37",
+      "evidence": [
+        {
+          "quote": "[会议论文] YMamba: A Dual-Branch Network Fusing State Space Model and CNN for Medical Image Segmentation — Zhao·Guangzhe;Chen·Sihao;Yan·Feihu;Wang·Xueping;Guo·Maozu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4668,
+            "end_char": 4827
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RSCAN: Residual Spatial Cross-Attention Network for High-Fidelity Architectural Image Editing by Fusing Multi-Latent Spaces",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu·Cheng;Zhao·Guangzhe;Lin·Benwang;Wang·Xueping;Yan·Feihu",
+      "id": "out-f8e9c561676e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RSCAN: Residual Spatial Cross-Attention Network for High-Fidelity Architectural Image Editing by Fusing Multi-Latent Spaces — Zhu·Cheng;Zhao·Guangzhe;Lin·Benwang;Wang·Xueping;Yan·Feihu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4833,
+            "end_char": 5023
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FTMSNet: Towards boundary-aware polyp segmentation framework based on hybrid Fourier Transform and Multi-scale Subtraction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Guangzhe;Chen·Sihao;Wang·Xueping;Yan·Feihu;Guo·Maozu",
+      "id": "out-b0399621a079",
+      "evidence": [
+        {
+          "quote": "[会议论文] FTMSNet: Towards boundary-aware polyp segmentation framework based on hybrid Fourier Transform and Multi-scale Subtraction — Zhao·Guangzhe;Chen·Sihao;Wang·Xueping;Yan·Feihu;Guo·Maozu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5029,
+            "end_char": 5217
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tri‐Plane Dynamic Neural Radiance Fields for High‐Fidelity Talking Portrait Synthesis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang·Xueping;Guo·Xueni;Xu·Jun;Wu·Yuchen;Yan·Feihu;Zhao·Guangzhe",
+      "id": "out-9e83a8daab30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tri‐Plane Dynamic Neural Radiance Fields for High‐Fidelity Talking Portrait Synthesis — Wang·Xueping;Guo·Xueni;Xu·Jun;Wu·Yuchen;Yan·Feihu;Zhao·Guangzhe",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5223,
+            "end_char": 5380
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal Feature-Guided Audio-Driven Emotional Talking Face Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang·Xueping;Huo·Yuemeng;Liu·Yanan;Guo·Xueni;Yan·Feihu;Zhao·Guangzhe",
+      "id": "out-5878ff6cf4f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal Feature-Guided Audio-Driven Emotional Talking Face Generation — Wang·Xueping;Huo·Yuemeng;Liu·Yanan;Guo·Xueni;Yan·Feihu;Zhao·Guangzhe",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5386,
+            "end_char": 5535
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CMFF-Face: Attention-Based Cross-Modal Feature Fusion for High-Quality Audio-Driven Talking Face Generation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao·Guangzhe;Liu·Yanan;Wang·Xueping;Yan·Feihu",
+      "id": "out-a39395401b87",
+      "evidence": [
+        {
+          "quote": "[会议论文] CMFF-Face: Attention-Based Cross-Modal Feature Fusion for High-Quality Audio-Driven Talking Face Generation — Zhao·Guangzhe;Liu·Yanan;Wang·Xueping;Yan·Feihu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5541,
+            "end_char": 5703
+          },
+          "version": "c46975fa70d402f9153f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "文本驱动的人体运动生成综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵光哲;金铭;邱爽;王雪平;闫飞虎",
+      "id": "out-57b1eb623096",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 文本驱动的人体运动生成综述 — 赵光哲;金铭;邱爽;王雪平;闫飞虎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5709,
+            "end_char": 5748
+          },
+          "version": "c46975fa70d402f9153f"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ab81da126df9"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-77370f2c334b"
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
       },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-77370f2c334b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bb32b89212c8"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bb32b89212c8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-03dcbad616db"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d0907eafffee"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-677c5c9d6aff"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

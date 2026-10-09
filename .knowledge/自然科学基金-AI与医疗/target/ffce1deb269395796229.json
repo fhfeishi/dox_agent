@@ -2,15 +2,20 @@
   "doc_id": "ffce1deb269395796229",
   "version": "393887c758e1c6abdbb4",
   "source_hash": "1c96feb32e17354bdc75abc3c96adfc145d5563b68561adcfeb66ddc9b38642f",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.854517+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:45:04.422192+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b992593ce413",
-          "name": "胶质母细胞瘤TERT启动子突变预测",
-          "desc": "面向胶质母细胞瘤术前分子遗传学评估，构建TERT启动子突变的影像组学预测模型以支撑个体化精准治疗。",
+          "id": "item-c4c4f00d977c",
+          "name": "胶质母细胞瘤TERT启动子突变术前预测",
+          "desc": "多时序影像组学",
           "evidence": [
             {
-              "quote": "近年新发现TERT启动子突变是GBM始祖基因突变，与GBM患者预后及治疗方案的选择密切相关",
+              "quote": "近年新发现TERT启动子突变是GBM始祖基因突变，对GBM患者预后及治疗方案的选择起着举足轻重的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 766,
-                "end_char": 810
+                "start_char": 2673,
+                "end_char": 2722
               },
               "version": "393887c758e1c6abdbb4"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9305a2a95044",
-          "name": "手工分割耗时且功能成像未纳入影像组学",
-          "desc": "脑肿瘤影像组学面临手工分割肿瘤耗时、可重复性差，以及MR灌注等功能成像尚未被纳入影像组学分析两大挑战。",
+          "id": "item-6f75fe6a6c3d",
+          "name": "手工分割耗时可重复性差",
+          "desc": "MR灌注未纳入影像组学",
           "evidence": [
             {
-              "quote": "但脑肿瘤影像组学面临以下挑战：①手工分割肿瘤耗时、可重复性差；②MR灌注等功能成像尚未被加入到影像组学分析中",
+              "quote": "脑肿瘤影像组学面临以下挑战：①手工分割肿瘤耗时、可重复性差；②MR灌注等功能成像尚未被加入到影像组学分析中",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 844,
+                "start_char": 845,
                 "end_char": 897
               },
               "version": "393887c758e1c6abdbb4"
@@ -63,80 +68,393 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df39914aa3ca",
-          "name": "深度学习自动提取与多时序灌注融合的影像组学",
-          "desc": "利用深度学习自动提取GBM影像组学特征，并将MR灌注成像序列融入影像组学，开发映射GBM微循环改变与分子遗传学的多时序影像组学。",
+          "id": "item-8b5b7ece315b",
+          "name": "多参数MRI融合影像组学模型MMFR",
+          "desc": "预测TERT启动子突变与PFS",
           "evidence": [
             {
-              "quote": "将MR灌注成像序列融入影像组学中，开发能映射GBM的微循环改变与分子遗传学的多时序影像组学",
+              "quote": "阐明了基于多参数磁共振成像（MRI）的融合影像组学模型（MMFR）的预测TERT启动子突变状态的性能，成功预测了GBM患者的无进展生存期",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 969,
-                "end_char": 1013
+                "start_char": 2908,
+                "end_char": 2975
               },
               "version": "393887c758e1c6abdbb4"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2d013868b2e5",
+          "name": "自动提取TERT影像组学特征方法",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "开发了自动提取与GBM的TERT启动子突变的影像组学特征的方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2978,
+                "end_char": 3008
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3db0b1a0f456",
+          "name": "深度学习鉴别胶质母细胞瘤与孤立性脑转移",
+          "desc": "整合临床资料与MRI",
+          "evidence": [
+            {
+              "quote": "整合临床资料和MRI图像，深度学习影像学特征鉴别胶质母细胞瘤和孤立性脑转移",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3082,
+                "end_char": 3118
+              },
+              "version": "393887c758e1c6abdbb4"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning Radiomics for the Assessment of Telomerase Reverse Transcriptase Promoter Mutation Status in Patients With Glioblastoma Using Multiparametric            MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongbo Zhang;Hanwen Zhang;Yuze Zhang;Beibei Zhou;Lei Wu;Yi Lei;Biao Huang",
+      "id": "out-38276853de50",
+      "evidence": [
         {
-          "id": "item-47171503ae9d",
-          "name": "构建高精确性与可重复性的TERT突变预测流程",
-          "desc": "构建基于影像组学的TERT启动子突变预测模型，创立具有高度精确性和可重复性的GBM患者TERT启动子突变影像组学研究流程，实现术前分子学预测目标。",
-          "evidence": [
-            {
-              "quote": "构建了基于影像组学的TERT启动子突变预测模型，创立了具有高度的精确性和可重复性的GBM患者TERT启动子突变影像组学研究流程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2814,
-                "end_char": 2876
-              },
-              "version": "393887c758e1c6abdbb4"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Deep Learning Radiomics for the Assessment of Telomerase Reverse Transcriptase Promoter Mutation Status in Patients With Glioblastoma Using Multiparametric            MRI — Hongbo Zhang;Hanwen Zhang;Yuze Zhang;Beibei Zhou;Lei Wu;Yi Lei;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3397,
+            "end_char": 3649
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Altered microstructural properties of superficial white matter in patients with Parkinson's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yichen;Huang Biao;Chen Qinyuan;Wang Lijuan;Zhang Lu;Nie Kun;Huang Qinda;Huang Ruiwang",
+      "id": "out-854b5d3501b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Altered microstructural properties of superficial white matter in patients with Parkinson's disease — Zhang Yichen;Huang Biao;Chen Qinyuan;Wang Lijuan;Zhang Lu;Nie Kun;Huang Qinda;Huang Ruiwang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3654,
+            "end_char": 3853
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel MRI feature, the cut green pepper sign, can help differentiate a suprasellar pilocytic astrocytoma from an adamantinomatous craniopharyngioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shumin Xu;Wanqun Yang;Yi Luo;Xiaoyu Wang;Yaowen Li;Xianlei Meng;Yuze Zhang;Hongwu Zeng;Biao Huang",
+      "id": "out-bdc2eafc0f79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel MRI feature, the cut green pepper sign, can help differentiate a suprasellar pilocytic astrocytoma from an adamantinomatous craniopharyngioma — Shumin Xu;Wanqun Yang;Yi Luo;Xiaoyu Wang;Yaowen Li;Xianlei Meng;Yuze Zhang;Hongwu Zeng;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3858,
+            "end_char": 4113
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-based fusion radiomics for predicting telomerase reverse transcriptase (TERT) promoter mutations and progression-free survival in glioblastoma: a multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongbo Zhang;Hanwen Zhang;Yuze Zhang;Beibei Zhou;Lei Wu;Wanqun Yang;Yi Lei;Biao Huang",
+      "id": "out-9815935331ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-based fusion radiomics for predicting telomerase reverse transcriptase (TERT) promoter mutations and progression-free survival in glioblastoma: a multicentre study — Hongbo Zhang;Hanwen Zhang;Yuze Zhang;Beibei Zhou;Lei Wu;Wanqun Yang;Yi Lei;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4118,
+            "end_char": 4395
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianwei Lin;Jiatai Lin;Cheng Lu;Hao Chen;Huan Lin;Bingchao Zhao;Zhenwei Shi;Bingjiang Qiu;Xipeng Pan;Zeyan Xu;Biao Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu;Chu Han",
+      "id": "out-79c523b01a02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation — Jianwei Lin;Jiatai Lin;Cheng Lu;Hao Chen;Huan Lin;Bingchao Zhao;Zhenwei Shi;Bingjiang Qiu;Xipeng Pan;Zeyan Xu;Biao Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu;Chu Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4400,
+            "end_char": 4704
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌靶向治疗后脑膜转移的3D FLAIR增强扫描研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王丽;韦敏;贺雪萍;李燕花;杨万群;刘红军;黄飚",
+      "id": "out-3a6ce882fe46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺癌靶向治疗后脑膜转移的3D FLAIR增强扫描研究 — 王丽;韦敏;贺雪萍;李燕花;杨万群;刘红军;黄飚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4709,
+            "end_char": 4768
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying Depression in Parkinson's Disease by Using Combined Diffusion Tensor Imaging and Support Vector Machine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yunjun Yang;Yuelong Yang;Aizhen Pan;Zhifeng Xu;Lijuan Wang;Yuhu Zhang;Kun Nie;Biao Huang",
+      "id": "out-a3bfe4706ad8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying Depression in Parkinson's Disease by Using Combined Diffusion Tensor Imaging and Support Vector Machine — Yunjun Yang;Yuelong Yang;Aizhen Pan;Zhifeng Xu;Lijuan Wang;Yuhu Zhang;Kun Nie;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4773,
+            "end_char": 4985
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Peritumoral Radiomics for Identification of Telomerase Reverse Transcriptase Promoter Mutation in Patients With Glioblastoma Based on Preoperative MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongbo Zhang;Beibei Zhou;Hanwen Zhang;Yuze Zhang;Yi Lei;Biao Huang",
+      "id": "out-33b6bb2422a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Peritumoral Radiomics for Identification of Telomerase Reverse Transcriptase Promoter Mutation in Patients With Glioblastoma Based on Preoperative MRI — Hongbo Zhang;Beibei Zhou;Hanwen Zhang;Yuze Zhang;Yi Lei;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4990,
+            "end_char": 5215
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Investigating the relationship between intracranial atherosclerotic plaque remodelling and diabetes using high-resolution vessel wall imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong-Qian Mo;Hai-Yu Luo;Han-Wen Zhang;Yu-Feng Liu;Kan Deng;Xiao-Lei Liu;Biao Huang;Fan Lin",
+      "id": "out-a1a1b0af6989",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Investigating the relationship between intracranial atherosclerotic plaque remodelling and diabetes using high-resolution vessel wall imaging — Yong-Qian Mo;Hai-Yu Luo;Han-Wen Zhang;Yu-Feng Liu;Kan Deng;Xiao-Lei Liu;Biao Huang;Fan Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5220,
+            "end_char": 5460
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Assessment of Magnetic Resonance Spectroscopy and Diffusion-Weighted Imaging in Diffuse Glioma: Insights Into Histological Grading and IDH Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Han-Wen Zhang;Hong-Bo Zhang;Xiao-Lei Liu;Hua-Zhen Deng;Yu-Zhe Zhang;Xu-Mei Tang;Fan Lin;Biao Huang",
+      "id": "out-fce27ef1d927",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Assessment of Magnetic Resonance Spectroscopy and Diffusion-Weighted Imaging in Diffuse Glioma: Insights Into Histological Grading and IDH Classification — Han-Wen Zhang;Hong-Bo Zhang;Xiao-Lei Liu;Hua-Zhen Deng;Yu-Zhe Zhang;Xu-Mei Tang;Fan Lin;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5466,
+            "end_char": 5735
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Latest Developments in Magnetic Resonance Imaging for Evaluating theMolecular Microenvironment of Gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanwen Zhang;Hongbo Zhang;Fan Lin;Biao Huang",
+      "id": "out-c0cb875a0354",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Latest Developments in Magnetic Resonance Imaging for Evaluating theMolecular Microenvironment of Gliomas — Hanwen Zhang;Hongbo Zhang;Fan Lin;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5741,
+            "end_char": 5899
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "池征在鉴别颅内单发转移性腺癌与胶质母细胞瘤方面的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钟桂棉;张宇泽;陈忠;杨万群;黄飚",
+      "id": "out-c4a232d21e26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 池征在鉴别颅内单发转移性腺癌与胶质母细胞瘤方面的价值 — 钟桂棉;张宇泽;陈忠;杨万群;黄飚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5905,
+            "end_char": 5957
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sub-region based radiomics analysis for prediction of isocitrate dehydrogenase and telomerase reverse transcriptase promoter mutations in diffuse gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "H. Zhang;Y. Ouyang;H. Zhang;Y. Zhang;R. Su;B. Zhou;W. Yang;Y. Lei;B. Huang",
+      "id": "out-8e9395d2ff5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sub-region based radiomics analysis for prediction of isocitrate dehydrogenase and telomerase reverse transcriptase promoter mutations in diffuse gliomas — H. Zhang;Y. Ouyang;H. Zhang;Y. Zhang;R. Su;B. Zhou;W. Yang;Y. Lei;B. Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5963,
+            "end_char": 6199
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Distinctive magnetic resonance imaging features in primary central nervous system lymphoma: A case report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li-Hong Liu;Han-Wen Zhang;Hong-Bo Zhang;Xiao-Lei Liu;Hua-Zhen Deng;Fan Lin;Biao Huang",
+      "id": "out-a978504463fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Distinctive magnetic resonance imaging features in primary central nervous system lymphoma: A case report — Li-Hong Liu;Han-Wen Zhang;Hong-Bo Zhang;Xiao-Lei Liu;Hua-Zhen Deng;Fan Lin;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6205,
+            "end_char": 6404
+          },
+          "version": "393887c758e1c6abdbb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Glioblastoma and Solitary Brain Metastasis: Differentiation by Integrating Demographic‐MRI and Deep‐Learning Radiomics Signatures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuze Zhang;Hongbo Zhang;Hanwen Zhang;Ying Ouyang;Ruru Su;Wanqun Yang;Biao Huang",
+      "id": "out-4d4667a4571c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Glioblastoma and Solitary Brain Metastasis: Differentiation by Integrating Demographic‐MRI and Deep‐Learning Radiomics Signatures — Yuze Zhang;Hongbo Zhang;Hanwen Zhang;Ying Ouyang;Ruru Su;Wanqun Yang;Biao Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6410,
+            "end_char": 6627
+          },
+          "version": "393887c758e1c6abdbb4"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b992593ce413"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9305a2a95044"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9305a2a95044"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-df39914aa3ca"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-df39914aa3ca"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-47171503ae9d"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

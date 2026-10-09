@@ -2,15 +2,20 @@
   "doc_id": "f40f409b9ce35f3b56f0",
   "version": "9d802a34dd7b9c7d5518",
   "source_hash": "ab98ebaba0227fb3f363a79fbcf6e2b1d8b2ef83057641131507e4ffcd40ab99",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.722873+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.474619+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-479c6965acdb",
-          "name": "胰腺癌新辅助治疗",
-          "desc": "新辅助治疗能提高交界可切除和局部进展胰腺癌患者的手术机会和成功率，是胰腺癌领域研究热点。",
+          "id": "item-7544a2cba500",
+          "name": "胰腺囊性病变与PDAC术后早期复发预测",
+          "desc": "放射组学",
           "evidence": [
             {
-              "quote": "近年来兴起的新辅助治疗，能尽可能提高交界可切除和局部进展胰腺癌患者的手术机会和手术成功率，是近年来胰腺癌领域的研究热点之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 793
-              },
-              "version": "9d802a34dd7b9c7d5518"
-            }
-          ]
-        },
-        {
-          "id": "item-f69238ba6fa1",
-          "name": "胰腺肿瘤精准诊疗",
-          "desc": "聚焦胰腺囊性病变恶性风险分层与胰腺导管腺癌术后早期复发预测两大临床难题。",
-          "evidence": [
-            {
-              "quote": "本项目聚焦胰腺肿瘤精准诊疗中的两大临床难题：胰腺囊性病变（PCLs）恶性风险分层与胰腺导管腺癌（PDAC）术后早期复发预测。",
+              "quote": "本项目聚焦胰腺肿瘤精准诊疗中的两大临床难题：胰腺囊性病变（PCLs）恶性风险分层与胰腺导管腺癌（PDAC）术后早期复发预测",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2778,
-                "end_char": 2839
+                "end_char": 2838
               },
               "version": "9d802a34dd7b9c7d5518"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4955fd645aa",
-          "name": "传统影像难区分纤维与残存肿瘤",
-          "desc": "胰腺癌患者接受新辅助治疗后，传统影像学检查难以区分纤维组织与残存的肿瘤组织，影响疗效准确评估。",
+          "id": "item-3b6f2a646822",
+          "name": "PCLs恶性风险分层与PDAC早期复发预测",
+          "desc": "临床难题",
           "evidence": [
             {
-              "quote": "但许多胰腺癌患者在接受新辅助治疗后，传统影像学检查难以区分纤维组织与残存的肿瘤组织，从而影响疗效的准确评估。",
+              "quote": "本项目聚焦胰腺肿瘤精准诊疗中的两大临床难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 810,
-                "end_char": 863
-              },
-              "version": "9d802a34dd7b9c7d5518"
-            }
-          ]
-        },
-        {
-          "id": "item-191416d61984",
-          "name": "功能代谢影像组学研究空白",
-          "desc": "基于多模态MR联合PET-CT的功能-代谢影像组学研究在胰腺癌新辅助治疗疗效评价中尚未见相关报道。",
-          "evidence": [
-            {
-              "quote": "目前基于多模态MR联合PET-CT的功能-代谢影像组学研究，在胰腺癌新辅助治疗疗效评价中尚未见相关报道。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 949,
-                "end_char": 1000
+                "start_char": 2778,
+                "end_char": 2798
               },
               "version": "9d802a34dd7b9c7d5518"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a8abce6244d",
-          "name": "多模态MR联合PET-CT影像组学",
-          "desc": "融合功能-代谢参数定量、影像组学特征、结构成像征象及临床指标构建综合评估模型。",
+          "id": "item-98c0ad312abc",
+          "name": "CT机器学习放射组学预测PCLs恶性风险",
+          "desc": "联合囊液蛋白质组与脂质组学",
           "evidence": [
             {
-              "quote": "多模态MR联合PET-CT融合了功能-代谢参数定量，在新辅助治疗疗效评价和预后判断中有望发挥重要作用。",
+              "quote": "基于术前CT构建机器学习放射组学模型预测PCLs恶性风险，并联合囊液蛋白质组与脂质组学揭示其生物学基础",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 864,
-                "end_char": 914
+                "start_char": 2887,
+                "end_char": 2937
               },
               "version": "9d802a34dd7b9c7d5518"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-65899e951524",
-          "name": "Rad-Path放射病理融合模型",
-          "desc": "整合术前CT放射组学与术后病理全切片图像特征，构建Rad-Path融合模型预测PDAC术后早期复发。",
+          "id": "item-361f40d517f4",
+          "name": "Rad-Path融合模型预测PDAC早期复发",
+          "desc": "CT放射组学与病理WSI",
           "evidence": [
             {
               "quote": "整合术前CT放射组学与术后病理全切片图像特征，构建Rad-Path融合模型预测PDAC术后6个月内早期复发",
@@ -124,23 +98,8 @@
               },
               "version": "9d802a34dd7b9c7d5518"
             }
-          ]
-        },
-        {
-          "id": "item-f731af6be4be",
-          "name": "多组学机制解析",
-          "desc": "联合囊液蛋白质组与脂质组学、单细胞空间转录组及代谢组学解析生物学基础与肿瘤微环境特征。",
-          "evidence": [
-            {
-              "quote": "利用单细胞、空间转录组及代谢组学解析其肿瘤微环境特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2996,
-                "end_char": 3021
-              },
-              "version": "9d802a34dd7b9c7d5518"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-30748706cf80",
-          "name": "PCLs预测模型AUC超0.93",
-          "desc": "胰腺囊性病变恶性风险预测模型在多个队列中AUC均大于0.93。",
+          "id": "item-33fb6621b201",
+          "name": "PCLs预测模型AUC",
+          "desc": "多队列均＞0.93",
           "evidence": [
             {
               "quote": "PCLs预测模型在多个队列中AUC均＞0.93",
@@ -163,12 +122,14 @@
               "version": "9d802a34dd7b9c7d5518"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7cf6baf96b2f",
-          "name": "PDAC早期复发预测AUC",
-          "desc": "Rad-Path融合模型早期复发预测AUC达0.851（内部）与0.814（外部）。",
+          "id": "item-ef604dc74eaf",
+          "name": "Rad-Path融合AUC",
+          "desc": "内部0.851，外部0.814",
           "evidence": [
             {
               "quote": "PDAC早期复发预测模型的Rad-Path融合AUC达0.851（内部）与0.814（外部）",
@@ -180,72 +141,48 @@
               "version": "9d802a34dd7b9c7d5518"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c52d13bf937e",
-          "name": "多组学关键数据规模",
-          "desc": "涵盖PCLs研究396例患者、321个影像特征、347个差异蛋白与33个差异脂质，PDAC研究225例患者、2436个影像特征与768维病理特征。",
-          "evidence": [
-            {
-              "quote": "PCLs研究纳入396例患者，提取321个影像特征，鉴定347个差异蛋白与33个差异脂质",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3162,
-                "end_char": 3205
-              },
-              "version": "9d802a34dd7b9c7d5518"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-479c6965acdb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d4955fd645aa"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-191416d61984"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4a8abce6244d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-65899e951524"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7cf6baf96b2f"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f731af6be4be"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c52d13bf937e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning‐Based Radiomics in Malignancy Prediction of Pancreatic Cystic Lesions: Evidence from Cyst Fluid Multi‐Omics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sihang Cheng;Ge Hu;Shenbo Zhang;Rui Lv;Limeng Sun;Zhe Zhang;Zhengyu Jin;Yanyan Wu;Chen Huang;Lu Ye;Zhe‐Sheng Chen;Yunlu Feng;Aiming Yang;Zhiwei Wang;Huadan Xue",
+      "id": "out-7429a5b803c0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine Learning‐Based Radiomics in Malignancy Prediction of Pancreatic Cystic Lesions: Evidence from Cyst Fluid Multi‐Omics — Sihang Cheng;Ge Hu;Shenbo Zhang;Rui Lv;Limeng Sun;Zhe Zhang;Zhengyu Jin;Yanyan Wu;Chen Huang;Lu Ye;Zhe‐Sheng Chen;Yunlu Feng;Aiming Yang;Zhiwei Wang;Huadan Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3402,
+            "end_char": 3694
+          },
+          "version": "9d802a34dd7b9c7d5518"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

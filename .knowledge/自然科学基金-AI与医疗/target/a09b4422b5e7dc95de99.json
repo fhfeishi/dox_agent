@@ -2,15 +2,20 @@
   "doc_id": "a09b4422b5e7dc95de99",
   "version": "9fd88b32128777f8f3d5",
   "source_hash": "d1b59b653e61e3bf1c8d844947f0aabed2991497ec93b2e8bd706fd23edaf2d3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.518932+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.946849+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff7b1406dc0c",
-          "name": "肾结石体外冲击波碎石术预测",
-          "desc": "体外冲击波碎石术是常用肾结石治疗方法，其成功率取决于结石形态、大小和位置等多个因素。",
+          "id": "item-f3652e362d1b",
+          "name": "肾结石体外冲击波碎石术疗效预测",
+          "desc": "术前精准评估",
           "evidence": [
             {
-              "quote": "体外冲击波碎石术是一种常用的肾结石治疗方法，其成功率往往取决于结石的形态、大小和位置等多个因素",
+              "quote": "本项目开展了基于人工智能的精准诊疗算法研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
-                "end_char": 731
-              },
-              "version": "9fd88b32128777f8f3d5"
-            }
-          ]
-        },
-        {
-          "id": "item-db9280565b6b",
-          "name": "辅助优化治疗方案降低成本",
-          "desc": "通过建立预测模型辅助临床医生优化肾结石治疗方案，实现缩短诊断时间和降低医疗成本。",
-          "evidence": [
-            {
-              "quote": "通过建立预测模型实现辅助临床医生优化肾结石治疗方案，从而实现缩短诊断时间和降低医疗成本",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1044,
-                "end_char": 1086
+                "start_char": 3006,
+                "end_char": 3026
               },
               "version": "9fd88b32128777f8f3d5"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-78072bfacdef",
-          "name": "病灶特征稀疏与背景噪声干扰大",
-          "desc": "ESWL术前精准评估与疗效预测面临病灶特征稀疏、背景噪声干扰大及多模态数据异构等挑战。",
+          "id": "item-5bd5d910672e",
+          "name": "病灶特征稀疏、背景噪声干扰大、多模态数据异构",
+          "desc": "ESWL术前评估挑战",
           "evidence": [
             {
               "quote": "针对肾结石体外冲击波碎石术（ESWL）术前精准评估与疗效预测面临的病灶特征稀疏、背景噪声干扰大及多模态数据异构等挑战",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2947,
                 "end_char": 3004
-              },
-              "version": "9fd88b32128777f8f3d5"
-            }
-          ]
-        },
-        {
-          "id": "item-1b7e17d8dde2",
-          "name": "小结石弱小稀疏特性影响检测",
-          "desc": "针对小结石弱、小、稀疏特性，需在低信噪比环境下提升检测精度并降低虚警率。",
-          "evidence": [
-            {
-              "quote": "在微小病灶检测方面，针对小结石“弱、小、稀疏”特性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3282,
-                "end_char": 3306
               },
               "version": "9fd88b32128777f8f3d5"
             }
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a2c3fc4d10bf",
-          "name": "尺度自适应肾脏分割网络",
-          "desc": "根据腹部CT图像背景复杂性，提出基于尺度自适应特征提取和多层联合上采样特征映射网络的肾脏分割方法。",
+          "id": "item-ed7e6ab6739f",
+          "name": "STC-UNet肾脏分割模型",
+          "desc": "选择性卷积核与视觉Transformer，KiTS19 Dice 96.94%",
           "evidence": [
             {
-              "quote": "提出一种基于尺度自适应特征提取和多层联合上采样特征映射网络的肾脏分割方法",
+              "quote": "项目创新性地提出了融合选择性卷积核与视觉Transformer的STC-UNet模型，有效解决了肾脏及肿瘤边界模糊与尺寸多变难题，在KiTS19数据集上Dice精度达96.94%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 892
+                "start_char": 3078,
+                "end_char": 3166
               },
               "version": "9fd88b32128777f8f3d5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-4e3866d3cfac",
-          "name": "自适应扰动多任务粒子群优化分割",
-          "desc": "在肾脏分割基础上提出基于自适应扰动多任务粒子群优化算法的肾结石分割方法，实现结石分割及形态、大小等参数获取。",
+          "id": "item-e63ad8669cd3",
+          "name": "稀疏特征融合网络MSFFNet与高斯显著性引导网络MGAF-net",
+          "desc": "弱小病灶检测",
           "evidence": [
             {
-              "quote": "提出一种基于自适应扰动多任务粒子群优化算法的肾结石分割方法，实现肾结石的分割及形态、大小等参数的获取",
+              "quote": "在低信噪比环境下检测精度（Pd）显著提升4%以上，虚警率大幅降低",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 923,
-                "end_char": 972
-              },
-              "version": "9fd88b32128777f8f3d5"
-            }
-          ]
-        },
-        {
-          "id": "item-7fd59606b0b7",
-          "name": "稀疏特征融合与显著性引导检测网络",
-          "desc": "提出稀疏特征融合网络MSFFNet及高斯显著性引导网络MGAF-net，在低信噪比环境下提升微小病灶检测精度并降低虚警率。",
-          "evidence": [
-            {
-              "quote": "提出了稀疏特征融合网络（MSFFNet）及高斯显著性引导网络（MGAF-net），在低信噪比环境下检测精度（Pd）显著提升4%以上，虚警率大幅降低",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3308,
+                "start_char": 3349,
                 "end_char": 3380
               },
               "version": "9fd88b32128777f8f3d5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-94c2e28da993",
+          "name": "CCTPEA多目标进化算法与KAPC跨模态聚类",
+          "desc": "影像组学特征与临床文本融合",
+          "evidence": [
+            {
+              "quote": "项目构建了CCTPEA多目标进化算法与知识感知的KAPC跨模态聚类方法，攻克了影像组学特征与非结构化临床文本深度融合的难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3385,
+                "end_char": 3445
+              },
+              "version": "9fd88b32128777f8f3d5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,448 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ade94b5ff6c8",
-          "name": "STC-UNet在KiTS19上Dice 96.94%",
-          "desc": "提出融合选择性卷积核与视觉Transformer的STC-UNet模型，解决肾脏及肿瘤边界模糊与尺寸多变难题，KiTS19数据集Dice精度达96.94%。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "论文9篇（SCI 7篇），专利4项（授权1项），软著1项",
           "evidence": [
             {
-              "quote": "提出了融合选择性卷积核与视觉Transformer的STC-UNet模型，有效解决了肾脏及肿瘤边界模糊与尺寸多变难题，在KiTS19数据集上Dice精度达96.94%",
+              "quote": "项目共发表学术论文9篇（其中SCI收录7篇），申请发明专利4项（已授权1项），获软件著作权1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3084,
-                "end_char": 3166
+                "start_char": 3447,
+                "end_char": 3493
               },
               "version": "9fd88b32128777f8f3d5"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-4eb933b245ea",
-          "name": "轻量化网络显著压缩参数量",
-          "desc": "研发DDFE-net与LCG-Net，通过部分卷积与多尺度深度特征增强机制，在保持高分割精度同时显著降低计算冗余并极致压缩参数量。",
-          "evidence": [
-            {
-              "quote": "研发了基于决策关键特征筛选的DDFE-net以及基于局部上下文引导特征深度融合的LCG-Net，通过引入部分卷积与多尺度深度特征增强机制，在保持高分割精度的同时显著降低了计算冗余，实现了模型参数量的极致压缩",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3177,
-                "end_char": 3279
-              },
-              "version": "9fd88b32128777f8f3d5"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-af89810f576d",
-          "name": "跨模态聚类与影像处理技术体系",
-          "desc": "构建CCTPEA多目标进化算法与知识感知的KAPC跨模态聚类方法，攻克影像组学特征与非结构化临床文本深度融合难题，并发表论文9篇。",
-          "evidence": [
-            {
-              "quote": "项目构建了CCTPEA多目标进化算法与知识感知的KAPC跨模态聚类方法，攻克了影像组学特征与非结构化临床文本深度融合的难题。项目共发表学术论文9篇（其中SCI收录7篇）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3385,
-                "end_char": 3468
-              },
-              "version": "9fd88b32128777f8f3d5"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ff7b1406dc0c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-78072bfacdef"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于局部上下文引导特征深度融合的轻量级医学图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任向阳;赵梦媛;胡微;刘刚琼;毕莹",
+      "id": "out-c80ba58ba7aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于局部上下文引导特征深度融合的轻量级医学图像分割方法 — 任向阳;赵梦媛;胡微;刘刚琼;毕莹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3620,
+            "end_char": 3673
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-78072bfacdef"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-a2c3fc4d10bf"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "河南省教育厅科技成果奖优秀科技论文奖一等奖-Infrared dim and small target detectionbasedon three-dimensional collaborativefiltering and spatial inversion modeling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任向阳;王杰;马天磊;白珂;葛明涛;王禹博",
+      "id": "out-abd3fd5ff39d",
+      "evidence": [
+        {
+          "quote": "[奖励] 河南省教育厅科技成果奖优秀科技论文奖一等奖-Infrared dim and small target detectionbasedon three-dimensional collaborativefiltering and spatial inversion modeling — 任向阳;王杰;马天磊;白珂;葛明涛;王禹博",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3678,
+            "end_char": 3846
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a2c3fc4d10bf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ade94b5ff6c8"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "全国创新创业优秀博士后",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任向阳",
+      "id": "out-54c2c1a530be",
+      "evidence": [
+        {
+          "quote": "[奖励] 全国创新创业优秀博士后 — 任向阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3851,
+            "end_char": 3872
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7fd59606b0b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4eb933b245ea"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种融合柔性水路氢链的电力系统中长期调度方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "随权;梁静;张磊;韩玉;何华绅;王秋杰;于坤杰;李忠文;任向阳",
+      "id": "out-f978c5416a62",
+      "evidence": [
+        {
+          "quote": "[专利] 一种融合柔性水路氢链的电力系统中长期调度方法 — 随权;梁静;张磊;韩玉;何华绅;王秋杰;于坤杰;李忠文;任向阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3877,
+            "end_char": 3937
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于动态注意力多尺度特征融合的三维人体体内肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任向阳;李迪;梁静;王棚;郭伟峰;罗勇;马天磊;高营营;胡微",
+      "id": "out-10223a3d79af",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于动态注意力多尺度特征融合的三维人体体内肿瘤分割方法 — 任向阳;李迪;梁静;王棚;郭伟峰;罗勇;马天磊;高营营;胡微",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3942,
+            "end_char": 4008
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Infrared Small Target Detection Network With Generate Label and Feature Mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianlei Ma;Zhen Yang;Jiaqi Wang;Siyuan Sun;Xiangyang Ren;Usman Ahmad",
+      "id": "out-dd53199ea93b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Infrared Small Target Detection Network With Generate Label and Feature Mapping — Tianlei Ma;Zhen Yang;Jiaqi Wang;Siyuan Sun;Xiangyang Ren;Usman Ahmad",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4013,
+            "end_char": 4169
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "天地一体全息智能电网巡检技术和系统的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "司亮;任向阳;库雅楠;商建东;杨震;马天磊;马梦泽;杨耀环",
+      "id": "out-6210f4d2800e",
+      "evidence": [
+        {
+          "quote": "[奖励] 天地一体全息智能电网巡检技术和系统的研究 — 司亮;任向阳;库雅楠;商建东;杨震;马天磊;马梦泽;杨耀环",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4174,
+            "end_char": 4230
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "骨缺损精准修复3D打印新材料制备关键技术创建及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨晓鹏;杨慎宇;潘珩;苗秋菊;任向阳;高剑波;周仕远;赵东东;苏丹阳;郝子经;刘绘龙;王春雨;王亚萍;侯雅尘;白臻",
+      "id": "out-250062ec1fbd",
+      "evidence": [
+        {
+          "quote": "[奖励] 骨缺损精准修复3D打印新材料制备关键技术创建及应用 — 杨晓鹏;杨慎宇;潘珩;苗秋菊;任向阳;高剑波;周仕远;赵东东;苏丹阳;郝子经;刘绘龙;王春雨;王亚萍;侯雅尘;白臻",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4235,
+            "end_char": 4324
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Knowledge-aware progressive clustering for social image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingyuan Li;Yadong Dong;Dongqing Liu;Xiaoqiang Yan;Caitong Yue;Xiangyang Ren",
+      "id": "out-0f2fca288dfa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Knowledge-aware progressive clustering for social image — Mingyuan Li;Yadong Dong;Dongqing Liu;Xiaoqiang Yan;Caitong Yue;Xiangyang Ren",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4469
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "移动式三维C形臂智能手术仿真与导航系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "焦博旸;杨明远;任向阳;王思萌;胡畔",
+      "id": "out-55ba1eada3a9",
+      "evidence": [
+        {
+          "quote": "[奖励] 移动式三维C形臂智能手术仿真与导航系统 — 焦博旸;杨明远;任向阳;王思萌;胡畔",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4475,
+            "end_char": 4519
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A cooperation and competition-based tri-population evolutionary algorithm for constrained multi-objective optimization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Kunjie;Duan Lianhe;Liang Jing;Qiao Kangjia;Qu Boyang;Sui Quan;Ren Xiangyang",
+      "id": "out-755f739df6ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A cooperation and competition-based tri-population evolutionary algorithm for constrained multi-objective optimization — Yu Kunjie;Duan Lianhe;Liang Jing;Qiao Kangjia;Qu Boyang;Sui Quan;Ren Xiangyang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4525,
+            "end_char": 4730
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep-learning image reconstruction for image quality evaluation and accurate bone mineral density measurement on quantitative CT: A phantom-patient study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Yali;Jiang Yaojun;Yu Xi;Ren Binbin;Wang Chunyu;Chen Sihui;Ma Duoshan;Su Danyang;Liu Huilong;Ren Xiangyang;Yang Xiaopeng;Gao Jianbo;Wu Yan",
+      "id": "out-c60c5d1bd615",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep-learning image reconstruction for image quality evaluation and accurate bone mineral density measurement on quantitative CT: A phantom-patient study — Li Yali;Jiang Yaojun;Yu Xi;Ren Binbin;Wang Chunyu;Chen Sihui;Ma Duoshan;Su Danyang;Liu Huilong;Ren Xiangyang;Yang Xiaopeng;Gao Jianbo;Wu Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4736,
+            "end_char": 5038
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "河南省教育厅科技成果奖优秀科技论文奖一等奖-Infrared Small Target DetectionNetwork With Generate Labeland Feature Mapping",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马天磊;杨震;王佳奇;孙思媛;任向阳",
+      "id": "out-0098d0288875",
+      "evidence": [
+        {
+          "quote": "[奖励] 河南省教育厅科技成果奖优秀科技论文奖一等奖-Infrared Small Target DetectionNetwork With Generate Labeland Feature Mapping — 马天磊;杨震;王佳奇;孙思媛;任向阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5044,
+            "end_char": 5168
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightweight decision-making decisive feature enhancement network for medical image analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyang Ren;Boyang Jiao;Jianbo Gao;Yazheng Chen;Na Xiao;Ying Bi;Gangqiong Liu",
+      "id": "out-2f3c47b11c69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lightweight decision-making decisive feature enhancement network for medical image analysis — Xiangyang Ren;Boyang Jiao;Jianbo Gao;Yazheng Chen;Na Xiao;Ying Bi;Gangqiong Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5174,
+            "end_char": 5353
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSFFNet: A Multilevel Sparse Feature Fusion Network for Infrared Dim Small Target Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiangyang Ren;Boyang Jiao;Zhenming Peng;Renke Kou;Peng Wang;Mingyuan Li",
+      "id": "out-763d3bf4bebb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MSFFNet: A Multilevel Sparse Feature Fusion Network for Infrared Dim Small Target Detection — Xiangyang Ren;Boyang Jiao;Zhenming Peng;Renke Kou;Peng Wang;Mingyuan Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5530
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于移动储能转移频次建模的直流微电网群保电调度方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "随权;王涵然;梁静;李忠文;任向阳",
+      "id": "out-c0f58c9a67ab",
+      "evidence": [
+        {
+          "quote": "[专利] 基于移动储能转移频次建模的直流微电网群保电调度方法 — 随权;王涵然;梁静;李忠文;任向阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5536,
+            "end_char": 5585
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gradient field divergence-based small target detection in infrared images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ma Tianlei;Yang Zhen;Wang Jiaqi;Ren Xiangyang;Ku Yanan;Peng Jinzhu;Liu Yunpeng",
+      "id": "out-95ed22822148",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gradient field divergence-based small target detection in infrared images — Ma Tianlei;Yang Zhen;Wang Jiaqi;Ren Xiangyang;Ku Yanan;Peng Jinzhu;Liu Yunpeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5591,
+            "end_char": 5751
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于腹部平扫CT人工智能模型测量肝脏脂肪含量:与QCT对照研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张浩然;白臻;苏丹阳;刘金龙;马渊博;苗秋菊;杨慎宇;任向阳;杨晓鹏",
+      "id": "out-19f57238eb6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于腹部平扫CT人工智能模型测量肝脏脂肪含量:与QCT对照研究 — 张浩然;白臻;苏丹阳;刘金龙;马渊博;苗秋菊;杨慎宇;任向阳;杨晓鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5757,
+            "end_char": 5831
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "识别癌症个体化多模态药物靶点的约束多模态多目标进化方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭伟峰;胡灼;梁静;任向阳;程涵",
+      "id": "out-be7352c2144b",
+      "evidence": [
+        {
+          "quote": "[专利] 识别癌症个体化多模态药物靶点的约束多模态多目标进化方法 — 郭伟峰;胡灼;梁静;任向阳;程涵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5837,
+            "end_char": 5887
+          },
+          "version": "9fd88b32128777f8f3d5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

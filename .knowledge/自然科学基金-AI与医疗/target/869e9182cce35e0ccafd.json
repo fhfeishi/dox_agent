@@ -2,15 +2,20 @@
   "doc_id": "869e9182cce35e0ccafd",
   "version": "3a835b4eb3f324bcec6f",
   "source_hash": "0fee3ba51741143f2aaa0d5b0c9f33ba80109767920563f4df53a13e2e7981f7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.086308+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.972900+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-db8a761f36a4",
-          "name": "靶蛋白-配体亲和力打分函数构建",
-          "desc": "计算机辅助药物设计领域中，基于描述符与机器学习的打分函数已成为预测靶蛋白-配体亲和力的有力工具。",
+          "id": "item-292fadcb895f",
+          "name": "靶蛋白-配体亲和力预测",
+          "desc": "计算型药物发现",
           "evidence": [
             {
-              "quote": "在计算机辅助的药物设计领域，基于描述符和机器学习的打分函数已逐渐成为预测靶蛋白-配体亲和力的有力工具",
+              "quote": "计算型药物发现是当代药物研发体系中不可或缺的有机组成部分，如何精确地预测蛋白和药物小分子（配体）的结合亲和力则是此领域中一个关键的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 717
-              },
-              "version": "3a835b4eb3f324bcec6f"
-            }
-          ]
-        },
-        {
-          "id": "item-7953643172fc",
-          "name": "虚拟筛选与先导物优化应用",
-          "desc": "构建新型描述符模型及打分函数，在虚拟筛选、先导物优化等工作中具有良好应用价值。",
-          "evidence": [
-            {
-              "quote": "本项目致力于构建新型的描述符模型及打分函数，在虚拟筛选、先导物优化等工作中将具有良好的应用价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 987,
-                "end_char": 1033
+                "start_char": 2479,
+                "end_char": 2545
               },
               "version": "3a835b4eb3f324bcec6f"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-43ca5721eb04",
-          "name": "交互指纹形式过于简化发展受限",
-          "desc": "交互指纹描述符虽简单形象易扩展被广泛应用，但因其过于简化的形式而发展受限。",
-          "evidence": [
-            {
-              "quote": "交互指纹描述符凭借其简单、形象且易扩展等优点被广泛应用，却因其过于简化的形式而发展受限",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 800
-              },
-              "version": "3a835b4eb3f324bcec6f"
-            }
-          ]
-        },
-        {
-          "id": "item-8a7bfbd96558",
-          "name": "分子表示与学习机制匹配挑战",
-          "desc": "开发合理的分子特征表示模型及为其匹配个性化机器学习机制是构建打分函数的重要挑战。",
+          "id": "item-9dd9e6563f6d",
+          "name": "分子特征表示模型与个性化机器学习机制开发的挑战",
+          "desc": "构建打分函数",
           "evidence": [
             {
               "quote": "然而，开发合理的分子特征表示模型及为其匹配个性化的机器学习机制是构建打分函数的重要挑战",
@@ -95,63 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1f56a3e4101f",
-          "name": "新型交互指纹生成技术",
-          "desc": "基于复合体三维结构，利用组内侧写、体素表示、预定义结构码和蛋白化学计量法等技术生成新型交互指纹。",
+          "id": "item-313177f8ca65",
+          "name": "基于蛋白化学计量法与相互作用对的交互指纹框架",
+          "desc": "利用ECFP理论",
           "evidence": [
             {
-              "quote": "本项目拟基于靶蛋白-配体复合体的三维结构，利用组内侧写、体素表示、预定义结构码和蛋白化学计量法等技术来生成新型的交互指纹",
+              "quote": "我们基于靶蛋白-配体复合体的三维结构、利用ECFP的理论探索了不同的指纹算法框架（基于蛋白化学计量法的框架和基于相互作用对的框架）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 852,
-                "end_char": 911
+                "start_char": 2815,
+                "end_char": 2879
               },
               "version": "3a835b4eb3f324bcec6f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2d2de0b187a7",
-          "name": "匹配深度学习模型的打分函数",
-          "desc": "通过为新型交互指纹匹配契合的深度学习模型来构建精准的打分函数。",
-          "evidence": [
-            {
-              "quote": "并通过为之匹配契合的深度学习模型来构建精准的打分函数",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 913,
-                "end_char": 938
-              },
-              "version": "3a835b4eb3f324bcec6f"
-            }
-          ]
-        },
-        {
-          "id": "item-5126e616ec9a",
-          "name": "指纹算法框架与基础性质学习",
-          "desc": "探索基于蛋白化学计量法与基于相互作用对的指纹算法框架，并学习基础原子性质对交互指纹构建的影响。",
-          "evidence": [
-            {
-              "quote": "利用ECFP的理论探索了不同的指纹算法框架（基于蛋白化学计量法的框架和基于相互作用对的框架）以及学习了基础原子性质（一般理化性质和药效团特征）对交互指纹构建的影响",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2834,
-                "end_char": 2914
-              },
-              "version": "3a835b4eb3f324bcec6f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6560c920132a",
-          "name": "个性化亲和力预测学习框架",
-          "desc": "设计针对亲和力预测问题的个性化学习框架，并对计算效率与打分表现进行多维度评估。",
+          "id": "item-b775bcc9ddce",
+          "name": "亲和力预测深度学习框架",
+          "desc": "个性化学习框架",
           "evidence": [
             {
               "quote": "我们设计了个性化的、针对亲和力预测问题的学习框架，并对计算效率和打分表现进行了多个维度的评估",
@@ -163,12 +99,18 @@
               "version": "3a835b4eb3f324bcec6f"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-6549d370bf82",
-          "name": "论文与综合打分工具包",
-          "desc": "已实现4篇期刊论文及5篇会议论文发表，并整合多个模块为综合工具包。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "期刊论文4篇、会议论文5篇",
           "evidence": [
             {
               "quote": "已实现4篇期刊论文及5篇会议论文的发表，并且整合了多个模块为综合工具包",
@@ -180,72 +122,199 @@
               "version": "3a835b4eb3f324bcec6f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-745d9481e10a",
-          "name": "结构深度学习亲和力预测模型",
-          "desc": "构建基于结构信息的深度学习模型用于蛋白-配体结合亲和力预测。",
-          "evidence": [
-            {
-              "quote": "Structure-based, deep-learning models for protein-ligand binding affinity prediction",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3554,
-                "end_char": 3637
-              },
-              "version": "3a835b4eb3f324bcec6f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-db8a761f36a4"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-43ca5721eb04"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LEARNING OF MOLECULAR GRAPHS IN TOXICITY PREDICTION",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuting Huang;Dunlu Peng;Debby D. Wang",
+      "id": "out-bea214cd6dc6",
+      "evidence": [
+        {
+          "quote": "[会议论文] LEARNING OF MOLECULAR GRAPHS IN TOXICITY PREDICTION — Yuting Huang;Dunlu Peng;Debby D. Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3200,
+            "end_char": 3297
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-43ca5721eb04"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1f56a3e4101f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AME-LSIFT: Attention-Aware Multi-Label Ensemble With Label Subset-SpecIfic FeaTures",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Xinyin;Wang Ran;Chen Shuyue;Jia Yuheng;Wang Debby D.",
+      "id": "out-ee3552025c02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AME-LSIFT: Attention-Aware Multi-Label Ensemble With Label Subset-SpecIfic FeaTures — Zhang Xinyin;Wang Ran;Chen Shuyue;Jia Yuheng;Wang Debby D.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3302,
+            "end_char": 3452
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1f56a3e4101f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-745d9481e10a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scoring Protein-ligand Complex Structures by HybridNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Debby D. Wang;Ran Wang",
+      "id": "out-68e9bfa6b443",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scoring Protein-ligand Complex Structures by HybridNet — Debby D. Wang;Ran Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3457,
+            "end_char": 3542
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2d2de0b187a7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6560c920132a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Structure-based, deep-learning models for protein-ligand binding affinity prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Debby D. Wang;Wenhui Wu;Ran Wang",
+      "id": "out-1f24b28fc102",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Structure-based, deep-learning models for protein-ligand binding affinity prediction — Debby D. Wang;Wenhui Wu;Ran Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3547,
+            "end_char": 3672
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature similarity learning based on fuzziness minimization for semi-supervised medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Tianlun;Zhou Xinlei;Wang Debby D.;Wang Xizhao",
+      "id": "out-0faba80c61b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature similarity learning based on fuzziness minimization for semi-supervised medical image segmentation — Zhang Tianlun;Zhou Xinlei;Wang Debby D.;Wang Xizhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3677,
+            "end_char": 3843
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MODEL UNCERTAINTY ESTIMATION BASED ON A DUAL-MODULE NEURAL NETWORK ARCHITECTURE",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiqing Guo;Tianlun Zhang;Dunlu Peng;Debby D. Wang",
+      "id": "out-c73c3e522f85",
+      "evidence": [
+        {
+          "quote": "[会议论文] MODEL UNCERTAINTY ESTIMATION BASED ON A DUAL-MODULE NEURAL NETWORK ARCHITECTURE — Weiqing Guo;Tianlun Zhang;Dunlu Peng;Debby D. Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3848,
+            "end_char": 3986
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Swin Transformer based on multi-directional-shift window attention and inductive bias for diagnosis of pleural effusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tian Zekun;Peng Dunlu;Wang Debby D.;Zhang Linna;Zou Zheng;Huang Hejing;Zhang Shiqi",
+      "id": "out-2383df1aa856",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Swin Transformer based on multi-directional-shift window attention and inductive bias for diagnosis of pleural effusion — Tian Zekun;Peng Dunlu;Wang Debby D.;Zhang Linna;Zou Zheng;Huang Hejing;Zhang Shiqi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3991,
+            "end_char": 4203
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IMPROVING THE ADVERSARIAL ROBUSTNESS OF DEEP NEURAL NETWORKS VIA EFFICIENT TWO-STAGE TRAINING",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "RAN WANG;JINGYU XIONG;HAOPENG KE;YUHENG JIA;DEBBY D. WANG",
+      "id": "out-39253f281432",
+      "evidence": [
+        {
+          "quote": "[会议论文] IMPROVING THE ADVERSARIAL ROBUSTNESS OF DEEP NEURAL NETWORKS VIA EFFICIENT TWO-STAGE TRAINING — RAN WANG;JINGYU XIONG;HAOPENG KE;YUHENG JIA;DEBBY D. WANG",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4208,
+            "end_char": 4367
+          },
+          "version": "3a835b4eb3f324bcec6f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

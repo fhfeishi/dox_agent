@@ -2,15 +2,20 @@
   "doc_id": "d182cb3d9dd3f75cef2e",
   "version": "df1257061ebd92002ac2",
   "source_hash": "ec8333637b7578a5046958f1653fac1c61b278f5405a311465012190a137f4b3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.173219+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.522423+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ea0a034fe124",
-          "name": "乳腺癌腋窝淋巴结转移预测",
-          "desc": "乳腺癌发病率居我国女性恶性肿瘤首位，腋窝淋巴结是乳腺癌淋巴转移最主要途径。",
+          "id": "item-ce86eb33ddc3",
+          "name": "乳腺癌腋窝淋巴结转移无创预测",
+          "desc": "超声影像组学",
           "evidence": [
             {
-              "quote": "乳腺癌发病率居我国女性恶性肿瘤之首位，腋窝淋巴结是乳腺癌淋巴转移最主要的途径",
+              "quote": "本项目按原计划顺利进行，原计划的研究内容基本完成",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 692
-              },
-              "version": "df1257061ebd92002ac2"
-            }
-          ]
-        },
-        {
-          "id": "item-b02c9ba3dae1",
-          "name": "腋窝淋巴结无创综合评估",
-          "desc": "利用超声影像、个体化生物学特征和机体环境因素等多种参数无创综合评定乳腺腋窝淋巴结状态。",
-          "evidence": [
-            {
-              "quote": "如何利用超声影像，乳腺癌个体化的生物学特征和机体环境因素等多种参数，无创综合评定乳腺腋窝淋巴结状态，是当前乳腺癌科研和临床工作中的一项重要课题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 743,
-                "end_char": 813
+                "start_char": 2647,
+                "end_char": 2670
               },
               "version": "df1257061ebd92002ac2"
             }
@@ -59,30 +48,14 @@
         {
           "id": "item-cb62e86dd338",
           "name": "腋窝淋巴结评估依赖有创方法",
-          "desc": "即使早期乳腺癌的腋窝淋巴结评估也要依靠有创方法，存在并发症风险，影响患者术后生存质量。",
+          "desc": "并发症风险",
           "evidence": [
             {
-              "quote": "然而，目前即使是早期乳腺癌的腋窝淋巴结评估也要依靠有创方法，存在并发症风险，影响患者术后生存质量",
+              "quote": "目前即使是早期乳腺癌的腋窝淋巴结评估也要依靠有创方法，存在并发症风险",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 741
-              },
-              "version": "df1257061ebd92002ac2"
-            }
-          ]
-        },
-        {
-          "id": "item-1e52f70ff6bb",
-          "name": "缺乏中国患者特点的智能预测模型",
-          "desc": "需建立一种基于中国乳腺癌患者临床病理特点的智能预测模型。",
-          "evidence": [
-            {
-              "quote": "通过上述研究建立一种基于中国乳腺癌患者临床病理特点的智能预测模型，为乳腺癌腋窝淋巴结的个性化、高效、无创评估提供新思路和新方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 955,
-                "end_char": 1017
+                "start_char": 697,
+                "end_char": 730
               },
               "version": "df1257061ebd92002ac2"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cbc24ca688c9",
-          "name": "超声影像组学融合多参数建模",
-          "desc": "筛选乳腺癌腋窝淋巴结转移相关因素，建立关键特征标签，应用影像组学融合关键特征建立预测模型并验证优化。",
+          "id": "item-d9ceaaaa9788",
+          "name": "DLRU深度学习超声模型",
+          "desc": "预测前哨及非前哨淋巴结转移风险",
           "evidence": [
             {
-              "quote": "应用影像组学的方法，融合筛选乳腺癌腋窝淋巴结转移关键特征，建立预测模型",
+              "quote": "构建人工智能“DLRU”模型，逐步预测乳腺癌腋窝前哨及非前哨淋巴结的转移风险",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 905,
-                "end_char": 939
+                "start_char": 2887,
+                "end_char": 2924
               },
               "version": "df1257061ebd92002ac2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c433551beed8",
-          "name": "深度学习挖掘灰阶超声抽象特征",
-          "desc": "利用深度学习算法挖掘二维灰阶超声图像中与ALN转移相关的高维抽象特征，构建人工智能DLRU模型。",
+          "id": "item-b217c78fde96",
+          "name": "万例级别乳腺多模态超声数据库",
+          "desc": "规范化与扩充",
           "evidence": [
             {
-              "quote": "利用深度学习算法，挖掘二维灰阶超声图像中与ALN转移相关的高维抽象特征，构建人工智能“DLRU”模型",
+              "quote": "进一步扩充并规范了已建立的万例级别乳腺多模态超声数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2851,
-                "end_char": 2900
+                "start_char": 2716,
+                "end_char": 2742
               },
               "version": "df1257061ebd92002ac2"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,103 +108,360 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac07cecb55dc",
-          "name": "万例级乳腺多模态超声数据库",
-          "desc": "进一步扩充并规范万例级别乳腺多模态超声数据库，补充乳腺癌腋窝淋巴结图像及相关临床病理信息。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "17篇含SCI 9篇，授权发明专利2项",
           "evidence": [
             {
-              "quote": "进一步扩充并规范了已建立的万例级别乳腺多模态超声数据库，补充了乳腺癌腋窝淋巴结图像及相关临床病理信息",
+              "quote": "共发表论文17篇，其中SCI收录9篇，其中单篇最高影响因子8.143；国家发明专利2项（均已授权）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2716,
-                "end_char": 2765
-              },
-              "version": "df1257061ebd92002ac2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-a545ffb448a7",
-          "name": "DLRU模型逐步预测淋巴结风险",
-          "desc": "DLRU模型逐步预测乳腺癌腋窝前哨及非前哨淋巴结的转移风险，有望帮助低转移风险患者免于过度治疗。",
-          "evidence": [
-            {
-              "quote": "逐步预测乳腺癌腋窝前哨及非前哨淋巴结的转移风险，该研究有望帮助一部分腋窝低转移风险患者免于过度治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2902,
-                "end_char": 2950
-              },
-              "version": "df1257061ebd92002ac2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-093b7845f997",
-          "name": "论文专利与基金项目",
-          "desc": "共发表论文17篇（SCI收录9篇，单篇最高影响因子8.143），授权国家发明专利2项，课题组新获国家自然科学基金面上项目2项、青年项目2项。",
-          "evidence": [
-            {
-              "quote": "在本项目的资助下，共发表论文17篇，其中SCI收录9篇，其中单篇最高影响因子8.143；国家发明专利2项（均已授权）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3305,
+                "start_char": 3314,
                 "end_char": 3362
               },
               "version": "df1257061ebd92002ac2"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ea0a034fe124"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-cb62e86dd338"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "双模态影像联合免疫组化构建模型预测cN_1期乳腺癌新辅助化疗后腋窝淋巴结状态",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李雨漫;梁星宇;吴桐;许祥丽;荆慧;田家玮",
+      "id": "out-d2012cffd6cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 双模态影像联合免疫组化构建模型预测cN_1期乳腺癌新辅助化疗后腋窝淋巴结状态 — 李雨漫;梁星宇;吴桐;许祥丽;荆慧;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3407,
+            "end_char": 3475
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-cb62e86dd338"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-cbc24ca688c9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "应用超声自动分类算法辅助乳腺肿块诊断的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王影;赵若兰;伍小芳;田家玮",
+      "id": "out-6868f80fcb20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 应用超声自动分类算法辅助乳腺肿块诊断的研究 — 王影;赵若兰;伍小芳;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3480,
+            "end_char": 3524
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cbc24ca688c9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ac07cecb55dc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative shear wave elastography in primary invasive breast cancers, based on collagen-S100A4 pathology, indicates axillary lymph node metastasis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Wen;Xiwen Yu;Yuhang Tian;Zhao Liu;Wen Cheng;Hairu Li;Jia Kang;Tianci Wei;Shasha Yuan;Jiawei Tian",
+      "id": "out-1cee1b6befdd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative shear wave elastography in primary invasive breast cancers, based on collagen-S100A4 pathology, indicates axillary lymph node metastasis — Xin Wen;Xiwen Yu;Yuhang Tian;Zhao Liu;Wen Cheng;Hairu Li;Jia Kang;Tianci Wei;Shasha Yuan;Jiawei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3529,
+            "end_char": 3787
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c433551beed8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a545ffb448a7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying ultrasound features of positive expression of Ki67 and P53 in breast cancer using radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Cui;Dandan Zhang;Fuhui Peng;Hanqing Kong;Qiang Guo;Tong Wu;Xin Wen;Lei Zhang;Jiawei Tian",
+      "id": "out-c2a5504539d0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying ultrasound features of positive expression of Ki67 and P53 in breast cancer using radiomics — Hao Cui;Dandan Zhang;Fuhui Peng;Hanqing Kong;Qiang Guo;Tong Wu;Xin Wen;Lei Zhang;Jiawei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 3996
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Models for Predicting Sentinel and Non-sentinel Lymph Nodes Based on Pre-operative Ultrasonic Breast Imaging to Optimize Axillary Strategies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongmei Liu;Xia Li;Yujia Lan;Lei Zhang;Tong Wu;Hao Cui;Ziyao Li;Ping Sun;Peng Tian;Jiawei Tian",
+      "id": "out-580a4d027fa0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Models for Predicting Sentinel and Non-sentinel Lymph Nodes Based on Pre-operative Ultrasonic Breast Imaging to Optimize Axillary Strategies — Dongmei Liu;Xia Li;Yujia Lan;Lei Zhang;Tong Wu;Hao Cui;Ziyao Li;Ping Sun;Peng Tian;Jiawei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4001,
+            "end_char": 4244
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "乳腺癌多模态超声评估新辅助化疗后腋窝淋巴结病理状态的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于丹阳;吴桐;荆慧;田家玮",
+      "id": "out-de5e80bc80ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 乳腺癌多模态超声评估新辅助化疗后腋窝淋巴结病理状态的研究 — 于丹阳;吴桐;荆慧;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4249,
+            "end_char": 4299
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning radiomics of ultrasonography: Identifying the risk of axillary non-sentinel lymph node involvement in primary breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Guo;Zhenyu Liu;Caixia Sun;Lei Zhang;Ying Wang;Ziyao Li;Jiaxin Shi;Tong Wu;Hao Cui;Jing Zhang;Jie Tian;Jiawei Tian",
+      "id": "out-6a12ea60380f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning radiomics of ultrasonography: Identifying the risk of axillary non-sentinel lymph node involvement in primary breast cancer — Xu Guo;Zhenyu Liu;Caixia Sun;Lei Zhang;Ying Wang;Ziyao Li;Jiaxin Shi;Tong Wu;Hao Cui;Jing Zhang;Jie Tian;Jiawei Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4304,
+            "end_char": 4566
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of Contrast-Enhanced Ultrasound in the Differential Diagnosis of Different Molecular Subtypes of Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁星宇;李紫瑶;张蕾;王冬沫;田家玮",
+      "id": "out-0d8b6064f7b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of Contrast-Enhanced Ultrasound in the Differential Diagnosis of Different Molecular Subtypes of Breast Cancer — 梁星宇;李紫瑶;张蕾;王冬沫;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4571,
+            "end_char": 4720
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声评估乳腺癌新辅助化疗后病理完全缓解的临床应用价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙家宝;张蕾;崔浩;魏天赐;田家玮",
+      "id": "out-360ad001ddbd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声评估乳腺癌新辅助化疗后病理完全缓解的临床应用价值 — 孙家宝;张蕾;崔浩;魏天赐;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4725,
+            "end_char": 4777
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "不同分子分型乳腺癌的多模态超声特征和临床病理对照研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "康佳;吴桐;张蕾;李紫瑶;魏天赐;田家玮",
+      "id": "out-0638123e6e93",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 不同分子分型乳腺癌的多模态超声特征和临床病理对照研究 — 康佳;吴桐;张蕾;李紫瑶;魏天赐;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4783,
+            "end_char": 4838
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound characteristics of sclerosing adenosis mimicking breast carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Liu;Wei Li;Ziyao Li;Lei Shi;Peng Zhao;Zihong Guo;Jiawei Tian;Zhenzhen Wang",
+      "id": "out-d31f5d01539f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound characteristics of sclerosing adenosis mimicking breast carcinoma — Wei Liu;Wei Li;Ziyao Li;Lei Shi;Peng Zhao;Zihong Guo;Jiawei Tian;Zhenzhen Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4844,
+            "end_char": 5007
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态超声特征预测肿块型乳腺癌Ki-67表达分级的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贲译莹;吴桐;许祥丽;于丹阳;田家玮",
+      "id": "out-ffc5960d7f8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态超声特征预测肿块型乳腺癌Ki-67表达分级的研究 — 贲译莹;吴桐;许祥丽;于丹阳;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5013,
+            "end_char": 5067
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "三维超声在不同分子分型乳腺癌诊断中的应用研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "祁冰;李紫瑶;田家玮",
+      "id": "out-516e05c59988",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 三维超声在不同分子分型乳腺癌诊断中的应用研究 — 祁冰;李紫瑶;田家玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5073,
+            "end_char": 5114
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "HER-2阳性乳腺癌无进展生存期相关临床及超声特征分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孔汉卿;崔浩;孟德昕;张煦东;赵丹彤;田家玮;张蕾",
+      "id": "out-22e0b0dcfa1c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] HER-2阳性乳腺癌无进展生存期相关临床及超声特征分析 — 孔汉卿;崔浩;孟德昕;张煦东;赵丹彤;田家玮;张蕾",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5120,
+            "end_char": 5181
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合深度卷积网络和影像组学特征的乳腺癌超声图像分型方法、系统和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田家玮;张蕾;王影;俞卫东;张云鹏;时嘉欣",
+      "id": "out-8887d80b3e64",
+      "evidence": [
+        {
+          "quote": "[专利] 融合深度卷积网络和影像组学特征的乳腺癌超声图像分型方法、系统和存储介质 — 田家玮;张蕾;王影;俞卫东;张云鹏;时嘉欣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5187,
+            "end_char": 5250
+          },
+          "version": "df1257061ebd92002ac2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 14,
+        "extracted": 14
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

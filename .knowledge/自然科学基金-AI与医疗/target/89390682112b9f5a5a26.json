@@ -2,15 +2,20 @@
   "doc_id": "89390682112b9f5a5a26",
   "version": "a15c6f1a5b56dea19d1e",
   "source_hash": "642e7a13f4a8c197856d4b4310b0d4155767a99259c1589537aed894bad2d517",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.117301+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.233251+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,63 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6dfb0d208f3",
-          "name": "食管癌新辅助放化疗疗效预测",
-          "desc": "建立预测放化疗后pCR的模型对食管癌个体化治疗十分重要。",
-          "evidence": [
-            {
-              "quote": "建立预测放化疗后pCR的模型对食管癌个体化治疗十分重要",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 686,
-                "end_char": 712
-              },
-              "version": "a15c6f1a5b56dea19d1e"
-            }
-          ]
-        },
-        {
-          "id": "item-eb317e357749",
-          "name": "食管癌个体化治疗决策支持",
-          "desc": "该模型有望为临床决策提供新依据，指导食管癌的个体化治疗。",
-          "evidence": [
-            {
-              "quote": "该模型有望为临床决策提供新依据，指导食管癌的个体化治疗",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1056,
-                "end_char": 1082
-              },
-              "version": "a15c6f1a5b56dea19d1e"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-daa0b06b6650",
-          "name": "现有模型准确性低难以推广",
-          "desc": "文献报道的模型准确性低，难以推广。",
-          "evidence": [
-            {
-              "quote": "文献报道的模型准确性低，难以推广",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 714,
-                "end_char": 729
-              },
-              "version": "a15c6f1a5b56dea19d1e"
-            }
-          ]
-        },
-        {
-          "id": "item-44b0ef89cd2e",
-          "name": "根治性放化疗后局部复发率高",
-          "desc": "超过50%食管癌患者最终在根治性放化疗后出现局部复发，5年总生存率为15-25%。",
+          "id": "item-c6f82eca4b2b",
+          "name": "食管鳞癌根治性放化疗后复发预测",
+          "desc": "局部复发率超过50%",
           "evidence": [
             {
               "quote": "超过50% 的食管癌患者最终在根治性放化疗后出现局部复发，5年总生存率为15-25%",
@@ -91,36 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-4dbd969e3faf",
-          "name": "多模态功能影像组学联合ctDNA",
-          "desc": "联合癌突变信息的功能影像组学整合代谢、微结构和突变三类数据提升预测pCR效能，并整合ctDNA无创检测。",
+          "id": "item-79144d9a5921",
+          "name": "预测局部复发以实施个性化治疗",
+          "desc": "影像组学联合深度学习多中心研究缺乏",
           "evidence": [
             {
-              "quote": "联合癌突变信息的功能影像组学可有效整合代谢、微结构和突变这三类数据，提升预测pCR效能",
+              "quote": "利用影像组学联合深度学习模型预测食管癌局部复发的多中心研究还未见报道",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 731,
-                "end_char": 773
-              },
-              "version": "a15c6f1a5b56dea19d1e"
-            }
-          ]
-        },
-        {
-          "id": "item-792a94914a12",
-          "name": "影像组学联合深度学习列线图",
-          "desc": "提取radiomic signature与deep-learning signature并联合预后临床危险因素，建立基于治疗前增强CT的融合列线图预测模型。",
-          "evidence": [
-            {
-              "quote": "Radiomic signature和deep-learning signature，联合预后临床危险因素，建立并验证基于治疗前增强CT的融合列线图预测模型，预测局部无复发生存期",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3314,
-                "end_char": 3402
+                "start_char": 3135,
+                "end_char": 3168
               },
               "version": "a15c6f1a5b56dea19d1e"
             }
@@ -129,13 +64,36 @@
       ]
     },
     {
+      "key": "技术",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-23566a9c6f69",
+          "name": "radiomic signature与deep-learning signature融合列线图",
+          "desc": "基于治疗前增强CT，联合预后临床危险因素",
+          "evidence": [
+            {
+              "quote": "将radiomic signature、deep-learning signature与临床数据相结合建立的融合列线图优于使用三个预测因子的子集模型，在训练集、内部验证集和外部验证集中一致性指数分别为0.82、0.78和0.76",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3508,
+                "end_char": 3621
+              },
+              "version": "a15c6f1a5b56dea19d1e"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
       "key": "成果",
       "state": "has",
       "items": [
         {
-          "id": "item-e1962012488d",
-          "name": "融合列线图一致性指数0.82与0.78与0.76",
-          "desc": "融合列线图在训练集、内部验证集和外部验证集中一致性指数分别为0.82、0.78和0.76，优于子集模型。",
+          "id": "item-1016881d89e9",
+          "name": "融合列线图一致性指数",
+          "desc": "训练0.82、内部验证0.78、外部验证0.76",
           "evidence": [
             {
               "quote": "在训练集、内部验证集和外部验证集中一致性指数分别为0.82、0.78和0.76",
@@ -147,89 +105,109 @@
               "version": "a15c6f1a5b56dea19d1e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-fd6ef92ba579",
-          "name": "影像组学可风险分层预测复发生存",
-          "desc": "治疗前增强CT的radiomic与deep-learning signature可将患者风险分层，对预测局部无复发生存期和总生存期具有重要价值。",
+          "id": "item-5cee104b14e5",
+          "name": "多中心食管鳞癌队列",
+          "desc": "302例回顾性与70例外部验证",
           "evidence": [
             {
-              "quote": "基于治疗前增强CT的radiomic signature和deep-learning signature可以将食管鳞癌患者风险分层，分为高危组和低危组，对预测食管鳞癌的局部无复发生存期和总生存期具有重要价值",
+              "quote": "本项目在西京医院回顾性收集的302例食管鳞癌患者，随机划分得到201人的训练集和101人的内部验证集，从天津和山东肿瘤医院收集的70例患者作为外部验证集",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3404,
-                "end_char": 3506
+                "start_char": 3170,
+                "end_char": 3245
               },
               "version": "a15c6f1a5b56dea19d1e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8da6dd85354d",
-          "name": "MRI列线图预测鼻咽癌诱导化疗反应",
-          "desc": "基于MRI影像组学列线图可预测局部晚期鼻咽癌诱导化疗反应与生存。",
-          "evidence": [
-            {
-              "quote": "MRI-based radiomics nomogram may predict the response to induction chemotherapy and survival in locally advanced nasopharyngeal carcinoma",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 4337,
-                "end_char": 4473
-              },
-              "version": "a15c6f1a5b56dea19d1e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c6dfb0d208f3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-daa0b06b6650"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based radiomics nomogram may predict local recurrence-free survival in esophageal cancer patients receiving definitive chemoradiation or radiotherapy: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Gong;Wencheng Zhang;Wei Huang;Ye Liao;Yutian Yin;Mei Shi;Wei Qin;Lina Zhao",
+      "id": "out-86d9332d3bb0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based radiomics nomogram may predict local recurrence-free survival in esophageal cancer patients receiving definitive chemoradiation or radiotherapy: a multicenter study — Jie Gong;Wencheng Zhang;Wei Huang;Ye Liao;Yutian Yin;Mei Shi;Wei Qin;Lina Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 4061
+          },
+          "version": "a15c6f1a5b56dea19d1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-daa0b06b6650"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4dbd969e3faf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-Term Clinical Outcomes and Safety Analysis of Superficial Esophageal Cancer Patients Treated with Definitive or Adjuvant Radiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bo Lyu;Yutian Yin;Yilin Zhao;Xu Yang;Jie Gong;Mai Zhang;Guangjin Chai;Zhaohui Li;Mei Shi;Zhouguang Hui;Lina Zhao",
+      "id": "out-98dc3e0143d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-Term Clinical Outcomes and Safety Analysis of Superficial Esophageal Cancer Patients Treated with Definitive or Adjuvant Radiotherapy — Bo Lyu;Yutian Yin;Yilin Zhao;Xu Yang;Jie Gong;Mai Zhang;Guangjin Chai;Zhaohui Li;Mei Shi;Zhouguang Hui;Lina Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4066,
+            "end_char": 4325
+          },
+          "version": "a15c6f1a5b56dea19d1e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-792a94914a12"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e1962012488d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4dbd969e3faf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fd6ef92ba579"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based radiomics nomogram may predict the response to induction chemotherapy and survival in locally advanced nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Lina;Gong Jie;Xi Yibin;Xu Man;Li Chen;Kang Xiaowei;Yin Yutian;Qin Wei;Yin Hong;Shi Mei",
+      "id": "out-04f2d8aee35b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based radiomics nomogram may predict the response to induction chemotherapy and survival in locally advanced nasopharyngeal carcinoma — Zhao Lina;Gong Jie;Xi Yibin;Xu Man;Li Chen;Kang Xiaowei;Yin Yutian;Qin Wei;Yin Hong;Shi Mei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4330,
+            "end_char": 4567
+          },
+          "version": "a15c6f1a5b56dea19d1e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

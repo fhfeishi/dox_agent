@@ -2,15 +2,20 @@
   "doc_id": "54b96991277adb0564c6",
   "version": "969073c176053b7a89bc",
   "source_hash": "71db1736f5a7f74dfed08953a63cd570faca591cea0696a0169694300f45228a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.408314+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.843553+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,101 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5c70cbf85ead",
-          "name": "复发难治NKT细胞淋巴瘤治疗",
-          "desc": "NKTCL高发于亚洲，对化放疗后复发难治者预后极差，亟需开发新治疗方案。",
-          "evidence": [
-            {
-              "quote": "NKTCL是一种高发于亚洲的恶性T细胞淋巴瘤，对化放疗后复发难治的NKTCL预后极差，亟需开发新的治疗方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 704,
-                "end_char": 756
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ]
-        },
-        {
-          "id": "item-46de456010a7",
-          "name": "免疫联合表观遗传学方案探索",
-          "desc": "免疫联合表观遗传学方案是提高免疫治疗疗效的途径之一，需鉴定疗效标志物筛选优势病患。",
-          "evidence": [
-            {
-              "quote": "免疫联合表观遗传学方案是提高免疫治疗疗效的途径之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3293,
-                "end_char": 3317
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6bc875c10ab1",
-          "name": "PD-1单抗CR率低于30%且缓解期短",
-          "desc": "PD-1单抗在NKTCL显示独特疗效，但完全缓解率低于30%且缓解期短，需探索联合治疗。",
-          "evidence": [
-            {
-              "quote": "目前PD-1单抗在NKTCL显示出独特疗效，但CR率<30%，且缓解期短。因此，需探索提高免疫治疗效果的联合治疗方案",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 815
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ]
-        },
-        {
-          "id": "item-c3251151d274",
-          "name": "ctDNA突变基因与敏感性无显著相关",
-          "desc": "ctDNA基因测序分析显示突变基因与治疗敏感性无显著相关性，需寻找新标志物。",
-          "evidence": [
-            {
-              "quote": "ctDNA基因测序分析显示突变基因与治疗敏感性无显著相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 875,
-                "end_char": 903
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "技术",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-6be51c87a508",
-          "name": "多组学技术鉴定疗效分子标志物",
-          "desc": "采用多组学技术阐明免疫联合表观遗传学方案治疗NKTCL的分子机制，鉴定疗效预测标志物并构建疗效预测模型。",
-          "evidence": [
-            {
-              "quote": "本项目拟进一步采用多组学技术阐明免疫联合表观遗传学方案治疗NKTCL的分子机制，鉴定预测联合治疗疗效的分子标志物，构建完善的疗效预测模型筛选优势病患",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 974,
-                "end_char": 1047
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ]
-        },
-        {
-          "id": "item-913d72d32861",
-          "name": "前瞻性临床试验评估联合治疗",
-          "desc": "开展前瞻性临床试验评估西达本胺联合PD-1单抗治疗复发难治NKTCL患者的疗效。",
+          "id": "item-4fefec66b334",
+          "name": "复发难治NK/T细胞淋巴瘤联合免疫治疗",
+          "desc": "PD-1单抗联合西达本胺",
           "evidence": [
             {
               "quote": "为了评估西达本胺联合PD-1单抗治疗复发难治NKTCL患者的疗效，我们开展了一项前瞻性临床试验，共入组37名患者",
@@ -129,47 +42,35 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-33361859e240",
-          "name": "联合治疗完全缓解率48.6%",
-          "desc": "联合治疗预期客观反应率59.5%、完全缓解率48.6%。",
+          "id": "item-efbdab21476c",
+          "name": "PD-1单抗CR率<30%且缓解期短",
+          "desc": "需联合治疗方案",
           "evidence": [
             {
-              "quote": "联合治疗的预期客观反应率（ORR）为59.5%，完全缓解率为48.6%（附件1）",
+              "quote": "目前PD-1单抗在NKTCL显示出独特疗效，但CR率<30%，且缓解期短",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3376,
-                "end_char": 3415
+                "start_char": 758,
+                "end_char": 793
               },
               "version": "969073c176053b7a89bc"
             }
-          ],
-          "status": "已取得"
-        },
+          ]
+        }
+      ]
+    },
+    {
+      "key": "技术",
+      "state": "has",
+      "items": [
         {
-          "id": "item-9052d634b580",
-          "name": "中位PFS 23.2个月与OS 32.9个月",
-          "desc": "中位缓解持续时间25.3个月、无进展生存期23.2个月、总体生存期32.9个月。",
-          "evidence": [
-            {
-              "quote": "中位DOR、无进展生存期（PFS）和总体生存期（OS）分别为25.3、23.2和32.9个月（附件2）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3417,
-                "end_char": 3467
-              },
-              "version": "969073c176053b7a89bc"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2cb33bc1bb58",
-          "name": "IFN-γ通路为潜在疗效标志物",
-          "desc": "转录组测序发现IFN-γ信号通路相关基因在敏感患者中富集表达，提示其可预测联合治疗敏感性。",
+          "id": "item-f6862d499c2c",
+          "name": "IFN-γ通路相关分子预测联合治疗敏感性",
+          "desc": "转录组测序分析",
           "evidence": [
             {
               "quote": "进一步转录组测序分析发现IFN-γ信号通路相关的基因在敏感患者中富集表达，提示IFN-γ通路相关分子可能是预测联合治疗敏感性的分子标志物",
@@ -181,72 +82,107 @@
               "version": "969073c176053b7a89bc"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-dcadc922d5f7",
-          "name": "ctDNA与EBV-DNA整合预测预后",
-          "desc": "动态血浆ctDNA和EBV-DNA的整合比单独指标更好地预测预后。",
+          "id": "item-58a8b243450a",
+          "name": "动态血浆ctDNA与EBV-DNA整合预测预后",
+          "desc": "优于单独检测",
           "evidence": [
             {
-              "quote": "动态血浆 ctDNA 和 EBV-DNA 的整合显示比单独的 ctDNA 或 EBV-DNA 更好地预测预后（附件3）",
+              "quote": "动态血浆 ctDNA 和 EBV-DNA 的整合显示比单独的 ctDNA 或 EBV-DNA 更好地预测预后",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3813,
-                "end_char": 3871
+                "end_char": 3866
               },
               "version": "969073c176053b7a89bc"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1a3ec7ae9fb3",
+          "name": "联合治疗疗效",
+          "desc": "ORR 59.5%，CR 48.6%",
+          "evidence": [
+            {
+              "quote": "联合治疗的预期客观反应率（ORR）为59.5%，完全缓解率为48.6%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3376,
+                "end_char": 3410
+              },
+              "version": "969073c176053b7a89bc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-40880cd45187",
+          "name": "生存指标",
+          "desc": "中位DOR 25.3、PFS 23.2、OS 32.9个月",
+          "evidence": [
+            {
+              "quote": "中位DOR、无进展生存期（PFS）和总体生存期（OS）分别为25.3、23.2和32.9个月",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3417,
+                "end_char": 3462
+              },
+              "version": "969073c176053b7a89bc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5c70cbf85ead"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6bc875c10ab1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6bc875c10ab1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6be51c87a508"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-913d72d32861"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-33361859e240"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6be51c87a508"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2cb33bc1bb58"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sintilimab (anti-PD-1 antibody) plus chidamide (histone deacetylase inhibitor) in relapsed or refractory extranodal natural killer T-cell lymphoma (SCENT): a phase Ib/II study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gao Yan;He Haixia;Li Xueping;Zhang Liling;Xu Wei;Feng Ru;Li Wenyu;Xiao Yin;Liu Xinxiu;Chen Yu;Wang Xiaoxiao;Bai Bing;Wu Huijing;Cai Qingqing;Li Zhiming;Li Jibin;Lin Suxia;He Yanxia;Ping Liqin;Huang Cheng;Mao Jiaying;Chen Xiujin;Zhao Baitian;Huang Huiqiang",
+      "id": "out-f57d33a3a46e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sintilimab (anti-PD-1 antibody) plus chidamide (histone deacetylase inhibitor) in relapsed or refractory extranodal natural killer T-cell lymphoma (SCENT): a phase Ib/II study — Gao Yan;He Haixia;Li Xueping;Zhang Liling;Xu Wei;Feng Ru;Li Wenyu;Xiao Yin;Liu Xinxiu;Chen Yu;Wang Xiaoxiao;Bai Bing;Wu Huijing;Cai Qingqing;Li Zhiming;Li Jibin;Lin Suxia;He Yanxia;Ping Liqin;Huang Cheng;Mao Jiaying;Chen Xiujin;Zhao Baitian;Huang Huiqiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4199,
+            "end_char": 4638
+          },
+          "version": "969073c176053b7a89bc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

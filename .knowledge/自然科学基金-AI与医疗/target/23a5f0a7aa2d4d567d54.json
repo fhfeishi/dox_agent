@@ -2,15 +2,20 @@
   "doc_id": "23a5f0a7aa2d4d567d54",
   "version": "b0f7a73424679106bfb4",
   "source_hash": "6c26a151f3fa1e118b966b64fe362e45ae9470b8b9c2fddf3a33716803c0f0a5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.852474+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.390048+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0424ddeb5b8b",
-          "name": "病证结合证候舌面合参智能诊断",
-          "desc": "以慢性萎缩性胃炎为范例，开展病证结合证候的人工智能望诊方法学研究。",
+          "id": "item-7de3e2073d63",
+          "name": "慢性萎缩性胃炎中医望诊",
+          "desc": "气虚证与湿热证诊断客观化",
           "evidence": [
             {
-              "quote": "本项目以慢性萎缩性胃炎为范例，进行病证结合证候的人工智能望诊方法学研究",
+              "quote": "本项目针对慢性萎缩性胃炎（CAG）气虚证与湿热证诊断客观化、标准化这一核心科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 693
-              },
-              "version": "b0f7a73424679106bfb4"
-            }
-          ]
-        },
-        {
-          "id": "item-268aae431019",
-          "name": "推动中西医结合临床应用",
-          "desc": "完善望诊客观化内容，丰富病证结合证候诊断内涵，推动中西医结合临床应用并辅助提高诊断准确率。",
-          "evidence": [
-            {
-              "quote": "最终完善和补充望诊客观化内容，丰富病证结合证候诊断的内涵，同时推动中西医结合临床应用，辅助提高临床诊断的准确率，促进中医现代化发展",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 970,
-                "end_char": 1034
+                "start_char": 2932,
+                "end_char": 2972
               },
               "version": "b0f7a73424679106bfb4"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6cb58c33d9d9",
-          "name": "现有研究数据采集与临床实际存在偏差",
-          "desc": "现有研究在数据采集、表示和分析上与临床实际存在偏差，从根源上难以提高诊断准确率。",
-          "evidence": [
-            {
-              "quote": "针对现有研究在数据采集、表示和分析上都和临床实际存在偏差，从根源上难以提高诊断准确率的问题，提出一种精准模拟临床望诊的研究新思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 695,
-                "end_char": 758
-              },
-              "version": "b0f7a73424679106bfb4"
-            }
-          ]
-        },
-        {
           "id": "item-a00bd58fcc9d",
           "name": "望诊图像信息维度缺失与背景干扰",
-          "desc": "传统望诊图像存在信息维度缺失及背景干扰严重的痛点。",
+          "desc": "传统望诊痛点",
           "evidence": [
             {
-              "quote": "本项目针对传统望诊图像信息维度缺失及背景干扰严重等痛点",
+              "quote": "传统望诊图像信息维度缺失及背景干扰严重",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3113,
-                "end_char": 3139
+                "start_char": 3118,
+                "end_char": 3136
               },
               "version": "b0f7a73424679106bfb4"
             }
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2050c950c049",
-          "name": "舌面短视频与立体舌面模型重构",
-          "desc": "采用舌-面短视频模拟大夫观察患者过程获得全方位望诊信息，并借助计算机图形学技术从视频重构形色兼备的立体舌和面模型。",
+          "id": "item-a8cd1dc1ac3a",
+          "name": "GeoROS++与DehazeGS舌面短视频立体重构",
+          "desc": "高保真重构",
           "evidence": [
             {
-              "quote": "采用舌-面短视频模拟大夫观察患者的过程，获得全方位望诊信息，且前期已采集1000例样本；继而借助前沿的计算机图形学技术，从视频中重构形和色兼备的立体舌和面模型",
+              "quote": "通过自主研发的GeoROS++实时图像拼接技术与DehazeGS物理抗干扰方案，实现了对舌面短视频的高保真重构",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 760,
-                "end_char": 838
-              },
-              "version": "b0f7a73424679106bfb4"
-            }
-          ]
-        },
-        {
-          "id": "item-9b8fe60c974a",
-          "name": "形色合参舌面合参深度学习算法",
-          "desc": "提出适宜形色合参、舌面合参的深度学习算法，模拟大夫多维度辩证，建立全方位望诊信息与疾病和证候的关联。",
-          "evidence": [
-            {
-              "quote": "并提出适宜形色合参、舌面合参的深度学习算法，模拟大夫多维度辩证，建立全方位望诊信息与疾病和证候之间的关联",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 908
-              },
-              "version": "b0f7a73424679106bfb4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-1a9b5dbcf351",
-          "name": "1486例立体望诊数据库",
-          "desc": "成功构建首个包含1486例高质量样本的立体望诊数据库，并通过实时图像拼接与物理抗干扰方案实现高保真重构。",
-          "evidence": [
-            {
-              "quote": "成功构建了首个包含1486例高质量样本的立体望诊数据库",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3141,
-                "end_char": 3167
+                "start_char": 3169,
+                "end_char": 3223
               },
               "version": "b0f7a73424679106bfb4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-62c74411ed70",
-          "name": "ResNet34识别腻苔优于初级医师22%",
-          "desc": "基于ResNet34迁移学习架构实现对湿证核心指标腻苔的高效识别，准确率优于初级医师22%。",
+          "id": "item-8cabfa154300",
+          "name": "ResNet34迁移学习腻苔识别",
+          "desc": "湿证核心指标",
           "evidence": [
             {
               "quote": "基于ResNet34迁移学习架构实现了对湿证核心指标（腻苔）的高效识别，准确率优于初级医师22%",
@@ -164,72 +99,225 @@
               "version": "b0f7a73424679106bfb4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-bc0542b9a001",
-          "name": "软件原型与可解释性验证",
-          "desc": "成果集成于软件原型，实现输入舌面视频即可自动化预测CAG证型的闭环流程，并通过Grad-CAM验证模型关注点与中医临床思维一致性。",
+          "id": "item-3865298267d4",
+          "name": "WSTDN弱标注检测网络",
+          "desc": "形态学特征量化",
           "evidence": [
             {
-              "quote": "上述成果已集成于软件原型中，实现了输入舌面视频即可自动化预测CAG证型的闭环流程，有效提升了中医辅助诊断的智能化水平",
+              "quote": "开发了具备自适应能力的WSTDN检测网络",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3518,
-                "end_char": 3575
+                "start_char": 3453,
+                "end_char": 3472
               },
               "version": "b0f7a73424679106bfb4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8092690104f5",
+          "name": "Grad-CAM可视化验证",
+          "desc": "AI决策逻辑",
+          "evidence": [
+            {
+              "quote": "本项目利用Grad-CAM热力图技术对AI决策逻辑进行了可视化验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3595,
+                "end_char": 3627
+              },
+              "version": "b0f7a73424679106bfb4"
+            }
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-8ed45ec83ade",
+          "name": "TMNP多尺度网络药理学",
+          "desc": "宏观表型-微观分子",
+          "evidence": [
+            {
+              "quote": "应用TMNP多尺度网络药理学模型，深度解析了“宏观表型-微观分子”的内在关联",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3670,
+                "end_char": 3707
+              },
+              "version": "b0f7a73424679106bfb4"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-8f7d21112822",
+          "name": "立体望诊数据库",
+          "desc": "1486例",
+          "evidence": [
+            {
+              "quote": "成功构建了首个包含1486例高质量样本的立体望诊数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3141,
+                "end_char": 3167
+              },
+              "version": "b0f7a73424679106bfb4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0acdc11f6a68",
+          "name": "舌面视频自动预测CAG证型软件原型",
+          "desc": "闭环流程",
+          "evidence": [
+            {
+              "quote": "实现了输入舌面视频即可自动化预测CAG证型的闭环流程",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3532,
+                "end_char": 3557
+              },
+              "version": "b0f7a73424679106bfb4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0424ddeb5b8b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6cb58c33d9d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Constructing an Artificial Intelligent Deep Neural Network Battery for Tongue Region Segmentation and Tongue Characteristic Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Tian-Xing;Chen Jian-Xin;Wang Xue-Song;Kou Meng-Jie;Deng Qing-Qiong;Wang Xu",
+      "id": "out-cf3191095053",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Constructing an Artificial Intelligent Deep Neural Network Battery for Tongue Region Segmentation and Tongue Characteristic Recognition — Yi Tian-Xing;Chen Jian-Xin;Wang Xue-Song;Kou Meng-Jie;Deng Qing-Qiong;Wang Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3805,
+            "end_char": 4026
+          },
+          "version": "b0f7a73424679106bfb4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6cb58c33d9d9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2050c950c049"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GeoROS++: A Georeferenced Real-Time Stitching Method for Sparse Aerial Orthophotos",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Jiaming;Zhe Feng;Weiliang Meng;Gaungze Gao;Jianwei Guo;Jiguang Zhang;Xiaopeng Zhang",
+      "id": "out-f7478b87124c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GeoROS++: A Georeferenced Real-Time Stitching Method for Sparse Aerial Orthophotos — Gu Jiaming;Zhe Feng;Weiliang Meng;Gaungze Gao;Jianwei Guo;Jiguang Zhang;Xiaopeng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4031,
+            "end_char": 4208
+          },
+          "version": "b0f7a73424679106bfb4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2050c950c049"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1a9b5dbcf351"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting blood pressure from face videos using face diagnosis theory and deep neural networks technique",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiying Xing;Yinni Shi;Chaoyong Wu;Yiqiao Wang;Xu Wang",
+      "id": "out-a59eb75a2af4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting blood pressure from face videos using face diagnosis theory and deep neural networks technique — Weiying Xing;Yinni Shi;Chaoyong Wu;Yiqiao Wang;Xu Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4213,
+            "end_char": 4381
+          },
+          "version": "b0f7a73424679106bfb4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9b8fe60c974a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bc0542b9a001"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Editorial: Artificial Intelligence in Traditional Medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaoyong Wu;Jianxin Chen;Elaine Lai-Han Leung;Hang Chang;Xu Wang.",
+      "id": "out-3cea262126ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Editorial: Artificial Intelligence in Traditional Medicine — Chaoyong Wu;Jianxin Chen;Elaine Lai-Han Leung;Hang Chang;Xu Wang.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4518
+          },
+          "version": "b0f7a73424679106bfb4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weakly Supervised Deep Learning for Tooth-Marked Tongue Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianguo Zhou;Shangxuan Li;Xuesong Wang;Zizhu Yang;Xinyuan Hou;Wei Lai;Shifeng Zhao;Qingqiong Deng;Wu Zhou",
+      "id": "out-7b4042095c8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weakly Supervised Deep Learning for Tooth-Marked Tongue Recognition — Jianguo Zhou;Shangxuan Li;Xuesong Wang;Zizhu Yang;Xinyuan Hou;Wei Lai;Shifeng Zhao;Qingqiong Deng;Wu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4523,
+            "end_char": 4704
+          },
+          "version": "b0f7a73424679106bfb4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

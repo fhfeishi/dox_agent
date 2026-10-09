@@ -2,15 +2,20 @@
   "doc_id": "f2d5c21f11095870e5d2",
   "version": "459226b5bf04c33c68dd",
   "source_hash": "ba87637cda98600db3c5b0f8bc39088d0d1fc7d24fbb5df81420bfd2ab0ace48",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.210446+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.422121+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-978005abf47d",
-          "name": "颅内动脉瘤自动化检测与风险预测",
-          "desc": "面向颅内动脉瘤精准检测、破裂风险与术后复发风险预测，构建机器学习模型并临床应用。",
+          "id": "item-f830495a81f3",
+          "name": "颅内动脉瘤AI检测与风险预测",
+          "desc": "CTA/MRA",
           "evidence": [
             {
-              "quote": "颅内动脉瘤是严重影响人类健康的重大疾病，其致残率和致死率高达25-50%",
+              "quote": "颅内动脉瘤是严重影响居民健康的重大疾病，其致残率和致死率高达25-50%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 708
+                "start_char": 3186,
+                "end_char": 3221
               },
               "version": "459226b5bf04c33c68dd"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ebf03684d85b",
-          "name": "影像重组解读耗时且破裂复发风险预测难",
-          "desc": "临床实际中影像重组和解读耗时耗力，基于常规影像预测动脉瘤破裂和术后复发难度大，迫切需要新技术新方法。",
+          "id": "item-279e7ad3428f",
+          "name": "动脉瘤精准检测、破裂风险与术后复发预测",
+          "desc": "关键科学问题",
           "evidence": [
             {
-              "quote": "但临床实际中影像重组和解读耗时耗力，基于常规影像预测动脉瘤破裂和术后复发难度大，迫切需要引入新技术、新方法",
+              "quote": "动脉瘤精准检测、未破裂动脉瘤破裂风险和动脉瘤术后复发风险预测是动脉瘤诊治中的关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 751,
-                "end_char": 803
+                "start_char": 3243,
+                "end_char": 3286
               },
               "version": "459226b5bf04c33c68dd"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fc89c1ffb814",
-          "name": "三维卷积神经网络动脉瘤辅助诊断与风险建模",
-          "desc": "采用三维卷积神经网络建立颅内动脉瘤高精准计算机辅助诊断系统，并综合影像组学、血流动力学与瘤壁信息用递归神经网络建立破裂及复发风险预测模型。",
+          "id": "item-5394cb102ff8",
+          "name": "编码器-解码器分割模型融合空间与通道注意力",
+          "desc": "动脉瘤检测",
           "evidence": [
             {
-              "quote": "采用三维卷积神经网络对有金标准对照的CTA和MRA数据建立颅内动脉瘤高精准计算机辅助诊断系统并验证其效能",
+              "quote": "设计基于编码器和解码器结构的分割模型，融合空间信息和通道注意力网络，并使用全局语义特征建模增强网络对图像的分割效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 868,
-                "end_char": 919
+                "start_char": 3395,
+                "end_char": 3451
               },
               "version": "459226b5bf04c33c68dd"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5f580822a1be",
+          "name": "临床、形态学、血流动力学破裂风险模型",
+          "desc": "AUC 0.599、0.763、0.886",
+          "evidence": [
+            {
+              "quote": "基于临床信息、动脉瘤形态学信息及血流动力学信息建立三个预测破裂风险模型，其AUC分别为0.599、0.763、0.886",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3991,
+                "end_char": 4050
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6f7155477966",
-          "name": "深度学习检测动脉瘤敏感性97.3%",
-          "desc": "构建43000例全国多中心CTA/MRA数据库；深度学习模型检测敏感性97.3%、假阳性率0.29个/例，急性缺血性卒中场景阴性预测值99.0%；AI辅助阅片研究发表于Lancet Digital Health，医生接受度92.6%。",
+          "id": "item-d148590bb644",
+          "name": "检测敏感性",
+          "desc": "97.3%，假阳性0.29个/例",
           "evidence": [
             {
               "quote": "该模型对动脉瘤的检测敏感性高达97.3%，假阳性率低至0.29个动脉瘤/例",
@@ -99,44 +122,682 @@
               "version": "459226b5bf04c33c68dd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e38800292c50",
+          "name": "颅内CTA/MRA动脉瘤数据库",
+          "desc": "43,000例",
+          "evidence": [
+            {
+              "quote": "构建了全国多中心颅内CTA/MRA动脉瘤数据库共43,000例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3320,
+                "end_char": 3350
+              },
+              "version": "459226b5bf04c33c68dd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-978005abf47d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ebf03684d85b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT血管成像30年的发展与展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "左蕊;施昭;张龙江",
+      "id": "out-3a4ebf0317dd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT血管成像30年的发展与展望 — 左蕊;施昭;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4154,
+            "end_char": 4187
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ebf03684d85b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-fc89c1ffb814"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "慢性肾病肾心脑轴影像研究体系建立和创新应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江;唐春香;黄伟;祁丽;郑玲;文吉秋;倪倩倩;周长圣;罗松;孔祥;郑罡",
+      "id": "out-e50afc66cf51",
+      "evidence": [
+        {
+          "quote": "[奖励] 慢性肾病肾心脑轴影像研究体系建立和创新应用 — 张龙江;唐春香;黄伟;祁丽;郑玲;文吉秋;倪倩倩;周长圣;罗松;孔祥;郑罡",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4192,
+            "end_char": 4257
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-fc89c1ffb814"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6f7155477966"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2019年度国家百千万人才工程国家级人选并有突出贡献的中青年专家",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江",
+      "id": "out-c9bbb6b3685f",
+      "evidence": [
+        {
+          "quote": "[奖励] 2019年度国家百千万人才工程国家级人选并有突出贡献的中青年专家 — 张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4262,
+            "end_char": 4304
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于血流动力学的大脑中动脉分叉处与侧壁动脉瘤破裂风险研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "施昭;胡斌;徐文达;王若冰;张晓倩;张敏;张龙江",
+      "id": "out-2ee8ff4d32d3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于血流动力学的大脑中动脉分叉处与侧壁动脉瘤破裂风险研究 — 施昭;胡斌;徐文达;王若冰;张晓倩;张敏;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4309,
+            "end_char": 4370
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习脑血管病智能影像检测规范化研究设计的中国专家建议",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "中国医师协会放射医师分会",
+      "id": "out-155d1507253f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于深度学习脑血管病智能影像检测规范化研究设计的中国专家建议 — 中国医师协会放射医师分会",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4426
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "头颈血管中心线提取方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘成伟;贺家发;吴轶成;俞益洲",
+      "id": "out-2aa33fcb4941",
+      "evidence": [
+        {
+          "quote": "[专利] 头颈血管中心线提取方法及装置 — 潘成伟;贺家发;吴轶成;俞益洲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4431,
+            "end_char": 4467
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于血流动力学颈内动脉不同侧别动脉瘤破裂的相关因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐文达;施昭;胡斌;张龙江;卢光明",
+      "id": "out-b5f59a4e9093",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于血流动力学颈内动脉不同侧别动脉瘤破裂的相关因素分析 — 徐文达;施昭;胡斌;张龙江;卢光明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4472,
+            "end_char": 4525
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT形态学与血流动力学特征的颅内镜面动脉瘤破裂相关因素分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡斌;黎东城;徐文达;施昭;张龙江",
+      "id": "out-6ad0e6344467",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT形态学与血流动力学特征的颅内镜面动脉瘤破裂相关因素分析 — 胡斌;黎东城;徐文达;施昭;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4587
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "冠状动脉CT血流储备分数:对脑动脉病变功能评估的思考与实践",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江;尹铸豪;韩云飞;朱武生",
+      "id": "out-d269e7afb254",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 冠状动脉CT血流储备分数:对脑动脉病变功能评估的思考与实践 — 张龙江;尹铸豪;韩云飞;朱武生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4592,
+            "end_char": 4645
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computational fluid dynamics based hemodynamics in the management of intracranial aneurysms: state-of-the-art",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Hu;Zhao Shi;U. Joseph Schoepf;Akos Varga-Szemes;W. Evans Few;Long Jiang Zhang",
+      "id": "out-847ba0fad9b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computational fluid dynamics based hemodynamics in the management of intracranial aneurysms: state-of-the-art — Bin Hu;Zhao Shi;U. Joseph Schoepf;Akos Varga-Szemes;W. Evans Few;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4651,
+            "end_char": 4850
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "动脉瘤破裂状态预测方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "岳杨明;李秀丽;卢光明;张龙江;俞益洲",
+      "id": "out-920230d5d9a0",
+      "evidence": [
+        {
+          "quote": "[专利] 动脉瘤破裂状态预测方法和装置 — 岳杨明;李秀丽;卢光明;张龙江;俞益洲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4856,
+            "end_char": 4896
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of machine learning prediction model based on computed tomography angiography–derived hemodynamics for rupture status of intracranial aneurysms: a Chinese multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guozhong Chen;Mengjie Lu;Zhao Shi;Shuang Xia;Yuan Ren;Zhen Liu;Xiuxian Liu;Zhiyong Li;Li Mao;Xiu Li Li;Bo Zhang;Long Jiang Zhang;Guang Ming Lu",
+      "id": "out-ae09e2bd191c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of machine learning prediction model based on computed tomography angiography–derived hemodynamics for rupture status of intracranial aneurysms: a Chinese multicenter study — Guozhong Chen;Mengjie Lu;Zhao Shi;Shuang Xia;Yuan Ren;Zhen Liu;Xiuxian Liu;Zhiyong Li;Li Mao;Xiu Li Li;Bo Zhang;Long Jiang Zhang;Guang Ming Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4902,
+            "end_char": 5252
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A clinically applicable deep-learning model for detecting intracranial aneurysm in computed tomography angiography images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Shi;Chongchang Miao;U. Joseph Schoepf;Rock H. Savage;Danielle M. Dargis;Chengwei Pan;Xue Chai;Xiu Li Li;Shuang Xia;Xin Zhang;Yan Gu;Yonggang Zhang;Bin Hu;Wenda Xu;Changsheng Zhou;Song Luo;Hao Wang;Li Mao;Kongming Liang;Lili Wen;Longjiang Zhou;Yizhou Yu;Guang Ming Lu;Long Jiang Zhang",
+      "id": "out-88f870d629bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A clinically applicable deep-learning model for detecting intracranial aneurysm in computed tomography angiography images — Zhao Shi;Chongchang Miao;U. Joseph Schoepf;Rock H. Savage;Danielle M. Dargis;Chengwei Pan;Xue Chai;Xiu Li Li;Shuang Xia;Xin Zhang;Yan Gu;Yonggang Zhang;Bin Hu;Wenda Xu;Changsheng Zhou;Song Luo;Hao Wang;Li Mao;Kongming Liang;Lili Wen;Longjiang Zhou;Yizhou Yu;Guang Ming Lu;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5258,
+            "end_char": 5676
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "大脑前动脉A1段发育不良和分叉角度与前交通动脉瘤形成的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王 莉;施昭;孔 祥;杨 柳;刘 亚;罗 松;张龙江",
+      "id": "out-0c25bce7198e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 大脑前动脉A1段发育不良和分叉角度与前交通动脉瘤形成的相关性 — 王 莉;施昭;孔 祥;杨 柳;刘 亚;罗 松;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5682,
+            "end_char": 5747
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种确定血管状态参数的方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江",
+      "id": "out-76199874535b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种确定血管状态参数的方法和装置 — 张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5753,
+            "end_char": 5779
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑血管影像学机遇与挑战——中国十年来发展成果及展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡斌;施昭;张龙江",
+      "id": "out-bd7193c83285",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑血管影像学机遇与挑战——中国十年来发展成果及展望 — 胡斌;施昭;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5785,
+            "end_char": 5828
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于粗细粒度融合的血管分割方法、系统、终端及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘成伟;黎仁强;俞益洲",
+      "id": "out-43c8b02d7a15",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于粗细粒度融合的血管分割方法、系统、终端及存储介质 — 潘成伟;黎仁强;俞益洲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5834,
+            "end_char": 5880
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence in the Management of Intracranial Aneurysms: Current Status and Future Perspectives",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Shi;B. Hu;U. Joseph Schoepf;Rock H. Savage;Danielle M. Dargis;Chengwei Pan;X.L. Li;Qianqian Ni;Guangming Lu;Long Jiang Zhang",
+      "id": "out-784202ae7e22",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Intelligence in the Management of Intracranial Aneurysms: Current Status and Future Perspectives — Zhao Shi;B. Hu;U. Joseph Schoepf;Rock H. Savage;Danielle M. Dargis;Chengwei Pan;X.L. Li;Qianqian Ni;Guangming Lu;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5886,
+            "end_char": 6131
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于倾向性评分方法研究颈内动脉扭曲与颈内动脉瘤形成的关系",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "施昭;姜丹;刘亚;张龙江",
+      "id": "out-2e10c21a42b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于倾向性评分方法研究颈内动脉扭曲与颈内动脉瘤形成的关系 — 施昭;姜丹;刘亚;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6137,
+            "end_char": 6186
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Study design of deep learning based automatic detection of cerebrovascular diseases on medical imaging: a position paper from Chinese Association of Radiologists",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-9df3ba732e2f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Study design of deep learning based automatic detection of cerebrovascular diseases on medical imaging: a position paper from Chinese Association of Radiologists — Long Jiang Zhang;Zhao Shi;Guangming Lu;Zhenyu Jin;Yingmin Chen;Jingliang Cheng;Li Fan;Nan Hong;Wenxiao Jia;Guihua Jiang;Shenghong Ju;Xiaogang Li;Xiuli Li;Changhong Liang;Weihua Liao;Shiyuan Liu;Zaiming Lu;Lin Ma;Ke Ren;Pengfei Rong;Bin Song;Gang Sun;Rongpin Wang;Zhibo Wen;Haibo Xu;Kai Xu;Fuhua Yan;Yizhou Yu;Yunfei Zha;Fandong Zhang;Minwen Zheng;Zhen Zhou;Wenzhen Zhu;Guangming Lu;Zhengyu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6192,
+            "end_char": 6755
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of Coronary CT Angiography-Derived Fractional Flow Reserve in Non-obstructive Coronary Artery Disease: A Prospective Multicenter Observational Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-975e10b654ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of Coronary CT Angiography-Derived Fractional Flow Reserve in Non-obstructive Coronary Artery Disease: A Prospective Multicenter Observational Study — Fan Zhou;Qian Chen;Xiao Luo;Wei Cao;Ziwen Li;Bo Zhang;U. Joseph Schoepf;Callum E. Gill;Lili Guo;Hong Gao;Qingyao Li;Yibing Shi;Tingting Tang;Xiaochen Liu;Honglin Wu;Dongqing Wang;Feng Xu;Dongsheng Jin;Sheng Huang;Haige Li;Changjie Pan;Hongmei Gu;Lixiang Xie;Ximing Wang;Jing Ye;Jianwei Jiang;Hanqing Zhao;Xiangming Fang;Yi Xu;Wei Xing;Xiaohu Li;Xindao Yin;Guang Ming Lu;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6761,
+            "end_char": 7321
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT读片指南(第三版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卢光明;许健;张龙江",
+      "id": "out-626bde6f0cec",
+      "evidence": [
+        {
+          "quote": "[专著] CT读片指南(第三版) — 卢光明;许健;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7327,
+            "end_char": 7355
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "血管标注方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘成伟;梁孔明;梁洋洋;姜龙州;俞益洲",
+      "id": "out-981c8ad7d72d",
+      "evidence": [
+        {
+          "quote": "[专利] 血管标注方法和装置 — 潘成伟;梁孔明;梁洋洋;姜龙州;俞益洲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7361,
+            "end_char": 7396
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coronary Computed Tomography Angiography-Derived Fractional Flow Reserve in Patients with Anomalous Origin of the Right Coronary Artery from the Left Coronary Sinus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chun Xiang Tang;Meng Jie Lu;U. Joseph Schoepf;Christian Tesche;Maximilian J. Bauer;John W. Nance;L. Parkwood Griffith;Guangming Lu;Long Jiang Zhang",
+      "id": "out-4d0c4a5ae856",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coronary Computed Tomography Angiography-Derived Fractional Flow Reserve in Patients with Anomalous Origin of the Right Coronary Artery from the Left Coronary Sinus — Chun Xiang Tang;Meng Jie Lu;U. Joseph Schoepf;Christian Tesche;Maximilian J. Bauer;John W. Nance;L. Parkwood Griffith;Guangming Lu;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7402,
+            "end_char": 7722
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "全身CT血管成像诊断学(第2版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江;卢光明",
+      "id": "out-7b6d8fe9742a",
+      "evidence": [
+        {
+          "quote": "[专著] 全身CT血管成像诊断学(第2版) — 张龙江;卢光明",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7728,
+            "end_char": 7758
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT血管成像的计算流体力学方法评估颅内动脉狭窄的可行性分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "尹铸豪;周长圣;郭健;卫渊;马逸飞;朱武生;张龙江",
+      "id": "out-541e7ed1bf15",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT血管成像的计算流体力学方法评估颅内动脉狭窄的可行性分析 — 尹铸豪;周长圣;郭健;卫渊;马逸飞;朱武生;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7764,
+            "end_char": 7829
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ChatGPT等大型语言模型在影像学的应用展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡斌;张龙江",
+      "id": "out-5b12eb49331b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ChatGPT等大型语言模型在影像学的应用展望 — 胡斌;张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7835,
+            "end_char": 7873
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2021年度“长江学者奖励计划”特聘教授",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江",
+      "id": "out-e9725648cd1a",
+      "evidence": [
+        {
+          "quote": "[奖励] 2021年度“长江学者奖励计划”特聘教授 — 张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7879,
+            "end_char": 7909
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2019年度中华医学会放射学分会杰出青年奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张龙江",
+      "id": "out-10502b918186",
+      "evidence": [
+        {
+          "quote": "[奖励] 2019年度中华医学会放射学分会杰出青年奖 — 张龙江",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7915,
+            "end_char": 7946
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The effect of coronary calcification on diagnostic performance of machine learning–based CT-FFR: a Chinese multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Di Jiang;Xiao Lei Zhang;Hui Liu;Chun Xiang Tang;Jian Hua Li;Yi Ning Wang;Peng Peng Xu;Chang Sheng Zhou;Fan Zhou;Meng Jie Lu;Jia Yin Zhang;Meng Meng Yu;Yang Hou;Min Wen Zheng;Bo Zhang;Dai Min Zhang;Yan Yi;Lei Xu;Xiu Hua Hu;Jian Yang;Guang Ming Lu;Qian Qian Ni;Long Jiang Zhang",
+      "id": "out-3b815a791203",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The effect of coronary calcification on diagnostic performance of machine learning–based CT-FFR: a Chinese multicenter study — Meng Di Jiang;Xiao Lei Zhang;Hui Liu;Chun Xiang Tang;Jian Hua Li;Yi Ning Wang;Peng Peng Xu;Chang Sheng Zhou;Fan Zhou;Meng Jie Lu;Jia Yin Zhang;Meng Meng Yu;Yang Hou;Min Wen Zheng;Bo Zhang;Dai Min Zhang;Yan Yi;Lei Xu;Xiu Hua Hu;Jian Yang;Guang Ming Lu;Qian Qian Ni;Long Jiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7952,
+            "end_char": 8365
+          },
+          "version": "459226b5bf04c33c68dd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 30,
+    "listed": 30,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

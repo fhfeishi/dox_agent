@@ -2,15 +2,20 @@
   "doc_id": "6e8750e8991ff23147f1",
   "version": "38544fd64428b7835f01",
   "source_hash": "c7ca6f76e966eabb51bb802bb36bc1c3c43a8d17eb79893918d23d8f6034d73a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.607156+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:24.020105+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96827c30b545",
-          "name": "PET/CT医学图像语义特征分析与辅助诊断",
-          "desc": "面向基于PET/CT的恶性肿瘤预测、诊断与分期，研究跨模态语义特征学习与辅助诊断模型。",
+          "id": "item-b1451a3e77c8",
+          "name": "PET/CT恶性肿瘤预测诊断分期",
+          "desc": "小样本、弱标签、样本分布不均衡",
           "evidence": [
             {
-              "quote": "基于医学影像PET/CT的恶性肿瘤预测、诊断和分期在临床中具有越来越重要的作用",
+              "quote": "基于深度学习和稀疏表示的PET/CT医学图像语义特征分析与辅助诊断模型在恶性肿瘤预测、诊断和分期在临床中具有越来越重要的作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 679,
-                "end_char": 717
+                "start_char": 2830,
+                "end_char": 2891
               },
               "version": "38544fd64428b7835f01"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97f35eb272e6",
-          "name": "小样本弱标签与样本分布不均衡问题",
-          "desc": "PET/CT辅助诊断存在小样本、弱标签、样本分布不均衡以及训练样本与测试样本分布不一致等问题。",
+          "id": "item-60d3ea21ffed",
+          "name": "小样本、弱标签、样本分布不均衡",
+          "desc": "训练与测试分布不一致",
           "evidence": [
             {
               "quote": "但是存在小样本、弱标签，样本分布不均衡、训练样本和测试样本分布不一致等问题",
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-06eb643e4bfa",
-          "name": "稀疏表示与跨域自适应残差神经网络模型",
-          "desc": "纵向搭建像素-低级特征-对象部分-对象的层次特征结构，横向搭建断层间与模态间底层及稀疏特征表达，提出结构化字典学习的稀疏表示与跨域自适应残差神经网络模型。",
+          "id": "item-6231c6ed384d",
+          "name": "并行U-Net弱小目标分割网络与C2U-Net",
+          "desc": "跨模态上下文语义",
           "evidence": [
             {
-              "quote": "提出基于结构化字典学习的图像稀疏表示、结合迁移学习理论的小样本量、弱标签，跨域自适应的残差神经网络模型",
+              "quote": "提出基于注意力机制的并行U-Net弱小目标分割网络、面向跨模态和上下文语义的医学图像分割C2U-Net算法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 981,
-                "end_char": 1031
+                "start_char": 3034,
+                "end_char": 3086
               },
               "version": "38544fd64428b7835f01"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-9295d28ab1de",
-          "name": "提出M3 Res-Transformer等系列辅助诊断模型",
-          "desc": "提出M3 Res-Transformer、多分辨率注意力密集网络MADenseNet、密集重参轻量化Transformer、重参邻域增强双流网络及“灵眸AI医疗”肺部肿瘤辅助诊断系统等系列模型。",
+          "id": "item-a678ec712880",
+          "name": "M3 Res-Transformer与MADenseNet诊断模型",
+          "desc": "跨模态计算机辅助诊断",
           "evidence": [
             {
               "quote": "提出了M3 Res-Transformer计算机辅助诊断模型、多分辨率注意力密集网络MADenseNet的计算机辅助诊断模型",
@@ -99,44 +99,930 @@
               "version": "38544fd64428b7835f01"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fdff1bda694a",
+          "name": "SAFE-YOLO与CL-YOLOv5肺部肿瘤检测",
+          "desc": "跨模态病灶检测",
+          "evidence": [
+            {
+              "quote": "提出了基于自注意特征增强SAFE-YOLO的肺部肿瘤检测模型、跨模态轻量级CL-YOLOv5的肺部肿瘤检测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3667,
+                "end_char": 3721
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-04887064f3fc",
+          "name": "自建数据集",
+          "desc": "5个数据集",
+          "evidence": [
+            {
+              "quote": "自建5个数据集(全身PET/CT影像组学病据库、COVID-19 的CT影像组学数据库、2个肺炎胸部X光图像数据库、下颌骨骨折CT数据集)",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2911,
+                "end_char": 2979
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3ed1f9cdd498",
+          "name": "灵眸AI医疗肺部肿瘤计算机辅助诊断系统",
+          "desc": "已研发",
+          "evidence": [
+            {
+              "quote": "“灵眸AI医疗——肺部肿瘤计算机辅助诊断系统”",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3410,
+                "end_char": 3432
+              },
+              "version": "38544fd64428b7835f01"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-96827c30b545"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-97f35eb272e6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合多尺度特征的密集神经网络肺部肿瘤图像识别算法(EI检索,CSCD期刊)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;霍兵强;陆惠玲;马宗军;叶鑫宇",
+      "id": "out-63dfd89cfbdb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 融合多尺度特征的密集神经网络肺部肿瘤图像识别算法(EI检索,CSCD期刊) — 周涛;霍兵强;陆惠玲;马宗军;叶鑫宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3815,
+            "end_char": 3879
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-97f35eb272e6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-06eb643e4bfa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多尺度变换像素级医学图像融合:研究进展、应用和挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;刘珊;董雅丽;霍兵强;马宗军",
+      "id": "out-77109b133607",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多尺度变换像素级医学图像融合:研究进展、应用和挑战 — 周涛;刘珊;董雅丽;霍兵强;马宗军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 3935
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-06eb643e4bfa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9295d28ab1de"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M3YOLOv5: Feature enhanced YOLOv5 model for mandibular fracture detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;HongWei Wang;Yuhu Du;Fengzhen Liu;Yujie Guo;Huiling Lu",
+      "id": "out-42d781f48fd6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M3YOLOv5: Feature enhanced YOLOv5 model for mandibular fracture detection — Tao Zhou;HongWei Wang;Yuhu Du;Fengzhen Liu;Yujie Guo;Huiling Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3940,
+            "end_char": 4085
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺部肿瘤跨模态图像融合的并行分解自适应融合模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;刘珊;董雅丽;白静;陆惠玲",
+      "id": "out-502dd75f90aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺部肿瘤跨模态图像融合的并行分解自适应融合模型 — 周涛;刘珊;董雅丽;白静;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4090,
+            "end_char": 4138
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向CT图像新冠肺炎识别的密集重参轻量化Transformer模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;刘凤珍;陆惠玲;周敬策;杜玉虎",
+      "id": "out-d0ac8e65a10e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向CT图像新冠肺炎识别的密集重参轻量化Transformer模型 — 周涛;叶鑫宇;刘凤珍;陆惠玲;周敬策;杜玉虎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4207
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vision Transformer: to discover the”Four Secrets” of image patches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Yuxia Niu;Huiling Lu;Caiyue Peng;Yujie Guo;Huiyu Zhou",
+      "id": "out-68f9615abe82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vision Transformer: to discover the”Four Secrets” of image patches — Tao Zhou;Yuxia Niu;Huiling Lu;Caiyue Peng;Yujie Guo;Huiyu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4212,
+            "end_char": 4349
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向下颌骨骨折检测的主辅网络YOLOv5模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;杜玉虎;茆晶晶;王宏伟;石道宗;周忠伟",
+      "id": "out-f360ad0da0bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向下颌骨骨折检测的主辅网络YOLOv5模型 — 周涛;杜玉虎;茆晶晶;王宏伟;石道宗;周忠伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4354,
+            "end_char": 4407
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GIAE-Net:A gradient-intensity oriented model for multimodal lung tumor image fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Long Liu;Huiling Lu;Yuxia Niu;Yujie Guo;Yunfeng Pan;Wenxing Bao",
+      "id": "out-ead385c73c45",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GIAE-Net:A gradient-intensity oriented model for multimodal lung tumor image fusion — Tao Zhou;Long Liu;Huiling Lu;Yuxia Niu;Yujie Guo;Yunfeng Pan;Wenxing Bao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4412,
+            "end_char": 4576
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An adaptive and lightweight YOLOv5 detection model for lung tumor in PET/CT image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "zhou tao;Ye X.;Lu H.;Guo Y.J.;Y.J.;Wang H.X;Liu Y.",
+      "id": "out-4d068c10a474",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An adaptive and lightweight YOLOv5 detection model for lung tumor in PET/CT image — zhou tao;Ye X.;Lu H.;Guo Y.J.;Y.J.;Wang H.X;Liu Y.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4581,
+            "end_char": 4721
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Teeth U-Net: A segmentation model of dental panoramic X-ray images for context semantics and contrast enhancement(SCI Q1. IF=6.698)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hou senbao;Tao Zhou;Yuncan Liu;Pei Dang;Huiling Lu;Hongbin Shi",
+      "id": "out-4cb4d3bf14c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Teeth U-Net: A segmentation model of dental panoramic X-ray images for context semantics and contrast enhancement(SCI Q1. IF=6.698) — Hou senbao;Tao Zhou;Yuncan Liu;Pei Dang;Huiling Lu;Hongbin Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4727,
+            "end_char": 4929
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于轻量化方向Transformer模型的肺炎X光片辅助诊断",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;刘凤珍;陆惠玲",
+      "id": "out-4adc2e4f4b33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于轻量化方向Transformer模型的肺炎X光片辅助诊断 — 周涛;叶鑫宇;刘凤珍;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4935,
+            "end_char": 4988
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "跨模态注意力YOLOv5的PET/CT肺部肿瘤检测",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;赵雅楠;陆惠玲;刘凤珍",
+      "id": "out-c1545ef834b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 跨模态注意力YOLOv5的PET/CT肺部肿瘤检测 — 周涛;叶鑫宇;赵雅楠;陆惠玲;刘凤珍",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4994,
+            "end_char": 5046
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于LL-GG-LG Net的CT和PET医学图像融合",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;张祥祥;陆惠玲;李琦;程倩茹",
+      "id": "out-d0c439dba9d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于LL-GG-LG Net的CT和PET医学图像融合 — 周涛;张祥祥;陆惠玲;李琦;程倩茹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5052,
+            "end_char": 5105
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "the Ensemble Deep Learning Model for Novel COVID-19 on CT images(ESI高被引论文)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Tao;Lu Hui-ling;Zaoli Yang;Huo Bing-qiang;REN Hai-ling;Dong Yali",
+      "id": "out-72f3bae9fae1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] the Ensemble Deep Learning Model for Novel COVID-19 on CT images(ESI高被引论文) — Zhou Tao;Lu Hui-ling;Zaoli Yang;Huo Bing-qiang;REN Hai-ling;Dong Yali",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5111,
+            "end_char": 5263
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Parallel attention multi-scale mandibular fracture detection network based on CenterNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Yuhu Du;Jingjing Mao;Caiyue Peng;Hongwei Wang;Zhongwei Zhou",
+      "id": "out-2be5b81c60cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Parallel attention multi-scale mandibular fracture detection network based on CenterNet — Tao Zhou;Yuhu Du;Jingjing Mao;Caiyue Peng;Hongwei Wang;Zhongwei Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5269,
+            "end_char": 5433
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "COVID-ResNet: COVID-19 Recognition Based on Improved Attention ResNet.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou T.;Chang X.;Liu Y.;Ye X.;Lu H.;Hu F.",
+      "id": "out-e89c70afa7f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] COVID-ResNet: COVID-19 Recognition Based on Improved Attention ResNet. — Zhou T.;Chang X.;Liu Y.;Ye X.;Lu H.;Hu F.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5439,
+            "end_char": 5559
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSD-Net: Pneumonia Classification Model Based on Multi-Scale Directional Feature Enhancement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Yujie Guo;Caiyue Peng;Yuxia Niu;Yunfeng Pan;Huiling Lu",
+      "id": "out-024788f4a9d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MSD-Net: Pneumonia Classification Model Based on Multi-Scale Directional Feature Enhancement — Tao Zhou;Yujie Guo;Caiyue Peng;Yuxia Niu;Yunfeng Pan;Huiling Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5565,
+            "end_char": 5729
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种图像识别方法、装置及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;陆惠玲;刘赟灿",
+      "id": "out-5997d6260ab4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种图像识别方法、装置及系统 — 周涛;陆惠玲;刘赟灿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5735,
+            "end_char": 5766
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "APU-Net: An Attention Mechanism Parallel U-Net for Lung Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Huiling Lu;Shi Qiu",
+      "id": "out-87f4cc3aaf91",
+      "evidence": [
+        {
+          "quote": "[期刊论文] APU-Net: An Attention Mechanism Parallel U-Net for Lung Tumor Segmentation — Tao Zhou;Huiling Lu;Shi Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5772,
+            "end_char": 5882
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GAN Review: Models and Application of Medical Image Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Li Qi;Cheng Qianru;Lu huiling;Zhang Xiangxiang",
+      "id": "out-d27ecbfc77eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GAN Review: Models and Application of Medical Image Fusion — Tao Zhou;Li Qi;Cheng Qianru;Lu huiling;Zhang Xiangxiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5888,
+            "end_char": 6010
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DRT Net:面向特征增强的双残差Res-Transformer肺炎识别模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;彭彩月;杜玉虎;党培;刘凤珍;陆惠玲",
+      "id": "out-864d7266d039",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DRT Net:面向特征增强的双残差Res-Transformer肺炎识别模型 — 周涛;彭彩月;杜玉虎;党培;刘凤珍;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6016,
+            "end_char": 6085
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多分辨率注意力密集网络的肺部疾病分析与识别",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;陆惠玲;常晓玉;刘赟璨",
+      "id": "out-231e62daff5c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多分辨率注意力密集网络的肺部疾病分析与识别 — 周涛;叶鑫宇;陆惠玲;常晓玉;刘赟璨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6091,
+            "end_char": 6141
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ResNet及其在医学图像处理领域的应用:研究进展与挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;刘赟璨;陆惠玲;叶鑫宇;常晓玉",
+      "id": "out-4ad751f9dbce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ResNet及其在医学图像处理领域的应用:研究进展与挑战 — 周涛;刘赟璨;陆惠玲;叶鑫宇;常晓玉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6147,
+            "end_char": 6202
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "UCP2-ACGAN: An adaptive condition GAN guided by U-shaped context perceptual processor for PET/CT images fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Qi Li;Huiling Lu;Long Liu;Xiangxiang Zhang",
+      "id": "out-7215d2593d29",
+      "evidence": [
+        {
+          "quote": "[期刊论文] UCP2-ACGAN: An adaptive condition GAN guided by U-shaped context perceptual processor for PET/CT images fusion — Tao Zhou;Qi Li;Huiling Lu;Long Liu;Xiangxiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6208,
+            "end_char": 6378
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RNE-DSNet:A Reparameter Neighborhood Enhancement Dual-Stream Network for CT medical image recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Fengzhen Liu;Xinyu Ye;Huiling Lu;Yujie Guo;Yuxia Niu",
+      "id": "out-4fcf2e811d20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RNE-DSNet:A Reparameter Neighborhood Enhancement Dual-Stream Network for CT medical image recognition — Tao Zhou;Fengzhen Liu;Xinyu Ye;Huiling Lu;Yujie Guo;Yuxia Niu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6384,
+            "end_char": 6555
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于跨尺度交互式融合Transformer模型的PETCT图像实例分割方法.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆惠玲;周涛;赵雅楠",
+      "id": "out-48483203c089",
+      "evidence": [
+        {
+          "quote": "[专利] 基于跨尺度交互式融合Transformer模型的PETCT图像实例分割方法. — 陆惠玲;周涛;赵雅楠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6561,
+            "end_char": 6616
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "U-Net网络医学图像分割应用综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;董雅丽;霍兵强;刘珊;马宗军",
+      "id": "out-983ace4235ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] U-Net网络医学图像分割应用综述 — 周涛;董雅丽;霍兵强;刘珊;马宗军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6622,
+            "end_char": 6665
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "探析U-Net改进机制及其在医学图像中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;侯森保;陆惠玲;董雅丽",
+      "id": "out-9518a87ffd57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 探析U-Net改进机制及其在医学图像中的应用 — 周涛;侯森保;陆惠玲;董雅丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6671,
+            "end_char": 6716
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向头颈部肿瘤转移性淋巴结分割网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;石道宗;薛佳文;彭彩月;党培;周忠伟",
+      "id": "out-bc9d635e0d17",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 面向头颈部肿瘤转移性淋巴结分割网络 — 周涛;石道宗;薛佳文;彭彩月;党培;周忠伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6722,
+            "end_char": 6769
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于DCIF-GAN的肺部肿瘤PET/CT跨模态医学图像融合",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;程倩茹;张祥祥;李琦;陆惠玲",
+      "id": "out-a60f670649e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于DCIF-GAN的肺部肿瘤PET/CT跨模态医学图像融合 — 周涛;程倩茹;张祥祥;李琦;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6775,
+            "end_char": 6831
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M~3 Res-Transformer:新冠肺炎胸部X-ray图像识别模型(CCF A)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;刘赟璨;侯森宝;常晓玉;叶鑫宇;陆惠玲",
+      "id": "out-c007c2a5da3d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M~3 Res-Transformer:新冠肺炎胸部X-ray图像识别模型(CCF A) — 周涛;刘赟璨;侯森宝;常晓玉;叶鑫宇;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6837,
+            "end_char": 6912
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "用于肺部肿瘤图像分割的跨模态多编码混合注意力U-Net",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;董雅丽;刘珊;陆惠玲;马宗军;侯森宝;邱实",
+      "id": "out-176f1af882fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 用于肺部肿瘤图像分割的跨模态多编码混合注意力U-Net — 周涛;董雅丽;刘珊;陆惠玲;马宗军;侯森宝;邱实",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6918,
+            "end_char": 6978
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "强化特征提取能力的下颌骨骨折检测3M-YOLOv5网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;杜玉虎;石道宗;彭彩月;陆惠玲",
+      "id": "out-2363a4ac4554",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 强化特征提取能力的下颌骨骨折检测3M-YOLOv5网络 — 周涛;杜玉虎;石道宗;彭彩月;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6984,
+            "end_char": 7038
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "利用跨模态轻量级YOLOv5模型的PET/CT肺部肿瘤检测",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;刘凤珍;陆惠玲",
+      "id": "out-ecc9b88ea5b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 利用跨模态轻量级YOLOv5模型的PET/CT肺部肿瘤检测 — 周涛;叶鑫宇;刘凤珍;陆惠玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7044,
+            "end_char": 7096
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于密集双流聚焦网络的肺炎辅助诊断模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周涛;叶鑫宇;陆惠玲;刘赟璨;常晓玉",
+      "id": "out-c6772a826f20",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于密集双流聚焦网络的肺炎辅助诊断模型 — 周涛;叶鑫宇;陆惠玲;刘赟璨;常晓玉",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7102,
+            "end_char": 7148
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Guided-YNet: Saliency Feature-Guided Interactive Feature Enhancement Segmentation Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Yunfeng Pan;Huiling Lu;Pei Dang;Yujie Guo;Yaxing Wang.",
+      "id": "out-9dc34e31744d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Guided-YNet: Saliency Feature-Guided Interactive Feature Enhancement Segmentation Network — Tao Zhou;Yunfeng Pan;Huiling Lu;Pei Dang;Yujie Guo;Yaxing Wang.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7154,
+            "end_char": 7315
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Review of Deep Learning Imaging Diagnostic Methods for COVID-19",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou T.;Liu F.;Lu H.;Peng C.;Ye X.",
+      "id": "out-a8b97dca73bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Review of Deep Learning Imaging Diagnostic Methods for COVID-19 — Zhou T.;Liu F.;Lu H.;Peng C.;Ye X.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7321,
+            "end_char": 7429
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GMRE-iUnet: Isomorphic Unet Fusion Model for PET and CT Lung Tumor Images.Computers in Biology and medicines",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Xiangxiang Zhang;Huiling Lu;Qi Li;Long Liu;Huiyu Zhou",
+      "id": "out-e0e1c4664383",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GMRE-iUnet: Isomorphic Unet Fusion Model for PET and CT Lung Tumor Images.Computers in Biology and medicines — Tao Zhou;Xiangxiang Zhang;Huiling Lu;Qi Li;Long Liu;Huiyu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7435,
+            "end_char": 7614
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A New Robust Adaptive Fusion Method for Double-Modality Medical Image PET/CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhou;Huiling Lu;Fuyuan Hu;Hongbin Shi;Shi Qiu;Huiqun Wang",
+      "id": "out-bc19dbc7f956",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A New Robust Adaptive Fusion Method for Double-Modality Medical Image PET/CT — Tao Zhou;Huiling Lu;Fuyuan Hu;Hongbin Shi;Shi Qiu;Huiqun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7620,
+            "end_char": 7766
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning methods for medical image fusion:A review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Tao;Qianru Cheng;Huiling Lu;Qi Li;Xiangxiang Zhang;Shi Qiu",
+      "id": "out-860f56a65a8f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning methods for medical image fusion:A review — Zhou Tao;Qianru Cheng;Huiling Lu;Qi Li;Xiangxiang Zhang;Shi Qiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7772,
+            "end_char": 7899
+          },
+          "version": "38544fd64428b7835f01"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 40,
+    "listed": 40,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 38,
+        "extracted": 38
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

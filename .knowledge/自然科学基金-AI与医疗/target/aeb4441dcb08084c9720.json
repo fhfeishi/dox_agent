@@ -2,15 +2,20 @@
   "doc_id": "aeb4441dcb08084c9720",
   "version": "f2f2b1982903402e3f20",
   "source_hash": "454529b63a8dda02679063d331a0974b89018c427b5fe1cf8a1f4d6371120d32",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.597541+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:52:16.550450+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6cabb7586310",
-          "name": "视觉辅助的雷达人体三维姿态与体素估计",
-          "desc": "面向居家医疗健康监测，利用视觉语义信息辅助雷达实现人体三维姿态与体素估计。",
+          "id": "item-27d16bef507b",
+          "name": "雷达人体三维姿态与体素估计",
+          "desc": "居家医疗健康监测",
           "evidence": [
             {
               "quote": "雷达人体智能感知技术逐渐成为居家医疗健康监测的重要组成部分",
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c1179d2628d5",
-          "name": "室内雷达三维语义感知能力不足",
-          "desc": "室内雷达探测精度受限，对人体三维语义感知能力不足，感知方法的可解释性与泛化性缺失，难以适用于动态开放世界。",
+          "id": "item-177fae376036",
+          "name": "室内雷达探测精度受限、三维语义感知不足",
+          "desc": "可解释性与泛化性缺失",
           "evidence": [
             {
-              "quote": "其本质原因在于室内雷达探测精度受限，对人体三维语义感知能力不足，感知方法的可解释性与泛化性缺失",
+              "quote": "本质原因在于室内雷达探测精度受限，对人体三维语义感知能力不足，感知方法的可解释性与泛化性缺失",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 715,
+                "start_char": 716,
                 "end_char": 761
               },
               "version": "f2f2b1982903402e3f20"
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-23e586ef4244",
-          "name": "数据与物理模型混合驱动的雷达三维感知框架",
-          "desc": "提出数据与物理模型混合驱动的理论框架，通过数据驱动的单射性网络架构约束与雷达物理模型的可解释因果约束开展建模。",
+          "id": "item-75324f8b728c",
+          "name": "三元迁移理论",
+          "desc": "预训练域-源域-目标域统计关联，划定更小泛化误差界",
           "evidence": [
             {
-              "quote": "提出数据与物理模型混合驱动的理论框架，通过数据驱动的单射性网络架构约束与雷达物理模型的可解释因果约束",
+              "quote": "率先提出原创的三元迁移理论",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 886
+                "start_char": 3093,
+                "end_char": 3105
               },
               "version": "f2f2b1982903402e3f20"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-85c31bd32862",
+          "name": "非接触睡眠监测、呼吸暂停、心功能监测感知方法",
+          "desc": "多维度人体健康感知",
+          "evidence": [
+            {
+              "quote": "研发了非接触睡眠监测、呼吸暂停、心功能监测等医健应用的多维度人体健康感知方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2893,
+                "end_char": 2930
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b5e98b8f9e2e",
-          "name": "发表12篇期刊论文、6篇会议论文并申请3项发明专利",
-          "desc": "项目总计发表12篇期刊论文、6篇会议论文，申请3项国家发明专利，并收集了首次囊括高分辨率雷达阵列、动捕与音频的多模态人体3D感知数据集。",
+          "id": "item-9fa14f86ffab",
+          "name": "多模态人体3D感知数据集",
+          "desc": "高分辨率雷达阵列、动作捕捉与音频数据，迄今首次",
+          "evidence": [
+            {
+              "quote": "收集了多模态的人体3D感知数据集（迄今首次囊括了高分辨率雷达阵列数据、人体动作捕捉系统数据以及音频数据）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2769,
+                "end_char": 2820
+              },
+              "version": "f2f2b1982903402e3f20"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "期刊论文12篇、会议论文6篇、专利申请3项",
           "evidence": [
             {
               "quote": "总计发表了12篇期刊论文，6篇会议论文，申请了3篇国家发明专利",
@@ -99,44 +141,434 @@
               "version": "f2f2b1982903402e3f20"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6cabb7586310"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c1179d2628d5"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多维雷达+X 的人体三维感知方法与系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈庆超;张绍兴;郭嵘骁;于震;唐佳齐",
+      "id": "out-f03b4e5e8ae2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多维雷达+X 的人体三维感知方法与系统 — 陈庆超;张绍兴;郭嵘骁;于震;唐佳齐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3525,
+            "end_char": 3571
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c1179d2628d5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-23e586ef4244"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using Multimodal Contrastive Knowledge Distillation for Video-Text Retrieval",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wentao Ma;Qingchao Chen;Tongqing Zhou;Shan Zhao;Zhiping Cai",
+      "id": "out-dd60884be058",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using Multimodal Contrastive Knowledge Distillation for Video-Text Retrieval — Wentao Ma;Qingchao Chen;Tongqing Zhou;Shan Zhao;Zhiping Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3576,
+            "end_char": 3720
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-23e586ef4244"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b5e98b8f9e2e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BayeSMM: Robust Deep Combined Computing Tackling Heavy-tailed Distribution in Medical Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanye Liu;Ruoxuan Zhen;Shangqi Gao;Xinzhe Luo;Xin Gao;Qingchao Chen;Xiahai Zhuang",
+      "id": "out-8a19b8fd5ca9",
+      "evidence": [
+        {
+          "quote": "[会议论文] BayeSMM: Robust Deep Combined Computing Tackling Heavy-tailed Distribution in Medical Images — Yuanye Liu;Ruoxuan Zhen;Shangqi Gao;Xinzhe Luo;Xin Gao;Qingchao Chen;Xiahai Zhuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3725,
+            "end_char": 3908
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radar2ECG: Multi-Scale Bottleneck Fusion and Cross-modal Semantic Distillation for Conditional Electrocardiogram Generation from Radar Heart Sound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinye Li;Aidong Men;Yang Liu;Pengda Han;Qingchao Chen",
+      "id": "out-7e275252ff62",
+      "evidence": [
+        {
+          "quote": "[会议论文] Radar2ECG: Multi-Scale Bottleneck Fusion and Cross-modal Semantic Distillation for Conditional Electrocardiogram Generation from Radar Heart Sound — Jinye Li;Aidong Men;Yang Liu;Pengda Han;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3913,
+            "end_char": 4121
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种非侵入无干扰睡眠呼吸状态的监测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张绍兴;陈庆超;于震;唐佳齐;郭嵘骁",
+      "id": "out-6994130b789b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种非侵入无干扰睡眠呼吸状态的监测方法及系统 — 张绍兴;陈庆超;于震;唐佳齐;郭嵘骁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4126,
+            "end_char": 4173
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evidential Multi-source-free Unsupervised Domain Adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiangbo Pei;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+      "id": "out-a7c153b39e0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evidential Multi-source-free Unsupervised Domain Adaptation — Jiangbo Pei;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4178,
+            "end_char": 4305
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Partial Information Decomposition Inspired Integration of Vision and Radar Signal for Robust Sleep Respiration Monitoring",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaqi Tang;Shaoxing Zhang;Qingchao Chen",
+      "id": "out-803f1082b268",
+      "evidence": [
+        {
+          "quote": "[会议论文] Partial Information Decomposition Inspired Integration of Vision and Radar Signal for Robust Sleep Respiration Monitoring — Jiaqi Tang;Shaoxing Zhang;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4310,
+            "end_char": 4479
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint Class-level and Instance-level Relationship Modeling for Novel Class Discovery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaying Zhou;Qingchao Chen",
+      "id": "out-a4fe1091be9e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Joint Class-level and Instance-level Relationship Modeling for Novel Class Discovery — Jiaying Zhou;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4484,
+            "end_char": 4603
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Heart-Guided Filter Optimization for UWB Radar Cardiac Motion Sensing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaqi Tang;Jinye Li;Qingchao Chen",
+      "id": "out-a99ea36c99f3",
+      "evidence": [
+        {
+          "quote": "[会议论文] Artificial Heart-Guided Filter Optimization for UWB Radar Cardiac Motion Sensing — Jiaqi Tang;Jinye Li;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4608,
+            "end_char": 4730
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radar Can See and Hear as Well: A New Multimodal Benchmark Based on Radar Sensing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yinsong Xu;Qingchao Chen",
+      "id": "out-892814c9b412",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radar Can See and Hear as Well: A New Multimodal Benchmark Based on Radar Sensing — Yinsong Xu;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4736,
+            "end_char": 4850
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种结合视觉和射频信号的非接触式睡眠呼吸和分期监测方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈庆超;张绍兴;唐佳齐;郭嵘骁;于震",
+      "id": "out-99163ce0506e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种结合视觉和射频信号的非接触式睡眠呼吸和分期监测方法及装置 — 陈庆超;张绍兴;唐佳齐;郭嵘骁;于震",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4856,
+            "end_char": 4911
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scDD: scRNA-seq dataset distillation in latent codes with single-step conditional diffusion generator",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Yu;Jianan Han;Yang Liu;Qingchao Chen",
+      "id": "out-7350efd0a579",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scDD: scRNA-seq dataset distillation in latent codes with single-step conditional diffusion generator — Zhen Yu;Jianan Han;Yang Liu;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4917,
+            "end_char": 5068
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MERIT: Multi-view evidential learning for reliable and interpretable liver fibrosis staging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanye Liu;Zheyao Gao;Nannan Shi;Fuping Wu;Yuxin Shi;Qingchao Chen;Xiahai Zhuang",
+      "id": "out-3e6969940c01",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MERIT: Multi-view evidential learning for reliable and interpretable liver fibrosis staging — Yuanye Liu;Zheyao Gao;Nannan Shi;Fuping Wu;Yuxin Shi;Qingchao Chen;Xiahai Zhuang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5074,
+            "end_char": 5254
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Uncertainty-induced transferability representation for source-free unsupervised domain adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiangbo Pei;Zhuqing Jiang;Aidong Men;Liang Chen;Yang Liu;Qingchao Chen",
+      "id": "out-93250aed7476",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Uncertainty-induced transferability representation for source-free unsupervised domain adaptation — Jiangbo Pei;Zhuqing Jiang;Aidong Men;Liang Chen;Yang Liu;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5260,
+            "end_char": 5436
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based quantitative assessment of renal chronicity indices in  lupus nephritis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianqi Tu;Hui Wang;Jiangbo Pei;Xiaojuan Yu;Aidong Men;Suxia Wang;Qingchao Chen;Ying Tan;Feng Yu;Minghui Zhao",
+      "id": "out-3b079b82d509",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based quantitative assessment of renal chronicity indices in  lupus nephritis — Tianqi Tu;Hui Wang;Jiangbo Pei;Xiaojuan Yu;Aidong Men;Suxia Wang;Qingchao Chen;Ying Tan;Feng Yu;Minghui Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5442,
+            "end_char": 5650
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incorporating Pre-Training Data Matters in Unsupervised Domain Adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yinsong Xu;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+      "id": "out-8bcf49e1a15a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incorporating Pre-Training Data Matters in Unsupervised Domain Adaptation — Yinsong Xu;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5656,
+            "end_char": 5796
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel Class Discovery in Chest X-rays via Paired Images and Text",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaying Zhou;Yang Liu;Qingchao Chen",
+      "id": "out-2ba863767389",
+      "evidence": [
+        {
+          "quote": "[会议论文] Novel Class Discovery in Chest X-rays via Paired Images and Text — Jiaying Zhou;Yang Liu;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5802,
+            "end_char": 5910
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "IoT-V2E: an Uncertainty-Aware Cross-Modal Hashing Retrieval Between Infrared-Videos and EEGs for Automated Sleep State Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianan Han;Aidong Men;Yang Liu;Ziming Yao;Shaoxing Zhang;Yan Yan;Qingchao Chen",
+      "id": "out-ff1fdb48c8cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] IoT-V2E: an Uncertainty-Aware Cross-Modal Hashing Retrieval Between Infrared-Videos and EEGs for Automated Sleep State Analysis — Jianan Han;Aidong Men;Yang Liu;Ziming Yao;Shaoxing Zhang;Yan Yan;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5916,
+            "end_char": 6130
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Selection, Ensemble, and Adaptation: Advancing Multi-Source-Free Domain Adaptation via Architecture Zoo",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiangbo Pei;Ruizhe Li;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+      "id": "out-63906decebe7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Selection, Ensemble, and Adaptation: Advancing Multi-Source-Free Domain Adaptation via Architecture Zoo — Jiangbo Pei;Ruizhe Li;Aidong Men;Yang Liu;Xiahai Zhuang;Qingchao Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6136,
+            "end_char": 6317
+          },
+          "version": "f2f2b1982903402e3f20"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

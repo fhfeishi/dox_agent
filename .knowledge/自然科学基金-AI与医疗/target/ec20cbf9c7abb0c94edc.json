@@ -2,15 +2,20 @@
   "doc_id": "ec20cbf9c7abb0c94edc",
   "version": "9bb81921b828867beec8",
   "source_hash": "84c50c4f12f86519ae0513fe68e7644d114e41ece48ef32e52fc090832a10ede",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.960982+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.545180+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ed38b8f7722",
-          "name": "晚期非小细胞肺癌免疫治疗预后评估",
-          "desc": "面向接受抗PD-1/PD-L1免疫治疗的晚期非小细胞肺癌患者，基于PET/CT量化解析分子标志物与临床事件进行预后评估。",
+          "id": "item-79013f6b286d",
+          "name": "晚期NSCLC免疫治疗预后与不良事件预测",
+          "desc": "PET/CT影像组学",
           "evidence": [
             {
-              "quote": "PD-1/PD-L1抑制剂因特异性强、肿瘤控制时间长等优点成为晚期非小细胞肺癌患者的I类推荐治疗方案",
+              "quote": "本项目采用多模态人工智能影像组学方法，基于国际多中心的回顾性和前瞻性影像数据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
-                "end_char": 726
+                "start_char": 3004,
+                "end_char": 3041
               },
               "version": "9bb81921b828867beec8"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9bbd9d10dee4",
-          "name": "免疫治疗不良事件早期症状不明显难以诊断",
-          "desc": "临床治疗过程可能发生超进展、免疫治疗相关性肺炎或恶病质等不良事件，早期症状不明显、特异性不强，易错过最佳干预时机。",
+          "id": "item-b1558fa0dff1",
+          "name": "原发性耐药、超进展、免疫相关不良反应或恶病质",
+          "desc": "严重影响预后",
           "evidence": [
             {
-              "quote": "然而临床治疗过程可能发生超进展、免疫治疗相关性肺炎（ICI-肺炎）或恶病质等临床不良事件",
+              "quote": "然而临床实践中存在原发性耐药、超进展、免疫相关不良反应或恶病质等临床不良事件，严重影响患者预后",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 728,
-                "end_char": 771
+                "start_char": 2912,
+                "end_char": 2958
               },
               "version": "9bb81921b828867beec8"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e3c7abc07925",
-          "name": "多模态AI影像组学PET/CT预后预测体系",
-          "desc": "采用多模态人工智能影像组学方法，基于国际多中心回顾与前瞻PET/CT数据构建任务驱动双判别器生成对抗网络及各类风险预测模型。",
+          "id": "item-a8ad977a4087",
+          "name": "任务驱动双判别器生成对抗网络",
+          "desc": "PET/CT可视化PD-L1",
           "evidence": [
             {
-              "quote": "本项目采用多模态人工智能影像组学方法",
+              "quote": "构建任务驱动的双判别器生成对抗网络，基于常规18F-FDG PET/CT成像实现PD-L1等关键分子标志物的可视化及无创精准评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3004,
-                "end_char": 3021
+                "start_char": 3053,
+                "end_char": 3116
               },
               "version": "9bb81921b828867beec8"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-934e7d82d8d2",
+          "name": "全身PET/CT原发耐药预测模型",
+          "desc": "突破单一病灶局限",
+          "evidence": [
+            {
+              "quote": "利用全身PET/CT影像构建原发耐药预测模型，突破现有研究局限于单一病灶的瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3185,
+                "end_char": 3223
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-80810e3bdfde",
-          "name": "双判别器GAN实现PD-L1表达预测AUC 0.88",
-          "desc": "双判别器生成对抗网络模型实现PD-L1表达准确预测AUC=0.88；超进展、ICI严重不良反应预测AUC分别达0.8与0.88，全身PET/CT原发耐药预测AUC达0.88–0.89。",
+          "id": "item-569c1bbbc3f5",
+          "name": "PD-L1表达预测AUC",
+          "desc": "0.88",
           "evidence": [
             {
               "quote": "双判别器生成对抗网络模型实现PD-L1表达准确预测（AUC=0.88）",
@@ -99,44 +122,330 @@
               "version": "9bb81921b828867beec8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "论文13篇，专利2项，软著3项，团体标准1项",
+          "evidence": [
+            {
+              "quote": "累计发表论文13篇，授权受理国家发明专利2项，获软件著作权3项，牵头制定团体标准1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3461,
+                "end_char": 3502
+              },
+              "version": "9bb81921b828867beec8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5ed38b8f7722"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9bbd9d10dee4"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Wiley中国高贡献作者奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Mu",
+      "id": "out-08c2b6246fff",
+      "evidence": [
+        {
+          "quote": "[奖励] Wiley中国高贡献作者奖 — Wei Mu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3551,
+            "end_char": 3577
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9bbd9d10dee4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e3c7abc07925"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of an integrated system for lung cancer screening and post-screening pulmonary nodules management: a proof-of-concept study (ASCEND-LUNG)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yichen Jin;Wei Mu;Yezhen Shi;Qingyi Qi;Wenxiang Wang;Yue He;Xiaoran Sun;Bo Yang;Peng Cui;Chengcheng Li;Fang Liu;Yuxia Liu;Guoqiang Wang;Jing Zhao;Yuzi Zhang;Shuaitong Zhang;Caifang Cao;Chao Sun;Nan Hong;Shangli Cai;Jie Tian;Fan Yang;Kezhong Chen",
+      "id": "out-c57529d51f6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of an integrated system for lung cancer screening and post-screening pulmonary nodules management: a proof-of-concept study (ASCEND-LUNG) — Yichen Jin;Wei Mu;Yezhen Shi;Qingyi Qi;Wenxiang Wang;Yue He;Xiaoran Sun;Bo Yang;Peng Cui;Chengcheng Li;Fang Liu;Yuxia Liu;Guoqiang Wang;Jing Zhao;Yuzi Zhang;Shuaitong Zhang;Caifang Cao;Chao Sun;Nan Hong;Shangli Cai;Jie Tian;Fan Yang;Kezhong Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 4000
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e3c7abc07925"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-80810e3bdfde"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rethinking the Fourier Transform: Frequency Split-Enhance Network for Fast System Matrix Calibration in Magnetic Particle Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Weixin;Zhai Penghua;Bian Zhongwei;Fu Yao;Wu Yukun;Yang Chaojuan;Tian Jie;Mu Wei",
+      "id": "out-26f57cabc8ea",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rethinking the Fourier Transform: Frequency Split-Enhance Network for Fast System Matrix Calibration in Magnetic Particle Image — Xu Weixin;Zhai Penghua;Bian Zhongwei;Fu Yao;Wu Yukun;Yang Chaojuan;Tian Jie;Mu Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4223
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种术中影像分析系统及其方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "牟玮;周健;许昊;曹偲芳;卢一诺;田捷",
+      "id": "out-dbbeceac1dac",
+      "evidence": [
+        {
+          "quote": "[专利] 一种术中影像分析系统及其方法和应用 — 牟玮;周健;许昊;曹偲芳;卢一诺;田捷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4228,
+            "end_char": 4271
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "From Signal to Knowledge: The Diagnostic Value of Raw Data in the Artificial Intelligence Prediction of Human Data for the First Time",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-df2410e7d9b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] From Signal to Knowledge: The Diagnostic Value of Raw Data in the Artificial Intelligence Prediction of Human Data for the First Time — He Bingxi;Guo Yu;Zhu Yongbei;Tong Lixia;Kong Boyu;Wang Kun;Sun Caixia;Li Hailin;Huang Feng;Wu Liwei;Wang Meng;Meng Fanyang;Dou Le;Shao Lizhi;Sun Kai;Tong Tong;Liu Zhenyu;Wei Ziqi;Mu Wei;Wang Shuo;Tang Zhenchao;Zhang Shuaitong;Wei Jingwei;Fang Mengjie;Li Juntao;Zhu Shouping;Zhou Lili;Dong Di;Zhang Huimao;Tian Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4276,
+            "end_char": 4731
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "青岛市青年科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "牟玮",
+      "id": "out-9bcd3aa1b56a",
+      "evidence": [
+        {
+          "quote": "[奖励] 青岛市青年科技奖 — 牟玮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4736,
+            "end_char": 4753
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of the variability and diagnostic efficacy of respiratory-gated PET/CT based radiomics features with ungated PET/CT in lung lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shengyun Huang;Caifang Cao;Linna Guo;Chengze Li;Feng Zhang;Yiluo Li;Ying Liang;Wei Mu",
+      "id": "out-9d40f9321832",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of the variability and diagnostic efficacy of respiratory-gated PET/CT based radiomics features with ungated PET/CT in lung lesions — Shengyun Huang;Caifang Cao;Linna Guo;Chengze Li;Feng Zhang;Yiluo Li;Ying Liang;Wei Mu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4758,
+            "end_char": 4994
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imaging biomarkers related to tumor-associated macrophage in immunotherapy treatment planning for non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shanshan Li;Yao Fu;Shuangshuang Ma;Fang Shi;Lingfei Liu;Jia Liu;Zengzhen Wang;Yuanyuan Yan;Wei Mu",
+      "id": "out-de511380af19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Imaging biomarkers related to tumor-associated macrophage in immunotherapy treatment planning for non-small cell lung cancer — Shanshan Li;Yao Fu;Shuangshuang Ma;Fang Shi;Lingfei Liu;Jia Liu;Zengzhen Wang;Yuanyuan Yan;Wei Mu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4999,
+            "end_char": 5229
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "原发性耐药预测系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "牟玮;田捷;付瑶;卢一诺;吴毓坤;齐明昕",
+      "id": "out-c7fa2e585237",
+      "evidence": [
+        {
+          "quote": "[专利] 原发性耐药预测系统及方法 — 牟玮;田捷;付瑶;卢一诺;吴毓坤;齐明昕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5234,
+            "end_char": 5273
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MAPLE: Multi-scale Attribute-enhanced Prompt Learning for Few-shot Whole Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junjie Zhou;Wei Shao;Yagao Yue;Wei Mu;Peng Wan;Qi Zhu;Daoqiang Zhang",
+      "id": "out-77345b9c3368",
+      "evidence": [
+        {
+          "quote": "[会议论文] MAPLE: Multi-scale Attribute-enhanced Prompt Learning for Few-shot Whole Slide Image Classification — Junjie Zhou;Wei Shao;Yagao Yue;Wei Mu;Peng Wan;Qi Zhu;Daoqiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5279,
+            "end_char": 5455
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PET/ CT、SPECT/ CT影像组学:沟通宏观影像和微观分子的桥梁",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "牟玮;田捷",
+      "id": "out-a9131d8313f3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PET/ CT、SPECT/ CT影像组学:沟通宏观影像和微观分子的桥梁 — 牟玮;田捷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5461,
+            "end_char": 5511
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASO Author Reflections: Artificial Intelligence–Driven Thoracoscopic Video Analysis for Intraoperative Visceral Pleural Invasion Prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yukun Wu;Hao Xu;Fan Yang;Jie Tian;Wei Mu;Jian Zhou",
+      "id": "out-0e04499d56fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASO Author Reflections: Artificial Intelligence–Driven Thoracoscopic Video Analysis for Intraoperative Visceral Pleural Invasion Prediction — Yukun Wu;Hao Xu;Fan Yang;Jie Tian;Wei Mu;Jian Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5517,
+            "end_char": 5715
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of an Artificial Intelligence Surgical Video Analysis Model for Predicting Visceral Pleural Invasion in Lung Cancer Surgery: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yukun Wu;Hao Xu;Xinghua Cheng;Pengchong Li;Jiantao Li;Ruiheng Jiang;Fengwei Li;Songjing Zhao;Yuxuan Wang;Shenrui Zhang;Zewen Sun;Sida Cheng;Tian Guan;Hao Li;Xiuyuan Chen;Feng Yang;Guanchao Jiang;Shanshan Li;Jun Wang;Yun Li;Fan Yang;Jie Tian;Wei Mu;Jian Zhou",
+      "id": "out-b71c5018b645",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of an Artificial Intelligence Surgical Video Analysis Model for Predicting Visceral Pleural Invasion in Lung Cancer Surgery: A Multicenter Study — Yukun Wu;Hao Xu;Xinghua Cheng;Pengchong Li;Jiantao Li;Ruiheng Jiang;Fengwei Li;Songjing Zhao;Yuxuan Wang;Shenrui Zhang;Zewen Sun;Sida Cheng;Tian Guan;Hao Li;Xiuyuan Chen;Feng Yang;Guanchao Jiang;Shanshan Li;Jun Wang;Yun Li;Fan Yang;Jie Tian;Wei Mu;Jian Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5721,
+            "end_char": 6158
+          },
+          "version": "9bb81921b828867beec8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

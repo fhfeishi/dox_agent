@@ -2,15 +2,20 @@
   "doc_id": "b3795e38738b38460800",
   "version": "b4539c959835fb196b06",
   "source_hash": "95c7647350889016560b3d3eba755ccef7db8d95b23e678387afd70cd4cf49fe",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:16.097601+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.895213+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f1d6ff7476dd",
-          "name": "抗衰老化合物筛选与机制研究",
-          "desc": "随全球老龄化加剧，衰老及其相关疾病使人类生活负担逐年加重，开发延缓衰老、增加健康寿命的药物是重要目标。",
+          "id": "item-48ba9b4e19d6",
+          "name": "抗衰老化合物筛选",
+          "desc": "全球人口老龄化",
           "evidence": [
             {
-              "quote": "随着全球老龄化加剧，衰老及其相关疾病使得人类生活的负担逐年加重，同时带来一系列医疗和社会问题。开发能够延缓衰老、增加健康寿命(Health span)的药物是未来社会的重要目标",
+              "quote": "面对全球人口老龄化的严峻挑战，开发安全有效的抗衰老干预策略是生物医学领域的重大需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 752
-              },
-              "version": "b4539c959835fb196b06"
-            }
-          ]
-        },
-        {
-          "id": "item-7a04793b7813",
-          "name": "提供抗衰老先导化合物库",
-          "desc": "研究提供抗衰老先导化合物库以应对全球老龄化及其带来的医疗健康问题。",
-          "evidence": [
-            {
-              "quote": "更重要的是提供了一个抗衰老先导化合物库以应对全球老龄化及其带来的医疗健康问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1026,
-                "end_char": 1063
+                "start_char": 2526,
+                "end_char": 2566
               },
               "version": "b4539c959835fb196b06"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-93e38b6e531a",
-          "name": "传统药物发现耗时费力成本高昂",
-          "desc": "传统药物发现模式耗时费力、成本高昂，需建立高效创新的AI驱动筛选与验证体系。",
+          "id": "item-c006808b4887",
+          "name": "传统药物发现模式耗时费力、成本高昂",
+          "desc": "抗衰老药物发现",
           "evidence": [
             {
               "quote": "传统药物发现模式耗时费力、成本高昂",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2568,
                 "end_char": 2584
-              },
-              "version": "b4539c959835fb196b06"
-            }
-          ]
-        },
-        {
-          "id": "item-e2a4af98db28",
-          "name": "需加速先导化合物发现",
-          "desc": "旨在建立一套高效、创新的AI驱动抗衰老活性化合物筛选与验证体系，加速先导化合物发现。",
-          "evidence": [
-            {
-              "quote": "本项目旨在建立一套高效、创新的“人工智能驱动”的抗衰老活性化合物筛选与验证体系，以加速先导化合物的发现",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2586,
-                "end_char": 2636
               },
               "version": "b4539c959835fb196b06"
             }
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31e316f26eb0",
-          "name": "机器学习预测小分子抗衰老活性",
-          "desc": "初步开发可快速预测小分子抗衰老活性的新方法Anti-ageing，准确率超80%、AUC达0.88，用于预测筛选DrugBank和TCM等数据库潜在抗衰老小分子。",
-          "evidence": [
-            {
-              "quote": "我们初步开发了一种可以快速预测小分子抗衰老活性的新方法Anti-ageing。该方法准确率超过80%，ROC曲线下面积（AUC）高达0.88",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 823,
-                "end_char": 892
-              },
-              "version": "b4539c959835fb196b06"
-            }
-          ]
-        },
-        {
-          "id": "item-3c959ed279d5",
-          "name": "细胞-线虫-斑马鱼三位体验证平台",
-          "desc": "将原计划的异体住囊虫模型优化为更成熟高效的细胞-线虫-斑马鱼三位一体实验验证平台，形成计算预测与实验验证的研发闭环。",
-          "evidence": [
-            {
-              "quote": "将原计划的“异体住囊虫”模型优化为更成熟高效的“细胞-线虫-斑马鱼”三位一体实验验证平台，形成“计算预测-实验验证”的研发闭环",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2777,
-                "end_char": 2839
-              },
-              "version": "b4539c959835fb196b06"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ce8b47a4a5a1",
-          "name": "构建抗衰老化合物数据库ACDB",
-          "desc": "成功构建覆盖2472种化合物、6694条记录的ACDB数据库。",
-          "evidence": [
-            {
-              "quote": "成功构建了覆盖2472种化合物、6694条记录的ACDB数据库",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2906,
-                "end_char": 2936
-              },
-              "version": "b4539c959835fb196b06"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f755464d67fa",
-          "name": "Anti-ageing模型准确率94.6%",
-          "desc": "基于ACDB开发高精度机器学习预测模型准确率94.6%，并拓展建立衰老细胞清除剂预测模型。",
+          "id": "item-07e12ab8f6ef",
+          "name": "Anti-ageing机器学习预测模型",
+          "desc": "准确率94.6%",
           "evidence": [
             {
               "quote": "基于ACDB开发高精度机器学习预测模型（Anti-ageing，准确率94.6%），并拓展建立衰老细胞清除剂预测模型（Senolytics_model）",
@@ -164,72 +82,391 @@
               "version": "b4539c959835fb196b06"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-f384021f0b4d",
-          "name": "验证10种抗衰老先导物",
-          "desc": "利用AI平台从上市药物及天然产物库筛选并实验验证10种具有显著抗衰老活性的先导物，其中有机杜松果精油在线虫模型中展现24.8%的平均寿命延长率。",
+          "id": "item-ea27474bf7d4",
+          "name": "细胞-线虫-斑马鱼三位一体实验验证平台",
+          "desc": "由异体住囊虫模型优化",
           "evidence": [
             {
-              "quote": "利用AI平台从上市药物及天然产物库中筛选并实验验证了10种具有显著抗衰老活性的先导物，其中有机杜松果精油在线虫模型中展现出24.8%的平均寿命延长率（优于二甲双胍对照组）",
+              "quote": "将原计划的“异体住囊虫”模型优化为更成熟高效的“细胞-线虫-斑马鱼”三位一体实验验证平台，形成“计算预测-实验验证”的研发闭环",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2938,
-                "end_char": 3022
+                "start_char": 2777,
+                "end_char": 2839
               },
               "version": "b4539c959835fb196b06"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-1d0f0b63e3db",
+          "name": "抗衰老化合物数据库ACDB",
+          "desc": "2472种化合物、6694条记录",
+          "evidence": [
+            {
+              "quote": "成功构建了覆盖2472种化合物、6694条记录的ACDB数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2906,
+                "end_char": 2936
+              },
+              "version": "b4539c959835fb196b06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-32f4d6aab0bc",
+          "name": "先导物筛选与验证",
+          "desc": "10种具显著抗衰老活性，有机杜松果精油延长线虫平均寿命24.8%",
+          "evidence": [
+            {
+              "quote": "利用AI平台从上市药物及天然产物库中筛选并实验验证了10种具有显著抗衰老活性的先导物，其中有机杜松果精油在线虫模型中展现出24.8%的平均寿命延长率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2938,
+                "end_char": 3011
+              },
+              "version": "b4539c959835fb196b06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文13篇，发明专利6项",
+          "evidence": [
+            {
+              "quote": "申请国家发明专利6项，发表标注基金的高水平SCI论文13篇（包括Nature Communications， Protein & Cell等）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3024,
+                "end_char": 3094
+              },
+              "version": "b4539c959835fb196b06"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f1d6ff7476dd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-93e38b6e531a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种针对多种病毒的新型活性化合物计算筛选方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "代绍兴;梁积浩;郑阳",
+      "id": "out-dbd7e7c78de4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种针对多种病毒的新型活性化合物计算筛选方法 — 代绍兴;梁积浩;郑阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3423,
+            "end_char": 3462
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-93e38b6e531a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-31e316f26eb0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "In Silico Identification of Anti-SARS-CoV-2 Medicinal Plants Using Cheminformatics and Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jihao Liang;Yang Zheng;Xin Tong;Naixue Yang;Shaoxing Dai",
+      "id": "out-1591068b1bf8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] In Silico Identification of Anti-SARS-CoV-2 Medicinal Plants Using Cheminformatics and Machine Learning — Jihao Liang;Yang Zheng;Xin Tong;Naixue Yang;Shaoxing Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3467,
+            "end_char": 3635
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-31e316f26eb0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f755464d67fa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Application of a Senolytic Predictor for Discovery of Novel Senolytic Compounds and Herbs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jinjun;Zhao Kai;Yang Guotai;Lv Haohao;Zhang Renxin;Li Shuhan;Chen Zhiyuan;Xu Min;Yang Naixue;Dai Shaoxing",
+      "id": "out-61dc165d6374",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Application of a Senolytic Predictor for Discovery of Novel Senolytic Compounds and Herbs — Li Jinjun;Zhao Kai;Yang Guotai;Lv Haohao;Zhang Renxin;Li Shuhan;Chen Zhiyuan;Xu Min;Yang Naixue;Dai Shaoxing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3640,
+            "end_char": 3862
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3c959ed279d5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-f384021f0b4d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于化合物扰动转录组和蛋白序列预测化合物靶点的方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "代绍兴; 陈志远; 吕豪豪; 周子昂; 杨耐雪",
+      "id": "out-cdfa68974607",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于化合物扰动转录组和蛋白序列预测化合物靶点的方法及应用 — 代绍兴; 陈志远; 吕豪豪; 周子昂; 杨耐雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3867,
+            "end_char": 3927
+          },
+          "version": "b4539c959835fb196b06"
+        },
+        {
+          "quote": "[专利] 一种基于化合物扰动转录组和蛋白序列预测化合物靶点的方法及应用 — 代绍兴;陈志远;吕豪豪;周子昂;杨耐雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5009,
+            "end_char": 5065
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Proteome-Wide Identification and Comparison of Drug Pockets for Discovering New Drug Indications and Side Effects",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Renxin;Chen Zhiyuan;Li Shuhan;Lv Haohao;Li Jinjun;Yang Naixue;Dai Shaoxing",
+      "id": "out-9a44fc9e2a33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Proteome-Wide Identification and Comparison of Drug Pockets for Discovering New Drug Indications and Side Effects — Zhang Renxin;Chen Zhiyuan;Li Shuhan;Lv Haohao;Li Jinjun;Yang Naixue;Dai Shaoxing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3932,
+            "end_char": 4134
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种具有抗衰老活性的有机杜松果精油及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "代绍兴;贾荣芳;许敏;吴培荣;朱正娜",
+      "id": "out-88fd0b0986fd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种具有抗衰老活性的有机杜松果精油及其应用 — 代绍兴;贾荣芳;许敏;吴培荣;朱正娜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4185
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The genome of medicinal leech (Whitmania pigra) and comparative genomic study for exploration of bioactive ingredients.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tong Lei;Dai Shao-Xing;Kong De-Jun;Yang Peng-Peng;Tong Xin;Tong Xiang-Rong;Bi Xiao-Xu;Su Yuan;Zhao Yu-Qi;Liu Zi-Chao",
+      "id": "out-017afb4e1eab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The genome of medicinal leech (Whitmania pigra) and comparative genomic study for exploration of bioactive ingredients. — Tong Lei;Dai Shao-Xing;Kong De-Jun;Yang Peng-Peng;Tong Xin;Tong Xiang-Rong;Bi Xiao-Xu;Su Yuan;Zhao Yu-Qi;Liu Zi-Chao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4434
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种抗抑郁药物预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "代绍兴;吕豪豪;包杨欢;杨鹏鹏;周子昂",
+      "id": "out-c1ae4b5c6522",
+      "evidence": [
+        {
+          "quote": "[专利] 一种抗抑郁药物预测方法 — 代绍兴;吕豪豪;包杨欢;杨鹏鹏;周子昂",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4476
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatiotemporal proteomic atlas of multiple brain regions across early fetal to neonatal stages in cynomolgus monkey",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingkuan Wei;Shaoxing Dai;Yaping Yan;Shulin Li;Pengpeng Yang;Ran Zhu;Tianzhuang Huang;Xi Li;Yanchao Duan;Zhengbo Wang;Weizhi Ji;Wei Si",
+      "id": "out-cad318dbbcbc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatiotemporal proteomic atlas of multiple brain regions across early fetal to neonatal stages in cynomolgus monkey — Jingkuan Wei;Shaoxing Dai;Yaping Yan;Shulin Li;Pengpeng Yang;Ran Zhu;Tianzhuang Huang;Xi Li;Yanchao Duan;Zhengbo Wang;Weizhi Ji;Wei Si",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4481,
+            "end_char": 4739
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Distinguishing Bacterial Features From Active and Remission Stages of Ulcerative Colitis Revealed by Paired Fecal Metagenomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ran Zhu;Junrui Tang;Chengfeng Xing;Qiong Nan;Guili Liang;Juan Luo;Jiao Zhou;Yinglei Miao;Yu Cao;Shaoxing Dai;Danfeng Lan",
+      "id": "out-c9e2ad85ad03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Distinguishing Bacterial Features From Active and Remission Stages of Ulcerative Colitis Revealed by Paired Fecal Metagenomes — Ran Zhu;Junrui Tang;Chengfeng Xing;Qiong Nan;Guili Liang;Juan Luo;Jiao Zhou;Yinglei Miao;Yu Cao;Shaoxing Dai;Danfeng Lan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4745,
+            "end_char": 5003
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrative single-cell and cell-free plasma RNA transcriptomics identifies biomarkers for early non-invasive AD screening",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Li;Zhang Renxin;Wang Yichao;Dai Shaoxing;Yang Naixue",
+      "id": "out-dc5d6d7e5ad4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrative single-cell and cell-free plasma RNA transcriptomics identifies biomarkers for early non-invasive AD screening — Wu Li;Zhang Renxin;Wang Yichao;Dai Shaoxing;Yang Naixue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5071,
+            "end_char": 5257
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种抗衰老化合物数据库、构建方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "代绍兴;郑阳;梁积浩",
+      "id": "out-99ff7bf821da",
+      "evidence": [
+        {
+          "quote": "[专利] 一种抗衰老化合物数据库、构建方法及应用 — 代绍兴;郑阳;梁积浩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5263,
+            "end_char": 5299
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel Tc17 population recruited by tumor cells promotes tumor progression in gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yichao;Yuan Hao;Tan Yayun;Wu Li;Zhao Xinchen;Yang Zeyuan;Dai Shaoxing;Yang Naixue",
+      "id": "out-2dc179bd347c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel Tc17 population recruited by tumor cells promotes tumor progression in gastric cancer — Wang Yichao;Yuan Hao;Tan Yayun;Wu Li;Zhao Xinchen;Yang Zeyuan;Dai Shaoxing;Yang Naixue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5305,
+            "end_char": 5493
+          },
+          "version": "b4539c959835fb196b06"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "专利": {
+        "listed": 7,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": false
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "e284541d642342692079",
   "version": "31cbeefcc4453108b756",
   "source_hash": "7feefcd0edbba1f8b1c5f1c8c71e9edced25734b9095d219cb2a362f9a119853",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.594167+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.331714+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-71d30b24334f",
           "name": "NSCLC新辅助免疫治疗响应评价",
-          "desc": "以PD-1单抗为代表的免疫检查点抑制剂使NSCLC晚期患者诊治策略产生革命性变化，新辅助免疫治疗初步显示临床获益。",
+          "desc": "影像-病理组学",
           "evidence": [
             {
-              "quote": "以PD-1单抗为代表的免疫检查点抑制剂使NSCLC晚期患者的诊治策略产生革命性变化",
+              "quote": "本项目针对非小细胞肺癌（NSCLC）新辅助免疫治疗中患者响应异质性强、获益人群筛选难的临床问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 676,
-                "end_char": 716
-              },
-              "version": "31cbeefcc4453108b756"
-            }
-          ]
-        },
-        {
-          "id": "item-797269f1de65",
-          "name": "推进肺癌治疗决策向精准医学靠拢",
-          "desc": "构建非小细胞肺癌新辅助免疫治疗响应智能评价方法，推进肺癌治疗决策向精准医学靠拢。",
-          "evidence": [
-            {
-              "quote": "最终构建一套非小细胞肺癌新辅助免疫治疗响应智能评价方法，推进肺癌治疗决策向精准医学靠拢",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 942,
-                "end_char": 984
+                "start_char": 2487,
+                "end_char": 2533
               },
               "version": "31cbeefcc4453108b756"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-000c6de59167",
-          "name": "影像响应与病理缓解不一致",
-          "desc": "临床实践暴露了新辅助免疫治疗后影像学响应与病理缓解不一致，及缺乏前瞻性预测病理响应的生物标记物两个关键临床问题。",
-          "evidence": [
-            {
-              "quote": "但临床实践暴露了新辅助免疫治疗后影像学响应与病理缓解不一致，及缺乏前瞻性预测病理响应的生物标记物两个亟待解决的关键临床问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 818
-              },
-              "version": "31cbeefcc4453108b756"
-            }
-          ]
-        },
-        {
-          "id": "item-9e7ff9550989",
-          "name": "治疗响应异质性强获益人群筛选难",
-          "desc": "NSCLC新辅助免疫治疗中患者响应异质性强、获益人群筛选难。",
+          "id": "item-fa4c7efbd8a0",
+          "name": "响应异质性强、获益人群筛选难",
+          "desc": "新辅助免疫治疗",
           "evidence": [
             {
               "quote": "本项目针对非小细胞肺癌（NSCLC）新辅助免疫治疗中患者响应异质性强、获益人群筛选难的临床问题",
@@ -95,64 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f761c4ddae0f",
-          "name": "影像病理组学对照研究与联合模型",
-          "desc": "以影像病理组学为技术路线开展影像病理对照研究以精准判断治疗后肿瘤响应，并基于治疗前CT影像与病理组学融合表型建立联合临床预测模型。",
-          "evidence": [
-            {
-              "quote": "以影像病理组学为技术路线，依托NSCLC免疫治疗大数据，开展影像病理对照研究以精准判断治疗后肿瘤响应；同时基于治疗前CT影像和病理组学融合表型建立联合临床预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 826,
-                "end_char": 906
-              },
-              "version": "31cbeefcc4453108b756"
-            }
-          ]
-        },
-        {
-          "id": "item-6c3b68e1ada0",
-          "name": "多队列多模态配对数据构建",
-          "desc": "构建涵盖新辅助免疫治疗、化疗对照及晚期NSCLC回顾性数据的多队列大数据资源，整合影像-病理-基因多模态配对数据。",
-          "evidence": [
-            {
-              "quote": "本研究构建了多队列大数据资源，涵盖新辅助免疫治疗、化疗对照及晚期NSCLC回顾性数据，整合影像-病理-基因多模态配对数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2565,
-                "end_char": 2624
-              },
-              "version": "31cbeefcc4453108b756"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f48372807ec7",
-          "name": "三级淋巴结构为pCR关键特征",
-          "desc": "明确三级淋巴结构的丰度与成熟度是病理完全缓解的关键特征。",
-          "evidence": [
-            {
-              "quote": "明确三级淋巴结构的丰度与成熟度是病理完全缓解（pCR）的关键特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2693,
-                "end_char": 2724
-              },
-              "version": "31cbeefcc4453108b756"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-0e0272a4c6f6",
-          "name": "CT时序影像组学模型AUC 0.88",
-          "desc": "构建的CT时序影像组学、多区域影像组学等模型最佳AUC达0.88，外部测试中效能较单一时点单一区域模型最高提升25.81%。",
+          "id": "item-ee5bfd824c00",
+          "name": "CT时序与多区域影像组学模型",
+          "desc": "外部测试提升25.81%",
           "evidence": [
             {
               "quote": "构建的CT时序影像组学、多区域影像组学等模型，最佳AUC值达0.88，外部测试中效能较单一时点单一区域模型最高提升25.81%",
@@ -164,72 +82,254 @@
               "version": "31cbeefcc4453108b756"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-29b4d7bb2b42",
-          "name": "影像组学标签无创预测TMB",
-          "desc": "开发的影像组学标签可无创预测肿瘤突变负荷，并揭示ISG15可能是肺腺癌免疫治疗的增敏靶点。",
+          "id": "item-dde4ee31fc61",
+          "name": "影像组学标签预测TMB",
+          "desc": "无创",
           "evidence": [
             {
-              "quote": "开发的影像组学标签可无创预测肿瘤突变负荷（TMB），且揭示了ISG15可能是肺腺癌免疫治疗的增敏靶点",
+              "quote": "开发的影像组学标签可无创预测肿瘤突变负荷（TMB）",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2790,
+                "end_char": 2814
+              },
+              "version": "31cbeefcc4453108b756"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-f3e253098a25",
+          "name": "三级淋巴结构与pCR",
+          "desc": "丰度与成熟度为关键特征",
+          "evidence": [
+            {
+              "quote": "明确三级淋巴结构的丰度与成熟度是病理完全缓解（pCR）的关键特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2693,
+                "end_char": 2724
+              },
+              "version": "31cbeefcc4453108b756"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-8d2959f8a579",
+          "name": "ISG15靶点",
+          "desc": "肺腺癌免疫治疗增敏",
+          "evidence": [
+            {
+              "quote": "揭示了ISG15可能是肺腺癌免疫治疗的增敏靶点",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2817,
                 "end_char": 2839
               },
               "version": "31cbeefcc4453108b756"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-71d30b24334f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-000c6de59167"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "非小细胞肺癌新辅助免疫治疗进展及影像学疗效评价挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘颖;张宇威;叶兆祥",
+      "id": "out-a3a38d452231",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 非小细胞肺癌新辅助免疫治疗进展及影像学疗效评价挑战 — 刘颖;张宇威;叶兆祥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2952,
+            "end_char": 2996
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-000c6de59167"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f761c4ddae0f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ISG15 targets glycosylated PD-L1 and promotes its degradation to enhance antitumor immune effects in lung adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qu Tongyuan;Zhang Wenshuai;Yan Chenhui;Ren Danyang;Wang Yalei;Guo Yuhong;Guo Qianru;Wang Jinpeng;Liu Liren;Han Lei;Li Lingmei;Huang Qiujuan;Cao Lu;Ye Zhaoxiang;Zhang Bin;Zhao Qiang;Cao Wenfeng",
+      "id": "out-938199c4768d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ISG15 targets glycosylated PD-L1 and promotes its degradation to enhance antitumor immune effects in lung adenocarcinoma — Qu Tongyuan;Zhang Wenshuai;Yan Chenhui;Ren Danyang;Wang Yalei;Guo Yuhong;Guo Qianru;Wang Jinpeng;Liu Liren;Han Lei;Li Lingmei;Huang Qiujuan;Cao Lu;Ye Zhaoxiang;Zhang Bin;Zhao Qiang;Cao Wenfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3001,
+            "end_char": 3322
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f761c4ddae0f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0e0272a4c6f6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Temporal radiomics for non-invasive preoperative prediction of pathologic complete response to neoadjuvant chemoimmunotherapy in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sunyi Zheng;Shuo Wang;Ziwei Feng;Jing Liang;Jiaxin Liu;Xiaomeng Yang;Zhanshuo Zhang;Yuechen Cui;Jiping Xie;Shuxuan Fan;Jing Wang;Guoqing Liao;Haiyu Zhou;Zhaoxiang Ye;Jianyu Xiao;Lei Shi;Xiaonan Cui;Dongsheng Yue",
+      "id": "out-9e7bf9d551b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Temporal radiomics for non-invasive preoperative prediction of pathologic complete response to neoadjuvant chemoimmunotherapy in non-small cell lung cancer — Sunyi Zheng;Shuo Wang;Ziwei Feng;Jing Liang;Jiaxin Liu;Xiaomeng Yang;Zhanshuo Zhang;Yuechen Cui;Jiping Xie;Shuxuan Fan;Jing Wang;Guoqing Liao;Haiyu Zhou;Zhaoxiang Ye;Jianyu Xiao;Lei Shi;Xiaonan Cui;Dongsheng Yue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3327,
+            "end_char": 3702
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6c3b68e1ada0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-29b4d7bb2b42"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PET/CT-based deep learning model predicts distant metastasis after SBRT for early-stage NSCLC: A multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Lu;Chen Shenlun;Li Junyi;Yi HeQing;Wang Jin;Ni Jianjiao;Zheng Xiaoli;Ge Hong;Zhu Zhengfei;Xing Ligang;Kalendralis Petros;Wee Leonard;Dekker Andre;Zhang Zhen;Ye Zhaoxiang;Yuan Zhiyong",
+      "id": "out-a726a8460652",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PET/CT-based deep learning model predicts distant metastasis after SBRT for early-stage NSCLC: A multicenter study — Yu Lu;Chen Shenlun;Li Junyi;Yi HeQing;Wang Jin;Ni Jianjiao;Zheng Xiaoli;Ge Hong;Zhu Zhengfei;Xing Ligang;Kalendralis Petros;Wee Leonard;Dekker Andre;Zhang Zhen;Ye Zhaoxiang;Yuan Zhiyong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3707,
+            "end_char": 4015
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌影像学研究现状及展望",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "叶兆祥;刘士远",
+      "id": "out-aa74e15b884f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺癌影像学研究现状及展望 — 叶兆祥;刘士远",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4020,
+            "end_char": 4048
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive CT based multiregional radiomics for predicting pathologic complete response to preoperative neoadjuvant chemoimmunotherapy in non-small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fan Shuxuan;Xie Jiping;Zheng Sunyi;Wang Jing;Zhang Bin;Zhang Zhanshuo;Wang Shuo;Cui Yuechen;Liu Jiaxin;Zheng Xinru;Ye Zhaoxiang;Cui Xiaonan;Yue Dongsheng",
+      "id": "out-47d48688fd38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive CT based multiregional radiomics for predicting pathologic complete response to preoperative neoadjuvant chemoimmunotherapy in non-small cell lung cancer — Fan Shuxuan;Xie Jiping;Zheng Sunyi;Wang Jing;Zhang Bin;Zhang Zhanshuo;Wang Shuo;Cui Yuechen;Liu Jiaxin;Zheng Xinru;Ye Zhaoxiang;Cui Xiaonan;Yue Dongsheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4053,
+            "end_char": 4381
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Differentiating high-grade patterns and predominant subtypes for IASLC grading in invasive pulmonary adenocarcinoma using radiomics and clinical-semantic features",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zheng Sunyi;Liu Jiaxin;Xie Jiping;Zhang Wenjia;Bian Keyi;Liang Jing;Li Jingxiong;Wang Jing;Ye Zhaoxiang;Yue Dongsheng;Cui Xiaonan",
+      "id": "out-b88e3128d3a0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Differentiating high-grade patterns and predominant subtypes for IASLC grading in invasive pulmonary adenocarcinoma using radiomics and clinical-semantic features — Zheng Sunyi;Liu Jiaxin;Xie Jiping;Zhang Wenjia;Bian Keyi;Liang Jing;Li Jingxiong;Wang Jing;Ye Zhaoxiang;Yue Dongsheng;Cui Xiaonan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4686
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning model for predicting spread through air spaces of lung adenocarcinoma based on transfer learning mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jia-Ning;Li Zhuo-Fu;Zheng Sun-Yi;Li Jiao-Jiao;Sun Lei-Na;Ye Zhao-Xiang",
+      "id": "out-0943b41aa817",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning model for predicting spread through air spaces of lung adenocarcinoma based on transfer learning mechanism — Zhang Jia-Ning;Li Zhuo-Fu;Zheng Sun-Yi;Li Jiao-Jiao;Sun Lei-Na;Ye Zhao-Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4691,
+            "end_char": 4896
+          },
+          "version": "31cbeefcc4453108b756"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

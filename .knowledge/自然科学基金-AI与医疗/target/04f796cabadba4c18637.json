@@ -2,15 +2,20 @@
   "doc_id": "04f796cabadba4c18637",
   "version": "212d53a52e0c02087ded",
   "source_hash": "68aed44a57a0d920ececdb6adf18bce70659db1ae7db9c64bfcd159351d0354e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.532247+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:24:59.242878+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4329450e7d0c",
-          "name": "胃癌抗HER2靶向治疗疗效与耐药预测",
-          "desc": "面向HER2阳性晚期胃癌的曲妥珠单抗治疗，融合病理、影像与多组学数据预测疗效与耐药，辅助临床决策。",
+          "id": "item-6983a1364566",
+          "name": "晚期胃癌抗HER2靶向治疗",
+          "desc": "曲妥珠单抗是晚期胃癌一线治疗唯一获批的靶向药",
           "evidence": [
             {
-              "quote": "抗人表皮生长因子受体2（HER2）曲妥珠单抗是目前晚期胃癌一线治疗唯一获批的靶向药物",
+              "quote": "目前晚期胃癌一线治疗唯一获批的靶向药物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 684,
+                "start_char": 707,
                 "end_char": 725
               },
               "version": "212d53a52e0c02087ded"
@@ -41,16 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b8301d1a89c",
-          "name": "胃癌时空异质性致HER2评估不足与耐药",
-          "desc": "胃癌存在时间与空间异质性，单次单部位活检往往不能充分评估HER2表达状态；曲妥珠单抗联合化疗后可能出现原发或继发耐药。",
+          "id": "item-d9753fc5378a",
+          "name": "HER2异质性致单次活检评估不足",
+          "desc": "单次单部位活检不能充分评估HER2表达状态",
           "evidence": [
             {
-              "quote": "胃癌存在时间异质性与空间异质性，单次单部位活检往往不能充分评估肿瘤的HER2表达状态",
+              "quote": "单次单部位活检往往不能充分评估肿瘤的HER2表达状态",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 754,
+                "start_char": 770,
                 "end_char": 795
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ]
+        },
+        {
+          "id": "item-95e7d48836f2",
+          "name": "曲妥珠单抗原发或继发耐药",
+          "desc": "联合化疗后可能出现耐药",
+          "evidence": [
+            {
+              "quote": "曲妥珠单抗联合化疗后可能存在原发耐药或继发耐药",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 797,
+                "end_char": 819
               },
               "version": "212d53a52e0c02087ded"
             }
@@ -63,31 +84,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f57d6b2e2e70",
-          "name": "多组学融合的AI疗效与耐药预测模型",
-          "desc": "基于抗HER2治疗临床资源库与生物样本库，融合病理学与影像组学，采用动态液体活检多组学测序，经人工智能方法融合多学科海量数据构建预测模型。",
-          "evidence": [
-            {
-              "quote": "融合病理学及影像组学，采用动态液体活检多组学测序技术，最终经人工智能方法融合多学科海量数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 942,
-                "end_char": 986
-              },
-              "version": "212d53a52e0c02087ded"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-116dcf614240",
-          "name": "融合CT与病理的多模态胃癌预后模型验证集AUC 0.809",
-          "desc": "融合基线CT数据与病理切片信息建立精准预后模型，验证集AUC 0.809；项目共发表16篇文章、申请及获得7项专利、获2项科技奖项，并完成1000万元成果转化。",
+          "id": "item-4d978e147c4b",
+          "name": "CT与病理切片融合深度学习预后模型",
+          "desc": "融合基线CT数据和病理切片信息",
           "evidence": [
             {
               "quote": "融合了基线CT数据和病理切片信息，取得了验证集上AUC为0.809的优异效果",
@@ -99,7 +98,140 @@
               "version": "212d53a52e0c02087ded"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4582e0158041",
+          "name": "血浆ctDNA深度学习多模态模型",
+          "desc": "预测抗HER2治疗疗效",
+          "evidence": [
+            {
+              "quote": "通过对血浆ctDNA的分析，建立了基于深度学习的多模态模型，成功预测了抗HER2治疗的疗效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2748,
+                "end_char": 2792
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-374762bf7956",
+          "name": "CTC单细胞测序",
+          "desc": "分析耐药过程中不同通路基因表达",
+          "evidence": [
+            {
+              "quote": "对CTC进行单细胞测序及相关分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2794,
+                "end_char": 2809
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e079bc978f5f",
+          "name": "mIHC免疫微环境空间组学",
+          "desc": "研究抗HER2治疗晚期胃癌的免疫微环境",
+          "evidence": [
+            {
+              "quote": "利用mIHC技术研究抗HER2治疗晚期胃癌的免疫微环境",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2963,
+                "end_char": 2989
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2967a0776f32",
+          "name": "预后模型验证集AUC 0.809",
+          "desc": "融合基线CT与病理切片信息",
+          "evidence": [
+            {
+              "quote": "融合了基线CT数据和病理切片信息，取得了验证集上AUC为0.809的优异效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2876,
+                "end_char": 2913
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a20933c29f72",
+          "name": "论文、专利与科技奖项",
+          "desc": "共发表16篇文章，申请及获得7项专利，获得2项科技奖项",
+          "evidence": [
+            {
+              "quote": "共发表16篇文章，申请及获得7项专利，获得2项科技奖项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2485,
+                "end_char": 2511
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-afe47c7ff1b6",
+          "name": "科研成果转化",
+          "desc": "签订总计1000万元的科研成果转化项目",
+          "evidence": [
+            {
+              "quote": "签订了总计1000万元的科研成果转化项目",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3149,
+                "end_char": 3168
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-361edd5eb346",
+          "name": "胃癌病理组学公开数据库",
+          "desc": "免疫治疗队列的胃癌病理组学公开数据库",
+          "evidence": [
+            {
+              "quote": "通过建立免疫治疗队列的胃癌病理组学公开数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3078
+              },
+              "version": "212d53a52e0c02087ded"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +239,297 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-4329450e7d0c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8b8301d1a89c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8b8301d1a89c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f57d6b2e2e70"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f57d6b2e2e70"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-116dcf614240"
+        "item_id": "item-2967a0776f32"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-4d978e147c4b"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "融合了基线CT数据和病理切片信息，取得了验证集上AUC为0.809的优异效果",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2876,
+            "end_char": 2913
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiplex immunohistochemistry defines the tumor immune microenvironment and immunotherapeutic outcome in CLDN18.2-positive gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Keren Jia;Yang Chen;Yu Sun;Yajie Hu;Lei Jiao;Jie Ma;Jiajia Yuan;Changsong Qi;Yanyan Li;Jifang Gong;Jing Gao;Xiaotian Zhang;Jian Li;Cheng Zhang;Lin Shen",
+      "id": "out-a7e1194cd7a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiplex immunohistochemistry defines the tumor immune microenvironment and immunotherapeutic outcome in CLDN18.2-positive gastric cancer — Keren Jia;Yang Chen;Yu Sun;Yajie Hu;Lei Jiao;Jie Ma;Jiajia Yuan;Changsong Qi;Yanyan Li;Jifang Gong;Jing Gao;Xiaotian Zhang;Jian Li;Cheng Zhang;Lin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3262,
+            "end_char": 3560
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Profiling heterogenous sizes of circulating tumor microemboli to track therapeutic resistance and prognosis in advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Chen;Jiajia Yuan;Yanyan Li;Xue Li;Ying Yang;Jian Li;Yilin Li;Lin Shen",
+      "id": "out-13c378b747b8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Profiling heterogenous sizes of circulating tumor microemboli to track therapeutic resistance and prognosis in advanced gastric cancer — Yang Chen;Jiajia Yuan;Yanyan Li;Xue Li;Ying Yang;Jian Li;Yilin Li;Lin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3565,
+            "end_char": 3782
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ANO1‐Mediated Inhibition of Cancer Ferroptosis Confers Immunotherapeutic Resistance through Recruiting Cancer‐Associated Fibroblasts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fangli Jiang;Keren Jia;Yang Chen;Congcong Ji;Xiaoyi Chong;Zhongwu Li;Feilong Zhao;Yuezong Bai;Sai Ge;Jing Gao;Xiaotian Zhang;Jian Li;Lin Shen;Cheng Zhang",
+      "id": "out-afe3a2c81fd3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ANO1‐Mediated Inhibition of Cancer Ferroptosis Confers Immunotherapeutic Resistance through Recruiting Cancer‐Associated Fibroblasts — Fangli Jiang;Keren Jia;Yang Chen;Congcong Ji;Xiaoyi Chong;Zhongwu Li;Feilong Zhao;Yuezong Bai;Sai Ge;Jing Gao;Xiaotian Zhang;Jian Li;Lin Shen;Cheng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3787,
+            "end_char": 4081
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning radiomic nomogram can predict the number of lymph node metastasis in locally advanced gastric cancer: an international multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "D. Dong;M.-J. Fang;L. Tang;X.-H. Shan;J.-B. Gao;F. Giganti;R.-P. Wang;X. Chen;X.-X. Wang;D. Palumbo;J. Fu;W.-C. Li;J. Li;L.-Z. Zhong;F. De Cobelli;J.-F. Ji;Z.-Y. Liu;J. Tian",
+      "id": "out-d8a036c7f39f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning radiomic nomogram can predict the number of lymph node metastasis in locally advanced gastric cancer: an international multicenter study — D. Dong;M.-J. Fang;L. Tang;X.-H. Shan;J.-B. Gao;F. Giganti;R.-P. Wang;X. Chen;X.-X. Wang;D. Palumbo;J. Fu;W.-C. Li;J. Li;L.-Z. Zhong;F. De Cobelli;J.-F. Ji;Z.-Y. Liu;J. Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4418
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Associations of subcutaneous fat area and Systemic Immune-inflammation Index with survival in patients with advanced gastric cancer receiving dual PD-1 and HER2 blockade",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng He;Zi-Fan Chen;Li Zhang;Xiangyu Gao;Xiaoyi Chong;Hao-shen Li;Lin Shen;Jiafu Ji;Xiaotian Zhang;Bin Dong;Zi-Yu Li;Tang Lei",
+      "id": "out-9fc780613448",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Associations of subcutaneous fat area and Systemic Immune-inflammation Index with survival in patients with advanced gastric cancer receiving dual PD-1 and HER2 blockade — Meng He;Zi-Fan Chen;Li Zhang;Xiangyu Gao;Xiaoyi Chong;Hao-shen Li;Lin Shen;Jiafu Ji;Xiaotian Zhang;Bin Dong;Zi-Yu Li;Tang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4423,
+            "end_char": 4726
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Association between Blood Indexes and Immune Cell Concentrations in the Primary Tumor Microenvironment Predicting Survival of Immunotherapy in Gastric Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiajia Yuan;Xingwang Zhao;Yanyan Li;Qian Yao;Lei Jiang;Xujiao Feng;Lin Shen;Yilin Li;Yang Chen",
+      "id": "out-1282a5bc5098",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Association between Blood Indexes and Immune Cell Concentrations in the Primary Tumor Microenvironment Predicting Survival of Immunotherapy in Gastric Cancer — Jiajia Yuan;Xingwang Zhao;Yanyan Li;Qian Yao;Lei Jiang;Xujiao Feng;Lin Shen;Yilin Li;Yang Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4995
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning system for lymph node quantification and metastatic cancer identification from whole-slide pathology images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yajie;Su Feng;Dong Kun;Wang Xinyu;Zhao Xinya;Jiang Yumeng;Li Jianming;Ji Jiafu;Sun Yu",
+      "id": "out-28dfdabc732f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning system for lymph node quantification and metastatic cancer identification from whole-slide pathology images — Hu Yajie;Su Feng;Dong Kun;Wang Xinyu;Zhao Xinya;Jiang Yumeng;Li Jianming;Ji Jiafu;Sun Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5000,
+            "end_char": 5218
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The tumor immune microenvironment remodeling and response to HER2-targeted therapy in HER2-positive advanced gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei Jiang;Xingwang Zhao;Yilin Li;Yajie Hu;Yu Sun;Shengde Liu;Zizhen Zhang;Yanyan Li;Xujiao Feng;Jiajia Yuan;Jian Li;Xiaotian Zhang;Yang Chen;Lin Shen",
+      "id": "out-9a0f4b3775d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The tumor immune microenvironment remodeling and response to HER2-targeted therapy in HER2-positive advanced gastric cancer — Lei Jiang;Xingwang Zhao;Yilin Li;Yajie Hu;Yu Sun;Shengde Liu;Zizhen Zhang;Yanyan Li;Xujiao Feng;Jiajia Yuan;Jian Li;Xiaotian Zhang;Yang Chen;Lin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5223,
+            "end_char": 5504
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤免疫治疗预后评估方法、装置、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沈琳;陈杨;张江东;张小田;董彬;陈梓帆;张立;孙宇;赵杰;郏科人",
+      "id": "out-28e5c4d79b48",
+      "evidence": [
+        {
+          "quote": "[专利] 肿瘤免疫治疗预后评估方法、装置、电子设备及存储介质 — 沈琳;陈杨;张江东;张小田;董彬;陈梓帆;张立;孙宇;赵杰;郏科人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5509,
+            "end_char": 5574
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "miRNAs derived from plasma small extracellular vesicles predict organo-tropic metastasis of gastric cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Zhang;Jing Yang;Yang Chen;Fangli Jiang;Haiyan Liao;Xiang Liu;Yuan Wang;Guanyi Kong;Xiaotian Zhang;Jian Li;Jing Gao;Lin Shen",
+      "id": "out-e47b842976bd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] miRNAs derived from plasma small extracellular vesicles predict organo-tropic metastasis of gastric cancer — Cheng Zhang;Jing Yang;Yang Chen;Fangli Jiang;Haiyan Liao;Xiang Liu;Yuan Wang;Guanyi Kong;Xiaotian Zhang;Jian Li;Jing Gao;Lin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5580,
+            "end_char": 5824
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤免疫治疗疗效预测方法、装置、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "沈琳;陈杨;张江东;董彬;张小田;张立;陈梓帆;孙宇;赵杰;郏科人",
+      "id": "out-5e2e7771c740",
+      "evidence": [
+        {
+          "quote": "[专利] 肿瘤免疫治疗疗效预测方法、装置、电子设备及存储介质 — 沈琳;陈杨;张江东;董彬;张小田;张立;陈梓帆;孙宇;赵杰;郏科人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5830,
+            "end_char": 5895
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mutations of PI3K-AKT-mTOR pathway as predictors for immune cell infiltration and immunotherapy efficacy in dMMR/MSI-H gastric adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenghang Wang;Xinyu Wang;Yu Xu;Jian Li;Xiaotian Zhang;Zhi Peng;Yajie Hu;Xinya Zhao;Kun Dong;Bei Zhang;Chan Gao;Xiaochen Zhao;Hui Chen;Jinping Cai;Yuezong Bai;Yu Sun;Lin Shen",
+      "id": "out-5d9591f9d204",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mutations of PI3K-AKT-mTOR pathway as predictors for immune cell infiltration and immunotherapy efficacy in dMMR/MSI-H gastric adenocarcinoma — Zhenghang Wang;Xinyu Wang;Yu Xu;Jian Li;Xiaotian Zhang;Zhi Peng;Yajie Hu;Xinya Zhao;Kun Dong;Bei Zhang;Chan Gao;Xiaochen Zhao;Hui Chen;Jinping Cai;Yuezong Bai;Yu Sun;Lin Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5901,
+            "end_char": 6225
+          },
+          "version": "212d53a52e0c02087ded"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

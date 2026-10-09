@@ -2,15 +2,20 @@
   "doc_id": "4f36022d0a3bcc9f8748",
   "version": "cade38e58ae02537ee87",
   "source_hash": "3b14dfcac58c05883eabc42579b4df8906d8caa04599b928efc7cb8f98b51cf8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:44.600648+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.660779+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b3e4a3f782a",
-          "name": "狼疮性肾炎遗传风险评估",
-          "desc": "狼疮性肾炎是系统性红斑狼疮最常见最严重的并发症之一，评估患者全面遗传风险对预后判断及个体化诊疗至关重要。",
+          "id": "item-fe03b12dbdc9",
+          "name": "狼疮性肾炎多基因风险预测",
+          "desc": "SLE最常见严重并发症之一",
           "evidence": [
             {
-              "quote": "狼疮性肾炎是系统性红斑狼疮最常见及最严重的并发症之一，多种基因参与其发病，评估患者全面的遗传风险对预后判断及个体化诊疗至关重要。",
+              "quote": "狼疮性肾炎是系统性红斑狼疮最常见及最严重的并发症之一，多种基因参与其发病",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 666,
-                "end_char": 729
-              },
-              "version": "cade38e58ae02537ee87"
-            }
-          ]
-        },
-        {
-          "id": "item-eea4a63c5955",
-          "name": "中国狼疮性肾炎精准治疗",
-          "desc": "为中国狼疮性肾炎患者的个体化疾病风险预测、分层管理及精准治疗提供参考。",
-          "evidence": [
-            {
-              "quote": "为中国狼疮性肾炎患者的个体化疾病风险预测、分层管理及精准治疗提供参考",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 961,
-                "end_char": 994
+                "end_char": 701
               },
               "version": "cade38e58ae02537ee87"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-18d17be7c160",
-          "name": "多基因疾病风险预测未应用",
-          "desc": "全基因组数据和机器学习建立疾病风险预测模型在狼疮性肾炎中尚无应用报道。",
+          "id": "item-d0eedaa6ece8",
+          "name": "评估全面遗传风险对预后判断重要",
+          "desc": "机器学习建立多基因预测模型",
           "evidence": [
             {
-              "quote": "对于复杂多基因疾病，利用全基因组数据和机器学习建立疾病风险预测模型具有优越的预测性能，但在狼疮性肾炎中尚无应用报道。",
+              "quote": "评估患者全面的遗传风险对预后判断及个体化诊疗至关重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 730,
-                "end_char": 787
-              },
-              "version": "cade38e58ae02537ee87"
-            }
-          ]
-        },
-        {
-          "id": "item-756d26c5da12",
-          "name": "纵向数据利用不足",
-          "desc": "先前研究中对纵向数据的利用不足，限制了预测模型的准确性和可解释性。",
-          "evidence": [
-            {
-              "quote": "先前研究中对纵向数据的利用不足，限制了预测模型的准确性和可解释性，因为未能反映IgA肾病的慢性特征。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2488,
-                "end_char": 2537
+                "start_char": 703,
+                "end_char": 728
               },
               "version": "cade38e58ae02537ee87"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-17591611fa23",
-          "name": "全基因组SNP芯片与卷积网络",
-          "desc": "基于大样本全基因组SNP芯片数据引入卷积神经网络等机器学习算法建立多基因预测模型。",
+          "id": "item-4ab3cb6a472e",
+          "name": "中国狼疮性肾炎多基因风险预测模型",
+          "desc": "基于GWAS结果",
           "evidence": [
             {
-              "quote": "引入卷积神经网络等机器学习算法，建立并验证多基因预测模型",
+              "quote": "基于中国狼疮性肾炎患者的全基因组关联分析结果，建立并验证了中国狼疮性肾炎患者的多基因风险预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 872,
-                "end_char": 899
+                "start_char": 2591,
+                "end_char": 2638
               },
               "version": "cade38e58ae02537ee87"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-90a033aa5b09",
-          "name": "多模态动态肾脏预后模型",
-          "desc": "基于深度学习算法和中国多中心IgA肾病患者纵向随访数据，建立多模态动态肾脏预后预测模型。",
+          "id": "item-55c525c0b20c",
+          "name": "IgA肾病多模态动态肾脏预后预测模型",
+          "desc": "深度学习与纵向随访数据",
           "evidence": [
             {
               "quote": "基于深度学习算法和中国多中心IgA肾病患者的纵向随访数据，建立并验证了IgA肾病的多模态的动态肾脏预后预测模型",
@@ -124,23 +98,8 @@
               },
               "version": "cade38e58ae02537ee87"
             }
-          ]
-        },
-        {
-          "id": "item-2ba7141488a9",
-          "name": "变量轨迹分析",
-          "desc": "将动态模型中的变量进行轨迹分析，确定其影响结局的方式。",
-          "evidence": [
-            {
-              "quote": "并将动态模型中的变量进行轨迹分析，确定其影响结局的方式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2749,
-                "end_char": 2775
-              },
-              "version": "cade38e58ae02537ee87"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-985a25c415e6",
-          "name": "大样本队列收集",
-          "desc": "完成2606例中国狼疮性肾炎患者及16397例健康对照的DNA样本收集。",
+          "id": "item-8c1ce77ce1cf",
+          "name": "样本收集",
+          "desc": "2606例LN患者与16397例健康对照",
           "evidence": [
             {
               "quote": "完成了2606例中国狼疮性肾炎患者以及16397例健康对照的DNA样本收集",
@@ -163,89 +122,73 @@
               "version": "cade38e58ae02537ee87"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-dba4e271b7bb",
-          "name": "多基因风险预测模型",
-          "desc": "建立并验证中国狼疮性肾炎患者的多基因风险预测模型，具有很好的预测性能。",
-          "evidence": [
-            {
-              "quote": "建立并验证了中国狼疮性肾炎患者的多基因风险预测模型，模型具有很好的预测性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2614,
-                "end_char": 2650
-              },
-              "version": "cade38e58ae02537ee87"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-fafeea1a189e",
-          "name": "动态预后预测模型与论文",
-          "desc": "建立IgA肾病多模态动态肾脏预后预测模型并发表期刊与会议论文。",
-          "evidence": [
-            {
-              "quote": "Development and external validation of a multidimensional deep learning model to dynamically predict kidney outcomes in IgA nephropathy",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2920,
-                "end_char": 3054
-              },
-              "version": "cade38e58ae02537ee87"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4b3e4a3f782a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-18d17be7c160"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and external validation of a multidimensional deep learning model to dynamically predict kidney outcomes in IgA nephropathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingyu Chen;Tiange Chen;Wenjie Xu;Shaoshan Liang;Feng Xu;Dandan Liang;Xiang Li;Caihong Zeng;Guotong Xie;Zhihong Liu",
+      "id": "out-71ab27df91b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and external validation of a multidimensional deep learning model to dynamically predict kidney outcomes in IgA nephropathy — Tingyu Chen;Tiange Chen;Wenjie Xu;Shaoshan Liang;Feng Xu;Dandan Liang;Xiang Li;Caihong Zeng;Guotong Xie;Zhihong Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2913,
+            "end_char": 3172
+          },
+          "version": "cade38e58ae02537ee87"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-756d26c5da12"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-90a033aa5b09"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-17591611fa23"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dba4e271b7bb"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2ba7141488a9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-fafeea1a189e"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习的多维度动态IgA肾病肾脏预后预测模型的建立及外部验证",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈听雨;陈天歌;徐文杰;梁少姗;梁丹丹;徐峰;李响;曾彩虹;谢国彤;刘志红",
+      "id": "out-6ae4d82a4c57",
+      "evidence": [
+        {
+          "quote": "[会议论文] 基于深度学习的多维度动态IgA肾病肾脏预后预测模型的建立及外部验证 — 陈听雨;陈天歌;徐文杰;梁少姗;梁丹丹;徐峰;李响;曾彩虹;谢国彤;刘志红",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3177,
+            "end_char": 3256
+          },
+          "version": "cade38e58ae02537ee87"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

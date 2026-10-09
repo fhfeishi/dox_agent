@@ -2,15 +2,20 @@
   "doc_id": "335cbf736d618f72e6cd",
   "version": "ce84e45c48d21f1fe6e1",
   "source_hash": "0699f413dea691a3f9702377254f5b6a3715e6f209f118f4133daf12d646e1ea",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:51.580391+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:19.759113+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1cef103d2dbd",
-          "name": "肾脏病理人工智能分析系统",
-          "desc": "慢性肾脏病发病呈上升趋势，如不早诊断早治疗将进展至终末期肾病，加重家庭与国家经济负担。",
+          "id": "item-d075b05d91b3",
+          "name": "肾脏病理诊断",
+          "desc": "肾活检病理是肾脏疾病诊断金标准",
           "evidence": [
             {
-              "quote": "慢性肾脏病（CKD）发病呈上升趋势，如不早诊断、早治疗，将进展至终末期肾病需要肾脏替代治疗，加重家庭、国家经济负担",
+              "quote": "肾活检病理是肾脏疾病诊断的金标准",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 643,
-                "end_char": 699
-              },
-              "version": "ce84e45c48d21f1fe6e1"
-            }
-          ]
-        },
-        {
-          "id": "item-899fbef6c34d",
-          "name": "便捷阅片与肾病严重程度评估",
-          "desc": "助力医生便捷阅片、评估肾病严重程度，从而更高效地管理患者和病例数据，提高工作效率。",
-          "evidence": [
-            {
-              "quote": "助力医生便捷阅片、评估肾病严重程度，从而更高效地管理患者和病例数据，提高工作效率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1000,
-                "end_char": 1039
+                "start_char": 2612,
+                "end_char": 2627
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ca9139cdbcce",
-          "name": "现有研究准确率效率待提升",
-          "desc": "因肾脏病理的复杂和多样性，现有研究主要集中在肾小球及基本结构识别，准确率和效率有待提升。",
+          "id": "item-cb5c274e439f",
+          "name": "现有肾脏病理AI研究准确率和效率有待提升",
+          "desc": "主要集中在肾小球及基本结构识别",
           "evidence": [
             {
-              "quote": "但因肾脏病理的复杂和多样性，现有研究主要集中在对肾小球及基本结构的识别，准确率和效率有待提升",
+              "quote": "现有研究主要集中在对肾小球及基本结构的识别，准确率和效率有待提升",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 778,
+                "start_char": 792,
                 "end_char": 823
-              },
-              "version": "ce84e45c48d21f1fe6e1"
-            }
-          ]
-        },
-        {
-          "id": "item-9d425b850eca",
-          "name": "肾脏疾病病理改变复杂差异显著",
-          "desc": "肾脏疾病种类繁杂，临床表现与病理改变复杂多样，致使治疗及预后差异显著。",
-          "evidence": [
-            {
-              "quote": "肾脏疾病种类繁杂，临床表现与病理改变复杂多样，致使治疗及预后差异显著",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2577,
-                "end_char": 2610
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-39723d294fff",
-          "name": "深度学习机器学习病理分析模型",
-          "desc": "利用肾活检全切片扫描数字病理图像，通过深度学习及机器学习算法建立具有识别、量化分析肾组织基本结构和病变类型功能的AI模型。",
+          "id": "item-c6b923eb38b3",
+          "name": "肾脏病理分析系统ARPS",
+          "desc": "识别和量化肾小球病变类型及固有细胞",
           "evidence": [
             {
-              "quote": "本课题旨在利用肾活检全切片扫描数字病理图像，通过深度学习及机器学习算法，建立具有识别、量化分析肾组织基本结构和病变类型功能的人工智能模型",
+              "quote": "利用人工智能算法，构建了肾脏病理分析系统（ARPS），实现了对肾小球病变类型及球内固有细胞的精准识别和量化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 825,
-                "end_char": 892
+                "start_char": 2658,
+                "end_char": 2710
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
-          ]
-        },
-        {
-          "id": "item-f1c01bc85ba5",
-          "name": "构建肾脏病理知识库",
-          "desc": "构建我国基于图像识别的肾脏病理知识库，为远程教学和年轻医生学习提供支撑。",
-          "evidence": [
-            {
-              "quote": "构建我国基于图像识别的肾脏病理知识库，为远程教学和年轻医生学习提供强而有力的支撑",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 959,
-                "end_char": 998
-              },
-              "version": "ce84e45c48d21f1fe6e1"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +91,314 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cec494c49934",
-          "name": "ARPS肾脏病理分析系统",
-          "desc": "构建肾脏病理分析系统，实现对肾小球病变类型及球内固有细胞的精准识别和量化，识别效果与初级病理医生相近且明显缩短时间。",
+          "id": "item-c1197b4a15a5",
+          "name": "ARPS识别效果",
+          "desc": "与初级病理医生相近并明显缩短时间",
           "evidence": [
             {
-              "quote": "构建了肾脏病理分析系统（ARPS），实现了对肾小球病变类型及球内固有细胞的精准识别和量化，ARPS的识别效果与初级病理医生相近，明显缩短时间",
+              "quote": "ARPS的识别效果与初级病理医生相近，明显缩短时间",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2667,
+                "start_char": 2712,
                 "end_char": 2736
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0b517a1957de",
-          "name": "识别KW结节并阐明分级与预后关联",
-          "desc": "系统能准确识别糖尿病肾病中晚期特有的Kimmelstiel-Wilson结节，并阐明糖尿病肾病病理分级与临床预后的关联。",
+          "id": "item-e8509e4494c8",
+          "name": "糖尿病肾病KW结节识别",
+          "desc": "识别晚期特有Kimmelstiel-Wilson结节",
           "evidence": [
             {
-              "quote": "进一步系统开发，能准确识别糖尿病肾病中晚期特有的Kimmelstiel-Wilson（KW）结节，并阐明了糖尿病肾病病理分级与临床预后的关联",
+              "quote": "能准确识别糖尿病肾病中晚期特有的Kimmelstiel-Wilson（KW）结节",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2745,
-                "end_char": 2814
+                "start_char": 2753,
+                "end_char": 2792
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c43655501a1e",
-          "name": "多疾病识别效果良好",
-          "desc": "在过敏性紫癜性肾炎、微小病变、膜性肾病和局灶节段性肾小球硬化等多种疾病中，系统均体现出不俗的识别效果。",
+          "id": "item-b5b3252bd359",
+          "name": "移植肾IgA肾病多中心验证",
+          "desc": "验证应用价值",
           "evidence": [
             {
-              "quote": "在过敏性紫癜性肾炎（HSPN）、微小病变（MCD）、膜性肾病（MN）和局灶节段性肾小球硬化（FSGS）等多种疾病中，该系统均体现出不俗的识别效果",
+              "quote": "通过多中心数据，进一步验证该系统在移植肾IgA肾病中的应用价值",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2994,
-                "end_char": 3065
+                "start_char": 2835,
+                "end_char": 2865
               },
               "version": "ce84e45c48d21f1fe6e1"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1cef103d2dbd"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ca9139cdbcce"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能肾脏病理分析系统在膜性肾病中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁冬梅;雷群娟;刘许蒙;徐峰;梁少姗;梁丹丹;杨帆;曾彩虹",
+      "id": "out-c54476a0964b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能肾脏病理分析系统在膜性肾病中的应用 — 梁冬梅;雷群娟;刘许蒙;徐峰;梁少姗;梁丹丹;杨帆;曾彩虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3139,
+            "end_char": 3198
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ca9139cdbcce"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-39723d294fff"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能与肾脏疾病",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘章锁;张路霞;沈百荣;曾彩虹;刘新奎",
+      "id": "out-98df501e3e47",
+      "evidence": [
+        {
+          "quote": "[专著] 人工智能与肾脏疾病 — 刘章锁;张路霞;沈百荣;曾彩虹;刘新奎",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3203,
+            "end_char": 3238
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-39723d294fff"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cec494c49934"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Using digital whole-slide images to evaluate renal amyloid deposition and its association with clinical features and outcomes of AL amyloidosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Fan;Dandan Liang;Haochen Rui;Feng Xu;Yuanyuan Xia;Fan Yang;Shaoshan Liang;Xiaodong Zhu;Mingchao Zhang;Xianghua Huang;Caihong Zeng",
+      "id": "out-8837631838b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Using digital whole-slide images to evaluate renal amyloid deposition and its association with clinical features and outcomes of AL amyloidosis — Yun Fan;Dandan Liang;Haochen Rui;Feng Xu;Yuanyuan Xia;Fan Yang;Shaoshan Liang;Xiaodong Zhu;Mingchao Zhang;Xianghua Huang;Caihong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3243,
+            "end_char": 3528
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f1c01bc85ba5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c43655501a1e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能辅助识别IgA肾病和过敏性紫癜性肾炎的肾小球病理特征",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘许蒙;雷群娟;梁冬梅;钟永忠;方惠文;徐峰;梁丹丹;梁少姗;杨帆;曾彩虹",
+      "id": "out-0c8fd127bb06",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能辅助识别IgA肾病和过敏性紫癜性肾炎的肾小球病理特征 — 刘许蒙;雷群娟;梁冬梅;钟永忠;方惠文;徐峰;梁丹丹;梁少姗;杨帆;曾彩虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3533,
+            "end_char": 3609
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The spectrum of biopsy-proven kidney diseases, causes, and renal outcomes in acute kidney injury patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zulihumaer Abuduwupuer;Qunjuan Lei;Shaoshan Liang;Feng Xu;Dandan Liang;Xue Yang;Xumeng Liu;Caihong Zeng",
+      "id": "out-0d13b1e0b00c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The spectrum of biopsy-proven kidney diseases, causes, and renal outcomes in acute kidney injury patients — Zulihumaer Abuduwupuer;Qunjuan Lei;Shaoshan Liang;Feng Xu;Dandan Liang;Xue Yang;Xumeng Liu;Caihong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3614,
+            "end_char": 3831
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在移植肾脏病理中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘许蒙;曾彩虹",
+      "id": "out-c3561f449356",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在移植肾脏病理中的应用进展 — 刘许蒙;曾彩虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3869
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence assists identification and pathologic classification of glomerular lesions in patients with diabetic nephropathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qunjuan Lei;Xiaoshuai Hou;Xumeng Liu;Dongmei Liang;Yun Fan;Feng Xu;Shaoshan Liang;Dandan Liang;Jing Yang;Guotong Xie;Zhihong Liu;Caihong Zeng",
+      "id": "out-e4961a1132d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence assists identification and pathologic classification of glomerular lesions in patients with diabetic nephropathy — Qunjuan Lei;Xiaoshuai Hou;Xumeng Liu;Dongmei Liang;Yun Fan;Feng Xu;Shaoshan Liang;Dandan Liang;Jing Yang;Guotong Xie;Zhihong Liu;Caihong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3874,
+            "end_char": 4160
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在肾脏病理的应用前景",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "雷群娟;曾彩虹",
+      "id": "out-8b8dae661fdc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在肾脏病理的应用前景 — 雷群娟;曾彩虹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4165,
+            "end_char": 4195
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic fine-grained glomerular lesion recognition in kidney pathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Nan;Fengyi Li;Peng Tang;Guyue Zhang;Caihong Zeng;Guotong Xie;Zhihong Liu;Guang Yang",
+      "id": "out-786a34bdacc0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic fine-grained glomerular lesion recognition in kidney pathology — Yang Nan;Fengyi Li;Peng Tang;Guyue Zhang;Caihong Zeng;Guotong Xie;Zhihong Liu;Guang Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4369
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advancing the application of the analytical renal pathology system in allograft IgA nephropathy patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xumeng Liu;Huiwen Fang;Dongmei Liang;Qunjuan Lei;Jiaping Wang;Feng Xu;Shaoshan Liang;Dandan Liang;Fan Yang;Heng Li;Jianghua Chen;Yuan Ni;Guotong Xie;Caihong Zeng",
+      "id": "out-89efd028b9bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advancing the application of the analytical renal pathology system in allograft IgA nephropathy patients — Xumeng Liu;Huiwen Fang;Dongmei Liang;Qunjuan Lei;Jiaping Wang;Feng Xu;Shaoshan Liang;Dandan Liang;Fan Yang;Heng Li;Jianghua Chen;Yuan Ni;Guotong Xie;Caihong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4375,
+            "end_char": 4649
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical Acute Kidney Injury and Histologic Acute Tubular-Interstitial Injury and Their Prognosis in Diabetic Nephropathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qunjuan Lei;Feng Xu;Shaoshan Liang;Dandan Liang;Jingru Lu;Rong Tang;Xianguang Zhou;Zhihong Liu;Caihong Zeng",
+      "id": "out-16719f6748cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical Acute Kidney Injury and Histologic Acute Tubular-Interstitial Injury and Their Prognosis in Diabetic Nephropathy — Qunjuan Lei;Feng Xu;Shaoshan Liang;Dandan Liang;Jingru Lu;Rong Tang;Xianguang Zhou;Zhihong Liu;Caihong Zeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4655,
+            "end_char": 4892
+          },
+          "version": "ce84e45c48d21f1fe6e1"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

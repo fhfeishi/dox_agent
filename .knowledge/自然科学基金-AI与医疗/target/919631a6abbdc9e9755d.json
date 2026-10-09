@@ -2,15 +2,20 @@
   "doc_id": "919631a6abbdc9e9755d",
   "version": "12a56ac9fb7493ed2168",
   "source_hash": "95e91c588943ce16f83af4fa46eab9593139bf98e20b543f640157864d2036f3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:05.098009+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.513754+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cb9c8185b939",
-          "name": "低剂量CT肺癌筛查结节分级",
-          "desc": "Lung RADS是低剂量CT肺癌筛查的分级诊断及管理标准，需提高III类及以上结节良恶性与浸润性评估效能。",
+          "id": "item-95653ea145e8",
+          "name": "肺癌低剂量CT筛查影像组学",
+          "desc": "特征可变性与泛化能力",
           "evidence": [
             {
-              "quote": "Lung RADS是低剂量CT（LDCT）肺癌筛查的分级诊断及管理标准",
+              "quote": "本课题针对低剂量CT（LDCT）肺癌筛查中肺结节影像组学特征变异性高、模型泛化能力不足的核心问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 650,
-                "end_char": 684
-              },
-              "version": "12a56ac9fb7493ed2168"
-            }
-          ]
-        },
-        {
-          "id": "item-2eb0a3bef731",
-          "name": "真实世界肺结节诊断能力提升",
-          "desc": "改善影像组学泛化能力低对真实世界肺结节诊断能力的影响，开辟医工结合改进Lung RADS的新途径。",
-          "evidence": [
-            {
-              "quote": "并为改进Lung RADS标准开辟医工结合新途径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1020,
-                "end_char": 1043
+                "start_char": 2629,
+                "end_char": 2676
               },
               "version": "12a56ac9fb7493ed2168"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f4576bfab50",
-          "name": "组学特征高可变性致泛化能力低",
-          "desc": "受CT数据组学特征高可变性影响，影像组学泛化能力低并严重影响真实世界肺结节诊断能力。",
+          "id": "item-38e3cfd07106",
+          "name": "影像组学特征变异性高、模型泛化能力不足",
+          "desc": "核心问题",
           "evidence": [
             {
-              "quote": "但因受到CT数据组学特征高可变性影响，致泛化能力低并严重影响其“真实世界”肺结节的诊断能力",
+              "quote": "本课题针对低剂量CT（LDCT）肺癌筛查中肺结节影像组学特征变异性高、模型泛化能力不足的核心问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 759,
-                "end_char": 803
-              },
-              "version": "12a56ac9fb7493ed2168"
-            }
-          ]
-        },
-        {
-          "id": "item-74cc90fcdcda",
-          "name": "多中心体素差异导致批次效应",
-          "desc": "体素大小等扫描与重建参数差异造成特征批次效应，影响多中心研究的可重复性。",
-          "evidence": [
-            {
-              "quote": "针对体素大小差异导致的特征批次效应，引入ComBat算法进行校正",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2769,
-                "end_char": 2800
+                "start_char": 2629,
+                "end_char": 2676
               },
               "version": "12a56ac9fb7493ed2168"
             }
@@ -95,64 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1cae0f286a44",
-          "name": "ComBat拟合与端到端特征迁移",
-          "desc": "建立全维度ComBat拟合模型及基于深度学习的端到端特征迁移学习方法，并与传统方法比较优化可变性的能力。",
+          "id": "item-0cd4e01b52df",
+          "name": "ComBat算法多中心数据标准化",
+          "desc": "校正体素大小批次效应",
           "evidence": [
             {
-              "quote": "建立全维度ComBat拟合模型及基于深度学习的端对端特征迁移学习方法，并与传统方法比较两者优化影像组学特征可变性能力",
+              "quote": "针对体素大小差异导致的特征批次效应，引入ComBat算法进行校正",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 882,
-                "end_char": 939
-              },
-              "version": "12a56ac9fb7493ed2168"
-            }
-          ]
-        },
-        {
-          "id": "item-df286719719e",
-          "name": "体模与临床CT重复性分析",
-          "desc": "结合体模及临床CT数据分析不同设备、扫描及重建参数下肺结节CT组学特征的重复性与再现性影响因素及变化规律。",
-          "evidence": [
-            {
-              "quote": "本研究拟通过体模及临床CT数据相结合的方法分析不同设备与制造商、不同扫描及重建参数肺结节CT组学特征的重复性及再现性影响因素及变化规律",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 805,
-                "end_char": 871
-              },
-              "version": "12a56ac9fb7493ed2168"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a9a7762186f8",
-          "name": "ComBat将再现性特征比例提升至90.96%",
-          "desc": "经体模与临床数据验证，ComBat算法将临床数据中再现性优异特征比例从32.31%提升至90.96%。",
-          "evidence": [
-            {
-              "quote": "该算法将临床数据中再现性优异的特征比例从32.31%提升至90.96%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2813,
-                "end_char": 2847
+                "start_char": 2769,
+                "end_char": 2800
               },
               "version": "12a56ac9fb7493ed2168"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-ca33f070f0b4",
-          "name": "筛选466个稳定组学特征",
-          "desc": "明确层厚、视野、低剂量、CT间扫描为关键变异源，筛选出466个稳定组学特征，其模型外部验证性能显著优于预筛选模型。",
+          "id": "item-8d7ba8a0288c",
+          "name": "高稳定性影像组学特征子集筛选",
+          "desc": "466个稳定特征",
           "evidence": [
             {
               "quote": "明确了层厚、视野、低剂量、CT间扫描为关键变异源，并筛选出466个稳定组学特征",
@@ -164,12 +99,54 @@
               "version": "12a56ac9fb7493ed2168"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-c64e1d1a3c52",
-          "name": "临床融合模型外部验证AUC 0.785",
-          "desc": "将稳定特征子集与Lung-RADS分级融合构建联合诊断模型，在高度异质性外部验证集上AUC为0.785。",
+          "id": "item-26b65b2c3ca8",
+          "name": "稳定特征与Lung-RADS融合联合诊断模型",
+          "desc": "良恶性肺结节鉴别",
+          "evidence": [
+            {
+              "quote": "创新性地将稳定特征子集与Lung-RADS分级系统融合，构建联合诊断模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3058,
+                "end_char": 3093
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-cfcd649e2312",
+          "name": "ComBat提升再现性特征比例",
+          "desc": "32.31%提升至90.96%",
+          "evidence": [
+            {
+              "quote": "该算法将临床数据中再现性优异的特征比例从32.31%提升至90.96%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2813,
+                "end_char": 2847
+              },
+              "version": "12a56ac9fb7493ed2168"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-210ba2509f4c",
+          "name": "联合诊断模型外部验证AUC",
+          "desc": "0.785",
           "evidence": [
             {
               "quote": "在良恶性肺结节鉴别中，该模型在高度异质性外部验证集上的效能（AUC=0.785）显著超越单一方法",
@@ -181,55 +158,111 @@
               "version": "12a56ac9fb7493ed2168"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-cb9c8185b939"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8f4576bfab50"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Repeatability and Reproducibility of Computed Tomography Radiomics for Pulmonary Nodules A Multicenter Phantom Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Xueqing;Yang Shuyi;Zhou Lingxiao;Mei Yu;Shi Lili;Zhang Rengyin;Shan Fei;Liu Lei",
+      "id": "out-f5b9fa95896b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Repeatability and Reproducibility of Computed Tomography Radiomics for Pulmonary Nodules A Multicenter Phantom Study — Peng Xueqing;Yang Shuyi;Zhou Lingxiao;Mei Yu;Shi Lili;Zhang Rengyin;Shan Fei;Liu Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3380,
+            "end_char": 3589
+          },
+          "version": "12a56ac9fb7493ed2168"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8f4576bfab50"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1cae0f286a44"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Deep Learning Model for Preoperative Prediction of Lymph Node Metastasis in cT1-Stage Lung Adenocarcinoma: A Multicenter External Validation Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Qinqin;Wei Ying;Cheng Zenghui;Xue Zhong;Shi Feng;Yang Shan;Zhang Zhiyong;Yan Fuhua;Shan Fei",
+      "id": "out-80cd16b889fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Deep Learning Model for Preoperative Prediction of Lymph Node Metastasis in cT1-Stage Lung Adenocarcinoma: A Multicenter External Validation Study — Yan Qinqin;Wei Ying;Cheng Zenghui;Xue Zhong;Shi Feng;Yang Shan;Zhang Zhiyong;Yan Fuhua;Shan Fei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3594,
+            "end_char": 3846
+          },
+          "version": "12a56ac9fb7493ed2168"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1cae0f286a44"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a9a7762186f8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimization and validation of voxel size-related radiomics variability by combatting batch effect harmonization in pulmonary nodules: a phantom and clinical study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhuo Yaoyao;Shen Jie;Zhan Yi;Tian Ye;Yu Mingfeng;Yang Shuyi;Ye Peiyan;Fan Li;Zhang Zhiyong;Shan Fei",
+      "id": "out-377e71e06bd2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimization and validation of voxel size-related radiomics variability by combatting batch effect harmonization in pulmonary nodules: a phantom and clinical study — Zhuo Yaoyao;Shen Jie;Zhan Yi;Tian Ye;Yu Mingfeng;Yang Shuyi;Ye Peiyan;Fan Li;Zhang Zhiyong;Shan Fei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3851,
+            "end_char": 4122
+          },
+          "version": "12a56ac9fb7493ed2168"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-df286719719e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ca33f070f0b4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sensitivity and specificity of magnetic resonance imaging in routine diagnosis of pulmonary lesions: a comparison with computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Shuyi;Shan Fei;Liu Tiefu;Wang Qingle;Haoling Zhang;Zhang Xingwei;Shan Yang;Zhiyong Zhang",
+      "id": "out-f7486164c904",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sensitivity and specificity of magnetic resonance imaging in routine diagnosis of pulmonary lesions: a comparison with computed tomography — Yang Shuyi;Shan Fei;Liu Tiefu;Wang Qingle;Haoling Zhang;Zhang Xingwei;Shan Yang;Zhiyong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4367
+          },
+          "version": "12a56ac9fb7493ed2168"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

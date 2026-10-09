@@ -2,15 +2,20 @@
   "doc_id": "d20614570bb302b16dcd",
   "version": "24b3f9102c1ff33a94df",
   "source_hash": "01039af39ab710287e123ff922b96ef7bc474d9a4814985e7c54641150ca6b23",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:31.189856+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.540755+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5e5a6f29ee32",
-          "name": "头颈癌PET/CT影像组学预后预测",
-          "desc": "局部晚期头颈癌患者治疗后易出现复发转移、预后不佳，实现精准预后预测对制定个体化治疗方案具有重大意义。",
+          "id": "item-5c1f302ea446",
+          "name": "头颈癌与鼻咽癌预后预测",
+          "desc": "PET/CT影像组学",
           "evidence": [
             {
-              "quote": "局部晚期头颈癌患者治疗后易出现复发转移，预后不佳，实现精准预后预测对制定个体化治疗方案具有重大意义",
+              "quote": "头颈、鼻咽肿瘤的预后预测对个体化治疗方案制定极为重要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 721
-              },
-              "version": "24b3f9102c1ff33a94df"
-            }
-          ]
-        },
-        {
-          "id": "item-1b4249228e13",
-          "name": "为头颈癌预后提供决策支持",
-          "desc": "开展多中心数据上的模型性能验证、外部独立测试及可解释性分析，为头颈癌预后预测提供准确可靠的决策支持。",
-          "evidence": [
-            {
-              "quote": "为头颈癌预后预测提供准确可靠的决策支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1052,
-                "end_char": 1070
+                "start_char": 2857,
+                "end_char": 2882
               },
               "version": "24b3f9102c1ff33a94df"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0f535447767a",
-          "name": "既往模型忽略亚区差异且融合层次有限",
-          "desc": "既往模型将肿瘤视为整体、忽略不同亚区预后风险度差异，且多局限于特征层次融合，难以充分利用模态间多层次融合互补信息。",
+          "id": "item-0172c4f38a2c",
+          "name": "欧式空间特征表达不足、多模态融合失效、多中心批次效应、缺乏动态预警",
+          "desc": "核心问题",
           "evidence": [
             {
-              "quote": "然而既往模型将肿瘤视为一个整体，忽略肿瘤不同亚区的预后风险度差异，且多局限于特征层次融合，难以充分利用模态间多层次融合互补信息，模型性能严重受限",
+              "quote": "针对医学影像分析中欧式空间特征表达不足、多模态融合失效、多中心批次效应导致泛化能力弱、动态风险预警缺乏等核心问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 761,
-                "end_char": 832
-              },
-              "version": "24b3f9102c1ff33a94df"
-            }
-          ]
-        },
-        {
-          "id": "item-f57c3e8470ee",
-          "name": "传统TNM分期预后性能有限",
-          "desc": "传统TNM分期预后性能有限，而PET/CT影像组学模型在预后预测方面极具潜力但受上述问题限制。",
-          "evidence": [
-            {
-              "quote": "传统TNM分期预后性能有限，PET/CT影像组学模型在预后预测方面极具潜力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 723,
-                "end_char": 759
+                "start_char": 2887,
+                "end_char": 2942
               },
               "version": "24b3f9102c1ff33a94df"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f2484f45a1b0",
-          "name": "显著性检测与多层次融合建模",
-          "desc": "开展显著性检测算法研究以表征各模态肿瘤亚区预后风险度，并在肿瘤整体与亚区多尺度构建基于显著图加权引导的PET/CT多层次融合影像组学预后模型。",
+          "id": "item-283339c8727e",
+          "name": "PET/CT功能-结构子区域图卷积网络",
+          "desc": "风险分层",
           "evidence": [
             {
-              "quote": "本项目拟开展基于显著性检测与多层次融合的头颈癌PET/CT影像组学预后模型研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 875
-              },
-              "version": "24b3f9102c1ff33a94df"
-            }
-          ]
-        },
-        {
-          "id": "item-cf3251375b6d",
-          "name": "图卷积网络风险分层方法",
-          "desc": "提出基于PET/CT功能-结构子区域图卷积网络的头颈癌精准风险分层新方法，并进一步提出基于群体的多层次融合图卷积网络。",
-          "evidence": [
-            {
-              "quote": "提出基于PET/CT功能-结构子区域图卷积网络的头颈癌精准风险分层新方法，将患者病灶子区域视为节点，每位患者视为图",
+              "quote": "提出基于PET/CT功能-结构子区域图卷积网络的头颈癌精准风险分层新方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2963,
-                "end_char": 3019
+                "end_char": 2998
               },
               "version": "24b3f9102c1ff33a94df"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-182e96b1055c",
+          "name": "双向注意力感知流体金字塔特征集成融合网络",
+          "desc": "跨模态交互",
+          "evidence": [
+            {
+              "quote": "提出一种具有跨模态交互的双向注意力感知流体金字塔特征集成融合网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3189,
+                "end_char": 3220
+              },
+              "version": "24b3f9102c1ff33a94df"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7ee59fdd954c",
+          "name": "基于监督和非监督的批次均衡化方法",
+          "desc": "改善多中心泛化",
+          "evidence": [
+            {
+              "quote": "提出基于监督和非监督的批次均衡化方法，改善了多中心头颈癌预后模型的泛化性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3278,
+                "end_char": 3314
+              },
+              "version": "24b3f9102c1ff33a94df"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b3f9e4f3d8e7",
-          "name": "FSGCN提升头颈癌预后预测性能",
-          "desc": "将患者病灶子区域视为节点、每位患者视为图，按图分类模式显著提升头颈癌预后预测性能。",
-          "evidence": [
-            {
-              "quote": "按照图分类模式显著提升了头颈癌预后预测性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3021,
-                "end_char": 3041
-              },
-              "version": "24b3f9102c1ff33a94df"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8f3892ff847d",
-          "name": "BAF-Net优于传统层级融合模型",
-          "desc": "提出具有跨模态交互的双向注意力感知流体金字塔特征集成融合网络，在头颈癌生存预测任务上均优于传统层级融合模型和单模态模型。",
-          "evidence": [
-            {
-              "quote": "提出一种具有跨模态交互的双向注意力感知流体金字塔特征集成融合网络，模型在头颈癌的生存预测任务上均优于传统层级融合模型和单模态模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3189,
-                "end_char": 3252
-              },
-              "version": "24b3f9102c1ff33a94df"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-a2770169fb06",
+          "id": "item-dbc5f7e591a8",
           "name": "鼻咽癌动态风险预测系统",
-          "desc": "研发鼻咽癌动态风险预测系统，可根据治疗过程中动态EBV DNA信息实现精准复发转移风险预测，正在云南省肿瘤医院开展科研试用。",
+          "desc": "云南省肿瘤医院科研试用",
           "evidence": [
             {
               "quote": "本项目研发了一套鼻咽癌动态风险预测系统，可根据患者治疗过程中检测的动态EBV DNA信息，实现精准复发转移风险预测，为临床医师提供治疗决策辅助，该系统正在云南省肿瘤医院开展科研试用",
@@ -181,55 +139,245 @@
               "version": "24b3f9102c1ff33a94df"
             }
           ],
-          "status": "已取得"
+          "status": "在研",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5e5a6f29ee32"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0f535447767a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "云南省“兴滇英才支持计划”青年人才",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕闻冰",
+      "id": "out-1c7cb5db24cd",
+      "evidence": [
+        {
+          "quote": "[奖励] 云南省“兴滇英才支持计划”青年人才 — 吕闻冰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3721,
+            "end_char": 3748
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0f535447767a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f2484f45a1b0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Difference in Uptake Pattern Heterogeneity and Reproducibility of Radiomics Features Between FAPI and FDG PET/CT Imaging of Tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianmeng Xu;Yanchao Huang;Tingting Ang;Shuilin Chu;Peiyin Luo;Shunfang Wang;Yufeng Zhang;Lijun Lu;Ganghua Tang;Wenbing Lv",
+      "id": "out-b7932dd21316",
+      "evidence": [
+        {
+          "quote": "[会议论文] Difference in Uptake Pattern Heterogeneity and Reproducibility of Radiomics Features Between FAPI and FDG PET/CT Imaging of Tumors — Tianmeng Xu;Yanchao Huang;Tingting Ang;Shuilin Chu;Peiyin Luo;Shunfang Wang;Yufeng Zhang;Lijun Lu;Ganghua Tang;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3753,
+            "end_char": 4013
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f2484f45a1b0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8f3892ff847d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Level fusion graph neural network: Application to PET and CT imaging for risk stratification of head and neck cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junyi Peng;Lihong Peng;Zidong Zhou;Xu Han;Hui Xu;Lijun Lu;Wenbing Lv",
+      "id": "out-051935d92119",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Level fusion graph neural network: Application to PET and CT imaging for risk stratification of head and neck cancer — Junyi Peng;Lihong Peng;Zidong Zhou;Xu Han;Hui Xu;Lijun Lu;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4018,
+            "end_char": 4217
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf3251375b6d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b3f9e4f3d8e7"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Encoding Temporal Change of Longitudinal EBV DNA for Dynamic Risk Prediction of Nasopharyngeal Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fangfang Yang;Zicheng Zhen;Li Lin;Yuyu Liu;Rui Gao;Taoyu Zhang;Lijun Lu;Wenbing Lv",
+      "id": "out-19ea7dc3e8b2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Encoding Temporal Change of Longitudinal EBV DNA for Dynamic Risk Prediction of Nasopharyngeal Carcinoma — Fangfang Yang;Zicheng Zhen;Li Lin;Yuyu Liu;Rui Gao;Taoyu Zhang;Lijun Lu;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4222,
+            "end_char": 4417
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "BAF-Net: bidirectional attention-aware fluid pyramid feature integrated multimodal fusion network for diagnosis and prognosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huiqin Wu;Lihong Peng;Dongyang Du;Hui Xu;Guoyu Lin;Zidong Zhou;Lijun Lu;Wenbing Lv",
+      "id": "out-83affd5661f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] BAF-Net: bidirectional attention-aware fluid pyramid feature integrated multimodal fusion network for diagnosis and prognosis — Huiqin Wu;Lihong Peng;Dongyang Du;Hui Xu;Guoyu Lin;Zidong Zhou;Lijun Lu;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4638
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FSDA-DG: Improving cross-domain generalizability of medical image segmentation with few source domain annotations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zanting Ye;Ke Wang;Wenbing Lv;Qianjin Feng;Lijun Lu",
+      "id": "out-75d3d53bfa80",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FSDA-DG: Improving cross-domain generalizability of medical image segmentation with few source domain annotations — Zanting Ye;Ke Wang;Wenbing Lv;Qianjin Feng;Lijun Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4643,
+            "end_char": 4816
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Functional-structural Sub-region Graph Convolutional Network (FSGCN): Application to the Prognosis of Head and Neck Cancer with PET/CT imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenbing Lv;Zidong Zhou;Junyi Peng;Lihong Peng;Guoyu Lin;Huiqin Wu;Hui Xu;Lijun Lu",
+      "id": "out-34692a6c6356",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Functional-structural Sub-region Graph Convolutional Network (FSGCN): Application to the Prognosis of Head and Neck Cancer with PET/CT imaging — Wenbing Lv;Zidong Zhou;Junyi Peng;Lihong Peng;Guoyu Lin;Huiqin Wu;Hui Xu;Lijun Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 5053
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "LMSST-GCN: Longitudinal MRI sub-structural texture guided graph convolution network for improved progression prediction of knee osteoarthritis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenbing Lv;Junyi Peng;Jiaping Hu;Yijun Lu;Zidong Zhou;Hui Xu;Kongzai Xing;Xiaodong Zhang;Lijun Lu",
+      "id": "out-ddab3acc739f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] LMSST-GCN: Longitudinal MRI sub-structural texture guided graph convolution network for improved progression prediction of knee osteoarthritis — Wenbing Lv;Junyi Peng;Jiaping Hu;Yijun Lu;Zidong Zhou;Hui Xu;Kongzai Xing;Xiaodong Zhang;Lijun Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5058,
+            "end_char": 5306
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RUIFAF_Net: Radiofrequency and Ultrasound Image Feature Attention and Fusion Network for Improved Breast Cancer Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenxu Wu;Bo Li;Huajun Zhou;Xun Lang;Bingbing He;X Allen Li;Yufeng Zhang;Wenbing Lv",
+      "id": "out-dd1479d4fd8f",
+      "evidence": [
+        {
+          "quote": "[会议论文] RUIFAF_Net: Radiofrequency and Ultrasound Image Feature Attention and Fusion Network for Improved Breast Cancer Segmentation — Zhenxu Wu;Bo Li;Huajun Zhou;Xun Lang;Bingbing He;X Allen Li;Yufeng Zhang;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5311,
+            "end_char": 5527
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamics of habitat contour complexity in pre- and post-treatment MRI images for survival prediction of nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yali Wang;Rui Gao;Taoyu Zhang;Yuyu Liu;Yiran Kong;Lijun Lu;Wenbing Lv",
+      "id": "out-301847ce821e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dynamics of habitat contour complexity in pre- and post-treatment MRI images for survival prediction of nasopharyngeal carcinoma — Yali Wang;Rui Gao;Taoyu Zhang;Yuyu Liu;Yiran Kong;Lijun Lu;Wenbing Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5533,
+            "end_char": 5739
+          },
+          "version": "24b3f9102c1ff33a94df"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

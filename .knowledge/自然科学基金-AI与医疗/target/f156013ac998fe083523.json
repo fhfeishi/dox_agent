@@ -2,15 +2,20 @@
   "doc_id": "f156013ac998fe083523",
   "version": "27be1ad5debe066de735",
   "source_hash": "503127f5c16fdfb751cc6f0b40c6a55ebe0d182e9199067b72ae3050dbc8061d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.268610+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.278286+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bc024818b65d",
-          "name": "克罗恩病肠道纤维化相关菌群解码",
-          "desc": "面向克罗恩病纤维性肠道狭窄的早期预警，基于MRI与深度迁移学习解码肠道纤维化相关菌群。",
+          "id": "item-1be1dc132b1e",
+          "name": "克罗恩病肠道纤维化相关菌群预测",
+          "desc": "多参数MRI与深度迁移学习",
           "evidence": [
             {
-              "quote": "纤维性肠道狭窄是克罗恩病（CD）常见且难治的并发症，严重影响患者预后",
+              "quote": "纤维性肠道狭窄是克罗恩病（Crohn’s Disease, CD）最常见且难治的并发症之一",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 702
+                "start_char": 2673,
+                "end_char": 2717
               },
               "version": "27be1ad5debe066de735"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4ae5a9e1bb0d",
-          "name": "肠道菌群异质动态导致分析难以反映全貌",
-          "desc": "肠道菌群与CD肠道纤维化发生发展密切相关，但菌群存在高度异质性及动态变化，现有分析方法难以准确反映其全貌。",
+          "id": "item-8d8a71ea2803",
+          "name": "CD肠道纤维化缺乏有效治疗策略",
+          "desc": "菌群高度异质性",
           "evidence": [
             {
-              "quote": "然而，肠道菌群存在高度异质性及动态变化特点，目前的分析方法难以准确反映其全貌",
+              "quote": "目前，针对CD肠道纤维化的有效治疗策略仍然匮乏",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 792,
-                "end_char": 829
+                "start_char": 2736,
+                "end_char": 2758
               },
               "version": "27be1ad5debe066de735"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2db8f1fc754b",
-          "name": "多参数MRI深度迁移学习菌群预测建模",
-          "desc": "基于多参数MRI结合高级计算机算法，以肠道菌群宏基因组分析为金标准，通过深度迁移学习挖掘CD肠道纤维化定量影像特征与菌群关系并前瞻性验证预测模型。",
+          "id": "item-899618724904",
+          "name": "肠道菌群宏基因组与代谢物多组学分析",
+          "desc": "278例CD与28例健康对照",
           "evidence": [
             {
-              "quote": "基于多参数MRI结合高级计算机算法，解码CD肠道纤维化相关菌群，辅助临床决策",
+              "quote": "本项目招募了278例CD患者和28例健康对照，开展了肠道菌群宏基因组及粪便/血液代谢物的多组学分析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 835,
-                "end_char": 872
+                "start_char": 2820,
+                "end_char": 2868
               },
               "version": "27be1ad5debe066de735"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-656b12555f00",
+          "name": "多参数MRI深度迁移学习影像组学预测模型",
+          "desc": "以宏基因组为金标准",
+          "evidence": [
+            {
+              "quote": "结合深度迁移学习算法，成功构建了CD肠道纤维化的影像组学预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3268,
+                "end_char": 3299
+              },
+              "version": "27be1ad5debe066de735"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,356 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b10f3928610e",
-          "name": "构建CD肠道纤维化无创早期预警模型",
-          "desc": "招募278例CD患者与28例健康对照开展多组学分析，揭示L-天冬氨酸等代谢物的促纤维化作用，构建的影像组学预测模型以宏基因组为金标准在前瞻性验证中表现优异。",
+          "id": "item-2d822f59d811",
+          "name": "L-天冬氨酸加重肠道纤维化的因果证据",
+          "desc": "体内外实验",
           "evidence": [
             {
-              "quote": "构建了无创的CD肠道纤维化早期预警模型，为个体化治疗决策提供了参考",
+              "quote": "研究通过体内外实验提供了L-天冬氨酸加重肠道纤维化的因果证据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3434,
-                "end_char": 3466
+                "start_char": 3166,
+                "end_char": 3195
               },
               "version": "27be1ad5debe066de735"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bc024818b65d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4ae5a9e1bb0d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI-based fingerprint index of visceral adipose tissue for the prediction of bowel damage in patients with Crohn’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Cicong Hu;Haipeng Wang;Yuqin Lin;Jiaqiang Li;Enming Cui;Xiaozhao Zhuang;Jianpeng Li;Jiahang Lu;Ruonan Zhang;Yangdi Wang;Zhenpeng Peng;Canhui Sun;Ziping Li;Minhu Chen;Li Shi;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+      "id": "out-56791097e7a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI-based fingerprint index of visceral adipose tissue for the prediction of bowel damage in patients with Crohn’s disease — Xuehua Li;Cicong Hu;Haipeng Wang;Yuqin Lin;Jiaqiang Li;Enming Cui;Xiaozhao Zhuang;Jianpeng Li;Jiahang Lu;Ruonan Zhang;Yangdi Wang;Zhenpeng Peng;Canhui Sun;Ziping Li;Minhu Chen;Li Shi;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3523,
+            "end_char": 3873
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4ae5a9e1bb0d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2db8f1fc754b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Inflammatory bowel disease cross‐sectional imaging: What's new?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang‐di Wang;Ruo‐nan Zhang;Ren Mao;Xue‐hua Li",
+      "id": "out-af8b8719d1ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Inflammatory bowel disease cross‐sectional imaging: What's new? — Yang‐di Wang;Ruo‐nan Zhang;Ren Mao;Xue‐hua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3878,
+            "end_char": 3995
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2db8f1fc754b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b10f3928610e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiomics reveals microbial metabolites as key actors in intestinal fibrosis in Crohn’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Shixian Hu;Xiaodi Shen;Ruonan Zhang;Caiguang Liu;Lin Xiao;Jinjiang Lin;Li Huang;Weitao He;Xinyue Wang;Lili Huang;Qingzhu Zheng;Luyao Wu;Canhui Sun;Zhenpeng Peng;Minhu Chen;Ziping Li;Rui Feng;Yijun Zhu;Yangdi Wang;Zhoulei Li;Ren Mao;Shi-Ting Feng",
+      "id": "out-b6840b0c2aad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiomics reveals microbial metabolites as key actors in intestinal fibrosis in Crohn’s disease — Xuehua Li;Shixian Hu;Xiaodi Shen;Ruonan Zhang;Caiguang Liu;Lin Xiao;Jinjiang Lin;Li Huang;Weitao He;Xinyue Wang;Lili Huang;Qingzhu Zheng;Luyao Wu;Canhui Sun;Zhenpeng Peng;Minhu Chen;Ziping Li;Rui Feng;Yijun Zhu;Yangdi Wang;Zhoulei Li;Ren Mao;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4000,
+            "end_char": 4360
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Degree of Creeping Fat Assessed by Computed Tomography Enterography is Associated with Intestinal Fibrotic Stricture in Patients with Crohn’s Disease: A Potentially Novel Mesenteric Creeping Fat Index",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xue-Hua Li;Shi-Ting Feng;Qing-Hua Cao;J Calvin Coffey;Mark E Baker;Li Huang;Zhuang-Nian Fang;Yun Qiu;Bao-Lan Lu;Zhi-Hui Chen;Yi Li;Dominik Bettenworth;Marietta Iacucci;Can-Hui Sun;Subrata Ghosh;Florian Rieder;Min-Hu Chen;Zi-Ping Li;Ren Mao",
+      "id": "out-604de5c41eae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Degree of Creeping Fat Assessed by Computed Tomography Enterography is Associated with Intestinal Fibrotic Stricture in Patients with Crohn’s Disease: A Potentially Novel Mesenteric Creeping Fat Index — Xue-Hua Li;Shi-Ting Feng;Qing-Hua Cao;J Calvin Coffey;Mark E Baker;Li Huang;Zhuang-Nian Fang;Yun Qiu;Bao-Lan Lu;Zhi-Hui Chen;Yi Li;Dominik Bettenworth;Marietta Iacucci;Can-Hui Sun;Subrata Ghosh;Florian Rieder;Min-Hu Chen;Zi-Ping Li;Ren Mao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4365,
+            "end_char": 4813
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical outcome is distinct between radiological stricture and endoscopic stricture in ileal Crohn’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Shi;Yang-di Wang;Xiao-di Shen;Ren Mao;Ji-xin Meng;Si-yun Huang;Ting Song;Zi-ping Li;Shi-ting Feng;Shao-chun Lin;Zhen-peng Peng;Xue-hua Li",
+      "id": "out-30569fb8c059",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical outcome is distinct between radiological stricture and endoscopic stricture in ileal Crohn’s disease — Li Shi;Yang-di Wang;Xiao-di Shen;Ren Mao;Ji-xin Meng;Si-yun Huang;Ting Song;Zi-ping Li;Shi-ting Feng;Shao-chun Lin;Zhen-peng Peng;Xue-hua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4818,
+            "end_char": 5076
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying patients with Crohn's disease at high risk of primary nonresponse to infliximab using a radiomic‐clinical model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Yingkui Zhong;Chenglang Yuan;Jinjiang Lin;Xiaodi Shen;Minyi Guo;Baolan Lu;Jixin Meng;Yangdi Wang;Naiwen Zhang;Zixin Luo;Guimeng Hu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Qing‐hua Cao;Baili Chen;Zhihui Chen;Bingsheng Huang;Shi‐Ting Feng",
+      "id": "out-c110aee418f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying patients with Crohn's disease at high risk of primary nonresponse to infliximab using a radiomic‐clinical model — Xuehua Li;Yingkui Zhong;Chenglang Yuan;Jinjiang Lin;Xiaodi Shen;Minyi Guo;Baolan Lu;Jixin Meng;Yangdi Wang;Naiwen Zhang;Zixin Luo;Guimeng Hu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Qing‐hua Cao;Baili Chen;Zhihui Chen;Bingsheng Huang;Shi‐Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5081,
+            "end_char": 5459
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mesenteric abnormalities play an important role in grading intestinal fibrosis in patients with Crohn's disease: a computed tomography and clinical marker-based nomogram.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jixin Meng;Yitao Mao;Jie Zhou;Zhihui Chen;Siyun Huang;Yangdi Wang;Li Huang;Ruonan Zhang;Xiaodi Shen;Wen Lv;Juxiong Xiao;Ziyin Ye;Zhihui Chen;Ren Mao;Canhui Sun;Ziping Li;Shi-Ting Feng;Shaochun Lin;Xuehua Li",
+      "id": "out-839449666ddc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mesenteric abnormalities play an important role in grading intestinal fibrosis in patients with Crohn's disease: a computed tomography and clinical marker-based nomogram. — Jixin Meng;Yitao Mao;Jie Zhou;Zhihui Chen;Siyun Huang;Yangdi Wang;Li Huang;Ruonan Zhang;Xiaodi Shen;Wen Lv;Juxiong Xiao;Ziyin Ye;Zhihui Chen;Ren Mao;Canhui Sun;Ziping Li;Shi-Ting Feng;Shaochun Lin;Xuehua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5464,
+            "end_char": 5849
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intestinal fibrosis classification in patients with Crohn’s disease using CT enterography–based deep learning: comparisons with radiomics and radiologists",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jixin Meng;Zixin Luo;Zhihui Chen;Jie Zhou;Zhao Chen;Baolan Lu;Mengchen Zhang;Yangdi Wang;Chenglang Yuan;Xiaodi Shen;Qinqin Huang;Zhuya Zhang;Ziyin Ye;Qinghua Cao;Zhiyang Zhou;Yikai Xu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Shi-Ting Feng;Xiaochun Meng;Bingsheng Huang;Xuehua Li",
+      "id": "out-2dc3191d5277",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intestinal fibrosis classification in patients with Crohn’s disease using CT enterography–based deep learning: comparisons with radiomics and radiologists — Jixin Meng;Zixin Luo;Zhihui Chen;Jie Zhou;Zhao Chen;Baolan Lu;Mengchen Zhang;Yangdi Wang;Chenglang Yuan;Xiaodi Shen;Qinqin Huang;Zhuya Zhang;Ziyin Ye;Qinghua Cao;Zhiyang Zhou;Yikai Xu;Ren Mao;Minhu Chen;Canhui Sun;Ziping Li;Shi-Ting Feng;Xiaochun Meng;Bingsheng Huang;Xuehua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5854,
+            "end_char": 6294
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hepatic mosaic enhancement pattern correlates with increased inflammatory activity and adverse therapeutic outcomes in patients with Crohn's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Li;Lu Bao-lan;Qiu Yun;Huang Li;Huang Si-yun;Mao Ren;Lin Jin-jiang;Du Jin-fang;Feng Shi-ting;Li Zi-ping;Sun Can-hui;Li Xue-hua",
+      "id": "out-77b9317dd912",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hepatic mosaic enhancement pattern correlates with increased inflammatory activity and adverse therapeutic outcomes in patients with Crohn's disease — Shi Li;Lu Bao-lan;Qiu Yun;Huang Li;Huang Si-yun;Mao Ren;Lin Jin-jiang;Du Jin-fang;Feng Shi-ting;Li Zi-ping;Sun Can-hui;Li Xue-hua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6299,
+            "end_char": 6585
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative computed tomography enterography-based radiomics signature: A potential predictor of postoperative anastomotic recurrence in patients with Crohn’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao-di Shen;Ruo-nan Zhang;Si-yun Huang;Yang-di Wang;Ren-yi Liu;Ji-xin Meng;Jie Zhou;Zhao Chen;Jia-yu Fang;Ren Mao;Zi-ping Li;Can-hui Sun;Shi-ting Feng;Shao-chun Lin;Ying-kui Zhong;Xue-hua Li",
+      "id": "out-1d7f50b42c40",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative computed tomography enterography-based radiomics signature: A potential predictor of postoperative anastomotic recurrence in patients with Crohn’s disease — Xiao-di Shen;Ruo-nan Zhang;Si-yun Huang;Yang-di Wang;Ren-yi Liu;Ji-xin Meng;Jie Zhou;Zhao Chen;Jia-yu Fang;Ren Mao;Zi-ping Li;Can-hui Sun;Shi-ting Feng;Shao-chun Lin;Ying-kui Zhong;Xue-hua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6591,
+            "end_char": 6958
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Type I Collagen-Targeted MR Imaging Probe for Staging Fibrosis in Crohn's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Zhoulei;Lu Baolan;Lin Jinjiang;He Shaofu;Huang Li;Wang Yangdi;Meng Jixin;Li Ziping;Feng Shi-Ting;Lin Shaochun;Mao Ren;Li Xue-Hua",
+      "id": "out-4f9f330fb77f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Type I Collagen-Targeted MR Imaging Probe for Staging Fibrosis in Crohn's Disease — Li Zhoulei;Lu Baolan;Lin Jinjiang;He Shaofu;Huang Li;Wang Yangdi;Meng Jixin;Li Ziping;Feng Shi-Ting;Lin Shaochun;Mao Ren;Li Xue-Hua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6964,
+            "end_char": 7187
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a Novel Computed-Tomography Enterography Radiomic Approach for Characterization of Intestinal Fibrosis in Crohn’s Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuehua Li;Dong Liang;Jixin Meng;Jie Zhou;Zhao Chen;Siyun Huang;Baolan Lu;Yun Qiu;Mark E. Baker;Ziying Ye;Qinghua Cao;Mingyu Wang;Chenglang Yuan;Zhihui Chen;Shengyu Feng;Yuxuan Zhang;Marietta Iacucci;Subrata Ghosh;Florian Rieder;Canhui Sun;Minhu Chen;Ziping Li;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+      "id": "out-62479b4d1c4a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a Novel Computed-Tomography Enterography Radiomic Approach for Characterization of Intestinal Fibrosis in Crohn’s Disease — Xuehua Li;Dong Liang;Jixin Meng;Jie Zhou;Zhao Chen;Siyun Huang;Baolan Lu;Yun Qiu;Mark E. Baker;Ziying Ye;Qinghua Cao;Mingyu Wang;Chenglang Yuan;Zhihui Chen;Shengyu Feng;Yuxuan Zhang;Marietta Iacucci;Subrata Ghosh;Florian Rieder;Canhui Sun;Minhu Chen;Ziping Li;Ren Mao;Bingsheng Huang;Shi-Ting Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7193,
+            "end_char": 7650
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Native T1 Mapping and Magnetization Transfer Imaging in Grading Bowel Fibrosis in Crohn’s Disease: A Comparative Animal Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Baolan Lu;Jinjiang Lin;Jinfang Du;Shaofu He;Qinghua Cao;Li Huang;Ren Mao;Canhui Sun;Ziping Li;Shiting Feng;Xuehua Li",
+      "id": "out-ce29a2684fd1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Native T1 Mapping and Magnetization Transfer Imaging in Grading Bowel Fibrosis in Crohn’s Disease: A Comparative Animal Study — Baolan Lu;Jinjiang Lin;Jinfang Du;Shaofu He;Qinghua Cao;Li Huang;Ren Mao;Canhui Sun;Ziping Li;Shiting Feng;Xuehua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7656,
+            "end_char": 7906
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based radiomics signature of visceral adipose tissue and bowel lesions for identifying patients with Crohn’s disease resistant to infliximab",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yangdi Wang;Zixin Luo;Zhengran Zhou;Yingkui Zhong;Ruonan Zhang;Xiaodi Shen;Lili Huang;Weitao He;Jinjiang Lin;Jiayu Fang;Qiapeng Huang;Haipeng Wang;Zhuya Zhang;Ren Mao;Shi-Ting Feng;Xuehua Li;Bingsheng Huang;Zhoulei Li;Jian Zhang;Zhihui Chen",
+      "id": "out-3d8b9fe20ce9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based radiomics signature of visceral adipose tissue and bowel lesions for identifying patients with Crohn’s disease resistant to infliximab — Yangdi Wang;Zixin Luo;Zhengran Zhou;Yingkui Zhong;Ruonan Zhang;Xiaodi Shen;Lili Huang;Weitao He;Jinjiang Lin;Jiayu Fang;Qiapeng Huang;Haipeng Wang;Zhuya Zhang;Ren Mao;Shi-Ting Feng;Xuehua Li;Bingsheng Huang;Zhoulei Li;Jian Zhang;Zhihui Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7912,
+            "end_char": 8304
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-sectional imaging: current status and future potential in adult celiac disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin-yue Wang;Zhoulei Li;Si-yun Huang;Xiao-di Shen;Xue-hua Li",
+      "id": "out-61db8d953db0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-sectional imaging: current status and future potential in adult celiac disease — Xin-yue Wang;Zhoulei Li;Si-yun Huang;Xiao-di Shen;Xue-hua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8310,
+            "end_char": 8463
+          },
+          "version": "27be1ad5debe066de735"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      }
+    },
+    "consistent": true
+  }
 }

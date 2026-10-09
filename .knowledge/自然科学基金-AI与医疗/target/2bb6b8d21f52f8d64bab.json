@@ -2,15 +2,20 @@
   "doc_id": "2bb6b8d21f52f8d64bab",
   "version": "d61aca534b45deb75ccc",
   "source_hash": "5c8118e0d65373ae36df4fe0ef49ba4c6632d8d27e7806fa7efc52eec8b46dba",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:42.713987+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:34:11.831819+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4fe9abd55267",
-          "name": "食管癌放疗抵抗",
-          "desc": "放疗是食管癌主要治疗手段，放疗抵抗是其治疗失败重要原因。",
+          "id": "item-2c79d77fb0eb",
+          "name": "食管癌放疗抵抗与疗效预测",
+          "desc": "放疗是主要治疗手段",
           "evidence": [
             {
-              "quote": "放疗是食管癌主要治疗手段，放疗抵抗是其治疗失败重要原因。",
+              "quote": "放疗是食管癌主要治疗手段，放疗抵抗是其治疗失败重要原因",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 718,
-                "end_char": 745
-              },
-              "version": "d61aca534b45deb75ccc"
-            }
-          ]
-        },
-        {
-          "id": "item-df7694ab7eac",
-          "name": "食管癌精准个体化放疗",
-          "desc": "为指导食管癌精准个体化放疗建立理论和实验基础，推动放疗敏感性分层和个体化治疗。",
-          "evidence": [
-            {
-              "quote": "有望推动食管癌放疗敏感性分层和个体化治疗，具有重要科学意义和良好临床转化前景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3198,
-                "end_char": 3235
+                "end_char": 744
               },
               "version": "d61aca534b45deb75ccc"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b1924eb37f2",
-          "name": "放疗抵抗机制需揭示",
-          "desc": "揭示放疗抵抗机制、发掘治疗新靶点及疗效预测标志物，对攻克食管癌放疗瓶颈具有重要意义。",
+          "id": "item-3d14fc54e7d8",
+          "name": "放疗抵抗是治疗失败重要原因",
+          "desc": "需机制与预测标志物",
           "evidence": [
             {
-              "quote": "揭示放疗抵抗机制，发掘治疗新靶点及疗效预测标志物，对攻克食管癌放疗瓶颈具有重要意义。",
+              "quote": "放疗抵抗是其治疗失败重要原因",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 746,
-                "end_char": 787
-              },
-              "version": "d61aca534b45deb75ccc"
-            }
-          ]
-        },
-        {
-          "id": "item-93f88aca0254",
-          "name": "外泌体lncRNA介导机制不清",
-          "desc": "外泌体lncRNA ENST00000462352如何介导食管癌放疗抵抗、能否作为疗效预测标志物仍需探索。",
-          "evidence": [
-            {
-              "quote": "但外泌体lncRNA ENST00000462352如何介导食管癌放疗抵抗、能否作为疗效预测标志物仍需探索。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 861,
-                "end_char": 914
+                "start_char": 731,
+                "end_char": 744
               },
               "version": "d61aca534b45deb75ccc"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d529bc2688af",
-          "name": "细胞与荷瘤动物模型研究",
-          "desc": "开展细胞和荷瘤动物模型研究，明确外泌体lncRNA调控放疗抵抗的作用机制。",
+          "id": "item-dd030863523f",
+          "name": "外泌体lncRNA ENST00000462352标志物",
+          "desc": "放疗疗效新型预测标志物",
           "evidence": [
             {
-              "quote": "我们拟开展细胞和荷瘤动物模型研究，明确外泌体lncRNA ENST00000462352通过miR-424-5p靶向调控CyclinD1/E1-pRb-E2F1途径",
+              "quote": "首次阐明lncRNA ENST00000462352是食管癌放疗疗效新型预测标志物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 915,
-                "end_char": 996
+                "start_char": 2705,
+                "end_char": 2745
               },
               "version": "d61aca534b45deb75ccc"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ca43433115ab",
-          "name": "外泌体与影像组学多维模型",
-          "desc": "整合外泌体lncRNA、影像组学及临床信息组学多维肿瘤特征，构建食管癌疗效预测体系。",
+          "id": "item-53a8d1acefb7",
+          "name": "miR-424-5p-CyclinD1/E1-pRb-E2F1通路",
+          "desc": "调控细胞周期影响放疗抵抗",
           "evidence": [
             {
-              "quote": "进而整合外泌体lncRNA ENST00000462352、影像组学及临床信息组学多维肿瘤特征，构建了性能卓越的食管癌疗效预测体系",
+              "quote": "初步探讨了lncRNA ENST00000462352通过miR-424-5p靶向调控细胞周期信号通路CyclinD1/E1-pRb-E2F1",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2991,
+                "start_char": 2816,
+                "end_char": 2886
+              },
+              "version": "d61aca534b45deb75ccc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c16eceb28c4b",
+          "name": "整合lncRNA与影像组学的疗效预测体系",
+          "desc": "外泌体、CT影像组学与临床信息组学",
+          "evidence": [
+            {
+              "quote": "整合外泌体lncRNA ENST00000462352、影像组学及临床信息组学多维肿瘤特征，构建了性能卓越的食管癌疗效预测体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2993,
                 "end_char": 3055
               },
               "version": "d61aca534b45deb75ccc"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a841f0f6feb7",
-          "name": "放疗疗效新型预测标志物",
-          "desc": "首次阐明lncRNA ENST00000462352是食管癌放疗疗效新型预测标志物，并证实其在放疗抵抗中的作用。",
+          "id": "item-2087f2fda59a",
+          "name": "食管癌放疗疗效预测体系",
+          "desc": "多维肿瘤特征整合",
           "evidence": [
             {
-              "quote": "首次阐明lncRNA ENST00000462352是食管癌放疗疗效新型预测标志物，并证实其在食管癌放疗抵抗中的作用",
+              "quote": "整合外泌体lncRNA ENST00000462352、影像组学及临床信息组学多维肿瘤特征，构建了性能卓越的食管癌疗效预测体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2705,
-                "end_char": 2762
+                "start_char": 2993,
+                "end_char": 3055
               },
               "version": "d61aca534b45deb75ccc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-2c81b27a61fb",
-          "name": "辐射耐受能力传递机制",
-          "desc": "创新性揭示外泌体转移lncRNA参与调控食管癌辐射耐受能力传递。",
+          "id": "item-6ff5a1fee7af",
+          "name": "放疗抵抗新机制",
+          "desc": "外泌体转移调控辐射耐受",
           "evidence": [
             {
               "quote": "创新性揭示外泌体转移lncRNA ENST00000462352参与调控食管癌辐射耐受能力传递",
@@ -164,72 +158,136 @@
               "version": "d61aca534b45deb75ccc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-92225a3376dd",
-          "name": "细胞周期通路调控新机制",
-          "desc": "初步探讨lncRNA通过miR-424-5p靶向调控CyclinD1/E1-pRb-E2F1通路影响放疗抵抗的新机制。",
-          "evidence": [
-            {
-              "quote": "并初步探讨了lncRNA ENST00000462352通过miR-424-5p靶向调控细胞周期信号通路CyclinD1/E1-pRb-E2F1，进而影响食管癌放疗抵抗的新机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2815,
-                "end_char": 2902
-              },
-              "version": "d61aca534b45deb75ccc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4fe9abd55267"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4b1924eb37f2"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "分子影像引导恶性肿瘤精准诊疗的关键技术创新与转化推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟雪;王璐;韩晓;蔡国新;金鹏;白孟麟",
+      "id": "out-af6dbf762aa8",
+      "evidence": [
+        {
+          "quote": "[奖励] 分子影像引导恶性肿瘤精准诊疗的关键技术创新与转化推广 — 孟雪;王璐;韩晓;蔡国新;金鹏;白孟麟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3254,
+            "end_char": 3306
+          },
+          "version": "d61aca534b45deb75ccc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-93f88aca0254"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d529bc2688af"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "分子影像引导恶性肿瘤的精准诊疗",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟雪;刘波;韩淑梅;刘洁;王璐;李澄明;孙良超",
+      "id": "out-aa0304c4e6f4",
+      "evidence": [
+        {
+          "quote": "[奖励] 分子影像引导恶性肿瘤的精准诊疗 — 孟雪;刘波;韩淑梅;刘洁;王璐;李澄明;孙良超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3311,
+            "end_char": 3356
+          },
+          "version": "d61aca534b45deb75ccc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ca43433115ab"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a841f0f6feb7"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "泰山学者人才工程",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王璐",
+      "id": "out-141eec8deaae",
+      "evidence": [
+        {
+          "quote": "[奖励] 泰山学者人才工程 — 王璐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3361,
+            "end_char": 3378
+          },
+          "version": "d61aca534b45deb75ccc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d529bc2688af"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-92225a3376dd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neoadjuvant tislelizumab with chemoradiotherapy for resectable locally advanced esophageal squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Jin;Wenfeng Yang;Yongsheng Gao;Zheng Fu;Lu Wang;Leyan Cao;Xue Meng",
+      "id": "out-42454aec37f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neoadjuvant tislelizumab with chemoradiotherapy for resectable locally advanced esophageal squamous cell carcinoma — Peng Jin;Wenfeng Yang;Yongsheng Gao;Zheng Fu;Lu Wang;Leyan Cao;Xue Meng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3383,
+            "end_char": 3577
+          },
+          "version": "d61aca534b45deb75ccc"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiation-induced acquired expression of PD-L1 and reprogramming of the tumor microenvironment in cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjie Tang;Lu Wang;Xiaolin Li;Xiaohui Yan;Qiufen Guo;Qian Wu;Chunhui Cui;Bowen Liu;Jianbo Zhang;Lu Zhang;Xueliang Zhang;Dapeng Li;Peng Xie",
+      "id": "out-72429ce3357d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiation-induced acquired expression of PD-L1 and reprogramming of the tumor microenvironment in cervical cancer — Wenjie Tang;Lu Wang;Xiaolin Li;Xiaohui Yan;Qiufen Guo;Qian Wu;Chunhui Cui;Bowen Liu;Jianbo Zhang;Lu Zhang;Xueliang Zhang;Dapeng Li;Peng Xie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3582,
+            "end_char": 3843
+          },
+          "version": "d61aca534b45deb75ccc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

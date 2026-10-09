@@ -2,15 +2,20 @@
   "doc_id": "3313370c793ef35929af",
   "version": "9ffa7ece3d7006a457b0",
   "source_hash": "fc4bf237953502d0c2575eb76fe8529c425f2c98c2585b13ecb022d9ad7e5fae",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:16.004671+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:45.124144+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1a3c125916fc",
-          "name": "自闭症MRI辅助诊断",
-          "desc": "自闭症发病率逐年提高，MRI能帮助医疗专家及早发现自闭症患者脑功能异常并进行干预治疗。",
+          "id": "item-73f07a801d32",
+          "name": "自闭症谱系障碍MRI辅助诊断",
+          "desc": "早期临床干预",
           "evidence": [
             {
-              "quote": "自闭症的发病率在逐年提高，面对日益严峻的医疗资源缺口，磁共振成像技术（MRI）能帮助医疗专家及早发现自闭症患者的脑功能异常，进行干预治疗",
+              "quote": "自闭症谱系障碍（ASD）的精准辅助诊断对于早期临床干预具有至关重要的意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 663,
-                "end_char": 730
-              },
-              "version": "9ffa7ece3d7006a457b0"
-            }
-          ]
-        },
-        {
-          "id": "item-3a8b47b3cfd0",
-          "name": "大规模自闭症早期筛查",
-          "desc": "研究成果将为大规模自闭症早期筛查提供相应的理论指导和经验积累。",
-          "evidence": [
-            {
-              "quote": "本项目开展符合未来发展趋势，其研究成果将为大规模自闭症早期筛查提供相应的理论指导和经验积累",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1011,
-                "end_char": 1055
+                "start_char": 2731,
+                "end_char": 2766
               },
               "version": "9ffa7ece3d7006a457b0"
             }
@@ -57,31 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-014550569ff4",
-          "name": "识别准确度不足与泛化能力较差",
-          "desc": "基于深度学习的主流计算辅助诊断算法存在识别准确度不足、泛化能力较差、容易过拟合现象。",
+          "id": "item-dea00eb2612f",
+          "name": "多模态融合难、多病种关联复杂、多中心异质性",
+          "desc": "三大瓶颈",
           "evidence": [
             {
-              "quote": "然而基于深度学习的主流计算辅助诊断算法存在以下问题：识别准确度不足，泛化能力较差，容易出现过拟合现象",
+              "quote": "多模态信息融合难、多病种关联机制复杂以及多中心数据异质性显著等核心瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 781
-              },
-              "version": "9ffa7ece3d7006a457b0"
-            }
-          ]
-        },
-        {
-          "id": "item-e7b8f7e7aabe",
-          "name": "多模态融合与多中心异质性显著",
-          "desc": "MRI在真实临床应用中面临多模态信息融合难、多病种关联机制复杂以及多中心数据异质性显著等核心瓶颈。",
-          "evidence": [
-            {
-              "quote": "针对磁共振成像（MRI）在真实临床应用中面临的多模态信息融合难、多病种关联机制复杂以及多中心数据异质性显著等核心瓶颈",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2791,
+                "start_char": 2814,
                 "end_char": 2848
               },
               "version": "9ffa7ece3d7006a457b0"
@@ -95,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-53d4398e31d5",
-          "name": "多模态注意力加权融合算法",
-          "desc": "基于MRI、多组学和电子病历设计多模态融合算法，采取基于注意力的加权融合机制整合不同类型特征。",
+          "id": "item-e85a23ce0a3c",
+          "name": "注意力机制时空信号融合网络",
+          "desc": "结构与功能磁共振异构特征对齐",
           "evidence": [
             {
-              "quote": "基于多模态数据（MRI、多组学和电子病历），设计一种多模态融合算法，采取基于注意力的加权融合机制有效整合不同类型的特征从而提高模型的性能和泛化能力",
+              "quote": "项目研发了基于注意力机制的时空信号融合网络",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 812,
-                "end_char": 884
+                "start_char": 2878,
+                "end_char": 2898
               },
               "version": "9ffa7ece3d7006a457b0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7d6ef58d7635",
-          "name": "多任务学习联合诊断模型",
-          "desc": "提出基于多任务学习的联合诊断模型，取得隐式数据增强效果，利用任务间相关性作为归纳偏置改进泛化能力。",
+          "id": "item-325babd275fe",
+          "name": "多任务学习联合诊断框架",
+          "desc": "自闭症与多动症表型相关",
           "evidence": [
             {
-              "quote": "提出一种基于多任务学习的联合诊断模型，取得隐式数据增强的效果，利用任务之间的相关性作为归纳偏置以改进模型的泛化能力",
+              "quote": "项目构建了多任务学习驱动的联合诊断框架",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 889,
-                "end_char": 945
+                "start_char": 2991,
+                "end_char": 3009
               },
               "version": "9ffa7ece3d7006a457b0"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-be10ede70213",
-          "name": "联邦学习隐私保护框架",
-          "desc": "提出具有隐私保护机制的联邦学习框架，加强多中心间协同训练并学习不同噪声模式。",
+          "id": "item-aeaa1d1c5f18",
+          "name": "源无关半监督迁移学习与因果稳健诊断",
+          "desc": "无需访问源域原始数据",
           "evidence": [
             {
-              "quote": "提出一种具有隐私保护机制的联邦学习框架，加强多中心间的协同训练和学习多中心间不同的噪声模式，使得模型具有更宽泛的表达模式",
+              "quote": "项目组深入探索了源无关半监督迁移学习方法及因果稳健诊断框架",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 950,
-                "end_char": 1009
+                "start_char": 3111,
+                "end_char": 3139
               },
               "version": "9ffa7ece3d7006a457b0"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,320 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2facac47c503",
-          "name": "时空信号融合网络",
-          "desc": "研发基于注意力机制的时空信号融合网络，动态捕获全脑脑区间空间连接模式与时间演化特征，实现结构磁共振与功能磁共振异构特征深度对齐。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表高水平学术论文14篇",
           "evidence": [
             {
-              "quote": "项目研发了基于注意力机制的时空信号融合网络。通过动态捕获全脑脑区间的空间连接模式与时间维度的动态演化特征，实现了结构磁共振与功能磁共振异构特征在统一表征空间内的深度对齐，显著增强了模型对个体差异的鲁棒性",
+              "quote": "共发表高水平学术论文 14 篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2878,
-                "end_char": 2978
+                "start_char": 3293,
+                "end_char": 3307
               },
               "version": "9ffa7ece3d7006a457b0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-231c04ccc3af",
-          "name": "源无关半监督迁移与因果稳健框架",
-          "desc": "探索源无关半监督迁移学习方法及因果稳健诊断框架，在不访问源域原始数据前提下仅用目标域少量标注实现性能迁移，并通过因果干预剥离非病理性混杂因素。",
+          "id": "item-335087cea997",
+          "name": "发明专利申请",
+          "desc": "2项",
           "evidence": [
             {
-              "quote": "项目组深入探索了源无关半监督迁移学习方法及因果稳健诊断框架。该技术在不访问源域原始数据的前提下，仅利用目标域少量标注数据即可实现诊断性能的有效迁移",
+              "quote": "项目申请国家发明专利 2 项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3111,
-                "end_char": 3183
+                "start_char": 3401,
+                "end_char": 3414
               },
               "version": "9ffa7ece3d7006a457b0"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f059bad46120",
-          "name": "论文专利成果",
-          "desc": "共发表高水平学术论文14篇，广泛分布于IEEE TPAMI、IEEE TNNLS、Medical Image Analysis及IEEE TCYB等国际权威期刊，申请国家发明专利2项。",
-          "evidence": [
-            {
-              "quote": "项目执行期内成果产出丰硕，共发表高水平学术论文 14 篇，广泛分布于人工智能与医学影像交叉领域的国际权威期刊，如 IEEE TPAMI、IEEE TNNLS、Medical Image Analysis 以及 IEEE TCYB 等",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3280,
-                "end_char": 3395
-              },
-              "version": "9ffa7ece3d7006a457b0"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1a3c125916fc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-014550569ff4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evolutionary Multitasking for Costly Task Offloading in Mobile Edge Computing Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Yang;Qunjian Chen;Zexuan Zhu;Zhi-An Huang;Shulin Lan;Liehuang Zhu",
+      "id": "out-83381b8a9ce2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evolutionary Multitasking for Costly Task Offloading in Mobile Edge Computing Networks — Chen Yang;Qunjian Chen;Zexuan Zhu;Zhi-An Huang;Shulin Lan;Liehuang Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3538,
+            "end_char": 3703
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-014550569ff4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-53d4398e31d5"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Heterogeneous Structured Federated Learning with Graph Convolutional Aggregation for MRI-Based Mental Disorder Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao Hu;Rui Liu;Jiaqi Zhang;Zhi-An Huang;Linqi Song;Kay Chen Tan",
+      "id": "out-05d71c77c831",
+      "evidence": [
+        {
+          "quote": "[会议论文] Heterogeneous Structured Federated Learning with Graph Convolutional Aggregation for MRI-Based Mental Disorder Diagnosis — Yao Hu;Rui Liu;Jiaqi Zhang;Zhi-An Huang;Linqi Song;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3708,
+            "end_char": 3900
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-53d4398e31d5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2facac47c503"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "神经影像数据处理方法、装置、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄志安;刘瑞",
+      "id": "out-2ca4e914add4",
+      "evidence": [
+        {
+          "quote": "[专利] 神经影像数据处理方法、装置、电子设备及存储介质 — 黄志安;刘瑞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3905,
+            "end_char": 3941
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-be10ede70213"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-231c04ccc3af"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于抗混淆因子的哈希图像检索方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄志安;张亚杰",
+      "id": "out-9c7e6692e5db",
+      "evidence": [
+        {
+          "quote": "[专利] 基于抗混淆因子的哈希图像检索方法 — 黄志安;张亚杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3946,
+            "end_char": 3976
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatio-Temporal Hybrid Attentive Graph Network for Diagnosis of Mental Disorders on fMRI Time-Series Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Liu;Zhi-An Huang;Yao Hu;Lei Huang;Ka-Chun Wong;Kay Chen Tan",
+      "id": "out-bd7de7100c69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatio-Temporal Hybrid Attentive Graph Network for Diagnosis of Mental Disorders on fMRI Time-Series Data — Rui Liu;Zhi-An Huang;Yao Hu;Lei Huang;Ka-Chun Wong;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3981,
+            "end_char": 4158
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mixed Prototype Correction for Causal Inference in Medical Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yajie Zhang;Zhi-An Huang;Zhiliang Hong;Songsong Wu;Jibin Wu;Kay Chen Tan",
+      "id": "out-cd2721c64e46",
+      "evidence": [
+        {
+          "quote": "[会议论文] Mixed Prototype Correction for Causal Inference in Medical Image Classification — Yajie Zhang;Zhi-An Huang;Zhiliang Hong;Songsong Wu;Jibin Wu;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4163,
+            "end_char": 4323
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Asymmetric Source-Free Unsupervised Domain Adaptation for Medical Image Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yajie Zhang;Zhi-An Huang;Jibin Wu;Kay Chen Tan",
+      "id": "out-c897803e0d80",
+      "evidence": [
+        {
+          "quote": "[会议论文] Asymmetric Source-Free Unsupervised Domain Adaptation for Medical Image Diagnosis — Yajie Zhang;Zhi-An Huang;Jibin Wu;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4328,
+            "end_char": 4464
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CausalMixNet: A mixed-attention framework for causal intervention in robust medical image diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yajie;Huang Yu-An;Hu Yao;Liu Rui;Wu Jibin;Huang Zhi-An;Tan Kay Chen",
+      "id": "out-2503116cc449",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CausalMixNet: A mixed-attention framework for causal intervention in robust medical image diagnosis — Zhang Yajie;Huang Yu-An;Hu Yao;Liu Rui;Wu Jibin;Huang Zhi-An;Tan Kay Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4469,
+            "end_char": 4650
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scGSDR: Harnessing gene semantics for single-cell pharmacological profiling",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Yu-An;Cao Xiyue;You Zhu-Hong;Li Yue-Chao;Shang Xuequn;Huang Zhi-An",
+      "id": "out-3860e30ce871",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scGSDR: Harnessing gene semantics for single-cell pharmacological profiling — Huang Yu-An;Cao Xiyue;You Zhu-Hong;Li Yue-Chao;Shang Xuequn;Huang Zhi-An",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4655,
+            "end_char": 4811
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MIX-TPI: a flexible prediction framework for TCR–pMHC interactions based on multimodal representations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Minghao Yang;Zhi-An Huang;Wei Zhou;Junkai Ji;Jun Zhang;Shan He;Zexuan Zhu",
+      "id": "out-1909ca7fcd4b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MIX-TPI: a flexible prediction framework for TCR–pMHC interactions based on multimodal representations — Minghao Yang;Zhi-An Huang;Wei Zhou;Junkai Ji;Jun Zhang;Shan He;Zexuan Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4817,
+            "end_char": 5001
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scKAN: interpretable single-cell analysis for cell-type-specific gene discovery and drug repurposing via Kolmogorov-Arnold networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haohuai He;Zhenchao Tang;Guanxing Chen;Fan Xu;Yao Hu;Yinglan Feng;Jibin Wu;Yu-An Huang;Zhi-An Huang;Kay Chen Tan",
+      "id": "out-c926fe042c28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scKAN: interpretable single-cell analysis for cell-type-specific gene discovery and drug repurposing via Kolmogorov-Arnold networks — Haohuai He;Zhenchao Tang;Guanxing Chen;Fan Xu;Yao Hu;Yinglan Feng;Jibin Wu;Yu-An Huang;Zhi-An Huang;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5007,
+            "end_char": 5259
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dynamic Graph Representation Learning for Spatio-Temporal Neuroimaging Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rui Liu;Yao Hu;Jibin Wu;Ka-Chun Wong;Zhi-An Huang;Yu-An Huang;Kay Chen Tan",
+      "id": "out-89fbb12382a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dynamic Graph Representation Learning for Spatio-Temporal Neuroimaging Analysis — Rui Liu;Yao Hu;Jibin Wu;Ka-Chun Wong;Zhi-An Huang;Yu-An Huang;Kay Chen Tan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5265,
+            "end_char": 5427
+          },
+          "version": "9ffa7ece3d7006a457b0"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

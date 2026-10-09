@@ -2,15 +2,20 @@
   "doc_id": "4583429fe5c88e4a3c37",
   "version": "30a66d67360699388878",
   "source_hash": "47d74b2ac387f88fb16617cf6d1662dde60b24e3c7445ad39cecc696638aa6ac",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:54.680299+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.123232+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,25 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b6f8e364d81f",
-          "name": "蛋白质动态结构探测",
-          "desc": "蛋白质分子动态过程中的结构探测是理解其生命功能的关键，也是现代科学重要的前沿问题之一。",
-          "evidence": [
-            {
-              "quote": "蛋白质分子动态过程中的结构探测是理解其生命功能的关键，也是现代科学重要的前沿问题之一",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 632,
-                "end_char": 673
-              },
-              "version": "30a66d67360699388878"
-            }
-          ]
-        },
-        {
-          "id": "item-19e39928bf57",
-          "name": "二维红外光谱实时探测",
-          "desc": "发展能够实时探测蛋白质动态结构的二维红外光谱技术是当前一个重要的科学机遇。",
+          "id": "item-fdcde6b433e4",
+          "name": "蛋白质二维红外光谱预测",
+          "desc": "实时探测蛋白质动态结构",
           "evidence": [
             {
               "quote": "发展能够实时探测蛋白质动态结构的二维红外光谱技术是当前一个重要的科学机遇",
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8344dacf1999",
-          "name": "二维红外光谱模拟计算瓶颈",
-          "desc": "蛋白质结构复杂度极高，二维红外光谱理论模拟面临严重计算瓶颈，阻碍实时探测技术实际应用。",
+          "id": "item-40cc8686347d",
+          "name": "二维红外光谱理论模拟计算瓶颈",
+          "desc": "难以快速解读实验光谱",
           "evidence": [
             {
-              "quote": "其二维红外光谱的理论模拟面临着严重的计算瓶颈问题，限制了实验光谱的理论解读，也严重阻碍了二维红外光谱实时探测技术的实际应用",
+              "quote": "其二维红外光谱的理论模拟面临着严重的计算瓶颈问题，限制了实验光谱的理论解读",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 774,
-                "end_char": 834
-              },
-              "version": "30a66d67360699388878"
-            }
-          ]
-        },
-        {
-          "id": "item-85f247262bfa",
-          "name": "实验光谱难归属结构演化",
-          "desc": "目前难以对采集获得的实验光谱进行快速解读并将谱学特征变化归属于结构的特定演化。",
-          "evidence": [
-            {
-              "quote": "然而，目前还很难对采集获得的实验光谱进行快速的解读并将谱学特征变化归属于结构的特定演化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 712,
-                "end_char": 754
+                "end_char": 810
               },
               "version": "30a66d67360699388878"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-717695829777",
-          "name": "数据驱动AI结合量子化学模拟",
-          "desc": "采用数据驱动人工智能方法，结合量子化学计算与分子动力学模拟，突破传统模拟的计算化学瓶颈。",
+          "id": "item-638ba80a3f17",
+          "name": "量子力学精度的二维红外光谱人工智能预测方案",
+          "desc": "结合量子化学计算与分子动力学模拟",
           "evidence": [
             {
-              "quote": "本项目拟采用数据驱动的人工智能方法，结合量子化学计算、分子动力学模拟，突破传统蛋白质二维红外光谱模拟的计算化学瓶颈",
+              "quote": "发展基于量子力学精度的蛋白质二维红外光谱的人工智能预测方案",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 893
+                "start_char": 895,
+                "end_char": 923
               },
               "version": "30a66d67360699388878"
             }
-          ]
-        },
-        {
-          "id": "item-7c63021194c5",
-          "name": "光谱描述符指导结构设计",
-          "desc": "以光谱描述符为基础构建AI生成方法，用于催化结构设计。",
-          "evidence": [
-            {
-              "quote": "Catalytic Structure Design by AI Generating with Spectroscopic Descriptors",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2700,
-                "end_char": 2773
-              },
-              "version": "30a66d67360699388878"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5263303d78d9",
-          "name": "蛋白质动态结构AI预测方案",
-          "desc": "发展基于量子力学精度的蛋白质二维红外光谱人工智能预测方案，建立结构变化与谱学响应的构效关系。",
+          "id": "item-17688d6858ba",
+          "name": "蛋白质二维红外光谱人工智能预测方案",
+          "desc": "结题摘要复述研究目标",
           "evidence": [
             {
               "quote": "发展基于量子力学精度的蛋白质二维红外光谱的人工智能预测方案，建立蛋白质结构变化与谱学响应之间的构效关系",
@@ -147,89 +105,174 @@
               "version": "30a66d67360699388878"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-0e29cc00f687",
-          "name": "预训练模型解析动态蛋白结构",
-          "desc": "利用预训练机器学习模型从二维红外光谱解析蛋白质动态结构。",
-          "evidence": [
-            {
-              "quote": "Unraveling dynamic protein structures by two-dimensional infrared spectra with a pretrained machine learning model",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3813,
-                "end_char": 3926
-              },
-              "version": "30a66d67360699388878"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-a594206a2e49",
-          "name": "酰胺II红外光谱AI模拟",
-          "desc": "基于人工智能的酰胺II红外光谱模拟用于监测蛋白质氢键动力学。",
-          "evidence": [
-            {
-              "quote": "Artificial Intelligence-based Amide-II Infrared Spectroscopy Simulation for Monitoring Protein Hydrogen Bonding Dynamics",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3614,
-                "end_char": 3733
-              },
-              "version": "30a66d67360699388878"
-            }
-          ],
-          "status": "已取得"
+          "status": "原文未明确",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b6f8e364d81f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8344dacf1999"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Catalytic Structure Design by AI Generating with Spectroscopic Descriptors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tongtong Yang;Donglai Zhou;Sheng Ye;Xiyu Li;Huirong Li;Yi Feng;Zifan Jiang;Li Yang;Ke Ye;Yixi Shen;Shuang Jiang;Shuo Feng;Guozhen Zhang;Yan Huang;Song Wang;Jun Jiang",
+      "id": "out-e42109b3bf03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Catalytic Structure Design by AI Generating with Spectroscopic Descriptors — Tongtong Yang;Donglai Zhou;Sheng Ye;Xiyu Li;Huirong Li;Yi Feng;Zifan Jiang;Li Yang;Ke Ye;Yixi Shen;Shuang Jiang;Shuo Feng;Guozhen Zhang;Yan Huang;Song Wang;Jun Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2693,
+            "end_char": 2941
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8344dacf1999"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-717695829777"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Monitoring C-C coupling in catalytic reactions via machine-learned infrared spectroscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Li;Zhao Zhicheng;Yang Tongtong;Zhou Donglai;Yue Xiaoyu;Li Xiyu;Huang Yan;Wang Xijun;Zheng Ruyun;Heine Thomas;Sun Changyin;Jiang Jun;Ye Sheng",
+      "id": "out-8dbfd77fe7fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Monitoring C-C coupling in catalytic reactions via machine-learned infrared spectroscopy — Yang Li;Zhao Zhicheng;Yang Tongtong;Zhou Donglai;Yue Xiaoyu;Li Xiyu;Huang Yan;Wang Xijun;Zheng Ruyun;Heine Thomas;Sun Changyin;Jiang Jun;Ye Sheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2946,
+            "end_char": 3188
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-717695829777"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5263303d78d9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning Prediction of Molecular Binding Profiles on Metal-Porphyrin via Spectroscopic Descriptors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Ke;Wang Song;Huang Yan;Hu Min;Zhou Donglai;Luo Yi;Ye Sheng;Zhang Guozhen;Jiang Jun",
+      "id": "out-761550a7e781",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine Learning Prediction of Molecular Binding Profiles on Metal-Porphyrin via Spectroscopic Descriptors — Ye Ke;Wang Song;Huang Yan;Hu Min;Zhou Donglai;Luo Yi;Ye Sheng;Zhang Guozhen;Jiang Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3193,
+            "end_char": 3393
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7c63021194c5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a594206a2e49"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A machine learning protocol for predicting structural distributions of amyloid-forming proteins from 2D IR spectra",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sheng Ye;BinBin Wang;Zhipeng Li;Lvshuai Zhu;Chang Yin Sun;Shaul Mukamel;Jun Jiang",
+      "id": "out-1ad1201a1ff4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A machine learning protocol for predicting structural distributions of amyloid-forming proteins from 2D IR spectra — Sheng Ye;BinBin Wang;Zhipeng Li;Lvshuai Zhu;Chang Yin Sun;Shaul Mukamel;Jun Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3398,
+            "end_char": 3602
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence-based Amide-II Infrared Spectroscopy Simulation for Monitoring Protein Hydrogen Bonding Dynamics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Sheng;Zhong Kai;Huang Yan;Zhang Guozhen;Sun Changyin;Jiang Jun",
+      "id": "out-2a0c309765ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Intelligence-based Amide-II Infrared Spectroscopy Simulation for Monitoring Protein Hydrogen Bonding Dynamics — Ye Sheng;Zhong Kai;Huang Yan;Zhang Guozhen;Sun Changyin;Jiang Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3607,
+            "end_char": 3801
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unraveling dynamic protein structures by two-dimensional infrared spectra with a pretrained machine learning model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Fan;Huang Yan;Yang Guokun;Ye Sheng;Mukamel Shaul;Jiang Jun",
+      "id": "out-3889e57cd6c3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unraveling dynamic protein structures by two-dimensional infrared spectra with a pretrained machine learning model — Wu Fan;Huang Yan;Yang Guokun;Ye Sheng;Mukamel Shaul;Jiang Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3806,
+            "end_char": 3990
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI protocol for retrieving protein dynamic structures from two-dimensional infrared spectra",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ye Sheng;Zhu Lvshuai;Zhao Zhicheng;Wu Fan;Li Zhipeng;Wang BinBin;Zhong Kai;Sun Changyin;Mukamel Shaul;Jiang Jun",
+      "id": "out-db16a041fcd4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI protocol for retrieving protein dynamic structures from two-dimensional infrared spectra — Ye Sheng;Zhu Lvshuai;Zhao Zhicheng;Wu Fan;Li Zhipeng;Wang BinBin;Zhong Kai;Sun Changyin;Mukamel Shaul;Jiang Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4206
+          },
+          "version": "30a66d67360699388878"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

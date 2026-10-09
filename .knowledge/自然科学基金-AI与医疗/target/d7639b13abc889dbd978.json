@@ -2,15 +2,20 @@
   "doc_id": "d7639b13abc889dbd978",
   "version": "4fb02b49d14e068c07cb",
   "source_hash": "e5452b68af54a057e7cb673127a2df210388d429d5535fcf81c2a648a23d18aa",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.480159+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:55.933895+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-69de48345d55",
-          "name": "低剂量CT肺腺癌分化级别与复发风险",
-          "desc": "低剂量CT推广使肺结节和早期肺癌检出越来越多，如何早期识别恶性结节并准确评估其恶性程度是临床巨大挑战。",
+          "id": "item-b0af55175d18",
+          "name": "早期浸润性肺腺癌分化级别与复发风险预测",
+          "desc": "低剂量CT",
           "evidence": [
             {
-              "quote": "近年来低剂量CT的推广使肺结节和早期肺癌的检出越来越多，如何早期识别恶性结节并准确评估其恶性程度是当前临床面临的巨大挑战",
+              "quote": "在我国人群中早期肺癌以腺癌为主",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 691,
-                "end_char": 750
-              },
-              "version": "4fb02b49d14e068c07cb"
-            }
-          ]
-        },
-        {
-          "id": "item-7fb030558d38",
-          "name": "实现精准诊断与风险分层",
-          "desc": "研究有助于在肺癌筛查中实现早期浸润性肺腺癌的精准诊断和风险分层，为个体化管理和治疗方案制定提供科学依据。",
-          "evidence": [
-            {
-              "quote": "本研究将有助于在肺癌筛查中实现早期浸润性肺腺癌的精准诊断和风险分层，为肺结节患者个体化管理和治疗方案的制定提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1030,
-                "end_char": 1088
+                "start_char": 752,
+                "end_char": 766
               },
               "version": "4fb02b49d14e068c07cb"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-665ea3399a8c",
-          "name": "缺乏早期浸润性肺腺癌分化与复发预测方法",
-          "desc": "目前尚缺乏针对早期浸润性肺腺癌分化级别及术后复发转移风险的预测方法。",
+          "id": "item-7207057c0d74",
+          "name": "早期肺腺癌肿瘤异质性",
+          "desc": "高危结节早期精准风险预测",
           "evidence": [
             {
-              "quote": "但目前尚缺乏针对早期浸润性肺腺癌分化级别及术后复发转移风险的预测方法",
+              "quote": "如何在肺癌筛查中识别和量化早期肺腺癌的肿瘤异质性，实现高危肺结节的早期精准风险预测是当前亟待解决的关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 868,
-                "end_char": 901
-              },
-              "version": "4fb02b49d14e068c07cb"
-            }
-          ]
-        },
-        {
-          "id": "item-1f95a1f20d08",
-          "name": "早期肺腺癌存在肿瘤异质性",
-          "desc": "即使是临床分期为IA期的早期肺腺癌，其生物学行为和术后转归也有所不同，即存在肿瘤异质性。",
-          "evidence": [
-            {
-              "quote": "但即使是临床分期为IA期的早期肺腺癌，其生物学行为和术后转归也有所不同，即存在肿瘤异质性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3183,
-                "end_char": 3226
+                "start_char": 3231,
+                "end_char": 3285
               },
               "version": "4fb02b49d14e068c07cb"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b85e17214a86",
-          "name": "肿瘤瘤周影像组学融合建模",
-          "desc": "融合肿瘤-瘤周影像组学特征、传统CT定性定量特征及临床特征，构建基于低剂量CT的早期浸润性肺腺癌分化级别与复发转移风险预测模型。",
+          "id": "item-441386031274",
+          "name": "低剂量CT影像组学模型",
+          "desc": "不同分化级别诊断",
           "evidence": [
             {
-              "quote": "拟融合肿瘤-瘤周影像组学特征、传统CT定性定量特征及临床特征，构建基于低剂量CT的早期浸润性肺腺癌分化级别预测模型",
+              "quote": "低剂量CT影像组学模型及三维实性成分体积分数可以精准诊断不同分化级别的早期肺腺癌",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 910,
-                "end_char": 966
+                "start_char": 3438,
+                "end_char": 3477
               },
               "version": "4fb02b49d14e068c07cb"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-4ebebbd4a054",
-          "name": "生境成像分析",
-          "desc": "开展生境成像分析，生境亚区体积特征可同时预测早期肺腺癌浸润性和分化级别。",
+          "id": "item-b7d7b8b97cc2",
+          "name": "生境亚区体积特征",
+          "desc": "同时预测浸润性和分化级别",
           "evidence": [
             {
               "quote": "生境亚区体积特征可以同时预测早期肺腺癌浸润性和分化级别",
@@ -124,7 +98,25 @@
               },
               "version": "4fb02b49d14e068c07cb"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-63b643fbd827",
+          "name": "术前CT身体成分指数",
+          "desc": "预测术后患者报告结局",
+          "evidence": [
+            {
+              "quote": "基于术前CT的身体成分指数可以预测肺癌患者胸腔镜术后的早期患者报告结局",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3591,
+                "end_char": 3625
+              },
+              "version": "4fb02b49d14e068c07cb"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,255 @@
       "state": "has",
       "items": [
         {
-          "id": "item-877ec47ef17d",
-          "name": "低剂量CT模型精准诊断分化级别",
-          "desc": "单中心跨设备验证研究中，针对不同密度类型肺结节，低剂量CT影像组学模型及三维实性成分体积分数可精准诊断不同分化级别的早期肺腺癌。",
+          "id": "item-8ba20bed8250",
+          "name": "低剂量CT早期肺腺癌多中心数据库",
+          "desc": "建立",
           "evidence": [
             {
-              "quote": "在单中心跨设备验证研究中，针对不同密度类型的肺结节，低剂量CT影像组学模型及三维实性成分体积分数可以精准诊断不同分化级别的早期肺腺癌",
+              "quote": "建立低剂量CT早期肺腺癌多中心数据库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3412,
-                "end_char": 3477
+                "start_char": 3308,
+                "end_char": 3325
               },
               "version": "4fb02b49d14e068c07cb"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-265a6e1cf0ec",
-          "name": "多中心验证高危病理特征预测",
-          "desc": "多中心验证研究中，低剂量CT影像组学模型可精准预测具有高危病理特征的早期肺腺癌，结节质量可辅助诊断纯磨玻璃结节浸润性。",
-          "evidence": [
-            {
-              "quote": "在多中心验证研究中，低剂量CT影像组学模型可以精准预测具有高危病理特征的早期肺腺癌，结节质量可以快速且便捷地辅助放射科医生诊断纯磨玻璃结节是否具有浸润性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3482,
-                "end_char": 3557
-              },
-              "version": "4fb02b49d14e068c07cb"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9e5fcc388d66",
-          "name": "身体成分指数预测术后报告结局",
-          "desc": "基于术前CT的身体成分指数可预测肺癌患者胸腔镜术后早期报告结局，肌肉减少、皮下脂肪增多与术后疼痛、乏力症状密切相关。",
-          "evidence": [
-            {
-              "quote": "基于术前CT的身体成分指数可以预测肺癌患者胸腔镜术后的早期患者报告结局，肌肉减少、皮下脂肪增多与患者术后疼痛、乏力症状密切相关",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3591,
-                "end_char": 3653
-              },
-              "version": "4fb02b49d14e068c07cb"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-69de48345d55"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-665ea3399a8c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting High-risk Lung Adenocarcinoma in Solid and Part-solid Nodules on Low-dose CT: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieke Liu;Yong Li;Yu Long;Yongji Zheng;Junqiang Liang;Wei Lin;Ling Guo;Haomiao Qing;Peng Zhou",
+      "id": "out-7335fd8dfdd8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting High-risk Lung Adenocarcinoma in Solid and Part-solid Nodules on Low-dose CT: A Multicenter Study — Jieke Liu;Yong Li;Yu Long;Yongji Zheng;Junqiang Liang;Wei Lin;Ling Guo;Haomiao Qing;Peng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3810,
+            "end_char": 4020
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-665ea3399a8c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b85e17214a86"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ternary-Classification Habitat Model for Invasiveness and Grade of Lung Adenocarcinoma Presenting as a Subsolid Nodule on Low-Dose Chest CT: A Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong Li;Yu Long;Yongji Zheng;Junqiang Liang;Wei Lin;Haomiao Qing;Peng Zhou;Jieke Liu",
+      "id": "out-3beb7d939cc3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ternary-Classification Habitat Model for Invasiveness and Grade of Lung Adenocarcinoma Presenting as a Subsolid Nodule on Low-Dose Chest CT: A Multicenter Study — Yong Li;Yu Long;Yongji Zheng;Junqiang Liang;Wei Lin;Haomiao Qing;Peng Zhou;Jieke Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4025,
+            "end_char": 4278
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b85e17214a86"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-877ec47ef17d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the Invasiveness of Pulmonary Adenocarcinomas in Pure Ground-Glass Nodules Using the Nodule Diameter: A Systematic Review, Meta-Analysis, and Validation in an Independent Cohort",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieke Liu;Xi Yang;Yong Li;Hao Xu;Changjiu He;Peng Zhou;Haomiao Qing",
+      "id": "out-71245b44c7ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the Invasiveness of Pulmonary Adenocarcinomas in Pure Ground-Glass Nodules Using the Nodule Diameter: A Systematic Review, Meta-Analysis, and Validation in an Independent Cohort — Jieke Liu;Xi Yang;Yong Li;Hao Xu;Changjiu He;Peng Zhou;Haomiao Qing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4283,
+            "end_char": 4547
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4ebebbd4a054"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-265a6e1cf0ec"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能辅助的CT影像质量增强与噪声降低方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘杰克;林礼波;李勇;胥豪;青浩渺;周鹏",
+      "id": "out-56e0502dff1a",
+      "evidence": [
+        {
+          "quote": "[专利] 人工智能辅助的CT影像质量增强与噪声降低方法 — 刘杰克;林礼波;李勇;胥豪;青浩渺;周鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4552,
+            "end_char": 4601
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early Postoperative Patient-Reported Outcomes of Sarcopenia Versus Nonsarcopenia in Patients Undergoing Video-Assisted Thoracoscopic Surgery for Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieke Liu;Dongyan Li;Huijie Ma;Yong Li;Xing Wei;Wei Dai;Qiuling Shi;Qiang Li;Peng Zhou;Xiang Wang;Haomiao Qing",
+      "id": "out-290eb3efece7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early Postoperative Patient-Reported Outcomes of Sarcopenia Versus Nonsarcopenia in Patients Undergoing Video-Assisted Thoracoscopic Surgery for Lung Cancer — Jieke Liu;Dongyan Li;Huijie Ma;Yong Li;Xing Wei;Wei Dai;Qiuling Shi;Qiang Li;Peng Zhou;Xiang Wang;Haomiao Qing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4606,
+            "end_char": 4881
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The solid component within part-solid nodules: 3-dimensional quantification, correlation with the malignant grade of nonmucinous pulmonary adenocarcinomas, and comparisons with 2-dimentional measures and semantic features in low-dose computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieke Liu;Chaolian Xie;Yong Li;Hao Xu;Changjiu He;Haomiao Qing;Peng Zhou",
+      "id": "out-b5aaeec654b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The solid component within part-solid nodules: 3-dimensional quantification, correlation with the malignant grade of nonmucinous pulmonary adenocarcinomas, and comparisons with 2-dimentional measures and semantic features in low-dose computed tomography — Jieke Liu;Chaolian Xie;Yong Li;Hao Xu;Changjiu He;Haomiao Qing;Peng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4886,
+            "end_char": 5220
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomic and quantitative-semantic models of low-dose computed tomography for predicting the poorly differentiated invasive non-mucinous pulmonary adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong Li;Jieke Liu;Xi Yang;Fuyang Xu;Lu Wang;Changjiu He;Libo Lin;Haomiao Qing;Jing Ren;Peng Zhou",
+      "id": "out-a6fcb6cb5d78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomic and quantitative-semantic models of low-dose computed tomography for predicting the poorly differentiated invasive non-mucinous pulmonary adenocarcinoma — Yong Li;Jieke Liu;Xi Yang;Fuyang Xu;Lu Wang;Changjiu He;Libo Lin;Haomiao Qing;Jing Ren;Peng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5225,
+            "end_char": 5491
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于低剂量CT定量-定性特征预测低分化浸润性非黏液肺腺癌",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王璐;刘杰克;徐富阳;李勇;青浩渺;何长久;林礼波;周鹏",
+      "id": "out-fccd5478e458",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于低剂量CT定量-定性特征预测低分化浸润性非黏液肺腺癌 — 王璐;刘杰克;徐富阳;李勇;青浩渺;何长久;林礼波;周鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5496,
+            "end_char": 5561
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于三维影像组学特征的肺结节识别系统和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘杰克;李勇;胥豪;林礼波;何长久;青浩渺;周鹏;周红艳",
+      "id": "out-f3e4647ce749",
+      "evidence": [
+        {
+          "quote": "[专利] 基于三维影像组学特征的肺结节识别系统和方法 — 刘杰克;李勇;胥豪;林礼波;何长久;青浩渺;周鹏;周红艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5566,
+            "end_char": 5622
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early Post-discharge Pain Trajectories After Thoracoscopic Sublobar Resection for Stage IA Non-small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieke Liu;Huijie Ma;Dongyan Li;Yong Li;Haomiao Qing;Xing Wei;Qiuling Shi;Qiang Li;Wei Dai;Peng Zhou",
+      "id": "out-73cc16a1d714",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early Post-discharge Pain Trajectories After Thoracoscopic Sublobar Resection for Stage IA Non-small Cell Lung Cancer — Jieke Liu;Huijie Ma;Dongyan Li;Yong Li;Haomiao Qing;Xing Wei;Qiuling Shi;Qiang Li;Wei Dai;Peng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5628,
+            "end_char": 5853
+          },
+          "version": "4fb02b49d14e068c07cb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

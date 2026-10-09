@@ -2,15 +2,20 @@
   "doc_id": "27a60fc99db7527a2f7c",
   "version": "cef40f7c02d622620244",
   "source_hash": "4b3a65b0521081c828e33738ac7f93ce0eaad58105dd4e2fff6676819175bb69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:58.179313+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:34:11.588670+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-201e553217c9",
-          "name": "面向特征缺失医学数据的深度学习",
-          "desc": "智能医学以人工智能技术和医学大数据为研究基础，需解决医学数据特征缺失带来的挑战。",
+          "id": "item-e3959ba45d86",
+          "name": "医学影像分割与临床落地",
+          "desc": "骨关节炎检测、头影标志点定位",
           "evidence": [
             {
-              "quote": "智能医学是一门新兴的十分重要的交叉学科，其研究基础是人工智能技术和医学大数据",
+              "quote": "落地骨关节炎检测、头影标志点定位等临床场景",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 639,
-                "end_char": 676
-              },
-              "version": "cef40f7c02d622620244"
-            }
-          ]
-        },
-        {
-          "id": "item-344d795b8117",
-          "name": "移动医疗与基层诊疗成本降低",
-          "desc": "相关成果可部署于移动医疗设备，降低基层诊疗成本，推动正畸手术规划自动化。",
-          "evidence": [
-            {
-              "quote": "相关成果可部署于移动医疗设备，降低基层诊疗成本，推动正畸手术规划自动化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3117,
-                "end_char": 3151
+                "start_char": 2999,
+                "end_char": 3019
               },
               "version": "cef40f7c02d622620244"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ede603594b2b",
-          "name": "医学大数据普遍存在特征缺失",
-          "desc": "电子病历、CT影像、X光片等临床大数据都具有特征缺失特性，给AI数据分析带来巨大挑战。",
-          "evidence": [
-            {
-              "quote": "许多临床医学大数据，如电子病历、CT影像、X光片等，都具有一个明显的特性：特征缺失，这给使用人工智能技术进行数据分析带来巨大挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 741
-              },
-              "version": "cef40f7c02d622620244"
-            }
-          ]
-        },
-        {
-          "id": "item-2d955db89336",
-          "name": "网络特征表示不足与参数冗余",
-          "desc": "传统神经网络存在特征表示能力不足、参数冗余及医学影像处理精度与效率难以兼顾的痛点。",
+          "id": "item-e5f6762dcb5f",
+          "name": "特征表示不足、参数冗余、精度效率难兼顾",
+          "desc": "传统神经网络痛点",
           "evidence": [
             {
               "quote": "针对传统神经网络特征表示能力不足、参数冗余及医学影像处理精度与效率难以兼顾的痛点",
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b517cd6ea0f",
-          "name": "关键特征提取与无损学习机制",
-          "desc": "基于梯度-类激活映射研究关键特征提取、基于标签依赖关系研究小病灶相关性学习、基于神经常微分方程研究端到端级联无损学习。",
+          "id": "item-90b46a869fb6",
+          "name": "神经记忆常微分方程nmODEs网络",
+          "desc": "BiFNN、MobileODE、nmS4M-UNet",
           "evidence": [
             {
-              "quote": "基于梯度-类激活映射研究关键特征提取、基于标签依赖关系研究小病灶相关性学习、基于神经常微分方程研究端到端级联无损学习",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 888,
-                "end_char": 945
-              },
-              "version": "cef40f7c02d622620244"
-            }
-          ]
-        },
-        {
-          "id": "item-4f1c2a86536e",
-          "name": "神经记忆常微分方程网络架构",
-          "desc": "结合nmODEs离散化技术提出双向前馈神经网络、MobileODE系列架构及nmS4M-UNet等4类新型网络，实现全局非线性映射与精准医学分割。",
-          "evidence": [
-            {
-              "quote": "结合nmODEs离散化技术，提出双向前馈神经网络（BiFNN）、MobileODE系列架构及nmS4M-UNet等4类新型网络，突破传统模型单向连接局限，实现全局非线性映射与精准医学分割",
+              "quote": "结合nmODEs离散化技术，提出双向前馈神经网络（BiFNN）、MobileODE系列架构及nmS4M-UNet等4类新型网络",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2831,
-                "end_char": 2923
+                "end_char": 2893
               },
               "version": "cef40f7c02d622620244"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-df2ff1df73c0",
-          "name": "轻量化解码与动态层注意力算法",
-          "desc": "创新nmODEs轻量化解码、动态层注意力及多尺度特征融合三类核心算法，构建插件化解码器适配各类U型网络。",
+          "id": "item-4c0f46412839",
+          "name": "nmODEs轻量化解码与动态层注意力",
+          "desc": "多尺度特征融合",
           "evidence": [
             {
-              "quote": "创新nmODEs轻量化解码、动态层注意力（DLA）及多尺度特征融合三类核心算法，构建插件化解码器适配各类U型网络，提升层级特征交互效率",
+              "quote": "创新nmODEs轻量化解码、动态层注意力（DLA）及多尺度特征融合三类核心算法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2928,
-                "end_char": 2994
+                "end_char": 2966
               },
               "version": "cef40f7c02d622620244"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d99d2ea2cec4",
-          "name": "含658例CT的3D颅骨标志点数据集",
-          "desc": "构建含658例CT的3D颅骨标志点公开数据集。",
+          "id": "item-c4cc85817873",
+          "name": "3D颅骨标志点公开数据集",
+          "desc": "含658例CT",
           "evidence": [
             {
               "quote": "并构建含658例CT的3D颅骨标志点公开数据集",
@@ -163,89 +122,285 @@
               "version": "cef40f7c02d622620244"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-106cc78d3225",
-          "name": "落地骨关节炎检测与头影标志点定位",
-          "desc": "落地骨关节炎检测、头影标志点定位等临床场景，提出YOLO_lf、ABRM等模型。",
+          "id": "item-dc6c0f641127",
+          "name": "YOLO_lf与ABRM模型",
+          "desc": "临床场景落地",
           "evidence": [
             {
-              "quote": "最后，落地骨关节炎检测、头影标志点定位等临床场景，提出YOLO_lf、ABRM等模型",
+              "quote": "提出YOLO_lf、ABRM等模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2996,
+                "start_char": 3021,
                 "end_char": 3037
               },
               "version": "cef40f7c02d622620244"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-8374eb20c5f5",
-          "name": "首次融合双向特征交互与nmODEs",
-          "desc": "首次将双向特征交互引入前馈网络、融合nmODEs与SSMs，为轻量化网络设计与医学图像分割提供新范式。",
-          "evidence": [
-            {
-              "quote": "本项目首次将双向特征交互引入前馈网络、融合nmODEs与SSMs，为轻量化网络设计与医学图像分割提供新范式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3063,
-                "end_char": 3115
-              },
-              "version": "cef40f7c02d622620244"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-201e553217c9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ede603594b2b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neural Memory Self-Supervised State Space Models With Learnable Gates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhihua Wang;Yuxin He;Zhang Yi;Tao He;Jiajun Bu",
+      "id": "out-11c7e6af3a81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neural Memory Self-Supervised State Space Models With Learnable Gates — Zhihua Wang;Yuxin He;Zhang Yi;Tao He;Jiajun Bu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3185,
+            "end_char": 3309
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ede603594b2b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0b517cd6ea0f"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Lightweight U-like Network Utilizing Neural Memory Ordinary Differential Equations for Slimming the Decoder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Quansong He;Xiaojun Yao;Jun Wu;Zhang Yi;Tao He",
+      "id": "out-0762b6ec3275",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Lightweight U-like Network Utilizing Neural Memory Ordinary Differential Equations for Slimming the Decoder — Quansong He;Xiaojun Yao;Jun Wu;Zhang Yi;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3478
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4f1c2a86536e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-8374eb20c5f5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neural Memory State Space Models for Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhihua Wang;Jingjun Gu;Wang Zhou;Quansong He;Tianli Zhao;Jialong Guo;Li Lu;Tao He;Jiajun Bu",
+      "id": "out-73c9632649b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Neural Memory State Space Models for Medical Image Segmentation — Zhihua Wang;Jingjun Gu;Wang Zhou;Quansong He;Tianli Zhao;Jialong Guo;Li Lu;Tao He;Jiajun Bu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3483,
+            "end_char": 3646
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-df2ff1df73c0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d99d2ea2cec4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于离散神经记忆常微分方程的皮肤癌病灶分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何涛;何全松;谢川博;余乐;熊健龙",
+      "id": "out-608e22258beb",
+      "evidence": [
+        {
+          "quote": "[专利] 基于离散神经记忆常微分方程的皮肤癌病灶分割方法 — 何涛;何全松;谢川博;余乐;熊健龙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3651,
+            "end_char": 3698
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Bidirectional Feed Forward Neural Network Architecture Using The Discretized Neural Memory Ordinary Differential Equation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Niu;Zhang Yi;Tao He",
+      "id": "out-69981b98f3b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Bidirectional Feed Forward Neural Network Architecture Using The Discretized Neural Memory Ordinary Differential Equation — Hao Niu;Zhang Yi;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3703,
+            "end_char": 3858
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic Joint Lesion Detection by enhancing local feature interaction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaqi Liu;Tingting Wang;Li Yang;Jianhong Wu;Tao He",
+      "id": "out-0ff5bd9e0948",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic Joint Lesion Detection by enhancing local feature interaction — Yaqi Liu;Tingting Wang;Li Yang;Jianhong Wu;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3992
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Pseudo-3D Coarse-to-fine Architecture for 3D Medical Landmark Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Cui;Boyan Liu;Guikun Xu;Jixiang Guo;Wei Tang;Tao He",
+      "id": "out-c2b98f010e5e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Pseudo-3D Coarse-to-fine Architecture for 3D Medical Landmark Detection — Li Cui;Boyan Liu;Guikun Xu;Jixiang Guo;Wei Tang;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3997,
+            "end_char": 4133
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于YOLO V5的轻量化神经记忆常微分方程级联方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何涛;余乐;苟博;熊健龙;曹越",
+      "id": "out-8ba113ac4895",
+      "evidence": [
+        {
+          "quote": "[专利] 基于YOLO V5的轻量化神经记忆常微分方程级联方法 — 何涛;余乐;苟博;熊健龙;曹越",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4138,
+            "end_char": 4186
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cascade-refine model for cephalometric landmark detection in high-resolution orthodontic images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao He;Jixiang Guo;Wei Tang;Wei Zeng;Ping He;Fanxin Zeng;Zhang Yi",
+      "id": "out-93271541657d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cascade-refine model for cephalometric landmark detection in high-resolution orthodontic images — Tao He;Jixiang Guo;Wei Tang;Wei Zeng;Ping He;Fanxin Zeng;Zhang Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4191,
+            "end_char": 4360
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MobileODE: an extra lightweight network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Le Yu;Jun Wu;Bo Gou;Xiangde Min;Lei Zhang;Zhang Yi;Tao He",
+      "id": "out-325433a1b4f0",
+      "evidence": [
+        {
+          "quote": "[会议论文] MobileODE: an extra lightweight network — Le Yu;Jun Wu;Bo Gou;Xiangde Min;Lei Zhang;Zhang Yi;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4366,
+            "end_char": 4471
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FuseUNet: A multi-scale feature fusion method for u-like networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Quansong He;Xiangde Min;Kaishen Wang;Tao He",
+      "id": "out-ea62e7a6bcd7",
+      "evidence": [
+        {
+          "quote": "[会议论文] FuseUNet: A multi-scale feature fusion method for u-like networks — Quansong He;Xiangde Min;Kaishen Wang;Tao He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4477,
+            "end_char": 4594
+          },
+          "version": "cef40f7c02d622620244"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "d63c0970ee284d0edf4c",
   "version": "1084f196d3c9556ef45f",
   "source_hash": "c1fa0fceebbc2a9dcfa7e10058b23d7909aead8d2f15a2f066a3dbb2fa35cffe",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:52:32.435858+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:41:55.879269+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac6a6bad6c04",
-          "name": "食管上皮内瘤变内镜AI辅助诊断",
-          "desc": "食管上皮内瘤变的早诊早治是阻止其恶变的重要措施，内镜诊断方法包括白光、NBI、放大NBI及碘染。",
+          "id": "item-16d3d0333d96",
+          "name": "食管上皮内瘤变AI辅助内镜诊断",
+          "desc": "白光、NBI、放大NBI、碘染",
           "evidence": [
             {
-              "quote": "食管上皮内瘤变的早诊早治是阻止其恶变的重要措施，内镜诊断方法主要包括白光、窄带光谱成像(NBI)、放大NBI及碘染",
+              "quote": "本项目基于深度卷积神经网络的AI技术，结合团队构建的食管疾病内镜图像数据库，开发出浅表食管鳞癌及癌前病变AI辅助诊断模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 709
-              },
-              "version": "1084f196d3c9556ef45f"
-            }
-          ]
-        },
-        {
-          "id": "item-b02548d25220",
-          "name": "提升食管上皮内瘤变早诊早治率",
-          "desc": "建立整合模型实现多模态多场景下全方位实时精准诊断，提升食管上皮内瘤变的早诊早治率。",
-          "evidence": [
-            {
-              "quote": "本课题拟建立的整合模型将实现多模态多场景下对食管上皮内瘤变进行全方位实时精准诊断，提升食管上皮内瘤变的早诊早治率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 966,
-                "end_char": 1021
+                "start_char": 2853,
+                "end_char": 2912
               },
               "version": "1084f196d3c9556ef45f"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02478b723199",
-          "name": "临床诊断率低是内镜诊疗难点",
-          "desc": "尽管内镜诊断方法多样，但临床诊断率低，是内镜诊疗领域的难点与痛点。",
+          "id": "item-158a1d46143e",
+          "name": "食管上皮内瘤变内镜临床诊断率低",
+          "desc": "难点与痛点",
           "evidence": [
             {
-              "quote": "内镜诊断方法主要包括白光、窄带光谱成像(NBI)、放大NBI及碘染，但临床诊断率低，是内镜诊疗领域的难点与痛点",
+              "quote": "但临床诊断率低，是内镜诊疗领域的难点与痛点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
+                "start_char": 711,
                 "end_char": 731
-              },
-              "version": "1084f196d3c9556ef45f"
-            }
-          ]
-        },
-        {
-          "id": "item-298e70c1db0b",
-          "name": "需强化病变检出精度与多维判断能力",
-          "desc": "需通过调整训练集、改进训练方法、优化网络框架、细化搜索粒度等方式强化模型在四种模式下病变检出精度及对性质、边界和浸润深度的多维判断能力。",
-          "evidence": [
-            {
-              "quote": "本项目拟通过调整模型训练集、改进模型训练方法、优化模型网络框架、细化病变在特征空间的搜索粒度、增加模型对病变边界的应激性等方式，强化模型在四种模式下病变检出的精度及准确率",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 836,
-                "end_char": 920
               },
               "version": "1084f196d3c9556ef45f"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4d146a0d667",
-          "name": "多模态多功能AI诊断模型",
-          "desc": "基于深度卷积神经网络结合食管疾病内镜图像数据库，开发浅表食管鳞癌及癌前病变AI辅助诊断模型，支持多内镜模态下实时检出、性质判断、浸润深度预测与边界勾画。",
+          "id": "item-903c91282866",
+          "name": "多内镜模态浅表食管鳞癌AI辅助诊断模型",
+          "desc": "实时病变检出、性质判断、浸润深度预测、边界勾画",
           "evidence": [
             {
               "quote": "本AI模型可在白光、NBI、放大NBI及碘染等多种内镜模态下进行实时病变检出、性质判断、浸润深度预测及病变边界勾画等多功能诊断",
@@ -108,23 +81,8 @@
               },
               "version": "1084f196d3c9556ef45f"
             }
-          ]
-        },
-        {
-          "id": "item-d6143d4a793c",
-          "name": "单屏幕设计与设备兼容",
-          "desc": "AI模型采用单屏幕设计避免分散医生注意力，同步内镜检查实时帧频并兼容现有主流品牌内镜设备。",
-          "evidence": [
-            {
-              "quote": "相比易分散医生注意力的双屏幕同类型产品，本AI模型采用单屏幕设计，既能避免分散医生注意力，又能同步内镜检查实时帧频，同时兼容现有主流品牌内镜设备，完全满足临床应用需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2995,
-                "end_char": 3077
-              },
-              "version": "1084f196d3c9556ef45f"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +91,383 @@
       "state": "has",
       "items": [
         {
-          "id": "item-931b923b47ec",
-          "name": "AI模型达资深内镜医生水平",
-          "desc": "AI模型诊断性能达到资深内镜医生水平。",
+          "id": "item-e532ed37c480",
+          "name": "真实临床环境多中心研究",
+          "desc": "全球首个",
           "evidence": [
             {
-              "quote": "其诊断性能达到了资深内镜医生水平",
+              "quote": "同时本项目开展了全球首个在真实临床环境中评估AI模型实时辅助诊断浅表食管鳞癌及癌前病变的多中心临床研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2978,
-                "end_char": 2993
-              },
-              "version": "1084f196d3c9556ef45f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-4174319a6455",
-          "name": "全球首个真实临床环境多中心研究",
-          "desc": "开展全球首个在真实临床环境中评估AI模型实时辅助诊断浅表食管鳞癌及癌前病变的多中心临床研究。",
-          "evidence": [
-            {
-              "quote": "本项目开展了全球首个在真实临床环境中评估AI模型实时辅助诊断浅表食管鳞癌及癌前病变的多中心临床研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3081,
+                "start_char": 3079,
                 "end_char": 3129
               },
               "version": "1084f196d3c9556ef45f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-ab71611a33c3",
-          "name": "辅助发现迄今最小早期食管鳞癌",
-          "desc": "AI辅助内镜检查可显著提高浅表食管鳞癌及癌前病变检出率，并辅助发现迄今为止最小的早期食管鳞癌。",
+          "id": "item-ed0250a9ef00",
+          "name": "AI辅助提高检出率",
+          "desc": "发现迄今最小早期食管鳞癌",
           "evidence": [
             {
-              "quote": "AI模型在临床试验过程中辅助内镜医师发现了迄今为止最小的早期食管鳞癌，具有极高的临床应用价值",
+              "quote": "研究结果发现AI辅助内镜医师进行内镜检查可显著提高浅表食管鳞癌及癌前病变的检出率",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3174,
-                "end_char": 3219
+                "start_char": 3131,
+                "end_char": 3170
               },
               "version": "1084f196d3c9556ef45f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ac6a6bad6c04"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-02478b723199"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence for detecting and delineating a small flat-type early esophageal squamous cell carcinoma under multimodal imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianglei Yuan;Xianhui Zeng;Long He;Liansong Ye;Wei Liu;Yanxing Hu;Bing Hu",
+      "id": "out-3a38f66f2da3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence for detecting and delineating a small flat-type early esophageal squamous cell carcinoma under multimodal imaging — Xianglei Yuan;Xianhui Zeng;Long He;Liansong Ye;Wei Liu;Yanxing Hu;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3239,
+            "end_char": 3458
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-02478b723199"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d4d146a0d667"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种食管黏膜IPCLs血管区域分割方法、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡兵;袁湘蕾;曾宪晖;刘伟;刘瑞德;林怡秀;罗奇",
+      "id": "out-d4cb912db48b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种食管黏膜IPCLs血管区域分割方法、设备及存储介质 — 胡兵;袁湘蕾;曾宪晖;刘伟;刘瑞德;林怡秀;罗奇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3463,
+            "end_char": 3521
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d4d146a0d667"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-931b923b47ec"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence for detecting superficial esophageal squamous cell carcinoma under multiple endoscopic imaging modalities: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianglei Yuan;Linjie Guo;Wei Liu;Xianhui Zeng;Yi Mou;Shuai Bai;Zhenguo Pan;Tao Zhang;Wenfeng Pu;Chun Wen;Jun Wang;Zhengduan Zhou;Jing Feng;Bing Hu",
+      "id": "out-128da392ed15",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence for detecting superficial esophageal squamous cell carcinoma under multiple endoscopic imaging modalities: a multicenter study — Xianglei Yuan;Linjie Guo;Wei Liu;Xianhui Zeng;Yi Mou;Shuai Bai;Zhenguo Pan;Tao Zhang;Wenfeng Pu;Chun Wen;Jun Wang;Zhengduan Zhou;Jing Feng;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3526,
+            "end_char": 3831
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d6143d4a793c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ab71611a33c3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在浅表食管鳞状细胞癌及癌前病变内镜诊断中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "严萍;袁湘蕾;张琼英;胡兵",
+      "id": "out-a988bc0852a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在浅表食管鳞状细胞癌及癌前病变内镜诊断中的应用进展 — 严萍;袁湘蕾;张琼英;胡兵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3836,
+            "end_char": 3887
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial Intelligence for Detecting and Delineating Margins of Early ESCC Under WLI Endoscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Liu;Xianglei Yuan;Linjie Guo;Feng Pan;Chuncheng Wu;Zhongshang Sun;Feng Tian;Cong Yuan;Wanhong Zhang;Shuai Bai;Jing Feng;Yanxing Hu;Bing Hu",
+      "id": "out-d16a4374f27d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial Intelligence for Detecting and Delineating Margins of Early ESCC Under WLI Endoscopy — Wei Liu;Xianglei Yuan;Linjie Guo;Feng Pan;Chuncheng Wu;Zhongshang Sun;Feng Tian;Cong Yuan;Wanhong Zhang;Shuai Bai;Jing Feng;Yanxing Hu;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3892,
+            "end_char": 4138
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence for detecting and delineating the extent of superficial esophageal squamous cell carcinoma and precancerous lesions under narrow-band imaging (with video)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Lei Yuan;Xiang-Lei Zeng;Wei Liu;Yi Mou;Wan-Hong Zhang;Zheng-Duan Zhou;Xin Chen;Yan-Xing Hu;Bing Hu",
+      "id": "out-97a3bcc6d414",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence for detecting and delineating the extent of superficial esophageal squamous cell carcinoma and precancerous lesions under narrow-band imaging (with video) — Xiang-Lei Yuan;Xiang-Lei Zeng;Wei Liu;Yi Mou;Wan-Hong Zhang;Zheng-Duan Zhou;Xin Chen;Yan-Xing Hu;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4434
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种多任务多分辨率协作的食管癌病变分割方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡兵;袁湘蕾;曾宪晖;牟一;刘伟;叶连松;罗奇",
+      "id": "out-591a32f5b17b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种多任务多分辨率协作的食管癌病变分割方法及装置 — 胡兵;袁湘蕾;曾宪晖;牟一;刘伟;叶连松;罗奇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4439,
+            "end_char": 4493
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based assessments of colonoscopic withdrawal technique: a new method for measuring and enhancing the quality of fold examination",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Liu;Yu Wu;Xianglei Yuan;Jingyu Zhang;Yao Zhou;Wanhong Zhang;Peipei Zhu;Zhang Tao;Long He;Bing Hu;Zhang Yi",
+      "id": "out-776819bb5f61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based assessments of colonoscopic withdrawal technique: a new method for measuring and enhancing the quality of fold examination — Wei Liu;Yu Wu;Xianglei Yuan;Jingyu Zhang;Yao Zhou;Wanhong Zhang;Peipei Zhu;Zhang Tao;Long He;Bing Hu;Zhang Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4498,
+            "end_char": 4768
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence for diagnosing gastric lesions under white-light endoscopy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Lei Yuan;Yao Zhou;Wei Liu;Qi Luo;XianHui Zeng;Zhang Yi;Bing Hu",
+      "id": "out-b3011f100458",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence for diagnosing gastric lesions under white-light endoscopy — Xiang-Lei Yuan;Yao Zhou;Wei Liu;Qi Luo;XianHui Zeng;Zhang Yi;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4773,
+            "end_char": 4932
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Endoscopic submucosal dissection for a small high grade intraepithelial neoplasia in the hypopharynx detected incidentally by artificial intelligence",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruide Liu;Xianglei Yuan;Shuang Liu;Bing Hu",
+      "id": "out-6ff605d79225",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Endoscopic submucosal dissection for a small high grade intraepithelial neoplasia in the hypopharynx detected incidentally by artificial intelligence — Ruide Liu;Xianglei Yuan;Shuang Liu;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4938,
+            "end_char": 5138
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "消化疾病内镜人工智能辅诊与健康管理体系的创建与推广",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "袁湘蕾;胡兵;刘伟;张宇航;马虎;张楠;周瑜",
+      "id": "out-02cb769dfaa9",
+      "evidence": [
+        {
+          "quote": "[奖励] 消化疾病内镜人工智能辅诊与健康管理体系的创建与推广 — 袁湘蕾;胡兵;刘伟;张宇航;马虎;张楠;周瑜",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5144,
+            "end_char": 5198
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "消化道早癌内镜微创诊疗关键技术创新体系建立及转化应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡兵;叶连松;袁湘蕾;刘伟;牟一;郭林杰;黄志寅;李静",
+      "id": "out-2bec5c713097",
+      "evidence": [
+        {
+          "quote": "[奖励] 消化道早癌内镜微创诊疗关键技术创新体系建立及转化应用 — 胡兵;叶连松;袁湘蕾;刘伟;牟一;郭林杰;黄志寅;李静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5204,
+            "end_char": 5264
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "人工智能在食管癌诊断中的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐川君;袁湘蕾;张琼英;胡兵",
+      "id": "out-834b9fb77491",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 人工智能在食管癌诊断中的应用进展 — 唐川君;袁湘蕾;张琼英;胡兵",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5270,
+            "end_char": 5309
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of artificial intelligence in the endoscopic diagnosis of early gastric cancer, atrophic gastritis, and Helicobacter pylori infection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Luo;Hang Yang;Bing Hu",
+      "id": "out-eae8ccd83fd1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of artificial intelligence in the endoscopic diagnosis of early gastric cancer, atrophic gastritis, and Helicobacter pylori infection — Qi Luo;Hang Yang;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5315,
+            "end_char": 5493
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence for diagnosing microvessels of precancerous lesions and superficial esophageal squamous cell carcinomas: a multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "XiangLei Yuan;Wei Liu;Yan Liu;XianHui Zeng;Yi Mou;ChunCheng Wu;Lian-Song Ye;YuHang Zhang;Long He;Jing Feng;Wanhong Zhang;Jun Wang;Xin Chen;Yanxing Hu;Kaihua Zhang;Bing Hu",
+      "id": "out-362f0c2a4a28",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence for diagnosing microvessels of precancerous lesions and superficial esophageal squamous cell carcinomas: a multicenter study — XiangLei Yuan;Wei Liu;Yan Liu;XianHui Zeng;Yi Mou;ChunCheng Wu;Lian-Song Ye;YuHang Zhang;Long He;Jing Feng;Wanhong Zhang;Jun Wang;Xin Chen;Yanxing Hu;Kaihua Zhang;Bing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5499,
+            "end_char": 5826
+          },
+          "version": "1084f196d3c9556ef45f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

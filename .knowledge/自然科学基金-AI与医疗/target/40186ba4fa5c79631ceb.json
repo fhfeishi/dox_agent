@@ -2,15 +2,20 @@
   "doc_id": "40186ba4fa5c79631ceb",
   "version": "fa5b2c1a7e90aaf666cc",
   "source_hash": "d0a432ad0be96cb699f4cad376a25863ead2b7cf6ca768f06776b2d208b24188",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.900511+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:32.102044+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-46097ba640bc",
-          "name": "局部晚期TNBC免疫治疗疗效预测",
-          "desc": "局部晚期三阴性乳腺癌预后差，免疫治疗在解救治疗中显示出较好前景但部分患者易出现肿瘤超进展。",
+          "id": "item-25fc0149daf7",
+          "name": "局部晚期三阴性乳腺癌免疫治疗",
+          "desc": "预后差，免疫治疗展现前景",
           "evidence": [
             {
-              "quote": "局部晚期三阴性乳腺癌(TNBC)预后差，目前尚无很好的治疗手段。近年来肿瘤免疫治疗在局部晚期TNBC解救治疗中显示出较好前景",
+              "quote": "局部晚期三阴性乳腺癌（TNBC）预后差，传统治疗手段有限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 684,
-                "end_char": 745
-              },
-              "version": "fa5b2c1a7e90aaf666cc"
-            }
-          ]
-        },
-        {
-          "id": "item-a0a61592be24",
-          "name": "筛选免疫治疗敏感患者改善预后",
-          "desc": "早期筛选免疫治疗敏感患者，以期改善患者预后、避免不良反应。",
-          "evidence": [
-            {
-              "quote": "早期筛选出免疫治疗敏感的患者，以期改善患者的预后、避免不良反应",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1043,
-                "end_char": 1073
+                "start_char": 2800,
+                "end_char": 2827
               },
               "version": "fa5b2c1a7e90aaf666cc"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d7edc0a8fe3f",
-          "name": "部分患者易超进展缺预测指标",
-          "desc": "部分患者治疗后易出现肿瘤超进展，目前临床尚缺乏较好的精准预测指标。",
+          "id": "item-a44389faffc8",
+          "name": "部分患者超进展，缺乏精准预测指标",
+          "desc": "临床缺乏",
           "evidence": [
             {
-              "quote": "但部分患者治疗后易出现肿瘤超进展，目前临床尚缺乏较好的精准预测指标",
+              "quote": "但部分患者易出现肿瘤超进展，临床缺乏精准预测指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 747,
-                "end_char": 779
-              },
-              "version": "fa5b2c1a7e90aaf666cc"
-            }
-          ]
-        },
-        {
-          "id": "item-1964b2b0701e",
-          "name": "需融合病理与临床提升预测效能",
-          "desc": "需融合TILs数量、空间分布、共定位等病理学特征及临床信息，提高预测效能。",
-          "evidence": [
-            {
-              "quote": "并将其与患者的临床特征融合，进一步构建疗效预测模型，为筛选免疫治疗敏感患者提供了思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 825,
-                "end_char": 866
+                "start_char": 2859,
+                "end_char": 2882
               },
               "version": "fa5b2c1a7e90aaf666cc"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3bf9c264da78",
-          "name": "影像病理组学多模态模型构建",
-          "desc": "融合治疗前高维定量乳腺MRI图像、TILs数量及空间分布、TILs与癌细胞核共定位等病理学特征及临床信息，建立影像病理组学多模态模型。",
-          "evidence": [
-            {
-              "quote": "我们拟进一步融合治疗前高维定量乳腺MRI图像、TILs数量、空间分布、TILs与癌细胞核的共定位等病理学特征及临床信息建立影像病理组学多模态模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 929,
-                "end_char": 1000
-              },
-              "version": "fa5b2c1a7e90aaf666cc"
-            }
-          ]
-        },
-        {
-          "id": "item-0eacf57d798c",
-          "name": "多任务机器学习融合多模态数据",
-          "desc": "采用多任务机器学习方法融合多模态数据开发预测模型，并在前瞻性随机对照队列中验证优化。",
+          "id": "item-a4993e548bed",
+          "name": "影像病理组学多模态预测模型",
+          "desc": "栖息地放射组学、ResNet-50特征融合TILs与临床",
           "evidence": [
             {
               "quote": "采用多任务机器学习（如多层感知机、堆叠集成模型）融合多模态数据，开发预测模型",
@@ -124,7 +81,25 @@
               },
               "version": "fa5b2c1a7e90aaf666cc"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c8e6aaef6d54",
+          "name": "纵向MRI驱动多模态模型",
+          "desc": "预测pCR和B细胞浸润",
+          "evidence": [
+            {
+              "quote": "纵向MRI驱动多模态模型预测病理完全缓解（pCR）和B细胞浸润（AUC 0.863-0.888，准确率85.0%-88.9%）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3255,
+                "end_char": 3317
+              },
+              "version": "fa5b2c1a7e90aaf666cc"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-aca8c271e1bb",
-          "name": "纵向MRI模型预测pCR AUC 0.863-0.888",
-          "desc": "纵向MRI驱动多模态模型预测病理完全缓解和B细胞浸润，AUC 0.863-0.888、准确率85.0%-88.9%。",
+          "id": "item-8a78e4041725",
+          "name": "预实验MRI联合TILs预测",
+          "desc": "AUC 0.85-0.91",
           "evidence": [
             {
-              "quote": "项目产出多篇高影响力论文，如纵向MRI驱动多模态模型预测病理完全缓解（pCR）和B细胞浸润（AUC 0.863-0.888，准确率85.0%-88.9%）",
+              "quote": "预实验中，治疗前MRI联合TILs数量对免疫治疗敏感患者预测效能良好（AUC 0.85-0.91）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3241,
-                "end_char": 3317
+                "start_char": 3191,
+                "end_char": 3239
               },
               "version": "fa5b2c1a7e90aaf666cc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c556aac4df93",
-          "name": "AI系统预测残余癌负担AUC 0.910-0.976",
-          "desc": "AI系统早期预测残余癌负担的AUC达0.910-0.976。",
+          "id": "item-f165367d4c72",
+          "name": "AI系统早期预测RCB",
+          "desc": "AUC 0.910-0.976",
           "evidence": [
             {
               "quote": "AI系统早期预测残余癌负担（RCB）（AUC 0.910-0.976）",
@@ -164,72 +141,111 @@
               "version": "fa5b2c1a7e90aaf666cc"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6b6b9f3bcd19",
-          "name": "TNBC亚组模型鲁棒性强",
-          "desc": "在TNBC亚组模型鲁棒性强（AUC 0.837-0.958），高模型分数与B细胞浸润增加相关。",
-          "evidence": [
-            {
-              "quote": "在TNBC亚组，模型鲁棒性强（AUC 0.837-0.958），高模型分数与B细胞浸润增加相关（P<0.001）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3454,
-                "end_char": 3509
-              },
-              "version": "fa5b2c1a7e90aaf666cc"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-46097ba640bc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d7edc0a8fe3f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive Artificial Intelligence System for Early Predicting Residual Cancer Burden during Neoadjuvant Chemotherapy in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Li;Huang Yu-Hong;Zhu Teng;Yi-Min Zhang;Xing-Xing Zheng;Ting-Feng Zhang;Ying-Yi Lin;Zhi-Yong Wu;Zai-Yi Liu;Ying Lin;Guo-Lin Ye;Kun Wang",
+      "id": "out-9f068da9ec82",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive Artificial Intelligence System for Early Predicting Residual Cancer Burden during Neoadjuvant Chemotherapy in Breast Cancer — Wei Li;Huang Yu-Hong;Zhu Teng;Yi-Min Zhang;Xing-Xing Zheng;Ting-Feng Zhang;Ying-Yi Lin;Zhi-Yong Wu;Zai-Yi Liu;Ying Lin;Guo-Lin Ye;Kun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3728,
+            "end_char": 4010
+          },
+          "version": "fa5b2c1a7e90aaf666cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d7edc0a8fe3f"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3bf9c264da78"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal MRI-based fusion novel model predicts pathological complete response in breast cancer treated with neoadjuvant chemotherapy: a multicenter, retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "YuHong Huang;Teng Zhu;XiaoLing Zhang;Wei Li;XingXing Zheng;MinYi Cheng;Fei Ji;LiuLu Zhang;CiQiu Yang;ZhiYong Wu;GuoLin Ye;Ying Lin;Kun Wang",
+      "id": "out-c4c8ef285076",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal MRI-based fusion novel model predicts pathological complete response in breast cancer treated with neoadjuvant chemotherapy: a multicenter, retrospective study — YuHong Huang;Teng Zhu;XiaoLing Zhang;Wei Li;XingXing Zheng;MinYi Cheng;Fei Ji;LiuLu Zhang;CiQiu Yang;ZhiYong Wu;GuoLin Ye;Ying Lin;Kun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4015,
+            "end_char": 4335
+          },
+          "version": "fa5b2c1a7e90aaf666cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3bf9c264da78"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-aca8c271e1bb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal MRI-Driven Multi-Modality Approach for Predicting Pathological Complete Response and B Cell Infiltration in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Yu-Hong;Shi Zhen-Yi;Zhu Teng;Zhou Tian-Han;Li Yi;Li Wei;Qiu Han;Wang Si-Qi;He Li-Fang;Wu Zhi-Yong;Lin Ying;Wang Qian;Gu Wen-Chao;Gu Chang-Cong;Song Xin-Yang;Zhou Yang;Guan Dao-Gang;Kun Wang",
+      "id": "out-f14a775f7da2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal MRI-Driven Multi-Modality Approach for Predicting Pathological Complete Response and B Cell Infiltration in Breast Cancer — Huang Yu-Hong;Shi Zhen-Yi;Zhu Teng;Zhou Tian-Han;Li Yi;Li Wei;Qiu Han;Wang Si-Qi;He Li-Fang;Wu Zhi-Yong;Lin Ying;Wang Qian;Gu Wen-Chao;Gu Chang-Cong;Song Xin-Yang;Zhou Yang;Guan Dao-Gang;Kun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4340,
+            "end_char": 4678
+          },
+          "version": "fa5b2c1a7e90aaf666cc"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0eacf57d798c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6b6b9f3bcd19"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intratumoral Microbiome–related MRI Model for Predicting Breast  Cancer Shrinkage Pattern Following Neoadjuvant Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuhong Huang;Xinyang Song;Yilin Chen;Han Qiu;Tianhan Zhou;Siqi Wang;Yang Zhou;Wei Li;Ying Lin;Qian Wang;Wenchao Gu;Teng Zhu;Kun Wang",
+      "id": "out-1c71292e6b06",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intratumoral Microbiome–related MRI Model for Predicting Breast  Cancer Shrinkage Pattern Following Neoadjuvant Therapy — Yuhong Huang;Xinyang Song;Yilin Chen;Han Qiu;Tianhan Zhou;Siqi Wang;Yang Zhou;Wei Li;Ying Lin;Qian Wang;Wenchao Gu;Teng Zhu;Kun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4683,
+            "end_char": 4943
+          },
+          "version": "fa5b2c1a7e90aaf666cc"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

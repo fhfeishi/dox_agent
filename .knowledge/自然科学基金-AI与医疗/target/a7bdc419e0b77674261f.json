@@ -2,15 +2,20 @@
   "doc_id": "a7bdc419e0b77674261f",
   "version": "6e9f4e0c4c64d66edf7c",
   "source_hash": "056d711909cd0817b4079f9ba1936ff12e8dfe09c7067d5021ae0afb526dbddf",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.670296+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.299039+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f9a084a42be",
-          "name": "NSCLC精准个体化治疗",
-          "desc": "肺癌具有时空异质性，异质性影响疗效使肺癌生存率较低，需实现精准个体化治疗。",
+          "id": "item-ac9f80b31936",
+          "name": "非小细胞肺癌精准个体化治疗",
+          "desc": "影像组学与深度学习",
           "evidence": [
             {
-              "quote": "肺癌具有时空异质性，TNM分期及侵入性生物基因技术并不能全面反应肿瘤异质性，异质性影响疗效使得肺癌生存率较低",
+              "quote": "非小细胞肺癌（NSCLC）作为肺癌的主要亚型，其异质性和预后差异显著，传统诊疗模式存在局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 718
-              },
-              "version": "6e9f4e0c4c64d66edf7c"
-            }
-          ]
-        },
-        {
-          "id": "item-3db9d7edf5d4",
-          "name": "辅助治疗获益人群识别",
-          "desc": "构建预后与疗效预测模型，识别从化疗、靶向治疗及免疫治疗中获益患者，提高整体生存获益。",
-          "evidence": [
-            {
-              "quote": "识别从辅助治疗（化疗、靶向治疗及免疫治疗）中获益患者，提高整体生存获益",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 983,
-                "end_char": 1017
+                "start_char": 2885,
+                "end_char": 2930
               },
               "version": "6e9f4e0c4c64d66edf7c"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ccafab569a66",
-          "name": "传统诊疗模式存在局限性",
-          "desc": "NSCLC异质性和预后差异显著，传统诊疗模式存在局限性。",
+          "id": "item-5a58a1e799d0",
+          "name": "传统诊疗模式无法反映NSCLC异质性",
+          "desc": "预后与疗效差异显著",
           "evidence": [
             {
-              "quote": "非小细胞肺癌（NSCLC）作为肺癌的主要亚型，其异质性和预后差异显著，传统诊疗模式存在局限性",
+              "quote": "其异质性和预后差异显著，传统诊疗模式存在局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2885,
+                "start_char": 2908,
                 "end_char": 2930
-              },
-              "version": "6e9f4e0c4c64d66edf7c"
-            }
-          ]
-        },
-        {
-          "id": "item-32c74c44b692",
-          "name": "需揭示预后疗效与组学演变规律",
-          "desc": "需深入揭示不同患者预后、疗效差异与组学特征演变之间的对应规律。",
-          "evidence": [
-            {
-              "quote": "力求深入揭示不同患者预后、疗效差异与组学特征演变之间的对应规律，为实现个体化治疗提供指导",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1019,
-                "end_char": 1062
               },
               "version": "6e9f4e0c4c64d66edf7c"
             }
@@ -95,81 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9c6bd3d23809",
-          "name": "影像组学与深度学习量化肿瘤异质",
-          "desc": "影像组学和深度学习技术可无创全面定量肿瘤异质性和量化微环境，为医学影像深度挖掘创造新契机。",
+          "id": "item-57d19166e404",
+          "name": "DeepSurv神经网络CT影像组学预后模型",
+          "desc": "结合临床病理因素",
           "evidence": [
             {
-              "quote": "影像组学和深度学习技术可无创的全面定量肿瘤异质性和量化微环境，为医学影像的深度挖掘和应用创造了新的契机",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 720,
-                "end_char": 770
-              },
-              "version": "6e9f4e0c4c64d66edf7c"
-            }
-          ]
-        },
-        {
-          "id": "item-98c0a91b56b1",
-          "name": "深度学习病变区域自动分割",
-          "desc": "基于深度学习算法实现肺癌病变区域自动分割，探索NSCLC生物学特性显性表征。",
-          "evidence": [
-            {
-              "quote": "拟基于深度学习算法实现肺癌病变区域自动分割，利用影像组学和深度学习技术探索NSCLC生物学特性显性表征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 841,
-                "end_char": 891
-              },
-              "version": "6e9f4e0c4c64d66edf7c"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-23c81d24b752",
-          "name": "DeepSurv列线图预测预后",
-          "desc": "基于CT影像组学特征的DeepSurv神经网络模型结合临床病理因素建立联合模型，列线图训练集与验证集C-index分别为0.821和0.768。",
-          "evidence": [
-            {
-              "quote": "基于CT影像组学特征构建的DeepSurv神经网络模型，结合临床病理因素建立的联合模型，显著提升了预测效能，列线图模型在训练集和验证集的C-index分别为0.821和0.768",
+              "quote": "基于CT影像组学特征构建的DeepSurv神经网络模型，结合临床病理因素建立的联合模型，显著提升了预测效能",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3072,
-                "end_char": 3160
+                "end_char": 3124
               },
               "version": "6e9f4e0c4c64d66edf7c"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-4511a25056f8",
-          "name": "脑转移预测AUC 0.849与0.816",
-          "desc": "利用CT影像组学特征构建的联合模型预测脑转移，训练集与验证集AUC分别达0.849和0.816，C指数为0.892。",
+          "id": "item-542b8fa1e66a",
+          "name": "CT影像组学脑转移预测联合模型",
+          "desc": "早期识别",
           "evidence": [
             {
-              "quote": "研究利用CT影像组学特征构建的联合模型，在训练集和验证集中预测脑转移的AUC分别达0.849和0.816，C指数为0.892，实现了早期识别",
+              "quote": "研究利用CT影像组学特征构建的联合模型，在训练集和验证集中预测脑转移的AUC分别达0.849和0.816，C指数为0.892",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3192,
-                "end_char": 3261
+                "end_char": 3253
               },
               "version": "6e9f4e0c4c64d66edf7c"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-258e4a63e3f0",
-          "name": "EGFR突变预测AUC 0.880与0.859",
-          "desc": "基于多参数MRI影像组学特征的联合预测模型，训练集与验证集AUC分别为0.880和0.859，分类效能显著优于单一模型。",
+          "id": "item-84d839ccd1bb",
+          "name": "多参数MRI影像组学EGFR突变预测联合模型",
+          "desc": "训练AUC 0.880，验证0.859",
           "evidence": [
             {
               "quote": "基于多参数MRI影像组学特征构建的联合预测模型，在训练集和验证集的AUC分别为0.880和0.859，分类效能显著优于单一模型",
@@ -181,55 +116,304 @@
               "version": "6e9f4e0c4c64d66edf7c"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ea6ed22f99cb",
+          "name": "预后列线图C-index",
+          "desc": "训练集0.821，验证集0.768",
+          "evidence": [
+            {
+              "quote": "列线图模型在训练集和验证集的C-index分别为0.821和0.768，并通过风险分层识别出手术联合辅助化疗的获益人群",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3184
+              },
+              "version": "6e9f4e0c4c64d66edf7c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-969182d2a79b",
+          "name": "淋巴结转移机器学习模型测试集AUC",
+          "desc": "0.812",
+          "evidence": [
+            {
+              "quote": "整合临床病理特征与非对比增强CT特征的机器学习模型，在预测淋巴结转移中表现优异，测试集AUC达0.812",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3341,
+                "end_char": 3392
+              },
+              "version": "6e9f4e0c4c64d66edf7c"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8f9a084a42be"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ccafab569a66"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "紧密型县域医共体影像中心建设演讲比赛第一名",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨斌",
+      "id": "out-d1652e67cd83",
+      "evidence": [
+        {
+          "quote": "[奖励] 紧密型县域医共体影像中心建设演讲比赛第一名 — 杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3573,
+            "end_char": 3603
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ccafab569a66"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9c6bd3d23809"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of EGFR mutation status  in non-small cell lung cancer based  on multiparametric MRI radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yubo Wang;Bin Yang",
+      "id": "out-fc82f850f352",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of EGFR mutation status  in non-small cell lung cancer based  on multiparametric MRI radiomics — Yubo Wang;Bin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3608,
+            "end_char": 3740
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9c6bd3d23809"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-23c81d24b752"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative analysis of chest MRI images for benign malignant diagnosis of pulmonary solid nodules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang B;Gao Y;Lu J;Wang Y;Wu R;Shen J;Ren J;Wu F;Xu H",
+      "id": "out-a6b92dcb0728",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative analysis of chest MRI images for benign malignant diagnosis of pulmonary solid nodules — Yang B;Gao Y;Lu J;Wang Y;Wu R;Shen J;Ren J;Wu F;Xu H",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3745,
+            "end_char": 3905
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-98c0a91b56b1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-258e4a63e3f0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and Validation of a DeepSurv Nomogram to Predict Survival Outcomes and Guide Personalized Adjuvant Chemotherapy in Non-Small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang B;Liu C;Wu R;Zhong J;Li A;Ma L;Zhong J;Yin S;Zhou C;Ge Y;Tao X;Zhang L;Lu G",
+      "id": "out-0a156579f057",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and Validation of a DeepSurv Nomogram to Predict Survival Outcomes and Guide Personalized Adjuvant Chemotherapy in Non-Small Cell Lung Cancer — Yang B;Liu C;Wu R;Zhong J;Li A;Ma L;Zhong J;Yin S;Zhou C;Ge Y;Tao X;Zhang L;Lu G",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3910,
+            "end_char": 4152
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像与人工智能 机遇、应用和风险",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡娟;杨斌",
+      "id": "out-518bda9cfd02",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像与人工智能 机遇、应用和风险 — 胡娟;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4157,
+            "end_char": 4187
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤骨转移影像检查技术研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王珮琦;杨斌",
+      "id": "out-02215e4eb9c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肿瘤骨转移影像检查技术研究现状 — 王珮琦;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4192,
+            "end_char": 4222
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI技术在肺结节良恶性诊断中的应用研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王宇博;武佳磊;傅洋;李佳庚;彭泽飞;王菜琼;刘迎春;解博森;杨斌",
+      "id": "out-334a250b232b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI技术在肺结节良恶性诊断中的应用研究现状 — 王宇博;武佳磊;傅洋;李佳庚;彭泽飞;王菜琼;刘迎春;解博森;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4227,
+            "end_char": 4291
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT深度学习及影像组学在非小细胞肺癌 个体化治疗中的应用研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "彭泽飞;杨斌",
+      "id": "out-cbdad777b2fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT深度学习及影像组学在非小细胞肺癌 个体化治疗中的应用研究进展 — 彭泽飞;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4296,
+            "end_char": 4343
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多源异构数据驱动的非小细胞肺癌一体化诊疗体系构建及临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨斌;卢光明;徐 海;钟 晶;傅 洋;段文帅;张冀云;张 帆;王宇博;彭泽飞;王菜琼;解博森;李佳庚;尹建华;谢 颖",
+      "id": "out-a5f1ae3adfb0",
+      "evidence": [
+        {
+          "quote": "[奖励] 多源异构数据驱动的非小细胞肺癌一体化诊疗体系构建及临床应用 — 杨斌;卢光明;徐 海;钟 晶;傅 洋;段文帅;张冀云;张 帆;王宇博;彭泽飞;王菜琼;解博森;李佳庚;尹建华;谢 颖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4348,
+            "end_char": 4442
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学技术在非小细胞肺癌预后中的应用研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈晓;杨斌",
+      "id": "out-6da2dc798e51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像组学技术在非小细胞肺癌预后中的应用研究 — 陈晓;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4448,
+            "end_char": 4483
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像人工智能在肺结核诊疗中的 应用研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡皓;杨斌",
+      "id": "out-703a1053b773",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 医学影像人工智能在肺结核诊疗中的 应用研究进展 — 胡皓;杨斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4489,
+            "end_char": 4526
+          },
+          "version": "6e9f4e0c4c64d66edf7c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

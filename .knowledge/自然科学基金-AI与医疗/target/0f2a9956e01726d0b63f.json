@@ -2,15 +2,20 @@
   "doc_id": "0f2a9956e01726d0b63f",
   "version": "71d116f3c4f0a216caa7",
   "source_hash": "ede5ccd05fd61a5b132f9a58cdb83f265d4185a5ba159f35517bc69cbcdc1c75",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.493755+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:27:50.170227+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-e72eb9e06990",
           "name": "阿尔茨海默病早期诊断",
-          "desc": "基于多中心多模态MRI影像组学构建AD早期识别系统，实现高危人群的个体化定量预测。",
+          "desc": "AD是最常见的老年期认知障碍疾病",
           "evidence": [
             {
-              "quote": "阿尔茨海默病(AD)是最常见的老年期认知障碍疾病，给家庭以及整个社会带来沉重的负担",
+              "quote": "阿尔茨海默病(AD)是最常见的老年期认知障碍疾病",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 663,
-                "end_char": 703
+                "end_char": 686
               },
               "version": "71d116f3c4f0a216caa7"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2f3566337efb",
-          "name": "需从群组差异转向个体化定量预测",
-          "desc": "AD及aMCI研究长期停留在群组差异层面，需实现向个体化定量预测的转变，为临床早期识别提供客观生物学标记。",
+          "id": "item-b3a0c994a554",
+          "name": "由群组差异转向个体化预测",
+          "desc": "从寻找群组差异转化到个体化预测",
           "evidence": [
             {
-              "quote": "从而实现AD/aMCI的研究从寻找群组差异到个体化定量预测的转变，为临床AD早期识别提供客观生物学标记",
+              "quote": "从而实现AD及高危人群的研究从寻找群组差异转化到个体化预测",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 880,
-                "end_char": 930
+                "start_char": 2729,
+                "end_char": 2757
               },
               "version": "71d116f3c4f0a216caa7"
             }
@@ -63,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6999f3cb7bc7",
-          "name": "多中心多模态MRI影像组学早期识别系统",
-          "desc": "利用机器学习方法，基于多中心多模态MRI构建基于影像组学特征的AD早期识别系统，利用aMCI横向与纵向数据明确重要脑区影像组学特征与认知能力的关系。",
+          "id": "item-a0ec4fceaa6d",
+          "name": "多中心多模态MRI影像组学早期识别原型系统",
+          "desc": "基于影像组学特征的AD早期识别",
+          "evidence": [
+            {
+              "quote": "基于多中心、多模态磁共振构建基于影像组学的AD早期识别原型系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2599,
+                "end_char": 2629
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6eae57018971",
+          "name": "机器学习影像组学识别",
+          "desc": "基于多中心多模态MRI的影像组学特征",
           "evidence": [
             {
               "quote": "本研究拟利用机器学习方法，基于多中心多模态MRI构建基于影像组学特征的AD早期识别系统",
@@ -76,7 +98,8 @@
               },
               "version": "71d116f3c4f0a216caa7"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,614 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be1072161970",
-          "name": "建立入库超3000例多中心影像数据库",
-          "desc": "建立多中心多模态AD及高危人群影像学数据库（入库超3000例），形成多中心特征库并完成全国大规模竞赛；发表论文25篇（SCI 17篇），获批专利2项、软著3项，开源Brainnetome fMRI Toolkit。",
+          "id": "item-35a3eed20780",
+          "name": "多中心多模态影像数据库",
+          "desc": "入库数据超过3000例",
           "evidence": [
             {
-              "quote": "研究团队建立了一个多中心多模态AD及高危人群的影像学数据库，入库数据超过3000例",
+              "quote": "建立了一个多中心多模态AD及高危人群的影像学数据库，入库数据超过3000例",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2791,
+                "start_char": 2795,
                 "end_char": 2831
               },
               "version": "71d116f3c4f0a216caa7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-87dcc351dd5b",
+          "name": "个体化预测系统",
+          "desc": "多次在不同竞赛中获优异成绩",
+          "evidence": [
+            {
+              "quote": "形成一套个体化化预测系统，多次在不同的竞赛中获得优异成绩",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2911,
+                "end_char": 2938
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表论文25篇，SCI杂志17篇",
+          "evidence": [
+            {
+              "quote": "研究团队发表论文25篇，其中SCI杂志17篇",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2948,
+                "end_char": 2969
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-6d52c46bbb11",
+          "name": "Brainnetome fMRI Toolkit开源平台",
+          "desc": "40余篇论文使用",
+          "evidence": [
+            {
+              "quote": "目前已有40余篇国内外同行的论文使用该软件平台",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3209,
+                "end_char": 3231
+              },
+              "version": "71d116f3c4f0a216caa7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e72eb9e06990"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-2f3566337efb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impaired time-distance reconfiguration patterns in Alzheimer's disease: a dynamic functional connectivity study with 809 individuals from 7 sites",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Du Kai;Chen Pindong;Zhao Kun;Qu Yida;Kang Xiaopeng;Liu Yong;Multi-center Alzheimer Disease Imaging Consortium",
+      "id": "out-7c5ec6b4072f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impaired time-distance reconfiguration patterns in Alzheimer's disease: a dynamic functional connectivity study with 809 individuals from 7 sites — Du Kai;Chen Pindong;Zhao Kun;Qu Yida;Kang Xiaopeng;Liu Yong;Multi-center Alzheimer Disease Imaging Consortium",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3368,
+            "end_char": 3631
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-2f3566337efb"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6999f3cb7bc7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Characterizing white matter connectivity in Alzheimer’s disease and mild cognitive impairment: An automated fiber quantification analysis with two independent datasets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dou Xuejiao;Yao Hongxiang;Feng Feng;Wang Pan;Zhou Bo;Jin Dan;Yang Zhengyi;Li Jin;Zhao Cui;Wang Luning;An Ningyu;Liu Bing;Zhang Xi;Liu Yong",
+      "id": "out-94d25a209d30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Characterizing white matter connectivity in Alzheimer’s disease and mild cognitive impairment: An automated fiber quantification analysis with two independent datasets — Dou Xuejiao;Yao Hongxiang;Feng Feng;Wang Pan;Zhou Bo;Jin Dan;Yang Zhengyi;Li Jin;Zhao Cui;Wang Luning;An Ningyu;Liu Bing;Zhang Xi;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3636,
+            "end_char": 3950
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6999f3cb7bc7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-be1072161970"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Structural and functional connectivity abnormalities of the default mode network in patients with Alzheimer's disease and mild cognitive impairment within two independent datasets.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Bo;Dou Xuejiao;Wang Wei;Yao Hongxiang;Feng Feng;Wang Pan;Yang Zhengyi;An Ningyu;Liu Bing;Zhang Xi;Liu Yong",
+      "id": "out-db302f31fb72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Structural and functional connectivity abnormalities of the default mode network in patients with Alzheimer's disease and mild cognitive impairment within two independent datasets. — Zhou Bo;Dou Xuejiao;Wang Wei;Yao Hongxiang;Feng Feng;Wang Pan;Yang Zhengyi;An Ningyu;Liu Bing;Zhang Xi;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3955,
+            "end_char": 4255
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Altered Connection and Diagnosis Utility of White Matter in Alzheimer’s Disease: A Multi-site Automated Fiber Quantification Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qu Yida;Wang Pan;Liu Bing;Kang Xiaopeng;Chen Pindong;Du Kai;Liu Yong",
+      "id": "out-fb40f857c107",
+      "evidence": [
+        {
+          "quote": "[会议论文] Altered Connection and Diagnosis Utility of White Matter in Alzheimer’s Disease: A Multi-site Automated Fiber Quantification Study — Qu Yida;Wang Pan;Liu Bing;Kang Xiaopeng;Chen Pindong;Du Kai;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4260,
+            "end_char": 4467
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Aberrant Hippocampal Functional Connectivity Is Associated with Fornix White Matter Integrity in Alzheimer's Disease and Mild Cognitive Impairment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Pan;Zhou Bo;Yao Hongxiang;Sangma Xie;Feng Feng;Zhang Zengqiang;Guo Yan'e;An Ningyu;Zhou Yuying;Zhang Xi;Liu Yong",
+      "id": "out-f88833201f8b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Aberrant Hippocampal Functional Connectivity Is Associated with Fornix White Matter Integrity in Alzheimer's Disease and Mild Cognitive Impairment — Wang Pan;Zhou Bo;Yao Hongxiang;Sangma Xie;Feng Feng;Zhang Zengqiang;Guo Yan'e;An Ningyu;Zhou Yuying;Zhang Xi;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4472,
+            "end_char": 4744
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中华医学科技奖, 二等奖, 项目名称:磁共振功能成像技术在重大脑疾病研究中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于春水;朱朝喆;蒋田仔;秦文;刘勇;刘冰;张新卿;禚传军;张雪君;张敬;张宁男楠;姜琳;刘静纯",
+      "id": "out-57e28dae1577",
+      "evidence": [
+        {
+          "quote": "[奖励] 中华医学科技奖, 二等奖, 项目名称:磁共振功能成像技术在重大脑疾病研究中的应用 — 于春水;朱朝喆;蒋田仔;秦文;刘勇;刘冰;张新卿;禚传军;张雪君;张敬;张宁男楠;姜琳;刘静纯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4749,
+            "end_char": 4843
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Generalizable, Reproducible, and Neuroscientifically Interpretable Imaging Biomarkers for Alzheimer's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Dan;Zhou Bo;Han Ying;Ren Jiaji;Han Tong;Liu Bing;Lu Jie;Song Chengyuan;Wang Pan;Wang Dawei;Xu Jian;Yang Zhengyi;Yao Hongxiang;Yu Chunshui;Zhao Kun;Wintermark Max;Zuo Nianming;Zhang Xinqing;Zhou Yuying;Zhang Xi;Jiang Tianzi;Wang Qing;Liu Yong",
+      "id": "out-480668390c0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Generalizable, Reproducible, and Neuroscientifically Interpretable Imaging Biomarkers for Alzheimer's Disease — Jin Dan;Zhou Bo;Han Ying;Ren Jiaji;Han Tong;Liu Bing;Lu Jie;Song Chengyuan;Wang Pan;Wang Dawei;Xu Jian;Yang Zhengyi;Yao Hongxiang;Yu Chunshui;Zhao Kun;Wintermark Max;Zuo Nianming;Zhang Xinqing;Zhou Yuying;Zhang Xi;Jiang Tianzi;Wang Qing;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4848,
+            "end_char": 5211
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cortical and subcortical grey matter abnormalities in white matter hyperintensities and subsequent cognitive impairment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhu Wenhao;Huang Hao;Yang Shiqi;Luo Xiang;Zhu Wenzhen;Meng Qi;Zuo Chengchao;Liu Yong;Wang Wei",
+      "id": "out-944925e691f6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cortical and subcortical grey matter abnormalities in white matter hyperintensities and subsequent cognitive impairment — Zhu Wenhao;Huang Hao;Yang Shiqi;Luo Xiang;Zhu Wenzhen;Meng Qi;Zuo Chengchao;Liu Yong;Wang Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5216,
+            "end_char": 5437
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对抗神经网络的医学图像合成方法、分类方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘勇;金丹;蒋田仔;刘冰",
+      "id": "out-4730d6beae0e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于对抗神经网络的医学图像合成方法、分类方法及装置 — 刘勇;金丹;蒋田仔;刘冰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5442,
+            "end_char": 5486
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Combined functional and structural imaging of brain white matter reveals stage-dependent impairment in multiple system atrophy of cerebellar type",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Hua;Lin Li;Xu Lyuan;Li Siran;Song Penghui;Li Muwei",
+      "id": "out-bba98431b00c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Combined functional and structural imaging of brain white matter reveals stage-dependent impairment in multiple system atrophy of cerebellar type — Lin Hua;Lin Li;Xu Lyuan;Li Siran;Song Penghui;Li Muwei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5492,
+            "end_char": 5700
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASAF: altered spontaneous activity fingerprinting in Alzheimer's disease based on multisite fMRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jiachen;Jin Dan;Li Ang;Liu Bing;Song Chengyuan;Wang Pan;Wang Dawei;Xu Kaibin;Yang Hongwei;Yao Hongxiang;Zhou Bo;Bejanin Alexandre;Chetelat Gael;Han Tong;Lu Jie;Wang Qing;Yu Chunshui;Zhang Xinqing;Zhou Yuying;Zhang Xi;Jiang Tianzi;Liu Yong;Han Ying",
+      "id": "out-9166019962fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASAF: altered spontaneous activity fingerprinting in Alzheimer's disease based on multisite fMRI — Li Jiachen;Jin Dan;Li Ang;Liu Bing;Song Chengyuan;Wang Pan;Wang Dawei;Xu Kaibin;Yang Hongwei;Yao Hongxiang;Zhou Bo;Bejanin Alexandre;Chetelat Gael;Han Tong;Lu Jie;Wang Qing;Yu Chunshui;Zhang Xinqing;Zhou Yuying;Zhang Xi;Jiang Tianzi;Liu Yong;Han Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5706,
+            "end_char": 6061
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quantitative radiomic features as new biomarkers for Alzheimer’s disease: An amyloid PET study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Yanghui;Zhao Kun;Che Tongtong;Du Kai;Sun Hongzan;Liu Shu;Zheng Yuanjie;Li Shuyu;Liu Bing;Liu Yong;ADNI",
+      "id": "out-1c8e143e8495",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quantitative radiomic features as new biomarkers for Alzheimer’s disease: An amyloid PET study — Ding Yanghui;Zhao Kun;Che Tongtong;Du Kai;Sun Hongzan;Liu Shu;Zheng Yuanjie;Li Shuyu;Liu Bing;Liu Yong;ADNI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6067,
+            "end_char": 6277
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sex modulates the apolipoprotein E e4 effect on white matter and cortical functional connectivity in individuals with amnestic mild cognitive impairment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Hua;Sun Yu;Li Muwei;Zhan Yang;Lin Li;Ding Zhaohua;Han Ying",
+      "id": "out-e2f354c984fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sex modulates the apolipoprotein E e4 effect on white matter and cortical functional connectivity in individuals with amnestic mild cognitive impairment — Lin Hua;Sun Yu;Li Muwei;Zhan Yang;Lin Li;Ding Zhaohua;Han Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6283,
+            "end_char": 6506
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "第一届全国博士后创新创业大赛总决赛揭榜领题赛金奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘勇;徐光远;张校雨;康孝鹏;孙一堡;吴江平;仲苏玉;聂礼强",
+      "id": "out-10806e13d869",
+      "evidence": [
+        {
+          "quote": "[奖励] 第一届全国博士后创新创业大赛总决赛揭榜领题赛金奖 — 刘勇;徐光远;张校雨;康孝鹏;孙一堡;吴江平;仲苏玉;聂礼强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6512,
+            "end_char": 6573
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "吴文俊人工智能科学技术奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋田仔;刘勇;刘冰;于春水;李坤成",
+      "id": "out-64ece58a965e",
+      "evidence": [
+        {
+          "quote": "[奖励] 吴文俊人工智能科学技术奖 — 蒋田仔;刘勇;刘冰;于春水;李坤成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6579,
+            "end_char": 6615
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-template Neuroimaging Feature Selection Using Weight-constrained Low-rank Learning for Alzheimer’s Disease Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Xiaoke;An Qijin;Jiang Tao;Guo Yingchun;Li Jie;Shi Shuo;Yu Ming;Liu Bing;Han Ying;Liu Yong",
+      "id": "out-bb5e81a70012",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-template Neuroimaging Feature Selection Using Weight-constrained Low-rank Learning for Alzheimer’s Disease Classification — Hao Xiaoke;An Qijin;Jiang Tao;Guo Yingchun;Li Jie;Shi Shuo;Yu Ming;Liu Bing;Han Ying;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6621,
+            "end_char": 6850
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于注意力机制的脑疾病分类系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘勇;金丹;蒋田仔;刘冰",
+      "id": "out-6a59531deabb",
+      "evidence": [
+        {
+          "quote": "[专利] 基于注意力机制的脑疾病分类系统 — 刘勇;金丹;蒋田仔;刘冰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6856,
+            "end_char": 6890
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Regional radiomics similarity networks (R2SNs) in the human brain: Reproducibility, small-world properties and a biological basis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Kun;Zheng Qiang;Che Tongtong;Dyrba Martin;Li Qiongling;Ding Yanhui;Zheng Yuanjie;Liu Yong;Li Shuyu",
+      "id": "out-416b02e69031",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Regional radiomics similarity networks (R2SNs) in the human brain: Reproducibility, small-world properties and a biological basis — Zhao Kun;Zheng Qiang;Che Tongtong;Dyrba Martin;Li Qiongling;Ding Yanhui;Zheng Yuanjie;Liu Yong;Li Shuyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6896,
+            "end_char": 7137
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coupling of the spatial distributions between sMRI and PET reveals the progression of Alzheimer’s disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Kun;Lin Jiaji;Dyrba Martin;Wang Dong;Che Tongtong;Wu Haoyang;Wang Jingyu;Liu Yong;Li Shuyu",
+      "id": "out-52dec4ebed34",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Coupling of the spatial distributions between sMRI and PET reveals the progression of Alzheimer’s disease — Zhao Kun;Lin Jiaji;Dyrba Martin;Wang Dong;Che Tongtong;Wu Haoyang;Wang Jingyu;Liu Yong;Li Shuyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7143,
+            "end_char": 7352
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Independent and reproducible hippocampal radiomic biomarkers for multisite Alzheimer's disease: diagnosis, longitudinal progress and biological basis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Kun;Ding Yanhui;Han Ying;Fan Yong;Alexander-Bloch Aaron;Han Tong;Jin Dan;Liu Bing;Lu Jie;Song Chengyuan;Wang Pan;Wang Dawei;Wang Qing;Xu Kaibin;Yang Hongwei;Yao Hongxiang;Zheng Yuanjie;Yu Chunshui;Zhou Bo;Zhang Xinqing;Zhou Yuying;Jiang Tianzi;Zhang Xi;Liu Yong",
+      "id": "out-dd052406a910",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Independent and reproducible hippocampal radiomic biomarkers for multisite Alzheimer's disease: diagnosis, longitudinal progress and biological basis — Zhao Kun;Ding Yanhui;Han Ying;Fan Yong;Alexander-Bloch Aaron;Han Tong;Jin Dan;Liu Bing;Lu Jie;Song Chengyuan;Wang Pan;Wang Dawei;Wang Qing;Xu Kaibin;Yang Hongwei;Yao Hongxiang;Zheng Yuanjie;Yu Chunshui;Zhou Bo;Zhang Xinqing;Zhou Yuying;Jiang Tianzi;Zhang Xi;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7358,
+            "end_char": 7782
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Grab-AD: Generalizability and reproducibility of altered brain activity and diagnostic classification in Alzheimer's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Dan;Wang Pan;Zalesky Andrew;Liu Bing;Song Chengyuan;Wang Dawei;Xu Kaibin;Yang Hongwei;Zhang Zengqiang;Yao Hongxiang;Zhou Bo;Han Tong;Zuo Nianming;Han Ying;Lu Jie;Wang Qing;Yu Chunshui;Zhang Xinqing;Zhang Xi;Jiang Tianzi;Zhou Yuying;Liu Yong",
+      "id": "out-2ea183c9695f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Grab-AD: Generalizability and reproducibility of altered brain activity and diagnostic classification in Alzheimer's Disease — Jin Dan;Wang Pan;Zalesky Andrew;Liu Bing;Song Chengyuan;Wang Dawei;Xu Kaibin;Yang Hongwei;Zhang Zengqiang;Yao Hongxiang;Zhou Bo;Han Tong;Zuo Nianming;Han Ying;Lu Jie;Wang Qing;Yu Chunshui;Zhang Xinqing;Zhang Xi;Jiang Tianzi;Zhou Yuying;Liu Yong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7788,
+            "end_char": 8165
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of subjective cognitive decline due to Alzheimer’s disease using multimodal MRI combining with machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Hua;Jiang Jiehui;Li Zhuoyuan;Sheng Can;Du Wenying;Li Xiayu;Han Ying",
+      "id": "out-d896dedebe90",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of subjective cognitive decline due to Alzheimer’s disease using multimodal MRI combining with machine learning — Lin Hua;Jiang Jiehui;Li Zhuoyuan;Sheng Can;Du Wenying;Li Xiayu;Han Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8171,
+            "end_char": 8377
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AI4AD: Artificial intelligence analysis for Alzheimer's disease classification based on a multisite DTI database",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qu Yida;Wang Pan;Liu Bing;Song Chengyuan;Wang Daiwei;Yang Hongwei;Zhang Zengqiang;Chen Pindong;Kang Xiaopeng;Du Kai;Yao Hongxiang;Zhou Bo;Han Tong;Zuo Nianming;Han Ying;Lu Jie;Yu Chunshui;Zhang Xi;Jiang Tianzi;Zhou Yuying;Liu Yong;MCADI",
+      "id": "out-2c658de8743c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AI4AD: Artificial intelligence analysis for Alzheimer's disease classification based on a multisite DTI database — Qu Yida;Wang Pan;Liu Bing;Song Chengyuan;Wang Daiwei;Yang Hongwei;Zhang Zengqiang;Chen Pindong;Kang Xiaopeng;Du Kai;Yao Hongxiang;Zhou Bo;Han Tong;Zuo Nianming;Han Ying;Lu Jie;Yu Chunshui;Zhang Xi;Jiang Tianzi;Zhou Yuying;Liu Yong;MCADI",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8383,
+            "end_char": 8740
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Disrupted white matter functional connectivity in aMCI APOEε4 carriers: a resting-state study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Hua;Li Muwei;Zhan Yang;Lin Li;Yang Kun;Hu Shimin;Han Ying",
+      "id": "out-9f3c0038fe8a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Disrupted white matter functional connectivity in aMCI APOEε4 carriers: a resting-state study — Lin Hua;Li Muwei;Zhan Yang;Lin Li;Yang Kun;Hu Shimin;Han Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8746,
+            "end_char": 8909
+          },
+          "version": "71d116f3c4f0a216caa7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 24,
+    "listed": 24,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

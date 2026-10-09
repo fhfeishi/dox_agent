@@ -2,15 +2,20 @@
   "doc_id": "32e5e5c70f806e4a56f2",
   "version": "8452e3324b2697d42adc",
   "source_hash": "14dca2fc3bcabbff50aae9f01bb24adc4edf5a65311d87336a3764d1fb5d8f4d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.526206+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 6
+  },
+  "generated_at": "2026-10-09T11:51:35.759843+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fad4ac14deaf",
-          "name": "AI辅助抗阿尔茨海默病药物设计",
-          "desc": "基于网络药理学与人工智能，开展抗阿尔茨海默病靶标组合与药物组合的设计研究。",
+          "id": "item-aefadb5f1640",
+          "name": "阿尔茨海默病多靶标药物发现",
+          "desc": "网络药理学与人工智能",
           "evidence": [
             {
-              "quote": "阿尔茨海默病（AD）是严重危害人们健康的重大疾病，但目前还缺乏有效治疗药物",
+              "quote": "本项目针对阿尔茨海默病（AD）发病机制复杂、单一靶点药物疗效有限的问题，围绕“基于网络的靶标与药物组合预测”这一核心目标",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+                "page": 2,
+                "chunk_id": "7f6f23cf447b18d4c8be2a457de881426fdd3cc4"
               },
               "version": "8452e3324b2697d42adc"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-630743c35485",
-          "name": "致病机制复杂致单靶点药物疗效有限",
-          "desc": "AD致病机制过于复杂尚未完全弄清，针对单个靶标的药物难以达到治疗目的，需采用多药物-多靶标网络模式开发药物。",
+          "id": "item-2957d0e0e1b5",
+          "name": "AD发病机制复杂，单一靶点药物疗效有限",
+          "desc": "缺乏有效治疗药物",
           "evidence": [
             {
-              "quote": "其原因就是其致病机制过于复杂，目前尚未完全弄清",
+              "quote": "本项目针对阿尔茨海默病（AD）发病机制复杂、单一靶点药物疗效有限的问题",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+                "page": 2,
+                "chunk_id": "7f6f23cf447b18d4c8be2a457de881426fdd3cc4"
               },
               "version": "8452e3324b2697d42adc"
             }
@@ -63,20 +68,123 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8df3da74ef0c",
-          "name": "蛋白-基因-通路-疾病关联网络预测方法",
-          "desc": "构建蛋白-基因-通路-疾病关联网络并发展方法预测潜在靶标与靶标组合，基于靶标组合开展药物重定位与虚拟筛选，并结合结构优化与实验验证。",
+          "id": "item-a47f5c13e343",
+          "name": "TCnet靶标组合预测",
+          "desc": "基于网络和结构，结合表型筛选与关键节点识别算法GAPR",
           "evidence": [
             {
-              "quote": "首先基于已有数据，构建蛋白-基因-通路-疾病关联网络，进而发展方法预测潜在靶标和靶标组合",
+              "quote": "一是发展并应用了基于网络和结构的靶标组合预测方法（如TCnet），结合表型筛选与关键节点识别算法（GAPR），成功预测出NRF2、NR3C1等多个AD潜在靶标及GSK3 β/ADAM17等靶标组合",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "4deae521d3a79e64fcc556a3c19a932d133d868a"
+                "page": 2,
+                "chunk_id": "7f6f23cf447b18d4c8be2a457de881426fdd3cc4"
               },
               "version": "8452e3324b2697d42adc"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ff436e5ce599",
+          "name": "药物-靶标-疾病网络与知识图谱药物组合预测",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "二是构建大规模药物-靶标-疾病网络及知识图谱，实现了AD潜在药物与药物组合的预测",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "7f6f23cf447b18d4c8be2a457de881426fdd3cc4"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b5ea1d213ecd",
+          "name": "KG-CNNDTI与Pocket-CPI药物靶标相互作用预测",
+          "desc": "知识图谱增强与结构信息",
+          "evidence": [
+            {
+              "quote": "三是研发了知识图谱增强的DTI预测模型KG-CNNDTI和结合结构信息的Pocket-CPI模型，应用于AD相关靶标的虚拟筛选，成功发现多个活性化合物",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "7f6f23cf447b18d4c8be2a457de881426fdd3cc4"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-650a41b83858",
+          "name": "网络分离度与邻近度药物组合预测",
+          "desc": "799,480个上市药物组合",
+          "evidence": [
+            {
+              "quote": "通过基于网络分离度的预测方法，我们为799,480个上市药物的药物组合计算了药物-药物靶标模块之间的拓扑距离关系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "0f6531b106e4629fe8ff11d38fb14c890ec88b80"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-055b3da136dd",
+          "name": "引入细胞系扰动数据的知识图谱药物组合预测",
+          "desc": "L1000FWD数据，神经退行性疾病特异性",
+          "evidence": [
+            {
+              "quote": "我们从L1000FWD数据库以及DRIAD工作中收集药物对于神经细胞系（NEU，ReNcellVM细胞系）的基因上下调扰动数据，并将其加入MSI知识图谱当中，构建了针对神经退行性疾病的特异性扰动知识图谱",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "5b394ef07bfd9dd7cf0c4a0424eb5687159fa57f"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1d47cb422a60",
+          "name": "KG-CNNDTI知识图谱增强DTI预测模型",
+          "desc": "Node2Vec、ProteinBERT与Uni-Mol",
+          "evidence": [
+            {
+              "quote": "其次，采用Node2Vec算法从知识图谱中提取蛋白的拓扑结构信息，并结合ProteinBERT生成蛋白序列表征，以此构建更全面的蛋白特征",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "6dbaf85fedc2c54041cfc79da395b0499caf2654"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8dedbe0c829d",
+          "name": "Pocket-CPI与深度学习物理知识组合筛选",
+          "desc": "1800万分子库，NMDA N1/N3亚型",
+          "evidence": [
+            {
+              "quote": "我们提出了一种基于深度学习与物理知识相结合的组合筛选策略（图9）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "bc9e721f953a1c51cff74c8695ac10ab232e2583"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,12 +193,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf649829e919",
-          "name": "实验验证3个靶标与10个抗AD老药",
-          "desc": "实验验证了3个AD潜在靶标、2对靶标组合、10个抗AD老药及6个活性化合物，牛磺酸-多奈哌齐组合在细胞模型中显示显著协同抗炎效果；发表SCI论文12篇，申请发明专利1项、软著2项。",
+          "id": "item-f852318d2be1",
+          "name": "实验验证的靶标、老药与化合物",
+          "desc": "3个靶标、2对靶标组合、10个老药、6个活性化合物",
           "evidence": [
             {
-              "quote": "实验验证了3个AD潜在靶标、2对靶标组合、10个抗AD老药及6个活性化合物",
+              "quote": "实验验证了3个AD潜在靶标、2对靶标组合、10个抗AD老药及6个活性化合物，其中牛磺酸-多奈哌齐组合在细胞模型中显示出显著协同抗炎效果",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -99,44 +207,111 @@
               "version": "8452e3324b2697d42adc"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文12篇，发明专利1项，软著2项",
+          "evidence": [
+            {
+              "quote": "共发表SCI论文12篇（其中第一标注4篇），申请发明专利1项，获软件著作权2项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "020828dfbbfbcad0255a7b776f11503a0fa3fbbd"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-b9fa7e6d27b9",
+          "name": "计划目标完成",
+          "desc": "发现靶标3个、靶标组合2对、老药10个、药物组合16对",
+          "evidence": [
+            {
+              "quote": "已发现AD潜在靶标3个（NRF2、NR3C1、SHBG)，靶标组合 2 对（GSK3β 和 ADAM17、NRF2 和 APP)",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "3ee0c71df6c79d399667fad26922d5b66a007cc8"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-570d8fb767d5",
+          "name": "KG-CNNDTI性能",
+          "desc": "AUC 0.972",
+          "evidence": [
+            {
+              "quote": "最优模型 KG-CNNDTI的 AUC 值达到 0.972",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "1860231cb4bf344e62b5ada7e68514453315a74d"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-71d010ae969e",
+          "name": "牛磺酸-多奈哌齐协同抗炎",
+          "desc": "降低IL-6、TNF-α、IL-1β和IFN-β，细胞水平",
+          "evidence": [
+            {
+              "quote": "牛磺酸与多奈哌齐的组合可以较好地降低炎症因子（IL-6、TNF-α、IL-1β）和IFN-β水平，并且具有明显的协同效应",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 13,
+                "chunk_id": "edf50f852c1b52cb24c5302aa4a939d3a29b9022"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7a37fcfee744",
+          "name": "NMDA N1/N3抑制剂筛选",
+          "desc": "12个候选，3个IC50低于100μM，最佳libA1854 2.45μM",
+          "evidence": [
+            {
+              "quote": "活性最好分子libA1854的",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "bc9e721f953a1c51cff74c8695ac10ab232e2583"
+              },
+              "version": "8452e3324b2697d42adc"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fad4ac14deaf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-630743c35485"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-630743c35485"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8df3da74ef0c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8df3da74ef0c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf649829e919"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

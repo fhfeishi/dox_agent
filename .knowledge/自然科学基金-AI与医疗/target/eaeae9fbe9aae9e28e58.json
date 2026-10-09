@@ -2,15 +2,20 @@
   "doc_id": "eaeae9fbe9aae9e28e58",
   "version": "4f510a1673b4b8cf21f4",
   "source_hash": "d56dc2079e255ea1262c3e31c65e37a93b7fa8b4ea75b02b57a9037be24dcc3a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.092248+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.527943+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4b5eee7d71c7",
-          "name": "肝包虫病AI辅助诊断",
-          "desc": "包虫病是危害严重的人兽共患寄生虫病，我国受威胁人口与患者数居全球首位。",
+          "id": "item-1fe2fd21a08d",
+          "name": "肝包虫病CT辅助诊断",
+          "desc": "平扫CT与深度学习",
           "evidence": [
             {
-              "quote": "包虫病是一种危害严重的人兽共患寄生虫病，遍及世界各大陆",
+              "quote": "本项目基于平扫CT影像图像，结合深度学习技术，开展肝包虫病人工智能辅助诊断研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 674
-              },
-              "version": "4f510a1673b4b8cf21f4"
-            }
-          ]
-        },
-        {
-          "id": "item-3daa312f1a94",
-          "name": "资源匮乏农牧地区诊疗",
-          "desc": "青海三江源等重灾区环境恶劣、医疗资源匮乏，医生水平非同质现象明显。",
-          "evidence": [
-            {
-              "quote": "该地区环境恶劣，医疗资源匮乏，医生水平非同质现象明显",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 732,
-                "end_char": 757
+                "start_char": 2808,
+                "end_char": 2846
               },
               "version": "4f510a1673b4b8cf21f4"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-455c1dca7df6",
-          "name": "早期诊断难且依赖临床经验",
-          "desc": "肝包虫病广泛流行于医疗资源匮乏地区，早期诊断困难，病灶分型与活性评估高度依赖经验。",
+          "id": "item-77faca34db26",
+          "name": "早期诊断困难，分型与活性评估依赖经验",
+          "desc": "农牧区医疗资源匮乏",
           "evidence": [
             {
-              "quote": "广泛流行于医疗资源匮乏的农牧地区，其早期诊断困难，病灶分型及活性评估高度依赖临床经验",
+              "quote": "其早期诊断困难，病灶分型及活性评估高度依赖临床经验",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2750,
+                "start_char": 2767,
                 "end_char": 2791
-              },
-              "version": "4f510a1673b4b8cf21f4"
-            }
-          ]
-        },
-        {
-          "id": "item-3676c376264a",
-          "name": "医生对包虫病CT存在误判",
-          "desc": "前期实验发现医生对包虫病CT存在误判，需辅助诊断手段降低漏诊误诊。",
-          "evidence": [
-            {
-              "quote": "我们在前期实验里进一步发现医生对包虫病CT误判的原因",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 854,
-                "end_char": 879
               },
               "version": "4f510a1673b4b8cf21f4"
             }
@@ -95,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8d73a2fcce32",
-          "name": "U-Net++病灶分割与注意力机制",
-          "desc": "开发基于U-Net和U-Net++的深度学习分割模型，并引入注意力机制提升分割精度。",
+          "id": "item-496c2fc5e9e4",
+          "name": "EDAM肝包虫病AI辅助诊断系统",
+          "desc": "3D肝脏分割、Mask R-CNN与BiGRU-Attention",
+          "evidence": [
+            {
+              "quote": "构建了肝包虫病AI辅助诊断系统EDAM，融合3D肝脏分割、2D切片级Mask R-CNN检测分割及患者级BiGRU-Attention序列诊断",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3244,
+                "end_char": 3314
+              },
+              "version": "4f510a1673b4b8cf21f4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-0a5887f994bd",
+          "name": "HCE与HAE病灶分割模型",
+          "desc": "U-Net与U-Net++加注意力",
           "evidence": [
             {
               "quote": "开发了基于U-Net和U-Net++的深度学习分割模型，并引入注意力机制显著提升了分割精度",
@@ -108,12 +98,13 @@
               },
               "version": "4f510a1673b4b8cf21f4"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e43df588cf75",
-          "name": "多模态融合病灶活性评估",
-          "desc": "融合放射组学、2D与3D深度学习特征构建多模态模型，判别HCE病灶活性。",
+          "id": "item-f90a66066ffe",
+          "name": "囊型病灶活性多模态融合模型",
+          "desc": "放射组学、2D与3D深度学习特征",
           "evidence": [
             {
               "quote": "融合放射组学、2D深度学习特征、3D深度学习特征构建了多模态融合模型",
@@ -124,23 +115,8 @@
               },
               "version": "4f510a1673b4b8cf21f4"
             }
-          ]
-        },
-        {
-          "id": "item-f07a8b546597",
-          "name": "肝动静脉门静脉自动分割",
-          "desc": "构建肝动静脉及门静脉自动分割模型，量化病灶与大血管空间关系。",
-          "evidence": [
-            {
-              "quote": "构建了肝动静脉及门静脉自动分割模型，实现病灶与大血管空间关系的自动量化分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3173,
-                "end_char": 3209
-              },
-              "version": "4f510a1673b4b8cf21f4"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +125,102 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d1ff1a39de6b",
-          "name": "肝包虫病AI诊断系统EDAM",
-          "desc": "融合3D肝脏分割、2D切片级检测分割与患者级序列诊断，实现四分类智能辅助诊断，准确率超93%。",
+          "id": "item-b60b294ac797",
+          "name": "多中心肝包虫病CT数据库",
+          "desc": "HCE、HAE、肝囊肿及正常肝脏",
           "evidence": [
             {
-              "quote": "构建了肝包虫病AI辅助诊断系统EDAM",
+              "quote": "构建了多中心肝包虫病CT数据库，涵盖肝囊型包虫病（HCE）、肝泡型包虫病(HAE)、肝囊肿及正常肝脏",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3244,
-                "end_char": 3262
+                "start_char": 2884,
+                "end_char": 2933
               },
               "version": "4f510a1673b4b8cf21f4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-976d60325351",
-          "name": "病灶分割Dice提升",
-          "desc": "HCE病灶分割Dice由88.46%提升至90.81%，HAE由78.32%提升至80.69%，外部验证稳定。",
+          "id": "item-b4bbbf89025a",
+          "name": "EDAM性能",
+          "desc": "准确率超过93%，AUC均大于0.92",
           "evidence": [
             {
-              "quote": "HCE病灶分割Dice系数由88.46%提升至90.81%，HAE病灶Dice系数由78.32%提升至80.69%",
+              "quote": "系统在多中验证集的诊断准确率超过93%，AUC均大于0.92，整体性能优于放射科医生",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3065,
-                "end_char": 3121
+                "start_char": 3345,
+                "end_char": 3386
               },
               "version": "4f510a1673b4b8cf21f4"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-68b2bb32d694",
-          "name": "Transformer活性判别AUC",
-          "desc": "基于Transformer的融合模型在内外部验证集AUC分别达0.997和0.944。",
-          "evidence": [
-            {
-              "quote": "基于Transformer的融合模型在内外部验证集中的AUC分别达到0.997和0.944",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3486,
-                "end_char": 3530
-              },
-              "version": "4f510a1673b4b8cf21f4"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4b5eee7d71c7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-455c1dca7df6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于影像组学及临床特征的机器学习模型鉴别肝细粒棘球蚴病病灶活性的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汪占金;陈志恒;李富源;蔡俊杰;薛张佗;周瀛;曹云太;王展",
+      "id": "out-513f5f3e4c4b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于影像组学及临床特征的机器学习模型鉴别肝细粒棘球蚴病病灶活性的研究 — 汪占金;陈志恒;李富源;蔡俊杰;薛张佗;周瀛;曹云太;王展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3787
+          },
+          "version": "4f510a1673b4b8cf21f4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-455c1dca7df6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8d73a2fcce32"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8d73a2fcce32"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-976d60325351"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e43df588cf75"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-68b2bb32d694"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of Lesion Bioactivity in Hepatic Cystic Echinococcosis Using a Transformer-Based Fusion Model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhanjin Wang;Fuyuan Li;Junjie Cai;Zhangtuo Xue;Kaihao Du;Yongping Tao;Hanxi Zhang;Ying Zhou;Haining Fan;Zhan Wang",
+      "id": "out-3c4463efec0f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of Lesion Bioactivity in Hepatic Cystic Echinococcosis Using a Transformer-Based Fusion Model — Zhanjin Wang;Fuyuan Li;Junjie Cai;Zhangtuo Xue;Kaihao Du;Yongping Tao;Hanxi Zhang;Ying Zhou;Haining Fan;Zhan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3792,
+            "end_char": 4022
+          },
+          "version": "4f510a1673b4b8cf21f4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

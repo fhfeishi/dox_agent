@@ -2,15 +2,20 @@
   "doc_id": "7eaad3c17fc30d94c498",
   "version": "61faac84be6459813374",
   "source_hash": "fa52255c7afda7c6de0237ccf8587b6b9b2da2dbde62b23d882842dc7b4afa87",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.822058+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:47:16.794759+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-737c8ce3c61f",
-          "name": "脑白质异质性与认知异常相关性",
-          "desc": "正常白质排列规律呈明显同质性，在年龄等病理因素下结构紊乱、异质性增加，需警惕痴呆等神经退行性疾病。",
+          "id": "item-d788a9d62ec7",
+          "name": "脑白质异质性与认知异常",
+          "desc": "影像组学评估白质老化",
           "evidence": [
             {
-              "quote": "正常白质排列规律、分布有序，呈明显同质性，在年龄等病理因素作用下白质结构紊乱、异质性增加，当病理改变程度明显高于相对应的生理年龄表现时，则需警惕痴呆等神经退行性疾病",
+              "quote": "白质在大脑衰老过程中至关重要，了解其正常的衰老模式有助于预测认知能力下降",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 658,
-                "end_char": 739
-              },
-              "version": "61faac84be6459813374"
-            }
-          ]
-        },
-        {
-          "id": "item-f9fff6d27641",
-          "name": "认知损害早期预防与监测",
-          "desc": "为评估白质病理改变提供新型影像学标记物，为早期预防、监测认知损害进程提供参考意见。",
-          "evidence": [
-            {
-              "quote": "本项目将为评估白质的病理改变提供新型影像学标记物，为早期预防、监测认知损害的进程提供参考意见",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1009,
-                "end_char": 1054
+                "start_char": 2885,
+                "end_char": 2920
               },
               "version": "61faac84be6459813374"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-50443a74f730",
-          "name": "影像组学评估白质微结构改变待验证",
-          "desc": "影像组学可反映肿瘤病理异质性预测生物学行为，但其能否通过异质性评估白质微结构改变仍需研究。",
+          "id": "item-a4218f706dec",
+          "name": "评估白质病理改变缺乏影像学标记物",
+          "desc": "早期预防监测认知损害",
           "evidence": [
             {
-              "quote": "新兴的影像组学可反映肿瘤的病理异质性来预测生物学行为，但其能否通过异质性评估白质的微结构改变仍需研究",
+              "quote": "本项目将为评估白质的病理改变提供新型影像学标记物",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 741,
-                "end_char": 790
-              },
-              "version": "61faac84be6459813374"
-            }
-          ]
-        },
-        {
-          "id": "item-031828c0f235",
-          "name": "需验证异质性预测认知改变假设",
-          "desc": "基于前期结果假设影像组学能评估白质异质性并预测认知改变，需从动物实验与临床两方面探究可行性。",
-          "evidence": [
-            {
-              "quote": "我们前期结果表明白质的纹理特征对于白质高信号进展有提示意义。基于此我们假设影像组学能评估白质的异质性并预测认知改变",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 792,
-                "end_char": 848
+                "start_char": 1009,
+                "end_char": 1032
               },
               "version": "61faac84be6459813374"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-101901d7a2df",
-          "name": "动物实验与临床双向验证",
-          "desc": "从动物实验和临床试验两个方面探究假设可行性，研究大鼠白质异质性与病理改变程度的相关性。",
+          "id": "item-c8de69af4782",
+          "name": "正常脑老化影像组学模型",
+          "desc": "3D全脑白质，Radscore与年龄相关",
           "evidence": [
             {
-              "quote": "本研究拟从动物实验和和临床试验二个方面探究假设可行性：1）通过动物实验研究大鼠白质异质性与病理改变程度的相关性，从病理上证实可行性",
+              "quote": "首先利用认知正常受试者的3D全脑白质构建了一个正常脑老化影像组学模型，显示出较高的准确性(0.7503-0.7514)，并且异质性标志物Radscore与年龄之间存在显著相关性(r=0.501，P<0.001)",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 850,
-                "end_char": 914
+                "start_char": 3123,
+                "end_char": 3227
               },
               "version": "61faac84be6459813374"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bc44aa59c6ea",
-          "name": "白质组学模型与临床因素联合建模",
-          "desc": "通过临床横断面研究分析白质异质性与小血管病变总负荷评分的相关性，并联合临床因素构建正常白质老化诊断模型。",
+          "id": "item-91151657667f",
+          "name": "“熵”类影像组学特征",
+          "desc": "小鼠白质髓鞘衰老相关",
           "evidence": [
             {
-              "quote": "通过临床横断面研究分析白质异质性与宏观视觉上小血管病变总负荷评分的相关性，并联合临床因素构建正常白质老化的诊断模型",
+              "quote": "发现最相关的四个特征均都属于“熵”的范畴，“熵”是衡量图像异质性的指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 918,
-                "end_char": 974
+                "start_char": 2954,
+                "end_char": 2988
               },
               "version": "61faac84be6459813374"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,165 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bde42b1a2add",
-          "name": "熵特征反映白质髓鞘脱失",
-          "desc": "发现最相关的四个特征均属熵的范畴，老年小鼠熵值显著升高，可反映白质髓鞘脱失导致的组织紊乱与异质性增加。",
+          "id": "item-6bd608707c59",
+          "name": "MCI患者白质异质性预警阈值",
+          "desc": "66-75岁高于正常1.7倍，76-85岁1.3倍",
           "evidence": [
             {
-              "quote": "发现最相关的四个特征均都属于“熵”的范畴，“熵”是衡量图像异质性的指标。本研究中老年小鼠的熵值均显著升高，可以反映出白质髓鞘脱失所导致的组织紊乱和异质性增加",
+              "quote": "66-75岁年龄段的白质异质性明显高于相对应的正常生理年龄1.7倍时，需警惕存在MCI风险；76-85岁年龄段的图像异质性为正常受试者的1.3倍时也需警惕",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2954,
-                "end_char": 3031
+                "start_char": 3304,
+                "end_char": 3380
               },
               "version": "61faac84be6459813374"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-33a305268ef6",
-          "name": "正常脑老化模型准确性0.7503-0.7514",
-          "desc": "利用3D全脑白质构建正常脑老化影像组学模型，准确性为0.7503-0.7514，Radscore与年龄显著相关。",
+          "id": "item-44478bac5bca",
+          "name": "126例MCI 48个月随访",
+          "desc": "Radscore较高者更易发展为痴呆",
           "evidence": [
             {
-              "quote": "利用认知正常受试者的3D全脑白质构建了一个正常脑老化影像组学模型，显示出较高的准确性(0.7503-0.7514)，并且异质性标志物Radscore与年龄之间存在显著相关性(r=0.501，P<0.001)",
+              "quote": "对126名MCI进行48个月的随访发现，Radscore相对较高的患者更有可能发展为痴呆",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3125,
-                "end_char": 3227
-              },
-              "version": "61faac84be6459813374"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1b84a9fc2d67",
-          "name": "高Radscore预示痴呆风险",
-          "desc": "对126名MCI随访48个月发现，Radscore相对较高的患者更有可能发展为痴呆。",
-          "evidence": [
-            {
-              "quote": "最后，对126名MCI进行48个月的随访发现，Radscore相对较高的患者更有可能发展为痴呆",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3382,
+                "start_char": 3385,
                 "end_char": 3428
               },
               "version": "61faac84be6459813374"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-737c8ce3c61f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-50443a74f730"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of cognitive decline in Parkinson's disease based on MRI radiomics and clinical features: A multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jian Yongjie;Peng Jiaxuan;Wang Wei;Hu Tao;Wang Jing;Shi Hui;Li Xiaoyong;Chen Jingfang;Xu Yuyun;Shao Yuan;Song Qiaowei;Shu Zhenyu",
+      "id": "out-6bf4e382e84f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of cognitive decline in Parkinson's disease based on MRI radiomics and clinical features: A multicenter study — Jian Yongjie;Peng Jiaxuan;Wang Wei;Hu Tao;Wang Jing;Shi Hui;Li Xiaoyong;Chen Jingfang;Xu Yuyun;Shao Yuan;Song Qiaowei;Shu Zhenyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3533,
+            "end_char": 3790
+          },
+          "version": "61faac84be6459813374"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-50443a74f730"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-101901d7a2df"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reliability of radiomics features as imaging biomarkers for evaluating brain aging: A study based on myelin protein and diffusion tensor imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yuting;Hu Mengmeng;He Xiaodong;Xu Yuyun;Sun Xiaojun;Peng Jiaxuan;Zhao Fanfan;Shao Yuan",
+      "id": "out-d5a96176719a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reliability of radiomics features as imaging biomarkers for evaluating brain aging: A study based on myelin protein and diffusion tensor imaging — Yan Yuting;Hu Mengmeng;He Xiaodong;Xu Yuyun;Sun Xiaojun;Peng Jiaxuan;Zhao Fanfan;Shao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 4038
+          },
+          "version": "61faac84be6459813374"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-101901d7a2df"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bde42b1a2add"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the clinical prognosis of acute ischemic stroke using machine learning: an application of radiomic biomarkers on non-contrast CT after intravascular interventional treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Hongxian;Yan Yuting;He Xiaodong;Xu Yuyun;Wei Yuguo;Shao Yuan",
+      "id": "out-a7e36fa4da94",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the clinical prognosis of acute ischemic stroke using machine learning: an application of radiomic biomarkers on non-contrast CT after intravascular interventional treatment — Gu Hongxian;Yan Yuting;He Xiaodong;Xu Yuyun;Wei Yuguo;Shao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4299
+          },
+          "version": "61faac84be6459813374"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bc44aa59c6ea"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1b84a9fc2d67"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pattern of heterogeneity in normal brain ageing: screening for mild cognitive impairment and its risk of progression with a radiomics model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yuting;He Xiaodong;Xu Yuyun;Zhao Fanfan;Peng Jiaxuan;Shao Yuan",
+      "id": "out-bda0b066c0a8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pattern of heterogeneity in normal brain ageing: screening for mild cognitive impairment and its risk of progression with a radiomics model — Yan Yuting;He Xiaodong;Xu Yuyun;Zhao Fanfan;Peng Jiaxuan;Shao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4304,
+            "end_char": 4518
+          },
+          "version": "61faac84be6459813374"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison between morphometry and radiomics: detecting normal brain aging based on grey matter",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yuting;He Xiaodong;Xu Yuyun;Peng Jiaxuan;Zhao Fanfan;Shao Yuan",
+      "id": "out-017cc937606e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison between morphometry and radiomics: detecting normal brain aging based on grey matter — Yan Yuting;He Xiaodong;Xu Yuyun;Peng Jiaxuan;Zhao Fanfan;Shao Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4523,
+            "end_char": 4693
+          },
+          "version": "61faac84be6459813374"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

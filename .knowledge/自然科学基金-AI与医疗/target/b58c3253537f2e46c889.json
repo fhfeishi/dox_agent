@@ -2,15 +2,20 @@
   "doc_id": "b58c3253537f2e46c889",
   "version": "4b9da819ee53588844f2",
   "source_hash": "2a10318e37da09a62ad7f232df23c0c2fab72fd486e3dd16b83aa2e3a1fd9e68",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.512915+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.969949+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-979e3746ab4a",
-          "name": "多中心胶囊内窥镜影像诊断",
-          "desc": "医学影像标注工作量大且不能随意传输以保护隐私，需在保护隐私前提下协同建模。",
+          "id": "item-b1a81ca463ae",
+          "name": "多中心胶囊内窥镜影像联邦主动学习",
+          "desc": "隐私数据共享难、分布差异显著、标注成本高",
           "evidence": [
             {
-              "quote": "针对医学影像数据标注工作量大，且不能随意传输以保护隐私的特点",
+              "quote": "本项目围绕多中心胶囊内窥镜影像智能诊断中“隐私数据共享难、分布差异显著、标注成本高、模型泛化性弱”的关键科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 633,
-                "end_char": 662
+                "start_char": 2375,
+                "end_char": 2430
               },
               "version": "4b9da819ee53588844f2"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d00ee8583059",
-          "name": "隐私共享难标注成本高泛化弱",
-          "desc": "多中心胶囊内窥镜影像诊断存在隐私数据共享难、分布差异显著、标注成本高、模型泛化性弱等问题。",
+          "id": "item-81544e7630cc",
+          "name": "隐私数据共享难、分布差异显著、标注成本高、模型泛化性弱",
+          "desc": "关键科学问题",
           "evidence": [
             {
-              "quote": "本项目围绕多中心胶囊内窥镜影像智能诊断中“隐私数据共享难、分布差异显著、标注成本高、模型泛化性弱”的关键科学问题",
+              "quote": "隐私数据共享难、分布差异显著、标注成本高、模型泛化性弱",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2375,
-                "end_char": 2430
-              },
-              "version": "4b9da819ee53588844f2"
-            }
-          ]
-        },
-        {
-          "id": "item-8197dc5d1f75",
-          "name": "数据非独立同分布且无法共享",
-          "desc": "多中心影像数据非独立同分布且无法共享，制约协同建模。",
-          "evidence": [
-            {
-              "quote": "面对多中心胶囊内窥镜影像数据非独立同分布且无法共享的挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2548,
-                "end_char": 2575
+                "start_char": 2396,
+                "end_char": 2422
               },
               "version": "4b9da819ee53588844f2"
             }
@@ -79,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0648ca382a9c",
-          "name": "联邦主动学习方法",
-          "desc": "实现基于客户端自治度与注意力加权聚合的联邦主动学习方法，实现协同建模与高价值样本筛选。",
+          "id": "item-cc2ffc447234",
+          "name": "客户端自治度加注意力加权聚合的联邦主动学习方法",
+          "desc": "多中心协同建模与高价值样本主动筛选",
           "evidence": [
             {
               "quote": "项目组实现了基于“客户端自治度+注意力加权聚合”的联邦主动学习方法，实现了多中心协同建模与高价值数据样本主动筛选",
@@ -92,39 +81,42 @@
               },
               "version": "4b9da819ee53588844f2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ab7fec85fd33",
-          "name": "无监督聚类与主动样本选择",
-          "desc": "提出无监督特征聚类、主动样本选择与可解释数据效用增强方法，降低标注成本。",
+          "id": "item-2b07671a3027",
+          "name": "无监督特征聚类加主动样本选择加可解释数据效用增强",
+          "desc": "仅需标注约70%数据达全量标注95%性能",
           "evidence": [
             {
-              "quote": "提出“无监督特征聚类+主动样本选择+可解释数据效用增强”方法",
+              "quote": "项目组提出“无监督特征聚类+主动样本选择+可解释数据效用增强”方法，该方法仅需标注约70%的数据便可达到全量标注95%的性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2761,
-                "end_char": 2790
+                "start_char": 2758,
+                "end_char": 2819
               },
               "version": "4b9da819ee53588844f2"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-efe4df1b3167",
-          "name": "轻量级联邦迁移学习",
-          "desc": "提出特征迁移、子网结构选择与时空对齐的轻量级联邦迁移学习方法，支持新中心零标注适配。",
+          "id": "item-5f1edf7bc62c",
+          "name": "特征迁移加子网结构选择加时空对齐的轻量级联邦迁移学习",
+          "desc": "新中心零标注快速适配",
           "evidence": [
             {
-              "quote": "提出“特征迁移+子网结构选择+时空对齐”的轻量级联邦迁移学习方法",
+              "quote": "提出“特征迁移+子网结构选择+时空对齐”的轻量级联邦迁移学习方法，实现新中心的零标注快速适配",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2904,
-                "end_char": 2935
+                "end_char": 2949
               },
               "version": "4b9da819ee53588844f2"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,255 @@
       "state": "has",
       "items": [
         {
-          "id": "item-681e832f3b6a",
-          "name": "多中心协同性能提升6.3%至11.2%",
-          "desc": "三中心模拟实验中分类与分割任务取得6.3%–11.2%性能提升，通信成本降低18%–27%。",
+          "id": "item-93552e9097c3",
+          "name": "三中心模拟实验性能提升",
+          "desc": "分类与分割提升6.3%–11.2%，通信成本降低18%–27%",
           "evidence": [
             {
-              "quote": "该方法在医学影像数据分类与分割任务上取得6.3%–11.2%性能提升，并将通信成本降低18%–27%",
+              "quote": "在Hyper-Kvasir数据集三中心模拟实验中，该方法在医学影像数据分类与分割任务上取得6.3%–11.2%性能提升，并将通信成本降低18%–27%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2659,
+                "start_char": 2634,
                 "end_char": 2708
               },
               "version": "4b9da819ee53588844f2"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-0cde823bb455",
-          "name": "70%标注达95%全量性能",
-          "desc": "仅需标注约70%的数据即可达到全量标注95%的性能，有效节省标注成本。",
-          "evidence": [
-            {
-              "quote": "该方法仅需标注约70%的数据便可达到全量标注95%的性能，有效节省标注成本",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2792,
-                "end_char": 2828
-              },
-              "version": "4b9da819ee53588844f2"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5057dc567999",
-          "name": "新中心零标注快速适配",
-          "desc": "实现新中心的零标注快速适配，并在多中心数据集取得5%–9%的性能提升。",
-          "evidence": [
-            {
-              "quote": "实现新中心的零标注快速适配，并在多中心数据集上取得5%–9%的性能提升",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2937,
-                "end_char": 2971
-              },
-              "version": "4b9da819ee53588844f2"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-979e3746ab4a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d00ee8583059"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于通道权重和数据效用特征的医学图像分割数据增强方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星;陶晨杰;李智;张健;孙群;韩先花;陈延伟",
+      "id": "out-28dd95433657",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于通道权重和数据效用特征的医学图像分割数据增强方法 — 武星;陶晨杰;李智;张健;孙群;韩先花;陈延伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3162,
+            "end_char": 3220
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d00ee8583059"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0648ca382a9c"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种结直肠息肉自动识别与分级方法及图像处理系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星;黄飞",
+      "id": "out-54a9342e2b5f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种结直肠息肉自动识别与分级方法及图像处理系统 — 武星;黄飞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3225,
+            "end_char": 3260
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0648ca382a9c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-681e832f3b6a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态对比学习的小肠视频关键帧检索",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星;杨国银;李婧雯;张健;孙群;韩先花;钱权;陈延伟",
+      "id": "out-3657dcaa813e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多模态对比学习的小肠视频关键帧检索 — 武星;杨国银;李婧雯;张健;孙群;韩先花;钱权;陈延伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3265,
+            "end_char": 3320
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-efe4df1b3167"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5057dc567999"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向数据异质性的一种联邦集成学习方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星",
+      "id": "out-696c81457e17",
+      "evidence": [
+        {
+          "quote": "[专利] 面向数据异质性的一种联邦集成学习方法及系统 — 武星",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3325,
+            "end_char": 3355
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FTAP: Feature transferring autonomous machine learning pipeline",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xing Wu;Cheng Chen;Pan Li;Mingyu Zhong;Jianjia Wang;Quan Qian;Peng Ding;Jianhua Yao;Yike Guo",
+      "id": "out-6c592958b310",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FTAP: Feature transferring autonomous machine learning pipeline — Xing Wu;Cheng Chen;Pan Li;Mingyu Zhong;Jianjia Wang;Quan Qian;Peng Ding;Jianhua Yao;Yike Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3360,
+            "end_char": 3524
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Causal inference in the medical domain: a survey",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Xing;Peng Shaoqi;Li Jingwen;Zhang Jian;Sun Qun;Li Weimin;Qian Quan;Liu Yue;Guo Yike",
+      "id": "out-270d77e3d864",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Causal inference in the medical domain: a survey — Wu Xing;Peng Shaoqi;Li Jingwen;Zhang Jian;Sun Qun;Li Weimin;Qian Quan;Liu Yue;Guo Yike",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3529,
+            "end_char": 3672
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于深度学习混合堆叠集成的胃肠道病变检测与分类方法及诊断系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星;黄飞",
+      "id": "out-f403d4c03004",
+      "evidence": [
+        {
+          "quote": "[专利] 基于深度学习混合堆叠集成的胃肠道病变检测与分类方法及诊断系统 — 武星;黄飞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3677,
+            "end_char": 3719
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedEL: Federated ensemble learning for non-iid data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Xing;Pei Jie;Han Xian-Hua;Chen Yen-Wei;Yao Junfeng;Liu Yang;Qian Quan;Guo Yike",
+      "id": "out-2937b23ea906",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedEL: Federated ensemble learning for non-iid data — Wu Xing;Pei Jie;Han Xian-Hua;Chen Yen-Wei;Yao Junfeng;Liu Yang;Qian Quan;Guo Yike",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3724,
+            "end_char": 3865
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DEA: Data-efficient augmentation for interpretable medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Xing;Li Zhi;Tao Chenjie;Han Xianhua;Chen Yen-Wei;Yao Junfeng;Zhang Jian;Sun Qun;Li Weimin;Liu Yue;Guo Yike",
+      "id": "out-fa29dcc94418",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DEA: Data-efficient augmentation for interpretable medical image segmentation — Wu Xing;Li Zhi;Tao Chenjie;Han Xianhua;Chen Yen-Wei;Yao Junfeng;Zhang Jian;Sun Qun;Li Weimin;Liu Yue;Guo Yike",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3870,
+            "end_char": 4065
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向少样本数据的联邦主动学习方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "武星",
+      "id": "out-ed9e5708db2b",
+      "evidence": [
+        {
+          "quote": "[专利] 面向少样本数据的联邦主动学习方法 — 武星",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4071,
+            "end_char": 4096
+          },
+          "version": "4b9da819ee53588844f2"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

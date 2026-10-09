@@ -2,15 +2,20 @@
   "doc_id": "f6e27f4de8e68be98f04",
   "version": "8d9e0a215f4d09205830",
   "source_hash": "5a41f38fb91ad80284d9fb107bba09ca057ecace21a1b25204c872220f835c03",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.670246+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.570645+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8e313764b565",
-          "name": "肝细胞癌免疫治疗耐药的影像学预测",
-          "desc": "面向进展期肝细胞癌免疫治疗耐药率高的难题，构建反映肿瘤免疫微环境的无创风险分层体系。",
+          "id": "item-55e06c7af5fc",
+          "name": "HCC免疫治疗疗效预测",
+          "desc": "多参数MRI风险分层",
           "evidence": [
             {
-              "quote": "免疫治疗已成进展期肝细胞癌（HCC）综合治疗的重要手段，但仍存在耐药率高的显著问题",
+              "quote": "本项目建立了HCC免疫治疗多中心队列，提出了基于多参数MRI的无创风险分层体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 693
+                "start_char": 2933,
+                "end_char": 2971
               },
               "version": "8d9e0a215f4d09205830"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ffa8901a486d",
-          "name": "HCC免疫治疗个体疗效差异大且有效率低",
-          "desc": "免疫治疗是HCC综合治疗的重要手段，但受限于个体间疗效差异大、治疗有效率较低，亟需精准预测手段。",
+          "id": "item-ebc256ce5f0a",
+          "name": "HCC免疫治疗个体疗效差异大、有效率低",
+          "desc": "",
           "evidence": [
             {
               "quote": "免疫治疗是HCC综合治疗的重要手段，但受限于个体间疗效差异大、治疗有效率较低",
@@ -63,20 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3ece12b79b9d",
-          "name": "多参数功能MRI融合影像组学的无创分层体系",
-          "desc": "融合多参数功能MRI、影像组学与人工智能技术，构建反映肿瘤免疫微环境、预测免疫治疗耐药的无创风险分层体系，并基于病理学分析探索病理-影像-临床核心关联机制。",
+          "id": "item-a195a700bd20",
+          "name": "多参数MRI无创风险分层体系",
+          "desc": "影像组学与AI",
           "evidence": [
             {
-              "quote": "融合多参数功能 MRI、影像组学及人工智能技术，构建能反映肿瘤免疫微环境、预测HCC免疫治疗耐药的无创风险分层体系",
+              "quote": "提出了基于多参数MRI的无创风险分层体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 945,
-                "end_char": 1001
+                "start_char": 2952,
+                "end_char": 2971
               },
               "version": "8d9e0a215f4d09205830"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,397 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a083389f58b1",
-          "name": "标注SCI论文22篇含Radiology 4项原始研究",
-          "desc": "共标注SCI论文22篇，其中4项原始研究发表于影像学顶刊Radiology、1项发表于外科学顶刊Int J Surg、1项获2023年European Radiology ESGAR Silver Award；负责人授权国家发明专利1项、参编2项HCC指南共识。",
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "标注SCI 22篇，Radiology 4项",
           "evidence": [
             {
-              "quote": "本项目共标注SCI论文22篇",
+              "quote": "本项目共标注SCI论文22篇（4项原始研究发表于影像学顶刊Radiology",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2993,
-                "end_char": 3006
+                "end_char": 3030
               },
               "version": "8d9e0a215f4d09205830"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8e313764b565"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ffa8901a486d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of the OSASH score to predict overall survival of hepatocellular carcinoma after surgical resection: a dual-institutional study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Wei;Fangfang Fu;Hanyu Jiang;Yuanan Wu;Yun Qin;Huanhuan Wei;Ting Yang;Meiyun Wang;Bin Song",
+      "id": "out-1ed299ef97e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of the OSASH score to predict overall survival of hepatocellular carcinoma after surgical resection: a dual-institutional study. — Hong Wei;Fangfang Fu;Hanyu Jiang;Yuanan Wu;Yun Qin;Huanhuan Wei;Ting Yang;Meiyun Wang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3239,
+            "end_char": 3497
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ffa8901a486d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3ece12b79b9d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multimodal imaging-based prediction of recurrence for unresectable HCC after downstage and resection-cohort study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Mengxuan Zuo;Wang Li;Shuiqing Zhuo;Peihong Wu;Chao An",
+      "id": "out-22de07bb24ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multimodal imaging-based prediction of recurrence for unresectable HCC after downstage and resection-cohort study. — Hanyu Jiang;Mengxuan Zuo;Wang Li;Shuiqing Zhuo;Peihong Wu;Chao An",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3502,
+            "end_char": 3690
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3ece12b79b9d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a083389f58b1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic implications of MRI-assessed intratumoral fat in hepatocellular carcinoma: An Asian and European cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Roberto Cannella;Zhenru Wu;Aurélie Beaufrère;Marco Dioguardi Burgio;Riccardo Sartoris;Yanshu Wang;Yun Qin;Jie Chen;Yidi Chen;Weixia Chen;Yujun Shi;Bin Song;Maxime Ronot",
+      "id": "out-ba104af52a99",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic implications of MRI-assessed intratumoral fat in hepatocellular carcinoma: An Asian and European cohort study — Hanyu Jiang;Roberto Cannella;Zhenru Wu;Aurélie Beaufrère;Marco Dioguardi Burgio;Riccardo Sartoris;Yanshu Wang;Yun Qin;Jie Chen;Yidi Chen;Weixia Chen;Yujun Shi;Bin Song;Maxime Ronot",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3695,
+            "end_char": 4004
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive diagnosis of liver cirrhosis: qualitative and quantitative imaging biomarkers.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tianying Zheng;Yali Qu;Jie Chen;Jie Yang;Hualin Yan;Hanyu Jiang;Bin Song",
+      "id": "out-04416be49ff1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive diagnosis of liver cirrhosis: qualitative and quantitative imaging biomarkers. — Tianying Zheng;Yali Qu;Jie Chen;Jie Yang;Hualin Yan;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4009,
+            "end_char": 4180
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Profiling hepatocellular carcinoma aggressiveness with contrast-enhanced ultrasound and gadoxetate disodium-enhanced MRI: An intra-individual comparative study based on the Liver Imaging Reporting and Data System.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Yang;Hanyu Jiang;Kunlin Xie;Mustafa R Bashir;Haifeng Wan;Jiayan Huang;Yun Qin;Jie Chen;Qiang Lu;Bin Song",
+      "id": "out-a543f3abe7f1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Profiling hepatocellular carcinoma aggressiveness with contrast-enhanced ultrasound and gadoxetate disodium-enhanced MRI: An intra-individual comparative study based on the Liver Imaging Reporting and Data System. — Jie Yang;Hanyu Jiang;Kunlin Xie;Mustafa R Bashir;Haifeng Wan;Jiayan Huang;Yun Qin;Jie Chen;Qiang Lu;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4185,
+            "end_char": 4515
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based 3D quantitative total tumor burden predicts early recurrence of BCLC A and B HCC after resection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Wei;Tianying Zheng;Xiaolan Zhang;Chao Zheng;Difei Jiang;Yuanan Wu;Jeong Min Lee;Mustafa R Bashir;Emily Lerner;Rongbo Liu;Botong Wu;Hua Guo;Yidi Chen;Ting Yang;Xiaoling Gong;Hanyu Jiang;Bin Song",
+      "id": "out-021838eefb02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based 3D quantitative total tumor burden predicts early recurrence of BCLC A and B HCC after resection. — Hong Wei;Tianying Zheng;Xiaolan Zhang;Chao Zheng;Difei Jiang;Yuanan Wu;Jeong Min Lee;Mustafa R Bashir;Emily Lerner;Rongbo Liu;Botong Wu;Hua Guo;Yidi Chen;Ting Yang;Xiaoling Gong;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4520,
+            "end_char": 4844
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "VICT2 Trait: Prognostic Alternative to Peritumoral Hepatobiliary Phase Hypointensity in HCC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Hong Wei;Ting Yang;Yun Qin;Yuanan Wu;Weixia Chen;Yujun Shi;Maxime Ronot;Mustafa R Bashir;Bin Song",
+      "id": "out-70ab24e100e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] VICT2 Trait: Prognostic Alternative to Peritumoral Hepatobiliary Phase Hypointensity in HCC — Hanyu Jiang;Hong Wei;Ting Yang;Yun Qin;Yuanan Wu;Weixia Chen;Yujun Shi;Maxime Ronot;Mustafa R Bashir;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4849,
+            "end_char": 5058
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Implications of CT/MRI LI-RADS in Hepatocellular Carcinoma: State of the Art and Future Directions.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Wei;Ting Yang;Jie Chen;Ting Duan;Hanyu Jiang;Bin Song",
+      "id": "out-3bb5c192d5c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Implications of CT/MRI LI-RADS in Hepatocellular Carcinoma: State of the Art and Future Directions. — Hong Wei;Ting Yang;Jie Chen;Ting Duan;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5063,
+            "end_char": 5240
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based prediction of the need for wide resection margins in patients with single hepatocellular carcinoma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanshu Wang;Yali Qu;Chongtu Yang;Yuanan Wu;Hong Wei;Yun Qin;Jie Yang;Tianying Zheng;Jie Chen;Roberto Cannella;Federica Vernuccio;Maxime Ronot;Weixia Chen;Bin Song;Hanyu Jiang",
+      "id": "out-0bca7cac09e3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based prediction of the need for wide resection margins in patients with single hepatocellular carcinoma. — Yanshu Wang;Yali Qu;Chongtu Yang;Yuanan Wu;Hong Wei;Yun Qin;Jie Yang;Tianying Zheng;Jie Chen;Roberto Cannella;Federica Vernuccio;Maxime Ronot;Weixia Chen;Bin Song;Hanyu Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5245,
+            "end_char": 5537
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based compressed SENSE improved diffusion-weighted image quality and liver cancer detection: A prospective study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ting Duan;Zhen Zhang;Yidi Chen;Mustafa R Bashir;Emily Lerner;Yali Qu;Jie Chen;Xiaoyong Zhang;Bin Song;Hanyu Jiang",
+      "id": "out-7d7555cceaa6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based compressed SENSE improved diffusion-weighted image quality and liver cancer detection: A prospective study. — Ting Duan;Zhen Zhang;Yidi Chen;Mustafa R Bashir;Emily Lerner;Yali Qu;Jie Chen;Xiaoyong Zhang;Bin Song;Hanyu Jiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5543,
+            "end_char": 5792
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI radiomics based on deep learning automated segmentation to predict early recurrence of hepatocellular carcinoma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Wei;Tianying Zheng;Xiaolan Zhang;Yuanan Wu;Yidi Chen;Chao Zheng;Difei Jiang;Botong Wu;Hua Guo;Hanyu Jiang;Bin Song",
+      "id": "out-011aaea8dc0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI radiomics based on deep learning automated segmentation to predict early recurrence of hepatocellular carcinoma. — Hong Wei;Tianying Zheng;Xiaolan Zhang;Yuanan Wu;Yidi Chen;Chao Zheng;Difei Jiang;Botong Wu;Hua Guo;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5798,
+            "end_char": 6042
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative prediction of cholangiocyte phenotype hepatocellular carcinoma on contrast-enhanced MRI and the prognostic implication after hepatectomy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yidi Chen;Jie Chen;Chongtu Yang;Yuanan Wu;Hong Wei;Ting Duan;Zhen Zhang;Liling Long;Hanyu Jiang;Bin Song",
+      "id": "out-1609a11043eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative prediction of cholangiocyte phenotype hepatocellular carcinoma on contrast-enhanced MRI and the prognostic implication after hepatectomy. — Yidi Chen;Jie Chen;Chongtu Yang;Yuanan Wu;Hong Wei;Ting Duan;Zhen Zhang;Liling Long;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6048,
+            "end_char": 6311
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative MRI-based multiparametric model for survival prediction in hepatocellular carcinoma patients with portal vein tumor thrombus following hepatectomy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Zhang;Tianying Zheng;Yuanan Wu;Hong Wei;Ting Yang;Xiaomei Zhu;Jie Yang;Yidi Chen;Yanshu Wang;Yali Qu;Jie Chen;Yun Zhang;Hanyu Jiang;Bin Song",
+      "id": "out-c407d28b1628",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative MRI-based multiparametric model for survival prediction in hepatocellular carcinoma patients with portal vein tumor thrombus following hepatectomy. — Lin Zhang;Tianying Zheng;Yuanan Wu;Hong Wei;Ting Yang;Xiaomei Zhu;Jie Yang;Yidi Chen;Yanshu Wang;Yali Qu;Jie Chen;Yun Zhang;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6317,
+            "end_char": 6630
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting histologic differentiation of solitary hepatocellular carcinoma up to 5 cm on gadoxetate disodium-enhanced MRI.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ting Yang;Hong Wei;Yuanan Wu;Yun Qin;Jie Chen;Hanyu Jiang;Bin Song",
+      "id": "out-f6c5f85d7809",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting histologic differentiation of solitary hepatocellular carcinoma up to 5 cm on gadoxetate disodium-enhanced MRI. — Ting Yang;Hong Wei;Yuanan Wu;Yun Qin;Jie Chen;Hanyu Jiang;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6636,
+            "end_char": 6833
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based prediction of microvascular invasion/high tumor grade and adjuvant therapy benefit for solitary HCC ≤ 5 cm: a multicenter cohort study.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Binrong Li;Tianying Zheng;Yun Qin;Yuanan Wu;Zhenru Wu;Maxime Ronot;Victoria Chernyak;Kathryn J Fowler;Mustafa R Bashir;Weixia Chen;Yuan-Cheng Wang;Shenghong Ju;Bin Song",
+      "id": "out-8fd0de0b3610",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based prediction of microvascular invasion/high tumor grade and adjuvant therapy benefit for solitary HCC ≤ 5 cm: a multicenter cohort study. — Hanyu Jiang;Binrong Li;Tianying Zheng;Yun Qin;Yuanan Wu;Zhenru Wu;Maxime Ronot;Victoria Chernyak;Kathryn J Fowler;Mustafa R Bashir;Weixia Chen;Yuan-Cheng Wang;Shenghong Ju;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6839,
+            "end_char": 7173
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Individual Participant Data Meta-Analysis of LR-5 in LI-RADS Version 2018 versus Revised LI-RADS for Hepatocellular Carcinoma Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-92e08a7a92ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Individual Participant Data Meta-Analysis of LR-5 in LI-RADS Version 2018 versus Revised LI-RADS for Hepatocellular Carcinoma Diagnosis — Stacy M Goins;Hanyu Jiang;Christian B van der Pol;Jean-Paul Salameh;Eric Lam;Robert G Adamo;Matthew D F McInnes;Andreu F Costa;An Tang;Ayman S Alhasan;Brian C Allen;Caecilia S Reiner;Christopher Clarke;Milena Cerny;Jin Wang;Sang Hyun Choi;Tyler J Fraum;Daniel R Ludwig;Bin Song;Ijin Joo;Zhen Kang;Andrea S Kierans;So Yeon Kim;Heejin Kwon;Maxime Ronot;Joanna Podgórska;Grzegorz Rosiak;Ji Soo Song;Mustafa R Bashir",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7179,
+            "end_char": 7735
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development of a Model including MRI Features for Predicting Advanced-stage Recurrence of Hepatocellular Carcinoma after Liver Resection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Chongtu Yang;Yidi Chen;Yanshu Wang;Yuanan Wu;Weixia Chen;Maxime Ronot;Victoria Chernyak;Kathryn J Fowler;Mustafa R Bashir;Bin Song",
+      "id": "out-80db149009db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development of a Model including MRI Features for Predicting Advanced-stage Recurrence of Hepatocellular Carcinoma after Liver Resection. — Hanyu Jiang;Chongtu Yang;Yidi Chen;Yanshu Wang;Yuanan Wu;Weixia Chen;Maxime Ronot;Victoria Chernyak;Kathryn J Fowler;Mustafa R Bashir;Bin Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7741,
+            "end_char": 8029
+          },
+          "version": "8d9e0a215f4d09205830"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "01394ae4dc5a96881ba5",
   "version": "891448638a48a0ac37de",
   "source_hash": "9d0bf9cc74e0ba0d3b7260c4f654f04556745a21b55ee1a59b77e785453d35d5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.079500+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.047822+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-415e884cf6bc",
-          "name": "嗜铬细胞瘤副神经节瘤转移风险预测",
-          "desc": "PPGLs是分别起源于肾上腺髓质和肾上腺外嗜铬细胞的神经内分泌肿瘤，严重威胁人类健康。",
+          "id": "item-61a227081f24",
+          "name": "嗜铬细胞瘤/副神经节瘤转移风险预测",
+          "desc": "PPGLs均具转移潜能，转移后预后极差",
           "evidence": [
             {
-              "quote": "嗜铬细胞瘤/副神经节瘤(Pheochromocytoma/paraganglimoas,PPGLs)是一类分别起源于肾上腺髓质和肾上腺外嗜铬细胞的神经内分泌肿瘤，严重威胁人类健康",
+              "quote": "目前研究认为所有PPGLs均具有转移潜能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 660,
-                "end_char": 748
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ]
-        },
-        {
-          "id": "item-bed8bdf0380c",
-          "name": "PPGLs防治新思路",
-          "desc": "研究结果不仅为PPGLs转移风险预测提供新办法，同时为其防治提供新思路。",
-          "evidence": [
-            {
-              "quote": "研究结果不仅将为PPGLs转移风险预测提供新的解决办法，同时还为PPGLs的防治提供新思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 999,
-                "end_char": 1043
+                "start_char": 2455,
+                "end_char": 2474
               },
               "version": "891448638a48a0ac37de"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f8c08de92517",
-          "name": "缺乏有效预测转移风险方法",
-          "desc": "所有PPGLs均具转移潜能，一旦转移预后极差，但目前仍缺乏有效预测转移风险的方法。",
+          "id": "item-f36329b7a763",
+          "name": "缺乏有效预测PPGLs转移的方法",
+          "desc": "临床上缺乏有效预测PPGLs转移的方法",
           "evidence": [
             {
-              "quote": "PPGLs一旦发生转移，患者预后极差，但目前仍缺乏有效预测其转移风险的方法",
+              "quote": "但是目前临床上仍然缺乏有效预测PPGLs转移的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 769,
-                "end_char": 805
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ]
-        },
-        {
-          "id": "item-eaba032dd919",
-          "name": "转移机制缺乏多维度解析",
-          "desc": "需从临床、病理、基因、影像组学等多个方面探讨如何预测PPGLs转移。",
-          "evidence": [
-            {
-              "quote": "本项目从临床、病理、基因、影像组学等多个方面探讨如何预测PPGLs转移",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2528,
-                "end_char": 2562
+                "start_char": 2502,
+                "end_char": 2526
               },
               "version": "891448638a48a0ac37de"
             }
@@ -95,97 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f7c66f87bf5",
-          "name": "多维度分析与影像组学建模",
-          "desc": "从分子标记物表达、传统影像学特征、临床基本特征、影像组学等多方面分析，建立以影像组学为基础的转移风险预测模型。",
-          "evidence": [
-            {
-              "quote": "本项目将从PPGLs分子标记物表达、传统影像学特征、临床基本特征、影像组学等多个方面进行分析，建立以影像组学为基础的PPGLs转移风险预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 927,
-                "end_char": 997
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ]
-        },
-        {
-          "id": "item-5f8490fece54",
-          "name": "基因突变分型与模型构建",
-          "desc": "采用NGS技术研究基因突变情况，据此将PPGLs分为PHT型和非PHT型。",
-          "evidence": [
-            {
-              "quote": "根据PPGLs的基因突变，将PPGLs分为PHT型和非PHT型PPGLs",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2650,
-                "end_char": 2685
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ]
-        },
-        {
-          "id": "item-952f2c9c66ce",
-          "name": "术前CT影像组学特征提取",
-          "desc": "收集院内外PPGLs患者术前CT影像提取影像组学特征，并结合临床、病理、基因资料建模。",
-          "evidence": [
-            {
-              "quote": "我们收集我院和外院PPGLs患者的术前CT影像，从中提取影像组学特征，并结合临床、病理、基因等资料",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2781,
-                "end_char": 2829
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ab0514e6705e",
-          "name": "肿瘤标志物表达存在显著差异",
-          "desc": "Apelin、SDHB、CHGB和ERBB-2等肿瘤标志物在转移性与非转移性PPGLs中表达存在显著差异。",
-          "evidence": [
-            {
-              "quote": "我们研究发现Apelin、SDHB、CHGB和ERBB-2等肿瘤标志物在转移性和非转移性PPGLs中表达存在显著差异",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2564,
-                "end_char": 2621
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-92cfa68697e0",
-          "name": "预测PHT型PPGLs模型",
-          "desc": "利用临床资料成功建立预测PHT型这一类更易转移的PPGLs的模型。",
-          "evidence": [
-            {
-              "quote": "我们利用临床资料，成功建立了预测PHT型PPGLs这一类更易转移的PPGLs",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2687,
-                "end_char": 2724
-              },
-              "version": "891448638a48a0ac37de"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-08a38ec62ecb",
+          "id": "item-9b653e58bd10",
           "name": "PPGLs转移风险预测模型",
-          "desc": "基于基因突变特征结合临床、病理、影像学资料，成功建立预测PPGLs转移风险的模型。",
+          "desc": "结合基因突变特征与临床、病理、影像学资料建立转移风险模型",
           "evidence": [
             {
               "quote": "基于PPGLs的基因突变特征，结合患者的临床、病理、影像学资料，成功建立了预测PPGLs转移风险的模型",
@@ -197,7 +82,102 @@
               "version": "891448638a48a0ac37de"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-952f2c9c66ce",
+          "name": "术前CT影像组学特征提取",
+          "desc": "从术前CT提取影像组学特征并结合临床、病理、基因资料",
+          "evidence": [
+            {
+              "quote": "从中提取影像组学特征，并结合临床、病理、基因等资料",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2805,
+                "end_char": 2829
+              },
+              "version": "891448638a48a0ac37de"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7f27e4e27f70",
+          "name": "NGS基因突变分型",
+          "desc": "NGS研究基因突变，分为PHT型与非PHT型",
+          "evidence": [
+            {
+              "quote": "我们采用NGS技术，研究PPGLs的基因突变情况",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2625,
+                "end_char": 2648
+              },
+              "version": "891448638a48a0ac37de"
+            }
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-c16b94c1ab2c",
+          "name": "肿瘤标志物表达分析",
+          "desc": "Apelin、SDHB、CHGB、ERBB-2在转移与非转移PPGLs中表达差异",
+          "evidence": [
+            {
+              "quote": "我们研究发现Apelin、SDHB、CHGB和ERBB-2等肿瘤标志物在转移性和非转移性PPGLs中表达存在显著差异",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2564,
+                "end_char": 2621
+              },
+              "version": "891448638a48a0ac37de"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-daad385a251b",
+          "name": "转移风险预测模型",
+          "desc": "成功建立预测PPGLs转移风险的模型",
+          "evidence": [
+            {
+              "quote": "成功建立了预测PPGLs转移风险的模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2758,
+                "end_char": 2776
+              },
+              "version": "891448638a48a0ac37de"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2d91c80405d2",
+          "name": "影像组学综合预测模型",
+          "desc": "有望建立高效的转移风险预测综合模型",
+          "evidence": [
+            {
+              "quote": "有望建立一个高效的PPGLs转移风险预测的综合模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2831,
+                "end_char": 2855
+              },
+              "version": "891448638a48a0ac37de"
+            }
+          ],
+          "status": "预期",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +185,167 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-415e884cf6bc"
+        "dimension": "技术",
+        "item_id": "item-9b653e58bd10"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-f8c08de92517"
+        "item_id": "item-f36329b7a763"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f8c08de92517"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4f7c66f87bf5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5f8490fece54"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-92cfa68697e0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-952f2c9c66ce"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-08a38ec62ecb"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于PPGLs的基因突变特征，结合患者的临床、病理、影像学资料，成功建立了预测PPGLs转移风险的模型",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2726,
+            "end_char": 2776
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Value of Immunohistochemical Expression of Apelin, Succinate Dehydrogenase B, Chromogranin B, Human Epidermal Growth Factor Receptor-2, Contactin 4, and Succinyl-CoA Synthetase Subunit Beta in Differentiating Metastatic From Non-Metastatic Pheochromocytoma and Paraganglioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong Wang;Danlei Chen;Yingxian Pang;Xiaowen Xu;Xiao Guan;Longfei Liu",
+      "id": "out-ffd1666d504a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Value of Immunohistochemical Expression of Apelin, Succinate Dehydrogenase B, Chromogranin B, Human Epidermal Growth Factor Receptor-2, Contactin 4, and Succinyl-CoA Synthetase Subunit Beta in Differentiating Metastatic From Non-Metastatic Pheochromocytoma and Paraganglioma — Yong Wang;Danlei Chen;Yingxian Pang;Xiaowen Xu;Xiao Guan;Longfei Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2874,
+            "end_char": 3225
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a novel nomogram predicting pseudohypoxia type pheochromocytomas and paragangliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Y. Wang;L. Liu;D. Chen;Y. Pang;X. Xu;J. Liu;M. Li;X. Guan",
+      "id": "out-e5fb67e6c2cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a novel nomogram predicting pseudohypoxia type pheochromocytomas and paragangliomas — Y. Wang;L. Liu;D. Chen;Y. Pang;X. Xu;J. Liu;M. Li;X. Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3230,
+            "end_char": 3409
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of radiomics in adrenal incidentaloma: a literature review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Li;Yan Fu;Xiaoping Yi;Xiao Guan;Longfei Liu;Bihong T. Chen",
+      "id": "out-8f0ddf26d6f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of radiomics in adrenal incidentaloma: a literature review — Cheng Li;Yan Fu;Xiaoping Yi;Xiao Guan;Longfei Liu;Bihong T. Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3414,
+            "end_char": 3557
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed Tomography Radiomics for Predicting Pathological Grade of Renal Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Xiaoping;Xiao Qiao;Zeng Feiyue;Yin Hongling;Li Zan;Qian Cheng;Wang Cikui;Lei Guangwu;Xu Qingsong;Li Chuanquan;Li Minghao;Gong Guanghui;Zee Chishing;Guan Xiao;Liu Longfei;Chen Bihong T.",
+      "id": "out-792cf44f0a4d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed Tomography Radiomics for Predicting Pathological Grade of Renal Cell Carcinoma — Yi Xiaoping;Xiao Qiao;Zeng Feiyue;Yin Hongling;Li Zan;Qian Cheng;Wang Cikui;Lei Guangwu;Xu Qingsong;Li Chuanquan;Li Minghao;Gong Guanghui;Zee Chishing;Guan Xiao;Liu Longfei;Chen Bihong T.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3562,
+            "end_char": 3845
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed Tomography-Based Machine Learning Differentiates Adrenal Pheochromocytoma From Lipid-Poor Adenoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haipeng Liu;Xiao Guan;Beibei Xu;Feiyue Zeng;Changyong Chen;Hong ling Yin;Xiaoping Yi;Yousong Peng;Bihong T. Chen",
+      "id": "out-5007a76fd5cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed Tomography-Based Machine Learning Differentiates Adrenal Pheochromocytoma From Lipid-Poor Adenoma — Haipeng Liu;Xiao Guan;Beibei Xu;Feiyue Zeng;Changyong Chen;Hong ling Yin;Xiaoping Yi;Yousong Peng;Bihong T. Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3850,
+            "end_char": 4077
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The systems of metastatic potential prediction in  pheochromocytoma and paraganglioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yong Wang;Minghao Li;Hao Deng;Yingxian Pang;Longfei Liu;Xiao Guan",
+      "id": "out-f700e5fde030",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The systems of metastatic potential prediction in  pheochromocytoma and paraganglioma — Yong Wang;Minghao Li;Hao Deng;Yingxian Pang;Longfei Liu;Xiao Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4082,
+            "end_char": 4241
+          },
+          "version": "891448638a48a0ac37de"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      }
+    },
+    "consistent": true
+  }
 }

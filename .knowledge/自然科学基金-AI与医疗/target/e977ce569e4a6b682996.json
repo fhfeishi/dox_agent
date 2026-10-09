@@ -2,15 +2,20 @@
   "doc_id": "e977ce569e4a6b682996",
   "version": "c926636ede04bfabe9ed",
   "source_hash": "d929b64ff0b075978850b6bad67dc3a5f11ee245be00cc368f3a7bfd0f3af305",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.798343+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T11:43:07.459041+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2b01c52aa014",
-          "name": "肿瘤免疫治疗可视化评估",
-          "desc": "基于乳酸-乏氧机制，采用功能可视化方法开展肿瘤免疫治疗机制成像、功能MR与影像组学融合研究。",
+          "id": "item-f323959c4fd8",
+          "name": "肾癌免疫治疗功能可视化",
+          "desc": "乳酸-乏氧机制",
           "evidence": [
             {
-              "quote": "恶性肿瘤是全世界引起死亡最主要的原因之一，PD-1/PD-L1免疫治疗是目前最有望治愈的方法，但其有效率仅10-30%",
+              "quote": "本项目拟探索乳酸-乏氧机制在肿瘤免疫治疗中的关键作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 647,
-                "end_char": 705
+                "start_char": 816,
+                "end_char": 841
               },
               "version": "c926636ede04bfabe9ed"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7fba857fad63",
-          "name": "免疫治疗疗效判断滞后且筛选困难",
-          "desc": "基于irRECIST标准一般需3个月以上才能确定疗效，尚不包括假性进展、超进展与延迟反应，需早期筛选适合免疫治疗的患者。",
+          "id": "item-18bfeb268cb4",
+          "name": "PD-1/PD-L1有效率低且疗效评估滞后",
+          "desc": "需3个月以上",
           "evidence": [
             {
-              "quote": "如何提取肿瘤演进过程中的关键分子信息、确定其特征、筛选适合免疫治疗患者并早期判断疗效是亟待解决的科学问题",
+              "quote": "PD-1/PD-L1免疫治疗是目前最有望治愈的方法，但其有效率仅10-30%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 763,
-                "end_char": 814
+                "start_char": 668,
+                "end_char": 705
               },
               "version": "c926636ede04bfabe9ed"
             }
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-71a6c3a58225",
-          "name": "pH响应纳米粒成像与功能MR融合组学",
-          "desc": "开展可视化免疫机制成像（pH值响应纳米粒MR靶向显像及T细胞成像）、功能MR（乳酸-CEST、MRS、DWI和K-trans等）与融合多模态影像的影像组学分析。",
+          "id": "item-2e9cbbc1b526",
+          "name": "pH响应纳米粒靶向肿瘤免疫成像",
+          "desc": "肿瘤微环境",
           "evidence": [
             {
-              "quote": "1、可视化免疫机制成像：包括pH值响应的纳米粒MR靶向显像及T细胞成像，明确免疫治疗关键性机制",
+              "quote": "利用pH响应的纳米粒靶向肿瘤微环境，明确免疫治疗关键性机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 865,
-                "end_char": 911
+                "start_char": 3000,
+                "end_char": 3028
               },
               "version": "c926636ede04bfabe9ed"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-982d0f29b07e",
-          "name": "功能MR序列明确肾肿瘤结构与代谢变化",
-          "desc": "利用CEST、T2 mapping、3D ASL及多b值DWI模型等功能磁共振序列明确肿瘤主要结构、功能和代谢变化，开展肾肿瘤术前良恶性评估、病理分级与分期分析及预后预测建模。",
+          "id": "item-674dddfbf032",
+          "name": "功能磁共振多序列",
+          "desc": "CEST、T2 mapping、3D ASL、多b值DWI",
           "evidence": [
             {
               "quote": "利用CEST、T2 mapping、3D ASL、多b值DWI模型（包括单指数模型、IVIM、DKI、SEM、FROC及CTRW）等功能磁共振序列",
@@ -99,44 +99,824 @@
               "version": "c926636ede04bfabe9ed"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8a1332a46699",
+          "name": "多模态融合术前诊断与预后预测模型",
+          "desc": "影像、临床病理、身体成分",
+          "evidence": [
+            {
+              "quote": "融合多模态影像、临床病理特征、身体成分等多维数据，进行大数据分析，构建术前无创精准诊断与预后预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3165,
+                "end_char": 3214
+              },
+              "version": "c926636ede04bfabe9ed"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-invasive evaluation of the pathological and functional characteristics of chronic kidney disease by diffusion kurtosis imaging and intravoxel incoherent motion imaging: comparison with conventional DWI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Liang;Guanjie Yuan;Shichao Li;Kangwen He;Yang Peng;Daoyu Hu;Zhen Li;Zufu Ma;Chuou Xu",
+      "id": "out-09e1402882b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-invasive evaluation of the pathological and functional characteristics of chronic kidney disease by diffusion kurtosis imaging and intravoxel incoherent motion imaging: comparison with conventional DWI — Ping Liang;Guanjie Yuan;Shichao Li;Kangwen He;Yang Peng;Daoyu Hu;Zhen Li;Zufu Ma;Chuou Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3271,
+            "end_char": 3574
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reduced field-of-view DWI‑derived clinical–radiomics model for the prediction of stage in cervical cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuhan Huang;Baodi Deng;Yanchun Wang;Yaqi Shen;Xuemei Hu;Cui Feng;Zhen Li",
+      "id": "out-fca48e4008ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reduced field-of-view DWI‑derived clinical–radiomics model for the prediction of stage in cervical cancer — Qiuhan Huang;Baodi Deng;Yanchun Wang;Yaqi Shen;Xuemei Hu;Cui Feng;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3579,
+            "end_char": 3766
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive assessment of clinical and pathological characteristics of patients with IgA nephropathy by diffusion kurtosis imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Liang;Shichao Li;Guanjie Yuan;Kangwen He;Anqin Li;Daoyu Hu;Zhen Li;Chuou Xu",
+      "id": "out-b9334029e1c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive assessment of clinical and pathological characteristics of patients with IgA nephropathy by diffusion kurtosis imaging — Ping Liang;Shichao Li;Guanjie Yuan;Kangwen He;Anqin Li;Daoyu Hu;Zhen Li;Chuou Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 3990
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computed tomography-based multiple body composition parameters predict outcomes in Crohn's disease.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Ziling;Xiong Ziman;Xie Qingguo;Xiao Peng;Zhang Qingpeng;Gu Jian;Li Jing;Hu Daoyu;Hu Xuemei;Shen Yaqi;Li Zhen",
+      "id": "out-43dc4db2a1b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computed tomography-based multiple body composition parameters predict outcomes in Crohn's disease. — Zhou Ziling;Xiong Ziman;Xie Qingguo;Xiao Peng;Zhang Qingpeng;Gu Jian;Li Jing;Hu Daoyu;Hu Xuemei;Shen Yaqi;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3995,
+            "end_char": 4216
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the value of arterial spin labeling and six diffusion MRI models in differentiating solid benign and malignant renal tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengmeng Gao;Shichao Li;Guanjie Yuan;Weinuo Qu;Kangwen He;Zhouyan Liao;Ting Yin;Wei Chen;Qian Chu;Zhen Li",
+      "id": "out-4fadfff4d6cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the value of arterial spin labeling and six diffusion MRI models in differentiating solid benign and malignant renal tumors — Mengmeng Gao;Shichao Li;Guanjie Yuan;Weinuo Qu;Kangwen He;Zhouyan Liao;Ting Yin;Wei Chen;Qian Chu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4468
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DWI-based radiomic signature: potential role for individualized adjuvant chemotherapy in intrahepatic cholangiocarcinoma after partial hepatectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Zou Xianlun;Zhou Wei;Yuan Guanjie;Hu Daoyu;Shen Yaqi;Xie Qingguo;Zhang Qingpeng;Kuang Dong;Hu Xuemei;Li Zhen",
+      "id": "out-f2fea8218a79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DWI-based radiomic signature: potential role for individualized adjuvant chemotherapy in intrahepatic cholangiocarcinoma after partial hepatectomy — Yang Yang;Zou Xianlun;Zhou Wei;Yuan Guanjie;Hu Daoyu;Shen Yaqi;Xie Qingguo;Zhang Qingpeng;Kuang Dong;Hu Xuemei;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4473,
+            "end_char": 4746
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Magnetic resonance imaging-based body composition is associated with nutritional and inflammatory status: a longitudinal study in patients with Crohn's disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziman Xiong;Ziling Zhou;Yaqi Shen;Zhen Li;Xuemei Hu;Daoyu Hu",
+      "id": "out-98a5aebd8f9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Magnetic resonance imaging-based body composition is associated with nutritional and inflammatory status: a longitudinal study in patients with Crohn's disease — Ziman Xiong;Ziling Zhou;Yaqi Shen;Zhen Li;Xuemei Hu;Daoyu Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4751,
+            "end_char": 4979
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Is the radiomics-clinical combined model helpful in distinguishing between pancreatic cancer and mass-forming pancreatitis?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weinuo Qu;Ziling Zhou;Guanjie Yuan;Shichao Li;Jiali Li;Qian Chu;Qingpeng Zhang;Qingguo Xie;Zhen Li;Ihab R. Kamel",
+      "id": "out-49df9babeb33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Is the radiomics-clinical combined model helpful in distinguishing between pancreatic cancer and mass-forming pancreatitis? — Weinuo Qu;Ziling Zhou;Guanjie Yuan;Shichao Li;Jiali Li;Qian Chu;Qingpeng Zhang;Qingguo Xie;Zhen Li;Ihab R. Kamel",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4984,
+            "end_char": 5228
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incremental prognostic value of ADC histogram analysis in patients with high-risk prostate cancer receiving adjuvant hormonal therapy after radical prostatectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kangwen He;Yucong Zhang;Shichao Li;Guanjie Yuan;Ping Liang;Qingpeng Zhang;Qingguo Xie;Peng Xiao;Heng Li;Xiaoyan Meng;Zhen Li",
+      "id": "out-0631de9d157b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incremental prognostic value of ADC histogram analysis in patients with high-risk prostate cancer receiving adjuvant hormonal therapy after radical prostatectomy — Kangwen He;Yucong Zhang;Shichao Li;Guanjie Yuan;Ping Liang;Qingpeng Zhang;Qingguo Xie;Peng Xiao;Heng Li;Xiaoyan Meng;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5233,
+            "end_char": 5527
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High visceral adipose tissue area is independently associated with early allograft dysfunction in liver transplantation recipients: a propensity score analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanjie Yuan;Shichao Li;Ping Liang;Gen Chen;Yan Luo;Yaqi Shen;Xuemei Hu;Daoyu Hu;Jiali Li;Zhen Li",
+      "id": "out-ebe6ca88afc4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High visceral adipose tissue area is independently associated with early allograft dysfunction in liver transplantation recipients: a propensity score analysis — Guanjie Yuan;Shichao Li;Ping Liang;Gen Chen;Yan Luo;Yaqi Shen;Xuemei Hu;Daoyu Hu;Jiali Li;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5533,
+            "end_char": 5798
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive assessment of kidney dysfunction in children by using blood oxygenation level-dependent MRI and intravoxel incoherent motion diffusion-weighted imaging.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liang Ping;Chen Yaxian;Li ShiChao;Xu Chuou;Yuan Guanjie;Hu Daoyu;Kamel Ihab;Zhang Yu;Li Zhen",
+      "id": "out-42895adc2873",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive assessment of kidney dysfunction in children by using blood oxygenation level-dependent MRI and intravoxel incoherent motion diffusion-weighted imaging. — Liang Ping;Chen Yaxian;Li ShiChao;Xu Chuou;Yuan Guanjie;Hu Daoyu;Kamel Ihab;Zhang Yu;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5804,
+            "end_char": 6069
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ureteral calculi lithotripsy for single ureteral calculi: can DNN-assisted model help preoperatively predict risk factors for sepsis?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mingzhen Chen;Jiannan Yang;Junlin Lu;Ziling Zhou;Kun Huang;Sihan Zhang;Guanjie Yuan;Qingpeng Zhang;Zhen Li",
+      "id": "out-e1fb3550bcf1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ureteral calculi lithotripsy for single ureteral calculi: can DNN-assisted model help preoperatively predict risk factors for sepsis? — Mingzhen Chen;Jiannan Yang;Junlin Lu;Ziling Zhou;Kun Huang;Sihan Zhang;Guanjie Yuan;Qingpeng Zhang;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6075,
+            "end_char": 6323
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Avoid nondiagnostic EUS-FNA: A DNN model as a possible gatekeeper to distinguish pancreatic lesions prone to inconclusive biopsy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weinuo Qu;Jiannan Yang;Jiali Li;Guanjie Yuan;Shichao Li;Qian Chu;Qingguo Xie;Qingpeng Zhang;Bin Cheng;Zhen Li",
+      "id": "out-7f5a519fdda5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Avoid nondiagnostic EUS-FNA: A DNN model as a possible gatekeeper to distinguish pancreatic lesions prone to inconclusive biopsy — Weinuo Qu;Jiannan Yang;Jiali Li;Guanjie Yuan;Shichao Li;Qian Chu;Qingguo Xie;Qingpeng Zhang;Bin Cheng;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6329,
+            "end_char": 6575
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feasibility and Reproducibility of T2 Mapping Compared with Diffusion-Weighted Imaging in Solid Renal Masses",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Li;Mengmeng Gao;Kangwen He;Guanjie Yuan;Ting Yin;Daoyu Hu;Zhen Li",
+      "id": "out-c7b3ded5c6df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feasibility and Reproducibility of T2 Mapping Compared with Diffusion-Weighted Imaging in Solid Renal Masses — Shichao Li;Mengmeng Gao;Kangwen He;Guanjie Yuan;Ting Yin;Daoyu Hu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6581,
+            "end_char": 6771
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of sex-specific abdominal adipose tissue with WHO/ISUP grade in clear cell renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Li;Zhouyan Liao;Kangwen He;Yaqi Shen;Shan Hu;Zhen Li",
+      "id": "out-703f38371af0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of sex-specific abdominal adipose tissue with WHO/ISUP grade in clear cell renal cell carcinoma — Shichao Li;Zhouyan Liao;Kangwen He;Yaqi Shen;Shan Hu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6777,
+            "end_char": 6953
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT facilitates improved diagnosis of adult intestinal malrotation: a 7-year retrospective study based on 332 cases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Ziman;Shen Yaqi;Morelli John N.;Li Zhen;Hu Xuemei;Hu Daoyu",
+      "id": "out-64140fbaa2d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT facilitates improved diagnosis of adult intestinal malrotation: a 7-year retrospective study based on 332 cases — Xiong Ziman;Shen Yaqi;Morelli John N.;Li Zhen;Hu Xuemei;Hu Daoyu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6959,
+            "end_char": 7146
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "R2 mapping and reduced field‐of‐view diffusion‐weighted imaging for preoperative assessment of nonenlarged lymph node metastasis in rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jing Wang;Shan Hu;Ping Liang;Xuemei Hu;Yaqi Shen;Yang Peng;Ihab Kamel;Zhen Li",
+      "id": "out-c494d442a892",
+      "evidence": [
+        {
+          "quote": "[期刊论文] R2 mapping and reduced field‐of‐view diffusion‐weighted imaging for preoperative assessment of nonenlarged lymph node metastasis in rectal cancer — Jing Wang;Shan Hu;Ping Liang;Xuemei Hu;Yaqi Shen;Yang Peng;Ihab Kamel;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7152,
+            "end_char": 7383
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning Identifies Intelligible Predictors of Poor Prognosis in Chronic Kidney Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ping Liang;Jiannan Yang;Weilan Wang;Guanjie Yuan;Min Han;Qingpeng Zhang;Zhen Li",
+      "id": "out-95cbea7813aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning Identifies Intelligible Predictors of Poor Prognosis in Chronic Kidney Disease — Ping Liang;Jiannan Yang;Weilan Wang;Guanjie Yuan;Min Han;Qingpeng Zhang;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7389,
+            "end_char": 7569
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chemical Shift-Encoded Sequence (IDEAL-IQ) and Amide Proton Transfer (APT) MRI for Prediction of Histopathological Factors of Rectal Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Peng;Xianlun Zou;Gen Chen;Xuemei Hu;Yaqi Shen;Daoyu Hu;Zhen Li",
+      "id": "out-b7fd0ea5bf75",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chemical Shift-Encoded Sequence (IDEAL-IQ) and Amide Proton Transfer (APT) MRI for Prediction of Histopathological Factors of Rectal Cancer — Yang Peng;Xianlun Zou;Gen Chen;Xuemei Hu;Yaqi Shen;Daoyu Hu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7575,
+            "end_char": 7790
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Accuracy and Challenges in the Vesical Imaging-Reporting and Data System for Staging Bladder Cancer.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyan Meng;Henglong Hu;Yanchun Wang;Cui Feng;Daoyu Hu;Zheng Liu;Ihab R Kamel;Zhen Li",
+      "id": "out-ee3a893ddb09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Accuracy and Challenges in the Vesical Imaging-Reporting and Data System for Staging Bladder Cancer. — Xiaoyan Meng;Henglong Hu;Yanchun Wang;Cui Feng;Daoyu Hu;Zheng Liu;Ihab R Kamel;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7796,
+            "end_char": 7991
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical and Radiological Features of Urachal Carcinoma and Infection.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Shichao;Meng Xiaoyan;Liang Ping;Feng Cui;Shen Yaqi;Hu Daoyu;Li Zhen",
+      "id": "out-a1737b3c2152",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical and Radiological Features of Urachal Carcinoma and Infection. — Li Shichao;Meng Xiaoyan;Liang Ping;Feng Cui;Shen Yaqi;Hu Daoyu;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7997,
+            "end_char": 8146
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning identifies explainable reasoning paths of mechanism of action for drug repurposing from multilayer biological network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiannan Yang;Zhen Li;William Ka Kei Wu;Shi Yu;Zhongzhi Xu;Qian Chu;Qingpeng Zhang",
+      "id": "out-83066c7fcb69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning identifies explainable reasoning paths of mechanism of action for drug repurposing from multilayer biological network — Jiannan Yang;Zhen Li;William Ka Kei Wu;Shi Yu;Zhongzhi Xu;Qian Chu;Qingpeng Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8152,
+            "end_char": 8373
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The relationship between perianal fistula activity and abdominal adipose tissue in Crohn’s disease: an observational study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziman Xiong;Ziling Zhou;Luwen Hao;Yuanqiu Li;Xuemei Hu;Daoyu Hu;Yan Luo;Yanchun Wang;Yaqi Shen;Zhen Li",
+      "id": "out-e8e5d2ad6371",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The relationship between perianal fistula activity and abdominal adipose tissue in Crohn’s disease: an observational study — Ziman Xiong;Ziling Zhou;Luwen Hao;Yuanqiu Li;Xuemei Hu;Daoyu Hu;Yan Luo;Yanchun Wang;Yaqi Shen;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8379,
+            "end_char": 8612
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiparametric MRI-Based Radiomic Signature for Preoperative Evaluation of Overall Survival in Intrahepatic Cholangiocarcinoma After Partial Hepatectomy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Zou Xianlun;Zhou Wei;Yuan Guanjie;Hu Daoyu;Kuang Dong;Shen Yaqi;Xie Qingguo;Zhang Qingpeng;Hu Xuemei;Li Zhen",
+      "id": "out-1f8e5cb54b64",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiparametric MRI-Based Radiomic Signature for Preoperative Evaluation of Overall Survival in Intrahepatic Cholangiocarcinoma After Partial Hepatectomy — Yang Yang;Zou Xianlun;Zhou Wei;Yuan Guanjie;Hu Daoyu;Kuang Dong;Shen Yaqi;Xie Qingguo;Zhang Qingpeng;Hu Xuemei;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8618,
+            "end_char": 8898
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incremental value of automatically segmented perirenal adipose tissue for pathological grading of clear cell renal cell carcinoma: a multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Li;Ziling Zhou;Mengmeng Gao;Zhouyan Liao;Kangwen He;Weinuo Qu;Jiali Li;Ihab R Kamel;Qian Chu;Qingpeng Zhang;Zhen Li",
+      "id": "out-04a29d6a7692",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incremental value of automatically segmented perirenal adipose tissue for pathological grading of clear cell renal cell carcinoma: a multicenter cohort study — Shichao Li;Ziling Zhou;Mengmeng Gao;Zhouyan Liao;Kangwen He;Weinuo Qu;Jiali Li;Ihab R Kamel;Qian Chu;Qingpeng Zhang;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8904,
+            "end_char": 9193
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "探索联影ACS在宫颈癌中的应用价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "查福祥;彭成东;邹乾;钟洪涛;李震;吴思思",
+      "id": "out-1cea1b340307",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 探索联影ACS在宫颈癌中的应用价值 — 查福祥;彭成东;邹乾;钟洪涛;李震;吴思思",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9199,
+            "end_char": 9246
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Whole-Tumor Texture Analysis Based on MRI Diffusion Kurtosis and Biparametric VI-RADS Model for Staging and Grading Bladder Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyan Meng;Shichao Li;Kangwen He;Henglong Hu;Cui Feng;Zhen Li;Yanchun Wang",
+      "id": "out-96ee32695c96",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of Whole-Tumor Texture Analysis Based on MRI Diffusion Kurtosis and Biparametric VI-RADS Model for Staging and Grading Bladder Cancer — Xiaoyan Meng;Shichao Li;Kangwen He;Henglong Hu;Cui Feng;Zhen Li;Yanchun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9543,
+            "end_char": 9772
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Nomogram Based on High-b-Value Diffusion-Weighted Imaging for Distinguishing the Grade of Bladder Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Feng;Ziling Zhou;Qiuhan Huang;Xiaoyan Meng;Zhen Li;Yanchun Wang",
+      "id": "out-b499fa7ff077",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Nomogram Based on High-b-Value Diffusion-Weighted Imaging for Distinguishing the Grade of Bladder Cancer — Cui Feng;Ziling Zhou;Qiuhan Huang;Xiaoyan Meng;Zhen Li;Yanchun Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9778,
+            "end_char": 9968
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bosniak classification of cystic renal masses, version 2019: Is it helpful to incorporate the diffusion weighted imaging characteristic of lesions into the guideline?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Anqin Li;Shichao Li;Yao Hu;Yaqi Shen;Xuemei Hu;Daoyu Hu;Ihab R. Kamel;Zhen Li",
+      "id": "out-c26c336dfbae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bosniak classification of cystic renal masses, version 2019: Is it helpful to incorporate the diffusion weighted imaging characteristic of lesions into the guideline? — Anqin Li;Shichao Li;Yao Hu;Yaqi Shen;Xuemei Hu;Daoyu Hu;Ihab R. Kamel;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9974,
+            "end_char": 10226
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A magnetic resonance nanoprobe with STING activation character collaborates with platinum-based drug for enhanced tumor immunochemotherapy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Jiali;Li Shichao;Li Yang;Yuan Guanjie;Shen Yaqi;Peng Yang;Kong Li;Yang Conglian;Zhang Zhiping;Li Zhen",
+      "id": "out-49f3f89092b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A magnetic resonance nanoprobe with STING activation character collaborates with platinum-based drug for enhanced tumor immunochemotherapy. — Li Jiali;Li Shichao;Li Yang;Yuan Guanjie;Shen Yaqi;Peng Yang;Kong Li;Yang Conglian;Zhang Zhiping;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10232,
+            "end_char": 10484
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessing the histopathological features of rectal adenocarcinoma with chemical shift–encoded sequence (CSE)-MRI and diffusion-weighted imaging (DWI)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Peng;Jiali Li;Xuemei Hu;Yaqi Shen;Daoyu Hu;Zhen Li;Ihab Kamel",
+      "id": "out-7d1d2feed5a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessing the histopathological features of rectal adenocarcinoma with chemical shift–encoded sequence (CSE)-MRI and diffusion-weighted imaging (DWI) — Yang Peng;Jiali Li;Xuemei Hu;Yaqi Shen;Daoyu Hu;Zhen Li;Ihab Kamel",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10490,
+            "end_char": 10714
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of bi-planar reduced field-of-view DWI (rFOV DWI) in the assessment of muscle-invasiveness of bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Xiaoyan;Hu Henglong;Wang Yanchun;Hu Daoyu;Li Zhen;Feng Cui",
+      "id": "out-757c3b3bdceb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of bi-planar reduced field-of-view DWI (rFOV DWI) in the assessment of muscle-invasiveness of bladder cancer — Meng Xiaoyan;Hu Henglong;Wang Yanchun;Hu Daoyu;Li Zhen;Feng Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10720,
+            "end_char": 10912
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Utility of CT in detecting and monitoring subphrenic jujube pits: a retrospective cross-sectional study of clinical cases and ex vivo experiments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luwen Hao;Qiuxia Wang;Xuemei Hu;Zhen Li;Daoyu Hu;Yaqi Shen",
+      "id": "out-84a4a39a8556",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Utility of CT in detecting and monitoring subphrenic jujube pits: a retrospective cross-sectional study of clinical cases and ex vivo experiments — Luwen Hao;Qiuxia Wang;Xuemei Hu;Zhen Li;Daoyu Hu;Yaqi Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10918,
+            "end_char": 11130
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of Calculous Pyonephrosis by CT-Based Radiomics and Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanjie Yuan;Lingli Cai;Weinuo Qu;Ziling Zhou;Ping Liang;Jun Chen;Chuou Xu;Jiaqiao Zhang;Shaogang Wang;Qian Chu;Zhen Li",
+      "id": "out-eded0ea1cd30",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of Calculous Pyonephrosis by CT-Based Radiomics and Deep Learning — Guanjie Yuan;Lingli Cai;Weinuo Qu;Ziling Zhou;Ping Liang;Jun Chen;Chuou Xu;Jiaqiao Zhang;Shaogang Wang;Qian Chu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11136,
+            "end_char": 11344
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Renal functional and interstitial fibrotic assessment with non-Gaussian diffusion kurtosis imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Anqin Li;Guanjie Yuan;Yao Hu;Yaqi Shen;Xuemei Hu;Daoyu Hu;Zhen Li",
+      "id": "out-bc81fab7c8c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Renal functional and interstitial fibrotic assessment with non-Gaussian diffusion kurtosis imaging — Anqin Li;Guanjie Yuan;Yao Hu;Yaqi Shen;Xuemei Hu;Daoyu Hu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11350,
+            "end_char": 11522
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noninvasive assessment of renal function and fibrosis in CKD patients using histogram analysis based on diffusion kurtosis imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanjie Yuan;Weinuo Qu;Shichao Li;Ping Liang;Kangwen He;Anqin Li;Jiali Li;Daoyu Hu;Chuou Xu;Zhen Li",
+      "id": "out-43b1f5c4548e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noninvasive assessment of renal function and fibrosis in CKD patients using histogram analysis based on diffusion kurtosis imaging — Guanjie Yuan;Weinuo Qu;Shichao Li;Ping Liang;Kangwen He;Anqin Li;Jiali Li;Daoyu Hu;Chuou Xu;Zhen Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11528,
+            "end_char": 11766
+          },
+          "version": "c926636ede04bfabe9ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Volumetric visceral fat machine learning phenotype on CT for differential diagnosis of inflammatory bowel disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Ziling;Xiong Ziman;Cheng Ran;Luo Qingyu;Li Yuanqiu;Xie Qingguo;Xiao Peng;Hu Daoyu;Hu Xuemei;Shen Yaqi;Li Zhen",
+      "id": "out-463bd65f29d7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Volumetric visceral fat machine learning phenotype on CT for differential diagnosis of inflammatory bowel disease — Zhou Ziling;Xiong Ziman;Cheng Ran;Luo Qingyu;Li Yuanqiu;Xie Qingguo;Xiao Peng;Hu Daoyu;Hu Xuemei;Shen Yaqi;Li Zhen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 11772,
+            "end_char": 12008
+          },
+          "version": "c926636ede04bfabe9ed"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2b01c52aa014"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7fba857fad63"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 38,
+    "listed": 38,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 38,
+        "extracted": 37
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7fba857fad63"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-71a6c3a58225"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-71a6c3a58225"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-982d0f29b07e"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": false
+  }
 }

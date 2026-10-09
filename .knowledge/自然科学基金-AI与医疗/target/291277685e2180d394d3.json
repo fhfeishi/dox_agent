@@ -2,15 +2,20 @@
   "doc_id": "291277685e2180d394d3",
   "version": "3c1eedb096ec7d12daa9",
   "source_hash": "115dd289c24fe08948a6b555dee9028fbc7504d63d5b2f051269dba4927160bd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.550362+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:34:11.701299+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c0157186c9c2",
-          "name": "胰腺癌免疫微环境无创评估",
-          "desc": "胰腺癌免疫微环境异质性是难治的主要障碍，将免疫微环境作为整体实现无创评估是突破希望。",
+          "id": "item-b9651080a5e1",
+          "name": "胰腺癌免疫微环境评估",
+          "desc": "TIME异质性是免疫治疗瓶颈",
           "evidence": [
             {
-              "quote": "胰腺癌（pancreatic cancer，PC）免疫微环境的异质性是其难治的主要障碍",
+              "quote": "胰腺癌（PC）恶性程度高，预后极差，其复杂的免疫微环境（TIME）异质性是导致免疫治疗效果不佳的关键瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 684,
-                "end_char": 726
+                "start_char": 2983,
+                "end_char": 3034
               },
               "version": "3c1eedb096ec7d12daa9"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-271b492a3099",
-          "name": "缺乏全面免疫评分与无创预测模型",
-          "desc": "目前仍无一个全面的胰腺癌免疫评分系统和精准的无创预测模型。",
+          "id": "item-530b62a9063c",
+          "name": "缺乏全面无创评估PC TIME的手段",
+          "desc": "重大难题",
           "evidence": [
             {
-              "quote": "然而，目前仍无一个全面的PC免疫评分系统和精准的无创预测模型",
+              "quote": "本项目旨在解决临床上缺乏对PC TIME进行全面、无创评估手段的重大难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 901,
-                "end_char": 930
-              },
-              "version": "3c1eedb096ec7d12daa9"
-            }
-          ]
-        },
-        {
-          "id": "item-76ece9cef5da",
-          "name": "免疫微环境异质性制约疗效",
-          "desc": "复杂的免疫微环境异质性是导致免疫治疗效果不佳的关键瓶颈。",
-          "evidence": [
-            {
-              "quote": "其复杂的免疫微环境（TIME）异质性是导致免疫治疗效果不佳的关键瓶颈",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3001,
-                "end_char": 3034
+                "start_char": 3036,
+                "end_char": 3071
               },
               "version": "3c1eedb096ec7d12daa9"
             }
@@ -79,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7f3e0498f55a",
-          "name": "半监督学习量化瘤内免疫成分",
-          "desc": "采用半监督学习算法对大体病理切片中肿瘤、基质、免疫细胞等微环境组分精准量化。",
+          "id": "item-9fb83b5557fb",
+          "name": "多维度免疫评分系统ImmunoScore-Pro",
+          "desc": "半监督学习病理量化",
           "evidence": [
             {
-              "quote": "我们利用半监督学习算法对大体病理切片中的肿瘤、基质、免疫细胞等微环境组分进行精准的自动化定量分析",
+              "quote": "构建了全新的多维度免疫评分系统（ImmunoScore-Pro）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3109,
-                "end_char": 3156
+                "start_char": 3158,
+                "end_char": 3189
               },
               "version": "3c1eedb096ec7d12daa9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5e76aebede40",
-          "name": "改进U-Net自动分割与预测网络",
-          "desc": "开发改进的U-Net网络实现CT影像中胰腺和肿瘤区域高精度自动分割，并构建深度学习预测模型。",
+          "id": "item-25dc3797c77a",
+          "name": "改进U-Net CT分割与影像组学预测",
+          "desc": "预测病理免疫评分",
           "evidence": [
             {
               "quote": "开发改进的U-Net深度学习网络，实现对CT影像中胰腺和肿瘤区域的高精度自动分割",
@@ -108,7 +98,8 @@
               },
               "version": "3c1eedb096ec7d12daa9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,43 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a52ff28ff669",
-          "name": "多维免疫评分系统ImmunoScore-Pro",
-          "desc": "构建涵盖CD4+、CD8+、CD20+等免疫细胞亚群密度与空间分布及CAFs等基质组分的免疫评分系统，可更准确预测总生存期。",
+          "id": "item-07e7777b3afb",
+          "name": "影像预测ImmunoScore-Pro性能",
+          "desc": "训练、验证、外部测试AUC>0.85",
           "evidence": [
             {
-              "quote": "构建了全新的多维度免疫评分系统（ImmunoScore-Pro），涵盖CD4+、CD8+、CD20+等关键免疫细胞亚群的密度与空间分布信息",
+              "quote": "在训练集、验证集及外部测试集中均表现出优异的诊断效能（AUC > 0.85）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3158,
-                "end_char": 3226
-              },
-              "version": "3c1eedb096ec7d12daa9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-868c478a3d3d",
-          "name": "影像模型预测免疫评分AUC超0.85",
-          "desc": "深度学习预测模型对病理金标准ImmunoScore-Pro的预测在训练、验证与外部测试集均AUC大于0.85。",
-          "evidence": [
-            {
-              "quote": "成功实现对病理金标准ImmunoScore-Pro的精准预测，在训练集、验证集及外部测试集中均表现出优异的诊断效能（AUC > 0.85）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3407,
+                "start_char": 3438,
                 "end_char": 3475
               },
               "version": "3c1eedb096ec7d12daa9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-2fc35199efe1",
-          "name": "高分组患者ORR与PFS更优",
-          "desc": "模型预测免疫评分与治疗反应和生存获益显著相关，高分组客观缓解率与无进展生存期均优于低分组。",
+          "id": "item-6d3ea45829eb",
+          "name": "高分组免疫治疗获益更优",
+          "desc": "ORR与PFS显著优于低分组",
           "evidence": [
             {
               "quote": "高分组患者的客观缓解率（ORR）和无进展生存期（PFS）均显著优于低分组",
@@ -165,7 +141,9 @@
               "version": "3c1eedb096ec7d12daa9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -173,47 +151,112 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-c0157186c9c2"
+        "dimension": "技术",
+        "item_id": "item-25dc3797c77a"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-271b492a3099"
+        "item_id": "item-530b62a9063c"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-271b492a3099"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7f3e0498f55a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7f3e0498f55a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a52ff28ff669"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5e76aebede40"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-868c478a3d3d"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "开发改进的U-Net深度学习网络，实现对CT影像中胰腺和肿瘤区域的高精度自动分割",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3343,
+            "end_char": 3382
+          },
+          "version": "3c1eedb096ec7d12daa9"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a pathomics model for accurate grading of pancreatic neuroendocrine tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Li;Chengwei Chen;Yunshuo Zhang;Jieyu Yu;Xu Fang;Fang Liu;Tiegong Wang;Jing Li;Li Wang;Jianping Lu;Hui Jiang;Chengwei Shao;Yun Bian",
+      "id": "out-847a63768dbb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a pathomics model for accurate grading of pancreatic neuroendocrine tumors — Ying Li;Chengwei Chen;Yunshuo Zhang;Jieyu Yu;Xu Fang;Fang Liu;Tiegong Wang;Jing Li;Li Wang;Jianping Lu;Hui Jiang;Chengwei Shao;Yun Bian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 4043
+          },
+          "version": "3c1eedb096ec7d12daa9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胰腺CT图像分类方法、图像分类模型、电子设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "边云;邵成伟;刘鸣谦",
+      "id": "out-56b891b76aae",
+      "evidence": [
+        {
+          "quote": "[专利] 胰腺CT图像分类方法、图像分类模型、电子设备及介质 — 边云;邵成伟;刘鸣谦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4048,
+            "end_char": 4090
+          },
+          "version": "3c1eedb096ec7d12daa9"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胰腺疑难与罕见病例:影像与病理",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邵成伟;边云;蒋慧",
+      "id": "out-d2ac99a45399",
+      "evidence": [
+        {
+          "quote": "[专著] 胰腺疑难与罕见病例:影像与病理 — 邵成伟;边云;蒋慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4126
+          },
+          "version": "3c1eedb096ec7d12daa9"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

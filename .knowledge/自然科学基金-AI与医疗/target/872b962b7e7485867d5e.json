@@ -2,15 +2,20 @@
   "doc_id": "872b962b7e7485867d5e",
   "version": "78b76bf7093b8706a164",
   "source_hash": "5a8a5029f37b666330f8d74e638f051d1f59504639384f8489c5b072d08718b2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.764150+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:47:16.991586+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7711a2b8a75e",
-          "name": "视网膜病变筛查可解释影像组学",
-          "desc": "面向糖网病与年龄相关黄斑变性等眼底病变筛查，构建可解释的影像组学智能诊断原型框架。",
+          "id": "item-f3d7e4e9d1c9",
+          "name": "视网膜病变筛查",
+          "desc": "糖网病与年龄相关黄斑变性",
           "evidence": [
             {
-              "quote": "项目开展面向视网膜病变筛查的可解释影像组学关键技术研究，探索影像学病变特征提取新方法",
+              "quote": "本项目以糖网病（DR）和年龄相关黄斑变性（AMD）等常见的眼底病变为示范",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 649,
-                "end_char": 690
+                "start_char": 2865,
+                "end_char": 2900
               },
               "version": "78b76bf7093b8706a164"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8954c6eace30",
-          "name": "病变筛查精度与效率亟待提升",
-          "desc": "眼底影像存在多源特点、诊断决策存在不一致性，病变筛查的精度与效率问题尚未解决。",
+          "id": "item-4638a18625a6",
+          "name": "病变筛查精度与效率及决策可解释性",
+          "desc": "可解释影像组学",
           "evidence": [
             {
               "quote": "解决病变筛查的精度与效率问题",
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4d884b419439",
-          "name": "多尺度病理描述符与增强型多特征融合网络",
-          "desc": "提出多尺度病理描述符为分级建立可判别病变特征；针对眼底影像多源特点提出增强型多特征融合网络，将多特征融合与多尺度融合相结合；并以多尺度生成器合成病理性视网膜图像形成诊断证据。",
-          "evidence": [
-            {
-              "quote": "针对眼底影像多源特点，提出增强型多特征融合网络，将多特征融合与多尺度融合相结合，捕获眼底影像多模态特征以获得更好分类性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 768,
-                "end_char": 827
-              },
-              "version": "78b76bf7093b8706a164"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ec796534d995",
-          "name": "提出MGRNet实现视盘视杯联合分割",
-          "desc": "提出一阶段框架多图推理网络（MGRNet）用于分割OD与OC，并基于杯盘比测量实现青光眼早期发现与辅助诊断。",
+          "id": "item-d945c955cc03",
+          "name": "多图推理网络MGRNet",
+          "desc": "视盘视杯联合分割",
           "evidence": [
             {
               "quote": "提出了一种新的一阶段框架，称为多图推理网络（MGRNet），用于分割OD和OC",
@@ -99,44 +82,534 @@
               "version": "78b76bf7093b8706a164"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8f8495e9def8",
+          "name": "原始特征融合网络OFFNet",
+          "desc": "DR与DME联合分级",
+          "evidence": [
+            {
+              "quote": "基于键值查询的思想，提出了一种用于DR和DME联合分级的原始特征融合网络（OFFNet）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3389,
+                "end_char": 3432
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b70d720a99c3",
+          "name": "可控眼底图像生成模型",
+          "desc": "条件生成对抗网络数据增强",
+          "evidence": [
+            {
+              "quote": "提出了一种基于条件生成对抗性网络的可控眼底图像生成模型，用于医学数据增强",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3658,
+                "end_char": 3693
+              },
+              "version": "78b76bf7093b8706a164"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint grading of diabetic retinopathy and diabetic macular edema using an adaptive attention block and semisupervised learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Xiang Li;Qifeng Lin;Guangyu Li;Xiaoying Hu;Songtian Che",
+      "id": "out-be229395900d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint grading of diabetic retinopathy and diabetic macular edema using an adaptive attention block and semisupervised learning — Xiaoxin Guo;Xiang Li;Qifeng Lin;Guangyu Li;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3869,
+            "end_char": 4071
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于眼底图像的糖尿病视网膜多病变分割方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭晓新;徐陈芳倩",
+      "id": "out-bb91ae6d2921",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于眼底图像的糖尿病视网膜多病变分割方法及装置 — 郭晓新;徐陈芳倩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4076,
+            "end_char": 4116
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种眼底图像分类方法、装置、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭晓新;杨梅;董洪良;杨广奇",
+      "id": "out-2d4ca29a2f11",
+      "evidence": [
+        {
+          "quote": "[专利] 一种眼底图像分类方法、装置、设备及介质 — 郭晓新;杨梅;董洪良;杨广奇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4121,
+            "end_char": 4161
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Novel Instance Segmentation Method Based on Multi-Level Features and Joint Attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Bowen;Lu Yinan;Wu Tieru;Guo Xiaoxin",
+      "id": "out-c5ba652ee88d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Novel Instance Segmentation Method Based on Multi-Level Features and Joint Attention — Xu Bowen;Lu Yinan;Wu Tieru;Guo Xiaoxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4301
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel original feature fusion network for joint diabetic retinopathy and diabetic Macular edema grading",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Zhang;Xiaoxin Guo;Qifeng Lin;Haoren Wang;Xiaoying Hu;Songtian Che",
+      "id": "out-a91743ab5405",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel original feature fusion network for joint diabetic retinopathy and diabetic Macular edema grading — Jia Zhang;Xiaoxin Guo;Qifeng Lin;Haoren Wang;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4306,
+            "end_char": 4489
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "OCT图像的眼底积液分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭晓新;张宝亮;王韩",
+      "id": "out-c9ab1a0404af",
+      "evidence": [
+        {
+          "quote": "[专利] OCT图像的眼底积液分割方法 — 郭晓新;张宝亮;王韩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4494,
+            "end_char": 4525
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Controllable fundus image generation based on conditional generative adversarial networks with mask guidance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Xiang Li;Qifeng Lin;Guangyu Li;Xiaoying Hu;Songtian Che",
+      "id": "out-c29451f8ab55",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Controllable fundus image generation based on conditional generative adversarial networks with mask guidance — Xiaoxin Guo;Xiang Li;Qifeng Lin;Guangyu Li;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4714
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel U-Net Based Deep Learning Method for 3D Cardiovascular MRI Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yinan Lu;Yan Zhao;Xing Chen;Xiaoxin Guo",
+      "id": "out-0a66886588f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel U-Net Based Deep Learning Method for 3D Cardiovascular MRI Segmentation — Yinan Lu;Yan Zhao;Xing Chen;Xiaoxin Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 4846
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Super‐resolution reconstruction based on generative adversarial networks with dual branch half instance normalization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Zhenchuan Tu;Haoran Zhang;Hongliang Dong",
+      "id": "out-bd0bfe729756",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Super‐resolution reconstruction based on generative adversarial networks with dual branch half instance normalization — Xiaoxin Guo;Zhenchuan Tu;Haoran Zhang;Hongliang Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4851,
+            "end_char": 5029
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel lightweight multi-dimension feature fusion network for single-image super-resolution reconstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Zhenchuan Tu;Guangyu Li;Zhengran Shen;Weijia Wu",
+      "id": "out-636109e53ca6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel lightweight multi-dimension feature fusion network for single-image super-resolution reconstruction — Xiaoxin Guo;Zhenchuan Tu;Guangyu Li;Zhengran Shen;Weijia Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5035,
+            "end_char": 5210
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重大场景智能可视计算关键技术及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "车翔玖;郭晓新;高占恒;汲宏磊;邱兆文;庞晓丽;刘全乐;白森;赵孟雪",
+      "id": "out-037784551f22",
+      "evidence": [
+        {
+          "quote": "[奖励] 重大场景智能可视计算关键技术及应用 — 车翔玖;郭晓新;高占恒;汲宏磊;邱兆文;庞晓丽;刘全乐;白森;赵孟雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5216,
+            "end_char": 5274
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Graph alternate learning for robust graph neural networks in node classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Baoliang Zhang;Xiaoxin Guo;Zhenchuan Tu;Jia Zhang",
+      "id": "out-018863be23a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Graph alternate learning for robust graph neural networks in node classification — Baoliang Zhang;Xiaoxin Guo;Zhenchuan Tu;Jia Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5280,
+            "end_char": 5418
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于高分辨率网络的视杯和视盘的联合分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭晓新;李佳慧;张宝亮",
+      "id": "out-af8f9bb0bc69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于高分辨率网络的视杯和视盘的联合分割 — 郭晓新;李佳慧;张宝亮",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5424,
+            "end_char": 5463
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "糖尿病视网膜病变和糖尿病性黄斑水肿的联合分级方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭晓新;李想",
+      "id": "out-57b62f28b10b",
+      "evidence": [
+        {
+          "quote": "[专利] 糖尿病视网膜病变和糖尿病性黄斑水肿的联合分级方法 — 郭晓新;李想",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5469,
+            "end_char": 5506
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Self-supervised CNN-GCN hybrid network based on latent graph representation for retinal disease diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mei Yang;Xiaoxin Guo;Bo Feng;Hongliang Dong;Xiaoying Hu;Songtian Che",
+      "id": "out-34c0e0a151b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Self-supervised CNN-GCN hybrid network based on latent graph representation for retinal disease diagnosis — Mei Yang;Xiaoxin Guo;Bo Feng;Hongliang Dong;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5512,
+            "end_char": 5696
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Automatic detection and grading of diabetic macular edema based on deep neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Xinfeng Lu;Baoliang Zhang;Xiaoying Hu;Songtian Che",
+      "id": "out-5cc560ec7784",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Automatic detection and grading of diabetic macular edema based on deep neural network — Xiaoxin Guo;Xinfeng Lu;Baoliang Zhang;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5702,
+            "end_char": 5859
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multiple graph reasoning network for joint optic disc and cup segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Baoliang Zhang;Xiaoxin Guo;Guangyu Li;Zhengran Shen;Xiaoying Hu;Songtian Che",
+      "id": "out-7cd457312001",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multiple graph reasoning network for joint optic disc and cup segmentation — Baoliang Zhang;Xiaoxin Guo;Guangyu Li;Zhengran Shen;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5865,
+            "end_char": 6024
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adversarial Learning Based Residual Variational Graph Normalized Autoencoder for Network Representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhengran Shen;Xiaoxin Guo;Bo Feng;Hangyuan Cheng;Shuang Ni;Hongliang Dong",
+      "id": "out-15f17f10db78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adversarial Learning Based Residual Variational Graph Normalized Autoencoder for Network Representation — Zhengran Shen;Xiaoxin Guo;Bo Feng;Hangyuan Cheng;Shuang Ni;Hongliang Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6030,
+            "end_char": 6215
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel multi-task learning network for skin lesion classification based on multi-modal clues and label-level fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qifeng Lin;Xiaoxin Guo;Bo Feng;Juntong Guo;Shuang Ni;Hongliang Dong",
+      "id": "out-dcb0d9eb7f1e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel multi-task learning network for skin lesion classification based on multi-modal clues and label-level fusion — Qifeng Lin;Xiaoxin Guo;Bo Feng;Juntong Guo;Shuang Ni;Hongliang Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6221,
+            "end_char": 6413
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prior-guided attention fusion transformer for multi-lesion segmentation of diabetic retinopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenfangqian Xu;Xiaoxin Guo;Guangqi Yang;Yihao Cui;Longchen Su;Hongliang Dong;Xiaoying Hu;Songtian Che",
+      "id": "out-aa122cdb1dc9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prior-guided attention fusion transformer for multi-lesion segmentation of diabetic retinopathy — Chenfangqian Xu;Xiaoxin Guo;Guangqi Yang;Yihao Cui;Longchen Su;Hongliang Dong;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6419,
+            "end_char": 6625
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comprehensive attention transformer for multi-label segmentation of medical images based on multi-scale feature fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hangyuan Cheng;Xiaoxin Guo;Guangqi Yang;Cong Chen;Hongliang Dong",
+      "id": "out-b9dfe4c97cd3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comprehensive attention transformer for multi-label segmentation of medical images based on multi-scale feature fusion — Hangyuan Cheng;Xiaoxin Guo;Guangqi Yang;Cong Chen;Hongliang Dong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6631,
+            "end_char": 6822
+          },
+          "version": "78b76bf7093b8706a164"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Joint optic disc and cup segmentation using feature fusion and attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Guo;Jiahui Li;Qifeng Lin;Zhenchuan Tu;Xiaoying Hu;Songtian Che",
+      "id": "out-b94db6207015",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Joint optic disc and cup segmentation using feature fusion and attention — Xiaoxin Guo;Jiahui Li;Qifeng Lin;Zhenchuan Tu;Xiaoying Hu;Songtian Che",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6828,
+            "end_char": 6979
+          },
+          "version": "78b76bf7093b8706a164"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7711a2b8a75e"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8954c6eace30"
+      "专利": {
+        "listed": 4,
+        "extracted": 4
       },
-      "basis": "原文明示"
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8954c6eace30"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4d884b419439"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4d884b419439"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ec796534d995"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

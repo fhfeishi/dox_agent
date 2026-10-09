@@ -2,15 +2,20 @@
   "doc_id": "21a40e5e21f74f9db4b4",
   "version": "c3e279b662621b717de4",
   "source_hash": "70c73692a9aba4a623b6ffe3f04d6e09cea55423a86ff528f07128dcba9d2221",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.900546+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:32:41.242934+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0d64561e4b64",
-          "name": "乳腺癌腋窝淋巴结转移精准识别与处理",
-          "desc": "面向乳腺癌腋窝淋巴结处理决策，构建术前精准预测转移的模型并探索转移分子机制，指导最恰当的腋窝处理方式。",
+          "id": "item-fa4f58577c56",
+          "name": "乳腺癌腋窝淋巴结转移精准识别",
+          "desc": "诊断和治疗的重要临床问题",
           "evidence": [
             {
               "quote": "乳腺癌腋窝淋巴结转移的诊断和治疗一直是临床上的重要问题",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-de533c7e30fc",
-          "name": "传统影像与外科手术评估腋窝淋巴结存在缺陷",
-          "desc": "单纯传统影像学评估腋窝淋巴结准确率无法满足临床需求，而依靠外科手术评估常导致严重术后并发症，降低患者生活质量。",
+          "id": "item-207a430cfe17",
+          "name": "传统影像学评估准确率不足",
+          "desc": "无法满足临床需求",
           "evidence": [
             {
-              "quote": "单纯依靠传统影像学评估腋窝淋巴结状态的准确率无法满足临床需求，而依靠外科手术评估腋窝淋巴结状态常会导致严重的术后并发症",
+              "quote": "单纯依靠传统影像学评估腋窝淋巴结状态的准确率无法满足临床需求",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 700,
-                "end_char": 758
+                "end_char": 729
               },
               "version": "c3e279b662621b717de4"
             }
@@ -63,31 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-871eef93201f",
-          "name": "多模态组学大数据高通量预测模型",
-          "desc": "通过深度学习神经网络在影像组学基础上结合基因组学、病理组学及临床信息，建立大数据、高通量、多维度的腋窝淋巴结转移预测模型。",
-          "evidence": [
-            {
-              "quote": "拟通过深度学习神经网络在影像组学基础上结合基因组学、病理组学以及临床信息建立大数据、高通量、多维度预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 856,
-                "end_char": 908
-              },
-              "version": "c3e279b662621b717de4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a1c982b198ff",
-          "name": "弱监督腋窝淋巴结识别模型并实现分子探针临床转化",
-          "desc": "通过弱监督算法构建基于图像的腋窝淋巴结转移识别模型并提升分割效能，搭载PET/CT新型分子探针实现初步临床应用，提升术前检出率。",
+          "id": "item-4fc876aa6841",
+          "name": "弱监督腋窝淋巴结转移识别模型",
+          "desc": "基于图像并提升分割效能",
           "evidence": [
             {
               "quote": "项目通过弱监督算法成功构建了基于图像的腋窝淋巴结转移识别模型",
@@ -99,44 +82,424 @@
               "version": "c3e279b662621b717de4"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-bcc43fd9108b",
+          "name": "PET/CT新型分子探针搭载模型",
+          "desc": "初步临床应用",
+          "evidence": [
+            {
+              "quote": "同时将模型搭载到PET/CT新型分子探针中",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2554,
+                "end_char": 2574
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-246247dabecb",
+          "name": "多组学测序免疫微环境解析",
+          "desc": "肿瘤与腋窝淋巴结转移",
+          "evidence": [
+            {
+              "quote": "团队通过对肿瘤和腋窝淋巴结转移的多组学测序解析了腋窝淋巴结转移的免疫微环境特征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2611,
+                "end_char": 2649
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-27e95e6d6f97",
+          "name": "提升术前腋窝淋巴结转移检出率",
+          "desc": "PET/CT探针联合模型",
+          "evidence": [
+            {
+              "quote": "进一步提升了术前腋窝淋巴结转移检出率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2586,
+                "end_char": 2603
+              },
+              "version": "c3e279b662621b717de4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0d64561e4b64"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-de533c7e30fc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Microbiome and its implications in oncogenesis: a Mendelian randomization perspective",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kexin Feng;Fei Ren;Zeyu Xing;Yifan Zhao;Chenxuan Yang;Jiaxiang Liu;Qingyao Shang;Xin Wang;Xiang Wang",
+      "id": "out-6e62652d6310",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Microbiome and its implications in oncogenesis: a Mendelian randomization perspective — Kexin Feng;Fei Ren;Zeyu Xing;Yifan Zhao;Chenxuan Yang;Jiaxiang Liu;Qingyao Shang;Xin Wang;Xiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2694,
+            "end_char": 2888
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-de533c7e30fc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-871eef93201f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluating the Risk of Breast Cancer Recurrence and Metastasis After Adjuvant Tamoxifen Therapy by Integrating Polymorphisms in Cytochrome P450 Genes and Clinicopathological Characteristics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pang Hui;Zhang Guoqiang;Yan Na;Lang Jidong;Liang Yuebin;Xu Xinyuan;Cui Yaowen;Wu Xueya;Li Xianjun;Shan Ming;Wang Xiaoqin;Meng Xiangzhi;Liu Jiaxiang;Tian Geng;Cai Li;Yuan Dawei;Wang Xin",
+      "id": "out-8497bf2a7610",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluating the Risk of Breast Cancer Recurrence and Metastasis After Adjuvant Tamoxifen Therapy by Integrating Polymorphisms in Cytochrome P450 Genes and Clinicopathological Characteristics — Pang Hui;Zhang Guoqiang;Yan Na;Lang Jidong;Liang Yuebin;Xu Xinyuan;Cui Yaowen;Wu Xueya;Li Xianjun;Shan Ming;Wang Xiaoqin;Meng Xiangzhi;Liu Jiaxiang;Tian Geng;Cai Li;Yuan Dawei;Wang Xin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2893,
+            "end_char": 3275
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-871eef93201f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a1c982b198ff"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nomogram for predicting axillary lymph node pathological response in node-positive breast cancer patients after neoadjuvant chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Wenyan;Wang Xin;Liu Jiaqi;Zhu Qiang;Wang Xiang;Wang Pilin",
+      "id": "out-cd59a4178d3d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nomogram for predicting axillary lymph node pathological response in node-positive breast cancer patients after neoadjuvant chemotherapy — Wang Wenyan;Wang Xin;Liu Jiaqi;Zhu Qiang;Wang Xiang;Wang Pilin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3280,
+            "end_char": 3487
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "大数据时代乳腺癌精准诊疗模式现状研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "商庆尧;王昕;王文彦;刘刚;刘嘉琦;邢泽宇;孔祥溢;冯轲昕;郭嫦媛;秦岭",
+      "id": "out-4549f8a2d8bb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 大数据时代乳腺癌精准诊疗模式现状研究 — 商庆尧;王昕;王文彦;刘刚;刘嘉琦;邢泽宇;孔祥溢;冯轲昕;郭嫦媛;秦岭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3492,
+            "end_char": 3555
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An exploration of the correlations between seven psychiatric disorders and the risks of breast cancer, breast benign tumors and breast inflammatory diseases: Mendelian randomization analyses",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Ren;Qingyao Shang;Shuangtao Zhao;Chenxuan Yang;Kexin Feng;Jiaxiang Liu;Xiyu Kang;Ruixuan Zhang;Xiang Wang;Xin Wang",
+      "id": "out-0df1e6680ef3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An exploration of the correlations between seven psychiatric disorders and the risks of breast cancer, breast benign tumors and breast inflammatory diseases: Mendelian randomization analyses — Fei Ren;Qingyao Shang;Shuangtao Zhao;Chenxuan Yang;Kexin Feng;Jiaxiang Liu;Xiyu Kang;Ruixuan Zhang;Xiang Wang;Xin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3560,
+            "end_char": 3877
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Establishment and validation of a multigene model to predict the risk of relapse in hormone receptor-positive early-stage Chinese breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Jiaxiang;Zhao Shuangtao;Yang Chenxuan;Ma Li;Wu Qixi;Meng Xiangzhi;Zheng Bo;Guo Changyuan;Feng Kexin;Shang Qingyao;Liu Jiaqi;Wang Jie;Zhang Jingbo;Shan Guangyu;Xu Bing;Liu Yueping;Ying Jianming;Wang Xin;Wang Xiang",
+      "id": "out-c5c702e39196",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Establishment and validation of a multigene model to predict the risk of relapse in hormone receptor-positive early-stage Chinese breast cancer patients — Liu Jiaxiang;Zhao Shuangtao;Yang Chenxuan;Ma Li;Wu Qixi;Meng Xiangzhi;Zheng Bo;Guo Changyuan;Feng Kexin;Shang Qingyao;Liu Jiaqi;Wang Jie;Zhang Jingbo;Shan Guangyu;Xu Bing;Liu Yueping;Ying Jianming;Wang Xin;Wang Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 4259
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long‐term outcomes of intraoperative radiotherapy for early‐stage breast cancer in China: a multicenter real‐world study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Wang;Kexin Feng;Wenyan Wang;Xiangzhi Meng;Jiaqi Liu;Yang Yang;Yuting Zhong;Jingruo Li;Shikai Wu;Minghui Li;Pan Ma;Qinfu Feng;Hongmei Zeng;Yuanting Gu;Xiru Li;Zhaoqing Fan;Xiang Wang",
+      "id": "out-08e0b56b40ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long‐term outcomes of intraoperative radiotherapy for early‐stage breast cancer in China: a multicenter real‐world study — Xin Wang;Kexin Feng;Wenyan Wang;Xiangzhi Meng;Jiaqi Liu;Yang Yang;Yuting Zhong;Jingruo Li;Shikai Wu;Minghui Li;Pan Ma;Qinfu Feng;Hongmei Zeng;Yuanting Gu;Xiru Li;Zhaoqing Fan;Xiang Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4264,
+            "end_char": 4578
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An overview of the correlation between IPI and prognosis in primary breast lymphoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kexin Feng;Shuangtao Zhao;Qingyao Shang;Jiaxiang Liu;Chenxuan Yang;Fei Ren;Xiang Wang;Xin Wang",
+      "id": "out-58565f56170f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An overview of the correlation between IPI and prognosis in primary breast lymphoma — Kexin Feng;Shuangtao Zhao;Qingyao Shang;Jiaxiang Liu;Chenxuan Yang;Fei Ren;Xiang Wang;Xin Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4583,
+            "end_char": 4769
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于SEER数据库分析30岁以下乳腺癌患者的临床特征、生存情况及预后因素",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王文彦;刘佳祥;朱强;商庆尧;杨琛轩;王丕琳;王昕;王翔",
+      "id": "out-9ec7c6837cff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于SEER数据库分析30岁以下乳腺癌患者的临床特征、生存情况及预后因素 — 王文彦;刘佳祥;朱强;商庆尧;杨琛轩;王丕琳;王昕;王翔",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4774,
+            "end_char": 4847
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "激素受体阳性乳腺癌患者术后复发风险评估试剂盒",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王昕;刘佳祥;赵双涛;杨琛轩",
+      "id": "out-5b0a5640164c",
+      "evidence": [
+        {
+          "quote": "[专利] 激素受体阳性乳腺癌患者术后复发风险评估试剂盒 — 王昕;刘佳祥;赵双涛;杨琛轩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4853,
+            "end_char": 4896
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "大数据驱动下乳腺癌精准诊疗的临床指导",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘佳祥;王昕;王文彦;刘刚;刘嘉琦;邢泽宇;孔祥溢;冯轲昕;郭嫦媛;秦岭",
+      "id": "out-906995c4c3d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 大数据驱动下乳腺癌精准诊疗的临床指导 — 刘佳祥;王昕;王文彦;刘刚;刘嘉琦;邢泽宇;孔祥溢;冯轲昕;郭嫦媛;秦岭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4902,
+            "end_char": 4965
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "利妥昔单抗联合CHOP方案治疗原发性乳腺淋巴瘤的疗效分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "冯轲昕;王文彦;刘佳祥;商庆尧;杨琛轩;任斐;王昕;王翔",
+      "id": "out-6d175264960d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 利妥昔单抗联合CHOP方案治疗原发性乳腺淋巴瘤的疗效分析 — 冯轲昕;王文彦;刘佳祥;商庆尧;杨琛轩;任斐;王昕;王翔",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4971,
+            "end_char": 5036
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Male Breast Cancer and the Application of Sentinel Lymph Node Biopsy: A Multicenter Retrospective Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shang Qingyao;Feng Kexin;Wei Ya;Wang Kaipeng;Yang Chenxuan;Zhao Shuangtao;Liu Jiaxiang;Meng Xiangzhi;Li Yalun;Du Chuang;Wang Jing;Qiao Guangdong;Li Jingruo;Wang Xin;Wang Xiang",
+      "id": "out-10919b93fada",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of Male Breast Cancer and the Application of Sentinel Lymph Node Biopsy: A Multicenter Retrospective Study — Shang Qingyao;Feng Kexin;Wei Ya;Wang Kaipeng;Yang Chenxuan;Zhao Shuangtao;Liu Jiaxiang;Meng Xiangzhi;Li Yalun;Du Chuang;Wang Jing;Qiao Guangdong;Li Jingruo;Wang Xin;Wang Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5042,
+            "end_char": 5343
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An exploratory study of whether axillary lymph node dissection can be avoided in breast cancer patients with positive lymph nodes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ren Fei;Yang Chenxuan;Liu Jiaxiang;Feng Kexin;Shang Qingyao;Kang Xiyu;Zhang Ruixuan;Li Li;Zhao Shuangtao;Wang Xin;Wang Xiang",
+      "id": "out-58f9b68780e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An exploratory study of whether axillary lymph node dissection can be avoided in breast cancer patients with positive lymph nodes — Ren Fei;Yang Chenxuan;Liu Jiaxiang;Feng Kexin;Shang Qingyao;Kang Xiyu;Zhang Ruixuan;Li Li;Zhao Shuangtao;Wang Xin;Wang Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5349,
+            "end_char": 5611
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Infiltrating myeloid cell diversity determines oncological characteristics and clinical outcomes in breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Chenxuan;Liu Jiaxiang;Zhao Shuangtao;Shang Qingyao;Ren Fei;Feng Kexin;Zhang Ruixuan;Kang Xiyu;Wang Xin;Wang Xiang",
+      "id": "out-f4e83ec0d6ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Infiltrating myeloid cell diversity determines oncological characteristics and clinical outcomes in breast cancer — Yang Chenxuan;Liu Jiaxiang;Zhao Shuangtao;Shang Qingyao;Ren Fei;Feng Kexin;Zhang Ruixuan;Kang Xiyu;Wang Xin;Wang Xiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5617,
+            "end_char": 5857
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The prognostic value of IPI in patients with primary breast lymphoma, a multicenter retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Feng Kexin;Zhao Shuangtao;Shang Qingyao;Qiao Guangdong;Liu Jiaxiang;Yang Chenxuan;Wei Ya;Li Yalun;Ren Fei;Xuan Lixue;Wang Xiang;Wang Xin",
+      "id": "out-63333d82e145",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The prognostic value of IPI in patients with primary breast lymphoma, a multicenter retrospective study — Feng Kexin;Zhao Shuangtao;Shang Qingyao;Qiao Guangdong;Liu Jiaxiang;Yang Chenxuan;Wei Ya;Li Yalun;Ren Fei;Xuan Lixue;Wang Xiang;Wang Xin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5863,
+            "end_char": 6111
+          },
+          "version": "c3e279b662621b717de4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

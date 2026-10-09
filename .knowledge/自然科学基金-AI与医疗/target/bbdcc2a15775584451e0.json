@@ -2,15 +2,20 @@
   "doc_id": "bbdcc2a15775584451e0",
   "version": "90e0d68852ac0e24cf06",
   "source_hash": "5e90617a1233ae0fefa911515c37143ecde24bc7b84ab1785f88315ce57ed61a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.516471+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:56:09.890587+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c44b818cc372",
-          "name": "胶质瘤术前分子分型",
-          "desc": "IDH基因突变状态对于胶质瘤临床治疗及预后判断至关重要，术后残存肿瘤主要存在于瘤周水肿带。",
+          "id": "item-6ade387595c2",
+          "name": "胶质瘤术前无创IDH分子分型",
+          "desc": "瘤周水肿带",
           "evidence": [
             {
-              "quote": "异柠檬酸脱氢酶(IDH)基因突变状态对于胶质瘤临床治疗及预后判断至关重要。而手术治疗是延长胶质瘤患者生存时间的重要手段，术后残存肿瘤主要存在于瘤周水肿带",
+              "quote": "本项目旨在攻克胶质瘤术前无创分子分型的临床难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 678,
-                "end_char": 753
-              },
-              "version": "90e0d68852ac0e24cf06"
-            }
-          ]
-        },
-        {
-          "id": "item-8ac6a390f5ee",
-          "name": "胶质瘤个性化治疗方案",
-          "desc": "建立无创预测胶质瘤IDH1突变状态的深度学习模型，为胶质瘤个性化治疗方案提供参考。",
-          "evidence": [
-            {
-              "quote": "从而建立无创预测胶质瘤IDH1突变状态的深度学习模型，为胶质瘤个性化治疗方案提供参考",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1028,
-                "end_char": 1069
+                "start_char": 2526,
+                "end_char": 2548
               },
               "version": "90e0d68852ac0e24cf06"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5cb5af790e5a",
-          "name": "瘤周水肿带无创检测存在挑战",
-          "desc": "能否应用瘤周水肿带术前无创性检测胶质瘤IDH基因突变状态仍存在巨大挑战。",
+          "id": "item-0f02b79e48fe",
+          "name": "术前无创检测IDH突变状态仍有巨大挑战",
+          "desc": "瘤周水肿带",
           "evidence": [
             {
-              "quote": "能否应用瘤周水肿带术前无创性检测胶质瘤IDH基因突变状态，为胶质瘤在术前提供早期分子病理诊断信息，仍然存在巨大挑战。",
+              "quote": "能否应用瘤周水肿带术前无创性检测胶质瘤IDH基因突变状态，为胶质瘤在术前提供早期分子病理诊断信息，仍然存在巨大挑战",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 805,
-                "end_char": 862
-              },
-              "version": "90e0d68852ac0e24cf06"
-            }
-          ]
-        },
-        {
-          "id": "item-be9bc8f3bcd7",
-          "name": "最佳分割区域与序列组合未知",
-          "desc": "需要筛选出最佳的肿瘤分割区域以及MRI序列组合。",
-          "evidence": [
-            {
-              "quote": "并筛选出最佳的肿瘤分割区域以及MRI序列组合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1005,
-                "end_char": 1026
+                "end_char": 861
               },
               "version": "90e0d68852ac0e24cf06"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a82052b6b07",
-          "name": "瘤周水肿带精准分割",
-          "desc": "研发深度学习系统通过精准分割瘤周水肿带实现端到端预测。",
+          "id": "item-24a86b50c28f",
+          "name": "瘤周水肿带分割融合cMRI与DTI的深度学习系统",
+          "desc": "FA、MD微观结构特征，已申请发明专利",
           "evidence": [
             {
               "quote": "该系统通过精准分割瘤周水肿带，并深度融合常规磁共振（cMRI）与弥散张量成像（DTI）的微观结构特征（FA、MD），实现端到端预测",
@@ -108,23 +81,8 @@
               },
               "version": "90e0d68852ac0e24cf06"
             }
-          ]
-        },
-        {
-          "id": "item-f8dea93ef80e",
-          "name": "多中心不平衡数据集构建",
-          "desc": "构建包含1081例病例的多中心数据集，IDH突变比例高度不平衡以真实模拟临床场景。",
-          "evidence": [
-            {
-              "quote": "研究构建了包含1081例病例的多中心数据集（整合本中心及国际公开数据库数据），其IDH突变比例高度不平衡，真实模拟了临床场景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2693,
-                "end_char": 2754
-              },
-              "version": "90e0d68852ac0e24cf06"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +91,215 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5eec2442e79a",
-          "name": "瘤周水肿带预测效能更优",
-          "desc": "基于瘤周水肿带的预测效能显著优于整体肿瘤及核心区，达到中等诊断价值。",
+          "id": "item-35a83391db37",
+          "name": "多中心数据集",
+          "desc": "1081例病例",
           "evidence": [
             {
-              "quote": "1）基于瘤周水肿带的预测效能显著优于整体肿瘤及核心区，达到中等诊断价值",
+              "quote": "研究构建了包含1081例病例的多中心数据集",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2763,
-                "end_char": 2797
+                "start_char": 2693,
+                "end_char": 2713
               },
               "version": "90e0d68852ac0e24cf06"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-769c61bf4075",
-          "name": "独立测试集AUC 0.82",
-          "desc": "融合多模态特征的最优模型在独立测试集上取得AUC 0.82的稳健性能。",
+          "id": "item-bcc6370ed3dc",
+          "name": "最优模型独立测试集AUC",
+          "desc": "0.82",
           "evidence": [
             {
-              "quote": "2）融合多模态特征的最优模型在独立测试集上取得了AUC 0.82的稳健性能",
+              "quote": "融合多模态特征的最优模型在独立测试集上取得了AUC 0.82的稳健性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2799,
+                "start_char": 2801,
                 "end_char": 2835
               },
               "version": "90e0d68852ac0e24cf06"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c3f7ac22e173",
-          "name": "两项IDH预测发明专利",
-          "desc": "申请胶质瘤IDH突变状态无创预测模型训练系统及基于机器学习算法的无创预测系统专利2项。",
-          "evidence": [
-            {
-              "quote": "胶质瘤IDH突变状态无创预测模型训练系统及预测系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3047,
-                "end_char": 3071
-              },
-              "version": "90e0d68852ac0e24cf06"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c44b818cc372"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5cb5af790e5a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑皮层电刺激电极片",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群;惠瑞",
+      "id": "out-97ca5fdc2111",
+      "evidence": [
+        {
+          "quote": "[专利] 脑皮层电刺激电极片 — 王群;惠瑞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2978,
+            "end_char": 2999
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-be9bc8f3bcd7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f8dea93ef80e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "用于颅骨圆球形磨钻的清洁装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群;张鼎;白云娟;张军",
+      "id": "out-b6f7ce2f8fdc",
+      "evidence": [
+        {
+          "quote": "[专利] 用于颅骨圆球形磨钻的清洁装置 — 王群;张鼎;白云娟;张军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3004,
+            "end_char": 3037
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8a82052b6b07"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5eec2442e79a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胶质瘤IDH突变状态无创预测模型训练系统及预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群;蔡正厅;刘明航;杨晨轩",
+      "id": "out-99c45081dcbc",
+      "evidence": [
+        {
+          "quote": "[专利] 胶质瘤IDH突变状态无创预测模型训练系统及预测系统 — 王群;蔡正厅;刘明航;杨晨轩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3042,
+            "end_char": 3088
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f8dea93ef80e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-769c61bf4075"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑室腹腔分流术用皮下隧道扩张器",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群;张家墅;白云娟;陈晓雷",
+      "id": "out-d8b3af32e136",
+      "evidence": [
+        {
+          "quote": "[专利] 脑室腹腔分流术用皮下隧道扩张器 — 王群;张家墅;白云娟;陈晓雷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3093,
+            "end_char": 3129
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于机器学习算法的胶质瘤IDH突变状态无创预测系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群;蔡正厅;宁立鹏;刘明航",
+      "id": "out-4872df2e8d89",
+      "evidence": [
+        {
+          "quote": "[专利] 基于机器学习算法的胶质瘤IDH突变状态无创预测系统 — 王群;蔡正厅;宁立鹏;刘明航",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3134,
+            "end_char": 3180
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hyperhomocysteinemia increases the risk of vertebrobasilar dissecting aneurysm among the male Han Chinese population: A retrospective case-control study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qun Wang;Minghang Liu;Kai Zhao;Xinghua Xu;JiaShu Zhang;BaiNan Xu",
+      "id": "out-e22a72fe3a79",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hyperhomocysteinemia increases the risk of vertebrobasilar dissecting aneurysm among the male Han Chinese population: A retrospective case-control study — Qun Wang;Minghang Liu;Kai Zhao;Xinghua Xu;JiaShu Zhang;BaiNan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3185,
+            "end_char": 3410
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The utility of conventional MRI and diffusion tensor imaging in peritumoral edema for the prediction of isocitrate dehydrogenase 1 (IDH1) mutation of different type gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王群",
+      "id": "out-d3d0ff520801",
+      "evidence": [
+        {
+          "quote": "[会议论文] The utility of conventional MRI and diffusion tensor imaging in peritumoral edema for the prediction of isocitrate dehydrogenase 1 (IDH1) mutation of different type gliomas — 王群",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3415,
+            "end_char": 3598
+          },
+          "version": "90e0d68852ac0e24cf06"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

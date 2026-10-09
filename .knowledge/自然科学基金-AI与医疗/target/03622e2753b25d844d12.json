@@ -2,15 +2,20 @@
   "doc_id": "03622e2753b25d844d12",
   "version": "fe5af5bf49f6d14dd892",
   "source_hash": "0723430d9f8cfea7e2a60f002d70e7c60a1a9f9cf11cf8483413d42f27bb7466",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:07.774534+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.207252+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-10b17232cc9a",
-          "name": "帕金森病辅助诊断联邦学习",
-          "desc": "利用人工智能实现帕金森病辅助诊断、提升老年常见慢病医疗管理水平是我国健康老龄化的必然要求。",
+          "id": "item-e579bdb03f27",
+          "name": "帕金森病辅助诊断",
+          "desc": "利用人工智能实现PD辅助诊断是健康老龄化的必然要求",
           "evidence": [
             {
-              "quote": "利用人工智能实现帕金森病（Parkinson’s Disease，PD）的辅助诊断、提升老年常见慢病的医疗管理水平，是我国健康老龄化的必然要求",
+              "quote": "是我国健康老龄化的必然要求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
+                "start_char": 715,
                 "end_char": 727
-              },
-              "version": "fe5af5bf49f6d14dd892"
-            }
-          ]
-        },
-        {
-          "id": "item-998cb23143a5",
-          "name": "隐私保护下智慧医疗可信计算",
-          "desc": "为隐私保护下智慧医疗模型的计算提供重要的实践参考。",
-          "evidence": [
-            {
-              "quote": "为隐私保护下智慧医疗模型的计算提供重要的实践参考",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1009,
-                "end_char": 1032
               },
               "version": "fe5af5bf49f6d14dd892"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-163256781ee3",
-          "name": "隐私法规限制数据流通影响模型性能",
-          "desc": "隐私保护相关法规限制PD医疗数据流通，严重影响辅诊模型的准确性、泛化性和鲁棒性。",
+          "id": "item-bea2a858a76a",
+          "name": "隐私法规限制数据流通致辅诊模型性能不足",
+          "desc": "PD医疗数据流通受限，影响模型准确性、泛化性与鲁棒性",
           "evidence": [
             {
               "quote": "由于隐私保护相关法规，限制了PD医疗数据的流通，严重影响PD辅诊模型的准确性、泛化性和鲁棒性",
@@ -73,16 +62,16 @@
           ]
         },
         {
-          "id": "item-20b5909ffa8b",
-          "name": "多模态特征跨场景异质化",
-          "desc": "需解决多模态PD特征跨场景异质化问题以提升准确性。",
+          "id": "item-e8b0bdd0dfce",
+          "name": "多模态异质、小样本分布差异与标签噪声",
+          "desc": "跨场景特征异质化、多机构小样本分布差异、弱监督标签噪声不一致",
           "evidence": [
             {
-              "quote": "针对多模态PD特征跨场景异质化问题，提出直觉与知识融合的纵向联邦学习方法，联合特征提高准确性",
+              "quote": "重点突破了多模态特征跨场景异质化、多机构小样本分布差异及弱监督标签噪声不一致等难题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 801,
-                "end_char": 846
+                "start_char": 2700,
+                "end_char": 2740
               },
               "version": "fe5af5bf49f6d14dd892"
             }
@@ -97,7 +86,7 @@
         {
           "id": "item-88be45b2ce1b",
           "name": "直觉与知识融合纵向联邦学习",
-          "desc": "针对多模态特征跨场景异质化，提出直觉与知识融合的纵向联邦学习方法，联合特征提高准确性。",
+          "desc": "联合特征提高准确性",
           "evidence": [
             {
               "quote": "针对多模态PD特征跨场景异质化问题，提出直觉与知识融合的纵向联邦学习方法，联合特征提高准确性",
@@ -108,12 +97,13 @@
               },
               "version": "fe5af5bf49f6d14dd892"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8f8ef161d011",
-          "name": "类别分层自蒸馏横向联邦学习",
-          "desc": "针对多机构PD小样本分布差异大问题，提出类别分层自蒸馏的横向联邦方法，联合样本提升泛化性。",
+          "id": "item-d1b4befb481f",
+          "name": "类别分层自蒸馏横向联邦",
+          "desc": "联合样本提升泛化性",
           "evidence": [
             {
               "quote": "针对多机构PD小样本分布差异大问题，提出类别分层自蒸馏的横向联邦方法，联合样本提升泛化性",
@@ -124,12 +114,13 @@
               },
               "version": "fe5af5bf49f6d14dd892"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f458bc4350f3",
-          "name": "共识机制驱动的联邦带噪学习",
-          "desc": "针对弱监督PD标签噪声不一致问题，提出共识机制驱动的联邦带噪学习方法，联合标签增强鲁棒性。",
+          "id": "item-805ccf58ec74",
+          "name": "共识机制驱动联邦带噪学习",
+          "desc": "联合标签增强鲁棒性",
           "evidence": [
             {
               "quote": "针对弱监督PD标签噪声不一致问题，提出共识机制驱动的联邦带噪学习方法，联合标签增强鲁棒性",
@@ -140,7 +131,8 @@
               },
               "version": "fe5af5bf49f6d14dd892"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -151,7 +143,7 @@
         {
           "id": "item-2d3e72b542ae",
           "name": "PD联邦辅诊原型系统临床部署",
-          "desc": "搭建的PD联邦辅诊原型系统已在首都医科大学宣武医院牵头的中国帕金森联盟内50余家医院实现临床部署。",
+          "desc": "在中国帕金森联盟内50余家医院实现临床部署",
           "evidence": [
             {
               "quote": "搭建的PD联邦辅诊原型系统已在首都医科大学宣武医院牵头的中国帕金森联盟内50余家医院实现临床部署",
@@ -163,41 +155,47 @@
               "version": "fe5af5bf49f6d14dd892"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-a55709f4be83",
-          "name": "论文专利与奖项成果",
-          "desc": "在NeurIPS、IJCAI、TNNLS等顶级会议及期刊发表论文13篇，申请国家发明专利8项（4项已授权），登记软著1项，获2024年吴文俊人工智能科学技术奖技术发明二等奖。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "发表论文13篇，申请发明专利8项（4项授权），软著1项",
           "evidence": [
             {
-              "quote": "项目在NeurIPS、IJCAI、TNNLS等国内外顶级会议及期刊发表论文13篇，申请国家发明专利8项（其中4项已授权），登记软著1项，荣获2024年吴文俊人工智能科学技术奖技术发明二等奖",
+              "quote": "在NeurIPS、IJCAI、TNNLS等国内外顶级会议及期刊发表论文13篇，申请国家发明专利8项（其中4项已授权），登记软著1项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2795,
+                "start_char": 2797,
+                "end_char": 2861
+              },
+              "version": "fe5af5bf49f6d14dd892"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e1a8b08a530e",
+          "name": "科技奖励",
+          "desc": "荣获2024年吴文俊人工智能科学技术奖技术发明二等奖",
+          "evidence": [
+            {
+              "quote": "荣获2024年吴文俊人工智能科学技术奖技术发明二等奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2863,
                 "end_char": 2888
               },
               "version": "fe5af5bf49f6d14dd892"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5b25db595421",
-          "name": "知识产权转化与社区普查应用",
-          "desc": "相关知识产权已转化并在江苏太仓开展社区普查应用。",
-          "evidence": [
-            {
-              "quote": "相关知识产权已转化并在江苏太仓开展社区普查应用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2939,
-                "end_char": 2961
-              },
-              "version": "fe5af5bf49f6d14dd892"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +203,433 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-10b17232cc9a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-163256781ee3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-163256781ee3"
-      },
-      "to": {
         "dimension": "技术",
         "item_id": "item-88be45b2ce1b"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e8b0bdd0dfce"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对多模态PD特征跨场景异质化问题，提出直觉与知识融合的纵向联邦学习方法，联合特征提高准确性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 801,
+            "end_char": 846
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-8f8ef161d011"
+        "item_id": "item-d1b4befb481f"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-2d3e72b542ae"
+        "dimension": "问题",
+        "item_id": "item-e8b0bdd0dfce"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f458bc4350f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a55709f4be83"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对多机构PD小样本分布差异大问题，提出类别分层自蒸馏的横向联邦方法，联合样本提升泛化性",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 848,
+            "end_char": 891
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Federated Data Quality Assessment Approach: Robust Learning With Mixed Label Noise",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bixiao Zeng;Xiaodong Yang;Yiqiang Chen;Hanchao Yu;Chunyu Hu;Yingwei Zhang",
+      "id": "out-c5e53a286cf4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Federated Data Quality Assessment Approach: Robust Learning With Mixed Label Noise — Bixiao Zeng;Xiaodong Yang;Yiqiang Chen;Hanchao Yu;Chunyu Hu;Yingwei Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3068,
+            "end_char": 3232
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedDBM: Federated Digital Biomarker for Detecting Parkinson’s Disease Progress",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiqiang Chen;Xiaodong Yang;Yuting He;Chunyan Miao;Piu Chan",
+      "id": "out-7baae6971836",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedDBM: Federated Digital Biomarker for Detecting Parkinson’s Disease Progress — Yiqiang Chen;Xiaodong Yang;Yuting He;Chunyan Miao;Piu Chan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3237,
+            "end_char": 3382
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于注意力机制的多实例行为识别方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈益强;孙睿哲;杨晓东;于汉超",
+      "id": "out-ee7f8a55403d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于注意力机制的多实例行为识别方法及系统 — 陈益强;孙睿哲;杨晓东;于汉超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3431
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种糖尿病患者病变评估模型的联邦训练方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈益强;曾碧霄;杨晓东;张迎伟",
+      "id": "out-0e412a93f471",
+      "evidence": [
+        {
+          "quote": "[专利] 一种糖尿病患者病变评估模型的联邦训练方法及系统 — 陈益强;曾碧霄;杨晓东;张迎伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3436,
+            "end_char": 3481
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Multi-modal Data Fusion Method for Dermatosis Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yaning Li;Xiaodong Yang;Yiqiang Chen;Shubai Chen;Bixiao Zeng;Hong Cai",
+      "id": "out-dbad4a6f5496",
+      "evidence": [
+        {
+          "quote": "[会议论文] Adaptive Multi-modal Data Fusion Method for Dermatosis Diagnosis — Yaning Li;Xiaodong Yang;Yiqiang Chen;Shubai Chen;Bixiao Zeng;Hong Cai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3486,
+            "end_char": 3628
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MoPFormer: Motion-Primitive Transformer for Wearable-Sensor Activity Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Zhang;Zhan Zhuang;Xuehao Wang;Xiaodong Yang;Yu Zhang",
+      "id": "out-e9ea15028425",
+      "evidence": [
+        {
+          "quote": "[会议论文] MoPFormer: Motion-Primitive Transformer for Wearable-Sensor Activity Recognition — Hao Zhang;Zhan Zhuang;Xuehao Wang;Xiaodong Yang;Yu Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3633,
+            "end_char": 3778
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种医学任务预测模型构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈益强;张景伟;杨晓东",
+      "id": "out-ab93c35755dd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种医学任务预测模型构建方法 — 陈益强;张景伟;杨晓东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3783,
+            "end_char": 3815
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedES: federated early-stopping for hindering memorizing heterogeneous label noise",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bixiao Zeng;Xiaodong Yang;Yiqiang Chen;Zhiqi Shen;Hanchao Yu;Yingwei Zhang",
+      "id": "out-57051fdb026b",
+      "evidence": [
+        {
+          "quote": "[会议论文] FedES: federated early-stopping for hindering memorizing heterogeneous label noise — Bixiao Zeng;Xiaodong Yang;Yiqiang Chen;Zhiqi Shen;Hanchao Yu;Yingwei Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3820,
+            "end_char": 3985
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种纵向联邦神经网络模型的训练方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈益强;阳铖;杨晓东",
+      "id": "out-d279ffc171b9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种纵向联邦神经网络模型的训练方法 — 陈益强;阳铖;杨晓东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3990,
+            "end_char": 4024
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于水印嵌入的医疗系统联邦学习方法与医疗系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨晓东;孙嘉壕;陈益强",
+      "id": "out-0738445f456c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于水印嵌入的医疗系统联邦学习方法与医疗系统 — 杨晓东;孙嘉壕;陈益强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4030,
+            "end_char": 4072
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种联邦学习数据质量评估方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈益强;曾碧霄;杨晓东;于汉超;张迎伟",
+      "id": "out-1bf99757d035",
+      "evidence": [
+        {
+          "quote": "[专利] 一种联邦学习数据质量评估方法及系统 — 陈益强;曾碧霄;杨晓东;于汉超;张迎伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4121
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "以人为本的可解释智能医疗综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋淑超;陈益强;于汉超;张迎伟;杨晓东",
+      "id": "out-20244074dd73",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 以人为本的可解释智能医疗综述 — 宋淑超;陈益强;于汉超;张迎伟;杨晓东",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4127,
+            "end_char": 4169
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Communication-Efficient Vertical Federated Learning via Neuron Selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cheng Yang;Yiqiang Chen;Xiaodong Yang;Yuting He",
+      "id": "out-478b04089894",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Communication-Efficient Vertical Federated Learning via Neuron Selection — Cheng Yang;Yiqiang Chen;Xiaodong Yang;Yuting He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4175,
+            "end_char": 4305
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种帕金森病患者面具脸病情的定量评估方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨晓东;陈益强;王旭",
+      "id": "out-b18de900680e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种帕金森病患者面具脸病情的定量评估方法 — 杨晓东;陈益强;王旭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4311,
+            "end_char": 4348
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "C-PPT: A Channel-Wise Prototypical Part Transformer for Interpretable Perioperative Complication Prediction with Blood Pressure",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Jingwei;Yang Xiaodong;Chen Yiqiang;Sung Ruizhe",
+      "id": "out-ea8102919b52",
+      "evidence": [
+        {
+          "quote": "[会议论文] C-PPT: A Channel-Wise Prototypical Part Transformer for Interpretable Perioperative Complication Prediction with Blood Pressure — Zhang Jingwei;Yang Xiaodong;Chen Yiqiang;Sung Ruizhe",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4354,
+            "end_char": 4542
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedAWM: Adaptive watermark allocation in non-IID federated learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jiahao;Yang Xiaodong;Chen Shubai;Qin Xin;Zeng Bixiao",
+      "id": "out-93a8fabd9f66",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedAWM: Adaptive watermark allocation in non-IID federated learning — Sun Jiahao;Yang Xiaodong;Chen Shubai;Qin Xin;Zeng Bixiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4548,
+            "end_char": 4680
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2024",
+      "precision": "年",
+      "desc": "荣获吴文俊人工智能科学技术奖技术发明二等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-cfbb30dfc562",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "荣获2024年吴文俊人工智能科学技术奖技术发明二等奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2863,
+            "end_char": 2888
+          },
+          "version": "fe5af5bf49f6d14dd892"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

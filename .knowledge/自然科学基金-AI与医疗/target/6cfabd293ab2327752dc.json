@@ -2,15 +2,20 @@
   "doc_id": "6cfabd293ab2327752dc",
   "version": "a353f90c32d9b954e0ed",
   "source_hash": "927cbb27d73f99cab5729501aa119ebbc733b36ce08607439ad1f327c7e1017c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.227203+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.930265+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-55098e1729c3",
-          "name": "脑瘫中医证型中枢机制研究",
-          "desc": "脑瘫是引起儿童残疾的最主要疾病，早期干预有助于改善预后，中医药治疗脑瘫优势明显。",
+          "id": "item-7b03f5d59ae9",
+          "name": "脑瘫中医证型中枢机制",
+          "desc": "辨证分型缺乏客观标准",
           "evidence": [
             {
-              "quote": "脑瘫是引起儿童残疾的最主要疾病，给家庭和社会带来了沉重负担，早期干预有助于改善预后",
+              "quote": "脑瘫中医辨证分型机制不明，缺乏客观标准，是早期精准干预面临的重要瓶颈问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 683,
-                "end_char": 723
-              },
-              "version": "a353f90c32d9b954e0ed"
-            }
-          ]
-        },
-        {
-          "id": "item-1ef03f67f1f0",
-          "name": "阐释辨证论治现代科学内涵",
-          "desc": "研究有望明确脑瘫中医辨证分型的中枢机制，阐释辨证论治的现代科学内涵，为早期精准干预提供客观依据。",
-          "evidence": [
-            {
-              "quote": "本研究有望明确脑瘫中医辨证分型的中枢机制，充分阐释“辨证论治”的现代科学内涵，为早期精准干预提供客观依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1029,
-                "end_char": 1080
+                "start_char": 768,
+                "end_char": 803
               },
               "version": "a353f90c32d9b954e0ed"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-47481f997d13",
-          "name": "脑瘫中医辨证分型机制不明缺客观标准",
-          "desc": "脑瘫中医辨证分型机制不明、缺乏客观标准，是早期精准干预面临的重要瓶颈问题。",
+          "id": "item-32b01104667d",
+          "name": "中医辨证分型机制不明且缺乏客观标准",
+          "desc": "早期精准干预瓶颈",
           "evidence": [
             {
-              "quote": "然而，脑瘫中医辨证分型机制不明，缺乏客观标准，是早期精准干预面临的重要瓶颈问题",
+              "quote": "脑瘫中医辨证分型机制不明，缺乏客观标准，是早期精准干预面临的重要瓶颈问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 765,
+                "start_char": 768,
                 "end_char": 803
-              },
-              "version": "a353f90c32d9b954e0ed"
-            }
-          ]
-        },
-        {
-          "id": "item-0922cefc19b4",
-          "name": "需明确证型特异性神经影像特征",
-          "desc": "需通过智能检测、多参量评估与病灶-网络映射揭示中医不同证型的中枢机制。",
-          "evidence": [
-            {
-              "quote": "感觉运动环路中特定部位纤维束损伤及相应的皮层网络结构与连接性异常，可能是中医不同证型的中枢机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 940
               },
               "version": "a353f90c32d9b954e0ed"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-12557fbb20cf",
-          "name": "深度学习责任病灶智能检测",
-          "desc": "基于深度学习实现脑瘫责任病灶智能检测，利用3D-T1WI和DTI进行灰白质微结构及网络多参量分析，通过病灶-网络映射技术揭示病灶与皮层网络映射关系。",
+          "id": "item-4a7308445781",
+          "name": "BMSeg-CP责任病灶智能分割与脑瘫分类模型",
+          "desc": "基于双模态MRI的PVWMI",
           "evidence": [
             {
-              "quote": "本项目拟基于深度学习实现脑瘫责任病灶的智能检测；利用3D-T1WI和DTI进行灰白质微结构及网络的多参量分析；通过病灶-网络映射技术揭示脑瘫病灶与皮层网络的映射关系",
+              "quote": "构建了“基于双模态MRI的PVWMI脑瘫责任病灶智能分割与脑瘫分类模型（BMSeg-CP）”，实现了脑瘫责任病灶的智能检测及脑瘫分类",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 946,
-                "end_char": 1027
+                "start_char": 3375,
+                "end_char": 3440
               },
               "version": "a353f90c32d9b954e0ed"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a0bcbc74210c",
-          "name": "多中心多阅片者验证设计",
-          "desc": "采用多中心多阅片者研究设计对5个MRI征象进行全国多中心验证，评估诊断效能及观察者间一致性。",
+          "id": "item-4d1e91255651",
+          "name": "病灶-网络映射",
+          "desc": "白质纤维束与皮层微结构多参量评估",
           "evidence": [
             {
-              "quote": "采用多中心多阅片者研究设计，对上述5个MRI征象进行全国多中心验证，评估诊断效能及观察者间的一致性",
+              "quote": "脑瘫患儿脑部病灶网络映射的多参量评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3319,
-                "end_char": 3367
+                "start_char": 3210,
+                "end_char": 3227
               },
               "version": "a353f90c32d9b954e0ed"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,259 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b6fa8de6af7a",
-          "name": "明确脑瘫关键责任病灶",
-          "desc": "明确内囊后肢、皮质脊髓束半卵圆中心段、大脑脚、丘脑及豆状核损伤为脑瘫的关键责任病灶，并构建BMSeg-CP智能分割与分类模型。",
+          "id": "item-e68d6a7edbb1",
+          "name": "肝肾亏损型脑瘫影像学指标",
+          "desc": "双侧皮质脊髓束等FA值降低",
           "evidence": [
             {
-              "quote": "① 明确了内囊后肢、皮质脊髓束半卵圆中心段、大脑脚、丘脑及豆状核损伤为脑瘫的关键责任病灶",
+              "quote": "发现双侧皮质脊髓束、内囊后肢及胼胝体压部的各项异性分数（fractional anisotropy，FA）值降低是诊断肝肾亏损型脑瘫的关键影像学指标",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3272,
-                "end_char": 3315
-              },
-              "version": "a353f90c32d9b954e0ed"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5e326c56b903",
-          "name": "FA值降低为肝肾亏损型关键指标",
-          "desc": "发现双侧皮质脊髓束、内囊后肢及胼胝体压部各项异性分数值降低是诊断肝肾亏损型脑瘫的关键影像学指标。",
-          "evidence": [
-            {
-              "quote": "① 发现双侧皮质脊髓束、内囊后肢及胼胝体压部的各项异性分数（fractional anisotropy，FA）值降低是诊断肝肾亏损型脑瘫的关键影像学指标",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3475,
+                "start_char": 3477,
                 "end_char": 3550
               },
               "version": "a353f90c32d9b954e0ed"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-7f7e22de6c26",
-          "name": "明确不同证型特异神经影像特征",
-          "desc": "明确脑瘫不同中医证型的特异性神经影像特征，为揭示辨证分型中枢机制和早期精准干预靶点选择提供依据。",
-          "evidence": [
-            {
-              "quote": "通过项目的实施，明确了脑瘫不同中医证型的特异性神经影像特征，为揭示中医辨证分型的中枢机制提供了客观证据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3767,
-                "end_char": 3817
-              },
-              "version": "a353f90c32d9b954e0ed"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-55098e1729c3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-47481f997d13"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多参数MRI影像组学的9种机器学习模型对婴幼儿脑瘫风险的预测效能比较",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾真;黄婷婷;卞益同;刘军;杨健;李贤军",
+      "id": "out-188d8c0dfeb4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多参数MRI影像组学的9种机器学习模型对婴幼儿脑瘫风险的预测效能比较 — 贾真;黄婷婷;卞益同;刘军;杨健;李贤军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3928
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-47481f997d13"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-12557fbb20cf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bidirectional Projection-Based Multi-Modal Fusion Transformer for Early Detection of Cerebral Palsy in Infants",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kai Qi;Tingting Huang;Chao Jin;Yizhe Yang;Shihui Ying;Jian Sun;Jian Yang",
+      "id": "out-02c2807a15de",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bidirectional Projection-Based Multi-Modal Fusion Transformer for Early Detection of Cerebral Palsy in Infants — Kai Qi;Tingting Huang;Chao Jin;Yizhe Yang;Shihui Ying;Jian Sun;Jian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3933,
+            "end_char": 4124
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-12557fbb20cf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b6fa8de6af7a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DBAII-Net with multiscale feature aggregation and cross-modal attention for enhancing infant brain injury classification in MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Jia;Tingting Huang;Xianjun Li;Yitong Bian;Fan Wang;Jianmin Yuan;Guanghua Xu;Jian Yang",
+      "id": "out-d5c7564c09ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DBAII-Net with multiscale feature aggregation and cross-modal attention for enhancing infant brain injury classification in MRI — Zhen Jia;Tingting Huang;Xianjun Li;Yitong Bian;Fan Wang;Jianmin Yuan;Guanghua Xu;Jian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4129,
+            "end_char": 4355
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-a0bcbc74210c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7f7e22de6c26"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑室周围白质损伤早产儿与足月儿神经发育特点的对比分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张晗宇;李曼;赵鑫;杨凯华;邢威;张刚;张岚;黄婷婷",
+      "id": "out-443bc7bce021",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑室周围白质损伤早产儿与足月儿神经发育特点的对比分析 — 张晗宇;李曼;赵鑫;杨凯华;邢威;张刚;张岚;黄婷婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4360,
+            "end_char": 4421
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a conventional MRI-based model to predict cerebral palsy in infants (aged 6–24 months) with periventricular white matter injury: a multicentre, retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Huang;Jie Zheng;Heng Liu;Haoxiang Jiang;Chao Jin;Xianjun Li;Liang Wu;Lei Zhang;Congcong Liu;Yitong Bian;Miaomiao Wang;Fan Wu;Xin Zhao;Shengli Shi;Fei Wang;Mengxuan Li;Linlin Zhu;Yuying Feng;Gang Zhang;Jian Yang",
+      "id": "out-2bfb2b7cc8b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a conventional MRI-based model to predict cerebral palsy in infants (aged 6–24 months) with periventricular white matter injury: a multicentre, retrospective cohort study — Tingting Huang;Jie Zheng;Heng Liu;Haoxiang Jiang;Chao Jin;Xianjun Li;Liang Wu;Lei Zhang;Congcong Liu;Yitong Bian;Miaomiao Wang;Fan Wu;Xin Zhao;Shengli Shi;Fei Wang;Mengxuan Li;Linlin Zhu;Yuying Feng;Gang Zhang;Jian Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4426,
+            "end_char": 4854
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脑磁共振图像的脑损伤区域检测方法、装置、设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨健;贾真;李贤军;黄婷婷;卞益同;金超",
+      "id": "out-a219f9e214d5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脑磁共振图像的脑损伤区域检测方法、装置、设备 — 杨健;贾真;李贤军;黄婷婷;卞益同;金超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4859,
+            "end_char": 4910
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑室周围白质损伤患儿发生混合型脑性瘫痪预测模型的建立",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄婷婷;张岚;邢威;李贞;王飞;张刚",
+      "id": "out-b08e3db1ecb7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑室周围白质损伤患儿发生混合型脑性瘫痪预测模型的建立 — 黄婷婷;张岚;邢威;李贞;王飞;张刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4915,
+            "end_char": 4968
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像检查技术与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李东海;王志强;赵宝林;黄灿斌;黄婷婷",
+      "id": "out-5b0e9d3963ec",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像检查技术与应用 — 李东海;王志强;赵宝林;黄灿斌;黄婷婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4973,
+            "end_char": 5010
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "自引导注意力网络检测脑室周围白质损伤患儿脑瘫相关责任病灶",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄婷婷;王卓琛;赵鑫;杨凯华;张晗宇;李曼;邢威;张刚",
+      "id": "out-42e2bae7d93f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 自引导注意力网络检测脑室周围白质损伤患儿脑瘫相关责任病灶 — 黄婷婷;王卓琛;赵鑫;杨凯华;张晗宇;李曼;邢威;张刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5079
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种婴幼儿磁共振检查脑部固定装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄婷婷;王飞;李曼;李艳若;张晗宇;张迪",
+      "id": "out-5bb560d46a15",
+      "evidence": [
+        {
+          "quote": "[专利] 一种婴幼儿磁共振检查脑部固定装置 — 黄婷婷;王飞;李曼;李艳若;张晗宇;张迪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5085,
+            "end_char": 5128
+          },
+          "version": "a353f90c32d9b954e0ed"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

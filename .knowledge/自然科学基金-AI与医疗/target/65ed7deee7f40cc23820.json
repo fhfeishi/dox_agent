@@ -2,15 +2,20 @@
   "doc_id": "65ed7deee7f40cc23820",
   "version": "09aa8854d07bcc31a37c",
   "source_hash": "cc991246487186fc086b1bd60541587fd82e1bac3bf432165dd5c6a196eae69b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.050534+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.861169+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fe5b9da93b24",
-          "name": "上皮性卵巢癌EMT评估",
-          "desc": "上皮性卵巢癌致死率居妇科恶性肿瘤首位，高转移与化疗耐药是预后差的主要因素。",
+          "id": "item-2b654ba61fe2",
+          "name": "上皮性卵巢癌上皮间质转化评估",
+          "desc": "EMT是侵袭转移化疗耐药主要机制",
           "evidence": [
             {
-              "quote": "上皮性卵巢癌（EOC）居妇科恶性肿瘤致死率的首位，高转移性及化疗耐药是预后差的主要因素",
+              "quote": "上皮间质转化（EMT）是肿瘤侵袭、转移及化疗耐药的主要机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 716
+                "start_char": 2792,
+                "end_char": 2820
               },
               "version": "09aa8854d07bcc31a37c"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eb344a3fb12d",
-          "name": "缺乏无创评估肿瘤内EMT手段",
-          "desc": "上皮间质转化是EOC侵袭转移及耐药的主要机制，但目前缺乏无创有效的评估手段。",
+          "id": "item-88aa4a5e902d",
+          "name": "缺乏无创有效评估肿瘤内EMT的手段",
+          "desc": "临床",
           "evidence": [
             {
               "quote": "目前缺乏无创有效的评估肿瘤内EMT手段",
@@ -63,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-89f8580e96f4",
-          "name": "常规US联合CEUS影像组学模型",
-          "desc": "提取常规超声与超声造影影像组学特征，建立并验证联合模型预测肿瘤内EMT。",
+          "id": "item-3c70ee28cd92",
+          "name": "FOXN3-RPS15A调控机制",
+          "desc": "抑制卵巢癌增殖、侵袭、EMT及血管生成",
           "evidence": [
             {
-              "quote": "建立并验证基于常规US、CEUS以及两者联合US影像组学模型",
+              "quote": "通过体内、外实验证实FOXN3通过负向调控RPS15A抑制卵巢癌细胞增殖、侵袭、EMT及血管生成",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3216,
+                "end_char": 3263
+              },
+              "version": "09aa8854d07bcc31a37c"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-49f8a647cb99",
+          "name": "超声及超声造影影像组学模型",
+          "desc": "预测肿瘤内EMT",
+          "evidence": [
+            {
+              "quote": "建立并验证基于常规US、CEUS以及两者联合US影像组学模型，结合IHC结果，预测肿瘤内EMT情况",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3442,
-                "end_char": 3471
+                "end_char": 3490
               },
               "version": "09aa8854d07bcc31a37c"
             }
-          ]
-        },
-        {
-          "id": "item-5677da111be5",
-          "name": "FOXN3与RPS15A调控验证",
-          "desc": "通过双荧光素酶、RT-qPCR与WB等技术验证FOXN3与RPS15A的负向调控关系。",
-          "evidence": [
-            {
-              "quote": "利用双荧光素酶试验验证FOXN3与RPS15A启动子结合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3057,
-                "end_char": 3084
-              },
-              "version": "09aa8854d07bcc31a37c"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -101,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ace941720f9",
-          "name": "FOXN3负向调控RPS15A抑瘤",
-          "desc": "体内外实验证实FOXN3通过负向调控RPS15A抑制卵巢癌细胞增殖、侵袭、EMT及血管生成。",
-          "evidence": [
-            {
-              "quote": "证实FOXN3通过负向调控RPS15A抑制卵巢癌细胞增殖、侵袭、EMT及血管生成",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3224,
-                "end_char": 3263
-              },
-              "version": "09aa8854d07bcc31a37c"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ec90efe3293d",
-          "name": "联合US模型预测效能最佳",
-          "desc": "联合US影像组学模型预测EMT效能最佳，训练集与测试集AUC分别为0.98、1.0。",
+          "id": "item-7a32cc90a20c",
+          "name": "联合US影像组学模型预测EMT",
+          "desc": "训练集AUC 0.98，测试集1.0",
           "evidence": [
             {
               "quote": "结果显示联合US影像组学模型预测效能最佳，训练集和测试集的AUC分别为0.98、1.0",
@@ -132,72 +122,88 @@
               "version": "09aa8854d07bcc31a37c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-d3515ffa0c77",
-          "name": "SCI论文与人才培养",
-          "desc": "已发表第一标注该课题资助的SCI论文3篇，修稿中1篇，并新增省课题一项。",
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "第一标注SCI论文3篇",
           "evidence": [
             {
-              "quote": "本研究已发表第一标注该课题资助的SCI论文3篇，修稿中SCI论文1篇，新增省课题一项",
+              "quote": "本研究已发表第一标注该课题资助的SCI论文3篇",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3616,
-                "end_char": 3657
+                "end_char": 3638
               },
               "version": "09aa8854d07bcc31a37c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fe5b9da93b24"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-eb344a3fb12d"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imaging features of skeletal muscle lymphoma: a case report and literature review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuxi Gao;Hong Shu;Hua Yang",
+      "id": "out-b18effb67702",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Imaging features of skeletal muscle lymphoma: a case report and literature review — Shuxi Gao;Hong Shu;Hua Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3722,
+            "end_char": 3839
+          },
+          "version": "09aa8854d07bcc31a37c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-eb344a3fb12d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-89f8580e96f4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-89f8580e96f4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ec90efe3293d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5677da111be5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9ace941720f9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FOXN3 inhibits the progression of ovarian cancer through negatively regulating the expression of RPS15A",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hua Yang;Mingyu Li;Yue Qi",
+      "id": "out-1b67f2308bce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FOXN3 inhibits the progression of ovarian cancer through negatively regulating the expression of RPS15A — Hua Yang;Mingyu Li;Yue Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3844,
+            "end_char": 3981
+          },
+          "version": "09aa8854d07bcc31a37c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

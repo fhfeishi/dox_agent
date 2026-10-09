@@ -2,15 +2,20 @@
   "doc_id": "010b421f060bec02e3b7",
   "version": "b062ee607995ae6562d5",
   "source_hash": "6ceb90cb5b94d4ee8a62d9835fcfbb480b8704ec6aab1e781adb91840ffd3034",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.024420+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.027218+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8569f94e1b0f",
-          "name": "驾驶员疲劳驾驶安全",
-          "desc": "道路交通中驾驶员疲劳易引发交通事故，需对瞌睡状态进行实时监测预警。",
+          "id": "item-5a3d57eaed2c",
+          "name": "驾驶员疲劳与瞌睡检测",
+          "desc": "驾驶员疲劳易引发交通事故，打瞌睡对驾驶安全威胁尤其大",
           "evidence": [
             {
-              "quote": "在道路交通中，驾驶员疲劳容易引发交通事故",
+              "quote": "驾驶员打瞌睡尤其对驾驶安全造成巨大威胁",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 654,
-                "end_char": 673
+                "start_char": 722,
+                "end_char": 740
               },
               "version": "b062ee607995ae6562d5"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ce886293ed85",
-          "name": "瞌睡生理机制不明缺检测方法",
-          "desc": "现有研究尚不明确瞌睡产生的生理机制，也缺乏实用化的检测方法。",
+          "id": "item-ea7bce1156dd",
+          "name": "瞌睡生理机制不明且缺乏实用检测方法",
+          "desc": "尚不明确瞌睡产生的生理机制，缺乏实用化检测方法",
           "evidence": [
             {
-              "quote": "但现存研究尚不明确瞌睡产生的生理机制，以及缺乏实用化的检测方法",
+              "quote": "现存研究尚不明确瞌睡产生的生理机制，以及缺乏实用化的检测方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 742,
+                "start_char": 743,
                 "end_char": 772
-              },
-              "version": "b062ee607995ae6562d5"
-            }
-          ]
-        },
-        {
-          "id": "item-62bf8f719bec",
-          "name": "单模态信号难以稳定指示瞌睡",
-          "desc": "脑电与眼电信号需联合分析才能稳定指示瞌睡状态。",
-          "evidence": [
-            {
-              "quote": "其中，脑电和眼电信号被证明能够有效地指示驾驶员疲劳",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 696,
-                "end_char": 720
               },
               "version": "b062ee607995ae6562d5"
             }
@@ -79,25 +68,60 @@
       "state": "has",
       "items": [
         {
-          "id": "item-226d0a58b68e",
-          "name": "CLSA 多网络融合模型",
-          "desc": "融合CNN、LSTM与自注意力机制的CLSA模型，实现瞌睡各阶段的高精度实时检测。",
+          "id": "item-bd5958bbccaf",
+          "name": "CLSA模型（CNN+LSTM+自注意力）",
+          "desc": "融合CNN、LSTM与自注意力机制，检测瞌睡起始、持续及结束阶段",
           "evidence": [
             {
-              "quote": "创新性地提出了融合卷积神经网络（CNN）、长短时记忆网络（LSTM）与自注意力机制（Self-Attention）的CLSA模型",
+              "quote": "融合卷积神经网络（CNN）、长短时记忆网络（LSTM）与自注意力机制（Self-Attention）的CLSA模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2936,
+                "start_char": 2943,
                 "end_char": 2999
               },
               "version": "b062ee607995ae6562d5"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2567631a2eb0",
-          "name": "瞌睡三阶段生理划分方法",
-          "desc": "提出瞌睡三阶段（起始期、持续期、结束期）生理划分方法与标注体系。",
+          "id": "item-05d76d871fb0",
+          "name": "一维卷积神经网络检测脑电alpha波",
+          "desc": "用一维CNN自动检测脑电alpha波",
+          "evidence": [
+            {
+              "quote": "研究一维卷积神经网络在自动检测脑电alpha波上的应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 880,
+                "end_char": 906
+              },
+              "version": "b062ee607995ae6562d5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fbdfa87bc2ce",
+          "name": "眼电信号波形模式匹配算法",
+          "desc": "基于聚类算法的眼电波形模式匹配，追踪瞌睡状态",
+          "evidence": [
+            {
+              "quote": "研究一种基于聚类算法的眼电信号波形模式匹配算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 909,
+                "end_char": 931
+              },
+              "version": "b062ee607995ae6562d5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dc5a0e86df59",
+          "name": "瞌睡三阶段划分与标注体系",
+          "desc": "瞌睡起始期、持续期、结束期的生理划分方法与标注体系",
           "evidence": [
             {
               "quote": "提出了精细化的瞌睡三阶段（起始期、持续期、结束期）生理划分方法与标注体系",
@@ -108,23 +132,25 @@
               },
               "version": "b062ee607995ae6562d5"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-2c1356e2b84f",
-          "name": "Haar小波alpha波判别方法",
-          "desc": "研究基于Haar小波变换的脑电alpha波结束点类型判别方法以判断瞌睡程度。",
+          "id": "item-5dc5d589e86e",
+          "name": "多导EEG/EOG数据采集",
+          "desc": "30名受试者4导EEG、4导EOG数据并完成标注",
           "evidence": [
             {
-              "quote": "研究一种基于Haar小波变换的脑电alpha波结束点类型判别方法，以实现对瞌睡程度的判断",
+              "quote": "项目成功采集了30名受试者的高质量多导生理数据（4导EEG、4导EOG）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 947,
-                "end_char": 990
+                "start_char": 2861,
+                "end_char": 2896
               },
               "version": "b062ee607995ae6562d5"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,26 +159,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2893226b3e86",
-          "name": "多导生理数据集与全数据标注",
-          "desc": "采集30名受试者高质量多导生理数据（4导EEG、4导EOG）并完成全数据标注，部分数据已开源。",
+          "id": "item-c3e995db8368",
+          "name": "部分数据开源共享",
+          "desc": "部分数据已通过GitHub平台开源共享",
           "evidence": [
             {
-              "quote": "项目成功采集了30名受试者的高质量多导生理数据（4导EEG、4导EOG），并完成了全数据标注",
+              "quote": "部分数据已通过GitHub平台开源共享",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2861,
-                "end_char": 2906
+                "start_char": 2908,
+                "end_char": 2926
               },
               "version": "b062ee607995ae6562d5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-129ba9c8b473",
-          "name": "高水平论文与发明专利",
-          "desc": "核心成果发表于IEEE JBHI与BIBM，并形成2项授权发明专利的自主知识产权体系。",
+          "id": "item-c35d1e402bd8",
+          "name": "核心成果发表",
+          "desc": "发表于IEEE JBHI与计算机学会B类国际会议BIBM",
           "evidence": [
             {
               "quote": "相关核心成果已发表于IEEE JBHI（中科院TOP期刊）高水平期刊与计算机学会B类国际会议（BIBM）",
@@ -164,7 +192,28 @@
               "version": "b062ee607995ae6562d5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-9ea0fcb34dfd",
+          "name": "授权发明专利",
+          "desc": "包括2项授权发明专利",
+          "evidence": [
+            {
+              "quote": "包括2项授权发明专利",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3132,
+                "end_char": 3141
+              },
+              "version": "b062ee607995ae6562d5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -172,47 +221,171 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-8569f94e1b0f"
+        "dimension": "技术",
+        "item_id": "item-bd5958bbccaf"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-ce886293ed85"
+        "item_id": "item-ea7bce1156dd"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ce886293ed85"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-226d0a58b68e"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2567631a2eb0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2893226b3e86"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-226d0a58b68e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-129ba9c8b473"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "实现了对瞌睡起始、持续及结束阶段的高精度、实时检测",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3001,
+            "end_char": 3025
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recognizing drivers' sleep onset by detecting slow eye movement using a parallel multimodal one-dimensional convolutional neural network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "焦影影;何秀锦",
+      "id": "out-1e0a376f2fc9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recognizing drivers' sleep onset by detecting slow eye movement using a parallel multimodal one-dimensional convolutional neural network — 焦影影;何秀锦",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3396,
+            "end_char": 3548
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CNN-Transformer Based Real-Time Detection of Driver Sleep Onset Using EEG and EOG signals",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "焦影影;张一帆;张佳佳",
+      "id": "out-1600d9a25875",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CNN-Transformer Based Real-Time Detection of Driver Sleep Onset Using EEG and EOG signals — 焦影影;张一帆;张佳佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3553,
+            "end_char": 3662
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detecting slow eye movements using multi-scale one-dimensional convolutional neural network for driver sleepiness detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yingying Jiao;Xiujin He;Zhuqing Jiao",
+      "id": "out-f8d4346ebab3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Detecting slow eye movements using multi-scale one-dimensional convolutional neural network for driver sleepiness detection — Yingying Jiao;Xiujin He;Zhuqing Jiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3667,
+            "end_char": 3835
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种驾驶员瞌睡开始状态检测方法、装置及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "焦影影;焦竹青;陈娟",
+      "id": "out-b7844e4b6e40",
+      "evidence": [
+        {
+          "quote": "[专利] 一种驾驶员瞌睡开始状态检测方法、装置及设备 — 焦影影;焦竹青;陈娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3840,
+            "end_char": 3878
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种慢速眼动信号检测方法、装置及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何秀锦;焦影影;焦竹青",
+      "id": "out-63415fc07cb5",
+      "evidence": [
+        {
+          "quote": "[专利] 一种慢速眼动信号检测方法、装置及应用 — 何秀锦;焦影影;焦竹青",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3883,
+            "end_char": 3919
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种眨眼类别判断方法及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张佳佳;焦影影;焦竹青",
+      "id": "out-e12a030c1005",
+      "evidence": [
+        {
+          "quote": "[专利] 一种眨眼类别判断方法及设备 — 张佳佳;焦影影;焦竹青",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3924,
+            "end_char": 3955
+          },
+          "version": "b062ee607995ae6562d5"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

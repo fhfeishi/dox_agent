@@ -2,15 +2,20 @@
   "doc_id": "b1e1c73c5f6381819f46",
   "version": "23675c5f87ee65e1f6c9",
   "source_hash": "6c7e2b85722a6b68aba42853e5e8e7e7155e6b67ace62b4112a719fda5a00c52",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.287503+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.771546+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-640c0e85fe45",
-          "name": "肝细胞结节病理诊断",
-          "desc": "肝细胞结节是一组异质性疾病，组织形态多样且临床差异大，肝癌早期诊断是临床病理重点难点。",
+          "id": "item-9ef2867ecd10",
+          "name": "肝细胞结节AI病理诊断",
+          "desc": "异质性疾病，形态多样",
           "evidence": [
             {
-              "quote": "肝细胞结节包含一组异质性疾病，组织形态多样且临床差异大",
+              "quote": "肝细胞结节涵盖从良性结节、异型增生结节到肝细胞癌等多种病变类型，形态学异质性显著",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 668,
-                "end_char": 694
+                "start_char": 3386,
+                "end_char": 3425
               },
               "version": "23675c5f87ee65e1f6c9"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-092478a655aa",
-          "name": "病理模型依赖细标注且不可解释",
-          "desc": "前期第一代AI病理模型HnAIM外部验证准确率达93.5%，但需大量精细标注且模型不可解释。",
+          "id": "item-31cd8154dd59",
+          "name": "AI病理模型依赖精细标注、泛化不足、可解释性有限",
+          "desc": "诊断依赖病理医师经验",
           "evidence": [
             {
-              "quote": "前期已成功构建第一代AI病理模型(HnAIM)，外部验证准确率高达93.5%，但需大量精细标注且模型具有不可解释性",
+              "quote": "围绕人工智能病理模型对精细标注依赖度高、泛化能力不足及可解释性有限等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 770,
-                "end_char": 826
-              },
-              "version": "23675c5f87ee65e1f6c9"
-            }
-          ]
-        },
-        {
-          "id": "item-85c560a44cda",
-          "name": "诊断重复率低漏误诊率高",
-          "desc": "诊断标准复杂、活检标本局限及病理医师主观性，导致诊断重复率低、漏误诊率高且耗时费力。",
-          "evidence": [
-            {
-              "quote": "诊断标准复杂多样、活检标本局限性以及病理医师主观性，导致诊断重复率低，漏诊、误诊率高且耗时费力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 722,
-                "end_char": 768
+                "start_char": 3485,
+                "end_char": 3520
               },
               "version": "23675c5f87ee65e1f6c9"
             }
@@ -79,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f16b46211ee7",
-          "name": "自监督与弱监督结合诊断框架",
-          "desc": "采用自监督学习进行病理图像特征预训练，并引入多示例学习实现切片级标签建模。",
+          "id": "item-5c130c96f535",
+          "name": "自监督与弱监督结合的肝细胞结节AI病理诊断框架",
+          "desc": "自监督预训练与多示例学习",
           "evidence": [
             {
               "quote": "构建了一套基于自监督学习与弱监督学习相结合的肝细胞结节AI病理诊断框架",
@@ -92,23 +81,25 @@
               },
               "version": "23675c5f87ee65e1f6c9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-3257ef849f2b",
-          "name": "分层树状诊断策略",
-          "desc": "结合病理诊断流程构建分层式、树状结构诊断策略，并在低置信度时引入重判机制。",
+          "id": "item-d42728ede93c",
+          "name": "分层树状诊断策略与低置信度重判",
+          "desc": "符合病理诊断流程",
           "evidence": [
             {
-              "quote": "项目结合病理诊断流程构建了分层式、树状结构的诊断策略",
+              "quote": "在模型设计上，项目结合病理诊断流程构建了分层式、树状结构的诊断策略，依次完成肿瘤性与非肿瘤性病变区分、肿瘤亚型判别及分化或异型增生等级评估，并在低置信度情况下引入重判机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3628,
-                "end_char": 3653
+                "start_char": 3621,
+                "end_char": 3705
               },
               "version": "23675c5f87ee65e1f6c9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,103 +108,35 @@
       "state": "has",
       "items": [
         {
-          "id": "item-633ee4762fbb",
-          "name": "约3000例多中心数据与模型验证",
-          "desc": "纳入7类肝细胞结节病变与2类背景肝组织，累计约3000例，完成训练与多中心验证。",
+          "id": "item-eb7873e2184f",
+          "name": "多中心病理全切片数据",
+          "desc": "7类肝细胞结节与2类背景肝组织，约3000例",
           "evidence": [
             {
-              "quote": "纳入7类肝细胞结节性病变和2类背景肝组织，累计病例约3000例，完成模型训练及多中心验证",
+              "quote": "基于来自多家医疗机构的病理全切片图像数据，纳入7类肝细胞结节性病变和2类背景肝组织，累计病例约3000例，完成模型训练及多中心验证",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3858,
+                "start_char": 3837,
                 "end_char": 3901
               },
               "version": "23675c5f87ee65e1f6c9"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-a908ddbebb2f",
-          "name": "诊断软件Demo与人机对比",
-          "desc": "构建诊断软件Demo并在真实临床环境开展前瞻性应用探索及人机对比分析。",
-          "evidence": [
-            {
-              "quote": "构建诊断软件Demo，在真实临床环境中开展前瞻性应用探索及人机对比分析",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3904,
-                "end_char": 3938
-              },
-              "version": "23675c5f87ee65e1f6c9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-f6058f2e6bd4",
-          "name": "关注区域与病理特征一致",
-          "desc": "模型关注区域与肿瘤细胞排列、细胞核形态、核浆比及细胞密度等关键病理特征具有较好一致性。",
-          "evidence": [
-            {
-              "quote": "发现模型关注区域与肿瘤细胞排列、细胞核形态、核浆比及细胞密度等关键病理特征具有较好一致性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3770,
-                "end_char": 3813
-              },
-              "version": "23675c5f87ee65e1f6c9"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-640c0e85fe45"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-092478a655aa"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-092478a655aa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f16b46211ee7"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f16b46211ee7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-633ee4762fbb"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3257ef849f2b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a908ddbebb2f"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 0,
+    "listed": 0,
+    "by_kind": {},
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "39392556dfbb2235cd98",
   "version": "44c06c04cbb8a1eef6c6",
   "source_hash": "83e15eaaa2fbdb0e1b2f744cb021b3fae8aec9d597c13252d53d2372108f20df",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.738285+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:31.856228+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3880d608f44a",
-          "name": "多源数据癫痫辅助诊断迁移学习",
-          "desc": "机器学习算法对提高癫痫诊断效率和精度具有重要作用，但现有算法未模拟医生利用多源数据的诊断过程。",
+          "id": "item-a4168afb6d42",
+          "name": "癫痫多源数据辅助诊断",
+          "desc": "癫痫早期诊断依赖经验丰富的医生",
           "evidence": [
             {
-              "quote": "机器学习算法对提高癫痫诊断的效率和精度具有重要作用，但现有算法未模拟医生利用多源数据的诊断过程，导致临床应用效果不佳",
+              "quote": "目前癫痫早期诊断还是依赖经验丰富的医生人工给出，存在主观性强、效率低等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 648,
-                "end_char": 705
-              },
-              "version": "44c06c04cbb8a1eef6c6"
-            }
-          ]
-        },
-        {
-          "id": "item-fa7f0b8742ff",
-          "name": "模拟医生多源诊断思维",
-          "desc": "模拟医生在癫痫临床诊断的思想和过程，提出面向多源数据的纵横迁移学习方法。",
-          "evidence": [
-            {
-              "quote": "并模拟医生在癫痫临床诊断的思想和过程，提出面向多源数据癫痫辅助诊断的纵横迁移学习方法",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 730,
-                "end_char": 771
+                "start_char": 2916,
+                "end_char": 2952
               },
               "version": "44c06c04cbb8a1eef6c6"
             }
@@ -57,25 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c35f78c5ea9c",
-          "name": "癫痫诊断依赖医生主观且效率低",
-          "desc": "癫痫早期诊断依赖经验丰富的医生人工给出，存在主观性强、效率低等问题。",
-          "evidence": [
-            {
-              "quote": "目前癫痫早期诊断还是依赖经验丰富的医生人工给出，存在主观性强、效率低等问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2916,
-                "end_char": 2952
-              },
-              "version": "44c06c04cbb8a1eef6c6"
-            }
-          ]
-        },
-        {
-          "id": "item-d4dffbb802fd",
-          "name": "目标域标注样本严重不足",
-          "desc": "需解决目标域标注训练样本严重不足导致性能下降的问题。",
+          "id": "item-68c26b59dbaf",
+          "name": "目标域标注样本不足致性能下降",
+          "desc": "癫痫诊断标注稀缺",
           "evidence": [
             {
               "quote": "从源域迁移有用知识以解决目标域标注训练样本严重不足导致性能下降的问题",
@@ -95,141 +68,250 @@
       "state": "has",
       "items": [
         {
-          "id": "item-20d391deb5a5",
-          "name": "纵向迁移学习利用源域知识与标签",
-          "desc": "提出基于增广信息的纵向迁移学习方法，同时迁移利用源域知识和标签信息，模拟医生诊断中对临床经验与病例标签的共同应用。",
+          "id": "item-cb20b831e892",
+          "name": "基于核岭回归的归纳式纵向迁移学习",
+          "desc": "迁移源域知识",
           "evidence": [
             {
-              "quote": "提出基于增广信息的纵向迁移学习方法，同时迁移利用源域知识和标签信息，模拟医生诊断中对临床经验和病例标签的共同应用",
+              "quote": "提出基于核岭回归的归纳式迁移学习方法，从源域迁移有用知识以解决目标域标注训练样本严重不足导致性能下降的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 801,
-                "end_char": 856
-              },
-              "version": "44c06c04cbb8a1eef6c6"
-            }
-          ]
-        },
-        {
-          "id": "item-610634b549c4",
-          "name": "横向迁移多视角互监督学习",
-          "desc": "利用纵向迁移结果提出多视角互监督的横向迁移学习方法，保留多源数据内在信息与印证关系，模拟医生结合多源检查数据的诊断过程。",
-          "evidence": [
-            {
-              "quote": "利用纵向迁移结果，提出多视角互监督的横向迁移学习方法，保留多源数据的内在信息和印证关系用于模型构建，模拟医生结合多源检查数据的诊断过程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 920,
-                "end_char": 986
-              },
-              "version": "44c06c04cbb8a1eef6c6"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-d9064ea738bc",
-          "name": "核岭回归归纳式迁移学习方法",
-          "desc": "在纵向迁移学习方面提出基于核岭回归的归纳式迁移学习方法，从源域迁移有用知识解决标注样本不足问题。",
-          "evidence": [
-            {
-              "quote": "在纵向迁移学习方面，提出基于核岭回归的归纳式迁移学习方法，从源域迁移有用知识以解决目标域标注训练样本严重不足导致性能下降的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3095,
+                "start_char": 3105,
                 "end_char": 3157
               },
               "version": "44c06c04cbb8a1eef6c6"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-1bbab5976596",
-          "name": "广义归纳式迁移学习框架",
-          "desc": "设计基于扩展LSR的广义归纳式迁移学习框架，兼容神经网络、TSK模糊系统、核方法等多种基模型以提升用户友好性与泛化能力。",
+          "id": "item-fcdc7517d8e0",
+          "name": "基于扩展LSR的广义归纳式迁移学习框架",
+          "desc": "兼容神经网络、TSK模糊系统、核方法",
           "evidence": [
             {
-              "quote": "研究设计基于扩展LSR的广义归纳式迁移学习框架，兼容神经网络、TSK模糊系统、核方法等多种基模型，进一步提升用户友好性与泛化能力",
+              "quote": "研究设计基于扩展LSR的广义归纳式迁移学习框架，兼容神经网络、TSK模糊系统、核方法等多种基模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3166,
-                "end_char": 3229
+                "end_char": 3213
               },
               "version": "44c06c04cbb8a1eef6c6"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-e3408d0dfd94",
-          "name": "多视角互监督聚类方法",
-          "desc": "构建基于互监督效用的多视角学习方法，引入划分级辅助信息与视角间互监督机制提升多视角学习性能。",
+          "id": "item-da652d56ab85",
+          "name": "基于互监督效用的多视角学习",
+          "desc": "横向迁移",
           "evidence": [
             {
-              "quote": "研究构建基于互监督效用的多视角学习方法，引入划分级辅助信息与视角间互监督机制，提升多视角学习性能，有效利用多源数据",
+              "quote": "研究构建基于互监督效用的多视角学习方法，引入划分级辅助信息与视角间互监督机制",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3244,
-                "end_char": 3300
+                "end_char": 3281
               },
               "version": "44c06c04cbb8a1eef6c6"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Weighted adaptively ensemble clustering method based on fuzzy Co-association matrix",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卞则康;瞿佳;周洁;姜志彬;王士同",
+      "id": "out-d12a29ce796f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Weighted adaptively ensemble clustering method based on fuzzy Co-association matrix — 卞则康;瞿佳;周洁;姜志彬;王士同",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3463,
+            "end_char": 3572
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Improved Ensemble Learning Regression Algorithm for Electricity Demand Forecasting with Symmetric Experimental Evaluation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周洁;闫培盛;卞则康;姜志彬;余冬华",
+      "id": "out-744a41f84a1d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Improved Ensemble Learning Regression Algorithm for Electricity Demand Forecasting with Symmetric Experimental Evaluation — 周洁;闫培盛;卞则康;姜志彬;余冬华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3577,
+            "end_char": 3728
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Motor Imagery EEG Identification Using Kernel-Ridge Regression-Based Inductive Transfer Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Zhibin;Zhang Ning;Chen Guanghai;Yu Donghua;Zhou Jie",
+      "id": "out-2adf75911e66",
+      "evidence": [
+        {
+          "quote": "[会议论文] Motor Imagery EEG Identification Using Kernel-Ridge Regression-Based Inductive Transfer Learning — Jiang Zhibin;Zhang Ning;Chen Guanghai;Yu Donghua;Zhou Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3733,
+            "end_char": 3895
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Divide-and-Merge Parallel Hierarchical Ensemble DNNs with Local Knowledge Augmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志彬;董帅;刘凯宁;周洁;张雄涛",
+      "id": "out-8aa974d781d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Divide-and-Merge Parallel Hierarchical Ensemble DNNs with Local Knowledge Augmentation — 姜志彬;董帅;刘凯宁;周洁;张雄涛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3900,
+            "end_char": 4012
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recognition of MI-EEG signals using extended-LSR-based inductive transfer learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志彬;胡珂立;瞿佳;卞则康;余冬华;周洁",
+      "id": "out-a22bcc4c0588",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recognition of MI-EEG signals using extended-LSR-based inductive transfer learning — 姜志彬;胡珂立;瞿佳;卞则康;余冬华;周洁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4017,
+            "end_char": 4129
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fuzzy Ensemble Clustering Method via Learning Enhanced Fuzzy Connective Matrices",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bian Zekang;Dai Qidong;Qu Jia;Zhang Te;Jiang Zhibin;Zhou Jie;Deng Zhaohong;Wang Shitong",
+      "id": "out-43189015d860",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fuzzy Ensemble Clustering Method via Learning Enhanced Fuzzy Connective Matrices — Bian Zekang;Dai Qidong;Qu Jia;Zhang Te;Jiang Zhibin;Zhou Jie;Deng Zhaohong;Wang Shitong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4134,
+            "end_char": 4310
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Takagi–Sugeno–Kang Fuzzy Clustering by Direct Fuzzy Inference on Fuzzy Rules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Gu Suhang;Chou Yongxin;Zhou Jie;Jiang Zhibin;Lu Mingli",
+      "id": "out-c94bce2cca46",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Takagi–Sugeno–Kang Fuzzy Clustering by Direct Fuzzy Inference on Fuzzy Rules — Gu Suhang;Chou Yongxin;Zhou Jie;Jiang Zhibin;Lu Mingli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4315,
+            "end_char": 4454
+          },
+          "version": "44c06c04cbb8a1eef6c6"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-View Utility-Based Clustering: A Mutually Supervised Perspective",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姜志彬;周洁;王士同",
+      "id": "out-f70dabcff686",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-View Utility-Based Clustering: A Mutually Supervised Perspective — 姜志彬;周洁;王士同",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4459,
+            "end_char": 4548
+          },
+          "version": "44c06c04cbb8a1eef6c6"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-3880d608f44a"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c35f78c5ea9c"
-      },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c35f78c5ea9c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-20d391deb5a5"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-20d391deb5a5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d9064ea738bc"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-610634b549c4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e3408d0dfd94"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

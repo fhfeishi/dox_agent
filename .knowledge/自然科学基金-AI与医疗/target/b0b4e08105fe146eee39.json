@@ -2,15 +2,20 @@
   "doc_id": "b0b4e08105fe146eee39",
   "version": "d8edc9ad7dee028d4e7f",
   "source_hash": "7c95a1e3e922009249eebf0fff2080b5fb095e5594874445f4994f76e577362e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:32:56.762709+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.678659+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-6153d3691fd6",
           "name": "早期肺癌术中精准定位",
-          "desc": "早诊早治是降低肺癌病死率、提高生存率的关键，电视辅助胸腔镜手术是目前最有效的治疗手段。",
+          "desc": "电磁导航支气管镜引导",
           "evidence": [
             {
-              "quote": "早诊早治是降低肺癌病死率、提高生存率的关键",
+              "quote": "本项目聚焦肺结节精准诊疗的临床需求，围绕电磁导航支气管镜（ENB）引导定位技术与人工智能（AI）辅助诊断模型两大核心展开研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 646,
-                "end_char": 666
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ]
-        },
-        {
-          "id": "item-41899bde6a0c",
-          "name": "肺结节个体化诊疗解决方案",
-          "desc": "构建术中精准定位与术前智能辅助诊断相结合的技术体系，为肺结节个体化诊疗提供创新解决方案。",
-          "evidence": [
-            {
-              "quote": "为肺结节的个体化诊疗提供了创新的解决方案，具有明确的临床转化价值与推广应用前景",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3033,
-                "end_char": 3071
+                "start_char": 2669,
+                "end_char": 2730
               },
               "version": "d8edc9ad7dee028d4e7f"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-89db941c3537",
-          "name": "肺小结节术中触摸定位成功率低",
-          "desc": "肺小结节在肺表面难以看到，术中手指触摸或器械滑行定位病灶成功率仅约30%。",
+          "id": "item-5bb39ac76da5",
+          "name": "肺小结节术中触摸定位成功率仅约30%",
+          "desc": "VATS",
           "evidence": [
             {
               "quote": "而肺小结节在肺表面往往难以看到，术中通过手指触摸或通过器械滑行定位病灶的成功率仅为30%左右",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 695,
                 "end_char": 740
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ]
-        },
-        {
-          "id": "item-b8a63e7be4fd",
-          "name": "术中萎陷后实时定位研究尚少",
-          "desc": "国内外对术中萎陷后实现早期肺癌实时定位的研究尚少。",
-          "evidence": [
-            {
-              "quote": "但是对术中萎陷后实现早期肺癌的实时定位研究尚少",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 785,
-                "end_char": 807
               },
               "version": "d8edc9ad7dee028d4e7f"
             }
@@ -95,41 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-343b8d5e1fa9",
-          "name": "早期肺癌定位标注库与多特征神经网络",
-          "desc": "构建早期肺癌定位标注库，训练多特征早期肺癌定位智能神经网络，并预测萎陷后精准位置。",
-          "evidence": [
-            {
-              "quote": "通过构建早期肺癌定位标注库，训练多特征早期肺癌定位智能神经网络；同时预测早期肺癌萎陷后的精准位置，指导医生切除范围",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 830,
-                "end_char": 886
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ]
-        },
-        {
-          "id": "item-5860a21b986f",
-          "name": "有限元与PhysX实时仿真预测形变",
-          "desc": "使用有限元模型进行仿真计算，对萎陷后肺脏组织建立基于迁移学习和PhysX环境的实时仿真预测肺段形变。",
-          "evidence": [
-            {
-              "quote": "使用有限元模型进行仿真计算，对萎陷后的肺脏组织建立基于迁移学习和PhysX 环境的实时仿真，预测肺萎陷后病灶所在肺段的形变",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 896,
-                "end_char": 956
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ]
-        },
-        {
-          "id": "item-c6faac4b4b29",
-          "name": "ENB引导荧光定位标准化方案",
-          "desc": "建立电磁导航支气管镜引导下亚甲蓝与吲哚菁绿荧光定位的标准化临床方案。",
+          "id": "item-7eca02e3327d",
+          "name": "ENB引导亚甲蓝与吲哚菁绿荧光定位标准化方案",
+          "desc": "术中定位",
           "evidence": [
             {
               "quote": "项目系统建立了ENB引导下亚甲蓝与吲哚菁绿（ICG）荧光定位的标准化临床方案",
@@ -140,7 +81,25 @@
               },
               "version": "d8edc9ad7dee028d4e7f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-73e824029cd6",
+          "name": "VSNet肺结节良恶性分类模型",
+          "desc": "3D视觉转换器与序列空间注意力机制SSAM",
+          "evidence": [
+            {
+              "quote": "项目成功开发了基于3D视觉转换器与序列空间注意力机制（SSAM）的VSNet肺结节良恶性分类模型，在LIDC-IDRI公开数据集上分类准确率达90.28%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2865,
+                "end_char": 2941
+              },
+              "version": "d8edc9ad7dee028d4e7f"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +108,188 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d08ea1d8eaca",
-          "name": "ENB引导亚甲蓝定位成功率97.8%",
-          "desc": "亚甲蓝定位46枚结节成功率达97.8%，ICG定位15枚结节成功率达93.3%，平均定位时间短且无严重并发症。",
+          "id": "item-97cad211ac34",
+          "name": "亚甲蓝与ICG定位成功率",
+          "desc": "亚甲蓝97.8%（46枚），ICG 93.3%（15枚）",
           "evidence": [
             {
-              "quote": "关键结果显示，亚甲蓝定位46枚结节成功率达97.8%，ICG定位15枚结节成功率达93.3%，平均定位时间短，且无严重并发症",
+              "quote": "亚甲蓝定位46枚结节成功率达97.8%，ICG定位15枚结节成功率达93.3%，平均定位时间短，且无严重并发症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2771,
+                "start_char": 2778,
                 "end_char": 2832
               },
               "version": "d8edc9ad7dee028d4e7f"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-cb559323d862",
-          "name": "VSNet肺结节分类准确率90.28%",
-          "desc": "开发基于3D视觉转换器与序列空间注意力机制的VSNet肺结节良恶性分类模型，LIDC-IDRI数据集准确率达90.28%。",
-          "evidence": [
-            {
-              "quote": "成功开发了基于3D视觉转换器与序列空间注意力机制（SSAM）的VSNet肺结节良恶性分类模型，在LIDC-IDRI公开数据集上分类准确率达90.28%，性能优于传统模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2867,
-                "end_char": 2950
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-78948cb83e83",
-          "name": "术中定位与术前诊断技术体系",
-          "desc": "构建术中精准定位与术前智能辅助诊断相结合的技术体系。",
-          "evidence": [
-            {
-              "quote": "本研究构建了“术中精准定位-术前智能辅助诊断”相结合的技术体系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3001,
-                "end_char": 3031
-              },
-              "version": "d8edc9ad7dee028d4e7f"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6153d3691fd6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-89db941c3537"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feasibility of Electromagnetic Navigation Bronchoscopy-Guided Injection of Methylene Blue in Locating the Multiple Pulmonary Nodules: a Case Series Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao·YS;Xuan·HJ;Chen·CJ;Hua·QW;Tang·DF;Gao·W",
+      "id": "out-a5f9d017a075",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feasibility of Electromagnetic Navigation Bronchoscopy-Guided Injection of Methylene Blue in Locating the Multiple Pulmonary Nodules: a Case Series Analysis — Yao·YS;Xuan·HJ;Chen·CJ;Hua·QW;Tang·DF;Gao·W",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3090,
+            "end_char": 3298
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-89db941c3537"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c6faac4b4b29"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "VSNet: classification of pulmonary nodules in 3D using vision transformer and sequence spatial attention mechanism",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Dongfang Tang;Ting Xiao;Fan Yang;Conghao Zhang;Zhe Wang;Wen Gao",
+      "id": "out-ed314d430597",
+      "evidence": [
+        {
+          "quote": "[期刊论文] VSNet: classification of pulmonary nodules in 3D using vision transformer and sequence spatial attention mechanism — Dongfang Tang;Ting Xiao;Fan Yang;Conghao Zhang;Zhe Wang;Wen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3303,
+            "end_char": 3489
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c6faac4b4b29"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d08ea1d8eaca"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Circular RNA circATP9A promotes non-small cell lung cancer progression by interacting with HuR and by promoting extracellular vesicles-mediated macrophage M2 polarization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanshan Yao;Chunji Chen;Jing Wang;Haojie Xuan;Xiuxiu Chen;Zheng Li;Fuzhi Yang;Bin Wang;Siyun Lin;Saitian Li;Dongfang Tang;Libao Gong;Wen Gao",
+      "id": "out-0b1a4ea11ff4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Circular RNA circATP9A promotes non-small cell lung cancer progression by interacting with HuR and by promoting extracellular vesicles-mediated macrophage M2 polarization — Yuanshan Yao;Chunji Chen;Jing Wang;Haojie Xuan;Xiuxiu Chen;Zheng Li;Fuzhi Yang;Bin Wang;Siyun Lin;Saitian Li;Dongfang Tang;Libao Gong;Wen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3494,
+            "end_char": 3814
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-343b8d5e1fa9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cb559323d862"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "电磁导航支气管镜辅助下老年多发肺结节患者定位的临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "姚源山;项鲁婕;陈春基;张辉标;唐东方;高文",
+      "id": "out-e8b6b8fd5af7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 电磁导航支气管镜辅助下老年多发肺结节患者定位的临床应用 — 姚源山;项鲁婕;陈春基;张辉标;唐东方;高文",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3819,
+            "end_char": 3877
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The promotion of non‐small cell lung cancer progression by collagen and calcium binding EGF domain 1 is mediated through the regulation of ERK/JNK/P38 phosphorylation by reactive oxygen species",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunji Chen;Dongfang Tang;Shangwei Xu;Lujie Xiang;Bin Wang;Yuanshan Yao;Zheng Li;Siyun Lin;Saitian Li;Xin Shi;Chang Gu;Wen Gao",
+      "id": "out-75bb673e2c6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The promotion of non‐small cell lung cancer progression by collagen and calcium binding EGF domain 1 is mediated through the regulation of ERK/JNK/P38 phosphorylation by reactive oxygen species — Chunji Chen;Dongfang Tang;Shangwei Xu;Lujie Xiang;Bin Wang;Yuanshan Yao;Zheng Li;Siyun Lin;Saitian Li;Xin Shi;Chang Gu;Wen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3882,
+            "end_char": 4210
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Factor in Completely Resected Early Stage Lung Adenocarcinoma Manifesting as Radiological Solid Lesions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang·J;Yao·YS;Tang·DF;Gao·W",
+      "id": "out-7714323521e3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Factor in Completely Resected Early Stage Lung Adenocarcinoma Manifesting as Radiological Solid Lesions — Wang·J;Yao·YS;Tang·DF;Gao·W",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4215,
+            "end_char": 4365
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Delayed bronchopleural fistula as a complication of sleeve lobectomy in a patient with advanced cancer after induction immunochemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanshan Yao;Jing Wang;Fuzhi Yang;Wen Gao",
+      "id": "out-90e7d67dba5a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Delayed bronchopleural fistula as a complication of sleeve lobectomy in a patient with advanced cancer after induction immunochemotherapy — Yuanshan Yao;Jing Wang;Fuzhi Yang;Wen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4370,
+            "end_char": 4557
+          },
+          "version": "d8edc9ad7dee028d4e7f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

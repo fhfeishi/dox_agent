@@ -2,15 +2,20 @@
   "doc_id": "b6ff0705772ccaa37c8a",
   "version": "2ae94f9528c3d3366cb2",
   "source_hash": "347a9ba6583a688e8a5d6efb3388e7202d6f4af5a64b9961aba6ef4f0b7e12eb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:12.653398+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:54:36.043552+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-db55ae3d2786",
           "name": "视网膜图像分割与辅助诊断",
-          "desc": "面向眼科疾病早期诊断，研究视网膜血管、视盘、视杯与病灶区域的深度学习分割与辅助诊断系统。",
+          "desc": "眼科疾病早期诊断",
           "evidence": [
             {
               "quote": "视网膜图像分析在眼科疾病的早期诊断中发挥着越来越重要的作用",
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-eddd780af1d1",
-          "name": "视网膜结构复杂致手动分析耗时易错",
-          "desc": "视网膜结构的复杂性和病变的多样性使手动分析和诊断既耗时又易出错，亟需自动分割与诊断技术。",
+          "id": "item-e63381199702",
+          "name": "视网膜结构复杂病变多样，人工分析耗时易错",
+          "desc": "血管、视盘、视杯和病灶难以分割",
           "evidence": [
             {
-              "quote": "然而，视网膜结构的复杂性和病变的多样性使得手动分析和诊断既耗时又易出错",
+              "quote": "视网膜结构的复杂性和病变的多样性使得手动分析和诊断既耗时又易出错",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2791,
+                "start_char": 2794,
                 "end_char": 2825
               },
               "version": "2ae94f9528c3d3366cb2"
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1516a68c7ecf",
-          "name": "多尺度注意力残差与生成对抗分割网络",
-          "desc": "研究深度学习相关算法与视网膜图像分割技术，设计残差模块、注意力模块与空间池化金字塔等结构提升复杂结构与微小病变识别能力，并研究训练策略与优化器选择。",
+          "id": "item-d34226ba21da",
+          "name": "M3FN全卷积网络血管分割",
+          "desc": "DRIVE F1 83.21%",
           "evidence": [
             {
-              "quote": "研究深度学习相关算法与基于深度学习的视网膜图像分割技术，并设计实现计算机辅助诊断系统",
+              "quote": "其中基于全卷积神经网络的M3FN网络模型在DRIVE数据集上分割F1分数达到83.21%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 729,
-                "end_char": 770
+                "start_char": 3067,
+                "end_char": 3110
               },
               "version": "2ae94f9528c3d3366cb2"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-4549a4389404",
-          "name": "GL-Net视盘分割F1达97.12%",
-          "desc": "基于生成对抗网络的GL-Net在DRISGTI-GS1数据集上视盘分割F1达97.12%、视杯F1达90.58%；M3FN在DRIVE上F1达83.21%；MRA-UNet在CHASE上F1达81.29%；MCPANet在STARE上F1达85.05%。",
+          "id": "item-c84790cca6b2",
+          "name": "GL-Net生成对抗网络视盘视杯分割",
+          "desc": "视盘F1 97.12%，视杯90.58%",
           "evidence": [
             {
               "quote": "基于生成对抗网络的GL-Net在DRISGTI-GS1数据集上对视盘的分割F1分数达到97.12%，对视杯的分割F1分数达到90.58%",
@@ -99,44 +99,773 @@
               "version": "2ae94f9528c3d3366cb2"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-088d7bbe6fd9",
+          "name": "MRA-UNet与MCPANet多尺度注意力分割",
+          "desc": "CHASE与STARE",
+          "evidence": [
+            {
+              "quote": "基于多尺度残差注意力网络MRA-UNet在CHASE数据集上分割F1分数达到81.29%；基于多尺度交叉注意力的MCPANet在STARE数据集上分割F1分数达到85.05%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3269,
+                "end_char": 3355
+              },
+              "version": "2ae94f9528c3d3366cb2"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ACEANet: Ambiguous Context Enhanced Attention Network for  skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Hao Qiao;Wei Yan;Zequn Zhang;Jie Chen;Meiqi Wang",
+      "id": "out-9edca0adcdab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ACEANet: Ambiguous Context Enhanced Attention Network for  skin lesion segmentation — Yun Jiang;Hao Qiao;Wei Yan;Zequn Zhang;Jie Chen;Meiqi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3773,
+            "end_char": 3923
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MS-CANet: Multi-Scale Subtraction Network with Coordinate Attention for Retinal Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Wei Yan;Jie Chen;Hao Qiao;Zequn Zhang;Meiqi Wang",
+      "id": "out-44ada825f216",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MS-CANet: Multi-Scale Subtraction Network with Coordinate Attention for Retinal Vessel Segmentation — Yun Jiang;Wei Yan;Jie Chen;Hao Qiao;Zequn Zhang;Meiqi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3928,
+            "end_char": 4094
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生获得“华为杯”第十八届中国研究生数学建模竞赛三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;梁菁",
+      "id": "out-6b2e916f4e46",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生获得“华为杯”第十八届中国研究生数学建模竞赛三等奖 — 蒋芸;梁菁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4099,
+            "end_char": 4140
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "联合注意力和Transformer的视网膜血管分割网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;刘文欢;梁菁",
+      "id": "out-485ec0e39679",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 联合注意力和Transformer的视网膜血管分割网络 — 蒋芸;刘文欢;梁菁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4145,
+            "end_char": 4190
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "iU-Net: a hybrid structured network with a novel feature fusion approach for medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Jinkun Dong;Tongtong Cheng;Yuan Zhang;Xin Lin;Jing Liang",
+      "id": "out-23c7c7d550e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] iU-Net: a hybrid structured network with a novel feature fusion approach for medical image segmentation — Yun Jiang;Jinkun Dong;Tongtong Cheng;Yuan Zhang;Xin Lin;Jing Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4373
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CTDS-Net:CNN-Transformer Fusion Network for  Dermoscopic Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Meiqi Wang;Zequn Zhang;Hao Qiao;Wei Yan;Jie Chen",
+      "id": "out-dc319a638b8b",
+      "evidence": [
+        {
+          "quote": "[会议论文] CTDS-Net:CNN-Transformer Fusion Network for  Dermoscopic Image Segmentation — Yun Jiang;Meiqi Wang;Zequn Zhang;Hao Qiao;Wei Yan;Jie Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4378,
+            "end_char": 4520
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RFARN: Retinal vessel segmentation based on reverse fusion attention residual network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Wenhuan;Jiang Yun;Zhang Jingyao;Ma Zeqi",
+      "id": "out-f3fe6768f900",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RFARN: Retinal vessel segmentation based on reverse fusion attention residual network — Liu Wenhuan;Jiang Yun;Zhang Jingyao;Ma Zeqi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4525,
+            "end_char": 4662
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生获得“兆易创新杯”第十七届中国研究生电子设计竞赛国家三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;张渊;潘立全;林欣",
+      "id": "out-f9be31a0c95a",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生获得“兆易创新杯”第十七届中国研究生电子设计竞赛国家三等奖 — 蒋芸;张渊;潘立全;林欣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4667,
+            "end_char": 4719
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient BFCN for Automatic Retinal Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Falin;Jiang Yun;Gao Jing;Liu Wenhuan",
+      "id": "out-cf77a26f4524",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient BFCN for Automatic Retinal Vessel Segmentation — Wang Falin;Jiang Yun;Gao Jing;Liu Wenhuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4724,
+            "end_char": 4830
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生作品:AutoEye 智能眼底图像分析平台",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;高静;曹思敏;陶生鑫;王发林;张沐华",
+      "id": "out-1a1bdaa1f915",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生作品:AutoEye 智能眼底图像分析平台 — 蒋芸;高静;曹思敏;陶生鑫;王发林;张沐华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4836,
+            "end_char": 4889
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SRNet: Striped Pyramid Pooling and Relational Transformer for Retinal Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Yan;Yun Jiang;Zequn Zhang;Yao Yan;Bingxi Liu",
+      "id": "out-5deca59ea1c3",
+      "evidence": [
+        {
+          "quote": "[会议论文] SRNet: Striped Pyramid Pooling and Relational Transformer for Retinal Vessel Segmentation — Wei Yan;Yun Jiang;Zequn Zhang;Yao Yan;Bingxi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4895,
+            "end_char": 5041
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MCPANet: Multiscale Cross-Position Attention Network for Retinal Vessel Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Liang Jing;Cheng Tongtong;Zhang yuan;Lin Xin;Dong Jinkun",
+      "id": "out-bc02e5982073",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MCPANet: Multiscale Cross-Position Attention Network for Retinal Vessel Image Segmentation — Jiang Yun;Liang Jing;Cheng Tongtong;Zhang yuan;Lin Xin;Dong Jinkun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5047,
+            "end_char": 5212
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Path Recurrent U-Net Segmentation of Retinal Fundus Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Wang Falin;Gao Jing;Cao Simin",
+      "id": "out-e9f69fafbf8e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Path Recurrent U-Net Segmentation of Retinal Fundus Image — Jiang Yun;Wang Falin;Gao Jing;Cao Simin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5218,
+            "end_char": 5329
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Attention-Guided Network with Densely Connected Convolution for Skin Lesion Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Shengxin;Jiang Yun;Cao Simin;Wu Chao;Ma Zeqi",
+      "id": "out-004928a94e72",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Attention-Guided Network with Densely Connected Convolution for Skin Lesion Segmentation — Tao Shengxin;Jiang Yun;Cao Simin;Wu Chao;Ma Zeqi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5335,
+            "end_char": 5480
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Skin Lesion Segmentation Based on Multi-Scale Attention Convolutional Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Cao Simin;Tao Shengxin;Zhang Hai",
+      "id": "out-a1c350b92993",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Skin Lesion Segmentation Based on Multi-Scale Attention Convolutional Neural Network — Jiang Yun;Cao Simin;Tao Shengxin;Zhang Hai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5486,
+            "end_char": 5621
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于条件深度卷积生成对抗网络的视网膜血管分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;谭宁",
+      "id": "out-65043c2bffb7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于条件深度卷积生成对抗网络的视网膜血管分割 — 蒋芸;谭宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5627,
+            "end_char": 5663
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于集成分类型深度神经网络的视网膜眼底血管图像分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;王发林;张海",
+      "id": "out-42b488d77e3c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于集成分类型深度神经网络的视网膜眼底血管图像分割 — 蒋芸;王发林;张海",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5669,
+            "end_char": 5712
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Retinal Vessel Segmentation Based on Gated Skip-Connection Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huixia Yao;Yun Jiang;Tongtong Cheng;Jing Gao",
+      "id": "out-171707493c33",
+      "evidence": [
+        {
+          "quote": "[会议论文] Retinal Vessel Segmentation Based on Gated Skip-Connection Network — Huixia Yao;Yun Jiang;Tongtong Cheng;Jing Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5718,
+            "end_char": 5837
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dermoscopic image segmentation based on Pyramid Residual Attention Module",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Cheng Tongtong;Dong Jinkun;Liang Jing;Zhang yuan;lin xin;Yao Huixia",
+      "id": "out-273cd503f963",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dermoscopic image segmentation based on Pyramid Residual Attention Module — Jiang Yun;Cheng Tongtong;Dong Jinkun;Liang Jing;Zhang yuan;lin xin;Yao Huixia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5843,
+            "end_char": 6002
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MDSC-Net: A multi-scale depthwise separable convolutional neural network for skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Hao Qiao;Zequn Zhang;Meiqi Wang;Wei Yan;Jie Chen",
+      "id": "out-2a4d52fe5514",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MDSC-Net: A multi-scale depthwise separable convolutional neural network for skin lesion segmentation — Yun Jiang;Hao Qiao;Zequn Zhang;Meiqi Wang;Wei Yan;Jie Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6008,
+            "end_char": 6176
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SIL-Net: A Semi-Isotropic L-shaped network for dermoscopic image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zequn Zhang;Yun Jiang;Hao Qiao;Meiqi Wang;Wei Yan;Jie Chen",
+      "id": "out-7baf1a840825",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SIL-Net: A Semi-Isotropic L-shaped network for dermoscopic image segmentation — Zequn Zhang;Yun Jiang;Hao Qiao;Meiqi Wang;Wei Yan;Jie Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6182,
+            "end_char": 6326
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PCF-Net: Position and context information fusion attention convolutional neural network for skin lesion segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Jinkun Dong;Yuan Zhang;Tongtong Cheng;Xin Lin;Jing Liang",
+      "id": "out-830f1224dd53",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PCF-Net: Position and context information fusion attention convolutional neural network for skin lesion segmentation — Yun Jiang;Jinkun Dong;Yuan Zhang;Tongtong Cheng;Xin Lin;Jing Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6332,
+            "end_char": 6523
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gated Skip-Connection Network with Adaptive Upsampling for Retinal Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Yao Huixia;Tao Shengxin;Liang Jing",
+      "id": "out-70066d9ae928",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gated Skip-Connection Network with Adaptive Upsampling for Retinal Vessel Segmentation — Jiang Yun;Yao Huixia;Tao Shengxin;Liang Jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6529,
+            "end_char": 6668
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SwinBTS: A Method for 3D Multimodal Brain Tumor Segmentation Using Swin Transformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Zhang yuan;Lin xin;Dong jinkun;Cheng Tongtong;Liang jing",
+      "id": "out-08c65e2ed6aa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SwinBTS: A Method for 3D Multimodal Brain Tumor Segmentation Using Swin Transformer — Jiang Yun;Zhang yuan;Lin xin;Dong jinkun;Cheng Tongtong;Liang jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6674,
+            "end_char": 6832
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SAG-Net:用于联合视盘和视杯分割的新型跳过注意力指导网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;高静;王发林",
+      "id": "out-149608369995",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SAG-Net:用于联合视盘和视杯分割的新型跳过注意力指导网络 — 蒋芸;高静;王发林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6838,
+            "end_char": 6887
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MTPA_Unet: Multi-Scale Transformer-Position Attention Retinal Vessel Segmentation Network Joint Transformer and CNN",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Liang Jing;Cheng Tongtong;Lin xin;Zhang yuan;Dong Jinkun",
+      "id": "out-0bea9916086b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MTPA_Unet: Multi-Scale Transformer-Position Attention Retinal Vessel Segmentation Network Joint Transformer and CNN — Jiang Yun;Liang Jing;Cheng Tongtong;Lin xin;Zhang yuan;Dong Jinkun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6893,
+            "end_char": 7083
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MFI-Net: A multi-resolution fusion input network for retinal vessel segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Wu Chao;Wang Ge;Yao Huixia;Liu Wenhuan",
+      "id": "out-d28a12389d35",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MFI-Net: A multi-resolution fusion input network for retinal vessel segmentation — Jiang Yun;Wu Chao;Wang Ge;Yao Huixia;Liu Wenhuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7089,
+            "end_char": 7226
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生作品:医准智能",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;高静;曹思敏;陶生鑫;王发林;马泽琪;张婧瑶;刘文欢;吴超;姚慧霞;刘杰;陈嘉怡;高先巧",
+      "id": "out-260329998cff",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生作品:医准智能 — 蒋芸;高静;曹思敏;陶生鑫;王发林;马泽琪;张婧瑶;刘文欢;吴超;姚慧霞;刘杰;陈嘉怡;高先巧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7232,
+            "end_char": 7297
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生获得“中国光谷·华为杯”第十九届中国研究生数学建模竞赛三等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;晏伟",
+      "id": "out-4dc6b2b91ccb",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生获得“中国光谷·华为杯”第十九届中国研究生数学建模竞赛三等奖 — 蒋芸;晏伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7303,
+            "end_char": 7349
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "RSAP-Net:Joint Optic Disc And Cup Segmentation With A Residual Spatial Attention Path Module And MSRCR-PT Pre-Processing Algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Zeqi Ma;Chao Wu;Zequn Zhang;Wei Yan",
+      "id": "out-241cce3b94c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] RSAP-Net:Joint Optic Disc And Cup Segmentation With A Residual Spatial Attention Path Module And MSRCR-PT Pre-Processing Algorithm — Yun Jiang;Zeqi Ma;Chao Wu;Zequn Zhang;Wei Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7355,
+            "end_char": 7539
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bi-SANet—Bilateral Network with Scale Attention for Retinal Vessel Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Yun;Yao Huixia;Ma Zeqi;Zhang Jingyao",
+      "id": "out-edd8122370ed",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bi-SANet—Bilateral Network with Scale Attention for Retinal Vessel Segmentation — Jiang Yun;Yao Huixia;Ma Zeqi;Zhang Jingyao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7545,
+            "end_char": 7675
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于卷积注意力模型的皮肤病变分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;曹思敏;陶生鑫;吴超;刘文欢",
+      "id": "out-79b50de408df",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于卷积注意力模型的皮肤病变分割方法 — 蒋芸;曹思敏;陶生鑫;吴超;刘文欢",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7681,
+            "end_char": 7725
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Scale and Multi-Branch Convolutional Neural Network for Retinal Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yun Jiang;Wenhuan Liu;Chao Wu;Huixia Yao",
+      "id": "out-0b3a66528d71",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Scale and Multi-Branch Convolutional Neural Network for Retinal Image Segmentation — Yun Jiang;Wenhuan Liu;Chao Wu;Huixia Yao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7731,
+            "end_char": 7868
+          },
+          "version": "2ae94f9528c3d3366cb2"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "指导学生作品:AutoEye智能眼底分析平台2.0",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "蒋芸;马泽琪;吴超;姚慧霞;张婧瑶;刘文欢;邢涛;朱耀龙;赵猛;纪凯璇;董金琨;程通通",
+      "id": "out-5ac1c3423059",
+      "evidence": [
+        {
+          "quote": "[奖励] 指导学生作品:AutoEye智能眼底分析平台2.0 — 蒋芸;马泽琪;吴超;姚慧霞;张婧瑶;刘文欢;邢涛;朱耀龙;赵猛;纪凯璇;董金琨;程通通",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7874,
+            "end_char": 7949
+          },
+          "version": "2ae94f9528c3d3366cb2"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-db55ae3d2786"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 24,
+        "extracted": 24
       },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-eddd780af1d1"
+      "奖励/专著": {
+        "listed": 6,
+        "extracted": 6
       },
-      "basis": "原文明示"
+      "会议论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-eddd780af1d1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1516a68c7ecf"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1516a68c7ecf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4549a4389404"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "faa9ec7c52a4b9103440",
   "version": "44cab8a506471fbabd07",
   "source_hash": "e4fc5fcb623b3a71b7299b73287fb69a062b413baafb682ea03487d1fafd823d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:58:44.055893+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.729903+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-64d1ad15dda8",
-          "name": "病理图像细胞量化分析",
-          "desc": "病理检查通常为肿瘤等恶性疾病的最后确诊提供重要依据，被称为临床诊断的金标准，细胞精确量化分析给病理医生带来难度和强度的双重考验。",
+          "id": "item-07edf7541f73",
+          "name": "病理图像细胞检测与分割",
+          "desc": "弱监督与域泛化",
           "evidence": [
             {
-              "quote": "病理检查通常为肿瘤等恶性疾病的最后确诊提供重要依据，因此被称为临床诊断的“金标准”。在病理检查中，细胞的精确量化分析工作给病理医生带来了难度和强度的“双重考验”，导致漏诊与误诊的情况时有发生。",
+              "quote": "本项目主要研究病理图像中的细胞检测与分割问题，致力于解决病理图像分析中的关键技术挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 628,
-                "end_char": 723
-              },
-              "version": "44cab8a506471fbabd07"
-            }
-          ]
-        },
-        {
-          "id": "item-875d11c3f39a",
-          "name": "临床病理诊断人工智能应用",
-          "desc": "探索人工智能框架在临床病理诊断中的应用潜能，为病理图像的辅助分析提供理论基础、技术储备和应用示范。",
-          "evidence": [
-            {
-              "quote": "进一步探索人工智能框架在临床病理诊断中的应用潜能，为病理图像的辅助分析提供强有力的理论基础、技术储备和应用示范",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 963,
-                "end_char": 1017
+                "start_char": 2572,
+                "end_char": 2613
               },
               "version": "44cab8a506471fbabd07"
             }
@@ -57,47 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ef49e523fbbc",
-          "name": "病理图像异质性问题",
-          "desc": "病理图像细胞检测任务存在病理图像异质性问题。",
+          "id": "item-2b444dc2a5da",
+          "name": "病理图像异质性、前景细胞特征混杂、细胞稀疏标注",
+          "desc": "三个关键问题",
           "evidence": [
             {
-              "quote": "目前病理图像细胞检测任务仍然存在三个特有的关键问题亟待进一步研究，分别是病理图像异质性问题、前景细胞特征混杂问题以及细胞稀疏标注问题。",
+              "quote": "病理图像异质性问题、前景细胞特征混杂问题以及细胞稀疏标注问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 770,
-                "end_char": 836
-              },
-              "version": "44cab8a506471fbabd07"
-            }
-          ]
-        },
-        {
-          "id": "item-eb87e84a59ce",
-          "name": "前景细胞特征混杂",
-          "desc": "前景细胞特征存在混杂问题。",
-          "evidence": [
-            {
-              "quote": "前景细胞特征混杂问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 816,
-                "end_char": 825
-              },
-              "version": "44cab8a506471fbabd07"
-            }
-          ]
-        },
-        {
-          "id": "item-46d1c675c6c5",
-          "name": "细胞稀疏标注问题",
-          "desc": "细胞稀疏标注带来训练困难。",
-          "evidence": [
-            {
-              "quote": "以及细胞稀疏标注问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 826,
+                "start_char": 806,
                 "end_char": 835
               },
               "version": "44cab8a506471fbabd07"
@@ -111,52 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-593721732bd0",
-          "name": "点级监督细胞分割方法",
-          "desc": "提出基于点级监督的细胞核与细胞膜分割方法，解决传统方法依赖像素级标注的问题。",
+          "id": "item-b21b8a285f2b",
+          "name": "点级监督细胞核与细胞膜分割方法",
+          "desc": "摆脱像素级标注依赖",
           "evidence": [
             {
-              "quote": "本项目提出了一种基于点级监督的细胞核与细胞膜分割方法，解决了传统方法依赖于像素级标注的问题。",
+              "quote": "本项目提出了一种基于点级监督的细胞核与细胞膜分割方法，解决了传统方法依赖于像素级标注的问题",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2668,
-                "end_char": 2713
+                "end_char": 2712
               },
               "version": "44cab8a506471fbabd07"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-318e07161835",
           "name": "随机特征增强域泛化方法",
-          "desc": "提出基于随机特征增强的域泛化方法，提升模型在不同数据域之间的适应性。",
+          "desc": "跨医院跨设备",
           "evidence": [
             {
-              "quote": "项目提出了基于随机特征增强的域泛化方法，提升了模型在不同数据域之间的适应性，显著增强了跨医院、跨设备图像的鲁棒性",
+              "quote": "项目提出了基于随机特征增强的域泛化方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2717,
-                "end_char": 2772
+                "end_char": 2735
               },
               "version": "44cab8a506471fbabd07"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5f480564fd0a",
-          "name": "多实例学习与困难样本挖掘",
-          "desc": "针对全切片图像分类任务提出多实例学习与困难样本挖掘方法，并针对稀疏标注提出损失校准策略。",
+          "id": "item-0261b4d7ba47",
+          "name": "稀疏标注损失校准策略",
+          "desc": "",
           "evidence": [
             {
-              "quote": "针对全切片图像分类任务，项目提出了多实例学习与困难样本挖掘方法，通过优化训练过程，提高了分类精度和鲁棒性。此外，项目针对稀疏标注带来的挑战，还提出了一种损失校准策略",
+              "quote": "项目针对稀疏标注带来的挑战，还提出了一种损失校准策略",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2774,
+                "start_char": 2830,
                 "end_char": 2855
               },
               "version": "44cab8a506471fbabd07"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,103 +125,171 @@
       "state": "has",
       "items": [
         {
-          "id": "item-296f6cbd178e",
-          "name": "常规染色预测蛋白表达",
-          "desc": "提出通过常规染色切片预测细胞蛋白表达的方法，在癌症早期筛查和治疗方案制定中具有重要意义。",
+          "id": "item-960b2bac5780",
+          "name": "专利",
+          "desc": "3项国家发明专利",
           "evidence": [
             {
-              "quote": "在临床应用方面，项目还提出了通过常规染色切片预测细胞蛋白表达的方法，解决了临床诊断中的一些实际问题",
+              "quote": "获得了3项国家发明专利",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2879,
-                "end_char": 2927
-              },
-              "version": "44cab8a506471fbabd07"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-06530c9cee7e",
-          "name": "高水平会议期刊发表",
-          "desc": "研究成果已在MICCAI、IEEE BIBM、ISBI等高水平会议或期刊发表。",
-          "evidence": [
-            {
-              "quote": "本项目研究成果已在MICCAI、IEEE BIBM、ISBI等高水平会议/期刊发表",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2951,
-                "end_char": 2991
-              },
-              "version": "44cab8a506471fbabd07"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-35150618b03d",
-          "name": "3项国家发明专利",
-          "desc": "获得了3项国家发明专利。",
-          "evidence": [
-            {
-              "quote": "且获得了3项国家发明专利",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2993,
+                "start_char": 2994,
                 "end_char": 3004
               },
               "version": "44cab8a506471fbabd07"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-64d1ad15dda8"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ef49e523fbbc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度学习的肺癌病理图像中主肿瘤分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔磊;王亚栋;刘苗;亢宇鑫;张育;杨林",
+      "id": "out-49f6d4bfe2d3",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度学习的肺癌病理图像中主肿瘤分割方法 — 崔磊;王亚栋;刘苗;亢宇鑫;张育;杨林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3055,
+            "end_char": 3104
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-46d1c675c6c5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5f480564fd0a"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the Cell-level PD-L1 Expression Status from H&E-stained Histopathological Slide",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mo Zhou;Hansheng Li;Zhizezhang Gao;Mengxin Lu;Xiao Zhang;Yuxin Kang;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-cfefcc28d5f8",
+      "evidence": [
+        {
+          "quote": "[会议论文] Predicting the Cell-level PD-L1 Expression Status from H&E-stained Histopathological Slide — Mo Zhou;Hansheng Li;Zhizezhang Gao;Mengxin Lu;Xiao Zhang;Yuxin Kang;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3109,
+            "end_char": 3301
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-593721732bd0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-296f6cbd178e"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多中心病理图像细胞检测深度学习模型构建方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔磊;赵璇;亢宇鑫;李涵生",
+      "id": "out-9ecf85647d1b",
+      "evidence": [
+        {
+          "quote": "[专利] 多中心病理图像细胞检测深度学习模型构建方法 — 崔磊;赵璇;亢宇鑫;李涵生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3306,
+            "end_char": 3347
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-318e07161835"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-35150618b03d"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Invariant Content Synergistic Learning for Domain Generalization on Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxin Kang;Hansheng Li;Xuan Zhao;Xiaoshuang Shi;Feihong Liu;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-a55f23a6e2d4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Invariant Content Synergistic Learning for Domain Generalization on Medical Image Segmentation — Yuxin Kang;Hansheng Li;Xuan Zhao;Xiaoshuang Shi;Feihong Liu;Qingguo Yan;Ying Guo;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3352,
+            "end_char": 3561
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Random Feature Augmentation for Domain Generalization in Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuan Zhao;Yuxin Kang;Hansheng Li;Jiayu Luo;Lei Cui;Jun Feng;Lin Yang",
+      "id": "out-bfe1a8425f28",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Random Feature Augmentation for Domain Generalization in Medical Image Segmentation — Xuan Zhao;Yuxin Kang;Hansheng Li;Jiayu Luo;Lei Cui;Jun Feng;Lin Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3566,
+            "end_char": 3728
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hard example mining in Multi-Instance Learning for Whole-Slide Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xianglong Du;JiaQi Guo;Zehang Xing;Miao Liu;Zhengyang Xu;Chenglin Ruan;Yuting Wen;Yi Wang;Lei Cui;Hansheng Li",
+      "id": "out-df3ae1609238",
+      "evidence": [
+        {
+          "quote": "[会议论文] Hard example mining in Multi-Instance Learning for Whole-Slide Image Classification — Xianglong Du;JiaQi Guo;Zehang Xing;Miao Liu;Zhengyang Xu;Chenglin Ruan;Yuting Wen;Yi Wang;Lei Cui;Hansheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3733,
+            "end_char": 3934
+          },
+          "version": "44cab8a506471fbabd07"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 6,
+    "listed": 6,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

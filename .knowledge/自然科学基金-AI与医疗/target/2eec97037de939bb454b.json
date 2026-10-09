@@ -2,15 +2,20 @@
   "doc_id": "2eec97037de939bb454b",
   "version": "0fb776678065dd0d82f3",
   "source_hash": "06c6bd3ebf9a38e6c13f8114171ba11942985b9101accf4856ceefe7ac8b3273",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.282679+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:35:44.963329+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-4e026f742877",
           "name": "胶质瘤术中分子边界可视化",
-          "desc": "胶质瘤是最常见的恶性脑肿瘤，最大范围安全切除是延长患者生存时间的首选疗法，术中快速诊断IDH1/2突变有助于判定分子边界。",
+          "desc": "MRI导航仅能影像学全切",
           "evidence": [
             {
-              "quote": "胶质瘤是最常见的恶性脑肿瘤，最大范围安全切除是延长患者生存时间的首选疗法",
+              "quote": "胶质瘤是最常见的恶性脑肿瘤，因其浸润性生长常规MRI导航只能实现影像学全切而难以达到分子层面的精准切除",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 690,
-                "end_char": 725
-              },
-              "version": "0fb776678065dd0d82f3"
-            }
-          ]
-        },
-        {
-          "id": "item-9cada3f48ee2",
-          "name": "实现胶质瘤分子水平全切除",
-          "desc": "最终获得精准、实时的胶质瘤分子边界可视化导航，帮助外科医生实现胶质瘤分子水平全切除。",
-          "evidence": [
-            {
-              "quote": "最终获得精准、实时的胶质瘤分子边界可视化导航，帮助外科医生实现胶质瘤分子水平全切除，最大限度延长患者总体生存时间",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1023,
-                "end_char": 1078
+                "start_char": 2849,
+                "end_char": 2899
               },
               "version": "0fb776678065dd0d82f3"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6c0512b797a5",
-          "name": "现有诊断技术不能实现分子边界可视化",
-          "desc": "术中快速诊断IDH1/2突变能帮助外科医生判定分子边界，但现有诊断技术尚不能实现分子边界可视化，无法用于术中导航。",
+          "id": "item-a1b97893401f",
+          "name": "常规导航难达分子层面精准切除",
+          "desc": "术中快速分子诊断需求",
           "evidence": [
             {
-              "quote": "术中快速诊断IDH1/2突变能够帮助外科医生判定胶质瘤分子边界，但现有诊断技术尚不能实现分子边界的可视化，无法用于术中导航",
+              "quote": "常规MRI导航只能实现影像学全切而难以达到分子层面的精准切除",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 766,
-                "end_char": 826
-              },
-              "version": "0fb776678065dd0d82f3"
-            }
-          ]
-        },
-        {
-          "id": "item-8502abe5f5e6",
-          "name": "常规导航仅能指导影像学全切",
-          "desc": "胶质瘤呈浸润性生长，常规术中导航仅能指导影像学全切而非分子全切。",
-          "evidence": [
-            {
-              "quote": "由于胶质瘤呈浸润性生长，常规术中导航（MRI）仅能指导影像学全切而非分子全切",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 727,
-                "end_char": 764
+                "start_char": 2870,
+                "end_char": 2899
               },
               "version": "0fb776678065dd0d82f3"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6af04347bd67",
-          "name": "术中超声与术前MRI融合导航",
-          "desc": "深入研究术中超声与术前磁共振融合导航及基于多模态影像组学的分子可视化技术，解决跨模态配准和转化重建难点，纠正脑漂移造成的导航误差。",
+          "id": "item-ea3fd91f373a",
+          "name": "STIM模型（Bi-LSTM+双域图卷积+图注意力）",
+          "desc": "超声射频信号时空特征挖掘",
           "evidence": [
             {
-              "quote": "本课题将在此基础上深入研究术中超声与术前磁共振的融合导航及基于多模态影像组学的分子可视化技术，通过解决跨模态配准和转化重建的技术难点，纠正术中 “脑漂移”造成的MRI导航误差",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 913,
-                "end_char": 999
-              },
-              "version": "0fb776678065dd0d82f3"
-            }
-          ]
-        },
-        {
-          "id": "item-188da81f71ea",
-          "name": "STIM模型挖掘超声射频时空特征",
-          "desc": "提出融合Bi-LSTM、双域图卷积及内外图注意力机制的STIM模型，实现超声射频信号时间与空间维度特征挖掘，并利用标签平滑正则化增强泛化能力。",
-          "evidence": [
-            {
-              "quote": "提出了融合Bi-LSTM、双域图卷积及内外图注意力机制的STIM模型，经过数据预处理（信号裁剪、归一化、分块）后实现了超声射频信号的时间与空间维度特征挖掘",
+              "quote": "提出了融合Bi-LSTM、双域图卷积及内外图注意力机制的STIM模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3025,
-                "end_char": 3101
+                "end_char": 3058
               },
               "version": "0fb776678065dd0d82f3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d98935f333d5",
+          "name": "MFR多模态放射组学模型",
+          "desc": "宏观MRI与微观病理融合预测替莫唑胺敏感性",
+          "evidence": [
+            {
+              "quote": "提出MFR多模态放射组学模型，通过提取和筛选放射组学特征及细胞核形态特征，并采用注意力机制进行加权融合，实现对替莫唑胺化疗敏感性的高精度预测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3235,
+                "end_char": 3304
+              },
+              "version": "0fb776678065dd0d82f3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,249 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2f17b11b7424",
-          "name": "术中超声与磁共振病理数据库构建",
-          "desc": "构建高质量的脑肿瘤术中超声-NGS数据库与术前磁共振-HE病理数据库，为多分子标志物实时诊断和治疗决策提供数据支撑。",
+          "id": "item-8ba367faf720",
+          "name": "术中超声-NGS与磁共振-HE病理数据库",
+          "desc": "高质量脑肿瘤数据库",
           "evidence": [
             {
-              "quote": "构建了高质量的脑肿瘤术中超声-NGS数据库与术前磁共振-HE病理数据库，为胶质瘤多分子标志物实时诊断和治疗决策提供了关键数据支撑",
+              "quote": "构建了高质量的脑肿瘤术中超声-NGS数据库与术前磁共振-HE病理数据库",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2955,
-                "end_char": 3018
+                "end_char": 2989
               },
               "version": "0fb776678065dd0d82f3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-6ac205ca0850",
-          "name": "3秒内完成多分子标志物检测",
-          "desc": "在3秒内完成IDH1、TERTp、1p/19q等分子标志物检测，并通过热图可视化肿瘤异质性以帮助精准切除。",
+          "id": "item-1cf9a5ccb0eb",
+          "name": "3秒内分子标志物检测",
+          "desc": "IDH1、TERTp、1p/19q并热图可视化",
           "evidence": [
             {
-              "quote": "从而在3秒内完成IDH1、TERTp、1p/19q等分子标志物的检测并通过热图可视化肿瘤异质性，帮助外科医生根据分子边界进行精准切除",
+              "quote": "从而在3秒内完成IDH1、TERTp、1p/19q等分子标志物的检测并通过热图可视化肿瘤异质性",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3123,
-                "end_char": 3188
+                "end_char": 3169
               },
               "version": "0fb776678065dd0d82f3"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b923d8145806",
-          "name": "MFR模型预测替莫唑胺敏感性",
-          "desc": "融合宏观MRI影像与微观病理切片信息提出MFR多模态放射组学模型，通过注意力机制加权融合实现对替莫唑胺化疗敏感性的高精度预测。",
-          "evidence": [
-            {
-              "quote": "研究团队融合宏观MRI影像与微观病理切片信息，提出MFR多模态放射组学模型，通过提取和筛选放射组学特征及细胞核形态特征，并采用注意力机制进行加权融合，实现对替莫唑胺化疗敏感性的高精度预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3212,
-                "end_char": 3304
-              },
-              "version": "0fb776678065dd0d82f3"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4e026f742877"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6c0512b797a5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phospholipase Cγ1 (PLCG1) overexpression is associated with tumor growth and poor survival in IDH wild-type lower-grade gliomas in adult patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Tianwen;Yang Zhipeng;Li Haoyuan;Zhu Jingjing;Wang Ye;Tang Qisheng;Shi Zhifeng",
+      "id": "out-d06d276f4dc7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phospholipase Cγ1 (PLCG1) overexpression is associated with tumor growth and poor survival in IDH wild-type lower-grade gliomas in adult patients — Li Tianwen;Yang Zhipeng;Li Haoyuan;Zhu Jingjing;Wang Ye;Tang Qisheng;Shi Zhifeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3412,
+            "end_char": 3646
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6c0512b797a5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-6af04347bd67"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Microneedle Patch Delivery of PLCG1-siRNA Efficient Enhanced Temozolomide Therapy for Glioblastoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Zhipeng;Liu Yanjie;Li Haoyuan;Tang Qisheng;Yang Biao;Shi Zhifeng;Mao Ying",
+      "id": "out-08cdc65d9545",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Microneedle Patch Delivery of PLCG1-siRNA Efficient Enhanced Temozolomide Therapy for Glioblastoma — Yang Zhipeng;Liu Yanjie;Li Haoyuan;Tang Qisheng;Yang Biao;Shi Zhifeng;Mao Ying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3651,
+            "end_char": 3836
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-188da81f71ea"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6ac205ca0850"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular landscape of IDH-wild type, pTERT-wild type adult glioblastomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Emma Munan;Shi Zhi-Feng;Li Kay Ka-Wai;Malta Tathiane M.;Chung Nellie Yuk-Fei;Chen Hong;Chan Janice Yuen-Tung;Poon Manix Fung-Man;Kwan Johnny Sheung-Him;Chan Danny Tat-Ming;Noushmehr Houtan;Mao Ying;Ng Ho-Keung",
+      "id": "out-8d787e29379a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular landscape of IDH-wild type, pTERT-wild type adult glioblastomas — Liu Emma Munan;Shi Zhi-Feng;Li Kay Ka-Wai;Malta Tathiane M.;Chung Nellie Yuk-Fei;Chen Hong;Chan Janice Yuen-Tung;Poon Manix Fung-Man;Kwan Johnny Sheung-Him;Chan Danny Tat-Ming;Noushmehr Houtan;Mao Ying;Ng Ho-Keung",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3841,
+            "end_char": 4136
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6af04347bd67"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b923d8145806"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Alternative lengthening of telomeres is seen in a proportion of oligodendrogliomas and is associated with a worse prognosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shi Zhi-Feng;Li Kay Ka-Wai;Chan Danny Tat-Ming;Mao Ying;Ng Ho-Keung",
+      "id": "out-0bf25a15ef07",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Alternative lengthening of telomeres is seen in a proportion of oligodendrogliomas and is associated with a worse prognosis — Shi Zhi-Feng;Li Kay Ka-Wai;Chan Danny Tat-Ming;Mao Ying;Ng Ho-Keung",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4141,
+            "end_char": 4340
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single-cell RNA sequencing identifies a subtype of FN1 + tumor-associated macrophages associated with glioma recurrence and as a biomarker for immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Houshi Xu;Huihui Chai;Ming Chen;Ruize Zhu;Shan Jiang;Xiaoyu Liu;Yue Wang;Jiawen Chen;Junji Wei;Ying Mao;Zhifeng Shi",
+      "id": "out-7d13e8bfa0ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single-cell RNA sequencing identifies a subtype of FN1 + tumor-associated macrophages associated with glioma recurrence and as a biomarker for immunotherapy — Houshi Xu;Huihui Chai;Ming Chen;Ruize Zhu;Shan Jiang;Xiaoyu Liu;Yue Wang;Jiawen Chen;Junji Wei;Ying Mao;Zhifeng Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4345,
+            "end_char": 4625
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Study of radiochemotherapy decision-making for young high-risk low-grade glioma patients using a macroscopic and microscopic combined radiomics model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guoqing Wu;Zhifeng Shi;Zeyang Li;Xuan Xie;Qisheng Tang;Jingjing Zhu;Zhong Yang;Yuanyuan Wang;Jinsong Wu;Jinhua Yu",
+      "id": "out-da065524f8ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Study of radiochemotherapy decision-making for young high-risk low-grade glioma patients using a macroscopic and microscopic combined radiomics model — Guoqing Wu;Zhifeng Shi;Zeyang Li;Xuan Xie;Qisheng Tang;Jingjing Zhu;Zhong Yang;Yuanyuan Wang;Jinsong Wu;Jinhua Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4630,
+            "end_char": 4901
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The molecular history of IDH‐mutant astrocytomas without adjuvant treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi‐Feng Shi;Kay Ka‐Wai Li;Johnny Sheung‐Him Kwan;Nellie Yuk‐Fei Chung;Sze‐Ching Wong;Abby Wai‐Yan Chu;Hong Chen;Danny Tat‐Ming Chan;Ying Mao;Ho‐Keung Ng",
+      "id": "out-f390942483d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The molecular history of IDH‐mutant astrocytomas without adjuvant treatment — Zhi‐Feng Shi;Kay Ka‐Wai Li;Johnny Sheung‐Him Kwan;Nellie Yuk‐Fei Chung;Sze‐Ching Wong;Abby Wai‐Yan Chu;Hong Chen;Danny Tat‐Ming Chan;Ying Mao;Ho‐Keung Ng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4906,
+            "end_char": 5143
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular landscape of pediatric type IDH wildtype, H3 wildtype hemispheric glioblastomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong Liang;Shi Zhi-Feng;Li Kay Ka-Wai;Wang Wei-Wei;Yang Rui Ryan;Kwan Johnny Sheung-Him;Chen Hong;Li Fang-Cheng;Liu Xian-Zhi;Chan Danny Tat-Ming;Li Wen-Cai;Zhang Zhen-Yu;Mao Ying;Ng Ho-Keung",
+      "id": "out-1d1b9004fcc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular landscape of pediatric type IDH wildtype, H3 wildtype hemispheric glioblastomas — Hong Liang;Shi Zhi-Feng;Li Kay Ka-Wai;Wang Wei-Wei;Yang Rui Ryan;Kwan Johnny Sheung-Him;Chen Hong;Li Fang-Cheng;Liu Xian-Zhi;Chan Danny Tat-Ming;Li Wen-Cai;Zhang Zhen-Yu;Mao Ying;Ng Ho-Keung",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5148,
+            "end_char": 5436
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Clinical advances in oncolytic virus therapy for malignant glioma: a systematic review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shan Jiang;Huihui Chai;Qisheng Tang;Zhifeng Shi;Liangfu Zhou",
+      "id": "out-cec646a1c12a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Clinical advances in oncolytic virus therapy for malignant glioma: a systematic review — Shan Jiang;Huihui Chai;Qisheng Tang;Zhifeng Shi;Liangfu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5441,
+            "end_char": 5596
+          },
+          "version": "0fb776678065dd0d82f3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

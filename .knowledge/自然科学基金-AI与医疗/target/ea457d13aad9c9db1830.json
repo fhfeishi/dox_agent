@@ -2,15 +2,20 @@
   "doc_id": "ea457d13aad9c9db1830",
   "version": "4d568f764731f5d0de9e",
   "source_hash": "3c92653e16c96a49f813b83fcdf625f596af0694748c38db8d6a0d761a15abdb",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.558169+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.510607+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-882394e8ac89",
-          "name": "基于多序列MRI的乳腺癌分子分型",
-          "desc": "多序列MRI包含丰富影像信息，在基于影像组学的乳腺癌分子分型研究中备受关注。",
+          "id": "item-e84ea93feecb",
+          "name": "乳腺癌多序列MRI分子分型",
+          "desc": "缺失序列生成与特征融合",
           "evidence": [
             {
-              "quote": "多序列MRI包含丰富的影像信息，在基于影像组学的乳腺癌分子分型研究中倍受关注",
+              "quote": "本项目从数据完备性构建、多序列特征学习、乳腺癌分子分型诊断三方面出发",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 653,
-                "end_char": 690
-              },
-              "version": "4d568f764731f5d0de9e"
-            }
-          ]
-        },
-        {
-          "id": "item-3d49d03eeac7",
-          "name": "提升乳腺癌精准分子分型质量",
-          "desc": "研究对提高乳腺癌诊断效率与水平、提升基于多序列MRI的精准分子分型质量有重要理论意义和临床价值。",
-          "evidence": [
-            {
-              "quote": "研究成果对提高乳腺癌诊断效率与诊断水平，提升基于多序列MRI的乳腺癌精准分子分型质量有重要的理论意义和临床价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3733,
-                "end_char": 3787
+                "start_char": 3010,
+                "end_char": 3043
               },
               "version": "4d568f764731f5d0de9e"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9aa3f44dfe42",
-          "name": "数据完整性差与语义可解释性弱",
-          "desc": "多序列MRI数据完整性差、多序列特征统一编码难、模型语义可解释性弱，严重影响分子分型效果。",
+          "id": "item-0f762323625f",
+          "name": "多序列MRI数据完整性差、特征统一编码难、可解释性弱",
+          "desc": "分子分型",
           "evidence": [
             {
-              "quote": "但该类研究往往面临以下问题：多序列MRI数据完整性差、多序列特征统一编码难、模型的语义可解释性弱，严重影响分子分型效果",
+              "quote": "多序列MRI数据完整性差、多序列特征统一编码难、模型的语义可解释性弱，严重影响分子分型效果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 692,
+                "start_char": 706,
                 "end_char": 750
-              },
-              "version": "4d568f764731f5d0de9e"
-            }
-          ]
-        },
-        {
-          "id": "item-d22f38eba28b",
-          "name": "缺失序列影响诊断准确性",
-          "desc": "存在缺失DWI序列时诊断准确性受限，仅使用单序列方法准确率偏低。",
-          "evidence": [
-            {
-              "quote": "在存在缺失DWI序列的乳腺癌诊断任务上切片层面准确率达到85.61%，病人层面为89.66%，比仅使用单序列的方法准确率提升了11.21%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3225,
-                "end_char": 3293
               },
               "version": "4d568f764731f5d0de9e"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b3d0e5824c5a",
-          "name": "度量学习约束的自适应样本生成",
-          "desc": "基于度量学习约束的自适应样本生成模型，利用生成对抗网络及启发式学习策略，为不完备数据生成高质量样本。",
+          "id": "item-f2a354b3ba4c",
+          "name": "生成对抗网络乳腺MRI生成与DCE-MRI插值",
+          "desc": "缺失DWI序列诊断",
           "evidence": [
             {
-              "quote": "基于度量学习约束的自适应样本生成模型，利用生成对抗网络及启发式学习策略，给出不完备数据生成高质量样本的方法",
+              "quote": "开发了基于生成对抗网络的乳腺MRI图像生成技术和DCE-MRI插值方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 796,
-                "end_char": 848
+                "start_char": 3154,
+                "end_char": 3188
               },
               "version": "4d568f764731f5d0de9e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e78ef027a0da",
-          "name": "互补性特征学习与潜在语义编码",
-          "desc": "多序列MRI互补性特征学习，采用互补性增强机制实现多序列特征统一编码，并发展基于深度网络的潜在语义编码方法。",
+          "id": "item-c1c7bdb24e43",
+          "name": "扩展序列融合网络ESF-NET",
+          "desc": "多序列融合诊断",
           "evidence": [
             {
-              "quote": "多序列MRI的互补性特征学习，采用互补性增强机制实现多序列特征的统一编码，提升多序列特征表达能力",
+              "quote": "提出的扩展序列融合网络ESF-NET在多序列MRI融合诊断任务上，病人层面诊断准确率达到92.71%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 853,
-                "end_char": 900
+                "start_char": 3483,
+                "end_char": 3532
               },
               "version": "4d568f764731f5d0de9e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-46b57fefd73b",
+          "name": "层级专家网络互学习分子分型",
+          "desc": "输出ER、PR、Her-2与Ki-67",
+          "evidence": [
+            {
+              "quote": "运用多级决策细粒度分类方法构建层级专家网络，实现多个专家网络的互学习",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3590,
+                "end_char": 3623
+              },
+              "version": "4d568f764731f5d0de9e"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,297 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4a231aec6c74",
-          "name": "缺失DWI诊断准确率提升11.21%",
-          "desc": "存在缺失DWI序列时切片层面准确率85.61%、病人层面89.66%，比仅使用单序列方法提升11.21%。",
+          "id": "item-1bca011a461c",
+          "name": "缺失序列诊断准确率",
+          "desc": "切片85.61%，病人89.66%",
           "evidence": [
             {
-              "quote": "在存在缺失DWI序列的乳腺癌诊断任务上切片层面准确率达到85.61%，病人层面为89.66%，比仅使用单序列的方法准确率提升了11.21%",
+              "quote": "在存在缺失DWI序列的乳腺癌诊断任务上切片层面准确率达到85.61%，病人层面为89.66%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3225,
-                "end_char": 3293
+                "end_char": 3270
               },
               "version": "4d568f764731f5d0de9e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b734f3dcc29e",
-          "name": "ESF-NET多序列融合诊断92.71%",
-          "desc": "扩展序列融合网络ESF-NET在多序列MRI融合诊断任务上病人层面诊断准确率达92.71%，并将病灶分割DSC值提升到80.57%。",
-          "evidence": [
-            {
-              "quote": "提出的扩展序列融合网络ESF-NET在多序列MRI融合诊断任务上，病人层面诊断准确率达到92.71%，取得了比其他流行算法更优异的性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3483,
-                "end_char": 3549
-              },
-              "version": "4d568f764731f5d0de9e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e2a9fd31fa29",
-          "name": "层级专家网络输出临床语义指标",
-          "desc": "运用多级决策细粒度分类方法构建层级专家网络实现互学习，输出与分子分型相关的临床语义指标ER、PR、Her-2和Ki-67，提供可解释性诊断支持。",
-          "evidence": [
-            {
-              "quote": "运用多级决策细粒度分类方法构建层级专家网络，实现多个专家网络的互学习，网络专注于学习和提取强化后的图像特征，并输出与分子分型结果相关的临床语义指标ER，PR，Her-2和Ki-67",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3590,
-                "end_char": 3679
-              },
-              "version": "4d568f764731f5d0de9e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-882394e8ac89"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9aa3f44dfe42"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种乳腺图像的分割系统、方法及计算机存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁松涛;王红玉;朱天薏",
+      "id": "out-f2efccd3bffc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种乳腺图像的分割系统、方法及计算机存储介质 — 丁松涛;王红玉;朱天薏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3807,
+            "end_char": 3847
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9aa3f44dfe42"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b3d0e5824c5a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mixed 2D and 3D convolutional network with multi-scale context for lesion segmentation in breast DCE-MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Cao Jiaqi;Feng Jun;Xie Yilin;Yang Di;Chen Baoying",
+      "id": "out-8e8beb5dfa3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mixed 2D and 3D convolutional network with multi-scale context for lesion segmentation in breast DCE-MRI — Wang Hongyu;Cao Jiaqi;Feng Jun;Xie Yilin;Yang Di;Chen Baoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3852,
+            "end_char": 4026
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b3d0e5824c5a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-4a231aec6c74"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature-enhanced multi-sequence MRI-based fusion mechanism for breast tumor segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Zhu Tianyi;Ding Songtao;Wang Pingping;Chen Baoying",
+      "id": "out-7527ddedd5ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature-enhanced multi-sequence MRI-based fusion mechanism for breast tumor segmentation — Wang Hongyu;Zhu Tianyi;Ding Songtao;Wang Pingping;Chen Baoying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4031,
+            "end_char": 4190
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e78ef027a0da"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e2a9fd31fa29"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rib segmentation algorithm for X-ray image based on unpaired sample augmentation and multi-scale network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Zhang Dandan;Ding Songtao;Gao Zhanyi;Feng Jun;Wan Shaohua",
+      "id": "out-e246c4a1ea59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rib segmentation algorithm for X-ray image based on unpaired sample augmentation and multi-scale network — Wang Hongyu;Zhang Dandan;Ding Songtao;Gao Zhanyi;Feng Jun;Wan Shaohua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4195,
+            "end_char": 4377
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于生成对抗网络的乳腺MRI图像生成",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王红玉;朱天薏;冯筠;丁松涛;王苹苹;陈宝莹",
+      "id": "out-1293641ff1b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于生成对抗网络的乳腺MRI图像生成 — 王红玉;朱天薏;冯筠;丁松涛;王苹苹;陈宝莹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4382,
+            "end_char": 4431
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hard frame detection for the automated clipping of surgical nasal endoscopic video",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Pan Xiaoying;Zhao Hao;Gao Cong;Liu Ni",
+      "id": "out-07583c4f5831",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hard frame detection for the automated clipping of surgical nasal endoscopic video — Wang Hongyu;Pan Xiaoying;Zhao Hao;Gao Cong;Liu Ni",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4436,
+            "end_char": 4576
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "用于咽喉器官分割的空洞残差金字塔算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘晓英;白伟栋;代栋;王红玉;马晨阳",
+      "id": "out-331425cef9e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 用于咽喉器官分割的空洞残差金字塔算法 — 潘晓英;白伟栋;代栋;王红玉;马晨阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4581,
+            "end_char": 4626
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种乳腺图像分类方法、系统及计算机存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁松涛;王红玉;郝焱芳",
+      "id": "out-02ed4dd7f79a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种乳腺图像分类方法、系统及计算机存储介质 — 丁松涛;王红玉;郝焱芳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4631,
+            "end_char": 4670
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CAMS-Net: An attention-guided feature selection network for rib segmentation in chest X-rays",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Dandan;Wang Hongyu;Deng Jiahui;Wang Tonghui;Shen Cong;Feng Jun",
+      "id": "out-bbc30678f225",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CAMS-Net: An attention-guided feature selection network for rib segmentation in chest X-rays — Zhang Dandan;Wang Hongyu;Deng Jiahui;Wang Tonghui;Shen Cong;Feng Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4675,
+            "end_char": 4844
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive denoising for magnetic resonance image based on nonlocal structural similarity and low-rank sparse representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Li Ying;Ding Songtao;Pan Xiaoying;Gao Zhanyi;Wan Shaohua;Feng Jun",
+      "id": "out-78637717edba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive denoising for magnetic resonance image based on nonlocal structural similarity and low-rank sparse representation — Wang Hongyu;Li Ying;Ding Songtao;Pan Xiaoying;Gao Zhanyi;Wan Shaohua;Feng Jun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4850,
+            "end_char": 5058
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-objective segmentation method for chest X-rays based on collaborative learning from multiple partially annotated datasets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Hongyu;Zhang Dandan;Feng Jun;Cascone Lucia;Nappi Michele;Wan Shaohua",
+      "id": "out-3dae839e8d77",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-objective segmentation method for chest X-rays based on collaborative learning from multiple partially annotated datasets — Wang Hongyu;Zhang Dandan;Feng Jun;Cascone Lucia;Nappi Michele;Wan Shaohua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5064,
+            "end_char": 5275
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种乳腺肿瘤图像特征融合方法、系统及计算机存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王红玉;王彤辉;朱天薏;丁松涛;冯筠",
+      "id": "out-b5e118a9056e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种乳腺肿瘤图像特征融合方法、系统及计算机存储介质 — 王红玉;王彤辉;朱天薏;丁松涛;冯筠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5281,
+            "end_char": 5331
+          },
+          "version": "4d568f764731f5d0de9e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      }
+    },
+    "consistent": true
+  }
 }

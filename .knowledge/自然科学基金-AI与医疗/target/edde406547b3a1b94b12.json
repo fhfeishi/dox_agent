@@ -2,15 +2,20 @@
   "doc_id": "edde406547b3a1b94b12",
   "version": "0d9f72538768dff765e8",
   "source_hash": "f788aafa1b918660780b00200bdd6ecdeb7f03b37f8093eb746d5e48e3350db0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:10.417447+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:43:07.614152+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ad37116d62bc",
-          "name": "晚期肺癌免疫治疗疗效个体化预测",
-          "desc": "免疫治疗是晚期肺癌重要治疗手段，但疗效存在较大个体化差异，需精准筛选获益人群。",
+          "id": "item-4cc335aef0d5",
+          "name": "晚期肺癌免疫治疗疗效预测",
+          "desc": "CT与病理多模态",
           "evidence": [
             {
-              "quote": "免疫治疗是晚期肺癌的重要治疗手段，但其疗效存在较大的个体化差异，其有效率较低",
+              "quote": "本项目系统构建了一套基于影像-病理多模态人工智能的肺癌免疫治疗疗效与预后预测研究体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 699
-              },
-              "version": "0d9f72538768dff765e8"
-            }
-          ]
-        },
-        {
-          "id": "item-17c9e731aafd",
-          "name": "免疫性肺炎风险与PFS预测",
-          "desc": "以免疫性肺炎和免疫治疗无进展生存期作为终点事件，实现疗效个体化精准预测。",
-          "evidence": [
-            {
-              "quote": "以免疫性肺炎和免疫治疗无进展生存期（PFS）作为终点事件，实现对晚期肺癌免疫治疗疗效的个体化精准预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 832,
-                "end_char": 881
+                "start_char": 2822,
+                "end_char": 2863
               },
               "version": "0d9f72538768dff765e8"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5baf5a77a154",
-          "name": "PD-L1等标志物预测效能有限",
-          "desc": "临床常用的PD-L1等生物标志物预测效能有限，基于医学影像的AI方法面临多模态信息利用不足与泛化能力弱等问题。",
+          "id": "item-ab81709abce2",
+          "name": "缺乏精准预测疗效与预后的可靠工具",
+          "desc": "PD-L1预测效能有限",
           "evidence": [
             {
-              "quote": "临床常用的PD-L1等生物标志物预测效能有限，而基于医学影像的人工智能预测方法，仍面临多模态信息利用不足、模型泛化能力弱",
+              "quote": "目前缺乏能够精准预测疗效及预后的可靠工具",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2727,
-                "end_char": 2786
-              },
-              "version": "0d9f72538768dff765e8"
-            }
-          ]
-        },
-        {
-          "id": "item-061952f5b09f",
-          "name": "真实世界样本不均衡与异质性",
-          "desc": "对真实世界数据中的样本不均衡与异质性缺乏有效应对策略。",
-          "evidence": [
-            {
-              "quote": "以及对真实世界数据中的样本不均衡与异质性缺乏有效应对策略等挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2787,
-                "end_char": 2817
+                "start_char": 2706,
+                "end_char": 2725
               },
               "version": "0d9f72538768dff765e8"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e3a516285379",
-          "name": "肿瘤引导全肺深度学习模型",
-          "desc": "提出基于肿瘤引导的全肺深度学习模型，深入挖掘CT影像中肿瘤与全肺信息。",
+          "id": "item-d201ba7602b2",
+          "name": "肺癌CT视觉-语言基础模型",
+          "desc": "32万例CT及配对报告预训练",
           "evidence": [
             {
-              "quote": "本项目拟提出基于肿瘤引导的全肺深度学习模型实现对CT影像中肿瘤和全肺信息的深入挖掘",
+              "quote": "提出了面向肺癌的CT影像视觉-语言基础模型，实现了对肺部影像通用语义表征的学习",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 883,
-                "end_char": 923
+                "start_char": 2991,
+                "end_char": 3029
               },
               "version": "0d9f72538768dff765e8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-b255e85a05a6",
-          "name": "重要性评分Transformer与多模态融合",
-          "desc": "使用基于重要性评分的Transformer提取病理图像肿瘤微环境信息，通过正交投影和双线性池化融合CT影像、病理与临床数据。",
+          "id": "item-9c5291ce7485",
+          "name": "全局-三级淋巴结构交叉注意力模型GLAM",
+          "desc": "H&E病理切片",
           "evidence": [
             {
-              "quote": "同时，使用基于重要性评分的Transformer模型实现对病理图像中肿瘤微环境信息的提取。然后，通过正交投影和双线性池化方法实现对CT影像、病理、临床数据三种信息的融合",
+              "quote": "研发了基于常规H&E病理切片的全局-三级淋巴结构交叉注意力模型（GLAM）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 1008
+                "start_char": 3093,
+                "end_char": 3129
               },
               "version": "0d9f72538768dff765e8"
             }
-          ]
-        },
-        {
-          "id": "item-758f2ee584b6",
-          "name": "对比学习与原型学习建模",
-          "desc": "构建对比学习模型预测免疫性肺炎，构建原型学习模型实现免疫治疗PFS个体化预测。",
-          "evidence": [
-            {
-              "quote": "构建对比学习模型实现对免疫性肺炎的预测，构建原型学习模型实现对免疫治疗PFS的个体化预测",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1013,
-                "end_char": 1056
-              },
-              "version": "0d9f72538768dff765e8"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,103 +108,257 @@
       "state": "has",
       "items": [
         {
-          "id": "item-845a19e898bc",
-          "name": "免疫治疗预后模型AUC 0.80",
-          "desc": "迁移构建的免疫治疗预后预测模型取得高低风险分类AUC=0.80、PFS预测C-index=0.68的稳健性能。",
+          "id": "item-bff845c5062e",
+          "name": "免疫预后预测",
+          "desc": "AUC=0.80，C-index=0.68",
           "evidence": [
             {
-              "quote": "基于此迁移构建的免疫治疗预后预测模型，取得高低风险分类AUC=0.80、PFS预测C-index=0.68的稳健性能",
+              "quote": "取得高低风险分类AUC=0.80、PFS预测C-index=0.68的稳健性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3031,
+                "start_char": 3050,
                 "end_char": 3088
               },
               "version": "0d9f72538768dff765e8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-2f2b0fbe0420",
-          "name": "GLAM模型预测MPR AUC 0.951",
-          "desc": "基于常规H&E病理切片的GLAM模型对新辅助免疫治疗主要病理缓解预测AUC达0.951，无复发生存期C-index为0.805。",
+          "id": "item-4c79bef6fa8e",
+          "name": "GLAM预测MPR与RFS",
+          "desc": "AUC 0.951，C-index 0.805",
           "evidence": [
             {
-              "quote": "研发了基于常规H&E病理切片的全局-三级淋巴结构交叉注意力模型（GLAM），在新辅助免疫治疗疗效预测中，对主要病理缓解（MPR）的预测AUC达到0.951，对无复发生存期（RFS）的预测C-index为0.805",
+              "quote": "对主要病理缓解（MPR）的预测AUC达到0.951，对无复发生存期（RFS）的预测C-index为0.805",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3093,
+                "start_char": 3145,
                 "end_char": 3198
               },
               "version": "0d9f72538768dff765e8"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-209c30c93ad6",
-          "name": "多中心大规模多模态数据基础",
-          "desc": "整合国内多中心超32万例胸部CT及配对报告构建预训练数据集，并收集409例免疫治疗CT随访与191例术后病理与随访资料。",
-          "evidence": [
-            {
-              "quote": "整合了国内多中心超过32万例胸部CT影像及其配对报告，构建了大规模预训练数据集，并收集了409例接受免疫治疗患者的CT随访数据以及191例接受新辅助免疫治疗患者的术后病理图像与完整随访资料",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2871,
-                "end_char": 2964
-              },
-              "version": "0d9f72538768dff765e8"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ad37116d62bc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5baf5a77a154"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种针对医学图像的多视角静息超声成像视频分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王硕;刘成才;谢博洽;乐音;魏婉钰;黄星宇;桑浩淋;武弋;王成豪;邢皓",
+      "id": "out-57e9c2fd73bc",
+      "evidence": [
+        {
+          "quote": "[专利] 一种针对医学图像的多视角静息超声成像视频分类方法 — 王硕;刘成才;谢博洽;乐音;魏婉钰;黄星宇;桑浩淋;武弋;王成豪;邢皓",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3393,
+            "end_char": 3459
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5baf5a77a154"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e3a516285379"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌 CT 薄厚层图像 EGFR 基因突变预测装置和方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王硕;黄星宇;刘成才;桑浩淋;武弋;王成豪",
+      "id": "out-be056dad8105",
+      "evidence": [
+        {
+          "quote": "[专利] 肺癌 CT 薄厚层图像 EGFR 基因突变预测装置和方法 — 王硕;黄星宇;刘成才;桑浩淋;武弋;王成豪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3464,
+            "end_char": 3520
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b255e85a05a6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-845a19e898bc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SFPL: Sample-specific fine-grained prototype learning for imbalanced medical image classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongbei Zhu;Shuo Wang;He Yu;Weimin Li;Jie Tian",
+      "id": "out-829b1c28b277",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SFPL: Sample-specific fine-grained prototype learning for imbalanced medical image classification — Yongbei Zhu;Shuo Wang;He Yu;Weimin Li;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3525,
+            "end_char": 3677
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-758f2ee584b6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-2f2b0fbe0420"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting Efficacy of Neoadjuvant Immunotherapy in Lung Cancer based on Tertiary Lymphoid Structure and Multi-Instance Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi Wu;Mei Xie;Chengcai Liu;Xingyu Huang;Haolin Sang;Jie Tian;Jiannan Yao;Shuo Wang;Xinying Xue",
+      "id": "out-50a773ae2c00",
+      "evidence": [
+        {
+          "quote": "[会议论文] Predicting Efficacy of Neoadjuvant Immunotherapy in Lung Cancer based on Tertiary Lymphoid Structure and Multi-Instance Learning — Yi Wu;Mei Xie;Chengcai Liu;Xingyu Huang;Haolin Sang;Jie Tian;Jiannan Yao;Shuo Wang;Xinying Xue",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3682,
+            "end_char": 3913
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种三级淋巴结构病理图像分类模型构建和分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛新颖;谢梅;王硕;刘成才;马西栋;姚捷",
+      "id": "out-b24681b98d83",
+      "evidence": [
+        {
+          "quote": "[专利] 一种三级淋巴结构病理图像分类模型构建和分类方法 — 薛新颖;谢梅;王硕;刘成才;马西栋;姚捷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3918,
+            "end_char": 3968
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature Copy-Paste Network for Lung Cancer EGFR Mutation Status Prediction in CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuo Wang;Xingyu Huang;Shuo Wang;Chengcai Liu;Haolin Sang;Yi Wu;Jie Tian",
+      "id": "out-4f913dd6bd13",
+      "evidence": [
+        {
+          "quote": "[会议论文] Feature Copy-Paste Network for Lung Cancer EGFR Mutation Status Prediction in CT Images — Shuo Wang;Xingyu Huang;Shuo Wang;Chengcai Liu;Haolin Sang;Yi Wu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3973,
+            "end_char": 4141
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "病理细胞图像分类方法、装置、电子设备和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王硕;武弋;刘成才",
+      "id": "out-568ea666dda3",
+      "evidence": [
+        {
+          "quote": "[专利] 病理细胞图像分类方法、装置、电子设备和存储介质 — 王硕;武弋;刘成才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4146,
+            "end_char": 4185
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting prognosis of light-chain cardiac amyloidosis by magnetic resonance imaging and deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Shuo;Liu Chengcai;Guo Yubo;Sang Haolin;Li Xiao;Lin Lu;Li Xiaohu;Wu Yi;Zhang Long Jiang;Tian Jie;Li Jian;Wang Yining",
+      "id": "out-cabb414f534d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting prognosis of light-chain cardiac amyloidosis by magnetic resonance imaging and deep learning — Wang Shuo;Liu Chengcai;Guo Yubo;Sang Haolin;Li Xiao;Lin Lu;Li Xiaohu;Wu Yi;Zhang Long Jiang;Tian Jie;Li Jian;Wang Yining",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4422
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "颈动脉超声图像血管内膜分割装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王硕;桑浩淋;刘成才;黄星宇;武弋;王成豪",
+      "id": "out-c14604eba420",
+      "evidence": [
+        {
+          "quote": "[专利] 颈动脉超声图像血管内膜分割装置 — 王硕;桑浩淋;刘成才;黄星宇;武弋;王成豪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4427,
+            "end_char": 4470
+          },
+          "version": "0d9f72538768dff765e8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

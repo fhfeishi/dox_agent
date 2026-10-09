@@ -2,15 +2,20 @@
   "doc_id": "44c4917eb9e6bd6b9249",
   "version": "ceb3998c6d626cf26473",
   "source_hash": "6d532616f562de29201bac2f75f5784ffe7f32ecdc02753293d770f81930cd49",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.854077+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 5
+  },
+  "generated_at": "2026-10-09T11:52:00.948576+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 5,
+      "total": 5,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4c65f3760f04",
-          "name": "白内障患者辅助决策智能问答系统",
-          "desc": "面向白内障等常见眼病患者，基于知识图谱建立具有推断解释能力的辅助决策智能对话系统。",
+          "id": "item-78fe2bcc1211",
+          "name": "白内障及常见眼病患者辅助决策智能问答",
+          "desc": "患者教育与决策辅助",
           "evidence": [
             {
-              "quote": "白内障患者往往由于医学知识不足，难以参与治疗决策，而临床上缺乏具有推断解释能力的AI智能问答系统来辅助患者进行决策",
+              "quote": "本项目围绕“如何利用知识图谱来建立白内障患者辅助决策智能对话系统”这一关键科学问题",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "c2e7ef8003f8df2418a9d4fdebf64f67983108ac"
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
               },
               "version": "ceb3998c6d626cf26473"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a4e2aaacedd2",
-          "name": "患者医学知识不足且缺乏推断型问答系统",
-          "desc": "白内障患者因医学知识不足难以参与治疗决策，而临床上缺乏具有推断和解释能力的智能问答系统辅助决策。",
+          "id": "item-2c368e8a30a4",
+          "name": "患者医学知识不足难以参与治疗决策",
+          "desc": "缺乏具推断解释能力的智能问答系统",
           "evidence": [
             {
-              "quote": "而临床上缺乏具有推断解释能力的AI智能问答系统来辅助患者进行决策",
+              "quote": "常见眼病患者（如白内障患者）往往由于医学知识不足，难以参与治疗决策，而临床上缺乏具有推断解释能力的智能问答系统来辅助患者进行决策",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "c2e7ef8003f8df2418a9d4fdebf64f67983108ac"
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
               },
               "version": "ceb3998c6d626cf26473"
             }
@@ -63,34 +68,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c4ff6c8bede2",
-          "name": "推断型知识图谱与检索增强生成结合",
-          "desc": "扩增“推断型”知识图谱增强自监督预训练模型的推断能力，将知识图谱与检索增强生成技术结合构建眼科医学问答框架Med-RISE与面向患者健康教育的RISE框架。",
+          "id": "item-816d52b86e98",
+          "name": "Med-RISE眼科医学问答框架",
+          "desc": "知识图谱与检索增强生成，Transformer预训练模型",
           "evidence": [
             {
-              "quote": "本项目围绕“如何利用知识图谱来建立白内障患者辅助决策智能对话系统”这一关键科学问题，将知识图谱与检索增强生成技术相结合",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
-              },
-              "version": "ceb3998c6d626cf26473"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-796c1856ad4b",
-          "name": "RISE系统提升患者知识水平与决策能力",
-          "desc": "Med-RISE框架显著提升预训练模型在眼科问答中的准确性与安全性并降低幻觉；RISE系统在临床研究中显著提高患者知识水平和决策能力、降低决策冲突与焦虑；发表SCI论文3篇。",
-          "evidence": [
-            {
-              "quote": "RISE系统在常见眼病患者健康教育中显著提升了回答的准确性、全面性和可理解性",
+              "quote": "将知识图谱与检索增强生成技术相结合，基于Transf ormer预训练模型，构建了眼科医学问答框架Med-RISE和面向患者健康教育及辅助决策的RISE框架",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -99,44 +82,219 @@
               "version": "ceb3998c6d626cf26473"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e8ee7f6911b2",
+          "name": "眼底影像跨模态生成模型",
+          "desc": "彩照到造影",
+          "evidence": [
+            {
+              "quote": "依托本项目开发的基于深度学习的眼底影像跨模态生成模型，有效提升眼病筛查效能",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1227f7fe2423",
+          "name": "EyeChat人机交互语音智能系统",
+          "desc": "",
+          "evidence": [
+            {
+              "quote": "设计基于知识图谱的人机交互语音智能系统 EyeChat",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 3,
+                "chunk_id": "29a689712816de0663c565fa9c919de9d117a4bb"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ab2df96f75cc",
+          "name": "Med-RISE四步框架",
+          "desc": "查询重写、信息检索、摘要生成、执行输出，50种意图类别",
+          "evidence": [
+            {
+              "quote": "Med-RISE框架包含查询重写、信息检索、摘要生成和执行输出四个核心步骤（图1）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 8,
+                "chunk_id": "f6e12de10d90a06ad23125d9f8e3c4d9923d9ffd"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dc1b5d858086",
+          "name": "RISE白内障患者辅助决策系统",
+          "desc": "患者决策辅助PDA",
+          "evidence": [
+            {
+              "quote": "构建了RISE智能问答系统，通过知识图谱及检索增强技术，向患者提供个性化的疾病知识教育",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "65c12b96cfe8615822d0f96e5ff88f2ec37d865e"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-687bdd9ddca6",
+          "name": "Pix2pixHD眼底彩照到ICGA跨模态生成",
+          "desc": "99,002对CF-ICGA图像",
+          "evidence": [
+            {
+              "quote": "模型基于Pix2pixHD架构，通过对抗训练学习眼底彩照与ICGA图像之间的映射关系",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "9a9052a1c14f6c631b316f690a5e52283550a15a"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-20e8fd5056d8",
+          "name": "论文与人才",
+          "desc": "SCI论文3篇，综述1篇，博士毕业1名",
+          "evidence": [
+            {
+              "quote": "已发表SCI论文3篇，综述1篇，培养博士毕业生1名",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9805e9390aef4debe13a60fdd2ea4537f56e47d2"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-e13dfa1c04c1",
+          "name": "Med-RISE与RISE两个智能对话系统",
+          "desc": "在EYE500等基准验证",
+          "evidence": [
+            {
+              "quote": "通过构建Med-RISE和RISE两个融合眼科知识图谱与检索增强的智能对话系统，完成数据准备、离线模型训练和问答系统设计",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 5,
+                "chunk_id": "ef4c8670848f06f6aada1d57e6a141f9d649cce7"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-4140abff8a3f",
+          "name": "Med-RISE问答准确率提升",
+          "desc": "9.8%-16.3%，平均13%；幻觉率降低平均15.1%",
+          "evidence": [
+            {
+              "quote": "Med-RISE 框架显著提升了基于Transformer的预训练模型在医学问答中的准确率（提升9.8%-16.3%，平均13%）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "fc51207ad40a1f08499ba60634eb8a30eead9719"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-490ac96caabf",
+          "name": "RISE随机对照临床研究",
+          "desc": "411名患者，知情决策率41.9% vs 30.8%",
+          "evidence": [
+            {
+              "quote": "共纳入411名老年性白内障患者，随机分配至RISE系统干预组或传统健康教育手册对照组",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 12,
+                "chunk_id": "a98443ff0f6bb30831be24e229ea1854b9d0e3a2"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-76bceea824bb",
+          "name": "AMD分类AUC",
+          "desc": "0.93提升至0.97",
+          "evidence": [
+            {
+              "quote": "结合生成 ICGA 后 AMD 分类 AUC 从 0.93显著提升至 0.97（P<0.001）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "9a9052a1c14f6c631b316f690a5e52283550a15a"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-c71bad98b10e",
+          "name": "移动客户端应用",
+          "desc": "在广东省社区卫生服务中心评估",
+          "evidence": [
+            {
+              "quote": "本项目基于知识图谱及自然语言处理技术研发的Med-RISE和RISE智能对话系统已开发为移动客户端应用",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 19,
+                "chunk_id": "a0c779482d50850c77cb36513914dd2f8ab9a873"
+              },
+              "version": "ceb3998c6d626cf26473"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4c65f3760f04"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a4e2aaacedd2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a4e2aaacedd2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c4ff6c8bede2"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c4ff6c8bede2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-796c1856ad4b"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

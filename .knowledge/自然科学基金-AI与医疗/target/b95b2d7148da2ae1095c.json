@@ -2,15 +2,20 @@
   "doc_id": "b95b2d7148da2ae1095c",
   "version": "7f0b1681ad1e348022c7",
   "source_hash": "9dab0f66aa90cad1036e28311a74870b2b6ccc1173c7447a79b365cdb79bc3e5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:54.704205+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:36.100313+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-e5db7055fb23",
           "name": "HCC术后早期复发预测",
-          "desc": "手术切除是肝功能良好HCC患者首选方案，但术后复发率高且早期复发预后更差。",
+          "desc": "手术切除是首选治疗",
           "evidence": [
             {
-              "quote": "手术切除是肝功能良好的肝细胞癌（HCC）患者首选治疗方案，但术后复发率高，且早期复发比晚期复发患者预后差",
+              "quote": "手术切除是早期肝细胞癌（HCC）患者首选治疗方案，但术后复发率高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 680,
-                "end_char": 731
+                "start_char": 2935,
+                "end_char": 2966
               },
               "version": "7f0b1681ad1e348022c7"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f7114bb33fe5",
-          "name": "临床缺乏精准预测早期复发方法",
-          "desc": "精准预测HCC术后早期复发风险对个性化治疗及随访策略意义重大，但目前临床缺乏精准预测方法。",
+          "id": "item-7006583d6446",
+          "name": "临床缺乏精准预测早期复发的方法",
+          "desc": "个性化治疗与随访",
           "evidence": [
             {
-              "quote": "精准预测HCC术后早期复发风险，对个性化治疗及随访策略的制定具有重要科学意义，但目前临床缺乏精准预测的方法",
+              "quote": "精准预测早期HCC术后早期复发风险，对个性化治疗及随访策略的制定具有重要科学意义，但目前临床缺乏精准预测的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 785
-              },
-              "version": "7f0b1681ad1e348022c7"
-            }
-          ]
-        },
-        {
-          "id": "item-80d7d400cef5",
-          "name": "单一尺度信息不足以刻画复发",
-          "desc": "需融合CT影像特征与病理WSI中免疫细胞空间分布特征，发挥多尺度信息互补优势。",
-          "evidence": [
-            {
-              "quote": "深度学习可挖掘并筛选肿瘤的CT影像特征及病理全切片数字化图像(WSI)中肿瘤免疫细胞的空间分布特征，并将其与常规临床病理信息进行多尺度信息融合",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 787,
-                "end_char": 857
+                "start_char": 2968,
+                "end_char": 3022
               },
               "version": "7f0b1681ad1e348022c7"
             }
@@ -79,80 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-38780617ce32",
-          "name": "多任务深度学习挖掘CT影像特征",
-          "desc": "基于多任务深度学习方法挖掘筛选与复发相关的术前CT影像特征并构建深度学习标签。",
-          "evidence": [
-            {
-              "quote": "基于多任务深度学习方法，挖掘并筛选与肿瘤复发相关的术前CT影像特征，构建深度学习标签",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 898,
-                "end_char": 939
-              },
-              "version": "7f0b1681ad1e348022c7"
-            }
-          ]
-        },
-        {
-          "id": "item-8788ab3123be",
-          "name": "病理WSI量化淋巴细胞空间分布",
-          "desc": "采用CellViT++对病理WSI进行细胞核分割与分类，量化细胞核水平不均匀性并表征免疫微环境状态。",
-          "evidence": [
-            {
-              "quote": "采用CellViT++对病理WSIs进行细胞核分割和分类，利用全面的手工病理特征来量化细胞核水平的不均匀性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3225,
-                "end_char": 3277
-              },
-              "version": "7f0b1681ad1e348022c7"
-            }
-          ]
-        },
-        {
-          "id": "item-aa068b42aef1",
-          "name": "多尺度特征融合复发预测模型",
-          "desc": "融合影像、肿瘤淋巴细胞空间分布及常规临床病理的多尺度特征，构建并验证复发风险预测模型。",
-          "evidence": [
-            {
-              "quote": "融合影像、肿瘤淋巴细胞空间分布及常规临床病理的多尺度特征，构建并验证复发风险预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1006,
-                "end_char": 1047
-              },
-              "version": "7f0b1681ad1e348022c7"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-b98cf8b70342",
+          "id": "item-93edfed93770",
           "name": "生境影像高阶相互作用模型",
-          "desc": "利用肿瘤增强CT构建的生境影像高阶相互作用模型显示显著的复发风险分层能力。",
+          "desc": "基于肿瘤增强CT，复发风险分层",
           "evidence": [
             {
-              "quote": "利用肿瘤增强CT图像构建的生境影像高阶相互作用模型显示了显著的复发风险分层能力",
+              "quote": "结果显示，利用肿瘤增强CT图像构建的生境影像高阶相互作用模型显示了显著的复发风险分层能力",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3361,
+                "start_char": 3356,
                 "end_char": 3399
               },
               "version": "7f0b1681ad1e348022c7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-c834c4412eee",
-          "name": "多模态融合模型验证集AUC 0.84",
-          "desc": "基于深度学习算法的多模态融合模型展现不错的预后预测性能，验证集AUC为0.84。",
+          "id": "item-f3dc520cdff5",
+          "name": "基于深度学习的多模态融合模型",
+          "desc": "CT与病理WSI融合",
           "evidence": [
             {
               "quote": "基于深度学习算法的多模态融合模型也展现了不错的预后预测性能（验证集AUC=0.84）",
@@ -164,72 +99,109 @@
               "version": "7f0b1681ad1e348022c7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-adb96b735178",
-          "name": "论文发表成果",
-          "desc": "团队发表SCI论著2篇、北大中文核心期刊1篇，为肿瘤病理表型与预后预测提供参考。",
+          "id": "item-afc60e674486",
+          "name": "CellViT++病理WSI细胞核分割与分类",
+          "desc": "量化细胞核水平不均匀性",
           "evidence": [
             {
-              "quote": "申请人团队发表了SCI论著2篇，北大中文核心期刊1篇",
+              "quote": "采用CellViT++对病理WSIs进行细胞核分割和分类，利用全面的手工病理特征来量化细胞核水平的不均匀性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3624,
-                "end_char": 3649
+                "start_char": 3225,
+                "end_char": 3277
               },
               "version": "7f0b1681ad1e348022c7"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2be67bc8a552",
+          "name": "多模态融合模型验证集AUC",
+          "desc": "0.84",
+          "evidence": [
+            {
+              "quote": "基于深度学习算法的多模态融合模型也展现了不错的预后预测性能（验证集AUC=0.84）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3404,
+                "end_char": 3445
+              },
+              "version": "7f0b1681ad1e348022c7"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-e5db7055fb23"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f7114bb33fe5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative contrast-enhanced CT for predicting the macrotrabecular-massive subtype and its prognostic significance in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Pinxiong;Yang Chuanyan;Pan Liping;Guo Qingxi;Han Pan;Luo Zeren;Cheng Zhitao;Leng Yanlin;Yang Lu;Tang Yong;Shu Jian",
+      "id": "out-c2a7b9799641",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative contrast-enhanced CT for predicting the macrotrabecular-massive subtype and its prognostic significance in hepatocellular carcinoma — Li Pinxiong;Yang Chuanyan;Pan Liping;Guo Qingxi;Han Pan;Luo Zeren;Cheng Zhitao;Leng Yanlin;Yang Lu;Tang Yong;Shu Jian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3668,
+            "end_char": 3938
+          },
+          "version": "7f0b1681ad1e348022c7"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f7114bb33fe5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-38780617ce32"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-38780617ce32"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b98cf8b70342"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-aa068b42aef1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c834c4412eee"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT feature of irregular extensive ulceration as a predictor of liver metastasis in gastric gastrointestinal stromal tumours",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinqiu Ruan;Yinfu He;Qingwan Li;Mingxia Song;Zhaojuan Jiang;Keyu Mao;Jing Ai;Ruiling Yang;Guangjun Yang;Pinxiong Li;Depei Gao;Zhenhui Li",
+      "id": "out-a384e65f1847",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT feature of irregular extensive ulceration as a predictor of liver metastasis in gastric gastrointestinal stromal tumours — Jinqiu Ruan;Yinfu He;Qingwan Li;Mingxia Song;Zhaojuan Jiang;Keyu Mao;Jing Ai;Ruiling Yang;Guangjun Yang;Pinxiong Li;Depei Gao;Zhenhui Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3943,
+            "end_char": 4211
+          },
+          "version": "7f0b1681ad1e348022c7"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

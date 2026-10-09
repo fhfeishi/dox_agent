@@ -2,15 +2,20 @@
   "doc_id": "d8cb11b807d11a3f52f2",
   "version": "eedacf1fdd2cbd9da7df",
   "source_hash": "2353bda9e171e8d41cdc839aac6d8dac05b7e5ef007757e82f8615c28e17c656",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.547162+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:41:55.990574+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-90e9820061fb",
-          "name": "NSCLC免疫治疗的免疫PET/CT评估",
-          "desc": "基于靶向PD-L1免疫PET/CT与影像组学，筛选NSCLC抗PD-1/PD-L1免疫治疗获益人群。",
+          "id": "item-b054d0a0d7f4",
+          "name": "PD-L1免疫PET/CT与NSCLC免疫治疗",
+          "desc": "68Ga-NODAGA-A探针",
           "evidence": [
             {
-              "quote": "借助影像组学参数特征优于常规PET图像定量指标预测的优势，从免疫PET/CT影像数据中提炼出反映PD-L1表达程度的定量参数和特征",
+              "quote": "正电子发射断层扫描（PET）作为一种非侵入性、高灵敏和可量化的成像方式，能在全身范围内对PD-L1的表达进行纵向和重复评估",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 892,
-                "end_char": 956
+                "start_char": 4941,
+                "end_char": 5001
               },
               "version": "eedacf1fdd2cbd9da7df"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dbef19677505",
-          "name": "免疫治疗获益人群筛选缺乏精准手段",
-          "desc": "需要精准筛选NSCLC抗PD-1/PD-L1免疫治疗获益的患者并精准指导免疫治疗，同时揭示PD-L1在肿瘤演进与免疫逃逸中的作用。",
+          "id": "item-59dff4fcbbd4",
+          "name": "PD-L1表达与疗效密切相关需无创评估",
+          "desc": "获益人群筛选",
           "evidence": [
             {
-              "quote": "筛选NSCLC抗PD-1/PD-L1免疫治疗获益的患者，精准指导NSCLC的免疫治疗",
+              "quote": "PD-L1在肿瘤中的表达水平与抗PD-1/PD-L1治疗的疗效密切相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 985,
-                "end_char": 1026
+                "start_char": 4905,
+                "end_char": 4939
               },
               "version": "eedacf1fdd2cbd9da7df"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74be0ec21616",
-          "name": "68Ga标记PD-L1探针与FDG PET/CT影像组学",
-          "desc": "优化68Ga标记的靶向PD-L1探针68Ga-NODAGA-A并验证其靶向特异性与安全性，同时利用18F-FDG PET/CT影像组学评估肿瘤微环境免疫类型分型。",
+          "id": "item-c975132cc385",
+          "name": "68Ga-NODAGA-A PD-L1 PET探针",
+          "desc": "BFC优化标记",
           "evidence": [
             {
-              "quote": "本项目采用双功能螯合剂（BFC）马来酰亚胺-DODA-GA对68Ga标记的ADX_5322_A02进行了优化，制备的PET探针68Ga-NODAGA-A的放射化学纯度在99%以上",
+              "quote": "本项目采用双功能螯合剂（BFC）马来酰亚胺-DODA-GA对68Ga标记的ADX_5322_A02进行了优化",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 5102,
-                "end_char": 5190
+                "end_char": 5155
               },
               "version": "eedacf1fdd2cbd9da7df"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e8acfb94f88f",
+          "name": "18F-FDG PET/CT影像组学预测免疫分型",
+          "desc": "TMITs",
+          "evidence": [
+            {
+              "quote": "利用18F-FDG PET/CT影像组学评估肿瘤微环境免疫类型（TMITs）的分型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 5636,
+                "end_char": 5676
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,505 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb79746b6b72",
-          "name": "PD-L1探针肿瘤/肌肉比达9.15±1.10",
-          "desc": "68Ga-NODAGA-A探针注射后120min肿瘤/肌肉比达9.15±1.10，NHPs全身有效剂量6.34E-03 mSv/MBq；FDG PET/CT影像组学模型可预测NSCLC免疫分型尤其是TMIT-I肿瘤。",
+          "id": "item-017ac3fbe180",
+          "name": "探针放射化学纯度与亲和力",
+          "desc": "纯度99%以上，IC50 8.92±0.90nM",
           "evidence": [
             {
-              "quote": "体外生物分布研究与PET显像结果一致，注射探针1h和120min后肿瘤/肌肉比分别为7.28±0.63和9.15±1.10",
+              "quote": "制备的PET探针68Ga-NODAGA-A的放射化学纯度在99%以上，体外血清120min稳定性>99%，探针对PD-L1亲和力IC50值为8.92±0.90nM",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 5359,
+                "start_char": 5157,
+                "end_char": 5237
+              },
+              "version": "eedacf1fdd2cbd9da7df"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-48a2b093ac46",
+          "name": "肿瘤/肌肉比",
+          "desc": "1h 7.28±0.63，120min 9.15±1.10",
+          "evidence": [
+            {
+              "quote": "注射探针1h和120min后肿瘤/肌肉比分别为7.28±0.63和9.15±1.10",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 5378,
                 "end_char": 5419
               },
               "version": "eedacf1fdd2cbd9da7df"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-90e9820061fb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dbef19677505"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "18F-FDG PET/CT评估复发/难治性经典型霍奇金淋巴瘤免疫治疗早期反应的应用进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "汤明;邹思娟;朱小华",
+      "id": "out-4c76bb5a2caf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 18F-FDG PET/CT评估复发/难治性经典型霍奇金淋巴瘤免疫治疗早期反应的应用进展 — 汤明;邹思娟;朱小华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5769,
+            "end_char": 5832
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dbef19677505"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-74be0ec21616"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于18F-FDG PET影像组学预测非小细胞肺癌病理亚型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周见远;朱小华",
+      "id": "out-bdeaaa8eaed8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于18F-FDG PET影像组学预测非小细胞肺癌病理亚型 — 周见远;朱小华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5837,
+            "end_char": 5882
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-74be0ec21616"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-bb79746b6b72"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于18F-FDG PET影像组学区分结节/肿块性肺结核与非小细胞肺癌",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周见远;邹思娟;汤明;朱小华",
+      "id": "out-d5e6312e63b0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于18F-FDG PET影像组学区分结节/肿块性肺结核与非小细胞肺癌 — 周见远;邹思娟;汤明;朱小华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5887,
+            "end_char": 5945
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "68Ga-PSMA与18F-FDG PET/CT探测肾透明细胞癌的比较研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邹思娟;管维;宋双;周见远;陈利星;王自强;朱冬灵;程思源;朱小华",
+      "id": "out-616b406d702d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 68Ga-PSMA与18F-FDG PET/CT探测肾透明细胞癌的比较研究 — 邹思娟;管维;宋双;周见远;陈利星;王自强;朱冬灵;程思源;朱小华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5950,
+            "end_char": 6029
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PET imaging of a modified anti-PD-L1 probe 68Ga-BMS-986192 in immunocompetent mice and non-human primates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huimin Zhou;Xiaohua Zhu",
+      "id": "out-7bfe66ebb9da",
+      "evidence": [
+        {
+          "quote": "[奖励] PET imaging of a modified anti-PD-L1 probe 68Ga-BMS-986192 in immunocompetent mice and non-human primates — Huimin Zhou;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6034,
+            "end_char": 6169
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The development of a Glypican-3-specific binding peptide using in vivo and in vitro two-step phage display screening for the PET imaging of hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yushuang Qin;Siyuan Cheng;Yesen Li;Sijuan Zou;Minglong Chen;Dongling Zhu;Shi Gao;Hua Wu;Lei Zhu;Xiaohua Zhu",
+      "id": "out-3c6d1c593f47",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The development of a Glypican-3-specific binding peptide using in vivo and in vitro two-step phage display screening for the PET imaging of hepatocellular carcinoma — Yushuang Qin;Siyuan Cheng;Yesen Li;Sijuan Zou;Minglong Chen;Dongling Zhu;Shi Gao;Hua Wu;Lei Zhu;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6174,
+            "end_char": 6454
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Approach using FDG-PET/CT-based Radiomics to Assess Tumor Immune Phenotypes in Patients with Non-Small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianyuan Zhou;Sijuan Zou;Dong Kuang;Jianhua Yan;Jun Zhao;Xiaohua Zhu",
+      "id": "out-afd6a2339562",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Approach using FDG-PET/CT-based Radiomics to Assess Tumor Immune Phenotypes in Patients with Non-Small Cell Lung Cancer — Jianyuan Zhou;Sijuan Zou;Dong Kuang;Jianhua Yan;Jun Zhao;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6459,
+            "end_char": 6663
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Approach Using FDG PET/CT Based Radiomics to Assess tumor Immune Phenotypesin Patients with Non-Small Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianyuan Zhou;Xiaohua Zhu",
+      "id": "out-0f702600919e",
+      "evidence": [
+        {
+          "quote": "[奖励] A Novel Approach Using FDG PET/CT Based Radiomics to Assess tumor Immune Phenotypesin Patients with Non-Small Cell Lung Cancer — Jianyuan Zhou;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6668,
+            "end_char": 6826
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重症新型冠状病毒肺炎康复期患者肺灌注显像一例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邹思娟;陈成;王自强;苏是苍;朱小华",
+      "id": "out-4bd6d041683d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 重症新型冠状病毒肺炎康复期患者肺灌注显像一例 — 邹思娟;陈成;王自强;苏是苍;朱小华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6831,
+            "end_char": 6880
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PET imaging of an optimized anti-PD-L1 probe 68 Ga-NODAGA-BMS986192 in immunocompetent mice and non-human primates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huimin Zhou;Guangfa Bao;Ziqiang Wang;Buchuan Zhang;Dan Li;Lixing Chen;Xiaoyun Deng;Bo Yu;Jun Zhao;Xiaohua Zhu",
+      "id": "out-6b4b3ed84dd8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PET imaging of an optimized anti-PD-L1 probe 68 Ga-NODAGA-BMS986192 in immunocompetent mice and non-human primates — Huimin Zhou;Guangfa Bao;Ziqiang Wang;Buchuan Zhang;Dan Li;Lixing Chen;Xiaoyun Deng;Bo Yu;Jun Zhao;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6886,
+            "end_char": 7118
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pitfalls of the Semi-Quantitative Analyzing 99mTc-Pyrophosphate Planar Images for Diagnosing Transthyretin Cardiac Amyloidosis: A Possible Solution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuankai Zhu;Ruping Pan;Dan Peng;Qingjian Dong;Xiaohua Zhu",
+      "id": "out-af1af970ce7e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pitfalls of the Semi-Quantitative Analyzing 99mTc-Pyrophosphate Planar Images for Diagnosing Transthyretin Cardiac Amyloidosis: A Possible Solution — Yuankai Zhu;Ruping Pan;Dan Peng;Qingjian Dong;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7124,
+            "end_char": 7337
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Time point-independent tumor positivity of 68Ga-PSMA-PET/CT pre- and post-biopsy in high-risk prostate cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zou S;Song S;Zhou J;Yu B;Kuang D;Wang Z;Zhu X",
+      "id": "out-22b6feaeec33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Time point-independent tumor positivity of 68Ga-PSMA-PET/CT pre- and post-biopsy in high-risk prostate cancer — Zou S;Song S;Zhou J;Yu B;Kuang D;Wang Z;Zhu X",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7343,
+            "end_char": 7506
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nanobody: a promising toolkit for molecular imaging and disease therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guangfa Bao;Ming Tang;Jun Zhao;Xiaohua Zhu",
+      "id": "out-d478e8def457",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nanobody: a promising toolkit for molecular imaging and disease therapy — Guangfa Bao;Ming Tang;Jun Zhao;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7512,
+            "end_char": 7634
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Obtaining PET/CT images from non-attenuation corrected PET images in a single PET system using Wasserstein generative adversarial networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Zhanli;Li Yongchang;Zou Sijuan;Xue Hengzhi;Sang Ziru;Liu Xin;Yang Yongfeng;Zhu Xiaohua;Liang Dong;Zheng Hairong",
+      "id": "out-e4059c8a4224",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Obtaining PET/CT images from non-attenuation corrected PET images in a single PET system using Wasserstein generative adversarial networks — Hu Zhanli;Li Yongchang;Zou Sijuan;Xue Hengzhi;Sang Ziru;Liu Xin;Yang Yongfeng;Zhu Xiaohua;Liang Dong;Zheng Hairong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7640,
+            "end_char": 7901
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Age‐matched control or age‐specific template, which is essential for voxel‐wise analysis of cerebral metabolism abnormality in pediatric patients with epilepsy?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuankai Zhu;Ge Ruan;Sijuan Zou;Luoxia Liu;Xiaohua Zhu",
+      "id": "out-172f646c7ba0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Age‐matched control or age‐specific template, which is essential for voxel‐wise analysis of cerebral metabolism abnormality in pediatric patients with epilepsy? — Yuankai Zhu;Ge Ruan;Sijuan Zou;Luoxia Liu;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7907,
+            "end_char": 8129
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lateralization of the crossed cerebellar diaschisis-associated metabolic connectivities in cortico-ponto-cerebellar and cortico-rubral pathways",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuankai Zhu;Ge Ruan;Zhaoting Cheng;Sijuan Zou;Xiaohua Zhu",
+      "id": "out-e062430c7624",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Lateralization of the crossed cerebellar diaschisis-associated metabolic connectivities in cortico-ponto-cerebellar and cortico-rubral pathways — Yuankai Zhu;Ge Ruan;Zhaoting Cheng;Sijuan Zou;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8135,
+            "end_char": 8344
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Voxel-based analysis of the metabolic asymmetrical and network patterns in hypermetabolism-associated crossed cerebellar diaschisis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuankai Zhu;Ge Ruan;Sijuan Zou;Zhaoting Cheng;Xiaohua Zhu",
+      "id": "out-406b3abf99d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Voxel-based analysis of the metabolic asymmetrical and network patterns in hypermetabolism-associated crossed cerebellar diaschisis — Yuankai Zhu;Ge Ruan;Sijuan Zou;Zhaoting Cheng;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8350,
+            "end_char": 8547
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FDG PET/CT of COVID-19",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sijuan Zou;Xiaohua Zhu",
+      "id": "out-be3bd771233b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FDG PET/CT of COVID-19 — Sijuan Zou;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8553,
+            "end_char": 8606
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prostate-specific membrane antigen expression in hepatocellular carcinoma, cholangiocarcinoma, and liver cirrhosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Li-Xing;Zou Si-Juan;Li Dan;Zhou Jian-Yuan;Cheng Zhao-Ting;Zhao Jun;Zhu Yuan-Li;Kuang Dong;Zhu Xiao-Hua",
+      "id": "out-fc160b33ec1a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prostate-specific membrane antigen expression in hepatocellular carcinoma, cholangiocarcinoma, and liver cirrhosis — Chen Li-Xing;Zou Si-Juan;Li Dan;Zhou Jian-Yuan;Cheng Zhao-Ting;Zhao Jun;Zhu Yuan-Li;Kuang Dong;Zhu Xiao-Hua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8612,
+            "end_char": 8842
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Positive FAPI PET/CT in a Bilateral Mammary Angiosarcoma Patient With Less Impressive FDG PET/CT Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Siwen Qiu;Sijuan Zou;Siyuan Cheng;Shuang Song;Xiaohua Zhu",
+      "id": "out-cd7c932a47e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Positive FAPI PET/CT in a Bilateral Mammary Angiosarcoma Patient With Less Impressive FDG PET/CT Images — Siwen Qiu;Sijuan Zou;Siyuan Cheng;Shuang Song;Xiaohua Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8848,
+            "end_char": 9017
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Primary Inferior Vena Cava Leiomyosarcoma With Hepatic Metastases on FDG PET/CT",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zou Sijuan;Zhou Jianyuan;Tang Ming;Wang Ziqing;Zhu Xiaohua",
+      "id": "out-a1eeb60a622d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Primary Inferior Vena Cava Leiomyosarcoma With Hepatic Metastases on FDG PET/CT — Zou Sijuan;Zhou Jianyuan;Tang Ming;Wang Ziqing;Zhu Xiaohua",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9023,
+            "end_char": 9169
+          },
+          "version": "eedacf1fdd2cbd9da7df"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 21,
+    "listed": 21,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 19,
+        "extracted": 19
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "89559a12a0dabc60d045",
   "version": "778bb942ad2d1bd0acb8",
   "source_hash": "fa2ded769830fe032a718b9ae90b7cb4f90d43b86025573a572ad0114e32d11a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.162157+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:49:05.308215+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,14 +26,14 @@
         {
           "id": "item-9ad17e2b11f7",
           "name": "跟腱损伤超声诊断与预后预测",
-          "desc": "面向跟腱损伤的超声诊断与预后预测，利用跨领域跨组织器官迁移学习提升小样本条件下的分析性能。",
+          "desc": "超声成像对ATI诊断预后有重要意义",
           "evidence": [
             {
-              "quote": "超声成像对于跟腱损伤(ATI)诊断与预后预测具有重要临床意义",
+              "quote": "超声成像对于跟腱损伤(Achilles tendon injury, ATI)诊断与预后预测具有重要临床意义",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 686
+                "start_char": 2748,
+                "end_char": 2801
               },
               "version": "778bb942ad2d1bd0acb8"
             }
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b3ad6a76501a",
-          "name": "小样本ATI超声数据存在过拟合",
-          "desc": "深度学习在ATI评价上颇具潜力，但其性能强烈依赖大样本训练集，在小样本ATI超声数据上存在过拟合问题。",
+          "id": "item-94f10d03baa4",
+          "name": "深度学习依赖大样本，小样本ATI超声数据过拟合",
+          "desc": "性能受限",
           "evidence": [
             {
-              "quote": "然而其性能强烈依赖于大样本训练集，在小样本ATI超声数据上存在过拟合问题",
+              "quote": "深度学习在ATI评价上颇具潜力，然而其性能强烈依赖于大样本训练集，在小样本ATI超声数据上存在过拟合问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 704,
+                "start_char": 688,
                 "end_char": 739
               },
               "version": "778bb942ad2d1bd0acb8"
@@ -65,18 +70,19 @@
         {
           "id": "item-3b8787ff65dc",
           "name": "跨领域跨组织器官深度迁移学习DTL",
-          "desc": "利用丰富的自然图像与多源非跟腱组织器官（如肝、乳腺等）超声图像，将其多层次语义信息迁移到跟腱图像，形成跨领域跨组织器官的深度迁移学习新方法。",
+          "desc": "迁移自然图像与非跟腱超声多层次语义",
           "evidence": [
             {
-              "quote": "将其蕴含的多层次语义信息迁移到跟腱图像，由此形成跨领域跨组织器官的深度迁移学习(DTL)新方法",
+              "quote": "本项目利用了丰富的自然图像与多源的非跟腱组织器官(如乳腺、肾脏等)超声图像，将其蕴含的多层次语义信息迁移到跟腱图像，由此形成了跨领域跨组织器官的深度迁移学习(deep transfer learning, DTL)新方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 778,
-                "end_char": 824
+                "start_char": 2856,
+                "end_char": 2965
               },
               "version": "778bb942ad2d1bd0acb8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +91,446 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7121a91e3ff9",
-          "name": "跟腱分割Dice提高至87.49%、腱病诊断准确率85.3%",
-          "desc": "基于跨领域跨组织器官DTL的方法将跟腱分割Dice系数提高至87.49%、平均对称表面距离降至5.64像素（p<0.001），并将跟腱腱病诊断准确率提高至85.3%。",
+          "id": "item-54bf36b2eed3",
+          "name": "跟腱分割性能",
+          "desc": "Dice 87.49%，平均对称表面距离5.64像素",
           "evidence": [
             {
-              "quote": "基于跨领域跨组织器官DTL的特征表示与图像分割方法将跟腱分割的Dice系数提高至87.49%",
+              "quote": "将跟腱分割的Dice系数提高至87.49%，平均对称表面距离降至5.64像素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3149,
-                "end_char": 3194
+                "start_char": 3174,
+                "end_char": 3211
               },
               "version": "778bb942ad2d1bd0acb8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-b7acdc1a6ac9",
+          "name": "跟腱腱病诊断准确率",
+          "desc": "85.3%",
+          "evidence": [
+            {
+              "quote": "项目提出的DTL方法将跟腱腱病诊断准确率提高至85.3%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3241,
+                "end_char": 3268
+              },
+              "version": "778bb942ad2d1bd0acb8"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9ad17e2b11f7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b3ad6a76501a"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "跨模态医学图像分割系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张麒;焦伟伟",
+      "id": "out-dce64b0d19a7",
+      "evidence": [
+        {
+          "quote": "[专利] 跨模态医学图像分割系统及方法 — 张麒;焦伟伟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3496,
+            "end_char": 3523
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b3ad6a76501a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3b8787ff65dc"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于形变器的多视图融合分类系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张麒;徐舟;严逸飞",
+      "id": "out-1d99000fc5f3",
+      "evidence": [
+        {
+          "quote": "[专利] 基于形变器的多视图融合分类系统及方法 — 张麒;徐舟;严逸飞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3528,
+            "end_char": 3562
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3b8787ff65dc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7121a91e3ff9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SAM-IE: SAM-based image enhancement for facilitating medical image diagnosis with segmentation foundation model",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changyan Wang;Haobo Chen;Xin Zhou;Meng Wang;Qi Zhang",
+      "id": "out-c9d8e28a99b6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SAM-IE: SAM-based image enhancement for facilitating medical image diagnosis with segmentation foundation model — Changyan Wang;Haobo Chen;Xin Zhou;Meng Wang;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3739
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "3-D Gabor-based anisotropic diffusion for speckle noise suppression in dynamic ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haobo Chen;Haohao Xu;Peng Shi;Yuchen Gong;Zhen Qiu;Lei Shi;Qi Zhang",
+      "id": "out-83d8b2e76407",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 3-D Gabor-based anisotropic diffusion for speckle noise suppression in dynamic ultrasound images — Haobo Chen;Haohao Xu;Peng Shi;Yuchen Gong;Zhen Qiu;Lei Shi;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 3916
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Speckle noise reduction for medical ultrasound images based on cycle-consistent generative adversarial network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jieyi Liu;Changchun Li;Liping Liu;Haobo Chen;Hong Han;Bo Zhang;Qi Zhang",
+      "id": "out-47bc9035774d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Speckle noise reduction for medical ultrasound images based on cycle-consistent generative adversarial network — Jieyi Liu;Changchun Li;Liping Liu;Haobo Chen;Hong Han;Bo Zhang;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3921,
+            "end_char": 4111
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Learning on Ultrasound Imaging for Breast Cancer Diagnosis and Treatment: Current Applications and Future Perspectives",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changyan Wang;Haobo Chen;Jieyi Liu Changchun Li;Weiwei Jiao;Qihui Guo;Qi Zhang",
+      "id": "out-985a036ea24c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Learning on Ultrasound Imaging for Breast Cancer Diagnosis and Treatment: Current Applications and Future Perspectives — Changyan Wang;Haobo Chen;Jieyi Liu Changchun Li;Weiwei Jiao;Qihui Guo;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4116,
+            "end_char": 4326
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intelligent diagnosis of left ventricular hypertrophy using transthoracic echocardiography videos",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Xu;Fei Yu;Bo Zhang;Qi Zhang",
+      "id": "out-74ea12ae5a0c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intelligent diagnosis of left ventricular hypertrophy using transthoracic echocardiography videos — Zhou Xu;Fei Yu;Bo Zhang;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4331,
+            "end_char": 4469
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-Tissue/Organ Transfer Learning for the Segmentation of Ultrasound Images Using Deep Residual U-Net",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haibo Huang;Haobo Chen;Haohao Xu;Ying Chen;Qihui Yu;Yehua Cai;Qi Zhang",
+      "id": "out-b572170647a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-Tissue/Organ Transfer Learning for the Segmentation of Ultrasound Images Using Deep Residual U-Net — Haibo Huang;Haobo Chen;Haohao Xu;Ying Chen;Qihui Yu;Yehua Cai;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4474,
+            "end_char": 4657
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CCT-Unet: A U-Shaped Network Based on Convolution Coupled Transformer for Segmentation of Peripheral and Transition Zones in Prostate MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Yifei;Liu Rongzong;Chen Haobo;Zhang Limin;Zhang Qi",
+      "id": "out-166e8419c263",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CCT-Unet: A U-Shaped Network Based on Convolution Coupled Transformer for Segmentation of Peripheral and Transition Zones in Prostate MRI — Yan Yifei;Liu Rongzong;Chen Haobo;Zhang Limin;Zhang Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4662,
+            "end_char": 4862
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-modality segmentation of ultrasound image with generative adversarial network and dual normalization network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiao Weiwei;Han Hong;Cai Yehua;He Haihao;Chen Haobo;Ding Hong;Wang Wenping;Zhang Qi",
+      "id": "out-5b70ad4f83ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-modality segmentation of ultrasound image with generative adversarial network and dual normalization network — Jiao Weiwei;Han Hong;Cai Yehua;He Haihao;Chen Haobo;Ding Hong;Wang Wenping;Zhang Qi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4868,
+            "end_char": 5074
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning radiomics on shear wave elastography and b-mode ultrasound videos of diaphragm for weaning outcome prediction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Changchun Li;Yan Liu;Rui Dong;Tianjie Zhang;Ye Song;Qi Zhang",
+      "id": "out-12d414074352",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning radiomics on shear wave elastography and b-mode ultrasound videos of diaphragm for weaning outcome prediction — Changchun Li;Yan Liu;Rui Dong;Tianjie Zhang;Ye Song;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5080,
+            "end_char": 5272
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segmentation of Lymph Nodes in Ultrasound Images Using U-Net Convolutional Neural Networks and Gabor-Based Anisotropic Diffusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haobo Chen;Yuqun Wang;Jie Shi;Jingyu Xiong;Jianwei Jiang;Wanying Chang;Man Chen;Qi Zhang",
+      "id": "out-d60a7be90860",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Segmentation of Lymph Nodes in Ultrasound Images Using U-Net Convolutional Neural Networks and Gabor-Based Anisotropic Diffusion — Haobo Chen;Yuqun Wang;Jie Shi;Jingyu Xiong;Jianwei Jiang;Wanying Chang;Man Chen;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5278,
+            "end_char": 5503
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics of Multi-modality Ultrasound in Rabbit VX2 Liver Tumors: Differentiating Residual Tumors from Hyperemic Rim After Ablation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yucai Dong;Qi Zhang;Haobo Chen;Yunjie Jin;Zhengbiao Ji;Hong Han;Wenping Wang",
+      "id": "out-826e7217ee24",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics of Multi-modality Ultrasound in Rabbit VX2 Liver Tumors: Differentiating Residual Tumors from Hyperemic Rim After Ablation — Yucai Dong;Qi Zhang;Haobo Chen;Yunjie Jin;Zhengbiao Ji;Hong Han;Wenping Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5509,
+            "end_char": 5726
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificially intelligent differential diagnosis of enlarged lymph nodes with random vector functional link network plus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiwei Jiao;Shuang Song;Hong Han;Wenping Wang;Qi Zhang",
+      "id": "out-04bddcc10f6c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificially intelligent differential diagnosis of enlarged lymph nodes with random vector functional link network plus — Weiwei Jiao;Shuang Song;Hong Han;Wenping Wang;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5732,
+            "end_char": 5914
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting visual acuity with machine learning in treated ocular trauma patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhi-Lu Zhou;Yi-Fei Yan;Jie-Min Chen;Rui-Jue Liu;Xiao-Ying Yu;Meng Wang;Hong-Xia Hao;Dong-Mei Liu;Qi Zhang;Jie Wang;Wen-Tao Xia",
+      "id": "out-d0bf771ad3dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting visual acuity with machine learning in treated ocular trauma patients — Zhi-Lu Zhou;Yi-Fei Yan;Jie-Min Chen;Rui-Jue Liu;Xiao-Ying Yu;Meng Wang;Hong-Xia Hao;Dong-Mei Liu;Qi Zhang;Jie Wang;Wen-Tao Xia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5920,
+            "end_char": 6135
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Organ Foundation Model for Universal Ultrasound Image Segmentation With Task Prompt and Anatomical Prior",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haobo Chen;Yehua Cai;Changyan Wang;Lin Chen;Bo Zhang;Hong Han;Yuqing Guo;Hong Ding;Qi Zhang",
+      "id": "out-196f227349df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Organ Foundation Model for Universal Ultrasound Image Segmentation With Task Prompt and Anatomical Prior — Haobo Chen;Yehua Cai;Changyan Wang;Lin Chen;Bo Zhang;Hong Han;Yuqing Guo;Hong Ding;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6141,
+            "end_char": 6351
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Four-quadrant fast compressive tracking of breast ultrasound videos for computer-aided response evaluation of neoadjuvant chemotherapy in mice",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yifei Yan;Lei Tang;Haibo Huang;Qihui Yu;Haohao Xu;Ying Chen;Man Chen;Qi Zhang",
+      "id": "out-4b7af640e081",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Four-quadrant fast compressive tracking of breast ultrasound videos for computer-aided response evaluation of neoadjuvant chemotherapy in mice — Yifei Yan;Lei Tang;Haibo Huang;Qihui Yu;Haohao Xu;Ying Chen;Man Chen;Qi Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6357,
+            "end_char": 6585
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Semi-Supervised Approach with Error Reflection for Echocardiography Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxiang Han;Yiman Liu;Jiang Shang;Qingli Li;Jiangang Chen;Menghan Hu;Qi Zhang;Yuqi Zhang;Yan Wang",
+      "id": "out-085447c49aa8",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Semi-Supervised Approach with Error Reflection for Echocardiography Segmentation — Xiaoxiang Han;Yiman Liu;Jiang Shang;Qingli Li;Jiangang Chen;Menghan Hu;Qi Zhang;Yuqi Zhang;Yan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6591,
+            "end_char": 6781
+          },
+          "version": "778bb942ad2d1bd0acb8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

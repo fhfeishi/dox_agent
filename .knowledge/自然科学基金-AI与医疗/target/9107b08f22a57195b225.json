@@ -2,15 +2,20 @@
   "doc_id": "9107b08f22a57195b225",
   "version": "97ac81bdb4b2d7f5522d",
   "source_hash": "776dbeeaf58c8f9cf8631f272bf72b01094522f6f6666ee59f9e51382c427cd0",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.742835+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:49:05.459012+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-646f125e65f7",
-          "name": "心脏疾病心音大数据辅助诊断",
-          "desc": "以心音听诊为切入点，构建基于心音大数据深度学习的心脏疾病计算机辅助诊断理论与方法。",
+          "id": "item-9ba5965dcbcb",
+          "name": "心脏疾病心音辅助诊断",
+          "desc": "心音听诊非侵入、方便且廉价",
           "evidence": [
             {
               "quote": "心音听诊作为一种非侵入、方便且廉价的手段，可有效地用于心脏疾病的辅助诊断",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a32c19af28d6",
-          "name": "医疗资源分布不均且心音听诊准确度待提高",
-          "desc": "我国医疗资源分布不均，心音听诊准确度亟待提高，需挖掘心脏疾病与心音信号之间的本征联系。",
+          "id": "item-2f25a610ce6e",
+          "name": "医疗资源分布不均与心音听诊准确度亟待提高",
+          "desc": "我国现状",
           "evidence": [
             {
               "quote": "针对我国医疗资源分布不均的现状和心音听诊准确度亟待提高的问题",
@@ -63,9 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-193cd3214b1c",
-          "name": "心音大数据深度学习与决策模型",
-          "desc": "构建大规模成人-婴幼儿心音数据库及多模态数据库，研发基于回环残差U型CNN与隐半马尔可夫模型的心音分割，以及基于CNN与RNN串并联、因果卷积与残差注意力的深度学习决策模型。",
+          "id": "item-686e21e18cbe",
+          "name": "回环残差U型CNN与隐半马尔可夫模型心音分割",
+          "desc": "拟开展",
+          "evidence": [
+            {
+              "quote": "基于回环残差U型CNN和隐半马尔可夫模型的心音分割",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 861,
+                "end_char": 885
+              },
+              "version": "97ac81bdb4b2d7f5522d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-9f810930cc6c",
+          "name": "CNN与RNN串并联、因果卷积与残差注意力心音深度学习决策模型",
+          "desc": "拟开展",
           "evidence": [
             {
               "quote": "基于CNN与RNN串并联、因果卷积神经网络和残差注意力机制的心音大数据深度学习与决策模型及其可解释性机理",
@@ -76,7 +98,8 @@
               },
               "version": "97ac81bdb4b2d7f5522d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ea4b466213e0",
-          "name": "拟建立公开心音数据库与心脏疾病辅助诊断系统",
-          "desc": "结题摘要与立项摘要内容一致，未给出量化结果，仅说明有望建立完善公开的心音数据库并构建心脏疾病辅助诊断系统。",
+          "id": "item-56459d966630",
+          "name": "心音数据库与辅助诊断系统",
+          "desc": "结题摘要仅复述研究内容",
           "evidence": [
             {
               "quote": "通过本项目的研究有望建立完善公开的心音数据库，构建基于心音大数据深度学习的心脏疾病辅助诊断系统",
@@ -99,44 +122,686 @@
               "version": "97ac81bdb4b2d7f5522d"
             }
           ],
-          "status": "原文未明确"
+          "status": "原文未明确",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-646f125e65f7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a32c19af28d6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Privacy-preserving Color Image Feature Extraction by Quaternion Discrete Orthogonal Moments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuli Bi;Chao Shuai;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+      "id": "out-9dbdd7a7545e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Privacy-preserving Color Image Feature Extraction by Quaternion Discrete Orthogonal Moments — Xiuli Bi;Chao Shuai;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3153,
+            "end_char": 3310
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-a32c19af28d6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-193cd3214b1c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spectral Unmixing Successive Variational Mode Decomposition for Robust Vital Signs Detection Using UWB Radar",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lihong Qiao;Zehua Wang;Bin Xiao;Yucheng Shu;Xiao Luan;Yuhang Shi;Weisheng Li;Xinbo Gao",
+      "id": "out-ffdf50d4d4f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spectral Unmixing Successive Variational Mode Decomposition for Robust Vital Signs Detection Using UWB Radar — Lihong Qiao;Zehua Wang;Bin Xiao;Yucheng Shu;Xiao Luan;Yuhang Shi;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3315,
+            "end_char": 3518
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-193cd3214b1c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ea4b466213e0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image splicing forgery detection combining coarse to refined convolutional neural network and adaptive clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Bin;Wei Yang;Bi Xiuli;Li Weisheng;Ma Jianfeng",
+      "id": "out-0858e9db4ba6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image splicing forgery detection combining coarse to refined convolutional neural network and adaptive clustering — Xiao Bin;Wei Yang;Bi Xiuli;Li Weisheng;Ma Jianfeng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3523,
+            "end_char": 3695
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent advancement in haze removal approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hira Khan;Bin Xiao;Weisheng Li;Nazeer Muhammad",
+      "id": "out-dde5d36bb498",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent advancement in haze removal approaches — Hira Khan;Bin Xiao;Weisheng Li;Nazeer Muhammad",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3700,
+            "end_char": 3800
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Image Local Forgery Detection by JPEG Compression Trace",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuli Bi;Wuqing Yan;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+      "id": "out-0ec206a6ef0d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Self-Supervised Image Local Forgery Detection by JPEG Compression Trace — Xiuli Bi;Wuqing Yan;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3805,
+            "end_char": 3942
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双解码U型卷积神经网络的胰腺分割",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毕秀丽;陆猛;肖斌;李伟生",
+      "id": "out-892b7bf4a8ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于双解码U型卷积神经网络的胰腺分割 — 毕秀丽;陆猛;肖斌;李伟生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3947,
+            "end_char": 3987
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Le-LWTNet: A Learnable Lifting Wavelet Convolutional Neural Network for Heart Sound Abnormality Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junchao Fan;Shizhan Tang;Han Duan;Xiuli Bi;Bin Xiao;Weisheng Li;Xinbo Gao",
+      "id": "out-fffb9527a15c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Le-LWTNet: A Learnable Lifting Wavelet Convolutional Neural Network for Heart Sound Abnormality Detection — Junchao Fan;Shizhan Tang;Han Duan;Xiuli Bi;Bin Xiao;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3992,
+            "end_char": 4179
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical image segmentation based on active fusion-transduction of multi-stream features?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shu Yucheng;Zhang Jing;Xiao Bin;Li Weisheng",
+      "id": "out-a80f7d2c816e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Medical image segmentation based on active fusion-transduction of multi-stream features? — Shu Yucheng;Zhang Jing;Xiao Bin;Li Weisheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4184,
+            "end_char": 4324
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于直方图的图像对比度增强检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毕秀丽;尚奕璇;肖斌;刘波",
+      "id": "out-c0fae70dd3e1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于直方图的图像对比度增强检测方法 — 毕秀丽;尚奕璇;肖斌;刘波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4329,
+            "end_char": 4368
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于一维卷积神经网络与循环神经网络串联的心音分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖斌;陈嘉博;毕秀丽;张俊辉;李伟生;王国胤;马旭",
+      "id": "out-fd72b879e8c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于一维卷积神经网络与循环神经网络串联的心音分析方法 — 肖斌;陈嘉博;毕秀丽;张俊辉;李伟生;王国胤;马旭",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4374,
+            "end_char": 4434
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MCF: Mutual Correction Framework for Semi-Supervised Medical Image Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongchao Wang;Bin Xiao;Xiuli Bi;Weisheng Li;Xinbo Gao",
+      "id": "out-1c8253d68d21",
+      "evidence": [
+        {
+          "quote": "[会议论文] MCF: Mutual Correction Framework for Semi-Supervised Medical Image Segmentation — Yongchao Wang;Bin Xiao;Xiuli Bi;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4440,
+            "end_char": 4581
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Secondary Labeling: A Novel Labeling Strategy for Image Manipulation Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Wei;Bin Xiao;Xiuli Bi;Zhuoran Ma;Yang Liu;Zhuo Ma",
+      "id": "out-e6e9d48c9207",
+      "evidence": [
+        {
+          "quote": "[会议论文] Secondary Labeling: A Novel Labeling Strategy for Image Manipulation Detection — Yang Wei;Bin Xiao;Xiuli Bi;Zhuoran Ma;Yang Liu;Zhuo Ma",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4587,
+            "end_char": 4728
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Dual Self-Calibrating Framework for Noninvasive Fetal ECG R-Peak Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lihong Qiao;Shuai Hu;Bin Xiao;Xiuli Bi;Weisheng Li;Xinbo Gao",
+      "id": "out-80d75a7f9758",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Dual Self-Calibrating Framework for Noninvasive Fetal ECG R-Peak Detection — Lihong Qiao;Shuai Hu;Bin Xiao;Xiuli Bi;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4734,
+            "end_char": 4879
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Partial-to-Partial Point Cloud Registration Based on Multi-Level Semantic-Structural Cognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yucheng Shu;Zongzhuang Hou;Bin Xiao;Xiuli Bi;Xiao Luan;Weisheng Li",
+      "id": "out-7671b82c1504",
+      "evidence": [
+        {
+          "quote": "[会议论文] Partial-to-Partial Point Cloud Registration Based on Multi-Level Semantic-Structural Cognition — Yucheng Shu;Zongzhuang Hou;Bin Xiao;Xiuli Bi;Xiao Luan;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4885,
+            "end_char": 5054
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于统计特征的图像直方图均衡化检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毕秀丽;邱雨檬;肖斌;李伟生;马建峰",
+      "id": "out-e37fc12fe8be",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于统计特征的图像直方图均衡化检测方法 — 毕秀丽;邱雨檬;肖斌;李伟生;马建峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5060,
+            "end_char": 5106
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reality Transform Adversarial Generators for Image Splicing Forgery Detection and Localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuli Bi;Zhipeng Zhang;Bin Xiao",
+      "id": "out-6b426eafd719",
+      "evidence": [
+        {
+          "quote": "[会议论文] Reality Transform Adversarial Generators for Image Splicing Forgery Detection and Localization — Xiuli Bi;Zhipeng Zhang;Bin Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5112,
+            "end_char": 5246
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-Mix Monitoring for Medical Image Segmentation with Limited Supervision",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yucheng Shu;Hengbo Li;Bin Xiao;Xiuli Bi;Weisheng Li",
+      "id": "out-97f01caf8da3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-Mix Monitoring for Medical Image Segmentation with Limited Supervision — Yucheng Shu;Hengbo Li;Bin Xiao;Xiuli Bi;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5252,
+            "end_char": 5388
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于分组SIFT的图像复制粘贴篡改快速检测算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖斌;景如霞;毕秀丽;马建峰",
+      "id": "out-17af5f2db98a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于分组SIFT的图像复制粘贴篡改快速检测算法 — 肖斌;景如霞;毕秀丽;马建峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5394,
+            "end_char": 5440
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PAM-DenseNet: A Deep Convolutional Neural Network for Computer-Aided COVID-19 Diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Xiao;Zeyu Yang;Xiaoming Qiu;Jingjing Xiao;Guoyin Wang;Wenbing Zeng;Weisheng Li;Yongjian Nian;Wei Chen",
+      "id": "out-cf6a093c6730",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PAM-DenseNet: A Deep Convolutional Neural Network for Computer-Aided COVID-19 Diagnosis — Bin Xiao;Zeyu Yang;Xiaoming Qiu;Jingjing Xiao;Guoyin Wang;Wenbing Zeng;Weisheng Li;Yongjian Nian;Wei Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5446,
+            "end_char": 5647
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Detecting generated images by real images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bo Liu;Fan Yang;Xiuli Bi;Bin Xiao;Weisheng Li;Xinbo Gao",
+      "id": "out-8f749f46b49f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Detecting generated images by real images — Bo Liu;Fan Yang;Xiuli Bi;Bin Xiao;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5653,
+            "end_char": 5758
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于Zernike矩的局部特征检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贺超雷;毕秀丽;肖斌",
+      "id": "out-923802c0ff4d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 一种基于Zernike矩的局部特征检测方法 — 贺超雷;毕秀丽;肖斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5764,
+            "end_char": 5804
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DLBD: A Self-Supervised Direct-Learned Binary Descriptor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Xiao;Yang Hu;Bo Liu;Xiuli Bi;Weisheng Li;Xinbo Gao",
+      "id": "out-fd447533cbe4",
+      "evidence": [
+        {
+          "quote": "[会议论文] DLBD: A Self-Supervised Direct-Learned Binary Descriptor — Bin Xiao;Yang Hu;Bo Liu;Xiuli Bi;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5810,
+            "end_char": 5929
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于尺度共生局部二值模式的图像识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖斌;石郸钰;毕秀丽",
+      "id": "out-4120405a2305",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于尺度共生局部二值模式的图像识别方法 — 肖斌;石郸钰;毕秀丽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5935,
+            "end_char": 5973
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Versatile Detection Method for Various Contrast Enhancement Manipulations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiuli Bi;Yixuan Shang;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+      "id": "out-b1eb519be188",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Versatile Detection Method for Various Contrast Enhancement Manipulations — Xiuli Bi;Yixuan Shang;Bo Liu;Bin Xiao;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5979,
+            "end_char": 6122
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于 DCT 和聚焦评价的多聚焦图像融合方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖斌;聂茜茜;李伟生;王国胤",
+      "id": "out-400336f0323e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于 DCT 和聚焦评价的多聚焦图像融合方法 — 肖斌;聂茜茜;李伟生;王国胤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6128,
+            "end_char": 6171
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pyramidal Multiple Instance Detection Network With Mask Guided Self-Correction for Weakly Supervised Object Detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Yunqiu;Zhou Chunluan;Yu Xin;Xiao Bin;Yang Yi",
+      "id": "out-06021ab18c81",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pyramidal Multiple Instance Detection Network With Mask Guided Self-Correction for Weakly Supervised Object Detection — Xu Yunqiu;Zhou Chunluan;Yu Xin;Xiao Bin;Yang Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6177,
+            "end_char": 6350
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning-Refined Integral Null Space Pursuit Algorithm for Noncontact Multisubjects Vital Signs Measurements Using SFCW-UWB and IR-UWB Radar",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lihong Qiao;Xin Li;Bin Xiao;Mi He;Xiuli Bi;Weisheng Li;Xinbo Gao",
+      "id": "out-e62e672e513b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning-Refined Integral Null Space Pursuit Algorithm for Noncontact Multisubjects Vital Signs Measurements Using SFCW-UWB and IR-UWB Radar — Lihong Qiao;Xin Li;Bin Xiao;Mi He;Xiuli Bi;Weisheng Li;Xinbo Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6356,
+            "end_char": 6569
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多尺度边缘感知的三维心脏图像分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "毕秀丽;裴佳伟;肖斌;范骏超",
+      "id": "out-49397cee9b9d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多尺度边缘感知的三维心脏图像分割方法 — 毕秀丽;裴佳伟;肖斌;范骏超",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6575,
+            "end_char": 6618
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于Hess矩阵的图像增强方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "肖斌;宗旭阳;毕秀丽;李伟生",
+      "id": "out-c106f6d51b57",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于Hess矩阵的图像增强方法 — 肖斌;宗旭阳;毕秀丽;李伟生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6624,
+            "end_char": 6662
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Medical Image Registration Based on Uncoupled Learning and Accumulative Enhancement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yucheng Shu;Hao Wang;Bin Xiao;Xiuli Bi;Weisheng Li",
+      "id": "out-e1e007b5750e",
+      "evidence": [
+        {
+          "quote": "[会议论文] Medical Image Registration Based on Uncoupled Learning and Accumulative Enhancement — Yucheng Shu;Hao Wang;Bin Xiao;Xiuli Bi;Weisheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6668,
+            "end_char": 6810
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DTMNet: A Discrete Tchebichef Moments-based Deep Neural Network for Multi-focus Image Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bin Xiao;Haifeng Wu;Xiuli Bi",
+      "id": "out-0aecd0e86d2f",
+      "evidence": [
+        {
+          "quote": "[会议论文] DTMNet: A Discrete Tchebichef Moments-based Deep Neural Network for Multi-focus Image Fusion — Bin Xiao;Haifeng Wu;Xiuli Bi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6816,
+            "end_char": 6945
+          },
+          "version": "97ac81bdb4b2d7f5522d"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 31,
+    "listed": 31,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 17,
+        "extracted": 17
+      },
+      "会议论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

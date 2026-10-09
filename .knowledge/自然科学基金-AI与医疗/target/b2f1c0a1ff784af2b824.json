@@ -2,15 +2,20 @@
   "doc_id": "b2f1c0a1ff784af2b824",
   "version": "b957a4f59f7b4dfa5e4c",
   "source_hash": "fb2df71b2feecc3bbc37e57a44ef60685a420896652b7bf1f83ec79352014630",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:10.761603+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.861104+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-962c56912c9b",
-          "name": "三阴性乳腺癌新辅助化疗",
-          "desc": "建立预测乳腺癌新辅助化疗疗效后pCR对指导临床个体化治疗十分重要。",
+          "id": "item-7389a493de6f",
+          "name": "三阴性乳腺癌新辅助化疗疗效预测",
+          "desc": "pCR与预后改善密切相关",
           "evidence": [
             {
-              "quote": "建立预测乳腺癌新辅助化疗疗效后pCR对指导临床个体化治疗十分重要。",
+              "quote": "术前新辅助化疗（NAC）达到病理完全缓解(pathological complete response, pCR)的TNBC与预后的改善密切相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 700,
-                "end_char": 732
-              },
-              "version": "b957a4f59f7b4dfa5e4c"
-            }
-          ]
-        },
-        {
-          "id": "item-dd21c16c2720",
-          "name": "乳腺容积超声与液体活检",
-          "desc": "自动乳腺容积超声能够克服传统超声无法采集标准化全乳图像的弊端，循环lncRNA在恶性肿瘤早期诊断及预后评判方面具有良好作用。",
-          "evidence": [
-            {
-              "quote": "循环lncRNA在恶性肿瘤早期诊断及预后评判方面具有良好作用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 927,
-                "end_char": 956
+                "start_char": 2813,
+                "end_char": 2884
               },
               "version": "b957a4f59f7b4dfa5e4c"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3709b072cca4",
-          "name": "基于乳腺超声特征的模型准确性低",
-          "desc": "目前文献报道的预测方法存在诸多弊端，临床推广困难，基于乳腺超声影像特征的模型准确性较低。",
+          "id": "item-abcb857b33b8",
+          "name": "单独影像组学数据单一、癌突变信息缺失",
+          "desc": "现有预测模型效能不理想",
           "evidence": [
             {
-              "quote": "目前文献报道的预测方法存在诸多弊端，临床推广困难。超声常用于乳腺癌新辅助化疗的疗效评估中。但基于乳腺超声影像特征的模型准确性较低。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 733,
-                "end_char": 797
-              },
-              "version": "b957a4f59f7b4dfa5e4c"
-            }
-          ]
-        },
-        {
-          "id": "item-9dcfb189efa1",
-          "name": "影像组学数据单一突变信息缺失",
-          "desc": "单独的影像组学数据单一、癌突变信息缺失等，使得已有预测模型的效能仍不理想。",
-          "evidence": [
-            {
-              "quote": "但单独的影像组学数据单一、癌突变信息缺失等，使得目前已有预测模型的效能仍不理想。",
+              "quote": "但单独的影像组学数据单一、癌突变信息缺失等，使得目前已有预测模型的效能仍不理想",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2980,
-                "end_char": 3019
+                "end_char": 3018
               },
               "version": "b957a4f59f7b4dfa5e4c"
             }
@@ -95,41 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bb787a818a6d",
-          "name": "ABUS三维容积超声影像组学",
-          "desc": "联合循环lncRNA与三维容积超声影像组学建立三阴性乳腺癌新辅助化疗疗效预测模型。",
+          "id": "item-d9d1a4b24e02",
+          "name": "ABUS超声影像组学预测模型",
+          "desc": "基于超声图像特征、影像组学特征和临床特征",
           "evidence": [
             {
-              "quote": "本项目拟联合循环lncRNA与三维容积超声影像组学建立三阴性乳腺癌新辅助化疗疗效预测模型",
+              "quote": "构建通过ABUS超声图像特征、影像组学特征和临床特征预测模型，基于影像组学特征的模型其AUC可达0.86，P<0.05",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3073,
-                "end_char": 3116
+                "start_char": 3240,
+                "end_char": 3298
               },
               "version": "b957a4f59f7b4dfa5e4c"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bcf8f47399b7",
-          "name": "SIFT算法机器学习建模",
-          "desc": "基于SIFT算法的机器学习对ABUS图像进行pCR评价。",
-          "evidence": [
-            {
-              "quote": "前期我们基于SIFT算法的机器学习将ABUS图像pCR评价的准确性从医生肉眼的71.2%提升至计算机自动评估的100%。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 867,
-                "end_char": 926
-              },
-              "version": "b957a4f59f7b4dfa5e4c"
-            }
-          ]
-        },
-        {
-          "id": "item-33d19ceffb63",
-          "name": "ceRNA调控网络构建",
-          "desc": "通过TCGA数据库构建风险模型基因的ceRNA调控网络，筛选疗效相关基因。",
+          "id": "item-a6b4d6a8a29f",
+          "name": "TCGA ceRNA调控网络筛选疗效相关基因",
+          "desc": "获得9个生存相关候选基因",
           "evidence": [
             {
               "quote": "通过TCGA数据库构建风险模型基因的ceRNA调控网络，筛选三阴性乳腺癌患者新辅助化疗疗效相关基因，共获得9个生存相关候选基因",
@@ -140,7 +98,8 @@
               },
               "version": "b957a4f59f7b4dfa5e4c"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-229dce6f8843",
-          "name": "ABUS评价准确性提升至100%",
-          "desc": "SIFT算法机器学习将ABUS图像pCR评价准确性从医生肉眼的71.2%提升至计算机自动评估的100%。",
-          "evidence": [
-            {
-              "quote": "将ABUS图像pCR评价的准确性从医生肉眼的71.2%提升至计算机自动评估的100%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 884,
-                "end_char": 925
-              },
-              "version": "b957a4f59f7b4dfa5e4c"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6f3c43514ada",
-          "name": "影像组学模型AUC 0.86",
-          "desc": "基于影像组学特征的模型其AUC可达0.86，P小于0.05。",
+          "id": "item-490820946a24",
+          "name": "影像组学模型AUC",
+          "desc": "0.86",
           "evidence": [
             {
               "quote": "基于影像组学特征的模型其AUC可达0.86，P<0.05",
@@ -180,72 +122,69 @@
               "version": "b957a4f59f7b4dfa5e4c"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6e2c58268e71",
-          "name": "9个生存相关候选基因",
-          "desc": "筛选共获得9个生存相关候选基因。",
-          "evidence": [
-            {
-              "quote": "共获得9个生存相关候选基因",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3223,
-                "end_char": 3235
-              },
-              "version": "b957a4f59f7b4dfa5e4c"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-962c56912c9b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3709b072cca4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Assessing Diagnostic Performance Using the Transverse Plane Plus Coronal Plane Compared With the Transverse Plane Alone in Screening Automated Breast Ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yin;Yue Jinzhuo;Xing Yangfeng;Ju Yan;Gao Xican;Shu Rui;Wang Zhenfang;Liu Bo;Xiao Yao;Zhang Ge;Li Hui;Wang Tian;Guan Xiangping;Song Zhangjun;Song Hongping",
+      "id": "out-849c6f80f40b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Assessing Diagnostic Performance Using the Transverse Plane Plus Coronal Plane Compared With the Transverse Plane Alone in Screening Automated Breast Ultrasound — Wang Yin;Yue Jinzhuo;Xing Yangfeng;Ju Yan;Gao Xican;Shu Rui;Wang Zhenfang;Liu Bo;Xiao Yao;Zhang Ge;Li Hui;Wang Tian;Guan Xiangping;Song Zhangjun;Song Hongping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3344,
+            "end_char": 3671
+          },
+          "version": "b957a4f59f7b4dfa5e4c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9dcfb189efa1"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bb787a818a6d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bcf8f47399b7"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6f3c43514ada"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-33d19ceffb63"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6e2c58268e71"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国女性对定期乳腺检查认知的调查分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "唐泽慧;高喜璨;高毅;顾翔;宋宏萍",
+      "id": "out-17aece9b310d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 中国女性对定期乳腺检查认知的调查分析 — 唐泽慧;高喜璨;高毅;顾翔;宋宏萍",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3676,
+            "end_char": 3720
+          },
+          "version": "b957a4f59f7b4dfa5e4c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

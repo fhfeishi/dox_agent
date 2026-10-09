@@ -2,15 +2,20 @@
   "doc_id": "976fa8f5bbf7846e69da",
   "version": "53fd48a32dbe2994fcdb",
   "source_hash": "b19a74312c79230efc759add54efd0d706ea3a81c8535540655b799874151d14",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:26.393766+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.579720+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a77f5befcc60",
-          "name": "局部进展期宫颈癌同步放化疗",
-          "desc": "同步放化疗是局部进展期宫颈癌首选治疗方法，但约30%患者出现治疗失败。",
+          "id": "item-f30111db999a",
+          "name": "局部进展期宫颈癌同步放化疗疗效预测",
+          "desc": "约30%患者治疗失败",
           "evidence": [
             {
-              "quote": "同步放化疗是局部进展期宫颈癌（LACC）的首选治疗方法，但是约30%的患者出现治疗失败",
+              "quote": "同步放化疗是局部进展期宫颈癌（LACC）的标准治疗方案，但仍有约30%的患者治疗失败",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 705,
-                "end_char": 747
+                "start_char": 2527,
+                "end_char": 2568
               },
               "version": "53fd48a32dbe2994fcdb"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0888f39ed897",
-          "name": "缺乏精准预测同步放化疗疗效方法",
-          "desc": "临床上尚无有效方法精准预测LACC患者同步放化疗疗效，缺乏早期预测手段。",
+          "id": "item-b39598346395",
+          "name": "缺乏早期精准预测疗效的方法",
+          "desc": "临床",
           "evidence": [
             {
-              "quote": "目前,临床上尚无有效的方法能精准预测LACC患者同步放化疗疗效",
+              "quote": "目前临床上仍缺乏早期精准预测疗效的方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 779
-              },
-              "version": "53fd48a32dbe2994fcdb"
-            }
-          ]
-        },
-        {
-          "id": "item-4acd985d5d40",
-          "name": "术前淋巴结状态评估能力不足",
-          "desc": "需提升术前淋巴结状态评估与风险分层能力。",
-          "evidence": [
-            {
-              "quote": "并创新性提出与Node‑RADS结合的整合分层策略，提升术前淋巴结状态评估与风险分层能力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2727,
-                "end_char": 2770
+                "start_char": 2570,
+                "end_char": 2588
               },
               "version": "53fd48a32dbe2994fcdb"
             }
@@ -79,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2bcc6d00d401",
-          "name": "影像组学与病理TILs特征融合",
-          "desc": "融合影像组学特征、病理TILs特征和临床信息构建疗效预测模型，并使用独立样本验证优化。",
-          "evidence": [
-            {
-              "quote": "融合影像组学特征、病理TILs特征和临床信息，构建LACC同步放化疗疗效预测模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 926,
-                "end_char": 965
-              },
-              "version": "53fd48a32dbe2994fcdb"
-            }
-          ]
-        },
-        {
-          "id": "item-7e08e4a36326",
-          "name": "跨模态无监督腹部多器官分割",
-          "desc": "研发跨模态无监督腹部多器官自动分割软件，实现盆腔结构与病灶的精准高效自动分割。",
+          "id": "item-71a08e6285f9",
+          "name": "跨模态无监督腹部多器官自动分割软件",
+          "desc": "盆腔结构与病灶精准高效分割",
           "evidence": [
             {
               "quote": "研发“跨模态无监督腹部多器官自动分割软件”，实现盆腔结构与病灶的精准、高效自动分割",
@@ -108,7 +81,42 @@
               },
               "version": "53fd48a32dbe2994fcdb"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6cfa406f4919",
+          "name": "淋巴结转移风险评分系统CeNScore",
+          "desc": "基于常规MRI并结合Node-RADS",
+          "evidence": [
+            {
+              "quote": "基于常规MRI构建淋巴结转移风险评分系统（CeNScore），并创新性提出与Node‑RADS结合的整合分层策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2696,
+                "end_char": 2751
+              },
+              "version": "53fd48a32dbe2994fcdb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-49ff6eafc8af",
+          "name": "多模态影像与临床信息可解释机器学习疗效预测模型",
+          "desc": "同步放化疗疗效",
+          "evidence": [
+            {
+              "quote": "融合多模态影像特征与临床信息，构建可解释机器学习模型用于预测同步放化疗疗效",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2775,
+                "end_char": 2811
+              },
+              "version": "53fd48a32dbe2994fcdb"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -117,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-64fa99969d45",
-          "name": "CeNScore淋巴结转移风险评分",
-          "desc": "基于常规MRI构建淋巴结转移风险评分系统CeNScore，训练集与验证集AUC分别为0.847和0.818。",
+          "id": "item-40c9d97e57cd",
+          "name": "CeNScore预测性能",
+          "desc": "训练集AUC 0.847，验证集0.818",
           "evidence": [
             {
               "quote": "CeNScore系统在训练集和验证集中均表现出良好预测性能（AUC分别为0.847和0.818）",
@@ -131,29 +139,14 @@
               "version": "53fd48a32dbe2994fcdb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-5f04c43eb847",
-          "name": "自动分割软件获软件著作权",
-          "desc": "研发的跨模态自动分割软件已获国家软件著作权1项。",
-          "evidence": [
-            {
-              "quote": "研发的自动分割软件已获国家软件著作权1项",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2837,
-                "end_char": 2856
-              },
-              "version": "53fd48a32dbe2994fcdb"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ed80eb4f7e45",
-          "name": "疗效预测模型训练集AUC 0.837",
-          "desc": "融合影像组学与临床信息的可解释机器学习模型在训练集中AUC达0.837。",
+          "id": "item-7358db72337b",
+          "name": "疗效预测模型训练集AUC",
+          "desc": "0.837",
           "evidence": [
             {
               "quote": "疗效预测模型在训练集中的AUC达0.837",
@@ -165,55 +158,130 @@
               "version": "53fd48a32dbe2994fcdb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-26abd83cb0d0",
+          "name": "自动分割软件",
+          "desc": "获国家软件著作权1项",
+          "evidence": [
+            {
+              "quote": "研发的自动分割软件已获国家软件著作权1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2837,
+                "end_char": 2856
+              },
+              "version": "53fd48a32dbe2994fcdb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a77f5befcc60"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0888f39ed897"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and evaluation of the mrTE scoring system for MRI-detected tumor deposits and extramural venous invasion in rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haitao Huang;Weixiong Xu;Lili Feng;Min-Er Zhong;Yunrui Ye;Yulin Liu;Huifen Ye;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Ke Zhao;Lifen Yan;Changhong Liang",
+      "id": "out-791978612941",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and evaluation of the mrTE scoring system for MRI-detected tumor deposits and extramural venous invasion in rectal cancer — Haitao Huang;Weixiong Xu;Lili Feng;Min-Er Zhong;Yunrui Ye;Yulin Liu;Huifen Ye;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Ke Zhao;Lifen Yan;Changhong Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3026,
+            "end_char": 3311
+          },
+          "version": "53fd48a32dbe2994fcdb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0888f39ed897"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2bcc6d00d401"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of interpretable machine learning model for pretreatment predicting the response to targeted and immune therapy in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Runqian;Liu Kaicai;Yan Lifen;Liu Zaiyi;Wu Lei;Wu Xingwang;Liang Changhong",
+      "id": "out-baef4ca97e69",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of interpretable machine learning model for pretreatment predicting the response to targeted and immune therapy in hepatocellular carcinoma — Huang Runqian;Liu Kaicai;Yan Lifen;Liu Zaiyi;Wu Lei;Wu Xingwang;Liang Changhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3316,
+            "end_char": 3570
+          },
+          "version": "53fd48a32dbe2994fcdb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2bcc6d00d401"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ed80eb4f7e45"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based prediction of axillary pathological complete response in patients with breast cancer using longitudinal multiregional ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yu;Wang Ying;Huang Jiaxin;Pei Shufang;Wang Yuxiang;Cui Yanfen;Yan Lifen;Yao Mengxia;Wang Yumeng;Zhu Zejun;Huang Chunwang;Liu Zaiyi;Liang Changhong;Shi Jiayao;Li Zhenhui;Pei Xiaoqing;Wu Lei",
+      "id": "out-834f4dc5ffbb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based prediction of axillary pathological complete response in patients with breast cancer using longitudinal multiregional ultrasound — Liu Yu;Wang Ying;Huang Jiaxin;Pei Shufang;Wang Yuxiang;Cui Yanfen;Yan Lifen;Yao Mengxia;Wang Yumeng;Zhu Zejun;Huang Chunwang;Liu Zaiyi;Liang Changhong;Shi Jiayao;Li Zhenhui;Pei Xiaoqing;Wu Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3575,
+            "end_char": 3924
+          },
+          "version": "53fd48a32dbe2994fcdb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7e08e4a36326"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5f04c43eb847"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Imaging findings of primary hepatic leiomyosarcoma: a case report and literature review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lifen Yan;Runqian Huang;Shuting Chen;Jiawei Chen;Jinglei Li",
+      "id": "out-0ba1acb87619",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Imaging findings of primary hepatic leiomyosarcoma: a case report and literature review — Lifen Yan;Runqian Huang;Shuting Chen;Jiawei Chen;Jinglei Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3929,
+            "end_char": 4084
+          },
+          "version": "53fd48a32dbe2994fcdb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 4,
+    "listed": 4,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

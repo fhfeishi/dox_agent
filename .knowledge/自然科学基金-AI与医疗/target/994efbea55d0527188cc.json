@@ -2,15 +2,20 @@
   "doc_id": "994efbea55d0527188cc",
   "version": "4c072bf332b852d4527b",
   "source_hash": "a6f5e564d4e667b8897e731043799f8138c1d0e65e40b17b22809d3a6048af66",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:44.579749+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.674120+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bfb08a5d08e6",
-          "name": "肺癌EGFR-TKI靶向治疗",
-          "desc": "EGFR突变及对应酪氨酸激酶抑制剂的出现极大丰富了肺癌治疗手段，TKI靶向治疗为突变患者一线首选。",
+          "id": "item-9a72a8bfeba9",
+          "name": "肺癌EGFR-TKI疗效预测",
+          "desc": "EGFR突变TKI为一线首选",
           "evidence": [
             {
-              "quote": "肺癌表皮生长因子受体（EGFR）突变及对应的酪氨酸激酶抑制剂（TKI）的出现极大地丰富了肺癌的治疗手段",
+              "quote": "临床上肺癌表皮生长因子受体（EGFR）突变的酪氨酸激酶抑制剂（TKI）靶向治疗为突变患者的一线首选治疗，但患者间疗效差异较大",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 714
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ]
-        },
-        {
-          "id": "item-0e0394f8cb24",
-          "name": "TKI疗效早期精准预测",
-          "desc": "若能够早期预测TKI疗效，进而可调整随诊方案及治疗措施，为患者带来较大获益。",
-          "evidence": [
-            {
-              "quote": "如果能够早期预测TKI疗效，进而可以调整随诊方案及治疗措施，将为患者带来较大获益。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2704,
-                "end_char": 2744
+                "start_char": 2641,
+                "end_char": 2702
               },
               "version": "4c072bf332b852d4527b"
             }
@@ -59,30 +48,14 @@
         {
           "id": "item-c0c02ef8f38b",
           "name": "患者间TKI疗效差异较大",
-          "desc": "EGFR突变患者对TKI治疗的疗效差异较大，如何预测疗效并早期精准调整治疗是临床难点。",
+          "desc": "早期预测可调整治疗",
           "evidence": [
             {
-              "quote": "但EGFR突变患者对TKI治疗的疗效差异较大，如何预测TKI疗效进而早期精准调整治疗是临床难点。",
+              "quote": "但患者间疗效差异较大",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 716,
-                "end_char": 763
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ]
-        },
-        {
-          "id": "item-239bacf33488",
-          "name": "模型重复性与流程标准化问题",
-          "desc": "临床推广前尚存在模型优化、模型重复性、流程标准化问题有待解决。",
-          "evidence": [
-            {
-              "quote": "但在临床推广应用前尚存在模型的优化、模型重复性、流程标准化的问题有待进一步解决。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 896,
-                "end_char": 935
+                "start_char": 2693,
+                "end_char": 2702
               },
               "version": "4c072bf332b852d4527b"
             }
@@ -95,25 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e9e637639d74",
-          "name": "病理图像深度学习建模",
-          "desc": "基于病理图像构建深度学习模型预测肺癌EGFR-TKI疗效。",
+          "id": "item-916a9d4fd71f",
+          "name": "基于病理图像的深度学习TKI疗效预测模型",
+          "desc": "回顾性与前瞻性验证",
           "evidence": [
             {
-              "quote": "因此我们针对肺癌EGFR-TKI疗效预测这一难题，基于病理图像构建深度学习模型",
+              "quote": "在回顾性数据中，我们所构建模型对一代TKI治疗疗效具有较好的预测价值；在前瞻性数据中，我们进一步验证了模型的准确性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 808,
-                "end_char": 846
+                "start_char": 2829,
+                "end_char": 2885
               },
               "version": "4c072bf332b852d4527b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5bb30068f298",
-          "name": "图像预处理流程标准化",
-          "desc": "对图像的预处理流程进行探索并制定标准化预处理条件，保障模型推广应用中的重复性。",
+          "id": "item-3ac2fa2418a9",
+          "name": "病理图像标准化预处理条件",
+          "desc": "保证模型重复性",
           "evidence": [
             {
               "quote": "本研究对图像的预处理流程进行探索，并制定了标准化预处理条件",
@@ -124,128 +98,52 @@
               },
               "version": "4c072bf332b852d4527b"
             }
-          ]
-        },
-        {
-          "id": "item-190b831a86bb",
-          "name": "前瞻性验证模型稳健性",
-          "desc": "前瞻性验证模型重复性和稳健性。",
-          "evidence": [
-            {
-              "quote": "前瞻性验证模型重复性和稳健性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1005,
-                "end_char": 1018
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intratumoural microbiota: a new frontier in cancer development and therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cao yaqi;Xia hui;Tan xueyun;Shi chunwei;Ma yanling;Meng daquan;Zhou mengmeng;Lv zhilei;Wang sufei;Jin yang",
+      "id": "out-fb0e659946ab",
+      "evidence": [
         {
-          "id": "item-7be99ff97c21",
-          "name": "一代TKI疗效预测模型",
-          "desc": "在回顾性数据中所构建模型对一代TKI治疗疗效具有较好的预测价值。",
-          "evidence": [
-            {
-              "quote": "在回顾性数据中，我们所构建模型对一代TKI治疗疗效具有较好的预测价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2829,
-                "end_char": 2862
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1179b14f9296",
-          "name": "前瞻性数据验证",
-          "desc": "在前瞻性数据中进一步验证了模型的准确性。",
-          "evidence": [
-            {
-              "quote": "在前瞻性数据中，我们进一步验证了模型的准确性。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2864,
-                "end_char": 2886
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-82d8c07bae6e",
-          "name": "TKI疗效预测工具",
-          "desc": "利用病理图像构建了TKI靶向治疗疗效预测工具，为进一步改进肺癌诊疗流程提供新思路。",
-          "evidence": [
-            {
-              "quote": "本项目通过利用病理图像，构建了TKI靶向治疗疗效预测的工具",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2936,
-                "end_char": 2964
-              },
-              "version": "4c072bf332b852d4527b"
-            }
-          ],
-          "status": "已取得"
+          "quote": "[期刊论文] Intratumoural microbiota: a new frontier in cancer development and therapy — Cao yaqi;Xia hui;Tan xueyun;Shi chunwei;Ma yanling;Meng daquan;Zhou mengmeng;Lv zhilei;Wang sufei;Jin yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3010,
+            "end_char": 3199
+          },
+          "version": "4c072bf332b852d4527b"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-bfb08a5d08e6"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c0c02ef8f38b"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-239bacf33488"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5bb30068f298"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e9e637639d74"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7be99ff97c21"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-190b831a86bb"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1179b14f9296"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

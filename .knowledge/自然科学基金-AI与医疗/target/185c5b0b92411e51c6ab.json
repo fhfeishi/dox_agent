@@ -2,15 +2,20 @@
   "doc_id": "185c5b0b92411e51c6ab",
   "version": "b384cb90edef5d2af5b9",
   "source_hash": "e10caebb75e58c3432d78a6689240574028a81f890800355ab932235a14729ab",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:04:12.484695+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.335215+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-aeeb50504cb5",
           "name": "网络成瘾脑影像数据分析",
-          "desc": "本项目重点研究基于深度学习的网络成瘾脑影像数据分析方法。",
+          "desc": "基于深度学习的脑影像分类和病理特征检测",
           "evidence": [
             {
-              "quote": "本项目重点研究基于深度学习的网络成瘾脑影像数据分析方法。",
+              "quote": "本项目重点研究基于深度学习的网络成瘾脑影像数据分析方法",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 711,
-                "end_char": 738
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ]
-        },
-        {
-          "id": "item-4add4b824446",
-          "name": "网络成瘾临床诊断与机制研究",
-          "desc": "为网络成瘾的临床诊断和病理生理机制研究提供辅助支持。",
-          "evidence": [
-            {
-              "quote": "为网络成瘾的临床诊断和病理生理机制研究提供辅助支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 994,
-                "end_char": 1018
+                "end_char": 737
               },
               "version": "b384cb90edef5d2af5b9"
             }
@@ -57,48 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0d2799f0c786",
-          "name": "高维小样本与黑盒特性制约",
-          "desc": "脑影像数据的高维性、小样本量和深度学习的黑盒特性，制约了深度学习在网络成瘾脑影像数据分析处理中的应用。",
+          "id": "item-f55621fd2cdf",
+          "name": "脑影像高维、小样本和深度学习黑盒特性",
+          "desc": "制约深度学习在网络成瘾脑影像分析中的应用",
           "evidence": [
             {
-              "quote": "脑影像数据的高维性、小样本量和深度学习的黑盒特性，制约了深度学习在网络成瘾脑影像数据分析处理中的应用。",
+              "quote": "脑影像数据的高维性、小样本量和深度学习的黑盒特性，制约了深度学习在网络成瘾脑影像数据分析处理中的应用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 660,
-                "end_char": 710
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ]
-        },
-        {
-          "id": "item-3adf8613cbbe",
-          "name": "三维卷积网络参数量大",
-          "desc": "需要解决三维卷积神经网络模型参数量大以及模型训练时计算能力不足的问题。",
-          "evidence": [
-            {
-              "quote": "解决了三维卷积神经网络模型参数量大以及模型训练时计算能力不足的问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 792,
-                "end_char": 824
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ]
-        },
-        {
-          "id": "item-b946adfee31d",
-          "name": "单任务对训练数据需求高",
-          "desc": "需要降低单个任务对训练数据的需求，应对小样本困境。",
-          "evidence": [
-            {
-              "quote": "通过多任务联合训练并共享深度学习中的特征提取层，降低了单个任务对训练数据的需求",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 851,
-                "end_char": 889
+                "end_char": 709
               },
               "version": "b384cb90edef5d2af5b9"
             }
@@ -111,41 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-354102695a54",
-          "name": "特征空间转换深度学习分类",
-          "desc": "研究三维脑影像特征提取与表示算法，设计基于特征空间转换的深度学习分类模型。",
+          "id": "item-cf3c28e6c21d",
+          "name": "特征空间转换的深度学习分类模型",
+          "desc": "解决三维CNN参数量大和算力不足",
           "evidence": [
             {
-              "quote": "研究三维脑影像特征提取与表示算法，并设计了基于特征空间转换的深度学习分类模型",
+              "quote": "设计了基于特征空间转换的深度学习分类模型，解决了三维卷积神经网络模型参数量大以及模型训练时计算能力不足的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 790
+                "start_char": 771,
+                "end_char": 824
               },
               "version": "b384cb90edef5d2af5b9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5273bfa4dcb1",
-          "name": "多任务共享特征小样本学习",
-          "desc": "研究基于多任务共享特征的小样本深度学习算法。",
+          "id": "item-3bf4d4b55bf1",
+          "name": "多任务共享特征的小样本深度学习算法",
+          "desc": "共享特征提取层，降低单任务数据需求",
           "evidence": [
             {
-              "quote": "研究基于多任务共享特征的小样本深度学习算法",
+              "quote": "研究基于多任务共享特征的小样本深度学习算法，通过多任务联合训练并共享深度学习中的特征提取层，降低了单个任务对训练数据的需求",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 829,
-                "end_char": 849
+                "end_char": 889
               },
               "version": "b384cb90edef5d2af5b9"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ae32c8a581fa",
-          "name": "多视角共识病理特征检测",
-          "desc": "通过可解释性算法找出不同视角的分类依据并进行共现性分析，得到可量化评估的病理特征。",
+          "id": "item-7cb2ae6333d6",
+          "name": "多视角共识病理特征检测算法",
+          "desc": "可解释性算法找出各视角分类依据并做共现性分析",
           "evidence": [
             {
               "quote": "研究基于深度学习的多视角共识病理特征检测算法，通过可解释性算法找出不同视角的分类依据并进行共现性分析，得到可量化评估的病理特征",
@@ -156,112 +115,164 @@
               },
               "version": "b384cb90edef5d2af5b9"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
     {
       "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cec0d6f8e2ef",
-          "name": "网络游戏障碍功能连接分类",
-          "desc": "发表基于全脑功能连接的网络游戏障碍分类研究论文。",
-          "evidence": [
-            {
-              "quote": "基于全脑功能连接的网络游戏障碍分类研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2731,
-                "end_char": 2749
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1670efe9466c",
-          "name": "脑影像与认知关联研究",
-          "desc": "发表首发未治疗抑郁症患者白质束节段改变与认知表现关联等系列论文。",
-          "evidence": [
-            {
-              "quote": "Association between segmental alterations of white matter bundles and cognitive performance in first-episode, treatment-naïve young adults with major depressive disorder",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2779,
-                "end_char": 2947
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-ea7528ef680f",
-          "name": "胶质淋巴系统相关专利",
-          "desc": "申请胶质淋巴系统相关产品在制备诊断或治疗脓毒症脑病产品中的应用专利。",
-          "evidence": [
-            {
-              "quote": "胶质淋巴系统的相关产品在制备诊断或治疗脓毒症脑病产品中的应用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3264,
-                "end_char": 3293
-              },
-              "version": "b384cb90edef5d2af5b9"
-            }
-          ],
-          "status": "已取得"
-        }
-      ]
+      "state": "未提及",
+      "items": []
     }
   ],
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-aeeb50504cb5"
+        "dimension": "技术",
+        "item_id": "item-cf3c28e6c21d"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-0d2799f0c786"
+        "item_id": "item-f55621fd2cdf"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b946adfee31d"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5273bfa4dcb1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-354102695a54"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cec0d6f8e2ef"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ae32c8a581fa"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1670efe9466c"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "设计了基于特征空间转换的深度学习分类模型，解决了三维卷积神经网络模型参数量大以及模型训练时计算能力不足的问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 771,
+            "end_char": 824
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于全脑功能连接的网络游戏障碍分类研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贺锦程;班美婷;张丽娜;钱招昕",
+      "id": "out-72d097d67424",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于全脑功能连接的网络游戏障碍分类研究 — 贺锦程;班美婷;张丽娜;钱招昕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2724,
+            "end_char": 2767
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between segmental alterations of white matter bundles and cognitive performance in first-episode, treatment-naïve young adults with major depressive disorder",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meiting Ban;Jincheng He;Dongcui Wang;Yuegui Cao;Lingyu Kong;Fulai Yuan;Zhaoxin Qian;Xueling Zhu",
+      "id": "out-5cf3d7ce49b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between segmental alterations of white matter bundles and cognitive performance in first-episode, treatment-naïve young adults with major depressive disorder — Meiting Ban;Jincheng He;Dongcui Wang;Yuegui Cao;Lingyu Kong;Fulai Yuan;Zhaoxin Qian;Xueling Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2772,
+            "end_char": 3045
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decreased functional connectivity in salience network is associated with symptom severity in betel quid‐dependent chewers",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meiting Ban;Zhongyuan Zhan;Dongcui Wang;Jincheng He;Xueling Zhu;Fulai Yuan",
+      "id": "out-43e2e7ac6b3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decreased functional connectivity in salience network is associated with symptom severity in betel quid‐dependent chewers — Meiting Ban;Zhongyuan Zhan;Dongcui Wang;Jincheng He;Xueling Zhu;Fulai Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3050,
+            "end_char": 3254
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胶质淋巴系统的相关产品在制备诊断或治疗脓毒症脑病产品中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡霁云;张丽娜;钱招昕;谢树才",
+      "id": "out-a78b3b18f35c",
+      "evidence": [
+        {
+          "quote": "[专利] 胶质淋巴系统的相关产品在制备诊断或治疗脓毒症脑病产品中的应用 — 胡霁云;张丽娜;钱招昕;谢树才",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3259,
+            "end_char": 3311
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Regional metabolic heterogeneity in anterior cingulate cortex in major depressive disorder: A multi-voxel 1H magnetic resonance spectroscopy study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jincheng He;Dongcui Wang;Meiting Ban;Lingyu Kong;Qian Xiao;Fulai Yuan;Xueling Zhu",
+      "id": "out-8d66736e7478",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Regional metabolic heterogeneity in anterior cingulate cortex in major depressive disorder: A multi-voxel 1H magnetic resonance spectroscopy study — Jincheng He;Dongcui Wang;Meiting Ban;Lingyu Kong;Qian Xiao;Fulai Yuan;Xueling Zhu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3316,
+            "end_char": 3552
+          },
+          "version": "b384cb90edef5d2af5b9"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

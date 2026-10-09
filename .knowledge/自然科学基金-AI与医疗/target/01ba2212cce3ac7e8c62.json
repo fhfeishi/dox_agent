@@ -2,15 +2,20 @@
   "doc_id": "01ba2212cce3ac7e8c62",
   "version": "e67f628fb80b43bd807b",
   "source_hash": "a4076bb997324488434f2ccebe530f2ed53dd0b055c5e947f8b5164478755ffd",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:38.160416+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.086094+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5da21c72a4e2",
-          "name": "电子鼻伤口感染早期诊断",
-          "desc": "创伤已成社会一大公害，伤口感染是创伤最常见并发症，快速高效诊断在临床实践中具有重要意义。",
+          "id": "item-588652c082d1",
+          "name": "伤口感染早期电子鼻诊断",
+          "desc": "伤口感染是创伤最常见并发症，需快速诊断",
           "evidence": [
             {
-              "quote": "创伤已成为社会一大公害，而伤口感染又是创伤的最常见并发症，快速、高效的诊断在临床实践中具有重要意义",
+              "quote": "伤口感染又是创伤的最常见并发症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 665,
-                "end_char": 713
-              },
-              "version": "e67f628fb80b43bd807b"
-            }
-          ]
-        },
-        {
-          "id": "item-270983f59b3f",
-          "name": "推进电子鼻技术临床进程",
-          "desc": "研究可推进传感器工作温度调制技术和电子鼻伤口诊断技术的理论发展，促进电子鼻技术的临床进程。",
-          "evidence": [
-            {
-              "quote": "本项目的研究可推进传感器工作温度调制技术和电子鼻伤口诊断技术的理论发展，并促进电子鼻技术的临床进程",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1002,
-                "end_char": 1050
+                "start_char": 678,
+                "end_char": 692
               },
               "version": "e67f628fb80b43bd807b"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9d26c8e1fe0b",
-          "name": "早期病原菌代谢产物浓度极低",
-          "desc": "伤口感染早期病原菌代谢产物浓度极低，导致电子鼻的诊断效果并不理想。",
+          "id": "item-57700d1ce889",
+          "name": "早期病原菌代谢产物浓度极低致电子鼻效果不佳",
+          "desc": "伤口感染早期代谢产物浓度极低，诊断效果不理想",
           "evidence": [
             {
               "quote": "但在伤口感染早期，病原菌代谢产物浓度极低，导致电子鼻的诊断效果并不理想",
@@ -73,16 +62,16 @@
           ]
         },
         {
-          "id": "item-31a467cf5b55",
-          "name": "伤口感染样本难获取致样本量不足",
-          "desc": "伤口感染样本难获得导致训练电子鼻的样本量不足，是限制识别率提升的又一障碍。",
+          "id": "item-e3e2c0506096",
+          "name": "伤口感染样本难获得、训练样本不足",
+          "desc": "样本量不足限制识别率提升",
           "evidence": [
             {
-              "quote": "另外伤口感染样本难获得，导致训练电子鼻的样本量不足，这是限制识别率提升的又一障碍",
+              "quote": "另外伤口感染样本难获得，导致训练电子鼻的样本量不足",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 854,
-                "end_char": 893
+                "end_char": 878
               },
               "version": "e67f628fb80b43bd807b"
             }
@@ -95,25 +84,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d5efc7aa6a3b",
-          "name": "温度调制传感技术提高检测限",
-          "desc": "将温度调制传感技术用于伤口感染早期诊断，使传感器响应包含更多可表征不同病原菌的有用信息，提高最低浓度检测限。",
+          "id": "item-3f4efddf68a9",
+          "name": "温度调制传感",
+          "desc": "将温度调制传感用于伤口感染早期诊断，提高最低浓度检测限",
           "evidence": [
             {
-              "quote": "本项目将温度调制传感技术用于伤口感染的早期诊断，在传感器响应中包含更多的可表征不同病原菌的有用信息，从而提高电子鼻的最低浓度检测限",
+              "quote": "本项目将温度调制传感技术用于伤口感染的早期诊断，从而提高电子鼻的最低浓度检测限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 788,
-                "end_char": 852
+                "start_char": 3049,
+                "end_char": 3087
               },
               "version": "e67f628fb80b43bd807b"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-506d0e1d3bdf",
-          "name": "迁移学习与半监督学习解决小样本",
-          "desc": "借助迁移学习和半监督学习解决伤口样本小的问题。",
+          "id": "item-ca7792f6c84b",
+          "name": "迁移学习与半监督学习",
+          "desc": "解决伤口样本小的问题",
           "evidence": [
             {
               "quote": "另外借助迁移学习和半监督学习解决伤口样本小的问题",
@@ -124,7 +114,42 @@
               },
               "version": "e67f628fb80b43bd807b"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-08b6b354255a",
+          "name": "温度调制传感阵列",
+          "desc": "用于伤口感染检测的传感阵列",
+          "evidence": [
+            {
+              "quote": "构建出了用于伤口感染检测的温度调制传感阵列",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3146
+              },
+              "version": "e67f628fb80b43bd807b"
+            }
+          ],
+          "role": "配套-感知"
+        },
+        {
+          "id": "item-efded0340b06",
+          "name": "智能嗅觉算法",
+          "desc": "一系列算法用于提升系统诊断正确率",
+          "evidence": [
+            {
+              "quote": "提出了一系列的智能嗅觉算法用于提升系统的诊断正确率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3149,
+                "end_char": 3173
+              },
+              "version": "e67f628fb80b43bd807b"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +158,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4c7a1df037a",
-          "name": "构建温度调制传感阵列",
-          "desc": "构建用于伤口感染检测的温度调制传感阵列，并提出一系列智能嗅觉算法提升系统诊断正确率。",
+          "id": "item-06127fcb84a0",
+          "name": "硬件系统方案、嗅觉数据集与算法代码库",
+          "desc": "获得完整硬件系统设计方案、伤口感染嗅觉数据集和算法代码库",
           "evidence": [
             {
-              "quote": "构建出了用于伤口感染检测的温度调制传感阵列，并提出了一系列的智能嗅觉算法用于提升系统的诊断正确率",
+              "quote": "获得了完整的硬件系统设计方案、伤口感染嗅觉数据集和算法代码库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3173
+                "start_char": 3249,
+                "end_char": 3278
               },
               "version": "e67f628fb80b43bd807b"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-93df4185059c",
-          "name": "论文专利与数据集代码库",
-          "desc": "项目共发表SCI/EI期刊论文13篇，申请发明专利5项（授权3项），并获得完整硬件系统设计方案、伤口感染嗅觉数据集和算法代码库。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "发表SCI/EI论文13篇，申请发明专利5项，授权3项",
           "evidence": [
             {
               "quote": "本项目执行过程中共发表SCI/EI期刊论文13篇，申请发明专利5项，其中授权3项",
@@ -164,24 +191,9 @@
               "version": "e67f628fb80b43bd807b"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1d20eeb733ba",
-          "name": "全局局部融合特征解决低浓度样本",
-          "desc": "提出基于全局和局部特征融合的技术解决电子鼻低浓度样本不足问题。",
-          "evidence": [
-            {
-              "quote": "A Novel Technique Solving Shortages of Low-Concentration Samples of Electronic Nose Based on Global and Local Features Fusion",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 5066,
-                "end_char": 5190
-              },
-              "version": "e67f628fb80b43bd807b"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +201,404 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-5da21c72a4e2"
+        "dimension": "技术",
+        "item_id": "item-3f4efddf68a9"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-9d26c8e1fe0b"
+        "item_id": "item-57700d1ce889"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目将温度调制传感技术用于伤口感染的早期诊断，从而提高电子鼻的最低浓度检测限",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3049,
+            "end_char": 3087
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-ca7792f6c84b"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-9d26c8e1fe0b"
+        "item_id": "item-e3e2c0506096"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d5efc7aa6a3b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d5efc7aa6a3b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d4c7a1df037a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-506d0e1d3bdf"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-1d20eeb733ba"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "另外借助迁移学习和半监督学习解决伤口样本小的问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3089,
+            "end_char": 3112
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "铂氮掺杂CNT、掺杂CNT传感器的制备方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔豪;胡雄雄;贾鹏飞;彭小燕",
+      "id": "out-c03614497c39",
+      "evidence": [
+        {
+          "quote": "[专利] 铂氮掺杂CNT、掺杂CNT传感器的制备方法及应用 — 崔豪;胡雄雄;贾鹏飞;彭小燕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3298,
+            "end_char": 3343
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sensing behavior of Cu-embedded C3N monolayer upon dissolved gases in transformer oil: a first-principles study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen Cao;Chunmei Liu;Pengfei Jia;Hao Cui",
+      "id": "out-dbc478cb1f08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sensing behavior of Cu-embedded C3N monolayer upon dissolved gases in transformer oil: a first-principles study — Wen Cao;Chunmei Liu;Pengfei Jia;Hao Cui",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3348,
+            "end_char": 3507
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Feature Extraction of Citrus Juice During Storage for Electronic nose Based on Cellular Neural Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huaisheng Cao;Pengfei Jia;Duo Xu;Yuanjing Jiang;Siqi Qiao",
+      "id": "out-3889ae1eca58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Feature Extraction of Citrus Juice During Storage for Electronic nose Based on Cellular Neural Network — Huaisheng Cao;Pengfei Jia;Duo Xu;Yuanjing Jiang;Siqi Qiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3512,
+            "end_char": 3680
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Design and Implementation of Autonomous Robotic Car Based on ROS in Indoor Scenario",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chunmei Liu;Chengmin Zhou;Wen Cao;Fei Li;Pengfei Jia",
+      "id": "out-ad7dd13e0d3c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Design and Implementation of Autonomous Robotic Car Based on ROS in Indoor Scenario — Chunmei Liu;Chengmin Zhou;Wen Cao;Fei Li;Pengfei Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3685,
+            "end_char": 3837
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "铂钯掺杂CNT、掺杂CNT传感器的制备方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "崔豪;程政;贾鹏飞;桂银刚",
+      "id": "out-656d78e9510f",
+      "evidence": [
+        {
+          "quote": "[专利] 铂钯掺杂CNT、掺杂CNT传感器的制备方法及应用 — 崔豪;程政;贾鹏飞;桂银刚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3842,
+            "end_char": 3886
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A DFT study of healing the N vacancy in h-BN monolayer by NO molecules",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Liu Tun;Jia Pengfei",
+      "id": "out-a5e1a38c846d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A DFT study of healing the N vacancy in h-BN monolayer by NO molecules — Cui Hao;Liu Tun;Jia Pengfei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3891,
+            "end_char": 3997
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Regression Prediction Method for Electronic Nose Based on Broad Learning System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Yu;Jia Pengfei;Cui Hao;Peng Xiaoyan",
+      "id": "out-14e81cb43ee7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Regression Prediction Method for Electronic Nose Based on Broad Learning System — Wang Yu;Jia Pengfei;Cui Hao;Peng Xiaoyan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4002,
+            "end_char": 4138
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adsorption and sensing of CO and C2H2 by S-defected SnS2 monolayer for DGA in transformer oil: A DFT study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Jia Pengfei;Peng Xiaoyan;Li Peng",
+      "id": "out-fdf011dd353a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adsorption and sensing of CO and C2H2 by S-defected SnS2 monolayer for DGA in transformer oil: A DFT study — Cui Hao;Jia Pengfei;Peng Xiaoyan;Li Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4143,
+            "end_char": 4298
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adsorption and sensing of SO2 and SOF2 molecule by Pt-doped HfSe2 monolayer: A first-principles study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Zhu Hongliang;Jia Pengfei",
+      "id": "out-5c0e9e2fb0e9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adsorption and sensing of SO2 and SOF2 molecule by Pt-doped HfSe2 monolayer: A first-principles study — Cui Hao;Zhu Hongliang;Jia Pengfei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4303,
+            "end_char": 4446
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adsorption of SO2 and NO2 molecule on intrinsic and Pd-doped HfSe2 monolayer: A first-principles study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Jia Pengfei;Peng Xiaoyan",
+      "id": "out-b0df340f0acc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adsorption of SO2 and NO2 molecule on intrinsic and Pd-doped HfSe2 monolayer: A first-principles study — Cui Hao;Jia Pengfei;Peng Xiaoyan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4452,
+            "end_char": 4595
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于忆阻细胞神经网络的电子鼻气体分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "胡小方;史文强;贾鹏飞;周跃",
+      "id": "out-e7e079f19d2e",
+      "evidence": [
+        {
+          "quote": "[专利] 基于忆阻细胞神经网络的电子鼻气体分析方法 — 胡小方;史文强;贾鹏飞;周跃",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4601,
+            "end_char": 4642
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于全局和局部融合特征提取的电子鼻低浓度样本检测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾鹏飞",
+      "id": "out-cfd59bbb0ee0",
+      "evidence": [
+        {
+          "quote": "[专利] 基于全局和局部融合特征提取的电子鼻低浓度样本检测方法 — 贾鹏飞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4648,
+            "end_char": 4684
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adsorption and sensing behaviors of SF(6 )decomposed species on Ni-doped C3N monolayer: A first-principles study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Yan Chao;Jia Pengfei;Cao Wen",
+      "id": "out-d48e87a5e9d5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adsorption and sensing behaviors of SF(6 )decomposed species on Ni-doped C3N monolayer: A first-principles study — Cui Hao;Yan Chao;Jia Pengfei;Cao Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4690,
+            "end_char": 4847
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Geometric, Electronic and Optical Properties of Pt-Doped C3N Monolayer Upon NOx Adsorption: A DFT Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Cui Hao;Jia Pengfei;Peng Xiaoyan;Hu Xiaofang",
+      "id": "out-cd1bea0445a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Geometric, Electronic and Optical Properties of Pt-Doped C3N Monolayer Upon NOx Adsorption: A DFT Study — Cui Hao;Jia Pengfei;Peng Xiaoyan;Hu Xiaofang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4853,
+            "end_char": 5009
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于宽度学习的电子鼻混合气体浓度预测技术",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "贾鹏飞;王宇;崔豪",
+      "id": "out-05826c8f0359",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于宽度学习的电子鼻混合气体浓度预测技术 — 贾鹏飞;王宇;崔豪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5053
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Technique Solving Shortages of Low-Concentration Samples of Electronic Nose Based on Global and Local Features Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Duo;Jia Pengfei;Cao Huaisheng;Cao Wen;Wu Guocheng",
+      "id": "out-a2ee3290b6d4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Technique Solving Shortages of Low-Concentration Samples of Electronic Nose Based on Global and Local Features Fusion — Xu Duo;Jia Pengfei;Cao Huaisheng;Cao Wen;Wu Guocheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5059,
+            "end_char": 5245
+          },
+          "version": "e67f628fb80b43bd807b"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      }
+    },
+    "consistent": true
+  }
 }

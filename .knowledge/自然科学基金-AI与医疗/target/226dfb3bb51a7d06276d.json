@@ -2,15 +2,20 @@
   "doc_id": "226dfb3bb51a7d06276d",
   "version": "331653f39d37dcc8c9b5",
   "source_hash": "d81524956d3562f65cf1f1546d5cf16ac9d8ff95b7b37241aa2af598a2729958",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:47.215901+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:32:41.278043+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0297d1ddf626",
-          "name": "证候生物学机制分析方法学",
-          "desc": "面向证候生物学基础研究，结合网络医学与人工智能构建证候分子关联知识图谱并解析分子机制。",
+          "id": "item-299ad3e6cf8a",
+          "name": "中医证候生物学机制研究",
+          "desc": "证候—分子—药物关联",
           "evidence": [
             {
-              "quote": "针对证候生物学基础研究中大规模分子关联数据缺乏的瓶颈问题，本项目提出结合网络医学和人工智能构建证候分子关联知识图谱的研究方法",
+              "quote": "聚焦“证候—分子—药物”关联机制解析",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 659,
-                "end_char": 720
+                "start_char": 3085,
+                "end_char": 3102
               },
               "version": "331653f39d37dcc8c9b5"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6bda95ace3ac",
-          "name": "大规模证候分子关联数据缺乏",
-          "desc": "中医证候生物学基础研究面临大规模分子关联数据缺乏的核心瓶颈，制约了“证候—分子—药物”关联机制的解析。",
+          "id": "item-51b7b2578219",
+          "name": "证候大规模分子关联数据缺乏",
+          "desc": "核心瓶颈",
           "evidence": [
             {
-              "quote": "本项目针对中医证候生物学基础研究中大规模分子关联数据缺乏的核心瓶颈，聚焦“证候—分子—药物”关联机制解析",
+              "quote": "本项目针对中医证候生物学基础研究中大规模分子关联数据缺乏的核心瓶颈",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3051,
-                "end_char": 3102
+                "end_char": 3083
               },
               "version": "331653f39d37dcc8c9b5"
             }
@@ -63,20 +68,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-83e82642a5e8",
-          "name": "证候分子关联知识图谱与深度网络表示学习预测",
-          "desc": "构建多源数据整合的证候表型分子关联知识图谱，研制基于深度网络表示学习的证候分子关联预测方法，并结合复杂网络方法开展分子网络模块分析与方证关系解析。",
+          "id": "item-655e17174127",
+          "name": "证候表型分子关联知识图谱",
+          "desc": "多源数据整合",
           "evidence": [
             {
-              "quote": "研制基于深度网络表示学习的证候分子关联预测方法，实现知识图谱中隐含证候分子关联知识的深入发掘",
+              "quote": "成功构建多源数据整合的证候表型分子关联知识图谱",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 842
+                "start_char": 3184,
+                "end_char": 3206
               },
               "version": "331653f39d37dcc8c9b5"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c8cc0cb0877d",
+          "name": "知识图谱补全证候分子关系预测（KDGene、KGCRR）",
+          "desc": "证候基因预测",
+          "evidence": [
+            {
+              "quote": "建立了基于知识图谱补全的证候分子关系预测新方法（如KDGene、KGCRR）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3399,
+                "end_char": 3436
+              },
+              "version": "331653f39d37dcc8c9b5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-214ac485aed6",
+          "name": "方证分子网络距离指标",
+          "desc": "量化评估方证对应",
+          "evidence": [
+            {
+              "quote": "提出了量化评估方证对应关系的分子网络距离指标",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3556,
+                "end_char": 3577
+              },
+              "version": "331653f39d37dcc8c9b5"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-491e46a666e4",
+          "name": "中药新适应症预测（DRONet、DrugRepPT）",
+          "desc": "网络嵌入与排序学习",
+          "evidence": [
+            {
+              "quote": "研制了结合网络嵌入与排序学习的中药新适应症预测方法（DRONet、DrugRepPT）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3612,
+                "end_char": 3654
+              },
+              "version": "331653f39d37dcc8c9b5"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +142,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e3b145f37de7",
-          "name": "证候基因预测准确率较基线提升21.96%-43.77%",
-          "desc": "核心算法在证候基因预测任务中准确率较基线提升21.96%-43.77%，并建成SoFDA证候分子网络分析平台；发表论文13篇（Science Advances等SCI 10篇），申报发明专利3项、软件著作权3项。",
+          "id": "item-c7f6049366cc",
+          "name": "证候基因预测准确率提升",
+          "desc": "较基线提升21.96%-43.77%",
           "evidence": [
             {
               "quote": "核心算法在证候基因预测任务中准确率较基线提升 21.96%-43.77%",
@@ -99,44 +156,413 @@
               "version": "331653f39d37dcc8c9b5"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a7f9f7073b91",
+          "name": "证候分子网络分析平台SoFDA",
+          "desc": "可计算分析框架",
+          "evidence": [
+            {
+              "quote": "开发了证候分子网络分析平台（SoFDA）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3475,
+                "end_char": 3494
+              },
+              "version": "331653f39d37dcc8c9b5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-3e80312d3276",
+          "name": "论文与专利软著",
+          "desc": "发表论文13篇，申报发明专利3项、软著3项",
+          "evidence": [
+            {
+              "quote": "发表论文13篇（其中Science Advances等SCI 10篇），申报发明专利3项、软件著作权3项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3730,
+                "end_char": 3781
+              },
+              "version": "331653f39d37dcc8c9b5"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0297d1ddf626"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6bda95ace3ac"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Network medicine framework reveals generic herb-symptom effectiveness of traditional Chinese medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Gan;Zixin Shu;Xinyan Wang;Dengying Yan;Jun Li;Shany Ofaim;Réka Albert;Xiaodong Li;Baoyan Liu;Xuezhong Zhou;Albert-László Barabási",
+      "id": "out-0876336c21d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Network medicine framework reveals generic herb-symptom effectiveness of traditional Chinese medicine — Xiao Gan;Zixin Shu;Xinyan Wang;Dengying Yan;Jun Li;Shany Ofaim;Réka Albert;Xiaodong Li;Baoyan Liu;Xuezhong Zhou;Albert-László Barabási",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3801,
+            "end_char": 4045
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-6bda95ace3ac"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-83e82642a5e8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phenonizer: A Fine-Grained Phenotypic Named Entity Recognizer for Chinese Clinical Texts",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qunsheng Zou;Kuo Yang;Zixin Shu;Kai Chang;Qiguang Zheng;Yi Zheng;Kezhi Lu;Ning Xu;Haoyu Tian;Xiaomeng Li;Yuxia Yang;Yana Zhou;Haibin Yu;Xiaoping Zhang;Jianan Xia;Qiang Zhu;Josiah Poon;Simon Poon;Runshun Zhang;Xiaodong Li;Xuezhong Zhou",
+      "id": "out-1d5521b668fb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phenonizer: A Fine-Grained Phenotypic Named Entity Recognizer for Chinese Clinical Texts — Qunsheng Zou;Kuo Yang;Zixin Shu;Kai Chang;Qiguang Zheng;Yi Zheng;Kezhi Lu;Ning Xu;Haoyu Tian;Xiaomeng Li;Yuxia Yang;Yana Zhou;Haibin Yu;Xiaoping Zhang;Jianan Xia;Qiang Zhu;Josiah Poon;Simon Poon;Runshun Zhang;Xiaodong Li;Xuezhong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4050,
+            "end_char": 4381
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-83e82642a5e8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e3b145f37de7"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中文临床表型细粒度命名实体识别方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周雪忠;杨扩;邹群盛;程闯;舒梓心",
+      "id": "out-994868f02f16",
+      "evidence": [
+        {
+          "quote": "[专利] 中文临床表型细粒度命名实体识别方法及系统 — 周雪忠;杨扩;邹群盛;程闯;舒梓心",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4386,
+            "end_char": 4430
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KGCRR: An Effective Metric-Driven Knowledge Graph Completion Framework by Designing a Novel Upper Bound Function with Adaptive Approximation to Reciprocal Rank",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Kuan;Yang Kuo;Liu Jian;Lu Xiangkui;Wu Jun;Zhou Xuezhong",
+      "id": "out-8e81dc03eedd",
+      "evidence": [
+        {
+          "quote": "[会议论文] KGCRR: An Effective Metric-Driven Knowledge Graph Completion Framework by Designing a Novel Upper Bound Function with Adaptive Approximation to Reciprocal Rank — Xu Kuan;Yang Kuo;Liu Jian;Lu Xiangkui;Wu Jun;Zhou Xuezhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4435,
+            "end_char": 4661
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "KDGene: knowledge graph completion for disease gene prediction using interactional tensor decomposition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyan Wang;Kuo Yang;Ting Jia;Fanghui Gu;Chongyu Wang;Kuan Xu;Zixin Shu;Jianan Xia;Qiang Zhu;Xuezhong Zhou",
+      "id": "out-2260916f6d7a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] KDGene: knowledge graph completion for disease gene prediction using interactional tensor decomposition — Xinyan Wang;Kuo Yang;Ting Jia;Fanghui Gu;Chongyu Wang;Kuan Xu;Zixin Shu;Jianan Xia;Qiang Zhu;Xuezhong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4666,
+            "end_char": 4884
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedCE: A Contrast Enhancement Federated Learning Method for Heterogeneous Medical Named Entity Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chang Kai;Sun Hailong;Wan Jindou;Zhang Naiqian;Liu Yiming;Yang Kuo;Shu Zixin;Xia Jianan;Zhou Xuezhong",
+      "id": "out-25a36e9f3ebf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedCE: A Contrast Enhancement Federated Learning Method for Heterogeneous Medical Named Entity Recognition — Chang Kai;Sun Hailong;Wan Jindou;Zhang Naiqian;Liu Yiming;Yang Kuo;Shu Zixin;Xia Jianan;Zhou Xuezhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4889,
+            "end_char": 5105
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DRONet: effectiveness-driven drug repositioning framework using network embedding and ranking learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kuo Yang;Yuxia Yang;Shuyue Fan;Jianan Xia;Qiguang Zheng;Xin Dong;Jun Liu;Qiong Liu;Lei Lei;Yingying Zhang;Bing Li;Zhuye Gao;Runshun Zhang;Baoyan Liu;Zhong Wang;Xuezhong Zhou",
+      "id": "out-f1440e8bcdae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DRONet: effectiveness-driven drug repositioning framework using network embedding and ranking learning — Kuo Yang;Yuxia Yang;Shuyue Fan;Jianan Xia;Qiguang Zheng;Xin Dong;Jun Liu;Qiong Liu;Lei Lei;Yingying Zhang;Bing Li;Zhuye Gao;Runshun Zhang;Baoyan Liu;Zhong Wang;Xuezhong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5110,
+            "end_char": 5394
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "融合疗效对比信息的药物重定位方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周雪忠;杨扩;范书悦;董鑫",
+      "id": "out-47f398946ab3",
+      "evidence": [
+        {
+          "quote": "[专利] 融合疗效对比信息的药物重定位方法及系统 — 周雪忠;杨扩;范书悦;董鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5399,
+            "end_char": 5438
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于疾病模块分析的大株红景天注射液治疗冠心病心绞痛气虚血瘀证的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "薛莲;董鑫;赵辰羲;于雪;张淑静;李平;周雪忠;杨阳",
+      "id": "out-c2e4f65d4872",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于疾病模块分析的大株红景天注射液治疗冠心病心绞痛气虚血瘀证的研究 — 薛莲;董鑫;赵辰羲;于雪;张淑静;李平;周雪忠;杨阳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5443,
+            "end_char": 5511
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "网络医学揭示中医辨证论治临床疗效的共性机制",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "甘晓;周雪忠",
+      "id": "out-471d288993fc",
+      "evidence": [
+        {
+          "quote": "[奖励] 网络医学揭示中医辨证论治临床疗效的共性机制 — 甘晓;周雪忠",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5517,
+            "end_char": 5551
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ontology characterization, enrichment analysis, and similarity calculation‐based evaluation of disease–syndrome–formula associations by applying SoFDA",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yudong Liu;Jia Xu;Zecong Yu;Tong Chen;Ning Wang;Xia Du;Ping Wang;Xuezhong Zhou;Haiyu Xu;Yanqiong Zhang",
+      "id": "out-21775e345673",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ontology characterization, enrichment analysis, and similarity calculation‐based evaluation of disease–syndrome–formula associations by applying SoFDA — Yudong Liu;Jia Xu;Zecong Yu;Tong Chen;Ning Wang;Xia Du;Ping Wang;Xuezhong Zhou;Haiyu Xu;Yanqiong Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5557,
+            "end_char": 5818
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DrugRepPT: a deep pre-training and fine-tuning framework for drug repositioning based on drug’s expression perturbation and treatment effectiveness",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuyue Fan;Kuo Yang;Kezhi Lu;Xin Dong;Xianan Li;Qiang Zhu;Shao Li;Jianyang Zeng;Xuezhong Zhou",
+      "id": "out-f45719155b23",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DrugRepPT: a deep pre-training and fine-tuning framework for drug repositioning based on drug’s expression perturbation and treatment effectiveness — Shuyue Fan;Kuo Yang;Kezhi Lu;Xin Dong;Xianan Li;Qiang Zhu;Shao Li;Jianyang Zeng;Xuezhong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5824,
+            "end_char": 6073
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于关联文献的医学知识图谱的知识评价方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "花睿;周雪忠;舒梓心;杨扩",
+      "id": "out-7ef9512775e8",
+      "evidence": [
+        {
+          "quote": "[专利] 基于关联文献的医学知识图谱的知识评价方法及系统 — 花睿;周雪忠;舒梓心;杨扩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6079,
+            "end_char": 6122
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SoFDA: an integrated web platform from syndrome ontology to network-based evaluation of disease-syndrome-formula associations for precision medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanqiong Zhang;Ning Wang;Xia Du;Tong Chen;Zecong Yu;Yuewen Qin;Wenjia Chen;Meng Yu;Ping Wang;Huamin Zhang;Xuezhong Zhou;Luqi Huang;Haiyu Xu",
+      "id": "out-eff13611c19d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SoFDA: an integrated web platform from syndrome ontology to network-based evaluation of disease-syndrome-formula associations for precision medicine — Yanqiong Zhang;Ning Wang;Xia Du;Tong Chen;Zecong Yu;Yuewen Qin;Wenjia Chen;Meng Yu;Ping Wang;Huamin Zhang;Xuezhong Zhou;Luqi Huang;Haiyu Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6128,
+            "end_char": 6424
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中医真实世界临床研究范式、方法及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘保延;周雪忠;张润顺;李晓东;余海滨;雒琳;文天才;李洪皎;杨杰;王斌",
+      "id": "out-c5b54bc1fff4",
+      "evidence": [
+        {
+          "quote": "[奖励] 中医真实世界临床研究范式、方法及应用 — 刘保延;周雪忠;张润顺;李晓东;余海滨;雒琳;文天才;李洪皎;杨杰;王斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6430,
+            "end_char": 6491
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ISPO: An Integrated Ontology of Symptom Phenotypes for Semantic Integration of Traditional Chinese Medical Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zixin Shu;Rui Hua;Dengying Yan;Chenxia Lu;Meng Ren;Hong Gao;Ning Xu;Jun Li;Hui Zhu;Jia Zhang;Dan Zhao;Chenyang Hui;Chu Liao;Junqiu Ye;Qi Hao;Xinyan Wang;Xiaodong Li;Baoyan Liu;Xiaji Zhou;Runshun Zhang;Min Xu;Xuezhong Zhou",
+      "id": "out-26d3cb8a7c86",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ISPO: An Integrated Ontology of Symptom Phenotypes for Semantic Integration of Traditional Chinese Medical Data — Zixin Shu;Rui Hua;Dengying Yan;Chenxia Lu;Meng Ren;Hong Gao;Ning Xu;Jun Li;Hui Zhu;Jia Zhang;Dan Zhao;Chenyang Hui;Chu Liao;Junqiu Ye;Qi Hao;Xinyan Wang;Xiaodong Li;Baoyan Liu;Xiaji Zhou;Runshun Zhang;Min Xu;Xuezhong Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6497,
+            "end_char": 6838
+          },
+          "version": "331653f39d37dcc8c9b5"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

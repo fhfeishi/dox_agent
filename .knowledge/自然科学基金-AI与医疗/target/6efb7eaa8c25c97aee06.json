@@ -2,15 +2,20 @@
   "doc_id": "6efb7eaa8c25c97aee06",
   "version": "cc6b3c58188322c2bade",
   "source_hash": "46fdb2f26e421b015578b1d6d915b231e7ab3bd8373c1393b41f1ae2de8c1bf1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:26:11.266309+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:43.994749+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85b1c38f60a5",
-          "name": "多中心乳腺病理图像细胞核分割与识别",
-          "desc": "面向乳腺癌HE染色病理图像的定量化分析，研究多中心条件下的细胞核分割与识别方法。",
+          "id": "item-004573b74752",
+          "name": "乳腺癌HE病理图像细胞核分割与识别",
+          "desc": "病理检查是乳腺癌诊断金标准",
           "evidence": [
             {
-              "quote": "HE染色组织病理图像细胞核分割与识别是医学图像分析领域的研究热点和前沿",
+              "quote": "病理检查是乳腺癌诊断公认的“金标准”",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 709
+                "start_char": 2913,
+                "end_char": 2930
               },
               "version": "cc6b3c58188322c2bade"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4975687a97d4",
-          "name": "细胞核形态不一且多中心标注成本高",
-          "desc": "细胞核尺寸大小不一、常呈轮廓断裂模糊，易漏检和误分割；病理图像标注成本高、不同中心差异大，单中心模型泛化能力不佳。",
+          "id": "item-8a35b30d4e9d",
+          "name": "病理图像标注成本高、多中心差异大",
+          "desc": "单中心训练模型泛化不佳",
           "evidence": [
             {
-              "quote": "但细胞核尺寸大小不一，常呈现轮廓断裂、模糊的现象，容易导致细胞核漏检测和误分割",
+              "quote": "病理图像标注成本高、不同中心的图像存在较大差异，单中心数据训练的模型泛化性能不佳",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 711,
-                "end_char": 749
+                "start_char": 2971,
+                "end_char": 3010
               },
               "version": "cc6b3c58188322c2bade"
             }
@@ -63,31 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8ea42636df61",
-          "name": "形状先验嵌入网络与多中心深度元学习",
-          "desc": "将细胞核初始形状集转化为卷积核作为可学习组件嵌入深度网络并构建形状先验项与相似度量项；提出面向多中心分割的深度元学习方法，以多尺度全卷积网络为基学习器、元学习器指导初始化与参数更新。",
+          "id": "item-fc9bd67c934b",
+          "name": "代价敏感多任务学习框架",
+          "desc": "细胞核分割与分类",
           "evidence": [
             {
-              "quote": "将细胞核的初始形状集转化为卷积核，作为可学习组件嵌入深度网络中，构建形状先验项和形状相似度量项",
+              "quote": "提出了一种代价敏感多任务学习框架，用于乳腺癌等肿瘤的细胞核分割与分类",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 829,
-                "end_char": 875
+                "start_char": 3046,
+                "end_char": 3079
               },
               "version": "cc6b3c58188322c2bade"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-702f6ac546ea",
-          "name": "减少40%标注下实现细胞核精准分割",
-          "desc": "提出深度元学习的小样本细胞核分割算法，在减少40%标注情况下实现H&E染色病理图像细胞核精准分割；并提出FoCasNet有丝分裂检测与DB-block深度-宽度学习模块。",
+          "id": "item-a7e8c0258386",
+          "name": "深度元学习小样本细胞核分割",
+          "desc": "减少40%标注",
           "evidence": [
             {
               "quote": "提出了一种深度元学习的小样本细胞核分割算法，在减少40%的标注情况下实现了H&E染色病理图像的细胞核精准分割",
@@ -99,44 +99,556 @@
               "version": "cc6b3c58188322c2bade"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-080796ab6bae",
+          "name": "FoCasNet有丝分裂检测级联网络",
+          "desc": "乳腺癌有丝分裂自动检测",
+          "evidence": [
+            {
+              "quote": "提出了一个端到端级联网络模型（FoCasNet）用于乳腺癌有丝分裂的自动检测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3185,
+                "end_char": 3222
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-213b928fde16",
+          "name": "乳腺癌有丝分裂开源数据集",
+          "desc": "联合合作单位开源",
+          "evidence": [
+            {
+              "quote": "并联合合作单位开源了一个乳腺癌有丝分裂数据集",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3224,
+                "end_char": 3245
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-93d20366eb2d",
+          "name": "数字图像生物标记物预后分析",
+          "desc": "4家三甲医院临床数据验证",
+          "evidence": [
+            {
+              "quote": "相关算法和模型在国内4家三甲医院的临床数据得到有效验证",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3423,
+                "end_char": 3449
+              },
+              "version": "cc6b3c58188322c2bade"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-85b1c38f60a5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-4975687a97d4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于边缘优化和特征去噪的弱监督细胞核分割方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;侯飞虎;郭俊宇;蓝如师;汪华登;邓华虎;安娅君",
+      "id": "out-6e46c293030b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于边缘优化和特征去噪的弱监督细胞核分割方法及装置 — 潘细朋;侯飞虎;郭俊宇;蓝如师;汪华登;邓华虎;安娅君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3696,
+            "end_char": 3755
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-4975687a97d4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8ea42636df61"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肝脏肿瘤 CT 影像分割与可视化方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;陈家乐;裴书芳;刘振丙;裴书芳;范传松;俸思洋",
+      "id": "out-b5f6ffda1009",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肝脏肿瘤 CT 影像分割与可视化方法及系统 — 潘细朋;陈家乐;裴书芳;刘振丙;裴书芳;范传松;俸思洋",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3760,
+            "end_char": 3817
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8ea42636df61"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-702f6ac546ea"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PDBL: Improving Histopathological Tissue Classification with Plug-and-Play Pyramidal Deep-Broad Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiatai Lin;Guoqiang Han;Xipeng Pan;Zaiyi Liu;Hao Chen;Danyi Li;Xiping Jia;Zhenwei Shi;Zhizhen Wang;Yanfen Cui;Haiming Li;Changhong Liang;Li Liang;Ying Wang;Chu Han",
+      "id": "out-4de65a1cba43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] PDBL: Improving Histopathological Tissue Classification with Plug-and-Play Pyramidal Deep-Broad Learning — Jiatai Lin;Guoqiang Han;Xipeng Pan;Zaiyi Liu;Hao Chen;Danyi Li;Xiping Jia;Zhenwei Shi;Zhizhen Wang;Yanfen Cui;Haiming Li;Changhong Liang;Li Liang;Ying Wang;Chu Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3822,
+            "end_char": 4098
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Computerized tumor-infiltrating lymphocytes density score predicts survival of patients with resectable lung adenocarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xipeng Pan;Huan Lin;Chu Han;Zhengyun Feng;Yumeng Wang;Jiatai Lin;Bingjiang Qiu;Lixu Yan;Bingbing Li;Zeyan Xu;Zhizhen Wang;Ke Zhao;Zhenbing Liu;Changhong Liang;Xin Chen;Zhenhui Li;Yanfen Cui;Cheng Lu;Zaiyi Liu",
+      "id": "out-cfce4039de4f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Computerized tumor-infiltrating lymphocytes density score predicts survival of patients with resectable lung adenocarcinoma — Xipeng Pan;Huan Lin;Chu Han;Zhengyun Feng;Yumeng Wang;Jiatai Lin;Bingjiang Qiu;Lixu Yan;Bingbing Li;Zeyan Xu;Zhizhen Wang;Ke Zhao;Zhenbing Liu;Changhong Liang;Xin Chen;Zhenhui Li;Yanfen Cui;Cheng Lu;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4103,
+            "end_char": 4443
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "System and method for automatically identifying mitosis in H&E stained breast cancer pathological images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xipeng Pan;Xinjun Bian;Yinghua Lu;Zhenbing Liu;Zujun Qin;Rushi Lan;Huihua Yang;Huadeng Wang;Lingqiao Li;Ziming Wang;Jijun Cheng;Zhizhen Wang;Zhengyun Feng;Shilong Song",
+      "id": "out-4482e18f41a0",
+      "evidence": [
+        {
+          "quote": "[专利] System and method for automatically identifying mitosis in H&E stained breast cancer pathological images — Xipeng Pan;Xinjun Bian;Yinghua Lu;Zhenbing Liu;Zujun Qin;Rushi Lan;Huihua Yang;Huadeng Wang;Lingqiao Li;Ziming Wang;Jijun Cheng;Zhizhen Wang;Zhengyun Feng;Shilong Song",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4448,
+            "end_char": 4726
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于 LesionMix 和最小化的半监督肺癌医学影像分割方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;陈明威;蓝如师;刘再毅;卞新军;俸思洋;陈家乐",
+      "id": "out-b3162af613c5",
+      "evidence": [
+        {
+          "quote": "[专利] 基于 LesionMix 和最小化的半监督肺癌医学影像分割方法及装置 — 潘细朋;陈明威;蓝如师;刘再毅;卞新军;俸思洋;陈家乐",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4799
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于在线噪声抑制策略的弱监督病理图像组织分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;邓华虎;蓝如师;刘振丙;李灵巧;汪华登;安娅君;侯飞虎;卞新军",
+      "id": "out-8d8a85344394",
+      "evidence": [
+        {
+          "quote": "[专利] 基于在线噪声抑制策略的弱监督病理图像组织分割方法 — 潘细朋;邓华虎;蓝如师;刘振丙;李灵巧;汪华登;安娅君;侯飞虎;卞新军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 4870
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning What and Where to Learn: A New Perspective on Self-supervised Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenyi Zhao;Lu Yang;Weidong Zhang;Yongqin Tian;Wenhe Jia;Wei Li;Mu Yang;Xipeng Pan;Huihua Yang",
+      "id": "out-e81ac937e47f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning What and Where to Learn: A New Perspective on Self-supervised Learning — Wenyi Zhao;Lu Yang;Weidong Zhang;Yongqin Tian;Wenhe Jia;Wei Li;Mu Yang;Xipeng Pan;Huihua Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4875,
+            "end_char": 5056
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jianwei Lin;Jiatai Lin;Cheng Lu;Hao Chen;Huan Lin;Bingchao Zhao;Zhenwei Shi;Bingjiang Qiu;Xipeng Pan;Zeyan Xu;Biao Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu;Chu Han",
+      "id": "out-79c523b01a02",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CKD-TransBTS: Clinical Knowledge-Driven Hybrid Transformer With Modality-Correlated Cross-Attention for Brain Tumor Segmentation — Jianwei Lin;Jiatai Lin;Cheng Lu;Hao Chen;Huan Lin;Bingchao Zhao;Zhenwei Shi;Bingjiang Qiu;Xipeng Pan;Zeyan Xu;Biao Huang;Changhong Liang;Guoqiang Han;Zaiyi Liu;Chu Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5061,
+            "end_char": 5365
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Meta multi-task nuclei segmentation with fewer training samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chu Han;Huasheng Yao;Bingchao Zhao;Zhenhui Li;Zhenwei Shi;Lei Wu;Xin Chen;Jinrong Qu;Ke Zhao;Rushi Lan;Changhong Liang;Xipeng Pan;Zaiyi Liu",
+      "id": "out-9081b7802dcc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Meta multi-task nuclei segmentation with fewer training samples — Chu Han;Huasheng Yao;Bingchao Zhao;Zhenhui Li;Zhenwei Shi;Lei Wu;Xin Chen;Jinrong Qu;Ke Zhao;Rushi Lan;Changhong Liang;Xipeng Pan;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5371,
+            "end_char": 5582
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于交叉 Transformer 和 MLIF 的多模态融合生存预后方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;安娅君;林欢;杨辉华;周南;卞新军;刘再毅",
+      "id": "out-263723c56f92",
+      "evidence": [
+        {
+          "quote": "[专利] 基于交叉 Transformer 和 MLIF 的多模态融合生存预后方法 — 潘细朋;安娅君;林欢;杨辉华;周南;卞新军;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5588,
+            "end_char": 5656
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FedCL: Federated Contrastive Learning for Multi-center Medical Image Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenbing Liu;Fengfeng Wu;Yumeng Wang;Mengyu Yang;Xipeng Pan",
+      "id": "out-92211bd98ec3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FedCL: Federated Contrastive Learning for Multi-center Medical Image Classification — Zhenbing Liu;Fengfeng Wu;Yumeng Wang;Mengyu Yang;Xipeng Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5662,
+            "end_char": 5813
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel dataset and a two-stage mitosis nuclei detection method based on hybrid anchor branch",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huadeng Wang;Hao Xu;Bingbing Li;Xipeng Pan;Lingqi Zeng;Rushi Lan;Xiaonan Luo",
+      "id": "out-8db73cf1c88f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel dataset and a two-stage mitosis nuclei detection method based on hybrid anchor branch — Huadeng Wang;Hao Xu;Bingbing Li;Xipeng Pan;Lingqi Zeng;Rushi Lan;Xiaonan Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5819,
+            "end_char": 5997
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种HE染色病理图像数据扩充与增强的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;程纪钧;刘振丙;王子民;汪华登;冯拯云;卢慧敏;安娅君",
+      "id": "out-a2f3519d3aa1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种HE染色病理图像数据扩充与增强的方法 — 潘细朋;程纪钧;刘振丙;王子民;汪华登;冯拯云;卢慧敏;安娅君",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6003,
+            "end_char": 6061
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Adversarial Image Synthesis for Nuclei Segmentation of Histopathology Image",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jijun Cheng;Zimin Wang;Zhenbing Liu;Zhengyun Feng;Huadeng Wang;Xipeng Pan",
+      "id": "out-bfeb01596a94",
+      "evidence": [
+        {
+          "quote": "[会议论文] Deep Adversarial Image Synthesis for Nuclei Segmentation of Histopathology Image — Jijun Cheng;Zimin Wang;Zhenbing Liu;Zhengyun Feng;Huadeng Wang;Xipeng Pan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6067,
+            "end_char": 6229
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale pathology image texture signature is a prognostic factor for resectable lung adenocarcinoma: a multi-center, retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+      "id": "out-2b1dd1a82be3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale pathology image texture signature is a prognostic factor for resectable lung adenocarcinoma: a multi-center, retrospective study — Yumeng Wang;Xipeng Pan;Huan Lin;Chu Han;Yajun An;Bingjiang Qiu;Zhengyun Feng;Xiaomei Huang;Zeyan Xu;Zhenwei Shi;Xin Chen;Bingbing Li;Lixu Yan;Cheng Lu;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Zhenbing Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6235,
+            "end_char": 6579
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-task generative adversarial learning for nuclei segmentation with dual attention and recurrent convolution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huadeng Wang;Guang Xu;Xipeng Pan;Zhenbing Liu;Rushi Lan;Xiaonan Luo",
+      "id": "out-f7ae29b58efd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-task generative adversarial learning for nuclei segmentation with dual attention and recurrent convolution — Huadeng Wang;Guang Xu;Xipeng Pan;Zhenbing Liu;Rushi Lan;Xiaonan Luo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6585,
+            "end_char": 6773
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chu Han;Jiatai Lin;Jinhai Mai;Yi Wang;Qingling Zhang;Bingchao Zhao;Xin Chen;Xipeng Pan;Zhenwei Shi;Xiaowei Xu;Su Yao;Lixu Yan;Huan Lin;Zeyan Xu;Xiaomei Huang;Guoqiang Han;Changhong Liang;Zaiyi Liu",
+      "id": "out-60b4e0d24438",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-layer pseudo-supervision for histopathology tissue semantic segmentation using patch-level classification labels — Chu Han;Jiatai Lin;Jinhai Mai;Yi Wang;Qingling Zhang;Bingchao Zhao;Xin Chen;Xipeng Pan;Zhenwei Shi;Xiaowei Xu;Su Yao;Lixu Yan;Huan Lin;Zeyan Xu;Xiaomei Huang;Guoqiang Han;Changhong Liang;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6779,
+            "end_char": 7102
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "WEAKLY SUPERVISED PATHOLOGICAL IMAGE TISSUE SEGMENTATION METHOD BASED ON ONLINE NOISE SUPPRESSION STRATEGY",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xipeng Pan;Huahu Deng;Rushi Lan;Zhenbing Liu;Lingqiao Li;Huadeng Wang;Xinjun Bian;Yajun An;Feihu Hou",
+      "id": "out-55148c7bcd2b",
+      "evidence": [
+        {
+          "quote": "[专利] WEAKLY SUPERVISED PATHOLOGICAL IMAGE TISSUE SEGMENTATION METHOD BASED ON ONLINE NOISE SUPPRESSION STRATEGY — Xipeng Pan;Huahu Deng;Rushi Lan;Zhenbing Liu;Lingqiao Li;Huadeng Wang;Xinjun Bian;Yajun An;Feihu Hou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7108,
+            "end_char": 7321
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于双分支融合网络的病理图像智能分类系统及方法. 系统及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;宋世龙;冯拯云;卞新军;李灵巧;刘振丙;陆铖;刘再毅",
+      "id": "out-49612d27ab02",
+      "evidence": [
+        {
+          "quote": "[专利] 基于双分支融合网络的病理图像智能分类系统及方法. 系统及存储介质 — 潘细朋;宋世龙;冯拯云;卞新军;李灵巧;刘振丙;陆铖;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7327,
+            "end_char": 7396
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SMILE: Cost-sensitive multi-task learning for nuclear segmentation and classification with imbalanced annotations",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xipeng Pan;Jijun Cheng;Feihu Hou;Rushi Lan;Cheng Lu;Lingqiao Li;Zhengyun Feng;Huadeng Wang;Changhong Liang;Zhenbing Liu;Xin Chen;Chu Han;Zaiyi Liu",
+      "id": "out-444e9953d741",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SMILE: Cost-sensitive multi-task learning for nuclear segmentation and classification with imbalanced annotations — Xipeng Pan;Jijun Cheng;Feihu Hou;Rushi Lan;Cheng Lu;Lingqiao Li;Zhengyun Feng;Huadeng Wang;Changhong Liang;Zhenbing Liu;Xin Chen;Chu Han;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7402,
+            "end_char": 7670
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于病理和基因的多模态融合生存预后方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘细朋;安娅君;杨辉华;刘振丙;陆铖;周南;邓华虎;王钰萌;卞新军",
+      "id": "out-0a81bd168a4a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于病理和基因的多模态融合生存预后方法及装置 — 潘细朋;安娅君;杨辉华;刘振丙;陆铖;周南;邓华虎;王钰萌;卞新军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7676,
+            "end_char": 7738
+          },
+          "version": "cc6b3c58188322c2bade"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 22,
+    "listed": 22,
+    "by_kind": {
+      "专利": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "期刊论文": {
+        "listed": 11,
+        "extracted": 11
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

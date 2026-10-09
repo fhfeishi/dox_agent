@@ -2,15 +2,20 @@
   "doc_id": "5463294ca4ac7902d917",
   "version": "b8ed8ff21820dab8307a",
   "source_hash": "d8c32225072b392ec9756d030ce046eedcd313e31d1fa36e3da5a374671ee875",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.346013+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.808515+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-8f9e2e5f83bb",
           "name": "小儿脑性瘫痪早期精准诊断",
-          "desc": "小儿脑瘫发病率明显上升，严重影响患儿及家庭生活质量，但临床尚缺乏早期精准诊断方法。",
+          "desc": "脑损伤导致运动及姿势障碍",
           "evidence": [
             {
-              "quote": "小儿脑性瘫痪（CP）的发病率明显上升，严重影响患儿及其家庭的生活质量，但目前临床上尚缺乏早期精准诊断方法",
+              "quote": "小儿脑性瘫痪（CP）是妊娠期到出生后1个月内，由于多种因素引起患儿脑损伤，最终导致患儿出现运动及姿势障碍的一类非进行性脑损伤综合征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 675,
-                "end_char": 726
-              },
-              "version": "b8ed8ff21820dab8307a"
-            }
-          ]
-        },
-        {
-          "id": "item-51269232c248",
-          "name": "脑损伤早期诊断与干预参考依据",
-          "desc": "为临床早期诊断、分型及尽早干预提供重要参考依据。",
-          "evidence": [
-            {
-              "quote": "为临床早期诊断、分型及尽早干预提供重要的参考依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1010,
-                "end_char": 1033
+                "start_char": 2285,
+                "end_char": 2349
               },
               "version": "b8ed8ff21820dab8307a"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-84aeb2fdec7b",
-          "name": "临床尚缺乏早期精准诊断方法",
-          "desc": "目前临床上尚缺乏早期精准诊断方法。",
+          "id": "item-91caf36720bf",
+          "name": "临床上缺乏早期精准诊断方法",
+          "desc": "CP诊断",
           "evidence": [
             {
               "quote": "目前，临床上尚缺乏早期精准诊断方法",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 2351,
                 "end_char": 2367
-              },
-              "version": "b8ed8ff21820dab8307a"
-            }
-          ]
-        },
-        {
-          "id": "item-a0a55a27a8a0",
-          "name": "DKI在小儿脑损伤研究不多",
-          "desc": "DKI技术更适合检测组织微观结构变化，但既往多在成人中验证，在脑损伤患儿中的研究不多。",
-          "evidence": [
-            {
-              "quote": "并在其他神经系统疾病中得到了验证，到那时大多是在成人中，在脑损伤患儿中的研究不多",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2409,
-                "end_char": 2448
               },
               "version": "b8ed8ff21820dab8307a"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bf72e04adfb5",
-          "name": "快速FLAIR DKI序列研发与验证",
-          "desc": "研发适用于小儿CP检查的快速FLAIR DKI序列，利用动物模型进行优化验证和病理验证，最后对CP患儿进行临床测试。",
+          "id": "item-f5c05591d6e7",
+          "name": "快速FLAIR DKI序列",
+          "desc": "提高信噪比和分辨率并缩短扫描时间",
           "evidence": [
             {
-              "quote": "本研究将研发新的适用于小儿CP检查的快速FLAIR DKI序列，然后利用动物模型对序列进行优化验证和病理验证，最后对CP患儿进行临床测试",
+              "quote": "本研究研发了一种快速扩散峰度成像技术FLAIR DKI，提高传统DKI图像信噪比和分辨率，缩短扫描时间还能获取更优质的图像",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 777,
-                "end_char": 844
+                "start_char": 2450,
+                "end_char": 2510
               },
               "version": "b8ed8ff21820dab8307a"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f413091a7683",
-          "name": "深度学习影像组学诊断预测模型",
-          "desc": "研发基于深度学习的影像组学方法用于影像数据分析，建立CP患儿诊断和预测模型。",
+          "id": "item-1039a8d50acf",
+          "name": "VBA自动全脑分析",
+          "desc": "显示皮层和小脑损伤",
           "evidence": [
             {
-              "quote": "本研究还将研发基于深度学习的影像组学方法用于影像数据分析，建立CP患儿的诊断和预测模型",
+              "quote": "基于VBA自动全脑分析表明，除了脑损伤常见的大脑白质和深部灰质易损区外，还显示脑损伤患儿皮层和小脑损伤",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 846,
-                "end_char": 888
+                "start_char": 2899,
+                "end_char": 2949
               },
               "version": "b8ed8ff21820dab8307a"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -133,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c73d59306df",
-          "name": "FLAIR DKI提高信噪比与分辨率",
-          "desc": "研发快速扩散峰度成像技术FLAIR DKI，提高传统DKI图像信噪比和分辨率，缩短扫描时间并获取更优质图像。",
-          "evidence": [
-            {
-              "quote": "本研究研发了一种快速扩散峰度成像技术FLAIR DKI，提高传统DKI图像信噪比和分辨率，缩短扫描时间还能获取更优质的图像，更适合临床患儿的精准检查",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2450,
-                "end_char": 2523
-              },
-              "version": "b8ed8ff21820dab8307a"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-73d4afecae68",
-          "name": "峰度参数诊断效能超过0.8",
-          "desc": "脑损伤患儿和对照组大部分峰度参数值的诊断效能超过0.8，且峰度参数越低提示脑损伤越重。",
+          "id": "item-42c5f29be491",
+          "name": "峰度参数诊断效能",
+          "desc": "大部分峰度参数值诊断效能超过0.8",
           "evidence": [
             {
               "quote": "分析发现脑损伤患儿和对照组大部分峰度参数值的诊断效能超过了0.8，且峰度参数越低，提示脑损伤越重",
@@ -164,72 +122,405 @@
               "version": "b8ed8ff21820dab8307a"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d07515088f99",
-          "name": "深部灰质诊断效能优于白质",
-          "desc": "深部灰质在诊断脑损伤及鉴别不同分组中的效能均较高，明显优于中央白质和外周白质，VBA分析还显示皮层和小脑损伤。",
-          "evidence": [
-            {
-              "quote": "同时还发现深度灰质在诊断脑损伤及鉴别脑损伤不同分组中的效能均较高，明显优于中央白质和外周白质",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2852,
-                "end_char": 2897
-              },
-              "version": "b8ed8ff21820dab8307a"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8f9e2e5f83bb"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-84aeb2fdec7b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "通过T1和T2值评估发育性语言障碍儿童的脑微结构改变",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙永兵;赵鑫;邢庆娜;窦豆;宣德胜;孟令松;张小安",
+      "id": "out-ade33c63f834",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 通过T1和T2值评估发育性语言障碍儿童的脑微结构改变 — 孙永兵;赵鑫;邢庆娜;窦豆;宣德胜;孟令松;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3114,
+            "end_char": 3174
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-84aeb2fdec7b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bf72e04adfb5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diffusion tensor imaging reveals delayed  neurodevelopment in preterm neonates with  respiratory distress syndrome: a retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiying Zhu;Xin Zhao;Qingna Xing;Chengcheng Wang;Desheng Xuan;Honglei Shang;Xiaoan Zhang",
+      "id": "out-de364821976f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diffusion tensor imaging reveals delayed  neurodevelopment in preterm neonates with  respiratory distress syndrome: a retrospective study — Peiying Zhu;Xin Zhao;Qingna Xing;Chengcheng Wang;Desheng Xuan;Honglei Shang;Xiaoan Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3179,
+            "end_char": 3413
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bf72e04adfb5"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0c73d59306df"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "妊娠期高血压疾病的子代脑发育研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张淳翔;赵鑫;张小安",
+      "id": "out-5d446941e50d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 妊娠期高血压疾病的子代脑发育研究进展 — 张淳翔;赵鑫;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3418,
+            "end_char": 3455
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f413091a7683"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d07515088f99"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "妊娠期高血压的早产儿脑发育DTI参数与C反应蛋白和降钙素原水平的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张淳翔;赵鑫;张小安",
+      "id": "out-2ecff7b53907",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 妊娠期高血压的早产儿脑发育DTI参数与C反应蛋白和降钙素原水平的相关性 — 张淳翔;赵鑫;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3460,
+            "end_char": 3514
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "全身振动训练联合肉毒毒素注射对痉挛型双瘫脑瘫儿童尖足及粗大运动功能的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任雪松;蔡志军;张小安;刘杰;陈镇;朱登纳",
+      "id": "out-5cb7351fd17e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 全身振动训练联合肉毒毒素注射对痉挛型双瘫脑瘫儿童尖足及粗大运动功能的影响 — 任雪松;蔡志军;张小安;刘杰;陈镇;朱登纳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3519,
+            "end_char": 3585
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DTI 评价高危妊娠早产儿脑发育及与胎儿脐动脉血流频谱的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "韩义娜;刘彦超;赵鑫;张小安;刘真真",
+      "id": "out-cbbb4237a1ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DTI 评价高危妊娠早产儿脑发育及与胎儿脐动脉血流频谱的相关性 — 韩义娜;刘彦超;赵鑫;张小安;刘真真",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3590,
+            "end_char": 3648
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "子痫前期孕妇胎儿血流频谱与早产儿脑发育的相关性",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘彦超;赵鑫;赵彩雯;邢庆娜;张小安",
+      "id": "out-8dcf0fd7516c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 子痫前期孕妇胎儿血流频谱与早产儿脑发育的相关性 — 刘彦超;赵鑫;赵彩雯;邢庆娜;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3653,
+            "end_char": 3703
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "弥散峰度成像评估3~5岁孤独症谱系障碍儿童胼胝体改变",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙永兵;赵鑫;邢庆娜;孟令松;何雄鹏;张小安",
+      "id": "out-b947450a31f9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 弥散峰度成像评估3~5岁孤独症谱系障碍儿童胼胝体改变 — 孙永兵;赵鑫;邢庆娜;孟令松;何雄鹏;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3708,
+            "end_char": 3765
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "极低出生体重儿脑损伤和神经行为预后的影像学早期诊断价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张同贞;王程程;张小安;陈艳;赵鑫",
+      "id": "out-2fa7ccb8e7ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 极低出生体重儿脑损伤和神经行为预后的影像学早期诊断价值 — 张同贞;王程程;张小安;陈艳;赵鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3770,
+            "end_char": 3823
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2~4 岁孤独症谱系障男童的脑磁共振扩散峰度成像研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙永兵;赵鑫;邢庆娜;李双宇;张小安",
+      "id": "out-4cc4a51ae6a2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 2~4 岁孤独症谱系障男童的脑磁共振扩散峰度成像研究 — 孙永兵;赵鑫;邢庆娜;李双宇;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3829,
+            "end_char": 3882
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "妊娠期糖尿病早产儿脑发育的影像学评估",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈艳;张小安;韩义娜;王程程;赵鑫",
+      "id": "out-08cbf179832d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 妊娠期糖尿病早产儿脑发育的影像学评估 — 陈艳;张小安;韩义娜;王程程;赵鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3888,
+            "end_char": 3932
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DTI 联合超声评估妊娠期甲状腺功能减退对早产儿脑发育的影响",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘彦超;赵鑫;邢庆娜;赵彩雯;宣德胜;张小安",
+      "id": "out-423154a5595d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DTI 联合超声评估妊娠期甲状腺功能减退对早产儿脑发育的影响 — 刘彦超;赵鑫;邢庆娜;赵彩雯;宣德胜;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 3999
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of crossed cerebellar diaschisis after cerebral  infarction in MCAO rats based on DKI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhen Ma;Xin Zhao;Xiao Wang;Qi Ren;Shuo Zhang;Lin Lu;Kaiyu Wang;Qingqing Lv;Jingliang Cheng",
+      "id": "out-a83bd89c22e1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of crossed cerebellar diaschisis after cerebral  infarction in MCAO rats based on DKI — Zhen Ma;Xin Zhao;Xiao Wang;Qi Ren;Shuo Zhang;Lin Lu;Kaiyu Wang;Qingqing Lv;Jingliang Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4005,
+            "end_char": 4200
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "弥散峰度成像评估低年龄段孤独症谱系障碍 男童脑结构改变",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "邢庆娜;孙永兵;赵鑫;陆林;廖俊杰;李双宇;张小安",
+      "id": "out-7f3a508a0ca5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 弥散峰度成像评估低年龄段孤独症谱系障碍 男童脑结构改变 — 邢庆娜;孙永兵;赵鑫;陆林;廖俊杰;李双宇;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4206,
+            "end_char": 4267
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "出生后感染 /炎症对早产儿脑白质微结构影响的 DTI 研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵彩雯;赵鑫;刘彦超;邢庆娜;张小安",
+      "id": "out-bbeab507882e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 出生后感染 /炎症对早产儿脑白质微结构影响的 DTI 研究 — 赵彩雯;赵鑫;刘彦超;邢庆娜;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4273,
+            "end_char": 4329
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain Development in Infants of Mothers With Gestational Diabetes Mellitus: A Diffusion Tensor Imaging Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "De-Sheng Xuan;Xin Zhao;Yan-Chao Liu;Qing-Na Xing;Hong-Lei Shang;Pei-Ying Zhu;Xiao-An Zhang",
+      "id": "out-9d7549deac03",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain Development in Infants of Mothers With Gestational Diabetes Mellitus: A Diffusion Tensor Imaging Study — De-Sheng Xuan;Xin Zhao;Yan-Chao Liu;Qing-Na Xing;Hong-Lei Shang;Pei-Ying Zhu;Xiao-An Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4335,
+            "end_char": 4542
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态功能磁共振成像诊断急性播散性脑脊髓炎",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘彦超;赵鑫;宣德胜;张永远;王程程;赵彩雯;蔡瑞瑞;张小安",
+      "id": "out-88d0a426332a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态功能磁共振成像诊断急性播散性脑脊髓炎 — 刘彦超;赵鑫;宣德胜;张永远;王程程;赵彩雯;蔡瑞瑞;张小安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4548,
+            "end_char": 4608
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Value of Diffusion Kurtosis Imaging in Detecting Delayed Brain Development of Premature Infants",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xin Zhao;Chunxiang Zhang;Bohao Zhang;Jiayue Yan;Kaiyu Wang;Zitao Zhu;Xiaoan Zhang",
+      "id": "out-9b2a4969b324",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Value of Diffusion Kurtosis Imaging in Detecting Delayed Brain Development of Premature Infants — Xin Zhao;Chunxiang Zhang;Bohao Zhang;Jiayue Yan;Kaiyu Wang;Zitao Zhu;Xiaoan Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4614,
+            "end_char": 4803
+          },
+          "version": "b8ed8ff21820dab8307a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      }
+    },
+    "consistent": true
+  }
 }

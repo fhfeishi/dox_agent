@@ -2,15 +2,20 @@
   "doc_id": "58f14e481b1fc1f33153",
   "version": "65aaf7b8eeec08fb66d3",
   "source_hash": "3832e205848cdbd2da1f0ee61ee94a8f5cc22dcfe630a43f75d12c2fa7fe2bb1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:25:56.206355+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:43:06.337164+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c61d0247424",
-          "name": "肺腺癌EGFR基因突变无创预测",
-          "desc": "EGFR基因突变是肺腺癌最常见突变类型，精准识别突变状态对选择治疗方案至关重要。",
+          "id": "item-9fc7ec96630d",
+          "name": "肺腺癌EGFR基因突变预测",
+          "desc": "EGFR突变是最常见突变类型",
           "evidence": [
             {
               "quote": "表皮生长因子受体（EGFR）基因突变是肺腺癌最常见的突变类型，精准识别其突变状态对选择治疗方案至关重要",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 666,
                 "end_char": 716
-              },
-              "version": "65aaf7b8eeec08fb66d3"
-            }
-          ]
-        },
-        {
-          "id": "item-15e1256697c5",
-          "name": "肺腺癌治疗方案选择支持",
-          "desc": "开发联合临床特征与多模态影像组学特征的预测模型，为肺腺癌治疗方案选择提供支持。",
-          "evidence": [
-            {
-              "quote": "开发新的联合临床特征与多模态影像组学特征的肺腺癌EGFR基因突变预测模型，为肺腺癌的治疗方案选择提供重要支持",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1003,
-                "end_char": 1056
               },
               "version": "65aaf7b8eeec08fb66d3"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bd2202613e61",
-          "name": "活检有创且难反映肿瘤全貌",
-          "desc": "组织学活检为有创检查，且因肿瘤异质性活检标本难以准确反映整个肿瘤的突变状况。",
+          "id": "item-2eeafd3fc39e",
+          "name": "组织活检有创且难反映肿瘤异质性",
+          "desc": "无创预测EGFR突变迫切需求",
           "evidence": [
             {
-              "quote": "组织学活检是目前检测EGFR基因突变状态的最主要方法，但其为有创检查；而且由于肿瘤的异质性，活检组织标本难以准确反映整个肿瘤的突变状况",
+              "quote": "利用临床资料、影像信息等无创手段预测EGFR基因突变已成为新的研究热点和迫切的临床需求",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 718,
-                "end_char": 784
-              },
-              "version": "65aaf7b8eeec08fb66d3"
-            }
-          ]
-        },
-        {
-          "id": "item-88e0b2020065",
-          "name": "现有研究模态单一准确度受限",
-          "desc": "现有研究影像模态单一、影像特征描述简单、特征与基因关联分析方法简单，限制预测准确度。",
-          "evidence": [
-            {
-              "quote": "但现有研究由于影像模态单一，影像特征描述简单，特征与基因关联分析方法简单，限制了预测结果的准确度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 832,
-                "end_char": 879
+                "start_char": 788,
+                "end_char": 830
               },
               "version": "65aaf7b8eeec08fb66d3"
             }
@@ -95,36 +68,21 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0897f31a7907",
-          "name": "深度卷积自编码器特征自提取",
-          "desc": "研究多模态影像组学实验设计、基于深度卷积自编码器的影像组学特征自提取模型及多任务多视角双边多变量关联分析模型。",
+          "id": "item-7e8fdffd829f",
+          "name": "CT/PET/PET-CT影像组学",
+          "desc": "诊断与鉴别EGFR突变",
           "evidence": [
             {
-              "quote": "重点研究多模态影像组学实验设计、基于深度卷积自编码器的影像组学特征自提取模型和多任务多视角双边多变量关联分析模型等核心技术",
+              "quote": "并研究了PET、CT、PET-CT影像组学对肺腺癌EGFR基因突变的诊断与鉴别诊断价值",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 941,
-                "end_char": 1001
+                "start_char": 3094,
+                "end_char": 3136
               },
               "version": "65aaf7b8eeec08fb66d3"
             }
-          ]
-        },
-        {
-          "id": "item-d5f06cd28fe4",
-          "name": "CT与PET影像组学特征提取",
-          "desc": "提取肿瘤感兴趣区域的GLCM、GLRLM、GLSZM、NGTDM、GLDM纹理特征及小波变换等图像变换特征。",
-          "evidence": [
-            {
-              "quote": "提取肿瘤感兴趣区域的影像组学特征如灰度共生矩阵（GLCM）、灰度游程矩阵（GLRLM）、灰度区域大小矩阵（GLSZM）、邻域灰度差异矩阵（NGTDM）、灰度依赖矩阵（GLDM）纹理特征以及图像变换特征（小波变换和拉普拉斯变换特征）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2909,
-                "end_char": 3023
-              },
-              "version": "65aaf7b8eeec08fb66d3"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +91,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ec10a1828857",
-          "name": "CT征象可无创评价突变状态",
-          "desc": "胸腔积液、肿瘤最大直径和肺气肿在突变型与野生型间有统计学差异，CT征象可作为无创评价指标。",
-          "evidence": [
-            {
-              "quote": "CT征象可作为无创评价肺腺癌EGFR基因突变状态的指标，有助于肺腺癌EGFR基因突变状态的鉴别诊断",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3218,
-                "end_char": 3266
-              },
-              "version": "65aaf7b8eeec08fb66d3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-480efa0113ed",
-          "name": "多模态影像组学与突变状态相关",
-          "desc": "CT、PET与PET-CT影像组学特征均与肺腺癌EGFR基因突变状态具有相关性，具有较高诊断价值。",
-          "evidence": [
-            {
-              "quote": "CT影像组学特征、PET影像组学特征和PET-CT影像组学特征均与肺腺癌EGFR基因突变状态具有相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3323,
-                "end_char": 3373
-              },
-              "version": "65aaf7b8eeec08fb66d3"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-220cf3c35d7a",
-          "name": "多模态影像组学实验数据集",
-          "desc": "收集经手术病理证实并完善EGFR基因检测的肺腺癌患者CT 320例、PET-CT 118例。",
+          "id": "item-95fae9cc8021",
+          "name": "CT与PET-CT队列",
+          "desc": "CT 320例、PET-CT 118例",
           "evidence": [
             {
               "quote": "其中CT扫描320例（EGFR突变型234例，EGFR野生型86例），PET-CT扫描118例（EGFR突变型71例，EGFR野生型47例）",
@@ -181,55 +105,218 @@
               "version": "65aaf7b8eeec08fb66d3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7c946e12ad3e",
+          "name": "CT征象与EGFR突变相关",
+          "desc": "胸腔积液、肿瘤直径、肺气肿",
+          "evidence": [
+            {
+              "quote": "胸腔积液、肿瘤最大直径和肺气肿在肺腺癌EGFR突变型和EGFR野生型间有统计学差异",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3143,
+                "end_char": 3183
+              },
+              "version": "65aaf7b8eeec08fb66d3"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0c61d0247424"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-bd2202613e61"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "定量CT测得术后肺功能预测值评估肺叶切除术后肺部并发症的价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐春艳;犹露;李昌明;彭娟;余虹;李邦国",
+      "id": "out-b5aefd3c54a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 定量CT测得术后肺功能预测值评估肺叶切除术后肺部并发症的价值 — 徐春艳;犹露;李昌明;彭娟;余虹;李邦国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3446,
+            "end_char": 3505
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bd2202613e61"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-0897f31a7907"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-Supervised Interactive Embedding for One-Shot Organ Segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Yang;Bo Wang;Dingwen Zhang;Yixuan Yuan;Qingsen Yan;Shijie Zhao;Zheng You;Junwei Han",
+      "id": "out-826a4abcfa1f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-Supervised Interactive Embedding for One-Shot Organ Segmentation — Yang Yang;Bo Wang;Dingwen Zhang;Yixuan Yuan;Qingsen Yan;Shijie Zhao;Zheng You;Junwei Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3510,
+            "end_char": 3676
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0897f31a7907"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-480efa0113ed"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中华皮肤软组织临床应用解剖学",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "魏在荣;于胜波;张体江;聂开瑜;郑楠;李邦国;林涧;刘融",
+      "id": "out-f343e0c96a33",
+      "evidence": [
+        {
+          "quote": "[专著] 中华皮肤软组织临床应用解剖学 — 魏在荣;于胜波;张体江;聂开瑜;郑楠;李邦国;林涧;刘融",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3681,
+            "end_char": 3730
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d5f06cd28fe4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-220cf3c35d7a"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“多角度、全过程”医学影像学研究生人才培养体系构建与实践",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张体江;李邦国;刘衡;陈华;文丹;冯发文;张高峰",
+      "id": "out-dc111e839271",
+      "evidence": [
+        {
+          "quote": "[奖励] “多角度、全过程”医学影像学研究生人才培养体系构建与实践 — 张体江;李邦国;刘衡;陈华;文丹;冯发文;张高峰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3735,
+            "end_char": 3794
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "影像组学在肺结节诊断的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "犹露;李邦国",
+      "id": "out-a404d6ce1842",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 影像组学在肺结节诊断的研究进展 — 犹露;李邦国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3799,
+            "end_char": 3829
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "End-to-end Prediction of EGFR Mutation Status with Denseformer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shijie Zhao;Wenyuan Li;Zhuoyan Liu;Tianji Pang;Yang Yang;Ning Qiang;Jingyi Zhao;Bangguo Li;Baiying Lei;Junwei Han",
+      "id": "out-bba9affae8ad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] End-to-end Prediction of EGFR Mutation Status with Denseformer — Shijie Zhao;Wenyuan Li;Zhuoyan Liu;Tianji Pang;Yang Yang;Ning Qiang;Jingyi Zhao;Bangguo Li;Baiying Lei;Junwei Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3834,
+            "end_char": 4018
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An explainable deep learning framework for characterizing and interpreting human brain states",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shu Zhang;Junxin Wang;Sigang Yu;Ruoyang Wang;Junwei Han;Shijie Zhao;Tianming Liu;Jinglei Lv",
+      "id": "out-d2f0fa2410b5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An explainable deep learning framework for characterizing and interpreting human brain states — Shu Zhang;Junxin Wang;Sigang Yu;Ruoyang Wang;Junwei Han;Shijie Zhao;Tianming Liu;Jinglei Lv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4023,
+            "end_char": 4216
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT传统机器学习和深度神经网络预测肺腺癌表皮生长因子受体基因突变",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "娄琴;罗显丽;刘欢;犹露;黄琼;赵世杰;李邦国",
+      "id": "out-5c303ba7f603",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT传统机器学习和深度神经网络预测肺腺癌表皮生长因子受体基因突变 — 娄琴;罗显丽;刘欢;犹露;黄琼;赵世杰;李邦国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4221,
+            "end_char": 4287
+          },
+          "version": "65aaf7b8eeec08fb66d3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

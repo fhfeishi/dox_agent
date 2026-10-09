@@ -2,15 +2,20 @@
   "doc_id": "67e167c4cad9f78c3f50",
   "version": "b018b8c7cca773d94683",
   "source_hash": "98c8c25672a3a6880d25488fc2332c3d565398a0b8b7810666af74acefa875f8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:28:03.657608+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:23.895907+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5810c600c423",
-          "name": "局部进展期直肠癌新辅助放化疗",
-          "desc": "局部进展期直肠癌患者新辅助治疗后疗效差异明显，需精准评估以指导后续治疗。",
+          "id": "item-63db12570b61",
+          "name": "局部进展期直肠癌新辅助放化疗疗效预测",
+          "desc": "肿瘤乏氧微环境影响疗效",
           "evidence": [
             {
-              "quote": "局部进展期直肠癌(LARC)患者新辅助治疗(nCRT)后疗效差异明显",
+              "quote": "肿瘤乏氧微环境是nCRT疗效的重要影响因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 692,
-                "end_char": 725
-              },
-              "version": "b018b8c7cca773d94683"
-            }
-          ]
-        },
-        {
-          "id": "item-741a3e2df8bd",
-          "name": "直肠癌MRI影像组学预后分层",
-          "desc": "基于MRI影像组学模型对直肠癌患者进行预后风险分层。",
-          "evidence": [
-            {
-              "quote": "Radiomics based on readout-segmented echo-planar imaging (RS-EPI) diffusion-weighted imaging (DWI) for prognostic risk stratification of patients with rectal cancer",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3644,
-                "end_char": 3807
+                "start_char": 732,
+                "end_char": 752
               },
               "version": "b018b8c7cca773d94683"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9ab01083e744",
-          "name": "缺乏客观定量评估乏氧影像方法",
-          "desc": "肿瘤乏氧微环境是nCRT疗效的重要影响因素，但缺乏客观定量评估乏氧的影像学方法。",
+          "id": "item-f894fd118269",
+          "name": "nCRT个体化疗效差异大",
+          "desc": "需精准评估乏氧",
           "evidence": [
             {
-              "quote": "但目前缺乏客观定量评估乏氧的影像学方法",
+              "quote": "nCRT目前的个体化疗效各有差异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 774,
-                "end_char": 792
-              },
-              "version": "b018b8c7cca773d94683"
-            }
-          ]
-        },
-        {
-          "id": "item-ea07431df298",
-          "name": "nCRT个体化疗效差异明显",
-          "desc": "nCRT疗效评估是制定后续精准治疗方案的有利因素，可提高远期生存质量。",
-          "evidence": [
-            {
-              "quote": "而nCRT目前的个体化疗效各有差异，对于nCRT的疗效评估是制定LARC患者后续精准治疗方案的有利因素",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2730,
-                "end_char": 2780
+                "start_char": 2731,
+                "end_char": 2746
               },
               "version": "b018b8c7cca773d94683"
             }
@@ -95,52 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9038fb3e94ab",
-          "name": "DCE-MRI与IVIM-DWI组学量化乏氧",
-          "desc": "提出DCE-MRI及IVIM-DWI影像组学能更精准量化乏氧，并据此构建预测nCRT疗效的模型。",
+          "id": "item-0477dce701a8",
+          "name": "DCE-MRI影像组学评估乏氧",
+          "desc": "HIF-1α表达",
           "evidence": [
             {
-              "quote": "DCE-MRI及IVIM-DWI影像组学能更精准量化乏氧;据此构建的模型可评估LARC患者乏氧进而预测nCRT疗效",
+              "quote": "搭建基于病理的组学模型，与DCE-MRI影像组学特征相匹配，数据得到mean Ktrans和mean Ve评估HIF-1α表达水平的AUC值分别为0.689和0.626",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 849,
-                "end_char": 905
+                "start_char": 2877,
+                "end_char": 2960
               },
               "version": "b018b8c7cca773d94683"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-350b938cba30",
-          "name": "直接手术患者MRI表征建模",
-          "desc": "利用直接手术直肠癌患者术前MRI影像组学表征建立乏氧量化模型，明确其评估价值。",
+          "id": "item-aa598bfeca81",
+          "name": "多序列MRI影像组学预测nCRT疗效",
+          "desc": "T2WI、DWI、DKI",
           "evidence": [
             {
-              "quote": "利用直接手术的直肠癌患者术前MRI影像组学表征建立乏氧量化模型，明确其评估肿瘤乏氧的价值",
+              "quote": "基于常规T2WI序列、DWI序列、DKI序列等MRI序列的影像组学模型在预测nCRT疗效上都具有优势",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 917,
-                "end_char": 960
+                "start_char": 3066,
+                "end_char": 3115
               },
               "version": "b018b8c7cca773d94683"
             }
-          ]
-        },
-        {
-          "id": "item-c97eb4b968ae",
-          "name": "乏氧组学与临床病理融合预测",
-          "desc": "融合乏氧影像组学表征与临床病理因素构建疗效早期预测模型，实现疗效精准量化分层。",
-          "evidence": [
-            {
-              "quote": "最终融合乏氧影像组学表征、临床病理因素构建疗效早期预测模型，实现疗效精准量化分层",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1005,
-                "end_char": 1044
-              },
-              "version": "b018b8c7cca773d94683"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-073ad12c7861",
-          "name": "Ktrans与Ve评估HIF-1α",
-          "desc": "基于病理组学模型与DCE-MRI影像组学特征匹配，mean Ktrans和mean Ve评估HIF-1α表达的AUC分别为0.689和0.626。",
-          "evidence": [
-            {
-              "quote": "数据得到mean Ktrans和mean Ve评估HIF-1α表达水平的AUC值分别为0.689和0.626",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2907,
-                "end_char": 2960
-              },
-              "version": "b018b8c7cca773d94683"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-81d9f5c97000",
-          "name": "HIF-1α评分与Ktrans显著相关",
-          "desc": "HIF-1α_score与mean Ktrans和mean Ve显著相关，验证影像组学模型评估肿瘤乏氧的价值。",
+          "id": "item-32c0c39b9931",
+          "name": "HIF-1α_score与影像参数相关",
+          "desc": "mean Ktrans r=0.365",
           "evidence": [
             {
               "quote": "HIF-1α_score与mean Ktrans（r=0.365，P＜0.001）和mean Ve（r=0.208，P=0.022）显著相关",
@@ -180,72 +122,132 @@
               "version": "b018b8c7cca773d94683"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-36efa10f69f0",
-          "name": "常规MRI组学可预测nCRT疗效",
-          "desc": "基于T2WI、DWI、DKI等序列的影像组学模型在预测nCRT疗效上均具优势。",
-          "evidence": [
-            {
-              "quote": "我们还发现基于常规T2WI序列、DWI序列、DKI序列等MRI序列的影像组学模型在预测nCRT疗效上都具有优势",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3061,
-                "end_char": 3115
-              },
-              "version": "b018b8c7cca773d94683"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5810c600c423"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9ab01083e744"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Percentage of Tumor Invasion at Pretreatment High-Resolution Magnetic Resonance Imaging: Associating With Aggressive and Tumor Response in Chinese T3 Rectal Cancer-Preliminary Results",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoxin Hu;Jianwen Li;Yinan Sun;Yiqun Sun;Tong Tong",
+      "id": "out-4a285dfd5795",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Percentage of Tumor Invasion at Pretreatment High-Resolution Magnetic Resonance Imaging: Associating With Aggressive and Tumor Response in Chinese T3 Rectal Cancer-Preliminary Results — Xiaoxin Hu;Jianwen Li;Yinan Sun;Yiqun Sun;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3329,
+            "end_char": 3572
+          },
+          "version": "b018b8c7cca773d94683"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9ab01083e744"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9038fb3e94ab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DKI直方图预测局部进展期直肠癌患者预后的临床价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙轶群;刘宗霖;付彩霞;信超;沈长清;童彤",
+      "id": "out-c8bbb3ed760a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DKI直方图预测局部进展期直肠癌患者预后的临床价值 — 孙轶群;刘宗霖;付彩霞;信超;沈长清;童彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3577,
+            "end_char": 3632
+          },
+          "version": "b018b8c7cca773d94683"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9038fb3e94ab"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-073ad12c7861"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics based on readout-segmented echo-planar imaging (RS-EPI) diffusion-weighted imaging (DWI) for prognostic risk stratification of patients with rectal cancer: a two-centre, machine learning study using the framework of predictive, preventive, and personalized medicine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zonglin Liu;Yueming Wang;Fu Shen;Zhiyuan Zhang;Jing Gong;Caixia Fu;Changqing Shen;Rong Li;Guodong Jing;Sanjun Cai;Zhen Zhang;Yiqun Sun;Tong Tong",
+      "id": "out-291b1c23e316",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics based on readout-segmented echo-planar imaging (RS-EPI) diffusion-weighted imaging (DWI) for prognostic risk stratification of patients with rectal cancer: a two-centre, machine learning study using the framework of predictive, preventive, and personalized medicine — Zonglin Liu;Yueming Wang;Fu Shen;Zhiyuan Zhang;Jing Gong;Caixia Fu;Changqing Shen;Rong Li;Guodong Jing;Sanjun Cai;Zhen Zhang;Yiqun Sun;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3637,
+            "end_char": 4065
+          },
+          "version": "b018b8c7cca773d94683"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c97eb4b968ae"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-36efa10f69f0"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic prediction value of the clinical-radiomics tumour-stroma ratio in locally advanced rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chongpeng Cai;Tingdan Hu;Zening Rong;Jing Gong;Tong Tong",
+      "id": "out-8b77fdbb5f4c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic prediction value of the clinical-radiomics tumour-stroma ratio in locally advanced rectal cancer — Chongpeng Cai;Tingdan Hu;Zening Rong;Jing Gong;Tong Tong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4070,
+            "end_char": 4242
+          },
+          "version": "b018b8c7cca773d94683"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "功能磁共振成像定量评估肿瘤微环境乏氧的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘宗霖;孙轶群;童彤",
+      "id": "out-733063ebcc58",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 功能磁共振成像定量评估肿瘤微环境乏氧的研究 — 刘宗霖;孙轶群;童彤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4247,
+            "end_char": 4287
+          },
+          "version": "b018b8c7cca773d94683"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

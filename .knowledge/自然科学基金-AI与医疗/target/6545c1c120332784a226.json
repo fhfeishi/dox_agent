@@ -2,15 +2,20 @@
   "doc_id": "6545c1c120332784a226",
   "version": "80ca24915a77fadfc1b4",
   "source_hash": "66f3dfbe72955d84ed8bbde796506cfa8b9e0eba12de3ee9d640d1e70054a93b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.401479+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:44:23.808403+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,31 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-122e5b3d5154",
-          "name": "甲状腺微小癌淋巴结转移AI预警",
-          "desc": "面向甲状腺微小乳头状癌中央区淋巴结转移，建立AI辅助多模态超声预警系统指导手术方式选择。",
-          "evidence": [
-            {
-              "quote": "甲状腺癌是近年来全球发病率增长最快的恶性肿瘤，已上升为我国女性恶性肿瘤发病率第五位",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 677,
-                "end_char": 717
-              },
-              "version": "80ca24915a77fadfc1b4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-118da0aa84cc",
-          "name": "中央区淋巴结转移超声敏感度仅10.9%-36.2%",
-          "desc": "甲状腺癌术后颈部淋巴结转移发生率高达35%，而超声对中央区淋巴结转移敏感度仅10.9%~36.2%，预防性清扫会增加并发症。",
+          "id": "item-6a9ee63176f1",
+          "name": "甲状腺癌颈部淋巴结转移预警",
+          "desc": "超声对中央区转移敏感度低",
           "evidence": [
             {
               "quote": "超声检查对中央区淋巴结转移的敏感度较低，仅为10.9%~36.2%",
@@ -59,13 +42,52 @@
       ]
     },
     {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-ee3ea02b15bc",
+          "name": "精准预测中央区淋巴结转移",
+          "desc": "影响最佳手术方式和预后",
+          "evidence": [
+            {
+              "quote": "预防性中央区淋巴结清扫术会增加手术并发症的发生率，因此，精准预测中央区淋巴结转移对选择最佳手术方式和预后至关重要",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2780,
+                "end_char": 2835
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-c8e76353c43c",
-          "name": "多模态超声AI诊断与淋巴结转移预测模型",
-          "desc": "建立甲状腺结节多模态超声特征数据库及AI辅助超声诊断系统，构建淋巴结转移影像数据库、标注软件与图像语义分割网络并训练验证预测模型。",
+          "id": "item-1e639917b4c9",
+          "name": "甲状腺结节人工智能辅助超声诊断系统",
+          "desc": "多模态超声",
+          "evidence": [
+            {
+              "quote": "建立甲状腺结节多模态超声特征的原始数据库及甲状腺结节人工智能辅助超声诊断系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2924,
+                "end_char": 2961
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b9ab8dca18c0",
+          "name": "甲状腺癌淋巴结转移预测模型",
+          "desc": "超声影像数据库、标注软件与语义分割网络",
           "evidence": [
             {
               "quote": "建立甲状腺癌淋巴结转移超声影像数据库并构建标注软件和图像语义分割网络，最终构建预测模型并对其诊断效能进行训练和验证",
@@ -76,7 +98,8 @@
               },
               "version": "80ca24915a77fadfc1b4"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5fbe4ba67fa6",
-          "name": "AI超声诊断系统内部AUC 0.911外部0.881",
-          "desc": "甲状腺结节AI辅助超声诊断系统内部测试集AUC 0.911、外部0.881，效能不亚于高年资医生；中央区淋巴结转移预测模型AUC 0.794，准确率0.80、敏感度0.76、特异度0.83。",
+          "id": "item-ce85c480de21",
+          "name": "AI辅助超声诊断甲状腺癌",
+          "desc": "内部AUC 0.911，外部0.881",
           "evidence": [
             {
               "quote": "甲状腺结节人工智能辅助超声诊断系统诊断甲状腺癌表现良好，内部测试集中曲线下面积（AUC）值为0.911，外部测试集AUC值为0.881",
@@ -99,44 +122,662 @@
               "version": "80ca24915a77fadfc1b4"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a4b4a070c146",
+          "name": "中央区淋巴结转移预测模型",
+          "desc": "AUC 0.794",
+          "evidence": [
+            {
+              "quote": "AUC可达0.794",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3303,
+                "end_char": 3312
+              },
+              "version": "80ca24915a77fadfc1b4"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-122e5b3d5154"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-118da0aa84cc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnosis of thyroid cancer using a TI-RADS-based computeraided diagnosis system: a multicenter retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "jin zhuang;zhu yaqiong;zhang shijie;xie fang;zhang mingbo;guo yanli;wang hui;zhu qiang;cao junying;luo yukun",
+      "id": "out-c4c0da85cccd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnosis of thyroid cancer using a TI-RADS-based computeraided diagnosis system: a multicenter retrospective study — jin zhuang;zhu yaqiong;zhang shijie;xie fang;zhang mingbo;guo yanli;wang hui;zhu qiang;cao junying;luo yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3436,
+            "end_char": 3668
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-118da0aa84cc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c8e76353c43c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of Ultrasound-Guided Radiofrequency Ablation as a Treatment Option for Papillary Thyroid Microcarcinoma in the Isthmus: A Retrospective Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Qing;Gao Hanjing;Tian Xiaoqi;Ren Ling;Lan Yu;Yan Lin;Luo Yukun",
+      "id": "out-c297f2269ee2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of Ultrasound-Guided Radiofrequency Ablation as a Treatment Option for Papillary Thyroid Microcarcinoma in the Isthmus: A Retrospective Study — Song Qing;Gao Hanjing;Tian Xiaoqi;Ren Ling;Lan Yu;Yan Lin;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3673,
+            "end_char": 3901
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c8e76353c43c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5fbe4ba67fa6"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Correlation and agreement between superb  micro-vascular imaging and contrast-enhanced  ultrasound for assessing radiofrequency  ablation treatment of thyroid nodules:  a preliminary study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan Yu;Li Nan;Song Qing;Zhang Ming‑bo;Luo Yu‑kun;Zhang Yan",
+      "id": "out-c3c3bbda71ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Correlation and agreement between superb  micro-vascular imaging and contrast-enhanced  ultrasound for assessing radiofrequency  ablation treatment of thyroid nodules:  a preliminary study — Lan Yu;Li Nan;Song Qing;Zhang Ming‑bo;Luo Yu‑kun;Zhang Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3906,
+            "end_char": 4161
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound Computer-Aided Diagnosis (CAD) Based on the Thyroid Imaging Reporting and Data System (TI-RADS) to Distinguish Benign from Malignant Thyroid Nodules and the Diagnostic Performance of Radiologists with Different Diagnostic Experience",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jin Zhuang;Zhu Yaqiong;Zhang Shijie;Xie Fang;Zhang Mingbo;Zhang Ying;Tia Xiaoqin;Zhang Jue;Luo Yukun;Cao Junying",
+      "id": "out-365fe75f1856",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound Computer-Aided Diagnosis (CAD) Based on the Thyroid Imaging Reporting and Data System (TI-RADS) to Distinguish Benign from Malignant Thyroid Nodules and the Diagnostic Performance of Radiologists with Different Diagnostic Experience — Jin Zhuang;Zhu Yaqiong;Zhang Shijie;Xie Fang;Zhang Mingbo;Zhang Ying;Tia Xiaoqin;Zhang Jue;Luo Yukun;Cao Junying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4166,
+            "end_char": 4530
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Clinical Application of Core-Needle Biopsy after Radiofrequency Ablation for Low-risk Papillary Thyroid Microcarcinoma: A Large Cohort of 202 Patients Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Luo Yukun;Zhang Ying;Zhu Yaqiong;Xiao Jing;Lan Yu;Tian Xiaoqi;Song Qing;Xie Fang",
+      "id": "out-839013a108c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Clinical Application of Core-Needle Biopsy after Radiofrequency Ablation for Low-risk Papillary Thyroid Microcarcinoma: A Large Cohort of 202 Patients Study — Yan Lin;Luo Yukun;Zhang Ying;Zhu Yaqiong;Xiao Jing;Lan Yu;Tian Xiaoqi;Song Qing;Xie Fang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4535,
+            "end_char": 4792
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nomogram prediction for the involution of the ablation zone after radiofrequency ablation treatment in patients with low-risk papillary thyroid carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Hongying;Zhang Yan;Song Qing;Zhao Jiahang;Li Wen;Li Yi;Luo Yukun",
+      "id": "out-16088eab61cd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Nomogram prediction for the involution of the ablation zone after radiofrequency ablation treatment in patients with low-risk papillary thyroid carcinoma — He Hongying;Zhang Yan;Song Qing;Zhao Jiahang;Li Wen;Li Yi;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4797,
+            "end_char": 5026
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种超声甲状腺结节风险指标的智能分析方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗渝昆;张明博;张诗杰;杜华睿;张珏;方竞",
+      "id": "out-cc90d760b94c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种超声甲状腺结节风险指标的智能分析方法及系统 — 罗渝昆;张明博;张诗杰;杜华睿;张珏;方竞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5031,
+            "end_char": 5082
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasonography-guided radiofrequency  ablation for solitary T1aN0M0 and T1bN0M0  papillary thyroid carcinoma: a retrospective  comparative study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Jing;Zhang Yan;Yan Lin;Zhang Mingbo;Li Xinyang;Tang Jie;Luo Yukun",
+      "id": "out-aa2dc44993eb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasonography-guided radiofrequency  ablation for solitary T1aN0M0 and T1bN0M0  papillary thyroid carcinoma: a retrospective  comparative study — Xiao Jing;Zhang Yan;Yan Lin;Zhang Mingbo;Li Xinyang;Tang Jie;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5087,
+            "end_char": 5311
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Vital volume increase versus clinical evaluation as the indication of additional radiofrequency ablation for benign thyroid nodule: a single center retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Luo Yukun;Zhang Mingbo;Xiao Jing",
+      "id": "out-9b880a7d4bbc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Vital volume increase versus clinical evaluation as the indication of additional radiofrequency ablation for benign thyroid nodule: a single center retrospective study — Yan Lin;Luo Yukun;Zhang Mingbo;Xiao Jing",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5316,
+            "end_char": 5532
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiofrequency Ablation for Cervical Metastatic Lymph Nodes in Children and Adolescents With Papillary Thyroid Carcinoma: A Preliminary Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Zhang Ying;Jiang Bo;Luo Yukun",
+      "id": "out-7aadddfb61d0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiofrequency Ablation for Cervical Metastatic Lymph Nodes in Children and Adolescents With Papillary Thyroid Carcinoma: A Preliminary Study — Yan Lin;Zhang Ying;Jiang Bo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5538,
+            "end_char": 5725
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The quality of life in papillary thyroid microcarcinoma patients undergoing lobectomy or total thyroidectomy: A cross-sectional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan Yu;Cao Li;Song Qing;Jin Zhuang;Xiao Jing;Yan Lin;Luo Yukun;Zhang Mingbo",
+      "id": "out-2f5d23cf1770",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The quality of life in papillary thyroid microcarcinoma patients undergoing lobectomy or total thyroidectomy: A cross-sectional study — Lan Yu;Cao Li;Song Qing;Jin Zhuang;Xiao Jing;Yan Lin;Luo Yukun;Zhang Mingbo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5731,
+            "end_char": 5948
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound-Guided Thermal Ablation of Bethesda IV Thyroid Nodules: A Pilot Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinyang;Lan Yu;Li Nan;Yan Lin;Xiao Jing;Zhang Mingbo;Luo Yukun",
+      "id": "out-4c45a01472fc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound-Guided Thermal Ablation of Bethesda IV Thyroid Nodules: A Pilot Study — Li Xinyang;Lan Yu;Li Nan;Yan Lin;Xiao Jing;Zhang Mingbo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5954,
+            "end_char": 6108
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of chronic lymphocytic thyroiditis on the efficacy and safety of ultrasound-guided radiofrequency ablation for papillary thyroid microcarcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Yan;Zhang Ming bo;Luo Yu kun;Li Jie;Zhang Ying;Tang Jie",
+      "id": "out-9906f50bef38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of chronic lymphocytic thyroiditis on the efficacy and safety of ultrasound-guided radiofrequency ablation for papillary thyroid microcarcinoma — Zhang Yan;Zhang Ming bo;Luo Yu kun;Li Jie;Zhang Ying;Tang Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6114,
+            "end_char": 6334
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Factors associated with health-related quality of life in papillary thyroid microcarcinoma patients undergoing radiofrequency ablation: a cross-sectional prevalence study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan Yu;Jin Zhuang;Zhang Yan;Song Qing;Xiao Jing;Yan Lin;Zhu Yaqiong;Zhang Mingbo;Luo Yukun",
+      "id": "out-3a5e9d0eed38",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Factors associated with health-related quality of life in papillary thyroid microcarcinoma patients undergoing radiofrequency ablation: a cross-sectional prevalence study — Lan Yu;Jin Zhuang;Zhang Yan;Song Qing;Xiao Jing;Yan Lin;Zhu Yaqiong;Zhang Mingbo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6340,
+            "end_char": 6609
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于甲状腺超声图像建立甲状腺乳头状癌 中央区淋巴结转移人工智能诊断模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李盈盈;孙文轩;廖献东;张明博;谢芳;陈东浩;张艳;罗渝昆",
+      "id": "out-2443ecb6a942",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于甲状腺超声图像建立甲状腺乳头状癌 中央区淋巴结转移人工智能诊断模型 — 李盈盈;孙文轩;廖献东;张明博;谢芳;陈东浩;张艳;罗渝昆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6615,
+            "end_char": 6688
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating Clinical Knowledge in a Thyroid Nodule Classification Model Based on Cost-Sensitive Deep Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Shijie;Du Huarui;Jin Zhuang;Zhu Yaqiong;Zhang Ying;Xie Fang;Zhang Mingbo;Jiao Ziyu;Tian Xiaoqi;Zhang Jiabin;Kong Hanjing;An Jian;Zhang Jue;Luo Yukun",
+      "id": "out-71c797aec480",
+      "evidence": [
+        {
+          "quote": "[会议论文] Integrating Clinical Knowledge in a Thyroid Nodule Classification Model Based on Cost-Sensitive Deep Learning — Zhang Shijie;Du Huarui;Jin Zhuang;Zhu Yaqiong;Zhang Ying;Xie Fang;Zhang Mingbo;Jiao Ziyu;Tian Xiaoqi;Zhang Jiabin;Kong Hanjing;An Jian;Zhang Jue;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6694,
+            "end_char": 6966
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-enhanced ultrasound is not a satisfactory modality for measuring necrotic ablated volume after radiofrequency ablation of benign thyroid nodules: a comparison with contrast-enhanced ultrasound",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Luo Yukun;Xiao Jing;Lin Lin",
+      "id": "out-86e9f7b9b5ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-enhanced ultrasound is not a satisfactory modality for measuring necrotic ablated volume after radiofrequency ablation of benign thyroid nodules: a comparison with contrast-enhanced ultrasound — Yan Lin;Luo Yukun;Xiao Jing;Lin Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6972,
+            "end_char": 7212
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound-Guided Radiofrequency Ablation for the Treatment of Primary Hyperparathyroidism: An Efficacy and Safety Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xinyang;Ralph P Tufano;Jonathon O Russell;Yan Lin;Xiao Jing;Li Yingying;Zhang Mingbo;Luo Yukun",
+      "id": "out-8522fa98de57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound-Guided Radiofrequency Ablation for the Treatment of Primary Hyperparathyroidism: An Efficacy and Safety Study — Li Xinyang;Ralph P Tufano;Jonathon O Russell;Yan Lin;Xiao Jing;Li Yingying;Zhang Mingbo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7218,
+            "end_char": 7444
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound-Guided Radiofrequency Ablation Versus Thyroid Lobectomy for Low-Risk Papillary Thyroid Microcarcinoma: A Propensity-matched Cohort Study of 884 Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Zhang Mingbo;Song Qing;Luo Yukun",
+      "id": "out-d9437b2b936e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound-Guided Radiofrequency Ablation Versus Thyroid Lobectomy for Low-Risk Papillary Thyroid Microcarcinoma: A Propensity-matched Cohort Study of 884 Patients — Yan Lin;Zhang Mingbo;Song Qing;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7450,
+            "end_char": 7662
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiofrequency ablation versus total thyroidectomy in patients with papillary thyroid microcarcinoma located in the isthmus: a retrospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Qing;Gao Hanjing;Ren Ling;Tian Xiaoqi;Lan Yu;Yan Lin;Luo Yukun",
+      "id": "out-3b0ec229f4ff",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiofrequency ablation versus total thyroidectomy in patients with papillary thyroid microcarcinoma located in the isthmus: a retrospective cohort study — Song Qing;Gao Hanjing;Ren Ling;Tian Xiaoqi;Lan Yu;Yan Lin;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7668,
+            "end_char": 7897
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiofrequency ablation versus reoperation for benign thyroid nodules that developed after previous thyroid surgery",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Deng Cuiai;Song Qing;Li Nan;He HongYing;Li Wen;Zhang Mingbo;Luo Yukun",
+      "id": "out-a0fabd1a1246",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiofrequency ablation versus reoperation for benign thyroid nodules that developed after previous thyroid surgery — Yan Lin;Deng Cuiai;Song Qing;Li Nan;He HongYing;Li Wen;Zhang Mingbo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7903,
+            "end_char": 8104
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quality of Life in Papillary Thyroid Microcarcinoma Patients Undergoing Radiofrequency Ablation or Surgery: A Comparative Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lan Yu;Luo Yukun;Zhang Mingbo;Jin Zhuang;Xiao Jing;Yan Lin;Zhu Yaqiong",
+      "id": "out-1758fe3a1099",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Quality of Life in Papillary Thyroid Microcarcinoma Patients Undergoing Radiofrequency Ablation or Surgery: A Comparative Study — Lan Yu;Luo Yukun;Zhang Mingbo;Jin Zhuang;Xiao Jing;Yan Lin;Zhu Yaqiong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8110,
+            "end_char": 8316
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Interpretable Computer-Aided Diagnosis System of Thyroid Nodules on Ultrasound Based on Clinical Experience",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Shijie;Du Huarui;Jin Zhuang;Zhu Yaqiong;Zhang Ying;Xie Fang;Zhang Mingbo;Tian Xiaoqi;Zhang Jue;Luo Yukun",
+      "id": "out-91a299f9819b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Interpretable Computer-Aided Diagnosis System of Thyroid Nodules on Ultrasound Based on Clinical Experience — Zhang Shijie;Du Huarui;Jin Zhuang;Zhu Yaqiong;Zhang Ying;Xie Fang;Zhang Mingbo;Tian Xiaoqi;Zhang Jue;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8322,
+            "end_char": 8556
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于超声数据降维的甲状腺结构特征提取方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "罗渝昆;张明博;杜华睿;张诗杰;张珏;方竞",
+      "id": "out-11e42a7bcaea",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于超声数据降维的甲状腺结构特征提取方法及系统 — 罗渝昆;张明博;杜华睿;张诗杰;张珏;方竞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8562,
+            "end_char": 8615
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasound-Guided Radiofrequency Ablation Versus Surgery for Low-Risk Papillary Thyroid Microcarcinoma: Results of Over 5 Years' Follow-Up",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Mingbo;Tufano Ralph P.;Russell Jonathon O.;Zhang Ying;Zhang Yan;Qiao Zhi;Luo Yukun",
+      "id": "out-09658aa3511f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasound-Guided Radiofrequency Ablation Versus Surgery for Low-Risk Papillary Thyroid Microcarcinoma: Results of Over 5 Years' Follow-Up — Zhang Mingbo;Tufano Ralph P.;Russell Jonathon O.;Zhang Ying;Zhang Yan;Qiao Zhi;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8621,
+            "end_char": 8856
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "超声模型在甲状腺乳头状癌中央区淋巴结转移预测中的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "田晓琦;罗渝昆;张颖;宋青;任玲;张艳;姜波",
+      "id": "out-0f9d7e297c99",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 超声模型在甲状腺乳头状癌中央区淋巴结转移预测中的应用 — 田晓琦;罗渝昆;张颖;宋青;任玲;张艳;姜波",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8862,
+            "end_char": 8919
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficacy and safety of ultrasonography-guided radiofrequency ablation for the treatment of T1bN0M0 papillary thyroid carcinoma: a retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Jing;Zhang Mingbo;Zhang Yan;Yan Lin;Lan Yu;Zhu Yaqiong;Zhang Ying;Lin Lin;Tang Jie;Luo Yukun",
+      "id": "out-2079acd5e7d2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficacy and safety of ultrasonography-guided radiofrequency ablation for the treatment of T1bN0M0 papillary thyroid carcinoma: a retrospective study — Xiao Jing;Zhang Mingbo;Zhang Yan;Yan Lin;Lan Yu;Zhu Yaqiong;Zhang Ying;Lin Lin;Tang Jie;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8925,
+            "end_char": 9180
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Long-term outcomes of radiofrequency ablation for unifocal low-risk papillary thyroid microcarcinoma: a large cohort study of 414 patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yan Lin;Lan Yu;Xiao Jing;Lin Lin;Jiang Bo;Luo Yukun",
+      "id": "out-179635668ed0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Long-term outcomes of radiofrequency ablation for unifocal low-risk papillary thyroid microcarcinoma: a large cohort study of 414 patients — Yan Lin;Lan Yu;Xiao Jing;Lin Lin;Jiang Bo;Luo Yukun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9186,
+            "end_char": 9384
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ultrasonography-guided",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-69f2c1a08d88",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ultrasonography-guided",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5087,
+            "end_char": 5115
+          },
+          "version": "80ca24915a77fadfc1b4"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 29,
+    "listed": 29,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 26,
+        "extracted": 26
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

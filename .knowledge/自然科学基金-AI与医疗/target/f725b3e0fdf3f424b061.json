@@ -2,15 +2,20 @@
   "doc_id": "f725b3e0fdf3f424b061",
   "version": "c8481a73698b211db50e",
   "source_hash": "7f887ce28c34b09c94b68585e19d43a76d37c6d57da8f3a79e4bb70bf33b80f5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.310565+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T11:44:21.588994+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c66b7842d03",
-          "name": "抗精神病药物致脂代谢紊乱机制",
-          "desc": "血脂代谢紊乱尤其是甘油三酯代谢异常是精神分裂症患者抗精神病药物治疗中最关注的副作用之一。",
+          "id": "item-c7b9112503dc",
+          "name": "精神分裂症抗精神病药物脂代谢紊乱",
+          "desc": "磁共振影像组学",
           "evidence": [
             {
-              "quote": "血脂代谢紊乱，尤其是甘油三酯代谢异常，是精神分裂症患者抗精神病药物治疗过程中最关注的药物副作用之一",
+              "quote": "本项目围绕抗精神病药物所致精神分裂症患者脂代谢紊乱的脑影像特征和神经环路机制展开研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 717
-              },
-              "version": "c8481a73698b211db50e"
-            }
-          ]
-        },
-        {
-          "id": "item-1c37c7c0edcc",
-          "name": "临床合理选药辅助决策",
-          "desc": "研究有助于指导临床医生权衡疗效与副反应差异，客观化、合理化地选择药物。",
-          "evidence": [
-            {
-              "quote": "研究成果有助于明确精神分裂症脂代谢紊乱的神经环路机制，指导临床医生权衡疗效与副反应的差异，客观化、合理化地选择药物",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1008,
-                "end_char": 1064
+                "start_char": 2623,
+                "end_char": 2664
               },
               "version": "c8481a73698b211db50e"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-78a60b6ac729",
-          "name": "神经环路机制尚不清楚",
-          "desc": "抗精神病药物诱导精神分裂症血脂代谢紊乱的神经环路机制尚不清楚。",
+          "id": "item-e9cd34743f1c",
+          "name": "药物致脂代谢紊乱神经环路机制不清",
+          "desc": "",
           "evidence": [
             {
               "quote": "但抗精神病药物诱导精神分裂症血脂代谢紊乱的神经环路机制尚不清楚",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 751,
                 "end_char": 781
-              },
-              "version": "c8481a73698b211db50e"
-            }
-          ]
-        },
-        {
-          "id": "item-ab0b14b192cf",
-          "name": "代谢综合征是药物治疗关键环节",
-          "desc": "非典型抗精神病药物介导的血脂代谢紊乱是代谢综合征发展的关键环节。",
-          "evidence": [
-            {
-              "quote": "非典型抗精神病药物介导的血脂代谢紊乱是代谢综合征发展的关键环节",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 719,
-                "end_char": 749
               },
               "version": "c8481a73698b211db50e"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-394ade174db4",
-          "name": "多模态磁共振影像组学与机器学习",
-          "desc": "以首发精神分裂症患者为对象，采用多模态磁共振影像组学和机器学习方法，结合血脂代谢和症状评分等指标开展研究。",
+          "id": "item-9d1a4c79223c",
+          "name": "多模态影像与机器学习风险预测模型",
+          "desc": "sMRI、DTI、rs-fMRI",
           "evidence": [
             {
-              "quote": "本项目拟以首发精神分裂症患者为研究对象，采用多模态磁共振影像组学和机器学习方法，结合血脂代谢和症状评分等指标",
+              "quote": "初步构建了基于影像与临床特征的预测模型，为副反应风险预警提供工具",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 895,
-                "end_char": 948
+                "start_char": 3009,
+                "end_char": 3040
               },
               "version": "c8481a73698b211db50e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-35bbc1ba2671",
-          "name": "多维数据库与脑影像机制解析",
-          "desc": "建立抗精神病药物治疗反应临床-代谢-影像特征数据库，整合sMRI、DTI、rs-fMRI与临床代谢指标，解析脑影像特征与神经环路机制并构建风险预测模型。",
+          "id": "item-a166fe948990",
+          "name": "临床-代谢-影像特征数据库",
+          "desc": "整合多模态影像与代谢指标",
           "evidence": [
             {
-              "quote": "建立抗精神病药物治疗反应临床-代谢-影像特征数据库，整合sMRI、DTI、rs-fMRI等多模态影像与临床代谢指标；系统解析药物致脂代谢紊乱的脑影像特征与神经环路机制；构建基于机器学习的风险预测模型",
+              "quote": "建立抗精神病药物治疗反应临床-代谢-影像特征数据库，整合sMRI、DTI、rs-fMRI等多模态影像与临床代谢指标",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2702,
-                "end_char": 2800
+                "end_char": 2758
               },
               "version": "c8481a73698b211db50e"
             }
-          ]
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -133,103 +108,284 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d878812d2bda",
-          "name": "利培酮与氯氮平治疗者影像差异",
-          "desc": "明确不同抗精神病药物治疗患者脑影像特征存在差异，利培酮与氯氮平治疗者在功能活动及代谢模式上有显著区别。",
+          "id": "item-7eae90a3e83e",
+          "name": "论文专著专利",
+          "desc": "论文5篇，专著4部，授权发明专利3项",
           "evidence": [
             {
-              "quote": "明确了不同抗精神病药物治疗患者脑影像特征存在差异，发现利培酮与氯氮平治疗者在功能活动及代谢模式上具有显著区别",
+              "quote": "发表学术论文5篇（其中SCI 4篇），国际会议收录论文2篇；出版中英文学术专著4部;获授权发明专利3项",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2816,
-                "end_char": 2869
+                "start_char": 3075,
+                "end_char": 3125
               },
               "version": "c8481a73698b211db50e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-7179403ce283",
-          "name": "脂代谢紊乱脑影像表征",
-          "desc": "揭示精神分裂症伴脂代谢紊乱的特定脑影像表征，如右侧眶额下回局部一致性降低与体重指数、腰臀围负相关。",
-          "evidence": [
-            {
-              "quote": "揭示了精神分裂症伴脂代谢紊乱的特定脑影像表征，如右侧眶额下回局部一致性降低与体重指数、腰臀围负相关，脑白质网络全局及局部效率下降",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2872,
-                "end_char": 2935
-              },
-              "version": "c8481a73698b211db50e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-28fdf27121cd",
-          "name": "获四川省科技进步奖一等奖",
-          "desc": "成果获四川省科学技术进步奖一等奖、四川省虚拟仿真创新大赛一等奖，发表学术论文5篇。",
-          "evidence": [
-            {
-              "quote": "该成果获四川省科学技术进步奖一等奖、四川省虚拟仿真创新大赛一等奖",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3042,
-                "end_char": 3073
-              },
-              "version": "c8481a73698b211db50e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-0c66b7842d03"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-78a60b6ac729"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Changes of topological properties of white matter network in schizophrenia with metabolic syndrome after risperidone and clozapine treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyan Wu;Nian Liu",
+      "id": "out-5e230b963a99",
+      "evidence": [
+        {
+          "quote": "[会议论文] Changes of topological properties of white matter network in schizophrenia with metabolic syndrome after risperidone and clozapine treatment — Xinyan Wu;Nian Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3268,
+            "end_char": 3435
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-78a60b6ac729"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-394ade174db4"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中华医学影像技术学CT成像技术卷(第2版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任宏;刘杰;刘念;孙家瑜;肖正远;邱建星;张艳;张琰;张顺源;陈晶;范文亮;林盛才;郑君惠;徐红卫;高剑波;黄小华;曹希明;梁盼;韩磊;雷子乔;綦维维",
+      "id": "out-b4df3c0b8939",
+      "evidence": [
+        {
+          "quote": "[专著] 中华医学影像技术学CT成像技术卷(第2版) — 任宏;刘杰;刘念;孙家瑜;肖正远;邱建星;张艳;张琰;张顺源;陈晶;范文亮;林盛才;郑君惠;徐红卫;高剑波;黄小华;曹希明;梁盼;韩磊;雷子乔;綦维维",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3440,
+            "end_char": 3543
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-394ade174db4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d878812d2bda"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain functional alterations in patients with schizophrenia with comorbid metabolic syndrome treated with risperidone or clozapine: A resting-state functional magnetic resonance imaging study of regional homogeneity.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinyue Chen;Nian Liu",
+      "id": "out-66ade2ff5d87",
+      "evidence": [
+        {
+          "quote": "[会议论文] Brain functional alterations in patients with schizophrenia with comorbid metabolic syndrome treated with risperidone or clozapine: A resting-state functional magnetic resonance imaging study of regional homogeneity. — Xinyue Chen;Nian Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3548,
+            "end_char": 3793
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-35bbc1ba2671"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7179403ce283"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重大精神障碍影像早筛早诊关键技术创新及应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕 粟;张 蕾;张文静;杨智鹏;邱昌建;刘 念;王利团;夏春潮;曾嘉欣",
+      "id": "out-daeae99ce479",
+      "evidence": [
+        {
+          "quote": "[奖励] 重大精神障碍影像早筛早诊关键技术创新及应用 — 吕 粟;张 蕾;张文静;杨智鹏;邱昌建;刘 念;王利团;夏春潮;曾嘉欣",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3798,
+            "end_char": 3861
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于联邦学习的多中心精神影像数据增强方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘念;李航宇;杨雄雄;何欣;潘珂;雷力行;彭诗集;李颖",
+      "id": "out-6e68f490352b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于联邦学习的多中心精神影像数据增强方法及系统 — 刘念;李航宇;杨雄雄;何欣;潘珂;雷力行;彭诗集;李颖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3866,
+            "end_char": 3923
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积神经网络的多模态影像阈值分割预处理方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘念;李颖;杨雄雄;刘倩倩;李航宇;陈馨悦;彭诗集",
+      "id": "out-a055b306827c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于卷积神经网络的多模态影像阈值分割预处理方法 — 刘念;李颖;杨雄雄;刘倩倩;李航宇;陈馨悦;彭诗集",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3928,
+            "end_char": 3983
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "弥散MRI用于精神分裂症研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李 颖;刘 念;李航宇;彭诗集;陈馨悦;余 锐;廖开科",
+      "id": "out-77bfcb88978f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 弥散MRI用于精神分裂症研究进展 — 李 颖;刘 念;李航宇;彭诗集;陈馨悦;余 锐;廖开科",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4040
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decreased low-frequency amplitude of the right caudate nucleus in patients with chronic schizophrenia treated with risperidone combined with clozapine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xinyue;Lei Lixing;Li Hangyu;Li Ying;Peng Shiji;Liao Kaike;Yu Rui;Liu Nian",
+      "id": "out-f37e5fd227bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decreased low-frequency amplitude of the right caudate nucleus in patients with chronic schizophrenia treated with risperidone combined with clozapine — Chen Xinyue;Lei Lixing;Li Hangyu;Li Ying;Peng Shiji;Liao Kaike;Yu Rui;Liu Nian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4045,
+            "end_char": 4282
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学影像技术学(第五版)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丁金立;郭建新;郭跃信;雷子乔;李大鹏;李真林;林建华;刘桦;刘杰;刘念;刘建莉;刘义军;罗来树;毛德旺;牛延涛;綦维维;石思李;眭贺;王静;王淼;吴岩;谢明星;徐绍忠;杨明;余建明;张艳;张红霞;周高峰;周绿漪;周学军",
+      "id": "out-23059ce12fe8",
+      "evidence": [
+        {
+          "quote": "[专著] 医学影像技术学(第五版) — 丁金立;郭建新;郭跃信;雷子乔;李大鹏;李真林;林建华;刘桦;刘杰;刘念;刘建莉;刘义军;罗来树;毛德旺;牛延涛;綦维维;石思李;眭贺;王静;王淼;吴岩;谢明星;徐绍忠;杨明;余建明;张艳;张红霞;周高峰;周绿漪;周学军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4287,
+            "end_char": 4416
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI-based insights into brain structural and functional alterations in schizophrenia treated with risperidone",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hangyu Li;Xinyue Chen;Shiji Peng;Ying Li;Rui Yu;Kaike Liao;Nian Liu",
+      "id": "out-de9460decddc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI-based insights into brain structural and functional alterations in schizophrenia treated with risperidone — Hangyu Li;Xinyue Chen;Shiji Peng;Ying Li;Rui Yu;Kaike Liao;Nian Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4422,
+            "end_char": 4607
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Atlas of Psychiatry - Diagnostic Neuroimaging  andLaboratory Tests",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Nian Liu;Fei Li;Zhiyun Jia;Taolin Chen;Haoyang Xing;Ying Chen;Su Lui;Qiyong Gong",
+      "id": "out-26224b8d60d0",
+      "evidence": [
+        {
+          "quote": "[专著] Atlas of Psychiatry - Diagnostic Neuroimaging  andLaboratory Tests — Nian Liu;Fei Li;Zhiyun Jia;Taolin Chen;Haoyang Xing;Ying Chen;Su Lui;Qiyong Gong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4613,
+            "end_char": 4766
+          },
+          "version": "c8481a73698b211db50e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

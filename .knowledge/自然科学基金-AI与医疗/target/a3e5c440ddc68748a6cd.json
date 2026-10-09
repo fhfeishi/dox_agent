@@ -2,15 +2,20 @@
   "doc_id": "a3e5c440ddc68748a6cd",
   "version": "582f45602d658d26f1fd",
   "source_hash": "69b6062b633a29fb7dfc0e6d6989c50e8b5841e96e0fc8f0f475958184e92002",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:16.084998+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:52:16.125447+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-81a9c8d79d55",
-          "name": "脑胶质瘤放化疗敏感性影像基因组学",
-          "desc": "脑胶质瘤恶性程度高，手术后仍需接受放疗或同步放化疗，但放化疗效果差异很大。",
+          "id": "item-b8a92265ae1f",
+          "name": "脑胶质瘤放化疗敏感性预测",
+          "desc": "术后需放疗或同步放化疗",
           "evidence": [
             {
               "quote": "脑胶质瘤恶性程度高，手术后仍需接受放疗或同步放化疗",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 659,
                 "end_char": 683
-              },
-              "version": "582f45602d658d26f1fd"
-            }
-          ]
-        },
-        {
-          "id": "item-41d43b4cca94",
-          "name": "为术后辅助决策提供科学依据",
-          "desc": "预期建立的预测模型将为脑胶质瘤术后辅助决策提供科学依据，推动个体化治疗进程。",
-          "evidence": [
-            {
-              "quote": "预期建立的预测模型将为脑胶质瘤术后辅助决策提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1031,
-                "end_char": 1057
               },
               "version": "582f45602d658d26f1fd"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-96974a13cff7",
-          "name": "尚无可靠方法预判放化疗敏感性",
-          "desc": "胶质瘤高度异质性使其放化疗效果差异很大，部分患者承受痛苦却无明显疗效，目前尚无可靠方法预判敏感性。",
+          "id": "item-999ff84cfebb",
+          "name": "缺乏可靠方法预判放化疗敏感性",
+          "desc": "高度异质性致效果差异大",
           "evidence": [
             {
-              "quote": "由于胶质瘤具有高度异质性，其接受放化疗后的效果差异很大，一些患者尽管承受身心痛苦和经济负担却无明显疗效。但是，目前尚无可靠方法预判脑胶质瘤对放化疗的敏感性",
+              "quote": "但是，目前尚无可靠方法预判脑胶质瘤对放化疗的敏感性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
+                "start_char": 737,
                 "end_char": 761
-              },
-              "version": "582f45602d658d26f1fd"
-            }
-          ]
-        },
-        {
-          "id": "item-31017d81171b",
-          "name": "需联合宏观与微观信息反映敏感性",
-          "desc": "认为联合肿瘤的宏观影像学表现和微观遗传学特征，可能更好反映肿瘤对放化疗的敏感性。",
-          "evidence": [
-            {
-              "quote": "因此，我们认为联合肿瘤的宏观（影像学表现）和微观（遗传学特征）信息，可能更好地反映出肿瘤对放化疗的敏感性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 802,
-                "end_char": 853
               },
               "version": "582f45602d658d26f1fd"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-983e1ff2fa29",
-          "name": "影像组学联合基因组学机器学习建模",
-          "desc": "提取肿瘤三维定量影像组学特征，筛选与放化疗敏感性高度特异相关的特征，联合基因组学信息应用机器学习建立个体化疗效预测模型。",
+          "id": "item-668e952951e3",
+          "name": "三维定量影像组学与基因组学联合个体化疗效预测模型",
+          "desc": "基于CGGA数据库",
           "evidence": [
             {
               "quote": "提取肿瘤三维定量影像组学特征，筛选与放化疗敏感性高度特异相关的影像组学特征，联合基因组学信息应用机器学习方法建立个体化疗效预测模型",
@@ -108,23 +81,8 @@
               },
               "version": "582f45602d658d26f1fd"
             }
-          ]
-        },
-        {
-          "id": "item-56cfa986fb8b",
-          "name": "移植瘤动物模型优化预测模型",
-          "desc": "利用移植瘤动物模型上得到的放化疗敏感性相关影像特征优化预测模型，并在独立患者验证组中验证预测效力。",
-          "evidence": [
-            {
-              "quote": "利用移植瘤动物模型上得到的放化疗敏感性相关影像特征优化预测模型，并在独立患者验证组中验证预测效力",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 955,
-                "end_char": 1002
-              },
-              "version": "582f45602d658d26f1fd"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,43 +91,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6251d8c9db77",
-          "name": "揭示放疗与放化疗敏感性影像特征",
-          "desc": "研究结果揭示了与低级别胶质瘤放疗敏感性及高级别胶质瘤放化疗敏感性密切相关的影像组学特征。",
+          "id": "item-7441252972a5",
+          "name": "脑胶质瘤术后个体化放化疗推荐系统",
+          "desc": "精准筛选获益人群",
           "evidence": [
             {
-              "quote": "研究结果揭示了与低级别胶质瘤放疗敏感性及高级别胶质瘤放化疗敏感性密切相关的影像组学特征",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3100,
-                "end_char": 3142
-              },
-              "version": "582f45602d658d26f1fd"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-799849dbfd40",
-          "name": "术后个体化放化疗推荐系统",
-          "desc": "形成脑胶质瘤术后个体化放化疗推荐系统，能够精准筛选出能够从放化疗中获益的患者群体，有望改变传统全员放化疗治疗模式。",
-          "evidence": [
-            {
-              "quote": "该项目成果形成了脑胶质瘤术后个体化放化疗推荐系统，能够精准筛选出能够从放化疗中获益的患者群体，从而为脑胶质瘤术后辅助决策提供科学依据",
+              "quote": "该项目成果形成了脑胶质瘤术后个体化放化疗推荐系统，能够精准筛选出能够从放化疗中获益的患者群体",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3204,
-                "end_char": 3269
+                "end_char": 3249
               },
               "version": "582f45602d658d26f1fd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-9ff9c5396af9",
-          "name": "论文专利与发明展金奖",
-          "desc": "项目组发表SCI论文8篇、接受1篇，授权国家发明专利1项、申请2项，申请软著9项；脑胶质瘤恶性程度术前无创预测技术获2024年第49届日内瓦国际发明展金奖。",
+          "id": "item-61a8c1230b6f",
+          "name": "论文专利软著",
+          "desc": "SCI论文8篇，授权专利1项，申请专利2项，软著9项",
           "evidence": [
             {
               "quote": "项目组共发表SCI论文8篇，接受SCI论文1篇（均有项目课题号标注）。授权国家发明专利1项",
@@ -181,55 +124,310 @@
               "version": "582f45602d658d26f1fd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5277f17495e3",
+          "name": "日内瓦国际发明展金奖",
+          "desc": "2024年",
+          "evidence": [
+            {
+              "quote": "项目开发的脑胶质瘤恶性程度术前无创预测技术荣获2024年第49届日内瓦国际发明展金奖",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3439,
+                "end_char": 3480
+              },
+              "version": "582f45602d658d26f1fd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-81a9c8d79d55"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-96974a13cff7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stepwise Corrected Attention Registration Network for Preoperative and Follow-Up Magnetic Resonance Imaging of Glioma Patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuefei Feng;Yao Zheng;Dong Huang;Jie Wei;Tianci Liu;Yinyan Wang;Yang Liu",
+      "id": "out-95a2d80d265c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stepwise Corrected Attention Registration Network for Preoperative and Follow-Up Magnetic Resonance Imaging of Glioma Patients — Yuefei Feng;Yao Zheng;Dong Huang;Jie Wei;Tianci Liu;Yinyan Wang;Yang Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3566,
+            "end_char": 3773
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-96974a13cff7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-983e1ff2fa29"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脑神经医疗影像胶质瘤区域快速标记方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王引言;胡杰;李天石;严泽亚;江涛",
+      "id": "out-3e7c71c8bf4e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种脑神经医疗影像胶质瘤区域快速标记方法及系统 — 王引言;胡杰;李天石;严泽亚;江涛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3778,
+            "end_char": 3825
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-983e1ff2fa29"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6251d8c9db77"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Image-Based Differentiation of Intracranial Metastasis From Glioblastoma Using Automated Machine Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yukun Liu;Tianshi Li;Ziwen Fan;Yimin Li;Zhiyan Sun;Shaowu Li;Yuchao Liang;Chunyao Zhou;Qiang Zhu;Hong Zhang;Xing Liu;Lei Wang;Yinyan Wang",
+      "id": "out-638728b1c809",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Image-Based Differentiation of Intracranial Metastasis From Glioblastoma Using Automated Machine Learning — Yukun Liu;Tianshi Li;Ziwen Fan;Yimin Li;Zhiyan Sun;Shaowu Li;Yuchao Liang;Chunyao Zhou;Qiang Zhu;Hong Zhang;Xing Liu;Lei Wang;Yinyan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3830,
+            "end_char": 4081
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-56cfa986fb8b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-799849dbfd40"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Molecular subtyping of diffuse gliomas using magnetic resonance imaging: comparison and correlation between radiomics and deep learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yiming Li;Dong Wei;Xing Liu;Xing Fan;Kai Wang;Shaowu Li;Zhong Zhang;Kai Ma;Tianyi Qian;Tao Jiang;Yefeng Zheng;Yinyan Wang",
+      "id": "out-2cfd910eb182",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Molecular subtyping of diffuse gliomas using magnetic resonance imaging: comparison and correlation between radiomics and deep learning — Yiming Li;Dong Wei;Xing Liu;Xing Fan;Kai Wang;Shaowu Li;Zhong Zhang;Kai Ma;Tianyi Qian;Tao Jiang;Yefeng Zheng;Yinyan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4086,
+            "end_char": 4351
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single-cell transcriptomics reveals IRF7 regulation of the tumor microenvironment in isocitrate dehydrogenase wild-type glioma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinwei Li;Shengrong Long;Zhang Yang;Wei Wei;Shuangqi Yu;Quan Liu;Xuhui Hui;Xiang Li;Yinyan Wang",
+      "id": "out-eedb0220381a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Single-cell transcriptomics reveals IRF7 regulation of the tumor microenvironment in isocitrate dehydrogenase wild-type glioma — Jinwei Li;Shengrong Long;Zhang Yang;Wei Wei;Shuangqi Yu;Quan Liu;Xuhui Hui;Xiang Li;Yinyan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4356,
+            "end_char": 4586
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国发明协会发明创业成果奖一等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王引言;方晟宇;刘幸;李一鸣;王梓瀚",
+      "id": "out-9f7e67806984",
+      "evidence": [
+        {
+          "quote": "[奖励] 中国发明协会发明创业成果奖一等奖 — 王引言;方晟宇;刘幸;李一鸣;王梓瀚",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4591,
+            "end_char": 4632
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative Radiomics Analysis of 1p/19q Status in WHO Grade II Gliomas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziwen Fan;Zhiyan Sun;shenyu Fang;Yiming Li;Xing Liu;Yucha Liang;Yukun Liu;Chunyao Zhou;Hong Zhang;Tianshi Li;Shaowu Li;Tao jiang;Yinyan Wang;Lei Wang",
+      "id": "out-78c1bf540181",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative Radiomics Analysis of 1p/19q Status in WHO Grade II Gliomas — Ziwen Fan;Zhiyan Sun;shenyu Fang;Yiming Li;Xing Liu;Yucha Liang;Yukun Liu;Chunyao Zhou;Hong Zhang;Tianshi Li;Shaowu Li;Tao jiang;Yinyan Wang;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4637,
+            "end_char": 4867
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种脑胶质瘤Ki-67表达水平的影像组学预测方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王引言;刘幸;李一鸣;江涛;王磊",
+      "id": "out-7c1ddfe5d541",
+      "evidence": [
+        {
+          "quote": "[奖励] 一种脑胶质瘤Ki-67表达水平的影像组学预测方法 — 王引言;刘幸;李一鸣;江涛;王磊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4872,
+            "end_char": 4919
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics in Glioma: Emerging Trends and Challenges",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zihan Wang;Lei Wang;Yinyan Wang",
+      "id": "out-427be987949a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics in Glioma: Emerging Trends and Challenges — Zihan Wang;Lei Wang;Yinyan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4924,
+            "end_char": 5015
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identifying IDH-mutant and 1p/19q noncodeleted astrocytomas from nonenhancing gliomas: Manual recognition followed by artificial intelligence recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lei He;Hong Zhang;Tianshi Li;Jianing Yang;Yanpeng Zhou;Jiaxiang Wang;Tuerhong Saidaer;Xiaoyan Bai;Xing Liu;Yinyan Wang;Lei Wang",
+      "id": "out-3412bd1cf3c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identifying IDH-mutant and 1p/19q noncodeleted astrocytomas from nonenhancing gliomas: Manual recognition followed by artificial intelligence recognition — Lei He;Hong Zhang;Tianshi Li;Jianing Yang;Yanpeng Zhou;Jiaxiang Wang;Tuerhong Saidaer;Xiaoyan Bai;Xing Liu;Yinyan Wang;Lei Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5021,
+            "end_char": 5310
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Decision system for extent of resection in WHO grade 3 gliomas: a Chinese Glioma Genome Atlas database analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziming Hou;Jie Hu;Xing Liu;Zeya Yan;Kenan Zhang;Shengyu Fang;Tao Jiang;Yinyan Wang",
+      "id": "out-6486b9b0a90e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Decision system for extent of resection in WHO grade 3 gliomas: a Chinese Glioma Genome Atlas database analysis — Ziming Hou;Jie Hu;Xing Liu;Zeya Yan;Kenan Zhang;Shengyu Fang;Tao Jiang;Yinyan Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5316,
+            "end_char": 5518
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2024",
+      "precision": "年",
+      "desc": "脑胶质瘤术前无创预测技术获日内瓦国际发明展金奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-51c8582000cf",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "项目开发的脑胶质瘤恶性程度术前无创预测技术荣获2024年第49届日内瓦国际发明展金奖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3439,
+            "end_char": 3480
+          },
+          "version": "582f45602d658d26f1fd"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

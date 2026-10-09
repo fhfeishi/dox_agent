@@ -2,15 +2,20 @@
   "doc_id": "0bf92de27f2cfc536695",
   "version": "7c5f780540e3338e9971",
   "source_hash": "8b482484bc5e61bdebdbb484931e6d1c231cd77342739cbf938138cad3f3d674",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.276820+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:27:50.053559+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-00d1e95af09a",
-          "name": "跨域脑电情感识别",
-          "desc": "脑电情感识别是情感计算与脑机接口的重要基础，但受个体、设备、时空环境差异影响，模型在真实应用中性能显著下降。",
+          "id": "item-ee4cc4b1ff9d",
+          "name": "脑电情感识别",
+          "desc": "情感计算与脑机接口的重要基础",
           "evidence": [
             {
-              "quote": "脑电（EEG）情感识别是情感计算与脑机接口的重要基础，但受个体差异、设备差异、采集时空环境变化等“跨域/跨数据集”分布偏移影响，模型在真实应用中往往出现性能显著下降",
+              "quote": "脑电（EEG）情感识别是情感计算与脑机接口的重要基础",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2842,
-                "end_char": 2923
-              },
-              "version": "7c5f780540e3338e9971"
-            }
-          ]
-        },
-        {
-          "id": "item-6d94e6b5e884",
-          "name": "跨域脑电情感识别准确性提升",
-          "desc": "通过项目研究显著提升跨域脑电情感识别的准确性。",
-          "evidence": [
-            {
-              "quote": "通过本项目的研究，将显著提升跨域脑电情感识别的准确性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1015,
-                "end_char": 1040
+                "end_char": 2867
               },
               "version": "7c5f780540e3338e9971"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0b9fe27460a9",
-          "name": "跨域数据分布偏移与性能下降",
-          "desc": "不同设备、个体或时间段采集的脑电数据存在潜在分布偏移，传统机器学习独立同分布假设在跨域任务中难以成立。",
+          "id": "item-bad4dad0fc87",
+          "name": "跨域分布偏移致模型性能下降",
+          "desc": "个体、设备、时空环境差异导致性能显著下降",
           "evidence": [
             {
-              "quote": "不同设备、个体或时间段采集的脑电情感数据之间会存在潜在数据分布偏移。而传统的机器学习算法建立在训练数据和测试数据独立同分布的假设之上，这对跨域脑电情感识别任务往往难以成立",
+              "quote": "但受个体差异、设备差异、采集时空环境变化等“跨域/跨数据集”分布偏移影响，模型在真实应用中往往出现性能显著下降",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 671,
-                "end_char": 755
-              },
-              "version": "7c5f780540e3338e9971"
-            }
-          ]
-        },
-        {
-          "id": "item-47bbd1f5526a",
-          "name": "被试分类器迁移到新被试性能骤降",
-          "desc": "将之前被试的分类器用于新被试时性能会急剧下降，难以在实际中推广应用。",
-          "evidence": [
-            {
-              "quote": "此外，将之前被试的分类器用于新被试时，其性能会急剧下降，因此难以在实际中进行应用及推广",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 757,
-                "end_char": 799
+                "start_char": 2869,
+                "end_char": 2923
               },
               "version": "7c5f780540e3338e9971"
             }
@@ -95,36 +68,89 @@
       "state": "has",
       "items": [
         {
-          "id": "item-14a70418edfb",
-          "name": "双图卷积与分层时空特征提取",
-          "desc": "从图模型和递归学习角度建模不规则脑电电极拓扑结构和时域变化规律，进行双图卷积空域特征提取及局部到全脑的分层时空特征提取。",
+          "id": "item-b57c07fbf272",
+          "name": "域自适应网络SCDAN",
+          "desc": "空间判别器与条件判别器学习跨被试共同表征",
           "evidence": [
             {
-              "quote": "本项目首先从图模型和递归学习角度出发建模不规则脑电电极拓扑结构和时域变化规律，有效提升深度网络的跨域情感脑电特征提取能力",
+              "quote": "面向跨域脑电解码的域自适应网络，通过空间判别器与条件判别器学习跨被试共同脑激活表征",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 804,
-                "end_char": 863
+                "start_char": 3037,
+                "end_char": 3077
               },
               "version": "7c5f780540e3338e9971"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-0fda9f8cae56",
-          "name": "域对抗与可迁移注意力网络",
-          "desc": "利用域对抗和可迁移性学习策略减小个体间差异并强化正性脑电样本，构建双半球域对抗神经网络与可迁移注意力神经网络。",
+          "id": "item-936e7343f8db",
+          "name": "样本重加权与SRENet",
+          "desc": "面向跨设备/多源域迁移",
           "evidence": [
             {
-              "quote": "（3）基于双半球域对抗神经网络的跨域脑电情感识别；（4）基于可迁移注意力神经网络的跨域脑电情感识别",
+              "quote": "提出样本重加权策略与紧凑网络SRENet",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 965,
-                "end_char": 1013
+                "start_char": 3184,
+                "end_char": 3203
               },
               "version": "7c5f780540e3338e9971"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5f784de6e69a",
+          "name": "情绪脑电风格迁移网络E2STN",
+          "desc": "解耦情绪内容与域风格",
+          "evidence": [
+            {
+              "quote": "提出情绪脑电风格迁移网络E2STN，将“情绪内容信息”与“域风格特征”解耦并重构生成风格化情绪表征",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3264,
+                "end_char": 3312
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-e423fc33c7b2",
+          "name": "CNN与多头注意力融合HCANN",
+          "desc": "RSVP、运动想象与想象语音三范式统一解码",
+          "evidence": [
+            {
+              "quote": "提出CNN与多头注意力融合的HCANN，实现RSVP、运动想象与想象语音三范式统一解码并提升性能",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3378,
+                "end_char": 3425
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7969fc248536",
+          "name": "渐进式时空注意模型STPAM",
+          "desc": "并构建红外小目标RSVP数据集IRED",
+          "evidence": [
+            {
+              "quote": "进一步提出渐进式时空注意模型STPAM并构建首个红外小目标RSVP数据集IRED",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3527,
+                "end_char": 3566
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,55 +159,61 @@
       "state": "has",
       "items": [
         {
-          "id": "item-af28e74f4f86",
-          "name": "SCDAN跨被试解码显著提升",
-          "desc": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%，leave-one-out协议下提升8.60%/15.84%。",
+          "id": "item-e9f14df49821",
+          "name": "SCDAN跨被试解码提升",
+          "desc": "两数据集分别提升5.70%/12.43%",
           "evidence": [
             {
-              "quote": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%，在leave-one-out协议下提升8.60%/15.84%，验证了对分布偏移的鲁棒性提升（SCDAN）",
+              "quote": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3079,
-                "end_char": 3166
+                "end_char": 3112
               },
               "version": "7c5f780540e3338e9971"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0e5abb4a4825",
-          "name": "E2STN跨数据集情感识别SOTA",
-          "desc": "提出情绪脑电风格迁移网络E2STN，将情绪内容信息与域风格特征解耦并重构生成风格化情绪表征，取得跨数据集情感识别SOTA并首次给出实验协议与基准。",
+          "id": "item-cb0d1b25fa0d",
+          "name": "SRENet跨设备提升",
+          "desc": "三种跨设备任务分别超基线6.88%、5.90%与3.49%",
           "evidence": [
             {
-              "quote": "提出情绪脑电风格迁移网络E2STN，将“情绪内容信息”与“域风格特征”解耦并重构生成风格化情绪表征，取得跨数据集情感识别SOTA",
+              "quote": "在三种跨设备任务上分别超过基线6.88%、5.90%与3.49%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3264,
-                "end_char": 3327
-              },
-              "version": "7c5f780540e3338e9971"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-411ae191c6c6",
-          "name": "跨设备任务超越基线",
-          "desc": "提出样本重加权策略与紧凑网络SRENet，在三种跨设备任务上分别超过基线6.88%、5.90%与3.49%。",
-          "evidence": [
-            {
-              "quote": "提出样本重加权策略与紧凑网络SRENet，在三种跨设备任务上分别超过基线6.88%、5.90%与3.49%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3184,
+                "start_char": 3205,
                 "end_char": 3236
               },
               "version": "7c5f780540e3338e9971"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0045bd6c06b2",
+          "name": "E2STN跨数据集SOTA与基准",
+          "desc": "首次给出跨数据集实验协议与基准结果",
+          "evidence": [
+            {
+              "quote": "取得跨数据集情感识别SOTA，并首次给出跨数据集实验协议与基准结果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3314,
+                "end_char": 3346
+              },
+              "version": "7c5f780540e3338e9971"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +221,234 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-00d1e95af09a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0b9fe27460a9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0b9fe27460a9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-14a70418edfb"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0fda9f8cae56"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-af28e74f4f86"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-0fda9f8cae56"
+        "item_id": "item-e9f14df49821"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-0e5abb4a4825"
+        "dimension": "技术",
+        "item_id": "item-b57c07fbf272"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "跨被试运动想象解码在两数据集上分别较基线提升5.70%/12.43%，在leave-one-out协议下提升8.60%/15.84%，验证了对分布偏移的鲁棒性提升（SCDAN）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3079,
+            "end_char": 3166
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于脑激活区多视角对比学习的情绪识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李阳;吴晨楠;李甫;付博勋;赵至夫;周祎瑾;徐志城;张利剑;陈远方",
+      "id": "out-def8ea450d53",
+      "evidence": [
+        {
+          "quote": "[专利] 基于脑激活区多视角对比学习的情绪识别方法 — 李阳;吴晨楠;李甫;付博勋;赵至夫;周祎瑾;徐志城;张利剑;陈远方",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3706,
+            "end_char": 3766
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Enhancing Cross-Dataset EEG Emotion Recognition: A Novel Approach With Emotional EEG Style Transfer Network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Yijin;Li Fu;Li Yang;Ji Youshuo;Zhang Lijian;Chen Yuanfang;Wang Huaning",
+      "id": "out-73543fe3ae89",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Enhancing Cross-Dataset EEG Emotion Recognition: A Novel Approach With Emotional EEG Style Transfer Network — Zhou Yijin;Li Fu;Li Yang;Ji Youshuo;Zhang Lijian;Chen Yuanfang;Wang Huaning",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3771,
+            "end_char": 3962
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel RSVP-based system using EEG and eye-movement for classification and localization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Hao;Li Fu;Chu Wenlong;Li Hongxin;Ji Youshuo;Li Yang;Niu Yi;Wang Huaning;Chen Yuanfang;Shi Guangming",
+      "id": "out-14e9db648f19",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel RSVP-based system using EEG and eye-movement for classification and localization — Wu Hao;Li Fu;Chu Wenlong;Li Hongxin;Ji Youshuo;Li Yang;Niu Yi;Wang Huaning;Chen Yuanfang;Shi Guangming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3967,
+            "end_char": 4166
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatio-Temporal Progressive Attention Model for EEG Classification in Rapid Serial Visual Presentation Task",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Li;Wei Liu;Tianzhi Feng;Fu Li;Chennan Wu;Boxun Fu;Zhifu Zhao;Xiaotian Wang;Guangming Shi",
+      "id": "out-7d79f36081c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatio-Temporal Progressive Attention Model for EEG Classification in Rapid Serial Visual Presentation Task — Yang Li;Wei Liu;Tianzhi Feng;Fu Li;Chennan Wu;Boxun Fu;Zhifu Zhao;Xiaotian Wang;Guangming Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4171,
+            "end_char": 4380
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel hybrid decoding neural network for EEG signal representation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ji Youshuo;Li Fu;Fu Boxun;Zhou Yijin;Wu Hao;Li Yang;Li Xiaoli;Shi Guangming",
+      "id": "out-bb916959793c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel hybrid decoding neural network for EEG signal representation — Ji Youshuo;Li Fu;Fu Boxun;Zhou Yijin;Wu Hao;Li Yang;Li Xiaoli;Shi Guangming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4385,
+            "end_char": 4537
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于时空渐进注意力模型的快速序列视觉呈现脑电分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李阳;徐志城;刘伟;李甫;付博勋;赵至夫;周祎瑾;吴晨楠;张利剑;陈远方",
+      "id": "out-8731931735bb",
+      "evidence": [
+        {
+          "quote": "[专利] 基于时空渐进注意力模型的快速序列视觉呈现脑电分类方法 — 李阳;徐志城;刘伟;李甫;付博勋;赵至夫;周祎瑾;吴晨楠;张利剑;陈远方",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4542,
+            "end_char": 4611
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Semantic image sorting method for RSVP presentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Hao;Li Fu;Chu Wenlong;Li Yang;Niu Yi;Shi Guangming;Zhang Lijian;Chen Yuanfang",
+      "id": "out-66b60642a1ac",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Semantic image sorting method for RSVP presentation — Wu Hao;Li Fu;Chu Wenlong;Li Yang;Niu Yi;Shi Guangming;Zhang Lijian;Chen Yuanfang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4616,
+            "end_char": 4756
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A lightweight semantic decoding network with group to individual transfer learning for EEG-based visual recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaotian Wang;Doudou Zhang;Qimin Xu;Xinyu Cui;Rongkai Zhang;Yiming Jiang;Fu Li;Yang Li;Guangming Shi",
+      "id": "out-bdc612f77a7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A lightweight semantic decoding network with group to individual transfer learning for EEG-based visual recognition — Xiaotian Wang;Doudou Zhang;Qimin Xu;Xinyu Cui;Rongkai Zhang;Yiming Jiang;Fu Li;Yang Li;Guangming Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4761,
+            "end_char": 4985
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved Motor Imagery EEG Interdevice Decoding by Reweighting Multisource Domain Samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fu Boxun;Li Fu;Ji Youshuo;Li Yang;Xie Xuemei;Li Xiaoli;Shi Guangming",
+      "id": "out-c950e5aa9746",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improved Motor Imagery EEG Interdevice Decoding by Reweighting Multisource Domain Samples — Fu Boxun;Li Fu;Ji Youshuo;Li Yang;Xie Xuemei;Li Xiaoli;Shi Guangming",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4990,
+            "end_char": 5156
+          },
+          "version": "7c5f780540e3338e9971"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

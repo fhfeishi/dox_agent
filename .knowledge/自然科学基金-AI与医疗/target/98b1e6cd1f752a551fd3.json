@@ -2,15 +2,20 @@
   "doc_id": "98b1e6cd1f752a551fd3",
   "version": "d16236582d2bc35b9381",
   "source_hash": "5e3f3ef805df4b6d5357cb804aadbb8b05c783c9a12bc368e670e1dfd689f471",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.679565+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.598941+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-16fa49987cdf",
-          "name": "神经退行性疾病多模态辅助诊断",
-          "desc": "面向帕金森氏病等神经退行性疾病，基于患者的步态、手部动作与语音临床表现开展辅助诊断与严重程度量化评估。",
+          "id": "item-7b504b8af7f9",
+          "name": "神经退行性疾病辅助诊断",
+          "desc": "主观评估量表与专家描述",
           "evidence": [
             {
-              "quote": "本项目聚焦神经退行性疾病的辅助诊断，拟建立一种基于深度学习的多模态异构数据融合和建模新方法",
+              "quote": "目前针对神经退行性疾病的评估和诊断主要依赖于主观评估量表和医学专家描述，易受评估者主观性和被评估者回忆偏差的影响",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 857,
-                "end_char": 901
+                "start_char": 2765,
+                "end_char": 2820
               },
               "version": "d16236582d2bc35b9381"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f3f9c5175aaa",
-          "name": "单模态研究导致误诊漏诊与评估片面",
-          "desc": "现有AI辅助诊断方法局限于对疾病数据的单模态研究，忽略多元特征与表现形式，导致误诊漏诊；建模方法单一也无法追踪疾病动态变化。",
+          "id": "item-1f82f1ce64ef",
+          "name": "评估依赖主观，易受偏差影响",
+          "desc": "需客观辅助诊断与量化评估指标",
           "evidence": [
             {
-              "quote": "现今大部分人工智能辅助诊断方法局限于对疾病数据的单模态研究，忽略了其多元特征和表现形式，而导致误诊和漏诊",
+              "quote": "易受评估者主观性和被评估者回忆偏差的影响",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 718,
-                "end_char": 769
+                "start_char": 2801,
+                "end_char": 2820
               },
               "version": "d16236582d2bc35b9381"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f6be66693e2c",
-          "name": "多模态异构数据融合与深度学习建模方法",
-          "desc": "围绕步态、手部动作、语音等多症状采集图像、力信号、声音数据，构建多模态多症状异构数据融合算法框架，融合Transformer、卷积神经网络与时序网络。",
+          "id": "item-d2493932c68f",
+          "name": "步态多模态融合算法",
+          "desc": "FuseLGNet全局与局部特征融合",
           "evidence": [
             {
-              "quote": "针对患者的步态、手部动作和语音的临床表现，提取多模态数据（图像、力信号、声音等）中的有价值特征",
+              "quote": "基于步态识别，提出了全局与局部特征融合的FuseLGNet算法、多层微调Transformer",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 903,
-                "end_char": 949
+                "start_char": 3068,
+                "end_char": 3114
               },
               "version": "d16236582d2bc35b9381"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-66a74950f86b",
+          "name": "笔迹识别时空暹罗网络等",
+          "desc": "双通道LSTM、协调注意力增强Swin Transformer",
+          "evidence": [
+            {
+              "quote": "基于笔迹识别提出了时空暹罗神经网络、双通道LSTM、协调注意力增强Swin Transformer和显著增强神经网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3009,
+                "end_char": 3066
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c5213818fa11",
+          "name": "语音三重多模型迁移学习网络",
+          "desc": "语音障碍评估",
+          "evidence": [
+            {
+              "quote": "基于语音识别，提出了三重多模型迁移学习网络",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3116,
+                "end_char": 3136
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7710353884f7",
-          "name": "多症状多模态融合诊断性能达99.68%",
-          "desc": "在融合多症状数据集上，三种症状融合数据性能最高达到99.68%，显著优于单模态与单症状结果。",
+          "id": "item-fac9f49b3316",
+          "name": "步态多模态检测准确率",
+          "desc": "98%-99%",
+          "evidence": [
+            {
+              "quote": "步态多模态数据的使用使得神经退行性疾病检测准确率达到98%-99%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3249,
+                "end_char": 3281
+              },
+              "version": "d16236582d2bc35b9381"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-d05d6c2195a0",
+          "name": "三种症状融合数据性能",
+          "desc": "最高99.68%",
           "evidence": [
             {
               "quote": "针对三种症状融合数据的性能最高可达到99.68%",
@@ -99,44 +158,417 @@
               "version": "d16236582d2bc35b9381"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-16fa49987cdf"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f3f9c5175aaa"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transferable Self-Supervised Instance Learning for Sleep Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Yue Wang;Jianbo Li",
+      "id": "out-c1df69872231",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transferable Self-Supervised Instance Learning for Sleep Recognition — Aite Zhao;Yue Wang;Jianbo Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3504,
+            "end_char": 3609
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f3f9c5175aaa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f6be66693e2c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Spatio-Temporal Siamese Neural Network for Multimodal Handwriting Abnormality Screening of Parkinson’s Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+      "id": "out-6d7302e2b438",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Spatio-Temporal Siamese Neural Network for Multimodal Handwriting Abnormality Screening of Parkinson’s Disease — Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3614,
+            "end_char": 3774
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f6be66693e2c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-7710353884f7"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A deep spatio-temporal meta-learning model for urban traffic revitalization index prediction in the COVID-19 pandemic",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Wang;Zhiqiang Lv;Zhaoyu Sheng;Haokai Sun;Aite Zhao",
+      "id": "out-703ad9020af9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A deep spatio-temporal meta-learning model for urban traffic revitalization index prediction in the COVID-19 pandemic — Yue Wang;Zhiqiang Lv;Zhaoyu Sheng;Haokai Sun;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3779,
+            "end_char": 3959
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Level Fine-Tuned Transformer for Gait Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huimin Wu;Aite Zhao",
+      "id": "out-eeb356addd32",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Level Fine-Tuned Transformer for Gait Recognition — Huimin Wu;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3964,
+            "end_char": 4047
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Socially Acceptable Trajectory Prediction for Scene Pedestrian Gathering Area",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rongkun Ye;Zhiqiang Lv;Aite Zhao;Jianbo Li",
+      "id": "out-f85cd4dc90b6",
+      "evidence": [
+        {
+          "quote": "[会议论文] Socially Acceptable Trajectory Prediction for Scene Pedestrian Gathering Area — Rongkun Ye;Zhiqiang Lv;Aite Zhao;Jianbo Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4052,
+            "end_char": 4180
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatio-Temporal Correlation Augmented Model for Traffic Flow Prediction in Urban Areas",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yue Wang;Ming Chen;Aite Zhao",
+      "id": "out-f6480347015d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Spatio-Temporal Correlation Augmented Model for Traffic Flow Prediction in Urban Areas — Yue Wang;Ming Chen;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4185,
+            "end_char": 4308
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An Attention-based Temporal Network for Parkinson's Disease Severity Rating using Gait Signals",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huimin Wu;Yongcan Liu;Haozhe Yang;Zhongxiang Xie;Xianchao Chen;Mingzhi Wen;Aite Zhao",
+      "id": "out-9d5236bcd534",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An Attention-based Temporal Network for Parkinson's Disease Severity Rating using Gait Signals — Huimin Wu;Yongcan Liu;Haozhe Yang;Zhongxiang Xie;Xianchao Chen;Mingzhi Wen;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4313,
+            "end_char": 4500
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Triplet Multimodel Transfer Learning Network for Speech Disorder Screening of Parkinson's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Nana Wang;Xuesen Niu;Ming Chen;Huimin Wu",
+      "id": "out-77a47f830f23",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Triplet Multimodel Transfer Learning Network for Speech Disorder Screening of Parkinson's Disease — Aite Zhao;Nana Wang;Xuesen Niu;Ming Chen;Huimin Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4505,
+            "end_char": 4663
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Model Parkinson’s Speech Classification Model (MM-Parkinson)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Benchao Sun;Nana Wang;Yongcan Liu;Aite Zhao",
+      "id": "out-ab4e9b4c1fd2",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Model Parkinson’s Speech Classification Model (MM-Parkinson) — Benchao Sun;Nana Wang;Yongcan Liu;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4668,
+            "end_char": 4786
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TF-FusNet: A Novel Framework for Parkinson's Disease Detection via Time-Frequency Domain Fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Ren;Weijie Yu;Ming Chen;Aite Zhao;Huiyu Zhou",
+      "id": "out-33e0d72766b1",
+      "evidence": [
+        {
+          "quote": "[会议论文] TF-FusNet: A Novel Framework for Parkinson's Disease Detection via Time-Frequency Domain Fusion — Tao Ren;Weijie Yu;Ming Chen;Aite Zhao;Huiyu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4792,
+            "end_char": 4944
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Coordinate Enhanced Local and Global Attention Network for Handwriting Detection of Parkinson’s Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xuesen Niu;Nana Wang;Yongcan Liu;Aite Zhao",
+      "id": "out-4673b0bbeff5",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Coordinate Enhanced Local and Global Attention Network for Handwriting Detection of Parkinson’s Disease — Xuesen Niu;Nana Wang;Yongcan Liu;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4950,
+            "end_char": 5106
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi-level feature attention network for COVID-19 detection based on multi-source medical images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+      "id": "out-8572399ed977",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi-level feature attention network for COVID-19 detection based on multi-source medical images — Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5112,
+            "end_char": 5259
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A significantly enhanced neural network for handwriting assessment in Parkinson’s disease detection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Jianbo Li",
+      "id": "out-e20575d23b44",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A significantly enhanced neural network for handwriting assessment in Parkinson’s disease detection — Aite Zhao;Jianbo Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5265,
+            "end_char": 5392
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Scale Deep Information Mining for Fusion Motor Symptom Evaluation in Detection of Parkinson's Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yongcan Liu;Huimin Wu;Xuesen Niu;Lei Tong;Pihai Sun;Aite Zhao",
+      "id": "out-8a2e66593612",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-Scale Deep Information Mining for Fusion Motor Symptom Evaluation in Detection of Parkinson's Disease — Yongcan Liu;Huimin Wu;Xuesen Niu;Lei Tong;Pihai Sun;Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5398,
+            "end_char": 5575
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ACM Qingdao新星奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao",
+      "id": "out-42efb658ea8d",
+      "evidence": [
+        {
+          "quote": "[奖励] ACM Qingdao新星奖 — Aite Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5581,
+            "end_char": 5611
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "城市功能区之间交互的出行需求预测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵爱特;王玥;陈明;叶荣坤",
+      "id": "out-5bd18e1c6f81",
+      "evidence": [
+        {
+          "quote": "[专利] 城市功能区之间交互的出行需求预测方法及系统 — 赵爱特;王玥;陈明;叶荣坤",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5617,
+            "end_char": 5658
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Two-channel lstm for severity rating of parkinson’s disease using 3d trajectory of hand motion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Jianbo Li",
+      "id": "out-f8fd60dab36a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Two-channel lstm for severity rating of parkinson’s disease using 3d trajectory of hand motion — Aite Zhao;Jianbo Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5664,
+            "end_char": 5786
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DCACorrCapsNet: A deep channel‐attention correlative capsule network for COVID‐19 detection based on multi‐source medical images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+      "id": "out-8e95f0d1a6b1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DCACorrCapsNet: A deep channel‐attention correlative capsule network for COVID‐19 detection based on multi‐source medical images — Aite Zhao;Huimin Wu;Ming Chen;Nana Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5792,
+            "end_char": 5968
+          },
+          "version": "d16236582d2bc35b9381"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 9,
+        "extracted": 9
+      },
+      "会议论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

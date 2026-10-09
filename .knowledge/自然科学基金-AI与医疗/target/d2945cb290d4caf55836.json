@@ -2,15 +2,20 @@
   "doc_id": "d2945cb290d4caf55836",
   "version": "0efee8a9e9882983a768",
   "source_hash": "9ccdb1ade3bafc9a10ead24ee61ed4f1c0db0d6a1cb23d623aceabc363e51eb6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:45.253419+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.558067+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da6f92fa1d55",
-          "name": "肝细胞癌微血管侵犯预测",
-          "desc": "肝癌是我国最常见的恶性肿瘤之一，我国肝癌患病总数占全球50%以上，术后复发率高。",
+          "id": "item-358b92a33639",
+          "name": "肝癌微血管侵犯术前预测",
+          "desc": "多模态CT与普美显MRI",
           "evidence": [
             {
-              "quote": "肝癌是我国目前最常见的恶性肿瘤之一，我国肝癌患病总数占全球50%以上",
+              "quote": "本项目基于多模态CT和普美显MRI，利用深度学习方法，构建了肝癌微血管侵犯预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 664,
-                "end_char": 697
-              },
-              "version": "0efee8a9e9882983a768"
-            }
-          ]
-        },
-        {
-          "id": "item-73f59d695e87",
-          "name": "为术前治疗方案制定提供辅助依据",
-          "desc": "为术前治疗方案制定提供更加精准的辅助依据，以期降低术后复发、提高患者生存。",
-          "evidence": [
-            {
-              "quote": "为术前治疗方案制定提供更加精准的辅助依据，以期降低术后复发，提高患者生存，具有重要临床意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1010,
-                "end_char": 1054
+                "start_char": 2609,
+                "end_char": 2649
               },
               "version": "0efee8a9e9882983a768"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-55714aa1c46e",
-          "name": "MVI仅能术后病理诊断具滞后性",
-          "desc": "目前肝癌微血管侵犯仅能通过术后有创的病理学检查诊断，具有滞后性，无法为术前个体化治疗方案制定提供辅助依据。",
+          "id": "item-d47dc5b2aa00",
+          "name": "微血管侵犯仅能术后病理诊断",
+          "desc": "滞后",
           "evidence": [
             {
-              "quote": "然而，目前肝癌微血管侵犯仅能通过术后有创的病理学检查进行诊断，具有滞后性，无法为术前的个体化治疗方案制定提供辅助依据",
+              "quote": "目前肝癌微血管侵犯仅能通过术后有创的病理学检查进行诊断，具有滞后性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 842,
-                "end_char": 899
-              },
-              "version": "0efee8a9e9882983a768"
-            }
-          ]
-        },
-        {
-          "id": "item-7f8e7d2a064e",
-          "name": "MVI提示肿瘤更高侵袭性易复发",
-          "desc": "微血管侵犯是影响肝癌术后复发的重要独立因子，其出现提示肿瘤具有更高侵袭性、更易发生术后复发。",
-          "evidence": [
-            {
-              "quote": "微血管侵犯是影响肝癌术后复发的重要独立因子，其出现提示肿瘤具有更高侵袭性，因而更易发生术后复发",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 753,
-                "end_char": 799
+                "start_char": 845,
+                "end_char": 877
               },
               "version": "0efee8a9e9882983a768"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e7e411432f32",
-          "name": "深度学习影像组学预测模型",
-          "desc": "基于多模态CT和普美显MRI利用深度学习方法构建肝癌微血管侵犯预测模型，提高预测精度并实现高危区域预测及病理验证。",
+          "id": "item-31db738ec786",
+          "name": "多相位与通道堆叠双重注意力肝癌病灶分割",
+          "desc": "尺度加权损失",
           "evidence": [
             {
-              "quote": "本项目基于多模态CT和普美显MRI，利用深度学习方法，构建了肝癌微血管侵犯预测模型，提高微血管侵犯预测精度，并实现侵犯高危区域的预测及病理验证",
+              "quote": "创新性地引入多相位和通道堆叠的双重注意力模块基于尺度加权的损失函数，有效提高了肝癌病灶分割的准确性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2609,
-                "end_char": 2679
+                "start_char": 3063,
+                "end_char": 3111
               },
               "version": "0efee8a9e9882983a768"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-8f63df816379",
-          "name": "双模态影像特征提取与热力图",
-          "desc": "以ResNet18为主框架提取MVI相关关键双模态影像特征，实现高精度预测并构建血管侵犯热力图。",
+          "id": "item-67951f484d94",
+          "name": "ResNet18双模态MVI预测与热力图",
+          "desc": "高危区域可视化",
           "evidence": [
             {
-              "quote": "以ResNet18作为网络主框架，提取肝癌微血管侵犯相关的关键双模态影像特征，实现了肝癌微血管侵犯双模态的高精度预测，同时构建肝癌血管侵犯热力图",
+              "quote": "以ResNet18作为网络主框架，提取肝癌微血管侵犯相关的关键双模态影像特征，实现了肝癌微血管侵犯双模态的高精度预测",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3144,
-                "end_char": 3215
+                "end_char": 3201
               },
               "version": "0efee8a9e9882983a768"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,228 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a5f610c287eb",
-          "name": "多中心前瞻性验证研究",
-          "desc": "基于深度学习构建肝癌微血管侵犯预测模型并完成多中心与前瞻性验证研究。",
+          "id": "item-3a2d18a2e009",
+          "name": "回顾性与前瞻性数据",
+          "desc": "共1541例",
           "evidence": [
             {
-              "quote": "Prediction of Microvascular Invasion in Hepatocellular Carcinoma via Deep Learning: A Multi-Center and Prospective Validation Study",
+              "quote": "共计收集数据1541例",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3377,
-                "end_char": 3507
+                "start_char": 2990,
+                "end_char": 3000
               },
               "version": "0efee8a9e9882983a768"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-0c215f4167a1",
-          "name": "高危区域覆盖率提高40%以上",
-          "desc": "深度学习热点区域有效覆盖肝内及肝周血管结构、子灶、出芽部位、包膜、瘤周低密度信号、坏死和出血区域，对高危侵犯影像区域的覆盖率可提高40%以上并经HE病理验证。",
+          "id": "item-31468125b324",
+          "name": "论文",
+          "desc": "SCI及EI共12篇",
           "evidence": [
             {
-              "quote": "对高危侵犯影像区域的覆盖率可提高40%以上，并经过了严格的HE病理染色验证，可为肝癌的精准外扩切除方案决策提供可靠的量化辅助依据",
+              "quote": "负责人发表相关SCI期刊论文及EI会议论文共计12篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3288,
-                "end_char": 3351
+                "start_char": 2712,
+                "end_char": 2737
               },
               "version": "0efee8a9e9882983a768"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-71dcc21b7ce6",
-          "name": "论文与数据集规模",
-          "desc": "项目期间负责人发表相关SCI期刊论文及EI会议论文共计12篇，远超预期；共收集1541例数据。",
-          "evidence": [
-            {
-              "quote": "项目期间，负责人发表相关SCI期刊论文及EI会议论文共计12篇（远超预期研究成果SCI期刊论文5篇）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2707,
-                "end_char": 2756
-              },
-              "version": "0efee8a9e9882983a768"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-da6f92fa1d55"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-55714aa1c46e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of Microvascular Invasion in Hepatocellular Carcinoma via Deep Learning: A Multi-Center and Prospective Validation Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingwei Wei;Hanyu Jiang;Mengsu Zeng;Meiyun Wang;Meng Niu;Dongsheng Gu;Huanhuan Chong;Yanyan Zhang;Fangfang Fu;Mu Zhou;Jie Chen;Fudong Lyv;Hong Wei;Bashir Mustafa;Bin Song;Hongjun Li;Jie Tian",
+      "id": "out-5a9101788942",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of Microvascular Invasion in Hepatocellular Carcinoma via Deep Learning: A Multi-Center and Prospective Validation Study — Jingwei Wei;Hanyu Jiang;Mengsu Zeng;Meiyun Wang;Meng Niu;Dongsheng Gu;Huanhuan Chong;Yanyan Zhang;Fangfang Fu;Mu Zhou;Jie Chen;Fudong Lyv;Hong Wei;Bashir Mustafa;Bin Song;Hongjun Li;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3370,
+            "end_char": 3700
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-55714aa1c46e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e7e411432f32"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Large scale models in radiology: revolutionizing the future of medical imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yilin Li;Jiaojiao Liu;Yanyan Zhang;Jingwei Wei;Yang Luo;Xue Yang;Yanbin Shi;Yanbin Shi;Wanshui Yang;Hongjun Li;Jie Tian",
+      "id": "out-2918e57169c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Large scale models in radiology: revolutionizing the future of medical imaging — Yilin Li;Jiaojiao Liu;Yanyan Zhang;Jingwei Wei;Yang Luo;Xue Yang;Yanbin Shi;Yanbin Shi;Wanshui Yang;Hongjun Li;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3705,
+            "end_char": 3911
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e7e411432f32"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a5f610c287eb"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multi‐scale, multi‐region and attention mechanism‐based deep learning framework for prediction of grading in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingwei Wei;Qian Ji;Yu Gao;Xiaozhen Yang;Donghui Guo;Dongsheng Gu;Chunwang Yuan;Jie Tian;Dawei Ding",
+      "id": "out-5febe378622e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multi‐scale, multi‐region and attention mechanism‐based deep learning framework for prediction of grading in hepatocellular carcinoma — Jingwei Wei;Qian Ji;Yu Gao;Xiaozhen Yang;Donghui Guo;Dongsheng Gu;Chunwang Yuan;Jie Tian;Dawei Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3916,
+            "end_char": 4159
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8f63df816379"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0c215f4167a1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CT-based radiomics to predict development of macrovascular invasion in hepatocellular carcinoma: A multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingwei Wei;Sirui Fu;Jie Zhang;Dongsheng Gu;Xiaoqun Li;Xudong Chen;Shuaitong Zhang;Xiaofei He;Jianfeng Yan;Ligong Lu;Jie Tian",
+      "id": "out-030bad5ed8df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CT-based radiomics to predict development of macrovascular invasion in hepatocellular carcinoma: A multicenter study — Jingwei Wei;Sirui Fu;Jie Zhang;Dongsheng Gu;Xiaoqun Li;Xudong Chen;Shuaitong Zhang;Xiaofei He;Jianfeng Yan;Ligong Lu;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4164,
+            "end_char": 4414
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Advances in artificial intelligence techniques drive the application of radiomics in the clinical research of hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jingwei Wei;Meng Niu;Ouyang Yabo;Yu Zhou;Xiaoke Ma;Xue Yang;Hanyu Jiang;Hui Hui;Hongyi Cao;Binwei Duan;Hongjun Li;Dawei Ding;Jie Tian",
+      "id": "out-1c9f2944c2c4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Advances in artificial intelligence techniques drive the application of radiomics in the clinical research of hepatocellular carcinoma — Jingwei Wei;Meng Niu;Ouyang Yabo;Yu Zhou;Xiaoke Ma;Xue Yang;Hanyu Jiang;Hui Hui;Hongyi Cao;Binwei Duan;Hongjun Li;Dawei Ding;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4419,
+            "end_char": 4695
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics diagnosed histopathological growth pattern in prediction of response and 1-year progression free survival for colorectal liver metastases patients treated with bevacizumab containing chemotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Shengcai;Han Yuqi;Zeng Hanjiang;Ye Shuai;Cheng Jin;Chai Fan;Wei Jingwei;Zhang Jianwei;Hong Nan;Bao Yudi;Zhou Jing;Ye Yingjiang;Meng Xiaochun;Zhou Yuwen;Deng Yanhong;Qiu Meng;Tian Jie;Wang Yi",
+      "id": "out-291b936f126f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics diagnosed histopathological growth pattern in prediction of response and 1-year progression free survival for colorectal liver metastases patients treated with bevacizumab containing chemotherapy — Wei Shengcai;Han Yuqi;Zeng Hanjiang;Ye Shuai;Cheng Jin;Chai Fan;Wei Jingwei;Zhang Jianwei;Hong Nan;Bao Yudi;Zhou Jing;Ye Yingjiang;Meng Xiaochun;Zhou Yuwen;Deng Yanhong;Qiu Meng;Tian Jie;Wang Yi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4700,
+            "end_char": 5108
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting microvascular invasion in hepatocellular carcinoma: A dual‐institution study on gadoxetate disodium‐enhanced            MRI",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hanyu Jiang;Jingwei Wei;Fangfang Fu;Hong Wei;Yun Qin;Ting Duan;Weixia Chen;Kunlin Xie;Jeong Min Lee;Mustafa R. Bashir;Meiyun Wang;Bin Song;Jie Tian",
+      "id": "out-8881104c9a57",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting microvascular invasion in hepatocellular carcinoma: A dual‐institution study on gadoxetate disodium‐enhanced            MRI — Hanyu Jiang;Jingwei Wei;Fangfang Fu;Hong Wei;Yun Qin;Ting Duan;Weixia Chen;Kunlin Xie;Jeong Min Lee;Mustafa R. Bashir;Meiyun Wang;Bin Song;Jie Tian",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5113,
+            "end_char": 5403
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Adaptive Multi-Phase Liver Tumor Segmentation with Multi-Scale Supervision",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haopeng Kuang;Dingkang Yang;Shunli Wang;Shunli Wang;Shunli Wang;Jingwei Wei;Lihua Zhang",
+      "id": "out-0121240493db",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Adaptive Multi-Phase Liver Tumor Segmentation with Multi-Scale Supervision — Haopeng Kuang;Dingkang Yang;Shunli Wang;Shunli Wang;Shunli Wang;Jingwei Wei;Lihua Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5408,
+            "end_char": 5578
+          },
+          "version": "0efee8a9e9882983a768"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "2a10b40c447ebd6748ee",
   "version": "20cd3e3e8ab43a0240af",
   "source_hash": "46aa1ee740c64a5b2ece7de3e25d5dc449fb1a91acd7c6b7be681aa202554b07",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:29.475172+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:34:11.739458+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7b2e2729844c",
-          "name": "影像组学智能分析理论与关键技术",
-          "desc": "在影像多模化、分析组学化、建模智能化背景下，开展计算智能与临床有效双重标准下的影像组学分析。",
+          "id": "item-a46c545f8ffd",
+          "name": "影像组学智能分析",
+          "desc": "多模态、不平衡、小样本、黑盒",
           "evidence": [
             {
-              "quote": "随着精准医疗的大力推进，作为其重要内容之一的医学影像智能分析也全方位备受重视",
+              "quote": "本项目通过对影像组学分析中的数据多模态、不平衡、小样本及黑盒子等难点，开展了一系列研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 635,
-                "end_char": 672
+                "start_char": 2841,
+                "end_char": 2883
               },
               "version": "20cd3e3e8ab43a0240af"
             }
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-36512f4ff0cf",
-          "name": "多模态不平衡小样本与黑盒子难点",
-          "desc": "影像组学分析面临数据多模态、不平衡、小样本及黑盒子等难点，需要开展针对性研究。",
+          "id": "item-c87e0d8bbc31",
+          "name": "影像组学数据多模态、不平衡、小样本及黑盒",
+          "desc": "四类难点",
           "evidence": [
             {
               "quote": "本项目通过对影像组学分析中的数据多模态、不平衡、小样本及黑盒子等难点，开展了一系列研究",
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4955c126ee4c",
-          "name": "特征融合强化学习与迁移学习影像分析",
-          "desc": "针对数据多模态提出基于结构张量结合特征驱动的多模图像配准、融合语义的卷积循环神经网络等特征融合与强化学习算法，并开展基于域适应的迁移学习医疗影像分析。",
+          "id": "item-70c6607ffc53",
+          "name": "结构张量多模图像配准与融合语义卷积循环网络",
+          "desc": "特征融合与强化学习",
           "evidence": [
             {
-              "quote": "针对数据的多模态，提出了一系列新的特征融合与强化学习算法，如基于结构张量结合特征驱动的多模图像配准、融合语义的卷积循环神经网络等，有效提升了模型的计算准确性与分析稳定性",
+              "quote": "提出了一系列新的特征融合与强化学习算法，如基于结构张量结合特征驱动的多模图像配准、融合语义的卷积循环神经网络等",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2888,
-                "end_char": 2971
+                "start_char": 2897,
+                "end_char": 2951
               },
               "version": "20cd3e3e8ab43a0240af"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5ee65c0fafe4",
+          "name": "域适应迁移学习",
+          "desc": "不平衡与小样本",
+          "evidence": [
+            {
+              "quote": "包括基于域适应的迁移学习算法、基于局部特征保持的模型等",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3007,
+                "end_char": 3033
+              },
+              "version": "20cd3e3e8ab43a0240af"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-91320c94dce6",
+          "name": "稀疏公共特征表示不平衡样本特征提取",
+          "desc": "高通量特征提取",
+          "evidence": [
+            {
+              "quote": "基于稀疏公共特征表示的不平衡样本特征提取算法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3095,
+                "end_char": 3116
+              },
+              "version": "20cd3e3e8ab43a0240af"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,1468 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be0973a45757",
-          "name": "形成前列腺可视化分析系统并临床测试",
-          "desc": "理论创新在前列腺医学影像数据集上实现，形成一套前列腺可视化分析系统并在北医三院开展临床测试；同时提出高通量特征提取与医疗风险评估系列算法。",
+          "id": "item-f1b8ded30703",
+          "name": "前列腺可视化分析系统",
+          "desc": "在北医三院开展临床测试",
           "evidence": [
             {
-              "quote": "上述理论创新在前列腺医学影像数据集上进行实现，形成了一套前列腺可视化分析系统，并在北医三院开展临床测试",
+              "quote": "形成了一套前列腺可视化分析系统，并在北医三院开展临床测试",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3184,
+                "start_char": 3207,
                 "end_char": 3234
               },
               "version": "20cd3e3e8ab43a0240af"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-7b2e2729844c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-36512f4ff0cf"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "细胞膜动态功能化的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李永勇;董海青;何良华;李艳",
+      "id": "out-8e8b22ed446f",
+      "evidence": [
+        {
+          "quote": "[专利] 细胞膜动态功能化的方法 — 李永勇;董海青;何良华;李艳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3314,
+            "end_char": 3346
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-36512f4ff0cf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4955c126ee4c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于胶囊网络的可变维度胶囊的研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任强;何良华",
+      "id": "out-5677bd0103f0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于胶囊网络的可变维度胶囊的研究 — 任强;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3351,
+            "end_char": 3382
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-4955c126ee4c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-be0973a45757"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fairness-aware Maximal Biclique Enumeration on Bipartite Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziqi Yin;Qi Zhang;Wentao Zhang;Rong-Hua Li;Guoren Wang",
+      "id": "out-a0939cb4972d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fairness-aware Maximal Biclique Enumeration on Bipartite Graphs — Ziqi Yin;Qi Zhang;Wentao Zhang;Rong-Hua Li;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3513
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于虚拟条件生成对抗网络的图像生成方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卢剑;何良华;李旭升;颜野",
+      "id": "out-127c61de04bb",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于虚拟条件生成对抗网络的图像生成方法及系统 — 卢剑;何良华;李旭升;颜野",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3518,
+            "end_char": 3562
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Densest Periodic Subgraph Mining on Large Temporal Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongchao Qin;Rong-Hua Li;Ye Yuan;Yongheng Dai;Guoren Wang",
+      "id": "out-4d5db2078102",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Densest Periodic Subgraph Mining on Large Temporal Graphs — Hongchao Qin;Rong-Hua Li;Ye Yuan;Yongheng Dai;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3567,
+            "end_char": 3690
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种动态深度置信网络分析方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;胡仁杰;罗裕隽;莫文闻;侍海峰;刘洪宇;王予沁;任强;刘晓洁;蔡冠羽",
+      "id": "out-0425a4024c0a",
+      "evidence": [
+        {
+          "quote": "[专利] 一种动态深度置信网络分析方法 — 何良华;胡仁杰;罗裕隽;莫文闻;侍海峰;刘洪宇;王予沁;任强;刘晓洁;蔡冠羽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3695,
+            "end_char": 3754
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Biclique Counting in Large Bipartite Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaowei Ye;Rong-Hua Li;Qiangqiang Dai;Hongchao Qin;Guoren Wang",
+      "id": "out-405a87746f54",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Biclique Counting in Large Bipartite Graphs — Xiaowei Ye;Rong-Hua Li;Qiangqiang Dai;Hongchao Qin;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3759,
+            "end_char": 3883
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Estimation of Heat Kernel PageRank for Local Clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Renchi Yang;Xiaokui Xiao;Zhewei Wei;Sourav S.Bhowmick;Jun Zhao;Rong-Hua Li",
+      "id": "out-805eb5b2f6dc",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Estimation of Heat Kernel PageRank for Local Clustering — Renchi Yang;Xiaokui Xiao;Zhewei Wei;Sourav S.Bhowmick;Jun Zhao;Rong-Hua Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3888,
+            "end_char": 4036
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Progressive Approach for Neighboring Geosocial Communities Search over Large Spatial Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zewen Wu;Jian Xu;Huaixiang Zhang;Qing Bao;Qing Sun;Changbeng Zhou",
+      "id": "out-78603158b465",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Progressive Approach for Neighboring Geosocial Communities Search over Large Spatial Graphs — Zewen Wu;Jian Xu;Huaixiang Zhang;Qing Bao;Qing Sun;Changbeng Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4041,
+            "end_char": 4208
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "多模态医疗图像分类",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马伟镇;何良华",
+      "id": "out-c1119e0a3eef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 多模态医疗图像分类 — 马伟镇;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4214,
+            "end_char": 4239
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于胶囊网络的图像分类方法、存储介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;任强;高世忠;孙振宇;王军",
+      "id": "out-de1cf668f78c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于胶囊网络的图像分类方法、存储介质及电子设备 — 何良华;任强;高世忠;孙振宇;王军",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4292
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "复杂条件下监控图像智能分析与传输中的关键技术与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "同济大学",
+      "id": "out-e19bd3edbf8b",
+      "evidence": [
+        {
+          "quote": "[奖励] 复杂条件下监控图像智能分析与传输中的关键技术与应用 — 同济大学",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4298,
+            "end_char": 4334
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        },
+        {
+          "quote": "[奖励] 复杂条件下监控图像智能分析与传输中的关键技术与应用 — 何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7411,
+            "end_char": 7446
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于自动分工隐聚类生成对抗网络的图像生成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;李旭升",
+      "id": "out-0554653db2c7",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于自动分工隐聚类生成对抗网络的图像生成方法 — 何良华;李旭升",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4340,
+            "end_char": 4378
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于弱监督学习的医学图像分割方法研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "程舸帆;何良华",
+      "id": "out-7c9e38ed3b3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于弱监督学习的医学图像分割方法研究 — 程舸帆;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4384,
+            "end_char": 4418
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fast Maximal Clique Enumeration on Uncertain Graphs: A Pivot-based Approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangqiang Dai;Rong-Hua Li;Meihao Liao;Hongzhi Chen;Guoren Wang",
+      "id": "out-3cebac2767b9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fast Maximal Clique Enumeration on Uncertain Graphs: A Pivot-based Approach — Qiangqiang Dai;Rong-Hua Li;Meihao Liao;Hongzhi Chen;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4424,
+            "end_char": 4571
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于医疗风险的医学图像分割控制方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;刘晓洁;马伟镇;程舸帆",
+      "id": "out-50998cf68dd9",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于医疗风险的医学图像分割控制方法 — 何良华;刘晓洁;马伟镇;程舸帆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4577,
+            "end_char": 4618
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Explainable Hyperlink Prediction: A Hypergraph Edit Distance-Based Approach.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongchao Qin;Rong-Hua Li;Ye Yuan;Guoren Wang;Yongheng Dai",
+      "id": "out-703565bc1711",
+      "evidence": [
+        {
+          "quote": "[会议论文] Explainable Hyperlink Prediction: A Hypergraph Edit Distance-Based Approach. — Hongchao Qin;Rong-Hua Li;Ye Yuan;Guoren Wang;Yongheng Dai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4624,
+            "end_char": 4766
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于GPU的极大k-truss发现算法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任泽槟;李荣华;王国仁;潘敏佳;高森;蒋佳祺",
+      "id": "out-adf28156b756",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于GPU的极大k-truss发现算法 — 任泽槟;李荣华;王国仁;潘敏佳;高森;蒋佳祺",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4772,
+            "end_char": 4822
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种对工业机械臂空间判断定位校正装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张翔;张怀相",
+      "id": "out-682783ea1f99",
+      "evidence": [
+        {
+          "quote": "[专利] 一种对工业机械臂空间判断定位校正装置 — 张翔;张怀相",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4828,
+            "end_char": 4859
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于生成式对抗网络的虚拟样本生成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "卢剑;何良华;李旭升;颜野;朱学华",
+      "id": "out-7a636dc7781b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于生成式对抗网络的虚拟样本生成方法 — 卢剑;何良华;李旭升;颜野;朱学华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4865,
+            "end_char": 4909
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于多Kinect的远程医疗场景的动态可视化控制方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐振豪;何良华",
+      "id": "out-59019436e5e2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于多Kinect的远程医疗场景的动态可视化控制方法 — 徐振豪;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4915,
+            "end_char": 4957
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于正则化的解决对抗残差变换网络梯度消失问题的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;蔡冠羽",
+      "id": "out-19a9d28e9e2b",
+      "evidence": [
+        {
+          "quote": "[专利] 基于正则化的解决对抗残差变换网络梯度消失问题的方法 — 何良华;蔡冠羽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4963,
+            "end_char": 5002
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Segmenting Medical MRI via Recurrent Decoding Cell",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Wen;Xie Kai;Lianghua He",
+      "id": "out-22b4aeee438f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Segmenting Medical MRI via Recurrent Decoding Cell — Ying Wen;Xie Kai;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5008,
+            "end_char": 5095
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Top-k Edge Structural Diversity Search",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Qi;Li Rong-Hua;Yang Qixuan;Wang Guoren;Qin Lu",
+      "id": "out-005d9493193d",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Top-k Edge Structural Diversity Search — Zhang Qi;Li Rong-Hua;Yang Qixuan;Wang Guoren;Qin Lu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5101,
+            "end_char": 5209
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于静息态脑电数据的性别分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;任强",
+      "id": "out-8ea92c467df1",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于静息态脑电数据的性别分类方法 — 何良华;任强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5215,
+            "end_char": 5246
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incorporation of Structural Tensor and Driving Force into Log-Demons for Large-Deformation Image Registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen Ying;Zhang Le;He Lianghua;Zhou Mengchu",
+      "id": "out-c9721e46a53a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incorporation of Structural Tensor and Driving Force into Log-Demons for Large-Deformation Image Registration — Wen Ying;Zhang Le;He Lianghua;Zhou Mengchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5252,
+            "end_char": 5412
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Finding skyline communities in multi-valued networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Rong-Hua;Qin Lu;Ye Fanghua;Wang Guoren;Yu Jeffrey Xu;Xiao Xiaokui;Xiao Nong;Zheng Zibin",
+      "id": "out-a0ac4e700e94",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Finding skyline communities in multi-valued networks — Li Rong-Hua;Qin Lu;Ye Fanghua;Wang Guoren;Yu Jeffrey Xu;Xiao Xiaokui;Xiao Nong;Zheng Zibin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5418,
+            "end_char": 5569
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neighborhood Skyline on Graphs: Concepts, Algorithms and Applications",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Zhang;Rong-Hua Li;Hongchao Qin;Yongheng Dai;Ye Yuan;Guoren Wang",
+      "id": "out-dcd834c88115",
+      "evidence": [
+        {
+          "quote": "[会议论文] Neighborhood Skyline on Graphs: Concepts, Algorithms and Applications — Qi Zhang;Rong-Hua Li;Hongchao Qin;Yongheng Dai;Ye Yuan;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5575,
+            "end_char": 5719
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于transformer的医学图像分割方法、系统、介质及电子设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;徐志成;林兴斌",
+      "id": "out-ffbccd963294",
+      "evidence": [
+        {
+          "quote": "[专利] 基于transformer的医学图像分割方法、系统、介质及电子设备 — 何良华;徐志成;林兴斌",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5725,
+            "end_char": 5776
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient shortest path counting on large road networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu-Xuan Qiu;Dong Wen;Lu Qin;Wentao Li;Rong-Hua Li;Ying Zhang",
+      "id": "out-4d447de3b96a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Efficient shortest path counting on large road networks — Yu-Xuan Qiu;Dong Wen;Lu Qin;Wentao Li;Rong-Hua Li;Ying Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5782,
+            "end_char": 5906
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于卷积神经网络的脑纹识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;任强",
+      "id": "out-7dfcc18bf028",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于卷积神经网络的脑纹识别方法 — 何良华;任强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5912,
+            "end_char": 5942
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Signed Clique Search in Signed Networks: Concepts and Algorithms",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rong-Hua Li;Qiangqiang Dai;Lu Qin;Guoren Wang;Xiaokui Xiao;Jeffrey Xu Yu;Shaojie Qiao",
+      "id": "out-e043e90861fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Signed Clique Search in Signed Networks: Concepts and Algorithms — Rong-Hua Li;Qiangqiang Dai;Lu Qin;Guoren Wang;Xiaokui Xiao;Jeffrey Xu Yu;Shaojie Qiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5948,
+            "end_char": 6106
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于注意力路由的医学图像分割系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李旭升;何良华",
+      "id": "out-7598f60e6c02",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于注意力路由的医学图像分割系统 — 李旭升;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6112,
+            "end_char": 6144
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Filtration-Enhanced Graph Transformation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zijian Chen;Rong-Hua Li;Hongchao Qin;Huanzhong Duan;Yanxiong Lu;Qiangqiang Dai;Guoren Wang",
+      "id": "out-f26a4fe41623",
+      "evidence": [
+        {
+          "quote": "[会议论文] Filtration-Enhanced Graph Transformation — Zijian Chen;Rong-Hua Li;Hongchao Qin;Huanzhong Duan;Yanxiong Lu;Qiangqiang Dai;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6150,
+            "end_char": 6289
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于自监督聚类算法的小样本医学图像分类",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "马修玉;何良华",
+      "id": "out-58528dc7ae97",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于自监督聚类算法的小样本医学图像分类 — 马修玉;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6295,
+            "end_char": 6330
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Colorful h-star Core Decomposition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sen Gao;Rong-Hua Li;Hongchao Qin;Hongzhi Chen;Ye Yuan;Guoren Wang",
+      "id": "out-38400662bbb1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Colorful h-star Core Decomposition — Sen Gao;Rong-Hua Li;Hongchao Qin;Hongzhi Chen;Ye Yuan;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6336,
+            "end_char": 6444
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于局部平滑差的无监督领域自适应方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;蔡冠羽",
+      "id": "out-fd60d7b99e82",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于局部平滑差的无监督领域自适应方法 — 何良华;蔡冠羽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6450,
+            "end_char": 6484
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于随机森林和卷积神经网络的脑电数据分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;任强",
+      "id": "out-8789c001a1a2",
+      "evidence": [
+        {
+          "quote": "[专利] 基于随机森林和卷积神经网络的脑电数据分类方法 — 何良华;任强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6490,
+            "end_char": 6525
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于LSTM模型和超图的用户行为预测方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "龙水彬;李荣华;秦宏超;王国仁",
+      "id": "out-e67af33d8cf6",
+      "evidence": [
+        {
+          "quote": "[专利] 基于LSTM模型和超图的用户行为预测方法及系统 — 龙水彬;李荣华;秦宏超;王国仁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6531,
+            "end_char": 6576
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stable Subgraph Isomorphism Search in Temporal Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Zhang;Rong-Hua Li;Hongchao Qin;Guoren Wang;Zhiwei Zhang;Ye Yuan",
+      "id": "out-5e54a864498e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stable Subgraph Isomorphism Search in Temporal Networks — Qi Zhang;Rong-Hua Li;Hongchao Qin;Guoren Wang;Zhiwei Zhang;Ye Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6582,
+            "end_char": 6712
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Personalized PageRank Computation: A Spanning Forests Sampling Based Approach",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meihao Liao;Rong-Hua Li;Qiangqiang Dai;Guoren Wang",
+      "id": "out-4c954a450f4b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Personalized PageRank Computation: A Spanning Forests Sampling Based Approach — Meihao Liao;Rong-Hua Li;Qiangqiang Dai;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6718,
+            "end_char": 6864
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于弱监督学习的医学图像分割方法及其模型的训练方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;王方鑫;李聪",
+      "id": "out-878da9f648ec",
+      "evidence": [
+        {
+          "quote": "[专利] 基于弱监督学习的医学图像分割方法及其模型的训练方法 — 何良华;王方鑫;李聪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6870,
+            "end_char": 6912
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ask&Confirm: Active Detail Enriching for Cross-Modal Retrieval with Partial Query",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanyu Cai;Jun Zhang;Xinyang Jiang;Yifei Gong;Lianghua He;Fufu Yu;Pai Peng;Xiaowei Guo;Feiyue Huang;Xing Sun",
+      "id": "out-575dedb778d9",
+      "evidence": [
+        {
+          "quote": "[会议论文] Ask&Confirm: Active Detail Enriching for Cross-Modal Retrieval with Partial Query — Guanyu Cai;Jun Zhang;Xinyang Jiang;Yifei Gong;Lianghua He;Fufu Yu;Pai Peng;Xiaowei Guo;Feiyue Huang;Xing Sun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6918,
+            "end_char": 7116
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Unsupervised Domain Adaptation With Adversarial Residual Transform Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanyu Cai;Yuqin Wang;Lianghua He;MengChu Zhou",
+      "id": "out-641b65a786e8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Unsupervised Domain Adaptation With Adversarial Residual Transform Networks — Guanyu Cai;Yuqin Wang;Lianghua He;MengChu Zhou",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7122,
+            "end_char": 7252
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于区块链的数据交换系统及方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐兰天;李荣华;王国仁;金福生;张志威",
+      "id": "out-2b21f560697f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于区块链的数据交换系统及方法 — 徐兰天;李荣华;王国仁;金福生;张志威",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7258,
+            "end_char": 7301
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scalable and Effective Conductance-based Graph Clustering",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Longlong Lin;Rong-Hua Li;Tao Jia",
+      "id": "out-a0317da4eed5",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scalable and Effective Conductance-based Graph Clustering — Longlong Lin;Rong-Hua Li;Tao Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7307,
+            "end_char": 7405
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于静息态脑电数据的年龄段分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;任强",
+      "id": "out-fe3952f24b4d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于静息态脑电数据的年龄段分类方法 — 何良华;任强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7452,
+            "end_char": 7484
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Sparse Individual Low-rank Component Representation for Face Recognition in IoT-based System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shicheng Yang;Ying Wen;Lianghua He;Meng Chu Zhou;Abdullah Abusorrah",
+      "id": "out-7005dc8424ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Sparse Individual Low-rank Component Representation for Face Recognition in IoT-based System — Shicheng Yang;Ying Wen;Lianghua He;Meng Chu Zhou;Abdullah Abusorrah",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7490,
+            "end_char": 7658
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Scaling Up Maximal            k            -plex Enumeration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiangqiang Dai;Rong-Hua Li;Hongchao Qin;Meihao Liao;Guoren Wang",
+      "id": "out-f19b697a75d4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Scaling Up Maximal            k            -plex Enumeration — Qiangqiang Dai;Rong-Hua Li;Hongchao Qin;Meihao Liao;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7664,
+            "end_char": 7796
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Top-k Ego-Betweenness Search",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qi Zhang;Rong-Hua Li;Minjia Pan;Yongheng Dai;Guoren Wang;Ye Yuan",
+      "id": "out-1a5344fd26f1",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Top-k Ego-Betweenness Search — Qi Zhang;Rong-Hua Li;Minjia Pan;Yongheng Dai;Guoren Wang;Ye Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7802,
+            "end_char": 7913
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于注意力融合的语义分割网络",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李旭升;何良华;程舸帆",
+      "id": "out-eb9b49d804a1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于注意力融合的语义分割网络 — 李旭升;何良华;程舸帆",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7919,
+            "end_char": 7953
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于医学图像分割的医疗风险评估方法和装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;刘晓洁;程舸帆;马伟镇",
+      "id": "out-541d7622df9f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于医学图像分割的医疗风险评估方法和装置 — 何良华;刘晓洁;程舸帆;马伟镇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7959,
+            "end_char": 8003
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于对抗残差变换网络的无监督领域自适应方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "何良华;蔡冠羽",
+      "id": "out-682f91b4495c",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于对抗残差变换网络的无监督领域自适应方法 — 何良华;蔡冠羽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8009,
+            "end_char": 8046
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Approximating probabilistic group steiner trees in graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuang Yang;Yahui Sun;Jiesong Liu;Xiaokui Xiao;Rong-Hua Li;Zhewei Wei",
+      "id": "out-6163f583e569",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Approximating probabilistic group steiner trees in graphs — Shuang Yang;Yahui Sun;Jiesong Liu;Xiaokui Xiao;Rong-Hua Li;Zhewei Wei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8052,
+            "end_char": 8187
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Lightning Fast and Space Efficient k-clique Counting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaowei Ye;Rong-Hua Li;Qiangqiang Dai;Hongzhi Chen;Guoren Wang",
+      "id": "out-47d6ae8f3444",
+      "evidence": [
+        {
+          "quote": "[会议论文] Lightning Fast and Space Efficient k-clique Counting — Xiaowei Ye;Rong-Hua Li;Qiangqiang Dai;Hongzhi Chen;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8193,
+            "end_char": 8316
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种可重叠的社群发现方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任泽槟;李荣华;王国仁;秦宏超;金福生",
+      "id": "out-72053936ded2",
+      "evidence": [
+        {
+          "quote": "[专利] 一种可重叠的社群发现方法 — 任泽槟;李荣华;王国仁;秦宏超;金福生",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8322,
+            "end_char": 8360
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Learning Smooth Representation for Unsupervised Domain Adaptation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guanyu Cai;Lianghua He;MengChu Zhou;Hesham Alhumade;Die Hu",
+      "id": "out-13e2e0be1f41",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Learning Smooth Representation for Unsupervised Domain Adaptation — Guanyu Cai;Lianghua He;MengChu Zhou;Hesham Alhumade;Die Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8366,
+            "end_char": 8498
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于对象上下文一致性约束的医学图像半监督分割系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李旭升;何良华",
+      "id": "out-b697c2221723",
+      "evidence": [
+        {
+          "quote": "[专利] 基于对象上下文一致性约束的医学图像半监督分割系统 — 李旭升;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8504,
+            "end_char": 8542
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved Algorithms for Maximal Clique Search in Uncertain Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rong-Hua Li;Qiangqiang Dai;Guoren Wang;Zhong Ming;Lu Qin;Jeffrey Xu Yu",
+      "id": "out-eeaf715fe776",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improved Algorithms for Maximal Clique Search in Uncertain Networks — Rong-Hua Li;Qiangqiang Dai;Guoren Wang;Zhong Ming;Lu Qin;Jeffrey Xu Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8548,
+            "end_char": 8694
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mining Periodic Cliques in Temporal Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongchao Qin;Rong-Hua Li;Guoren Wang;Lu Qin;Yurong Cheng;Ye Yuan",
+      "id": "out-88d06359675f",
+      "evidence": [
+        {
+          "quote": "[会议论文] Mining Periodic Cliques in Temporal Networks — Hongchao Qin;Rong-Hua Li;Guoren Wang;Lu Qin;Yurong Cheng;Ye Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8700,
+            "end_char": 8817
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Maximal Quasi-Cliques Mining in Uncertain Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lianpeng Qiao;Rong-Hua Li;Zhiwei Zhang;Ye Yuan;Guoren Wang;Hongchao Qin",
+      "id": "out-983fe951a322",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Maximal Quasi-Cliques Mining in Uncertain Graphs — Lianpeng Qiao;Rong-Hua Li;Zhiwei Zhang;Ye Yuan;Guoren Wang;Hongchao Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8823,
+            "end_char": 8951
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Gabor Feature-Based LogDemons With Inertial Constraint for Nonrigid Image Registration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ying Wen;Cheng Xu;Yue Lu;Qingli Li;Haibin Cai;Lianghua He",
+      "id": "out-2809785c5185",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Gabor Feature-Based LogDemons With Inertial Constraint for Nonrigid Image Registration — Ying Wen;Cheng Xu;Yue Lu;Qingli Li;Haibin Cai;Lianghua He",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8957,
+            "end_char": 9109
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Efficient Resistance Distance Computation: the Power of Landmark-based Approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meihao Liao;Rong-Hua Li;Qiangqiang Dai;Hongyang Chen;Hongchao Qin;Guoren Wang",
+      "id": "out-9fa6e606f818",
+      "evidence": [
+        {
+          "quote": "[会议论文] Efficient Resistance Distance Computation: the Power of Landmark-based Approaches — Meihao Liao;Rong-Hua Li;Qiangqiang Dai;Hongyang Chen;Hongchao Qin;Guoren Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9115,
+            "end_char": 9282
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fai",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-d94a56a58295",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3387,
+            "end_char": 3396
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ordering heuristics for            k            -clique listing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Rong-Hua Li;Sen Gao;Lu Qin;Guoren Wang;Weihua Yang;Jeffrey Xu Yu",
+      "id": "out-eb77842c3a3b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ordering heuristics for            k            -clique listing — Rong-Hua Li;Sen Gao;Lu Qin;Guoren Wang;Weihua Yang;Jeffrey Xu Yu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9409,
+            "end_char": 9545
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mining Bursting Core in Large Temporal Graphs",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hongchao Qin;Rong-Hua Li;Ye Yuan;Guoren Wang;Lu Qin;Zhiwei Zhang",
+      "id": "out-aad1dd37b4ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mining Bursting Core in Large Temporal Graphs — Hongchao Qin;Rong-Hua Li;Ye Yuan;Guoren Wang;Lu Qin;Zhiwei Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9551,
+            "end_char": 9669
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于泌尿系统的多器官三维重建控制方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐振豪;何良华",
+      "id": "out-0dda8c6da0df",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于泌尿系统的多器官三维重建控制方法 — 徐振豪;何良华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9675,
+            "end_char": 9709
+          },
+          "version": "20cd3e3e8ab43a0240af"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 68,
+    "listed": 68,
+    "by_kind": {
+      "专利": {
+        "listed": 26,
+        "extracted": 26
+      },
+      "期刊论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "会议论文": {
+        "listed": 20,
+        "extracted": 20
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

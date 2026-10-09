@@ -2,15 +2,20 @@
   "doc_id": "02455db605f3daf69bd1",
   "version": "a56b3a39815932c06820",
   "source_hash": "a5bccfcca653ed4d3725a594332c19cc59b8fa043a959a5c0ba0b1106804fb51",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:06:12.227493+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.150964+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a4500e2013da",
-          "name": "肺癌影像组学诊断",
-          "desc": "肺癌死亡率位居全球癌症第一位，影像组学应用于肺肿瘤诊断存在假阳率高且尚未转化为临床应用的问题。",
+          "id": "item-3939ba304d4c",
+          "name": "肺肿瘤影像组学诊断",
+          "desc": "肺癌死亡率位居全球癌症第一",
           "evidence": [
             {
-              "quote": "肺癌死亡率位居全球癌症的第一位。针对当前影像组学应用于肺肿瘤诊断中假阳率高且尚未转化为临床应用的问题",
+              "quote": "肺癌死亡率位居全球癌症的第一位",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 654,
-                "end_char": 703
-              },
-              "version": "a56b3a39815932c06820"
-            }
-          ]
-        },
-        {
-          "id": "item-a8c9ae89e8e3",
-          "name": "肺癌基因变异状态评估",
-          "desc": "提出肿瘤血管形态及其随侵袭状态影像学表征有助于肺癌恶性程度个体化定量诊断和基因变异状态评估的假设。",
-          "evidence": [
-            {
-              "quote": "提出肿瘤血管形态及其随侵袭状态影像学表征有助于肺癌恶性程度个体化定量诊断和基因变异状态评估的假设。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 818,
-                "end_char": 866
+                "end_char": 668
               },
               "version": "a56b3a39815932c06820"
             }
@@ -57,32 +46,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-01dbf65404d9",
-          "name": "肿瘤血管指标权重不清楚",
-          "desc": "在瘤体形成、发育和转移过程中血液供给起关键作用，肿瘤血管形态变化情况在肺肿瘤诊断中的指标权重尚不清楚。",
+          "id": "item-857ba7095d63",
+          "name": "影像组学诊断假阳率高、尚未临床转化",
+          "desc": "影像组学用于肺肿瘤诊断假阳率高且未转化为临床应用",
           "evidence": [
             {
-              "quote": "然而，在瘤体的形成、发育和转移过程中血液供给起着关键作用，肿瘤血管的形态变化情况在肺肿瘤诊断中的指标权重尚不清楚。",
+              "quote": "影像组学应用于肺肿瘤诊断中假阳率高且尚未转化为临床应用的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 758,
-                "end_char": 814
+                "start_char": 674,
+                "end_char": 703
               },
               "version": "a56b3a39815932c06820"
             }
           ]
         },
         {
-          "id": "item-0e309850fda3",
-          "name": "单切片方法局限性",
-          "desc": "传统方法仅依赖单一切片，存在局限性。",
+          "id": "item-d4e237fa5608",
+          "name": "肿瘤血管形态在诊断中的权重不清",
+          "desc": "肿瘤血管形态变化在诊断中的指标权重尚不清楚",
           "evidence": [
             {
-              "quote": "研究还通过图神经网络融合多切片特征，克服了传统方法仅依赖单一切片的局限性",
+              "quote": "肿瘤血管的形态变化情况在肺肿瘤诊断中的指标权重尚不清楚",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3066,
-                "end_char": 3101
+                "start_char": 787,
+                "end_char": 813
               },
               "version": "a56b3a39815932c06820"
             }
@@ -95,9 +84,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-60ef50be960c",
-          "name": "U-Net与条件随机场级联分割",
-          "desc": "通过结合U-Net和参数自适应全连接条件随机场的级联模型提升肺血管分割精度。",
+          "id": "item-c03a63a4536b",
+          "name": "U-Net与全连接CRF级联肺血管分割",
+          "desc": "参数自适应全连接条件随机场级联模型",
           "evidence": [
             {
               "quote": "通过结合U-Net和参数自适应全连接条件随机场的级联模型，肺血管分割精度显著提升至90.24%",
@@ -108,39 +97,59 @@
               },
               "version": "a56b3a39815932c06820"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-477965f561ee",
-          "name": "大语言模型与图注意力网络",
-          "desc": "提取血管分形特征和图网络特征，构建基于大语言模型和图注意力网络的深度学习模型。",
+          "id": "item-a8c69f6f1ebf",
+          "name": "大语言模型与图注意力网络肺肿瘤分类",
+          "desc": "融合血管先验的深度学习分类模型",
           "evidence": [
             {
-              "quote": "项目提取了血管的分形特征和图网络特征等影像组学特征，并构建了基于大语言模型和图注意力网络的深度学习模型",
+              "quote": "构建了基于大语言模型和图注意力网络的深度学习模型，将肺肿瘤分类准确率从78%提升至83%",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2940,
-                "end_char": 2990
+                "start_char": 2967,
+                "end_char": 3010
               },
               "version": "a56b3a39815932c06820"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-9ffe8963a913",
           "name": "相似性增强注意力机制",
-          "desc": "提出相似性增强的注意力机制动态调整边权重，优化信息传播。",
+          "desc": "图神经网络融合多切片特征，动态调整边权重",
           "evidence": [
             {
-              "quote": "提出的相似性增强的注意力机制动态调整边权重，优化了信息传播",
+              "quote": "提出的相似性增强的注意力机制动态调整边权重",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 3103,
-                "end_char": 3131
+                "end_char": 3123
               },
               "version": "a56b3a39815932c06820"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-18d992b67e54",
+          "name": "肺肿瘤多模态信息数据库",
+          "desc": "含1000例肺肿瘤病例并配影像标记工具",
+          "evidence": [
+            {
+              "quote": "项目构建了包含1000例肺肿瘤病例的多模态信息数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2848,
+                "end_char": 2873
+              },
+              "version": "a56b3a39815932c06820"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -151,7 +160,7 @@
         {
           "id": "item-c9bb464939c9",
           "name": "肺血管分割精度90.24%",
-          "desc": "肺血管分割精度显著提升至90.24%。",
+          "desc": "级联模型使分割精度提升至90.24%",
           "evidence": [
             {
               "quote": "肺血管分割精度显著提升至90.24%",
@@ -163,29 +172,33 @@
               "version": "a56b3a39815932c06820"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-7ca4eb9837c7",
-          "name": "分类准确率提升至83%",
-          "desc": "将肺肿瘤分类准确率从78%提升至83%，证明肺血管先验信息的重要作用。",
+          "id": "item-ff5e634f47f5",
+          "name": "肺肿瘤分类准确率78%提升至83%",
+          "desc": "血管先验信息提升分类准确率",
           "evidence": [
             {
-              "quote": "将肺肿瘤分类准确率从78%提升至83%，证明肺血管的先验信息在肺肿瘤分类中的重要作用",
+              "quote": "将肺肿瘤分类准确率从78%提升至83%",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2992,
-                "end_char": 3033
+                "end_char": 3010
               },
               "version": "a56b3a39815932c06820"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3597fdd764fc",
-          "name": "6种血管标志物与EGFR相关",
-          "desc": "发现6种血管影像组学标记物与EGFR基因突变显著相关。",
+          "id": "item-f036230db765",
+          "name": "6种血管影像组学标记物与EGFR突变相关",
+          "desc": "发现6种标记物与EGFR基因突变显著相关",
           "evidence": [
             {
               "quote": "研究还发现6种血管影像组学标记物与EGFR基因突变显著相关",
@@ -197,7 +210,47 @@
               "version": "a56b3a39815932c06820"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-ef4c800e8243",
+          "name": "论文产出",
+          "desc": "发表1篇SCI论文、2篇会议论文",
+          "evidence": [
+            {
+              "quote": "项目成果包括发表1篇SCI论文、2篇会议论文",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3203,
+                "end_char": 3224
+              },
+              "version": "a56b3a39815932c06820"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-67eaa4edab44",
+          "name": "在投论文",
+          "desc": "3篇SCI论文和1篇会议论文在投",
+          "evidence": [
+            {
+              "quote": "另有3篇SCI论文和1篇会议论文在投",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3244,
+                "end_char": 3261
+              },
+              "version": "a56b3a39815932c06820"
+            }
+          ],
+          "status": "预期",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +258,131 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-a4500e2013da"
+        "dimension": "技术",
+        "item_id": "item-a8c69f6f1ebf"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-01dbf65404d9"
+        "item_id": "item-857ba7095d63"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "证明肺血管的先验信息在肺肿瘤分类中的重要作用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3012,
+            "end_char": 3033
+          },
+          "version": "a56b3a39815932c06820"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-0e309850fda3"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9ffe8963a913"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-60ef50be960c"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-c9bb464939c9"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-477965f561ee"
+        "item_id": "item-ff5e634f47f5"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-3597fdd764fc"
+        "dimension": "技术",
+        "item_id": "item-a8c69f6f1ebf"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "将肺肿瘤分类准确率从78%提升至83%",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2992,
+            "end_char": 3010
+          },
+          "version": "a56b3a39815932c06820"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "PointRendUNet: a model for fine boundary segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linlin Li;Xinzhuo Zhao;Li Ke",
+      "id": "out-8450fcf2eafe",
+      "evidence": [
+        {
+          "quote": "[会议论文] PointRendUNet: a model for fine boundary segmentation — Linlin Li;Xinzhuo Zhao;Li Ke",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3366,
+            "end_char": 3456
+          },
+          "version": "a56b3a39815932c06820"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning algorithm performance in contouring head and neck organs at risk: a systematic review and single-arm meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peiru Liu;Ying Sun;Xinzhuo Zhao;Ying Yan",
+      "id": "out-2c86d416dbc8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning algorithm performance in contouring head and neck organs at risk: a systematic review and single-arm meta-analysis — Peiru Liu;Ying Sun;Xinzhuo Zhao;Ying Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3461,
+            "end_char": 3638
+          },
+          "version": "a56b3a39815932c06820"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Single Face Image Super-resolution Reconstruction with Wasserstein Generative Adversarial Networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuquan Gao;Guoxi Sun;Xinzhuo Zhao",
+      "id": "out-f4325d322a70",
+      "evidence": [
+        {
+          "quote": "[会议论文] Single Face Image Super-resolution Reconstruction with Wasserstein Generative Adversarial Networks — Yuquan Gao;Guoxi Sun;Xinzhuo Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3783
+          },
+          "version": "a56b3a39815932c06820"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

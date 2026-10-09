@@ -2,15 +2,20 @@
   "doc_id": "005850eaf929436b2dde",
   "version": "2b738271ac10d03dc611",
   "source_hash": "14aa08aa924198130cccb1bb800a35793928cf6cce44b323985182e2513d9bec",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:41:33.592049+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 8
+  },
+  "generated_at": "2026-10-09T11:46:26.334575+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 8,
+      "total": 8,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a9d0d6ab8723",
-          "name": "泌尿系统肿瘤AI诊疗平台",
-          "desc": "面向以膀胱癌为代表的泌尿系统恶性肿瘤，研发全链条覆盖诊疗过程的AI一体化精准诊疗平台。",
+          "id": "item-37edf8791b8e",
+          "name": "泌尿系统肿瘤AI精准诊疗平台",
+          "desc": "膀胱癌、肾癌、前列腺癌",
           "evidence": [
             {
               "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在着诸多亟待解决的临床痛点、难点",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d4f010e19363",
-          "name": "泌尿肿瘤诊疗存在诊断治疗不精准问题",
-          "desc": "泌尿系统恶性肿瘤诊疗过程中存在诸多亟待解决的诊断与治疗不精准问题，需引入AI技术辅助诊疗决策。",
+          "id": "item-52b1d620ad0e",
+          "name": "泌尿系统肿瘤诊疗诊断与治疗不精准",
+          "desc": "传统人工诊疗困境",
           "evidence": [
             {
               "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗过程中存在着诸多亟待解决的诊断与治疗不精准问题",
@@ -51,6 +56,54 @@
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "cbae6f55c79b6c0286170812015306401039dc96"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        },
+        {
+          "id": "item-f13e8fe5fa00",
+          "name": "传统尿液细胞学与膀胱镜诊断敏感性低",
+          "desc": "依赖医师经验",
+          "evidence": [
+            {
+              "quote": "总体诊断敏感性仅为30%，无法满足早诊早治的临床需求",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 7507,
+                "end_char": 7532
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        },
+        {
+          "id": "item-9572c153ef2b",
+          "name": "膀胱癌临床T分期术前影像诊断准确性低",
+          "desc": "总体准确性低于60%",
+          "evidence": [
+            {
+              "quote": "术前无创诊断T分期主要依赖CT/MR等传统影像学手段，总体准确性低于60%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "b7d490e724a349b8722262a9d144f3c51d01b728"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ]
+        },
+        {
+          "id": "item-eff090646813",
+          "name": "淋巴结微转移易漏诊",
+          "desc": "病理医生阅片负担重",
+          "evidence": [
+            {
+              "quote": "特别是微转移病灶的直径小、病变累及范围少，人眼分辨力有限，加之病理医生临床工作量繁重，极有可能出现肿瘤淋巴微转移灶的漏诊",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "dbaf7d9cbcde4f3330b1df24b045c7ebe0bf45ab"
               },
               "version": "2b738271ac10d03dc611"
             }
@@ -63,34 +116,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ac95bb4d46fc",
-          "name": "卷积神经网络与知识图谱驱动诊疗平台",
-          "desc": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台。",
+          "id": "item-f9d039b63df9",
+          "name": "多中心多模态标准化临床诊疗大数据库",
+          "desc": "泌尿系统肿瘤",
           "evidence": [
             {
-              "quote": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "cbae6f55c79b6c0286170812015306401039dc96"
-              },
-              "version": "2b738271ac10d03dc611"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a995ad75e5a0",
-          "name": "AI诊疗平台全国多中心试用推广",
-          "desc": "研发尿液细胞学、膀胱镜检、膀胱癌T/N分期、前列腺癌与肾癌等系列AI精准诊断系统，性能媲美甚至超越资深医师；AI一体化精准诊疗平台已在全国多中心试用推广；发表SCI论文17篇，获批国家发明专利7项。",
-          "evidence": [
-            {
-              "quote": "研发了泌尿系统常见恶性肿瘤AI一体化精准诊疗平台，已在全国多中心试用推广",
+              "quote": "我们结合前期研究基础，构建多中心多模态标准化临床诊疗大数据库，采用前沿深度学习技术",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -99,44 +130,380 @@
               "version": "2b738271ac10d03dc611"
             }
           ],
-          "status": "已取得"
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-7eddf943c744",
+          "name": "泌尿系统肿瘤一体化AI精准诊疗平台",
+          "desc": "整合各AI诊断系统",
+          "evidence": [
+            {
+              "quote": "整合搭建泌尿系统肿瘤一体化 AI精准诊疗平台",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "d91010ad9b2683e16a151bacf34ab19f59608d3e"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-5628aa06788a",
+          "name": "PUCAS尿液细胞学膀胱癌AI诊断系统",
+          "desc": "斑块级与细胞级多层级特征提取",
+          "evidence": [
+            {
+              "quote": "采用多层级特征提取方法，结合三种深度学习算法同时提取斑块级和细胞级特征，构建了基于尿液细胞学的膀胱癌 AI无创诊断系统PUCAS",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "8b4596088d43b50e2235818a809216f529cd3119"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3787ad352ff2",
+          "name": "膀胱镜检AI诊断系统",
+          "desc": "残差深度网络与金字塔场景分割模块",
+          "evidence": [
+            {
+              "quote": "利用残差深度网络及金字塔场景分割模块，研发了基于膀胱镜的膀胱癌人工智能诊断系统，在内外部验证中准确率均达0.98以上",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 7,
+                "chunk_id": "f80dadedb07312c6aef7e1ff5145cd863af50bfb"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-d13e6a504e17",
+          "name": "PUCAS-M尿液细胞学膀胱癌T分期系统",
+          "desc": "迁移学习",
+          "evidence": [
+            {
+              "quote": "本团队采用迁移学习技术，收集来自4家中心的1891例患者的尿液细胞学数据，微调模型特征参数，构建基于尿液细胞学的膀胱癌T分期无创诊断系统(PUCAS-M)",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "b7d490e724a349b8722262a9d144f3c51d01b728"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-090ec072435f",
+          "name": "PAIDM电切病理肌层浸润诊断系统",
+          "desc": "ScanNet与密集重建",
+          "evidence": [
+            {
+              "quote": "采用卷积神经网络ScanNet算法进行图像分割和分类训练，基于密集重建技术抓取漏过信息，构建了基于电切标本病理图像的膀胱癌肌层浸润AI诊断系统PAIDM",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "dbaf7d9cbcde4f3330b1df24b045c7ebe0bf45ab"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-73c8eeb0f3bf",
+          "name": "LNMDM膀胱癌病理淋巴分期模型",
+          "desc": "HRNet-w18",
+          "evidence": [
+            {
+              "quote": "采用最新的深度学习算法HRNet-w18 作为 backbone进行分割和分类训练，构建了膀胱癌病理淋巴分期人工智能诊断模型LNMDM",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "dfc21e60d3d5165a8f0bcecbb4e0f46ae7e7a865"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-3db3e4e54677",
+          "name": "ProCaLNMD前列腺癌病理淋巴转移模型",
+          "desc": "RegNet_Y40与DeepLabV3plus",
+          "evidence": [
+            {
+              "quote": "利用 RegNet\\_Y40 & DeepLabV3plus 深度卷积神经网络算法，构建了前列腺癌病理淋巴转移AI诊断模型ProCaLNMD",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 12904,
+                "end_char": 12973
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fd4dc0677ef1",
+          "name": "前列腺癌临床AI诊断系统",
+          "desc": "混合专家模型MoE与无监督掩码建模，影像-文本和病理-文本对齐",
+          "evidence": [
+            {
+              "quote": "基于混合专家模型（MoE）框架与无监督掩码建模训练策略，分别训练前列腺盆腔MR报告文本数据专家模型、前列腺盆腔MR影像数据专家模型、前列腺穿刺病理报告文本数据专家模型、前列腺穿刺病理图像数据专家模型",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 12,
+                "chunk_id": "01701843d19f080bc74b95e5c1cec48c6f1bb015"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-ab5310afd51d",
+          "name": "肾癌临床AI诊断系统",
+          "desc": "DeepLabV3+分割与Xception分类",
+          "evidence": [
+            {
+              "quote": "本团队采用DeepLabV3+网络作为肾脏及肿瘤区域自动分割的核心框架",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "ddfe507d5083759f2c3568b90be2915389fe315a"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-7e9f95b980dd",
+          "name": "肾癌N分期AI诊断系统",
+          "desc": "SwinTransformer，肿瘤最大径切片及上下各三张",
+          "evidence": [
+            {
+              "quote": "模型采用 SwinTransformer网络，充分利用肿瘤及周围组织的局部和整体结构信息",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "f257e9defe441e2a7e1ae4ccaae8412772b554c1"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9c1f1ad3a5a9",
+          "name": "泌尿系统常见恶性肿瘤AI一体化精准诊疗平台",
+          "desc": "全国多中心试用推广",
+          "evidence": [
+            {
+              "quote": "我们研发了泌尿系统常见恶性肿瘤AI一体化精准诊疗平台，已在全国多中心试用推广，有力推进智能精准医学",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "2205693c8d395dad4e55c16581fde505629112d6"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文17篇，国家发明专利7项",
+          "evidence": [
+            {
+              "quote": "团队已发表SCI论文17篇（另有1篇文章已录用，暂未见刊），获批国家发明专利7项",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "2205693c8d395dad4e55c16581fde505629112d6"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-355345fb5866",
+          "name": "PUCAS验证",
+          "desc": "AUC 0.928至0.970，减少57.5%内镜使用",
+          "evidence": [
+            {
+              "quote": "在多中心验证中，PUCAS 的 AUC值为 0.928（95%CI:0.874-0.982）至0.970（95%CI:0.958-0.981）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 6,
+                "chunk_id": "8b4596088d43b50e2235818a809216f529cd3119"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-1ffd41033c8b",
+          "name": "PUCAS-M外部验证",
+          "desc": "AUC 0.857，多模态整合后AUC 0.900",
+          "evidence": [
+            {
+              "quote": "PUCAS-M在外部验证集中的AUC达0.857，显著优于传统影像学诊断，整合多模态数据后，AUC及敏感性可进一步提升至0.900与0.874",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 9,
+                "chunk_id": "b7d490e724a349b8722262a9d144f3c51d01b728"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5052a9b244e2",
+          "name": "PAIDM验证",
+          "desc": "斑块级与全切片级准确率均超87%",
+          "evidence": [
+            {
+              "quote": "在斑块级和全切片级的诊断准确率均超过87%",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 10,
+                "chunk_id": "dbaf7d9cbcde4f3330b1df24b045c7ebe0bf45ab"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5632b823003a",
+          "name": "LNMDM验证",
+          "desc": "AUC 0.978至0.998",
+          "evidence": [
+            {
+              "quote": "在内部和外部验证集中，LNMDM的 AUC达 0.978（95% CI0.960- 0.996）至 0.998（0.996 - 1.000)",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 11,
+                "chunk_id": "dfc21e60d3d5165a8f0bcecbb4e0f46ae7e7a865"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-5f2bd4d1e195",
+          "name": "ProCaLNMD验证",
+          "desc": "AUC 0.975以上，阅片时间减少27%到34%",
+          "evidence": [
+            {
+              "quote": "在多中心验证集中 AUC 达 0.975 以上，敏感性达到高级病理医师水准（98.3% vs 98.3%）",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 12,
+                "chunk_id": "a61e76fa0cfa4b1504e9c75b5546f103b942ad12"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-69ac9266c469",
+          "name": "肾癌临床AI系统验证",
+          "desc": "AUC 0.935至0.948",
+          "evidence": [
+            {
+              "quote": "AI系统AUC值达0.935（95% CI: 0.912 - 0.958）至 0.948（95% CI: 0.927 - 0.969），整体诊断敏感性达0.89",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 14,
+                "chunk_id": "ddfe507d5083759f2c3568b90be2915389fe315a"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-0c6e66637fca",
+          "name": "肾癌N分期系统验证",
+          "desc": "AUC 0.848至0.876，cN-亚组敏感性0.82",
+          "evidence": [
+            {
+              "quote": "在独立验证队列中，AI系统AUC值达0.848(95%CI:0.811 - 0.885）至0.876（95%CI: 0.842 - 0.910），在影像学评估为 cN-的患者亚组中，敏感性达到0.82",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 15,
+                "chunk_id": "f257e9defe441e2a7e1ae4ccaae8412772b554c1"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-b3ceeb5fef63",
+          "name": "云-边-端协同一体化平台",
+          "desc": "通过数据治理中台与模型调度引擎微服务化封装",
+          "evidence": [
+            {
+              "quote": "通过建立标准化数据治理中台、开发智能模型调度引擎、微服务化封装改造各AI诊断系统，构建泌尿系统常见恶性肿瘤一体化人工智能精准诊疗平台",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 16,
+                "chunk_id": "05980d1fe55d2883da3a17ab7b72d51fe759a730"
+              },
+              "version": "2b738271ac10d03dc611"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-a9d0d6ab8723"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-d4f010e19363"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-d4f010e19363"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ac95bb4d46fc"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ac95bb4d46fc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a995ad75e5a0"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

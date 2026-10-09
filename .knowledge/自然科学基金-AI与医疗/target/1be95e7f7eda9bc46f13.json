@@ -2,15 +2,20 @@
   "doc_id": "1be95e7f7eda9bc46f13",
   "version": "935d8c3802e10113b0eb",
   "source_hash": "44ad0d33e90060f300219bb58af77c3d641a33275edbd46dbb6628d6ffba4bd8",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.924729+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:31:10.504578+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,7 +26,7 @@
         {
           "id": "item-4b850cfa6ea7",
           "name": "三阴性乳腺癌免疫治疗早期疗效评估",
-          "desc": "面向三阴性乳腺癌患者，在免疫治疗早期无创评估疗效，为个体化精准治疗与方案及时调整提供依据。",
+          "desc": "早期疗效评估是个体化精准治疗关键",
           "evidence": [
             {
               "quote": "准确评估免疫治疗早期疗效是实现三阴性乳腺癌（TNBC）患者个体化精准治疗的关键",
@@ -41,15 +46,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9d5772fe147",
-          "name": "免疫治疗费用高且总体有效率低",
-          "desc": "TNBC恶性程度高、侵袭性强，免疫检查点抑制剂虽前景良好但费用昂贵，总体有效率较低，仅在不到30%的患者中发挥作用。",
+          "id": "item-5ffb761f259e",
+          "name": "免疫治疗费用昂贵、有效率低",
+          "desc": "不到30%患者受益",
           "evidence": [
             {
-              "quote": "但免疫治疗费用昂贵，且总体有效率仍较低，只能在不到30%的TNBC患者中发挥作用",
+              "quote": "免疫治疗费用昂贵，且总体有效率仍较低，只能在不到30%的TNBC患者中发挥作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3061,
+                "start_char": 3062,
                 "end_char": 3100
               },
               "version": "935d8c3802e10113b0eb"
@@ -63,20 +68,72 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b36c63c80387",
-          "name": "多模态超声组学驱动的孪生神经网络模型",
-          "desc": "挖掘治疗后反应早期的多模态超声组学作为通道注意力引入孪生神经网络模型，对比时序信息揭示免疫响应，实现早期疗效预测。",
+          "id": "item-6670c1f01c40",
+          "name": "MAUNet联邦学习多注意力UNet",
+          "desc": "超声图像病灶自动分割",
           "evidence": [
             {
-              "quote": "接着作为通道“注意力”引入于孪生神经网络模型",
+              "quote": "开发了一种基于联邦学习机制和多注意力引导的UNet（MAUNet）模型，用于超声图像中病灶的自动分割",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 944,
-                "end_char": 965
+                "start_char": 3250,
+                "end_char": 3299
               },
               "version": "935d8c3802e10113b0eb"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dcb4a2a64d1c",
+          "name": "灰阶超声组学Signature",
+          "desc": "优于单一特征与传统超声模型",
+          "evidence": [
+            {
+              "quote": "建立了一种灰阶超声组学Signature，预测任务效果优于最佳单一灰阶超声组学特征和传统超声影像学模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3301,
+                "end_char": 3351
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-1bd66b9f311c",
+          "name": "双核驱动超声组学模型Dc-HR",
+          "desc": "多视图灰阶超声，集成机器学习与深度学习",
+          "evidence": [
+            {
+              "quote": "建立了一种基于多视图灰阶超声图像的双核驱动超声组学模型（Dc-HR），集成了机器学习与深度学习的优势",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3481,
+                "end_char": 3530
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-dd301e082aab",
+          "name": "超声视频深度学习3D模型",
+          "desc": "优于2D图像模型",
+          "evidence": [
+            {
+              "quote": "构建了一种基于超声视频的深度学习3D模型，预测效果优于基于超声图像的深度学习2D模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3438,
+                "end_char": 3479
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +142,231 @@
       "state": "has",
       "items": [
         {
-          "id": "item-99638b652ed5",
-          "name": "建立多参数临床-超声组学Signature与双核驱动模型Dc-HR",
-          "desc": "建立多参数临床-超声组学Signature（优于常规临床-超声模型）、基于超声视频的深度学习3D模型及双核驱动超声组学模型Dc-HR，并开展联邦学习MAUNet病灶自动分割。",
+          "id": "item-244b48b04459",
+          "name": "原位TNBC模型与CAFs免疫耐药研究",
+          "desc": "构建模型并探索相互作用",
           "evidence": [
             {
-              "quote": "建立了一种多参数临床-超声组学Signature，预测任务效果优于常规的临床-超声模型",
+              "quote": "我们成功构建了原位TNBC模型，并探索了癌相关成纤维细胞（CAFs）与肿瘤免疫耐药性的相互作用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3394,
-                "end_char": 3436
+                "start_char": 3167,
+                "end_char": 3213
               },
               "version": "935d8c3802e10113b0eb"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a7497998845d",
+          "name": "CEUS监测靶免治疗反应评估",
+          "desc": "率先评估作用和可行性",
+          "evidence": [
+            {
+              "quote": "率先评估了超声造影（CEUS）在监测肿瘤靶免治疗反应中的作用和可行性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3215,
+                "end_char": 3248
+              },
+              "version": "935d8c3802e10113b0eb"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4b850cfa6ea7"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b9d5772fe147"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "《乳腺癌超声智能诊疗关键技术发明与临床应用》",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐辉雄;张一峰;孙丽萍;徐晓红;伍利;杨仲汉;郭乐杭;周泊阳;李小龙;李丹丹;刘卉;诸安琪;赵崇克",
+      "id": "out-aaad01435611",
+      "evidence": [
+        {
+          "quote": "[奖励] 《乳腺癌超声智能诊疗关键技术发明与临床应用》 — 徐辉雄;张一峰;孙丽萍;徐晓红;伍利;杨仲汉;郭乐杭;周泊阳;李小龙;李丹丹;刘卉;诸安琪;赵崇克",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3661,
+            "end_char": 3739
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9d5772fe147"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b36c63c80387"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Response Evaluation Using Contrast-Enhanced Ultrasound for Unresectable Advanced Hepatocellular Carcinoma Treated With Tyrosine Kinase Inhibitors Plus Anti-PD-1 Antibody Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chong-Ke Zhao;Xin Guan;Yin-Ying Pu;Bo-Yang Zhou;Li-Fan Wang;Yi-Kang Sun;Hao-Hao Yin;Han-Sheng Xia;Xi Wang;Hong Han;Hui-Xiong Xu",
+      "id": "out-1b4998263dfe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Response Evaluation Using Contrast-Enhanced Ultrasound for Unresectable Advanced Hepatocellular Carcinoma Treated With Tyrosine Kinase Inhibitors Plus Anti-PD-1 Antibody Therapy — Chong-Ke Zhao;Xin Guan;Yin-Ying Pu;Bo-Yang Zhou;Li-Fan Wang;Yi-Kang Sun;Hao-Hao Yin;Han-Sheng Xia;Xi Wang;Hong Han;Hui-Xiong Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3744,
+            "end_char": 4057
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b36c63c80387"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-99638b652ed5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A dual-core driven hybrid radiomics integrates multiple views of greyscale ultrasound image for the early management from diagnosis to biopsy suggestion of BI-RADS 4 breast lesions: a prospective multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Bo-Yang Zhou;Li-Ping Sun;Han-Sheng Xia;Bin Tan;Yi-Lei Shi;Hui Liu;Chuan Qin;Yi-Kang Sun;Li-Fan Wang;Xin Guan;Dan Lu;Xin Ye;Hong Han;Bin Huang;Xiao-Xiang Zhu;Chong-Ke Zhao;Hui-Xiong Xu",
+      "id": "out-7da94de521ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A dual-core driven hybrid radiomics integrates multiple views of greyscale ultrasound image for the early management from diagnosis to biopsy suggestion of BI-RADS 4 breast lesions: a prospective multicenter study — Bo-Yang Zhou;Li-Ping Sun;Han-Sheng Xia;Bin Tan;Yi-Lei Shi;Hui Liu;Chuan Qin;Yi-Kang Sun;Li-Fan Wang;Xin Guan;Dan Lu;Xin Ye;Hong Han;Bin Huang;Xiao-Xiang Zhu;Chong-Ke Zhao;Hui-Xiong Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4062,
+            "end_char": 4467
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting the malignancy of extremity soft-tissue tumors by an ultrasound-based radiomics signature",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ao Li;Yu Hu;Xin-Wu Cui;Xin-Hua Ye;Xiao-Jing Peng;Wen-Zhi Lv;Chong-Ke Zhao",
+      "id": "out-49783197805b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting the malignancy of extremity soft-tissue tumors by an ultrasound-based radiomics signature — Ao Li;Yu Hu;Xin-Wu Cui;Xin-Hua Ye;Xiao-Jing Peng;Wen-Zhi Lv;Chong-Ke Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4472,
+            "end_char": 4654
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk stratification of gallbladder masses by machine learning-based ultrasound radiomics models: a prospective and multi-institutional study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li-Fan Wang;Qiao Wang;Feng Mao;Shi-Hao Xu;Li-Ping Sun;Ting-Fan Wu;Bo-Yang Zhou;Hao-Hao Yin;Hui Shi;Ya-Qin Zhang;Xiao-Long Li;Yi-Kang Sun;Dan Lu;Cong-Yu Tang;Hai-Xia Yuan;Chong-Ke Zhao;Hui-Xiong Xu",
+      "id": "out-5128c7f5a9ba",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk stratification of gallbladder masses by machine learning-based ultrasound radiomics models: a prospective and multi-institutional study — Li-Fan Wang;Qiao Wang;Feng Mao;Shi-Hao Xu;Li-Ping Sun;Ting-Fan Wu;Bo-Yang Zhou;Hao-Hao Yin;Hui Shi;Ya-Qin Zhang;Xiao-Long Li;Yi-Kang Sun;Dan Lu;Cong-Yu Tang;Hai-Xia Yuan;Chong-Ke Zhao;Hui-Xiong Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4659,
+            "end_char": 5004
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multiparametric clinic-ultrasomics nomogram for predicting extremity soft-tissue tumor malignancy: a combined retrospective and prospective bicentric study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yu Hu;Ao Li;Chong-Ke Zhao;Xin-Hua Ye;Xiao-Jing Peng;Ping-Ping Wang;Hua Shu;Qi-Yu Yao;Wei Liu;Yun-Yun Liu;Wen-Zhi Lv;Hui-Xiong Xu",
+      "id": "out-e8950789ead7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multiparametric clinic-ultrasomics nomogram for predicting extremity soft-tissue tumor malignancy: a combined retrospective and prospective bicentric study — Yu Hu;Ao Li;Chong-Ke Zhao;Xin-Hua Ye;Xiao-Jing Peng;Ping-Ping Wang;Hua Shu;Qi-Yu Yao;Wei Liu;Yun-Yun Liu;Wen-Zhi Lv;Hui-Xiong Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5009,
+            "end_char": 5303
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Federated learning via multi-attention guided UNet for thyroid nodule segmentation of ultrasound images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-82a1fe7cbf33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Federated learning via multi-attention guided UNet for thyroid nodule segmentation of ultrasound images — Zhuo Xiang;Xiaoyu Tian;Yiyao Liu;Minsi Chen;Cheng Zhao;Li-Na Tang;En-Sheng Xue;Qi Zhou;Bin Shen;Fang Li;Qin Chen;Hong-Yuan Xue;Qing Tang;Ying-Jia Li;Lei Liang;Bin Wang;Quan-Shui Li;Chang-Jun Wu;Tian-Tian Ren;Jin-Yu Wu;Tianfu Wang;Wen-Ying Liu;Kun Yan;Bo-Ji Liu;Li-Ping Sun;Chong-Ke Zhao;Hui-Xiong Xu;BaiYing Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5308,
+            "end_char": 5731
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Three-dimensional convolutional neural network model to identify clinically significant prostate cancer in transrectal ultrasound videos: a prospective, multi-institutional, diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yi-Kang Sun;Bo-Yang Zhou;Yao Miao;Yi-Lei Shi;Shi-Hao Xu;Dao-Ming Wu;Lei Zhang;Guang Xu;Ting-Fan Wu;Li-Fan Wang;Hao-Hao Yin;Xin Ye;Dan Lu;Hong Han;Li-Hua Xiang;Xiao-Xiang Zhu;Chong-Ke Zhao;Hui-Xiong Xu",
+      "id": "out-523436fe1426",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Three-dimensional convolutional neural network model to identify clinically significant prostate cancer in transrectal ultrasound videos: a prospective, multi-institutional, diagnostic study — Yi-Kang Sun;Bo-Yang Zhou;Yao Miao;Yi-Lei Shi;Shi-Hao Xu;Dao-Ming Wu;Lei Zhang;Guang Xu;Ting-Fan Wu;Li-Fan Wang;Hao-Hao Yin;Xin Ye;Dan Lu;Hong Han;Li-Hua Xiang;Xiao-Xiang Zhu;Chong-Ke Zhao;Hui-Xiong Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5736,
+            "end_char": 6135
+          },
+          "version": "935d8c3802e10113b0eb"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      }
+    },
+    "consistent": true
+  }
 }

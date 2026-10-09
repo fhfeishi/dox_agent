@@ -2,15 +2,20 @@
   "doc_id": "4b9f59576c93207c88bc",
   "version": "713b846d6b408e16f12e",
   "source_hash": "b3a418b8b1bc3541d452ce5c5e4d0a1811c5c926db80748efa35654c0094a2c4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:44:39.482934+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.507522+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1a06c48e97a5",
-          "name": "磨玻璃肺结节瘤周放射组学特征",
-          "desc": "磨玻璃结节肺腺癌浸润前病变与浸润性病变诊疗方式及预后大不相同，亟待术前精准判别。",
+          "id": "item-b2c37375f547",
+          "name": "磨玻璃结节肺腺癌浸润性鉴别",
+          "desc": "瘤周放射组学特征",
           "evidence": [
             {
-              "quote": "临床中磨玻璃结节肺腺癌浸润前病变与浸润性病变的诊疗方式及预后大不相同，亟待术前能够精准判别",
+              "quote": "基于瘤周组织的影像组学特征能够帮助鉴别表现为磨玻璃结节的肺腺癌浸润性病理类型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 673,
-                "end_char": 717
-              },
-              "version": "713b846d6b408e16f12e"
-            }
-          ]
-        },
-        {
-          "id": "item-bcdf3b4570ae",
-          "name": "肺腺癌浸润发生发展机制研究",
-          "desc": "通过超高分辨三维成像明确瘤周组织细胞微结构差异，为研究肺腺癌发生发展和浸润提供新思路。",
-          "evidence": [
-            {
-              "quote": "也可能为今后研究肺腺癌发生发展和浸润提供新的思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1041,
-                "end_char": 1064
+                "start_char": 2874,
+                "end_char": 2911
               },
               "version": "713b846d6b408e16f12e"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1c2b2c42cf84",
-          "name": "传统影像学存在局限与主观性",
-          "desc": "传统影像学检查存在一定局限性和人为判断主观性，目前尚缺乏客观精准判断浸润前与浸润性病变的方法。",
+          "id": "item-65c0806103ee",
+          "name": "肺癌诊断及预后评估尚需提高",
+          "desc": "缺乏客观精准判别方法",
           "evidence": [
             {
-              "quote": "传统影像学检查存在一定的局限性以及人为判断的主观性，目前尚缺乏客观精准判断二者的方法",
+              "quote": "大多数肺癌诊断及预后评估尚需进一步提高",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 719,
-                "end_char": 760
-              },
-              "version": "713b846d6b408e16f12e"
-            }
-          ]
-        },
-        {
-          "id": "item-4df5ca31c5c4",
-          "name": "瘤周组织细胞微结构基础有待探索",
-          "desc": "前期模型需要进一步优化，且其具体病理细胞微结构基础有待进一步探索。",
-          "evidence": [
-            {
-              "quote": "但该模型需要进一步优化且其具体病理细胞微结构基础有待进一步探索",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 798,
-                "end_char": 828
+                "start_char": 2798,
+                "end_char": 2816
               },
               "version": "713b846d6b408e16f12e"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-44af926076e3",
-          "name": "瘤周组织影像组学构建浸润性预测模型",
-          "desc": "通过磨玻璃结节瘤周组织放射组学特征构建并优化肺腺癌浸润性预测模型，为临床诊疗提供辅助工具。",
+          "id": "item-496a1814f690",
+          "name": "瘤周影像组学特征建模",
+          "desc": "三种瘤周划分方式，2mm与5mm比较",
           "evidence": [
             {
-              "quote": "本研究拟通过磨玻璃结节瘤周组织放射组学特征构建并进一步优化肺腺癌浸润性的预测模型，从而为临床诊疗提供辅助工具",
+              "quote": "首先调研总结出目前三种瘤周划分方式，从不同的瘤周组织中提取的特征进行建模能够对有不同的鉴别及分层的效能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 951,
-                "end_char": 1004
+                "start_char": 2986,
+                "end_char": 3036
               },
               "version": "713b846d6b408e16f12e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-97631db49d08",
-          "name": "超高分辨荧光成像揭示细胞微结构",
-          "desc": "利用超高分辨荧光显微成像技术打破光学衍射极限，对亚百纳米细胞结构进行3D成像、重建及可视化。",
+          "id": "item-bef30b93b17b",
+          "name": "免疫相关差异基因风险预测模型与列线图",
+          "desc": "基于单样本基因富集分析",
           "evidence": [
             {
-              "quote": "研究团队利用超高分辨荧光显微成像技术打破了光学的衍射极限，可以对亚百纳米的细胞结构进行3D成像、重建及可视化",
+              "quote": "研究基于单样本基因富集分析获得的免疫相关差异表达基因构建了肺腺癌风险预测模型，并联合临床特征绘制了列线图",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 830,
-                "end_char": 883
+                "start_char": 3177,
+                "end_char": 3228
               },
               "version": "713b846d6b408e16f12e"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +108,293 @@
       "state": "has",
       "items": [
         {
-          "id": "item-df64cf910378",
-          "name": "比较2mm与5mm瘤周特征鉴别效能",
-          "desc": "发现基于瘤周组织的影像组学特征能帮助鉴别表现为磨玻璃结节的肺腺癌浸润性病理类型，并比较2mm与5mm瘤周组织特征鉴别效能。",
+          "id": "item-9787d2067c00",
+          "name": "列线图总生存期预测",
+          "desc": "1、3、5年AUC 0.789、0.763、0.746",
           "evidence": [
             {
-              "quote": "前期我们的研究发现基于瘤周组织的影像组学特征能够帮助鉴别表现为磨玻璃结节的肺腺癌浸润性病理类型，并比较2mm及5mm瘤周组织特征的鉴别效能",
+              "quote": "列线图1、3、5 年总生存期的AUC分别为0.789、0.763、0.746",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2865,
-                "end_char": 2933
-              },
-              "version": "713b846d6b408e16f12e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-90c5514c9b0a",
-          "name": "肺腺癌风险预测模型与列线图",
-          "desc": "基于免疫相关差异表达基因构建肺腺癌风险预测模型并联合临床特征绘制列线图，1、3、5年总生存期AUC分别为0.789、0.763、0.746。",
-          "evidence": [
-            {
-              "quote": "研究基于单样本基因富集分析获得的免疫相关差异表达基因构建了肺腺癌风险预测模型，并联合临床特征绘制了列线图，列线图1、3、5 年总生存期的AUC分别为0.789、0.763、0.746",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3177,
+                "start_char": 3230,
                 "end_char": 3267
               },
               "version": "713b846d6b408e16f12e"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-21bb5164c134",
-          "name": "影像基因组学模型提升预后预测",
-          "desc": "评估结合影像-基因组学模型在预测肺癌患者预后中的有效性，发现其能够提高模型预测性能。",
-          "evidence": [
-            {
-              "quote": "研究进一步评估结合影像-基因组学模型在预测肺癌患者预后中的有效性，并发现其能够提高模型的预测性能",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3307,
-                "end_char": 3354
-              },
-              "version": "713b846d6b408e16f12e"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-1a06c48e97a5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-1c2b2c42cf84"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trends and hotspots of energy-based imaging in thoracic disease: a bibliometric analysis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufan Chen;Ting Wu;Yangtong Zhu;Jiawei Chen;Chen Gao;Linyu Wu",
+      "id": "out-a8d41e078774",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trends and hotspots of energy-based imaging in thoracic disease: a bibliometric analysis. — Yufan Chen;Ting Wu;Yangtong Zhu;Jiawei Chen;Chen Gao;Linyu Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3444,
+            "end_char": 3603
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-1c2b2c42cf84"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-44af926076e3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Can quantitative peritumoral CT radiomics features predict the prognosis of patients with non-small cell lung cancer? A systematic review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linyu Wu;Xinjing Lou;Ning Kong;Maosheng Xu;Chen Gao",
+      "id": "out-ac6cfa4364cf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Can quantitative peritumoral CT radiomics features predict the prognosis of patients with non-small cell lung cancer? A systematic review — Linyu Wu;Xinjing Lou;Ning Kong;Maosheng Xu;Chen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3608,
+            "end_char": 3805
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-44af926076e3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-df64cf910378"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Could the underlying biological basis of prognostic radiomics and deep learning signatures be explored in patients with lung cancer? A systematic review.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lujie Qian;Ting Wu;Shuaihang Kong;Xinjing Lou;Yixiao Jiang;Zhenxin Tan;Linyu Wu;Chen Gao",
+      "id": "out-be79ab38f0b7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Could the underlying biological basis of prognostic radiomics and deep learning signatures be explored in patients with lung cancer? A systematic review. — Lujie Qian;Ting Wu;Shuaihang Kong;Xinjing Lou;Yixiao Jiang;Zhenxin Tan;Linyu Wu;Chen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3810,
+            "end_char": 4060
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-97631db49d08"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-21bb5164c134"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Research trends of artificial intelligence and radiomics in lung cancer: a bibliometric analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yufei Xia;Shupei Zhong;Xinjing Lou;Meiqi Hua;Linyu Wu;Chen Gao",
+      "id": "out-d9bd43675770",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Research trends of artificial intelligence and radiomics in lung cancer: a bibliometric analysis — Yufei Xia;Shupei Zhong;Xinjing Lou;Meiqi Hua;Linyu Wu;Chen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4065,
+            "end_char": 4232
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于单样本基因富集分析分型构建肺腺癌的风险预测模型",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "高晨;吴林玉;孔宁;娄新璟;孔宁;许茂盛",
+      "id": "out-c3c6648ce652",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于单样本基因富集分析分型构建肺腺癌的风险预测模型 — 高晨;吴林玉;孔宁;娄新璟;孔宁;许茂盛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4237,
+            "end_char": 4291
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive value of radiomic features extracted from primary lung adenocarcinoma in forecasting thoracic lymph node metastasis: a systematic review and meta-analysis.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ting Wu;Gao Chen;Lou Xinjing;Wu Jun;Maosheng Xu;Linyu Wu",
+      "id": "out-468c4d6dad59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive value of radiomic features extracted from primary lung adenocarcinoma in forecasting thoracic lymph node metastasis: a systematic review and meta-analysis. — Ting Wu;Gao Chen;Lou Xinjing;Wu Jun;Maosheng Xu;Linyu Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4296,
+            "end_char": 4527
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胸部CT瘤周影像组学在非小细胞肺癌精准诊疗中的应用与挑战",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴婷;吴林玉;高晨;娄新璟;陈佳威;吴俊;许茂盛",
+      "id": "out-62eac926ba14",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 胸部CT瘤周影像组学在非小细胞肺癌精准诊疗中的应用与挑战 — 吴婷;吴林玉;高晨;娄新璟;陈佳威;吴俊;许茂盛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4532,
+            "end_char": 4593
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of short-term progression of COVID-19 pneumonia based on chest CT artificial intelligence: during the Omicron epidemic",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinjing Lou;Chen Gao;Linyu Wu;Ting Wu;Linyang He;Jiahao Shen;Meiqi Hua;Maosheng Xu",
+      "id": "out-ec46d9a73981",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of short-term progression of COVID-19 pneumonia based on chest CT artificial intelligence: during the Omicron epidemic — Xinjing Lou;Chen Gao;Linyu Wu;Ting Wu;Linyang He;Jiahao Shen;Meiqi Hua;Maosheng Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4598,
+            "end_char": 4818
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The prognostic value of radiogenomics using CT in patients with lung cancer: a systematic review",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yixiao Jiang;Chuan Gao;Yilin Shao;Xinjing Lou;Meiqi Hua;Jiangnan Lin;Linyu Wu;Chen Gao",
+      "id": "out-cba75231b43e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The prognostic value of radiogenomics using CT in patients with lung cancer: a systematic review — Yixiao Jiang;Chuan Gao;Yilin Shao;Xinjing Lou;Meiqi Hua;Jiangnan Lin;Linyu Wu;Chen Gao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4823,
+            "end_char": 5014
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "重视人工智能在医学影像中的研究与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴林玉;许茂盛",
+      "id": "out-352e443ef60f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 重视人工智能在医学影像中的研究与应用 — 吴林玉;许茂盛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5020,
+            "end_char": 5054
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The long-term course of subsolid nodules and predictors of interval growth on chest CT: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Linyu Wu;Chen Gao;Ning Kong;Xinjing Lou;Maosheng Xu",
+      "id": "out-740c509c0f23",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The long-term course of subsolid nodules and predictors of interval growth on chest CT: a systematic review and meta-analysis — Linyu Wu;Chen Gao;Ning Kong;Xinjing Lou;Maosheng Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5060,
+            "end_char": 5245
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌影像数据集的发展现状与研究应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "娄新璟;高晨;吴林玉;周菲妮;许茂盛",
+      "id": "out-8457ec1df238",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肺癌影像数据集的发展现状与研究应用 — 娄新璟;高晨;吴林玉;周菲妮;许茂盛",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5251,
+            "end_char": 5295
+          },
+          "version": "713b846d6b408e16f12e"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "7ade6a45e013ec8b2c64",
   "version": "2c7c1b90a278698000ea",
   "source_hash": "68afe9d2462f669e1a02301e297d023b6fe7b377301da734f6f6af94ba587874",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:05:45.792445+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:45:44.412346+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0fb86c95936",
-          "name": "癌症免疫分子亚型分析与预测",
-          "desc": "面向癌症免疫治疗，基于体细胞突变数据划分癌症免疫分子亚型并构建预测模型与查询平台。",
+          "id": "item-3e9be87a2656",
+          "name": "癌症免疫分子亚型",
+          "desc": "分子水平高度异质",
           "evidence": [
             {
               "quote": "癌症是一种在分子水平上具有高度异质性的疾病，可以划分为不同的免疫分子亚型",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95e4e3b2ff66",
-          "name": "癌症免疫分子亚型划分的准确性需求",
-          "desc": "准确划分癌症患者的免疫分子亚型可为其免疫治疗提供精准的理论指导与实践基础，但体细胞突变数据的高维稀疏特征给准确分型带来困难。",
+          "id": "item-2133b38e1d5a",
+          "name": "准确分型指导免疫治疗",
+          "desc": "癌症患者免疫治疗",
           "evidence": [
             {
               "quote": "准确地将癌症患者分到不同的免疫分子亚型能够为癌症患者的免疫治疗提供精准的理论指导和实践基础",
@@ -63,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b57391aa81a2",
-          "name": "网络扩散模型驱动的突变谱平滑与亚型建模",
-          "desc": "利用网络扩散模型将体细胞突变影响通过蛋白质相互作用网络传播，得到平滑且含网络信息的突变谱数据，进而计算免疫细胞浸润水平并以聚类算法建立免疫分子亚型。",
+          "id": "item-0222e6cd0051",
+          "name": "网络扩散模型平滑体细胞突变谱",
+          "desc": "蛋白质相互作用网络传播",
           "evidence": [
             {
               "quote": "利用网络扩散模型，将体细胞突变的影响通过蛋白质相互作用网络传播出去，得到平滑且包含蛋白质相互作用网络信息的突变谱数据",
@@ -76,7 +81,25 @@
               },
               "version": "2c7c1b90a278698000ea"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a64a625a0f9e",
+          "name": "XGBoost癌症免疫分子亚型预测模型",
+          "desc": "预测免疫分型",
+          "evidence": [
+            {
+              "quote": "最终，通过癌症免疫分子亚型模型，我们XGBoost分类器，以便对癌症患者的免疫分型情况进行预测，同样取得良好的预测效果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3150,
+                "end_char": 3208
+              },
+              "version": "2c7c1b90a278698000ea"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,314 @@
       "state": "has",
       "items": [
         {
-          "id": "item-186433118755",
-          "name": "构建XGBoost癌症免疫分子亚型预测模型",
-          "desc": "构建基于XGBoost算法的癌症免疫分子亚型预测模型并系统验证取得良好预测效果，同时评估了各亚型的预后、差异基因与免疫治疗获益情况。",
+          "id": "item-a6b6a24cb6a4",
+          "name": "癌症免疫分子亚型",
+          "desc": "预后、辅助化疗与免疫治疗获益评估均显著",
           "evidence": [
             {
-              "quote": "构建基于XGBoost算法的癌症免疫分子亚型的预测模型，并对模型进行系统的验证",
+              "quote": "我们还对癌症免疫分子亚型的辅助化疗获益情况和免疫治疗获益情况进行了评估，同样取得了显著的结果",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 916,
-                "end_char": 954
+                "start_char": 3103,
+                "end_char": 3148
               },
               "version": "2c7c1b90a278698000ea"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f0fb86c95936"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-95e4e3b2ff66"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Structural deep clustering network for stratification of breast cancer patients through integration of somatic mutation profiles",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Dongqing;Xiong Yuqiang;Wang Shiyuan;Wei Haodong;Ke Jiawei;Li Honghao;Wang Tao;Zuo Yongchun;Yang Lei",
+      "id": "out-3852028bcc16",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Structural deep clustering network for stratification of breast cancer patients through integration of somatic mutation profiles — Su Dongqing;Xiong Yuqiang;Wang Shiyuan;Wei Haodong;Ke Jiawei;Li Honghao;Wang Tao;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3287,
+            "end_char": 3526
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-95e4e3b2ff66"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b57391aa81a2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrating somatic mutation profiles with structural deep clustering network for metabolic stratification in pancreatic cancer: a comprehensive analysis of prognostic and genomic landscapes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zou Min;Li Honghao;Su Dongqing;Xiong Yuqiang;Wei Haodong;Wang Shiyuan;Sun Hongmei;Wang Tao;Xi Qilemuge;Zuo Yongchun;Yang Lei",
+      "id": "out-235cd9824c43",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrating somatic mutation profiles with structural deep clustering network for metabolic stratification in pancreatic cancer: a comprehensive analysis of prognostic and genomic landscapes — Zou Min;Li Honghao;Su Dongqing;Xiong Yuqiang;Wei Haodong;Wang Shiyuan;Sun Hongmei;Wang Tao;Xi Qilemuge;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3531,
+            "end_char": 3854
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b57391aa81a2"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-186433118755"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated multi-cohorts for characterizing the immunogenomic landscape and predicting drug response in triple-negative breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Dongqing;Chi Meng;Wang Shiyuan;Di Shuhong;Zhang Haoxing;Lu Qianzi;Yu Yao;Xiong Yuqiang;Wei Haodong;Lv Yingli;Zuo Yongchun;Yang Lei",
+      "id": "out-edad8edfdcc8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated multi-cohorts for characterizing the immunogenomic landscape and predicting drug response in triple-negative breast cancer — Su Dongqing;Chi Meng;Wang Shiyuan;Di Shuhong;Zhang Haoxing;Lu Qianzi;Yu Yao;Xiong Yuqiang;Wei Haodong;Lv Yingli;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3859,
+            "end_char": 4134
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated deep learning model for automatic detection and classification of stenosis in coronary angiography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Tao;Su Xiaojun;Liang Yuchao;Luo Xu;Hu Xiao;Xia Ting;Ma Xuebin;Zuo Yongchun;Xia Huilin;Yang Lei",
+      "id": "out-814a6ea15546",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated deep learning model for automatic detection and classification of stenosis in coronary angiography — Wang Tao;Su Xiaojun;Liang Yuchao;Luo Xu;Hu Xiao;Xia Ting;Ma Xuebin;Zuo Yongchun;Xia Huilin;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4139,
+            "end_char": 4356
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic and predictive value of a metabolic risk score model in breast cancer: an immunogenomic landscape analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Dongqing;Wang Shiyuan;Xi Qilemuge;Lin Lin;Lu Qianzi;Yu Yao;Xiong Yuqiang;Wei Haodong;Liang Pengfei;Lv Yingli;Zuo Yongchun;Yang Lei",
+      "id": "out-28fd93c2aed7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic and predictive value of a metabolic risk score model in breast cancer: an immunogenomic landscape analysis — Su Dongqing;Wang Shiyuan;Xi Qilemuge;Lin Lin;Lu Qianzi;Yu Yao;Xiong Yuqiang;Wei Haodong;Liang Pengfei;Lv Yingli;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4361,
+            "end_char": 4620
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Immune-based Prognostic Score for the Immunogenomic Landscape Aanalysis and Application of Chemotherapy in Breast Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Qianzi;Wang Shiyuan;Pan Yi;Yu Yao;Xiong Yuqiang;Wei Haodong;Su Dongqing;Zuo Yongchun;Yang Lei",
+      "id": "out-642bfcdd4bb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Immune-based Prognostic Score for the Immunogenomic Landscape Aanalysis and Application of Chemotherapy in Breast Cancer — Lu Qianzi;Wang Shiyuan;Pan Yi;Yu Yao;Xiong Yuqiang;Wei Haodong;Su Dongqing;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4625,
+            "end_char": 4854
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based transcription factor activity for stratification of breast cancer patients",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Yuqiang;Wang Shiyuan;Wei Haodong;Li Hanshuang;Lv Yingli;Chi Meng;Su Dongqing;Lu Qianzi;Yu Yao;Zuo Yongchun;Yang Lei",
+      "id": "out-036fe8d0a175",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based transcription factor activity for stratification of breast cancer patients — Xiong Yuqiang;Wang Shiyuan;Wei Haodong;Li Hanshuang;Lv Yingli;Chi Meng;Su Dongqing;Lu Qianzi;Yu Yao;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4859,
+            "end_char": 5083
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated Machine Learning Algorithms for Stratification of Patients with Bladder Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Yuanyuan;Wei Haodong;Liao Siqing;Ou Ruiming;Xiong Yuqiang;Zuo Yongchun;Yang Lei",
+      "id": "out-baf0af7d342b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated Machine Learning Algorithms for Stratification of Patients with Bladder Cancer — He Yuanyuan;Wei Haodong;Liao Siqing;Ou Ruiming;Xiong Yuqiang;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5088,
+            "end_char": 5268
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep Clustering-Based Metabolic Stratification of Non-Small Cell Lung Cancer Patients Through Integration of Somatic Mutation Profile and Network Propagation Algorithm",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Luo Xu;Zhang Xinpeng;Su Dongqing;Li Honghao;Zou Min;Xiong Yuqiang;Yang Lei",
+      "id": "out-f1b8f50e761f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep Clustering-Based Metabolic Stratification of Non-Small Cell Lung Cancer Patients Through Integration of Somatic Mutation Profile and Network Propagation Algorithm — Luo Xu;Zhang Xinpeng;Su Dongqing;Li Honghao;Zou Min;Xiong Yuqiang;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5273,
+            "end_char": 5523
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated Metabolic-related Transcription Factor Protein Activity for Stratification of Breast Cancer with Distinct Clinical Outcomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiong Yuqiang;Li Shaokang;Huo Zhengchun;Zou Min;Su Dongqing;Li Honghao;Wang Shiyuan;Yang Lei",
+      "id": "out-d542174f2b09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated Metabolic-related Transcription Factor Protein Activity for Stratification of Breast Cancer with Distinct Clinical Outcomes — Xiong Yuqiang;Li Shaokang;Huo Zhengchun;Zou Min;Su Dongqing;Li Honghao;Wang Shiyuan;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5529,
+            "end_char": 5764
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated Somatic Mutation Network Diffusion Model for Stratification of Breast Cancer into Different Metabolic Mutation Subtypes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Dongqing;Li Honghao;Wang Tao;Zou Min;Wei Haodong;Xiong Yuqiang;Sun Hongmei;Wang Shiyuan;Xi Qilemuge;Zuo Yongchun;Yang Lei",
+      "id": "out-1273488b3be1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated Somatic Mutation Network Diffusion Model for Stratification of Breast Cancer into Different Metabolic Mutation Subtypes — Su Dongqing;Li Honghao;Wang Tao;Zou Min;Wei Haodong;Xiong Yuqiang;Sun Hongmei;Wang Shiyuan;Xi Qilemuge;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5770,
+            "end_char": 6033
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stratification of ovarian cancer patients from the prospect of drug target-related transcription factor protein activity: the prognostic and genomic landscape analyses",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Su Dongqing;Zhang Haoxin;Xiong Yuqiang;Wei Haodong;Yu Yao;Li Honghao;Wang Tao;Zuo Yongchun;Yang Lei",
+      "id": "out-548fb9412aaf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stratification of ovarian cancer patients from the prospect of drug target-related transcription factor protein activity: the prognostic and genomic landscape analyses — Su Dongqing;Zhang Haoxin;Xiong Yuqiang;Wei Haodong;Yu Yao;Li Honghao;Wang Tao;Zuo Yongchun;Yang Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6039,
+            "end_char": 6314
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Integrated analysis of patients with bladder cancer from prospective transcription factor activity: Implications for personalized treatment approaches",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei Haodong;Luo Xu;Lan Rifang;Xiong Yuqiang;Yang Siru;Wang Shiyuan;Yang Lei;Lv Yingli",
+      "id": "out-fa5b27e9a1e6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Integrated analysis of patients with bladder cancer from prospective transcription factor activity: Implications for personalized treatment approaches — Wei Haodong;Luo Xu;Lan Rifang;Xiong Yuqiang;Yang Siru;Wang Shiyuan;Yang Lei;Lv Yingli",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6320,
+            "end_char": 6564
+          },
+          "version": "2c7c1b90a278698000ea"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 13,
+        "extracted": 13
+      }
+    },
+    "consistent": true
+  }
 }

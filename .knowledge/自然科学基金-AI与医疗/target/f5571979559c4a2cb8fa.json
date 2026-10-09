@@ -2,15 +2,20 @@
   "doc_id": "f5571979559c4a2cb8fa",
   "version": "534888f1c806c65cc146",
   "source_hash": "2eee61f17b85713b55f8810280e11ad7eb4680d9fe5150be9ef2c8ba5278afa3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:50.563428+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.532779+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8d5311ecc9e0",
-          "name": "非小细胞肺癌免疫疗效预测的电子鼻",
-          "desc": "以机器嗅觉技术指导免疫检查点抑制剂治疗NSCLC，构建经济有效无创的疗效预测电子鼻。",
+          "id": "item-d3ccec6684f8",
+          "name": "肺癌电子鼻检测",
+          "desc": "机器嗅觉",
           "evidence": [
             {
-              "quote": "以基于机器嗅觉技术指导免疫检查点抑制剂治疗非小细胞肺癌患者临床应用为目标",
+              "quote": "本项目基于机器嗅觉技术开发经济有效无创的肺癌检测方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 826,
-                "end_char": 861
+                "start_char": 2926,
+                "end_char": 2951
               },
               "version": "534888f1c806c65cc146"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-42fa0941895e",
-          "name": "肿瘤时空异质性限制免疫治疗前组学分析",
-          "desc": "肺癌免疫治疗前的组学分析常因肿瘤在基因、蛋白质、组织和器官层面的空间与时间异质性而受限，需开发早期预测疗效的无创生物标志物检测。",
+          "id": "item-6030cc99f4e0",
+          "name": "传感器漂移与特征空间重构与模式分类",
+          "desc": "机器嗅觉三大关键因素",
           "evidence": [
             {
-              "quote": "在肺癌免疫治疗前的组学分析常因为肿瘤在基因、蛋白质、组织和器官层面表现出来的空间异质性与时间异质性而受到限制",
+              "quote": "针对人工嗅觉系统的传感器阵列构建、特征空间重构以及模式分类三大关键因素",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 720,
-                "end_char": 773
+                "start_char": 2953,
+                "end_char": 2987
               },
               "version": "534888f1c806c65cc146"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-62b4dd7238a4",
-          "name": "复合传感电子鼻与领域自适应特征重构",
-          "desc": "构建复合传感模式微纳传感器阵列，研究基于跨领域自适应的特征空间重构与分类器集成学习，改善传感器阵列、特征空间重构和模式分类三大关键因素。",
+          "id": "item-04ed6775d9df",
+          "name": "复合传感模式气体传感器阵列电子鼻硬件",
+          "desc": "传感器、调理采集与流量控制",
           "evidence": [
             {
-              "quote": "拟探讨利用复合传感模式微纳传感器阵列构建、领域自适应特征重构和分类器集成学习对机器嗅觉系统的三大关键因素(传感器阵列、特征空间重构和模式分类)进行技术改善的相关方法",
+              "quote": "电子鼻硬件系统设计与构建，包括复合传感模式气体传感器列、传感器工作电路、信号调理与采集电路、流量控制系统",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 863,
-                "end_char": 944
+                "start_char": 3046,
+                "end_char": 3097
               },
               "version": "534888f1c806c65cc146"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-6a3b05846e88",
+          "name": "气体传感器漂移补偿算法",
+          "desc": "线性与非线性子空间学习",
+          "evidence": [
+            {
+              "quote": "基于线性子空间学习的气体传感器漂移补偿、基于非线性子空间学习的气体传感器漂移补偿",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3124,
+                "end_char": 3163
+              },
+              "version": "534888f1c806c65cc146"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,782 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e2e0bb8b1253",
-          "name": "研制医用电子鼻实验样机并获技术成果转让3项",
-          "desc": "研制出面向肺癌检测的医用电子鼻实验样机并获得初步技术方案；发表SCI期刊论文31篇、EI会议论文4篇，申请发明专利3项（授权3项），技术成果转让3项，获2023年中国建筑材料流通协会科技进步一等奖。",
+          "id": "item-558601fbebb8",
+          "name": "面向肺癌检测的医用电子鼻实验样机",
+          "desc": "研制",
           "evidence": [
             {
-              "quote": "依托本项目，研制出面向肺癌检测的医用电子鼻实验样机，获得基于电子鼻的肺癌检测技术初步方案",
+              "quote": "研制出面向肺癌检测的医用电子鼻实验样机",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3452,
-                "end_char": 3495
+                "start_char": 3458,
+                "end_char": 3476
               },
               "version": "534888f1c806c65cc146"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-8f7c955c799d",
+          "name": "论文专利",
+          "desc": "SCI 31篇，授权发明专利3项",
+          "evidence": [
+            {
+              "quote": "发表SCI期刊论文31篇，EI会议论文4篇，申请发明专利3项，获授权发明专利3项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3520,
+                "end_char": 3559
+              },
+              "version": "534888f1c806c65cc146"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-8d5311ecc9e0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-42fa0941895e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Marginal Distributionally Robust MMSE Estimation for a Multisensor System With Kullback-Leibler Divergence Constraints",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Niu Dunbiao;Song Enbin;Li Zhi;Zhang Linxia;Ma Ting;Gu Juping;Shi Qingjiang",
+      "id": "out-698877dec6bc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Marginal Distributionally Robust MMSE Estimation for a Multisensor System With Kullback-Leibler Divergence Constraints — Niu Dunbiao;Song Enbin;Li Zhi;Zhang Linxia;Ma Ting;Gu Juping;Shi Qingjiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3703,
+            "end_char": 3906
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-42fa0941895e"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-62b4dd7238a4"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Subspace alignment based on an extreme learning machine for electronic nose drift compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Yan;Feiyue Chen;Tao Liu;Yuelin Zhang;Xiaoyan Peng;Danhong Yi;Shukai Duan",
+      "id": "out-3ae14350af78",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Subspace alignment based on an extreme learning machine for electronic nose drift compensation — Jia Yan;Feiyue Chen;Tao Liu;Yuelin Zhang;Xiaoyan Peng;Danhong Yi;Shukai Duan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3911,
+            "end_char": 4090
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-62b4dd7238a4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e2e0bb8b1253"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Robust Domain Correction Latent Subspace Learning for Gas Sensor Drift Compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Danhong Yi;Linxia Zhang;Zijian Wang;Lidan Wang;Shukai Duan;Jia Yan",
+      "id": "out-99dbb88e59df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Robust Domain Correction Latent Subspace Learning for Gas Sensor Drift Compensation — Danhong Yi;Linxia Zhang;Zijian Wang;Lidan Wang;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4253
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Label Disentangling Subspace Learning Based on Domain Adaptation for Drift E-nose Data Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zijian Wang;Shukai Duan;Jia Yan",
+      "id": "out-78b06a267bb0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Label Disentangling Subspace Learning Based on Domain Adaptation for Drift E-nose Data Classification — Zijian Wang;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4258,
+            "end_char": 4407
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TDACNN: Target-domain-free domain adaptation convolutional neural network for drift compensation in gas sensors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuelin Zhang;Sihao Xiang;Zehuan Wang;Xiaoyan Peng;Yutong Tian;Shukai Duan;Jia Yan",
+      "id": "out-95303fc37f89",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TDACNN: Target-domain-free domain adaptation convolutional neural network for drift compensation in gas sensors — Yuelin Zhang;Sihao Xiang;Zehuan Wang;Xiaoyan Peng;Yutong Tian;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4412,
+            "end_char": 4613
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High-temperature operation of v-MoS2 nanowalls/TiO2 photodetectors with excellent performances",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Peng Xiaoyan;Chen Jiazheng;Wang Shun;Wang Lidan;Duan Shukai;Feng Peter;Chu Jin",
+      "id": "out-a29a5fb328fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High-temperature operation of v-MoS2 nanowalls/TiO2 photodetectors with excellent performances — Peng Xiaoyan;Chen Jiazheng;Wang Shun;Wang Lidan;Duan Shukai;Feng Peter;Chu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4618,
+            "end_char": 4799
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Domain-adaptation-based active ensemble learning for improving chemical sensor array performance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Yan;Ruihong Sun;Tao Liu;Shukai Duan",
+      "id": "out-0ea414eecb83",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Domain-adaptation-based active ensemble learning for improving chemical sensor array performance — Jia Yan;Ruihong Sun;Tao Liu;Shukai Duan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 4948
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Double-Level Interleaved Group Convolutional Network in the Frequency Domain for E-Nose Gas Recognition",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zijian Wang;Mingye Han;Huisheng Zhang;Jia Yan",
+      "id": "out-bde9f52d2867",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Double-Level Interleaved Group Convolutional Network in the Frequency Domain for E-Nose Gas Recognition — Zijian Wang;Mingye Han;Huisheng Zhang;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4953,
+            "end_char": 5112
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High-precision regression prediction of HCHO concentration based on gas sensors and FPNet",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruilong Ma;Fan Wu;Jiaxin Yue;Wenlong Zhao;Jia Yan;Hao Cui;Peter Feng;Xiaoyan Peng",
+      "id": "out-1df178e94a0b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High-precision regression prediction of HCHO concentration based on gas sensors and FPNet — Ruilong Ma;Fan Wu;Jiaxin Yue;Wenlong Zhao;Jia Yan;Hao Cui;Peter Feng;Xiaoyan Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5117,
+            "end_char": 5296
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Nonlinear Manifold Embedding Extreme Learning Machine to Improve the Gas Recognition of Electronic Noses",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yutong Tian;Tao Liu;Tingjun Li;Haining Yang;Jia Yan",
+      "id": "out-c92fade31541",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Nonlinear Manifold Embedding Extreme Learning Machine to Improve the Gas Recognition of Electronic Noses — Yutong Tian;Tao Liu;Tingjun Li;Haining Yang;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5302,
+            "end_char": 5468
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel bionic olfactory network combined with an electronic nose for identification of industrial exhaust",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Yan;Huisheng Zhang;Xinran Ge;Wenzheng Yang;Xiaoyan Peng;Tao Liu",
+      "id": "out-da4a9d6fb334",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel bionic olfactory network combined with an electronic nose for identification of industrial exhaust — Jia Yan;Huisheng Zhang;Xinran Ge;Wenzheng Yang;Xiaoyan Peng;Tao Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5474,
+            "end_char": 5656
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-Gas Sensing Electronic Nose Using Memristor-Based In-Memory Computing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinpei Tan;Shukai Duan;Lidan Wang;Jia Yan",
+      "id": "out-52108310628a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-Gas Sensing Electronic Nose Using Memristor-Based In-Memory Computing — Jinpei Tan;Shukai Duan;Lidan Wang;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5662,
+            "end_char": 5787
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improving E-Nose Performance: A Novel ELM-Based Dual-Level Joint Domain Adaptation Method for Sensor Drift Data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zijian Wang;Linxia Zhang;Zhe Li;Shukai Duan;Jia Yan",
+      "id": "out-e06bfb562d83",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Improving E-Nose Performance: A Novel ELM-Based Dual-Level Joint Domain Adaptation Method for Sensor Drift Data — Zijian Wang;Linxia Zhang;Zhe Li;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5793,
+            "end_char": 5964
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A lightweight gas classification and concentration prediction method based on PTQ-CNN by using an electronic nose system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zeng Yuanhu;Liu Zhencheng;Liu Zhenyu;Peng Xiaoyan;Cui Hao;Yan Jia;Duan Shukai;Wang Lidan;Chu Jin",
+      "id": "out-7c52f458813f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A lightweight gas classification and concentration prediction method based on PTQ-CNN by using an electronic nose system — Zeng Yuanhu;Liu Zhencheng;Liu Zhenyu;Peng Xiaoyan;Cui Hao;Yan Jia;Duan Shukai;Wang Lidan;Chu Jin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5970,
+            "end_char": 6195
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Group Role Three-Way Assignment for Managing Uncertainty in Role Negotiation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Shiyu;Li Shenglin;Zhu Haibin;Chen Rui;Zhang Libo",
+      "id": "out-fad78195a597",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Group Role Three-Way Assignment for Managing Uncertainty in Role Negotiation — Wu Shiyu;Li Shenglin;Zhu Haibin;Chen Rui;Zhang Libo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6201,
+            "end_char": 6337
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Novel Method for H2S Concentration Prediction Under Small Sample Based on ECA-1DCNN-XGBR",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaxin Yue;Fan Wu;Xue Wang;Peter Feng;Junwei Zhuo;Hao Cui;Jia Yan;Shukai Duan;Xiaoyan Peng",
+      "id": "out-64500133e87d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A Novel Method for H2S Concentration Prediction Under Small Sample Based on ECA-1DCNN-XGBR — Jiaxin Yue;Fan Wu;Xue Wang;Peter Feng;Junwei Zhuo;Hao Cui;Jia Yan;Shukai Duan;Xiaoyan Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6343,
+            "end_char": 6532
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-Domain Active Learning for Electronic Nose Drift Compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fangyu Sun;Ruihong Sun;Jia Yan",
+      "id": "out-cffaf29d0258",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-Domain Active Learning for Electronic Nose Drift Compensation — Fangyu Sun;Ruihong Sun;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6538,
+            "end_char": 6644
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "GRA With Secondment and Role-Importance-Based Training Plan",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Ruisi;Wu Shiyu;Xiong Weiming;Zhu Haibin;Li Shenglin;Zhang Libo",
+      "id": "out-8aea1103259d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] GRA With Secondment and Role-Importance-Based Training Plan — Yang Ruisi;Wu Shiyu;Xiong Weiming;Zhu Haibin;Li Shenglin;Zhang Libo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6650,
+            "end_char": 6785
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于电子鼻和传感器感知卷积网络的气体分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "闫嘉;陈勇;郭子毓;杨文政;蓬桂华;王雪雅;殷勇;陈菊",
+      "id": "out-dfb37b298fe1",
+      "evidence": [
+        {
+          "quote": "[专利] 基于电子鼻和传感器感知卷积网络的气体分类方法 — 闫嘉;陈勇;郭子毓;杨文政;蓬桂华;王雪雅;殷勇;陈菊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6791,
+            "end_char": 6847
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于极限学习机的联合域自适应气体传感器漂移补偿方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "闫嘉;王子健;王丽丹;段书凯",
+      "id": "out-4dbf39caeeb7",
+      "evidence": [
+        {
+          "quote": "[专利] 基于极限学习机的联合域自适应气体传感器漂移补偿方法 — 闫嘉;王子健;王丽丹;段书凯",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6853,
+            "end_char": 6899
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A mixed gas concentration regression prediction method based on RESHA-ALW",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jilong Wu;Wenlong Zhao;Fan Wu;Jia Yan;Peter Feng;Hao Cui;Shukai Duan;Xiaoyan Peng",
+      "id": "out-8a88cfd8fdc5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A mixed gas concentration regression prediction method based on RESHA-ALW — Jilong Wu;Wenlong Zhao;Fan Wu;Jia Yan;Peter Feng;Hao Cui;Shukai Duan;Xiaoyan Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6905,
+            "end_char": 7068
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A convolutional spiking neural network combined with residual blocks for electronic nose data processing",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Biao Wu;Xinran Ge;Huisheng Zhang;Jia Yan",
+      "id": "out-80b59ffd853a",
+      "evidence": [
+        {
+          "quote": "[会议论文] A convolutional spiking neural network combined with residual blocks for electronic nose data processing — Biao Wu;Xinran Ge;Huisheng Zhang;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7074,
+            "end_char": 7227
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Co-Design of Lightweight Neural Network and Low-Power Edge Computing Architecture for Intelligent Electronic Nose System",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Lei;Han Fujun;Zhang Changfu;Duan Shukai;Wang Lidan;Yan Jia",
+      "id": "out-f0cab132879e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Co-Design of Lightweight Neural Network and Low-Power Edge Computing Architecture for Intelligent Electronic Nose System — Xiao Lei;Han Fujun;Zhang Changfu;Duan Shukai;Wang Lidan;Yan Jia",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7233,
+            "end_char": 7425
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "M2FL-CCC: Multibranch Multilayer Feature Leaning and Comprehensive Classification Criterion for Gas Sensor Drift Compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Zhai;Mingye Han;Zhe Li;Shuangjing Yang;Shukai Duan;Jia Yan",
+      "id": "out-564d58042100",
+      "evidence": [
+        {
+          "quote": "[期刊论文] M2FL-CCC: Multibranch Multilayer Feature Leaning and Comprehensive Classification Criterion for Gas Sensor Drift Compensation — Shichao Zhai;Mingye Han;Zhe Li;Shuangjing Yang;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7431,
+            "end_char": 7631
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Performance Improvement of Multisensor Systems Using Autocompensation Strategy-Based LSTM",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lu Li;Sihao Xiang;Mingye Han;Jia Yan",
+      "id": "out-e259e12b5a51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Performance Improvement of Multisensor Systems Using Autocompensation Strategy-Based LSTM — Lu Li;Sihao Xiang;Mingye Han;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7637,
+            "end_char": 7771
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel DenseNet with warm restarts for gas recognition in complex airflow environments",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fei Li;Yiran Li;Bochao Sun;Hao Cui;Jia Yan;Peter Feng;Xiaoyan Peng",
+      "id": "out-cfa62ce423c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel DenseNet with warm restarts for gas recognition in complex airflow environments — Fei Li;Yiran Li;Bochao Sun;Hao Cui;Jia Yan;Peter Feng;Xiaoyan Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7777,
+            "end_char": 7939
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TF-TCN: A time-frequency combined gas concentration prediction model for E-nose data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Ma;Fan Wu;Jia Yan;Shukai Duan;Xiaoyan Peng",
+      "id": "out-881b924a319f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TF-TCN: A time-frequency combined gas concentration prediction model for E-nose data — Xu Ma;Fan Wu;Jia Yan;Shukai Duan;Xiaoyan Peng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7945,
+            "end_char": 8083
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Subspace learning by transfer domain reconstructing on an extreme learning machine for enhancing E-nose system performance",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia Yan;Yu-an Chen;Zhe Li;Tao Liu;Shukai Duan;Linxia Zhang",
+      "id": "out-64981e40ab6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Subspace learning by transfer domain reconstructing on an extreme learning machine for enhancing E-nose system performance — Jia Yan;Yu-an Chen;Zhe Li;Tao Liu;Shukai Duan;Linxia Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8089,
+            "end_char": 8278
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Neuro-inspired olfactory system modeling complex neural circuits for efficient odor classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinran Ge;Huisheng Zhang;Jia Yan",
+      "id": "out-b3ea5cbf55b4",
+      "evidence": [
+        {
+          "quote": "[会议论文] Neuro-inspired olfactory system modeling complex neural circuits for efficient odor classification — Xinran Ge;Huisheng Zhang;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8284,
+            "end_char": 8423
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel orthogonal constraint-based subspace learning method for electronic nose drift compensation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Danhong Yi;Zhe Li;Yuan Chen;Jia Yan",
+      "id": "out-0cb6f3e422c3",
+      "evidence": [
+        {
+          "quote": "[会议论文] A novel orthogonal constraint-based subspace learning method for electronic nose drift compensation — Danhong Yi;Zhe Li;Yuan Chen;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8429,
+            "end_char": 8572
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multilevel interleaved group attention-based convolutional network for gas detection via an electronic nose system",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Zhai;Zhe Li;Huisheng Zhang;Lidan Wang;Shukai Duan;Jia Yan",
+      "id": "out-b39c9bc5f416",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multilevel interleaved group attention-based convolutional network for gas detection via an electronic nose system — Shichao Zhai;Zhe Li;Huisheng Zhang;Lidan Wang;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8578,
+            "end_char": 8768
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification of industrial exhaust based on an electronic nose with an interleaved grouped residual convolutional compression network",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuangjing Yang;Huisheng Zhang;Zhe Li;Shukai Duan;Jia Yan",
+      "id": "out-28c910556916",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification of industrial exhaust based on an electronic nose with an interleaved grouped residual convolutional compression network — Shuangjing Yang;Huisheng Zhang;Zhe Li;Shukai Duan;Jia Yan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8774,
+            "end_char": 8975
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Optimal margin distribution matrix machine",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Jinrui;Fan Shuangyi;Liu Li;Zhang Libo",
+      "id": "out-2fd8ebf661a4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Optimal margin distribution matrix machine — Yang Jinrui;Fan Shuangyi;Liu Li;Zhang Libo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8981,
+            "end_char": 9074
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Group Multirole Assignment With General Conflict",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Shiyu;Li Shenglin;Zhu Haibin;Wang Tianxing;Zhang Libo",
+      "id": "out-33cd11b1e03f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Group Multirole Assignment With General Conflict — Wu Shiyu;Li Shenglin;Zhu Haibin;Wang Tianxing;Zhang Libo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9080,
+            "end_char": 9193
+          },
+          "version": "534888f1c806c65cc146"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 34,
+    "listed": 34,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 28,
+        "extracted": 28
+      },
+      "会议论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

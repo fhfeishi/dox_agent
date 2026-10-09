@@ -2,15 +2,20 @@
   "doc_id": "0812bcb4a544c31dfcaa",
   "version": "343342f92933d44ae08f",
   "source_hash": "f8a90cd3d0c833cb95ff64c93ae9e164b8c5b85b8d0380a70ac92e7e49aa7cce",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:07:34.800192+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:26:17.398740+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f5ac6f5d363",
-          "name": "泌尿系统肿瘤AI一体化精准诊疗",
-          "desc": "面向以膀胱癌为代表的泌尿系统恶性肿瘤诊疗流程，研发全链条覆盖的一体化AI精准诊疗平台。",
+          "id": "item-d0d79e8d364d",
+          "name": "泌尿系统恶性肿瘤诊疗",
+          "desc": "以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在临床痛点",
           "evidence": [
             {
-              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗过程中存在着诸多亟待解决的诊断与治疗不精准问题",
+              "quote": "以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在着诸多亟待解决的临床痛点、难点",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 778,
-                "end_char": 825
+                "start_char": 2712,
+                "end_char": 2746
               },
               "version": "343342f92933d44ae08f"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-db2cdd160335",
-          "name": "泌尿系统肿瘤诊疗存在诸多临床痛点",
-          "desc": "以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在诸多亟待解决的临床痛点与难点，传统人工诊疗模式难以满足精准诊疗需求。",
+          "id": "item-38949a55c3cb",
+          "name": "诊断与治疗不精准",
+          "desc": "诊疗过程中存在诸多亟待解决的诊断与治疗不精准问题",
           "evidence": [
             {
-              "quote": "在临床实践中，以膀胱癌为代表的泌尿系统恶性肿瘤诊疗存在着诸多亟待解决的临床痛点、难点",
+              "quote": "存在着诸多亟待解决的诊断与治疗不精准问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2705,
-                "end_char": 2746
+                "start_char": 806,
+                "end_char": 825
               },
               "version": "343342f92933d44ae08f"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5226eb93b86c",
-          "name": "CNN与迁移学习知识图谱驱动的一体化AI诊疗平台",
-          "desc": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习与知识图谱等技术，研发涵盖早期筛查与诊断分期全流程的系列AI精准诊断系统并集成智能数据治理与云平台。",
+          "id": "item-7f732e5abedc",
+          "name": "卷积神经网络、深度迁移学习、渐进自动化增量学习与知识图谱",
+          "desc": "面向一体化AI精准诊疗平台",
           "evidence": [
             {
-              "quote": "进一步基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台",
+              "quote": "基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 933,
-                "end_char": 1011
+                "start_char": 936,
+                "end_char": 977
               },
               "version": "343342f92933d44ae08f"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f9d039b63df9",
+          "name": "多中心多模态标准化临床诊疗大数据库",
+          "desc": "支撑模型研发",
+          "evidence": [
+            {
+              "quote": "构建多中心多模态标准化临床诊疗大数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2827,
+                "end_char": 2845
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ],
+          "role": "配套-数据"
+        },
+        {
+          "id": "item-39c899a568aa",
+          "name": "智能数据治理与云平台",
+          "desc": "支撑一体化平台",
+          "evidence": [
+            {
+              "quote": "结合智能数据治理与云平台技术",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3112,
+                "end_char": 3125
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ],
+          "role": "配套-数据"
         }
       ]
     },
@@ -85,9 +125,47 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ce8885e13dc5",
-          "name": "发表SCI论文17篇并获批国家发明专利7项",
-          "desc": "团队发表SCI论文17篇（另有1篇已录用），获批国家发明专利7项；培养1名青年长江学者、2名国家优青等，完成培养博士15人、硕士14人。",
+          "id": "item-4373e5a25e5c",
+          "name": "系列AI精准诊断系统",
+          "desc": "尿液细胞学、膀胱镜检、T/N分期等AI诊断系统",
+          "evidence": [
+            {
+              "quote": "研发系列AI精准诊断系统",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2886,
+                "end_char": 2897
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a2d9f982acbe",
+          "name": "AI一体化精准诊疗平台",
+          "desc": "已在全国多中心试用推广",
+          "evidence": [
+            {
+              "quote": "研发了泌尿系统常见恶性肿瘤AI一体化精准诊疗平台，已在全国多中心试用推广",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3129,
+                "end_char": 3164
+              },
+              "version": "343342f92933d44ae08f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "发表SCI论文17篇，获批国家发明专利7项",
           "evidence": [
             {
               "quote": "团队已发表SCI论文17篇（另有1篇文章已录用，暂未见刊），获批国家发明专利7项",
@@ -99,7 +177,9 @@
               "version": "343342f92933d44ae08f"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +187,300 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-3f5ac6f5d363"
+        "dimension": "技术",
+        "item_id": "item-7f732e5abedc"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-db2cdd160335"
+        "item_id": "item-38949a55c3cb"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-db2cdd160335"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5226eb93b86c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-5226eb93b86c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ce8885e13dc5"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "进一步基于卷积神经网络、深度迁移学习、渐进自动化增量学习、知识图谱技术等最新发展的AI技术，研发全链条覆盖泌尿系统常见恶性肿瘤诊疗过程的一体化AI精准诊疗平台",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 933,
+            "end_char": 1011
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning-based model for prediction of early recurrence and therapy response on whole slide images in non-muscle- invasive bladder cancer: a retrospective, multicentre study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiang Fan;Hong Guibin;Zeng Hong;Lin Zhen;Liu Ye;Xu Abai;Shen Runnan;Xie Ye;Luo Yun;Wang Yun;Zhu Mengyi;Yang Hongkun;Wang Haoxuan;Huang Shuting;Chen Rui;Lin Tianxin;Wu Shaoxu",
+      "id": "out-eb047b9c73e2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning-based model for prediction of early recurrence and therapy response on whole slide images in non-muscle- invasive bladder cancer: a retrospective, multicentre study — Jiang Fan;Hong Guibin;Zeng Hong;Lin Zhen;Liu Ye;Xu Abai;Shen Runnan;Xie Ye;Luo Yun;Wang Yun;Zhu Mengyi;Yang Hongkun;Wang Haoxuan;Huang Shuting;Chen Rui;Lin Tianxin;Wu Shaoxu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3337,
+            "end_char": 3697
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Trends and socioeconomic inequality of the burden of congenital abnormalities of the kidney and urinary tract among children and adolescents",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "He Guohua;Liu Yunfei;Bagga Arvind;Onubogu Chinyere Ukamaka;Schaefer Franz;Zou Zhiyong;Smoyer William E.;Xiao Nianzhou;Lin Tianxin;Lanewala Ali Asghar;Kang Hee Gyung;Waheed Muhammad Zeeshan;Park Seungkyo;Jiang Xiaoyun;Song Yi;Ding Jie",
+      "id": "out-2470edb18003",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Trends and socioeconomic inequality of the burden of congenital abnormalities of the kidney and urinary tract among children and adolescents — He Guohua;Liu Yunfei;Bagga Arvind;Onubogu Chinyere Ukamaka;Schaefer Franz;Zou Zhiyong;Smoyer William E.;Xiao Nianzhou;Lin Tianxin;Lanewala Ali Asghar;Kang Hee Gyung;Waheed Muhammad Zeeshan;Park Seungkyo;Jiang Xiaoyun;Song Yi;Ding Jie",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3702,
+            "end_char": 4084
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Artificial intelligence-based pathological model for pan-cancer lymph node metastasis detection: a multicentre diagnostic study with retrospective and prospective validation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-e1cfd247f7d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Artificial intelligence-based pathological model for pan-cancer lymph node metastasis detection: a multicentre diagnostic study with retrospective and prospective validation — Shaoxu Wu;Guibin Hong;Yun Wang;Hong Zeng;Zhen Lin;Jie Yang;Jianning Chen;Hongtao Chen;Yan Huang;Liangli Hong;Yuanyuan Wang;Weineng Feng;Yunjie Zeng;Huasheng Huang;Chunhui Wang;Chen Xing;Gehong Dong;Xing Hua;Changhai Qi;Aijun Liu;Jihua Wu;Xu Chen;Changhao Chen;Wenlong Zhong;Ye Xie;Mengyi Zhu;Chengxiao Liao;Haoxuan Wang;Hongkun Yang;Fan Jiang;Runnan Shen;Shuting Huang;Rui Chen;Tianxin Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4089,
+            "end_char": 4660
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膀胱癌淋巴结转移预测方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴少旭;林天歆;洪桂斌;沈润楠;江帆;黄晓巍;陈睿",
+      "id": "out-ef2bf4354ea7",
+      "evidence": [
+        {
+          "quote": "[专利] 膀胱癌淋巴结转移预测方法、装置、设备及存储介质 — 吴少旭;林天歆;洪桂斌;沈润楠;江帆;黄晓巍;陈睿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4665,
+            "end_char": 4720
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TFE3 gene rearrangement and protein expression contribute to a poor prognosis of renal cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lin Junyi;Tang Zhuang;Zhang Chengjunyu;Dong Wen;Liu Yeqing;Huang Hao;Liu Hao;Huang Jian;Lin Tianxin;Chen Xu",
+      "id": "out-6072d35272ae",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TFE3 gene rearrangement and protein expression contribute to a poor prognosis of renal cell carcinoma — Lin Junyi;Tang Zhuang;Zhang Chengjunyu;Dong Wen;Liu Yeqing;Huang Hao;Liu Hao;Huang Jian;Lin Tianxin;Chen Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4725,
+            "end_char": 4942
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An artificial intelligence model for detecting pathological lymph node metastasis in prostate cancer using whole slide images: a retrospective, multicentre, diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Shaoxu;Wang Yun;Hong Guibin;Luo Yun;Lin Zhen;Shen Runnan;Zeng Hong;Xu Abai;Wu Peng;Xiao Mingzhao;Li Xiaoyang;Rao Peng;Yang Qishen;Feng Zhengyuan;He Quanhao;Jiang Fan;Xie Ye;Liao Chengxiao;Huang Xiaowei;Chen Rui;Lin Tianxin",
+      "id": "out-becddee501ee",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An artificial intelligence model for detecting pathological lymph node metastasis in prostate cancer using whole slide images: a retrospective, multicentre, diagnostic study — Wu Shaoxu;Wang Yun;Hong Guibin;Luo Yun;Lin Zhen;Shen Runnan;Zeng Hong;Xu Abai;Wu Peng;Xiao Mingzhao;Li Xiaoyang;Rao Peng;Yang Qishen;Feng Zhengyuan;He Quanhao;Jiang Fan;Xie Ye;Liao Chengxiao;Huang Xiaowei;Chen Rui;Lin Tianxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4947,
+            "end_char": 5354
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TSPAN18 facilitates bone metastasis of prostate cancer by protecting STIM1 from TRIM32-mediated ubiquitination",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhou Qianghua;Chen Xu;Yao Kai;Zhang Yangjie;He Haixia;Huang Hao;Chen Hao;Peng Shengmeng;Huang Ming;Cheng Liang;Zhang Qiang;Xie Ruihui;Li Kaiwen;Lin Tianxin;Huang Hai",
+      "id": "out-bdb0d89a2d1d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TSPAN18 facilitates bone metastasis of prostate cancer by protecting STIM1 from TRIM32-mediated ubiquitination — Zhou Qianghua;Chen Xu;Yao Kai;Zhang Yangjie;He Haixia;Huang Hao;Chen Hao;Peng Shengmeng;Huang Ming;Cheng Liang;Zhang Qiang;Xie Ruihui;Li Kaiwen;Lin Tianxin;Huang Hai",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5359,
+            "end_char": 5643
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Non-Invasive Tumor Budding Evaluation and Correlation with Treatment Response in Bladder Cancer: A Multi-Center Cohort Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Xiaoyang;Zou Chen;Wang Chunhui;Chang Cheng;Lin Yi;Liang Shuai;Zheng Haoran;Liu Libo;Deng Kai;Zhang Lin;Liu Bohao;Gao Mingchao;Cai Peicong;Lao Jianwen;Xu Longhao;Wu Daqin;Zhao Xiao;Wu Xiao;Li Xinyuan;Luo Yun;Zhong Wenlong;Lin Tianxin",
+      "id": "out-6154fd1995c5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Non-Invasive Tumor Budding Evaluation and Correlation with Treatment Response in Bladder Cancer: A Multi-Center Cohort Study — Li Xiaoyang;Zou Chen;Wang Chunhui;Chang Cheng;Lin Yi;Liang Shuai;Zheng Haoran;Liu Libo;Deng Kai;Zhang Lin;Liu Bohao;Gao Mingchao;Cai Peicong;Lao Jianwen;Xu Longhao;Wu Daqin;Zhao Xiao;Wu Xiao;Li Xinyuan;Luo Yun;Zhong Wenlong;Lin Tianxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5648,
+            "end_char": 6016
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Modifiable factors affects cancer-specific survival: findings from a large population-based prospective cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Xiong;Zhu Dongxi;Li Chenchen;Lin Yi;Lv Lin;Ai Feiling;Chen Zhijian;Shen Runnan;Shen Xuwen;You Guochang;Jiang Zhige;Zhong Wenlong;Lin Tianxin",
+      "id": "out-d84f3713ab23",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Modifiable factors affects cancer-specific survival: findings from a large population-based prospective cohort study — Chen Xiong;Zhu Dongxi;Li Chenchen;Lin Yi;Lv Lin;Ai Feiling;Chen Zhijian;Shen Runnan;Shen Xuwen;You Guochang;Jiang Zhige;Zhong Wenlong;Lin Tianxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6021,
+            "end_char": 6291
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An artificial intelligence model for the pathological diagnosis of invasion depth and histologic grade in bladder cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pan Jiexin;Hong Guibin;Zeng Hong;Liao Chengxiao;Li Huarun;Yao Yuhui;Gan Qinghua;Wang Yun;Wu Shaoxu;Lin Tianxin",
+      "id": "out-e23bc56e81fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An artificial intelligence model for the pathological diagnosis of invasion depth and histologic grade in bladder cancer — Pan Jiexin;Hong Guibin;Zeng Hong;Liao Chengxiao;Li Huarun;Yao Yuhui;Gan Qinghua;Wang Yun;Wu Shaoxu;Lin Tianxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6297,
+            "end_char": 6536
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of an artificial intelligence-based model for detecting urothelial carcinoma using urine cytology images: a multicentre, diagnostic study with prospective validation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Shaoxu;Shen Runnan;Hong Guibin;Luo Yun;Wan Huan;Feng Jiahao;Chen Zeshi;Jiang Fan;Wang Yun;Liao Chengxiao;Li Xiaoyang;Liu Bohao;Huang Xiaowei;Liu Kai;Qin Ping;Wang Yahui;Xie Ye;Ouyang Nengtai;Huang Jian;Lin Tianxin",
+      "id": "out-b9f1871f3bfe",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of an artificial intelligence-based model for detecting urothelial carcinoma using urine cytology images: a multicentre, diagnostic study with prospective validation — Wu Shaoxu;Shen Runnan;Hong Guibin;Luo Yun;Wan Huan;Feng Jiahao;Chen Zeshi;Jiang Fan;Wang Yun;Liao Chengxiao;Li Xiaoyang;Liu Bohao;Huang Xiaowei;Liu Kai;Qin Ping;Wang Yahui;Xie Ye;Ouyang Nengtai;Huang Jian;Lin Tianxin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6542,
+            "end_char": 6959
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "膀胱癌智能化诊疗体系的创建与推广应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林天歆;吴少旭;何旺;陈睿;陈旭;陈长昊;洪桂斌;王赟;林真;钟文龙;郑俊炯;陈雄",
+      "id": "out-dbe51389d495",
+      "evidence": [
+        {
+          "quote": "[奖励] 膀胱癌智能化诊疗体系的创建与推广应用 — 林天歆;吴少旭;何旺;陈睿;陈旭;陈长昊;洪桂斌;王赟;林真;钟文龙;郑俊炯;陈雄",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6965,
+            "end_char": 7031
+          },
+          "version": "343342f92933d44ae08f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 12,
+    "listed": 12,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "e426bf1924ad7a173808",
   "version": "4dc5d30108bc2947ffa8",
   "source_hash": "c6a5c0003b81430d6f79630e3a812bdeb35350798b2ac7425ba69155e22b0b63",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:17.936045+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:43:07.370397+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-fda75ecf472a",
-          "name": "单细胞与空间转录组融合数据细胞分化分析",
-          "desc": "面向多细胞生物基因调控研究，利用单细胞与空间转录组融合数据开展细胞分类、高分辨率空间重构与分化轨迹推断。",
+          "id": "item-2228300bf88e",
+          "name": "单细胞与空间转录组融合分析",
+          "desc": "细胞分化轨迹推断",
           "evidence": [
             {
-              "quote": "空间转录组学和单细胞转录组学是生物医学研究的前沿热点",
+              "quote": "本项目围绕单细胞与空间转录组融合数据表示学习与下游分析的核心科学问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 655,
-                "end_char": 680
+                "start_char": 2783,
+                "end_char": 2816
               },
               "version": "4dc5d30108bc2947ffa8"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ca7f1e595043",
-          "name": "融合数据异质高噪导致传统分化算法误差大",
-          "desc": "融合数据具有大规模、异质性和高噪声等特性，传统细胞分化算法面临误差大、复杂轨迹预测能力不足的问题。",
+          "id": "item-d771937cfb74",
+          "name": "数据异质性强、配对困难、噪声大、轨迹推断复杂",
+          "desc": "融合数据",
           "evidence": [
             {
-              "quote": "由于融合数据具有大规模、异质性和高噪声等特性，传统细胞分化算法面临着误差大和复杂轨迹预测能力不足等问题",
+              "quote": "针对数据异质性强、配对困难、噪声大、轨迹推断复杂等挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 817
+                "start_char": 2818,
+                "end_char": 2844
               },
               "version": "4dc5d30108bc2947ffa8"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e32bbdbad7c0",
-          "name": "深度学习与知识图谱双视角表示的细胞分化算法",
-          "desc": "以深度学习和知识图谱双视角表示融合数据，提出认知图谱半监督分类、空间数据单细胞分辨率反演与基于迁移学习和图神经网络的轨迹推断算法。",
+          "id": "item-dd7f0dd267f1",
+          "name": "组织病理图像为中介的多模态对齐层次化学习框架",
+          "desc": "降低对配对数据依赖",
           "evidence": [
             {
-              "quote": "本项目提出以深度学习和知识图谱双视角表示的融合数据为基础，开展高效准确细胞分化算法设计的前沿研究",
+              "quote": "提出了基于层次化学习的框架，构建了以组织病理图像为中介的多模态对齐机制，降低了对配对数据的依赖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 822,
-                "end_char": 869
+                "start_char": 2873,
+                "end_char": 2919
               },
               "version": "4dc5d30108bc2947ffa8"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-178f3b434c22",
+          "name": "融合空间相关性的半监督反卷积与图谱优化",
+          "desc": "单细胞级别空间转录组重建",
+          "evidence": [
+            {
+              "quote": "开发了融合空间相关性的半监督反卷积与图谱优化方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2958,
+                "end_char": 2981
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-fab2f02c3c47",
+          "name": "迁移学习与图神经网络轨迹推断算法",
+          "desc": "跨域元学习与图对比学习",
+          "evidence": [
+            {
+              "quote": "设计了基于迁移学习与图神经网络的轨迹推断算法，构建了跨域元学习与图对比学习模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3035,
+                "end_char": 3073
+              },
+              "version": "4dc5d30108bc2947ffa8"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +125,385 @@
       "state": "has",
       "items": [
         {
-          "id": "item-14545a769bab",
-          "name": "发表论文20篇并申请国家发明专利3项",
-          "desc": "在Nature Methods、IEEE TKDE、BIB等权威期刊及KDD、WWW等CCF A类会议发表论文20篇，申请国家发明专利3项（已授权1项），培养博士3名、硕士9名。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "论文20篇含Nature Methods，发明专利3项",
           "evidence": [
             {
-              "quote": "发表论文20篇；申请国家发明专利3项，其中已获授权1项",
+              "quote": "在《Nature Methods》、IEEE TKDE、BIB等国际权威期刊及KDD、WWW等CCFA类会议上发表论文20篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3249,
-                "end_char": 3275
+                "start_char": 3194,
+                "end_char": 3255
               },
               "version": "4dc5d30108bc2947ffa8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-fda75ecf472a"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ca7f1e595043"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Local and global: temporal question answering via information fusion",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Di Liang;Mengyu Li;Fausto Giunchiglia;Ximing Li;Sirui Wang;Wei Wu;Lan Huang;Xiaoyue Feng;Renchu Guan",
+      "id": "out-e0445a38a334",
+      "evidence": [
+        {
+          "quote": "[会议论文] Local and global: temporal question answering via information fusion — Yonghao Liu;Di Liang;Mengyu Li;Fausto Giunchiglia;Ximing Li;Sirui Wang;Wei Wu;Lan Huang;Xiaoyue Feng;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3486,
+            "end_char": 3675
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ca7f1e595043"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e32bbdbad7c0"
-      },
-      "basis": "原文明示"
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Simple but Effective Approach for Unsupervised Few-Shot Graph Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Lan Huang;Bowen Cao;Ximing Li;Fausto Giunchiglia;Xiaoyue Feng;Renchu Guan",
+      "id": "out-e2c01ab49fab",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Simple but Effective Approach for Unsupervised Few-Shot Graph Classification — Yonghao Liu;Lan Huang;Bowen Cao;Ximing Li;Fausto Giunchiglia;Xiaoyue Feng;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3680,
+            "end_char": 3852
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e32bbdbad7c0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-14545a769bab"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "High-Parameter Spatial Multi-Omics through Histology-Anchored Integration",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Chuyao Wang;Zhikang Wang;Liang Chen;Zhi Li;Jiangning Song;Qi Zou;Rui Gao;Binzhi Qian;Xiaoyue Feng;Renchu Guan;Zhiyuan Yuan",
+      "id": "out-8d6e04d872b2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] High-Parameter Spatial Multi-Omics through Histology-Anchored Integration — Yonghao Liu;Chuyao Wang;Zhikang Wang;Liang Chen;Zhi Li;Jiangning Song;Qi Zou;Rui Gao;Binzhi Qian;Xiaoyue Feng;Renchu Guan;Zhiyuan Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3857,
+            "end_char": 4073
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Resolving Word Vagueness with Scenario-guided Adapter for Natural Language Inference",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Mengyu Li;Di Liang;Ximing Li;Fausto Giunchiglia;Lan Huang;Xiaoyue Feng;Renchu Guan",
+      "id": "out-50b65897d9eb",
+      "evidence": [
+        {
+          "quote": "[会议论文] Resolving Word Vagueness with Scenario-guided Adapter for Natural Language Inference — Yonghao Liu;Mengyu Li;Di Liang;Ximing Li;Fausto Giunchiglia;Lan Huang;Xiaoyue Feng;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4078,
+            "end_char": 4265
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A comprehensive psychological tendency prediction model for pregnant women based on questionnaires",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaosong Han;Mengchen Cao;Junru He;Dong Xu;Yanchun Liang;Xiaoduo Lang;Renchu Guan",
+      "id": "out-278585456b91",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A comprehensive psychological tendency prediction model for pregnant women based on questionnaires — Xiaosong Han;Mengchen Cao;Junru He;Dong Xu;Yanchun Liang;Xiaoduo Lang;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4270,
+            "end_char": 4458
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Meta-GPS++: Enhancing Graph Meta-Learning with Contrastive Learning and Self-Training",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Mengyu Li;Ximing Li;Lan Huang;Fausto Giunchiglia;Yanchun Liang;Xiaoyue Feng;Renchu Guan",
+      "id": "out-9e475581a7c7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Meta-GPS++: Enhancing Graph Meta-Learning with Contrastive Learning and Self-Training — Yonghao Liu;Mengyu Li;Ximing Li;Lan Huang;Fausto Giunchiglia;Yanchun Liang;Xiaoyue Feng;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4463,
+            "end_char": 4656
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deployable and continuable meta-learning-based recommender system with fast user-incremental updates",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Renchu Guan;Haoyu Pang;Fausto Giunchiglia;Ximing Li;Xuefeng Yang;Xiaoyue Feng",
+      "id": "out-76f28fffb26b",
+      "evidence": [
+        {
+          "quote": "[会议论文] Deployable and continuable meta-learning-based recommender system with fast user-incremental updates — Renchu Guan;Haoyu Pang;Fausto Giunchiglia;Ximing Li;Xuefeng Yang;Xiaoyue Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4661,
+            "end_char": 4847
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovering trends and hotspots of biosafety and biosecurity research via machine learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Renchu Guan;Haoyu Pang;Yanchun Liang;Zhongjun Shao;Xin Gao;Dong Xu;Xiaoyue Feng",
+      "id": "out-e4f2ffc86f16",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovering trends and hotspots of biosafety and biosecurity research via machine learning — Renchu Guan;Haoyu Pang;Yanchun Liang;Zhongjun Shao;Xin Gao;Dong Xu;Xiaoyue Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4852,
+            "end_char": 5030
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosting Short Text Classification with Multi-Source Information Exploration and Dual-Level Contrastive Learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yonghao;Li Mengyu;Pang Wei;Giunchiglia Fausto;Huang Lan;Feng Xiaoyue;Guan Renchu",
+      "id": "out-d64579e53b01",
+      "evidence": [
+        {
+          "quote": "[会议论文] Boosting Short Text Classification with Multi-Source Information Exploration and Dual-Level Contrastive Learning — Liu Yonghao;Li Mengyu;Pang Wei;Giunchiglia Fausto;Huang Lan;Feng Xiaoyue;Guan Renchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5035,
+            "end_char": 5240
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Improved Graph Contrastive Learning for Short Text Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yonghao;Huang Lan;Giunchiglia Fausto;Feng Xiaoyue;Guan Renchu",
+      "id": "out-741c70c547ef",
+      "evidence": [
+        {
+          "quote": "[会议论文] Improved Graph Contrastive Learning for Short Text Classification — Liu Yonghao;Huang Lan;Giunchiglia Fausto;Feng Xiaoyue;Guan Renchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5246,
+            "end_char": 5385
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于图对比神经网络的单细胞组学数据嵌入表示提取方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "丰小月;曹博雯;管仁初;曾安",
+      "id": "out-ef18174346c9",
+      "evidence": [
+        {
+          "quote": "[专利] 基于图对比神经网络的单细胞组学数据嵌入表示提取方法 — 丰小月;曹博雯;管仁初;曾安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5391,
+            "end_char": 5437
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种计算机处理采集设备数据的融合方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "管仁初;吕甜;丰小月;曾安",
+      "id": "out-e7c433cca47e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种计算机处理采集设备数据的融合方法 — 管仁初;吕甜;丰小月;曾安",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5443,
+            "end_char": 5481
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A Simple Graph Contrastive Learning Framework for Short Text Classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Yonghao;Giunchiglia Fausto;Huang Lan;Li Ximing;Feng Xiaoyue;Guan Renchu",
+      "id": "out-70ea16f7110c",
+      "evidence": [
+        {
+          "quote": "[会议论文] A Simple Graph Contrastive Learning Framework for Short Text Classification — Liu Yonghao;Giunchiglia Fausto;Huang Lan;Li Ximing;Feng Xiaoyue;Guan Renchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5487,
+            "end_char": 5646
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-level Mixup for Graph Few-shot Learning with Fewer Tasks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yonghao Liu;Mengyu Li;Fausto Giunchiglia;Lan Huang;Ximing Li;Xiaoyue Feng;Renchu Guan",
+      "id": "out-2ee3a5491581",
+      "evidence": [
+        {
+          "quote": "[会议论文] Dual-level Mixup for Graph Few-shot Learning with Fewer Tasks — Yonghao Liu;Mengyu Li;Fausto Giunchiglia;Lan Huang;Ximing Li;Xiaoyue Feng;Renchu Guan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5652,
+            "end_char": 5807
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MSI-DTI: predicting drug-target interaction based on multi-source information and multi-head self-attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhao Wenchuan;Yu Yufeng;Liu Guosheng;Liang Yanchun;Xu Dong;Feng Xiaoyue;Guan Renchu",
+      "id": "out-45ccb3132561",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MSI-DTI: predicting drug-target interaction based on multi-source information and multi-head self-attention — Zhao Wenchuan;Yu Yufeng;Liu Guosheng;Liang Yanchun;Xu Dong;Feng Xiaoyue;Guan Renchu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5813,
+            "end_char": 6012
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cross-domain meta-learner for cold-start recommendation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Renchu Guan;Haoyu Pang;Fausto Giunchiglia;Yanchun Liang;Xiaoyue Feng",
+      "id": "out-3cfc472890ec",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cross-domain meta-learner for cold-start recommendation — Renchu Guan;Haoyu Pang;Fausto Giunchiglia;Yanchun Liang;Xiaoyue Feng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6018,
+            "end_char": 6150
+          },
+          "version": "4dc5d30108bc2947ffa8"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 16,
+    "listed": 16,
+    "by_kind": {
+      "会议论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "期刊论文": {
+        "listed": 6,
+        "extracted": 6
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

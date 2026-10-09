@@ -2,15 +2,20 @@
   "doc_id": "c538c9ba6f012993144c",
   "version": "e15effd5e0ad0599d6cf",
   "source_hash": "8266d3e3ef4680108ddb28635f44e353f6806fb4742ef59dc18ff62da89f0a4e",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:37:24.297713+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:57:24.098561+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ddeed5ba0b9",
-          "name": "耐药肺结核辅助诊断与疗效评估",
-          "desc": "耐药肺结核尤其耐多药肺结核蔓延已成为全球结核病防治难点，胸部CT是DR-TB诊疗的重要方法。",
+          "id": "item-c6be2ed3d0bc",
+          "name": "耐药肺结核CT辅助诊断与疗效评估",
+          "desc": "胸部CT与深度学习",
           "evidence": [
             {
-              "quote": "耐药肺结核（DR-TB）尤其是耐多药肺结核（MDR-TB）的蔓延已成为全球结核病防治工作难点",
+              "quote": "构建基于胸部CT影像和卷积神经网络的智能模型用于肺结核患者胸部病灶识别、耐药性诊断和亚型分类",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 672,
-                "end_char": 717
-              },
-              "version": "e15effd5e0ad0599d6cf"
-            }
-          ]
-        },
-        {
-          "id": "item-c3b300e62f98",
-          "name": "DR-TB早期精准个体化诊疗",
-          "desc": "为耐药肺结核早期精准个体化诊疗提供科学依据。",
-          "evidence": [
-            {
-              "quote": "将为DR-TB早期精准个体化诊疗提供科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1047,
-                "end_char": 1068
+                "start_char": 2989,
+                "end_char": 3034
               },
               "version": "e15effd5e0ad0599d6cf"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-be555903d459",
-          "name": "培养周期长检出率低",
-          "desc": "耐药结核分枝杆菌检出和药物敏感性试验存在培养周期长、检出率低等问题。",
+          "id": "item-632b607d986d",
+          "name": "传统实验室诊断耗时耗力，易漏诊误诊延误治疗",
+          "desc": "耐药结核",
           "evidence": [
             {
-              "quote": "但存在培养周期长、检出率低等问题",
+              "quote": "传统实验室诊断耗时耗力，条件资源要求高，可能导致漏诊误诊，进而延误治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 767,
-                "end_char": 782
-              },
-              "version": "e15effd5e0ad0599d6cf"
-            }
-          ]
-        },
-        {
-          "id": "item-c681031606bb",
-          "name": "人工CT读片主观差异大误诊率高",
-          "desc": "人工对CT影像读片主观差异大、误诊漏诊率高，需引入人工智能技术。",
-          "evidence": [
-            {
-              "quote": "但人工对CT影像读片主观差异大、误诊漏诊率高，人工智能（AI）技术的快速发展提供了新思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 842,
-                "end_char": 885
+                "start_char": 2799,
+                "end_char": 2833
               },
               "version": "e15effd5e0ad0599d6cf"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-afddd4b310de",
-          "name": "半监督多任务深度学习算法",
-          "desc": "结合半监督多任务深度学习算法构建基于胸部CT影像和卷积神经网络的智能模型，用于肺结核病灶识别、耐药性诊断和亚型分类。",
+          "id": "item-7ee0e31d6fa1",
+          "name": "半监督多任务深度学习胸部CT智能诊断模型",
+          "desc": "基于ResNet",
           "evidence": [
             {
-              "quote": "结合半监督多任务深度学习算法，构建基于胸部CT影像和卷积神经网络的智能模型用于肺结核患者胸部病灶识别、耐药性诊断和亚型分类",
+              "quote": "基于ResNet开发的深度学习模型在肺结核患者的影像学判读和耐药性诊断上显示出良好性能",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2974,
-                "end_char": 3034
+                "start_char": 3258,
+                "end_char": 3300
               },
               "version": "e15effd5e0ad0599d6cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7a156fbf303f",
-          "name": "肺灶分割与MSCS-DeepNet技术",
-          "desc": "采用课题组提出的肺-灶分割和MSCS-DeepNet人工智能技术实现不同类型DR-TB快速检出并提取病灶量化特征。",
+          "id": "item-0d41419c6e71",
+          "name": "耐药肺结核治疗疗效预测模型",
+          "desc": "临床预测",
           "evidence": [
             {
-              "quote": "采用课题组提出的肺-灶分割和MSCS-DeepNet人工智能技术，实现对不同类型的DR-TB快速检出，同时提取病灶量化特征，构建更加精准的疗效评估模型",
+              "quote": "进一步，通过对耐药组的随访将其划分为治疗有效组和治疗无效组，分析影响治疗疗效的危险因素并构建预测模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 958,
-                "end_char": 1032
+                "start_char": 3077,
+                "end_char": 3126
               },
               "version": "e15effd5e0ad0599d6cf"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,26 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e712be306bb9",
-          "name": "病灶识别与耐药诊断AUC",
-          "desc": "模型识别胸部病灶最高AUC 0.930，诊断耐药肺结核AUC 0.943，区分耐药亚型最高AUC 0.928。",
+          "id": "item-bc7e47918584",
+          "name": "模型性能",
+          "desc": "病灶识别AUC 0.930，耐药诊断AUC 0.943，亚型AUC 0.928",
           "evidence": [
             {
-              "quote": "通过输入胸部CT影像，模型识别肺结核患者胸部病灶最高AUC 0.930，诊断耐药肺结核AUC 0.943，区分耐药亚型最高AUC可达0.928",
+              "quote": "模型识别肺结核患者胸部病灶最高AUC 0.930，诊断耐药肺结核AUC 0.943，区分耐药亚型最高AUC可达0.928",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3302,
+                "start_char": 3313,
                 "end_char": 3372
               },
               "version": "e15effd5e0ad0599d6cf"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-17d53a68c09f",
-          "name": "疗效预测模型AUC 0.754",
-          "desc": "既往接受抗结核治疗、耐多药结核病、病原学阳性和具胸腔积液征象的患者治疗无效风险较高，临床预测模型AUC为0.754。",
+          "id": "item-3cbc245b2507",
+          "name": "疗效预测模型AUC",
+          "desc": "0.754",
           "evidence": [
             {
               "quote": "临床预测模型的AUC为0.754",
@@ -164,72 +141,182 @@
               "version": "e15effd5e0ad0599d6cf"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-aa621d72e2bb",
-          "name": "耐药高危人群临床影像特征",
-          "desc": "分析显示耐药肺结核患者中男性、曾吸烟/饮酒、接受过抗结核治疗者占比更高，更易出现全肺受累、空洞、支气管扩张等影像表现。",
-          "evidence": [
-            {
-              "quote": "结果显示，在耐药肺结核患者中，男性、曾吸烟/饮酒、接受过抗结核治疗的人群占比更高",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3129,
-                "end_char": 3168
-              },
-              "version": "e15effd5e0ad0599d6cf"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5ddeed5ba0b9"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-be555903d459"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A multimodal integration pipeline for accurate diagnosis, pathogen identification, and prognosis prediction of pulmonary infections",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jun Shao;Jiechao Ma;Yizhou Yu;Shu Zhang;Wenyang Wang;Weimin Li;Chengdi Wang",
+      "id": "out-11e456de6cf7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A multimodal integration pipeline for accurate diagnosis, pathogen identification, and prognosis prediction of pulmonary infections — Jun Shao;Jiechao Ma;Yizhou Yu;Shu Zhang;Wenyang Wang;Weimin Li;Chengdi Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3643,
+            "end_char": 3858
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-be555903d459"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-afddd4b310de"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺部感染CXR图像自动识别方法、系统、存储介质及终端",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王成弟;李为民;章毅;徐修远;熊立鹏;赵科甫;郭际香;邵俊;李经纬;梁书凡",
+      "id": "out-3f58a9e13ad4",
+      "evidence": [
+        {
+          "quote": "[专利] 肺部感染CXR图像自动识别方法、系统、存储介质及终端 — 王成弟;李为民;章毅;徐修远;熊立鹏;赵科甫;郭际香;邵俊;李经纬;梁书凡",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3863,
+            "end_char": 3933
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-afddd4b310de"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e712be306bb9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种耐药性肺结核类别的筛查方法、系统、设备及介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王成弟;徐修远;梁书凡;周泠宇;王文洋;杨哲",
+      "id": "out-f602da0c1f62",
+      "evidence": [
+        {
+          "quote": "[专利] 一种耐药性肺结核类别的筛查方法、系统、设备及介质 — 王成弟;徐修远;梁书凡;周泠宇;王文洋;杨哲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3938,
+            "end_char": 3991
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-7a156fbf303f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-17d53a68c09f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A transformer-based representation-learning model with unified processing of multimodal input for clinical diagnostics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hong-Yu Zhou;Yizhou Yu;Chengdi Wang;Shu Zhang;Yuanxu Gao;Jia Pan;Jun Shao;Guangming Lu;Kang Zhang;Weimin Li",
+      "id": "out-34bae132c62e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A transformer-based representation-learning model with unified processing of multimodal input for clinical diagnostics — Hong-Yu Zhou;Yizhou Yu;Chengdi Wang;Shu Zhang;Yuanxu Gao;Jia Pan;Jun Shao;Guangming Lu;Kang Zhang;Weimin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3996,
+            "end_char": 4230
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of an abnormality-derived deep-learning diagnostic system for major respiratory diseases",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengdi Wang;Jiechao Ma;Shu Zhang;Jun Shao;Yanyan Wang;Hong-Yu Zhou;Lujia Song;Jie Zheng;Yizhou Yu;Weimin Li",
+      "id": "out-ed067d587bc9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of an abnormality-derived deep-learning diagnostic system for major respiratory diseases — Chengdi Wang;Jiechao Ma;Shu Zhang;Jun Shao;Yanyan Wang;Hong-Yu Zhou;Lujia Song;Jie Zheng;Yizhou Yu;Weimin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4235,
+            "end_char": 4467
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Data-driven risk stratification and precision management of pulmonary nodules detected on chest computed tomography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chengdi Wang;Jun Shao;Yichu He;Jiaojiao Wu;Xingting Liu;Liuqing Yang;Ying Wei;Xiang Sean Zhou;Yiqiang Zhan;Feng Shi;Dinggang Shen;Weimin Li",
+      "id": "out-7dea1275cc6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Data-driven risk stratification and precision management of pulmonary nodules detected on chest computed tomography — Chengdi Wang;Jun Shao;Yichu He;Jiaojiao Wu;Xingting Liu;Liuqing Yang;Ying Wei;Xiang Sean Zhou;Yiqiang Zhan;Feng Shi;Dinggang Shen;Weimin Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4472,
+            "end_char": 4735
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "四川省杰出青年科学技术创新奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王成弟",
+      "id": "out-a619aa3eb29f",
+      "evidence": [
+        {
+          "quote": "[奖励] 四川省杰出青年科学技术创新奖 — 王成弟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4740,
+            "end_char": 4764
+          },
+          "version": "e15effd5e0ad0599d6cf"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 7,
+    "listed": 7,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

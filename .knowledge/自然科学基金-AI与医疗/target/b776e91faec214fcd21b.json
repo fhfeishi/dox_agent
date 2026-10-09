@@ -2,15 +2,20 @@
   "doc_id": "b776e91faec214fcd21b",
   "version": "bba5a4b74a5b483351bd",
   "source_hash": "4cf28759170af1ce9e984ed4606b98528c187b89835acda02a638c55e13b0c96",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:37:30.749544+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 3
+  },
+  "generated_at": "2026-10-09T10:54:36.081302+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 3,
+      "total": 3,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ff311783085e",
-          "name": "肝癌智能影像诊断新技术",
-          "desc": "面向我国肝癌早诊率低、分期评价不足的问题，研发AI影像算法构建覆盖全病程的智能诊疗体系。",
+          "id": "item-c07f21c5abce",
+          "name": "肝癌智能影像诊断",
+          "desc": "我国肝癌发病率占全球约50%",
           "evidence": [
             {
               "quote": "我国肝癌发病率约占全球50%，复发率和病死率居高不下",
@@ -41,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-696376fd42a6",
-          "name": "肝癌影像早诊敏感性与分期评价不足",
-          "desc": "肝癌影像诊断存在早期检出率低、诊断敏感性不足、术前分级分期缺乏个性化系统化、疗效综合量化评价不足等挑战。",
+          "id": "item-5a25e30a9cbd",
+          "name": "早期检出率和诊断敏感性低、术前分级分期缺乏个性化、疗效量化评价不足",
+          "desc": "影像诊断",
           "evidence": [
             {
               "quote": "影像诊断方面存在早期检出率低、诊断敏感性不足、术前分级分期缺乏个性化系统化、疗效综合量化评价不足等挑战",
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1e9c61a12eb3",
-          "name": "病灶三维自动分割与影像基因组学模型",
-          "desc": "构建肝癌病灶三维自动分割新技术与临床大数据库，建立微血管侵犯及病理分级的影像组学特征模型、影像基因组学模型与云端智能影像组学辅助诊断系统。",
+          "id": "item-10edb8c7f0c5",
+          "name": "全病程肝脏整体分割",
+          "desc": "复杂肝脏背景微调优化",
           "evidence": [
             {
-              "quote": "项目关注肝脏病灶的自动分割和三维可视化定位方法，通过构建影像组学运算平台建立了肝癌临床大数据库",
+              "quote": "项目成功完成了全病程肝脏整体分割，并在复杂肝脏背景（肝硬化和肝癌）上进行了微调和优化，提高分割算法的精准性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3017,
-                "end_char": 3063
+                "start_char": 3210,
+                "end_char": 3262
               },
               "version": "bba5a4b74a5b483351bd"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-a8f4f871c2b7",
+          "name": "影像组学算法与影像基因组学模型",
+          "desc": "肝癌病灶信息量化与预测",
+          "evidence": [
+            {
+              "quote": "项目还构建了多种影像组学算法，实现了肝脏和肝细胞肝癌等目标的自动化分割提取，对肝癌病灶进行了信息量化，同时进行了肝细胞癌患者总生存时间的预测模型和手术方式选择模型等诊疗一体化的研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3333,
+                "end_char": 3422
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-43f26a89e836",
-          "name": "全球肝癌病灶分割挑战赛两项指标世界第一",
-          "desc": "完成多病种多中心多模态数据库构建与全病程肝脏整体分割；合作单位腾讯优图实验室在全球肝癌病灶分割挑战赛获肝分割与肝肿瘤分割两项技术指标世界第一；发表33篇SCI论文。",
+          "id": "item-ebc23945e047",
+          "name": "论文与人才培养",
+          "desc": "SCI论文33篇，博士6名硕士8名",
+          "evidence": [
+            {
+              "quote": "项目的成果包括发表了33篇SCI论文，培养了6名博士生和8名硕士生",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3122,
+                "end_char": 3154
+              },
+              "version": "bba5a4b74a5b483351bd"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2ec3a2e260e2",
+          "name": "全球肝癌病灶分割挑战赛第一",
+          "desc": "合作单位腾讯优图实验室",
           "evidence": [
             {
               "quote": "项目合作单位腾讯优图实验室在全球肝癌病灶分割挑战赛中获得了肝分割和肝肿瘤分割两项技术指标的世界第一",
@@ -99,44 +141,700 @@
               "version": "bba5a4b74a5b483351bd"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-ff311783085e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-696376fd42a6"
-      },
-      "basis": "原文明示"
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "代谢性疾病的分子影像和功能影像学研究与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "居胜红;滕皋军;王远成;常娣;柏盈盈;彭新桂;柳东芳;崔莹",
+      "id": "out-13711080b560",
+      "evidence": [
+        {
+          "quote": "[奖励] 代谢性疾病的分子影像和功能影像学研究与应用 — 居胜红;滕皋军;王远成;常娣;柏盈盈;彭新桂;柳东芳;崔莹",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3527,
+            "end_char": 3584
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-696376fd42a6"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1e9c61a12eb3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Targeting of an antecedent proteinase by an activatable probe with deep tissue penetration facilitates early visualization and dynamic malignancy evaluation of orthotopic pancreatic ductal adenocarcinoma (PDAC)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tingting Xu;Di Chang;Yu Cai;Shudan Min;Yuanyuan Ma;Hui Mao;Shenghong Ju",
+      "id": "out-3749c31965a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Targeting of an antecedent proteinase by an activatable probe with deep tissue penetration facilitates early visualization and dynamic malignancy evaluation of orthotopic pancreatic ductal adenocarcinoma (PDAC) — Tingting Xu;Di Chang;Yu Cai;Shudan Min;Yuanyuan Ma;Hui Mao;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3589,
+            "end_char": 3879
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1e9c61a12eb3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-43f26a89e836"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Stimuli-Responsive Polymeric Nanoplatforms for Cancer Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Chang;Yuanyuan Ma;Xiaoxuan Xu;Jinbing Xie;Shenghong Ju",
+      "id": "out-863ea7085343",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Stimuli-Responsive Polymeric Nanoplatforms for Cancer Therapy — Di Chang;Yuanyuan Ma;Xiaoxuan Xu;Jinbing Xie;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3884,
+            "end_char": 4011
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparison of MRI and CT for the Prediction of Microvascular Invasion in Solitary Hepatocellular Carcinoma Based on a Non-Radiomics and Radiomics Method: Which Imaging Modality Is Better?",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meng Xiang-Pan;Wang Yuan-Cheng;Zhou Jia-Ying;Yu Qian;Lu Chun-Qiang;Xia Cong;Tang Tian-Yu;Xu Jiajia;Sun Ke;Xiao Wenbo;Ju Shenghong",
+      "id": "out-840a56a9eba5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparison of MRI and CT for the Prediction of Microvascular Invasion in Solitary Hepatocellular Carcinoma Based on a Non-Radiomics and Radiomics Method: Which Imaging Modality Is Better? — Meng Xiang-Pan;Wang Yuan-Cheng;Zhou Jia-Ying;Yu Qian;Lu Chun-Qiang;Xia Cong;Tang Tian-Yu;Xu Jiajia;Sun Ke;Xiao Wenbo;Ju Shenghong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4016,
+            "end_char": 4341
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Biodegradable Metal-Organic Framework-Gated Organosilica for Tumor Microenvironment-Unlocked Glutathione Depletion-Enhanced Synergistic Therapy.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Ma;Zheng Su;Liming Zhou;Liangcan He;Zhenyu Hou;Jianhua Zou;Yu Cai;Di Chang;Jinbing Xie;Chen Zhu;Wenpei Fan;Xiaoyuan Chen;Shenghong Ju",
+      "id": "out-9c9a62916b0f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Biodegradable Metal-Organic Framework-Gated Organosilica for Tumor Microenvironment-Unlocked Glutathione Depletion-Enhanced Synergistic Therapy. — Yuanyuan Ma;Zheng Su;Liming Zhou;Liangcan He;Zhenyu Hou;Jianhua Zou;Yu Cai;Di Chang;Jinbing Xie;Chen Zhu;Wenpei Fan;Xiaoyuan Chen;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4346,
+            "end_char": 4641
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Accuracy of Renal Function Measurements in Obstructive Hydronephrosis Using Dynamic Contrast-Enhanced MR Renography",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuan-Cheng Wang;Di Chang;Shi-Jun Zhang;Qiang Wang;Shenghong Ju",
+      "id": "out-ccacb0a3f062",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Accuracy of Renal Function Measurements in Obstructive Hydronephrosis Using Dynamic Contrast-Enhanced MR Renography — Yuan-Cheng Wang;Di Chang;Shi-Jun Zhang;Qiang Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4646,
+            "end_char": 4836
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Preoperative Microvascular Invasion Prediction to Assist in Surgical Plan for Single Hepatocellular Carcinoma: Better Together with Radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Pan Meng;Tian-Yu Tang;Zhi-Min Ding;Jitao Wang;Chun-Qiang Lu;Qian Yu;Cong Xia;Tao Zhang;Xueying Long;Wenbo Xiao;Yuan-Cheng Wang;Shenghong Ju",
+      "id": "out-7aead9be7258",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Preoperative Microvascular Invasion Prediction to Assist in Surgical Plan for Single Hepatocellular Carcinoma: Better Together with Radiomics — Xiang-Pan Meng;Tian-Yu Tang;Zhi-Min Ding;Jitao Wang;Chun-Qiang Lu;Qian Yu;Cong Xia;Tao Zhang;Xueying Long;Wenbo Xiao;Yuan-Cheng Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4841,
+            "end_char": 5136
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASO Visual Abstract: Preoperative Microvascular Invasion Prediction to Assist in the Surgical Plan for Single Hepatocellular Carcinoma: Better Together With Radiomics",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Pan Meng;Tian-Yu Tang;Zhi-Min Ding;Jitao Wang;Chun-Qiang Lu;Qian Yu;Cong Xia;Tao Zhang;Xueying Long;Wenbo Xiao;Yuan-Cheng Wang;Shenghong Ju",
+      "id": "out-0dc0b584a0f5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASO Visual Abstract: Preoperative Microvascular Invasion Prediction to Assist in the Surgical Plan for Single Hepatocellular Carcinoma: Better Together With Radiomics — Xiang-Pan Meng;Tian-Yu Tang;Zhi-Min Ding;Jitao Wang;Chun-Qiang Lu;Qian Yu;Cong Xia;Tao Zhang;Xueying Long;Wenbo Xiao;Yuan-Cheng Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5141,
+            "end_char": 5461
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel small-molecule compound VCP979 attenuates renal fibrosis in male rats with unilateral ureteral obstruction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shudan Min;Di Chang;Yuan-Cheng Wang;Ting-Ting Xu;Hong Ge;Jilei Zhang;Binghui Wang;Shenghong Ju",
+      "id": "out-bdcb412b573b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel small-molecule compound VCP979 attenuates renal fibrosis in male rats with unilateral ureteral obstruction — Shudan Min;Di Chang;Yuan-Cheng Wang;Ting-Ting Xu;Hong Ge;Jilei Zhang;Binghui Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5466,
+            "end_char": 5681
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spleen volume-based non-invasive tool for predicting hepatic decompensation in patients with compensated cirrhosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Yu;Chuanjun Xu;Qinyi Li;Zhimin Ding;Yan Lv;Chuan Liu;Yifei Huang;Jiaying Zhou;Shan Huang;Cong Xia;Xiangpan Meng;Chunqiang Lu;Yuefeng Li;Tianyu Tang;Yuancheng Wang;Yang Song;Xiaolong Qi;Jing Ye;Shenghong Ju",
+      "id": "out-cbd73920b099",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spleen volume-based non-invasive tool for predicting hepatic decompensation in patients with compensated cirrhosis — Qian Yu;Chuanjun Xu;Qinyi Li;Zhimin Ding;Yan Lv;Chuan Liu;Yifei Huang;Jiaying Zhou;Shan Huang;Cong Xia;Xiangpan Meng;Chunqiang Lu;Yuefeng Li;Tianyu Tang;Yuancheng Wang;Yang Song;Xiaolong Qi;Jing Ye;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5687,
+            "end_char": 6020
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An imaging-based machine learning model outperforms clinical risk scores for prognosis of cirrhotic variceal bleeding",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yin Gao;Qian Yu;Xiaohuan Li;Cong Xia;Jiaying Zhou;Tianyi Xia;Ben Zhao;Yue Qiu;Jun-hao Zha;Yuancheng Wang;Tianyu Tang;Yan Lv;Jing Ye;Chuanjun Xu;Shenghong Ju",
+      "id": "out-3f12f39c1421",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An imaging-based machine learning model outperforms clinical risk scores for prognosis of cirrhotic variceal bleeding — Yin Gao;Qian Yu;Xiaohuan Li;Cong Xia;Jiaying Zhou;Tianyi Xia;Ben Zhao;Yue Qiu;Jun-hao Zha;Yuancheng Wang;Tianyu Tang;Yan Lv;Jing Ye;Chuanjun Xu;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6026,
+            "end_char": 6308
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Measuring Brown Fat Using            MRI            and Implications in the Metabolic Syndrome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Yu;Shan Huang;Ting‐Ting Xu;Yuan‐Cheng Wang;Shenghong Ju",
+      "id": "out-4f690dfb220e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Measuring Brown Fat Using            MRI            and Implications in the Metabolic Syndrome — Qian Yu;Shan Huang;Ting‐Ting Xu;Yuan‐Cheng Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6314,
+            "end_char": 6477
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Size-changeable nanoprobes for the combined radiotherapy and photodynamic therapy of tumor",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenyu Hou;Mei Zhou;Yuanyuan Ma;Xiaoxuan Xu;Zhiqi Zhang;Shiwei Lai;Wenpei Fan;Jinbing Xie;Shenghong Ju",
+      "id": "out-14cdc94af3ce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Size-changeable nanoprobes for the combined radiotherapy and photodynamic therapy of tumor — Zhenyu Hou;Mei Zhou;Yuanyuan Ma;Xiaoxuan Xu;Zhiqi Zhang;Shiwei Lai;Wenpei Fan;Jinbing Xie;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6483,
+            "end_char": 6684
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "科技部重点领域创新团队",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "居胜红;滕皋军;姚红红;陈瑞;张袁健;郭金和;邓钢;何仕诚;秦永林;朱海东;刘加成;彭新桂;柳东芳;张齐;顾小春;王远成",
+      "id": "out-34cb216f6087",
+      "evidence": [
+        {
+          "quote": "[奖励] 科技部重点领域创新团队 — 居胜红;滕皋军;姚红红;陈瑞;张袁健;郭金和;邓钢;何仕诚;秦永林;朱海东;刘加成;彭新桂;柳东芳;张齐;顾小春;王远成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6690,
+            "end_char": 6768
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect for Human Genomic Variation During the BMP4-Induced Conversion From Pluripotent Stem Cells to Trophoblast",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Hai-tao;Liu Yajun;Liu Hongde;Sun Xiao",
+      "id": "out-a5a8e98fec48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect for Human Genomic Variation During the BMP4-Induced Conversion From Pluripotent Stem Cells to Trophoblast — Li Hai-tao;Liu Yajun;Liu Hongde;Sun Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6774,
+            "end_char": 6935
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Telmisartan ameliorates cardiac fibrosis and diastolic function in cardiorenal heart failure with preserved ejection fraction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Di Chang;Ting-Ting Xu;Shi-Jun Zhang;Yu Cai;Shu-Dan Min;Zhen Zhao;Chun-Qiang Lu;Yuan-Cheng Wang;Shenghong Ju",
+      "id": "out-67d7d5f15098",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Telmisartan ameliorates cardiac fibrosis and diastolic function in cardiorenal heart failure with preserved ejection fraction — Di Chang;Ting-Ting Xu;Shi-Jun Zhang;Yu Cai;Shu-Dan Min;Zhen Zhao;Chun-Qiang Lu;Yuan-Cheng Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6941,
+            "end_char": 7182
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ASO Author Reflections: Preoperative Microvascular Invasion Prediction to Assist in Surgical Plan for Single Hepatocellular Carcinoma—A Better Algorithm of Necessity",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Pan Meng;Tian-Yu Tang;Jitao Wang;Shenghong Ju",
+      "id": "out-7bde1223c75d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ASO Author Reflections: Preoperative Microvascular Invasion Prediction to Assist in Surgical Plan for Single Hepatocellular Carcinoma—A Better Algorithm of Necessity — Xiang-Pan Meng;Tian-Yu Tang;Jitao Wang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7188,
+            "end_char": 7413
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "代谢性疾病影像新技术和新方法的研发与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "居胜红;滕皋军;王远成;常娣;柏盈盈;彭新桂;柳东芳;崔莹;汤天宇",
+      "id": "out-d00063ae5412",
+      "evidence": [
+        {
+          "quote": "[奖励] 代谢性疾病影像新技术和新方法的研发与应用 — 居胜红;滕皋军;王远成;常娣;柏盈盈;彭新桂;柳东芳;崔莹;汤天宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7419,
+            "end_char": 7479
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Noncontrast-enhanced MRI-based Noninvasive Score for Portal Hypertension (CHESS1802): An International Multicenter Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-bc1cd6137dbf",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Noncontrast-enhanced MRI-based Noninvasive Score for Portal Hypertension (CHESS1802): An International Multicenter Study — Liu Yanna;Tang Tianyu;Ormeci Necati;Huang Yifei;Wang Jitao;Li Xiaoguo;Li Zhiwei;An Weimin;Liu Dengxiang;Zhang Chunqing;Liu Changchun;Liu Jinqiang;Liu Chuan;Wang Guangchuan;Mosconi Cristina;Cappelli Alberta;Bruno Antonio;Akcalar Seray;Celebioglu Emrecan;Ustuner Evren;Bilgiç Sadık;Ellik Zeynep;Asiller Özgün Ömer;Li Lei;Zhang Haijun;Kang Ning;Xu Dan;He Ruiling;Wang Yan;Bu Yang;Gu Ye;Ju Shenghong...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7485,
+            "end_char": 8012
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "ISP-Net: Fusing features to predict ischemic stroke infarct core on CT perfusion maps",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haichen Zhu;Yang Chen;Tianyu Tang;Gao Ma;Jiaying Zhou;Jiulou Zhang;Shanshan Lu;Feiyun Wu;Limin Luo;Sheng Liu;Shenghong Ju;Haibin Shi",
+      "id": "out-e27971a4ed48",
+      "evidence": [
+        {
+          "quote": "[期刊论文] ISP-Net: Fusing features to predict ischemic stroke infarct core on CT perfusion maps — Haichen Zhu;Yang Chen;Tianyu Tang;Gao Ma;Jiaying Zhou;Jiulou Zhang;Shanshan Lu;Feiyun Wu;Limin Luo;Sheng Liu;Shenghong Ju;Haibin Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8018,
+            "end_char": 8244
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "单细胞数据的整合方法综述",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "潘多;李华梅;刘宏德;孙啸",
+      "id": "out-dadc24859d65",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 单细胞数据的整合方法综述 — 潘多;李华梅;刘宏德;孙啸",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8250,
+            "end_char": 8284
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "scAnno: a deconvolution strategy-based automatic cell type annotation tool for single-cell RNA-sequencing data sets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu H;Li H;Sharma A;Huang W;Pan D;Gu Y;Lin L;Sun X;Liu H",
+      "id": "out-b1f2f7866b56",
+      "evidence": [
+        {
+          "quote": "[期刊论文] scAnno: a deconvolution strategy-based automatic cell type annotation tool for single-cell RNA-sequencing data sets — Liu H;Li H;Sharma A;Huang W;Pan D;Gu Y;Lin L;Sun X;Liu H",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8290,
+            "end_char": 8470
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Beyond collaterals: brain frailty additionally improves prediction of clinical outcome in acute ischemic stroke",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jia-Ying Zhou;Yi-Bin Shi;Cong Xia;Chun-Qiang Lu;Tian-Yu Tang;Tong Lu;Shan Huang;Yuan-Cheng Wang;Xiang-Qian Han;Sheng-Hong Ju",
+      "id": "out-010f3a3496f2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Beyond collaterals: brain frailty additionally improves prediction of clinical outcome in acute ischemic stroke — Jia-Ying Zhou;Yi-Bin Shi;Cong Xia;Chun-Qiang Lu;Tian-Yu Tang;Tong Lu;Shan Huang;Yuan-Cheng Wang;Xiang-Qian Han;Sheng-Hong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8476,
+            "end_char": 8720
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Evaluation of single-cell classifiers for single-cell RNA sequencing data sets",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xinlei Zhao;Shuang Wu;Nan Fang;Xiao Sun;Jue Fan",
+      "id": "out-70dbdef11602",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Evaluation of single-cell classifiers for single-cell RNA sequencing data sets — Xinlei Zhao;Shuang Wu;Nan Fang;Xiao Sun;Jue Fan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8726,
+            "end_char": 8860
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Analysis on Multiphase Contrast-Enhanced CT: A Survival Prediction Tool in Patients With Hepatocellular Carcinoma Undergoing Transarterial Chemoembolization",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Pan Meng;Yuan-Cheng Wang;Shenghong Ju;Chun-Qiang Lu;Bin-Yan Zhong;Cai-Fang Ni;Qi Zhang;Qian Yu;Jian Xu;JianSong Ji;Xiu-Ming Zhang;Tian-Yu Tang;Guanyu Yang;Ziteng Zhao",
+      "id": "out-91c14372bf9f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Analysis on Multiphase Contrast-Enhanced CT: A Survival Prediction Tool in Patients With Hepatocellular Carcinoma Undergoing Transarterial Chemoembolization — Xiang-Pan Meng;Yuan-Cheng Wang;Shenghong Ju;Chun-Qiang Lu;Bin-Yan Zhong;Cai-Fang Ni;Qi Zhang;Qian Yu;Jian Xu;JianSong Ji;Xiu-Ming Zhang;Tian-Yu Tang;Guanyu Yang;Ziteng Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8866,
+            "end_char": 9213
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Application of Self-Assembly Nanoparticles Based on DVDMS for Fenton-Like Ion Delivery and Enhanced Sonodynamic Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jinqiang Liu;Shiying Fu;Jiaxuan Xie;Jianzhong Zhang;Jintao Pan;Chengchao Chu;Gang Liu;Shenghong Ju",
+      "id": "out-0308fd43bf7c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Application of Self-Assembly Nanoparticles Based on DVDMS for Fenton-Like Ion Delivery and Enhanced Sonodynamic Therapy — Jinqiang Liu;Shiying Fu;Jiaxuan Xie;Jianzhong Zhang;Jintao Pan;Chengchao Chu;Gang Liu;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9219,
+            "end_char": 9445
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic gene expression signature revealed the inv",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-3d0d4e4fa493",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic gene expression signature revealed the inv",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9451,
+            "end_char": 9510
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predicting post-resection recurrence by integrating imaging-based surrogates of distinct vascular patterns of hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Pan Meng;Tian-Yu Tang;Yongping Zhou;Cong Xia;Tianyi Xia;Yibing Shi;Xueying Long;Yun Liang;Wenbo Xiao;Yuan-Cheng Wang;Xiangming Fang;Shenghong Ju",
+      "id": "out-dd189b4c2ab9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predicting post-resection recurrence by integrating imaging-based surrogates of distinct vascular patterns of hepatocellular carcinoma — Xiang-Pan Meng;Tian-Yu Tang;Yongping Zhou;Cong Xia;Tianyi Xia;Yibing Shi;Xueying Long;Yun Liang;Wenbo Xiao;Yuan-Cheng Wang;Xiangming Fang;Shenghong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9616,
+            "end_char": 9909
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An imaging-based artificial intelligence model for non-invasive grading of hepatic venous pressure gradient in cirrhotic portal hypertension",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-adb848cb23b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An imaging-based artificial intelligence model for non-invasive grading of hepatic venous pressure gradient in cirrhotic portal hypertension — Qian Yu;Yifei Huang;Xiaoguo Li;Michael Pavlides;Dengxiang Liu;Hongwu Luo;Huiguo Ding;Weimin An;Fuquan Liu;Changzeng Zuo;Chunqiang Lu;Tianyu Tang;Yuancheng Wang;Shan Huang;Chuan Liu;Tianlei Zheng;Ning Kang;Changchun Liu;Jitao Wang;Seray Akçalar;Emrecan Çelebioğlu;Evren Üstüner;Sadık Bilgiç;Qu Fang;Chi-Cheng Fu;Ruiping Zhang;Chengyan Wang;Jingwei Wei;Jie Tian;Necati Örmeci;Zeynep Ellik;Özgün Ömer Asiller;Shenghong Ju...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 9915,
+            "end_char": 10485
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "DeconPeaker, a Deconvolution Model to Identify Cell Types Based on Chromatin Accessibility in ATAC-Seq Data of Mixture Samples",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Huamei;Sharma Amit;Luo Kun;Qin Zhaohui S.;Sun Xiao;Liu Hongde",
+      "id": "out-511094ff4f61",
+      "evidence": [
+        {
+          "quote": "[期刊论文] DeconPeaker, a Deconvolution Model to Identify Cell Types Based on Chromatin Accessibility in ATAC-Seq Data of Mixture Samples — Li Huamei;Sharma Amit;Luo Kun;Qin Zhaohui S.;Sun Xiao;Liu Hongde",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10491,
+            "end_char": 10690
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Transcriptomic Analyses and Potential Therapeutic Targets of Pancreatic Cancer With Concomitant Diabetes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Tingting;Xu Xiaoxuan;Liu P.-C;Mao H;Ju Shenghong",
+      "id": "out-a58d601e6db5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Transcriptomic Analyses and Potential Therapeutic Targets of Pancreatic Cancer With Concomitant Diabetes — Xu Tingting;Xu Xiaoxuan;Liu P.-C;Mao H;Ju Shenghong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10696,
+            "end_char": 10860
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "代谢性疾病的分子影像和结构功能影像学研究与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "居胜红;滕皋军;王远成;常娣;柏盈盈",
+      "id": "out-1b71b107b0a1",
+      "evidence": [
+        {
+          "quote": "[奖励] 代谢性疾病的分子影像和结构功能影像学研究与应用 — 居胜红;滕皋军;王远成;常娣;柏盈盈",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 10866,
+            "end_char": 10914
+          },
+          "version": "bba5a4b74a5b483351bd"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 32,
+    "listed": 32,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 4,
+        "extracted": 4
+      },
+      "期刊论文": {
+        "listed": 28,
+        "extracted": 28
+      }
+    },
+    "consistent": true
+  }
 }

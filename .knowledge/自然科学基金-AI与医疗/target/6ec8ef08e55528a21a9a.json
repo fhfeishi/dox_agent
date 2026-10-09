@@ -2,15 +2,20 @@
   "doc_id": "6ec8ef08e55528a21a9a",
   "version": "b626247fbc1fd309f4db",
   "source_hash": "f9051c613937f6b577cebba029edac2f5dd15557aa335d4064374177f375b31c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:39:52.876588+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:44:24.037420+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-95c97f78d2f1",
-          "name": "可解释深度神经网络舌诊",
-          "desc": "舌诊是中医诊断的重要方法，但非常复杂和困难，需要名老中医丰富的临床经验。",
+          "id": "item-3628466cd52b",
+          "name": "中医舌诊",
+          "desc": "高度依赖名老中医经验",
           "evidence": [
             {
-              "quote": "舌诊是中医诊断的一种重要方法，但是非常复杂和困难，需要名老中医丰富的临床经验",
+              "quote": "中医舌诊高度依赖名老中医的临床经验，诊断标准难量化，传承推广受限",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 637,
-                "end_char": 674
-              },
-              "version": "b626247fbc1fd309f4db"
-            }
-          ]
-        },
-        {
-          "id": "item-1d43a3d00c94",
-          "name": "智能舌诊临床实践应用",
-          "desc": "提高智能舌诊的性能和临床实践应用的可用性，推动中医舌诊传承推广。",
-          "evidence": [
-            {
-              "quote": "从不同角度提高智能舌诊的性能和临床实践应用的可用性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2671,
-                "end_char": 2695
+                "start_char": 2588,
+                "end_char": 2619
               },
               "version": "b626247fbc1fd309f4db"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c8122c8738ee",
-          "name": "临床数据少易过拟合泛化差",
-          "desc": "临床数据非常少，深度神经网络容易过拟合，泛化能力差。",
+          "id": "item-c69cf4a4c9bd",
+          "name": "现有智能舌诊停留在初步阶段",
+          "desc": "需提高性能和临床可用性",
           "evidence": [
             {
-              "quote": "首先是临床数据非常少，深度神经网络容易过拟合，泛化能力差",
+              "quote": "现有智能舌诊研究尚停留在初步阶段，亟需优化完善",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 707,
-                "end_char": 734
-              },
-              "version": "b626247fbc1fd309f4db"
-            }
-          ]
-        },
-        {
-          "id": "item-015f592bc085",
-          "name": "端到端网络无法给出诊断依据",
-          "desc": "现有方法属端对端深度神经网络学习，只能给出诊断结论而无法给出诊断依据，临床应用困难，且未用到中医理论易与理论相违背。",
-          "evidence": [
-            {
-              "quote": "特别是这些方法属于端对端的深度神经网络学习，只能给出诊断结论而无法给出诊断依据，临床应用困难",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 794,
-                "end_char": 839
+                "start_char": 2621,
+                "end_char": 2643
               },
               "version": "b626247fbc1fd309f4db"
             }
@@ -95,64 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f0ea73ea3273",
-          "name": "诊断解释对偶网络与解释蒸馏模型",
-          "desc": "提出可解释性深度神经网络舌诊方法的两个创新框架：诊断解释对偶网络和解释蒸馏模型。",
+          "id": "item-fc29191be7e3",
+          "name": "可解释深度神经网络舌诊方法",
+          "desc": "少样本、符合中医理论",
           "evidence": [
             {
-              "quote": "提出可解释性深度神经网络舌诊方法的两个创新框架；诊断解释对偶网络和解释蒸馏模型",
+              "quote": "已构建了一套适用于少样本的、具有深度可解释性的、符合中医理论基础的深度神经网络舌诊方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 854,
-                "end_char": 892
-              },
-              "version": "b626247fbc1fd309f4db"
-            }
-          ]
-        },
-        {
-          "id": "item-ef5bbb4748bc",
-          "name": "双向知识注入与中医图卷积网络",
-          "desc": "提出双向知识注入网络、多阶段多任务学习和中医图卷积神经网络三种新方法实现这两个框架。",
-          "evidence": [
-            {
-              "quote": "然后提出实现这两个框架的三种新方法：双向知识注入网络、多阶段多任务学习和中医图卷积神经网络",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 894,
-                "end_char": 938
-              },
-              "version": "b626247fbc1fd309f4db"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-cc541436da9e",
-          "name": "舌象多模态标准数据库与知识图谱",
-          "desc": "建立了高质量舌象多模态标准数据库并构建了丰富的中医知识图谱。",
-          "evidence": [
-            {
-              "quote": "建立了高质量舌象多模态标准数据库并构建了丰富的中医知识图谱",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2831,
-                "end_char": 2859
+                "start_char": 2863,
+                "end_char": 2905
               },
               "version": "b626247fbc1fd309f4db"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-37dca7e46734",
-          "name": "分层最优传输跨域小样本学习",
-          "desc": "针对中医舌诊与面诊小样本数据，提出带注意力机制的分层最优传输网络用于跨域小样本学习。",
+          "id": "item-9d88f73973f2",
+          "name": "中医图卷积神经网络语音病位病性诊断",
+          "desc": "结合情感识别",
+          "evidence": [
+            {
+              "quote": "并将情感识别用于中医语音病位病性诊断（基于中医图卷积神经网络），提高了诊断的准确性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3000,
+                "end_char": 3040
+              },
+              "version": "b626247fbc1fd309f4db"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4c784f1fdaab",
+          "name": "带注意力机制的分层最优传输网络",
+          "desc": "跨域小样本学习",
           "evidence": [
             {
               "quote": "研究提出了一种带注意力机制的分层最优传输网络，用于跨域小样本学习",
@@ -164,12 +116,37 @@
               "version": "b626247fbc1fd309f4db"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-2a68bbbeede4",
+          "name": "舌象多模态标准数据库与中医知识图谱",
+          "desc": "高质量",
+          "evidence": [
+            {
+              "quote": "建立了高质量舌象多模态标准数据库并构建了丰富的中医知识图谱",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2831,
+                "end_char": 2859
+              },
+              "version": "b626247fbc1fd309f4db"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-c84bb6e23cc9",
-          "name": "核心算法用于智能中医诊疗产品",
-          "desc": "项目核心算法已用于研发智能中医诊疗系统等产品，经鉴定整体技术处于国际领先水平，并获全国数据要素大赛广东分赛三等奖。",
+          "id": "item-bce169934f7c",
+          "name": "智能中医诊疗系统",
+          "desc": "整体技术处于国际领先水平",
           "evidence": [
             {
               "quote": "项目研究的核心算法已用于研发“智能中医诊疗系统”等智能中医产品，经广东省生产力促进中心组织鉴定，其整体技术处于国际领先水平",
@@ -181,55 +158,327 @@
               "version": "b626247fbc1fd309f4db"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文10篇，发明专利5项",
+          "evidence": [
+            {
+              "quote": "依托本项目，共发表SCI论10篇，申请高技术含量的发明专利5项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3337,
+                "end_char": 3367
+              },
+              "version": "b626247fbc1fd309f4db"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-95c97f78d2f1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c8122c8738ee"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度层次化最优传输的跨域舌头图像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文贵华;徐映雪",
+      "id": "out-7a125d60ec96",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度层次化最优传输的跨域舌头图像分类方法 — 文贵华;徐映雪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3399,
+            "end_char": 3437
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c8122c8738ee"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f0ea73ea3273"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于小波注意力和重塑融合的舌头体质识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文贵华;梁浩赞",
+      "id": "out-fc9730af75fe",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于小波注意力和重塑融合的舌头体质识别方法 — 文贵华;梁浩赞",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3442,
+            "end_char": 3479
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f0ea73ea3273"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cc541436da9e"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-label body constitution recognition via HWmixer-MLP for facial and tongue images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Mengjian;Wen Guihua;Yang Pei;Wang Changjun;Chen Chuyun",
+      "id": "out-da2fc810a72c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-label body constitution recognition via HWmixer-MLP for facial and tongue images — Zhang Mengjian;Wen Guihua;Yang Pei;Wang Changjun;Chen Chuyun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3484,
+            "end_char": 3639
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ef5bbb4748bc"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-c84bb6e23cc9"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于深度神经网络的舌象分割方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文贵华;蔡文俊",
+      "id": "out-ef2326953d61",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于深度神经网络的舌象分割方法 — 文贵华;蔡文俊",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3644,
+            "end_char": 3675
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "考虑全局和局部特征的舌像分类方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文贵华;周旭森",
+      "id": "out-6a1711b2819b",
+      "evidence": [
+        {
+          "quote": "[专利] 考虑全局和局部特征的舌像分类方法 — 文贵华;周旭森",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3680,
+            "end_char": 3710
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chaos-DFT-MLP: Chaos transform and DFT combination MLP-like architecture for the body constitution assisted recognition using medical images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhang Mengjian;Wen Guihua;Yang Pei;Wang Changjun;Huang Xuhui;Chen Chuyun",
+      "id": "out-d5edfaa9f21b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chaos-DFT-MLP: Chaos transform and DFT combination MLP-like architecture for the body constitution assisted recognition using medical images — Zhang Mengjian;Wen Guihua;Yang Pei;Wang Changjun;Huang Xuhui;Chen Chuyun",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3715,
+            "end_char": 3936
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interpretable Tongue Constitution Recognition via Reshaped Wavelet Attention",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wen Guihua;Liang Haozan;Li Huihui;Wen Pengcheng;Chen Rui;Li Cheng",
+      "id": "out-81a83188e9cc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interpretable Tongue Constitution Recognition via Reshaped Wavelet Attention — Wen Guihua;Liang Haozan;Li Huihui;Wen Pengcheng;Chen Rui;Li Cheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3941,
+            "end_char": 4091
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于卷积复变换神经网络的舌苔图像特征提取方法和系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "文贵华;张孟健",
+      "id": "out-f8245156e77c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于卷积复变换神经网络的舌苔图像特征提取方法和系统 — 文贵华;张孟健",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4096,
+            "end_char": 4135
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TSRNet: Tongue Image Segmentation with Global and Local Refinement",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenjun Cai;Mengjian Zhang;Guihua Wen",
+      "id": "out-7841fb17a81d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TSRNet: Tongue Image Segmentation with Global and Local Refinement — Wenjun Cai;Mengjian Zhang;Guihua Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4140,
+            "end_char": 4251
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chaos-BBO: Chaos balanced butterfly optimizer with dynamic continuum chaotic strategies and its applications",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Guihua Wen",
+      "id": "out-0157bdd5cb70",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chaos-BBO: Chaos balanced butterfly optimizer with dynamic continuum chaotic strategies and its applications — Guihua Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4257,
+            "end_char": 4384
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-label recognition of facial body constitution via MLP-like deep networks with non-equilibrium weight loss",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengjian Zhang;Guihua Wen;Jiahui Zhong;Changjun Wang;Xuhui Huang",
+      "id": "out-66a6abf342fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-label recognition of facial body constitution via MLP-like deep networks with non-equilibrium weight loss — Mengjian Zhang;Guihua Wen;Jiahui Zhong;Changjun Wang;Xuhui Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4390,
+            "end_char": 4574
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-label body constitution recognition via dual transform MLP-like architecture using tongue images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengjian Zhang;Guihua Wen;Pei Yang",
+      "id": "out-ce3bebb10923",
+      "evidence": [
+        {
+          "quote": "[会议论文] Multi-label body constitution recognition via dual transform MLP-like architecture using tongue images — Mengjian Zhang;Guihua Wen;Pei Yang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4580,
+            "end_char": 4725
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MLP-Like Model With Convolution Complex Transformation for Auxiliary Diagnosis Through Medical Images",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mengjian Zhang;Guihua Wen;Jiahui Zhong;Dongliang Chen;Changjun Wang;Xuhui Huang;Shijun Zhang",
+      "id": "out-eae42f8c8ac9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MLP-Like Model With Convolution Complex Transformation for Auxiliary Diagnosis Through Medical Images — Mengjian Zhang;Guihua Wen;Jiahui Zhong;Dongliang Chen;Changjun Wang;Xuhui Huang;Shijun Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4731,
+            "end_char": 4933
+          },
+          "version": "b626247fbc1fd309f4db"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 13,
+    "listed": 13,
+    "by_kind": {
+      "专利": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "会议论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

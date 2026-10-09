@@ -2,15 +2,20 @@
   "doc_id": "394bfdc954b7be05dec5",
   "version": "8b67e9113153f8fb5430",
   "source_hash": "3c84ad096fba2834c93ad62a5ee7165d76c9e641d20a55899f13a53aaca1b1a2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:31.985607+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:38:31.875434+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5888946814d2",
-          "name": "局部晚期鼻咽癌化疗决策",
-          "desc": "面向局部晚期鼻咽癌的新辅助化疗临床决策场景，需要判断患者是否适合新辅助化疗以改善预后。",
+          "id": "item-654e8d934b8b",
+          "name": "局部晚期鼻咽癌新辅助化疗决策",
+          "desc": "新辅助化疗是首选治疗",
           "evidence": [
             {
               "quote": "新辅助化疗是改善局部晚期鼻咽癌预后的首选治疗",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 672,
                 "end_char": 693
-              },
-              "version": "8b67e9113153f8fb5430"
-            }
-          ]
-        },
-        {
-          "id": "item-e365bb56e8e1",
-          "name": "多中心数据验证场景",
-          "desc": "模型需在多中心数据集上进行验证优化，保证跨中心泛化能力。",
-          "evidence": [
-            {
-              "quote": "并在多中心数据集进行验证优化，从而建立一个高效、无创及经济的化疗决策系统",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 946,
-                "end_char": 981
               },
               "version": "8b67e9113153f8fb5430"
             }
@@ -59,30 +48,14 @@
         {
           "id": "item-b81a180e9c4b",
           "name": "部分患者无效且毒性大",
-          "desc": "新辅助化疗存在部分患者无效而毒性明显的问题，亟需新型生物标志物辅助决策。",
+          "desc": "亟需生物标志物辅助化疗决策",
           "evidence": [
             {
-              "quote": "但仍存在部分患者无效、毒性大的临床难题，亟需开发新型生物标志物辅助临床化疗决策",
+              "quote": "仍存在部分患者无效、毒性大的临床难题，亟需开发新型生物标志物辅助临床化疗决策",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 695,
+                "start_char": 696,
                 "end_char": 733
-              },
-              "version": "8b67e9113153f8fb5430"
-            }
-          ]
-        },
-        {
-          "id": "item-91b07c5f2f1c",
-          "name": "单模态影像信息不全面",
-          "desc": "单模态MR影像组学特征信息有限，需要与病理特征互补融合。",
-          "evidence": [
-            {
-              "quote": "多模态MR影像及病理特征可取长补短，优化预后模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 843,
-                "end_char": 866
               },
               "version": "8b67e9113153f8fb5430"
             }
@@ -95,36 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-072a9b5e7219",
-          "name": "多维信息融合预测模型",
-          "desc": "以人工智能融合影像、病理信息，整合临床因素与分子特征，构建多维信息融合预测模型。",
+          "id": "item-f209595017bc",
+          "name": "多模态MR影像组学预测模型",
+          "desc": "最佳模型",
           "evidence": [
             {
-              "quote": "基于人工智能技术融合影像、病理信息，并整合临床因素及分子特征，构建多维信息融合预测模型",
+              "quote": "明确了最佳的多模态MR影像组学预测模型及鼻咽癌病理组学MITL模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 902,
-                "end_char": 944
+                "start_char": 3062,
+                "end_char": 3094
               },
               "version": "8b67e9113153f8fb5430"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9ba73d04a5de",
-          "name": "影像病理预测机制生物学探索",
-          "desc": "采集基因数据，探索影像与病理特征的预测机制。",
+          "id": "item-67e5df5fd1b8",
+          "name": "鼻咽癌病理组学MITL模型",
+          "desc": "可迁移到其他肿瘤",
           "evidence": [
             {
-              "quote": "拟采集基因数据进行影像、病理特征预测机制的生物学探索",
+              "quote": "鼻咽癌病理组学MITL模型",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 986,
-                "end_char": 1011
+                "start_char": 3082,
+                "end_char": 3094
               },
               "version": "8b67e9113153f8fb5430"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -135,84 +110,102 @@
         {
           "id": "item-efcd89fe7493",
           "name": "鼻咽癌影像病理组学数据集",
-          "desc": "建立鼻咽癌影像病理组学数据集，提取并筛选关键的多模态MR影像及病理特征。",
+          "desc": "已建立",
           "evidence": [
             {
-              "quote": "本项目建立了鼻咽癌影像病理组学数据集，提取并筛选出关键的多模态MR影像及病理特征",
+              "quote": "本项目建立了鼻咽癌影像病理组学数据集",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2994,
-                "end_char": 3033
+                "end_char": 3011
               },
               "version": "8b67e9113153f8fb5430"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-159630f6ed72",
-          "name": "多模态MR影像组学预测模型",
-          "desc": "验证优化后明确最佳多模态MR影像组学预测模型与病理组学MITL模型，可高效无创经济地预测临床结局。",
-          "evidence": [
-            {
-              "quote": "明确了最佳的多模态MR影像组学预测模型及鼻咽癌病理组学MITL模型，可高效、无创及经济地预测临床结局",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3062,
-                "end_char": 3111
-              },
-              "version": "8b67e9113153f8fb5430"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5888946814d2"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b81a180e9c4b"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial proteomic landscape of primary and relapsed hepatocellular carcinoma reveals immune escape characteristics in early relapse",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Meilin Yang;Xiaoyi Song;Fan Zhang;Mingan Li;Wuguang Chang;Zheyan Wang;Man Li;Hong Shan;Dan Li",
+      "id": "out-ceb0486b9155",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial proteomic landscape of primary and relapsed hepatocellular carcinoma reveals immune escape characteristics in early relapse — Meilin Yang;Xiaoyi Song;Fan Zhang;Mingan Li;Wuguang Chang;Zheyan Wang;Man Li;Hong Shan;Dan Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3205,
+            "end_char": 3438
+          },
+          "version": "8b67e9113153f8fb5430"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b81a180e9c4b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-072a9b5e7219"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identification lymph node metastasis in esophageal squamous cell carcinoma using whole slide images and a hybrid network of multiple instance and transfer learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huan Kang;Meilin Yang;Fan Zhang;Huiya Xu;Shenghan Ren;Jun Li;Duofang Chen;Fen Wang;Dan Li;Xueli Chen",
+      "id": "out-6367971803a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identification lymph node metastasis in esophageal squamous cell carcinoma using whole slide images and a hybrid network of multiple instance and transfer learning — Huan Kang;Meilin Yang;Fan Zhang;Huiya Xu;Shenghan Ren;Jun Li;Duofang Chen;Fen Wang;Dan Li;Xueli Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3443,
+            "end_char": 3715
+          },
+          "version": "8b67e9113153f8fb5430"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-072a9b5e7219"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-159630f6ed72"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9ba73d04a5de"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-efcd89fe7493"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Machine Learning Based on MRI DWI Radiomics Features for Prognostic Prediction in Nasopharyngeal Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiyi Hu;Guojie Wang;Xiaoyi Song;Jingjing Wan;Man Li;Fan Zhang;Qingling Chen;Xiaoling Cao;Shaolin Li;Ying Wang",
+      "id": "out-49ddc4e13485",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Machine Learning Based on MRI DWI Radiomics Features for Prognostic Prediction in Nasopharyngeal Carcinoma — Qiyi Hu;Guojie Wang;Xiaoyi Song;Jingjing Wan;Man Li;Fan Zhang;Qingling Chen;Xiaoling Cao;Shaolin Li;Ying Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3720,
+            "end_char": 3944
+          },
+          "version": "8b67e9113153f8fb5430"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

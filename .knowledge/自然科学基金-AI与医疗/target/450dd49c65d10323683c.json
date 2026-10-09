@@ -2,15 +2,20 @@
   "doc_id": "450dd49c65d10323683c",
   "version": "4cbe8987a42cf364743f",
   "source_hash": "f0fba86853211c5a652c9aca2a8033c663f2cb0590bd59db302f1bff21263e1d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:33.337461+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:40:11.065035+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b8d78b64ed9c",
-          "name": "儿童失神癫痫皮层执行功能发育",
-          "desc": "儿童失神癫痫常伴皮层执行功能网络发育障碍，其发病机制是亟待解决的难题。",
+          "id": "item-e1fb03a8525d",
+          "name": "儿童失神癫痫脑网络",
+          "desc": "静息态fMRI动态功能网络",
+          "evidence": [
+            {
+              "quote": "本研究基于静息态功能磁共振成像，系统分析了儿童失神癫痫（CAE）患者脑功能网络的动态组织特征及其与认知障碍的关系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2984,
+                "end_char": 3039
+              },
+              "version": "4cbe8987a42cf364743f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-3a96e5ac6b24",
+          "name": "CAE皮层执行功能网络发育障碍机制不清",
+          "desc": "亟待解决",
           "evidence": [
             {
               "quote": "儿童失神癫痫（CAE）常伴有皮层执行功能网络发育障碍，且发病机制是当前亟待解决的难题",
@@ -37,89 +64,13 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8e0589bbe961",
-          "name": "脑区发育轨迹与影像标记不清",
-          "desc": "前期发现特定脑区动态局部一致性异常，但这些脑区的发育轨迹和影像生物学标记不清楚。",
-          "evidence": [
-            {
-              "quote": "前期工作发现特定脑区动态局部一致性（dReHo）异常，但这些脑区的发育轨迹和影像生物学标记不清楚",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 711,
-                "end_char": 758
-              },
-              "version": "4cbe8987a42cf364743f"
-            }
-          ]
-        },
-        {
-          "id": "item-022ec79eca95",
-          "name": "既往多模态MRI研究存在瓶颈",
-          "desc": "需突破既往多模态MRI研究瓶颈，围绕脑连接组与结构-功能共变模型开展纵向研究。",
-          "evidence": [
-            {
-              "quote": "突破既往多模态MRI研究瓶颈，围绕脑连接组、网络动力学、结构-功能共变模型建构及皮层执行功能网络发育关联进行纵向研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 797,
-                "end_char": 854
-              },
-              "version": "4cbe8987a42cf364743f"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-1c022b3f780f",
-          "name": "多模态MRI纵向随访研究",
-          "desc": "招募4-10岁CAE患儿，联合多模态MR脑参数与神经测试量表及一年纵向跟踪。",
-          "evidence": [
-            {
-              "quote": "招募4-10岁CAE患儿，联合多模态MR脑参数及多维度神经测试量表和一年的纵向跟踪",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 856,
-                "end_char": 896
-              },
-              "version": "4cbe8987a42cf364743f"
-            }
-          ]
-        },
-        {
-          "id": "item-6f02bc3b369c",
-          "name": "动态功能连接与图论分析",
-          "desc": "基于静息态功能磁共振分析脑功能网络动态组织特征，结合动态图论与有效连接分析。",
-          "evidence": [
-            {
-              "quote": "动态图论分析显示，全脑网络全局拓扑属性相对保留，但关键皮层节点的中心性发生重排",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3185,
-                "end_char": 3223
-              },
-              "version": "4cbe8987a42cf364743f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-425bf26e81dd",
-          "name": "识别4种稳定功能连接状态",
-          "desc": "动态功能连接分析识别出4种稳定的功能连接状态，用于刻画脑网络组织。",
+          "id": "item-9d68cc9a15bc",
+          "name": "动态功能连接状态分析",
+          "desc": "识别4种稳定功能连接状态",
           "evidence": [
             {
               "quote": "动态功能连接分析识别出 4 种稳定的功能连接状态",
@@ -131,29 +82,12 @@
               "version": "4cbe8987a42cf364743f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-e085d08ee533",
-          "name": "CAE脑网络动态稳定性受损",
-          "desc": "CAE患儿特定状态出现频率与平均停留时间显著降低，状态转换次数减少，提示动态稳定性与灵活性受损。",
-          "evidence": [
-            {
-              "quote": "CAE 患儿在特定状态下的出现频率和平均停留时间显著降低，整体状态转换次数减少，提示脑功能网络动态稳定性和灵活性受损",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3074,
-                "end_char": 3131
-              },
-              "version": "4cbe8987a42cf364743f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e99fc18fb5a3",
-          "name": "丘脑皮层通路方向性调控异常",
-          "desc": "有效连接分析揭示丘脑–皮层及扣带回相关通路的方向性调控异常。",
+          "id": "item-02c35b75b9d1",
+          "name": "动态图论与有效连接分析",
+          "desc": "丘脑–皮层及扣带回通路方向性调控异常",
           "evidence": [
             {
               "quote": "有效连接分析进一步揭示丘脑–皮层及扣带回相关通路的方向性调控异常",
@@ -165,55 +99,155 @@
               "version": "4cbe8987a42cf364743f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-e085d08ee533",
+          "name": "CAE脑网络动态稳定性受损",
+          "desc": "特定状态出现频率和停留时间降低",
+          "evidence": [
+            {
+              "quote": "CAE 患儿在特定状态下的出现频率和平均停留时间显著降低，整体状态转换次数减少，提示脑功能网络动态稳定性和灵活性受损",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3074,
+                "end_char": 3131
+              },
+              "version": "4cbe8987a42cf364743f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-b8d78b64ed9c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8e0589bbe961"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The changes in brain network functional gradients and dynamic functional connectivity in SeLECTS patients revealing disruptive and compensatory mechanisms in brain networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Song Linfeng;Wu Guangrong;Zhang Jiaren;Liu Benqing;Chen Xu;Wang Junjun;Gu Xiaoyu;Tian Binlin;Li Yongzhe;Zhang Anjie;Ma Xuejin;Jiang Lin",
+      "id": "out-64794ad54b59",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The changes in brain network functional gradients and dynamic functional connectivity in SeLECTS patients revealing disruptive and compensatory mechanisms in brain networks — Song Linfeng;Wu Guangrong;Zhang Jiaren;Liu Benqing;Chen Xu;Wang Junjun;Gu Xiaoyu;Tian Binlin;Li Yongzhe;Zhang Anjie;Ma Xuejin;Jiang Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3367,
+            "end_char": 3683
+          },
+          "version": "4cbe8987a42cf364743f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8e0589bbe961"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1c022b3f780f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "脑结构和功能 MR成像研究儿童失神癫痫进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张家仁;江林;马文敏;李栋学",
+      "id": "out-551ad82a56cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 脑结构和功能 MR成像研究儿童失神癫痫进展 — 张家仁;江林;马文敏;李栋学",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3688,
+            "end_char": 3732
+          },
+          "version": "4cbe8987a42cf364743f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1c022b3f780f"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-425bf26e81dd"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MRI研究伴中央颞区棘波儿童自限性癫痫语言功能进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋林峰;伍光榕;张家仁;江林",
+      "id": "out-6fcdbb5af30a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MRI研究伴中央颞区棘波儿童自限性癫痫语言功能进展 — 宋林峰;伍光榕;张家仁;江林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3737,
+            "end_char": 3785
+          },
+          "version": "4cbe8987a42cf364743f"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6f02bc3b369c"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-e99fc18fb5a3"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "特发性全面性癫痫动态功能连接的应用及进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张家仁;顾晓瑜;何莲;马文敏;伍光榕;李栋学;江林",
+      "id": "out-0078edf80675",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 特发性全面性癫痫动态功能连接的应用及进展 — 张家仁;顾晓瑜;何莲;马文敏;伍光榕;李栋学;江林",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3790,
+            "end_char": 3844
+          },
+          "version": "4cbe8987a42cf364743f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Static and dynamic brain functional connectivity patterns in patients with unilateral moderate-to-severe asymptomatic carotid stenosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Junjun;Song Linfeng;Tian Binlin;Yang Li;Gu Xiaoyu;Chen Xu;Gao Lei;Jiang Lin",
+      "id": "out-73040217eb73",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Static and dynamic brain functional connectivity patterns in patients with unilateral moderate-to-severe asymptomatic carotid stenosis — Wang Junjun;Song Linfeng;Tian Binlin;Yang Li;Gu Xiaoyu;Chen Xu;Gao Lei;Jiang Lin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3849,
+            "end_char": 4072
+          },
+          "version": "4cbe8987a42cf364743f"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      }
+    },
+    "consistent": true
+  }
 }

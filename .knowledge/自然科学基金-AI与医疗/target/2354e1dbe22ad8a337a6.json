@@ -2,15 +2,20 @@
   "doc_id": "2354e1dbe22ad8a337a6",
   "version": "f830e4fc4a4dfa23916b",
   "source_hash": "b23caffead4d2167d4f35dde2d7d0d7efb0175067ac32dc0ef928bc7fadff465",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:21:32.011422+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:32:41.372765+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6ed5dc288ee5",
-          "name": "NSCLC免疫检查点抑制剂治疗",
-          "desc": "面向非小细胞肺癌免疫检查点抑制剂（ICIs）治疗的获益人群筛选场景。",
+          "id": "item-354738128bbc",
+          "name": "NSCLC免疫治疗获益人群筛选",
+          "desc": "PET/CT代谢参数",
           "evidence": [
             {
-              "quote": "免疫检查点抑制剂（ICIs）在NSCLC治疗中取得突破性进展",
+              "quote": "免疫检查点抑制剂治疗个体差异大、总体响应率偏低是临床应用的核心问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 694,
-                "end_char": 723
+                "start_char": 2789,
+                "end_char": 2821
               },
               "version": "f830e4fc4a4dfa23916b"
             }
@@ -41,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a370ed8155a0",
-          "name": "ICIs个体差异大响应率低",
-          "desc": "ICIs治疗个体差异大、总体响应率偏低，是临床应用的核心难题。",
+          "id": "item-77217dab5b6d",
+          "name": "ICI个体差异大且生物筛选指标局限",
+          "desc": "PD-L1、TMB局限",
           "evidence": [
             {
-              "quote": "但ICIs治疗个体差异大、总体响应率偏低是目前应用的核心问题",
+              "quote": "免疫检查点抑制剂治疗个体差异大、总体响应率偏低是临床应用的核心问题，目前通过活检获得的PD-L1、TMB等生物筛选指标存在局限性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 725,
-                "end_char": 754
-              },
-              "version": "f830e4fc4a4dfa23916b"
-            }
-          ]
-        },
-        {
-          "id": "item-9c0763ca59f5",
-          "name": "活检筛选指标存在局限",
-          "desc": "通过活检获取的PD-L1等生物筛选指标存在局限性。",
-          "evidence": [
-            {
-              "quote": "目前通过活检获得的PD-L1等生物筛选指标存在局限性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 756,
-                "end_char": 781
+                "start_char": 2789,
+                "end_char": 2852
               },
               "version": "f830e4fc4a4dfa23916b"
             }
@@ -79,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b2c677c45611",
-          "name": "PET/CT图神经网络获益模型",
-          "desc": "将PET/CT组学参数与液体活检、临床数据联合，建立基于图神经网络的免疫治疗获益人群模型。",
-          "evidence": [
-            {
-              "quote": "建立基于PET/CT图神经网络的NSCLC免疫新辅助治疗获益人群的模型并行临床验证",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1047,
-                "end_char": 1087
-              },
-              "version": "f830e4fc4a4dfa23916b"
-            }
-          ]
-        },
-        {
-          "id": "item-3fb2d967ce47",
-          "name": "代谢参数与生物指标关联分析",
-          "desc": "分析ICIs新辅助治疗患者的PET/CT组学与代谢参数差异，筛选有预测价值的参数并与免疫指标关联。",
-          "evidence": [
-            {
-              "quote": "筛选有预测价值的参数并与其免疫治疗相关生物指标关联，探讨其分子基础",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 993,
-                "end_char": 1025
-              },
-              "version": "f830e4fc4a4dfa23916b"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-5e1454eb0223",
-          "name": "代谢参数筛选术后MPR",
-          "desc": "以ΔSULmax降低30%为界值，预测术后主要病理反应敏感性97.7%、特异性93.5%、准确性94.4%。",
+          "id": "item-1396321ff39b",
+          "name": "PET/CT代谢参数ΔSULmax预测MPR",
+          "desc": "降低30%为界值",
           "evidence": [
             {
               "quote": "以ΔSULmax降低30%为界值，预测术后MPR的敏感性为97.7%、特异性为93.5%、准确性为94.4%",
@@ -131,12 +82,12 @@
               "version": "f830e4fc4a4dfa23916b"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-957550909ed1",
-          "name": "PET/CT放射组肿瘤微环境图谱",
-          "desc": "基于PET和CT影像组学特征聚类分析，初步构建放射组-肿瘤微环境-基因组图谱。",
+          "id": "item-a41a84993160",
+          "name": "PET/CT放射组-肿瘤微环境-基因组图谱",
+          "desc": "聚类分析",
           "evidence": [
             {
               "quote": "初步构建了非小细胞肺癌18F-FDG PET/CT放射组-肿瘤微环境-基因组图谱",
@@ -148,7 +99,51 @@
               "version": "f830e4fc4a4dfa23916b"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-5c594a929e02",
+          "name": "ΔSULmax预测MPR性能",
+          "desc": "敏感性97.7%、特异性93.5%、准确性94.4%",
+          "evidence": [
+            {
+              "quote": "以ΔSULmax降低30%为界值，预测术后MPR的敏感性为97.7%、特异性为93.5%、准确性为94.4%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3090,
+                "end_char": 3143
+              },
+              "version": "f830e4fc4a4dfa23916b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-24f12b470535",
+          "name": "新辅助免疫治疗NSCLC队列",
+          "desc": "96例",
+          "evidence": [
+            {
+              "quote": "我们共纳入并分析术前行免疫检查点抑制剂新辅助治疗的非小细胞肺癌患者96例",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2975,
+                "end_char": 3010
+              },
+              "version": "f830e4fc4a4dfa23916b"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -156,47 +151,83 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-6ed5dc288ee5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-a370ed8155a0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9c0763ca59f5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-b2c677c45611"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b2c677c45611"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-957550909ed1"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3fb2d967ce47"
+        "item_id": "item-5c594a929e02"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-5e1454eb0223"
+        "dimension": "技术",
+        "item_id": "item-1396321ff39b"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "以ΔSULmax降低30%为界值，预测术后MPR的敏感性为97.7%、特异性为93.5%、准确性为94.4%",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3090,
+            "end_char": 3143
+          },
+          "version": "f830e4fc4a4dfa23916b"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive value of 18F‐FDG PET/CT and serum tumor markers for tumor mutational burden in patients with non‐small cell lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Zhang;Xiuli Tao;Pei Yuan;Zewei Zhang;Jianming Ying;Lei Guo;Ning Li;Shuhang Wang;Jing Li;Ying Liu;Wei Guo;Shijun Zhao;Ning Wu",
+      "id": "out-878ff8294393",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive value of 18F‐FDG PET/CT and serum tumor markers for tumor mutational burden in patients with non‐small cell lung cancer — Qian Zhang;Xiuli Tao;Pei Yuan;Zewei Zhang;Jianming Ying;Lei Guo;Ning Li;Shuhang Wang;Jing Li;Ying Liu;Wei Guo;Shijun Zhao;Ning Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3630,
+            "end_char": 3898
+          },
+          "version": "f830e4fc4a4dfa23916b"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "免疫检查点抑制剂相关肺炎患者临床与胸部CT特点",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "张倩;赵世俊;王书航;陶秀丽;吴宁",
+      "id": "out-8495b9c30208",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 免疫检查点抑制剂相关肺炎患者临床与胸部CT特点 — 张倩;赵世俊;王书航;陶秀丽;吴宁",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3903,
+            "end_char": 3952
+          },
+          "version": "f830e4fc4a4dfa23916b"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

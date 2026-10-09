@@ -2,15 +2,20 @@
   "doc_id": "095fe759a18999a93ac6",
   "version": "b752b700eb621423aa69",
   "source_hash": "14fdf2fd7341cc140a0fec95c130cea2921286d8973bf0dba0a8263b4a559d61",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:23:27.784762+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:26:17.417595+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1230dbb47255",
-          "name": "多模态脑网络辅助脑疾病诊断",
-          "desc": "如何有效融合多模态脑网络的结构与功能特征进行疾病辅助诊断是领域热点问题。",
+          "id": "item-77b89faf10f5",
+          "name": "精神疾病多模态脑网络辅助诊断",
+          "desc": "融合多模态脑网络结构和功能特征进行辅助诊断",
           "evidence": [
             {
               "quote": "如何有效融合多模态脑网络中的结构和功能特征进行疾病辅助诊断一直是领域内的热点问题",
@@ -29,22 +34,6 @@
                 "basis": "parsed_text",
                 "start_char": 652,
                 "end_char": 691
-              },
-              "version": "b752b700eb621423aa69"
-            }
-          ]
-        },
-        {
-          "id": "item-b1cefdf12f77",
-          "name": "精神疾病辅助诊断与病理理解",
-          "desc": "为精神疾病的辅助诊断和病理理解提供技术支持，具有重要临床价值。",
-          "evidence": [
-            {
-              "quote": "该项目将为精神疾病的辅助诊断和病理理解提供坚实的技术支持，具有重要的临床价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1007,
-                "end_char": 1044
               },
               "version": "b752b700eb621423aa69"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b9a0d9b089aa",
-          "name": "结构功能关联丢失与模态缺失",
-          "desc": "传统多模态融合方法面临结构-功能关联信息丢失、模态缺失、生物标记物定位不准确等问题。",
+          "id": "item-1e3a1fd0249e",
+          "name": "传统融合方法的结构-功能信息丢失、模态缺失与标记物定位不准",
+          "desc": "应用于精神疾病辅助诊断时面临的问题",
           "evidence": [
             {
-              "quote": "目前传统的多模态脑网络特征融合方法在应用于精神疾病辅助诊断任务时，面临结构-功能关联信息丢失，模态缺失、生物标记物定位不准确等问题",
+              "quote": "面临结构-功能关联信息丢失，模态缺失、生物标记物定位不准确等问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 693,
+                "start_char": 726,
                 "end_char": 757
-              },
-              "version": "b752b700eb621423aa69"
-            }
-          ]
-        },
-        {
-          "id": "item-a2457788e115",
-          "name": "深度学习诊断模型可解释性不足",
-          "desc": "需提升深度学习框架下诊断模型的可解释性，使诊断结果更具依据。",
-          "evidence": [
-            {
-              "quote": "为了提升在深度学习框架下诊断模型的可解释性，提出了多粒度游走Transformer框架，从而使诊断结果更具解释性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2750,
-                "end_char": 2805
               },
               "version": "b752b700eb621423aa69"
             }
@@ -97,7 +70,7 @@
         {
           "id": "item-e0e3af086283",
           "name": "多粒度多模态融合神经网络",
-          "desc": "提出多粒度多模态融合神经网络模型，有效融合结构脑连接与功能脑连接信息。",
+          "desc": "融合结构与功能脑连接",
           "evidence": [
             {
               "quote": "提出了多粒度多模态融合神经网络模型，提高了疾病诊断准确率",
@@ -108,12 +81,13 @@
               },
               "version": "b752b700eb621423aa69"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-c75b83dfaa08",
           "name": "局部结构-功能耦合模式",
-          "desc": "提出局部结构-功能耦合模式，揭示脑疾病对结构和功能的改变。",
+          "desc": "刻画结构与功能脑连接的交互关系",
           "evidence": [
             {
               "quote": "提出了局部结构-功能耦合模式，并用其揭示脑疾病对结构和功能的改变",
@@ -124,23 +98,42 @@
               },
               "version": "b752b700eb621423aa69"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-bb0eefad2ac9",
-          "name": "教师学生网络迁移应对模态缺失",
-          "desc": "提出基于教师-学生网络的多模态融合信息迁移模型，提升模态缺失下的判别特征学习能力。",
+          "id": "item-364d66a546f5",
+          "name": "多粒度游走Transformer",
+          "desc": "提升诊断可解释性",
           "evidence": [
             {
-              "quote": "拟提出一种基于教师-学生网络的多模态融合信息迁移模型，用以迁移从模态完整数据中学得的融合信息，提高模型在模态缺失情况下的判别特征学习能力",
+              "quote": "提出了多粒度游走Transformer框架，从而使诊断结果更具解释性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 868,
-                "end_char": 935
+                "start_char": 2772,
+                "end_char": 2805
               },
               "version": "b752b700eb621423aa69"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-56c1de324c44",
+          "name": "教师-学生网络融合信息迁移",
+          "desc": "解决模态缺失（申请书拟定）",
+          "evidence": [
+            {
+              "quote": "拟提出一种基于教师-学生网络的多模态融合信息迁移模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 868,
+                "end_char": 893
+              },
+              "version": "b752b700eb621423aa69"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,43 +142,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-16a55d71a882",
-          "name": "癫痫识别多模态融合网络MMF-NNs",
-          "desc": "多模态多粒度融合神经网络应用于癫痫识别，提升疾病诊断准确率。",
-          "evidence": [
-            {
-              "quote": "MMF-NNs: Multi-modal Multi-granularity Fusion Neural Networks for brain networks and its application to epilepsy identification",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3047,
-                "end_char": 3173
-              },
-              "version": "b752b700eb621423aa69"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-591eb914c8d7",
-          "name": "静态动态卷积网络SD-CNN",
-          "desc": "面向功能脑网络的静态-动态卷积神经网络方法。",
-          "evidence": [
-            {
-              "quote": "SD-CNN: A static-dynamic convolutional neural network for functional brain networks",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3465,
-                "end_char": 3547
-              },
-              "version": "b752b700eb621423aa69"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-5f62ccc9658e",
-          "name": "论文与专利成果",
-          "desc": "发表SCI论文7篇、会议论文2篇、中文核心期刊2篇，获批国家专利2项。",
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文7篇，会议论文2篇，中文核心期刊2篇，国家专利2项",
           "evidence": [
             {
               "quote": "包括SCI论文7篇，会议论文2篇，中文核心期刊2篇，获批国家专利2项",
@@ -197,7 +156,9 @@
               "version": "b752b700eb621423aa69"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +166,238 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-1230dbb47255"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-b9a0d9b089aa"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-b9a0d9b089aa"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e0e3af086283"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
         "item_id": "item-e0e3af086283"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-16a55d71a882"
+        "dimension": "问题",
+        "item_id": "item-1e3a1fd0249e"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bb0eefad2ac9"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5f62ccc9658e"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "为有效融合结构脑连接和功能脑连接信息，提出了多粒度多模态融合神经网络模型，提高了疾病诊断准确率",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2641,
+            "end_char": 2687
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Quality-Aware Fuzzy Min-Max Neural Networks for Dynamic Brain Network Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hou Tao;Huang Jiashuang;Jiang Shu;Ding Weiping",
+      "id": "out-b4bba3e80817",
+      "evidence": [
+        {
+          "quote": "[会议论文] Quality-Aware Fuzzy Min-Max Neural Networks for Dynamic Brain Network Analysis — Hou Tao;Huang Jiashuang;Jiang Shu;Ding Weiping",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2902,
+            "end_char": 3035
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "MMF-NNs: Multi-modal Multi-granularity Fusion Neural Networks for brain networks and its application to epilepsy identification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huang Jiashuang;Qi Xiaoyu;Cheng Xueyun;Wang Mingliang;Ju Hengrong;Ding Weiping;Zhang Daoqiang",
+      "id": "out-3c3ddff3f041",
+      "evidence": [
+        {
+          "quote": "[期刊论文] MMF-NNs: Multi-modal Multi-granularity Fusion Neural Networks for brain networks and its application to epilepsy identification — Huang Jiashuang;Qi Xiaoyu;Cheng Xueyun;Wang Mingliang;Ju Hengrong;Ding Weiping;Zhang Daoqiang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3040,
+            "end_char": 3269
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "FDiff-Fusion: Denoising diffusion fusion network based on fuzzy learning for 3D medical image segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ding Weiping;Geng Sheng;Wang Haipeng;Huang Jiashuang;Zhou Tianyi",
+      "id": "out-9d5a6ddd1e84",
+      "evidence": [
+        {
+          "quote": "[期刊论文] FDiff-Fusion: Denoising diffusion fusion network based on fuzzy learning for 3D medical image segmentation — Ding Weiping;Geng Sheng;Wang Haipeng;Huang Jiashuang;Zhou Tianyi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3274,
+            "end_char": 3453
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SD-CNN: A static-dynamic convolutional neural network for functional brain networks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiashuang Huang;Mingliang Wang;Hengrong Ju;Zhenquan Shi;Weiping Ding;Daoqiang Zhang",
+      "id": "out-b35894fc6b27",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SD-CNN: A static-dynamic convolutional neural network for functional brain networks — Jiashuang Huang;Mingliang Wang;Hengrong Ju;Zhenquan Shi;Weiping Ding;Daoqiang Zhang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3458,
+            "end_char": 3633
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "面向不完整多模态数据的模糊知识蒸馏方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄嘉爽;戚晓雨;程学云;鞠恒荣;曹金鑫;丁卫平",
+      "id": "out-3479f2a6d6e1",
+      "evidence": [
+        {
+          "quote": "[专利] 面向不完整多模态数据的模糊知识蒸馏方法 — 黄嘉爽;戚晓雨;程学云;鞠恒荣;曹金鑫;丁卫平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3638,
+            "end_char": 3687
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fuzzy Knowledge Distillation Model for Incomplete Multi-modality Data and Its Application to Brain Network Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyu Qi;Jiashuang Huang;Xueyun Cheng;Mingliang Wang;Weiping Ding",
+      "id": "out-3e41f2d5f7d0",
+      "evidence": [
+        {
+          "quote": "[会议论文] Fuzzy Knowledge Distillation Model for Incomplete Multi-modality Data and Its Application to Brain Network Analysis — Xiaoyu Qi;Jiashuang Huang;Xueyun Cheng;Mingliang Wang;Weiping Ding",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3692,
+            "end_char": 3882
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "C2F-Explainer: Explaining Transformers Better Through a Coarse-to-Fine Strategy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Weiping Ding;Xiaotian Cheng;Yu Geng;Jiashuang Huang;Hengrong Ju",
+      "id": "out-80f51e0baa73",
+      "evidence": [
+        {
+          "quote": "[期刊论文] C2F-Explainer: Explaining Transformers Better Through a Coarse-to-Fine Strategy — Weiping Ding;Xiaotian Cheng;Yu Geng;Jiashuang Huang;Hengrong Ju",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3887,
+            "end_char": 4038
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于多模态多粒度融合网络的癫痫识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "戚晓雨;丁卫平;鞠恒荣;程学云;黄嘉爽",
+      "id": "out-24d0d7292257",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于多模态多粒度融合网络的癫痫识别方法 — 戚晓雨;丁卫平;鞠恒荣;程学云;黄嘉爽",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4043,
+            "end_char": 4090
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于结构-功能脑网络的精神疾病识别方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "黄嘉爽;戚晓雨;程学云;鞠恒荣;曹金鑫;丁卫平",
+      "id": "out-7fb542ae5539",
+      "evidence": [
+        {
+          "quote": "[专利] 基于结构-功能脑网络的精神疾病识别方法 — 黄嘉爽;戚晓雨;程学云;鞠恒荣;曹金鑫;丁卫平",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4095,
+            "end_char": 4144
+          },
+          "version": "b752b700eb621423aa69"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 9,
+    "listed": 9,
+    "by_kind": {
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 5
+      },
+      "专利": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

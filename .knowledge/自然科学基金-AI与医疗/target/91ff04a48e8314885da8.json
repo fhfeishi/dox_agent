@@ -2,15 +2,20 @@
   "doc_id": "91ff04a48e8314885da8",
   "version": "8a7195ce99dd3eaa7742",
   "source_hash": "5653a582bac82bdb286140eadf5ba15086c4d6eaf6ccc9857c7fa2904664cbd3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:49:46.433384+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:49:05.549542+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-39273b4c9a60",
           "name": "复杂疾病遗传风险预测",
-          "desc": "构建准确的遗传风险预测模型是实现精准医学的必经之路，全基因组关联研究已检测到大量与复杂疾病相关的单核苷酸多态性。",
+          "desc": "阿尔兹海默症",
           "evidence": [
             {
-              "quote": "构建准确的遗传风险预测模型是实现精准医学的必经之路",
+              "quote": "本研究为阿尔兹海默症等复杂疾病或性状的高维全基因组学数据遗传风险预测提供了有效的统计建模思路与技术手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 669,
-                "end_char": 693
-              },
-              "version": "8a7195ce99dd3eaa7742"
-            }
-          ]
-        },
-        {
-          "id": "item-6ad08f92d6b9",
-          "name": "辅助阿尔兹海默症精准诊疗",
-          "desc": "以新模型为基础构建阿尔兹海默症的遗传预测精准诊疗模式，对促进其早期诊断和精准治疗具有重要意义。",
-          "evidence": [
-            {
-              "quote": "并以此为基础构建阿尔兹海默症的遗传预测精准诊疗模式",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 921,
-                "end_char": 945
+                "start_char": 3621,
+                "end_char": 3671
               },
               "version": "8a7195ce99dd3eaa7742"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c1017b67252a",
-          "name": "高维高噪声且遗传因子与疾病关系复杂",
-          "desc": "全基因组数据高维、高噪声特点以及遗传因子与疾病间的复杂关系给风险预测建模提出巨大挑战。",
+          "id": "item-6df4ae984f2a",
+          "name": "全基因组数据高维高噪声与复杂遗传关系",
+          "desc": "风险预测建模统计方法学挑战",
           "evidence": [
             {
-              "quote": "全基因组数据高维、高噪声的特点以及遗传因子与疾病间的复杂关系（如交互作用）给风险预测建模提出了巨大的挑战",
+              "quote": "全基因组数据高维、高噪声的特点以及遗传因子与疾病间的复杂关系（如，交互作用）给风险预测模型的构建提出了巨大的统计方法学挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 786,
-                "end_char": 837
-              },
-              "version": "8a7195ce99dd3eaa7742"
-            }
-          ]
-        },
-        {
-          "id": "item-414ef1858080",
-          "name": "线性混合模型与深度学习均受限",
-          "desc": "常见线性混合效应模型不能有效模拟非线性预测作用，而新兴深度学习无法直接分析高维数据。",
-          "evidence": [
-            {
-              "quote": "常见的线性混合效应模型不能有效模拟非线性预测作用，而新兴的深度学习则无法直接分析高维数据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 839,
-                "end_char": 882
+                "start_char": 3285,
+                "end_char": 3345
               },
               "version": "8a7195ce99dd3eaa7742"
             }
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e1bd80b54c45",
-          "name": "深度迁移学习模型与变量筛选",
-          "desc": "建立适用于全基因组数据、可模拟各种复杂预测作用的深度迁移学习模型，通过评估变量在多层感知机中的预测重要性实现变量筛选。",
-          "evidence": [
-            {
-              "quote": "新模型通过评估变量在多层感知机中的预测重要性实现变量筛选；而后借鉴迁移学习，通过将变量筛选过程的信息有机融入到风险预测模型中，来高效灵活的模拟各种疾病",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 947,
-                "end_char": 1021
-              },
-              "version": "8a7195ce99dd3eaa7742"
-            }
-          ]
-        },
-        {
-          "id": "item-d3edeed3b5e3",
-          "name": "迁移学习提升收敛速率与精度",
-          "desc": "首次将迁移学习与深度学习相结合应用于复杂疾病遗传风险预测，通过汲取已有知识大幅提高算法收敛速率和预测准确度。",
-          "evidence": [
-            {
-              "quote": "本研究首次将迁移学习与深度学习相结合应用到复杂疾病遗传风险预测中，通过汲取已有知识来大幅提高其算法的收敛速率和预测准确度",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3396,
-                "end_char": 3455
-              },
-              "version": "8a7195ce99dd3eaa7742"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-a59994c20566",
+          "id": "item-a5374d7ef649",
           "name": "可解释变量重要性评分",
-          "desc": "提出可解释的变量重要性评分，可有效识别不同预测效应的遗传因子并很好地控制I类错误。",
+          "desc": "识别不同预测效应遗传因子并控制I类错误",
           "evidence": [
             {
               "quote": "本研究提出了一种可解释的变量重要性评分，可以有效地识别不同预测效应的遗传因子，能够很好地控制I类错误",
@@ -147,12 +82,12 @@
               "version": "8a7195ce99dd3eaa7742"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-de08d2475f92",
-          "name": "深度迁移学习模型用于遗传风险预测",
-          "desc": "开发计算效率高的深度迁移学习模型用于遗传风险预测，可直接整合变量筛选信息并高效捕捉线性与非线性预测效应。",
+          "id": "item-793125d89b92",
+          "name": "深度迁移学习遗传风险预测模型",
+          "desc": "整合变量筛选信息，捕捉线性与非线性效应",
           "evidence": [
             {
               "quote": "开发了一种计算效率高的深度迁移学习模型用于遗传风险预测，可以直接整合变量筛选的信息，能够高效地捕捉线性和非线性的预测效应",
@@ -164,12 +99,18 @@
               "version": "8a7195ce99dd3eaa7742"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-0a7dc820d75c",
-          "name": "算法开源与论文成果",
-          "desc": "基于深度学习与迁移学习理论设计的统计算法已发布在GitHub上供广大学者免费使用。",
+          "id": "item-c31d35d5e9d0",
+          "name": "算法开源",
+          "desc": "发布在GitHub",
           "evidence": [
             {
               "quote": "本研究基于深度学习与迁移学习的相关理论设计的统计算法已发布在 GitHub 上，可供广大学者免费使用",
@@ -181,55 +122,237 @@
               "version": "8a7195ce99dd3eaa7742"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-39273b4c9a60"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-c1017b67252a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A guidance of model selection for genomic prediction based on linear mixed models for complex traits",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiefang Duan;Jiayu Zhang;Long Liu;Yalu Wen",
+      "id": "out-3ee16525ac2a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A guidance of model selection for genomic prediction based on linear mixed models for complex traits — Jiefang Duan;Jiayu Zhang;Long Liu;Yalu Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3832,
+            "end_char": 3983
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c1017b67252a"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-e1bd80b54c45"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reflections on dynamic prediction of Alzheimer's disease: advancements in modeling longitudinal outcomes and time-to-event data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Durong;Zhang Meiling;Han Hongjuan;Wen Yalu;Yu Hongmei",
+      "id": "out-8213bc49b623",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reflections on dynamic prediction of Alzheimer's disease: advancements in modeling longitudinal outcomes and time-to-event data — Chen Durong;Zhang Meiling;Han Hongjuan;Wen Yalu;Yu Hongmei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3988,
+            "end_char": 4182
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e1bd80b54c45"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a59994c20566"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bayesian linear mixed model with multiple random effects for family-based genetic studies",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hai Yang;Zhao Wenxuan;Meng Qingyu;Liu Long;Wen Yalu",
+      "id": "out-941db2c6ded4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bayesian linear mixed model with multiple random effects for family-based genetic studies — Hai Yang;Zhao Wenxuan;Meng Qingyu;Liu Long;Wen Yalu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4336
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d3edeed3b5e3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-0a7dc820d75c"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Explainable deep transfer learning model for disease risk prediction using high-dimensional genomic data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Long Liu;Qingyu Meng;Cherry Weng;Qing Lu;Tong Wang;Yalu Wen",
+      "id": "out-b96533e611f7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Explainable deep transfer learning model for disease risk prediction using high-dimensional genomic data — Long Liu;Qingyu Meng;Cherry Weng;Qing Lu;Tong Wang;Yalu Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4341,
+            "end_char": 4513
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association between multimorbidity and young-onset dementia: a prospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen·Durong;Zhang·Meiling;Wen·Yalu;Han·Hongjuan;Qin·Yao;Zhang·Rong;Cao·Hongyan;Yu·Hongmei",
+      "id": "out-b7d6f03ea2b4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association between multimorbidity and young-onset dementia: a prospective study — Chen·Durong;Zhang·Meiling;Wen·Yalu;Han·Hongjuan;Qin·Yao;Zhang·Rong;Cao·Hongyan;Yu·Hongmei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4518,
+            "end_char": 4696
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The systematic comparison between Gaussian mirror and Model-X knockoff models",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shuai Chen;Ziqi Li;Long Liu;Yalu Wen",
+      "id": "out-603f9ade432f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The systematic comparison between Gaussian mirror and Model-X knockoff models — Shuai Chen;Ziqi Li;Long Liu;Yalu Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4701,
+            "end_char": 4823
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The impact of Bayesian optimization on feature selection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kaixin Yang;Long Liu;Yalu Wen",
+      "id": "out-5ccd44cdd0c2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The impact of Bayesian optimization on feature selection — Kaixin Yang;Long Liu;Yalu Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4828,
+            "end_char": 4922
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Bayesian linear mixed model with multiple random effects for prediction analysis on high-dimensional multi-omics data",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yang Hai;Jixiang Ma;Kaixin Yang;Yalu Wen",
+      "id": "out-5dfaf6dda385",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Bayesian linear mixed model with multiple random effects for prediction analysis on high-dimensional multi-omics data — Yang Hai;Jixiang Ma;Kaixin Yang;Yalu Wen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4927,
+            "end_char": 5093
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the Genetic Relationship Between Type 2 Diabetes and Cardiovascular Disease: A Large-Scale Genetic Association and Polygenic Risk Score Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ziwei Yao;Xiaomai Zhang;Liufei Deng;Jiayu Zhang;Yalu Wen;Deqiang Zheng;Long Liu",
+      "id": "out-f6953100e179",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the Genetic Relationship Between Type 2 Diabetes and Cardiovascular Disease: A Large-Scale Genetic Association and Polygenic Risk Score Study — Ziwei Yao;Xiaomai Zhang;Liufei Deng;Jiayu Zhang;Yalu Wen;Deqiang Zheng;Long Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5098,
+            "end_char": 5337
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Shared genetics and causal relationships between major depressive disorder and COVID-19 related traits: a large-scale genome-wide cross-trait meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Ziqi;Dang Weijia;Hao Tianqi;Zhang Hualin;Yao Ziwei;Zhou Wenchao;Deng Liufei;Yu Hongmei;Wen Yalu;Liu Long",
+      "id": "out-344f9be43313",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Shared genetics and causal relationships between major depressive disorder and COVID-19 related traits: a large-scale genome-wide cross-trait meta-analysis — Li Ziqi;Dang Weijia;Hao Tianqi;Zhang Hualin;Yao Ziwei;Zhou Wenchao;Deng Liufei;Yu Hongmei;Wen Yalu;Liu Long",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5343,
+            "end_char": 5614
+          },
+          "version": "8a7195ce99dd3eaa7742"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 10,
+    "listed": 10,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      }
+    },
+    "consistent": true
+  }
 }

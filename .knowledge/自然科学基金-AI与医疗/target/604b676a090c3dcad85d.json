@@ -2,15 +2,20 @@
   "doc_id": "604b676a090c3dcad85d",
   "version": "533baf7590830ed4836c",
   "source_hash": "442dce34586c0429aad15f3651ec3ddb06922d4b5b10d3d01f55d38b0c141c42",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:59:16.787783+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:44:23.622527+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2e65b4cfe5c5",
-          "name": "结直肠癌肿瘤出芽智能量化与预后评估",
-          "desc": "面向结直肠癌病理诊断，对癌灶浸润前沿的肿瘤出芽进行智能量化、分级并评估其预后效能。",
+          "id": "item-30e28c661b99",
+          "name": "结直肠癌肿瘤出芽智能量化",
+          "desc": "TB已被ESMO指南推荐为病理常规评价指标",
           "evidence": [
             {
-              "quote": "结直肠癌肿瘤出芽（tumor budding，TB）指在癌灶浸润前沿区域内，单个癌细胞或由小于5个癌细胞构成的细胞簇，其分级与预后显著相关",
+              "quote": "肿瘤出芽作为反映肿瘤侵袭能力的重要病理学特征，已被最新 ESMO 指南推荐纳入常规病理评估体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 725
+                "start_char": 2693,
+                "end_char": 2739
               },
               "version": "533baf7590830ed4836c"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-454e6adaa0a5",
-          "name": "HE切片上肿瘤出芽识别量化困难且一致性差",
-          "desc": "肿瘤出芽结构微小、形态复杂，HE染色切片上识别和量化困难，病理医生间评估一致性差，限制了其临床应用。",
+          "id": "item-479ad3184f03",
+          "name": "HE切片上肿瘤出芽识别量化困难、医生间一致性差",
+          "desc": "临床应用瓶颈",
           "evidence": [
             {
-              "quote": "目前评估肿瘤出芽存在以下挑战，包括：（1）HE染色切片上识别和量化困难；（2）病理医生间评估一致性差，限制了其临床应用",
+              "quote": "不同病理医师之间一致性有限，成为制约其临床应用的关键瓶颈",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 763,
-                "end_char": 821
+                "start_char": 2798,
+                "end_char": 2825
               },
               "version": "533baf7590830ed4836c"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3959656e9556",
-          "name": "HE-CK配准与主动学习多尺度分割量化方法",
-          "desc": "基于HE-CK复染全视野数字切片归一化梯度场逐步配准获得金标准，用图像信息熵主动学习减少标注量，结合多尺度分割精准量化肿瘤出芽。",
+          "id": "item-2ec947a3bf12",
+          "name": "HE-CK复染高精度自动配准",
+          "desc": "建立肿瘤出芽参考标准",
           "evidence": [
             {
-              "quote": "基于图像信息熵的主动学习算法选取待标注区域，减少所需标注样本量",
+              "quote": "项目首先通过同一玻片 HE–CK 免疫组化复染与高精度自动配准方法，实现多模态全切片图像在组织层面的精准对齐，建立可靠的肿瘤出芽及相关结构的参考标准",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 933,
-                "end_char": 963
+                "start_char": 2913,
+                "end_char": 2986
               },
               "version": "533baf7590830ed4836c"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-2557d465831e",
+          "name": "多尺度组织细胞分割与主动学习智能标注",
+          "desc": "自动识别浸润前沿并量化出芽",
+          "evidence": [
+            {
+              "quote": "结合多尺度组织与细胞分割算法以及人机协同的主动学习智能标注策略，实现了肿瘤浸润前沿的自动识别及肿瘤出芽的客观量化",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2994,
+                "end_char": 3049
+              },
+              "version": "533baf7590830ed4836c"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d9e2c1a67267",
-          "name": "AI量化肿瘤出芽与患者总体生存显著相关",
-          "desc": "在大样本多中心结直肠癌随访数据中验证AI量化肿瘤出芽指标与患者总体生存显著相关，并具备稳定的风险分层能力。",
+          "id": "item-21d98c2c6508",
+          "name": "AI量化肿瘤出芽预后价值",
+          "desc": "与总体生存显著相关",
           "evidence": [
             {
               "quote": "验证了其与患者总体生存显著相关，并具备稳定的风险分层能力",
@@ -99,44 +122,329 @@
               "version": "533baf7590830ed4836c"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2e65b4cfe5c5"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-454e6adaa0a5"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A CT-based multitask deep learning model for predicting tumor stroma ratio and treatment outcomes in patients with colorectal cancer: a multicenter cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yanfen Cui;Ke Zhao;Xiaochun Meng;Yun Mao;Chu Han;Zhenwei Shi;Xiaotang Yang;Tong Tong;Lei Wu;Zaiyi Liu",
+      "id": "out-db38d28ee61c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A CT-based multitask deep learning model for predicting tumor stroma ratio and treatment outcomes in patients with colorectal cancer: a multicenter cohort study — Yanfen Cui;Ke Zhao;Xiaochun Meng;Yun Mao;Chu Han;Zhenwei Shi;Xiaotang Yang;Tong Tong;Lei Wu;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3373,
+            "end_char": 3643
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-454e6adaa0a5"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-3959656e9556"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Annotation-free whole-slide image analysis method to assess immune infiltration in colorectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao Xu;Shangqing Yang;Yaxi Zhu;Su Yao;Lin Wu;Shenyan Zhang;Yiting Wang;Suyun Li;Yunrui Ye;Zhenhui Li;Zaiyi Liu;Ke Zhao",
+      "id": "out-42ec43db762e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Annotation-free whole-slide image analysis method to assess immune infiltration in colorectal cancer — Yao Xu;Shangqing Yang;Yaxi Zhu;Su Yao;Lin Wu;Shenyan Zhang;Yiting Wang;Suyun Li;Yunrui Ye;Zhenhui Li;Zaiyi Liu;Ke Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3648,
+            "end_char": 3875
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-3959656e9556"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d9e2c1a67267"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "AutoLDP: An accurate and efficient artificial intelligence-based tool for automatic labeling of digital pathology",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yingnan Zhao;Huifen Ye;Jing Yang;Su Yao;Maohua Lv;Zhihong Chen;Yunrui Ye;Qingru Hu;Cheng Lu;Zaiyi Liu;Ke Zhao;Zhihua Chen",
+      "id": "out-7daae9682b08",
+      "evidence": [
+        {
+          "quote": "[期刊论文] AutoLDP: An accurate and efficient artificial intelligence-based tool for automatic labeling of digital pathology — Yingnan Zhao;Huifen Ye;Jing Yang;Su Yao;Maohua Lv;Zhihong Chen;Yunrui Ye;Qingru Hu;Cheng Lu;Zaiyi Liu;Ke Zhao;Zhihua Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3880,
+            "end_char": 4123
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于生成对抗网络的组织像素标签获取方法及相关设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;徐瑶;赵可;姚溯;钟敏儿;李勇",
+      "id": "out-d61d6a6bdb6c",
+      "evidence": [
+        {
+          "quote": "[专利] 基于生成对抗网络的组织像素标签获取方法及相关设备 — 刘再毅;徐瑶;赵可;姚溯;钟敏儿;李勇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4128,
+            "end_char": 4178
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and validation of a scoring system incorporating tumor growth pattern and perineural invasion for risk stratification in colorectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yulin Liu;Yiting Wang;Su Yao;Changhong Liang;Qian Li;Zaiyi Li;Yaxi Zhu;Yanfen Cui;Ke Zhao",
+      "id": "out-7a2ebb4de372",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and validation of a scoring system incorporating tumor growth pattern and perineural invasion for risk stratification in colorectal cancer — Yulin Liu;Yiting Wang;Su Yao;Changhong Liang;Qian Li;Zaiyi Li;Yaxi Zhu;Yanfen Cui;Ke Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4183,
+            "end_char": 4431
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An artificial intelligence-based ecological index for prognostic evaluation of colorectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qicong Chen;Ming Cai;Xinjuan Fan;Wenbin Liu;Gang Fang;Su Yao;Yao Xu;Qian Li;Yingnan Zhao;Ke Zhao;Zaiyi Liu;Zhihua Chen",
+      "id": "out-674a802317d9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An artificial intelligence-based ecological index for prognostic evaluation of colorectal cancer — Qicong Chen;Ming Cai;Xinjuan Fan;Wenbin Liu;Gang Fang;Su Yao;Yao Xu;Qian Li;Yingnan Zhao;Ke Zhao;Zaiyi Liu;Zhihua Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4436,
+            "end_char": 4659
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种基于医学图像的批次效应分析方法及系统",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陆铖;吴玉欣;石镇维;赵可;吴磊;韩楚;刘再毅",
+      "id": "out-113f3f7ece04",
+      "evidence": [
+        {
+          "quote": "[专利] 一种基于医学图像的批次效应分析方法及系统 — 陆铖;吴玉欣;石镇维;赵可;吴磊;韩楚;刘再毅",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4664,
+            "end_char": 4714
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Development and evaluation of the mrTE scoring system for MRI-detected tumor deposits and extramural venous invasion in rectal cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Haitao Huang;Weixiong Xu;Lili Feng;Min-Er Zhong;Yunrui Ye;Yulin Liu;Huifen Ye;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Ke Zhao;Lifen Yan;Changhong Liang",
+      "id": "out-791978612941",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Development and evaluation of the mrTE scoring system for MRI-detected tumor deposits and extramural venous invasion in rectal cancer — Haitao Huang;Weixiong Xu;Lili Feng;Min-Er Zhong;Yunrui Ye;Yulin Liu;Huifen Ye;Zhenhui Li;Yanfen Cui;Zaiyi Liu;Ke Zhao;Lifen Yan;Changhong Liang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4719,
+            "end_char": 5004
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparative analysis of tertiary lymphoid structures for predicting survival of colorectal cancer: A whole-slide images-based study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ming He;Huifen Ye;Liu Liu;Su Yao;Zhenhui Li;Xinjuan Fan;Lili Feng;Tong Tong;Yanfen Cui;Xiaotang Yang;Xiaomei Wu;Yun Mao;Ke Zhao;Zaiyi Liu",
+      "id": "out-b9d37f097552",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparative analysis of tertiary lymphoid structures for predicting survival of colorectal cancer: A whole-slide images-based study — Ming He;Huifen Ye;Liu Liu;Su Yao;Zhenhui Li;Xinjuan Fan;Lili Feng;Tong Tong;Yanfen Cui;Xiaotang Yang;Xiaomei Wu;Yun Mao;Ke Zhao;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5009,
+            "end_char": 5286
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Necrosis score as a prognostic factor in stage I-III colorectal cancer: a retrospective multicenter study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Huifen Ye;Yiting Wang;Su Yao;Zaiyi Liu;Changhong Liang;Yaxi Zhu;Yanfen Cui;Ke Zhao",
+      "id": "out-28adda853029",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Necrosis score as a prognostic factor in stage I-III colorectal cancer: a retrospective multicenter study — Huifen Ye;Yiting Wang;Su Yao;Zaiyi Liu;Changhong Liang;Yaxi Zhu;Yanfen Cui;Ke Zhao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5292,
+            "end_char": 5488
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tissue-SDG: dynamic adaptive data augmentation and multi-scale contrastive learning for generalizable tissue semantic segmentation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qian Li;Peng Jiayi;Jiatai Lin;Chu Han;Ke Zhao;Zaiyi Liu",
+      "id": "out-56443c35b2ca",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tissue-SDG: dynamic adaptive data augmentation and multi-scale contrastive learning for generalizable tissue semantic segmentation — Qian Li;Peng Jiayi;Jiatai Lin;Chu Han;Ke Zhao;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5494,
+            "end_char": 5688
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Magnetic resonance imaging–detected high-risk markers in rectal cancer patients with a pathologic complete response after neoadjuvant therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ke Zhao;Minning Zhao;Qing-Yang Li;Jing Yang;Lili Feng;Xiaomei Wu;Zhenhui Li;Yanfen Cui;Xinjuan Fan;Ying-Shi Sun;Zaiyi Liu",
+      "id": "out-c6adda470e8d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Magnetic resonance imaging–detected high-risk markers in rectal cancer patients with a pathologic complete response after neoadjuvant therapy — Ke Zhao;Minning Zhao;Qing-Yang Li;Jing Yang;Lili Feng;Xiaomei Wu;Zhenhui Li;Yanfen Cui;Xinjuan Fan;Ying-Shi Sun;Zaiyi Liu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5694,
+            "end_char": 5965
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肿瘤数字病理智能诊断创新技术及应⽤",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "刘再毅;韩楚;赵可;石镇维;陈鑫;黄燕琪;杨栋;姚溯;吴磊;梁长虹;林佳泰;韩国强",
+      "id": "out-6b26620d3ca2",
+      "evidence": [
+        {
+          "quote": "[奖励] 肿瘤数字病理智能诊断创新技术及应⽤ — 刘再毅;韩楚;赵可;石镇维;陈鑫;黄燕琪;杨栋;姚溯;吴磊;梁长虹;林佳泰;韩国强",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5971,
+            "end_char": 6036
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种OCT图像的分割方法和评分方法及处理装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孟倩丽;赵可;刘梦雅;谢洁;廖铄鑫",
+      "id": "out-9ce74ae7cdbd",
+      "evidence": [
+        {
+          "quote": "[专利] 一种OCT图像的分割方法和评分方法及处理装置 — 孟倩丽;赵可;刘梦雅;谢洁;廖铄鑫",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6042,
+            "end_char": 6088
+          },
+          "version": "533baf7590830ed4836c"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 14,
+    "listed": 14,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

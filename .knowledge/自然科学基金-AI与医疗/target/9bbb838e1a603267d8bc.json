@@ -2,15 +2,20 @@
   "doc_id": "9bbb838e1a603267d8bc",
   "version": "c340aa334e5732fa2cdd",
   "source_hash": "b93ec169aa2b50d6fc846a0b8407ae82e32ac2a091ebffdee7a580d22b1cf1c1",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:45.906250+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:50:36.747172+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f697dca40b3d",
-          "name": "下消化道肿瘤早期诊断",
-          "desc": "光声、高光谱成像技术需以临床需求为导向实现技术升级，真正走向下消化道内窥临床应用。",
+          "id": "item-792832aa6ac8",
+          "name": "结直肠癌光声与高光谱双模内窥成像",
+          "desc": "下消化道肿瘤诊断",
           "evidence": [
             {
-              "quote": "该项目的完成能够实现光声、高光谱成像技术以临床需求为导向的技术升级，真正走向下消化道内窥临床应用。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 987,
-                "end_char": 1035
-              },
-              "version": "c340aa334e5732fa2cdd"
-            }
-          ]
-        },
-        {
-          "id": "item-8b6689d3ccb9",
-          "name": "生物组织层析与光谱信息提取",
-          "desc": "面对真正临床场景的挑战，迫切需要对生物组织层析结构信息与光谱信息的提取与分析做更为深入的研究。",
-          "evidence": [
-            {
-              "quote": "面对来自真正临床场景的挑战，迫切需要对生物组织层析结构信息与光谱信息的提取与分析做更为深入的研究。",
+              "quote": "面对来自真正临床场景的挑战，迫切需要对生物组织层析结构信息与光谱信息的提取与分析做更为深入的研究",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 717,
-                "end_char": 765
+                "end_char": 764
               },
               "version": "c340aa334e5732fa2cdd"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c7eeffbffb36",
-          "name": "内窥场景接触式测量受限",
-          "desc": "大多数现有弹性成像技术基于接触测量，在内窥成像应用场景中受到限制。",
+          "id": "item-eb0bad71fbf5",
+          "name": "组织层析结构与光谱信息提取分析需深入研究",
+          "desc": "临床场景挑战",
           "evidence": [
             {
-              "quote": "大多数现有的弹性成像技术都是基于接触测量的，内窥成像的应用场景中受到限制。",
+              "quote": "面对来自真正临床场景的挑战，迫切需要对生物组织层析结构信息与光谱信息的提取与分析做更为深入的研究",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3126,
-                "end_char": 3162
-              },
-              "version": "c340aa334e5732fa2cdd"
-            }
-          ]
-        },
-        {
-          "id": "item-365bd4b1baff",
-          "name": "结构与光谱信息关联待揭示",
-          "desc": "需揭示生物组织的结构与光谱信息与下消化道肿瘤病变的内在联系。",
-          "evidence": [
-            {
-              "quote": "旨在揭示生物组织的结构与光谱信息与下消化道肿瘤病变的内在联系这一关键科学问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 830,
-                "end_char": 867
+                "start_char": 717,
+                "end_char": 764
               },
               "version": "c340aa334e5732fa2cdd"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1cbc2fadb73b",
-          "name": "光声高光谱双模内窥成像系统",
-          "desc": "改进与优化适用于消化道成像的光声、高光谱双模内窥成像系统，实现高空间分辨率与高光谱分辨率成像。",
+          "id": "item-b2526e9904e2",
+          "name": "光声与高光谱双模内窥成像系统",
+          "desc": "优化改进，用于消化道成像",
           "evidence": [
             {
               "quote": "改进与优化了适用于消化道成像的光声、高光谱双模内窥成像系统，实现高空间分辨率的光声成像与高光谱分辨率的高光谱成像",
@@ -108,28 +81,30 @@
               },
               "version": "c340aa334e5732fa2cdd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9bef0ae4b1e6",
-          "name": "生成对抗网络功能参数提取",
-          "desc": "利用生成对抗网络处理光声图像与高光谱数据立方，实现代谢相关功能性多维参数的精准提取与量化。",
+          "id": "item-12ec9b40853a",
+          "name": "GAN处理光声图像与高光谱数据立方",
+          "desc": "功能性多维参数精准提取与量化",
           "evidence": [
             {
-              "quote": "利用生成对抗网络（GAN）处理光声图像与高光谱数据立方实现光谱形态、与代谢水平相关的功能性多维参数的精准提取与量化",
+              "quote": "并利用生成对抗网络（GAN）处理光声图像与高光谱数据立方实现光谱形态、与代谢水平相关的功能性多维参数的精准提取与量化",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3003,
+                "start_char": 3002,
                 "end_char": 3059
               },
               "version": "c340aa334e5732fa2cdd"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-4907ba7ca8e6",
-          "name": "光热效应粘弹性OCT",
-          "desc": "开发基于光热效应的粘弹性光学相干断层扫描方法，使用准连续调制泵浦光束激发、近红外光束进行OCT检测。",
+          "id": "item-4575e9dd6291",
+          "name": "光热效应粘弹性OCT方法",
+          "desc": "粘弹比作为诊断参数",
           "evidence": [
             {
               "quote": "本研究开发了一种基于光热效应的粘弹性光学相干断层扫描方法，使用准连续调制的泵浦光束进行光热激发，并使用近红外光束进行OCT检测",
@@ -140,23 +115,8 @@
               },
               "version": "c340aa334e5732fa2cdd"
             }
-          ]
-        },
-        {
-          "id": "item-c4e9938252a1",
-          "name": "一体化诊疗探针构建",
-          "desc": "建立金丝桃素、钴离子、光敏剂自组装的一体化诊疗探针，实现靶向光热治疗。",
-          "evidence": [
-            {
-              "quote": "三是建立并完成一体化诊疗探针构建（金丝桃素、钴离子、光敏剂自组装）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3248,
-                "end_char": 3280
-              },
-              "version": "c340aa334e5732fa2cdd"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,103 +125,35 @@
       "state": "has",
       "items": [
         {
-          "id": "item-510bc807fb85",
-          "name": "双模内窥成像系统优化",
-          "desc": "完成双模内窥成像系统的优化，实现高空间分辨率光声成像与高光谱分辨率成像。",
+          "id": "item-77120e4be9ee",
+          "name": "一体化诊疗探针构建与活体验证",
+          "desc": "金丝桃素、钴离子、光敏剂自组装",
           "evidence": [
             {
-              "quote": "一是完成了双模内窥成像系统的优化",
+              "quote": "建立并完成一体化诊疗探针构建（金丝桃素、钴离子、光敏剂自组装），纳米光敏剂能够准确到达下消化道肿瘤细胞，实现精准靶向光热治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2928,
-                "end_char": 2943
+                "start_char": 3250,
+                "end_char": 3311
               },
               "version": "c340aa334e5732fa2cdd"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-cf1a2127e117",
-          "name": "纳米光敏剂靶向治疗验证",
-          "desc": "验证了配位自组装经EPR效应靶向、细胞内存、pH响应释放、GA协同Co3+介导ROS风暴诱导凋亡的抗肿瘤策略可行。",
-          "evidence": [
-            {
-              "quote": "通过活体实验结果验证支持“配位自组装→EPR效应靶向→细胞内存→pH响应释放→GA协同Co3+介导的ROS风暴→诱导凋亡”的抗肿瘤策略是可行的",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3343,
-                "end_char": 3413
-              },
-              "version": "c340aa334e5732fa2cdd"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-3bcbcdfa9423",
-          "name": "成药性评价拓展价值",
-          "desc": "该策略具有进一步优化与拓展成药性评价的价值。",
-          "evidence": [
-            {
-              "quote": "并具有进一步优化与拓展成药性评价的价值",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3415,
-                "end_char": 3433
-              },
-              "version": "c340aa334e5732fa2cdd"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-f697dca40b3d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-365bd4b1baff"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-c7eeffbffb36"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-4907ba7ca8e6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9bef0ae4b1e6"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-510bc807fb85"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c4e9938252a1"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-cf1a2127e117"
-      },
-      "basis": "原文明示"
-    }
-  ]
+  "relations": [],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 0,
+    "listed": 0,
+    "by_kind": {},
+    "consistent": true
+  }
 }

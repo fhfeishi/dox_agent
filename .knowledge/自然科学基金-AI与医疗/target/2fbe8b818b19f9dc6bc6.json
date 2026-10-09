@@ -2,15 +2,20 @@
   "doc_id": "2fbe8b818b19f9dc6bc6",
   "version": "a25347a956ef8f1f0a8d",
   "source_hash": "abe09871309e8c65a8e96aa2178047c1feaaa4339243666090ce8e33ceff8b64",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.844907+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:35:44.981864+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -21,29 +26,7 @@
         {
           "id": "item-2cea15485c58",
           "name": "下咽癌预后评估",
-          "desc": "面向下咽鳞癌术后复发率高、总体生存率低的临床难题，构建影像-基因组学预后评估模型。",
-          "evidence": [
-            {
-              "quote": "下咽鳞癌(Hypopharyngeal squamous cell carcinoma, HSCC)是头颈部常见的恶性肿瘤，存在术后复发率高和总体生存率低的临床难题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 679,
-                "end_char": 760
-              },
-              "version": "a25347a956ef8f1f0a8d"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-0e1814df1138",
-          "name": "下咽癌发病隐匿预后极差",
-          "desc": "下咽癌发病隐匿，早期诊断困难、进展迅速、预后极差，亟需挖掘早期诊断及预后的标志物。",
+          "desc": "发病隐匿、进展迅速",
           "evidence": [
             {
               "quote": "下咽癌发病隐匿，早期诊断困难、进展迅速，预后极差",
@@ -59,20 +42,20 @@
       ]
     },
     {
-      "key": "技术",
+      "key": "问题",
       "state": "has",
       "items": [
         {
-          "id": "item-d92444f5c876",
-          "name": "CT影像组学预测circMATR3表达并构建影像-基因组学模型",
-          "desc": "筛选下咽癌CT图像中与预后相关的影像组学特征，探讨CT影像组学预测circMATR3基因表达的临床价值，构建并验证基于影像-基因组学的下咽癌预后评估模型。",
+          "id": "item-a9649d821a9b",
+          "name": "精准预测下咽癌手术预后的临床迫切需要",
+          "desc": "术后复发率高、生存率低",
           "evidence": [
             {
-              "quote": "筛选下咽癌CT图像中与预后相关的影像组学特征，探讨CT影像组学预测下咽癌circMATR3基因表达的临床价值，构建基于影像-基因组学的下咽癌预后评估模型",
+              "quote": "如何精准预测下咽癌手术预后是临床的迫切需要",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 942,
-                "end_char": 1017
+                "start_char": 762,
+                "end_char": 782
               },
               "version": "a25347a956ef8f1f0a8d"
             }
@@ -81,13 +64,13 @@
       ]
     },
     {
-      "key": "成果",
+      "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-91abda54b968",
-          "name": "验证circMATR3/TRIM47/TP53等下咽癌预后标志物",
-          "desc": "挖掘并验证circMATR3、TRIM47、TP53等基因作为反映下咽癌预后的肿瘤标志物，并用机器学习与深度学习构建早期复发、隐匿性淋巴结转移等CT预测模型。",
+          "id": "item-707ffb0faa25",
+          "name": "circMATR3等预后标志物验证",
+          "desc": "circMATR3、TRIM47、TP53",
           "evidence": [
             {
               "quote": "挖掘并验证circMATR3、TRIM47、TP53等基因是否能够作为反映下咽癌预后的肿瘤标志物",
@@ -99,44 +82,442 @@
               "version": "a25347a956ef8f1f0a8d"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-22855990f530",
+          "name": "CT影像组学预测模型",
+          "desc": "早期复发、隐匿性淋巴结转移、血管浸润",
+          "evidence": [
+            {
+              "quote": "利用机器学习、深度学习挖掘与下咽癌早期复发、隐匿性淋巴结转移、微血管和淋巴管浸润等生物学行为相关的影像组学信息，并构建CT预测模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2800,
+                "end_char": 2864
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-671388c293fb",
+          "name": "单细胞、空间转录组与生境影像组学",
+          "desc": "解析肿瘤微环境与空间异质性",
+          "evidence": [
+            {
+              "quote": "通过单细胞测序、空间转录组学技术和生境影像组学等多组学技术的结合使用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2868,
+                "end_char": 2901
+              },
+              "version": "a25347a956ef8f1f0a8d"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "未提及",
+      "items": []
+    }
+  ],
+  "relations": [],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "小儿气管炎性肌纤维母细胞瘤1例",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "覃时超;魏东敏;徐晨阳;苏同东;雷大鹏",
+      "id": "out-a0048f771609",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 小儿气管炎性肌纤维母细胞瘤1例 — 覃时超;魏东敏;徐晨阳;苏同东;雷大鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2972,
+            "end_char": 3015
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Serum leptin and adiponectin function as indicators of allergic sensitization in pediatric adenotonsillar hypertrophy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chaojie Li;Ruixiang Guo;Yanyan Liu;Yijing Zhang;Yan Yang;Shoujie Ni;Xiaojing Sun;Huayang Liu;Zehua Zhao;Yanzhong Li;Juanjuan Zou;Yan Wang;Dapeng Lei",
+      "id": "out-76444036c512",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Serum leptin and adiponectin function as indicators of allergic sensitization in pediatric adenotonsillar hypertrophy — Chaojie Li;Ruixiang Guo;Yanyan Liu;Yijing Zhang;Yan Yang;Shoujie Ni;Xiaojing Sun;Huayang Liu;Zehua Zhao;Yanzhong Li;Juanjuan Zou;Yan Wang;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3020,
+            "end_char": 3294
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Characterization of the immune cell function landscape in head and neck squamous carcinoma to assist in prognosis prediction and immunotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenlun Wang;Zhouyi Zhang;Wenming Li;Dongmin Wei;Jianing Xu;Ye Qian;Shengda Cao;Dapeng Lei",
+      "id": "out-d0c84d7e23df",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Characterization of the immune cell function landscape in head and neck squamous carcinoma to assist in prognosis prediction and immunotherapy — Wenlun Wang;Zhouyi Zhang;Wenming Li;Dongmin Wei;Jianing Xu;Ye Qian;Shengda Cao;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3299,
+            "end_char": 3539
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "空间组学技术在头颈部肿瘤个体化诊疗中的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "徐晨阳;王寅;魏东敏;李文明;钱晔;潘新良;雷大鹏",
+      "id": "out-a7ca7bce3fef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 空间组学技术在头颈部肿瘤个体化诊疗中的研究进展 — 徐晨阳;王寅;魏东敏;李文明;钱晔;潘新良;雷大鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3544,
+            "end_char": 3601
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于CT影像组学构建下咽癌及头颈肿瘤预测模型的研究进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王寅;雷大鹏",
+      "id": "out-318058ac3e6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 基于CT影像组学构建下咽癌及头颈肿瘤预测模型的研究进展 — 王寅;雷大鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3606,
+            "end_char": 3648
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "[Research progress in CT-based radiomics constructing hypopharyngeal cancer and multisystem tumor prediction model].",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yin Wang;Dapeng Lei",
+      "id": "out-30e13d132551",
+      "evidence": [
+        {
+          "quote": "[期刊论文] [Research progress in CT-based radiomics constructing hypopharyngeal cancer and multisystem tumor prediction model]. — Yin Wang;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3653,
+            "end_char": 3797
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Role of IGF2BPs in head and neck squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kainan Wu;Fen Chang;Wenming Li;Tongdong Su;Dapeng Lei",
+      "id": "out-f2b255502fb3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Role of IGF2BPs in head and neck squamous cell carcinoma — Kainan Wu;Fen Chang;Wenming Li;Tongdong Su;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3802,
+            "end_char": 3920
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Comparing three-dimensional and two-dimensional deep-learning, radiomics, and fusion models for predicting occult lymph node metastasis in laryngeal squamous cell carcinoma based on CT imaging: a multicentre, retrospective, diagnostic study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenlun Wang;Hui Liang;Zhouyi Zhang;Chenyang Xu;Dongmin Wei;Wenming Li;Ye Qian;Lihong Zhang;Jun Liu;Dapeng Lei",
+      "id": "out-53882e17b8c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Comparing three-dimensional and two-dimensional deep-learning, radiomics, and fusion models for predicting occult lymph node metastasis in laryngeal squamous cell carcinoma based on CT imaging: a multicentre, retrospective, diagnostic study — Wenlun Wang;Hui Liang;Zhouyi Zhang;Chenyang Xu;Dongmin Wei;Wenming Li;Ye Qian;Lihong Zhang;Jun Liu;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3925,
+            "end_char": 4283
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Spatial transcriptomics reveal tumor microenvironment and SLCO2A1 correlated with tumor suppression in hypopharyngeal squamous cell carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ce Li;Rui Guan;Ruijie Jiao;Yin Wang;Chengfu Cui;Shengda Cao 1;Fen Chang;Ran Wei;Zinan Li;Zhiwei Liu;Neil D Gross;Guojun Li;Wenming Li;Dongmin Wei;Dapeng Lei",
+      "id": "out-f83bf7bed8c1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Spatial transcriptomics reveal tumor microenvironment and SLCO2A1 correlated with tumor suppression in hypopharyngeal squamous cell carcinoma — Ce Li;Rui Guan;Ruijie Jiao;Yin Wang;Chengfu Cui;Shengda Cao 1;Fen Chang;Ran Wei;Zinan Li;Zhiwei Liu;Neil D Gross;Guojun Li;Wenming Li;Dongmin Wei;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4594
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics analysis of CT imaging improves preoperative prediction of cervical lymph node metastasis in laryngeal squamous cell carcinoma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xingguo Zhao;Wenming Li;Jiulou Zhang;Shui Tian;Yang Zhou;Xiaoquan Xu;Hao Hu;Dapeng Lei;Xiao-Quan Xu",
+      "id": "out-59c0bf03677b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics analysis of CT imaging improves preoperative prediction of cervical lymph node metastasis in laryngeal squamous cell carcinoma. — Xingguo Zhao;Wenming Li;Jiulou Zhang;Shui Tian;Yang Zhou;Xiaoquan Xu;Hao Hu;Dapeng Lei;Xiao-Quan Xu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4600,
+            "end_char": 4845
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "经腋无充气腔镜辅助与颈部开放手术治疗PTC的疗效评价:单中心342例报告",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "宋文华;魏东敏;李文明;钱晔;陈东彦;徐晨阳;张洲译;潘新良;雷大鹏",
+      "id": "out-33b3b98f6807",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 经腋无充气腔镜辅助与颈部开放手术治疗PTC的疗效评价:单中心342例报告 — 宋文华;魏东敏;李文明;钱晔;陈东彦;徐晨阳;张洲译;潘新良;雷大鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4851,
+            "end_char": 4930
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "累及喉、气管的甲状腺乳头状癌的手术治疗分析",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "夏同良;徐晨阳;魏东敏;钱晔;李文明;潘新良;雷大鹏",
+      "id": "out-730e9c5e9a0a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 累及喉、气管的甲状腺乳头状癌的手术治疗分析 — 夏同良;徐晨阳;魏东敏;钱晔;李文明;潘新良;雷大鹏",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4936,
+            "end_char": 4992
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiomics Model Based on Contrast-enhanced CT Intratumoral and Peritumoral Features for Predicting Lymphovascular Invasion in Hypopharyngeal Squamous Cell Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyang Xu;Yifan Ju;Zhiwei Liu;Changling Li;Shengda Cao;Tongliang Xia;Dongmin Wei;Wenming Li;Ye Qian;Dapeng Lei",
+      "id": "out-2a30f32eba6d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiomics Model Based on Contrast-enhanced CT Intratumoral and Peritumoral Features for Predicting Lymphovascular Invasion in Hypopharyngeal Squamous Cell Carcinoma — Chenyang Xu;Yifan Ju;Zhiwei Liu;Changling Li;Shengda Cao;Tongliang Xia;Dongmin Wei;Wenming Li;Ye Qian;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4998,
+            "end_char": 5283
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "CYP4F12 is a potential biomarker and inhibits cell migration of head and neck squamous cell carcinoma via EMT pathway",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenming Jia;Shuai Chen;Ran Wei;Xiaoqi Yang;Minfa Zhang;Ye Qian;Heng Liu;Dapeng Lei",
+      "id": "out-85aa7dff1a84",
+      "evidence": [
+        {
+          "quote": "[期刊论文] CYP4F12 is a potential biomarker and inhibits cell migration of head and neck squamous cell carcinoma via EMT pathway — Wenming Jia;Shuai Chen;Ran Wei;Xiaoqi Yang;Minfa Zhang;Ye Qian;Heng Liu;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5289,
+            "end_char": 5497
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "TRIM47 promotes hypopharyngeal and laryngeal cancers progression through promoting K63‐linked ubiquitination of vimentin",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shichao Qin;Fen Chang;Xiangkai Sun;Zinan Li;Yin Wang;Dapeng Lei",
+      "id": "out-09e53ddfcf98",
+      "evidence": [
+        {
+          "quote": "[期刊论文] TRIM47 promotes hypopharyngeal and laryngeal cancers progression through promoting K63‐linked ubiquitination of vimentin — Shichao Qin;Fen Chang;Xiangkai Sun;Zinan Li;Yin Wang;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5503,
+            "end_char": 5695
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Identify metabolism-related genes IDO1, ALDH2, NCOA2, SLC7A5, SLC3A2, LDHB, and HPRT1 as potential prognostic markers and correlate with immune infiltrates in head and neck squamous cell carcinoma.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ce Li;Shuai Chen;Wenming Jia;Wenming Li;Dongmin Wei;Shengda Cao;Ye Qian;Rui Guan;Heng Liu;Dapeng Lei",
+      "id": "out-1b8d1441c600",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Identify metabolism-related genes IDO1, ALDH2, NCOA2, SLC7A5, SLC3A2, LDHB, and HPRT1 as potential prognostic markers and correlate with immune infiltrates in head and neck squamous cell carcinoma. — Ce Li;Shuai Chen;Wenming Jia;Wenming Li;Dongmin Wei;Shengda Cao;Ye Qian;Rui Guan;Heng Liu;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5701,
+            "end_char": 6007
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A novel surgical approach for hypopharyngeal carcinoma resection via the paraglottic space",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Wenming;Wei Dongmin;Qian Ye;Cao Shengda;Liu Dayu;Lei Dapeng;Pan Xinliang",
+      "id": "out-97410ef0eccb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A novel surgical approach for hypopharyngeal carcinoma resection via the paraglottic space — Li Wenming;Wei Dongmin;Qian Ye;Cao Shengda;Liu Dayu;Lei Dapeng;Pan Xinliang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6013,
+            "end_char": 6187
+          },
+          "version": "a25347a956ef8f1f0a8d"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of lipid-modifying therapy with risk of obstructive sleep apnea: A drug-target mendelian randomization study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Juanjuan Zou;Shengnan Qi;Xiaojing Sun;Yijing Zhang;Yan Wang;Yanzhong Li;Ze-Hua Zhao;Dapeng Lei",
+      "id": "out-3a8b8b8ddd76",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of lipid-modifying therapy with risk of obstructive sleep apnea: A drug-target mendelian randomization study — Juanjuan Zou;Shengnan Qi;Xiaojing Sun;Yijing Zhang;Yan Wang;Yanzhong Li;Ze-Hua Zhao;Dapeng Lei",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6193,
+            "end_char": 6416
+          },
+          "version": "a25347a956ef8f1f0a8d"
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2cea15485c58"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-0e1814df1138"
-      },
-      "basis": "原文明示"
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 18,
+        "extracted": 18
+      }
     },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-0e1814df1138"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d92444f5c876"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d92444f5c876"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-91abda54b968"
-      },
-      "basis": "原文明示"
-    }
-  ]
+    "consistent": true
+  }
 }

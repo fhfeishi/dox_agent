@@ -2,15 +2,20 @@
   "doc_id": "90982e72c998d4246712",
   "version": "c242a1b487ada5b20860",
   "source_hash": "699c93a62b164201bdbc478dbc07ba386433432235eb2b3089872d4eb2e212b3",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.894168+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:49:05.422322+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9b3ad584036d",
-          "name": "局部晚期非小细胞肺癌个体化放疗",
-          "desc": "面向不可手术局部晚期NSCLC的放射治疗，基于影像与基因组学特征谱实现量体裁衣式的个体化放疗。",
+          "id": "item-8e7962b36ed8",
+          "name": "局部晚期NSCLC个体化放疗",
+          "desc": "放疗疗效和毒副反应个体差异大",
           "evidence": [
             {
               "quote": "放射治疗是不可手术局部晚期非小细胞肺癌最主要的局部治疗手段，但疗效和毒副反应个体差异很大",
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ceea7ec69ccf",
-          "name": "放疗疗效与毒副作用难以个体化预测",
-          "desc": "如何个体化预测标准治疗下局部晚期NSCLC的放疗疗效和毒副作用，以及如何突破常规剂量分割与射线选择筛选最优放疗模式，是实现个体化放疗的两大难题。",
+          "id": "item-5d4818dcaa74",
+          "name": "个体化预测标准治疗下放疗疗效与毒副作用",
+          "desc": "影像组学和二代测序为潜在方法",
           "evidence": [
             {
-              "quote": "如何个体化预测标准治疗下局部晚期NSCLC的放疗疗效和毒副作用？",
+              "quote": "如何个体化预测标准治疗下局部晚期NSCLC的放疗疗效和毒副作用",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 750,
-                "end_char": 781
+                "end_char": 780
               },
               "version": "c242a1b487ada5b20860"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d5942bc5ea13",
-          "name": "PET影像组学与二代测序结合类器官模型的个体化放疗",
-          "desc": "构建局部晚期NSCLC影像与基因资源库，采用PET影像组学与二代基因测序预测疗效与毒副作用，并借人源肿瘤与肺组织类器官库筛选最优剂量、分割与射线模式。",
+          "id": "item-0300bd776290",
+          "name": "多组学模型预测dCRT预后与放疗毒性",
+          "desc": "整合基线临床数据、CT图像与遗传信息",
           "evidence": [
             {
-              "quote": "PET影像组学和二代基因测序是潜在解决方法",
+              "quote": "通过整合基线临床数据、CT图像和遗传信息的多组学模型预测局部晚期NSCLC患者dCRT的预后和放疗毒性，发现多组学模型相对单一组学的模型具有优越性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 782,
-                "end_char": 802
+                "start_char": 2978,
+                "end_char": 3050
               },
               "version": "c242a1b487ada5b20860"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-70a6c9928b5c",
+          "name": "18F-FAPI与18F-FDG PET/CT影像组学",
+          "desc": "预测放化疗疗效、毒性、预后和复发模式",
+          "evidence": [
+            {
+              "quote": "基于影像和基因组学资源库，探索18F-FAPI PET/CT和18F-FDG PET/CT等影像组学特征在预测NSCLC患者放化疗疗效、毒性、预后和复发模式的研究",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2827,
+                "end_char": 2907
+              },
+              "version": "c242a1b487ada5b20860"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,58 +108,360 @@
       "state": "has",
       "items": [
         {
-          "id": "item-60d2d21d66e1",
-          "name": "构建影像与基因组学放化疗疗效毒副作用综合预测模型",
-          "desc": "构建标准治疗条件下影像与基因组学的局部晚期NSCLC放化疗疗效和毒副作用综合预测模型，发现多组学模型优于单一组学模型，并揭示放化疗毒性与疗效的新型预测生物标志物。",
+          "id": "item-52e0df05593a",
+          "name": "局部晚期NSCLC影像与基因组学资源库",
+          "desc": "PET/CT、CT与二代测序",
           "evidence": [
             {
-              "quote": "构建了标准治疗条件下影像和基因组学的局部晚期NSCLC放化疗疗效和毒副作用的综合预测模型",
+              "quote": "我们建立了局部晚期NSCLC的影像（PET/CT和CT）和基因组学（二代基因组测序数据）资源库",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2747,
-                "end_char": 2790
+                "start_char": 2692,
+                "end_char": 2738
               },
               "version": "c242a1b487ada5b20860"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-9b3ad584036d"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-ceea7ec69ccf"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effects of Radiotherapy and Chemotherapy on Platelet in Patients with Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Shanshan Tang;Li Li;Shuanghu Yuan",
+      "id": "out-591aa8ceebd7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effects of Radiotherapy and Chemotherapy on Platelet in Patients with Lung Cancer — Shanshan Tang;Li Li;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3070,
+            "end_char": 3193
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-ceea7ec69ccf"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-d5942bc5ea13"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Diagnostic Value of 18F-NOTA-FAPI PET/CT in a Rat Model of Radiation-Induced Lung Damage",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueting Qin;Shijie Wang;Xiaoli Liu;Jinghao Duan;Kai Cheng;Zhengshuai Mu;Jing Jia;Yuchun Wei;Shuanghu Yuan",
+      "id": "out-f6bbe978e663",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Diagnostic Value of 18F-NOTA-FAPI PET/CT in a Rat Model of Radiation-Induced Lung Damage — Xueting Qin;Shijie Wang;Xiaoli Liu;Jinghao Duan;Kai Cheng;Zhengshuai Mu;Jing Jia;Yuchun Wei;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3198,
+            "end_char": 3400
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d5942bc5ea13"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-60d2d21d66e1"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pre-treatment F-18-RGD Uptake may Predict Adverse Events during ApatinibAntiangiogenic Therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Li;Jinsong Zheng;Zhiguo Liu;Yong Huang;Jun Xiao;Suzhen Wang;Qingxi Yu;Qiang Zhang;Xudong Hu;Wei Zhao;Wenhong Hou;Fengming Kong;Jinming Yu;Shuanghu Yuan",
+      "id": "out-9f9ca5dfbd51",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pre-treatment F-18-RGD Uptake may Predict Adverse Events during ApatinibAntiangiogenic Therapy — Li Li;Jinsong Zheng;Zhiguo Liu;Yong Huang;Jun Xiao;Suzhen Wang;Qingxi Yu;Qiang Zhang;Xudong Hu;Wei Zhao;Wenhong Hou;Fengming Kong;Jinming Yu;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3405,
+            "end_char": 3662
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "新型功能影像与分⼦标记指导肿瘤精准诊疗新技术研发与应⽤",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "袁双虎;张现忠;魏玉春;李莉;刘宁;赵芬;郭志德;段敬豪",
+      "id": "out-d5fa0bfa055a",
+      "evidence": [
+        {
+          "quote": "[奖励] 新型功能影像与分⼦标记指导肿瘤精准诊疗新技术研发与应⽤ — 袁双虎;张现忠;魏玉春;李莉;刘宁;赵芬;郭志德;段敬豪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3667,
+            "end_char": 3729
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Radiogenomics models for predicting prognosis in locally advanced non-small cell lung cancer patients undergoing definitive chemoradiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoyu Song;Li Li;Qingxi Yu;Ning Liu;Shouhui Zhu;Shuanghu Yuan",
+      "id": "out-36c3071022c9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Radiogenomics models for predicting prognosis in locally advanced non-small cell lung cancer patients undergoing definitive chemoradiotherapy — Xiaoyu Song;Li Li;Qingxi Yu;Ning Liu;Shouhui Zhu;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3734,
+            "end_char": 3946
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Increased 18F-FAPI uptake in bones and joints of lung cancer patients: characteristics and distributions",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiaoli Liu;Shoumei Yan;Xueting Qin;Kai Cheng;Jinsong Zheng;Hongbo Wu;Yuchun Wei;Shuanghu Yuan",
+      "id": "out-527d3efab64e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Increased 18F-FAPI uptake in bones and joints of lung cancer patients: characteristics and distributions — Xiaoli Liu;Shoumei Yan;Xueting Qin;Kai Cheng;Jinsong Zheng;Hongbo Wu;Yuchun Wei;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3951,
+            "end_char": 4157
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recurrence/prognosis estimation using a molecularly positive surgical margin-based model calls for alternative curative strategies in pIIIA/N2 NSCLC",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Li Li;Kewen He;Tao Zhou;Yang Xu;Jiaohui Pang;Qingxi Yu;Yongsheng Gao;Hongjin Shi;He Zhu;Mengke Li;Jinming Yu;Shuanghu Yuan",
+      "id": "out-ef4bf79d2f12",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recurrence/prognosis estimation using a molecularly positive surgical margin-based model calls for alternative curative strategies in pIIIA/N2 NSCLC — Li Li;Kewen He;Tao Zhou;Yang Xu;Jiaohui Pang;Qingxi Yu;Yongsheng Gao;Hongjin Shi;He Zhu;Mengke Li;Jinming Yu;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4162,
+            "end_char": 4441
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genomic Profiling Reveals Novel Predictive Biomarkers for Chemo-Radiotherapy Efficacy and Thoracic Toxicity in Non-Small-Cell Lung Cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Kewen He;Shaotong Zhang;Jiaohui Pang;Jiani C Yin;Dianbin Mu;Jun Wang;Hong Ge;Jie Ma;Zhe Yang;Xiaoli Zheng;Lihua Dong;Junli Zhang;Pengyu Chang;Li Li;Shanshan Tang;Hua Bao;Xue Wu;Xiaonan Wang;Yang Shao;Jinming Yu;Shuanghu Yuan",
+      "id": "out-7603d944677d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genomic Profiling Reveals Novel Predictive Biomarkers for Chemo-Radiotherapy Efficacy and Thoracic Toxicity in Non-Small-Cell Lung Cancer — Kewen He;Shaotong Zhang;Jiaohui Pang;Jiani C Yin;Dianbin Mu;Jun Wang;Hong Ge;Jie Ma;Zhe Yang;Xiaoli Zheng;Lihua Dong;Junli Zhang;Pengyu Chang;Li Li;Shanshan Tang;Hua Bao;Xue Wu;Xiaonan Wang;Yang Shao;Jinming Yu;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4446,
+            "end_char": 4816
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肺癌放疗联合分子靶向和免疫治疗的关键机制与临床应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于金明;邢力刚;邓刘福;陈大卫;伍钢;袁响林;周彩存;袁双虎;邵阳;王泉人",
+      "id": "out-cd3d4eecb3fa",
+      "evidence": [
+        {
+          "quote": "[奖励] 肺癌放疗联合分子靶向和免疫治疗的关键机制与临床应用 — 于金明;邢力刚;邓刘福;陈大卫;伍钢;袁响林;周彩存;袁双虎;邵阳;王泉人",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4821,
+            "end_char": 4890
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early and Accurate Detection of Radiation-induced Heart Damage by Cardiodynamicsgram",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuanyuan Tao;Qinghua Sun;Yuchun Wei;Chunmiao Liang;Shanshan Tang;Jiali Li;Jinli Pei;Yang Li;Cong Wang;Shuanghu Yuan",
+      "id": "out-42a27b11fd2b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early and Accurate Detection of Radiation-induced Heart Damage by Cardiodynamicsgram — Yuanyuan Tao;Qinghua Sun;Yuchun Wei;Chunmiao Liang;Shanshan Tang;Jiali Li;Jinli Pei;Yang Li;Cong Wang;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4896,
+            "end_char": 5104
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recurrence patterns are significantly associated with the 18 F-FDG PET/CT radiomic features of patients with locally advanced non-small cell lung cancer treated with chemoradiotherapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wenju Liu;Xu Qiao;Hong Ge;Sheng Zhang;Xiaojiang Sun;Jiancheng Li;Weilin Chen;Wendong Gu;Shuanghu Yuan",
+      "id": "out-a400e6402307",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recurrence patterns are significantly associated with the 18 F-FDG PET/CT radiomic features of patients with locally advanced non-small cell lung cancer treated with chemoradiotherapy — Wenju Liu;Xu Qiao;Hong Ge;Sheng Zhang;Xiaojiang Sun;Jiancheng Li;Weilin Chen;Wendong Gu;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5110,
+            "end_char": 5403
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Early diagnosis of brain metastases using cerebrospinal fluid cell-free DNA-based breakpoint motif and mutational features in lung cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueting Qin;Yujun Bai;Shizhen Zhou;Hongjin Shi;Xiaoli Liu;Song Wang;Xiaoying Wu;Jiaohui Pang;Xi Song;Xiaojun Fan;Qiuxiang Ou;Yang Xu;Hua Bao;Li Li;Jun Li;Yang Shao;Shuanghu Yuan",
+      "id": "out-9e6b7f3302d6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Early diagnosis of brain metastases using cerebrospinal fluid cell-free DNA-based breakpoint motif and mutational features in lung cancer — Xueting Qin;Yujun Bai;Shizhen Zhou;Hongjin Shi;Xiaoli Liu;Song Wang;Xiaoying Wu;Jiaohui Pang;Xi Song;Xiaojun Fan;Qiuxiang Ou;Yang Xu;Hua Bao;Li Li;Jun Li;Yang Shao;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5409,
+            "end_char": 5732
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tertiary lymphoid structures combined with biomarkers of inflammation are associated with the efficacy of neoadjuvant immunochemotherapy in resectable non-small cell lung cancer: A retrospective study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Fuhao Xu;He Zhu;Dali Xiong;Kang Wang;Yinjun Dong;Li Li;Shuanghu Yuan",
+      "id": "out-87e9e2edebc7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tertiary lymphoid structures combined with biomarkers of inflammation are associated with the efficacy of neoadjuvant immunochemotherapy in resectable non-small cell lung cancer: A retrospective study — Fuhao Xu;He Zhu;Dali Xiong;Kang Wang;Yinjun Dong;Li Li;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5738,
+            "end_char": 6015
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "分子功能影像引导肿瘤精准放射治疗及个体化诊疗研究",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈少卿;袁双虎;李勇;李莉;邱凌平;胡明斌;魏玉春;刘宁;张凌;赵芬;祝守慧",
+      "id": "out-b32e7401dc02",
+      "evidence": [
+        {
+          "quote": "[奖励] 分子功能影像引导肿瘤精准放射治疗及个体化诊疗研究 — 陈少卿;袁双虎;李勇;李莉;邱凌平;胡明斌;魏玉春;刘宁;张凌;赵芬;祝守慧",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6021,
+            "end_char": 6090
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Novel model integrating computed tomography-based image markers with genetic markers for discriminating radiation pneumonitis in patients with unresectable stage III non-small cell lung cancer receiving radiotherapy: a retrospective multi-center radiogenomics study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jiaran Li;Li Li;Shanshan Tang;Qingxi Yu;Wenju Liu;Ning Liu;Fengchang Yang;Dexian Zhang;Shuanghu Yuan",
+      "id": "out-d1184701797d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Novel model integrating computed tomography-based image markers with genetic markers for discriminating radiation pneumonitis in patients with unresectable stage III non-small cell lung cancer receiving radiotherapy: a retrospective multi-center radiogenomics study — Jiaran Li;Li Li;Shanshan Tang;Qingxi Yu;Wenju Liu;Ning Liu;Fengchang Yang;Dexian Zhang;Shuanghu Yuan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6096,
+            "end_char": 6470
+          },
+          "version": "c242a1b487ada5b20860"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 15,
+    "listed": 15,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 3
+      }
+    },
+    "consistent": true
+  }
 }

@@ -2,15 +2,20 @@
   "doc_id": "381914f4920740ac9c6f",
   "version": "5d151bef399cf0cef18a",
   "source_hash": "428ec8624833bb77e86181e1b2b934d41bb09317aaecd135bf76f8f8ff88d42b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T14:31:49.151938+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:37:20.038327+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,9 +24,31 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c43fcea1cadc",
-          "name": "肝细胞癌分子影像学早期诊断",
-          "desc": "面向肝细胞癌早期诊治，构建靶向肿瘤微环境的MRI-荧光双增强分子影像探针实现早诊早治。",
+          "id": "item-46ae8805aec5",
+          "name": "肝癌分子影像探针",
+          "desc": "肝癌微环境响应磁共振/荧光成像",
+          "evidence": [
+            {
+              "quote": "项目团队围绕着肝癌肿瘤微环境响应的高特异、高灵敏磁共振/荧光成像探针研究总体目标",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3020,
+                "end_char": 3059
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "问题",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-98f541e450b0",
+          "name": "HCC发病隐匿、进展迅速、死亡率高",
+          "desc": "需癌变早期分子影像诊断",
           "evidence": [
             {
               "quote": "肝细胞癌(HCC)具有发病隐匿、进展迅速、恶性程度高、死亡率高的特征",
@@ -37,57 +64,13 @@
       ]
     },
     {
-      "key": "问题",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-f0d6a3115ab4",
-          "name": "HCC癌变早期缺乏分子影像学诊断方法",
-          "desc": "若能在癌变早期建立分子影像学诊断方法，可为患者争取更早的治疗时间，对HCC治疗与预后具有重要意义。",
-          "evidence": [
-            {
-              "quote": "若能够在癌变早期建立分子影像学诊断方法，为患者争取更早的治疗时间，对HCC治疗与预后具有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 730,
-                "end_char": 777
-              },
-              "version": "5d151bef399cf0cef18a"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "key": "技术",
       "state": "has",
       "items": [
         {
-          "id": "item-ce9dd2be6c94",
-          "name": "酶响应型自组装MRI-荧光双增强探针",
-          "desc": "构建肝癌微环境响应的自组装MRI-荧光双增强探针，兼具GPC-3抗体靶向、MMP-9酶切诱导自组装增强MRI效应与酶切响应荧光成像功能。",
-          "evidence": [
-            {
-              "quote": "本项目拟构建肝癌微环境响应的自组装MRI-荧光双增强探针",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 779,
-                "end_char": 806
-              },
-              "version": "5d151bef399cf0cef18a"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-ee77c4a1ea31",
-          "name": "制备MMP-9酶切响应磁共振-荧光双模探针",
-          "desc": "以肝癌微环境高表达的MMP-9为响应靶点制备酶切响应型多肽自组装双模成像增强探针，在不同转移能力的人肝癌细胞及动物模型上验证特异性与灵敏度；发表SCI论文18篇，申请发明专利12项（授权2项）。",
+          "id": "item-099963da393b",
+          "name": "MMP-9酶切响应自组装MRI-荧光双模探针",
+          "desc": "酶切响应型多肽自组装",
           "evidence": [
             {
               "quote": "以肝癌微环境特异性高表达的基质金属蛋白酶-9(MMP-9)为响应靶点，制备出酶切响应型多肽自组装诱导的磁共振-荧光双模成像增强探针",
@@ -99,44 +82,682 @@
               "version": "5d151bef399cf0cef18a"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-293cb40a9505",
+          "name": "ATP响应型T1-T2双模磁共振探针",
+          "desc": "三磷酸腺苷响应",
+          "evidence": [
+            {
+              "quote": "发展了三磷酸腺苷响应型T1-T2双模磁共振成像探针",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3166,
+                "end_char": 3190
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-9cca6ac58f24",
+          "name": "探针特异性与灵敏度验证",
+          "desc": "不同转移能力肝癌细胞及动物模型",
+          "evidence": [
+            {
+              "quote": "在不同转移能力的人肝癌细胞及其动物模型上验证了探针的特异性与成像灵敏度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3325,
+                "end_char": 3359
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-22b21e9a2325",
+          "name": "论文与专利",
+          "desc": "SCI论文18篇，发明专利申请12项授权2项",
+          "evidence": [
+            {
+              "quote": "本项目发表SCI论文18篇，主编出版英文论著1部；申请发明专利12项，获授权2项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3457,
+                "end_char": 3496
+              },
+              "version": "5d151bef399cf0cef18a"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-c43fcea1cadc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-f0d6a3115ab4"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种七甲川羧基吲哚花菁染料及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李娟;吴爱国;袁博;蒋振奇",
+      "id": "out-9b966ddacf3e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种七甲川羧基吲哚花菁染料及其制备方法和应用 — 李娟;吴爱国;袁博;蒋振奇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3729,
+            "end_char": 3771
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-f0d6a3115ab4"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-ce9dd2be6c94"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种主动靶向多模态分子影像探针及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;王胤杰;李娟;曹奕",
+      "id": "out-c9d6a758f9d4",
+      "evidence": [
+        {
+          "quote": "[专利] 一种主动靶向多模态分子影像探针及其制备方法和应用 — 吴爱国;王胤杰;李娟;曹奕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3776,
+            "end_char": 3820
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ce9dd2be6c94"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-ee77c4a1ea31"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Boosting chemodynamic therapy via a synergy of hypothermal ablation and oxidation resistance reduction",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junlie Yao;Fang Yang;Fang Zheng;Chenyang Yao;Jie Xing;Xiawei Xu;Aiguo Wu",
+      "id": "out-c5624d0e1362",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Boosting chemodynamic therapy via a synergy of hypothermal ablation and oxidation resistance reduction — Junlie Yao;Fang Yang;Fang Zheng;Chenyang Yao;Jie Xing;Xiawei Xu;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3825,
+            "end_char": 4008
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Recent advances in matrix metalloproteinases-responsive nanoprobes for cancer diagnosis and therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiuye Wang;Haijing Cui;Ning Gan;Xuehua Ma;Wenzhi Ren;Aiguo Wu",
+      "id": "out-a413cdc4b9a5",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Recent advances in matrix metalloproteinases-responsive nanoprobes for cancer diagnosis and therapy — Qiuye Wang;Haijing Cui;Ning Gan;Xuehua Ma;Wenzhi Ren;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4013,
+            "end_char": 4182
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Fluorescent carbon dots with excellent moisture retention capability for moisturizing lipstick",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chen Dong;Mingsheng Xu;Shuna Wang;Menghui Ma;Ozioma U. Akakuru;Haizhen Ding;Aiguo Wu;Zhengbao Zha;Xuemei Wang;Hong Bi",
+      "id": "out-e916fe2badc3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Fluorescent carbon dots with excellent moisture retention capability for moisturizing lipstick — Chen Dong;Mingsheng Xu;Shuna Wang;Menghui Ma;Ozioma U. Akakuru;Haizhen Ding;Aiguo Wu;Zhengbao Zha;Xuemei Wang;Hong Bi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4407
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Dual-infinite coordination polymers-engineered nanomedicines for dual-ions interference-mediated oxidative stress-dependent tumor suppression",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junlie Yao;Jie Xing;Fang Zheng;Zihou Li;Shunxiang Li;Xiawei Xu;Devrim Unay;Young Min Song;Fang Yang;Aiguo Wu",
+      "id": "out-f816e5a2af6a",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Dual-infinite coordination polymers-engineered nanomedicines for dual-ions interference-mediated oxidative stress-dependent tumor suppression — Junlie Yao;Jie Xing;Fang Zheng;Zihou Li;Shunxiang Li;Xiawei Xu;Devrim Unay;Young Min Song;Fang Yang;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4412,
+            "end_char": 4670
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "An intelligent tumor microenvironment responsive nanotheranostic agent for T1/T2 dual-modal magnetic resonance imaging-guided and self-augmented photothermal therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Junlie Yao;Fang Zheng;Fang Yang;Chenyang Yao;Jie Xing;Zihou Li;Sijia Sun;Jia Chen;Xiawei Xu;Yi Cao;Norbert Hampp;Aiguo Wu",
+      "id": "out-ed1f64bc8ed9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] An intelligent tumor microenvironment responsive nanotheranostic agent for T1/T2 dual-modal magnetic resonance imaging-guided and self-augmented photothermal therapy — Junlie Yao;Fang Zheng;Fang Yang;Chenyang Yao;Jie Xing;Zihou Li;Sijia Sun;Jia Chen;Xiawei Xu;Yi Cao;Norbert Hampp;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4675,
+            "end_char": 4970
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种靶向纳米复合物及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;李彦莹;李娟",
+      "id": "out-c0dbaaf1fc1b",
+      "evidence": [
+        {
+          "quote": "[专利] 一种靶向纳米复合物及其制备方法和应用 — 吴爱国;李彦莹;李娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4975,
+            "end_char": 5010
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Nanobiosensors: from design to applications",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Aiguo Wu;Waheed S. Khan",
+      "id": "out-54bf4470252e",
+      "evidence": [
+        {
+          "quote": "[专著] Nanobiosensors: from design to applications — Aiguo Wu;Waheed S. Khan",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5015,
+            "end_char": 5088
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Mn-doped Ti-based MOFs for magnetic resonance imaging-guided synergistic microwave thermal and microwave dynamic therapy of liver cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qiongyu Qin;Ming Yang;Yu Shi;Haijing Cui;Chunshu Pan;Wenzhi Ren;Aiguo Wu;Jianqing Hu",
+      "id": "out-9b69e5f5b533",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Mn-doped Ti-based MOFs for magnetic resonance imaging-guided synergistic microwave thermal and microwave dynamic therapy of liver cancer — Qiongyu Qin;Ming Yang;Yu Shi;Haijing Cui;Chunshu Pan;Wenzhi Ren;Aiguo Wu;Jianqing Hu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5094,
+            "end_char": 5323
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Self-assembled, biocompatible and biodegradable TEMPO-conjugated nanoparticles enable folate-targeted tumor magnetic resonance imaging",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ozioma Udochukwu Akakuru;M. Zubair Iqbal;Chuang Liu;Jie Xing;Zhenni Wei;Zhenqi Jiang;Qianlan Fang;Bo Yuan;Elvis Ikechukwu Nosike;Jianbi Xia;Yinhua Jin;Jianjun Zheng;Aiguo Wu",
+      "id": "out-450fcd1e4c37",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Self-assembled, biocompatible and biodegradable TEMPO-conjugated nanoparticles enable folate-targeted tumor magnetic resonance imaging — Ozioma Udochukwu Akakuru;M. Zubair Iqbal;Chuang Liu;Jie Xing;Zhenni Wei;Zhenqi Jiang;Qianlan Fang;Bo Yuan;Elvis Ikechukwu Nosike;Jianbi Xia;Yinhua Jin;Jianjun Zheng;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5329,
+            "end_char": 5645
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种响应型同位素靶向药物及其制备方法和应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;蒋振奇;李娟",
+      "id": "out-a70dcb2a8f70",
+      "evidence": [
+        {
+          "quote": "[专利] 一种响应型同位素靶向药物及其制备方法和应用 — 吴爱国;蒋振奇;李娟",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5651,
+            "end_char": 5689
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Chemotherapeutic nanomaterials in tumor boundary delineation: prospects for effective tumor treatment",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ozioma Udochukwu Akakuru;Zhoujing Zhang;Iqbal M Zubair;Chengjie Zhu;Yewei Zhang;Aiguo Wu",
+      "id": "out-ebc6dd237efa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Chemotherapeutic nanomaterials in tumor boundary delineation: prospects for effective tumor treatment — Ozioma Udochukwu Akakuru;Zhoujing Zhang;Iqbal M Zubair;Chengjie Zhu;Yewei Zhang;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5695,
+            "end_char": 5893
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ginsenoside Rk1-loaded manganese-doped hollow titania for enhancing tumor sonodynamic therapy via upregulation of intracellular reactive oxygen species",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ming Yang;Wenzhi Ren;Haijing Cui;Qiongyu Qin;Qiuye Wang;Weihao Zhu;Xiaoxia Wu;Chunshu Pan;Xiaopeng Qi;Aiguo Wu",
+      "id": "out-e3fcca7c1fce",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ginsenoside Rk1-loaded manganese-doped hollow titania for enhancing tumor sonodynamic therapy via upregulation of intracellular reactive oxygen species — Ming Yang;Wenzhi Ren;Haijing Cui;Qiongyu Qin;Qiuye Wang;Weihao Zhu;Xiaoxia Wu;Chunshu Pan;Xiaopeng Qi;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5899,
+            "end_char": 6169
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种MRI图像重建的方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;姚俊列;郑方;杜慧;杨方",
+      "id": "out-e9c12900eb5f",
+      "evidence": [
+        {
+          "quote": "[专利] 一种MRI图像重建的方法 — 吴爱国;姚俊列;郑方;杜慧;杨方",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6175,
+            "end_char": 6210
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种磁性等离子体纳米材料及其制备方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;高昊;卫珍妮;祖伯儿",
+      "id": "out-9fe257a73526",
+      "evidence": [
+        {
+          "quote": "[专利] 一种磁性等离子体纳米材料及其制备方法与应用 — 吴爱国;高昊;卫珍妮;祖伯儿",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6216,
+            "end_char": 6258
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Hsp90 inhibitor-loaded IR780 micelles for mitochondria-targeted mild-temperature photothermal therapy in xenograft models of human breast cancer",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tao Zhang;Bihan Wu;Ozioma Udochukwu Akakuru;Chenyang Yao;Shan Sun;Libin Chen;Wenzhi Ren;Aiguo Wu;Pintong Huang",
+      "id": "out-232b8746d4ab",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Hsp90 inhibitor-loaded IR780 micelles for mitochondria-targeted mild-temperature photothermal therapy in xenograft models of human breast cancer — Tao Zhang;Bihan Wu;Ozioma Udochukwu Akakuru;Chenyang Yao;Shan Sun;Libin Chen;Wenzhi Ren;Aiguo Wu;Pintong Huang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6264,
+            "end_char": 6527
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种纳米复合物及其制备方法与应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "任文智;吴爱国",
+      "id": "out-1a674222515d",
+      "evidence": [
+        {
+          "quote": "[专利] 一种纳米复合物及其制备方法与应用 — 任文智;吴爱国",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6533,
+            "end_char": 6563
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Ten‐gram‐scale facile synthesis of organogadolinium complex nanoparticles for tumor diagnosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhenni Wei;Zhenqi Jiang;Chunshu Pan;Jianbi Xia;Kaiwei Xu;Ting Xue;Bo Yuan;Ozioma Udochukwu Akakuru;Chengjie Zhu;Guilong Zhang;Zheng Mao;Xiaozhong Qiu;Aiguo Wu;Zheyu Shen",
+      "id": "out-998b875d54ef",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Ten‐gram‐scale facile synthesis of organogadolinium complex nanoparticles for tumor diagnosis — Zhenni Wei;Zhenqi Jiang;Chunshu Pan;Jianbi Xia;Kaiwei Xu;Ting Xue;Bo Yuan;Ozioma Udochukwu Akakuru;Chengjie Zhu;Guilong Zhang;Zheng Mao;Xiaozhong Qiu;Aiguo Wu;Zheyu Shen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6569,
+            "end_char": 6840
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A ZIF-90 nanoplatform loaded with an enzyme-responsive organic small-molecule probe for imaging the hypoxia status of tumor cells",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ruifen Zou;Qiuyu Gong;Zhenzhi Shi;Jianping Zheng;Jie Xing;Chuang Liu;Zhenqi Jiang;Aiguo Wu",
+      "id": "out-e99b4c6a50fa",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A ZIF-90 nanoplatform loaded with an enzyme-responsive organic small-molecule probe for imaging the hypoxia status of tumor cells — Ruifen Zou;Qiuyu Gong;Zhenzhi Shi;Jianping Zheng;Jie Xing;Chuang Liu;Zhenqi Jiang;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6846,
+            "end_char": 7074
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种复合变价金属氧化物粒子作为表面增强拉曼光谱基底的应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "林杰;吴爱国;陈天翔;马雪华",
+      "id": "out-4f3299205811",
+      "evidence": [
+        {
+          "quote": "[专利] 一种复合变价金属氧化物粒子作为表面增强拉曼光谱基底的应用 — 林杰;吴爱国;陈天翔;马雪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7080,
+            "end_char": 7129
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Black phosphorus nanosheets-based tumor microenvironment responsive multifunctional nanosystem for highly efficient photo-/sono-synergistic therapy of non-Hodgkin lymphoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xueli Zhu;Shengmin Zhang;Yi Cao;Xiaojiao Ge;Yi Huang;Feng Mao;Bo Chen;Juan Li;Youfeng Xu;Aiguo Wu",
+      "id": "out-46dedb0366dc",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Black phosphorus nanosheets-based tumor microenvironment responsive multifunctional nanosystem for highly efficient photo-/sono-synergistic therapy of non-Hodgkin lymphoma — Xueli Zhu;Shengmin Zhang;Yi Cao;Xiaojiao Ge;Yi Huang;Feng Mao;Bo Chen;Juan Li;Youfeng Xu;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7135,
+            "end_char": 7412
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种磁性纳米粒子、制备方法及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "默罕默德祖柏尔;吴爱国;马雪华",
+      "id": "out-eda3e1ffcfed",
+      "evidence": [
+        {
+          "quote": "[专利] 一种磁性纳米粒子、制备方法及其应用 — 默罕默德祖柏尔;吴爱国;马雪华",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7418,
+            "end_char": 7457
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种肿瘤靶向成像材料、其制备方法和应用.",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李娟;曹奕;吴爱国;高倩倩",
+      "id": "out-64ce888ba725",
+      "evidence": [
+        {
+          "quote": "[专利] 一种肿瘤靶向成像材料、其制备方法和应用. — 李娟;曹奕;吴爱国;高倩倩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7463,
+            "end_char": 7503
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Navigating nMOF-mediated enzymatic reactions for catalytic tumor-specific therapy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chuang Liu;Junlie Yao;Jiapeng Hu;Ozioma Udochukwu Akakuru;Shan Sun;Tianxiang Chen;Aiguo Wu",
+      "id": "out-04c5af1fda33",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Navigating nMOF-mediated enzymatic reactions for catalytic tumor-specific therapy — Chuang Liu;Junlie Yao;Jiapeng Hu;Ozioma Udochukwu Akakuru;Shan Sun;Tianxiang Chen;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7509,
+            "end_char": 7689
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种具有双(多)光子激发的近红外荧光分子及其合成方法",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨方;吴爱国;王洪森",
+      "id": "out-dc68d1673f87",
+      "evidence": [
+        {
+          "quote": "[专利] 一种具有双(多)光子激发的近红外荧光分子及其合成方法 — 杨方;吴爱国;王洪森",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7695,
+            "end_char": 7738
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A hybrid organo-nanotheranostic platform of superlative biocompatibility for near-infrared-triggered fluorescence imaging and synergistically enhanced ablation of tumors",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Ozioma Udochukwu Akakuru;Chuang Liu;M. Zubair Iqbal;Gohar Ijaz Dar;Gao Yang;Kun Qian;Elvis Ikechukwu Nosike;Jie Xing;Zhoujing Zhang;Yanying Li;Juan Li;Aiguo Wu",
+      "id": "out-6e00f7d80d97",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A hybrid organo-nanotheranostic platform of superlative biocompatibility for near-infrared-triggered fluorescence imaging and synergistically enhanced ablation of tumors — Ozioma Udochukwu Akakuru;Chuang Liu;M. Zubair Iqbal;Gohar Ijaz Dar;Gao Yang;Kun Qian;Elvis Ikechukwu Nosike;Jie Xing;Zhoujing Zhang;Yanying Li;Juan Li;Aiguo Wu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 7744,
+            "end_char": 8081
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种七甲川苯并吲哚花菁染料的制备方法及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吴爱国;李娟;蒋振奇;袁博",
+      "id": "out-bc08dce6f41e",
+      "evidence": [
+        {
+          "quote": "[专利] 一种七甲川苯并吲哚花菁染料的制备方法及其应用 — 吴爱国;李娟;蒋振奇;袁博",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 8087,
+            "end_char": 8129
+          },
+          "version": "5d151bef399cf0cef18a"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 28,
+    "listed": 28,
+    "by_kind": {
+      "专利": {
+        "listed": 12,
+        "extracted": 12
+      },
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 15
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

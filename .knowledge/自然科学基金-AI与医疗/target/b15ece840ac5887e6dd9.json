@@ -2,15 +2,20 @@
   "doc_id": "b15ece840ac5887e6dd9",
   "version": "3fb736a9241a1fe51256",
   "source_hash": "7a6f2caf6f1d9855f9a4d1f6f0661e6cfb439dcafa35e75a05a991b16bc3cb00",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:15.304698+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:54:35.754060+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6878e868691f",
-          "name": "脓毒症表型构建机制与精准治疗",
-          "desc": "脓毒症发病率与死亡率高且存在巨大异质性，迫切需要对其分型和精准治疗。",
+          "id": "item-2dbe8966758b",
+          "name": "脓毒症表型与精准治疗",
+          "desc": "高度异质性综合征",
           "evidence": [
             {
-              "quote": "脓毒症具有很高的发病率和死亡率，并存在巨大的异质性，迫切需要对其分型和精准治疗",
+              "quote": "脓毒症是一种高度异质性的综合征，其临床表现、治疗反应及预后有差异显著",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 674,
-                "end_char": 712
-              },
-              "version": "3fb736a9241a1fe51256"
-            }
-          ]
-        },
-        {
-          "id": "item-264cbad4567c",
-          "name": "危重症机制与治疗策略拓展认识",
-          "desc": "项目还围绕脓毒症相关凝血功能异常、肝素治疗、糖皮质激素等开展系列研究，拓展对危重症疾病机制及治疗策略的认识。",
-          "evidence": [
-            {
-              "quote": "此外，本项目还围绕脓毒症相关凝血功能异常、肝素治疗对预后的影响、糖皮质激素对严重发热伴血小板减少综合征患者死亡率的影响，以及免疫缺陷患者肺炎的临床表型与肺微生物群特征等问题开展了系列研究",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3395,
-                "end_char": 3487
+                "start_char": 2761,
+                "end_char": 2794
               },
               "version": "3fb736a9241a1fe51256"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8abd27c95e76",
-          "name": "分型变量选择与算法存在争议",
-          "desc": "可依据临床数据将脓毒症分为不同表型，但变量选择和算法还存在争议，并缺乏机制探索及治疗相关性分析。",
+          "id": "item-8dc0985848f5",
+          "name": "需建立稳定可推广的临床分型",
+          "desc": "探索机制并指导精准治疗",
           "evidence": [
             {
-              "quote": "包括申请者前期研究在内的一些研究表明可以根据临床数据将脓毒症分为不同的表型，但变量的选择和算法还存在争议，并缺乏机制探索及治疗相关性分析",
+              "quote": "本项目旨在建立稳定、可推广的临床分型，并探索其背后的机制，指导脓毒症的精准化治疗",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 714,
-                "end_char": 781
-              },
-              "version": "3fb736a9241a1fe51256"
-            }
-          ]
-        },
-        {
-          "id": "item-e8e6bf719662",
-          "name": "脓毒症治疗异质性缺乏精准依据",
-          "desc": "假设不同脓毒症表型存在特有的基因表达机制及治疗异质性，需在机制与治疗层面开展研究。",
-          "evidence": [
-            {
-              "quote": "故提出假说：不同脓毒症表型存在特有的基因表达机制及治疗异质性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 822,
-                "end_char": 851
+                "start_char": 2796,
+                "end_char": 2835
               },
               "version": "3fb736a9241a1fe51256"
             }
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2c2fc964256d",
-          "name": "时序k均值聚类构建临床亚型",
-          "desc": "基于MIMIC-IV数据库脓毒症患者诊断24小时内21项临床易获取指标，采用时序数据k均值聚类方法建立三种新亚型并外部验证。",
+          "id": "item-4f4d7df7fed6",
+          "name": "时序数据k均值聚类脓毒症三亚型",
+          "desc": "MIMIC-IV诊断24小时内21项指标",
           "evidence": [
             {
               "quote": "基于MIMIC-IV数据库中脓毒症患者诊断24小时之内的21项临床易获取的指标，采用时序数据k均值聚类方法建立了三种新的脓毒症亚型",
@@ -108,12 +81,30 @@
               },
               "version": "3fb736a9241a1fe51256"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-e117ff4c47f3",
-          "name": "离线强化学习与深度机器学习决策模型",
-          "desc": "基于大型公开数据库融合离线强化学习与深度机器学习方法，构建脓毒症治疗AI决策模型。",
+          "id": "item-91b3703ea2a6",
+          "name": "21基因诊断探针",
+          "desc": "多LASSO回归区分亚型",
+          "evidence": [
+            {
+              "quote": "通过多LASSO回归，建立了一个由21个基因组成的诊断基因探针，可准确区分不同脓毒症亚型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3126,
+                "end_char": 3169
+              },
+              "version": "3fb736a9241a1fe51256"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-27a23bdd22a5",
+          "name": "离线强化学习与深度机器学习脓毒症治疗AI决策模型",
+          "desc": "液体复苏与血管活性药物决策",
           "evidence": [
             {
               "quote": "融合离线强化学习与深度机器学习方法，构建了脓毒症治疗AI决策模型",
@@ -124,7 +115,8 @@
               },
               "version": "3fb736a9241a1fe51256"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,103 +125,213 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3bd45b8dbf01",
-          "name": "三型脓毒症亚型预后存在差异",
-          "desc": "三种新亚型在脏器功能、炎症反应水平、治疗反应性及预后方面均存在显著差异，并在本院ICU数据库外部验证稳定可重复。",
+          "id": "item-cc831a785dc7",
+          "name": "亚型在本院ICU与前瞻性队列复现",
+          "desc": "外部验证与二次验证",
           "evidence": [
             {
-              "quote": "结果显示，不同亚型在脏器功能、炎症反应水平、治疗反应性及预后方面均存在显著差异",
+              "quote": "在本院ICU数据库中对该分型体系进行了外部验证，证实其良好的稳定性和可重复性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2913,
-                "end_char": 2951
+                "start_char": 2956,
+                "end_char": 2993
               },
               "version": "3fb736a9241a1fe51256"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1f70402d2d0a",
-          "name": "21个基因诊断探针区分亚型",
-          "desc": "通过多LASSO回归建立由21个基因组成的诊断基因探针，可准确区分不同脓毒症亚型。",
-          "evidence": [
-            {
-              "quote": "进一步通过多LASSO回归，建立了一个由21个基因组成的诊断基因探针，可准确区分不同脓毒症亚型，为临床快速识别提供了分子依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3123,
-                "end_char": 3184
-              },
-              "version": "3fb736a9241a1fe51256"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-65edf25572cc",
-          "name": "AI治疗决策优于临床经验决策",
-          "desc": "AI决策模型在液体复苏、血管活性药物等关键治疗决策上表现出优于临床医生经验决策的潜在优势，且与预后改善显著相关。",
-          "evidence": [
-            {
-              "quote": "通过模拟不同治疗策略的长期回报，该模型在液体复苏、血管活性药物等关键治疗决策上表现出优于临床医生经验决策的潜在优势",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3264,
-                "end_char": 3320
-              },
-              "version": "3fb736a9241a1fe51256"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6878e868691f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8abd27c95e76"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phenotypes and Lung Microbiota Signatures of Immunocompromised Patients with Pneumonia-Related Acute Respiratory Distress Syndrome",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hu Yan;Shen Jiawei;An Youzhong;Jiang Yanwen;Zhao Huiying",
+      "id": "out-6a45269dd323",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phenotypes and Lung Microbiota Signatures of Immunocompromised Patients with Pneumonia-Related Acute Respiratory Distress Syndrome — Hu Yan;Shen Jiawei;An Youzhong;Jiang Yanwen;Zhao Huiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3627,
+            "end_char": 3822
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-8abd27c95e76"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-2c2fc964256d"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "上肢扩胸康复器",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "赵慧颖;朱磊杰;安友仲;王玥",
+      "id": "out-1ea5b158d2e7",
+      "evidence": [
+        {
+          "quote": "[专利] 上肢扩胸康复器 — 赵慧颖;朱磊杰;安友仲;王玥",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3827,
+            "end_char": 3855
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2c2fc964256d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3bd45b8dbf01"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk factor analysis and predictive modeling of kidney stone disease in the United States population: a propensity score matching cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Y.;Xu F.;Xiao Z.;An Y.;Zhao H.",
+      "id": "out-f96d4acb580b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk factor analysis and predictive modeling of kidney stone disease in the United States population: a propensity score matching cohort study — Sun Y.;Xu F.;Xiao Z.;An Y.;Zhao H.",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3860,
+            "end_char": 4045
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e117ff4c47f3"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-65edf25572cc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Interpretable machine learning model for predicting myocardial injury in intensive care unit patients using SHapley Additive exPlanations analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Liu Xiaojiang;Chen Guanyang;Hao Chenxiao;An Youzhong;Zhao Huiying",
+      "id": "out-7fcbb0f46f84",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Interpretable machine learning model for predicting myocardial injury in intensive care unit patients using SHapley Additive exPlanations analysis — Liu Xiaojiang;Chen Guanyang;Hao Chenxiao;An Youzhong;Zhao Huiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4050,
+            "end_char": 4270
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Risk factors and predictive modeling in a US population with sarcopenia: a propensity score cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Yao;Yang Shuguang;Xiao Zengli;An Youzhong;Zhao Huiying",
+      "id": "out-b01f4f1c069d",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Risk factors and predictive modeling in a US population with sarcopenia: a propensity score cohort study — Sun Yao;Yang Shuguang;Xiao Zengli;An Youzhong;Zhao Huiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4275,
+            "end_char": 4446
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exploring the Mediating Role of Multiple Organ Dysfunction in Sepsis-Induced Disseminated Intravascular Coagulation and Its Impact on Worsening Prognosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Guangjie;Hao Chenxiao;Yao Sun;Wang Yiqin;Xu Zongtao;Zhao Huiying;An Youzhong",
+      "id": "out-6d1af8756e01",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exploring the Mediating Role of Multiple Organ Dysfunction in Sepsis-Induced Disseminated Intravascular Coagulation and Its Impact on Worsening Prognosis — Wang Guangjie;Hao Chenxiao;Yao Sun;Wang Yiqin;Xu Zongtao;Zhao Huiying;An Youzhong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4451,
+            "end_char": 4694
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Impact of Glucocorticoid Therapy on 28-Day Mortality in Patients Having Severe Fever with Thrombocytopenia Syndrome in an Intensive Care Unit: A Retrospective Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Guangjie;Liu Puhui;Xie Hui;Niu Chuanzhen;Lyu Jie;An Youzhong;Zhao Huiying",
+      "id": "out-86a356260224",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Impact of Glucocorticoid Therapy on 28-Day Mortality in Patients Having Severe Fever with Thrombocytopenia Syndrome in an Intensive Care Unit: A Retrospective Analysis — Wang Guangjie;Liu Puhui;Xie Hui;Niu Chuanzhen;Lyu Jie;An Youzhong;Zhao Huiying",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4699,
+            "end_char": 4953
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Commentary: Comparative efficacies of various corticosteroids for preventing postextubation stridor and reintubation: a systematic review and network meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yao Sun;Huiying Zhao;Ye Ma;Youzhong An",
+      "id": "out-d4fadfcb7d0e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Commentary: Comparative efficacies of various corticosteroids for preventing postextubation stridor and reintubation: a systematic review and network meta-analysis — Yao Sun;Huiying Zhao;Ye Ma;Youzhong An",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4958,
+            "end_char": 5168
+          },
+          "version": "3fb736a9241a1fe51256"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 7,
+        "extracted": 7
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

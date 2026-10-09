@@ -2,15 +2,20 @@
   "doc_id": "028263eb9865532b0b97",
   "version": "c09205748b02a9b75890",
   "source_hash": "39eb5ea5320379c61029bce63221c6d196d60a08f95314d88b641e936086ebd7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:13.971186+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:24:59.187872+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b3b3df4d86fc",
-          "name": "新冠疫苗接种前后宿主免疫反应研究",
-          "desc": "COVID-19疫苗开发迅速，但疫苗免疫生成和维持在不同人群中的异质性还不清楚。",
+          "id": "item-dd493cf107db",
+          "name": "新冠灭活疫苗接种后宿主免疫反应",
+          "desc": "163名接种两剂灭活疫苗受试者的外周血样本",
           "evidence": [
             {
-              "quote": "尽管COVID-19疫苗开发迅速，但疫苗免疫生成和维持在不同人群的异质性还不清楚",
+              "quote": "通过招募163名接种两剂灭活疫苗（间隔28天）的受试者并采集外周血样本",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 708,
-                "end_char": 747
-              },
-              "version": "c09205748b02a9b75890"
-            }
-          ]
-        },
-        {
-          "id": "item-46aea4c39413",
-          "name": "个体化加强针接种计划制定",
-          "desc": "研究标志物为制定个体化加强针接种计划提供科学依据，为疫苗开发和加强针注射提供建议。",
-          "evidence": [
-            {
-              "quote": "这些标志物为制定个体化加强针接种计划提供了科学依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2883,
-                "end_char": 2907
+                "start_char": 2588,
+                "end_char": 2622
               },
               "version": "c09205748b02a9b75890"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e1d93a6ade91",
-          "name": "个体间抗体产生与衰减异质性不清",
-          "desc": "新冠疫苗研发虽取得迅速进展，但个体间抗体产生及随时间衰减的异质性规律还不清楚。",
+          "id": "item-30e24101af36",
+          "name": "个体抗体产生及衰减的异质性不清",
+          "desc": "个体间抗体产生及随时间衰减的异质性规律不清楚",
           "evidence": [
             {
-              "quote": "新冠疫苗研发虽已取得迅速进展，但个体间抗体产生及随时间衰减的异质性规律还不清楚",
+              "quote": "个体间抗体产生及随时间衰减的异质性规律还不清楚",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2545,
+                "start_char": 2561,
                 "end_char": 2583
-              },
-              "version": "c09205748b02a9b75890"
-            }
-          ]
-        },
-        {
-          "id": "item-59b8a1203802",
-          "name": "需揭示不同免疫应答人群分子机制",
-          "desc": "需系统研究疫苗接种前后宿主免疫反应，揭示不同免疫应答人群的分子调控机制。",
-          "evidence": [
-            {
-              "quote": "我们系统研究新冠疫苗接种前后的宿主免疫反应，期望揭示不同免疫应答人群的分子调控机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 749,
-                "end_char": 789
               },
               "version": "c09205748b02a9b75890"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f52a5ede1fb0",
-          "name": "TMT标记定量蛋白质组学分析",
-          "desc": "招募163名接种两剂灭活疫苗的受试者采集外周血样本，利用TMT标记定量蛋白质组学技术系统分析，鉴定并定量1715个血清蛋白及7342个PBMC蛋白。",
+          "id": "item-30259d2d29f5",
+          "name": "TMT标记定量蛋白质组学",
+          "desc": "对血清与PBMC蛋白进行定量",
           "evidence": [
             {
-              "quote": "利用基于TMT标记的定量蛋白质组学技术进行系统分析，共鉴定并定量了1715个血清蛋白及7342个外周血单核细胞（PBMC）蛋白",
+              "quote": "利用基于TMT标记的定量蛋白质组学技术进行系统分析",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2624,
-                "end_char": 2686
+                "end_char": 2648
               },
               "version": "c09205748b02a9b75890"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-05e31c20df5c",
-          "name": "机器学习筛选基线生物标志物",
-          "desc": "通过机器学习算法在疫苗接种前基线期筛选潜在生物标志物，分别包含7个血清蛋白和5个PBMC蛋白。",
+          "id": "item-63f76ecac48e",
+          "name": "机器学习基线生物标志物筛选",
+          "desc": "基线期筛选两组潜在生物标志物预测抗体",
           "evidence": [
             {
-              "quote": "通过机器学习算法，在疫苗接种前的基线期筛选出两组的潜在生物标志物（分别包含7个血清蛋白和5个PBMC蛋白）",
+              "quote": "通过机器学习算法，在疫苗接种前的基线期筛选出两组的潜在生物标志物",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 2688,
-                "end_char": 2740
+                "end_char": 2719
               },
               "version": "c09205748b02a9b75890"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-4767d6dfff18",
+          "name": "复阳风险预测机器学习模型",
+          "desc": "整合多组学数据预测Omicron患者复阳风险",
+          "evidence": [
+            {
+              "quote": "并开发了预测患者“复阳”风险的机器学习模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3039,
+                "end_char": 3059
+              },
+              "version": "c09205748b02a9b75890"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f1bf29012c14",
-          "name": "模型预测57天抗体阳转AUC 0.87",
-          "desc": "模型对接种后57天的个体抗体血清阳转情况具有预测效力，AUC为0.87。",
+          "id": "item-9c0eef8b936e",
+          "name": "抗体血清阳转预测",
+          "desc": "接种后57天预测AUC=0.87",
           "evidence": [
             {
               "quote": "模型对接种后57天的个体抗体血清阳转情况具有预测效力（AUC=0.87）",
@@ -147,41 +139,66 @@
               "version": "c09205748b02a9b75890"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-14df2e5c211f",
-          "name": "PBMC标志物预测180天抗体持久性",
-          "desc": "基于4个PBMC生物标志物实现对接种后180天抗体持久性的预测，AUC为0.79。",
+          "id": "item-3194e9b6bc9f",
+          "name": "抗体持久性预测",
+          "desc": "接种后180天预测AUC=0.79",
           "evidence": [
             {
-              "quote": "基于4个PBMC生物标志物，研究进一步实现了对接种后180天抗体持久性的预测（AUC=0.79）",
+              "quote": "研究进一步实现了对接种后180天抗体持久性的预测（AUC=0.79）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2779,
+                "start_char": 2793,
                 "end_char": 2826
               },
               "version": "c09205748b02a9b75890"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-62e05958c41a",
-          "name": "揭示疫苗后血液学宿主响应特征",
-          "desc": "数据分析揭示接种后特征性血液学宿主响应特征，包括淋巴细胞迁移调节、中性粒细胞脱颗粒及体液免疫反应改变。",
+          "id": "item-8883a65ab69d",
+          "name": "蛋白质组定量",
+          "desc": "鉴定并定量1715个血清蛋白及7342个PBMC蛋白",
           "evidence": [
             {
-              "quote": "数据分析揭示了接种后特征性的血液学宿主响应特征，包括淋巴细胞迁移调节、中性粒细胞脱颗粒以及体液免疫反应的改变",
+              "quote": "共鉴定并定量了1715个血清蛋白及7342个外周血单核细胞（PBMC）蛋白",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2828,
-                "end_char": 2881
+                "start_char": 2650,
+                "end_char": 2686
               },
               "version": "c09205748b02a9b75890"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-2e034440268b",
+          "name": "发明专利",
+          "desc": "获国家发明专利1项",
+          "evidence": [
+            {
+              "quote": "获国家发明专利1项",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3406,
+                "end_char": 3414
+              },
+              "version": "c09205748b02a9b75890"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -189,47 +206,148 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-b3b3df4d86fc"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e1d93a6ade91"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e1d93a6ade91"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-f52a5ede1fb0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f52a5ede1fb0"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-62e05958c41a"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-05e31c20df5c"
+        "item_id": "item-9c0eef8b936e"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-14df2e5c211f"
+        "dimension": "技术",
+        "item_id": "item-63f76ecac48e"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "模型对接种后57天的个体抗体血清阳转情况具有预测效力（AUC=0.87）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2742,
+            "end_char": 2777
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "预测结直肠癌肝转移的生物标志物组合、试剂盒、系统及其应用",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "郭天南;丁克峰;王瑛睿;陈婷;郑希;王赫;胡烨婷",
+      "id": "out-dc87220abe62",
+      "evidence": [
+        {
+          "quote": "[专利] 预测结直肠癌肝转移的生物标志物组合、试剂盒、系统及其应用 — 郭天南;丁克峰;王瑛睿;陈婷;郑希;王赫;胡烨婷",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3472,
+            "end_char": 3531
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Longitudinal proteomic investigation of COVID-19 vaccination",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yingrui Wang;Qianru Zhu;Rui Sun;Yi Xiao;Lingling Huang;Yifan Hu;Weigang Ge;Huanhuan Gao;Xinfu Ye;Yu Song;Li Shao;Yantao Li;Jie Li;Tiannan Guo;Junping Shi",
+      "id": "out-ff7fa0ac0b26",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Longitudinal proteomic investigation of COVID-19 vaccination — Yingrui Wang;Qianru Zhu;Rui Sun;Yi Xiao;Lingling Huang;Yifan Hu;Weigang Ge;Huanhuan Gao;Xinfu Ye;Yu Song;Li Shao;Yantao Li;Jie Li;Tiannan Guo;Junping Shi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3536,
+            "end_char": 3758
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Proteomics approaches to long COVID: status and outlooks",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao Liang;Yingrui Wang;Tiannan Guo",
+      "id": "out-9c917c44a77b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Proteomics approaches to long COVID: status and outlooks — Xiao Liang;Yingrui Wang;Tiannan Guo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3763,
+            "end_char": 3863
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-omics blood atlas reveals unique features of immune and platelet responses to SARS-CoV-2 Omicron breakthrough infection",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-5eadf2dfe2b9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-omics blood atlas reveals unique features of immune and platelet responses to SARS-CoV-2 Omicron breakthrough infection — Hong Wang;Cuicui Liu;Xiaowei Xie;Mingming Niu;Yingrui Wang;Xuelian Cheng;Biao Zhang;Dong Zhang;Mengyao Liu;Rui Sun;Yezi Ma;Shihui Ma;Huijun Wang;Guoqing Zhu;Yang Lu;Baiming Huang;Pei Su;Xiaoyuan Chen;Jingjing Zhao;Hongtao Wang;Long Shen;Lixia Fu;Qianqian Huang;Yang Yang;He Wang;Chunlong Wu;Weigang Ge;Chen Chen;Qianyu Huo;Qingping Wang;Ying Wang;Li Geng;Yan Xie;Yi Xie;Lijun Liu;Jianwei Qi;Huaiyong Chen;Junping Wu...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3868,
+            "end_char": 4420
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SARS-CoV-2 peptide fragments selectively dysregulate specific immune cell populations via Gaussian curvature targeting",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "id": "out-8aee4efdd078",
+      "evidence": [
+        {
+          "quote": "[期刊论文] SARS-CoV-2 peptide fragments selectively dysregulate specific immune cell populations via Gaussian curvature targeting — Yue Zhang;Carlos Silvestre-Roig;Han Fu;Haleh Alimohamadi;Taraknath Mandal;Jonathan W Chen;Elizabeth Wei-Chia Luo;Jaime de Anda;Anna Lívia Linard Matos;Mathis Richter;Anna Mennella;HongKyu Lee;Liana C Chan;Yingrui Wang;Naixin Wang;Hongyu Wang;Xiaohan Wang;Calvin K Lee;Susmita Ghosh;Tsutomu Matsui;Thomas M Weiss;Tiannan Guo;Maomao Zhang;Dapeng Li;Matthew C Wolfgang;Robert S Hagan;Melody M H Li;Matthias Gunzer;Albert Sickmann...",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4425,
+            "end_char": 4981
+          },
+          "version": "c09205748b02a9b75890"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 4,
+        "extracted": 4
+      }
+    },
+    "consistent": true
+  }
 }

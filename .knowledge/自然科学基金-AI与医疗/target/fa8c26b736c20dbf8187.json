@@ -2,15 +2,20 @@
   "doc_id": "fa8c26b736c20dbf8187",
   "version": "ad0ae5cbe98fd1d12afa",
   "source_hash": "1924b69fe4c9b3587b459f844faf4f541ba814df28216793dc1a89169c1549ac",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:03.518799+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T11:44:21.711500+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5f7e7ed8279e",
-          "name": "耳鸣声治疗疗效预测",
-          "desc": "面向我国约2亿耳鸣患者的声治疗，在治疗前预测疗效以指导临床决策。",
+          "id": "item-d3c2d4e2332f",
+          "name": "特发性耳鸣声治疗疗效预测",
+          "desc": "多模态脑影像",
           "evidence": [
             {
-              "quote": "我国耳鸣患病人数约2亿，严重影响病人身心健康",
+              "quote": "我国耳鸣病人约2亿，但目前声治疗疗效差异大，亟需预测疗效的有力手段",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 657,
-                "end_char": 678
+                "start_char": 2959,
+                "end_char": 2991
               },
               "version": "ad0ae5cbe98fd1d12afa"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7c33c656e4ae",
-          "name": "声治疗疗效差异大且缺乏治疗前预测手段",
-          "desc": "声治疗虽常用但疗效差异大，亟需治疗前即可预测疗效的有力手段；既有预测模型存在特征挖掘不全与架构缺陷问题。",
+          "id": "item-7224cc2d25ce",
+          "name": "声治疗疗效差异大",
+          "desc": "现有预测模型架构缺陷",
           "evidence": [
             {
-              "quote": "声治疗常用、但疗效差异大，亟需治疗前即可预测疗效的有力手段",
+              "quote": "声治疗疗效差异大",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 680,
-                "end_char": 708
+                "start_char": 2972,
+                "end_char": 2979
               },
               "version": "ad0ae5cbe98fd1d12afa"
             }
@@ -63,20 +68,38 @@
       "state": "has",
       "items": [
         {
-          "id": "item-45ff3b5fca2b",
-          "name": "多模态脑影像拓扑特征与贝叶斯可加回归树预测模型",
-          "desc": "基于多层网络建模构建治疗前后动态功能与结构网络，用拓扑特征分析与组稀疏典型相关分析确立去中枢化关键影像表征，再以贝叶斯可加回归树建立疗效预测模型。",
+          "id": "item-72a4d1f5d78e",
+          "name": "功能连接梯度分析方法",
+          "desc": "扩散映射嵌入",
           "evidence": [
             {
-              "quote": "基于贝叶斯可加回归树的预测模型构建方法，利用关键影像表征在治疗前的特征，建立特发性耳鸣声治疗效果预测模型",
+              "quote": "创新功能连接梯度分析方法，利用扩散映射嵌入技术，从功能连接矩阵提取耳鸣相关的梯度成分",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 968,
-                "end_char": 1019
+                "start_char": 3236,
+                "end_char": 3277
               },
               "version": "ad0ae5cbe98fd1d12afa"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-c810ba08d4e6",
+          "name": "功能引导强化学习脑效应连接网络构建",
+          "desc": "精准筛选治疗有效患者",
+          "evidence": [
+            {
+              "quote": "提出基于功能引导的强化学习脑效应连接网络构建方法，突破脑影像噪声高、网络方向识别精度低的难题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3369,
+                "end_char": 3414
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a04796602fde",
-          "name": "耳鸣声治疗疗效预测模型AUC 0.811",
-          "desc": "搭建特发性耳鸣声治疗效果预测模型AUC 0.811；发表SCI 8篇（含柳叶刀子刊1篇、中科院一区TOP 3篇），申请并获批专利2项。",
+          "id": "item-2c567433d73c",
+          "name": "声治疗效果预测模型AUC",
+          "desc": "0.811",
           "evidence": [
             {
               "quote": "最终搭建特发性耳鸣声治疗效果预测模型（AUC 0.811）",
@@ -99,44 +122,369 @@
               "version": "ad0ae5cbe98fd1d12afa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a016cd480cb5",
+          "name": "耳鸣中枢化信息单中心影像数据库",
+          "desc": "320人次患者与400余人次正常人",
+          "evidence": [
+            {
+              "quote": "建立了耳鸣中枢化信息单中心影像数据库（目前含接受声治疗的特发性耳鸣患者320人次及正常人400余人次）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3057,
+                "end_char": 3107
+              },
+              "version": "ad0ae5cbe98fd1d12afa"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-5f7e7ed8279e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-7c33c656e4ae"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Association of variability in body size with neuroimaging metrics of brain health: a population-based cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jing;Zeng Na;Hui Ying;Li Jing;Liu Wenjuan;Zhao Xinyu;Zhao Pengfei;Chen Shuohua;Wu Shouling;Wang Zhenchang;Lv Han",
+      "id": "out-a05d2b0cdb55",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Association of variability in body size with neuroimaging metrics of brain health: a population-based cohort study — Sun Jing;Zeng Na;Hui Ying;Li Jing;Liu Wenjuan;Zhao Xinyu;Zhao Pengfei;Chen Shuohua;Wu Shouling;Wang Zhenchang;Lv Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3723,
+            "end_char": 3962
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7c33c656e4ae"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-45ff3b5fca2b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "大脑年龄预测方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王振常;王星皓;陈乾;吕晗;刘雅文;任鹏玲",
+      "id": "out-bfc8f7c880d3",
+      "evidence": [
+        {
+          "quote": "[专利] 大脑年龄预测方法、装置、设备及存储介质 — 王振常;王星皓;陈乾;吕晗;刘雅文;任鹏玲",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3967,
+            "end_char": 4014
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-45ff3b5fca2b"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-a04796602fde"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Retinal Vascular Morphology Reflects and Predicts Cerebral Small Vessel Disease: Evidences from Eye-Brain Imaging Analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Ning;Xu Mingze;Chen Shuohua;Wu Shouling;Li Jing;Hui Ying;Li Xiaoshuai;Wang Zhenchang;Lv Han",
+      "id": "out-3e2ecf98ef09",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Retinal Vascular Morphology Reflects and Predicts Cerebral Small Vessel Disease: Evidences from Eye-Brain Imaging Analysis — Wu Ning;Xu Mingze;Chen Shuohua;Wu Shouling;Li Jing;Hui Ying;Li Xiaoshuai;Wang Zhenchang;Lv Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4019,
+            "end_char": 4244
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "医学图像处理方法、眼底图像处理方法、模型生成方法、设备、存储介质及程序产品",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晗;童诺;孙婧;吴云涛;惠颖;李静;李小帅;王星皓;李佳",
+      "id": "out-7b2ea0bbd729",
+      "evidence": [
+        {
+          "quote": "[专利] 医学图像处理方法、眼底图像处理方法、模型生成方法、设备、存储介质及程序产品 — 吕晗;童诺;孙婧;吴云涛;惠颖;李静;李小帅;王星皓;李佳",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4249,
+            "end_char": 4322
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "纤维束感兴趣区的搜索方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晗;吴宁;徐明泽;张宇凡;郭思慧;王振常",
+      "id": "out-84e15bc24f94",
+      "evidence": [
+        {
+          "quote": "[专利] 纤维束感兴趣区的搜索方法、装置、设备及存储介质 — 吕晗;吴宁;徐明泽;张宇凡;郭思慧;王振常",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4327,
+            "end_char": 4378
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "数据处理方法、装置、设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晗;吴宁;徐明泽;郭思慧;张宇凡;王振常",
+      "id": "out-1d6a2f334ffc",
+      "evidence": [
+        {
+          "quote": "[专利] 数据处理方法、装置、设备及存储介质 — 吕晗;吴宁;徐明泽;郭思慧;张宇凡;王振常",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4383,
+            "end_char": 4428
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2023年度首都医科大学科学技术进步奖一等奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晗",
+      "id": "out-b99ba474937e",
+      "evidence": [
+        {
+          "quote": "[奖励] 2023年度首都医科大学科学技术进步奖一等奖 — 吕晗",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4433,
+            "end_char": 4464
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "“临床研究奖” (全球1/40)",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv  Han",
+      "id": "out-ef1901e800a8",
+      "evidence": [
+        {
+          "quote": "[奖励] “临床研究奖” (全球1/40) — Lv  Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4469,
+            "end_char": 4499
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Discovery of high-risk clinical factors that accelerate brain aging in adults: a population-based machine-learning study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jing;Wang Luyao;Gao Yiwen;Hui Ying;Chen Shuohua;Wu Shouling;Wang Zhenchang;Jiang Jiehui;Lv Han",
+      "id": "out-46a874174434",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Discovery of high-risk clinical factors that accelerate brain aging in adults: a population-based machine-learning study — Sun Jing;Wang Luyao;Gao Yiwen;Hui Ying;Chen Shuohua;Wu Shouling;Wang Zhenchang;Jiang Jiehui;Lv Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4583,
+            "end_char": 4810
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Associations of serum uric acid variability with neuroimaging metrics and cognitive decline: a population-based cohort study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Han;Sun Jing;Zhang Tong;Hui Ying;Li Jing;Zhao Xinyu;Chen Shuohua;Liu Wenjuan;Li Xiaoshuai;Zhao Pengfei;Wu Shouling;Liu Yanying;Wang Zhenchang",
+      "id": "out-33bf9d754af3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Associations of serum uric acid variability with neuroimaging metrics and cognitive decline: a population-based cohort study — Lv Han;Sun Jing;Zhang Tong;Hui Ying;Li Jing;Zhao Xinyu;Chen Shuohua;Liu Wenjuan;Li Xiaoshuai;Zhao Pengfei;Wu Shouling;Liu Yanying;Wang Zhenchang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4816,
+            "end_char": 5093
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Changes in auditory cortex subregions and their prediction for sound therapy outcomes in patients with tinnitus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Ling;Zhang Yu;Zhao Rui;Huang Yan;Wang Xinghao;Huang Yuyou;Zhang Jiancheng;Lv Han;Zhao Pengfei;Yang Zhenghan;Chen Qian;Wang Zhenchang",
+      "id": "out-f57645e48ac3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Changes in auditory cortex subregions and their prediction for sound therapy outcomes in patients with tinnitus — Wang Ling;Zhang Yu;Zhao Rui;Huang Yan;Wang Xinghao;Huang Yuyou;Zhang Jiancheng;Lv Han;Zhao Pengfei;Yang Zhenghan;Chen Qian;Wang Zhenchang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5099,
+            "end_char": 5356
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Brain network evaluation by functional-guided effective connectivity reinforcement learning method indicates therapeutic effect for tinnitus",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lv Han;Liu Jinduo;Chen Qian;Ji Junzhong;Zhai Jihao;Zhang Zuozhen;Wang Zhaodi;Gong Shusheng;Wang Zhenchang",
+      "id": "out-7e5d21457b8f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Brain network evaluation by functional-guided effective connectivity reinforcement learning method indicates therapeutic effect for tinnitus — Lv Han;Liu Jinduo;Chen Qian;Ji Junzhong;Zhai Jihao;Zhang Zuozhen;Wang Zhaodi;Gong Shusheng;Wang Zhenchang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5362,
+            "end_char": 5616
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Causal Associations of Genetically Determined Tinnitus With Neuroimaging Traits: Evidence From a Mendelian Randomization Study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Jing;Wang Xinghao;Li Jia;Zhang Tingting;Chen Qian;Liu Wenjuan;Cai Linkun;Zhao Pengfei;Yang Zhenghan;Pan Junhua;Wang Zhenchang;Lv Han",
+      "id": "out-cc73311eba05",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Causal Associations of Genetically Determined Tinnitus With Neuroimaging Traits: Evidence From a Mendelian Randomization Study — Sun Jing;Wang Xinghao;Li Jia;Zhang Tingting;Chen Qian;Liu Wenjuan;Cai Linkun;Zhao Pengfei;Yang Zhenghan;Pan Junhua;Wang Zhenchang;Lv Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5622,
+            "end_char": 5893
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于区域分割的脑龄预测方法及设备",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "吕晗;宗芳荣;王星皓;朱载民;刘勇;王振常",
+      "id": "out-bcde1db0e880",
+      "evidence": [
+        {
+          "quote": "[专利] 基于区域分割的脑龄预测方法及设备 — 吕晗;宗芳荣;王星皓;朱载民;刘勇;王振常",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5899,
+            "end_char": 5943
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Treatment outcomes in tinnitus patients are associated with brain functional network: Evidence from connectome gradient and gene expression analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wu Ning;Xu Mingze;Liu Chunli;Chen Qian;Gao Jia-Hong;Wang Zhenchang;Lv Han",
+      "id": "out-2bf9787dd21b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Treatment outcomes in tinnitus patients are associated with brain functional network: Evidence from connectome gradient and gene expression analysis — Wu Ning;Xu Mingze;Liu Chunli;Chen Qian;Gao Jia-Hong;Wang Zhenchang;Lv Han",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5985,
+            "end_char": 6215
+          },
+          "version": "ad0ae5cbe98fd1d12afa"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 17,
+    "listed": 17,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 8,
+        "extracted": 8
+      },
+      "专利": {
+        "listed": 6,
+        "extracted": 5
+      },
+      "奖励/专著": {
+        "listed": 3,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

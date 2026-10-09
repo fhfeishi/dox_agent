@@ -2,15 +2,20 @@
   "doc_id": "533a2a58f6090d04f3d7",
   "version": "71ad1e2c5ae48e352014",
   "source_hash": "316f6a4b56321f875e79c85706f0492055043b08b26a089405202f41d58f319d",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:35:06.494256+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.753640+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-2a6baf21381e",
-          "name": "精神分裂症异质性维度亚型解析",
-          "desc": "精神分裂症临床症状复杂且高异质性，导致生物标志物开发与预后评估极其困难。",
+          "id": "item-a3dba4b23f2b",
+          "name": "精神分裂症异质性解析",
+          "desc": "维度-分型混合视角",
           "evidence": [
             {
-              "quote": "精神分裂症严重影响国民健康，其临床症状表现复杂，呈高异质性，这导致生物标志物的开发和预后评估极其困难",
+              "quote": "本项目利用维度-分型的混合视角，旨在解析精神分裂症的神经生物学异质性",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 670,
-                "end_char": 719
-              },
-              "version": "71ad1e2c5ae48e352014"
-            }
-          ]
-        },
-        {
-          "id": "item-1a32462a5135",
-          "name": "个体化早期预后与干预策略开发",
-          "desc": "为精神分裂症生物标志物鉴定、个体化早期预后评估与系统性诊疗策略开发提供新思路。",
-          "evidence": [
-            {
-              "quote": "本项目将为精神分裂症生物标志物的鉴定、个体化早期预后的评估、系统性诊疗策略的开发提供新思路",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1021,
-                "end_char": 1065
+                "start_char": 3264,
+                "end_char": 3297
               },
               "version": "71ad1e2c5ae48e352014"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9a7d9e4ccfa9",
-          "name": "刚性分型忽略连续性个体差异",
-          "desc": "既往刚性的症状或影像分型忽略了不同临床阶段患者的连续性个体差异，导致结果缺乏一致性和广泛代表性。",
+          "id": "item-a1644173feec",
+          "name": "高异质性限制机制阐明与个体化诊疗",
+          "desc": "刚性分型忽略连续性个体差异",
           "evidence": [
             {
-              "quote": "既往刚性的症状或影像分型忽略了不同临床阶段患者的连续性个体差异，导致结果缺乏一致性和广泛代表性",
+              "quote": "精神分裂症的高异质性限制了对其病理生理机制的阐明及个体化诊疗的实现",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3213,
-                "end_char": 3259
-              },
-              "version": "71ad1e2c5ae48e352014"
-            }
-          ]
-        },
-        {
-          "id": "item-9cb2f8e65046",
-          "name": "维度分类混合视角框架欠缺",
-          "desc": "以维度-分类混合视角基于影像学指标构建系统性精神分裂症亚型框架依然欠缺。",
-          "evidence": [
-            {
-              "quote": "然而，以维度-分类混合视角，基于影像学指标构建系统性的精神分裂症亚型框架依然欠缺",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 807,
-                "end_char": 846
+                "start_char": 3179,
+                "end_char": 3211
               },
               "version": "71ad1e2c5ae48e352014"
             }
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1120b2e67567",
-          "name": "多模态MRI与分层贝叶斯维度亚型建模",
-          "desc": "采用多模态磁共振成像和分层贝叶斯算法对精神分裂症实现维度亚型建模，解析其神经生物学异质性。",
-          "evidence": [
-            {
-              "quote": "本项目拟采用多模态磁共振成像和分层贝叶斯算法，对精神分裂症实现维度亚型建模，解析其神经生物学异质性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 907,
-                "end_char": 955
-              },
-              "version": "71ad1e2c5ae48e352014"
-            }
-          ]
-        },
-        {
-          "id": "item-78b9c2fa9df0",
-          "name": "纹状体亚区连接与受体分布关联",
-          "desc": "细分12个纹状体亚区构建精细功能连接模式，通过偏最小二乘回归建立预测连接与神经递质受体密度分布的空间关联。",
+          "id": "item-93ed1f42ba61",
+          "name": "纹状体12亚区精细功能连接预测症状维度",
+          "desc": "偏最小二乘回归关联神经递质受体密度",
           "evidence": [
             {
               "quote": "我们细分12个亚区构建精细功能连接模式，以各亚区连接预测个体在不同症状维度上的分数，并通过偏最小二乘回归建立重要预测连接与神经递质受体密度分布的空间关联",
@@ -124,7 +81,25 @@
               },
               "version": "71ad1e2c5ae48e352014"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-66b6a10b62a1",
+          "name": "贝叶斯维度-亚型混合表征框架",
+          "desc": "从全脑连接组提取3个特异因子",
+          "evidence": [
+            {
+              "quote": "我们进一步通过贝叶斯模型构建精神分裂症维度-亚型的混合表征框架",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3602,
+                "end_char": 3632
+              },
+              "version": "71ad1e2c5ae48e352014"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -133,9 +108,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d0e639804e8a",
-          "name": "纹状体连接模式对应症状维度",
-          "desc": "揭示特定纹状体连接模式与不同症状维度的对应关系，并指出多个神经递质系统共同构成特定精神病理的生物学基础。",
+          "id": "item-9e1c92dd581a",
+          "name": "症状维度与纹状体连接对应关系",
+          "desc": "腹侧-认知症状，喙部-情感症状",
           "evidence": [
             {
               "quote": "研究揭示了特定的纹状体连接模式与不同症状维度之间的对应关系（腹侧-认知症状，喙部-情感症状）",
@@ -147,12 +122,14 @@
               "version": "71ad1e2c5ae48e352014"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-3efcd7c3af7b",
-          "name": "3因子功能连接异常模式",
-          "desc": "通过贝叶斯模型构建维度-亚型混合表征框架，发现稳定的3因子功能连接异常模式，涉及默认模式网络、凸显网络和躯体运动网络。",
+          "id": "item-087c58e77503",
+          "name": "稳定3因子功能连接异常模式",
+          "desc": "默认模式、凸显和躯体运动网络",
           "evidence": [
             {
               "quote": "结果显示，精神分裂症中存在稳定的3因子功能连接异常模式，涉及默认模式网络、凸显网络和躯体运动网络等",
@@ -164,72 +141,69 @@
               "version": "71ad1e2c5ae48e352014"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-b20c7f7fc9d3",
-          "name": "基线认知维度预测症状缓解结局",
-          "desc": "采用基线认知测量的维度特征准确预测个体患者症状是否缓解的预后结局。",
-          "evidence": [
-            {
-              "quote": "最后，采用基线认知测量的维度特征，准确预测了个体患者症状是否缓解的预后结局（研究论文已录用）",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3874,
-                "end_char": 3919
-              },
-              "version": "71ad1e2c5ae48e352014"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-2a6baf21381e"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9a7d9e4ccfa9"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The interpersonal computational psychiatry of social coordination in schizophrenia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yafeng Pan;Yalan Wen;Jingwen Jin;Chen Ji",
+      "id": "out-9e62e5257961",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The interpersonal computational psychiatry of social coordination in schizophrenia — Yafeng Pan;Yalan Wen;Jingwen Jin;Chen Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4051,
+            "end_char": 4182
+          },
+          "version": "71ad1e2c5ae48e352014"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-9a7d9e4ccfa9"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-1120b2e67567"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1120b2e67567"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-3efcd7c3af7b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-78b9c2fa9df0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d0e639804e8a"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intrinsic connectivity patterns of striatal subfields predict individual dimensions of psychopathology and are associated with cholinergic and serotonergic neurotransmission in schizophrenia",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhiqiu He;Wenli He;Zhiyi Chen;Wei Wei;Xiaojin Liu;Juergen Dukart;Weidong Li;Justin T. Baker;Avram J. Holmes;Felix Hoffstaedter;Thomas Nickl-Jockschat;Birgit Derntl;Lydia Kogler;Renaud Jardri;Oliver Gruber;André Aleman;Iris E. Sommer;Kaustubh R. Patil;Yunrong Lu;Simon B. Eickhoff;Chen Ji",
+      "id": "out-a7a2f22f80a9",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Intrinsic connectivity patterns of striatal subfields predict individual dimensions of psychopathology and are associated with cholinergic and serotonergic neurotransmission in schizophrenia — Zhiqiu He;Wenli He;Zhiyi Chen;Wei Wei;Xiaojin Liu;Juergen Dukart;Weidong Li;Justin T. Baker;Avram J. Holmes;Felix Hoffstaedter;Thomas Nickl-Jockschat;Birgit Derntl;Lydia Kogler;Renaud Jardri;Oliver Gruber;André Aleman;Iris E. Sommer;Kaustubh R. Patil;Yunrong Lu;Simon B. Eickhoff;Chen Ji",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4187,
+            "end_char": 4673
+          },
+          "version": "71ad1e2c5ae48e352014"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

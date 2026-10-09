@@ -2,15 +2,20 @@
   "doc_id": "384e5d52d2d6d13a54bc",
   "version": "ff6681e11282322a74a9",
   "source_hash": "9d18067ba72876a60f790b060035d4e26cbfb6045bd6f7e49319b1e968cc94b9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T11:01:44.522500+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:37:20.056315+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6e8a6c670d9f",
-          "name": "CRISPR基因编辑治疗应用",
-          "desc": "CRISPR/Cas9及单碱基编辑器通过直接修改基因组被用于治疗遗传疾病或建立动物模型。",
+          "id": "item-5ebc9f0465bb",
+          "name": "基因编辑器效果预测",
+          "desc": "CRISPR/Cas9及单碱基编辑器",
           "evidence": [
             {
-              "quote": "CRISPR/Cas9及单碱基编辑器通过直接修改基因组而被用于治疗遗传疾病或者建立动物模型。",
+              "quote": "CRISPR/Cas9及单碱基编辑器通过直接修改基因组而被用于治疗遗传疾病或者建立动物模型",
               "locator": {
                 "basis": "parsed_text",
                 "start_char": 682,
-                "end_char": 727
-              },
-              "version": "ff6681e11282322a74a9"
-            }
-          ]
-        },
-        {
-          "id": "item-95a6cdf51bd7",
-          "name": "基因编辑器科研与临床推广",
-          "desc": "新模型可大大方便基因编辑器在科研及临床等研究方向的应用。",
-          "evidence": [
-            {
-              "quote": "这将大大方便基因编辑器在科研及临床等研究方向的应用",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 956,
-                "end_char": 980
+                "end_char": 726
               },
               "version": "ff6681e11282322a74a9"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-62feac79ee50",
-          "name": "现有模型基于外源文库",
-          "desc": "已有基因编辑器深度学习模型建立在配对的慢病毒外源文库基础上，未考虑细胞内源因素。",
+          "id": "item-abbf8bbfa75d",
+          "name": "现有模型基于外源文库未考虑内源因素",
+          "desc": "DNA甲基化、染色质开放程度等",
           "evidence": [
             {
-              "quote": "但这些深度学习模型建立在配对的慢病毒外源文库基础上，并未考虑基因编辑效果与细胞内源因素的关系",
+              "quote": "这些深度学习模型建立在配对的慢病毒外源文库基础上，并未考虑基因编辑效果与细胞内源因素的关系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 757,
+                "start_char": 758,
                 "end_char": 802
-              },
-              "version": "ff6681e11282322a74a9"
-            }
-          ]
-        },
-        {
-          "id": "item-7e93355d78f7",
-          "name": "内源复杂因素影响未纳入",
-          "desc": "需全面分析DNA甲基化、染色体开放程度及组蛋白修饰等内源因素对编辑效果的影响。",
-          "evidence": [
-            {
-              "quote": "首先全面分析细胞基因组内源位点DNA甲基化、染色体开放程度及组蛋白修饰等各种不同因素对基因编辑器编辑效果的影响",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 807,
-                "end_char": 861
               },
               "version": "ff6681e11282322a74a9"
             }
@@ -95,47 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b92ed2c8074e",
-          "name": "高通量整合与内源数据集比较",
-          "desc": "建立高通量的整合数据集与内源数据集，系统比较碱基编辑器在整合位点与内源位点编辑效果的差异。",
-          "evidence": [
-            {
-              "quote": "本研究首先通过建立高通量的整合数据集与内源数据集，系统性比较碱基编辑器在整合位点与内源位点编辑效果的差异。",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 2175,
-                "end_char": 2227
-              },
-              "version": "ff6681e11282322a74a9"
-            }
-          ]
-        },
-        {
-          "id": "item-65d3e0ae67a4",
-          "name": "算法分层与卷积神经网络",
-          "desc": "以算法分层及卷积神经网络为基础建立合并多重变量的高保真基因编辑器深度学习模型。",
-          "evidence": [
-            {
-              "quote": "然后以算法分层及卷积神经网络为基础，建立合并多重变量的高保真版本基因编辑器的深度学习模型",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 863,
-                "end_char": 906
-              },
-              "version": "ff6681e11282322a74a9"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-51b7bde0d8f0",
-          "name": "BE_Endo高保真预测模型",
-          "desc": "建立合并多重变量的高保真版本基因编辑器深度学习模型BE_Endo。",
+          "id": "item-ab6af1fb17c3",
+          "name": "BE_Endo深度学习模型",
+          "desc": "合并多重内源变量",
           "evidence": [
             {
               "quote": "建立合并多重变量的高保真版本基因编辑器的深度学习模型BE_Endo",
@@ -147,72 +82,71 @@
               "version": "ff6681e11282322a74a9"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-51527598879f",
-          "name": "预测精度提升论文",
-          "desc": "发表论文论证纳入DNA序列之外的内源因素可提高碱基编辑结果预测精度。",
+          "id": "item-c1cf17200788",
+          "name": "整合数据集与内源数据集",
+          "desc": "比较整合位点与内源位点编辑效果",
           "evidence": [
             {
-              "quote": "Deep learning models incorporating endogenous factors beyond DNA sequences improve the prediction accuracy of base editing outcomes",
+              "quote": "本研究首先通过建立高通量的整合数据集与内源数据集，系统性比较碱基编辑器在整合位点与内源位点编辑效果的差异",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2436,
-                "end_char": 2566
+                "start_char": 2175,
+                "end_char": 2226
               },
               "version": "ff6681e11282322a74a9"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-6e8a6c670d9f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-62feac79ee50"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7e93355d78f7"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-65d3e0ae67a4"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-b92ed2c8074e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-51b7bde0d8f0"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-65d3e0ae67a4"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-51527598879f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Deep learning models incorporating endogenous factors beyond DNA sequences improve the prediction accuracy of base editing outcomes",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Tanglong Yuan;Leilei Wu;Shiyan Li;Jitan Zheng;Nana Li;Xiao Xiao;Haihang Zhang;Tianyi Fei;Long Xie;Zhenrui Zuo;Di Li;Pinzheng Huang;Hu Feng;Yaqi Cao;Nana Yan;Xinming Wei;Lei Shi;Yongsen Sun;Wu Wei;Yidi Sun;Erwei Zuo",
+      "id": "out-778c731ace54",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Deep learning models incorporating endogenous factors beyond DNA sequences improve the prediction accuracy of base editing outcomes — Tanglong Yuan;Leilei Wu;Shiyan Li;Jitan Zheng;Nana Li;Xiao Xiao;Haihang Zhang;Tianyi Fei;Long Xie;Zhenrui Zuo;Di Li;Pinzheng Huang;Hu Feng;Yaqi Cao;Nana Yan;Xinming Wei;Lei Shi;Yongsen Sun;Wu Wei;Yidi Sun;Erwei Zuo",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2429,
+            "end_char": 2783
+          },
+          "version": "ff6681e11282322a74a9"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 1,
+    "listed": 1,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

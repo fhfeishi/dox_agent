@@ -2,15 +2,20 @@
   "doc_id": "52b1afc4a9380b136674",
   "version": "5ea502522c686e9d0b41",
   "source_hash": "464690b4832c95b827db17bda252830e76b725362d3782d726396e0fbc526df5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:42:13.959019+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.735945+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,14 @@
         {
           "id": "item-73ba831fb20b",
           "name": "复杂条件下健康状态感知决策支持",
-          "desc": "健康状态感知是健康大数据分析领域研究热点，可用于疾病诊断、猝死风险预警等重大应用。",
+          "desc": "数据偏斜漂移、不确定性、多模态长时序依赖",
           "evidence": [
             {
-              "quote": "健康状态感知是近年来健康大数据分析领域中的研究热点，可用于疾病诊断、猝死风险预警等重大应用",
+              "quote": "本项目面向复杂医疗场景下健康状态感知与决策支持的重大需求，系统研究了数据偏斜漂移、多粒度异常的不确定性、多模态长时序依赖等核心挑战",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 652,
-                "end_char": 696
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ]
-        },
-        {
-          "id": "item-2f7ef74d1e7b",
-          "name": "推动AI技术在医疗领域应用",
-          "desc": "研究成果对推动人工智能技术在医疗领域应用、满足健康中国和科技强国战略具有重要意义。",
-          "evidence": [
-            {
-              "quote": "该项目研究及其成果对推动人工智能技术在医疗领域的应用、满足健康中国和科技强国战略具有重要意义",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 1005,
-                "end_char": 1050
+                "start_char": 3100,
+                "end_char": 3164
               },
               "version": "5ea502522c686e9d0b41"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5188426f0bcc",
-          "name": "真实复杂场景数据分布差异大",
-          "desc": "真实环境数据存在分布差异巨大且随时间变化、质量参差不齐、维度关联庞杂、模态缺失率高、长度显著不一等复杂条件，导致模型性能难以满足需要。",
+          "id": "item-8b60c5582803",
+          "name": "真实环境数据分布差异大、质量参差、模态缺失",
+          "desc": "现有模型性能难满足应用",
           "evidence": [
             {
               "quote": "现有模型在面对真实环境中数据分布差异巨大且随时间变化、质量参差不齐、维度关联庞杂、模态缺失率高、长度显著不一等复杂条件时，可能导致其性能难以满足实际应用需要",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 719,
                 "end_char": 796
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ]
-        },
-        {
-          "id": "item-859e782057cd",
-          "name": "数据偏斜漂移与多模态长时序依赖",
-          "desc": "需应对数据偏斜漂移、多粒度异常的不确定性、多模态长时序依赖等核心挑战。",
-          "evidence": [
-            {
-              "quote": "系统研究了数据偏斜漂移、多粒度异常的不确定性、多模态长时序依赖等核心挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3129,
-                "end_char": 3164
               },
               "version": "5ea502522c686e9d0b41"
             }
@@ -95,63 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-bfaafeb2e8ad",
-          "name": "类偏斜漂移驱动健康状态识别模型",
-          "desc": "感知揭示数据偏斜及其漂移机理，构建类偏斜漂移驱动的健康状态识别模型，自动适应小样本类别和数据分布变化。",
-          "evidence": [
-            {
-              "quote": "感知和揭示数据偏斜及其漂移机理，构建类偏斜漂移驱动的健康状态识别模型，自动适应小样本类别和数据分布变化",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 837,
-                "end_char": 887
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ]
-        },
-        {
-          "id": "item-6fc6119f6db5",
-          "name": "二元编解码学习框架诊断方法",
-          "desc": "建立基于二元-编解码学习框架的诊断方法，自动适配低质量数据并提供不确定性估计与多粒度诊断依据。",
-          "evidence": [
-            {
-              "quote": "建立基于二元-编解码学习框架的诊断方法，自动适配低质量数据，提供不确定性估计和多粒度的诊断依据",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 891,
-                "end_char": 937
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ]
-        },
-        {
-          "id": "item-c6f664f24ed0",
-          "name": "多模态协同健康状态风险预测",
-          "desc": "研究多模态协同的健康状态风险预测模型，捕捉当前健康状态与变长历史状态之间的依赖关系。",
-          "evidence": [
-            {
-              "quote": "研究多模态协同的健康状态风险预测模型，捕捉当前健康状态与变长的历史状态之间依赖关系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 941,
-                "end_char": 981
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-9c4462a4f63b",
-          "name": "ICCA损失函数实现偏斜漂移自适应",
-          "desc": "提出基于实例置信度与类别准确率的ICCA损失函数，实现无监督的偏斜漂移自适应。",
+          "id": "item-d6fe0202e0a5",
+          "name": "ICCA损失函数",
+          "desc": "实例置信度与类别准确率，无监督偏斜漂移自适应",
           "evidence": [
             {
               "quote": "提出基于实例置信度与类别准确率的ICCA损失函数，实现无监督的偏斜漂移自适应",
@@ -163,29 +82,12 @@
               "version": "5ea502522c686e9d0b41"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-30e955f40f6c",
-          "name": "MRTNet心肌梗死分类准确率82.98%",
-          "desc": "设计多尺度SE-残差网络与Transformer编码器，在心肌梗死分类任务中准确率达82.98%。",
-          "evidence": [
-            {
-              "quote": "设计多尺度SE-残差网络与Transformer编码器（MRTNet），在心肌梗死分类任务中准确率达82.98%",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3299,
-                "end_char": 3354
-              },
-              "version": "5ea502522c686e9d0b41"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-59da0d258e28",
-          "name": "MetaVA个性化心室律失常检测AUC 0.984",
-          "desc": "构建元学习框架MetaVA，仅需10个心拍即可实现个性化心室律失常检测，AUC达0.984。",
+          "id": "item-cd5fbaef9fde",
+          "name": "元学习框架MetaVA",
+          "desc": "10个心拍实现个性化室性心律失常检测",
           "evidence": [
             {
               "quote": "构建元学习框架MetaVA，仅需10个心拍即可实现个性化心室律失常检测（AUC 0.984）",
@@ -197,55 +99,243 @@
               "version": "5ea502522c686e9d0b41"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        },
+        {
+          "id": "item-8d97d4b3bdf6",
+          "name": "异质多模态自适应多任务学习HMA",
+          "desc": "心音Levine分级与器质性心脏病风险联合分析",
+          "evidence": [
+            {
+              "quote": "首创异质多模态自适应多任务学习（HMA），实现心音国际Levine分级与器质性心脏病风险联合分析",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3409,
+                "end_char": 3456
+              },
+              "version": "5ea502522c686e9d0b41"
+            }
+          ],
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-66a09b75e2f7",
+          "name": "论文专利与原型系统",
+          "desc": "论文7篇、发明专利4项、原型系统1套",
+          "evidence": [
+            {
+              "quote": "项目发表高水平论文7篇（含AAAI、Nature npj Digital Medicine、Applied Soft Computing等），申请发明专利4项，研制可适配健康状态感知原型系统1套",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3500,
+                "end_char": 3596
+              },
+              "version": "5ea502522c686e9d0b41"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-73ba831fb20b"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-5188426f0bcc"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Multi-scale SE-residual network with transformer encoder for myocardial infarction classification",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Qingyu Yao;Luming Zhang;Wenguang Zheng;Yuxi Zhou;Yingyuan Xiao",
+      "id": "out-ac62fec53775",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Multi-scale SE-residual network with transformer encoder for myocardial infarction classification — Qingyu Yao;Luming Zhang;Wenguang Zheng;Yuxi Zhou;Yingyuan Xiao",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3749,
+            "end_char": 3917
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-5188426f0bcc"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-bfaafeb2e8ad"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "A lightweight deep neural network for personalized detecting ventricular arrhythmias from a single-lead ECG device",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Zhejun Sun;Wenrui Zhang;Yuxi Zhou;Shijia Geng;Deyun Zhang;Jiaze Wang;Bin Liu;Zhaoji Fu;Linlin Zheng;Chenyang Jiang;Guigang Zhang;Shenda Hong",
+      "id": "out-fcaa1af09af2",
+      "evidence": [
+        {
+          "quote": "[期刊论文] A lightweight deep neural network for personalized detecting ventricular arrhythmias from a single-lead ECG device — Zhejun Sun;Wenrui Zhang;Yuxi Zhou;Shijia Geng;Deyun Zhang;Jiaze Wang;Bin Liu;Zhaoji Fu;Linlin Zheng;Chenyang Jiang;Guigang Zhang;Shenda Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3922,
+            "end_char": 4185
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-bfaafeb2e8ad"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9c4462a4f63b"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "一种人机协同方法、人机协同装置和存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王秀杰;周雨熙;李欣;张勇;盛明;任鹏;李宇轩",
+      "id": "out-19322af341ad",
+      "evidence": [
+        {
+          "quote": "[专利] 一种人机协同方法、人机协同装置和存储介质 — 王秀杰;周雨熙;李欣;张勇;盛明;任鹏;李宇轩",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4190,
+            "end_char": 4240
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c6f664f24ed0"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-59da0d258e28"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "行为识别方法及装置",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "周浩;周雨熙;王秀杰;夏爱灵;胡雪城;庄晓泓",
+      "id": "out-7125f86e97a6",
+      "evidence": [
+        {
+          "quote": "[专利] 行为识别方法及装置 — 周浩;周雨熙;王秀杰;夏爱灵;胡雪城;庄晓泓",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4245,
+            "end_char": 4283
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cardiac murmur grading and risk analysis of cardiac diseases based on adaptable heterogeneous-modality multi-task learning",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chenyang Xu;Xin Li;Xinyue Zhang;Ruilin Wu;Yuxi Zhou;Qinghao Zhao;Yong Zhang;Shijia Geng;Yue Gu;Shenda Hong",
+      "id": "out-6290316849b3",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cardiac murmur grading and risk analysis of cardiac diseases based on adaptable heterogeneous-modality multi-task learning — Chenyang Xu;Xin Li;Xinyue Zhang;Ruilin Wu;Yuxi Zhou;Qinghao Zhao;Yong Zhang;Shijia Geng;Yue Gu;Shenda Hong",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4288,
+            "end_char": 4525
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Coordinating Music Signals and Electrocardiogram Signals in a Shared Valence-Arousal Emotional Space",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jiaze;Geng Shijia;Chen Zizheng;Han Yuhu;Zhang Deyun;Xu Weilun;Wang Lixin;Zhao Yanqing;Hong Shenda;Zhou Yuxi",
+      "id": "out-6236a118f3b0",
+      "evidence": [
+        {
+          "quote": "[会议论文] Coordinating Music Signals and Electrocardiogram Signals in a Shared Valence-Arousal Emotional Space — Wang Jiaze;Geng Shijia;Chen Zizheng;Han Yuhu;Zhang Deyun;Xu Weilun;Wang Lixin;Zhao Yanqing;Hong Shenda;Zhou Yuxi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4530,
+            "end_char": 4751
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
+    },
+    {
+      "kind": "会议论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Intentional Evolutionary Learning for Untrimmed Videos with Long Tail Distribution",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Yuxi Zhou;Xiujie Wang;Jianhua Zhang;Jiajia Wang;Jie Yu;Hao Zhou;Yi Gao;Shengyong Chen",
+      "id": "out-924f3ce26c67",
+      "evidence": [
+        {
+          "quote": "[会议论文] Intentional Evolutionary Learning for Untrimmed Videos with Long Tail Distribution — Yuxi Zhou;Xiujie Wang;Jianhua Zhang;Jiajia Wang;Jie Yu;Hao Zhou;Yi Gao;Shengyong Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4756,
+            "end_char": 4932
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
+    },
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于超图的手术预测方法、装置、电子设备及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "庄晓泓;周雨熙",
+      "id": "out-4c9f798bf49a",
+      "evidence": [
+        {
+          "quote": "[专利] 基于超图的手术预测方法、装置、电子设备及存储介质 — 庄晓泓;周雨熙",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4937,
+            "end_char": 4975
+          },
+          "version": "5ea502522c686e9d0b41"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 8,
+    "listed": 8,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "专利": {
+        "listed": 3,
+        "extracted": 3
+      },
+      "会议论文": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

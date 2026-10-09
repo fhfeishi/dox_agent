@@ -2,15 +2,20 @@
   "doc_id": "1ebc16735f16e206afd7",
   "version": "b34d42c8e2abbdd9bf6e",
   "source_hash": "28c4cada7810dc07a9b5a1285319b41414f7a03d42729e86bb55f86276829ad6",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T13:04:04.820456+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 2
+  },
+  "generated_at": "2026-10-09T10:31:10.622428+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,16 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d2c5e8d3ffad",
-          "name": "肥厚型心肌病心源性猝死预测",
-          "desc": "面向肥厚型心肌病人群，融合心脏磁共振肌小梁表征与遗传易感性构建心源性猝死风险预测模型。",
+          "id": "item-06b48c69717b",
+          "name": "肥厚型心肌病心源性猝死风险评估",
+          "desc": "SCD是HCM最严重并发症",
           "evidence": [
             {
-              "quote": "肥厚型心肌病（hypertrophic cardiomyopathy, HCM）在临床中常见，其最大威胁在于导致心源性猝死（sudden cardiac death, SCD）的发生",
+              "quote": "心源性猝死（SCD）是其最严重的并发症",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 677,
-                "end_char": 767
+                "start_char": 2552,
+                "end_char": 2570
               },
               "version": "b34d42c8e2abbdd9bf6e"
             }
@@ -41,16 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-85dd3228476b",
-          "name": "现有HCM猝死预测模型效能不足",
-          "desc": "既往研究发现HCM现有SCD预测模型效能不足，且缺乏整合影像与遗传信息的个体化评估工具。",
+          "id": "item-04195c1984da",
+          "name": "国际模型在中国人群效能有限且缺乏影像遗传整合工具",
+          "desc": "需个体化评估",
           "evidence": [
             {
-              "quote": "既往研究发现HCM现有的SCD预测模型效能不足",
+              "quote": "现有国际风险预测模型在中国人群中的效能有限，且缺乏整合影像与遗传信息的个体化评估工具",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 769,
-                "end_char": 791
+                "start_char": 2572,
+                "end_char": 2613
               },
               "version": "b34d42c8e2abbdd9bf6e"
             }
@@ -63,20 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-19eafba8a65e",
-          "name": "融合肌小梁影像表征与遗传易感性的机器学习预测模型",
-          "desc": "采用机器学习对HCM基因与心脏磁共振数据深度挖掘，阐明肌小梁影像表征的独立预后价值并建立易感位点，融合影像与遗传易感性构建SCD预测模型。",
+          "id": "item-7aaa47414376",
+          "name": "肌小梁分形维数FD",
+          "desc": "心尖FD是SCD独立预测因子",
           "evidence": [
             {
-              "quote": "融合肌小梁影像表征和遗传易感性构建HCM心源性猝死预测模型并加以验证",
+              "quote": "基于心脏电影序列的肌小梁分形维数（FD），尤其是心尖FD，是SCD的强效独立预测因子",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 1019,
-                "end_char": 1052
+                "start_char": 2831,
+                "end_char": 2872
               },
               "version": "b34d42c8e2abbdd9bf6e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-988a643a304c",
+          "name": "T1 mapping左心室熵值",
+          "desc": "SCD及复合心血管事件独立预测",
+          "evidence": [
+            {
+              "quote": "基于T1 mapping的左心室熵值是SCD及复合心血管事件的独立预测指标",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2892,
+                "end_char": 2928
+              },
+              "version": "b34d42c8e2abbdd9bf6e"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-89c8e4d112ad",
+          "name": "融合影像与遗传的华西模型",
+          "desc": "临床、CMR与遗传信息的机器学习模型",
+          "evidence": [
+            {
+              "quote": "初步构建了融合临床特征、CMR影像学及关键遗传信息的HCM-SCD机器学习预测模型（“华西模型”）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3102,
+                "end_char": 3150
+              },
+              "version": "b34d42c8e2abbdd9bf6e"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -85,9 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dfe79b9b7163",
-          "name": "构建1100例HCM遗传-影像队列与华西模型",
-          "desc": "构建包含1100例患者的HCM遗传-影像队列（前瞻入组失访率0%），发现心尖肌小梁分形维数等独立预测因子，初步构建融合临床、CMR影像与遗传信息的机器学习预测模型（华西模型）。",
+          "id": "item-8fa61f559e02",
+          "name": "HCM遗传-影像队列",
+          "desc": "1100例患者",
           "evidence": [
             {
               "quote": "成功构建了包含1100例患者的HCM遗传-影像队列",
@@ -99,7 +139,66 @@
               "version": "b34d42c8e2abbdd9bf6e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-a015178dee63",
+          "name": "MYBPC3突变与肌小梁复杂性",
+          "desc": "中国HCM人群首次发现",
+          "evidence": [
+            {
+              "quote": "项目首次在中国HCM人群中发现MYBPC3基因突变与心肌肌小梁复杂性增高显著相关",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2992,
+                "end_char": 3031
+              },
+              "version": "b34d42c8e2abbdd9bf6e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-30406e69e77d",
+          "name": "原型网页工具",
+          "desc": "华西模型原型",
+          "evidence": [
+            {
+              "quote": "并已开发出原型网页工具",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3168,
+                "end_char": 3178
+              },
+              "version": "b34d42c8e2abbdd9bf6e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
+        },
+        {
+          "id": "item-7cbc9b067f4d",
+          "name": "2023 ESC最佳摘要奖",
+          "desc": "项目负责人",
+          "evidence": [
+            {
+              "quote": "并获“2023 ESC最佳摘要奖”",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3310,
+                "end_char": 3326
+              },
+              "version": "b34d42c8e2abbdd9bf6e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
@@ -107,36 +206,448 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-d2c5e8d3ffad"
+        "dimension": "技术",
+        "item_id": "item-89c8e4d112ad"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-85dd3228476b"
+        "item_id": "item-04195c1984da"
       },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-85dd3228476b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-19eafba8a65e"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-19eafba8a65e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-dfe79b9b7163"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于上述发现，项目初步构建了融合临床特征、CMR影像学及关键遗传信息的HCM-SCD机器学习预测模型（“华西模型”）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3093,
+            "end_char": 3150
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Current perspectives of sudden cardiac death management in hypertrophic cardiomyopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Lutong Pu;Jialin Li;Weitang Qi;Jinquan Zhang;Hongyu Chen;Zihuan Tang;Yuchi Han;Jie Wang;Yucheng Chen",
+      "id": "out-27c40f8b3e42",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Current perspectives of sudden cardiac death management in hypertrophic cardiomyopathy — Lutong Pu;Jialin Li;Weitang Qi;Jinquan Zhang;Hongyu Chen;Zihuan Tang;Yuchi Han;Jie Wang;Yucheng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3468,
+            "end_char": 3663
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Genetic architecture of hypertrophic cardiomyopathy in individuals of Chinese and United Kingdom ancestry",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jie;Russ Dominic;Yang Yongsan;Pu Lutong;Yu Mengdi;Zhang Jinquan;Guo Jiajun;Xu Yuanwei;Wan Ke;Xu Heng;Han Yuchi;Gkoutos Georgios V;Chen Yucheng",
+      "id": "out-1d1f318c1e96",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Genetic architecture of hypertrophic cardiomyopathy in individuals of Chinese and United Kingdom ancestry — Wang Jie;Russ Dominic;Yang Yongsan;Pu Lutong;Yu Mengdi;Zhang Jinquan;Guo Jiajun;Xu Yuanwei;Wan Ke;Xu Heng;Han Yuchi;Gkoutos Georgios V;Chen Yucheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3668,
+            "end_char": 3929
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Atypical late gadolinium enhancement pattern in danon disease: a case report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于梦迪;普露桐;王杰;陈玉成",
+      "id": "out-0b692dcea137",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Atypical late gadolinium enhancement pattern in danon disease: a case report — 于梦迪;普露桐;王杰;陈玉成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3934,
+            "end_char": 4033
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of RV Abnormalities on CMR in Patients With Known or Suspected Cardiac Sarcoidosis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang;Jinquan Zhang;Nisha Hosadurg;Yoshitaka Iwanaga;Yuxin Chen;Wei Liu;Ke Wan;Amit R Patel;Eleanor C Wicks;Georgios V Gkoutos;Yuchi Han;Yucheng Chen",
+      "id": "out-ce6adee41dad",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of RV Abnormalities on CMR in Patients With Known or Suspected Cardiac Sarcoidosis — Jie Wang;Jinquan Zhang;Nisha Hosadurg;Yoshitaka Iwanaga;Yuxin Chen;Wei Liu;Ke Wan;Amit R Patel;Eleanor C Wicks;Georgios V Gkoutos;Yuchi Han;Yucheng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4038,
+            "end_char": 4298
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prognostic Value of Myocardial T1 Mapping for Predicting Adverse Events in Hypertrophic Cardiomyopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jie;Zhang Jinquan;Liu Wei;Pu Lutong;Qi Weitang;Xu Yuanwei;Wan Ke;Gkoutos Georgios V.;Han Yuchi;Chen Yucheng",
+      "id": "out-85f4848d98fd",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prognostic Value of Myocardial T1 Mapping for Predicting Adverse Events in Hypertrophic Cardiomyopathy — Wang Jie;Zhang Jinquan;Liu Wei;Pu Lutong;Qi Weitang;Xu Yuanwei;Wan Ke;Gkoutos Georgios V.;Han Yuchi;Chen Yucheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4303,
+            "end_char": 4526
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Incremental significance of myocardial oedema for prognosis in hypertrophic cardiomyopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xu Ziqian;Wang Jie;Cheng Wei;Wan Ke;Li Weihao;Pu Lutong;Xu Yuanwei;Sun Jiayu;Han Yuchi;Chen Yucheng",
+      "id": "out-6f6de3b28f3f",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Incremental significance of myocardial oedema for prognosis in hypertrophic cardiomyopathy — Xu Ziqian;Wang Jie;Cheng Wei;Wan Ke;Li Weihao;Pu Lutong;Xu Yuanwei;Sun Jiayu;Han Yuchi;Chen Yucheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4531,
+            "end_char": 4729
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Danon disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "梁仕楚;王杰;陈玉成",
+      "id": "out-e139abdc89d0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Danon disease — 梁仕楚;王杰;陈玉成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4734,
+            "end_char": 4766
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "2023欧洲心脏病学会年度会议最佳摘要",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "王杰",
+      "id": "out-56f595f3d012",
+      "evidence": [
+        {
+          "quote": "[奖励] 2023欧洲心脏病学会年度会议最佳摘要 — 王杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4771,
+            "end_char": 4799
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Tafamidis treatment in patients with transthyretin amyloid cardiomyopathy: a systematic review and meta-analysis",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang;Hongyu Chen;Zihuan Tang;Jinquan Zhang;Yuanwei Xu;Ke Wan;Kifah Hussain;Georgios V. Gkoutos;Yuchi Han;Yucheng Chen",
+      "id": "out-ac0bcb2386cb",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Tafamidis treatment in patients with transthyretin amyloid cardiomyopathy: a systematic review and meta-analysis — Jie Wang;Hongyu Chen;Zihuan Tang;Jinquan Zhang;Yuanwei Xu;Ke Wan;Kifah Hussain;Georgios V. Gkoutos;Yuchi Han;Yucheng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4804,
+            "end_char": 5046
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "The Prognostic Value of Left Ventricular Entropy From T1 Mapping in Patients With Hypertrophic Cardiomyopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang",
+      "id": "out-8e184975c05b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] The Prognostic Value of Left Ventricular Entropy From T1 Mapping in Patients With Hypertrophic Cardiomyopathy — Jie Wang",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5052,
+            "end_char": 5178
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Glycogen Storage Disease with Massive LV Hypertrophy and increased native T1: A Case Report",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang;Lutong Pu;Yuchi Han;Yucheng Chen",
+      "id": "out-316ceafc1b9b",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Glycogen Storage Disease with Massive LV Hypertrophy and increased native T1: A Case Report — Jie Wang;Lutong Pu;Yuchi Han;Yucheng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5184,
+            "end_char": 5325
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中华医学科技奖",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "陈玉成;朱燕杰;孙家瑜;张庆;李真林;万珂;吴滔;王杰",
+      "id": "out-048e0b95021e",
+      "evidence": [
+        {
+          "quote": "[奖励] 中华医学科技奖 — 陈玉成;朱燕杰;孙家瑜;张庆;李真林;万珂;吴滔;王杰",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5331,
+            "end_char": 5372
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Predictive Value of Left Atrial Strain for Thrombotic Events in Hypertrophic Cardiomyopathy without Atrial Fibrillation",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Pu Lutong;Wang Jie;Li Jialin;Qi Weitang;Xu Yuanwei;Wan Ke;Kang Yu;Zhang Qing;Han Yuchi;Chen Yucheng",
+      "id": "out-71cddc245103",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Predictive Value of Left Atrial Strain for Thrombotic Events in Hypertrophic Cardiomyopathy without Atrial Fibrillation — Pu Lutong;Wang Jie;Li Jialin;Qi Weitang;Xu Yuanwei;Wan Ke;Kang Yu;Zhang Qing;Han Yuchi;Chen Yucheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5378,
+            "end_char": 5605
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cardiac phenotype characterization at magnetic resonance imaging in alpha-protein kinase 3-associated hypertrophic cardiomyopathy",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "普露桐;王杰;于梦迪;徐源蔚;万珂;郭佳隽;李阳桀;Yuchi Han;陈玉成",
+      "id": "out-f74901fa6d4c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cardiac phenotype characterization at magnetic resonance imaging in alpha-protein kinase 3-associated hypertrophic cardiomyopathy — 普露桐;王杰;于梦迪;徐源蔚;万珂;郭佳隽;李阳桀;Yuchi Han;陈玉成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5611,
+            "end_char": 5788
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Progression of Arrhythmia in a Patient of Erdheim-Chester Disease After Interferon-α Withdrawal",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Jie Wang;Shichu Liang;Yuchi Han;Yucheng Chen",
+      "id": "out-2267da6e54c6",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Progression of Arrhythmia in a Patient of Erdheim-Chester Disease After Interferon-α Withdrawal — Jie Wang;Shichu Liang;Yuchi Han;Yucheng Chen",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5794,
+            "end_char": 5942
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Phenotypic Diversity on Cardiac Magnetic Resonance in a Han Family With Fabry Disease",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "李佳林;王杰;陈玉成",
+      "id": "out-ae1d84f1e202",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Phenotypic Diversity on Cardiac Magnetic Resonance in a Han Family With Fabry Disease — 李佳林;王杰;陈玉成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5948,
+            "end_char": 6052
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Effect of obesity on myocardial tissue characteristics in patients with hypertrophic cardiomyopathy: a cardiovascular magnetic resonance-based study",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wang Jie;Pu Lutong;Zhang Jinquan;Xu Ruihao;Li Yang;Yu Mengdi;Li Yangjie;Guo Jiajun;Xu Yuanwei;Kang Yu;Han Yuchi;Chen Yucheng",
+      "id": "out-f34b4efe88f8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Effect of obesity on myocardial tissue characteristics in patients with hypertrophic cardiomyopathy: a cardiovascular magnetic resonance-based study — Wang Jie;Pu Lutong;Zhang Jinquan;Xu Ruihao;Li Yang;Yu Mengdi;Li Yangjie;Guo Jiajun;Xu Yuanwei;Kang Yu;Han Yuchi;Chen Yucheng",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6058,
+            "end_char": 6339
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "心脏磁共振对肥厚型心肌病拟表型罕见病的诊断价值",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "于梦迪;王杰;陈玉成",
+      "id": "out-f54b82277e18",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 心脏磁共振对肥厚型心肌病拟表型罕见病的诊断价值 — 于梦迪;王杰;陈玉成",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 6345,
+            "end_char": 6387
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2023",
+      "precision": "年",
+      "desc": "获ESC最佳摘要奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-b389149517f8",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "并获“2023 ESC最佳摘要奖”",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3310,
+            "end_char": 3326
+          },
+          "version": "b34d42c8e2abbdd9bf6e"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 18,
+    "listed": 18,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 16,
+        "extracted": 16
+      },
+      "奖励/专著": {
+        "listed": 2,
+        "extracted": 2
+      }
+    },
+    "consistent": true
+  }
 }

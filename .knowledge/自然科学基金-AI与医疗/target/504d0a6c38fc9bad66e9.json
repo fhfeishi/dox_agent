@@ -2,15 +2,20 @@
   "doc_id": "504d0a6c38fc9bad66e9",
   "version": "8084bd51f087d3a3e611",
   "source_hash": "9e0144c62a2ca58a8a7b5b2f22785d56f6c8bc51a37e7c30ff7a6481530a52b2",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:30:09.053366+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:41:37.700213+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-4f1581b057a1",
-          "name": "鼻咽癌免疫治疗预后量化预测",
-          "desc": "PD-1/PD-L1抑制剂成为晚期鼻咽癌治疗新模式，筛选免疫治疗潜在获益人群是亟待解决的临床问题。",
+          "id": "item-4b18b93bcdef",
+          "name": "鼻咽癌免疫治疗预后预测",
+          "desc": "PD1/PD-L1抑制剂改善预后",
           "evidence": [
             {
-              "quote": "PD-1/PD-L1免疫检查点抑制剂成为晚期鼻咽癌治疗新模式，筛选免疫治疗潜在获益人群是当前亟待解决的临床问题",
+              "quote": "PD1/PD-L1抑制剂免疫治疗成功改善晚期鼻咽癌患者预后",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 716
-              },
-              "version": "8084bd51f087d3a3e611"
-            }
-          ]
-        },
-        {
-          "id": "item-cffd4a0fc91f",
-          "name": "鼻咽癌免疫微环境无创评估",
-          "desc": "功能MRI与影像组学为肿瘤微环境及免疫治疗评估提供无创方法，指导临床治疗决策。",
-          "evidence": [
-            {
-              "quote": "为鼻咽癌免疫治疗的个体化精准诊疗提供无创、量化方法，从而指导临床治疗决策",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3743,
-                "end_char": 3778
+                "start_char": 2841,
+                "end_char": 2869
               },
               "version": "8084bd51f087d3a3e611"
             }
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc74a222d845",
-          "name": "超60%患者未能从免疫治疗获益",
-          "desc": "PD1/PD-L1抑制剂改善晚期鼻咽癌预后，但超过60%患者未能从中获益，需准确识别获益人群。",
+          "id": "item-5d4c9e6a57cb",
+          "name": "超过60%患者未能从免疫治疗获益",
+          "desc": "需识别潜在获益人群",
           "evidence": [
             {
-              "quote": "但是超过60%的患者未能从免疫治疗中获益，准确识别免疫治疗潜在获益人群是亟待解决的临床问题",
+              "quote": "超过60%的患者未能从免疫治疗中获益，准确识别免疫治疗潜在获益人群是亟待解决的临床问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2871,
+                "start_char": 2873,
                 "end_char": 2915
-              },
-              "version": "8084bd51f087d3a3e611"
-            }
-          ]
-        },
-        {
-          "id": "item-1c110ab97311",
-          "name": "肿瘤难以精准分割",
-          "desc": "鼻咽癌MRI图像中头颈部解剖结构复杂、病灶形态多变，肿瘤难以精准分割。",
-          "evidence": [
-            {
-              "quote": "针对鼻咽癌MRI图像中头颈部解剖结构复杂、病灶形态多变，肿瘤难以精准分割等挑战",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3390,
-                "end_char": 3428
               },
               "version": "8084bd51f087d3a3e611"
             }
@@ -95,25 +68,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8d0d6b131e63",
-          "name": "多尺度组学模型融合建模",
-          "desc": "融合影像组学、TME分子标签及相关临床指标，构建并验证多尺度组学模型量化预测免疫治疗预后。",
+          "id": "item-3302deb41205",
+          "name": "多模态MRI影像组学标签",
+          "desc": "预测免疫治疗客观缓解",
           "evidence": [
             {
-              "quote": "基于深度学习算法融合影像组学、TME分子标签及相关临床指标，构建并验证一个多尺度组学模型量化预测免疫治疗预后",
+              "quote": "基于多模态MRI影像组学特征构建的影像组学标签与鼻咽癌免疫治疗应答密切相关",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 954,
-                "end_char": 1007
+                "start_char": 3233,
+                "end_char": 3269
               },
               "version": "8084bd51f087d3a3e611"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-ab67a719d66e",
-          "name": "HSL-Net深度学习分割架构",
-          "desc": "提出Holistically guided State-space Network with Large-Kernel Convolutions深度学习架构用于分割。",
+          "id": "item-5c270e6a4c27",
+          "name": "定量ADC评估PD-L1表达",
+          "desc": "ADC值负相关",
+          "evidence": [
+            {
+              "quote": "磁共振定量表观扩散系数（ADC）在与鼻咽癌PD-L1表达分数呈显著负相关性",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3105,
+                "end_char": 3141
+              },
+              "version": "8084bd51f087d3a3e611"
+            }
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-b740571ed0b1",
+          "name": "HSL-Net鼻咽癌MRI分割网络",
+          "desc": "全局引导状态空间网络与大核卷积",
           "evidence": [
             {
               "quote": "我们提出一种名为HSL-Net（Holistically guided State-space Network with Large-Kernel Convolutions）的深度学习架构",
@@ -124,23 +115,8 @@
               },
               "version": "8084bd51f087d3a3e611"
             }
-          ]
-        },
-        {
-          "id": "item-2e7ad622e990",
-          "name": "TME标志物与组学特征关联分析",
-          "desc": "验证TME标志物作用，挖掘多模态MRI中与预后高度关联的影像组学特征，阐明其与TME分子标签相关性。",
-          "evidence": [
-            {
-              "quote": "采用卷积神经网络技术，挖掘并筛选鼻咽癌多模态MRI图像中与预后高度关联的影像组学特征，阐明影像组学特征与TME分子标签表达相关性",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 887,
-                "end_char": 950
-              },
-              "version": "8084bd51f087d3a3e611"
-            }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,26 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a0c71e4bcb3d",
-          "name": "ADC预测PD-L1高表达AUC",
-          "desc": "ADCmean、ADCmin、ADCmax预测PD-L1高表达状态AUC分别为0.820、0.755和0.760，表明定量ADC可评估PD-L1表达状态。",
-          "evidence": [
-            {
-              "quote": "ADCmean、ADCmin、ADCmax预测PD-L1高表达状态的AUC值分别为0.820、 0.755和 0.760",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3143,
-                "end_char": 3202
-              },
-              "version": "8084bd51f087d3a3e611"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-d2f4dd815757",
-          "name": "影像组学标签预测客观缓解AUC",
-          "desc": "影像组学标签预测免疫治疗客观缓解训练集AUC 0.790、验证集0.735，显著高于PD-L1表达评分。",
+          "id": "item-7039a6ea4f15",
+          "name": "影像组学标签预测客观缓解",
+          "desc": "训练集0.790、验证集0.735，优于PD-L1评分",
           "evidence": [
             {
               "quote": "在训练集与验证集中，影像组学标签预测免疫治疗客观缓解的AUC为分别0.790和0.735，其预测性能显著高于PD-L1表达评分",
@@ -180,12 +139,14 @@
               "version": "8084bd51f087d3a3e611"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-5164efea1635",
-          "name": "HSL-Net分割Dice 73.21%",
-          "desc": "HSL-Net在图像分割任务上平均Dice达73.21%、HD95误差3.24mm，预后复发预测分类准确率96.0%。",
+          "id": "item-054645413e5b",
+          "name": "HSL-Net分割与预测",
+          "desc": "平均Dice 73.21%，复发预测准确率96.0%",
           "evidence": [
             {
               "quote": "HSL-Net在图像分割任务上的平均Dice系数达到73.21%，HD95误差为3.24mm，优于传统的卷积神经网络算法，且在预后复发预测任务中达到了 96.0% 的分类准确率",
@@ -197,55 +158,94 @@
               "version": "8084bd51f087d3a3e611"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-4f1581b057a1"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-dc74a222d845"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Reproducibility and usefulness of quantitative apparent diffusion coefficient measurements for predicting program death-ligand 1 expression in nasopharyngeal carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xi Zhong;Li Li;Jinxue Yin;Yuanlin Chen;Xin Xin;Lanlan Yu;Yongfang Tang;Jiangyu Zhang;Jiansheng Li",
+      "id": "out-fdf78f357404",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Reproducibility and usefulness of quantitative apparent diffusion coefficient measurements for predicting program death-ligand 1 expression in nasopharyngeal carcinoma — Xi Zhong;Li Li;Jinxue Yin;Yuanlin Chen;Xin Xin;Lanlan Yu;Yongfang Tang;Jiangyu Zhang;Jiansheng Li",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3812,
+            "end_char": 4085
+          },
+          "version": "8084bd51f087d3a3e611"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-dc74a222d845"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-8d0d6b131e63"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Prediction of immunotherapy response in nasopharyngeal carcinoma: a comparative study using MRI-based radiomics signature and programmed cell death ligand 1 expression score",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Mai Hui;Li Li;Xin Xin;Jiang Zhike;Tang Yongfang;Huang Jie;Lei Yanxing;Chen Lianzhi;Dong Tianfa;Zhong Xi",
+      "id": "out-e5509662f26c",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Prediction of immunotherapy response in nasopharyngeal carcinoma: a comparative study using MRI-based radiomics signature and programmed cell death ligand 1 expression score — Mai Hui;Li Li;Xin Xin;Jiang Zhike;Tang Yongfang;Huang Jie;Lei Yanxing;Chen Lianzhi;Dong Tianfa;Zhong Xi",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4090,
+            "end_char": 4375
+          },
+          "version": "8084bd51f087d3a3e611"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2e7ad622e990"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-d2f4dd815757"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-ab67a719d66e"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-5164efea1635"
-      },
-      "basis": "原文明示"
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "胃部图像分析方法、系统、装置及存储介质",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钟熹;梁家铭;戴立欢;易煊;邱力;刘嘉文;蔡宏民;冷启彬",
+      "id": "out-b35f0d8b245e",
+      "evidence": [
+        {
+          "quote": "[专利] 胃部图像分析方法、系统、装置及存储介质 — 钟熹;梁家铭;戴立欢;易煊;邱力;刘嘉文;蔡宏民;冷启彬",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4380,
+            "end_char": 4434
+          },
+          "version": "8084bd51f087d3a3e611"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 3,
+    "listed": 3,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 2,
+        "extracted": 2
+      },
+      "专利": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

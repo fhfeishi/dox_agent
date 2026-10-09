@@ -2,15 +2,20 @@
   "doc_id": "1b69e3d529793a0828eb",
   "version": "0218b1017095936ceeb3",
   "source_hash": "7d23cc86594a175d4a66756a80f89aa5ebfd35724937a3f8d5c316b923e86a33",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T12:47:16.016296+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "claude-sonnet-5-5（会话内人工提取，回放导入）",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 1
+  },
+  "generated_at": "2026-10-09T10:31:10.468153+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-31c68c8c96a0",
-          "name": "肝癌动态演进PET可视化体系",
-          "desc": "肿瘤演进是多因素诱导的动态复杂过程，免疫微环境变化发挥重要作用，需实时监测其与免疫微环境失衡的相互作用。",
+          "id": "item-5fafd89e18f7",
+          "name": "肝癌演进与免疫微环境PET可视化",
+          "desc": "以肝癌演进与免疫微环境失衡的动态关系为主线",
           "evidence": [
             {
-              "quote": "肿瘤演进是一个多因素诱导的、动态的复杂过程，免疫微环境的变化发挥了重要作用",
+              "quote": "本项目以肝癌演进与免疫微环境失衡的动态关系为主线",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 645,
-                "end_char": 681
-              },
-              "version": "0218b1017095936ceeb3"
-            }
-          ]
-        },
-        {
-          "id": "item-45f0cc2d8801",
-          "name": "为抗肝癌药物研发提供靶点",
-          "desc": "研究成果可为肝癌无创诊断、分型、预后判断和疗效评估提供新型可视化靶标，为抗肝癌药物研发提供潜在靶点。",
-          "evidence": [
-            {
-              "quote": "研究成果可为肝癌“无创”诊断、分型、预后判断和疗效评估提供新型可视化靶标，为抗肝癌药物研发提供潜在靶点",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 985,
-                "end_char": 1035
+                "start_char": 768,
+                "end_char": 791
               },
               "version": "0218b1017095936ceeb3"
             }
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-e6838c1ffef2",
-          "name": "需实时监测演进与微环境失衡互作",
-          "desc": "实时监测肿瘤动态演进与免疫微环境失衡的相互作用并探索机制和干预策略，有助于肿瘤精准诊疗。",
+          "id": "item-a095be376544",
+          "name": "实时监测肿瘤演进与免疫微环境失衡的相互作用",
+          "desc": "探索机制和干预策略",
           "evidence": [
             {
               "quote": "实时监测肿瘤动态演进与免疫微环境失衡的相互作用，并探索其机制和干预策略，有助于肿瘤的精准诊疗",
@@ -67,22 +56,6 @@
                 "basis": "parsed_text",
                 "start_char": 683,
                 "end_char": 728
-              },
-              "version": "0218b1017095936ceeb3"
-            }
-          ]
-        },
-        {
-          "id": "item-65abbbf29025",
-          "name": "需解析免疫微环境变化的生物学效应",
-          "desc": "需解析肝癌演进关键节点前后免疫微环境的变化，揭示其生物学效应及对肿瘤演进的影响和机制。",
-          "evidence": [
-            {
-              "quote": "解析肝癌演进关键节点前后中免疫微环境的变化，揭示免疫微环境变化产生的生物学效应及其对肿瘤演进的影响和机制，探索其可能的调变途径",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 870,
-                "end_char": 932
               },
               "version": "0218b1017095936ceeb3"
             }
@@ -95,36 +68,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-74a6c4f1c5a8",
-          "name": "PET可视化分子影像探针体系",
-          "desc": "构建PET可视化分子影像探针体系，研究肝癌演进过程的关键可视化节点与免疫微环境失衡的动态变化规律。",
+          "id": "item-dfabc7d959b9",
+          "name": "肝癌多靶点分子PET探针",
+          "desc": "针对GPC3、PD-L1、FAP等靶点",
           "evidence": [
             {
-              "quote": "构建PET可视化分子影像探针体系，研究肝癌演进过程的关键可视化节点与免疫微环境失衡的动态变化规律",
+              "quote": "基于肝癌演进过程的多个关键靶点（GPC3、PD-L1、FAP等），设计和开发了相关分子PET探针",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 820,
-                "end_char": 867
+                "start_char": 3010,
+                "end_char": 3057
               },
               "version": "0218b1017095936ceeb3"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-58cf50de046d",
-          "name": "空间代谢组多组学解析机制",
-          "desc": "依托PET可视化和空间可视化代谢组等新技术构建多维度PET可视化体系，系统解析免疫微环境动态变化规律与内在作用机制。",
+          "id": "item-afb9c5c84a33",
+          "name": "空间代谢组与转录组联合解析",
+          "desc": "解析肿瘤微环境动态变化",
           "evidence": [
             {
-              "quote": "依托PET可视化和空间可视化代谢组等新技术，旨在构建肝癌演进中的多维度PET可视化体系，并在此基础上系统解析肝癌演进过程中免疫微环境的动态变化规律和内在作用机制",
+              "quote": "我们联合空间代谢组、转录组等多个高通量可视化组学",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2871,
-                "end_char": 2950
+                "start_char": 3108,
+                "end_char": 3131
               },
               "version": "0218b1017095936ceeb3"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-43f76bb97c1b",
+          "name": "近红外二区可视化显像",
+          "desc": "用于肝癌精准诊断与术中导航",
+          "evidence": [
+            {
+              "quote": "基于近红外二区还建立了一套可以全新的用于肝癌精准诊断、术中导航的可视化显像体系",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3385,
+                "end_char": 3423
+              },
+              "version": "0218b1017095936ceeb3"
+            }
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -135,101 +127,337 @@
         {
           "id": "item-b6b99c28e580",
           "name": "多维度肝癌可视化PET显像体系",
-          "desc": "基于GPC3、PD-L1、FAP等关键靶点设计和开发相关分子PET探针，并在实验动物体内和临床中验证，初步构建多维度肝癌可视化PET显像体系。",
+          "desc": "动物与临床验证",
           "evidence": [
             {
-              "quote": "基于肝癌演进过程的多个关键靶点（GPC3、PD-L1、FAP等），设计和开发了相关分子PET探针，并在实验动物体内和临床中进行了验证，初步构建了一个多维度的肝癌可视化PET显像体系",
+              "quote": "初步构建了一个多维度的肝癌可视化PET显像体系",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3010,
+                "start_char": 3077,
                 "end_char": 3099
               },
               "version": "0218b1017095936ceeb3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-49d82520e753",
-          "name": "发现肝癌空间区域异质性",
-          "desc": "系统绘制肝癌演进过程肿瘤微环境动态变化全景图，发现肝细胞癌原发灶内呈现明显空间区域异质性而肝转移癌内不明显。",
+          "id": "item-d03e89948e74",
+          "name": "中国抗癌协会科技奖一等奖",
+          "desc": "2022年（省部级）",
           "evidence": [
             {
-              "quote": "系统绘制肝癌演进过程的肿瘤微环境动态变化全景图，并发现肝细胞癌原发灶内呈现出明显的空间区域异质性，而这一现象在肝转移癌内并不明显",
+              "quote": "本项目资助完成的相关成果获2022年中国抗癌协会科技奖一等奖（省部级）",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3163,
-                "end_char": 3226
+                "start_char": 3498,
+                "end_char": 3532
               },
               "version": "0218b1017095936ceeb3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         },
         {
-          "id": "item-9d82c49a6f8f",
-          "name": "近红外二区可视化显像体系",
-          "desc": "基于近红外二区建立全新的用于肝癌精准诊断、术中导航的可视化显像体系，为实现临床转化打下基础。",
+          "id": "item-2c909c1049fe",
+          "name": "SCI论文",
+          "desc": "发表标注该基金资助的SCI论文13篇",
           "evidence": [
             {
-              "quote": "我们基于近红外二区还建立了一套可以全新的用于肝癌精准诊断、术中导航的可视化显像体系，为实现临床转化打下坚实的基础",
+              "quote": "发表标注该基金资助的SCI论文13篇",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3383,
-                "end_char": 3438
+                "start_char": 3534,
+                "end_char": 3551
               },
               "version": "0218b1017095936ceeb3"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "",
+          "self_reported": false
         }
       ]
     }
   ],
-  "relations": [
+  "relations": [],
+  "outputs": [
     {
-      "from": {
-        "dimension": "场景",
-        "item_id": "item-31c68c8c96a0"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-e6838c1ffef2"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Exosomal S100A4 derived from highly metastatic hepatocellular carcinoma cells promotes metastasis by activating STAT3",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Sun Haoting;Wang Chaoqun;Hu Beiyuan;Gao Xiaomei;Zou Tiantian;Luo Qin;Chen Mo;Fu Yan;Sheng Yuanyuan;Zhang Kaili;Zheng Yan;Ren Xudong;Yan Shican;Geng Yan;Yang Luyu;Dong Qiongzhu;Qin Lunxiu",
+      "id": "out-3c682070f0f4",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Exosomal S100A4 derived from highly metastatic hepatocellular carcinoma cells promotes metastasis by activating STAT3 — Sun Haoting;Wang Chaoqun;Hu Beiyuan;Gao Xiaomei;Zou Tiantian;Luo Qin;Chen Mo;Fu Yan;Sheng Yuanyuan;Zhang Kaili;Zheng Yan;Ren Xudong;Yan Shican;Geng Yan;Yang Luyu;Dong Qiongzhu;Qin Lunxiu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3629,
+            "end_char": 3941
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e6838c1ffef2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-74a6c4f1c5a8"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Rapamycin enhances the anti-tumor activity of cabozantinib in cMet inhibitor-resistant hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Chao Gao;Shenghao Wang;Weiqing Shao;Yu Zhang;Lu Lu;Huliang Jia;Kejin Zhu;Jinhong Chen;Qiongzhu Dong;Ming Lu;Wenwei Zhu;Lunxiu Qin",
+      "id": "out-33be1bafa5d1",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Rapamycin enhances the anti-tumor activity of cabozantinib in cMet inhibitor-resistant hepatocellular carcinoma — Chao Gao;Shenghao Wang;Weiqing Shao;Yu Zhang;Lu Lu;Huliang Jia;Kejin Zhu;Jinhong Chen;Qiongzhu Dong;Ming Lu;Wenwei Zhu;Lunxiu Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3946,
+            "end_char": 4195
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-74a6c4f1c5a8"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-b6b99c28e580"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肝内胆管癌临床研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钦伦秀;王祥宇",
+      "id": "out-5f3ab17d4f6e",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肝内胆管癌临床研究现状 — 钦伦秀;王祥宇",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4200,
+            "end_char": 4227
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
     },
     {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-58cf50de046d"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-9d82c49a6f8f"
-      },
-      "basis": "原文明示"
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "精准医学框架下的肝细胞癌免疫治疗",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "许达;陆录;钦伦秀",
+      "id": "out-f95227040c39",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 精准医学框架下的肝细胞癌免疫治疗 — 许达;陆录;钦伦秀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4232,
+            "end_char": 4266
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "消化系癌转移复发的免疫代谢调控机制与干预新策略",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "钦伦秀",
+      "id": "out-a59c4257cf44",
+      "evidence": [
+        {
+          "quote": "[奖励] 消化系癌转移复发的免疫代谢调控机制与干预新策略 — 钦伦秀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4271,
+            "end_char": 4304
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Pan-Cancer Analysis Reveals a Distinct Neutrophil Extracellular Trap-Associated Regulatory Pattern",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiao-Tian Shen;Sun-Zhe Xie;Jing Xu;Lu-Yu Yang;Lun-Xiu Qin",
+      "id": "out-8f1435e77211",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Pan-Cancer Analysis Reveals a Distinct Neutrophil Extracellular Trap-Associated Regulatory Pattern — Xiao-Tian Shen;Sun-Zhe Xie;Jing Xu;Lu-Yu Yang;Lun-Xiu Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4309,
+            "end_char": 4473
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Driver mutations of intrahepatic cholangiocarcinoma shape clinically relevant genomic clusters with distinct molecular features and therapeutic vulnerabilities",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Xiang-Yu Wang;Wen-Wei Zhu;Zheng Wang;Jian-Bo Huang;Sheng-Hao Wang;Fu-Mao Bai;Tian-En Li;Ying Zhu;Jing Zhao;Xin Yang;Lu Lu;Ju-Bo Zhang;Hu-Liang Jia;Qiong-Zhu Dong;Jin-Hong Chen;Jesper B. Andersen;Dan Ye;Lun-Xiu Qin",
+      "id": "out-cf6ccfc564e7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Driver mutations of intrahepatic cholangiocarcinoma shape clinically relevant genomic clusters with distinct molecular features and therapeutic vulnerabilities — Xiang-Yu Wang;Wen-Wei Zhu;Zheng Wang;Jian-Bo Huang;Sheng-Hao Wang;Fu-Mao Bai;Tian-En Li;Ying Zhu;Jing Zhao;Xin Yang;Lu Lu;Ju-Bo Zhang;Hu-Liang Jia;Qiong-Zhu Dong;Jin-Hong Chen;Jesper B. Andersen;Dan Ye;Lun-Xiu Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4478,
+            "end_char": 4859
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肝内胆管癌分子靶向治疗研究现状",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "杨济萌;陆录;钦伦秀",
+      "id": "out-1b67b7dae9a7",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肝内胆管癌分子靶向治疗研究现状 — 杨济萌;陆录;钦伦秀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4864,
+            "end_char": 4898
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "68Ga-FAPI-04 Versus 18F-FDG PET/CT in the Detection of Hepatocellular Carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Hao Wang;Wenwei Zhu;Shuhua Ren;Yanyan Kong;Qi Huang;Jun Zhao;Yihui Guan;Huliang Jia;Jinhong Chen;Lu Lu;Fang Xie;Lunxiu Qin",
+      "id": "out-f08dbea86b36",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 68Ga-FAPI-04 Versus 18F-FDG PET/CT in the Detection of Hepatocellular Carcinoma — Hao Wang;Wenwei Zhu;Shuhua Ren;Yanyan Kong;Qi Huang;Jun Zhao;Yihui Guan;Huliang Jia;Jinhong Chen;Lu Lu;Fang Xie;Lunxiu Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4903,
+            "end_char": 5113
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "Cholesterol suppresses GOLM1-dependent selective autophagy of RTKs in hepatocellular carcinoma",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "Wei-Qing Shao;Wen-Wei Zhu;Meng-Jun Luo;Ming-Hao Fan;Qin Li;Sheng-Hao Wang;Zhi-Fei Lin;Jing Zhao;Yan Zheng;Qiong-Zhu Dong;Lu Lu;Hu-Liang Jia;Ju-Bo Zhang;Ming Lu;Jin-Hong Chen;Lun-Xiu Qin",
+      "id": "out-3f21912777d8",
+      "evidence": [
+        {
+          "quote": "[期刊论文] Cholesterol suppresses GOLM1-dependent selective autophagy of RTKs in hepatocellular carcinoma — Wei-Qing Shao;Wen-Wei Zhu;Meng-Jun Luo;Ming-Hao Fan;Qin Li;Sheng-Hao Wang;Zhi-Fei Lin;Jing Zhao;Yan Zheng;Qiong-Zhu Dong;Lu Lu;Hu-Liang Jia;Ju-Bo Zhang;Ming Lu;Jin-Hong Chen;Lun-Xiu Qin",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5119,
+            "end_char": 5407
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "肝细胞癌分子靶向治疗进展",
+      "status_raw": "列于成果列表",
+      "identifiers": {},
+      "authors": "孙浩然;陆录;钦伦秀",
+      "id": "out-e142c82faba0",
+      "evidence": [
+        {
+          "quote": "[期刊论文] 肝细胞癌分子靶向治疗进展 — 孙浩然;陆录;钦伦秀",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 5413,
+            "end_char": 5444
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
     }
-  ]
+  ],
+  "events": [
+    {
+      "type": "其他",
+      "status": "已取得",
+      "date": "2022",
+      "precision": "年",
+      "desc": "相关成果获中国抗癌协会科技奖一等奖",
+      "result": "",
+      "environment": "",
+      "self_reported": false,
+      "id": "evt-c16076b7e620",
+      "tech_ids": [],
+      "output_ids": [],
+      "evidence": [
+        {
+          "quote": "本项目资助完成的相关成果获2022年中国抗癌协会科技奖一等奖（省部级）",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3498,
+            "end_char": 3532
+          },
+          "version": "0218b1017095936ceeb3"
+        }
+      ]
+    }
+  ],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 11,
+    "listed": 11,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 10,
+        "extracted": 10
+      },
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      }
+    },
+    "consistent": true
+  }
 }

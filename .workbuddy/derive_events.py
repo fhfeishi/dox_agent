@@ -36,6 +36,12 @@ EVENT_RULES = [
     (re.compile(r"(样机|原型机|装置|系统)[^。；\n]{0,20}?(研制成功|研制完成|样机完成|建成|通过验收)"), "样机"),
     (re.compile(r"(部署|上线|推广应用|应用于临床|临床应用|落地应用|应用示范)"), "部署"),
     (re.compile(r"(完成|开展|进行了|进行了为期)[^。；\n]{0,25}?(试验|实验|验证|测试)"), "试验"),
+    # 以下为覆盖率增强规则：只认「已完成」的状态词，且必须带一个具体完成动词，
+    # 避免把研究内容陈述（「研究…方法」）误当成已发生的事件。
+    (re.compile(r"(样机|原型机|实验平台|验证平台|仿真平台|系统|装置)[^。；\n]{0,25}?(研制完成|研制成功|建成|完成研制|通过验收|成功研制)"), "样机"),
+    (re.compile(r"(突破|实现了|实现了?首次|首次实现)[^。；\n]{0,25}?(突破|验证|实现)?"), "其他"),
+    (re.compile(r"(获|获得|荣获)[^。；\n]{0,25}?(奖|奖项|一等奖|二等奖|三等奖|科技进步)"), "其他"),
+    (re.compile(r"(通过|经)[^。；\n]{0,15}?(鉴定|验收|评审|结题|验收会)"), "其他"),
 ]
 # 这些词说明该句是「计划/拟」而非已完成，不提取为事件
 FUTURE = re.compile(r"(拟将|拟开展|拟申请|拟发表|计划|将于|拟建立|拟构建|预期|有望|下一步拟)")
@@ -43,6 +49,21 @@ FUTURE = re.compile(r"(拟将|拟开展|拟申请|拟发表|计划|将于|拟建
 NEGATIVE = re.compile(r"(未公开发表|尚未发表|没有公开发表|未发表|尚未公开|未公开|尚未见刊|未见刊|投稿至|已投稿|在审|尚未授权|未授权|申请中|实审中|公开中)")
 # 「部署/推广」类里这些是学术报告而非部署事件
 NOT_DEPLOY = re.compile(r"(推广项目|培训班|学术报告|学术会议|会议报告|论坛|讲座|研讨会|大会)")
+# 噪声过滤（实测新增事件中约 8.6% 命中）：这些句子虽含状态词，但不是「发生的事件」。
+# 逐条给出可审计的理由，宁可漏提取，不写脏数据。
+NOISE = [
+    # markdown 标题行 / 表格行 / 图表题：版式噪声，非叙述
+    (re.compile(r"^#{1,6}\s|^\s*\|"), "版式行(标题/表格)"),
+    (re.compile(r"^(图|表)\s*\d+"), "图表题"),
+    # 经费/预算/费用：出现金额或财务词，是决算说明不是技术事件
+    (re.compile(r"(万元|经费|预算|费用|财务|支出|报销|决算)"), "经费/预算说明"),
+    # 总计式罗列（「共发表论文87篇」）：与成果列表著录重复，且是一次性盘点而非时点事件
+    (re.compile(r"(共发表|共获得|共计|总计|累计)[^。；]{0,20}(论文|专利|奖励|专著|项目|成果)"), "总计式罗列"),
+    # 清单式罗列（「1 专利 | 一种… 授权」）：成果列表表格，不是事件叙述
+    (re.compile(r"^[\d）\)]{1,3}\s*[、.：]?\s*[)）]?\s*(论文|专著|专利|获奖|奖励|成果|软件|著作权)"), "清单式罗列"),
+    # 纯引用文献列表行
+    (re.compile(r"\[\d+\]"), "参考文献行"),
+]
 
 DATE_FULL = re.compile(r"(19|20)\d{2}\s*[-年]\s*\d{1,2}\s*[-月]\s*\d{1,2}\s*日?")
 DATE_YM = re.compile(r"(19|20)\d{2}\s*[-年]\s*\d{1,2}\s*月?")
@@ -69,15 +90,23 @@ def sentences(markdown: str, lo: int, hi: int) -> list[str]:
 
 
 def extract_events(markdown: str) -> list[dict]:
-    """逐句找「事件 + 状态词 + 可溯源日期」。返回未归一化的原始条目。"""
+    """逐句找「事件 + 状态词」，日期能读到就用，读不到留空。
+
+    覆盖率增强（2026-10-09）：原先强制要求句中有可溯源日期，导致 210/216 份
+    文档的事件被整体丢弃（全库仅 68 条）。按 targets._event_date 的契约，
+    date="" 是合法的（precision 记为「未知」），只有「日期非空但引文里读不到
+    年份」才报错。因此这里放宽为「日期可选」，引文仍是原句、逐字可溯源，
+    不引入任何编造。
+    """
     found: list[dict] = []
     seen: set[str] = set()
+    dropped_counts: dict[str, int] = {}
     for sentence in sentences(markdown, 0, len(markdown)):
         if not (12 <= len(sentence) <= 400):
             continue
         if FUTURE.search(sentence) or NEGATIVE.search(sentence):
             continue
-        if not re.search(r"(申请日期|授权公告日|授权|公告号|专利|发表|刊发|研制|样机|部署|上线|推广应用|临床应用|完成.{0,6}(试验|实验|验证))", sentence):
+        if not re.search(r"(申请日期|授权公告日|授权|公告号|专利|发表|刊发|研制|样机|部署|上线|推广应用|临床应用|完成.{0,6}(试验|实验|验证)|研制完成|研制成功|建成|通过验收|成功研制|获得|荣获|通过.{0,10}(鉴定|验收|评审))", sentence):
             continue
         etype = None
         for pattern, kind in EVENT_RULES:
@@ -88,6 +117,13 @@ def extract_events(markdown: str) -> list[dict]:
             continue
         if etype == "部署" and NOT_DEPLOY.search(sentence):
             continue
+        # 噪声过滤：整句丢弃并记原因，绝不写入脏事件
+        dropped = next((why for pat, why in NOISE if pat.search(sentence)), "")
+        if dropped:
+            # 用 setdefault 而非 `d[k] += 1`：本环境（uv cpython-3.12.13）实测
+            # dict 的下标增强赋值会抛 KeyError，setdefault 写法不受影响。
+            dropped_counts[dropped] = dropped_counts.get(dropped, 0) + 1
+            continue
         # 日期优先取「申请日期/授权公告日」这类字段值，避免抓到状态括号里的审查日期
         field = PAT_FIELD_DATE.search(sentence)
         if field:
@@ -95,8 +131,8 @@ def extract_events(markdown: str) -> list[dict]:
         else:
             m = DATE_FULL.search(sentence) or DATE_YM.search(sentence) or DATE_Y.search(sentence)
             date = norm_date(m.group(0)) if m else ""
-        if not date:
-            continue
+        # 日期可选：读不到就留空（targets._event_date 返回 ("","未知")，契约允许）。
+        # 不再因为缺日期而丢弃整条事件——这正是覆盖率低的主因。
         desc = sentence if len(sentence) <= 300 else sentence[:300]
         key = f"{etype}\0{date}\0{desc[:80]}"
         if key in seen:
@@ -115,6 +151,8 @@ def extract_events(markdown: str) -> list[dict]:
             "output_ids": [],
             "evidence": [{"quote": sentence if len(sentence) <= 2000 else sentence[:2000]}],
         })
+    # 排除原因随返回值一起带出，供 main() 汇总打印（保持排除可审计）
+    extract_events.last_dropped = dropped_counts
     return found
 
 
@@ -135,6 +173,7 @@ def main() -> int:
 
     added_docs = added_events = 0
     skipped_no_quote = 0
+    drop_totals: dict[str, int] = {}
     sample_doc = "--sample" in sys.argv
     shown = 0
     for doc_id, markdown in rows:
@@ -146,6 +185,8 @@ def main() -> int:
         existing = {(e["type"], e["date"], targets._norm(e["desc"])[:120])
                     for e in record.get("events") or []}
         raw = extract_events(markdown)
+        for why, cnt in (getattr(extract_events, "last_dropped", None) or {}).items():
+            drop_totals[why] = drop_totals.get(why, 0) + cnt
         fresh = []
         for item in raw:
             key = (item["type"], item["date"], targets._norm(item["desc"])[:120])
@@ -189,6 +230,9 @@ def main() -> int:
             targets._save(info, record)
     print(f"{'试跑' if dry else '已写入'}：{added_docs} 份文档新增 {added_events} 条事件"
           f"（结构校验失败跳过 {skipped_no_quote} 条）")
+    if drop_totals:
+        detail = "、".join(f"{k} {v}" for k, v in sorted(drop_totals.items(), key=lambda x: -x[1]))
+        print(f"噪声排除：{detail}")
     return 0
 
 

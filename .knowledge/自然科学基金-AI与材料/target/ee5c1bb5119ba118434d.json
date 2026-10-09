@@ -2,15 +2,20 @@
   "doc_id": "ee5c1bb5119ba118434d",
   "version": "63a7d1d0462db004a98f",
   "source_hash": "90b67e67d3cd9e182ed26e666a9c22ec6f7221ae29ac99f39312ebecfe2ff8c7",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:38:08.335403+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.576683+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -21,30 +26,30 @@
         {
           "id": "item-37aaa43185ae",
           "name": "RC框架结构抗震分析",
-          "desc": "地震作用下梁柱承受循环轴力、弯矩和剪力的耦合作用，对结构抗震性能产生显著影响。",
+          "desc": "梁柱在地震作用下压弯剪耦合效应对结构整体抗震性能具有决定性影响",
           "evidence": [
             {
-              "quote": "梁、柱在地震作用下承受循环轴力、弯矩和剪力的耦合作用，其时变过程对结构抗震性能产生显著影响。",
+              "quote": "梁、柱作为钢筋混凝土（RC）框架结构的主要抗侧力构件，其在地震作用下表现出的压弯剪耦合效应对结构整体抗震性能具有决定性影响",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 662,
-                "end_char": 707
+                "start_char": 2823,
+                "end_char": 2883
               },
               "version": "63a7d1d0462db004a98f"
             }
           ]
         },
         {
-          "id": "item-eaf57bfead5e",
-          "name": "既有本构模型的工程应用受限",
-          "desc": "多维本构与弥散裂缝理论模型物理含义明确，但在构件层次滞回响应模拟中建模复杂、效率低。",
+          "id": "item-faf0e9605d55",
+          "name": "框架结构倒塌机理揭示",
+          "desc": "为揭示RC框架结构倒塌机理提供方法",
           "evidence": [
             {
-              "quote": "现有基于多维本构与弥散裂缝理论的分析模型虽具有明确物理含义，但在构件层次滞回响应模拟中存在建模复杂、计算效率低的问题",
+              "quote": "本项目为人工智能与弹塑性分析的有机结合提供新方法，有助于揭示RC框架结构倒塌机理",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2885,
-                "end_char": 2942
+                "start_char": 994,
+                "end_char": 1033
               },
               "version": "63a7d1d0462db004a98f"
             }
@@ -57,32 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ef898f0d270b",
-          "name": "现有本构无法模拟压弯剪耦合",
-          "desc": "既有本构无法基于构件试验模拟压弯剪耦合效应。",
+          "id": "item-a8403bf58d5f",
+          "name": "现有本构难模拟压弯剪耦合",
+          "desc": "现有基于多维本构与弥散裂缝理论模型难以统一模拟压弯剪耦合下的循环退化与捏拢",
           "evidence": [
             {
-              "quote": "本项目重点解决现有本构无法基于构件试验模拟压弯剪耦合效应的难题。",
+              "quote": "难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应，制约了其在框架结构抗震分析中的应用",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 708,
-                "end_char": 739
+                "start_char": 2945,
+                "end_char": 2993
               },
               "version": "63a7d1d0462db004a98f"
             }
           ]
         },
         {
-          "id": "item-3e788c08f746",
-          "name": "循环退化与滞回捏拢难以统一模拟",
-          "desc": "难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应。",
+          "id": "item-98351de357d4",
+          "name": "建模复杂计算效率低",
+          "desc": "分析模型在构件层次滞回响应模拟中存在建模复杂、计算效率低的问题",
           "evidence": [
             {
-              "quote": "且难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应",
+              "quote": "但在构件层次滞回响应模拟中存在建模复杂、计算效率低的问题",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 2944,
-                "end_char": 2975
+                "start_char": 2915,
+                "end_char": 2942
               },
               "version": "63a7d1d0462db004a98f"
             }
@@ -95,79 +100,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dd9869ed570d",
-          "name": "本构参数多维空间建立",
-          "desc": "提出可模拟弯曲、剪切破坏的构件本构模型，并基于试验数据库建立参数多维空间。",
+          "id": "item-5b9ae1924f3a",
+          "name": "本构参数自适应更新机制",
+          "desc": "通过力状态与损伤状态双触发机制实现骨架与滞回参数在线更新",
           "evidence": [
             {
-              "quote": "提出可模拟弯曲、剪切破坏的构件本构模型，并基于梁、柱拟静力试验数据库建立本构参数多维空间",
+              "quote": "提出了基于本构参数自适应更新机制的构件压弯剪耦合滞回响应模拟方法，通过力状态与损伤状态的双触发机制实现骨架参数与滞回参数的在线更新",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 743,
-                "end_char": 786
-              },
-              "version": "63a7d1d0462db004a98f"
-            }
-          ]
-        },
-        {
-          "id": "item-6b424d8486ab",
-          "name": "人工智能非线性拓扑关系建模",
-          "desc": "通过特征子集优化揭示影响延性和循环退化特性的特征，利用人工智能建立特征参数与本构参数的非线性拓扑关系。",
-          "evidence": [
-            {
-              "quote": "利用人工智能建立特征参数与本构参数的非线性拓扑关系",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 826,
-                "end_char": 850
-              },
-              "version": "63a7d1d0462db004a98f"
-            }
-          ]
-        },
-        {
-          "id": "item-e25c049d27fb",
-          "name": "力与损伤双触发自适应更新机制",
-          "desc": "通过力状态与损伤状态的双触发机制实现骨架参数与滞回参数的在线更新。",
-          "evidence": [
-            {
-              "quote": "通过力状态与损伤状态的双触发机制实现骨架参数与滞回参数的在线更新",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3113,
+                "start_char": 3080,
                 "end_char": 3144
               },
               "version": "63a7d1d0462db004a98f"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a1aa6cd7dfe1",
-          "name": "自适应集中塑性铰模型",
-          "desc": "基于拓扑关系建立可模拟压弯剪耦合的自适应集中塑性铰模型。",
-          "evidence": [
-            {
-              "quote": "基于拓扑关系建立可模拟压弯剪耦合的自适应集中塑性铰模型，实现本构参数自适应更新机制",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 855,
-                "end_char": 895
-              },
-              "version": "63a7d1d0462db004a98f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-87cf5470da94",
-          "name": "RC梁柱自适应恢复力模型",
-          "desc": "构建骨架参数与滞回参数两类机器学习代理模型，形成面向压弯剪耦合的自适应恢复力模型。",
+          "id": "item-174bcf5ed1ac",
+          "name": "机器学习代理恢复力模型",
+          "desc": "构建骨架参数与滞回参数两类机器学习代理模型建立自适应恢复力模型",
           "evidence": [
             {
               "quote": "构建了骨架参数与滞回参数两类机器学习代理模型，建立了面向压弯剪耦合响应模拟的RC梁柱自适应恢复力模型",
@@ -179,41 +131,68 @@
               "version": "63a7d1d0462db004a98f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-84148d187321",
-          "name": "空间约束效应恢复力模型",
-          "desc": "建立并验证考虑空间约束效应的RC梁压弯剪耦合恢复力模型。",
+          "id": "item-fb06b3759af5",
+          "name": "空间约束机理分析",
+          "desc": "研究空间约束作用下RC梁的伸长约束机理及其对压弯剪耦合响应的影响",
           "evidence": [
             {
-              "quote": "建立并验证了考虑空间约束效应的RC梁压弯剪耦合恢复力模型",
+              "quote": "系统研究了空间约束作用下RC梁的伸长约束机理及其对压弯剪耦合响应的影响机制",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3377,
-                "end_char": 3404
+                "start_char": 3303,
+                "end_char": 3339
               },
               "version": "63a7d1d0462db004a98f"
             }
           ],
-          "status": "已取得"
-        },
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
         {
-          "id": "item-a5875f73a84c",
-          "name": "发明专利授权",
-          "desc": "形成可模拟构件压弯剪耦合的分析方法与地震响应预测模型训练等专利。",
+          "id": "item-1c78881ee72e",
+          "name": "压弯剪耦合分析方法专利",
+          "desc": "获可模拟构件压弯剪耦合的分析方法、系统、设备及介质专利",
           "evidence": [
             {
-              "quote": "可模拟构件压弯剪耦合的分析方法、系统、设备及介质",
+              "quote": "3. [专利] 可模拟构件压弯剪耦合的分析方法、系统、设备及介质 — 韩小雷;吴梓楠;马建峰;季静;林静聪",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3850,
-                "end_char": 3873
+                "start_char": 3842,
+                "end_char": 3894
               },
               "version": "63a7d1d0462db004a98f"
             }
           ],
-          "status": "已取得"
+          "status": "原文未明确",
+          "status_raw": "成果列表",
+          "self_reported": false
+        },
+        {
+          "id": "item-9c24c781599a",
+          "name": "超额完成预期成果",
+          "desc": "按计划完成既定目标并超额完成预期成果形成更完善仿真理论",
+          "evidence": [
+            {
+              "quote": "本项目按计划完成了既定研究目标，并超额完成预期成果",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3493,
+                "end_char": 3517
+              },
+              "version": "63a7d1d0462db004a98f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "超额完成预期成果",
+          "self_reported": false
         }
       ]
     }
@@ -221,47 +200,179 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-5b9ae1924f3a"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a8403bf58d5f"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "难以统一模拟压弯剪耦合作用下的循环退化、滞回捏拢及空间约束效应",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2945,
+            "end_char": 2975
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-174bcf5ed1ac"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-98351de357d4"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但在构件层次滞回响应模拟中存在建模复杂、计算效率低的问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2915,
+            "end_char": 2942
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-fb06b3759af5"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-5b9ae1924f3a"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结合构件试验与框架试验，系统研究了空间约束作用下RC梁的伸长约束机理",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3291,
+            "end_char": 3324
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
         "item_id": "item-37aaa43185ae"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-ef898f0d270b"
+        "item_id": "item-a8403bf58d5f"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "其在地震作用下表现出的压弯剪耦合效应对结构整体抗震性能具有决定性影响",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2850,
+            "end_char": 2883
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-ef898f0d270b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dd9869ed570d"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-6b424d8486ab"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-87cf5470da94"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-e25c049d27fb"
+        "item_id": "item-9c24c781599a"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-87cf5470da94"
+        "dimension": "技术",
+        "item_id": "item-174bcf5ed1ac"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目按计划完成了既定研究目标，并超额完成预期成果",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3493,
+            "end_char": 3517
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "可模拟构件压弯剪耦合的分析方法、系统、设备及介质",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "韩小雷;吴梓楠;马建峰;季静;林静聪",
+      "id": "out-46715bf3aec5",
+      "evidence": [
+        {
+          "quote": "3. [专利] 可模拟构件压弯剪耦合的分析方法、系统、设备及介质 — 韩小雷;吴梓楠;马建峰;季静;林静聪",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3842,
+            "end_char": 3894
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "基于随机森林算法的型钢混凝土梁柱纤维单元参数优化",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "陈熹俊;韩小雷;张垒;吴智辉;季静",
+      "id": "out-2f25dee269af",
+      "evidence": [
+        {
+          "quote": "4. [期刊论文] 基于随机森林算法的型钢混凝土梁柱纤维单元参数优化 — 陈熹俊;韩小雷;张垒;吴智辉;季静",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3896,
+            "end_char": 3949
+          },
+          "version": "63a7d1d0462db004a98f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 19,
+    "listed": 19,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 15,
+        "extracted": 1
+      },
+      "专利": {
+        "listed": 4,
+        "extracted": 1
+      }
+    },
+    "consistent": false
+  }
 }

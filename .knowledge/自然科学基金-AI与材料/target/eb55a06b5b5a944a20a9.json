@@ -2,15 +2,20 @@
   "doc_id": "eb55a06b5b5a944a20a9",
   "version": "efbcec64e4b3852a4749",
   "source_hash": "83880a7a3131fe3371ed85c8c7f93dfde721dd5f14a686805f62502a20204e4c",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:40:54.251704+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.624918+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -19,28 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-569fc5c8b926",
-          "name": "杂化钙钛矿光电器件应用",
-          "desc": "有机无机杂化钙钛矿可广泛应用于太阳能电池、光电探测器、场效应晶体管和激光器等光电器件。",
+          "id": "item-a1165f560b15",
+          "name": "有机无机杂化钙钛矿光伏",
+          "desc": "钙钛矿可广泛应用于太阳能电池等光电器件但面临稳定性与大面积生长问题",
           "evidence": [
             {
-              "quote": "可广泛应用于太阳能电池、光电探测器、场效应晶体管和激光器等光电器件",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9c146f456a229e00b582a2351e6fad090df3944f"
-              },
-              "version": "efbcec64e4b3852a4749"
-            }
-          ]
-        },
-        {
-          "id": "item-00d49fdab037",
-          "name": "稳定性和大面积生长难题",
-          "desc": "杂化钙钛矿离实际应用还面临稳定性和大面积生长两个关键问题。",
-          "evidence": [
-            {
-              "quote": "但离实际应用还面临着稳定性和大面积生长两个关键问题",
+              "quote": "有机无机杂化钙钛矿作为一种具有优异光电性质的新型光电材料，可广泛应用于太阳能电池、光电探测器、场效应晶体管和激光器等光电器件，但离实际应用还面临着稳定性和大面积生长两个关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -57,12 +46,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-c6fa9e4e87b7",
-          "name": "传统力场适用范围受限",
-          "desc": "传统钙钛矿力场只能用于某一类特定组分特定条件。",
+          "id": "item-e8a05c8c5117",
+          "name": "稳定性与大面积生长瓶颈",
+          "desc": "钙钛矿离实际应用还面临稳定性和大面积生长两个关键问题",
           "evidence": [
             {
-              "quote": "将只能用于某一类特定组分特定条件的钙钛矿传统力场，扩展到杂化钙钛矿",
+              "quote": "但离实际应用还面临着稳定性和大面积生长两个关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,12 +62,12 @@
           ]
         },
         {
-          "id": "item-f7f35e27c034",
-          "name": "稳定性与大面积成膜机制不明",
-          "desc": "影响钙钛矿稳定性和大面积生长的关键因素需要识别。",
+          "id": "item-f0969b05b3ff",
+          "name": "传统力场组分特异性限制",
+          "desc": "传统力场只能用于某一类特定组分特定条件",
           "evidence": [
             {
-              "quote": "找到影响钙钛矿稳定性和大面积生长的关键因素",
+              "quote": "基于深度势能和神经网络算法，将只能用于某一类特定组分特定条件的钙钛矿传统力场，扩展到杂化钙钛矿",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,41 +84,43 @@
       "state": "has",
       "items": [
         {
-          "id": "item-adb59f709ab8",
-          "name": "多组分机器学习势构建",
-          "desc": "基于深度势能和神经网络算法生成精准普适的杂化钙钛矿机器学习势。",
+          "id": "item-0ab8a6c1b652",
+          "name": "多组分普适机器学习势",
+          "desc": "构建适用于多组分钙钛矿的普适机器学习势函数",
           "evidence": [
             {
-              "quote": "基于深度势能和神经网络算法，将只能用于某一类特定组分特定条件的钙钛矿传统力场，扩展到杂化钙钛矿，生成精准普适机器学习势",
+              "quote": "突破了传统力场局限，构建了适用于多组分钙钛矿的普适机器学习势函数，实现了对全组分空间热力学稳定性与相分离倾向的高效预测",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9c146f456a229e00b582a2351e6fad090df3944f"
+                "page": 2,
+                "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
               },
               "version": "efbcec64e4b3852a4749"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2266b688b0ff",
-          "name": "大规模分子动力学模拟",
-          "desc": "通过杂化钙钛矿分子动力学计算模拟实验条件下不同纳米尺寸的混合钙钛矿构型。",
+          "id": "item-84ade00944a2",
+          "name": "分子动力学与界面工程",
+          "desc": "通过分子动力学模拟与界面工程揭示界面相互作用与结晶动力学关键因素",
           "evidence": [
             {
-              "quote": "通过杂化钙钛矿分子动力学计算，模拟实验条件下不同纳米尺寸的混合钙钛矿构型",
+              "quote": "通过分子动力学模拟与界面工程研究，揭示了界面相互作用与结晶动力学是影响材料稳定性和大面积成膜的关键因素",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9c146f456a229e00b582a2351e6fad090df3944f"
+                "page": 2,
+                "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
               },
               "version": "efbcec64e4b3852a4749"
             }
-          ]
+          ],
+          "role": "配套-验证"
         },
         {
           "id": "item-1af88bfaf5b6",
           "name": "机器学习驱动同步辐射数据解析",
-          "desc": "发展机器学习驱动的同步辐射数据解析技术，实现对广角X射线衍射等海量数据的快速自动分析。",
+          "desc": "发展机器学习驱动的同步辐射数据解析技术实现海量数据快速自动分析",
           "evidence": [
             {
               "quote": "发展了机器学习驱动的同步辐射数据解析技术，实现了对广角X射线衍射等海量数据的快速自动分析",
@@ -140,7 +131,8 @@
               },
               "version": "efbcec64e4b3852a4749"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,43 +141,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-49cfed79a818",
-          "name": "普适机器学习势函数",
-          "desc": "构建适用于多组分钙钛矿的普适机器学习势函数，实现全组分空间热力学稳定性与相分离倾向高效预测。",
-          "evidence": [
-            {
-              "quote": "构建了适用于多组分钙钛矿的普适机器学习势函数，实现了对全组分空间热力学稳定性与相分离倾向的高效预测",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
-              },
-              "version": "efbcec64e4b3852a4749"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-7dfa61550831",
-          "name": "界面与结晶动力学机制揭示",
-          "desc": "揭示界面相互作用与结晶动力学是影响材料稳定性和大面积成膜的关键因素。",
-          "evidence": [
-            {
-              "quote": "揭示了界面相互作用与结晶动力学是影响材料稳定性和大面积成膜的关键因素",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
-              },
-              "version": "efbcec64e4b3852a4749"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-09dd8b61b0b5",
-          "name": "同步辐射实验验证",
-          "desc": "通过同步辐射原位表征证实界面修饰与结晶调控可诱导有序取向、减少缺陷，提升器件性能与环境稳定性。",
+          "id": "item-d88e62bf6eec",
+          "name": "界面修饰结晶调控验证",
+          "desc": "通过同步辐射原位表征证实界面修饰与结晶调控可诱导有序取向减少缺陷",
           "evidence": [
             {
               "quote": "通过同步辐射原位表征技术，证实了界面修饰与结晶调控可有效诱导钙钛矿形成有序取向、减少缺陷，显著提升了器件性能与环境稳定性",
@@ -197,7 +155,28 @@
               "version": "efbcec64e4b3852a4749"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "证实了",
+          "self_reported": false
+        },
+        {
+          "id": "item-b270298b1770",
+          "name": "全部研究内容完成",
+          "desc": "已顺利完成从机器学习势构建到实验验证的全部研究内容",
+          "evidence": [
+            {
+              "quote": "本项目围绕有机无机杂化钙钛矿FA₁-xMAxPb(I1-yBry)₃的高稳定性与大面积应用目标，开展从多组分机器学习势构建，到混合钙钛矿大规模分子动力学模拟，到钙钛矿结构设计、性能预测及实验验证的系统基础研究，已顺利完成全部研究内容",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+              },
+              "version": "efbcec64e4b3852a4749"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "已顺利完成",
+          "self_reported": false
         }
       ]
     }
@@ -205,36 +184,72 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-00d49fdab037"
+        "dimension": "技术",
+        "item_id": "item-0ab8a6c1b652"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-c6fa9e4e87b7"
+        "item_id": "item-f0969b05b3ff"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "基于深度势能和神经网络算法，将只能用于某一类特定组分特定条件的钙钛矿传统力场，扩展到杂化钙钛矿",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "9c146f456a229e00b582a2351e6fad090df3944f"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-84ade00944a2"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-f7f35e27c034"
+        "item_id": "item-e8a05c8c5117"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-adb59f709ab8"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "揭示了界面相互作用与结晶动力学是影响材料稳定性和大面积成膜的关键因素",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-2266b688b0ff"
+        "item_id": "item-84ade00944a2"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-7dfa61550831"
+        "dimension": "技术",
+        "item_id": "item-0ab8a6c1b652"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了适用于多组分钙钛矿的普适机器学习势函数",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
     },
     {
       "from": {
@@ -242,10 +257,93 @@
         "item_id": "item-1af88bfaf5b6"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-09dd8b61b0b5"
+        "dimension": "技术",
+        "item_id": "item-84ade00944a2"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "通过分子动力学模拟与界面工程研究，揭示了界面相互作用与结晶动力学",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-a1165f560b15"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e8a05c8c5117"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但离实际应用还面临着稳定性和大面积生长两个关键问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "9c146f456a229e00b582a2351e6fad090df3944f"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-d88e62bf6eec"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-84ade00944a2"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "证实了界面修饰与结晶调控可有效诱导钙钛矿形成有序取向、减少缺陷",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "多组分钙钛矿普适机器学习势函数",
+      "status_raw": "构建了",
+      "identifiers": {},
+      "id": "out-59111da8d009",
+      "evidence": [
+        {
+          "quote": "构建了适用于多组分钙钛矿的普适机器学习势函数",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "1f63c0924c460066c37a08d7a53fcc8cf4cc85a4"
+          },
+          "version": "efbcec64e4b3852a4749"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

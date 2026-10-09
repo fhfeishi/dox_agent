@@ -2,15 +2,20 @@
   "doc_id": "7d57f49767d8949744b0",
   "version": "7c28ca0739e594d8fb0f",
   "source_hash": "7588f4435671afd740865b211c2900bd2516584e16da592bfcbecd2c3bcb4a69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:39:47.966586+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.564609+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7a9fc13f6067",
-          "name": "电化学水气变换制高纯氢",
-          "desc": "电化学水气变换反应能在常温常压下直接制取高纯氢，为低能耗生产高纯氢提供新思路。",
+          "id": "item-1e500c4c771a",
+          "name": "电化学水气变换制氢",
+          "desc": "EWGS反应能在常温常压下直接制取高纯氢为低能耗生产提供新思路",
           "evidence": [
             {
-              "quote": "电化学水气变换（EWGS）反应能够在常温常压下直接制取高纯氢，为低能耗生产高纯氢提供了新的思路。",
+              "quote": "电化学水气变换（EWGS）反应能够在常温常压下直接制取高纯氢，为低能耗生产高纯氢提供了新的思路",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
                 "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ]
-        },
-        {
-          "id": "item-78b55f9d1443",
-          "name": "工业大规模制氢",
-          "desc": "水气变换反应是工业上大规模制氢的主要方法之一，但通常在高温高压下进行。",
-          "evidence": [
-            {
-              "quote": "水气变换反应是工业上大规模制氢的主要方法之一。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ceb37e8f6a9118c60d15a58fb0731562143dc2b7"
               },
               "version": "7c28ca0739e594d8fb0f"
             }
@@ -59,30 +48,14 @@
         {
           "id": "item-e8360b55212f",
           "name": "阳极过电势较高",
-          "desc": "电化学水气变换过程存在的主要问题是阳极过电势较高，解决关键是基于中间体吸附能的催化新材料开发。",
+          "desc": "该过程存在的主要问题是阳极过电势较高，解决关键是高效催化材料开发",
           "evidence": [
             {
-              "quote": "该过程存在的主要问题是阳极过电势仍然较高，解决这一问题的关键是基于中间体吸附能的催化新材料开发。",
+              "quote": "然而，该过程存在的主要问题是阳极过电势较高，解决这一问题的关键是高效催化材料的开发",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ceb37e8f6a9118c60d15a58fb0731562143dc2b7"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ]
-        },
-        {
-          "id": "item-0c8fa0106e85",
-          "name": "中间体吸附能需连续调控",
-          "desc": "需要实现对中间体吸附能的近似连续调控以识别最佳吸附能与活性的材料。",
-          "evidence": [
-            {
-              "quote": "从而识别具有最佳吸附能和阳极反应活性的材料",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ceb37e8f6a9118c60d15a58fb0731562143dc2b7"
+                "page": 2,
+                "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
               },
               "version": "7c28ca0739e594d8fb0f"
             }
@@ -95,80 +68,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0c8d4efba7e2",
-          "name": "机器学习的体相稳定性评估",
-          "desc": "用SISSO机器学习方法训练高熵合金平均内聚能估算模型，并扩展到三至八元体系。",
+          "id": "item-c169e33d0ce5",
+          "name": "DFT-机器学习-动力学模拟体系",
+          "desc": "结合DFT计算机器学习及微观动力学模拟建立从体相稳定性到表面反应活性的方法",
           "evidence": [
             {
-              "quote": "利用这些高熵合金的平均内聚能作为训练集，我们通过机器学习方法SISSO训练高熵合金平均内聚能的估算模型",
+              "quote": "通过结合DFT计算、机器学习及微观动力学模拟，建立了从体相稳定性到表面EWGS阳极反应活性的系统性研究方法",
               "locator": {
                 "basis": "pdf_page",
-                "page": 8,
-                "chunk_id": "c8214b2ed929a132eba64eb09544be50f6f09950"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ]
-        },
-        {
-          "id": "item-5fe30fb10ad8",
-          "name": "中间体吸附能模型建立",
-          "desc": "建立高熵合金表面CO、COOH等中间体的吸附能模型，解析吸附物种与表面的作用机制。",
-          "evidence": [
-            {
-              "quote": "建立高熵合金表面CO、COOH等中间体的吸附能模型，解析这些吸附物种与表面的作用机制及其调控规律",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "ceb37e8f6a9118c60d15a58fb0731562143dc2b7"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ]
-        },
-        {
-          "id": "item-1d88f5d9e838",
-          "name": "机器学习势高通量筛选",
-          "desc": "采用机器学习势高精度模拟与DFT验证相结合，开展表面EWGS反应活性评估与机制研究。",
-          "evidence": [
-            {
-              "quote": "采用机器学习势（MLP)高精度模拟与 DFT 验证相结合，开展高熵合金表面EWGS 反应的活性评估与机制研究。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 7,
-                "chunk_id": "2cb0868e22b5ff405a46ca8e7a834e3ce60c2a02"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
-        {
-          "id": "item-8d6d8f24cdd3",
-          "name": "内聚能估算模型精度0.01eV",
-          "desc": "SISSO模型预测平均内聚能的均方根误差为0.01 eV，可大幅降低DFT计算成本。",
-          "evidence": [
-            {
-              "quote": "通过 SISSO方法预测的平均内聚能的均方根误差为0.01 eV",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 8,
-                "chunk_id": "c8214b2ed929a132eba64eb09544be50f6f09950"
+                "page": 2,
+                "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
               },
               "version": "7c28ca0739e594d8fb0f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-01e8eef7181d",
+          "id": "item-76ddb27a13e4",
           "name": "高活性位点构型筛选",
-          "desc": "筛选出Ir参与的双顶位构型及Pt、Cu、Pd为主的顶桥位构型作为高活性位点。",
+          "desc": "筛选出Ir参与的双顶位构型及Pt/Cu/Pd为主的顶桥位构型",
           "evidence": [
             {
               "quote": "项目筛选出的高活性位点包括Ir参与的“双顶位”构型（如PtIr、IrIr等），及以Pt、Cu、Pd为主的“顶桥位”构型为实验合成提供了明确指导",
@@ -180,32 +99,15 @@
               "version": "7c28ca0739e594d8fb0f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-c1cd39538adf",
-          "name": "元素协同效应机制",
-          "desc": "揭示Ir可显著降低反应过电位、Pt-Cu协同作用有利于提升反应速率。",
+          "id": "item-f4b7cccac309",
+          "name": "高熵合金吸附能调控机制",
+          "desc": "解析CO、COOH等中间体与高熵合金表面的作用机制及元素协同效应",
           "evidence": [
             {
-              "quote": "这一结果表明，Ir的引入可显著降低反应过电位，而Pt-Cu协同作用则有利于提升反应速率",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 10,
-                "chunk_id": "3641fbd8be5c826ee1bfb4e10cb884920c227732"
-              },
-              "version": "7c28ca0739e594d8fb0f"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-6a0d6c86db34",
-          "name": "22篇SCI论文与人才培养",
-          "desc": "发表SCI论文22篇，培养硕士研究生5名。",
-          "evidence": [
-            {
-              "quote": "项目资助期间，共计发表SCI论文22篇",
+              "quote": "发现的元素协同效应为高性能催化剂设计开辟了新思路",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -214,7 +116,32 @@
               "version": "7c28ca0739e594d8fb0f"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-199f52fdfc30",
+          "name": "SCI论文22篇",
+          "desc": "发表SCI论文22篇其中主要成员第一或通讯作者16篇",
+          "evidence": [
+            {
+              "quote": "项目资助期间，共计发表SCI论文22篇，包括项目主要成员以（共同）第一作者或通讯作者在ACS Catal.(2)， J. Mater. Chem. A, Today Sustain.和J.Catal.等期刊发表论文16篇",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+              },
+              "version": "7c28ca0739e594d8fb0f"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "共计发表SCI论文22篇",
+          "self_reported": false
         }
       ]
     }
@@ -222,47 +149,143 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-7a9fc13f6067"
+        "dimension": "技术",
+        "item_id": "item-c169e33d0ce5"
       },
       "to": {
         "dimension": "问题",
         "item_id": "item-e8360b55212f"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，该过程存在的主要问题是阳极过电势较高，解决这一问题的关键是高效催化材料的开发",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-76ddb27a13e4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-c169e33d0ce5"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "通过结合DFT计算、机器学习及微观动力学模拟，建立了从体相稳定性到表面EWGS阳极反应活性的系统性研究方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f4b7cccac309"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-76ddb27a13e4"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "发现的元素协同效应为高性能催化剂设计开辟了新思路",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1e500c4c771a"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-0c8fa0106e85"
+        "item_id": "item-e8360b55212f"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-5fe30fb10ad8"
-      },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "电化学水气变换（EWGS）反应能够在常温常压下直接制取高纯氢",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "技术",
-        "item_id": "item-0c8d4efba7e2"
+        "dimension": "成果",
+        "item_id": "item-199f52fdfc30"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-8d6d8f24cdd3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
-        "item_id": "item-1d88f5d9e838"
+        "item_id": "item-76ddb27a13e4"
       },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-01e8eef7181d"
-      },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目筛选出的高活性位点包括Ir参与的“双顶位”构型",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "高熵合金EWGS阳极材料相关研究论文集",
+      "status_raw": "共计发表SCI论文22篇",
+      "identifiers": {},
+      "id": "out-6b36bca82046",
+      "evidence": [
+        {
+          "quote": "共计发表SCI论文22篇",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "9175ccede6635f142f22cb168a90ac586eece601"
+          },
+          "version": "7c28ca0739e594d8fb0f"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

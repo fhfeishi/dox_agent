@@ -2,15 +2,20 @@
   "doc_id": "823f7accb59f9f2ed049",
   "version": "69eeabee25f616e9d064",
   "source_hash": "05e6c95fd0d8fb2eadae541dc53581cddf8dc3412fc022ff6cd1f213efa8b5b5",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:40:54.225905+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.571277+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 5,
+      "total": 5,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6ca5b596de3",
-          "name": "PB级电镜脑组织数据重建",
-          "desc": "体电子显微镜技术可获取纳米分辨率大规模脑组织数据，但PB级数据中神经元高通量自动化重建仍面临挑战。",
+          "id": "item-babc5570e3d6",
+          "name": "纳米尺度脑连接图谱重建",
+          "desc": "体电子显微镜使纳米分辨率大规模脑组织数据获取成为可能但PB级数据重建仍面临挑战",
           "evidence": [
             {
-              "quote": "随着体电子显微镜技术的发展，获取纳米分辨率的大规模脑组织数据已成为可能，但在 PB 级电镜数据中实现神经元的高通量、自动化重建仍面临结构微小、拓扑复杂以及人工标注校验成本高等挑战。",
+              "quote": "随着体电子显微镜技术的发展，获取纳米分辨率的大规模脑组织数据已成为可能，但在 PB 级电镜数据中实现神经元的高通量、自动化重建仍面临结构微小、拓扑复杂以及人工标注校验成本高等挑战",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-b5fc696dc55d",
-          "name": "微观脑图谱重建",
-          "desc": "神经科学关注的微观脑图谱重建，为脑微观结构认知突破提供支撑。",
+          "id": "item-06210e65a7d0",
+          "name": "连接组学与脑科学研究",
+          "desc": "对推动连接组学研究和脑科学数据驱动研究具有重要意义",
           "evidence": [
             {
-              "quote": "推进脑神经环路微观重建的进程，为神经科学对于脑微观结构认知的进一步突破提供有力支撑",
+              "quote": "对推动连接组学研究和脑科学数据驱动研究具有重要科学意义和应用价值",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "8dc89f96a75ed1a8efab93afb6a60671a66f6942"
+                "page": 3,
+                "chunk_id": "34ab98c8c3ab74459e84225543a62936de0cd955"
               },
               "version": "69eeabee25f616e9d064"
             }
@@ -57,28 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3d470e779229",
-          "name": "微小结构与成像模糊",
-          "desc": "微观脑图谱重建面临微小结构、成像模糊、算法过分割等困难。",
+          "id": "item-6f09a1efad00",
+          "name": "神经元重建人工成本高",
+          "desc": "神经元重建面临结构微小、拓扑复杂以及人工标注校验成本高等挑战",
           "evidence": [
             {
-              "quote": "微小结构、成像模糊、算法过分割、神经元拓扑结构复杂和脑微观重建巨大人工消耗等问题",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "8dc89f96a75ed1a8efab93afb6a60671a66f6942"
-              },
-              "version": "69eeabee25f616e9d064"
-            }
-          ]
-        },
-        {
-          "id": "item-bc761b2bc87e",
-          "name": "人工标注与校验成本高",
-          "desc": "分割模型高度依赖人工标注数据，大规模重建结果人工校验成本高效率低。",
-          "evidence": [
-            {
-              "quote": "针对分割模型对人工标注数据高度依赖的问题",
+              "quote": "但在 PB 级电镜数据中实现神经元的高通量、自动化重建仍面临结构微小、拓扑复杂以及人工标注校验成本高等挑战",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -89,12 +78,12 @@
           ]
         },
         {
-          "id": "item-fa00eba4361d",
-          "name": "神经元拓扑结构复杂",
-          "desc": "神经元拓扑结构复杂导致实例重建困难。",
+          "id": "item-c8b5aa3937ed",
+          "name": "分割依赖人工标注",
+          "desc": "针对分割模型对人工标注数据高度依赖的问题",
           "evidence": [
             {
-              "quote": "针对神经元结构拓扑复杂的问题，项目以图模型为核心，将神经元实例重建转化为全局图划分与优化问题。",
+              "quote": "针对分割模型对人工标注数据高度依赖的问题，项目系统引入自监督预训练与域自适应技术",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -111,12 +100,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3193023242ea",
-          "name": "上下文残差与多尺度特征融合",
-          "desc": "设计符合神经超微结构特性的深度学习网络模型，引入上下文残差建模和多尺度特征融合机制。",
+          "id": "item-c52e60288721",
+          "name": "上下文残差多尺度膜分割网络",
+          "desc": "引入上下文残差建模与多尺度特征融合并采用亚像素卷积改善膜边界",
           "evidence": [
             {
-              "quote": "通过引入上下文残差建模和多尺度特征融合机制，增强了模型对复杂膜边界和连续结构的表达能力",
+              "quote": "项目设计了符合神经超微结构特性的深度学习网络模型，通过引入上下文残差建模和多尺度特征融合机制，增强了模型对复杂膜边界和连续结构的表达能力",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -124,15 +113,16 @@
               },
               "version": "69eeabee25f616e9d064"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-50db7ada4e44",
           "name": "自监督预训练与域自适应",
-          "desc": "引入自监督预训练与域自适应技术，构建低标注甚至无标注条件下的电镜数据分析方法体系。",
+          "desc": "采用由粗到细的跨域对齐与多尺度高斯掩膜重建预训练机制",
           "evidence": [
             {
-              "quote": "项目系统引入自监督预训练与域自适应技术，构建低标注甚至无标注条件下的电镜数据分析方法体系。",
+              "quote": "通过由粗到细的跨域对齐策略和基于多尺度高斯掩膜重建的预训练机制，显著提升了模型在未见数据上的泛化能力",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -140,12 +130,13 @@
               },
               "version": "69eeabee25f616e9d064"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-ac6b2f98f8c2",
           "name": "强化学习图聚合重建",
-          "desc": "融合突触、线粒体等超微结构连接先验构建神经元聚合模型，基于强化学习实现复杂拓扑的稳定聚合。",
+          "desc": "将神经元实例重建转化为全局图划分与优化并融合超微结构连接先验",
           "evidence": [
             {
               "quote": "构建基于强化学习的图聚合方法，实现了对复杂神经元拓扑结构的稳定聚合与重建",
@@ -156,15 +147,16 @@
               },
               "version": "69eeabee25f616e9d064"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-a6d58d18d955",
-          "name": "半自动化校验框架",
-          "desc": "基于通用视觉模型提出SAEM²-SAEM框架，集成至大规模脑连接图谱校验自研软件。",
+          "id": "item-f1de2684d2a7",
+          "name": "SAEM²-SAEM半自动校验框架",
+          "desc": "基于通用视觉模型开发适配电镜数据的半自动化校验方法",
           "evidence": [
             {
-              "quote": "通过构建数据引擎和优化网络模型，提出SAEM²-SAEM框架，并集成至大规模脑连接图谱校验自研软件",
+              "quote": "项目基于通用视觉模型开发了适配电镜数据的半自动化校验方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -172,7 +164,8 @@
               },
               "version": "69eeabee25f616e9d064"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -181,9 +174,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-05dc8dd20589",
-          "name": "20篇学术论文",
-          "desc": "共发表学术论文20篇，其中5篇发表在生物医学图像领域顶刊或顶会。",
+          "id": "item-ce642aa21a85",
+          "name": "论文20篇含5篇顶刊顶会",
+          "desc": "发表学术论文20篇其中5篇发表于生物医学图像领域顶刊或顶会",
           "evidence": [
             {
               "quote": "共发表学术论文20篇，其中5篇发表在生物医学图像领域的顶刊或顶会",
@@ -195,12 +188,14 @@
               "version": "69eeabee25f616e9d064"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共发表学术论文20篇",
+          "self_reported": false
         },
         {
-          "id": "item-679fd0a4e42e",
-          "name": "分割精度达国际先进水平",
-          "desc": "在分割精度、重建完整性及跨域泛化能力方面均达到国际先进水平。",
+          "id": "item-4d27fe07b013",
+          "name": "国际先进水平",
+          "desc": "成果在分割精度、重建完整性及跨域泛化能力方面均达到国际先进水平",
           "evidence": [
             {
               "quote": "项目相关成果在分割精度、重建完整性及跨域泛化能力方面均达到国际先进水平",
@@ -212,24 +207,9 @@
               "version": "69eeabee25f616e9d064"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-749d4d26638b",
-          "name": "降低人工标注成本",
-          "desc": "通过跨域对齐与预训练机制显著提升未见数据泛化能力，有效降低人工标注成本。",
-          "evidence": [
-            {
-              "quote": "显著提升了模型在未见数据上的泛化能力，有效降低了人工标注成本",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
-              },
-              "version": "69eeabee25f616e9d064"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "达到国际先进水平",
+          "self_reported": false
         }
       ]
     }
@@ -237,47 +217,166 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-d6ca5b596de3"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-3d470e779229"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bc761b2bc87e"
-      },
-      "to": {
         "dimension": "技术",
         "item_id": "item-50db7ada4e44"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-c8b5aa3937ed"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对分割模型对人工标注数据高度依赖的问题，项目系统引入自监督预训练与域自适应技术",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-ac6b2f98f8c2"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-fa00eba4361d"
+        "item_id": "item-6f09a1efad00"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对神经元结构拓扑复杂的问题，项目以图模型为核心，将神经元实例重建转化为全局图划分与优化问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f1de2684d2a7"
       },
       "to": {
         "dimension": "技术",
         "item_id": "item-ac6b2f98f8c2"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对大规模神经元重建结果人工校验成本高、效率低的问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-a6d58d18d955"
+        "item_id": "item-50db7ada4e44"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-749d4d26638b"
+        "dimension": "技术",
+        "item_id": "item-c52e60288721"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "同时在上采样过程中采用亚像素卷积，有效改善了膜边界不连续和细节丢失问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-babc5570e3d6"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-6f09a1efad00"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但在 PB 级电镜数据中实现神经元的高通量、自动化重建仍面临结构微小、拓扑复杂以及人工标注校验成本高等挑战",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-4d27fe07b013"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-50db7ada4e44"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目相关成果在分割精度、重建完整性及跨域泛化能力方面均达到国际先进水平",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "34ab98c8c3ab74459e84225543a62936de0cd955"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "大规模脑连接图谱校验自研软件",
+      "status_raw": "集成至",
+      "identifiers": {},
+      "id": "out-6717f4751181",
+      "evidence": [
+        {
+          "quote": "并集成至大规模脑连接图谱校验自研软件，显著减少人工参与强度",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "4c74c8b4320f5b7df4c1a4b42a43d6078e8ff1a9"
+          },
+          "version": "69eeabee25f616e9d064"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

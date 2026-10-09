@@ -2,15 +2,20 @@
   "doc_id": "a462260b82245b8d2db4",
   "version": "45d9d80dfd4028598b5e",
   "source_hash": "5606bf764af42799ea1cc77b8529c9a552a8e8f854391d56cad1f4b2772ed301",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:40:54.238595+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.597810+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8b9e5924ce40",
-          "name": "碳中和新型绿色低碳能源体系",
-          "desc": "构建新型绿色低碳能源体系是实现碳中和的重要方法，仅靠实验研究进展缓慢。",
+          "id": "item-1087842ee520",
+          "name": "有机太阳能电池材料设计",
+          "desc": "传统OSC材料研发依赖实验试错面临成本高周期长挑战",
           "evidence": [
             {
-              "quote": "构建新型绿色低碳能源体系是实现碳中和的重要方法，但仅靠实验研究需要耗费大量的人力物力资源，这使得新能源体系研究进展缓慢。",
+              "quote": "传统有机太阳能电池（OSC）材料的研发依赖于实验“试错”，其面临着成本高、周期长的挑战",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "3797c792466443fd9fc2754fb554578304f410ee"
-              },
-              "version": "45d9d80dfd4028598b5e"
-            }
-          ]
-        },
-        {
-          "id": "item-8209b5ec937f",
-          "name": "全小分子有机太阳能电池",
-          "desc": "以全小分子基有机太阳能电池为例开展结构-性质关系研究。",
-          "evidence": [
-            {
-              "quote": "本项目根据申请者长期在有机太阳能电池（OSC）领域的研究基础，以全小分子基OSC为例",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "3797c792466443fd9fc2754fb554578304f410ee"
+                "page": 2,
+                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
               },
               "version": "45d9d80dfd4028598b5e"
             }
@@ -57,28 +46,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8a5b3b71a928",
-          "name": "研发依赖实验试错",
-          "desc": "传统有机太阳能电池材料研发依赖实验试错，面临成本高、周期长挑战。",
+          "id": "item-63e8c4178ef2",
+          "name": "实验试错成本高周期长",
+          "desc": "传统材料研发依赖实验试错面临成本高周期长挑战使研究进展缓慢",
           "evidence": [
             {
-              "quote": "传统有机太阳能电池（OSC）材料的研发依赖于实验“试错”，其面临着成本高、周期长的挑战。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
-              },
-              "version": "45d9d80dfd4028598b5e"
-            }
-          ]
-        },
-        {
-          "id": "item-86cc36e491fe",
-          "name": "预测全新分子能力待评估",
-          "desc": "需要评估机器学习方法预测全新分子的能力，以提高预测未知材料的准确性。",
-          "evidence": [
-            {
-              "quote": "评估ML方法预测全新分子的能力，结果将展示ML方法如何在预测未知材料时提高准确性",
+              "quote": "但仅靠实验研究需要耗费大量的人力物力资源，这使得新能源体系研究进展缓慢",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,25 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d60b3a7484a1",
-          "name": "量子化学与机器学习融合",
-          "desc": "综合运用量子化学计算、机器学习以及高通量筛选等技术构建定量的结构-性质关系模型。",
-          "evidence": [
-            {
-              "quote": "在获得可靠的数据库基础上综合运用量子化学计算、ML以及高通量筛选等技术构建定量的结构-性质关系模型",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "3797c792466443fd9fc2754fb554578304f410ee"
-              },
-              "version": "45d9d80dfd4028598b5e"
-            }
-          ]
-        },
-        {
           "id": "item-c65dbc72aa0e",
           "name": "协同D/A对指纹嵌入表示",
-          "desc": "针对全小分子OSC数据特点，发展协同D/A对指纹嵌入表示方法。",
+          "desc": "发展协同D/A对指纹嵌入表示方法融合图神经网络语义表征与电子描述符",
           "evidence": [
             {
               "quote": "针对全小分子OSC数据特点，发展了协同D/A对指纹嵌入表示方法，并融合图神经网络、语义表征与电子描述符",
@@ -124,15 +81,16 @@
               },
               "version": "45d9d80dfd4028598b5e"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5fe6251d708f",
-          "name": "高通量虚拟筛选流程",
-          "desc": "集成预测模型与高通量虚拟筛选流程，实现对潜在高性能D/A对的快速初筛。",
+          "id": "item-95f0198e7f59",
+          "name": "PCE高精度预测模型",
+          "desc": "构建高精度PCE预测模型并集成高通量虚拟筛选实现快速初筛",
           "evidence": [
             {
-              "quote": "进一步集成上述模型与高通量虚拟筛选流程，实现了对潜在高性能D/A对的快速初筛",
+              "quote": "构建了高精度PCE预测模型（r>0.90）。进一步集成上述模型与高通量虚拟筛选流程，实现了对潜在高性能D/A对的快速初筛",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -140,7 +98,25 @@
               },
               "version": "45d9d80dfd4028598b5e"
             }
-          ]
+          ],
+          "role": "关键创新"
+        },
+        {
+          "id": "item-f4953656a504",
+          "name": "量子化学结构-性能解析",
+          "desc": "通过量子化学计算揭示二元三元体系分子结构与器件性能内在关联并提出结构调控准则",
+          "evidence": [
+            {
+              "quote": "通过量子化学计算，深入揭示了二元与三元体系中分子结构、堆积模式、界面电子过程与器件性能之间的内在关联，提出了多项结构调控准则",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+              },
+              "version": "45d9d80dfd4028598b5e"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,43 +125,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-97349d4cc5b2",
-          "name": "近十年文献专用数据库",
-          "desc": "围绕全小分子OSC体系建立覆盖近十年文献的专用数据库。",
-          "evidence": [
-            {
-              "quote": "围绕全小分子OSC体系，建立了覆盖近十年文献的专用数据库。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
-              },
-              "version": "45d9d80dfd4028598b5e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-10ed55e0d38c",
-          "name": "高精度PCE预测模型",
-          "desc": "构建高精度光电转换效率预测模型，相关系数r大于0.90。",
-          "evidence": [
-            {
-              "quote": "构建了高精度PCE预测模型（r>0.90）",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
-              },
-              "version": "45d9d80dfd4028598b5e"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
           "id": "item-7258cb13cef9",
           "name": "闭环研发方法体系",
-          "desc": "形成计算模拟、数据库、描述符提取、性能预测、实验反馈的闭环研发方法。",
+          "desc": "形成计算模拟-数据库-描述符提取-性能预测-实验反馈的闭环研发方法",
           "evidence": [
             {
               "quote": "本项目形成了一套“计算模拟-数据库-描述符提取-性能预测-实验反馈”的闭环研发方法",
@@ -197,7 +139,28 @@
               "version": "45d9d80dfd4028598b5e"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "形成了",
+          "self_reported": false
+        },
+        {
+          "id": "item-fad13d3ee018",
+          "name": "专用OSC数据库",
+          "desc": "建立覆盖近十年文献的专用数据库",
+          "evidence": [
+            {
+              "quote": "围绕全小分子OSC体系，建立了覆盖近十年文献的专用数据库",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+              },
+              "version": "45d9d80dfd4028598b5e"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "建立了",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +168,143 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-8209b5ec937f"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-8a5b3b71a928"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-86cc36e491fe"
-      },
-      "to": {
         "dimension": "技术",
-        "item_id": "item-d60b3a7484a1"
+        "item_id": "item-95f0198e7f59"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-63e8c4178ef2"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但仅靠实验研究需要耗费大量的人力物力资源，这使得新能源体系研究进展缓慢",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "3797c792466443fd9fc2754fb554578304f410ee"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-f4953656a504"
+      },
+      "to": {
         "dimension": "技术",
         "item_id": "item-c65dbc72aa0e"
       },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-10ed55e0d38c"
-      },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对全小分子OSC数据特点，发展了协同D/A对指纹嵌入表示方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-5fe6251d708f"
+        "item_id": "item-95f0198e7f59"
       },
       "to": {
+        "dimension": "技术",
+        "item_id": "item-f4953656a504"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "进一步集成上述模型与高通量虚拟筛选流程",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-1087842ee520"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-63e8c4178ef2"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "传统有机太阳能电池（OSC）材料的研发依赖于实验“试错”，其面临着成本高、周期长的挑战",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "成果",
         "item_id": "item-7258cb13cef9"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-95f0198e7f59"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了高精度PCE预测模型（r>0.90）",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "全小分子OSC专用数据库",
+      "status_raw": "建立了",
+      "identifiers": {},
+      "id": "out-b00022b066ca",
+      "evidence": [
+        {
+          "quote": "围绕全小分子OSC体系，建立了覆盖近十年文献的专用数据库",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "bb5d5409c1baf6d1880bce8494de248edc542aab"
+          },
+          "version": "45d9d80dfd4028598b5e"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

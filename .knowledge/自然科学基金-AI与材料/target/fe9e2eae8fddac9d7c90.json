@@ -2,15 +2,20 @@
   "doc_id": "fe9e2eae8fddac9d7c90",
   "version": "1715cbc416aea006a4e7",
   "source_hash": "ed181b743fce3d270f58bb49fb52e474de3fc91f9c7f1f2fa412aaad0bd1bbe4",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:38:55.241019+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.558712+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f6f799e6542a",
-          "name": "凝聚态物质科学的晶体结构基础",
-          "desc": "晶体结构是凝聚态物质科学的研究基础，理论上准确预测晶体结构是学界长期期盼。",
+          "id": "item-6bb7dcfaeb3b",
+          "name": "晶体结构预测",
+          "desc": "晶体结构是凝聚态物质科学的研究基础，理论上准确预测晶体结构是学界长期期盼",
           "evidence": [
             {
-              "quote": "晶体结构是凝聚态物质科学的研究基础。",
+              "quote": "晶体结构是凝聚态物质科学的研究基础。理论上准确预测晶体结构是学界的长期期盼",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
                 "chunk_id": "9d56342e95373a4969783ac0833c2885bf37f249"
-              },
-              "version": "1715cbc416aea006a4e7"
-            }
-          ]
-        },
-        {
-          "id": "item-b021e91dc576",
-          "name": "高压相结构难题",
-          "desc": "利用自主发展的方法与软件解决若干高压相结构难题。",
-          "evidence": [
-            {
-              "quote": "解决了若干高压相结构难题",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "fc50f4b3010a0dfb39deee4250fd5c86930f6c8f"
               },
               "version": "1715cbc416aea006a4e7"
             }
@@ -57,28 +46,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7bc428bbf34c",
-          "name": "玻恩-奥本海默势能面最低能态求解",
-          "desc": "准确预测晶体结构需要解决晶体玻恩-奥本海默势能面最低能态的科学难题。",
+          "id": "item-a7d0f0a78538",
+          "name": "势能面NP-hard难题未解决",
+          "desc": "由于势能面具体形式未知特别是NP-hard数学属性，晶体结构预测理论难题未彻底解决",
           "evidence": [
             {
-              "quote": "需要解决晶体玻恩-奥本海默势能面最低能态这一科学难题",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "9d56342e95373a4969783ac0833c2885bf37f249"
-              },
-              "version": "1715cbc416aea006a4e7"
-            }
-          ]
-        },
-        {
-          "id": "item-3a672627224b",
-          "name": "势能面求解的NP-hard属性",
-          "desc": "势能面形式未知且求解具有NP-hard数学属性，晶体结构预测理论难题未被彻底解决。",
-          "evidence": [
-            {
-              "quote": "特别是由于势能面求解的NP-hard（非确定性多项式）难题的数学属性，晶体结构预测的理论难题并没有得到彻底解决。",
+              "quote": "然而，由于势能面的具体形式未知，特别是由于势能面求解的NP-hard（非确定性多项式）难题的数学属性，晶体结构预测的理论难题并没有得到彻底解决",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,9 +68,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-170a86d1f8fe",
-          "name": "深度学习生成模型结构产生",
-          "desc": "发展基于深度学习生成模型的结构产生方法，实现势能面低能区域高效采样。",
+          "id": "item-ca3d850be56e",
+          "name": "深度学习生成结构模型",
+          "desc": "发展基于深度学习生成模型的结构产生方法",
           "evidence": [
             {
               "quote": "本项目发展了基于深度学习生成模型的结构产生方法",
@@ -108,12 +81,13 @@
               },
               "version": "1715cbc416aea006a4e7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-d2bf040d03f6",
           "name": "人工蜂群复杂结构演化",
-          "desc": "发展基于人工蜂群的复杂结构演化方法，通过分治策略保持对称性。",
+          "desc": "基于人工蜂群的复杂结构演化方法",
           "evidence": [
             {
               "quote": "基于人工蜂群的复杂结构演化方法",
@@ -124,12 +98,13 @@
               },
               "version": "1715cbc416aea006a4e7"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2ae08d001658",
-          "name": "机器学习势高效能量计算",
-          "desc": "发展基于机器学习势的高效晶体能量计算方法，将能量计算复杂度由立方量级降为近线性。",
+          "id": "item-f7266e08ca49",
+          "name": "机器学习势能计算",
+          "desc": "基于机器学习势的高效晶体能量计算方法",
           "evidence": [
             {
               "quote": "基于机器学习势的高效晶体能量计算方法",
@@ -140,23 +115,8 @@
               },
               "version": "1715cbc416aea006a4e7"
             }
-          ]
-        },
-        {
-          "id": "item-d43ecb6bf89b",
-          "name": "解景观势能面构建",
-          "desc": "基于解景观方法设计旋转不变性坐标，实现晶体结构势能面可视化。",
-          "evidence": [
-            {
-              "quote": "基于解景观（Solutionlandscape）方法",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 9,
-                "chunk_id": "e18e915d600ca7b5a71f4c7e10f2d6532b2dd5ed"
-              },
-              "version": "1715cbc416aea006a4e7"
-            }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,12 +125,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-abcbe1c4cd12",
-          "name": "CALYPSO软件集成",
-          "desc": "发展基于机器学习的晶体结构预测新方法并开发软件，集成于CALYPSO软件包。",
+          "id": "item-1ca62d7a0049",
+          "name": "CALYPSO集成结构预测软件",
+          "desc": "开发结构预测软件集成于CALYPSO软件包",
           "evidence": [
             {
-              "quote": "开发了相应的结构预测软件，集成于CALYPSO软件包",
+              "quote": "开发了相应的结构预测软件，集成于CALYPSO软件包，为同行开展复杂体系结构预测研究提供了有力的工具",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -179,49 +139,17 @@
               "version": "1715cbc416aea006a4e7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "开发了",
+          "self_reported": false
         },
         {
-          "id": "item-486e6250531d",
-          "name": "Cond-CDVAE生成模型",
-          "desc": "构建以化学配比和压强为条件的晶体结构生成模型，常压测试集预测成功率59.3%。",
+          "id": "item-9b132594881a",
+          "name": "高压相结构设计",
+          "desc": "提出单质锂熔化曲线极小值区域晶体结构并设计S304、GaN5和GaN10等高压相结构",
           "evidence": [
             {
-              "quote": "构建了Cond-CDVAE模型",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 7,
-                "chunk_id": "b49f4b6994c8a6f4f8d1f79d1f4b1885f8818dc9"
-              },
-              "version": "1715cbc416aea006a4e7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-fa0e60e51b16",
-          "name": "CrystalFlow生成模型",
-          "desc": "发展高效灵活的CrystalFlow晶体结构生成模型，准确率较前期方法提升约20%。",
-          "evidence": [
-            {
-              "quote": "发展了高效且灵活的CrystalFlow晶体结构生成模型",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 7,
-                "chunk_id": "11c30976912ad4e19f4edd603d34ce82a006ca3c"
-              },
-              "version": "1715cbc416aea006a4e7"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-c8dc1d9dc046",
-          "name": "单质锂高压相晶体结构",
-          "desc": "提出单质锂在熔化曲线极小值区域的晶体结构，晶胞最大原子数达192。",
-          "evidence": [
-            {
-              "quote": "提出了单质锂在熔化曲线极小值区域的晶体结构",
+              "quote": "提出了单质锂在熔化曲线极小值区域的晶体结构，设计了S304、GaN5和GaN10等高压相晶体结构，部分计算结果得到实验证实",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -230,15 +158,17 @@
               "version": "1715cbc416aea006a4e7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "提出了",
+          "self_reported": false
         },
         {
-          "id": "item-d3515ffa0c77",
-          "name": "SCI论文与人才培养",
-          "desc": "累计发表SCI论文46篇，资助博士后6人、培养研究生20人。",
+          "id": "item-74c8db5c0bb4",
+          "name": "SCI论文46篇",
+          "desc": "累计发表SCI学术论文46篇含PRL 9篇、PNAS 2篇、JACS 2篇、Nat Commun 4篇",
           "evidence": [
             {
-              "quote": "本项目资助博士后6人，培养硕士、博士研究生20人，累计发表了SCI学术论文46篇",
+              "quote": "累计发表了SCI学术论文46篇，包括Phys.",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -247,7 +177,9 @@
               "version": "1715cbc416aea006a4e7"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "累计发表了SCI学术论文46篇",
+          "self_reported": false
         }
       ]
     }
@@ -255,47 +187,120 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-ca3d850be56e"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a7d0f0a78538"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，由于势能面的具体形式未知，特别是由于势能面求解的NP-hard（非确定性多项式）难题的数学属性，晶体结构预测的理论难题并没有得到彻底解决",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "9d56342e95373a4969783ac0833c2885bf37f249"
+          },
+          "version": "1715cbc416aea006a4e7"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f7266e08ca49"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-ca3d850be56e"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目发展了基于深度学习生成模型的结构产生方法，基于人工蜂群的复杂结构演化方法和基于机器学习势的高效晶体能量计算方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fc50f4b3010a0dfb39deee4250fd5c86930f6c8f"
+          },
+          "version": "1715cbc416aea006a4e7"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-f6f799e6542a"
+        "item_id": "item-6bb7dcfaeb3b"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-7bc428bbf34c"
+        "item_id": "item-a7d0f0a78538"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "理论上准确预测晶体结构是学界的长期期盼，需要解决晶体玻恩-奥本海默势能面最低能态求解的科学难题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fc50f4b3010a0dfb39deee4250fd5c86930f6c8f"
+          },
+          "version": "1715cbc416aea006a4e7"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-3a672627224b"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-170a86d1f8fe"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-d2bf040d03f6"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-abcbe1c4cd12"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-2ae08d001658"
+        "item_id": "item-1ca62d7a0049"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-c8dc1d9dc046"
+        "dimension": "技术",
+        "item_id": "item-ca3d850be56e"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "将上述方法相结合，发展了基于机器学习的晶体结构预测新方法，开发了相应的结构预测软件",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fc50f4b3010a0dfb39deee4250fd5c86930f6c8f"
+          },
+          "version": "1715cbc416aea006a4e7"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于机器学习的晶体结构预测软件",
+      "status_raw": "开发了",
+      "identifiers": {},
+      "id": "out-6480a46ef5f8",
+      "evidence": [
+        {
+          "quote": "开发了相应的结构预测软件，集成于CALYPSO软件包",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fc50f4b3010a0dfb39deee4250fd5c86930f6c8f"
+          },
+          "version": "1715cbc416aea006a4e7"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

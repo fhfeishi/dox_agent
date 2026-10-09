@@ -2,15 +2,20 @@
   "doc_id": "5279b75d02de8195e1ca",
   "version": "51bf1a382864ec9cb0f8",
   "source_hash": "26eede25f55be66c012654b38d265765fd03078fa6914b91003afc788c222128",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:38:08.310409+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:38:07.603314+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,25 +24,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-0a726ab6219b",
-          "name": "高铁沿线近地表速度探测",
-          "desc": "基于高铁地震监测数据获取高铁沿线近地表高精度速度，保障高铁运行安全。",
+          "id": "item-117c7496c046",
+          "name": "高铁地震监测",
+          "desc": "基于高铁地震监测数据获得沿线近地表高精度速度对保障高铁运行安全十分重要",
           "evidence": [
             {
-              "quote": "基于高铁地震监测数据获得高铁沿线近地表高精度速度，对保障高铁运行安全十分重要。",
+              "quote": "针对高铁沿线近地表速度结构高精度探测的迫切需求，本项目系统研究了基于人工智能的高铁地震DAS监测数据近地表横波速度反演方法",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 685,
-                "end_char": 723
+                "start_char": 2935,
+                "end_char": 2995
               },
               "version": "51bf1a382864ec9cb0f8"
             }
           ]
         },
         {
-          "id": "item-5616d02eccbd",
-          "name": "分布式光纤声波传感监测",
-          "desc": "DAS技术具备高空间采样密度与可实时监测优点，有望成为高铁地震监测利器。",
+          "id": "item-ab3ead9e3b3c",
+          "name": "DAS分布式光纤声波传感",
+          "desc": "DAS技术具有高空间采样密度及可实时监测等优点",
           "evidence": [
             {
               "quote": "分布式光纤声波传感（DAS）技术具有高空间采样密度及可实时监测等优点，有望成为高铁地震监测的利器",
@@ -57,9 +62,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-35b1a0e05fbe",
-          "name": "海量DAS数据有效信号识别困难",
-          "desc": "海量DAS监测数据中有效信号识别困难，制约快速高精度处理。",
+          "id": "item-e56b4acd1274",
+          "name": "有效面波识别困难",
+          "desc": "海量DAS数据中有效信号识别困难、高铁移动组合震源干扰强",
           "evidence": [
             {
               "quote": "面对海量DAS数据中有效信号识别困难、高铁移动组合震源干扰强、传统反演方法效率低下等挑战",
@@ -73,9 +78,9 @@
           ]
         },
         {
-          "id": "item-31c7260ead39",
-          "name": "传统频散曲线反演依赖人工拾取",
-          "desc": "常规面波频散曲线反演方法需大量人工拾取，效率低。",
+          "id": "item-d323066f1faf",
+          "name": "传统反演依赖初始模型",
+          "desc": "常规面波频散曲线反演方法需大量人工拾取且依赖初始模型",
           "evidence": [
             {
               "quote": "并避免常规面波频散曲线反演方法需大量人工拾取的问题",
@@ -95,52 +100,55 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9cd30b0de818",
-          "name": "深度残差网络有效信号识别",
-          "desc": "考虑各变换域内有效面波与干扰成分差异，用深度残差网络识别有效面波成分。",
+          "id": "item-16d90fb052d4",
+          "name": "深度残差网络面波识别",
+          "desc": "建立基于深度残差网络的有效信号智能识别方法",
           "evidence": [
             {
-              "quote": "研究可高精度识别高铁地震DAS监测数据中有效面波成分的深度残差网络",
+              "quote": "首先，建立了基于深度残差网络的有效信号智能识别方法，实现了复杂高铁震源环境下有效面波成分的高精度识别",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 855,
-                "end_char": 887
+                "start_char": 3062,
+                "end_char": 3111
               },
               "version": "51bf1a382864ec9cb0f8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-648349f34a9a",
-          "name": "反褶积干涉法虚拟面波记录生成",
-          "desc": "基于反褶积地震波干涉法生成虚拟面波记录，去除高铁移动组合震源影响。",
+          "id": "item-acc0d63e5ecd",
+          "name": "反褶积干涉虚拟面波生成",
+          "desc": "发展基于反褶积干涉法的虚拟面波记录生成技术",
           "evidence": [
             {
-              "quote": "研究高铁地震DAS监测数据虚拟面波记录生成方法，可有效去除高铁移动组合震源的影响",
+              "quote": "针对高铁移动震源特性，发展了基于反褶积干涉法的虚拟面波记录生成技术，有效提高了面波波场的质量",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 925,
-                "end_char": 964
+                "start_char": 3116,
+                "end_char": 3161
               },
               "version": "51bf1a382864ec9cb0f8"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c8e0b101f4b6",
-          "name": "生成对抗网全面波全波形反演",
-          "desc": "基于生成对抗网络构建从原始波形到速度模型的端到端反演网络。",
+          "id": "item-13cec821fc30",
+          "name": "生成对抗网络全波形反演",
+          "desc": "提出基于生成对抗网络的面波全波形速度反演方法构建端到端网络",
           "evidence": [
             {
-              "quote": "研究人工智能面波全波形反演方法，可实现近地表横波速度的高精度反演",
+              "quote": "创新性地研究提出了基于生成对抗网络的面波全波形速度反演方法，构建了从原始波形到速度模型的端到端网络，克服了传统反演方法对初始模型的依赖",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 978,
-                "end_char": 1009
+                "start_char": 3166,
+                "end_char": 3232
               },
               "version": "51bf1a382864ec9cb0f8"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,55 +157,42 @@
       "state": "has",
       "items": [
         {
-          "id": "item-ca65a6cb853f",
-          "name": "高精度近地表速度剖面获取",
-          "desc": "模型与实际数据测试表明方法能稳定获取高精度近地表速度剖面。",
+          "id": "item-6a1df4dc46f9",
+          "name": "高精度近地表速度剖面反演",
+          "desc": "通过模型与实际数据测试稳定获取高精度近地表速度剖面",
           "evidence": [
             {
-              "quote": "建立的方法能够稳定地获取高精度的近地表速度剖面",
+              "quote": "通过模型和实际数据测试表明，建立的方法能够稳定地获取高精度的近地表速度剖面",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3248,
+                "start_char": 3234,
                 "end_char": 3270
               },
               "version": "51bf1a382864ec9cb0f8"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "能够稳定地获取",
+          "self_reported": false
         },
         {
-          "id": "item-9ca5c533c296",
-          "name": "端到端网络克服初始模型依赖",
-          "desc": "构建从原始波形到速度模型的端到端网络，克服传统反演对初始模型的依赖。",
+          "id": "item-be1bd3ea6fdf",
+          "name": "SEG最佳口头报告奖",
+          "desc": "获SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖",
           "evidence": [
             {
-              "quote": "构建了从原始波形到速度模型的端到端网络，克服了传统反演方法对初始模型的依赖",
+              "quote": "1. [奖励] SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖 — 邵婕",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3196,
-                "end_char": 3232
+                "start_char": 3330,
+                "end_char": 3369
               },
               "version": "51bf1a382864ec9cb0f8"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2a26f340bf10",
-          "name": "最佳口头报告奖",
-          "desc": "获SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖。",
-          "evidence": [
-            {
-              "quote": "SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 3338,
-                "end_char": 3364
-              },
-              "version": "51bf1a382864ec9cb0f8"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "获",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +200,181 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-16d90fb052d4"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e56b4acd1274"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "面对海量DAS数据中有效信号识别困难、高铁移动组合震源干扰强、传统反演方法效率低下等挑战",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2997,
+            "end_char": 3040
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-13cec821fc30"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-d323066f1faf"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "克服了传统反演方法对初始模型的依赖",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3216,
+            "end_char": 3232
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-acc0d63e5ecd"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-16d90fb052d4"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对高铁移动震源特性，发展了基于反褶积干涉法的虚拟面波记录生成技术",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3116,
+            "end_char": 3148
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-13cec821fc30"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-acc0d63e5ecd"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了从原始波形到速度模型的端到端网络",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3196,
+            "end_char": 3214
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-0a726ab6219b"
+        "item_id": "item-117c7496c046"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-35b1a0e05fbe"
+        "item_id": "item-e56b4acd1274"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对高铁沿线近地表速度结构高精度探测的迫切需求",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2935,
+            "end_char": 2957
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-35b1a0e05fbe"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-9cd30b0de818"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-31c7260ead39"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-c8e0b101f4b6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c8e0b101f4b6"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-9ca5c533c296"
+        "item_id": "item-6a1df4dc46f9"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-13cec821fc30"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "建立的方法能够稳定地获取高精度的近地表速度剖面",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3248,
+            "end_char": 3270
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "奖励/专著",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "邵婕",
+      "id": "out-1014fa0f4873",
+      "evidence": [
+        {
+          "quote": "1. [奖励] SEG光纤传感技术在能源领域的应用研讨会最佳口头报告奖 — 邵婕",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3330,
+            "end_char": 3369
+          },
+          "version": "51bf1a382864ec9cb0f8"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 2,
+    "listed": 2,
+    "by_kind": {
+      "奖励/专著": {
+        "listed": 1,
+        "extracted": 1
+      },
+      "期刊论文": {
+        "listed": 1,
+        "extracted": 0
+      }
+    },
+    "consistent": false
+  }
 }

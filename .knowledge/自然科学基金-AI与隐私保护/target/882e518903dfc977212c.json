@@ -2,15 +2,20 @@
   "doc_id": "882e518903dfc977212c",
   "version": "2cff4eb32dbc0534397d",
   "source_hash": "056bd92ff046f5c7df4449786684a592f202ff7f96596a93b459aeb3660bef69",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:44:07.782980+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:49:47.794728+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-619967a59585",
-          "name": "海量敏感与非贯通数据分析",
-          "desc": "数据隐私与非贯通问题使基于大规模数据训练的机器学习和数据分析面临严重性能瓶颈。",
+          "id": "item-88afdb75b210",
+          "name": "敏感与非贯通数据分析",
+          "desc": "数据隐私与非贯通问题使基于大规模数据训练的机器学习面临性能瓶颈和应用阻碍",
           "evidence": [
             {
-              "quote": "日益突出的数据隐私与非贯通问题，使得基于大规模数据训练的机器学习和数据分析面临严重的性能瓶颈和应用阻碍。",
+              "quote": "日益突出的数据隐私与非贯通问题，使得基于大规模数据训练的机器学习和数据分析面临严重的性能瓶颈和应用阻碍",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-3b30c05aaa42",
-          "name": "边云协同与分布式网络",
-          "desc": "针对多样分布式网络产生的隐私需求特性开展双重隐私约束下的模型效用优化。",
+          "id": "item-3c678e28b258",
+          "name": "边云协同平台验证",
+          "desc": "在边云协同平台上完成原型验证",
           "evidence": [
             {
-              "quote": "针对敏感且非贯通数据分析的隐私保护联邦学习，拟分析多样分布式网络所产生的隐私需求特性",
+              "quote": "并在边云协同平台上完成原型验证",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "e833b1698f9af6ed0a48a6c0a9747a86d5263f22"
+                "page": 2,
+                "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
               },
               "version": "2cff4eb32dbc0534397d"
             }
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6be579e65d9c",
-          "name": "隐私与非贯通双重约束",
-          "desc": "需在不同隐私约束下实现高模型效用性的隐私保护机器学习与联邦学习算法。",
+          "id": "item-87ae1919f20a",
+          "name": "敏感数据分析需间接隐私约束",
+          "desc": "分析训练过程内在随机特性和收敛性以实现间接隐私约束下的效用优化",
           "evidence": [
             {
-              "quote": "研究不同隐私约束下具有高模型效用性的隐私保护机器学习和联邦学习算法",
+              "quote": "针对敏感数据分析的机器学习，拟分析机器学习训练过程中内在的随机特性和收敛性，以实现间接隐私约束下模型效用的优化",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,16 +78,32 @@
           ]
         },
         {
-          "id": "item-3611c70e7376",
-          "name": "资源约束与统计异质",
-          "desc": "非贯通数据驻留设备存在资源约束、统计异质与客户端动态参与等特征。",
+          "id": "item-b39d5adf52d1",
+          "name": "非贯通数据资源与分布受限",
+          "desc": "分析非贯通数据驻留设备的资源和数据分布特性实现直接隐私约束优化",
           "evidence": [
             {
-              "quote": "针对资源约束、统计异质和客户端动态参与等特征",
+              "quote": "针对非贯通数据分析的联邦学习，拟分析非贯通数据驻留设备的资源和数据分布特性，以实现直接隐私约束下模型效用的优化",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+                "page": 1,
+                "chunk_id": "e833b1698f9af6ed0a48a6c0a9747a86d5263f22"
+              },
+              "version": "2cff4eb32dbc0534397d"
+            }
+          ]
+        },
+        {
+          "id": "item-118f7c4fc503",
+          "name": "敏感且非贯通双重隐私约束",
+          "desc": "分析多样分布式网络所产生的隐私需求特性实现双重约束优化",
+          "evidence": [
+            {
+              "quote": "针对敏感且非贯通数据分析的隐私保护联邦学习，拟分析多样分布式网络所产生的隐私需求特性，以实现双重隐私约束下的模型效用优化",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 1,
+                "chunk_id": "e833b1698f9af6ed0a48a6c0a9747a86d5263f22"
               },
               "version": "2cff4eb32dbc0534397d"
             }
@@ -97,10 +118,10 @@
         {
           "id": "item-652e44823db3",
           "name": "差分隐私训练框架",
-          "desc": "提出结合内在隐私与外部噪声的差分隐私训练框架，刻画模型训练中的隐私损失。",
+          "desc": "结合内在隐私与外部噪声的差分隐私训练框架刻画概率图模型及梯度下降的隐私损失",
           "evidence": [
             {
-              "quote": "提出结合内在隐私与外部噪声的差分隐私训练框架，刻画概率图模型及梯度下降法在模型训练中的隐私损失",
+              "quote": "针对敏感数据分析，提出结合内在隐私与外部噪声的差分隐私训练框架，刻画概率图模型及梯度下降法在模型训练中的隐私损失",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -108,12 +129,13 @@
               },
               "version": "2cff4eb32dbc0534397d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-cd80fe2c4013",
           "name": "样本高效差分隐私深度学习",
-          "desc": "结合预训练模型与视觉提示技术构建样本高效差分隐私深度学习框架，并探索量子不经意传输的安全推理方法。",
+          "desc": "结合预训练模型与视觉提示技术构建样本高效框架并探索量子不经意传输安全推理",
           "evidence": [
             {
               "quote": "结合预训练模型与视觉提示技术，构建样本高效的差分隐私深度学习框架，并探索基于量子不经意传输的深度学习安全推理方法",
@@ -124,15 +146,16 @@
               },
               "version": "2cff4eb32dbc0534397d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-14948c373d02",
-          "name": "异步与小样本联邦学习",
-          "desc": "设计资源高效、K异步、小样本联邦学习及基于Shapley值的贡献评估方法。",
+          "id": "item-725af6033425",
+          "name": "资源高效异构联邦学习算法族",
+          "desc": "设计资源高效、K异步、小样本联邦学习及基于Shapley值的贡献评估方法",
           "evidence": [
             {
-              "quote": "设计了资源高效、K异步、小样本联邦学习及基于Shapley值的贡献评估方法",
+              "quote": "针对资源约束、统计异质和客户端动态参与等特征，设计了资源高效、K异步、小样本联邦学习及基于Shapley值的贡献评估方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -140,15 +163,16 @@
               },
               "version": "2cff4eb32dbc0534397d"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-c928fd4c4f91",
           "name": "多阶段自适应差分隐私异步联邦学习",
-          "desc": "提出多阶段自适应差分隐私异步联邦学习、纵向数据合成与联邦迁移故障诊断方法。",
+          "desc": "构建异步纵向及无中心联邦架构下的隐私保护模型算法族与数据合成迁移诊断方法",
           "evidence": [
             {
-              "quote": "提出多阶段自适应差分隐私异步联邦学习 差分隐私纵向数据合成与联邦迁移故障诊断方法",
+              "quote": "构建异步、纵向及无中心联邦架构下的隐私保护模型与算法族，提出多阶段自适应差分隐私异步联邦学习 差分隐私纵向数据合成与联邦迁移故障诊断方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -156,7 +180,8 @@
               },
               "version": "2cff4eb32dbc0534397d"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -165,26 +190,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-22f3098b7f40",
-          "name": "Docker联邦学习实验平台",
-          "desc": "搭建基于Docker容器的联邦学习实验平台，在多维度上评估所提方法。",
-          "evidence": [
-            {
-              "quote": "项目搭建了基于Docker容器的联邦学习实验平台",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "03eb672d1d266ed9ddc38cafd0117be6399ee6c9"
-              },
-              "version": "2cff4eb32dbc0534397d"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-246a5ca35619",
-          "name": "24篇论文与4项专利",
-          "desc": "发表论文24篇（CACM、IEEE TPAMI、ACM SIGMOD等），申请发明专利4项其中已授权3项。",
+          "id": "item-5d825900267b",
+          "name": "论文24篇与专利4项",
+          "desc": "发表论文24篇于CACM、IEEE TPAMI、ACM SIGMOD等，申请专利4项已授权3项",
           "evidence": [
             {
               "quote": "项目期间共发表论文24篇，成果发表于CACM、IEEETPAMI、ACMSIGMOD等重要期刊和会议，并申请国家发明专利4项，其中已授权3项",
@@ -196,15 +204,17 @@
               "version": "2cff4eb32dbc0534397d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "共发表论文24篇",
+          "self_reported": false
         },
         {
-          "id": "item-795fe8cf824d",
-          "name": "人才培养",
-          "desc": "培养博士生3名、硕士生8名。",
+          "id": "item-22f3098b7f40",
+          "name": "Docker联邦学习实验平台",
+          "desc": "搭建基于Docker容器的联邦学习实验平台并多维度评估",
           "evidence": [
             {
-              "quote": "项目培养博士生3名、硕士生8名",
+              "quote": "项目搭建了基于Docker容器的联邦学习实验平台，在多种真实与合成数据集上，从预测精度、收敛速度、通信与计算开销及隐私损失等维度评估所提方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -213,7 +223,9 @@
               "version": "2cff4eb32dbc0534397d"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "搭建了",
+          "self_reported": false
         }
       ]
     }
@@ -221,36 +233,49 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-619967a59585"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-6be579e65d9c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-3611c70e7376"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-14948c373d02"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
         "item_id": "item-652e44823db3"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-22f3098b7f40"
+        "dimension": "问题",
+        "item_id": "item-87ae1919f20a"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对敏感数据分析，提出结合内在隐私与外部噪声的差分隐私训练框架",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-725af6033425"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-b39d5adf52d1"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对非贯通数据分析，针对资源约束、统计异质和客户端动态参与等特征，设计了资源高效、K异步、小样本联邦学习及基于Shapley值的贡献评估方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
     },
     {
       "from": {
@@ -258,10 +283,116 @@
         "item_id": "item-c928fd4c4f91"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-246a5ca35619"
+        "dimension": "问题",
+        "item_id": "item-118f7c4fc503"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对敏感非贯通数据分析，综合考虑中心可信与本地差分隐私等范式，构建异步、纵向及无中心联邦架构下的隐私保护模型与算法族",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-cd80fe2c4013"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-652e44823db3"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结合预训练模型与视觉提示技术，构建样本高效的差分隐私深度学习框架",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-88afdb75b210"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-87ae1919f20a"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "日益突出的数据隐私与非贯通问题，使得基于大规模数据训练的机器学习和数据分析面临严重的性能瓶颈和应用阻碍",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "e833b1698f9af6ed0a48a6c0a9747a86d5263f22"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-22f3098b7f40"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-725af6033425"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "并在边云协同平台上完成原型验证",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "a666c65d942a4c56a71fe6c439077a83711cd86b"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "软件/数据",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "基于Docker容器的联邦学习实验平台",
+      "status_raw": "搭建了",
+      "identifiers": {},
+      "id": "out-3987c2949100",
+      "evidence": [
+        {
+          "quote": "项目搭建了基于Docker容器的联邦学习实验平台",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "03eb672d1d266ed9ddc38cafd0117be6399ee6c9"
+          },
+          "version": "2cff4eb32dbc0534397d"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

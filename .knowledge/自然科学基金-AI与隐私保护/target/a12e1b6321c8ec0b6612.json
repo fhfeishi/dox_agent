@@ -2,15 +2,20 @@
   "doc_id": "a12e1b6321c8ec0b6612",
   "version": "a3096871d27024d2e3ff",
   "source_hash": "874946020d88eef595ef2f49ed5b413b9a273e6e7877ff8c5bdfa68660baa09a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:44:07.770916+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:49:47.800290+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1df0e074bfd4",
-          "name": "蜂窝车联网与边缘计算融合",
-          "desc": "蜂窝车联网C-V2X搭乘5G及下一代通信技术，呈现应用与移动边缘计算紧密结合的发展态势。",
+          "id": "item-db81733be0e6",
+          "name": "车路云协同智能服务",
+          "desc": "C-V2X搭乘5G及下一代通信技术呈现与MEC紧密结合态势，车辆高速移动使落地存在技术阻碍",
           "evidence": [
             {
-              "quote": "蜂窝车联网（C-V2X）搭乘5G及下一代通信技术，逐渐呈现应用与移动边缘计算（MEC）新技术紧密结合的发展态势。",
+              "quote": "然而，由于车辆的高速移动，MEC使能技术推动C-V2X网络应用落地还存在一系列关键技术阻碍",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,9 +40,9 @@
           ]
         },
         {
-          "id": "item-47f4cc9e0dd1",
-          "name": "车-路-云协同智能服务",
-          "desc": "围绕车-路-云协同服务架构实现动态环境下分布式、低时延、可信的车联网智能服务。",
+          "id": "item-09a9513b4001",
+          "name": "动态环境分布式低时延可信服务",
+          "desc": "实现动态环境下分布式、低时延、可信的车联网智能服务",
           "evidence": [
             {
               "quote": "致力于实现动态环境下分布式、低时延、可信的车联网智能服务",
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d353d2212745",
-          "name": "车辆高速移动致业务需求波动",
-          "desc": "车辆高速移动导致业务需求时空快速波动、网络拓扑动态演化及多样化智能任务并发。",
+          "id": "item-b1967c5d83d1",
+          "name": "多层异构资源协同困难",
+          "desc": "多层异构资源协同困难、卸载决策与资源分配耦合复杂",
           "evidence": [
             {
-              "quote": "本项目面向蜂窝车联网（C-V2X）中车辆高速移动导致的业务需求时空快速波动、网络拓扑动态演化及多样化智能任务并发等挑战",
+              "quote": "针对多层异构资源协同困难、卸载决策与资源分配耦合复杂、资源共享积极性不足以及隐私泄露与安全攻击等关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -73,12 +78,28 @@
           ]
         },
         {
-          "id": "item-b1967c5d83d1",
-          "name": "多层异构资源协同困难",
-          "desc": "存在多层异构资源协同困难、卸载决策与资源分配耦合复杂、资源共享积极性不足等问题。",
+          "id": "item-a9716770b611",
+          "name": "共享不足与竞争失衡",
+          "desc": "资源异构、信息不对称与隐私风险导致共享不足与竞争失衡",
           "evidence": [
             {
-              "quote": "针对多层异构资源协同困难、卸载决策与资源分配耦合复杂、资源共享积极性不足以及隐私泄露与安全攻击等关键问题",
+              "quote": "针对资源异构、信息不对称与隐私风险导致的共享不足与竞争失衡",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
+              },
+              "version": "a3096871d27024d2e3ff"
+            }
+          ]
+        },
+        {
+          "id": "item-01e39c8c36e1",
+          "name": "联邦学习推断与导频攻击",
+          "desc": "隐私泄露与安全攻击威胁车联网数据共享",
+          "evidence": [
+            {
+              "quote": "隐私泄露与安全攻击等关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -95,9 +116,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a02aeb6c397d",
-          "name": "分层协同卸载与迭代调度",
-          "desc": "提出基于用户偏好的分层协同卸载与迭代调度机制，并构建边缘竞争-云边配置两阶段交互框架。",
+          "id": "item-04fcb963481b",
+          "name": "分层协同卸载与边缘竞争框架",
+          "desc": "基于用户偏好的分层协同卸载与迭代调度及边缘竞争一云边配置两阶段框架",
           "evidence": [
             {
               "quote": "提出了基于用户偏好的分层协同卸载与迭代调度机制；进一步针对多服务提供商场景，引入边缘节点竞争与Transformer需求预测，构建“边缘竞争一云边配置”两阶段交互框架",
@@ -108,12 +129,13 @@
               },
               "version": "a3096871d27024d2e3ff"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-7b7e2f7a20bb",
           "name": "强化学习任务卸载方法族",
-          "desc": "提出负载均衡强化学习卸载LBDDPG、在线多DAG依赖任务调度DPLS与部分卸载联合优化SIDDPG等方法。",
+          "desc": "提出LBDDPG、DPLS与SIDDPG等方法实现时延能耗与负载均衡综合优化",
           "evidence": [
             {
               "quote": "分别提出了负载均衡强化学习卸载（LBDDPG）、在线多DAG依赖任务调度（DPLS）与部分卸载联合优化（SIDDPG）等方法",
@@ -124,12 +146,13 @@
               },
               "version": "a3096871d27024d2e3ff"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-baef1200f97a",
-          "name": "博弈激励与竞价机制",
-          "desc": "提出隐私保护的动态多属性资源竞价机制DMRBM，形成竞价-定价-收益协调的机制链条。",
+          "id": "item-a9cb4eb5a6bf",
+          "name": "隐私保护动态多属性竞价机制",
+          "desc": "提出DMRBM等竞价机制并构建竞价一定价一收益协调机制链条",
           "evidence": [
             {
               "quote": "提出了隐私保护的动态多属性资源竞价机制（DMRBM）等方法，构建虚拟化迁移与动态定价驱动的边云协同卸载机制",
@@ -140,12 +163,13 @@
               },
               "version": "a3096871d27024d2e3ff"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-cdccd6a6ec24",
-          "name": "联邦学习推断攻击防护",
-          "desc": "提出联邦学习推断攻击防护方法ASDIA，通过敏感梯度识别与校准噪声注入提升隐私-效用平衡。",
+          "id": "item-50ccc55392c1",
+          "name": "ASDIA推断攻击防护",
+          "desc": "通过敏感梯度识别与校准噪声注入提升隐私一效用平衡并针对导频攻击做信道恢复",
           "evidence": [
             {
               "quote": "提出了一种联邦学习推断攻击防护方法ASDIA，通过敏感梯度识别与校准噪声注入提升隐私一效用平衡",
@@ -156,7 +180,8 @@
               },
               "version": "a3096871d27024d2e3ff"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,12 +190,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f1681656e495",
-          "name": "车路云协同理论与方法体系",
-          "desc": "形成动态环境下分布式、低时延、可信车联网智能服务的一系列可落地理论与方法体系。",
+          "id": "item-36c0e5105ed8",
+          "name": "车路云协同服务方法体系",
+          "desc": "针对四类关键问题形成可落地的理论与方法体系",
           "evidence": [
             {
-              "quote": "形成了一系列可落地的理论与方法体系",
+              "quote": "针对多层异构资源协同困难、卸载决策与资源分配耦合复杂、资源共享积极性不足以及隐私泄露与安全攻击等关键问题，形成了一系列可落地的理论与方法体系",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -179,41 +204,9 @@
               "version": "a3096871d27024d2e3ff"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-33b72c583e37",
-          "name": "时延能耗负载均衡综合优化",
-          "desc": "卸载方法实现时延、能耗与负载均衡综合优化，并探索全双工与无蜂窝大规模MIMO下的通信-计算协同。",
-          "evidence": [
-            {
-              "quote": "实现时延、能耗与负载均衡综合优化，并探索全双工与无蜂窝大规模MIMO技术下的通信一计算协同优化",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
-              },
-              "version": "a3096871d27024d2e3ff"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-1a18589cf199",
-          "name": "隐私与安全协同增强",
-          "desc": "针对导频攻击提出检测与污染信道恢复方法，从模型与通信层协同增强隐私与安全。",
-          "evidence": [
-            {
-              "quote": "针对导频攻击提出检测与污染信道恢复方法，并基于恢复CSI的预编码提升传输可靠性，从模型与通信层协同增强隐私与安全",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "7def826c4c5ccbfceaf6ba23096db2f534f4e384"
-              },
-              "version": "a3096871d27024d2e3ff"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "形成了",
+          "self_reported": false
         }
       ]
     }
@@ -221,25 +214,72 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-1df0e074bfd4"
+        "dimension": "技术",
+        "item_id": "item-04fcb963481b"
       },
       "to": {
-        "dimension": "问题",
-        "item_id": "item-d353d2212745"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "问题",
         "item_id": "item-b1967c5d83d1"
       },
-      "to": {
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出了基于用户偏好的分层协同卸载与迭代调度机制",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "技术",
-        "item_id": "item-a02aeb6c397d"
+        "item_id": "item-a9cb4eb5a6bf"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-a9716770b611"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对资源异构、信息不对称与隐私风险导致的共享不足与竞争失衡",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-50ccc55392c1"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-01e39c8c36e1"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "提出了一种联邦学习推断攻击防护方法ASDIA",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "7def826c4c5ccbfceaf6ba23096db2f534f4e384"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
     },
     {
       "from": {
@@ -247,21 +287,72 @@
         "item_id": "item-7b7e2f7a20bb"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-33b72c583e37"
+        "dimension": "技术",
+        "item_id": "item-04fcb963481b"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "围绕卸载决策、卸载位置、卸载比例及资源联合分配",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "技术",
-        "item_id": "item-cdccd6a6ec24"
+        "dimension": "场景",
+        "item_id": "item-db81733be0e6"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-1a18589cf199"
+        "dimension": "问题",
+        "item_id": "item-b1967c5d83d1"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "由于车辆的高速移动，MEC使能技术推动C-V2X网络应用落地还存在一系列关键技术阻碍",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "12867fcdd1c743308c6a0c6f722944e4a50a5e08"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-36c0e5105ed8"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-04fcb963481b"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "形成了一系列可落地的理论与方法体系",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "68a4bbdcefbf590fce78313e792b0755b9a79770"
+          },
+          "version": "a3096871d27024d2e3ff"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

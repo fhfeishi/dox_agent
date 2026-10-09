@@ -2,15 +2,20 @@
   "doc_id": "67841881f6e32dc8012c",
   "version": "f0d1633572b65f9cf352",
   "source_hash": "54f6c0082fef119bf3c97493002e57dfe82c17fd4c389a7e6230f098c6d17e43",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:44:08.793307+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:49:47.775435+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,32 +24,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b09c9abb3e5f",
-          "name": "社交网络与推荐系统应用",
-          "desc": "图神经网络在社交网络、推荐系统等领域得到广泛应用。",
+          "id": "item-f1094d2dcc31",
+          "name": "图神经网络隐私保护",
+          "desc": "图数据含大量个人信息，图神经网络带来便利的同时存在严重隐私泄露风险",
           "evidence": [
             {
-              "quote": "图神经网络作为人工智能领域的重要研究方向，在社交网络、推荐系统等领域得到广泛应用。",
+              "quote": "由于图数据中包含大量的个人信息，图神经网络在为人们带来便利的同时也存在严重的隐私泄露风险",
               "locator": {
                 "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
+                "page": 1,
+                "chunk_id": "d1251b068e534a84cd98010e14ea5bf9063ac669"
               },
               "version": "f0d1633572b65f9cf352"
             }
           ]
         },
         {
-          "id": "item-a10fe8e8a64c",
-          "name": "图数据隐私泄露风险",
-          "desc": "图数据中包含大量个人信息，图神经网络在带来便利的同时存在严重隐私泄露风险。",
+          "id": "item-b09c9abb3e5f",
+          "name": "社交网络与推荐系统应用",
+          "desc": "图神经网络在社交网络、推荐系统等领域得到广泛应用",
           "evidence": [
             {
-              "quote": "由于图数据中包含大量的个人信息，图神经网络在为人们带来便利的同时也存在严重的隐私泄露风险。",
+              "quote": "图神经网络作为人工智能领域的重要研究方向，在社交网络、推荐系统等领域得到广泛应用",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "d1251b068e534a84cd98010e14ea5bf9063ac669"
+                "page": 3,
+                "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
               },
               "version": "f0d1633572b65f9cf352"
             }
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-21c63f23dc31",
-          "name": "图数据不规则关系复杂",
-          "desc": "图数据具有不规则性且节点间关系复杂，对非图数据的隐私保护理论提出严重挑战。",
+          "id": "item-3c6b71bac366",
+          "name": "图数据不规则性挑战既有隐私理论",
+          "desc": "图数据不规则且节点关系复杂，对针对非图数据的深度学习隐私保护理论方法提出严重挑战",
           "evidence": [
             {
-              "quote": "图数据具有不规则性且节点间关系复杂，这对现有的针对非图数据的深度学习隐私保护理论和方法提出了严重的挑战。",
+              "quote": "图数据具有不规则性且节点间关系复杂，这对现有的针对非图数据的深度学习隐私保护理论和方法提出了严重的挑战",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,12 +78,12 @@
           ]
         },
         {
-          "id": "item-7586670e2d82",
-          "name": "隐私攻击模型缺失",
-          "desc": "需研究不同图数据、任务、环境下训练图神经网络的隐私泄露问题并建立攻击模型。",
+          "id": "item-0e2078e188a7",
+          "name": "隐私性效用性高效性需权衡",
+          "desc": "需在权衡模型隐私性、效用性和高效性的基础上提出有效隐私保护方法",
           "evidence": [
             {
-              "quote": "首先研究不同图数据、不同任务以及不同环境下训练图神经网络存在的隐私泄露问题，建立相应的攻击模型。",
+              "quote": "在权衡模型的隐私性、效用性和高效性的基础上，提出有效的隐私保护方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -95,9 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-348738e0499c",
-          "name": "隐私攻击方法研究",
-          "desc": "提出分布外成员推理攻击、预算有限条件下的模型窃取攻击等方法。",
+          "id": "item-7e02bb700212",
+          "name": "跨域图攻击与模型窃取攻击方法",
+          "desc": "提出面向跨域图攻击的分布外成员推理攻击方法和预算有限条件下的模型窃取攻击方法",
           "evidence": [
             {
               "quote": "提出面向跨域图攻击的分布外成员推理攻击方法和预算有限条件下的模型窃取攻击方法",
@@ -108,12 +113,13 @@
               },
               "version": "f0d1633572b65f9cf352"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-78430d30705a",
           "name": "差分隐私图学习方法族",
-          "desc": "提出差分隐私监督图稀疏化、结构熵优化的差分隐私图结构学习、语义感知的差分隐私图神经网络学习等方法。",
+          "desc": "提出差分隐私监督图稀疏化、结构熵优化、语义感知等图学习与随机森林方法",
           "evidence": [
             {
               "quote": "提出差分隐私监督图稀疏化学习方法、结构熵优化的差分隐私图结构学习方法、具有语义感知的差分隐私图神经网络学习方法及基于差分隐私的随机森林方法",
@@ -124,15 +130,16 @@
               },
               "version": "f0d1633572b65f9cf352"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-e74f0c7b44fe",
           "name": "联邦图学习方法族",
-          "desc": "提出基于知识校准、梯度聚合校准、知识蒸馏与对比学习、知识解耦与个性化聚合等联邦图学习方法。",
+          "desc": "提出知识校准、梯度聚合校准、知识蒸馏对比学习等联邦图学习方法与异构图学习",
           "evidence": [
             {
-              "quote": "提出基于知识校准的联邦图学习方法、基于梯度聚合校准的联邦图学习方法、基于知识蒸馏和对比学习的联邦图学习方法、基于知识解耦和个性化聚合的模型异构联邦图学习方法",
+              "quote": "提出基于知识校准的联邦图学习方法、基于梯度聚合校准的联邦图学习方法、基于知识蒸馏和对比学习的联邦图学习方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -140,15 +147,16 @@
               },
               "version": "f0d1633572b65f9cf352"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-5f63ac1bf174",
-          "name": "对抗攻击与防御框架",
-          "desc": "提出拓扑感知节点注入攻击方法及多种图注入攻击防御、图通用防御与超图防御框架。",
+          "id": "item-b7395dd9e20a",
+          "name": "图对抗攻击与防御方法",
+          "desc": "提出拓扑感知节点注入攻击与基于后验分布对齐的图防御等攻击防御方法",
           "evidence": [
             {
-              "quote": "提出拓扑感知节点注入攻击方法、简单有效的图注入攻击防御方法、基于后验分布对齐的图防御方法、个性化的图通用防御方法以及结构互补的超图防御框架",
+              "quote": "提出拓扑感知节点注入攻击方法、简单有效的图注入攻击防御方法、基于后验分布对齐的图防御方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -156,7 +164,8 @@
               },
               "version": "f0d1633572b65f9cf352"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -165,12 +174,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-645efce0ac37",
-          "name": "18篇学术论文",
-          "desc": "依托项目发表学术论文18篇，其中SCI收录10篇、EI收录18篇。",
+          "id": "item-1f80f626c69a",
+          "name": "论文18篇与专利软著",
+          "desc": "发表学术论文18篇（SCI收录10篇、EI收录18篇），获发明专利授权1项、受理4项、软著4项",
           "evidence": [
             {
-              "quote": "依托本项目发表学术论文18篇，其中SCI收录10篇，EI收录18篇",
+              "quote": "依托本项目发表学术论文18篇，其中SCI收录10篇，EI收录18篇。获发明专利授权1项，受理4项，获得软件著作权4项",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -179,15 +188,17 @@
               "version": "f0d1633572b65f9cf352"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "发表学术论文18篇",
+          "self_reported": false
         },
         {
-          "id": "item-6bedd9cb7e87",
-          "name": "专利与软著产出",
-          "desc": "获发明专利授权1项、受理4项，获得软件著作权4项。",
+          "id": "item-abebbd7aa19f",
+          "name": "系统性隐私保护理论与方法体系",
+          "desc": "覆盖隐私攻击、集中式、联邦学习、优化与对抗攻防五个方面",
           "evidence": [
             {
-              "quote": "获发明专利授权1项，受理4项，获得软件著作权4项",
+              "quote": "项目成果为图神经网络提供系统的隐私保护理论和方法，将促进人工智能的进一步发展",
               "locator": {
                 "basis": "pdf_page",
                 "page": 3,
@@ -196,24 +207,9 @@
               "version": "f0d1633572b65f9cf352"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-9f2ce5db8a97",
-          "name": "系统的隐私保护理论方法",
-          "desc": "为图神经网络提供系统的隐私保护理论和方法，突破隐私泄露对应用的制约。",
-          "evidence": [
-            {
-              "quote": "项目成果为图神经网络提供系统的隐私保护理论和方法",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 3,
-                "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
-              },
-              "version": "f0d1633572b65f9cf352"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "为图神经网络提供系统的",
+          "self_reported": false
         }
       ]
     }
@@ -221,25 +217,26 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-a10fe8e8a64c"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-21c63f23dc31"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-7586670e2d82"
-      },
-      "to": {
         "dimension": "技术",
-        "item_id": "item-348738e0499c"
+        "item_id": "item-7e02bb700212"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3c6b71bac366"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对图神经网络中的隐私攻击和隐私保护技术展开研究",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "d1251b068e534a84cd98010e14ea5bf9063ac669"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
     },
     {
       "from": {
@@ -247,21 +244,116 @@
         "item_id": "item-78430d30705a"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-9f2ce5db8a97"
+        "dimension": "问题",
+        "item_id": "item-0e2078e188a7"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在权衡模型的隐私性、效用性和高效性的基础上，提出有效的隐私保护方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "d1251b068e534a84cd98010e14ea5bf9063ac669"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-e74f0c7b44fe"
+        "item_id": "item-b7395dd9e20a"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-645efce0ac37"
+        "dimension": "技术",
+        "item_id": "item-7e02bb700212"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在对抗攻击与防御方面，提出拓扑感知节点注入攻击方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-f1094d2dcc31"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3c6b71bac366"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "图数据具有不规则性且节点间关系复杂，这对现有的针对非图数据的深度学习隐私保护理论和方法提出了严重的挑战",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "d1251b068e534a84cd98010e14ea5bf9063ac669"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-abebbd7aa19f"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-78430d30705a"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目成果为图神经网络提供系统的隐私保护理论和方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "专利",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "图神经网络隐私保护相关发明专利",
+      "status_raw": "获发明专利授权1项",
+      "identifiers": {},
+      "id": "out-c1e4a11a10a4",
+      "evidence": [
+        {
+          "quote": "获发明专利授权1项，受理4项，获得软件著作权4项",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 3,
+            "chunk_id": "df0d21a691b6dae661b7640a3a422603f02ce099"
+          },
+          "version": "f0d1633572b65f9cf352"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

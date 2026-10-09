@@ -2,15 +2,20 @@
   "doc_id": "4b254f5bf0ab6e2b7341",
   "version": "b694d2f1aa23f5a2f5ad",
   "source_hash": "3e31cba72bb3ce70bdb47ddc534cb45a86a31738e9f756e1bb55f1abba874556",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:44:08.804515+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:49:47.785060+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 6,
+      "total": 6,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1932ab2a265c",
-          "name": "数据共享需求与隐私挖掘矛盾",
-          "desc": "数据共享需求日益增长与先进隐私挖掘算法之间矛盾渐趋突出。",
+          "id": "item-2b4841a15c5b",
+          "name": "联邦学习的健壮性隐私性实用性挑战",
+          "desc": "现有联邦学习方法难以应对内部威胁与安全高效应用需求，三重性质面临严峻挑战",
           "evidence": [
             {
-              "quote": "联邦学习凭借无需参与者共享数据的技术特色，在日益增长的数据共享需求与先进的隐私挖掘算法之间的矛盾渐趋突出的当下，迅速成为新一代人工智能前沿代表性技术之一。",
+              "quote": "然而现有联邦学习的方法和技术仍难以应对危害巨大的内部威胁以及安全高效的应用需求，导致联邦学习的模型健壮性、隐私性、实用性均面临严峻挑战",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,12 +40,12 @@
           ]
         },
         {
-          "id": "item-fbf198d9e186",
-          "name": "不可信多方协作环境",
-          "desc": "面向联邦学习在不可信、多方协作环境中面临的健壮性、隐私性与实用性三重挑战。",
+          "id": "item-543abc14cb62",
+          "name": "数据要素流通与跨机构联合建模",
+          "desc": "为数据要素流通、跨机构联合建模及可信智能服务提供方法与原型支撑",
           "evidence": [
             {
-              "quote": "面向联邦学习在不可信、多方协作环境中面临的健壮性、隐私性与实用性三重挑战",
+              "quote": "项目成果为数据要素流通、跨机构联合建模及可信智能服务提供了可复用的方法与原型支撑",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -57,12 +62,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-da55ae90e4bd",
-          "name": "内部威胁危害巨大",
-          "desc": "现有联邦学习方法难以应对危害巨大的内部威胁以及安全高效的应用需求。",
+          "id": "item-2e2af54fed9d",
+          "name": "投毒与推断攻击威胁",
+          "desc": "利用区块链技术帮助联邦学习抵抗投毒与推断攻击并保护数据隐私",
           "evidence": [
             {
-              "quote": "然而现有联邦学习的方法和技术仍难以应对危害巨大的内部威胁以及安全高效的应用需求",
+              "quote": "本研究旨在利用区块链技术帮助联邦学习抵抗投毒与推断攻击，保证模型收敛性与结果准确性，保护数据隐私",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,16 +78,32 @@
           ]
         },
         {
-          "id": "item-e6bafa7c8c22",
-          "name": "健壮性与实用性挑战",
-          "desc": "联邦学习的模型健壮性、隐私性、实用性均面临严峻挑战。",
+          "id": "item-4ebb603ccce7",
+          "name": "异步与拜占庭环境协作困难",
+          "desc": "异步与拜占庭环境下的可靠协作需高吞吐共识协议",
           "evidence": [
             {
-              "quote": "导致联邦学习的模型健壮性、隐私性、实用性均面临严峻挑战",
+              "quote": "围绕异步与拜占庭环境下的可靠协作，提出支持消息重载与高吞吐的共识协议与优化策略",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "4b50f58e3be85e6542709a95bdbaea514943abaf"
+                "page": 2,
+                "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+              },
+              "version": "b694d2f1aa23f5a2f5ad"
+            }
+          ]
+        },
+        {
+          "id": "item-3598601e7558",
+          "name": "参数零知识验证开销高",
+          "desc": "参数零知识验证开销高影响可验证联邦学习可部署性",
+          "evidence": [
+            {
+              "quote": "针对参数零知识验证开销高的问题，探索优化算法到算术电路/证明系统的高效映射与模块化实现路径",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
               },
               "version": "b694d2f1aa23f5a2f5ad"
             }
@@ -95,9 +116,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-7d01f5357afa",
-          "name": "消息重载异步共识机制",
-          "desc": "研究支持消息重载的新型区块链异步共识机制以保证模型健壮性。",
+          "id": "item-99b28dc2ae86",
+          "name": "支持消息重载的异步共识机制",
+          "desc": "研究支持消息重载的新型区块链异步共识机制保证模型健壮性",
           "evidence": [
             {
               "quote": "研究支持消息重载的新型区块链异步共识机制，保证模型健壮性",
@@ -108,15 +129,16 @@
               },
               "version": "b694d2f1aa23f5a2f5ad"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-f75209436694",
           "name": "链上随机变量秘密生成与验证",
-          "desc": "突破链上随机变量秘密生成与过程验证技术以保证模型隐私性。",
+          "desc": "突破链上随机变量秘密生成与过程验证技术保证模型隐私性",
           "evidence": [
             {
-              "quote": "其次，突破链上随机变量秘密生成与过程验证技术，保证模型隐私性",
+              "quote": "突破链上随机变量秘密生成与过程验证技术，保证模型隐私性",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -124,15 +146,16 @@
               },
               "version": "b694d2f1aa23f5a2f5ad"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-2943fd579e51",
-          "name": "优化算法与同态算术电路映射",
-          "desc": "探索优化算法与同态算术电路的高效映射方法以保证模型实用性。",
+          "id": "item-25d1bbc6c387",
+          "name": "算术电路高效映射",
+          "desc": "探索优化算法与同态算术电路的高效映射方法保证模型实用性",
           "evidence": [
             {
-              "quote": "接着，探索优化算法与同态算术电路的高效映射方法，保证模型实用性",
+              "quote": "探索优化算法与同态算术电路的高效映射方法，保证模型实用性",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -140,7 +163,25 @@
               },
               "version": "b694d2f1aa23f5a2f5ad"
             }
-          ]
+          ],
+          "role": "配套-验证"
+        },
+        {
+          "id": "item-2c8e73bae933",
+          "name": "区块链驱动联邦学习原型系统",
+          "desc": "研发区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集",
+          "evidence": [
+            {
+              "quote": "项目提出并实现了区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+              },
+              "version": "b694d2f1aa23f5a2f5ad"
+            }
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,12 +190,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a3a21db5576c",
-          "name": "隐私保护联邦学习原型系统",
-          "desc": "提出并实现区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集，在真实或仿真链上环境完成端到端验证。",
+          "id": "item-d51e8761cf20",
+          "name": "论文18篇与专利4项",
+          "desc": "2022-2024年累计录用/发表论文18篇，授权发明专利1项、受理专利3项",
           "evidence": [
             {
-              "quote": "项目提出并实现了区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集，在真实或仿真链上环境完成端到端流程验证",
+              "quote": "根据年度进展统计，2022-2024年累计录用/发表论文18篇，授权发明专利1项、受理专利3项",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -163,15 +204,17 @@
               "version": "b694d2f1aa23f5a2f5ad"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "累计录用/发表论文18篇",
+          "self_reported": false
         },
         {
-          "id": "item-d6b2600136d8",
-          "name": "高吞吐共识协议",
-          "desc": "提出支持消息重载与高吞吐的共识协议与优化策略（如Phantasm、HCA、Dolphin等）。",
+          "id": "item-cf8064ff9905",
+          "name": "端到端流程环境验证",
+          "desc": "在真实或仿真链上环境完成端到端流程验证",
           "evidence": [
             {
-              "quote": "提出支持消息重载与高吞吐的共识协议与优化策略（如Phantasm、HCA、Dolphin等），提升了复杂网络条件下系统稳定性",
+              "quote": "在真实或仿真链上环境完成端到端流程验证",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -180,24 +223,9 @@
               "version": "b694d2f1aa23f5a2f5ad"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-e3d108c878a7",
-          "name": "18篇论文与专利",
-          "desc": "2022-2024年累计录用或发表论文18篇，授权发明专利1项、受理专利3项。",
-          "evidence": [
-            {
-              "quote": "2022-2024年累计录用/发表论文18篇，授权发明专利1项、受理专利3项",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
-              },
-              "version": "b694d2f1aa23f5a2f5ad"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "完成了",
+          "self_reported": false
         }
       ]
     }
@@ -205,25 +233,26 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-fbf198d9e186"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-da55ae90e4bd"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-e6bafa7c8c22"
-      },
-      "to": {
         "dimension": "技术",
-        "item_id": "item-7d01f5357afa"
+        "item_id": "item-99b28dc2ae86"
       },
-      "basis": "原文明示"
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-4ebb603ccce7"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "研究支持消息重载的新型区块链异步共识机制，保证模型健壮性",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "4b50f58e3be85e6542709a95bdbaea514943abaf"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
     },
     {
       "from": {
@@ -231,21 +260,139 @@
         "item_id": "item-f75209436694"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-a3a21db5576c"
+        "dimension": "问题",
+        "item_id": "item-2e2af54fed9d"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "突破链上随机变量秘密生成与过程验证技术，保证模型隐私性",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "4b50f58e3be85e6542709a95bdbaea514943abaf"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-2943fd579e51"
+        "item_id": "item-25d1bbc6c387"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-e3d108c878a7"
+        "dimension": "问题",
+        "item_id": "item-3598601e7558"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "针对参数零知识验证开销高的问题，探索优化算法到算术电路/证明系统的高效映射与模块化实现路径",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2c8e73bae933"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-99b28dc2ae86"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目提出并实现了区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-2b4841a15c5b"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-2e2af54fed9d"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "导致联邦学习的模型健壮性、隐私性、实用性均面临严峻挑战",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "4b50f58e3be85e6542709a95bdbaea514943abaf"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-cf8064ff9905"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2c8e73bae933"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "在真实或仿真链上环境完成端到端流程验证",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "区块链驱动的隐私保护数据交易与联邦学习原型系统",
+      "status_raw": "实现了",
+      "identifiers": {},
+      "id": "out-e99177289945",
+      "evidence": [
+        {
+          "quote": "项目提出并实现了区块链驱动的隐私保护数据交易与联邦学习原型系统及分析测试工具集",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "6162f77aa88ee23c2ac02a3260652c8da2608da9"
+          },
+          "version": "b694d2f1aa23f5a2f5ad"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

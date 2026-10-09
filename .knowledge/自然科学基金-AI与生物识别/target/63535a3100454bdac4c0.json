@@ -2,15 +2,20 @@
   "doc_id": "63535a3100454bdac4c0",
   "version": "eec1890141d55ce7bac0",
   "source_hash": "9f4b59a5ab3d2e47fd9533f8bbc2b4e3450a9ec641f72bd66b293bda602e1763",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:45:35.572486+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T12:51:14.206575+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 4,
+      "total": 4,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cc244e89008d",
-          "name": "新型冠状病毒防治药物研发",
-          "desc": "肆虐全球的新型冠状病毒严重危害人类健康和生命，其预防与治疗药物研发在世界范围内展开。",
+          "id": "item-98dc39eaed97",
+          "name": "新型冠状病毒预防与治疗药物研发",
+          "desc": "S蛋白是病毒与宿主细胞识别结合中起关键作用的靶标，其糖链成为新靶点",
           "evidence": [
             {
-              "quote": "肆虐全球的新型冠状病毒（SARS-CoV-2）严重危害了人类的健康和生命。其预防与治疗药物的研发正在世界范围内展开",
+              "quote": "其中最重要的靶标之一是病毒与宿主细胞识别和结合中起关键作用的冠状病毒棘突蛋白(S蛋白)",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-0317b40a7b5c",
-          "name": "S蛋白糖链作为药物靶标",
-          "desc": "冠状病毒棘突蛋白S蛋白是病毒与宿主细胞识别结合的关键靶标，针对S蛋白肽链特定部位的药物设计是热点。",
+          "id": "item-5e15c13ec419",
+          "name": "糖抗体作为候选药物前体",
+          "desc": "以S蛋白糖链为靶筛选设计特异性结合其糖链的蛋白多肽（糖抗体）",
           "evidence": [
             {
-              "quote": "其中最重要的靶标之一是病毒与宿主细胞识别和结合中起关键作用的冠状病毒棘突蛋白(S蛋白)，针对S蛋白肽链特定部位肽骨架的疫苗和其它药物设计研发是目前的热点领域。",
+              "quote": "研究工作主要围绕新型冠状病毒（SARS-CoV2）的棘突蛋白（S-蛋白）的糖链为靶筛选和设计特异性结合其糖链的蛋白多肽（糖抗体），以期为病毒感染的预防和治疗提供候选药物前体化合物",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
+                "page": 2,
+                "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
               },
               "version": "eec1890141d55ce7bac0"
             }
@@ -59,10 +64,10 @@
         {
           "id": "item-8f81af939bca",
           "name": "糖链壁垒阻碍药物结合",
-          "desc": "高度糖基化的S蛋白的糖链壁垒可能对抗体和其它药物与其肽链特定部位的结合造成障碍。",
+          "desc": "高度糖基化的S蛋白的糖链壁垒可能对抗体和其它药物与其肽链特定部位的结合造成障碍",
           "evidence": [
             {
-              "quote": "但是，高度糖基化的S蛋白的“糖链壁垒”可能对抗体和其它药物与其肽链特定部位的结合造成障碍。",
+              "quote": "但是，高度糖基化的S蛋白的“糖链壁垒”可能对抗体和其它药物与其肽链特定部位的结合造成障碍",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -73,16 +78,16 @@
           ]
         },
         {
-          "id": "item-1a1cb3394855",
-          "name": "低免疫原性候选化合物缺乏",
-          "desc": "需要获得低免疫原性、特异结合S蛋白糖链并具有良好新冠病毒抑制活性的蛋白多肽类化合物。",
+          "id": "item-aa0bfbbcc81b",
+          "name": "N型糖链覆盖不全",
+          "desc": "原有仅靶向N-型糖链的糖结合蛋白研究需拓展至靶向O-糖链以实现全覆盖",
           "evidence": [
             {
-              "quote": "获得低免疫原性、特异结合S蛋白糖链并具有良好新冠病毒抑制活性的蛋白多肽和截短肽类化合物3-6种",
+              "quote": "将原有仅靶向N-型糖链的糖结合蛋白研究拓展至靶向0-糖链的糖结合蛋白（糖抗体）的筛选与设计优化，以期实现对新型冠状病毒S-蛋白糖链谱的全覆盖",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
+                "page": 2,
+                "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
               },
               "version": "eec1890141d55ce7bac0"
             }
@@ -95,41 +100,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-f07b23dc8e4b",
-          "name": "糖链靶向筛选策略",
-          "desc": "选择S蛋白的糖链为靶标，筛选可特异结合S蛋白糖链的蛋白多肽类化合物。",
-          "evidence": [
-            {
-              "quote": "选择S蛋白的糖链为靶标，在前期研究获得靶向并特异性结合S蛋白糖链、且具有良好的抑制新型冠状病毒活性的蛋白多肽的基础上，进一步以糖链为靶标，筛选并获得系列可特异结合S蛋白糖链的蛋白多肽类化合物8-10种",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
-              },
-              "version": "eec1890141d55ce7bac0"
-            }
-          ]
-        },
-        {
-          "id": "item-af1a286672d2",
-          "name": "人工智能与定向进化结合",
-          "desc": "运用人工智能结合定向进化和蛋白多肽截短技术获得候选化合物。",
-          "evidence": [
-            {
-              "quote": "运用人工智能，结合定向进化和蛋白多肽截短技术",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
-              },
-              "version": "eec1890141d55ce7bac0"
-            }
-          ]
-        },
-        {
-          "id": "item-400f01e1c9e7",
-          "name": "糖结合蛋白库构建与亲和力扫描",
-          "desc": "建立甘露糖特异性结合蛋白库与S蛋白表面糖链库，进行亲和力扫描筛选糖抗体。",
+          "id": "item-2215fa339a7e",
+          "name": "甘露糖型糖结合蛋白库",
+          "desc": "建立包甘露糖特异性结合蛋白库并构建S蛋白表面糖链库进行亲和力扫描",
           "evidence": [
             {
               "quote": "建立了包甘露糖特异性结合蛋白库，结合SARS-CoV2 S蛋白表面的N-糖基化信息、糖链结构信息，构建了SARS-CoV2 S蛋白表面糖链库",
@@ -140,35 +113,30 @@
               },
               "version": "eec1890141d55ce7bac0"
             }
-          ]
-        }
-      ]
-    },
-    {
-      "key": "成果",
-      "state": "has",
-      "items": [
+          ],
+          "role": "关键创新"
+        },
         {
-          "id": "item-2cef77a770d5",
-          "name": "20余种N-型糖抗体筛选",
-          "desc": "筛选得到20余种有效结合高甘露糖糖链的糖结合蛋白，并选取5种具有显著抑制效果的糖抗体作为候选。",
+          "id": "item-aa88aad3a240",
+          "name": "人工智能结合定向进化与截短",
+          "desc": "运用人工智能结合定向进化和蛋白多肽截短技术获得低免疫原性候选肽",
           "evidence": [
             {
-              "quote": "从中筛选得到20余种有效结合高甘露糖糖链的糖结合蛋白（N-型糖抗体），测试其对新型冠状病毒主要毒株的抑制作用，从中选取5种对病毒具有显著抑制效果的糖抗体作为候选蛋白进行后续研究",
+              "quote": "运用人工智能，结合定向进化和蛋白多肽截短技术，获得低免疫原性、特异结合S蛋白糖链并具有良好新冠病毒抑制活性的蛋白多肽和截短肽类化合物3-6种",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
+                "page": 1,
+                "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
               },
               "version": "eec1890141d55ce7bac0"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-0470f2336c5d",
-          "name": "O-糖链糖抗体拓展筛选",
-          "desc": "构建包含45种Gal/GalNAc特异结合的糖结合蛋白库，筛选到4种亲和力最优的候选蛋白。",
+          "id": "item-22ce95c3926c",
+          "name": "Gal/GalNAc糖结合蛋白库",
+          "desc": "构建包含45种半乳糖/半乳糖胺特异结合的糖结合蛋白库并筛选最优候选",
           "evidence": [
             {
               "quote": "构建了包含45种半乳糖/N-乙酰半乳糖胺（Gal/GalNAc）特异结合的糖结合蛋白库，并进行糖链亲和力测定，从中筛选到4种对Gal/Gal NAc的亲和力最优的糖基化蛋白",
@@ -180,12 +148,73 @@
               "version": "eec1890141d55ce7bac0"
             }
           ],
-          "status": "已取得"
+          "role": "关键创新"
         },
         {
-          "id": "item-26b8cefc907c",
-          "name": "候选蛋白抑制活性量化",
-          "desc": "靶向N-糖链糖抗体PCL IC50为1.755 μg/ml，靶向O-糖链SNA IC50为0.1756 μg/ml。",
+          "id": "item-86c09d107c29",
+          "name": "假病毒中和试验平台",
+          "desc": "利用假病毒系统的中和试验平台进行候选蛋白活性分析",
+          "evidence": [
+            {
+              "quote": "利用基于假病毒系统的 SARS-CoV-2 Pseudovirus中和试验平台进行候选蛋白的活性分析",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "0c42845fc2e1a269136bcd5176445bedfb5a86c1"
+              },
+              "version": "eec1890141d55ce7bac0"
+            }
+          ],
+          "role": "配套-验证"
+        }
+      ]
+    },
+    {
+      "key": "成果",
+      "state": "has",
+      "items": [
+        {
+          "id": "item-610b54e8a17c",
+          "name": "20余种N-型糖抗体与5种候选",
+          "desc": "筛选得到20余种有效结合高甘露糖糖链的糖结合蛋白并选取5种作为候选蛋白",
+          "evidence": [
+            {
+              "quote": "从中筛选得到20余种有效结合高甘露糖糖链的糖结合蛋白（N-型糖抗体），测试其对新型冠状病毒主要毒株的抑制作用，从中选取5种对病毒具有显著抑制效果的糖抗体作为候选蛋白",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 2,
+                "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
+              },
+              "version": "eec1890141d55ce7bac0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "筛选得到20余种",
+          "self_reported": false
+        },
+        {
+          "id": "item-364e57d2ecbc",
+          "name": "SNA IC50为0.1756μg/ml",
+          "desc": "靶向O-糖基化糖链的糖抗体中SNA IC50为0.1756 μg/ml",
+          "evidence": [
+            {
+              "quote": "靶向0-糖基化糖链的糖抗体中， SNA IC50 为 0.1756 μg/ml",
+              "locator": {
+                "basis": "pdf_page",
+                "page": 4,
+                "chunk_id": "0c42845fc2e1a269136bcd5176445bedfb5a86c1"
+              },
+              "version": "eec1890141d55ce7bac0"
+            }
+          ],
+          "status": "已取得",
+          "status_raw": "IC50为0.1756 μg/ml",
+          "self_reported": false
+        },
+        {
+          "id": "item-3c259f2fac03",
+          "name": "PCL IC50为1.755μg/ml",
+          "desc": "靶向N-糖基化糖链的PCL IC50为1.755 μg/ml",
           "evidence": [
             {
               "quote": "靶向N-糖基化糖链的糖抗体中，PCL IC50为1.755 μg/ml",
@@ -197,7 +226,9 @@
               "version": "eec1890141d55ce7bac0"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "IC50为1.755 μg/ml",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +236,165 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-0317b40a7b5c"
+        "dimension": "技术",
+        "item_id": "item-2215fa339a7e"
       },
       "to": {
         "dimension": "问题",
         "item_id": "item-8f81af939bca"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但是，高度糖基化的S蛋白的“糖链壁垒”可能对抗体和其它药物与其肽链特定部位的结合造成障碍",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
     },
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-22ce95c3926c"
+      },
+      "to": {
         "dimension": "问题",
-        "item_id": "item-1a1cb3394855"
+        "item_id": "item-aa0bfbbcc81b"
       },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-af1a286672d2"
-      },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "将原有仅靶向N-型糖链的糖结合蛋白研究拓展至靶向0-糖链的糖结合蛋白（糖抗体）的筛选与设计优化",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
     },
     {
       "from": {
         "dimension": "技术",
-        "item_id": "item-400f01e1c9e7"
+        "item_id": "item-86c09d107c29"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-2cef77a770d5"
+        "dimension": "技术",
+        "item_id": "item-2215fa339a7e"
       },
-      "basis": "原文明示"
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "利用基于假病毒系统的 SARS-CoV-2 Pseudovirus中和试验平台进行候选蛋白的活性分析",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "0c42845fc2e1a269136bcd5176445bedfb5a86c1"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "技术",
-        "item_id": "item-f07b23dc8e4b"
+        "dimension": "场景",
+        "item_id": "item-98dc39eaed97"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-26b8cefc907c"
+        "dimension": "问题",
+        "item_id": "item-8f81af939bca"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "但是，高度糖基化的S蛋白的“糖链壁垒”可能对抗体和其它药物与其肽链特定部位的结合造成障碍",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "36cd0cb2b4cd47ef4e7290b19620a4de3c6fb2f6"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-610b54e8a17c"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-2215fa339a7e"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "从中筛选得到20余种有效结合高甘露糖糖链的糖结合蛋白",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "甘露糖特异性结合蛋白库与S蛋白表面糖链库",
+      "status_raw": "建立了",
+      "identifiers": {},
+      "id": "out-db254ec97ecd",
+      "evidence": [
+        {
+          "quote": "建立了包甘露糖特异性结合蛋白库，结合SARS-CoV2 S蛋白表面的N-糖基化信息、糖链结构信息，构建了SARS-CoV2 S蛋白表面糖链库",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "fb0fcfa4182af174554f61c8bd55b720b96a93fa"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
+    },
+    {
+      "kind": "指标",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "SNA糖抗体中和抑制效力",
+      "status_raw": "IC50为0.1756 μg/ml",
+      "identifiers": {},
+      "unit": "μg/ml",
+      "value": "0.1756",
+      "id": "out-fb61da893699",
+      "evidence": [
+        {
+          "quote": "靶向0-糖基化糖链的糖抗体中， SNA IC50 为 0.1756 μg/ml",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 4,
+            "chunk_id": "0c42845fc2e1a269136bcd5176445bedfb5a86c1"
+          },
+          "version": "eec1890141d55ce7bac0"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

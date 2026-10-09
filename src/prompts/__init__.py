@@ -18,7 +18,7 @@ REPORT_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehens
 TEMPLATE_NAMES = {
     "achievements": "成果报告",
     "hotspots": "热点报告",
-    "future_directions": "未来方向报告",
+    "future_directions": "技术研判报告",
     "comprehensive": "综合报告",
     "intelligence": "情报分析报告",
 }
@@ -32,9 +32,9 @@ TASKS: tuple[dict, ...] = (
      "example": "比较这些项目的研究对象、方法和应用。",
      "output_hint": "对比维度表 + 差异结论 + 可比性前提", "has_template": False, "file": "task2_compare.md",
      "artifacts": {"default": "text", "allowed": ["text", "table"]}, "templates": []},
-    {"id": "task3", "name": "趋势推测", "description": "基于本次样本讨论领域走向，事实与推断分段并标注样本范围与局限。",
-     "example": "这些项目的研究重点如何变化，后续可能关注什么？",
-     "output_hint": "事实/推断分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_trend.md",
+    {"id": "task3", "name": "技术研判", "description": "研判技术路线的成熟程度与后续工作，事实与研判意见分段并标注样本范围与局限。",
+     "example": "这个领域有哪些研究路线，已经实现了哪些工作，还有哪些工作可以做？",
+     "output_hint": "事实/研判分段 + 方向性置信度 + 样本局限", "has_template": False, "file": "task3_assess.md",
      "artifacts": {"default": "text", "allowed": ["text"]}, "templates": []},
     {"id": "task4", "name": "专项报告", "description": "按模板生成可保存的结构化报告，走统一报告入口，不在聊天中生成正文。",
      "example": "生成一份面上项目成果报告。",
@@ -115,10 +115,21 @@ def list_tasks() -> list[dict]:
     return [{"id": t["id"], "name": t["name"], "description": t["description"],
              "example": t["example"],
              "output_hint": t.get("output_hint", ""), "has_template": t["has_template"],
-             "artifacts": t["artifacts"], "templates": t["templates"]} for t in TASKS]
+             "artifacts": t["artifacts"], "templates": t["templates"],
+             "prompt": _read(t["file"])} for t in TASKS]
 
 
 def list_templates() -> list[dict]:
     """W1: read-only catalogue of the built-in output templates (ids + display names)."""
     return [{"id": template_id, "name": TEMPLATE_NAMES.get(template_id, template_id)}
             for template_id in REPORT_TEMPLATES]
+
+
+def compose_question_instruction() -> str:
+    """Turns clicked task/element/intent keywords into one editable question."""
+    return _read("compose_question.md")
+
+
+def lineage_instruction() -> str:
+    """Two-level technology taxonomy over the hierarchy's existing tech routes."""
+    return _read("lineage.md")

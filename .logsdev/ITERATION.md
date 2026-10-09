@@ -2708,3 +2708,26 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 本次移出 245 个文件、59,950,401 字节（约 57.17 MiB）；原件和还原清单位于本机 /home/mvr/wslcodespace/dox_agent-cleanup-backups/20261009-094806。备份保留相对原路径、保留副本路径及逐文件哈希；还原需在确认原路径为空后按清单移回。移动后复核备份与保留副本哈希均一致。
 
 未改 source、datadb、target、层级、成果、会话或模板；未清理正常解析缓存、旧登记备份及回收站。提交仅含这 6 个重复目录删除和本记录，数据库、本地 .gitignore 及评测数据删除保持原状。此次减少工作树重复数据，不会缩减 Git 历史对象或本机总占用（隔离备份仍在）；未执行破坏性历史重写。
+
+### 16.65 query「2026-1009 0947」：模型代理开关、存量分析与成果入口、技术谱系与点选提问（2026-10-09，工作树未提交）
+
+依据：query.md「2026-1009 0947」；有效要求整理见 PROJECT §15，取舍见 DECISIONS 同日条目。
+
+- ① 代理：`MODEL_USE_PROXY`（默认 false）+ 面板开关（`STATE_DIR/model_settings.json` 优先）；`src/agent/models.py` 为 ChatOpenAI 传入按开关构造的 httpx 客户端（`trust_env`），审查模型客户端同用该开关；`GET /api/model`、`PUT /api/model/proxy`、`POST /api/model/check`。左下角“模型”按钮打开“模型与连接”面板（模型信息、代理开关、连接测试）。本机 `.env` 设为 `MODEL_USE_PROXY=true`（直连被重置，见下）。
+- ② 存量分析：task3 更名“技术研判”（`task3_assess.md`，旧 `task3_trend.md` 删除），报告模板 `future_directions` 显示名改为“技术研判报告”并增加“技术路线与成熟程度”章；存量分析页去掉顶层切换与复制按钮，卡片提供 预览模板/修改模板/上传模板/开始分析（内置只读，修改与上传生成“我的任务”草稿；专项报告的上传生成自定义报告模板），任务预览显示内置模板正文；task3 现可复制。成果与回收站移入检查器“成果”视图（`InspectorResults.tsx`：存量分析报告/资料审查报告/情报分析报告/回收站），旧 `ReportsView`、侧栏“本会话报告”、`fetchReports` 删除，`/tasks/results` 与 `/artifacts` 改为打开该视图。
+- ③ “（带 [n]）”：来源是 task3 提示词把格式说明写在输出结构小节名后，模型照抄为标题（工作区历史回答中 3 处）；提示词与四个报告模板改为“小节标题只写名称”。
+- ④ 四维浏览：五个按钮 技术谱系/场景/问题/技术/成果。`src/lineage.py` + `prompts/lineage.md` + `GET/POST /api/corpora/{id}/lineage`；`LineageTree.tsx`（本库分支展开、其他子库按颜色分支懒加载；选中技术显示体系位置、同级、同体系其他方向、针对的问题、配套技术、相关项目）。`SceneFlow.tsx` 场景逻辑简图（场景→问题→技术→成果，成果按共同项目连线，点击高亮链条并列出项目）；问题卡的技术可跳谱系、可展开项目；技术卡显示所属体系与配套技术。`src/achievement_list.py` + `GET /api/corpora/{id}/outputs` + `OutputsPanel.tsx`：成果板块取报告原文“成果列表”。项目关系图节点色相 = 场景类别/核心问题/谱系体系，深浅 = 关联数，新增类别图例。
+- ⑤ 点选提问：`QuickAsk.tsx`（任务、关注要素、关注场景〔取本库层级〕、附带问题）→ `POST /api/compose-question`（`src/compose_question.py`、`prompts/compose_question.md`）→ 问题填入输入框；任务不同则新建会话并沿用当前知识库（store `askInTask`）。
+
+验证：
+- 后端 `pytest -q --deselect tests/test_evaluate.py`：230 passed（`test_evaluate` 因本地已删除 `tests/data/fund_retrieval.jsonl` 未运行，同 §16.63）。新增 `test_hierarchy.py::test_lineage_and_outcome_list_stay_traceable`（区分：清单外/重复路线被采用、配套技术不是取自同项目条目、失败覆盖旧谱系、成果列表计数错误）、`test_app.py::test_model_proxy_switch_persists_and_overrides_env`（区分：面板选择不持久或不优先于 .env）。
+- 前端 `tsc` 无错，`npm test` 36 passed，构建通过（最大 JS 497.92 kB）。离线浏览器：`browser_scene_hierarchy`（按新界面改写：谱系仅点击生成、技术详情、问题→谱系、场景逻辑简图、成果板块）、`browser_review_flows`（成果入口改为检查器分组）、`browser_answer_controls` 通过。`browser_tasks`（断言的“当前对话：”文案于 fc2b068 已移除）与 `browser_ui_shell`（“Prompt / Skill”按钮于 91bd04d 已移除）此前已失效，未在本轮修复。
+- 真实运行（端口 8031，应用状态用临时副本，真实知识库）：连接测试 代理开 86 ms 正常、代理关 `ConnectTimeout` 15 s（本机直连 TLS 被重置，curl 复核同样结果）；点选提问由 deepseek-flash 生成问题并填入、切到技术研判会话；存量分析卡片、任务模板正文预览、检查器成果分组（存量 9/审查 9/情报 3/回收站 0）；机器人库技术谱系（7 体系、36 条、0 未归类）、医疗分支展开、场景逻辑简图、成果板块（57/60 项目含成果列表，1255 条）、按场景着色的关系图；430px 无横向溢出，无页面错误。截图与谱系生成日志：`verification/query-20261009-0947/`。
+- 技术谱系真实生成（deepseek-flash，11 个库，每库 27–54 s，日志 `verification/query-20261009-0947/lineage-generation.log`）：全部成功，每库 6–8 个体系、15–44 条典型技术，仅大数据库 2 条未归类，无清单外名称。少数类别仍偏应用/学科（如“基因编辑”“系统表型与队列”），同库重跑的类别划分会变化，需领域人员审核。
+- 成果列表解析：1031 份 Markdown 源文件全部含“成果列表（N）”，机器人库 500/510 文件解析条数与声明数 N 完全一致（其余为无该板块的文件）。
+
+限制与后续：
+- 技术谱系是模型归类，未经领域人员审核；首版提示曾按应用场景分组，已改为按方法体系，仍可能有归类不当。配套技术只反映库内项目自述，单项目路线时往往只有 1–3 项。
+- 逻辑简图中成果与技术按共同项目连线；层级中多数路线只覆盖 1 个项目，连线较稀疏，属数据实际情况。
+- 成果板块与四维“成果”条目并存：未据成果列表重提取四维成果，也未把成果列表计数并入八方面完成度；如需要应单列为提取规则变更（需提升提示版本，见 PROJECT §10 的版本口径）。
+- 运行中的服务需重启以加载新接口；工作树未提交、未推送。

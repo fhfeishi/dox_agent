@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 import httpx
 
 from ..agent.config import get_settings
+from ..agent.models import use_proxy
 from .research import redact
 
 logger = logging.getLogger(__name__)
@@ -113,8 +114,9 @@ class Client:
             ],
         }
         try:
-            # Honour the system proxy like the main model client; a direct route may be unavailable.
-            with httpx.Client(timeout=min(c["timeout"], remaining), transport=self.transport) as http:
+            # Same proxy switch as the main model client.
+            with httpx.Client(timeout=min(c["timeout"], remaining), transport=self.transport,
+                              trust_env=use_proxy(get_settings())) as http:
                 response = http.post(
                     c["base"] + "/chat/completions",
                     headers={"Authorization": "Bearer " + c["key"]},

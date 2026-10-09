@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
-import { AppProvider } from "./store";
+import { AppProvider, useApp } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
 import { ReviewShell } from "./components/ReviewViews";
 import { useDocuments } from "./useDocuments";
@@ -33,6 +33,13 @@ function LibraryPage() {
   </>;
 }
 
+/** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
+function ResultsRedirect() {
+  const { showInspector } = useApp();
+  useEffect(() => { showInspector({ kind: "results" }); }, []);
+  return <Navigate to="/tasks" replace />;
+}
+
 export const router = createBrowserRouter([{
   Component: () => <AppProvider><App /></AppProvider>,
   children: [
@@ -46,10 +53,10 @@ export const router = createBrowserRouter([{
     ] },
     { path: "tasks", Component: AnalysisShell, children: [
       { index: true, lazy: async () => ({ Component: (await import("./components/ListingViews")).TasksView }) },
-      { path: "results", lazy: async () => ({ Component: (await import("./components/ListingViews")).ReportsView }) },
+      { path: "results", Component: ResultsRedirect },
     ] },
     { path: "intelligence", lazy: async () => ({ Component: (await import("./components/IntelligenceView")).IntelligenceView }) },
-    { path: "artifacts", Component: () => { const [search] = useSearchParams(); return <Navigate to={"/tasks/results?" + search.toString()} replace />; } },
+    { path: "artifacts", Component: ResultsRedirect },
     { path: "prompts", element: <Navigate to="/tasks" replace /> },
     { path: "review", Component: ReviewShell, children: [
       { index: true, element: <Navigate to="/review/formal" replace /> },

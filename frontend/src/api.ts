@@ -17,7 +17,7 @@ export class ApiError extends Error {
   }
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
-export type TaskInfo = { id: string; name: string; description: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
+export type TaskInfo = { id: string; name: string; description: string; prompt?: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -229,13 +229,6 @@ export async function createReport(params: ReportParams): Promise<ReportInfo> {
     body: JSON.stringify(params),
   });
   return jsonOrThrow(response, "生成报告失败") as Promise<ReportInfo>;
-}
-
-/** GET /api/reports?session_key=: report metadata for one session (no markdown). */
-export async function fetchReports(sessionKey: string, signal?: AbortSignal): Promise<ReportSummary[]> {
-  const response = await fetch(`/api/reports?session_key=${encodeURIComponent(sessionKey)}`, signal ? { signal } : undefined);
-  if (!response.ok) throw new Error("报告列表不可用（" + response.status + "）");
-  return response.json();
 }
 
 /** GET /api/reports/{id}: one report with its markdown body. */
@@ -552,4 +545,28 @@ export async function changeArtifactLifecycle(item: ArtifactSummary, action: "tr
   const result = await jsonOrThrow(response, "成果状态修改失败");
   window.dispatchEvent(new Event("dox-artifacts-changed"));
   return result as ArtifactInfo;
+}
+
+export type ModelProxy = { enabled: boolean; source: "panel" | "env"; address: string };
+export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean; proxy: ModelProxy; review_override: Record<string, string> };
+export type ModelCheck = { ok: boolean; latency_ms?: number; error?: string };
+
+export async function fetchModelInfo(): Promise<ModelInfo> {
+  return jsonOrThrow(await fetch("/api/model"), "模型信息读取失败") as Promise<ModelInfo>;
+}
+
+export async function setModelProxy(enabled: boolean): Promise<ModelProxy> {
+  return jsonOrThrow(await fetch("/api/model/proxy", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ enabled }) }), "代理设置保存失败") as Promise<ModelProxy>;
+}
+
+export async function checkModel(): Promise<ModelCheck> {
+  return jsonOrThrow(await fetch("/api/model/check", { method: "POST" }), "连接测试失败") as Promise<ModelCheck>;
+}
+
+export type ComposeInput = { task: string; elements: string[]; intents: string[]; corpus_ids: string[]; scene?: string; note?: string };
+
+/** Click-to-ask: the model turns clicked keywords into one editable question. */
+export async function composeQuestion(input: ComposeInput): Promise<string> {
+  const payload = await jsonOrThrow(await fetch("/api/compose-question", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }), "生成问题失败");
+  return (payload as { question: string }).question;
 }

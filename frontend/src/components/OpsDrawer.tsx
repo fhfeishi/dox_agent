@@ -1,20 +1,49 @@
+import { useEffect, useState } from "react";
+import { checkModel, fetchModelInfo, setModelProxy, type ModelCheck, type ModelInfo } from "../api";
 import { Drawer } from "./Drawer";
 import { Icon } from "./Icons";
+import { Button, Pill } from "./ui";
 import { useApp } from "../store";
 
 /**
- * Global settings: connection (power) and read-only model info.
- * Online document sources live in the default corpus detail (they only write the default
- * library); chat/session export lives in the chat top bar.
+ * Global settings opened from the rail's model button: model connection (proxy switch and a
+ * reachability test) and the power action. Online document sources live in the corpus detail;
+ * chat/session export lives in the chat top bar.
  */
 export function OpsDrawer() {
-  const { drawerOpen, setDrawerOpen, disconnect, connected, model } = useApp();
+  const { drawerOpen, setDrawerOpen, disconnect, connected } = useApp();
+  const [info, setInfo] = useState<ModelInfo | null>(null);
+  const [error, setError] = useState("");
+  const [check, setCheck] = useState<ModelCheck | null>(null);
+  const [busy, setBusy] = useState(false);
 
+  useEffect(() => {
+    if (!drawerOpen) return;
+    setCheck(null);
+    fetchModelInfo().then(setInfo, (e: Error) => setError(e.message));
+  }, [drawerOpen]);
+
+  async function toggleProxy() {
+    if (!info) return;
+    setBusy(true); setError(""); setCheck(null);
+    try { setInfo({ ...info, proxy: await setModelProxy(!info.proxy.enabled) }); }
+    catch (e) { setError((e as Error).message); }
+    finally { setBusy(false); }
+  }
+
+  async function runCheck() {
+    setBusy(true); setError(""); setCheck(null);
+    try { setCheck(await checkModel()); }
+    catch (e) { setError((e as Error).message); }
+    finally { setBusy(false); }
+  }
+
+  const row = "flex items-baseline justify-between gap-3 border-b border-[var(--hairline)] py-[8px] text-[12.5px]";
   return (
     <Drawer
       open={drawerOpen}
       onClose={() => setDrawerOpen(false)}
-      title="设置与运维"
+      title="模型与连接"
       headerAction={
         <button
           type="button"
@@ -31,15 +60,43 @@ export function OpsDrawer() {
         </button>
       }
     >
-      <section className="text-[13px]" aria-label="模型信息">
-        <h3 className="font-semibold text-[var(--ink)]">模型</h3>
-        <p className="mt-[6px] text-[12px] text-[var(--steel)]" role="status">
-          当前模型：{model || "未知"}（来源 /api/health）
-        </p>
-        <p className="mt-[4px] text-[12px] leading-[1.6] text-[var(--stone)]">
-          首期为服务端固定单一模型，界面如实展示，暂不支持切换；多模型切换需后端提供可用模型列表与请求级模型字段。
-        </p>
-      </section>
+      {error ? <p role="alert" className="mb-3 text-[12.5px] text-[var(--red)]">{error}</p> : null}
+      {!info && !error ? <p className="text-[12.5px] text-[var(--steel)]">正在读取模型信息…</p> : null}
+      {info ? <>
+        <section aria-label="模型信息">
+          <h3 className="text-[13px] font-semibold text-[var(--ink)]">模型</h3>
+          <div className={row}><span className="text-[var(--steel)]">名称</span><span className="font-code">{info.model}</span></div>
+          <div className={row}><span className="text-[var(--steel)]">服务地址</span><span className="break-all font-code">{info.base_url}</span></div>
+          <div className={row}><span className="text-[var(--steel)]">密钥</span>{info.api_key_configured ? <Pill tone="mint">已配置</Pill> : <Pill tone="yellow">未配置</Pill>}</div>
+          {Object.keys(info.review_override).length ? <div className={row}><span className="text-[var(--steel)]">资料审查</span><span className="font-code">{Object.values(info.review_override).join(" · ")}</span></div> : null}
+          <p className="mt-[8px] text-[11.5px] leading-[1.6] text-[var(--stone)]">问答、报告、四维提取与资料审查共用此模型；名称和地址在 .env 中配置，修改后重启服务生效。</p>
+        </section>
+
+        <section aria-label="网络代理" className="mt-[22px]">
+          <h3 className="text-[13px] font-semibold text-[var(--ink)]">网络代理</h3>
+          <label className="mt-[10px] flex cursor-pointer items-center justify-between gap-3 rounded-[10px] border border-[var(--hairline)] p-[12px]">
+            <span>
+              <span className="block text-[13px] text-[var(--ink)]">模型调用使用系统代理</span>
+              <span className="mt-[2px] block text-[11.5px] text-[var(--steel)]">
+                {info.proxy.address ? `系统代理：${info.proxy.address}` : "未检测到系统代理环境变量"} · {info.proxy.source === "panel" ? "已在此面板设置" : "沿用 .env 的 MODEL_USE_PROXY"}
+              </span>
+            </span>
+            <input type="checkbox" role="switch" aria-label="模型调用使用系统代理" className="size-[18px] accent-[var(--primary)]"
+              checked={info.proxy.enabled} disabled={busy} onChange={() => void toggleProxy()} />
+          </label>
+          <p className="mt-[8px] text-[11.5px] leading-[1.6] text-[var(--stone)]">关闭时直接连接模型服务。切换立即作用于之后的模型调用，无需重启；进行中的任务不受影响。</p>
+        </section>
+
+        <section aria-label="连接测试" className="mt-[22px]">
+          <div className="flex items-center gap-3">
+            <Button size="sm" disabled={busy || !info.api_key_configured} onClick={() => void runCheck()}>{busy ? "正在测试…" : "测试连接"}</Button>
+            {check ? <span role="status" className={`text-[12.5px] ${check.ok ? "text-[#0e7a28]" : "text-[var(--red)]"}`}>
+              {check.ok ? `连接正常 · ${check.latency_ms} ms` : `${check.error}${check.latency_ms != null ? ` · ${check.latency_ms} ms` : ""}`}
+            </span> : null}
+          </div>
+          <p className="mt-[8px] text-[11.5px] leading-[1.6] text-[var(--stone)]">读取一次服务端模型列表，只验证网络与密钥，不产生生成费用。</p>
+        </section>
+      </> : null}
     </Drawer>
   );
 }

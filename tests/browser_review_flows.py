@@ -5,6 +5,7 @@ rule publication, task dispatch, calculations, versioned artifacts and readers a
 """
 
 import asyncio
+import re
 import json
 from io import BytesIO
 from pathlib import Path
@@ -224,9 +225,13 @@ async def main():
                 await expect(pane.get_by_text("外部材料自述 · 原输入版本保留", exact=True)).to_be_visible()
                 await page.get_by_role("button", name="关闭检查器", exact=True).click()
                 await page.get_by_role("button", name="存量分析", exact=True).click()
-                await page.get_by_role("link", name="分析成果与回收站", exact=True).click()
-                await expect(page.get_by_role("heading", name="分析成果", exact=True)).to_be_visible()
-                await expect(page.get_by_text("综合情报报告", exact=True).first).to_be_visible()
+                # 成果与回收站统一在检查器中，按报告类别分组。
+                await page.get_by_role("button", name="成果与回收站", exact=True).click()
+                results = page.locator("aside[aria-hidden='false']")
+                await results.get_by_role("tab", name=re.compile("^情报分析报告")).click()
+                await expect(results.get_by_text("综合情报报告", exact=True).first).to_be_visible()
+                await expect(results.get_by_role("tab", name=re.compile("^资料审查报告"))).to_be_visible()
+                await page.get_by_role("button", name="关闭检查器", exact=True).click()
 
                 proposal = WordDocument()
                 proposal.add_heading("项目摘要", 1)

@@ -1,6 +1,6 @@
 # dox_agent
 
-面向科研项目资料的本地、单用户研究助手，支持知识库检索、带来源的对话、跨库对比、趋势分析、专项报告，情报分析，以及独立执行的申报书形式审查和专业审查。
+面向科研项目资料的本地、单用户研究助手，支持知识库检索、带来源的对话、跨库对比、技术研判、专项报告，情报分析，以及独立执行的申报书形式审查和专业审查。
 
 前端采用 React 19、TypeScript、React Router、TanStack Query、Tailwind 4 和 Vite；后端采用 FastAPI、LangGraph、SQLite 和 BM25。
 

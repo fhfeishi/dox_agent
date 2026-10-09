@@ -1,6 +1,5 @@
-import { useSearchParams } from "react-router";
-import { useEffect, useState, type ReactNode } from "react";
-import { changeArtifactLifecycle, fetchTemplates, type TemplateSummary, copyTask, fetchArtifacts, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { copyTask, copyTemplate, fetchTemplates, saveTaskDraft, saveTemplateDraft, type TaskInfo, type TemplateSummary } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
@@ -46,24 +45,68 @@ function ViewShell({
   );
 }
 
+const UPLOAD_LIMIT = { task: 4000, template: 20000 };
+
 export function TasksView() {
-  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks } = useApp();
-  const [copyError, setCopyError] = useState("");
-  async function makeCopy(source: string) {
-    try {
-      const task = await copyTask(source);
-      await refreshTasks();
-      showInspector({ kind: "task", taskId: task.id });
-      setCopyError("");
-    } catch (e) { setCopyError((e as Error).message); }
+  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask } = useApp();
+  const [templates, setTemplates] = useState<TemplateSummary[]>([]);
+  const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState("");
+  const upload = useRef<HTMLInputElement>(null);
+  const uploadFor = useRef<TaskInfo | null>(null);
+  useEffect(() => { void fetchTemplates().then(setTemplates).catch(() => setTemplates([])); }, []);
+
+  async function run(task: TaskInfo, work: () => Promise<void>) {
+    setBusy(task.id); setMessage("");
+    try { await work(); } catch (e) { setMessage((e as Error).message); } finally { setBusy(""); }
   }
 
+  // Built-in tasks are read-only; modifying one creates "my task" from it and opens the editor.
+  const editable = async (task: TaskInfo) => task.kind === "custom" ? task : await copyTask(task.id);
+
+  const modify = (task: TaskInfo) => run(task, async () => {
+    const target = await editable(task);
+    if (target.id !== task.id) await refreshTasks();
+    showInspector({ kind: "task", taskId: target.id });
+    if (target.id !== task.id) setMessage(`已复制为“${target.name}”草稿，可在右侧修改后发布`);
+  });
+
+  async function uploaded(file: File) {
+    const task = uploadFor.current;
+    if (!task) return;
+    const text = (await file.text()).trim();
+    const report = (task.engine_task_id ?? task.id) === "task4";
+    const limit = report ? UPLOAD_LIMIT.template : UPLOAD_LIMIT.task;
+    if (!text) { setMessage("上传的文件没有文字内容"); return; }
+    if (text.length > limit) { setMessage(`文件约 ${text.length} 字，超过 ${limit} 字上限，请精简后上传`); return; }
+    const name = file.name.replace(/\.(md|markdown|txt)$/i, "").slice(0, 80) || "上传的模板";
+    await run(task, async () => {
+      if (report) {
+        // A report task's template is its section structure: uploads become a custom report template.
+        const copy = await copyTemplate("comprehensive");
+        const saved = await saveTemplateDraft(copy.id, copy.revision, { name, content: text, purpose: `上传自 ${file.name}` });
+        setTemplates(await fetchTemplates());
+        showInspector({ kind: "template", templateId: saved.id });
+        setMessage(`已上传为报告模板“${saved.name}”草稿，请在右侧核对后发布`);
+        return;
+      }
+      const target = await editable(task);
+      await saveTaskDraft({ ...target, output_instructions: text });
+      await refreshTasks();
+      showInspector({ kind: "task", taskId: target.id });
+      setMessage(`已将“${file.name}”写入“${target.name}”的输出说明草稿，请在右侧核对后发布`);
+    });
+  }
+
+  const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-[12px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
   return (
     <ViewShell
-      title="任务模板"
-      description="任务决定 system prompt 与输出契约。选中任务后会新建一个绑定该任务的会话；task4 专项报告走统一报告入口，不在聊天中生成正文。"
-      actions={<div className="flex gap-[6px]"><Button onClick={() => void makeCopy("task1")}>复制问答任务</Button><Button onClick={() => void makeCopy("task2")}>复制对比任务</Button><Button onClick={() => void makeCopy("task4")}>复制专项报告任务</Button></div>}
+      title="存量分析"
+      description="选择一个任务模板开始分析。每张卡片可预览模板、修改模板或上传自己的模板；内置模板只读，修改和上传会生成“我的任务”草稿，发布后使用。生成的报告统一在右侧检查器的“成果”中查看、编辑和回收。"
+      actions={<Button onClick={() => showInspector({ kind: "results" })}>成果与回收站</Button>}
     >
+      <input ref={upload} type="file" accept=".md,.markdown,.txt" className="hidden" aria-label="上传模板文件"
+        onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void uploaded(file); }} />
       {!taskCapable ? (
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
           <p className="text-[13.5px] font-medium text-[var(--ink)]">任务功能未启用</p>
@@ -72,139 +115,54 @@ export function TasksView() {
           </p>
         </div>
       ) : null}
-      {taskCapable && tasksError ? (
-        <p role="alert" className="text-[13px] text-[var(--red)]">
-          {tasksError}
-        </p>
-      ) : null}
-      {copyError ? <p role="alert" className="text-[13px] text-[var(--red)]">{copyError}</p> : null}
+      {taskCapable && tasksError ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{tasksError}</p> : null}
+      {message ? <p role="status" className="col-span-full text-[13px] text-[var(--steel)]">{message}</p> : null}
       {taskCapable && !tasks.length && !tasksError ? (
         <p className="text-[13px] text-[var(--stone)]">正在读取任务列表…</p>
       ) : null}
       {taskCapable
         ? tasks.map((task, index) => {
             const style = TASK_STYLE[index % TASK_STYLE.length];
-            const active = task.id === taskId;
+            const archived = task.status === "archived" || task.archived;
+            const usable = !archived && (task.status !== "draft" || Boolean(task.version));
             return (
-              <button
-                key={task.id}
-                type="button"
-                onClick={() => showInspector({ kind: "task", taskId: task.id })}
-                className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] text-left transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]"
-              >
-                <span
-                  className="grid size-[34px] place-items-center rounded-[8px]"
-                  style={{ background: style.tint, color: style.fg }}
-                >
-                  <Icon name={style.icon} size={16} strokeWidth={1.9} />
-                </span>
-                <span className="flex items-center gap-[8px] text-[14px] font-semibold text-[var(--ink)]">
-                  {task.name}
-                  {active ? <Pill tone="lav">当前</Pill> : null}
-                  {task.has_template ? <Pill tone="sky">含模板</Pill> : null}
-                  {task.kind === "custom" ? <Pill tone={task.status === "archived" || task.archived ? "yellow" : "lav"}>{task.status === "archived" || task.archived ? "已归档" : task.status === "published" ? `我的任务 · v${task.version}` : task.version ? `草稿 · 已发布 v${task.version}` : "草稿"}</Pill> : <Pill tone="sky">内置</Pill>}
-                </span>
-                <span className="flex-1 text-[12.3px] leading-[1.55] text-[var(--steel)]">
-                  {task.description}
-                </span>
-                {task.output_hint ? (
-                  <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-[11.5px] leading-[1.5] text-[var(--slate)]">
-                    输出：{task.output_hint}
+              <article key={task.id}
+                className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]">
+                <button type="button" onClick={() => showInspector({ kind: "task", taskId: task.id })} className="flex flex-col gap-[10px] text-left">
+                  <span className="grid size-[34px] place-items-center rounded-[8px]" style={{ background: style.tint, color: style.fg }}>
+                    <Icon name={style.icon} size={16} strokeWidth={1.9} />
                   </span>
-                ) : null}
-                <span className="mt-auto flex items-center gap-[6px] text-[11.5px] text-[var(--stone)]">
-                  <Icon name="chevronRight" size={12} strokeWidth={2.2} />
-                  查看任务详情
-                </span>
-              </button>
+                  <span className="flex flex-wrap items-center gap-[8px] text-[14px] font-semibold text-[var(--ink)]">
+                    {task.name}
+                    {task.id === taskId ? <Pill tone="lav">当前</Pill> : null}
+                    {task.kind === "custom" ? <Pill tone={archived ? "yellow" : "lav"}>{archived ? "已归档" : task.status === "published" ? `我的任务 · v${task.version}` : task.version ? `草稿 · 已发布 v${task.version}` : "草稿"}</Pill> : <Pill tone="sky">内置</Pill>}
+                  </span>
+                  <span className="text-[12.3px] leading-[1.55] text-[var(--steel)]">{task.description}</span>
+                  {task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-[11.5px] leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
+                </button>
+                <div className="mt-auto flex flex-wrap gap-[6px] border-t border-[var(--hairline)] pt-[10px]">
+                  <button type="button" className={action} onClick={() => showInspector({ kind: "task", taskId: task.id })}>预览模板</button>
+                  <button type="button" className={action} disabled={Boolean(busy)} onClick={() => void modify(task)}>修改模板</button>
+                  <button type="button" className={action} disabled={Boolean(busy)} onClick={() => { uploadFor.current = task; upload.current?.click(); }}>上传模板</button>
+                  <span className="flex-1" />
+                  <button type="button" disabled={!usable || Boolean(busy)} onClick={() => void startTask(task.id)}
+                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-45">开始分析</button>
+                </div>
+              </article>
             );
           })
         : null}
-    </ViewShell>
-  );
-}
-
-const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答快照", report: "报告" };
-
-export function ReportsView() {
-  const { workspace, startTask, corpora, showInspector } = useApp();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const view = searchParams.get("view") ?? "active";
-  const [templates, setTemplates] = useState<TemplateSummary[]>([]);
-  const [lastTrash, setLastTrash] = useState<ArtifactInfo | null>(null);
-  const [pageCursor,setPageCursor] = useState("");
-  useEffect(() => { void fetchTemplates(undefined,true).then(setTemplates).catch(e => setError(e.message)); }, []);
-  const [scope, setScope] = useState<"all" | "current">("all");
-  const [artifactList, setArtifactList] = useState<{ key: string; items: ArtifactSummary[] } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [revision, setRevision] = useState(0);
-
-  useEffect(() => {
-    const refresh = () => setRevision((value) => value + 1);
-    window.addEventListener("dox-artifacts-changed", refresh); window.addEventListener("focus",refresh);
-    return () => { window.removeEventListener("dox-artifacts-changed", refresh); window.removeEventListener("focus",refresh); };
-  }, []);
-
-  useEffect(() => {
-    let active = true;
-    const key = scope === "all" ? "all" : `current:${workspace.active ?? ""}`;
-    setArtifactList(null);
-    setError("");
-    setLoading(true);
-    // An omitted query means global; the current-session filter always sends its exact key.
-    void (view === "trash" ? fetch(`/api/artifacts?view=trash&limit=50${pageCursor ? `&cursor=${encodeURIComponent(pageCursor)}` : ""}`).then(async r => { if (!r.ok) throw new Error("回收站读取失败"); return await r.json() as ArtifactSummary[]; }) : fetchArtifacts(scope === "all" ? undefined : workspace.active ?? "")).then(
-      (items) => { if (active) setArtifactList({ key, items }); },
-      (cause) => { if (active) setError(cause instanceof Error ? cause.message : "成果列表读取失败"); },
-    ).finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
-  }, [scope, workspace.active, revision, view, pageCursor]);
-
-  const key = scope === "all" ? "all" : `current:${workspace.active ?? ""}`;
-  const artifacts = artifactList?.key === key ? artifactList.items : [];
-
-  return (
-    <ViewShell
-      title="分析成果"
-      description="查看已保存的回答快照与专项报告。可切换全部成果或当前会话。"
-      actions={<Button onClick={() => void startTask("task4")}>新建专项报告</Button>}
-    >
-      <div className="col-span-full flex flex-wrap gap-3">{[["active","成果"],["templates","模板"],["trash","回收站"]].map(([id,label]) => <button key={id} aria-pressed={view===id} onClick={() => { setSearchParams(id === "active" ? {} : {view:id}); setPageCursor(""); }}>{label}</button>)}</div>
-      {view === "trash" && <p className="col-span-full text-sm">删除后保留7天；服务关闭期间将在下次启动时清理。到期不可恢复。{pageCursor && <button onClick={() => setPageCursor("")}>返回第一页</button>}</p>}
-      {lastTrash && <p className="col-span-full">已移入回收站 <button onClick={() => void changeArtifactLifecycle(lastTrash,"restore").then(() => setLastTrash(null)).catch(e => setError(e.message))}>撤销</button></p>}
-      {view === "templates" && templates.map(t => <button key={t.id} onClick={() => showInspector({kind:"template",templateId:t.id})} className="rounded border border-[var(--hairline)] p-4 text-left">{t.name} · {t.kind === "custom" ? "自定义" : "内置"} · {t.status}</button>)}
-      <div className="col-span-full flex gap-[6px]">
-        <button type="button" aria-pressed={scope === "all"} onClick={() => setScope("all")}
-          className={`rounded-[7px] px-[11px] py-[6px] text-[12px] ${scope === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>全部成果</button>
-        <button type="button" aria-pressed={scope === "current"} onClick={() => setScope("current")}
-          className={`rounded-[7px] px-[11px] py-[6px] text-[12px] ${scope === "current" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>当前会话</button>
-      </div>
-      {error ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{error}</p> : null}
-      {loading ? <p className="col-span-full text-[13px] text-[var(--steel)]">正在读取成果…</p> : null}
-      {!loading && !error && !artifacts.length ? (
-        <p className="col-span-full text-[13px] text-[var(--steel)]">{scope === "current" ? "本会话还没有成果。" : "还没有成果。"}可在回答操作条选择“保存为成果”。</p>
+      {taskCapable && templates.length ? (
+        <section className="col-span-full border-t border-[var(--hairline)] pt-[14px]">
+          <h2 className="text-[13px] font-semibold text-[var(--ink)]">报告模板 <span className="font-normal text-[var(--stone)]">· 专项报告按所选模板章节生成</span></h2>
+          <div className="mt-[8px] flex flex-wrap gap-[6px]">
+            {templates.map((t) => <button key={t.id} type="button" onClick={() => showInspector({ kind: "template", templateId: t.id })}
+              className="rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[5px] text-[12px] text-[var(--link)] hover:bg-[var(--primary-soft)]">
+              {t.name}{t.kind === "custom" ? " · 自定义" : ""}
+            </button>)}
+          </div>
+        </section>
       ) : null}
-      {view !== "templates" && artifacts.map((item) => (
-        <article key={item.artifact_id}
-          className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-left hover:border-[var(--primary)]">
-          <button onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })} className="block text-[14px] font-semibold text-[var(--ink)]">{item.title || "未命名成果"}</button>
-          <span className="mt-[5px] block text-[12px] text-[var(--steel)]">
-            {ARTIFACT_TYPE_LABEL[item.type] ?? item.type} · 版本 {item.current_version} · {item.status === "completed" ? "已完成" : item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "生成中"} ·{" "}
-            {item.corpus_ids.length
-              ? item.corpus_ids.map((id) => corpora.find((corpus) => corpus.id === id)?.name ?? id).join("、")
-              : "来源库未记录"} · {item.created_at?.slice(0, 10) || "时间未记录"}
-          </span>
-          <span className="mt-[4px] block text-[11.5px] text-[var(--stone)]">
-            会话：{workspace.sessions.find((session) => session.id === item.session_key)?.title || item.session_key || "未记录"} · {item.run_available === true ? "来源运行可回读" : "来源运行未记录"}
-            {item.type === "answer_snapshot" ? ` · ${item.source_verification === "verified" ? "原始回答已核验" : item.source_verification === "user_modified" ? "用户修订版本" : "原始输出未核验"}` : ""}
-          </span>
-          <span className="mt-[2px] block break-all text-[11px] text-[var(--stone)]">
-            任务：{item.task_id === "intelligence" ? "情报分析" : item.task_id || "未记录"} / {item.task_version ? `v${item.task_version}` : "未记录"} · 模板：{item.template_id || "未记录"} / {item.template_version != null ? `v${item.template_version}` : "未记录"}
-          </span>
-          <div className="mt-3 flex flex-wrap gap-3 text-sm">{view === "trash" ? <><span>到期：{item.purge_after ? new Date(item.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(item,"restore").catch(e => setError(e.message))}>还原</button><button onClick={() => { if (window.confirm("永久删除全部版本与独占附件，不可恢复？")) void changeArtifactLifecycle(item,"purge").catch(e => setError(e.message)); }}>彻底删除</button></> : <button disabled={item.status === "generating"} onClick={() => void changeArtifactLifecycle(item,"trash").then(setLastTrash).catch(e => setError(e.message))}>移入回收站</button>}</div>
-        </article>
-      ))}
-      {view === "trash" && artifacts.length === 50 && <button onClick={() => setPageCursor(artifacts.at(-1)!.cursor ?? "")}>下一页</button>}
     </ViewShell>
   );
 }

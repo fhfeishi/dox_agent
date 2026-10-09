@@ -131,7 +131,8 @@ class CustomTaskStore:
 
     def copy_builtin(self, source_task_id: str) -> dict:
         source = next((item for item in list_tasks() if item["id"] == source_task_id), None)
-        if source is not None and source_task_id in {"task1", "task2", "task4"}:
+        if source is not None and source_task_id in {"task1", "task2", "task3", "task4"}:
+            source = {k: v for k, v in source.items() if k != "prompt"}  # built-in prompt stays server text
             task = {**source, "id": f"custom-{uuid4().hex}", "engine_task_id": source_task_id,
                     "kind": "custom", "status": "draft", "revision": 1, "version": 0,
                     "background": "", "goal": source["description"], "requirements": "",

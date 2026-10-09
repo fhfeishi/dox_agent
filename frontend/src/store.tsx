@@ -42,7 +42,7 @@ import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocument
 import { useWorkspace } from "./workspace";
 
 export type NavKey = "chat" | "tasks" | "library" | "review" | "intelligence";
-export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: string } |
+export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string } |
   { kind: "template"; templateId: string } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
@@ -57,6 +57,7 @@ export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: str
 function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
     case "overview": return "overview";
+    case "results": return "results";
     case "task": return `task:${target.taskId}`;
     case "template": return `template:${target.templateId}`;
     case "review-source": return "review-source:" + target.fileId + ":" + target.page;
@@ -120,6 +121,7 @@ export interface AppValue {
   runCorpusIngest: (id: string) => Promise<void>;
   startCorpusChat: (id: string) => Promise<void>;
   startResearch: (corpusId: string, docIds: string[] | null, taskId: string, question: string) => Promise<void>;
+  askInTask: (taskId: string, question: string) => Promise<void>;
   targetJobs: Record<string, string>;
   rememberTargetJob: (corpusId: string, jobId: string) => void;
 
@@ -817,6 +819,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await switchSession(undefined, undefined, id);
   }
 
+  /** Click-to-ask: fill the composer; a different task starts a new session on the same corpora. */
+  async function askInTask(task: string, question: string) {
+    if (task === taskId) { setInput(question); return; }
+    const keep = corpusIds;
+    setSessionBusy(true);
+    try {
+      await settleActiveRun();
+      await workspace.saveNow(latestTurns.current, options);
+      await workspace.select(undefined, task, keep[0]);
+      await workspace.saveCorpusSelection(keep[0], true, keep, { allowed_doc_ids: null });
+      setEditing(null);
+      setInput(question);
+      setError("");
+      setStatus("已按所选任务新建会话并填入问题；可修改后发送，原会话保留在会话列表");
+      setNav("chat");
+    } finally {
+      setSessionBusy(false);
+    }
+  }
+
   async function startResearch(corpus: string, docIds: string[] | null, task: string, question: string) {
     if ((docIds !== null && !docIds.length) || !question.trim()) throw new Error("请选择资料并填写研究问题");
     setSessionBusy(true);
@@ -1160,6 +1182,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       runCorpusIngest,
       startCorpusChat,
       startResearch,
+      askInTask,
       targetJobs,
       rememberTargetJob,
       tasks,

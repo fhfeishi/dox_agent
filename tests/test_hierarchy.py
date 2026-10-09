@@ -92,11 +92,11 @@ class ExtraTargetModel:
         }""", response_metadata={})
 
 
-def _prepared(tmp_path, monkeypatch):
-    monkeypatch.setattr("src.targets.model_for", lambda settings: TargetModel())
+def _prepared(tmp_path, monkeypatch, target_model=None, body=BODY):
+    monkeypatch.setattr("src.targets.model_for", lambda settings: target_model or TargetModel())
     app, store = setup(tmp_path)
     saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text",
-                              parser="markdown", pages=[Page(number=1, text=BODY)], markdown=BODY))
+                              parser="markdown", pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
         job_id = client.post(f"/api/corpora/{corpus_id}/target",
@@ -368,3 +368,50 @@ def test_project_relations_are_graded_by_description_similarity(tmp_path, monkey
     assert calls == [4], "cached vectors are reused"
     sim.relations("c1", library({**desc, "D": "外骨骼外骨骼"}), "问题")
     assert calls == [4, 1], "only the changed description is embedded again"
+
+
+class TwoTechModel(TargetModel):
+    """The same report also states a second technique used together with the route."""
+
+    async def ainvoke(self, messages):
+        answer = json.loads((await super().ainvoke(messages)).content)
+        answer["facets"][2]["items"].append(
+            {"id": "t2", "name": "数据增强", "desc": "扩充标注样本。", "evidence": [{"quote": "标注数据不足"}]})
+        return SimpleNamespace(content=json.dumps(answer, ensure_ascii=False), response_metadata={})
+
+
+class LineageModel:
+    async def ainvoke(self, messages):
+        assert "深度学习" in messages[-1].content and "临床应用" not in messages[-1].content
+        return SimpleNamespace(content=json.dumps({"branch": "AI与医疗", "categories": [
+            {"name": "机器学习", "summary": "学习方法。", "children": [
+                {"name": "深度学习方法", "routes": ["深度学习", "量子计算"]},
+                {"name": "重复", "routes": ["深度学习"]}]}]}, ensure_ascii=False), response_metadata={})
+
+
+def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
+    """Lineage only places existing routes; supporting techniques and 成果列表 come from the reports."""
+    body = BODY + "\n\n## 成果列表（2）\n\n1. [专利] 一种病灶识别方法 — 张三\n2. [期刊论文] Deep lesion detection — Zhang San\n"
+    app, corpus_id, _ = _prepared(tmp_path, monkeypatch, TwoTechModel(), body)
+    from src import hierarchy, lineage
+
+    monkeypatch.setattr(hierarchy, "model_for", lambda settings: HierarchyModel())
+    monkeypatch.setattr(lineage, "model_for", lambda settings: LineageModel())
+    with TestClient(app) as client:
+        assert client.get(f"/api/corpora/{corpus_id}/lineage").json()["state"] == "missing"
+        client.post(f"/api/corpora/{corpus_id}/hierarchy", json={})
+        tree = client.post(f"/api/corpora/{corpus_id}/lineage", json={}).json()
+        assert tree["state"] == "ready" and tree["categories"] == [
+            {"name": "机器学习", "summary": "学习方法。", "children": [{"name": "深度学习方法", "routes": ["深度学习"]}]}]
+        assert len(tree["gaps"]) == 2  # unknown title and the repeated placement
+        assert [s["name"] for s in tree["supporting"]["深度学习"]] == ["数据增强"]
+        assert tree["routes"]["深度学习"]["issues"][0]["issue"] == "识别精度瓶颈"
+
+        monkeypatch.setattr(lineage, "model_for", lambda settings: BrokenModel())
+        failed = client.post(f"/api/corpora/{corpus_id}/lineage", json={"force": True}).json()
+        assert failed["error"] and failed["categories"] == tree["categories"]
+
+        outputs = client.get(f"/api/corpora/{corpus_id}/outputs").json()
+        (listed,) = outputs["projects"].values()
+        assert listed["counts"] == {"专利": 1, "期刊论文": 1} and listed["declared"] == 2
+        assert listed["items"][0]["title"] == "一种病灶识别方法"

@@ -696,3 +696,19 @@ def test_session_can_be_deleted_and_stays_deleted(tmp_path):
         assert not any(item["id"] == "s-1" for item in client.get("/api/workspace/sessions").json())
         assert client.delete("/api/workspace/sessions/s-1").status_code == 404
         assert client.delete("/api/workspace/notes/s-1").status_code == 404
+
+
+def test_model_proxy_switch_persists_and_overrides_env(tmp_path, monkeypatch):
+    """The settings-panel choice decides whether model clients read the system proxy."""
+    from src.agent import models
+
+    monkeypatch.setenv("HTTPS_PROXY", "http://127.0.0.1:9")
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        settings = app.state.settings
+        assert client.get("/api/model").json()["proxy"] == {"enabled": False, "source": "env", "address": "http://127.0.0.1:9"}
+        assert client.put("/api/model/proxy", json={"enabled": True}).json()["enabled"] is True
+    restarted, _ = setup(tmp_path)
+    with TestClient(restarted) as client:
+        assert client.get("/api/model").json()["proxy"]["source"] == "panel"
+    assert models.use_proxy(settings)

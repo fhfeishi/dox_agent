@@ -820,7 +820,7 @@ export function EmptyState({ onPick }: { onPick: (question: string) => void }) {
   const examples: [string, string][] = [
     ["精准问答", "请基于资料说明一个关键结论，并逐条给出出处。"],
     ["对比分析", "请对比资料中相近方案的主要差异与适用条件。"],
-    ["趋势讨论", "基于现有资料，推测该领域可能的发展方向，并区分事实与推断。"],
+    ["技术研判", "这个领域有哪些研究路线，已经实现了哪些工作，还有哪些工作可以做？"],
   ];
   return (
     <div className="py-[56px]">

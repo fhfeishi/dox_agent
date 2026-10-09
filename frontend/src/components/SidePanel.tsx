@@ -1,7 +1,6 @@
-import { useLocation, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { Fragment, useEffect, useState } from "react";
 import { useApp } from "../store";
-import { fetchReports, type ReportSummary } from "../api";
 import { BrandMark, Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import { ReviewRunPanel } from "./ReviewViews";
@@ -32,8 +31,6 @@ function corpusDot(preparation: string, jobStatus?: string, missing = false): st
 }
 
 export function SidePanel() {
-  const location = useLocation();
-  const resultsPage = location.pathname === "/tasks/results";
   const {
     nav,
     setNav,
@@ -77,20 +74,6 @@ export function SidePanel() {
     return () => { active=false; window.removeEventListener("dox-groups-changed",refresh); window.removeEventListener("focus",refresh); };
   }, [nav]);
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
-  const [reports, setReports] = useState<ReportSummary[]>([]);
-
-  useEffect(() => {
-    if (!resultsPage || !workspace.active) {
-      setReports([]);
-      return;
-    }
-    let stopped = false;
-    void fetchReports(workspace.active)
-      .then((items) => { if (!stopped) setReports(items); })
-      .catch(() => { if (!stopped) setReports([]); });
-    return () => { stopped = true; };
-  }, [resultsPage, workspace.active]);
-
   // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
   if (sidebarCollapsed) return null;
 
@@ -284,7 +267,7 @@ export function SidePanel() {
 
         {nav === "review" ? <ReviewRunPanel /> : null}
 
-        {nav === "tasks" && !resultsPage && (
+        {nav === "tasks" && (
           <>
             <GroupLabel className="pt-[2px]">任务模板</GroupLabel>
             {!taskCapable ? (
@@ -352,48 +335,6 @@ export function SidePanel() {
                 }}
               >
                 新建资料库
-              </Button>
-            </div>
-          </>
-        )}
-
-        {resultsPage && (
-          <>
-            <GroupLabel className="pt-[2px]">本会话报告</GroupLabel>
-            {reports.length ? (
-              reports.map((report) => (
-                <button
-                  key={report.report_id}
-                  type="button"
-                  onClick={() => showInspector({ kind: "report", reportId: report.report_id, sessionKey: workspace.active })}
-                  className="mx-[8px] flex flex-col gap-[2px] rounded-[8px] px-[10px] py-[8px] text-left hover:bg-[#f1efec]"
-                >
-                  <span className="truncate text-[12.5px] text-[var(--slate)]">
-                    {report.domain || "未命名报告"} · {report.corpus_id
-                      ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
-                      : "来源库未记录"} · {report.year_from != null && report.year_to != null
-                      ? `年份窗口 ${report.year_from}–${report.year_to}`
-                      : ""}
-                  </span>
-                  <span className="text-[11px] text-[var(--stone)]">
-                    {report.created_at?.slice(0, 10) ?? ""}
-                  </span>
-                </button>
-              ))
-            ) : (
-              <div className="px-[10px] py-3 text-[12.5px] leading-[1.6] text-[var(--steel)]">
-                本栏显示当前对话关联的报告；全部分析成果请查看中央列表。
-              </div>
-            )}
-            <div className="px-[8px] pt-[4px]">
-              <Button
-                variant="quiet"
-                size="md"
-                icon="chat"
-                className="w-full justify-center"
-                onClick={() => setNav("chat")}
-              >
-                返回对话
               </Button>
             </div>
           </>

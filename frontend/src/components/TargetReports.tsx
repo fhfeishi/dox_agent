@@ -125,7 +125,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
     {selected.size ? <section aria-label="基于所选资料研究" className="my-3 rounded border p-3">
       <label className="block">研究问题<textarea aria-label="研究问题" className="mt-1 w-full rounded border p-2" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="说明你希望从所选资料中研究什么" /></label>
       <p className="mb-2 text-xs text-[var(--stone)]">将新建会话，限定 {selected.size} 份原文。{context ? `筛选背景：${context}。` : ""}报告还会按项目年份和类别预检，实际纳入范围以预检为准。</p>
-      <div className="flex flex-wrap gap-2">{[["task1", "基于所选资料提问"], ["task2", "生成对比分析"], ["task3", "分析趋势"], ["task4", "生成报告"]].map(([task, label]) =>
+      <div className="flex flex-wrap gap-2">{[["task1", "基于所选资料提问"], ["task2", "生成对比分析"], ["task3", "技术研判"], ["task4", "生成报告"]].map(([task, label]) =>
         <Button key={task} size="sm" disabled={sessionBusy || !question.trim() || Boolean(unavailable) || task === "task2" && selected.size < 2} onClick={() => void research(task)}>{label}</Button>)}</div>
       {unavailable ? <p role="alert">{unavailable} 份选中资料已失效，请清空并重新选择。</p> : null}
     </section> : null}

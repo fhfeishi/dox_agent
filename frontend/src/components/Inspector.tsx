@@ -1,5 +1,5 @@
+import { InspectorResults } from "./InspectorResults";
 import { ProjectDetail } from "./ProjectOverview";
-import { useNavigate } from "react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
@@ -38,7 +38,6 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
 }
 
 export function Inspector() {
-  const navigate = useNavigate();
   const {
     inspectorOpen,
     toggleInspector,
@@ -397,7 +396,8 @@ export function Inspector() {
           </button>
         ) : null}
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
-          {inspectorTarget.kind === "task" ? "任务预览"
+          {inspectorTarget.kind === "results" ? "成果与回收站"
+            : inspectorTarget.kind === "task" ? "任务预览"
             : inspectorTarget.kind === "template" ? "输出模板预览"
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "知识库预览"
@@ -416,6 +416,7 @@ export function Inspector() {
             : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
+            : inspectorTarget.kind === "results" ? "报告分类汇总 · 二级编辑"
             : activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答")}
         </span>
         <button type="button" aria-label={inspectorPinned ? "取消固定检查器" : "固定检查器"}
@@ -437,20 +438,25 @@ export function Inspector() {
         </button>
       </div>
 
-      {inspectorTarget.kind === "overview" ? <div className="flex gap-[4px] border-b border-[var(--hairline)] px-[14px]">
+      {inspectorTarget.kind === "overview" || inspectorTarget.kind === "results" ? <div className="flex gap-[4px] border-b border-[var(--hairline)] px-[14px]">
         {(
           [
             ["out", "概览"],
             ["cite", "引用"],
             ["src", "原文预览"],
+            ["results", "成果"],
           ] as const
         ).map(([key, label]) => (
           <button
             key={key}
             type="button"
-            onClick={() => setTab(key)}
+            onClick={() => {
+              if (key === "results") { showInspector({ kind: "results" }); return; }
+              if (inspectorTarget.kind === "results") showInspector({ kind: "overview" });
+              setTab(key);
+            }}
             className={`font-app -mb-px rounded-t-[6px] border-b-2 px-[10px] py-[8px] text-[12.5px] transition-colors ${
-              tab === key
+              (inspectorTarget.kind === "results" ? key === "results" : tab === key)
                 ? "border-b-[var(--ink)] font-semibold text-[var(--ink)]"
                 : "border-b-transparent text-[var(--steel)] hover:text-[var(--charcoal)]"
             }`}
@@ -461,6 +467,8 @@ export function Inspector() {
       </div> : null}
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[18px] pt-[18px] pb-[20px]">
+        {inspectorTarget.kind === "results" ? <InspectorResults /> : null}
+
         {inspectorTarget.kind === "task" ? (
           <>
             <SectionTitle>任务模板</SectionTitle>
@@ -469,13 +477,19 @@ export function Inspector() {
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{selectedTask.name}</h2>
                 <p className="mt-[8px] text-[12.5px] leading-[1.6] text-[var(--steel)]">{selectedTask.description}</p>
                 <div className="mt-[10px] flex flex-wrap gap-[6px]">
-                  {(selectedTask.kind !== "builtin" || ["task1", "task2", "task4"].includes(selectedTask.id)) ? <Button size="sm" disabled={taskEditBusy} onClick={() => void duplicateTask()}>复制任务</Button> : null}
+                  <Button size="sm" disabled={taskEditBusy} onClick={() => void duplicateTask()}>{selectedTask.kind === "builtin" ? "修改（复制为我的任务）" : "复制任务"}</Button>
                   {selectedTask.kind === "custom" ? <Button size="sm" disabled={taskEditBusy} onClick={() => void setTaskArchived(!(selectedTask.status === "archived" || selectedTask.archived))}>{(selectedTask.status === "archived" || selectedTask.archived) ? "恢复任务" : "归档任务"}</Button> : null}
                 </div>
                 {taskEditMessage && !taskDraft ? <p role="status" className="mt-[6px] text-[12px] text-[var(--steel)]">{taskEditMessage}</p> : null}
                 {(selectedTask.status === "archived" || selectedTask.archived) ? <p className="mt-[7px] text-[12px] text-[#8a3d00]">已归档，不能用于新会话；恢复后可继续选择。</p> : null}
                 {selectedTask.example ? <p className="mt-[10px] text-[12px] text-[var(--slate)]">示例：{selectedTask.example}</p> : null}
                 {selectedTask.output_hint ? <p className="mt-[8px] text-[12px] text-[var(--slate)]">输出：{selectedTask.output_hint}</p> : null}
+                {selectedTask.kind !== "custom" && selectedTask.prompt ? (
+                  <div className="mt-[12px]">
+                    <div className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)]">任务模板正文（内置只读）</div>
+                    <pre className="font-code mt-[6px] max-h-[260px] overflow-auto whitespace-pre-wrap rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-[11.5px] leading-[1.6] text-[var(--ink)]">{selectedTask.prompt}</pre>
+                  </div>
+                ) : null}
                 {selectedTask.kind === "custom" && taskDraft ? (
                   <div className="mt-[12px] space-y-[8px]">
                     <p className="text-[12px] text-[var(--steel)]">基于 {selectedTask.engine_task_id} · {(selectedTask.status === "archived" || selectedTask.archived) ? "已归档" : selectedTask.status === "published" ? `已发布 v${selectedTask.version}` : selectedTask.version ? `草稿 · 当前发布 v${selectedTask.version}` : "未发布草稿"}</p>
@@ -921,7 +935,7 @@ export function Inspector() {
                 使用“专项报告”任务确认需求后，在对话中的报告卡生成；本会话报告可集中预览和下载。
               </p>
               <div className="mt-[10px] flex gap-[8px]">
-                <Button size="sm" variant="ghost" onClick={() => void navigate("/tasks/results")}>查看本会话报告</Button>
+                <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "results" })}>查看成果与回收站</Button>
               </div>
             </Card>
 

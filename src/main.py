@@ -37,7 +37,7 @@ from .agent.corpora import (
     valid_corpus_name,
 )
 from .agent.graph import build_graph
-from .agent.models import tracing
+from .agent.models import check_model, proxy_setting, save_proxy_setting, tracing
 from .agent.usage import TurnUsage
 from .artifacts import ArtifactStore
 from .project_index import ProjectIndex
@@ -74,7 +74,9 @@ from .prompt_skills import (
 )
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
 from .hierarchy import HierarchyInvalid, read as read_hierarchy, synthesize as synthesize_hierarchy
-from . import topic_summary
+from . import lineage, topic_summary
+from .achievement_list import library_outputs
+from .compose_question import compose as compose_question
 from .report_figures import change_figure, insert_figures, select_figures
 from .reports import ScopeChanged, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
@@ -252,6 +254,26 @@ class WebSearchRequest(BaseModel):
         if len(set(normalized)) != len(normalized):
             raise ValueError("搜索域名不能重复")
         return normalized
+
+
+class ComposeRequest(BaseModel):
+    task: Literal["精准问答", "对比分析", "技术研判", "专项报告生成"]
+    elements: list[str] = Field(default_factory=list, max_length=8)
+    intents: list[str] = Field(default_factory=list, max_length=8)
+    corpus_ids: list[str] = Field(min_length=1, max_length=6)
+    scene: str = Field(default="", max_length=60)
+    note: str = Field(default="", max_length=200)
+
+    @field_validator("elements", "intents")
+    @classmethod
+    def _short(cls, values: list[str]) -> list[str]:
+        if any(not v.strip() or len(v) > 60 for v in values):
+            raise ValueError("关键词须为 1–60 字")
+        return [v.strip() for v in values]
+
+
+class ProxyRequest(BaseModel):
+    enabled: bool
 
 
 class OfficialRequest(BaseModel):
@@ -601,6 +623,41 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "corpus_id": default_info.id if default_info else "",
             "index_progress": active_knowledge.dense.progress if active_knowledge and active_knowledge.dense else None,
         }
+
+    @app.post("/api/compose-question")
+    async def compose_question_text(payload: ComposeRequest):
+        if not settings.model_api_key:
+            raise HTTPException(503, "模型未配置，无法生成问题；可直接在输入框中填写")
+        names = []
+        for corpus_id in payload.corpus_ids:
+            info = await asyncio.to_thread(find_corpus, corpus_id)
+            if info is None:
+                raise HTTPException(404, "知识库不存在")
+            names.append(info.name)
+        try:
+            question = await compose_question(settings, payload.task, payload.elements, payload.intents,
+                                              names, payload.scene.strip(), payload.note.strip())
+        except TimeoutError as exc:
+            raise HTTPException(504, "生成问题超时，请重试或直接填写") from exc
+        except Exception as exc:  # provider/network errors surface as one readable message
+            logger.warning("compose question failed: %s", exc)
+            raise HTTPException(502, f"生成问题失败（{type(exc).__name__}），请重试或直接填写") from exc
+        return {"question": question}
+
+    @app.get("/api/model")
+    async def model_info():
+        review = {k: os.environ[k] for k in ("REVIEW_MODEL_NAME", "REVIEW_MODEL_BASE_URL") if os.environ.get(k)}
+        return {"model": settings.model_name, "base_url": settings.model_base_url,
+                "api_key_configured": bool(settings.model_api_key),
+                "proxy": proxy_setting(settings), "review_override": review}
+
+    @app.put("/api/model/proxy")
+    async def set_model_proxy(payload: ProxyRequest):
+        return await asyncio.to_thread(save_proxy_setting, settings, payload.enabled)
+
+    @app.post("/api/model/check")
+    async def check_model_connection():
+        return await asyncio.to_thread(check_model, settings)
 
     @app.get("/api/prompt-skills")
     async def list_prompt_skills(include_archived: bool = False):
@@ -2038,6 +2095,30 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(app.state.similarity.relations, info.id, library, dimension)
         except ValueError as exc:
             raise HTTPException(409, str(exc)) from exc
+
+    @app.get("/api/corpora/{corpus_id}/lineage")
+    async def read_lineage(corpus_id: str):
+        """Technology lineage tree over the hierarchy's routes, with data-derived supporting techniques."""
+        info, library = await project_library(corpus_id)
+        return await lineage.read(info, await read_hierarchy(info, library), library)
+
+    @app.post("/api/corpora/{corpus_id}/lineage")
+    async def generate_lineage(corpus_id: str, payload: dict | None = None):
+        info, library = await project_library(corpus_id)
+        if not settings.model_api_key:
+            raise HTTPException(503, "模型未配置，无法生成技术谱系")
+        try:
+            await lineage.synthesize(info, await read_hierarchy(info, library), settings,
+                                     force=bool((payload or {}).get("force")))
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        return await lineage.read(info, await read_hierarchy(info, library), library)
+
+    @app.get("/api/corpora/{corpus_id}/outputs")
+    async def corpus_outputs(corpus_id: str):
+        """Each project's own 成果列表 (papers, patents, awards…), parsed from the report text."""
+        info, library = await project_library(corpus_id)
+        return await asyncio.to_thread(library_outputs, info.id, library, knowledge_for(info))
 
     @app.get("/api/corpora/{corpus_id}/topic-summary")
     async def read_topic_summary(corpus_id: str, dimension: Literal["场景", "问题", "技术", "成果"], name: str):

@@ -1,6 +1,10 @@
 """Offline browser acceptance: the corpus-level scene hierarchy and the achievement aspect page.
 
 Serves the built `frontend/dist` with mocked APIs and verifies:
+- 技术谱系 is the first view: generated only on click, a technique shows its place in the tree,
+  the problems it answers, the supporting techniques and its projects;
+- a scene opens its 场景 → 问题 → 技术 → 成果 logic diagram; problems link to techniques;
+- 成果 lists what the reports' own 成果列表 state;
 - a generated hierarchy lists scenes with the real counts and shows the gap against the targets;
 - entering a scene shows its issues with 已解决/待解决 and the traceable tech routes;
 - the deep-linked related-analysis page groups the eight aspects per achievement, keeps
@@ -26,6 +30,16 @@ DOC_ID = "d1"
 VERSION = "pdfv0001aaaaaaaa"
 NEW_VERSION = "pdfv0001bbbbbbbb"
 POSTS: list[str] = []
+LINEAGE_POSTS: list[str] = []
+
+
+def lineage(ready: bool):
+    return {"corpus_id": CORPUS_ID, "state": "ready" if ready else "missing", "branch": "AI与医疗", "gaps": [],
+            "categories": [{"name": "机器学习", "summary": "学习方法。",
+                            "children": [{"name": "深度学习方法", "routes": ["深度学习"]}]}] if ready else [],
+            "routes": {"深度学习": {"summary": "以深度学习提升识别。", "project_ids": ["NSFC:123456"],
+                                  "issues": [{"scene": "临床诊疗", "issue": "病灶识别困难", "state": "已解决"}]}},
+            "supporting": {"深度学习": [{"name": "数据增强", "project_ids": ["NSFC:123456"]}]}}
 
 SCENE_EVIDENCE = [{"item_id": "s1", "doc_id": DOC_ID, "version": VERSION,
                    "quote": "临床诊疗场景", "locator": {"basis": "pdf_page", "page": 3}}]
@@ -128,6 +142,17 @@ async def main():
 
             await page.route(re.compile(r".*/api/corpora/[^/]+/hierarchy$"), hierarchy_api)
 
+            async def lineage_api(route):
+                if route.request.method == "POST":
+                    LINEAGE_POSTS.append(route.request.post_data or "{}")
+                await route.fulfill(json=lineage(bool(LINEAGE_POSTS)))
+
+            await page.route(re.compile(r".*/api/corpora/[^/]+/lineage$"), lineage_api)
+            await page.route(re.compile(r".*/api/corpora/[^/]+/outputs$"), lambda r: r.fulfill(json={
+                "corpus_id": CORPUS_ID, "coverage": {"files": 1, "with_list": 1}, "projects": {"NSFC:123456": {
+                    "declared": 2, "counts": {"专利": 1, "期刊论文": 1}, "doc_id": DOC_ID, "version": VERSION,
+                    "items": [{"type": "专利", "title": "一种病灶识别方法"}, {"type": "期刊论文", "title": "Deep lesion"}]}}}))
+
             async def documents(route):
                 await route.fulfill(json=[{"doc_id": DOC_ID, "title": "示例报告", "origin": "示例报告.pdf",
                                            "version": document_version["value"], "captured_at": "", "kind": "pdf",
@@ -144,25 +169,48 @@ async def main():
 
             block = page.get_by_label("场景层级", exact=True)
             tabs = block.get_by_role("tablist", name="四维浏览")
-            # 四个按钮显示实际数量与目标，缺量不被写成达标。
+            # 技术谱系是第一个视图；只在点击时生成，不在打开页面时调用模型。
+            await expect(tabs.get_by_role("tab", name="技术谱系 尚未生成")).to_have_attribute("aria-selected", "true")
+            assert LINEAGE_POSTS == [], LINEAGE_POSTS
+            await block.get_by_role("button", name="生成技术谱系").click()
+            await expect(tabs.get_by_role("tab", name="技术谱系 1 个技术体系 · 1 条典型技术")).to_be_visible()
+            assert LINEAGE_POSTS == ['{"force":true}'], LINEAGE_POSTS
+            await block.get_by_role("button", name="深度学习", exact=True).click()
+            detail = block.get_by_label("技术详情")
+            await expect(detail).to_contain_text("AI与医疗 › 机器学习 › 深度学习方法")
+            await expect(detail).to_contain_text("数据增强")
+            await detail.get_by_role("button", name="病灶识别困难").click()
+            await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_have_attribute("aria-selected", "true")
+
+            # 四个维度按钮显示实际数量与目标，缺量不被写成达标。
             await expect(tabs.get_by_role("tab", name="场景 1 类 · 目标 6")).to_be_visible()
-            await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_be_visible()
             await expect(block.get_by_text("未达目标或未采用的条目", exact=False)).to_be_visible()
             # 主题归纳等视图移到下方，默认不展开。
             await expect(page.get_by_label("四维概览")).to_have_count(0)
             await expect(page.get_by_label("更多视图").get_by_role("button", name="项目关系")).to_be_visible()
 
-            await block.get_by_role("button", name="查看场景 临床诊疗").click()
-            await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_have_attribute("aria-selected", "true")
             await expect(block.get_by_text("已解决", exact=True)).to_be_visible()
             await expect(block.get_by_text("待解决", exact=True)).to_be_visible()
             await expect(block.get_by_text("本库暂无对应技术路线", exact=False)).to_be_visible()
             assert "scene=" in page.url, page.url
+            # 问题卡片上的技术可直接跳回谱系位置。
+            await block.get_by_role("button", name="深度学习", exact=True).click()
+            await expect(block.get_by_label("技术详情")).to_contain_text("针对的问题")
+
+            # 场景卡片展开逻辑简图，点击节点高亮链条。
+            await tabs.get_by_role("tab", name="场景 1 类 · 目标 6").click()
+            await block.get_by_role("button", name="查看场景 临床诊疗").click()
+            flow = block.get_by_label("临床诊疗 逻辑简图")
+            await expect(flow).to_be_visible()
+            await flow.get_by_role("button", name=re.compile("^标注数据不足")).click()
+            await expect(flow.get_by_role("button", name=re.compile("^标注数据不足"))).to_have_attribute("aria-pressed", "true")
+
             await tabs.get_by_role("tab", name="技术 1 条技术路线").click()
-            await expect(block.get_by_text("深度学习", exact=True)).to_be_visible()
+            await expect(block.get_by_text("机器学习 › 深度学习方法", exact=True)).to_be_visible()
 
             # 成果与成果分析；深层链刷新后仍停在同一视图。
-            await tabs.get_by_role("tab", name="研究成果 1 项标志性成果").click()
+            await tabs.get_by_role("tab", name="成果 1 项标志性成果").click()
+            await expect(block.get_by_label("临床诊疗 成果板块")).to_contain_text("一种病灶识别方法")
             await expect(block.get_by_text("原型系统", exact=True).first).to_be_visible()
             await expect(block.get_by_label("临床诊疗 成果分析")).to_contain_text("人才/团队 · 在研")
             await block.get_by_text("按成果查看各方面完成度与原文", exact=True).click()

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { FACET_COLORS, hierarchyQuery, type Project } from "../projects";
+import { CATEGORY_COLORS, FACET_COLORS, hierarchyQuery, lineageQuery, locateRoute, type Project } from "../projects";
 import { Button } from "./ui";
 
 /** NSFC departments by the first letter of the application code. */
@@ -48,6 +48,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
   corpusId: string; projects: Project[]; title: string; onOpen: (projectId: string) => void;
 }) {
   const hierarchy = useQuery(hierarchyQuery(corpusId)).data;
+  const lineage = useQuery(lineageQuery(corpusId)).data;
   const [year, setYear] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [relation, setRelation] = useState<Relation>("问题");
@@ -143,6 +144,26 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
     }
     return out;
   }, [dated, memberOf, groups, relation]);
+  // Hue = the project's category under the current relation (scene, core issue, or lineage
+  // system for 技术); depth = how many projects it relates to. Uncategorised projects stay grey.
+  const categories = useMemo(() => {
+    const of = new Map<string, string>();
+    for (const scene of hierarchy?.state === "missing" ? [] : hierarchy?.scenes ?? []) {
+      if (relation === "场景") for (const id of scene.project_ids) if (!of.has(id)) of.set(id, scene.name);
+      for (const issue of scene.issues) {
+        if (relation === "问题") for (const id of issue.project_ids) if (!of.has(id)) of.set(id, issue.name);
+        if (relation === "技术") for (const route of issue.routes) {
+          const system = locateRoute(lineage, route.title)?.category.name ?? "谱系未归类";
+          for (const id of route.project_ids) if (!of.has(id)) of.set(id, system);
+        }
+      }
+    }
+    const names = [...new Set(of.values())];
+    const hue = new Map(names.map((name, i) => [name, names.length <= CATEGORY_COLORS.length
+      ? CATEGORY_COLORS[i] : `hsl(${Math.round(i * 360 / names.length)} 62% 48%)`]));
+    return { of, hue, names };
+  }, [hierarchy, lineage, relation]);
+  const hueOf = (id: string) => categories.hue.get(categories.of.get(id) ?? "") ?? "#9aa3b5";
   const degreeOf = (id: string) => graded ? graded.degree[id] ?? 0 : degree.get(id) ?? 0;
   const maxDegree = Math.max(1, ...dated.map((p) => degreeOf(p.project_id)));
   const depth = (id: string) => { const d = degreeOf(id); return d ? 0.28 + 0.72 * Math.sqrt(d / maxDegree) : 0.1; };
@@ -237,9 +258,9 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
                 onClick={() => setSelected(active ? null : p.project_id)}
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(active ? null : p.project_id); } }}
                 opacity={dim(p) ? 0.15 : 1} className="cursor-pointer outline-none" data-degree={degreeOf(p.project_id)}>
-                <title>{`${p.title} · ${p.number} · ${p.start_year} · ${relation}关联 ${degreeOf(p.project_id)} 个项目`}</title>
-                <circle cx={point.x} cy={point.y} r={active ? 8 : linked.has(p.project_id) ? Math.max(5, point.r) : point.r} fill={active ? "#fff" : color} fillOpacity={active ? 1 : depth(p.project_id)}
-                  stroke={active ? color : (degreeOf(p.project_id) ? "#fff" : "#cbd2df")} strokeWidth={active ? 3 : 1} />
+                <title>{`${p.title} · ${p.number} · ${p.start_year} · ${categories.of.get(p.project_id) ?? `未归入${relation}类别`} · ${relation}关联 ${degreeOf(p.project_id)} 个项目`}</title>
+                <circle cx={point.x} cy={point.y} r={active ? 8 : linked.has(p.project_id) ? Math.max(5, point.r) : point.r} fill={active ? "#fff" : hueOf(p.project_id)} fillOpacity={active ? 1 : depth(p.project_id)}
+                  stroke={active ? hueOf(p.project_id) : (degreeOf(p.project_id) ? "#fff" : "#cbd2df")} strokeWidth={active ? 3 : 1} />
               </g>;
             })}
             {focus ? (() => {
@@ -283,12 +304,17 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
         ) : null}
       </div>
       <div className="flex flex-wrap items-center gap-3 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">
-        <span className="flex items-center gap-2" aria-label="颜色深浅图例">关联少
-          <span className="inline-block h-2.5 w-24 rounded-full" style={{ background: `linear-gradient(90deg, ${color}26, ${color})` }} />关联多（最多 {maxDegree} 个）</span>
+        <span className="flex items-center gap-2" aria-label="颜色深浅图例">颜色深浅：关联少
+          <span className="inline-block h-2.5 w-24 rounded-full" style={{ background: "linear-gradient(90deg, #6b728026, #6b7280)" }} />关联多（最多 {maxDegree} 个）</span>
         <span className="mx-1 h-3 w-px bg-[var(--hairline-strong)]" />扇区按学部：
         {[...new Set(layout.sectors.map((s) => s.key[0]))].filter((k) => DEPARTMENTS[k]).map((k) => (
           <span key={k} className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: DEPARTMENTS[k][1] }} />{DEPARTMENTS[k][0]}</span>
         ))}
+      </div>
+      <div aria-label="颜色类别图例" className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">
+        <span>颜色 = {relation === "技术" ? "技术谱系体系" : relation === "场景" ? "场景类别" : "核心问题"}：</span>
+        {categories.names.map((name) => <span key={name} className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: categories.hue.get(name) }} />{name}</span>)}
+        <span className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: "#9aa3b5" }} />未归入类别</span>
       </div>
     </section>
   );

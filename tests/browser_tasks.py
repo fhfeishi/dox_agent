@@ -19,7 +19,7 @@ from playwright.async_api import async_playwright, expect
 TASKS = [
     {"id": "task1", "name": "精准问答", "description": "回答具体问题。", "output_hint": "结论 + 逐条 [n] 引用", "has_template": False},
     {"id": "task2", "name": "对比分析", "description": "跨文档对比。", "output_hint": "对比维度表 + 可比性前提", "has_template": False},
-    {"id": "task3", "name": "趋势推测", "description": "讨论领域走向。", "output_hint": "事实/推断分段 + 置信度", "has_template": False},
+    {"id": "task3", "name": "技术研判", "description": "研判技术路线。", "output_hint": "事实/推断分段 + 置信度", "has_template": False},
     {"id": "task4", "name": "专项报告", "description": "按模板生成报告。", "output_hint": "Markdown 报告 + 来源 + 局限", "has_template": True,
      "templates": ["achievements", "hotspots", "future_directions", "comprehensive"]},
 ]
@@ -27,7 +27,7 @@ TASKS = [
 TEMPLATES = [
     {"id": "achievements", "name": "成果报告"},
     {"id": "hotspots", "name": "热点报告"},
-    {"id": "future_directions", "name": "未来方向报告"},
+    {"id": "future_directions", "name": "技术研判报告"},
     {"id": "comprehensive", "name": "综合报告"},
 ]
 

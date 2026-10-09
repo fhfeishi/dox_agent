@@ -259,7 +259,7 @@ async def main():
                     f"{origin}/api/templates/custom/{custom_template['id']}/draft",
                     data={"revision": latest_template["revision"], "name": "未发布草稿"})).status == 200
                 await page.get_by_role("button", name="任务", exact=True).first.click()
-                await page.get_by_role("button", name=re.compile("趋势推测.*查看任务详情")).click()
+                await page.get_by_role("button", name=re.compile("技术研判.*查看任务详情")).click()
                 await expect(page.get_by_role("complementary", name="检查器").get_by_role("button", name="复制任务")).to_have_count(0)
                 await page.get_by_role("button", name=re.compile(r"^专项报告.*查看任务详情")).first.click()
                 await page.get_by_role("button", name="使用此任务").click()

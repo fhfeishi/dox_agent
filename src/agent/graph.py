@@ -67,7 +67,7 @@ class State(TypedDict, total=False):
 
 # G10b intake: deterministic report-parameter extraction (later turns override earlier ones).
 _TEMPLATE_KEYWORDS = (("成果", "achievements"), ("热点", "hotspots"),
-                      ("未来", "future_directions"), ("趋势", "future_directions"),
+                      ("未来", "future_directions"), ("趋势", "future_directions"), ("研判", "future_directions"),
                       ("综合", "comprehensive"))
 _YEAR_RANGE = re.compile(r"(\d{4})\s*(?:[-–—~至到]|--)\s*(\d{4})")
 _YEAR_SINGLE = re.compile(r"(?<!\d)(\d{4})(?!\d)")

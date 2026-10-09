@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     model_api_key: SecretStr | None = Field(
         default=None, validation_alias=AliasChoices("MODEL_API_KEY", "DEEPSEEK_API_KEY")
     )
+    # Model calls connect directly unless enabled here or in the settings panel (panel wins).
+    model_use_proxy: bool = False
     # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.
     # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。
     corpora_root: Path = CORPORA_ROOT_DEFAULT

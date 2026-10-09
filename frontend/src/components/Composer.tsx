@@ -1,3 +1,4 @@
+import { QuickAsk } from "./QuickAsk";
 import { scopeProblem } from "../scopeEligibility";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../store";
@@ -317,6 +318,8 @@ export function Composer() {
             </span>
           ) : null}
         </div>
+
+        {!editing ? <QuickAsk /> : null}
 
         <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
           本次配置：{activeTask?.name ?? taskId} · {corpusIds.length

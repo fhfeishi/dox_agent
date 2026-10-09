@@ -106,3 +106,52 @@ export async function generateTopicSummary(corpus: string, dimension: string, na
   if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "主题归纳未生成");
   return response.json();
 }
+
+/** Technology lineage (query 2026-1009 ④): category → direction → route, per corpus branch. */
+export type LineageCategory = { name: string; summary: string; children: { name: string; routes: string[] }[] };
+export type Lineage = {
+  corpus_id: string; state: "missing" | "stale" | "ready"; branch: string; generated_at?: string; error?: string;
+  categories: LineageCategory[]; gaps: string[];
+  routes: Record<string, { summary: string; project_ids: string[]; issues: { scene: string; issue: string; state: string }[] }>;
+  supporting: Record<string, { name: string; project_ids: string[] }[]>;
+};
+export const lineageQuery = (corpus: string) => ({
+  queryKey: ["library", corpus, "lineage"],
+  queryFn: async ({ signal }: { signal: AbortSignal }): Promise<Lineage> => {
+    const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/lineage`, { signal });
+    if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "无法读取技术谱系");
+    return response.json();
+  },
+});
+export async function buildLineage(corpus: string): Promise<Lineage> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/lineage`, {
+    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ force: true }),
+  });
+  if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "技术谱系生成失败");
+  return response.json();
+}
+/** Position of a route in the tree, for parent / sibling navigation. */
+export function locateRoute(lineage: Lineage | undefined, title: string) {
+  for (const category of lineage?.categories ?? []) {
+    for (const child of category.children) {
+      if (child.routes.includes(title)) return { category, child };
+    }
+  }
+  return null;
+}
+
+/** Each report's own 成果列表 (papers, patents, awards…), keyed by project. */
+export type ProjectOutputs = { declared: number; counts: Record<string, number>; items: { type: string; title: string }[]; doc_id: string; version: string };
+export type CorpusOutputs = { corpus_id: string; projects: Record<string, ProjectOutputs>; coverage: { files: number; with_list: number } };
+export const outputsQuery = (corpus: string) => ({
+  queryKey: ["library", corpus, "outputs"],
+  queryFn: async ({ signal }: { signal: AbortSignal }): Promise<CorpusOutputs> => {
+    const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/outputs`, { signal });
+    if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "无法读取成果列表");
+    return response.json();
+  },
+});
+
+/** Distinct hues for categories (scenes, issues, lineage classes) and corpus branches. */
+export const CATEGORY_COLORS = ["#dc5b62", "#478bdb", "#2d9d7e", "#d9a92f", "#7c5cd6", "#e07b39", "#1f9fb4", "#b5508f", "#6b8e23", "#8d6e63"];
+export const LINEAGE_COLOR = "#7c5cd6";

@@ -36,7 +36,7 @@ def verify(client,findings,technical,clauses,calculations,progress):
             if isinstance(result.get('limitations'),list): notes.extend(x[:1500] for x in result['limitations'] if isinstance(x,str))
         for item in batch:
             action=accepted.get(item['id'])
-            protected=any(tools.get(t,{}).get('status')=='issue' for t in item.get('tool_ids',[]))
+            protected=(item.get('origin')=='program' and item.get('status') in ('pass','issue','na')) or any(tools.get(t,{}).get('status') in ('pass','issue','na') for t in item.get('tool_ids',[]))
             if not action:
                 unresolved.append(item['id']); item['verification_status']='pending'
                 item['verification_note']='最终模型复核未完成；本条需人工复核。'+('程序已确认的计算问题仍保留。' if protected else '')

@@ -308,7 +308,7 @@ export function Composer() {
           {emptyScopeCorpus ? (
             <span className="flex items-center gap-[6px] text-[11px] text-[#9a6500]">
               「{emptyScopeCorpus.name}」暂无已入库文档
-              <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id)}>
+              <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id, "files")}>
                 添加文档
               </button>
               <button type="button" className="text-[var(--link)] hover:underline disabled:opacity-50" disabled={ingestBusy} onClick={() => void runCorpusIngest(emptyScopeCorpus.id)}>
@@ -446,7 +446,7 @@ export function Composer() {
         {workspace.saveState !== "saved" ? <p role="status" className="my-2 text-sm">{workspace.saveState === "saving" ? "正在保存范围…" : "范围未保存"}{workspace.saveState === "failed" && <button onClick={() => void workspace.retrySave().catch(() => undefined)}>重试保存</button>}</p> : null}
         {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标知识库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标知识库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
           {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
-          <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
+          <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget, "files"); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}
         {/* input */}
         <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea

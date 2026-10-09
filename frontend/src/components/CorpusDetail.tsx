@@ -5,10 +5,12 @@ import { useApp } from "../store";
 import { useDocuments } from "../useDocuments";
 import { CorpusFiles } from "./CorpusFiles";
 import { TargetReports } from "./TargetReports";
+import { TopicAdmin } from "./TopicManager";
+import { ProjectOverview } from "./ProjectOverview";
 import { Button, Pill } from "./ui";
 import { Icon } from "./Icons";
 
-const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "知识库" };
+const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
 
 /** Corpus main-area view: 资料（源文件管理）与四维浏览（报告单元）。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
@@ -43,7 +45,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     setDescription(corpus?.description ?? "");
   }, [corpus?.description]);
 
-  if (!corpus) return <p role="status" className="p-6">知识库正在读取或已不可用。<button onClick={onClose}>返回知识库列表</button></p>;
+  if (!corpus) return <p role="status" className="p-6">资料库正在读取或已不可用。<button onClick={onClose}>返回资料库列表</button></p>;
   const isActive = corpusIds.includes(corpus.id);
   const status =
     corpus.missing
@@ -71,9 +73,9 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
   }
 
   return (
-    <section aria-label={`知识库 ${corpus.name}`} className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
+    <section aria-label={`资料库 ${corpus.name}`} className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
-        <button type="button" aria-label="返回知识库列表" onClick={onClose}
+        <button type="button" aria-label="返回资料库列表" onClick={onClose}
           className="grid size-[26px] place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]">
           <Icon name="chevronLeft" size={14} />
         </button>
@@ -82,19 +84,19 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {KIND_LABEL[corpus.kind] ?? corpus.kind}
           {corpus.domain && corpus.domain !== "unknown" ? ` · ${corpus.domain}` : ""} · {corpus.docs_count} 份
         </span>
-        <nav aria-label="库内视图" className="flex items-center gap-[4px]">
+        <nav aria-label="库内视图" className="flex shrink-0 items-center gap-[4px]">
           {(["files", "target"] as const).map((key) => (
             <button key={key} type="button" onClick={() => setCorpusView(key)}
-              className={`rounded-[6px] px-[9px] py-[5px] text-[12px] ${corpusView === key
+              className={`whitespace-nowrap rounded-[6px] px-[9px] py-[5px] text-[12px] ${corpusView === key
                 ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
-              {key === "files" ? "资料" : "四维浏览"}
+              {key === "files" ? "管理资料" : "四维浏览"}
             </button>
           ))}
         </nav>
       </header>
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[24px] py-[16px]">
-      <div className="flex flex-wrap items-center gap-[8px]">
+      {corpusView === "files" || corpus.missing ? <div className="flex flex-wrap items-center gap-[8px]">
         {!corpus.missing && isActive ? (
           <Button variant="ghost" size="sm" disabled={corpusIds.length <= 1} onClick={() => setSearchCorpusIds(corpusIds.filter((id) => id !== corpus.id))}>从当前对话移除</Button>
         ) : !corpus.missing ? (
@@ -119,7 +121,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           >
             <input
               autoFocus
-              aria-label="知识库名称"
+              aria-label="资料库名称"
               className="font-app w-[150px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-[12.5px] outline-none focus:border-[var(--primary)]"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -144,7 +146,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               disabled={busy}
               title="清理索引（保留文件）"
               onClick={() => {
-                if (window.confirm(`清理知识库「${corpus.name}」的索引？源文件保留。`)) {
+                if (window.confirm(`清理资料库「${corpus.name}」的索引？源文件保留。`)) {
                   void run(async () => {
                     await deleteCorpus(corpus.id);
                     onClose();
@@ -155,10 +157,10 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               清理索引
             </Button>
             <Button variant="ghost" size="sm" className="text-[var(--red)]" disabled={busy} onClick={() => {
-              if (window.confirm(`删除知识库「${corpus.name}」及其源文件和索引？此操作不可撤销。`)) {
+              if (window.confirm(`删除资料库「${corpus.name}」及其源文件和索引？此操作不可撤销。`)) {
                 void run(async () => { await deleteCorpus(corpus.id, true); onClose(); });
               }
-            }}>删除知识库及文件</Button>
+            }}>删除资料库及文件</Button>
           </>
         ) : (
           <Button variant="ghost" size="sm" className="text-[var(--red)]" disabled={busy} onClick={() => {
@@ -167,7 +169,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             }
           }}>移除失效记录</Button>
         )}
-      </div>
+      </div> : null}
 
       {notice ? (
         <p role="alert" className="text-[12px] text-[var(--red)]">
@@ -175,10 +177,10 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
         </p>
       ) : null}
 
-      {!corpus.missing ? (
+      {!corpus.missing && corpusView === "files" ? (
         <section className="rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-[12.5px]">
           <div className="flex items-center gap-[8px]">
-            <span className="font-medium text-[var(--charcoal)]">知识库说明</span>
+            <span className="font-medium text-[var(--charcoal)]">资料库说明</span>
             <span className="flex-1" />
             {editingDescription ? (
               <>
@@ -195,12 +197,12 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {editingDescription ? (
             <textarea
               autoFocus
-              aria-label="知识库说明"
+              aria-label="资料库说明"
               rows={3}
               maxLength={1000}
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-              placeholder="简要说明这个知识库收录什么资料（可选）"
+              placeholder="简要说明这个资料库收录什么资料（可选）"
               className="font-app mt-[8px] w-full rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[7px] text-[12.5px] leading-[1.5] text-[var(--ink)] outline-none focus:border-[var(--primary)]"
             />
           ) : (
@@ -212,7 +214,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
       {corpus.missing ? (
         <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-[12px]">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>
-          <p className="text-[var(--steel)]">若你已在知识库根目录中重新放置或改名该文件夹，请明确选择对应目录。系统不会按相似名称自动合并。</p>
+          <p className="text-[var(--steel)]">若你已在资料库根目录中重新放置或改名该文件夹，请明确选择对应目录。系统不会按相似名称自动合并。</p>
           <div className="flex flex-wrap gap-[8px]">
             <select aria-label="重新关联目录" className="min-w-[180px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px]" value={directory} onChange={(event) => setDirectory(event.target.value)}>
               <option value="">选择未关联目录</option>
@@ -238,8 +240,9 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               onRetryImport={() => runCorpusIngest(corpus.id)}
               connected={connected}
             />
-          ) : (
-            <TargetReports corpusId={corpus.id} />
+          ) : null}
+          {corpusView === "files" ? <TopicAdmin corpusId={corpus.id} /> : (
+            <>{corpus.description ? <p className="mt-3 text-sm leading-6 text-[var(--steel)]">{corpus.description}</p> : null}<ProjectOverview corpusId={corpus.id} corpusName={corpus.name} /><details className="mt-5"><summary className="cursor-pointer text-sm text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details></>
           )}
           {corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
             {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :

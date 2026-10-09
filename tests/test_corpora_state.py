@@ -145,7 +145,7 @@ def test_user_can_read_builtin_output_templates(tmp_path):
     app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app) as client:
         items = client.get("/api/templates").json()
-        assert {item["id"] for item in items} == {"achievements", "hotspots", "future_directions", "comprehensive"}
+        assert {item["id"] for item in items} == {"achievements", "hotspots", "future_directions", "comprehensive", "intelligence"}
         detail = client.get("/api/templates/comprehensive")
         assert detail.status_code == 200
         assert "综合报告" in detail.json()["name"] and detail.json()["content"]

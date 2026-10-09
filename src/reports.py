@@ -211,8 +211,11 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     """Generate report Markdown from the selected reports and the template instruction.
 
     ``template_content`` lets a published custom template's Markdown replace the built-in
-    structure; variables already substituted by the caller.
+    structure; variables already substituted by the caller. ``params["hierarchy_record"]`` is the
+    library's stored scene hierarchy (需求 §17 R-SCN-07); the server renders it from that frozen
+    record and replaces the key with a small snapshot, so the model never rewrites it.
     """
+    hierarchy_record = params.pop("hierarchy_record", None)
     template_id = params["template_id"]
     # Focus adds retrieval candidates inside the confirmed year/document scope; it is not a scope filter.
     query = params.get("domain", "")
@@ -334,12 +337,29 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
             labels = {item["key"]: item["label"] for item in task_definition.get("parameters", [])}
             custom_instruction += "\n本次任务输入（仅影响写作，不放宽资料范围）：\n" + "\n".join(
                 f"{labels.get(key, key)}（{key}）：{value}" for key, value in task_values.items())
+    # Imported here because hierarchy reads the project index, which reads targets, which reads
+    # this module; a module-level import would close the cycle.
+    from .hierarchy import render_section as render_hierarchy
+
+    hierarchy_section = render_hierarchy(hierarchy_record, sources)
+    if hierarchy_section:
+        params["hierarchy"] = {
+            "state": hierarchy_record.get("state"), "fingerprint": hierarchy_record.get("fingerprint"),
+            "generated_at": hierarchy_record.get("generated_at"),
+            "scenes": len(hierarchy_record.get("scenes", [])),
+            "coverage": hierarchy_record.get("coverage", {}).get("targets", {}),
+        }
     messages = [
         SystemMessage(content=task_instruction("task4", phase="report") + custom_instruction
                       + "\n\n直接完成最终 Markdown，由你在内部组织章节与执行摘要，无需用户审批大纲。"
                         "先写有来源的核心发现，说明筛选边界、相互冲突的证据和局限。"
                         "每个关键事实用下方存在的 [n] 编号引用；不能编造来源、数据或应用成效。"
-                        "没有足够资料的结论写明资料不足，推断明确标注。提交前核对引用编号。"
+                        + ("\n\n系统会在正文末尾、来源附录之前附加一章“场景层级（按四维归纳结果生成）”，"
+                           "其内容由程序按本库四维归纳结果渲染，与本章的编号引用同一份来源列表。"
+                           "该章的场景、问题、技术路线、成果与方面完成度以它为准：正文可以解释这些条目，"
+                           "但不得改写其名称、状态或数量，也不得声称库里没有它列出的条目。"
+                           if hierarchy_section else "")
+                        + "没有足够资料的结论写明资料不足，推断明确标注。提交前核对引用编号。"
                       + "\n\n模板章节：\n" + (template_content if template_content is not None
                                               else report_template(template_id))),
         HumanMessage(content=brief + "\n\n已核定范围：\n" + header + "\n\n可引用原文证据：\n" + reports_text),
@@ -350,6 +370,11 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
                     and not validate_citations(markdown, sources))
 
     def with_sources(markdown: str) -> str:
+        if hierarchy_section:
+            marker = "\n## 来源附录（系统记录）"
+            markdown = markdown.rstrip()
+            markdown = (markdown.replace(marker, "\n" + hierarchy_section + "## 来源附录（系统记录）", 1)
+                        if marker in markdown else markdown + "\n" + hierarchy_section)
         lines = []
         for source in sources:
             page = f"，第{source['page']}页" if source.get("page") else ""

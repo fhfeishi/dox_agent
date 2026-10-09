@@ -5,6 +5,7 @@ import zipfile
 from pathlib import Path
 
 from docx import Document
+from docx.oxml.ns import qn
 from pypdf import PdfReader
 
 
@@ -13,32 +14,138 @@ def compact(text): return re.sub(r'\s+', '', text)
 def clean(text):
     return '\n'.join(line.strip() for line in text.splitlines() if not re.fullmatch(r'\s*(NSFC\s*\d{4}|第\s*\d+\s*页|版本[：:].*|国家自然科学基金申请书\s*\d{4}版)\s*', line))
 
+NUMBERED = [(r'^第[一二三四五六七八九十百]+[章节部分篇]', 1), (r'^[一二三四五六七八九十]+[、.．]', 1),
+            (r'^[（(][一二三四五六七八九十]+[）)]', 2), (r'^\d{1,2}\.\d{1,2}(\.\d{1,2})?(?![\d.])[、.．\s]?[^\d\s.\-–—~至]', 2)]
+
+
+def heading_level(text):
+    """Explicit numbered titles only; ordinary list items do not end a section."""
+    text = text.strip()
+    if not text or len(compact(text)) > 40 or re.search(r'[。；;]$', text):
+        return 0
+    return next((level for pattern, level in NUMBERED if re.match(pattern, text)), 0)
+
+
+def visible(text):
+    """Visible Markdown text: markup, link targets and table rules are not counted."""
+    text = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', text)
+    text = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', text)
+    text = re.sub(r'^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$', '', text, flags=re.M)
+    text = re.sub(r'^\s{0,3}(#{1,6}\s+|>\s?|[-*+]\s+)', '', text, flags=re.M)
+    return re.sub(r'[|*_`~]', '', text)
+
+
+def text_blocks(path, markdown):
+    """Paragraph blocks with explicit heading levels; images stay visible as unread content."""
+    blocks, lines = [], []
+
+    def flush():
+        if lines:
+            raw = '\n'.join(lines)
+            blocks.append({'text': clean(visible(raw) if markdown else raw), 'level': 0,
+                           'image': markdown and bool(re.search(r'!\[[^\]]*\]\([^)]*\)', raw))})
+            lines.clear()
+    for line in path.read_text(encoding='utf-8-sig').splitlines():
+        heading = re.match(r'^\s{0,3}(#{1,6})\s+(.+)$', line) if markdown else None
+        if heading or (not markdown and heading_level(line)):
+            flush()
+            blocks.append({'text': heading.group(2).strip() if heading else line.strip(),
+                           'level': len(heading.group(1)) if heading else heading_level(line), 'image': False})
+        elif line.strip():
+            lines.append(line)
+        else:
+            flush()
+    flush()
+    return blocks
+
+
+def _rfonts(rpr, attr):
+    if rpr is None:
+        return None
+    if attr == 'size':
+        node = rpr.find(qn('w:sz'))
+        return float(node.get(qn('w:val'))) / 2 if node is not None and node.get(qn('w:val')) else None
+    node = rpr.find(qn('w:rFonts'))
+    return node.get(qn('w:eastAsia')) if node is not None and node.get(qn('w:eastAsia')) else None
+
+
+def run_fonts(document, paragraph):
+    """Effective East-Asian font and size per text run: run → paragraph style chain → defaults.
+
+    A theme font or a value no level states stays None, so the check reports it as unread
+    instead of guessing.
+    """
+    defaults = document.styles.element.find(qn('w:docDefaults'))
+    default_rpr = defaults.find(qn('w:rPrDefault') + '/' + qn('w:rPr')) if defaults is not None else None
+    out = []
+    for run in paragraph.runs:
+        if not run.text.strip():
+            continue
+        value = {}
+        for attr in ('font', 'size'):
+            found = _rfonts(run._r.rPr, attr)
+            style = paragraph.style
+            while found is None and style is not None:
+                found = _rfonts(style.element.rPr, attr)
+                style = style.base_style
+            value[attr] = found if found is not None else _rfonts(default_rpr, attr)
+        out.append([value['font'], value['size'], len(compact(run.text))])
+    return out
+
+
 def parse_document(path: Path, extract_fields=True):
-    if path.suffix.lower() == '.pdf':
+    suffix = path.suffix.lower()
+    if suffix == '.pdf':
         reader = PdfReader(path)
         if reader.is_encrypted: raise ValueError('暂不支持加密 PDF，请提供可读取的版本。')
         if len(reader.pages) > 250: raise ValueError('演示版最多支持 250 页。')
-        pages = [{'page': i+1, 'text': clean(p.extract_text() or '')} for i,p in enumerate(reader.pages)]
+        pages, blocks = [], []
+        for i, p in enumerate(reader.pages):
+            text = clean(p.extract_text() or '')
+            try: image = bool(p.images)
+            except Exception: image = True  # Unknown embedded content is not treated as fully read.
+            pages.append({'page': i+1, 'text': text})
+            blocks.extend({'page': i+1, 'text': line, 'level': heading_level(line), 'image': image}
+                          for line in text.splitlines() if line.strip())
         kind = 'pdf'
-    elif path.suffix.lower() == '.doc':
-        from .legacy_doc import read_doc
-        text=read_doc(path)
-        pages=[{'page':i+1,'text':clean(t)} for i,t in enumerate(t for t in re.split(r'[\r\n]+',text.replace('\x07','\t')) if t.strip())]
-        kind='doc'
-    elif path.suffix.lower() == '.docx':
+    elif suffix in ('.doc', '.md', '.txt'):
+        if suffix == '.doc':
+            from .legacy_doc import read_doc
+            parts = [t for t in re.split(r'[\r\n]+', read_doc(path).replace('\x07', '\t')) if t.strip()]
+            raw = [{'text': clean(t), 'level': heading_level(t), 'image': False} for t in parts]
+        else:
+            try: raw = text_blocks(path, suffix == '.md')
+            except UnicodeDecodeError: raise ValueError('文本文件须为 UTF-8 编码。') from None
+        raw = [b for b in raw if b['text'].strip()]
+        blocks = [{**b, 'page': i+1} for i, b in enumerate(raw)]
+        pages = [{'page': b['page'], 'text': b['text']} for b in blocks]
+        kind = suffix[1:]
+    elif suffix == '.docx':
         with zipfile.ZipFile(path) as z:
             if sum(i.file_size for i in z.infolist()) > 100*1024*1024: raise ValueError('DOCX 解压后过大。')
-        blocks = []
-        for b in Document(path).iter_inner_content():
-            blocks.append(b.text if hasattr(b,'text') else '\n'.join('\t'.join(c.text for c in r.cells) for r in b.rows))
-        pages = [{'page': i+1, 'text': clean(t)} for i,t in enumerate(t for t in blocks if t.strip())]
+        raw = []
+        document = Document(path)
+        for b in document.iter_inner_content():
+            if hasattr(b, 'text'):
+                style = (b.style.name if b.style is not None else '') or ''
+                match = re.match(r'^(?:Heading|标题)\s*(\d)', style)
+                image = bool(b._p.xpath('.//w:drawing|.//w:pict'))
+                raw.append({'text': clean(b.text), 'image': image, 'fonts': run_fonts(document, b),
+                            'level': int(match.group(1)) if match else (1 if style == 'Title' else heading_level(b.text))})
+            else:
+                raw.append({'text': clean('\n'.join('\t'.join(c.text for c in r.cells) for r in b.rows)), 'level': 0, 'image': False})
+        # A paragraph holding only a picture is kept so its unread content stays visible.
+        raw = [b for b in raw if b['text'].strip() or b['image']]
+        blocks = [{**b, 'page': i+1} for i, b in enumerate(raw)]
+        pages = [{'page': b['page'], 'text': b['text']} for b in blocks]
         kind = 'docx'
-    else: raise ValueError('请上传 PDF、DOC 或 DOCX 文件。')
+    else: raise ValueError('请上传 PDF、DOC、DOCX、Markdown 或 TXT 文件。')
+    blocks = [{**b, 'id': f'k{i+1}'} for i, b in enumerate(blocks)]
     full = '\n'.join(p['text'] for p in pages)
     if len(compact(full)) < 100: raise ValueError('未提取到足够文字。扫描件暂不自动 OCR，请上传文字型 PDF 或 DOCX。')
     if len(full) > 1500000: raise ValueError('文字量超过演示版上限。')
     if not extract_fields:
-        return {'pages':pages,'kind':kind,'metadata':{'title':'','fund':'','category':'','year':None,'birth_date':'','budget':None,'domain':''},'warnings':[f'第 {p["page"]} 页文字较少，可能含扫描内容。' for p in pages if kind=='pdf' and len(compact(p['text']))<30]}
+        return {'pages':pages,'blocks':blocks,'kind':kind,'metadata':{'title':'','fund':'','category':'','year':None,'birth_date':'','budget':None,'domain':''},'warnings':[f'第 {p["page"]} 页文字较少，可能含扫描内容。' for p in pages if kind=='pdf' and len(compact(p['text']))<30]}
     raw_head='\n'.join(p['text'] for p in (pages[:15] if kind=='pdf' else pages[:80]))
     head=compact(raw_head)
     units=[t.strip() for t in re.split(r'[\r\n\t]+',raw_head) if t.strip()]
@@ -80,7 +187,7 @@ def parse_document(path: Path, extract_fields=True):
         if term in title: domain=value; break
     warnings=[f'第 {p["page"]} 页文字较少，可能包含扫描内容。' for p in pages if kind=='pdf' and len(compact(p['text']))<30]
     if not title: warnings.append('未能可靠识别项目名称，请依据申请书原文填写。')
-    return {'pages':pages,'kind':kind,'metadata':{'title':title,'year':year,'fund':'国家自然科学基金' if '国家自然科学基金' in head else '',
+    return {'pages':pages,'blocks':blocks,'kind':kind,'metadata':{'title':title,'year':year,'fund':'国家自然科学基金' if '国家自然科学基金' in head else '',
         'category':category,'birth_date':birth,'budget':float(budget_match.group(1)) if budget_match else None,'domain':domain},'warnings':warnings}
 
 

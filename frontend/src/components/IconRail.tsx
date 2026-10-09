@@ -4,11 +4,10 @@ import { BrandMark, Icon, type IconName } from "./Icons";
 
 const NAV_ITEMS: { key: NavKey; icon: IconName; label: string }[] = [
   { key: "chat", icon: "chat", label: "对话" },
-  { key: "library", icon: "library", label: "知识库" },
-  { key: "tasks", icon: "tasks", label: "任务" },
-  { key: "reports", icon: "reports", label: "成果" },
-  { key: "review", icon: "review", label: "形式审查" },
-  { key: "prompts", icon: "checklist", label: "Prompt / Skill" },
+  { key: "library", icon: "library", label: "资料库" },
+  { key: "tasks", icon: "tasks", label: "存量分析" },
+  { key: "review", icon: "review", label: "资料审查" },
+  { key: "intelligence", icon: "forecast", label: "情报分析" },
 ];
 
 function RailButton({

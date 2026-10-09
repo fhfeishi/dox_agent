@@ -148,6 +148,7 @@ def test_document_markdown_endpoint_returns_full_body(tmp_path):
 
 
 def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkeypatch):
+    import json
     import time
     from types import SimpleNamespace
 
@@ -155,7 +156,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
 
     class TargetModel:
         async def ainvoke(self, messages):
-            return SimpleNamespace(content='''{
+            response = '''{
               "facets": [
                 {"key":"场景","items":[{"id":"s1","name":"临床诊疗","desc":"用于临床诊疗流程。","evidence":[{"quote":"临床诊疗场景"}]}]},
                 {"key":"问题","items":[{"id":"p1","name":"识别困难","desc":"解决病灶识别困难。","evidence":[{"quote":"病灶识别困难"}]}]},
@@ -166,7 +167,10 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
                 {"from":{"dimension":"场景","item_id":"s1"},"to":{"dimension":"问题","item_id":"p1"},"basis":"原文明示"},
                 {"from":{"dimension":"问题","item_id":"p1"},"to":{"dimension":"技术","item_id":"t1"},"basis":"原文明示"}
               ]
-            }''', response_metadata={})
+            }'''
+            if "预期形成原型系统" in messages[-1].content:
+                response = response.replace('"status":"已取得"', '"status":"预期"').replace("已形成原型", "预期形成原型").replace('"name":"临床诊疗"', '"name":"远程医疗"')
+            return SimpleNamespace(content=response, response_metadata={})
 
     monkeypatch.setattr(targets, "model_for", lambda settings: TargetModel())
     app, store = setup(tmp_path)
@@ -175,8 +179,8 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("research shell")
     monkeypatch.setattr(main_module, "DOX_AGENT_ROOT", tmp_path)
-    body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
-    saved = store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+    body = "# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
+    saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -210,16 +214,97 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert detail.json()["facets"][3]["items"][0]["status"] == "已取得"
         assert detail.json()["relations"][0]["basis"] == "原文明示"
         assert detail.json()["facets"][0]["items"][0]["evidence"][0]["version"] == saved["version"]
+        extra = store.put(Document(title="申请摘要", origin="2021_2025_P1_张三_abstract.md",
+                                   kind="text", parser="markdown", pages=[Page(number=1, text="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。")],
+                                   markdown="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。"))
+        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        assert summary["coverage"]["identified_projects"] == 1
+        assert len(summary["projects"][0]["files"]) == 2
+        assert summary["coverage"]["dimensions"]["场景"]["evidence_projects"] == 1
+        assert summary["coverage"]["dimensions"]["场景"]["fully_processed_projects"] == 0
+        assert summary["projects"][0]["funding_conflicts"] == ["direct"]
+        assert summary["coverage"]["funding"]["direct"]["eligible_projects"] == 0
+        second = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [extra["doc_id"]]}).json()
+        deadline = time.monotonic() + 3
+        while time.monotonic() < deadline:
+            if client.get(f"/api/corpora/{corpus_id}/target/jobs/{second['job_id']}").json()["status"] != "running":
+                break
+            time.sleep(.01)
+        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        outcomes = summary["projects"][0]["facets"]["成果"]["items"]
+        assert {item["status"] for item in outcomes} == {"预期", "已取得"}
+        assert {item["doc_id"] for item in outcomes} == {saved["doc_id"], extra["doc_id"]}
+        # G2: every point cites member evidence; achieved and expected never share a point.
+        from src import topic_summary
 
-        store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+        class SummaryModel:
+            fail = False
+
+            async def ainvoke(self, messages):
+                if self.fail:
+                    return SimpleNamespace(content="not json")
+                topic = messages[-1].content.split("主题：")[1].split("；")[0]
+                return SimpleNamespace(content=json.dumps({
+                    "overview": topic + "场景概述",
+                    "common": [{"text": "两份资料都描述原型", "refs": ["E1", "E2"]}],
+                    "differences": [{"text": "结题报告记载已形成原型", "refs": ["E1"]},
+                                    {"text": "无依据的差异", "refs": ["E9"]}]}, ensure_ascii=False))
+
+        monkeypatch.setattr(topic_summary, "model_for", lambda settings: SummaryModel())
+        digest = f"/api/corpora/{corpus_id}/topic-summary"
+        assert client.get(digest, params={"dimension": "成果", "name": "原型系统"}).json()["state"] == "missing"
+        outcome = client.post(digest, json={"dimension": "成果", "name": "原型系统"}).json()
+        assert outcome["common"] == [] and [p["text"] for p in outcome["differences"]] == ["结题报告记载已形成原型"]
+        assert len(outcome["gaps"]) == 2 and outcome["representatives"][0]["items"] == 2
+        assert {source["status"] for source in outcome["sources"]} == {"已取得", "预期"}
+        for scene in ("临床诊疗", "远程医疗"):
+            assert client.post(digest, json={"dimension": "场景", "name": scene}).json()["state"] == "ready"
+        assert client.post(digest, json={"dimension": "场景", "name": "不存在"}).status_code == 409
+        # G1: two files of one project count once per topic; a manual name groups extracted labels.
+        assert summary["coverage"]["dimensions"]["技术"]["items"][0]["count"] == 1
+        topics = f"/api/corpora/{corpus_id}/topics"
+        merged = client.post(topics, json={"dimension": "问题", "names": ["识别困难"], "name": "病灶识别"})
+        assert merged.status_code == 200, merged.text
+        assert client.post(topics, json={"dimension": "问题", "names": ["识别困难"], "name": "另一名称"}).status_code == 422
+        assert client.post(topics, json={"dimension": "技术", "names": ["深度学习"], "name": "病灶识别"}).status_code == 200
+        problem = client.get(f"/api/corpora/{corpus_id}/projects").json()["coverage"]["dimensions"]["问题"]["items"]
+        assert [(t["name"], t["members"], t["count"]) for t in problem] == [("病灶识别", ["识别困难"], 1)]
+
+        store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                            pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
                   doc_id=saved["doc_id"])
         stale = client.get(f"/api/corpora/{corpus_id}/reports/{saved['doc_id']}/target")
         assert stale.status_code == 409
         assert stale.json()["detail"]["stale"] is True
         assert stale.json()["detail"]["message"] == "资料已更新"
-        refreshed = client.get(f"/api/corpora/{corpus_id}/reports").json()[0]
+        refreshed = next(item for item in client.get(f"/api/corpora/{corpus_id}/reports").json() if item["doc_id"] == saved["doc_id"])
         assert refreshed["stale"] and not refreshed["facets"]["场景"]["items"]
+        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        assert summary["coverage"]["dimensions"]["场景"]["evidence_projects"] == 1
+        assert {item["status"] for item in summary["projects"][0]["facets"]["成果"]["items"]} == {"预期"}
+        assert summary["coverage"]["identified_projects"] == 1
+        # A changed source does not drop the manual grouping; undo restores the extracted label.
+        issue = summary["projects"][0]["facets"]["问题"]["items"][0]
+        assert (issue["name"], issue["original_name"]) == ("病灶识别", "识别困难")
+        rename = next(m for m in client.get(topics).json()["merges"] if m["dimension"] == "问题")
+        assert client.post(f"{topics}/{rename['id']}/undo").status_code == 200
+        assert client.post(f"{topics}/{rename['id']}/undo").status_code == 409
+        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        assert summary["coverage"]["dimensions"]["问题"]["items"][0]["name"] == "识别困难"
+        # G2: the report's change made only its own topic stale; failure keeps the readable version.
+        assert client.get(digest, params={"dimension": "场景", "name": "临床诊疗"}).json()["state"] == "stale"
+        assert client.get(digest, params={"dimension": "场景", "name": "远程医疗"}).json()["state"] == "ready"
+        assert client.post(digest, json={"dimension": "场景", "name": "临床诊疗"}).status_code == 409
+        SummaryModel.fail = True
+        kept = client.post(digest, json={"dimension": "场景", "name": "远程医疗"}).json()
+        assert kept["overview"] == "远程医疗场景概述" and kept["update_error"] and kept["state"] == "ready"
+
+
+        store.record_file("2021_2025_P1_张三_report.md", 0, 0, "", saved["doc_id"], "error", last_error="parse failed")
+        summary = client.get(f"/api/corpora/{corpus_id}/projects").json()
+        assert summary["coverage"]["identified_projects"] == 1
+        assert len(summary["projects"][0]["files"]) == 2
+        assert any(item["state"] == "unavailable" for item in summary["projects"][0]["files"])
 
 
 def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_path, monkeypatch):
@@ -230,14 +315,14 @@ def test_user_target_extraction_refuses_to_publish_when_the_source_changes(tmp_p
 
     app, store = setup(tmp_path)
     body = "# 报告\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
-    saved = store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+    saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
 
     class TargetModel:
         """第一次模型调用期间替换资料：提取器读到的是旧版本，发布前才变。"""
 
         async def ainvoke(self, messages):
-            store.put(Document(title="示例报告", origin="report.md", kind="text", parser="markdown",
+            store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body + "\n更新")], markdown=body + "\n更新"),
                       doc_id=saved["doc_id"])
             return SimpleNamespace(content='''{

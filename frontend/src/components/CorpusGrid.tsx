@@ -5,7 +5,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 
-const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "知识库" };
+const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
 const PREPARATION: Record<string, { label: string; tone: "mint" | "yellow" | "rose" | "gray" }> = {
   ready: { label: "就绪", tone: "mint" },
   empty: { label: "空库", tone: "yellow" },
@@ -155,7 +155,7 @@ export function CorpusGrid() {
                           className="block w-full rounded-[6px] px-[9px] py-[7px] text-left text-[12.5px] text-[var(--red)] hover:bg-[var(--surface)]"
                           onClick={() => {
                             setMenuId(null);
-                            if (window.confirm(`清理知识库「${corpus.name}」的索引？源文件保留。`)) {
+                            if (window.confirm(`清理资料库「${corpus.name}」的索引？源文件保留。`)) {
                               void run(async () => {
                                 await deleteCorpus(corpus.id);
                               });
@@ -183,7 +183,7 @@ export function CorpusGrid() {
                   >
                     <input
                       autoFocus
-                      aria-label="知识库名称"
+                      aria-label="资料库名称"
                       className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-[12.5px] outline-none focus:border-[var(--primary)]"
                       value={editing.name}
                       onChange={(e) => setEditing({ ...editing, name: e.target.value })}
@@ -224,7 +224,7 @@ export function CorpusGrid() {
                 <div className="flex flex-wrap gap-[7px] text-[11.5px]">
                   <button type="button" disabled={Boolean(corpus.missing)} onClick={() => void startCorpusChat(corpus.id)}
                     className="rounded-[6px] bg-[var(--primary-soft)] px-[8px] py-[5px] text-[var(--primary-pressed)] hover:bg-[var(--primary-soft-2)] disabled:opacity-50">与此库对话</button>
-                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id)}
+                  <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id, "files")}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">添加资料</button>
                   <button type="button" disabled={Boolean(corpus.missing)} onClick={() => openCorpus(corpus.id, "target")}
                     className="rounded-[6px] px-[8px] py-[5px] text-[var(--steel)] hover:bg-[var(--surface)] disabled:opacity-50">四维浏览</button>
@@ -235,9 +235,9 @@ export function CorpusGrid() {
             );
   }
   return (
-    <section aria-label="知识库" className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
+    <section aria-label="资料库" className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
-        <span className="text-[14px] font-semibold text-[var(--ink)]">知识库</span>
+        <span className="text-[14px] font-semibold text-[var(--ink)]">资料库</span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
           · 共 {corpora.length} 个库 · {totalDocs} 份文档 · {readyCount} 就绪{missingCount ? ` · 需要处理 ${missingCount}` : ""}
         </span>
@@ -248,15 +248,15 @@ export function CorpusGrid() {
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-[1180px] px-[34px] pt-[26px]">
-          <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">知识库</h1>
-          {selectedGroup && <button onClick={() => setSearchParams({})}>← 全部知识库</button>}
+          <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">资料库</h1>
+          {selectedGroup && <button onClick={() => setSearchParams({})}>← 全部资料库</button>}
           <p className="max-w-[680px] text-[13.5px] leading-[1.6] text-[var(--steel)]">
-            知识库名称与本地目录一致。浏览不会改变当前对话范围；可在详情中加入或移除知识库。
+            资料库名称与本地目录一致。浏览不会改变当前对话范围；可在详情中加入或移除资料库。
           </p>
 
           <div className="mt-[18px] flex flex-wrap items-center gap-[9px]">
             <Button variant="primary" icon="plus" iconSize={13} onClick={() => setNewCorpusOpen(!newCorpusOpen)}>
-              新建知识库
+              新建资料库
             </Button>
             <Button variant="ghost" icon="reload" iconSize={13} disabled={ingestBusy} onClick={() => void refreshAllCorpora()}>
               {ingestBusy ? "正在刷新…" : "刷新并入库"}
@@ -264,7 +264,7 @@ export function CorpusGrid() {
             <label className="mx-[0] flex min-w-[220px] flex-1 items-center gap-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-[var(--stone)] focus-within:border-[var(--primary)]">
               <Icon name="search" size={14} />
               <input
-                aria-label="搜索知识库"
+                aria-label="搜索资料库"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="按名称 / 领域 / 类型筛选"
@@ -290,9 +290,9 @@ export function CorpusGrid() {
             >
               <input
                 autoFocus
-                aria-label="新知识库名称"
+                aria-label="新资料库名称"
                 className="font-app min-w-[200px] flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[7px] text-[13px] outline-none focus:border-[var(--primary)]"
-                placeholder="新知识库名称"
+                placeholder="新资料库名称"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -326,16 +326,16 @@ export function CorpusGrid() {
           {groups.filter(g => !selectedGroup || selectedGroup === g.id).map(group => {
             const needle = query.trim().toLowerCase();
             const groupMatch = needle && group.name.toLowerCase().includes(needle);
-            const members = group.members.map(id => corpora.find(c => c.id === id) ?? {id, name: `知识库不可用（${id}）`, missing: true, docs_count: 0, preparation: "empty", kind: "unknown", domain: ""} as CorpusInfo);
+            const members = group.members.map(id => corpora.find(c => c.id === id) ?? {id, name: `资料库不可用（${id}）`, missing: true, docs_count: 0, preparation: "empty", kind: "unknown", domain: ""} as CorpusInfo);
             const matches = needle && !groupMatch ? members.filter(c => visible.some(v => v.id === c.id)) : members;
             if (needle && !groupMatch && !matches.length) return null;
             const open = Boolean(needle) || expanded === group.id || selectedGroup === group.id;
             return <section key={group.id} aria-label={`分组 ${group.name}`} className={`rounded-xl border border-[var(--hairline)] bg-[var(--surface-soft)] p-4 ${open ? "col-span-full" : "shadow-[4px_4px_0_var(--hairline),8px_8px_0_var(--surface)]"}`}>
               <div className="flex flex-wrap items-center gap-3"><button aria-expanded={open} onClick={() => toggleGroup(group.id)} className="font-semibold">{group.name} · {members.length} 个库 · {open ? "收起" : "展开"}</button>
                 <button disabled={busy} onClick={() => { const name = window.prompt("分组名称", group.name); if (name?.trim()) void changeGroup("rename", group.id, name); }}>改名</button>
-                <button disabled={busy} onClick={() => { if (window.confirm("解散分组？成员回到未分组，不删除知识库。")) void changeGroup("dissolve", group.id); }}>解散分组</button></div>
+                <button disabled={busy} onClick={() => { if (window.confirm("解散分组？成员回到未分组，不删除资料库。")) void changeGroup("dissolve", group.id); }}>解散分组</button></div>
               <p className="my-2 text-xs">{needle ? `匹配 ${matches.length} / 共 ${members.length} 个库 · ` : ""}{matches.reduce((n,c) => n+c.docs_count, 0)} 份资料（按库累加） · {matches.filter(c => c.missing || c.preparation !== "ready" || c.failed_count).length} 库需处理</p>
-              {open ? <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,268px),1fr))] gap-3">{matches.map(renderCorpus)}{!members.length && <p>尚未加入知识库，请在库卡片选择此分组。</p>}</div> : <p className="text-sm">{members.slice(0,3).map(c => c.name).join("、") || "空组"}</p>}
+              {open ? <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,268px),1fr))] gap-3">{matches.map(renderCorpus)}{!members.length && <p>尚未加入资料库，请在库卡片选择此分组。</p>}</div> : <p className="text-sm">{members.slice(0,3).map(c => c.name).join("、") || "空组"}</p>}
             </section>;
           })}
           {(!selectedGroup || selectedGroup === "ungrouped") && visible.filter(c => !groups.some(g => g.members.includes(c.id))).map(renderCorpus)}
@@ -346,7 +346,7 @@ export function CorpusGrid() {
 
         {!corpora.length && !corporaError ? (
           <p className="mx-auto mt-2 w-full max-w-[1180px] px-[34px] text-center text-[13px] text-[var(--steel)]">
-            还没有知识库。新建后在该库详情里拖放或选择文档即可添加资料。
+            还没有资料库。新建后在该库详情里拖放或选择文档即可添加资料。
           </p>
         ) : null}
       </div>

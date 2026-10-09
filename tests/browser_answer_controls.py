@@ -52,13 +52,15 @@ async def main():
                     if (url !== '/api/chat') return realFetch(url, options);
                     window.requests.push(JSON.parse(options.body));
                     const mode = window.mode;
-                    const text = '**答案版本' + window.requests.length + '**\\n\\n```python\\nprint(1)\\n```';
+                    const text = mode === 'compare' ? '| 维度 | 差异 |\\n| --- | --- |\\n| 技术 | 方法不同 [1] |'
+                        : '**答案版本' + window.requests.length + '**\\n\\n```python\\nprint(1)\\n```';
                     let timers = [];
                     return new Response(new ReadableStream({
                         start(controller) {
                             const send = (event, data) => controller.enqueue(new TextEncoder().encode('event: ' + event + '\\ndata: ' + JSON.stringify(data) + '\\n\\n'));
                             options.signal.addEventListener('abort', () => { timers.forEach(clearTimeout); controller.error(new DOMException('Aborted', 'AbortError')); }, {once: true});
                             send('status', {message: '测试研究中'});
+                            if (mode === 'compare') send('run', {task_id: 'task2'});
                             send('token', {text: ''});
                             send('sources', [1, 2].map(citation => ({
                                 citation, doc_id: 'd1', corpus_id: 'c1', version: 'v1',
@@ -105,6 +107,15 @@ async def main():
             messages = await page.evaluate("window.requests.at(-1).messages")
             assert messages[1]["content"].startswith("**答案版本2**")
             assert len(messages) == 3
+            # 对比分析: the comparison table keeps its inline [n] citation, without the source list.
+            await page.evaluate("window.mode = 'compare'")
+            await field.fill("对比两个项目")
+            await page.get_by_role("button", name="发送 ↑").click()
+            compare = page.locator("article").last
+            await expect(compare.get_by_text("方法不同", exact=False)).to_be_visible()
+            await expect(compare.get_by_role("button", name="[1]", exact=True)).to_have_count(1)
+            await expect(compare.get_by_text("引用来源", exact=False)).to_have_count(0)
+            await page.evaluate("window.mode = 'success'")
             await page.evaluate("window.mode = 'cancel'")
             await field.fill("草稿不要清空")
             await page.get_by_role("button", name="重新生成").last.click()

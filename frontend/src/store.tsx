@@ -41,10 +41,13 @@ import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 
-export type NavKey = "chat" | "tasks" | "library" | "reports" | "prompts" | "review";
+export type NavKey = "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "task"; taskId: string } |
   { kind: "template"; templateId: string } |
   { kind: "web"; snapshotId: string } |
+  { kind: "input"; inputId: string } |
+  { kind: "project"; corpusId: string; projectId: string; facet: string } |
+  { kind: "review-source"; fileId: string; page: number } |
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
@@ -56,6 +59,9 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "overview": return "overview";
     case "task": return `task:${target.taskId}`;
     case "template": return `template:${target.templateId}`;
+    case "review-source": return "review-source:" + target.fileId + ":" + target.page;
+    case "project": return "project:" + target.corpusId + ":" + target.projectId + ":" + target.facet;
+    case "input": return "input:" + target.inputId;
     case "web": return `web:${target.snapshotId}`;
     case "corpus": return `corpus:${target.corpusId}`;
     case "report": return `report:${target.sessionKey}:${target.reportId}`;
@@ -113,7 +119,7 @@ export interface AppValue {
   ingestBusy: boolean;
   runCorpusIngest: (id: string) => Promise<void>;
   startCorpusChat: (id: string) => Promise<void>;
-  startResearch: (corpusId: string, docIds: string[], taskId: string, question: string) => Promise<void>;
+  startResearch: (corpusId: string, docIds: string[] | null, taskId: string, question: string) => Promise<void>;
   targetJobs: Record<string, string>;
   rememberTargetJob: (corpusId: string, jobId: string) => void;
 
@@ -236,12 +242,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { chat: "/chat", library: "/library", tasks: "/tasks", reports: "/artifacts", prompts: "/prompts", review: "/review" };
+  const navPaths: Record<NavKey, string> = { chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
   const nav: NavKey = location.pathname.startsWith("/library") ? "library"
-    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "reports"
-      : location.pathname.startsWith("/prompts") ? "prompts" : location.pathname.startsWith("/review") ? "review" : "chat";
+    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
+      : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
-  const corpusView = location.pathname.includes("/targets/") ? "target" : "files";
+  const corpusView = location.pathname.includes("/documents") ? "files" : "target";
   const setCorpusView = (view: "files" | "target") => {
     if (routeParams.corpusId) openCorpus(routeParams.corpusId, view);
   };
@@ -269,7 +275,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const routeFacet = Number(routeSearch.get("facet") ?? 0);
   const routeTarget: InspectorTarget | null = routeDoc && routeParams.corpusId
     ? { kind: "target", corpusId: routeParams.corpusId, docId: routeDoc,
-        index: Number.isInteger(routeFacet) && routeFacet >= 0 && routeFacet < 4 ? routeFacet : 0 } : null;
+        index: Number.isInteger(routeFacet) && routeFacet >= 0 && routeFacet < 4 ? routeFacet : 0 }
+    : corpusView === "target" && routeParams.corpusId && routeSearch.get("project")
+      ? { kind: "project", corpusId: routeParams.corpusId, projectId: routeSearch.get("project")!, facet: ["场景", "问题", "技术", "成果"].includes(routeSearch.get("dimension") ?? "") ? routeSearch.get("dimension")! : "场景" } : null;
   const routeTargetKey = routeTarget ? inspectorIdentity(routeTarget) : "";
   const previousRouteTarget = useRef("");
   useEffect(() => {
@@ -278,6 +286,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [routeTargetKey]);
   function closeRouteTarget() {
     const search = new URLSearchParams(location.search);
+    if (!search.has("doc")) search.delete("project");
     for (const key of ["doc", "facet", "version"]) search.delete(key);
     void navigate({ pathname: location.pathname, search: search.toString() });
   }
@@ -808,18 +817,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await switchSession(undefined, undefined, id);
   }
 
-  async function startResearch(corpus: string, docIds: string[], task: string, question: string) {
-    if (!docIds.length || !question.trim()) throw new Error("请选择资料并填写研究问题");
+  async function startResearch(corpus: string, docIds: string[] | null, task: string, question: string) {
+    if ((docIds !== null && !docIds.length) || !question.trim()) throw new Error("请选择资料并填写研究问题");
     setSessionBusy(true);
     try {
       await settleActiveRun();
       await workspace.saveNow(latestTurns.current, options);
       await workspace.select(undefined, task, corpus);
-      await workspace.saveCorpusSelection(corpus, true, [corpus], { allowed_doc_ids: [...new Set(docIds)] });
+      await workspace.saveCorpusSelection(corpus, true, [corpus], { allowed_doc_ids: docIds === null ? null : [...new Set(docIds)] });
       setEditing(null);
       setInput(question.trim());
       setError("");
-      setStatus(`已新建研究会话，限定 ${new Set(docIds).size} 份资料；请确认问题后发送`);
+      setStatus(docIds === null ? "已新建本资料库分析；结论仅对应实际读取资料，请确认问题后发送" : `已新建研究会话，限定 ${new Set(docIds).size} 份资料；请确认问题后发送`);
       setNav("chat");
     } finally {
       setSessionBusy(false);
@@ -883,7 +892,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     requestAnimationFrame(() => evidenceTrigger.current?.focus());
   }
 
-  function openCorpus(id: string, view: "files" | "target" = "files") {
+  function openCorpus(id: string, view: "files" | "target" = "target") {
     setInspectorOpen(false);
     setDrawerOpen(false);
     setPreviewDoc(null);
@@ -939,6 +948,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   const handleOpenSource = async (source: Source, n: number) => {
+    if (source.kind === "external" && source.input_id) { showInspector({ kind: "input", inputId: source.input_id }); return; }
     if (source.kind === "web" && source.snapshot_id) {
       showInspector({ kind: "web", snapshotId: source.snapshot_id });
       return;

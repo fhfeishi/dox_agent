@@ -1,4 +1,4 @@
-export type Source = { locations?: { page?: number; heading: string; snippet: string; chunk_id: string }[]; title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
+export type Source = { input_id?: string; locations?: { page?: number; heading: string; snippet: string; chunk_id: string }[]; title: string; url: string; snippet: string; page?: number; doc_id?: string; corpus_id?: string; version?: string; origin?: string; kind?: string; snapshot_id?: string; fetched_at?: string; start_line?: number; end_line?: number; captured_at?: string; truncated?: boolean; citation?: number };
 export type Message = { role: "user" | "assistant"; content: string };
 export type Usage = { run_id?: string; input_tokens: number | null; output_tokens: number | null; total_tokens: number | null; reported_tokens: number | null; calls: number; reported_calls: number; complete: boolean; missing_reasons?: Record<string, number>; calls_by_phase?: Record<string, number> };
 export type Step = { run_id: string; id: string; sequence: number; phase: string; status: "running" | "completed" | "failed" | "interrupted"; label: string; detail?: string; duration_ms?: number };
@@ -254,7 +254,7 @@ export type ArtifactSummary = {
   run_available?: boolean;
 };
 export type ArtifactInfo = ArtifactSummary & {
-  version: number; markdown: string; citations: ({ citation?: number; doc_id?: string; corpus_id?: string; version?: string; title?: string;
+  version: number; markdown: string; citations: ({ input_id?: string; citation?: number; doc_id?: string; corpus_id?: string; version?: string; title?: string;
     page?: number | null; kind?: string; snapshot_id?: string; url?: string; fetched_at?: string })[];
   figures?: import("./components/ReportMarkdown").ReportFigure[];
 };

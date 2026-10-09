@@ -557,3 +557,42 @@ def test_groups_move_atomically_reject_stale_pages_and_keep_corpora(tmp_path):
         assert any(c["id"]==cid for c in client.get("/api/corpora").json())
     with TestClient(app) as client:
         assert client.get("/api/corpus-groups").json()["groups"][0]["id"] == group1["id"]
+
+def test_external_inputs_stay_versioned_until_the_last_artifact_is_purged(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    class Model:
+        async def ainvoke(self, messages):
+            return SimpleNamespace(content="# 外部材料分析\n\n## 技术背景\n材料声明尚待验证 [1]。\n\n## 资料局限\n本库未检索到相近项目，不据此认定原创。")
+    monkeypatch.setattr("src.intelligence.model_for", lambda settings: Model())
+    app, cid = ready_app(tmp_path)
+    from pydantic import SecretStr
+    with TestClient(app) as client:
+        app.state.settings.model_api_key = SecretStr("offline-test")
+        uploaded = client.post("/api/intelligence/inputs", files={"file": ("proposal.md", b"# Original technical input", "text/markdown")})
+        assert uploaded.status_code == 201
+        source = uploaded.json()
+        generated = client.post("/api/intelligence/analyze", json={"input_ids": [source["input_id"]], "corpus_id": cid, "purpose": "background"})
+        assert generated.status_code == 201, generated.text
+        artifact = generated.json()
+        assert artifact["type"] == "report" and artifact["status"] == "completed"
+        assert artifact["task_id"] == "intelligence"
+        assert artifact["report_params"]["input_ids"] == [source["input_id"]]
+        revised = client.post("/api/intelligence/inputs", files={"file": ("proposal.md", b"# Revised technical input", "text/markdown")}).json()
+        assert revised["input_id"] != source["input_id"]
+        assert client.delete("/api/intelligence/inputs/" + source["input_id"]).status_code == 200
+        assert client.get("/api/intelligence/inputs/" + source["input_id"]).json()["text"] == "# Original technical input"
+        trashed = client.delete("/api/artifacts/" + artifact["artifact_id"], headers={"If-Match": f'"{artifact["revision"]}"'}).json()
+        assert client.get("/api/intelligence/inputs/" + source["input_id"]).status_code == 200
+        assert client.delete("/api/artifacts/" + artifact["artifact_id"] + "/purge", headers={"If-Match": f'"{trashed["revision"]}"'}).status_code == 200
+        assert client.get("/api/intelligence/inputs/" + source["input_id"]).status_code == 410
+        assert client.get("/api/intelligence/inputs/" + revised["input_id"]).status_code == 200
+
+        class Interrupted:
+            async def ainvoke(self, messages):
+                raise RuntimeError("connection interrupted")
+        monkeypatch.setattr("src.intelligence.model_for", lambda settings: Interrupted())
+        failed = client.post("/api/intelligence/analyze", json={"input_ids": [revised["input_id"]], "corpus_id": cid, "purpose": "background"})
+        assert failed.status_code == 502
+        records = client.get("/api/artifacts").json()
+        assert records[0]["status"] == "failed"
+        assert client.get("/api/runs/" + records[0]["run_id"]).json()["status"] == "failed"

@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 import { Fragment, useEffect, useState } from "react";
 import { useApp } from "../store";
 import { fetchReports, type ReportSummary } from "../api";
@@ -32,6 +32,8 @@ function corpusDot(preparation: string, jobStatus?: string, missing = false): st
 }
 
 export function SidePanel() {
+  const location = useLocation();
+  const resultsPage = location.pathname === "/tasks/results";
   const {
     nav,
     setNav,
@@ -78,7 +80,7 @@ export function SidePanel() {
   const [reports, setReports] = useState<ReportSummary[]>([]);
 
   useEffect(() => {
-    if (nav !== "reports" || !workspace.active) {
+    if (!resultsPage || !workspace.active) {
       setReports([]);
       return;
     }
@@ -87,7 +89,7 @@ export function SidePanel() {
       .then((items) => { if (!stopped) setReports(items); })
       .catch(() => { if (!stopped) setReports([]); });
     return () => { stopped = true; };
-  }, [nav, workspace.active]);
+  }, [resultsPage, workspace.active]);
 
   // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
   if (sidebarCollapsed) return null;
@@ -185,23 +187,23 @@ export function SidePanel() {
           className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[14px] py-[8px] text-[12.5px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
         >
           <Icon name="library" size={14} strokeWidth={1.9} />
-          知识库 · {documents.length} 份
+          资料库 · {documents.length} 份
         </button>
       </div>
 
-      {nav !== "prompts" && nav !== "review" ? <SearchField
+      {nav !== "review" ? <SearchField
         value={query}
         onChange={setQuery}
         ariaLabel="搜索会话"
-        placeholder={nav === "library" ? "搜索知识库" : nav === "tasks" ? "搜索任务" : "搜索会话"}
+        placeholder={nav === "library" ? "搜索资料库" : nav === "tasks" ? "搜索任务" : "搜索会话"}
       /> : null}
 
       {/* scrollable list */}
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[8px] pb-[12px]">
         {/* Corpus selection stays reachable from the chat view; the library view owns the full list. */}
-        {nav !== "library" && nav !== "prompts" && nav !== "review" && visibleKbs.length ? (
+        {nav !== "library" && nav !== "review" && visibleKbs.length ? (
           <>
-            <GroupLabel className="pt-[2px]">知识库</GroupLabel>
+            <GroupLabel className="pt-[2px]">资料库</GroupLabel>
             {visibleKbs.map((corpus) => (
               <PanelRow
                 key={corpus.id}
@@ -282,7 +284,7 @@ export function SidePanel() {
 
         {nav === "review" ? <ReviewRunPanel /> : null}
 
-        {nav === "tasks" && (
+        {nav === "tasks" && !resultsPage && (
           <>
             <GroupLabel className="pt-[2px]">任务模板</GroupLabel>
             {!taskCapable ? (
@@ -329,13 +331,13 @@ export function SidePanel() {
 
         {nav === "library" && (
           <>
-            <GroupLabel className="pt-[2px]">全部知识库</GroupLabel>
+            <GroupLabel className="pt-[2px]">全部资料库</GroupLabel>
             {corporaError && (
               <p role="alert" className="px-[10px] py-2 text-[12px] text-[var(--red)]">
                 {corporaError}
               </p>
             )}
-            {[{id:"",name:"全部知识库"},...groups,{id:"ungrouped",name:"未分组"}].map(g => <PanelRow key={g.id} title={g.name} active={(searchParams.get("group") ?? "") === g.id} onClick={() => setSearchParams(p => { if (g.id) p.set("group",g.id); else p.delete("group"); return p; })} />)}
+            {[{id:"",name:"全部资料库"},...groups,{id:"ungrouped",name:"未分组"}].map(g => <PanelRow key={g.id} title={g.name} active={(searchParams.get("group") ?? "") === g.id} onClick={() => setSearchParams(p => { if (g.id) p.set("group",g.id); else p.delete("group"); return p; })} />)}
             <GroupLabel>当前对话范围</GroupLabel>
             <p className="px-3 text-sm">{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、") || "未选择"}</p>
             <div className="px-[8px] pt-[10px]">
@@ -349,13 +351,13 @@ export function SidePanel() {
                   setNewCorpusOpen(true);
                 }}
               >
-                新建知识库
+                新建资料库
               </Button>
             </div>
           </>
         )}
 
-        {nav === "reports" && (
+        {resultsPage && (
           <>
             <GroupLabel className="pt-[2px]">本会话报告</GroupLabel>
             {reports.length ? (
@@ -371,16 +373,16 @@ export function SidePanel() {
                       ? (corpora.find((corpus) => corpus.id === report.corpus_id)?.name ?? report.corpus_id)
                       : "来源库未记录"} · {report.year_from != null && report.year_to != null
                       ? `年份窗口 ${report.year_from}–${report.year_to}`
-                      : "年份窗口未记录"}
+                      : ""}
                   </span>
                   <span className="text-[11px] text-[var(--stone)]">
-                    {report.template_id || "模板未记录"} · {report.created_at?.slice(0, 10) ?? ""}
+                    {report.created_at?.slice(0, 10) ?? ""}
                   </span>
                 </button>
               ))
             ) : (
               <div className="px-[10px] py-3 text-[12.5px] leading-[1.6] text-[var(--steel)]">
-                本会话还没有生成报告。切换到「专项报告」补充需求后即可生成。
+                本栏显示当前对话关联的报告；全部分析成果请查看中央列表。
               </div>
             )}
             <div className="px-[8px] pt-[4px]">
@@ -396,11 +398,7 @@ export function SidePanel() {
             </div>
           </>
         )}
-        {nav === "prompts" ? (
-          <div className="px-[10px] pt-[8px] text-[12px] leading-[1.6] text-[var(--steel)]">
-            在中央区域浏览、复制和编辑 Prompt / Skill；启用的 Skill 可绑定到自定义任务。
-          </div>
-        ) : null}
+
       </div>
 
       {/* footer */}
@@ -422,7 +420,7 @@ export function SidePanel() {
           </div>
         ) : null}
         <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
-          <span>当前知识库</span>
+          <span>当前资料库</span>
           <b className="min-w-0 truncate font-semibold text-[var(--slate)]">
             {corpora.find((c) => c.id === effectiveCorpusId)?.name ?? "未选择"}
           </b>

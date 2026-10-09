@@ -280,6 +280,29 @@ def _normalize_segment(raw: dict, markdown: str, start: int, end: int,
     return normalized, checked_relations
 
 
+def item_evidence(info, doc_id: str, version: str, item_ids: set[str]) -> dict[str, list[dict]]:
+    """Current-version quotes for the given facet item ids, keyed by item id.
+
+    A library-level synthesis cites item ids instead of re-reading documents; this keeps the
+    citation bound to the same file version the index reports (需求 §17 R-SCN-03/05).
+    """
+    record, error = _load(info, doc_id)
+    if error or not record or record.get("version") != version:
+        return {}
+    found: dict[str, list[dict]] = {}
+    for facet in record.get("facets", []):
+        for item in facet.get("items", []):
+            if item.get("id") not in item_ids:
+                continue
+            found[item["id"]] = [
+                {"quote": proof.get("quote", ""), "locator": proof.get("locator", {}),
+                 "version": proof.get("version", "")}
+                for proof in item.get("evidence", [])
+                if proof.get("version") == version
+            ]
+    return found
+
+
 def _item_id(dimension: str, key: str) -> str:
     return "item-" + hashlib.sha256(f"{dimension}:{key}".encode()).hexdigest()[:12]
 

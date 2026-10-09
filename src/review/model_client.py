@@ -20,6 +20,14 @@ class ModelError(ValueError):
     pass
 
 
+class TruncatedModelError(ModelError):
+    """The reply hit the output limit; the caller may retry with a smaller input."""
+
+
+class TransientModelError(ModelError):
+    """Network failure or unparseable reply; worth exactly one retry within the call budget."""
+
+
 def _number(value, default, low, high):
     try:
         return max(low, min(high, int(value)))
@@ -72,6 +80,13 @@ class Client:
         self.transport = transport
 
     def ask(self, stage, data):
+        # One bad reply or dropped connection should not end a multi-step review.
+        try:
+            return self._ask(stage, data)
+        except TransientModelError:
+            return self._ask(stage, data)
+
+    def _ask(self, stage, data):
         c = self.settings
         if not c["ready"]:
             raise ModelError("审查模型尚未配置：请设置 MODEL_API_KEY，或用 REVIEW_MODEL_* 单独配置。")
@@ -98,7 +113,8 @@ class Client:
             ],
         }
         try:
-            with httpx.Client(timeout=min(c["timeout"], remaining), trust_env=False, transport=self.transport) as http:
+            # Honour the system proxy like the main model client; a direct route may be unavailable.
+            with httpx.Client(timeout=min(c["timeout"], remaining), transport=self.transport) as http:
                 response = http.post(
                     c["base"] + "/chat/completions",
                     headers={"Authorization": "Bearer " + c["key"]},
@@ -113,7 +129,7 @@ class Client:
             body = response.json()
             choice = body["choices"][0]
             if choice.get("finish_reason") == "length":
-                raise ModelError("模型输出被截断，请提高输出上限或缩小输入。")
+                raise TruncatedModelError("模型输出被截断，请提高输出上限或缩小输入。")
             result = json.loads(choice["message"]["content"])
             if not isinstance(result, dict):
                 raise ValueError()
@@ -125,4 +141,4 @@ class Client:
         except Exception as exc:
             call["status"] = "failed"
             logger.warning("review model call %s failed: %s: %s", stage, type(exc).__name__, exc, exc_info=True)
-            raise ModelError("审查模型请求超时、网络异常或返回了无效 JSON；未生成完整审核结论。") from None
+            raise TransientModelError("审查模型请求超时、网络异常或返回了无效 JSON；未生成完整审核结论。") from None

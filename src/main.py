@@ -40,6 +40,9 @@ from .agent.graph import build_graph
 from .agent.models import tracing
 from .agent.usage import TurnUsage
 from .artifacts import ArtifactStore
+from .project_index import ProjectIndex
+from .project_similarity import ProjectSimilarity
+from .intelligence import router as intelligence_router
 from .corpus_groups import GroupStore
 from .corpus_groups import router as corpus_groups_router
 from .custom_tasks import (
@@ -70,6 +73,8 @@ from .prompt_skills import (
     validate_asset,
 )
 from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
+from .hierarchy import HierarchyInvalid, read as read_hierarchy, synthesize as synthesize_hierarchy
+from . import topic_summary
 from .report_figures import change_figure, insert_figures, select_figures
 from .reports import ScopeChanged, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
@@ -203,6 +208,17 @@ class ReportRequest(BaseModel):
         if value is not None and len(value) != len(set(value)):
             raise ValueError("doc_ids 不能包含重复文档")
         return value
+
+
+class TopicMerge(BaseModel):
+    dimension: Literal["场景", "问题", "技术", "成果"]
+    names: list[str] = Field(min_length=1, max_length=50)
+    name: str = Field(min_length=1, max_length=60)
+
+
+class TopicRef(BaseModel):
+    dimension: Literal["场景", "问题", "技术", "成果"]
+    name: str = Field(min_length=1, max_length=200)
 
 
 class WebRequest(BaseModel):
@@ -449,6 +465,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.prompt_skills = PromptSkillStore(settings.state_dir / "prompt_skills.sqlite3")
         app.state.custom_templates = TemplateStore(settings.state_dir / "artifacts" / "templates.sqlite3")
         # W3-B: first-class artifacts (answer snapshots + reports) in application state.
+        app.state.project_index = ProjectIndex(settings.state_dir / "project_index.sqlite3")
+        app.state.similarity = ProjectSimilarity(settings.state_dir / "project_index.sqlite3", settings)
         app.state.artifacts = ArtifactStore(settings.state_dir / "artifacts" / "artifacts.sqlite3")
         for interrupted in app.state.artifacts.recover_interrupted():
             try: app.state.runs.update(interrupted, status="failed", ended_at=datetime.now(UTC).isoformat())
@@ -462,7 +480,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         cleanup_task = asyncio.create_task(clean_artifacts())
         app.state.web_snapshots = WebSnapshotStore(settings.state_dir / "web_snapshots.sqlite3")
         # W8: review storage with material isolation + interrupted-run recovery.
-        review_init_storage()
+        review_init_storage(settings.state_dir / "review")
         app.state.import_lock = asyncio.Lock()
         app.state.previews = {}
         app.state.searches = {}
@@ -525,6 +543,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     app.include_router(corpus_groups_router)
     app.include_router(workspace_router)
+    app.include_router(intelligence_router)
     app.include_router(review_router)
 
     def find_corpus(corpus_id: str) -> CorpusInfo | None:
@@ -1971,6 +1990,98 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return await asyncio.to_thread(app.state.artifacts.list_reports,
                                        session_key=session_key, run_id=run_id, limit=limit)
 
+    @app.get("/api/corpora/{corpus_id}/projects")
+    async def library_projects(corpus_id: str):
+        return (await project_library(corpus_id))[1]
+
+    async def project_library(corpus_id):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
+        if info.missing:
+            raise HTTPException(409, "资料库目录已缺失")
+        return info, await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
+
+    @app.get("/api/corpora/{corpus_id}/topics")
+    async def topic_merges(corpus_id: str):
+        """G1: manual topic grouping log; original extracted names stay with each item."""
+        return {"merges": await asyncio.to_thread(app.state.project_index.merges, corpus_id)}
+
+    @app.post("/api/corpora/{corpus_id}/topics")
+    async def merge_topics(corpus_id: str, payload: TopicMerge):
+        _, library = await project_library(corpus_id)
+        originals = {item["original_name"] for p in library["projects"] for item in p["facets"][payload.dimension]["items"]}
+        try:
+            await asyncio.to_thread(app.state.project_index.merge, corpus_id, payload.dimension,
+                                    payload.names, payload.name, originals)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return {"merges": await asyncio.to_thread(app.state.project_index.merges, corpus_id)}
+
+    @app.post("/api/corpora/{corpus_id}/topics/{merge_id}/undo")
+    async def undo_topic_merge(corpus_id: str, merge_id: str):
+        try:
+            await asyncio.to_thread(app.state.project_index.undo, corpus_id, merge_id)
+        except KeyError as exc:
+            raise HTTPException(404, "整理记录不存在") from exc
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        return {"merges": await asyncio.to_thread(app.state.project_index.merges, corpus_id)}
+
+    @app.get("/api/corpora/{corpus_id}/relations")
+    async def project_relations(corpus_id: str, dimension: Literal["场景", "问题", "技术"]):
+        """Graded project relations by description similarity; 成果 is not a relation basis."""
+        info, library = await project_library(corpus_id)
+        if not settings.embedding_path.strip():
+            raise HTTPException(409, "未配置本地向量模型，无法计算相似关联")
+        try:
+            return await asyncio.to_thread(app.state.similarity.relations, info.id, library, dimension)
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
+
+    @app.get("/api/corpora/{corpus_id}/topic-summary")
+    async def read_topic_summary(corpus_id: str, dimension: Literal["场景", "问题", "技术", "成果"], name: str):
+        """G2: saved grounded summary of one topic and whether its member evidence changed."""
+        info, library = await project_library(corpus_id)
+        return await topic_summary.read(info, library, dimension, name)
+
+    @app.post("/api/corpora/{corpus_id}/topic-summary")
+    async def generate_topic_summary(corpus_id: str, payload: TopicRef):
+        info, library = await project_library(corpus_id)
+        try:
+            return await topic_summary.summarize(info, library, settings, payload.dimension, payload.name)
+        except topic_summary.NoEvidence as exc:
+            raise HTTPException(409, str(exc)) from exc
+
+    @app.get("/api/corpora/{corpus_id}/hierarchy")
+    async def corpus_hierarchy(corpus_id: str):
+        """需求 §17: corpus-level scene → issue → tech route hierarchy and achievement aspects."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
+        if info.missing:
+            raise HTTPException(409, "资料库目录已缺失")
+        library = await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
+        return await read_hierarchy(info, library)
+
+    @app.post("/api/corpora/{corpus_id}/hierarchy")
+    async def generate_corpus_hierarchy(corpus_id: str, payload: dict | None = None):
+        """One corpus-level synthesis call; the stored result is kept when the call fails."""
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None:
+            raise HTTPException(404, "资料库不存在")
+        if info.missing:
+            raise HTTPException(409, "资料库目录已缺失")
+        library = await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
+        if not library["coverage"]["dimensions"]["场景"]["items"]:
+            raise HTTPException(409, "本库尚无场景维度归纳，请先整理资料后再生成层级")
+        try:
+            await synthesize_hierarchy(info, library, settings,
+                                       force=bool((payload or {}).get("force")))
+        except HierarchyInvalid as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return await read_hierarchy(info, library)
+
     @app.get("/api/corpora/{corpus_id}/report-metadata")
     async def report_metadata_coverage(corpus_id: str):
         """AC-12: per-corpus field coverage and content-free unmatched-document list."""
@@ -2154,6 +2265,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         report_params["session_key"] = session_key
         await asyncio.to_thread(app.state.artifacts.begin_report, run_id, {**report_params,"corpus_id":resolved_info.id if resolved_info else ""})
         # One generating entity owns this attempt.
+        hierarchy_record: dict | None = None
+        if resolved_info is not None:
+            try:
+                library = await asyncio.to_thread(app.state.project_index.library, resolved_info,
+                                                 knowledge_for(resolved_info))
+                hierarchy_record = await read_hierarchy(resolved_info, library)
+            except Exception:  # a hierarchy read must never block report generation
+                logger.warning("hierarchy read failed for report", exc_info=True)
+        if hierarchy_record is not None:
+            # Passed inside the run params so the call signature stays stable; generate_markdown
+            # replaces it with the small snapshot that is persisted with the artifact.
+            report_params["hierarchy_record"] = hierarchy_record
         try:
             visible_sources: list[dict] = []
             markdown = await generate_markdown(
@@ -2433,7 +2556,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # Only known application routes use the SPA entry; missing APIs/assets stay 404.
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
-            r"|review(?:/(?:guidelines|evidence|runs/[^/.]+))?|chat|tasks|artifacts|prompts)/?", asset_path)
+            r"|review(?:/(?:formal|professional|guidelines|evidence|runs/[^/.]+))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

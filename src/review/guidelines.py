@@ -1,13 +1,14 @@
-"""Build a review checklist directly from supplied guideline documents."""
+"""Draft a review template from uploaded requirement text; every clause keeps its source."""
 import uuid
 from datetime import date
 
-from .model_client import Client, ModelError
+from .model_client import Client, ModelError, TruncatedModelError
 from .models import GuideCheck, RulePack
+from .templates import suggest_execution
 from .research import redact
 
 
-def generate(guides,client=None):
+def generate(guides,kind='formal',client=None):
     client=client or Client(); cfg=client.settings
     sources=[]
     for guide in guides:
@@ -25,11 +26,17 @@ def generate(guides,client=None):
     if batch: batches.append(batch)
     if len(batches)>cfg['max_calls']//2: raise ModelError('指南过长，无法在调用预算内完整提取，请缩小材料范围。')
     checks=[]; notes=[]; missing=[]; metadata=[]
-    for batch in batches:
+    while batches:
+        batch=batches.pop(0)
         allowed={x['source_id']:x for x in batch}
         payload={'sources':batch,'documents':[{'filename':g['filename'],'kind':g['kind']} for g in guides]}
+        try: result=client.ask('00_plan',payload)
+        except TruncatedModelError:
+            # Too many clauses for one reply: halve the passage set instead of failing the guideline.
+            if len(batch)<2: raise
+            half=len(batch)//2; batches[:0]=[batch[:half],batch[half:]]; continue
         for attempt in range(2):
-            result=client.ask('00_plan',payload)
+            if attempt: result=client.ask('00_plan',payload)
             rows=result.get('checks')
             valid=isinstance(rows,list) and len(rows)<=40 and all(isinstance(r,dict) and r.get('source_id') in allowed for r in rows)
             if valid: break
@@ -44,8 +51,13 @@ def generate(guides,client=None):
             src=allowed[row['source_id']]
             item={**row,'id':f'check-{len(checks)+1}','guideline_id':src['guideline_id'],'page':src['page'],'quote':src['text'],
                 'source':f'{src["filename"]} · 第 {src["page"]} {src["location_type"]}：{src["text"]}','enabled':True}
-            try: checks.append(GuideCheck.model_validate(item).model_dump())
+            if kind=='professional': item.update(method='model',strength='advisory',evidence_need='policy')
+            try: check=GuideCheck.model_validate(item).model_dump()
             except Exception: raise ModelError('模型生成的检查项字段不完整，请重新生成。') from None
+            if kind=='formal' and check['method']=='calculation' and (spec:=suggest_execution(check)):
+                check['execution']=spec
+                notes.append(f'“{check["title"]}”的数值由程序按原文识别为可执行规则，请核对对象、上限和单位后再启用。')
+            checks.append(check)
     if not checks: raise ModelError('未识别出可审核要求，请确认上传的是指南或填写说明。')
     if len(checks)>100: raise ModelError('检查清单超过100项，请按项目类别拆分指南。')
     head=metadata[0]; years={r.get('year') for r in metadata if isinstance(r.get('year'),int)}
@@ -53,7 +65,7 @@ def generate(guides,client=None):
     scopes={r.get('category') for r in metadata if r.get('category')}
     if len(scopes)>1: notes.append('材料涉及多个项目类别，请确认各检查项适用条件；冲突不得默认合并。')
     notes.extend(w for g in guides for w in g.get('warnings',[]))
-    return RulePack.model_validate({'id':'guide-'+uuid.uuid4().hex[:12],'name':head.get('name') or guides[0]['filename'],'fund':head.get('fund') or '',
+    return RulePack.model_validate({'id':'guide-'+uuid.uuid4().hex[:12],'kind':kind,'source_kind':'upload','name':head.get('name') or guides[0]['filename'],'fund':head.get('fund') or '',
         'category':head.get('category') or '', 'year':next(iter(years)) if len(years)==1 else date.today().year,
         'scope_note':head.get('scope_note') or '仅依据上传指南提取；未提供的引用文件不在本次覆盖范围内。',
         'engine':'guideline','checks':checks,'guideline_ids':[g['id'] for g in guides], 'missing_documents':list(dict.fromkeys(missing))[:30],

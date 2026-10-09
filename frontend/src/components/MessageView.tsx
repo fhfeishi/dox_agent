@@ -713,7 +713,8 @@ export function MessageView({
         </p>
       )}
 
-      {!compact ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
+      {/* 对比分析的结论以表内 [n] 引用核对，不再追加整段引用来源列表（query 2026-1008 1547）。 */}
+      {!compact && (attempt.runInfo?.task_id ?? attempt.options.task_id) !== "task2" ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
       {!compact ? <ReportCard attempt={attempt} onReport={onReport} /> : null}
       {!compact ? <Telemetry attempt={attempt} /> : null}
       {!compact ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}

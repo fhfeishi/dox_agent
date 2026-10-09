@@ -14,12 +14,13 @@ BASE_FILE = "base.md"
 DEFAULT_TASK_ID = "task1"
 CHAT_TASK_IDS = ("task1", "task2", "task3", "task4")
 # Single authority for report section structure (§9.3); task4_report.md keeps only instructions.
-REPORT_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehensive")
+REPORT_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehensive", "intelligence")
 TEMPLATE_NAMES = {
     "achievements": "成果报告",
     "hotspots": "热点报告",
     "future_directions": "未来方向报告",
     "comprehensive": "综合报告",
+    "intelligence": "情报分析报告",
 }
 
 TASKS: tuple[dict, ...] = (
@@ -67,6 +68,20 @@ def base_prompt() -> str:
 def target_instruction() -> str:
     """Fixed extraction contract for the four-dimension target JSON."""
     return _read("target_extract.md")
+
+
+def hierarchy_instruction() -> str:
+    """Corpus-level synthesis contract: scenes, issues, tech routes and achievement aspects.
+
+    The model may only name entries that already exist in the four-dimension topics;
+    the caller drops anything that cannot be traced back (需求 §17).
+    """
+    return _read("hierarchy.md")
+
+
+def topic_summary_instruction() -> str:
+    """Per-topic grounded summary contract; every point cites input evidence refs (需求 §14.4)."""
+    return _read("topic_summary.md")
 
 
 def task_prompt(task_id: str) -> str:

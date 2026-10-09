@@ -27,6 +27,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
   });
   useEffect(() => {
     if (!job.data) return;
+    if (job.data.status !== "running") void client.invalidateQueries({ queryKey: ["library", corpusId, "projects"] });
     void client.invalidateQueries({ queryKey: ["library", corpusId, "targets"] });
     void client.invalidateQueries({ queryKey: ["library", corpusId, "target"] });
   }, [client, corpusId, job.data?.completed, job.data?.status]);

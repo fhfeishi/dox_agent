@@ -7,12 +7,19 @@ from .model_client import Client, ModelError
 from .parser import compact
 from .research import redact
 
-FIELDS=('title','fund','category','year','birth_date','budget','domain')
-def empty(): return {k:None if k in ('year','budget') else '' for k in FIELDS}
+FIELDS=('title','fund','category','year','birth_date','budget','total_budget','organizations','plan_start','plan_end','domain')
+NUMERIC=('year','budget','total_budget')
+def empty(): return {k:None if k in NUMERIC else ([] if k=='organizations' else '') for k in FIELDS}
 
 def valid_value(field,value,source):
     if field=='year': return type(value) is int and 1990<=value<=2100
-    if field=='budget': return type(value) in (int,float) and math.isfinite(value) and 0<=value<=1e9
+    if field in ('budget','total_budget'): return type(value) in (int,float) and math.isfinite(value) and 0<=value<=1e9
+    if field in ('plan_start','plan_end'):
+        if not isinstance(value,str) or not re.fullmatch(r'\d{4}(-\d{2}(-\d{2})?)?',value): return False
+        try: date.fromisoformat(value if len(value)==10 else (value+'-01-01')[:10]); return True
+        except ValueError: return False
+    # A unit name must appear in the cited passage; "无" is not a unit.
+    if field=='organizations': return isinstance(value,str) and 2<=len(value)<=100 and value!='无' and compact(value) in compact(source)
     if not isinstance(value,str) or not value.strip(): return False
     if len(value)>(200 if field=='title' else 100): return False
     if field=='birth_date':
@@ -54,8 +61,8 @@ def extract(doc,client=None,progress=lambda *a:None):
             except ModelError as exc:
                 failure=str(exc);break
             rows=result.get('candidates')
-            valid=isinstance(rows,list) and len(rows)<=14
-            if isinstance(rows,list) and len(rows)<=14:
+            valid=isinstance(rows,list) and len(rows)<=20
+            if isinstance(rows,list) and len(rows)<=20:
                 for row in rows:
                     if isinstance(row,dict) and row.get('field') in FIELDS and isinstance(row.get('source_id'),str) and row['source_id'] in allowed:
                         if row not in accepted:accepted.append(row)
@@ -77,7 +84,10 @@ def extract(doc,client=None,progress=lambda *a:None):
         values=[]
         for row in rows:
             if row['value'] not in values:values.append(row['value'])
-        if len(values)==1:meta[field]=values[0];status='extracted'
+        if field=='organizations':
+            # Several units form a list, not a conflict; duplicates collapse by exact name.
+            meta[field]=values;status='extracted' if values else 'missing'
+        elif len(values)==1:meta[field]=values[0];status='extracted'
         elif values:status='conflict'
         else:status='missing'
         fields[field]={'status':status,'candidates':rows}

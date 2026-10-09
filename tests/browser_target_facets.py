@@ -219,6 +219,9 @@ async def main():
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"),
                              lambda r: r.fulfill(json={"source_dir": "/tmp", "files": [],
                                                        "misplaced_files": []}))
+            await page.route(re.compile(r".*/api/corpora/[^/]+/projects$"), lambda route: route.fulfill(json={
+                "projects": [], "coverage": {"files": 0, "identified_projects": 0, "pending_identity_records": 0,
+                "dimensions": {key: {"evidence_projects": 0, "fully_processed_projects": 0, "items": []} for key in ("场景", "问题", "技术", "成果")}, "funding": {}}}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/reports$"), reports)
             await page.route(re.compile(r".*/api/corpora/[^/]+/reports/[^/]+/target$"), detail)
             await page.route(re.compile(r".*/api/corpora/[^/]+/target$"), start_extraction)
@@ -232,8 +235,11 @@ async def main():
             await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
 
             # ---- 进入库内的四维浏览 ------------------------------------------------
-            await page.get_by_role("button", name="知识库", exact=True).click()
+            await page.get_by_role("button", name="资料库", exact=True).click()
             await page.get_by_role("button", name="四维浏览", exact=True).first.click()
+            disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
+            if not await disclosure.evaluate("(element) => element.open"):
+                await page.get_by_text("文件级整理与只读对照", exact=True).click()
             await expect(page.get_by_text("四维浏览 · 报告单元 5 份")).to_be_visible()
 
             # ---- ① 四种状态必须彼此分开 -------------------------------------------
@@ -276,6 +282,9 @@ async def main():
             await expect(page.get_by_text(re.compile("筛选命中 2 份 · 已选 0 份"))).to_be_visible()
             assert await page.get_by_label("场景筛选").locator("option[value='临床诊疗']").inner_text() == "临床诊疗（2 份）"
             await page.reload()
+            disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
+            if not await disclosure.evaluate("(element) => element.open"):
+                await page.get_by_text("文件级整理与只读对照", exact=True).click()
             await expect(page.get_by_label("场景筛选")).to_have_value("临床诊疗")
             await expect(page.get_by_role("button", name=re.compile("解析正文位置"))).to_be_visible()
             await page.get_by_role("button", name="选中筛选结果").click()
@@ -293,6 +302,9 @@ async def main():
             assert scoped[-1]["data"]["corpus_ids"] == [CORPUS_ID]
             assert scoped[-1]["data"]["turns"] == []
             await page.go_back()
+            disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
+            if not await disclosure.evaluate("(element) => element.open"):
+                await page.get_by_text("文件级整理与只读对照", exact=True).click()
             await expect(page.get_by_label("场景筛选")).to_have_value("临床诊疗")
 
             # Polling is visible-view scoped. Stop watching is not cancellation.
@@ -304,6 +316,9 @@ async def main():
             await expect(page.get_by_text("仍在处理：已停止自动刷新，可点击“继续查看状态”查看最新进度")).to_be_visible()
             await page.get_by_role("button", name="对话", exact=True).click()
             await page.go_back()
+            disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
+            if not await disclosure.evaluate("(element) => element.open"):
+                await page.get_by_text("文件级整理与只读对照", exact=True).click()
             await expect(page.get_by_role("button", name="继续查看状态")).to_be_visible()
             job.update(status="done", completed=1)
             before = len(reports_calls)
@@ -320,8 +335,11 @@ async def main():
                     pass  # An aborted GET is expected when its view unmounts.
             await page.route(re.compile(r".*/api/corpora/c1/reports$"), delayed_reports)
             await page.get_by_role("button", name="刷新四维列表").click()
-            await page.get_by_role("button", name="返回知识库列表").click()
+            await page.get_by_role("button", name="返回资料库列表").click()
             await page.get_by_role("button", name="四维浏览", exact=True).nth(1).click()
+            disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
+            if not await disclosure.evaluate("(element) => element.open"):
+                await page.get_by_text("文件级整理与只读对照", exact=True).click()
             await expect(page.get_by_text("四维浏览 · 报告单元 0 份")).to_be_visible()
             await page.wait_for_timeout(400)
             await expect(page.get_by_text("四维浏览 · 报告单元 0 份")).to_be_visible()

@@ -1,12 +1,16 @@
+import { ProjectDetail } from "./ProjectOverview";
+import { useNavigate } from "react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchPromptSkills, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type PromptSkill, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
+import { ReviewSourceView } from "./ReviewSourceView";
+import { ExternalInputView } from "./IntelligenceView";
 import { ReportMarkdown } from "./ReportMarkdown";
 import type { ReportFigure } from "./ReportMarkdown";
 import remarkGfm from "remark-gfm";
@@ -34,6 +38,7 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
 }
 
 export function Inspector() {
+  const navigate = useNavigate();
   const {
     inspectorOpen,
     toggleInspector,
@@ -48,7 +53,6 @@ export function Inspector() {
     corpusReady,
     workspace,
     options,
-    setNav,
     drawerOpen,
     previewDoc,
     explorerOpen,
@@ -86,7 +90,6 @@ export function Inspector() {
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [templateError, setTemplateError] = useState("");
   const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
-  const [skillList, setSkillList] = useState<PromptSkill[]>([]);
   const [templateDraft, setTemplateDraft] = useState<CustomTemplate | null>(null);
   const [templateEditBusy, setTemplateEditBusy] = useState(false);
   const [templateEditMessage, setTemplateEditMessage] = useState("");
@@ -274,7 +277,6 @@ export function Inspector() {
   const selectedTask = inspectorTarget.kind === "task"
     ? tasks.find((item) => item.id === inspectorTarget.taskId) : null;
   useEffect(() => { setTaskDraft(selectedTask ? { ...selectedTask } : null); setTaskEditMessage(""); }, [selectedTask?.id, selectedTask?.revision]);
-  useEffect(() => { void fetchPromptSkills().then(setSkillList).catch(() => setSkillList([])); }, [selectedTask?.id]);
   async function persistTask(publish: boolean) {
     if (!taskDraft) return;
     setTaskEditBusy(true);
@@ -400,6 +402,9 @@ export function Inspector() {
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
+            : inspectorTarget.kind === "project" ? "项目详情"
+            : inspectorTarget.kind === "review-source" ? "审查原文"
+            : inspectorTarget.kind === "input" ? "外部原始材料"
             : inspectorTarget.kind === "web" ? "网页快照"
             : inspectorTarget.kind === "report" ? "报告预览"
             : inspectorTarget.kind === "artifact" ? "成果预览"
@@ -498,15 +503,7 @@ export function Inspector() {
                         </select>
                       </label>
                     ) : null}
-                    {selectedTask.engine_task_id !== "task4" ? <label className="block text-[12px] text-[var(--slate)]">固定 Skill 版本
-                      <select aria-label="固定 Skill 版本" value={taskDraft.skill_id ? `${taskDraft.skill_id}|${taskDraft.skill_version ?? 0}` : ""}
-                        onChange={(event) => { const [skill_id, version] = event.target.value.split("|"); setTaskDraft({ ...taskDraft, skill_id: skill_id || undefined, skill_version: skill_id ? Number(version) : undefined }); }}
-                        className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px]">
-                        <option value="">不使用 Skill</option>
-                        {skillList.filter((item) => item.kind === "skill" && item.enabled && !item.archived && item.version).map((item) =>
-                          <option key={item.id} value={`${item.id}|${item.version}`}>{item.name} v{item.version}</option>)}
-                      </select>
-                    </label> : null}
+
                     <label className="block text-[12px] text-[var(--slate)]">默认关注点
                       <input aria-label="默认关注点" value={taskDraft.parameter_defaults?.focus ?? ""}
                         onChange={(event) => setTaskDraft({ ...taskDraft, parameter_defaults: { ...taskDraft.parameter_defaults, focus: event.target.value } })}
@@ -875,6 +872,9 @@ export function Inspector() {
           </>
         ) : null}
 
+        {inspectorTarget.kind === "review-source" ? <ReviewSourceView fileId={inspectorTarget.fileId} page={inspectorTarget.page} /> : null}
+        {inspectorTarget.kind === "project" ? <ProjectDetail corpusId={inspectorTarget.corpusId} projectId={inspectorTarget.projectId} facet={inspectorTarget.facet} /> : null}
+        {inspectorTarget.kind === "input" ? <ExternalInputView inputId={inspectorTarget.inputId} /> : null}
         {inspectorTarget.kind === "web" ? (
           <div>
             <SectionTitle>已确认网页快照</SectionTitle>
@@ -921,7 +921,7 @@ export function Inspector() {
                 使用“专项报告”任务确认需求后，在对话中的报告卡生成；本会话报告可集中预览和下载。
               </p>
               <div className="mt-[10px] flex gap-[8px]">
-                <Button size="sm" variant="ghost" onClick={() => setNav("reports")}>查看本会话报告</Button>
+                <Button size="sm" variant="ghost" onClick={() => void navigate("/tasks/results")}>查看本会话报告</Button>
               </div>
             </Card>
 

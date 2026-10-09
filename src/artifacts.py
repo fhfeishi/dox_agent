@@ -77,6 +77,8 @@ class ArtifactStore:
                 "CREATE UNIQUE INDEX IF NOT EXISTS artifact_report_identity ON artifacts(report_id) WHERE report_id IS NOT NULL"
             )
             db.execute("CREATE INDEX IF NOT EXISTS artifact_expiry ON artifacts(purge_after)")
+            db.execute("CREATE TABLE IF NOT EXISTS artifact_inputs (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, filename TEXT, version TEXT, data BLOB, text TEXT, removed_at TEXT)")
+
             db.execute(
                 "CREATE TABLE IF NOT EXISTS purged_artifacts (artifact_id TEXT PRIMARY KEY, report_id TEXT, report_run_id TEXT, purged_at TEXT)"
             )
@@ -190,6 +192,12 @@ class ArtifactStore:
     def begin_report(self, run_id, params):
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
+            self._cleanup_inputs(db)
+            for input_id in list(params.get("input_ids", [])) + ([params["input_template_id"]] if params.get("input_template_id") else []):
+                row = db.execute("SELECT text,removed_at FROM artifact_inputs WHERE id=?", (input_id,)).fetchone()
+                if not row or row[0] is None or row[1]:
+                    raise HTTPException(409, "外部输入已移除或清理，请重新选择")
+
             if db.execute("SELECT 1 FROM purged_artifacts WHERE report_run_id=?", (run_id,)).fetchone():
                 raise HTTPException(410, "成果已永久删除")
             row = db.execute(
@@ -333,6 +341,46 @@ class ArtifactStore:
                 return {"artifact_id": artifact_id, "lifecycle": "purged"}
         return self.get(artifact_id, include_trashed=True)
 
+    def _cleanup_inputs(self, db):
+        used = set()
+        for (params,) in db.execute("SELECT report_params FROM artifacts WHERE purge_after IS NULL OR purge_after>?", (_now(),)):
+            used.update(json.loads(params).get("input_ids", []))
+            template = json.loads(params).get("input_template_id")
+            if template:
+                used.add(template)
+        for (citations,) in db.execute("SELECT citations FROM artifact_versions JOIN artifacts ON artifacts.id=artifact_versions.artifact_id WHERE artifacts.purge_after IS NULL OR artifacts.purge_after>?", (_now(),)):
+            used.update(source["input_id"] for source in json.loads(citations) if source.get("input_id"))
+        deadline = (datetime.fromisoformat(_now()) - timedelta(days=7)).isoformat()
+        for input_id, created, removed in db.execute("SELECT id,created_at,removed_at FROM artifact_inputs WHERE text IS NOT NULL").fetchall():
+            if input_id not in used and (removed or created <= deadline):
+                db.execute("UPDATE artifact_inputs SET filename=NULL,version=NULL,data=NULL,text=NULL,removed_at=? WHERE id=?", (_now(), input_id))
+
+    def put_input(self, filename, data, text):
+        input_id = uuid4().hex
+        import hashlib
+        version = hashlib.sha256(data).hexdigest()
+        with self.connect() as db:
+            db.execute("INSERT INTO artifact_inputs VALUES (?,?,?,?,?,?,NULL)", (input_id, _now(), filename, version, data, text))
+        return self.get_input(input_id)
+
+    def get_input(self, input_id):
+        with self.connect() as db:
+            self._cleanup_inputs(db)
+            row = db.execute("SELECT created_at,filename,version,text,removed_at FROM artifact_inputs WHERE id=?", (input_id,)).fetchone()
+        if row is None:
+            raise HTTPException(404, "外部材料不存在")
+        if row[3] is None:
+            raise HTTPException(410, "外部材料已清理")
+        return {"input_id": input_id, "created_at": row[0], "filename": row[1], "version": row[2],
+                "text": row[3], "removed": row[4] is not None}
+
+    def remove_input(self, input_id):
+        self.get_input(input_id)
+        with self.connect() as db:
+            db.execute("UPDATE artifact_inputs SET removed_at=? WHERE id=?", (_now(), input_id))
+            self._cleanup_inputs(db)
+        return {"input_id": input_id, "removed": True}
+
     def _purge(self, db, artifact_id):
         db.execute(
             "INSERT OR IGNORE INTO purged_artifacts SELECT id,report_id,CASE WHEN type='report' THEN run_id ELSE '' END,? FROM artifacts WHERE id=?",
@@ -348,6 +396,7 @@ class ArtifactStore:
         for (digest,) in db.execute("SELECT sha256 FROM artifact_images").fetchall():
             if digest not in referenced:
                 db.execute("DELETE FROM artifact_images WHERE sha256=?", (digest,))
+        self._cleanup_inputs(db)
 
     def purge_expired(self):
         with self.connect() as db:
@@ -355,6 +404,7 @@ class ArtifactStore:
             rows = db.execute("SELECT id FROM artifacts WHERE purge_after<=?", (_now(),)).fetchall()
             for row in rows:
                 self._purge(db, row[0])
+            self._cleanup_inputs(db)
         return len(rows)
 
     def create(

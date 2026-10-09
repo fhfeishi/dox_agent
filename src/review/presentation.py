@@ -33,7 +33,7 @@ def present_report(run):
         technical['summary'] = readable(technical['summary'])
 
     def point(item):
-        return {k: item.get(k, '') for k in ('id', 'title', 'status', 'suggestion', 'page', 'quote')} | {
+        return {k: item.get(k, '') for k in ('id', 'title', 'status', 'suggestion', 'page', 'quote', 'evidence_ids', 'basis')} | {
             'detail': item.get('detail', item.get('assessment', ''))}
 
     issues = [point(x) for x in findings if x.get('status') in ('issue', 'warning')]
@@ -45,4 +45,11 @@ def present_report(run):
         'missing_documents': list(dict.fromkeys((run.get('rule') or {}).get('missing_documents', []))),
         'summary': f'规范审核有 {len(issues)} 项问题或修改提醒、{len(pending)} 项待核实；技术部分有 {len(cards)} 项评议意见。待核实不等于不合格，技术建议也不代表已确认先进性。',
     }
+    if (run.get("request") or {}).get("kind") == "professional":
+        missing = [row["title"] for row in technical.get("coverage", []) if row["state"] == "missing"]
+        result["reader_report"]["summary"] = (f"专业评议 {len(cards)} 项；对照资料匹配 {technical.get('local_matches', 0)} 个项目。"
+            + (f"{len(missing)} 个评价问题未完成：{'、'.join(missing)}。" if missing else "")
+            + "检索未命中不等于原创，当前资料不足的意见须复核。")
+    elif (run.get("request") or {}).get("kind") == "formal":
+        result["reader_report"]["summary"] = f"按所选模板核对，有 {len(issues)} 项问题或修改提醒、{len(pending)} 项待核实；结果表示是否符合本模板要求，本次未执行专业技术评议。"
     return result

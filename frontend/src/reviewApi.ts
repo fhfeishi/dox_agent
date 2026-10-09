@@ -2,6 +2,8 @@
  * 审查上传的指南与申请书是工作材料，不进入知识库、不参与检索。 */
 
 export type ReviewMetadata = {
+  application_budget?: number | null; organization_count?: number | null; patent_count?: number | null; university_present?: boolean | null; education?: string; submitted_at?: string;
+  organizations?: string[]; total_budget?: number | null; plan_start?: string; plan_end?: string;
   title: string;
   fund: string;
   category: string;
@@ -27,12 +29,17 @@ export type ReviewExtraction = {
 export type ReviewDoc = {
   id: string;
   filename: string;
-  kind: "pdf" | "doc" | "docx";
+  kind: "pdf" | "doc" | "docx" | "md" | "txt";
   page_count: number;
   metadata: ReviewMetadata;
-  metadata_extraction?: ReviewExtraction;
+  metadata_extraction?: ReviewExtraction & { suggested_metadata?: Partial<ReviewMetadata> };
+  metadata_revision?: number;
   warnings: string[];
   created_at: string;
+  confirmed_at?: string;
+};
+export type ReviewExecution = {
+  field: string; operator: string; value: string; unit: string; section?: string; end?: string; counting?: string;
 };
 export type ReviewCheck = {
   id: string;
@@ -44,26 +51,50 @@ export type ReviewCheck = {
   method: "model" | "calculation" | "manual";
   needed_materials: string[];
   source: string;
+  source_id?: string;
+  guideline_id?: string;
   quote: string;
-  page: number;
+  page: number | null;
   enabled: boolean;
+  evidence_need?: "internal" | "comparison" | "policy";
+  original?: { requirement?: string; execution?: ReviewExecution | null; source?: string; quote?: string; page?: number | null };
+  revised?: boolean;
+  execution?: ReviewExecution | null;
 };
+export type ReviewKind = "formal" | "professional";
 export type ReviewRule = {
+  kind?: ReviewKind | null;
+  source_kind?: "builtin" | "manual" | "upload";
+  archived?: boolean;
   id: string;
   name: string;
   fund: string;
   category: string;
-  year: number;
+  year: number | null;
   version: number;
   scope_note: string;
+  budget_source?: string;
   engine: "guideline";
   checks: ReviewCheck[];
   missing_documents: string[];
   extraction_notes: string[];
+  generation?: Record<string, unknown>;
   guideline_ids: string[];
   confirmed: boolean;
+  scenario?: string;
+};
+export type ReviewBlock = { id: string; page: number; level: number; image: boolean; text: string };
+export type ReviewRange = { block_ids: string[]; pages: number[]; heading: string; count: number; text: string; complete: boolean; unread_images: number };
+export type ReviewMapping = {
+  check_id: string; title: string; section: string; status: "found" | "ambiguous" | "not_found" | "confirmed";
+  block_ids: string[]; missing: boolean; candidates?: ReviewRange[]; selected: ReviewRange | null;
+};
+export type ReviewMappingState = {
+  rule_id: string; rule_version: number; revision: number; saved_at?: string | null; algorithm: string;
+  mappings: ReviewMapping[]; blocks: ReviewBlock[];
 };
 export type ReviewEvidence = {
+  kind?: string; doc_id?: string; corpus_id?: string; version?: string;
   id: string;
   title: string;
   published: string;
@@ -83,6 +114,21 @@ export type ReviewFinding = {
   page: number | null;
   suggestion: string;
   quote: string;
+  origin?: "program" | "model" | "coverage";
+  clause_ids?: string[];
+  actual?: number | string | null;
+  requirement?: string;
+  coverage?: "complete" | "partial" | "none";
+  mapping?: string;
+  location?: { pages?: number[]; block_ids?: string[] };
+  counted_text?: string;
+  stage_dates?: string[];
+  verification_status?: string;
+  calculations?: { expression: string; computed_yuan: number; stated_yuan: number; ok: boolean }[];
+};
+export type ReviewCard = {
+  id: string; check_id?: string; topic?: string; title: string; assessment: string; suggestion: string; status: string;
+  page: number | null; quote: string; evidence_ids: string[]; basis: string; other_pages?: number[];
 };
 export type ReviewReaderPoint = {
   id: string;
@@ -95,16 +141,29 @@ export type ReviewReaderPoint = {
 };
 export type ReviewRun = {
   id: string;
+  source_locations?: Record<string, { file_id: string; source_page: number; kind: string; filename: string }>;
+  information_sheet?: ReviewDoc | null;
+  input_versions?: { file_id: string; sha256: string; metadata_revision: number }[];
+  budget?: { rows?: { name: string; amount: number }[]; total?: number | null; sum?: number; page?: number };
   created_at: string;
   finished_at?: string;
   status: "running" | "completed" | "failed";
   stage: number;
   stage_label: string;
   error?: string;
-  request: { mode: string; cutoff_date: string };
+  request: { kind?: ReviewKind; scenario?: string; mode: string; cutoff_date: string | null; rule_id?: string; rule_version?: number;
+    corpus_ids?: string[]; evidence_ids?: string[]; reference_count?: number };
+  mappings?: { revision: number; rows: ReviewMapping[] };
   document: ReviewDoc;
   rule: ReviewRule;
   findings: ReviewFinding[];
+  technical?: {
+    summary?: string;
+    evidence: (Omit<ReviewEvidence, "published"> & { published: string | null; project_period?: (number | null)[] })[];
+    local_matches?: number; excluded_count?: number;
+    cards?: ReviewCard[];
+    coverage?: { check_id: string; title: string; evidence_need: string; state: "evaluated" | "missing"; cards: number }[];
+  };
   summary?: Record<string, number>;
   reader_report?: {
     summary: string;
@@ -113,6 +172,7 @@ export type ReviewRun = {
     pending: ReviewReaderPoint[];
     missing_documents: string[];
   };
+  calculation_findings?: ReviewFinding[];
   audit?: {
     model: string;
     calls: unknown[];
@@ -132,17 +192,24 @@ export type ReviewHealth = {
 };
 
 export class ReviewApiError extends Error {
-  constructor(message: string, readonly status?: number) {
+  readonly status?: number;
+  constructor(message: string, status?: number) {
     super(message);
+    this.status = status;
   }
 }
 
 async function readError(response: Response, fallback: string) {
   const payload = await response.json().catch(() => null);
   const detail = payload?.detail;
+  // FastAPI validation errors arrive as a list; show what was wrong instead of a bare status code.
+  const fieldNames = (loc: unknown[]) => loc.filter((part) => typeof part === "string" && part !== "body")
+    .map((part) => REVIEW_FIELD_LABEL[part as string] ?? part).join(" / ");
   const message = typeof detail === "string" ? detail
     : typeof detail?.message === "string" ? detail.message
-      : `${fallback}（${response.status}）`;
+      : Array.isArray(detail) && detail.length ? `${fallback}：` + detail.map((item: { loc?: unknown[]; msg?: string }) =>
+        `${fieldNames(item.loc ?? [])}${item.msg ? " " + item.msg.replace(/^Value error, /, "") : ""}`).join("；")
+        : `${fallback}（${response.status}）`;
   throw new ReviewApiError(message, response.status);
 }
 
@@ -174,12 +241,19 @@ export const REVIEW_METHOD_LABEL: Record<ReviewCheck["method"], string> = {
   manual: "外部材料 / 人工",
 };
 export const REVIEW_FIELD_LABEL: Record<string, string> = {
+  organization_count: "申报单位数量（家）", patent_count: "专利数量（项）",
+  education: "负责人学历", submitted_at: "正式申报时间", university_present: "是否含高校",
   title: "项目名称",
   fund: "基金名称",
   category: "项目类别",
   year: "申报年度",
   birth_date: "申请人出生年月",
-  budget: "申请直接费用",
+  budget: "申请直接费用（万元）",
+  total_budget: "项目总预算（万元）",
+  organizations: "申报单位名单",
+  plan_start: "计划开始日期",
+  plan_end: "计划结束日期",
+  application_budget: "申请总经费（万元）",
   domain: "研究领域",
 };
 
@@ -197,9 +271,10 @@ export async function uploadReviewDocument(file: File): Promise<ReviewDoc> {
   form.append("file", file);
   return request("/documents", { method: "POST", body: form }, "申请书上传失败");
 }
-export async function uploadReviewGuidelines(files: File[]): Promise<ReviewRule> {
+export async function uploadReviewGuidelines(files: File[], kind: ReviewKind): Promise<ReviewRule> {
   const form = new FormData();
   for (const file of files) form.append("files", file);
+  form.append("kind", kind);
   return request("/guidelines/plan", { method: "POST", body: form }, "指南检查清单生成失败");
 }
 export function saveReviewRule(rule: ReviewRule): Promise<ReviewRule> {
@@ -207,10 +282,20 @@ export function saveReviewRule(rule: ReviewRule): Promise<ReviewRule> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(rule),
-  }, "检查清单保存失败");
+  }, "模板保存失败");
 }
 export function fetchReviewRules(): Promise<ReviewRule[]> {
-  return request("/rules", undefined, "检查清单列表读取失败");
+  return request("/rules", undefined, "模板列表读取失败");
+}
+export function fetchReviewMappings(documentId: string, ruleId: string): Promise<ReviewMappingState> {
+  return request(`/documents/${encodeURIComponent(documentId)}/mappings?rule_id=${encodeURIComponent(ruleId)}`, undefined, "章节对应读取失败");
+}
+export function saveReviewMappings(documentId: string, body: {
+  rule_id: string; rule_version: number; revision: number; mappings: { check_id: string; block_ids: string[]; missing: boolean }[];
+}): Promise<ReviewMappingState> {
+  return request(`/documents/${encodeURIComponent(documentId)}/mappings`, {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+  }, "章节对应保存失败");
 }
 export function patchReviewDocument(id: string, metadata: Partial<ReviewMetadata>): Promise<ReviewDoc> {
   return request(`/documents/${encodeURIComponent(id)}`, {
@@ -241,9 +326,9 @@ export function searchReviewEvidence(query: string, cutoff: string): Promise<Rev
     body: JSON.stringify({ query, cutoff }),
   }, "公开文献检索失败");
 }
-export function createReviewRun(input: {
-  document_id: string; rule_id: string; cutoff_date: string; mode: "historical" | "update";
-  evidence_ids?: string[];
+export function createReviewRun(input: { kind: ReviewKind; information_sheet_id?: string; corpus_ids?: string[];
+  document_id: string; rule_id: string; rule_version: number; cutoff_date?: string; mode: "historical" | "update";
+  evidence_ids?: string[]; reference_count?: number;
 }): Promise<ReviewRun> {
   return request("/runs", {
     method: "POST",
@@ -261,3 +346,20 @@ export const reviewDocumentFileUrl = (id: string) => `/api/review/documents/${en
 export const reviewGuidelineFileUrl = (id: string) => `/api/review/guidelines/${encodeURIComponent(id)}/file`;
 export const reviewExportUrl = (id: string, kind: "docx" | "json") =>
   `/api/review/runs/${encodeURIComponent(id)}/export/${kind}`;
+
+export const REVIEW_SOURCE_LABEL: Record<string, string> = { builtin: "内置示例", manual: "网页建立", upload: "上传提取" };
+export const REVIEW_KIND_LABEL: Record<ReviewKind, string> = { formal: "形式审查", professional: "专业审查" };
+/** Executable measures a template item can bind; the server re-validates every value. */
+export const REVIEW_MEASURES: { field: string; label: string; unit: string; kind: "section" | "number" | "interval" | "text" }[] = [
+  { field: "section_characters", label: "章节字符数", unit: "字符", kind: "section" },
+  { field: "organizations", label: "申报单位数（按名单去重）", unit: "家", kind: "number" },
+  { field: "total_budget", label: "项目总预算", unit: "万元", kind: "number" },
+  { field: "application_budget", label: "申请资助总额", unit: "万元", kind: "number" },
+  { field: "budget", label: "申请直接费用", unit: "万元", kind: "number" },
+  { field: "plan_interval", label: "项目计划日期区间", unit: "日期", kind: "interval" },
+  { field: "docx_font", label: "正文字体（仅 DOCX）", unit: "字体", kind: "text" },
+  { field: "docx_font_size", label: "正文字号（仅 DOCX，磅）", unit: "磅", kind: "number" },
+];
+export const REVIEW_EVIDENCE_NEED_LABEL: Record<string, string> = {
+  internal: "申请书内部论证", comparison: "需对照资料", policy: "需政策材料",
+};

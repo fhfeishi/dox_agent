@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearc
 import { lazy, Suspense } from "react";
 import { App } from "./App";
 import { AppProvider } from "./store";
+import { AnalysisShell } from "./components/AnalysisShell";
 import { ReviewShell } from "./components/ReviewViews";
 import { useDocuments } from "./useDocuments";
 
@@ -43,12 +44,19 @@ export const router = createBrowserRouter([{
         { path: "documents" }, { path: "documents/:docId" }, { path: "targets/four-facets" },
       ] },
     ] },
-    { path: "tasks", lazy: async () => ({ Component: (await import("./components/ListingViews")).TasksView }) },
-    { path: "artifacts", lazy: async () => ({ Component: (await import("./components/ListingViews")).ReportsView }) },
-    { path: "prompts", lazy: async () => ({ Component: (await import("./components/ListingViews")).PromptSkillView }) },
+    { path: "tasks", Component: AnalysisShell, children: [
+      { index: true, lazy: async () => ({ Component: (await import("./components/ListingViews")).TasksView }) },
+      { path: "results", lazy: async () => ({ Component: (await import("./components/ListingViews")).ReportsView }) },
+    ] },
+    { path: "intelligence", lazy: async () => ({ Component: (await import("./components/IntelligenceView")).IntelligenceView }) },
+    { path: "artifacts", Component: () => { const [search] = useSearchParams(); return <Navigate to={"/tasks/results?" + search.toString()} replace />; } },
+    { path: "prompts", element: <Navigate to="/tasks" replace /> },
     { path: "review", Component: ReviewShell, children: [
-      { index: true, lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewWorkbench }) },
-      { path: "guidelines", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewGuidelines }) },
+      { index: true, element: <Navigate to="/review/formal" replace /> },
+      { path: ":kind", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewWorkbench }) },
+      { path: "templates", lazy: async () => ({ Component: (await import("./components/ReviewTemplates")).ReviewTemplates }) },
+      { path: "templates/:id", lazy: async () => ({ Component: (await import("./components/ReviewTemplates")).ReviewTemplateDetail }) },
+      { path: "guidelines", element: <Navigate to="/review/templates" replace /> },
       { path: "evidence", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewEvidence }) },
       { path: "runs/:id", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewRunPage }) },
     ] },

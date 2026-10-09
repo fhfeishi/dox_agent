@@ -11,6 +11,7 @@ from .parser import compact
 
 
 def redact(text):
+    text = re.sub(r"(?:银行账号|账户|账号)\s*[:：]\s*[0-9 ]{8,40}", "账户：[已掩码]", text)
     text = re.sub(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", "[邮箱已移除]", text)
     text = re.sub(r"(?<!\d)1[3-9]\d{9}(?!\d)", "[电话已移除]", text)
     text = re.sub(r"(?<!\d)\d{17}[\dXx](?!\d)", "[证件号已移除]", text)
@@ -44,7 +45,7 @@ def validate_model_result(result, doc, evidence):
 
 def search_crossref(query, cutoff):
     # Only this explicit user-supplied query goes to Crossref, never the application document.
-    with httpx.Client(timeout=20, follow_redirects=True, trust_env=False) as client:
+    with httpx.Client(timeout=20, follow_redirects=True) as client:
         r = client.get(
             "https://api.crossref.org/works",
             params={"query.bibliographic": query, "filter": f"until-pub-date:{cutoff}", "rows": 6},

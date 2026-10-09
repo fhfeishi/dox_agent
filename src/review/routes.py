@@ -14,18 +14,18 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
-from . import audit, guidelines, metadata
+from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
 from .export import export_report
 from .model_client import Client, ModelError, config, model_configured
-from .models import EvidenceInput, MetadataUpdate, ResearchQuery, ReviewRequest, RulePack
+from .models import EvidenceInput, MappingUpdate, MetadataUpdate, ResearchQuery, ReviewRequest, RulePack
 from .parser import parse_document
 from .presentation import present_report
-from .research import search_crossref
+from .research import redact, search_crossref
 
 logger = logging.getLogger(__name__)
 executor = ThreadPoolExecutor(max_workers=2)
@@ -35,8 +35,26 @@ metadata_lock = threading.RLock()
 router = APIRouter(prefix="/api/review")
 
 
-def init_storage():
+def init_storage(path):
+    # Review data lives under the app's own state directory, never a process-wide default.
+    db.DATA = Path(path).resolve()
     db.init()
+    for rule in templates.builtins():
+        old = db.get("rule", rule["id"])
+        if old and all(old.get(k) == rule[k] for k in ("name", "scope_note", "checks")):
+            continue
+        # Built-in examples change only with code; each change is a new readable version.
+        publish(rule, old)
+
+
+def publish(data, old):
+    data["version"] = (old["version"] + 1) if old else 1
+    db.save("rule_version", {
+        "id": f'{data["id"]}-v{data["version"]}',
+        **{k: v for k, v in data.items() if k != "id"},
+        "rule_id": data["id"],
+    })
+    return db.save("rule", data)
 
 
 def require(kind, id):
@@ -47,7 +65,11 @@ def require(kind, id):
 
 
 def public_doc(doc):
-    return {k: v for k, v in doc.items() if k not in ("pages", "path")}
+    return {k: v for k, v in doc.items() if k not in ("pages", "path", "blocks")}
+
+
+def blank(value):
+    return value in (None, "", [])
 
 
 def extract_document_metadata(id, revision):
@@ -63,11 +85,16 @@ def extract_document_metadata(id, revision):
         with metadata_lock:
             current = require("document", id)
             result["extraction"]["finished_at"] = db.now()
-            if current.get("metadata_revision", 0) == revision:
-                current["metadata"] = result["metadata"]
-                current.pop("confirmed_at", None)
+            suggested = result["metadata"]
+            if current.get("confirmed_at") or current.get("metadata_revision", 0) != revision:
+                # Confirmed or edited values are never replaced; differences stay as suggestions.
+                differ = [f for f, v in suggested.items() if not blank(v) and current["metadata"].get(f) != v]
+                result["extraction"]["notes"].append(
+                    "已保留人工确认或修改的字段；模型建议仅作参考" + (f"，与当前值不同：{'、'.join(differ)}。" if differ else "。"))
             else:
-                result["extraction"]["notes"].append("识别期间你已修改字段，已保留手工输入；模型建议值仅保存在识别记录中。")
+                # Unconfirmed: fill empty fields only, so earlier manual entry survives a re-run.
+                current["metadata"] = {**current["metadata"], **{f: v for f, v in suggested.items()
+                                                                if not blank(v) and blank(current["metadata"].get(f))}}
             current["metadata_extraction"] = {**result["extraction"], "suggested_metadata": result["metadata"]}
             db.save("document", current)
     except Exception as e:
@@ -158,8 +185,8 @@ def documents():
 
 async def persist_upload(file: UploadFile, folder: str):
     suffix = Path(file.filename or "").suffix.lower()
-    if suffix not in (".pdf", ".doc", ".docx"):
-        raise HTTPException(400, "仅支持 PDF、DOC 和 DOCX。")
+    if suffix not in (".pdf", ".doc", ".docx", ".md", ".txt"):
+        raise HTTPException(400, "仅支持 PDF、DOC、DOCX、Markdown 和 TXT。")
     id = uuid.uuid4().hex
     path = db.DATA / folder / (id + suffix)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -207,6 +234,7 @@ def update_document(id: str, meta: MetadataUpdate):
     with metadata_lock:
         doc = require("document", id)
         doc["metadata"] = meta.model_dump(mode="json")
+        doc["metadata"]["organizations"] = list(dict.fromkeys(n.strip() for n in meta.organizations if n.strip()))
         doc["confirmed_at"] = db.now()
         doc["metadata_revision"] = doc.get("metadata_revision", 0) + 1
         db.save("document", doc)
@@ -221,9 +249,8 @@ def pages(id: str):
 @router.get("/documents/{id}/file")
 def original(id: str):
     doc = require("document", id)
-    media = "application/pdf" if doc["kind"] == "pdf" else (
-        "application/msword" if doc["kind"] == "doc"
-        else "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    media = {"pdf": "application/pdf", "doc": "application/msword", "md": "text/markdown; charset=utf-8",
+             "txt": "text/plain; charset=utf-8"}.get(doc["kind"], "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
     return FileResponse(doc["path"], media_type=media, content_disposition_type="inline", filename=doc["filename"])
 
 
@@ -235,14 +262,65 @@ def rules():
 @router.post("/rules")
 def save_rule(rule: RulePack):
     data = rule.model_dump(mode="json")
+    if data["id"].startswith("builtin-") or data["source_kind"] == "builtin":
+        raise HTTPException(403, "内置模板只读，请复制后编辑。")
     old = db.get("rule", rule.id)
-    data["version"] = (old["version"] + 1) if old else 1
-    db.save("rule_version", {
-        "id": f'{data["id"]}-v{data["version"]}',
-        **{k: v for k, v in data.items() if k != "id"},
-        "rule_id": data["id"],
-    })
-    return db.save("rule", data)
+    if old and old.get("kind") and old["kind"] != data["kind"]:
+        raise HTTPException(422, "已保存模板不能改变审查类型，请另存为新模板。")
+    known = [c["original"] for v in db.all_items("rule_version") for c in v.get("checks", []) if c.get("original")]
+    templates.preserve_origins(data, old, known)
+    if data["confirmed"]:
+        try:
+            templates.validate_enabled(data)
+        except ValueError as e:
+            raise HTTPException(422, str(e))
+    return publish(data, old)
+
+
+@router.get("/rules/{id}/versions/{version}")
+def rule_version(id: str, version: int):
+    return require("rule_version", f"{id}-v{version}")
+
+
+def proposal_blocks(doc):
+    if "blocks" not in doc:
+        raise HTTPException(409, "该申请书在章节识别功能之前上传，请重新上传以识别章节。")
+    return doc["blocks"]
+
+
+@router.get("/documents/{id}/mappings")
+def mappings(id: str, rule_id: str):
+    doc, rule = require("document", id), require("rule", rule_id)
+    blocks = proposal_blocks(doc)
+    saved = db.get("mapping", f"{id}:{rule_id}") or {}
+    return {"rule_id": rule_id, "rule_version": rule["version"], "revision": saved.get("revision", 0),
+            "saved_at": saved.get("saved_at"), "algorithm": sections.ALGORITHM_NOTE,
+            "mappings": sections.effective(blocks, rule, saved),
+            "blocks": [{"id": b["id"], "page": b["page"], "level": b["level"], "image": b.get("image", False),
+                        "text": b["text"][:160]} for b in blocks]}
+
+
+@router.put("/documents/{id}/mappings")
+def save_mappings(id: str, update: MappingUpdate):
+    doc, rule = require("document", id), require("rule", update.rule_id)
+    blocks = {b["id"] for b in proposal_blocks(doc)}
+    key = f"{id}:{update.rule_id}"
+    saved = db.get("mapping", key) or {}
+    if update.revision != saved.get("revision", 0):
+        raise HTTPException(409, "章节对应已在其他页面修改，请刷新后再保存。")
+    if update.rule_version != rule["version"]:
+        raise HTTPException(409, "模板已更新，请刷新后重新核对章节。")
+    targets = {c["id"]: c["execution"]["section"] for c in sections.section_checks(rule)}
+    for row in update.mappings:
+        if row.check_id not in targets or not set(row.block_ids) <= blocks or (row.missing and row.block_ids):
+            raise HTTPException(422, "章节对应包含未知条目或文本块。")
+    chosen = {row.check_id: row for row in update.mappings}
+    record = {"id": key, "document_id": id, "rule_id": update.rule_id, "rule_version": rule["version"],
+              "revision": update.revision + 1, "saved_at": db.now(),
+              "targets": {k: v for k, v in targets.items() if k in chosen},
+              "mappings": [row.model_dump() for row in chosen.values()]}
+    db.save("mapping", record)
+    return mappings(id, update.rule_id)
 
 
 @router.post("/rules/validate")
@@ -251,7 +329,7 @@ def validate_rule(rule: RulePack):
 
 
 @router.post("/guidelines/plan")
-async def plan_guidelines(files: list[UploadFile] = File(...)):
+async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form("formal")):
     if not model_configured():
         raise HTTPException(400, "请先配置审查模型，检查清单由大模型生成。")
     if not 1 <= len(files) <= 5:
@@ -268,9 +346,10 @@ async def plan_guidelines(files: list[UploadFile] = File(...)):
         db.save("guideline", guide)
         documents.append(guide)
     try:
-        draft = await run_in_threadpool(guidelines.generate, documents)
-        db.save("rule", draft)
-        return draft
+        if kind not in ("formal", "professional"):
+            raise HTTPException(422, "请选择形式或专业模板。")
+        draft = await run_in_threadpool(guidelines.generate, documents, kind)
+        return publish(draft, None)
     except ModelError as e:
         raise HTTPException(502, str(e))
 
@@ -281,9 +360,6 @@ def guideline_file(id: str):
     return FileResponse(guide["path"], filename=guide["filename"])
 
 
-@router.post("/rules/preview")
-async def preview_rule(file: UploadFile = File(...)):
-    return await plan_guidelines([file])
 
 
 @router.get("/evidence")
@@ -312,18 +388,59 @@ def research(q: ResearchQuery):
 STAGES = audit.STAGES
 
 
-def run_review(id, doc, rule, req, evidence):
+def run_review(id, doc, rule, req, evidence, settings):
     run = require("run", id)
 
     def progress(step, label=None):
-        run.update(stage=step, stage_label=label or STAGES[step])
+        order = [0, 1, 2, 4] if req["kind"] == "formal" else [0, 3, 4]
+        run.update(stage=order.index(step) if step in order else 0, stage_label=label or STAGES[step])
         db.save("run", run)
 
     try:
         client = Client()
         run["audit"] = {"provider": "OpenAI 兼容模型服务", "model": client.settings["model"], "calls": client.calls}
         guides = [require("guideline", gid) for gid in rule.get("guideline_ids", [])]
-        run.update(audit.review(doc, rule, evidence, req["cutoff_date"], progress, client, guides))
+        local_count = 0
+        if req["kind"] == "professional":
+            from urllib.parse import urlencode
+
+            from dataclasses import replace
+
+            from ..intelligence import corpus_knowledge
+            from ..retrieval import RetrievalConfig, assemble_reports
+            project_evidence = []
+            # The chosen library's most similar reports are read in full as the comparison set.
+            wanted = req["reference_count"]
+            knowledge = corpus_knowledge(settings, req["corpus_ids"])
+            query = str(doc["metadata"].get("title") or "申报技术方案") + " " + doc.get("proposal_text", "")[:2400]
+            # Fill to the requested count by score; weaker matches are flagged partial by retrieval.
+            base = RetrievalConfig()
+            config = replace(base, min_reports={**base.min_reports, "task2": wanted},
+                             max_reports={**base.max_reports, "task2": wanted})
+            matches = knowledge.retrieve(query, task_id="task2", config=config)
+            context = assemble_reports(matches.reports[:wanted], knowledge.read_markdown,
+                                       total_tokens=wanted * 4000, report_tokens=4000)
+            for report in context.reports:
+                source = next((m for m in matches.reports if m.doc.doc_id == report["doc"].doc_id), None)
+                if source:
+                    project_evidence.append({"id": "project:" + source.corpus_id + ":" + source.doc.doc_id,
+                                     "kind": "project", "title": source.doc.title, "published": None,
+                                     "summary": redact(report["markdown"]), "project_period": [source.doc.year_from, source.doc.year_to],
+                                     "url": "/api/documents/" + source.doc.doc_id + "/markdown?" + urlencode({"corpus": source.corpus_id, "version": source.doc.version}),
+                                     "version": source.doc.version, "doc_id": source.doc.doc_id, "corpus_id": source.corpus_id})
+            policy_evidence = [{"id": "policy:" + g["id"], "kind": "policy", "title": g["filename"],
+                                "published": None, "summary": redact("\n".join(p["text"] for p in g["pages"])[:8000]),
+                                "url": "/api/review/guidelines/" + g["id"] + "/file"} for g in guides]
+            evidence = project_evidence + policy_evidence + evidence
+            local_count = len(project_evidence)
+        cutoff = req["cutoff_date"] or db.now()[:10]
+        run.update(audit.review(doc, rule, evidence, cutoff, progress, client, guides, kind=req["kind"], mode=req["mode"]))
+        if req["kind"] == "professional":
+            run["technical"]["local_matches"] = local_count
+            run["audit"]["limitations"].append("项目区间不代表发表时间；未检索到相近项目不等于原创。规划符合性需要提供有效政策原文。")
+            if local_count < req["reference_count"]:
+                run["audit"]["limitations"].insert(0, f"对照资料库中仅检索到 {local_count} 篇相近报告（设定 {req['reference_count']} 篇），对比范围相应缩小。")
+        run["source_locations"] = doc["source_locations"]
         counts = {status: sum(f["status"] == status for f in run["findings"]) for status in ["pass", "issue", "warning", "pending", "na"]}
         run.update(status="completed", summary=counts, finished_at=db.now())
         db.save("run", run)
@@ -337,34 +454,91 @@ def run_review(id, doc, rule, req, evidence):
         db.save("run", run)
 
 
+def material_bundle(proposal, sheet):
+    from copy import deepcopy
+    merged = deepcopy(proposal)
+    merged["proposal_text"] = "\n".join(p["text"] for p in proposal["pages"])
+    merged["proposal_pages"] = len(proposal["pages"])
+    merged["information_sheet_present"] = sheet is not None
+    # Only human-confirmed values feed program checks; an unconfirmed file contributes nothing.
+    merged["metadata"] = dict(proposal["metadata"]) if proposal.get("confirmed_at") else {}
+    merged.pop("confirmed_at", None)
+    if proposal.get("confirmed_at"):
+        merged["confirmed_at"] = proposal["confirmed_at"]
+    merged["pages"], merged["source_locations"], merged["field_conflicts"] = [], {}, []
+    for doc in [proposal] + ([sheet] if sheet else []):
+        for page in doc["pages"]:
+            number = len(merged["pages"]) + 1
+            merged["pages"].append({**page, "page": number})
+            merged["source_locations"][str(number)] = {"file_id": doc["id"], "source_page": page["page"],
+                                                       "kind": doc["kind"], "filename": doc["filename"]}
+    if sheet and sheet.get("confirmed_at"):
+        # Conflicting fields do not acquire a "latest file wins" interpretation; empty is no value.
+        for field, value in sheet["metadata"].items():
+            previous = merged["metadata"].get(field)
+            if field == "title" or blank(value):
+                continue
+            if not blank(previous) and previous != value:
+                merged["field_conflicts"].append(field)
+                merged["metadata"][field] = None
+            else:
+                merged["metadata"][field] = value
+        merged["confirmed_at"] = merged.get("confirmed_at") or sheet["confirmed_at"]
+    return merged
+
 @router.post("/runs")
-def new_run(req: ReviewRequest):
+def new_run(req: ReviewRequest, request: Request):
     doc = require("document", req.document_id)
-    rule = require("rule", req.rule_id)
-    if doc.get("metadata_extraction", {}).get("status") == "running":
-        raise HTTPException(409, "基本信息仍在提取，请完成后核对再开始审核。")
+    sheet = require("document", req.information_sheet_id) if req.information_sheet_id else None
+    if sheet and sheet["id"] == doc["id"]:
+        raise HTTPException(422, "正文和信息表须分别指定，不能用同一文件冒充两份材料")
+    if doc.get("metadata_extraction", {}).get("status") == "running" or (sheet and sheet.get("metadata_extraction", {}).get("status") == "running"):
+        raise HTTPException(409, "材料基本信息仍在提取，请完成后核对")
     if not doc["metadata"].get("title", "").strip():
-        raise HTTPException(400, "请先确认并填写项目名称。")
+        raise HTTPException(400, "请先确认项目名称")
+    current = require("rule", req.rule_id)
+    if current.get("kind") != req.kind:
+        raise HTTPException(422, "模板类型与审查任务不一致，请选择对应类型的模板")
+    if req.rule_version != current["version"]:
+        raise HTTPException(409, "模板已更新，请刷新后确认使用最新保存的版本")
+    rule = {**require("rule_version", f"{req.rule_id}-v{req.rule_version}"), "id": req.rule_id}
     if not rule.get("confirmed"):
-        raise HTTPException(400, "检查清单仍为草稿，请先核对并启用。")
-    if not any(c.get("enabled", True) for c in rule.get("checks", [])):
-        raise HTTPException(400, "请至少启用一个指南检查项。")
+        raise HTTPException(400, "请先保存并启用模板")
+    try:
+        templates.validate_enabled(rule)
+    except ValueError as e:
+        raise HTTPException(422, str(e))
     if not model_configured():
-        raise HTTPException(400, "请先配置审查模型（MODEL_API_KEY 或 REVIEW_MODEL_*）。")
+        raise HTTPException(400, "审查模型尚未配置")
     if sum(r["status"] == "running" for r in db.all_items("run")) >= 2:
-        raise HTTPException(429, "已有两个审核任务在执行，请稍后再试。")
-    id = uuid.uuid4().hex
+        raise HTTPException(429, "已有两个审核任务在执行，请稍后再试")
+    if req.kind == "professional":
+        from ..agent.corpora import scan_corpora
+        libraries = {c.id: c for c in scan_corpora(request.app.state.settings)}
+        if req.corpus_ids[0] not in libraries or libraries[req.corpus_ids[0]].missing:
+            raise HTTPException(422, "对照资料库不存在或目录已缺失，请重新选择")
+    # Only explicitly chosen literature is read; an empty choice adds none from the stock.
+    items = [e for e in db.all_items("evidence") if e["id"] in req.evidence_ids]
+    if len(items) != len(req.evidence_ids):
+        raise HTTPException(422, "所选文献不存在，请刷新后重新选择")
+    ident = uuid.uuid4().hex
     data = req.model_dump(mode="json")
-    items = db.all_items("evidence")
-    if req.evidence_ids:
-        items = [e for e in items if e["id"] in req.evidence_ids]
-    run = {
-        "id": id, "created_at": db.now(), "status": "running", "stage": 0,
-        "stage_label": STAGES[0], "request": data, "rule": rule,
-        "document": public_doc(doc), "findings": [],
-    }
+    bundle = material_bundle(doc, sheet)
+    mapping = db.get("mapping", f"{doc['id']}:{req.rule_id}") or {}
+    rows = sections.effective(doc.get("blocks", []), rule, mapping) if req.kind == "formal" else []
+    bundle["blocks"] = doc.get("blocks", [])
+    bundle["section_mappings"] = {r["check_id"]: r for r in rows}
+    run = {"id": ident, "created_at": db.now(), "status": "running", "stage": 0,
+           "stage_label": STAGES[0], "request": data, "rule": rule, "document": public_doc(doc),
+           "information_sheet": public_doc(sheet) if sheet else None, "findings": [],
+           "mappings": {"revision": mapping.get("revision", 0),
+                        "rows": [{k: v for k, v in r.items() if k != "candidates"} for r in rows]},
+           "evidence_selection": {"corpus_ids": req.corpus_ids, "evidence_ids": req.evidence_ids},
+           "source_locations": bundle["source_locations"],
+           "input_versions": [{"file_id": d["id"], "sha256": hashlib.sha256(Path(d["path"]).read_bytes()).hexdigest(), "metadata_revision": d.get("metadata_revision", 0)}
+                              for d in [doc] + ([sheet] if sheet else [])]}
     db.save("run", run)
-    executor.submit(run_review, id, doc, rule, data, items)
+    executor.submit(run_review, ident, bundle, rule, data, items, request.app.state.settings)
     return run
 
 

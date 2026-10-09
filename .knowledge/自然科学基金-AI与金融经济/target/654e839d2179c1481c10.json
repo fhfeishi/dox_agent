@@ -2,15 +2,20 @@
   "doc_id": "654e839d2179c1481c10",
   "version": "cad2524dc77d461d7cfa",
   "source_hash": "998888bc120b51cecef1af30de2d97b3e3615c71322aaae46e6e27206f40b76b",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:37:20.921287+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:45:19.446986+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,15 +24,15 @@
       "state": "has",
       "items": [
         {
-          "id": "item-3f603c0baa12",
-          "name": "双碳目标与1.5℃气候目标",
-          "desc": "面向全球1.5℃目标与国内双碳目标的实现需求评估人工智能的碳排放影响。",
+          "id": "item-1e9f66bfcea0",
+          "name": "人工智能发展的碳排放影响",
+          "desc": "研究人工智能发展所引致的碳排放以保障全球1.5℃目标和国内双碳目标实现",
           "evidence": [
             {
-              "quote": "为保障全球1.5℃目标和国内双碳目标的实现做出积极的贡献",
+              "quote": "研究人工智能发展所引致的碳排放，有助于加强人们对人工智能发展所引发的气候风险的客观认识，进而引起公众和政府对人工智能发展的碳排放问题的持续关注，为保障全球1.5℃目标和国内双碳目标的实现做出积极的贡献",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 739,
+                "start_char": 667,
                 "end_char": 766
               },
               "version": "cad2524dc77d461d7cfa"
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-2bc06dbf28e4",
-          "name": "全球气候变化形势严峻",
-          "desc": "全球气候变化形势日益严峻构成本研究的现实背景。",
+          "id": "item-a9df9cb49981",
+          "name": "政府应对气候变化的政策依据",
+          "desc": "研究成果为政府在人工智能时代应对气候变化提供科学根据",
           "evidence": [
             {
-              "quote": "在当前全球气候变化形势日益严峻的背景下",
+              "quote": "研究成果将为政府在人工智能时代应对气候变化提供科学根据",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 647,
-                "end_char": 665
+                "start_char": 975,
+                "end_char": 1001
               },
               "version": "cad2524dc77d461d7cfa"
             }
@@ -57,9 +62,25 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf4823d1b04a",
-          "name": "AI引致碳排放缺乏客观认识",
-          "desc": "人们对人工智能发展所引发的气候风险认识不足。",
+          "id": "item-af4d57ce60dc",
+          "name": "机理与量化评估双重缺口",
+          "desc": "旨在探究人工智能发展对碳排放影响的机理并着重解决量化评估问题",
+          "evidence": [
+            {
+              "quote": "本项目以人工智能发展对碳排放的影响为研究对象，旨在探究人工智能发展对碳排放影响的机理，并着重解决人工智能发展对碳排放影响的量化评估问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 768,
+                "end_char": 834
+              },
+              "version": "cad2524dc77d461d7cfa"
+            }
+          ]
+        },
+        {
+          "id": "item-3fa282157cba",
+          "name": "人工智能碳风险认知不足",
+          "desc": "需加强人们对人工智能发展所引发气候风险的客观认识",
           "evidence": [
             {
               "quote": "有助于加强人们对人工智能发展所引发的气候风险的客观认识",
@@ -67,22 +88,6 @@
                 "basis": "parsed_text",
                 "start_char": 683,
                 "end_char": 709
-              },
-              "version": "cad2524dc77d461d7cfa"
-            }
-          ]
-        },
-        {
-          "id": "item-16bd258c5246",
-          "name": "AI碳排放量化评估方法缺失",
-          "desc": "人工智能发展对碳排放影响的量化评估问题亟待解决。",
-          "evidence": [
-            {
-              "quote": "并着重解决人工智能发展对碳排放影响的量化评估问题",
-              "locator": {
-                "basis": "parsed_text",
-                "start_char": 811,
-                "end_char": 834
               },
               "version": "cad2524dc77d461d7cfa"
             }
@@ -95,25 +100,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-cf3c74fbd32c",
-          "name": "因果机器学习效应评估",
-          "desc": "用双重机器学习、双重鲁棒学习和因果随机森林评估人工智能对碳排放的因果效应。",
+          "id": "item-6267fb1763a9",
+          "name": "双重机器学习因果效应评估",
+          "desc": "使用2006-2019年中国省级面板数据通过双重机器学习、双重鲁棒学习与因果随机森林评估因果效应",
           "evidence": [
             {
-              "quote": "通过一系列机器学习方法（双重机器学习、双重鲁棒学习和因果随机森林）来评估人工智能对碳排放的因果效应",
+              "quote": "使用2006-2019年中国省级面板数据，通过一系列机器学习方法（双重机器学习、双重鲁棒学习和因果随机森林）来评估人工智能对碳排放的因果效应",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3033,
+                "start_char": 3012,
                 "end_char": 3081
               },
               "version": "cad2524dc77d461d7cfa"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-dbcec78e4d44",
-          "name": "自下而上算力与碳排放测算模型",
-          "desc": "基于自下而上建模思想构建中国人工智能算力规模与碳排放测算模型。",
+          "id": "item-d0ca471db0df",
+          "name": "自下而上算力碳排放测算模型",
+          "desc": "构建覆盖3类训练与4类推理场景的算力规模及碳排放测算模型",
           "evidence": [
             {
               "quote": "基于自下而上的建模思想，构建中国人工智能算力规模及人工智能碳排放的测算模型",
@@ -124,23 +130,25 @@
               },
               "version": "cad2524dc77d461d7cfa"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-69197e1210fc",
-          "name": "七场景全生命周期测算逻辑链",
-          "desc": "覆盖3类训练与4类推理场景，按总计算量、实际算力、电力消耗、碳排放统一测算。",
+          "id": "item-2f0c66fc87bf",
+          "name": "稳健性检验体系",
+          "desc": "通过双重差分检验与安慰剂检验等多种稳健性检验验证结论",
           "evidence": [
             {
-              "quote": "完整覆盖AI模型“训练-推理”全生命周期，遵循适用于所有七种场景的“总计算量→实际算力→电力消耗→碳排放”的统一测算逻辑链",
+              "quote": "这一结论在经过双重差分检验、安慰剂检验等多种稳健性检验后，仍然时显著的",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3261,
-                "end_char": 3321
+                "start_char": 3104,
+                "end_char": 3138
               },
               "version": "cad2524dc77d461d7cfa"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,26 +157,28 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a05808efe370",
-          "name": "AI发展显著抑制碳排放",
-          "desc": "基于2006-2019年省级面板数据检验发现人工智能发展显著抑制碳排放，多种稳健性检验后仍成立。",
+          "id": "item-d15845b0f577",
+          "name": "人工智能显著抑制碳排放",
+          "desc": "研究表明人工智能发展能够显著抑制碳排放且经多种稳健性检验仍显著",
           "evidence": [
             {
-              "quote": "人工智能发展能够显著抑制碳排放，这一结论在经过双重差分检验、安慰剂检验等多种稳健性检验后，仍然时显著的",
+              "quote": "结果表明，人工智能发展能够显著抑制碳排放，这一结论在经过双重差分检验、安慰剂检验等多种稳健性检验后，仍然时显著的",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3088,
+                "start_char": 3083,
                 "end_char": 3138
               },
               "version": "cad2524dc77d461d7cfa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "能够显著抑制碳排放",
+          "self_reported": false
         },
         {
-          "id": "item-70a9471e6201",
-          "name": "2024年AI算力与碳排放量化结果",
-          "desc": "测算2024年中国人工智能耗电2189亿千瓦时、碳排放1.278亿吨，云端推理占比最高。",
+          "id": "item-c757a60fddc1",
+          "name": "2024年中国AI碳排放测算",
+          "desc": "2024年中国AI耗电量2189亿千瓦时占全社会2.22%、碳排放1.278亿吨占全国1.01%",
           "evidence": [
             {
               "quote": "2024年中国人工智能的耗电量为2189亿千瓦时，占全社会用电量的2.22%，碳排放为1.278亿吨，约占全国碳排放量的1.01%",
@@ -180,24 +190,28 @@
               "version": "cad2524dc77d461d7cfa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "碳排放为1.278亿吨",
+          "self_reported": false
         },
         {
-          "id": "item-a92e07fa6e54",
-          "name": "五篇期刊论文",
-          "desc": "围绕能源系统演化与碳减排发表五篇期刊论文。",
+          "id": "item-6cfe2846d413",
+          "name": "七场景全生命周期测算体系",
+          "desc": "完整覆盖训练-推理全生命周期的七种场景统一测算逻辑链",
           "evidence": [
             {
-              "quote": "Evolution of energy systems: Patterns and mechanisms",
+              "quote": "该模型该框架涵盖了3类训练场景（通用大模型训练、垂直领域企业训练、高校科研训练）与4类推理场景（云端通用推理、行业定制化推理、边缘低延迟推理、终端嵌入式推理），完整覆盖AI模型“训练-推理”全生命周期",
               "locator": {
                 "basis": "parsed_text",
-                "start_char": 3706,
-                "end_char": 3757
+                "start_char": 3181,
+                "end_char": 3280
               },
               "version": "cad2524dc77d461d7cfa"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "完整覆盖AI模型“训练-推理”全生命周期",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +219,197 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-6267fb1763a9"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-af4d57ce60dc"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目以人工智能发展对碳排放的影响为研究对象，旨在探究人工智能发展对碳排放影响的机理，并着重解决人工智能发展对碳排放影响的量化评估问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 768,
+            "end_char": 834
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-d0ca471db0df"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-3fa282157cba"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "有助于人们更加客观地认识人工智能发展所引发的气候风险，拓宽人们对于人工智能的风险认知",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3603,
+            "end_char": 3644
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-2f0c66fc87bf"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-6267fb1763a9"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "通过一系列机器学习方法（双重机器学习、双重鲁棒学习和因果随机森林）来评估人工智能对碳排放的因果效应",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3033,
+            "end_char": 3081
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-3f603c0baa12"
+        "item_id": "item-1e9f66bfcea0"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-cf4823d1b04a"
+        "item_id": "item-af4d57ce60dc"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目以人工智能发展对碳排放的影响为研究对象，旨在探究人工智能发展对碳排放影响的机理",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 768,
+            "end_char": 809
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-16bd258c5246"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-dbcec78e4d44"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-cf3c74fbd32c"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-a05808efe370"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-69197e1210fc"
+        "item_id": "item-d15845b0f577"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-70a9471e6201"
+        "dimension": "技术",
+        "item_id": "item-6267fb1763a9"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "结果表明，人工智能发展能够显著抑制碳排放",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3083,
+            "end_char": 3102
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "How does the carbon trading scheme promote the decarbonization of China’s power sector?",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "Guohao Li;Miaomiao Niu",
+      "id": "out-36242cd4dcf6",
+      "evidence": [
+        {
+          "quote": "2. [期刊论文] How does the carbon trading scheme promote the decarbonization of China’s power sector? — Guohao Li;Miaomiao Niu",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3795,
+            "end_char": 3916
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "中国电力部门脱碳的驱动因素变化:基于碳交易机制的视角",
+      "status_raw": "成果列表",
+      "identifiers": {},
+      "authors": "李国昊;肖进",
+      "id": "out-b1b69ef65d5d",
+      "evidence": [
+        {
+          "quote": "5. [期刊论文] 中国电力部门脱碳的驱动因素变化:基于碳交易机制的视角 — 李国昊;肖进",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 4270,
+            "end_char": 4314
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    },
+    {
+      "kind": "指标",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "2024年中国人工智能碳排放量",
+      "status_raw": "碳排放为1.278亿吨",
+      "identifiers": {},
+      "unit": "亿吨",
+      "value": "1.278",
+      "id": "out-92311046b318",
+      "evidence": [
+        {
+          "quote": "2024年中国人工智能的耗电量为2189亿千瓦时，占全社会用电量的2.22%，碳排放为1.278亿吨",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3416,
+            "end_char": 3465
+          },
+          "version": "cad2524dc77d461d7cfa"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": {
+    "declared": 5,
+    "listed": 5,
+    "by_kind": {
+      "期刊论文": {
+        "listed": 5,
+        "extracted": 2
+      }
+    },
+    "consistent": false
+  }
 }

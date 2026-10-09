@@ -2,15 +2,20 @@
   "doc_id": "aa58f628297f367d9517",
   "version": "a00bb9ad5a7c4685beef",
   "source_hash": "8470e3ca01985c901de082ee5f48be311737d25a8a221c6fbc4c24bb89f28255",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:37:20.949618+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:43:58.780865+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
       "processed": 1,
-      "total": 1
+      "total": 1,
+      "failed": []
     }
   },
   "facets": [
@@ -19,28 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5872f6305f53",
-          "name": "大数据环境下的资产定价与投资组合",
-          "desc": "在大数据环境下改进参数化投资组合方法并准确估计风险载荷。",
+          "id": "item-df2ef12f8168",
+          "name": "参数化投资组合方法改进",
+          "desc": "聚焦在大数据环境下改进参数化投资组合方法并准确估计特征变量在随机贴现因子中的风险载荷",
           "evidence": [
             {
-              "quote": "本课题聚焦在大数据环境下如何改进Brandt et al. (2009)提出的参数化投资组合方法",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
-              },
-              "version": "a00bb9ad5a7c4685beef"
-            }
-          ]
-        },
-        {
-          "id": "item-bbdca42c22cc",
-          "name": "中美股票市场实证检验",
-          "desc": "以中美股票市场数据检验非线性特征变量投资组合的样本外收益。",
-          "evidence": [
-            {
-              "quote": "并应用中美股票市场的数据进行实证检验",
+              "quote": "本课题聚焦在大数据环境下如何改进Brandt et al. (2009)提出的参数化投资组合方法，并准确估计该方法选出的特征变量在随机贴现因子中的风险载荷",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -57,9 +46,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-9f5aa3f35fc6",
-          "name": "线性机器学习方法适用效用受限",
-          "desc": "LASSO等线性机器学习方法求解参数化组合模型时仅适用于均值方差效用函数。",
+          "id": "item-9db5d556d2ba",
+          "name": "LASSO仅适用均值效用",
+          "desc": "LASSO等线性机器学习方法求解参数化组合模型时只适用于均值方差效用函数",
           "evidence": [
             {
               "quote": "从而解决了LASSO等线性机器学习方法在求解参数化组合模型时只适用于均值方差效用函数的不足之处",
@@ -73,9 +62,9 @@
           ]
         },
         {
-          "id": "item-bad2e6982d83",
-          "name": "遗漏变量偏误与过拟合偏误",
-          "desc": "潜在定价因子数量庞大，估计随机贴现因子载荷时存在过拟合与遗漏变量偏误。",
+          "id": "item-190e3fbc0c14",
+          "name": "遗漏变量与过拟合偏误",
+          "desc": "运用自纠偏机器学习法和样本分割消除遗漏变量偏误和过拟合偏误",
           "evidence": [
             {
               "quote": "我们运用自纠偏机器学习法和样本分割来消除遗漏变量偏误和过拟合偏误",
@@ -95,9 +84,9 @@
       "state": "has",
       "items": [
         {
-          "id": "item-8f1e8608422a",
-          "name": "样条函数非线性预测结构",
-          "desc": "构造特征变量样条函数将非线性预测结构加入投资权重参数化模型，用自适应组LASSO估计参数。",
+          "id": "item-698042d1147b",
+          "name": "样条函数非线性特征",
+          "desc": "构造特征变量样条函数将非线性预测结构加入投资权重的参数化模型",
           "evidence": [
             {
               "quote": "一是构造特征变量的样条函数将非线性预测结构加入投资权重的参数化模型中，使用自适应组LASSO方法估计模型参数",
@@ -108,15 +97,16 @@
               },
               "version": "a00bb9ad5a7c4685beef"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
           "id": "item-b128e42fdcec",
           "name": "全子集组合估计法",
-          "desc": "提出允许CRRA、CARA等广义期望效用函数的参数化组合模型估计方法。",
+          "desc": "提出全子集组合估计法允许考虑CRRA等更广义期望效用函数",
           "evidence": [
             {
-              "quote": "二是提出全子集组合估计法来估计参数化组合模型",
+              "quote": "二是提出全子集组合估计法来估计参数化组合模型，该方法允许在大数据环境下考虑更广义的，如CRRA、CARA等期望效用函数",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -124,15 +114,16 @@
               },
               "version": "a00bb9ad5a7c4685beef"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-7caa9a6f3c0c",
-          "name": "自纠偏机器学习法",
-          "desc": "运用自纠偏机器学习法与样本分割消除偏误，准确估计变量在随机贴现因子中的载荷。",
+          "id": "item-3400d3d2748c",
+          "name": "自纠偏机器学习与样本分割",
+          "desc": "用自纠偏机器学习法和样本分割准确估计定价因子载荷",
           "evidence": [
             {
-              "quote": "我们运用自纠偏机器学习法和样本分割来消除遗漏变量偏误和过拟合偏误",
+              "quote": "在投资组合优化中发现的具有解释力的特征变量是潜在的定价因子，我们运用自纠偏机器学习法和样本分割来消除遗漏变量偏误和过拟合偏误",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -140,7 +131,8 @@
               },
               "version": "a00bb9ad5a7c4685beef"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,72 +141,23 @@
       "state": "has",
       "items": [
         {
-          "id": "item-6734f7f3e88b",
-          "name": "九篇英文学术论文",
-          "desc": "发表英文论文9篇，含A+类1篇、A类4篇、B类4篇。",
+          "id": "item-84299ef95236",
+          "name": "样本外收益实证检验",
+          "desc": "应用中美股票市场数据进行实证检验比较加入非线性特征变量组合的样本外收益",
           "evidence": [
             {
-              "quote": "已在国际主流学术期刊发表英文学术论文9篇，其中包括国际A+类期刊论文1篇、A类期刊论文4篇、B类期刊论文4篇",
+              "quote": "并应用中美股票市场的数据进行实证检验，比较加入非线性特征变量的投资组合的样本外收益是否显著优于传统线性模型",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "6fe902c41fbd321f92a0ccf9e3df3167d12e014a"
+                "page": 1,
+                "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
               },
               "version": "a00bb9ad5a7c4685beef"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-131944a687f7",
-          "name": "专著与教材出版",
-          "desc": "出版学术专著《资产定价与机器学习》1部及金融科技系列教材1部。",
-          "evidence": [
-            {
-              "quote": "出版学术专著1部、金融科技系列教材1部",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "6fe902c41fbd321f92a0ccf9e3df3167d12e014a"
-              },
-              "version": "a00bb9ad5a7c4685beef"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-dc913535cbf5",
-          "name": "Management Science 论文发表",
-          "desc": "论文 Dynamic Market Timing in Mutual Funds 发表于管理学国际顶级期刊 Management Science。",
-          "evidence": [
-            {
-              "quote": "发表于管理学国际顶级期刊Management Science",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 4,
-                "chunk_id": "ee3bede8f93ad0177c23acd47785381a2ae19e54"
-              },
-              "version": "a00bb9ad5a7c4685beef"
-            }
-          ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-804f03644840",
-          "name": "高层次人才培养",
-          "desc": "培养博士毕业生1名、硕士毕业生多名。",
-          "evidence": [
-            {
-              "quote": "培养博士毕业生1名、硕士毕业生多名",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "6fe902c41fbd321f92a0ccf9e3df3167d12e014a"
-              },
-              "version": "a00bb9ad5a7c4685beef"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "应用中美股票市场的数据进行实证检验",
+          "self_reported": false
         }
       ]
     }
@@ -222,47 +165,122 @@
   "relations": [
     {
       "from": {
-        "dimension": "场景",
-        "item_id": "item-5872f6305f53"
-      },
-      "to": {
-        "dimension": "问题",
-        "item_id": "item-9f5aa3f35fc6"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "问题",
-        "item_id": "item-bad2e6982d83"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-7caa9a6f3c0c"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-8f1e8608422a"
-      },
-      "to": {
-        "dimension": "成果",
-        "item_id": "item-6734f7f3e88b"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
         "dimension": "技术",
         "item_id": "item-b128e42fdcec"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-131944a687f7"
+        "dimension": "问题",
+        "item_id": "item-9db5d556d2ba"
       },
-      "basis": "原文明示"
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "解决了LASSO等线性机器学习方法在求解参数化组合模型时只适用于均值方差效用函数的不足之处",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
+          },
+          "version": "a00bb9ad5a7c4685beef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-3400d3d2748c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-190e3fbc0c14"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "运用自纠偏机器学习法和样本分割来消除遗漏变量偏误和过拟合偏误",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
+          },
+          "version": "a00bb9ad5a7c4685beef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-698042d1147b"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-3400d3d2748c"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构造特征变量的样条函数将非线性预测结构加入投资权重的参数化模型中",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
+          },
+          "version": "a00bb9ad5a7c4685beef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "场景",
+        "item_id": "item-df2ef12f8168"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-9db5d556d2ba"
+      },
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本课题聚焦在大数据环境下如何改进Brandt et al. (2009)提出的参数化投资组合方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
+          },
+          "version": "a00bb9ad5a7c4685beef"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "成果",
+        "item_id": "item-84299ef95236"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-698042d1147b"
+      },
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "应用中美股票市场的数据进行实证检验，比较加入非线性特征变量的投资组合的样本外收益",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "b7c4133c2a24632cb950d05c92b61e709f8ba8d5"
+          },
+          "version": "a00bb9ad5a7c4685beef"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

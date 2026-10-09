@@ -2,15 +2,20 @@
   "doc_id": "a923f41602a6cdee7015",
   "version": "065e5c7fb2bd2de43325",
   "source_hash": "42355c7c7a7b3106cd31dcd4bab742d329b1e88d1c8e954f12a22befcd73cca9",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:47:07.020782+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:42:05.584897+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 11,
+      "total": 11,
+      "failed": []
     }
   },
   "facets": [
@@ -19,28 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-a0427a1c0589",
-          "name": "上市公司财务报告信息挖掘",
-          "desc": "上市公司财务报告是投资者和社会公众了解公司经营状况和投资决策的重要依据，其中结构化数据与非结构化文本均蕴含重要信息。",
+          "id": "item-218546fb85ad",
+          "name": "财务报告信息挖掘",
+          "desc": "财务报告信息丰富对分析公司经营状况预测未来表现具有重要作用",
           "evidence": [
             {
-              "quote": "上市公司财务报告是投资者和社会公众了解公司经营状况和投资决策的重要依据。报告中的结构化数据和非结构化文本均蕴含重要信息",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "375550df50035dec61eb3ea42ede6215be731219"
-              },
-              "version": "065e5c7fb2bd2de43325"
-            }
-          ]
-        },
-        {
-          "id": "item-87932fda6b2d",
-          "name": "金融预测应用",
-          "desc": "在深入理解公司财务报告的基础上充分利用外部分析评论，建立金融预测框架。",
-          "evidence": [
-            {
-              "quote": "并建立金融预测框架",
+              "quote": "财务领域存在大量专业的财务报告，其中信息非常丰富，对于分析公司经营状况、预测公司未来表现具有重要作用",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -57,32 +46,16 @@
       "state": "has",
       "items": [
         {
-          "id": "item-b1c67189d2c3",
-          "name": "财务报告信息挖掘效率低",
-          "desc": "如何高效挖掘财务报告中结构化数据与非结构化文本的信息一直是金融领域的关键问题。",
+          "id": "item-5b7662f250a5",
+          "name": "结构化与非结构化信息难统一挖掘",
+          "desc": "报告中的结构化数据和非结构化文本均蕴含重要信息但如何高效挖掘一直是关键问题",
           "evidence": [
             {
-              "quote": "但如何高效挖掘这些信息一直是金融领域的关键问题",
+              "quote": "报告中的结构化数据和非结构化文本均蕴含重要信息，但如何高效挖掘这些信息一直是金融领域的关键问题",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
                 "chunk_id": "375550df50035dec61eb3ea42ede6215be731219"
-              },
-              "version": "065e5c7fb2bd2de43325"
-            }
-          ]
-        },
-        {
-          "id": "item-19dd112a1d1c",
-          "name": "结构化与文本统一建模困难",
-          "desc": "需要将财务报告中的结构化数据和文本结合起来统一建模和挖掘。",
-          "evidence": [
-            {
-              "quote": "本项目将财务报告中的结构化数据和文本结合起来，统一建模和挖掘，这一思路具有新意",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "fe4189d8153ab7df8a862dea25f01585a3315110"
               },
               "version": "065e5c7fb2bd2de43325"
             }
@@ -95,12 +68,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-02704af961d3",
-          "name": "结构化数据与文本联合建模",
-          "desc": "利用深度学习和自然语言处理先进技术，将结构化数据与文本结合，从多源数据中抽取深层次信息。",
+          "id": "item-9afa4a6681d7",
+          "name": "结构化数据与文本统一建模",
+          "desc": "将财务报告中的结构化数据和文本结合起来统一建模和挖掘",
           "evidence": [
             {
-              "quote": "利用深度学习和自然语言处理的先进技术，将公司财务报告中的结构化数据和文本结合起来",
+              "quote": "本项目将财务报告中的结构化数据和文本结合起来，统一建模和挖掘，这一思路具有新意",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -108,12 +81,13 @@
               },
               "version": "065e5c7fb2bd2de43325"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-f5f362ca3937",
-          "name": "文本表达特点视角提取",
-          "desc": "提出文本表达特点的视角来提取文本中的深层次信息。",
+          "id": "item-072d1e5aced4",
+          "name": "文本表达特点视角的深层信息提取",
+          "desc": "提出从文本表达特点视角提取文本中深层次信息",
           "evidence": [
             {
               "quote": "项目提出了文本表达特点的视角来提取文本中的深层次信息，这一视角具有新意",
@@ -124,15 +98,16 @@
               },
               "version": "065e5c7fb2bd2de43325"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-c1646928e24f",
-          "name": "财务特征选择与句子抽取方法",
-          "desc": "根据领域特点提出新的财务特征选择和抽取方法、文本句子抽取方法。",
+          "id": "item-1d7c912d7afb",
+          "name": "财务特征选择与句子抽取",
+          "desc": "根据领域特点提出新的财务特征选择抽取方法与文本句子抽取方法",
           "evidence": [
             {
-              "quote": "项目还根据领域特点提出了新的财务特征选择和抽取方法、文本句子抽取方法。",
+              "quote": "项目还根据领域特点提出了新的财务特征选择和抽取方法、文本句子抽取方法",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -140,7 +115,8 @@
               },
               "version": "065e5c7fb2bd2de43325"
             }
-          ]
+          ],
+          "role": "配套-验证"
         }
       ]
     },
@@ -149,12 +125,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-39f973eb0dbe",
-          "name": "财务报告信息挖掘框架",
-          "desc": "形成结构化数据与文本联合建模的金融预测框架，促进财务数据挖掘、文本分析与金融预测研究进展。",
+          "id": "item-a582c29df7c4",
+          "name": "金融预测框架",
+          "desc": "建立将结构化数据与文本结合的金融预测框架",
           "evidence": [
             {
-              "quote": "本项目的研究能够更好地发掘和利用财务报告中的信息，也可以促进财务数据挖掘、文本分析、金融预测等领域的研究进展，具有重要的科学意义和应用价值",
+              "quote": "并建立金融预测框架",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -163,24 +139,9 @@
               "version": "065e5c7fb2bd2de43325"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-2ae1dcf5edd7",
-          "name": "量化成果未披露",
-          "desc": "结题摘要仅给出研究主题，未披露论文数量等量化产出指标。",
-          "evidence": [
-            {
-              "quote": "围绕这一主题，本项目开展了以下方面的研究",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "375550df50035dec61eb3ea42ede6215be731219"
-              },
-              "version": "065e5c7fb2bd2de43325"
-            }
-          ],
-          "status": "原文未明确"
+          "status": "在研",
+          "status_raw": "建立",
+          "self_reported": false
         }
       ]
     }
@@ -188,47 +149,122 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-9afa4a6681d7"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-5b7662f250a5"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "报告中的结构化数据和非结构化文本均蕴含重要信息，但如何高效挖掘这些信息一直是金融领域的关键问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "375550df50035dec61eb3ea42ede6215be731219"
+          },
+          "version": "065e5c7fb2bd2de43325"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-072d1e5aced4"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-9afa4a6681d7"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目提出了文本表达特点的视角来提取文本中的深层次信息",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "fe4189d8153ab7df8a862dea25f01585a3315110"
+          },
+          "version": "065e5c7fb2bd2de43325"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-1d7c912d7afb"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-072d1e5aced4"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "项目还根据领域特点提出了新的财务特征选择和抽取方法、文本句子抽取方法",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "fe4189d8153ab7df8a862dea25f01585a3315110"
+          },
+          "version": "065e5c7fb2bd2de43325"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-a0427a1c0589"
+        "item_id": "item-218546fb85ad"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-b1c67189d2c3"
+        "item_id": "item-5b7662f250a5"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "财务领域存在大量专业的财务报告，其中信息非常丰富",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "fe4189d8153ab7df8a862dea25f01585a3315110"
+          },
+          "version": "065e5c7fb2bd2de43325"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-19dd112a1d1c"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-02704af961d3"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-f5f362ca3937"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-39f973eb0dbe"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-c1646928e24f"
+        "item_id": "item-a582c29df7c4"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-2ae1dcf5edd7"
+        "dimension": "技术",
+        "item_id": "item-9afa4a6681d7"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "本项目将财务报告中的结构化数据和文本结合起来，统一建模和挖掘",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "fe4189d8153ab7df8a862dea25f01585a3315110"
+          },
+          "version": "065e5c7fb2bd2de43325"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

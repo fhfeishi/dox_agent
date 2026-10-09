@@ -2,15 +2,20 @@
   "doc_id": "65f96297c4125c91de69",
   "version": "729366c5d78fb0c3e833",
   "source_hash": "93e730735bbccfb1598d5863b105f89001cac9aebd7011d3a2926a5c7313ce5a",
-  "schema_version": 1,
-  "prompt_version": 1,
-  "model": "session-extract",
-  "generated_at": "2026-09-28T10:47:05.372351+00:00",
+  "schema_version": 2,
+  "prompt_version": 2,
+  "model": "local-extraction",
+  "params": {
+    "segment_chars": 6000,
+    "model_calls": 0
+  },
+  "generated_at": "2026-10-09T13:42:05.618254+00:00",
   "process": {
     "status": "已完成",
     "coverage": {
-      "processed": 1,
-      "total": 1
+      "processed": 2,
+      "total": 2,
+      "failed": []
     }
   },
   "facets": [
@@ -19,12 +24,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-dc9b1ba7317c",
-          "name": "防范系统性金融风险监管",
-          "desc": "贸易紧张局势升级与新冠疫情冲击加剧全球经济衰退风险，防范系统性金融风险成为金融监管工作重中之重。",
+          "id": "item-df6f43f38a84",
+          "name": "系统性金融风险防范",
+          "desc": "防范系统性金融风险成为金融监管工作的重中之重",
           "evidence": [
             {
-              "quote": "显著地增加了系统性金融风险发生的可能性，防范系统性金融风险成为金融监管工作的重中之重。",
+              "quote": "防范系统性金融风险成为金融监管工作的重中之重",
               "locator": {
                 "basis": "pdf_page",
                 "page": 1,
@@ -35,16 +40,16 @@
           ]
         },
         {
-          "id": "item-47f585f4cbfe",
-          "name": "国家金融安全重大需求",
-          "desc": "在全球经济下行风险不容忽视及新冠疫情冲击背景下，防范化解系统性金融风险成为国家重大需求。",
+          "id": "item-3f016deeb6af",
+          "name": "中国系统性金融风险监测",
+          "desc": "对于防控中国系统性金融风险具有显著的实际价值",
           "evidence": [
             {
-              "quote": "在全球经济下行风险不容忽视及新冠疫情冲击的背景下，防范化解系统性金融风险成为国家重大需求。",
+              "quote": "在应用上对于防控中国系统性金融风险具有显著的实际价值",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+                "page": 1,
+                "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
               },
               "version": "729366c5d78fb0c3e833"
             }
@@ -57,32 +62,32 @@
       "state": "has",
       "items": [
         {
-          "id": "item-5ad848cf3d2b",
-          "name": "现有度量无法及时反映风险波动",
-          "desc": "现有系统性金融风险度量存在不能及时反映风险波动的问题。",
+          "id": "item-e384893865bb",
+          "name": "度量指标时效性差",
+          "desc": "现有度量指标普遍依赖季度更新财务数据存在时效性差难以精准反映风险波动",
           "evidence": [
             {
-              "quote": "然而，现有的系统性金融风险度量存在不能及时反映风险波动等问题。",
+              "quote": "现有度量指标普遍依赖季度更新的财务数据，存在时效性差、难以精准反映风险波动等技术瓶颈",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
+                "page": 2,
+                "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
               },
               "version": "729366c5d78fb0c3e833"
             }
           ]
         },
         {
-          "id": "item-54283d3bd3c2",
-          "name": "度量指标依赖季度财务数据",
-          "desc": "现有度量指标普遍依赖季度更新的财务数据，存在时效性差、难以精准反映风险波动的技术瓶颈。",
+          "id": "item-536745bcc251",
+          "name": "系统性风险度量不反映波动",
+          "desc": "现有的系统性金融风险度量存在不能及时反映风险波动等问题",
           "evidence": [
             {
-              "quote": "现有度量指标普遍依赖季度更新的财务数据，存在时效性差、难以精准反映风险波动等技术瓶颈。",
+              "quote": "然而，现有的系统性金融风险度量存在不能及时反映风险波动等问题",
               "locator": {
                 "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+                "page": 1,
+                "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
               },
               "version": "729366c5d78fb0c3e833"
             }
@@ -95,25 +100,26 @@
       "state": "has",
       "items": [
         {
-          "id": "item-1ad7984a1f4b",
-          "name": "信用违约互换数据风险提取",
-          "desc": "从在海外交易的中国公司的信用违约互换数据中提取系统性风险信息。",
+          "id": "item-ba7de5cc5a0e",
+          "name": "CDS信用风险信息挖掘",
+          "desc": "利用海外交易中国公司信用违约互换交易数据提取信用直接相关风险信息",
           "evidence": [
             {
-              "quote": "从在海外交易的中国公司的信用违约互换数据中提取出系统性风险信息",
+              "quote": "利用在海外交易的中国公司信用违约互换（CDS）交易数据，提取与信用直接相关的风险信息",
               "locator": {
                 "basis": "pdf_page",
-                "page": 1,
-                "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
+                "page": 2,
+                "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
               },
               "version": "729366c5d78fb0c3e833"
             }
-          ]
+          ],
+          "role": "配套-数据"
         },
         {
-          "id": "item-58c5340b7cae",
-          "name": "中文报纸文本分析",
-          "desc": "使用文本分析方法从超过20份中文报纸、30万条新闻中抽取非信用直接相关的风险信息。",
+          "id": "item-f936ce0a69fa",
+          "name": "新闻文本非信用风险抽取",
+          "desc": "从超过20份中文报纸30万条新闻中抽取蕴含报道中的非信用直接相关风险信息",
           "evidence": [
             {
               "quote": "运用文本分析方法，从超过20份中文报纸、30万条新闻中抽取蕴含在报道中的非信用直接相关风险信息",
@@ -124,15 +130,16 @@
               },
               "version": "729366c5d78fb0c3e833"
             }
-          ]
+          ],
+          "role": "关键创新"
         },
         {
-          "id": "item-9de2b62ec9d4",
-          "name": "风险波动综合指数构建",
-          "desc": "融合两类数据信息构建能够及时精准反映中国系统性金融风险波动的综合指数。",
+          "id": "item-f625389c1c3c",
+          "name": "系统性金融风险波动指数构建",
+          "desc": "融合两类数据信息构建能及时精准反映风险波动的综合指数",
           "evidence": [
             {
-              "quote": "融合两类数据信息，构建能够及时、精准反映中国系统性金融风险波动的综合指数。",
+              "quote": "融合两类数据信息，构建能够及时、精准反映中国系统性金融风险波动的综合指数",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -140,7 +147,8 @@
               },
               "version": "729366c5d78fb0c3e833"
             }
-          ]
+          ],
+          "role": "关键创新"
         }
       ]
     },
@@ -149,12 +157,12 @@
       "state": "has",
       "items": [
         {
-          "id": "item-d6c9e39b2466",
-          "name": "系统性金融风险监测指标体系",
-          "desc": "构建了一套新型的系统性金融风险监测指标体系。",
+          "id": "item-8b84e6418ced",
+          "name": "风险监测指标体系与论文7篇",
+          "desc": "构建新型系统性金融风险监测指标体系并在国际高水平期刊发表7篇论文",
           "evidence": [
             {
-              "quote": "构建了一套新型的系统性金融风险监测指标体系",
+              "quote": "构建了一套新型的系统性金融风险监测指标体系，并在国际高水平学术期刊发表7篇论文篇",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -163,15 +171,17 @@
               "version": "729366c5d78fb0c3e833"
             }
           ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "构建了一套",
+          "self_reported": false
         },
         {
-          "id": "item-72c08480714f",
-          "name": "7篇高水平论文",
-          "desc": "相关成果在国际高水平学术期刊发表7篇论文。",
+          "id": "item-895908cfc070",
+          "name": "超大型国有上市公司CDS标的",
+          "desc": "选定近百家关系国民经济命脉的超大型国有上市公司美元债务CDS作为标的",
           "evidence": [
             {
-              "quote": "并在国际高水平学术期刊发表7篇论文篇",
+              "quote": "选定近百家关系国民经济命脉的超大型国有上市公司（如中国移动、中国银行等）的美元债务CDS作为标的",
               "locator": {
                 "basis": "pdf_page",
                 "page": 2,
@@ -180,24 +190,9 @@
               "version": "729366c5d78fb0c3e833"
             }
           ],
-          "status": "已取得"
-        },
-        {
-          "id": "item-bb389cc455ed",
-          "name": "多源数据系统性风险度量理论",
-          "desc": "发展了基于公司层面多源数据的系统性风险度量理论，推动金融基础研究成果原创性突破。",
-          "evidence": [
-            {
-              "quote": "发展了基于公司层面多源数据的系统性风险度量理论，推动金融基础研究成果的原创性突破。",
-              "locator": {
-                "basis": "pdf_page",
-                "page": 2,
-                "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
-              },
-              "version": "729366c5d78fb0c3e833"
-            }
-          ],
-          "status": "已取得"
+          "status": "已取得",
+          "status_raw": "选定近百家",
+          "self_reported": false
         }
       ]
     }
@@ -205,47 +200,163 @@
   "relations": [
     {
       "from": {
+        "dimension": "技术",
+        "item_id": "item-f936ce0a69fa"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-e384893865bb"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "现有度量指标普遍依赖季度更新的财务数据，存在时效性差、难以精准反映风险波动等技术瓶颈",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-f625389c1c3c"
+      },
+      "to": {
+        "dimension": "问题",
+        "item_id": "item-536745bcc251"
+      },
+      "type": "针对",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "然而，现有的系统性金融风险度量存在不能及时反映风险波动等问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
+    },
+    {
+      "from": {
+        "dimension": "技术",
+        "item_id": "item-ba7de5cc5a0e"
+      },
+      "to": {
+        "dimension": "技术",
+        "item_id": "item-f625389c1c3c"
+      },
+      "type": "配套",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "融合两类数据信息，构建能够及时、精准反映中国系统性金融风险波动的综合指数",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
+    },
+    {
+      "from": {
         "dimension": "场景",
-        "item_id": "item-dc9b1ba7317c"
+        "item_id": "item-df6f43f38a84"
       },
       "to": {
         "dimension": "问题",
-        "item_id": "item-5ad848cf3d2b"
+        "item_id": "item-536745bcc251"
       },
-      "basis": "原文明示"
+      "type": "场景-问题",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "防范系统性金融风险成为金融监管工作的重中之重。然而，现有的系统性金融风险度量存在不能及时反映风险波动等问题",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 1,
+            "chunk_id": "43059d7cbf34a97f8ed66e0e712ecb1193a07da6"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
     },
     {
       "from": {
-        "dimension": "问题",
-        "item_id": "item-54283d3bd3c2"
-      },
-      "to": {
-        "dimension": "技术",
-        "item_id": "item-58c5340b7cae"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-1ad7984a1f4b"
-      },
-      "to": {
         "dimension": "成果",
-        "item_id": "item-bb389cc455ed"
-      },
-      "basis": "原文明示"
-    },
-    {
-      "from": {
-        "dimension": "技术",
-        "item_id": "item-9de2b62ec9d4"
+        "item_id": "item-8b84e6418ced"
       },
       "to": {
-        "dimension": "成果",
-        "item_id": "item-d6c9e39b2466"
+        "dimension": "技术",
+        "item_id": "item-f625389c1c3c"
       },
-      "basis": "原文明示"
+      "type": "验证",
+      "basis": "原文明示",
+      "evidence": [
+        {
+          "quote": "构建了一套新型的系统性金融风险监测指标体系",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
     }
-  ]
+  ],
+  "outputs": [
+    {
+      "kind": "平台/基地",
+      "attribution": "本项目",
+      "status": "已取得",
+      "title": "新型系统性金融风险监测指标体系",
+      "status_raw": "构建了一套",
+      "identifiers": {},
+      "id": "out-568202bba8a7",
+      "evidence": [
+        {
+          "quote": "构建了一套新型的系统性金融风险监测指标体系",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
+    },
+    {
+      "kind": "期刊论文",
+      "attribution": "本项目",
+      "status": "原文未明确",
+      "title": "系统性金融风险测度相关国际期刊论文",
+      "status_raw": "发表7篇论文",
+      "identifiers": {},
+      "id": "out-956a1c0b6fc8",
+      "evidence": [
+        {
+          "quote": "并在国际高水平学术期刊发表7篇论文篇",
+          "locator": {
+            "basis": "pdf_page",
+            "page": 2,
+            "chunk_id": "c2b235d54a278324186f7dc5fcc2735ed1ac1031"
+          },
+          "version": "729366c5d78fb0c3e833"
+        }
+      ]
+    }
+  ],
+  "events": [],
+  "rejected": [],
+  "outputs_check": null
 }

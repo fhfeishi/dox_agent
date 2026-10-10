@@ -3068,7 +3068,7 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 项目关系图：按学部划分扇区（16.76）。
 - 四维提取 v2：另一会话已提交各库 `target/` v2 数据，但读取 v2 的 `src/targets.py`、`src/prompts/target_extract.md` 与 `tools/get_target_v2.py` 当时未提交；缺这些代码时新 clone 会把 v2 数据判为过期、四维为空，本次一并提交。
 
-**Windows clone 运行**：`launch.cmd` 与 `launch.sh` 等价（创建/复用 `.venv`、安装依赖、无 `frontend/dist` 时 `npm ci && npm run build`、启动服务）。新 clone 没有检索数据库 `datadb/`，需在库详情导入一次建库（用已跟踪的解析缓存，不调用模型）。库登记 `corpora.json` 只含相对路径；`.gitattributes` 以 LF 检出（`.cmd` 为 CRLF），保证解析文本版本与提取证据一致；最长跟踪路径 125 字符。README 已补 Windows 步骤与首次使用说明。未在 Windows 实机验证，由用户测试。
+**Windows clone 运行**：`launch.cmd` 与 `launch.sh` 等价（创建/复用 `.venv`、安装依赖、无 `frontend/dist` 时 `npm ci && npm run build`、启动服务）。新 clone 没有检索数据库 `datadb/`，需在库详情导入一次建库（用已跟踪的解析缓存，不调用模型）。库登记 `corpora.json` 只含相对路径；`.gitattributes` 以 LF 检出（`.cmd` 为 CRLF），保证解析文本版本与提取证据一致；最长跟踪路径 125 字符。README 已补 Windows 步骤与首次使用说明。推送后（f2ab0e9）在 Linux 上对全新 clone 做了首次运行冒烟：不配置模型密钥启动，社会治理库导入完成（4 份），四维技术条目 16 个，`lineage` 与 `hierarchy` 均为 ready、无需重新生成；`target` 为 schema 2 与代码一致，`launch.cmd` 为 CRLF。未在 Windows 实机验证，由用户测试。
 
 **未完成 / 待定**
 

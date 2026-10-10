@@ -16,14 +16,23 @@ if not defined PORT set "PORT=8000"
 if not defined HOST set "HOST=127.0.0.1"
 
 rem ------------------------------------------------------------
-rem Basic dependencies
+rem Basic dependencies: uv and Node.js are installed automatically when
+rem missing, per user and without admin rights, into DOX_TOOLS_DIR
+rem (default %LOCALAPPDATA%\dox_agent). The system PATH is not changed;
+rem later runs pick the tools up from that directory.
 rem ------------------------------------------------------------
 
+if not defined DOX_TOOLS_DIR set "DOX_TOOLS_DIR=%LOCALAPPDATA%\dox_agent"
+if exist "%DOX_TOOLS_DIR%\uv\uv.exe" set "PATH=%DOX_TOOLS_DIR%\uv;%PATH%"
+if exist "%DOX_TOOLS_DIR%\node\node.exe" set "PATH=%DOX_TOOLS_DIR%\node;%PATH%"
+
 where uv >nul 2>nul
-if errorlevel 1 (
-  echo Requires uv first. Install it from https://docs.astral.sh/uv/
-  exit /b 1
-)
+if errorlevel 1 call :install_uv
+if errorlevel 1 exit /b 1
+
+where npm >nul 2>nul
+if errorlevel 1 call :install_node
+if errorlevel 1 exit /b 1
 
 rem ------------------------------------------------------------
 rem Python virtual environment
@@ -112,19 +121,33 @@ if "%embedding_enabled%"=="1" (
 )
 
 rem ------------------------------------------------------------
-rem Frontend
+rem Frontend: build on every launch so a pulled change is always served.
+rem npm ci runs only when package-lock.json changed since the last install
+rem (stamp file in node_modules). A failed build reinstalls dependencies
+rem once, e.g. when node_modules came from another platform.
 rem ------------------------------------------------------------
 
-if not exist "frontend\dist\index.html" set "REBUILD_FRONTEND=1"
-
-if defined REBUILD_FRONTEND (
-  pushd frontend
-  call npm ci
-  if errorlevel 1 (popd & exit /b 1)
-  call npm run build
-  if errorlevel 1 (popd & exit /b 1)
-  popd
+pushd frontend
+fc /b package-lock.json node_modules\.dox-lock >nul 2>nul
+if errorlevel 1 call :npm_install
+if errorlevel 1 (popd & exit /b 1)
+echo Building the frontend ...
+call npm run build
+if errorlevel 1 (
+  echo Frontend build failed; reinstalling dependencies and retrying once.
+  call :npm_install
+  if not errorlevel 1 call npm run build
 )
+if errorlevel 1 (
+  if exist "dist\index.html" (
+    echo Frontend build failed; serving the previous build in frontend\dist.
+  ) else (
+    echo Frontend build failed and no previous build exists.
+    popd
+    exit /b 1
+  )
+)
+popd
 
 rem ------------------------------------------------------------
 rem Main service
@@ -133,3 +156,34 @@ rem ------------------------------------------------------------
 echo Open http://%HOST%:%PORT%
 call "%python%" -m uvicorn src.main:app --loop asyncio --host "%HOST%" --port "%PORT%"
 exit /b %errorlevel%
+
+rem ------------------------------------------------------------
+rem Subroutines
+rem ------------------------------------------------------------
+
+:install_uv
+echo uv was not found; installing it into %DOX_TOOLS_DIR%\uv ...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$env:UV_INSTALL_DIR='%DOX_TOOLS_DIR%\uv'; $env:UV_NO_MODIFY_PATH='1'; irm https://astral.sh/uv/install.ps1 | iex"
+if not exist "%DOX_TOOLS_DIR%\uv\uv.exe" (
+  echo Could not install uv. Install it from https://docs.astral.sh/uv/ and run launch.cmd again.
+  exit /b 1
+)
+set "PATH=%DOX_TOOLS_DIR%\uv;%PATH%"
+exit /b 0
+
+:install_node
+echo Node.js was not found; installing a portable LTS into %DOX_TOOLS_DIR%\node ...
+powershell -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_ROOT%\scripts\install_node.ps1" -Dest "%DOX_TOOLS_DIR%\node"
+if not exist "%DOX_TOOLS_DIR%\node\npm.cmd" (
+  echo Could not install Node.js. Install it from https://nodejs.org/ and run launch.cmd again.
+  exit /b 1
+)
+set "PATH=%DOX_TOOLS_DIR%\node;%PATH%"
+exit /b 0
+
+:npm_install
+echo Installing frontend dependencies (npm ci) ...
+call npm ci
+if errorlevel 1 exit /b 1
+copy /y package-lock.json node_modules\.dox-lock >nul
+exit /b 0

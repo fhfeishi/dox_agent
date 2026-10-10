@@ -3093,3 +3093,8 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 风险：文档编号 `doc_id = sha256(入库时的绝对路径)[:20]`（`knowledge.put`），`target/<doc_id>.json`、谱系与场景层级都以它为键；若在新 clone 删除检索库后重新导入，会得到全新编号、四维与谱系全部对不上。16.77 的冒烟因使用本仓库可编辑安装的 `.venv` 而误判通过。
 - 核对：11 个库的 `datadb/knowledge.sqlite3`（共约 95 MB，单文件最大 32 MB）其实早已随仓库提交且与本机一致，旧 README“仓库不附带检索库、需导入建库”的说法有误。检索库保存原编号与以相对路径为键的文件清单：clone 后可直接浏览检索；之后若执行导入，未变化的文件按清单沿用原编号。库中原文路径为原机器绝对路径，`local_path_in_roots` 在路径不属于当前库根时，按库根目录名（默认 `.knowledge`）之后的相对部分映射到本机库根，含 `..` 的仍拒绝；新增 `test_origin_from_another_machine_maps_onto_this_corpora_root`。README 首次使用说明同步更正。`.gitignore` 仅加入 `CLAUDE.md`，`.knowledge/*` 的忽略规则保持不变（检索库以 `-f` 提交）；本机会话、运行、成果等运行状态与项目索引缓存不推送。
 
+### 16.81 query「2026-1010 1454」：Windows 一键启动（2026-10-10，工作树未提交）
+
+- `launch.cmd`：缺 uv 时用官方 `install.ps1` 装到 `%LOCALAPPDATA%\dox_agent\uv`（`UV_NO_MODIFY_PATH`），缺 Node.js 时由新增的 `scripts/install_node.ps1` 下载便携版 LTS zip 到 `%LOCALAPPDATA%\dox_agent\node`（镜像依次为 `NODE_MIRROR`、nodejs.org、npmmirror；x64/ARM64），均不需管理员、不改系统 PATH，下次启动直接复用；每次启动进入 `frontend` 执行 `npm run build`，`package-lock.json` 与 `node_modules\.dox-lock` 不同时才 `npm ci`，构建失败重装依赖重试一次，仍失败而有旧构建时继续。
+- `.gitignore`：此前强制入库的 `.vscode/settings.json` 写死 WSL 解释器 `.venv/bin/python`，Windows 上解释器为 `.venv\Scripts\python.exe`；改为不入库（`git rm --cached`，本机文件保留），并在忽略规则旁注明原因。
+- 验证（真实 Windows，经 WSL 调用 cmd.exe）：把代码、前端源码与依赖配置复制到 `C:\…\Temp\doxlaunch`，以只含系统目录的 PATH 运行（模拟没有 uv、Node.js 的机器）：自动安装 uv 0.13.0 与 Node.js v24.21.0 LTS，uv 创建 `.venv`（CPython 3.12.10）并安装 194 个 Python 包（下载约 9 分钟），`npm ci` 后前端构建成功，服务启动，`/api/health` 与首页 200。第二次运行未重复安装、跳过 `npm ci`，前端重新构建 1.85 s 后启动。用户 Windows 工作副本 `D:\chyCodespace\agents\dox_agent` 只读检查：已在 e4e81d0，`.venv` 为 Windows 环境，`node_modules` 为 win32-x64；其中缺少 `launch.cmd`（本地被删），拉取前需先恢复。

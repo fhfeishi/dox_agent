@@ -50,7 +50,16 @@ rem 编辑 .env，填写 MODEL_API_KEY、MODEL_BASE_URL、MODEL_NAME
 launch.cmd
 ~~~
 
-默认地址：<http://127.0.0.1:8000>。两个脚本行为一致：创建或复用 `.venv`（Windows 为 `.venv\Scripts\python.exe`）、安装依赖、`frontend/dist` 不存在时执行 `npm ci` 与 `npm run build`，再启动服务。仓库不附带前端构建产物，因此首次启动需要 Node.js 与 npm。
+默认地址：<http://127.0.0.1:8000>。
+
+Windows 的 `launch.cmd` 为一键启动：
+
+- 缺少 uv 时自动用官方脚本安装，缺少 Node.js 时自动下载便携版 LTS（依次尝试 `NODE_MIRROR`、nodejs.org、npmmirror），都装在 `%LOCALAPPDATA%\dox_agent`（可用 `DOX_TOOLS_DIR` 改），不需要管理员权限、不修改系统 PATH；缺少 Python 3.12 时由 uv 自动下载。
+- 创建或复用 `.venv`（Windows 为 `.venv\Scripts\python.exe`），依赖变化时才安装。
+- 每次启动都进入 `frontend` 执行 `npm run build`；`package-lock.json` 变化时先 `npm ci`；构建失败会重装依赖再试一次，仍失败但已有旧构建时继续用旧构建启动。
+- 首次启动需联网下载依赖（Python 依赖约数分钟）；之后启动只重新构建前端（几秒）。
+
+`launch.sh`（Linux / WSL）仍要求预先安装 uv 与 Node.js，`frontend/dist` 不存在时才构建。编辑器设置不入库：Windows 与 WSL 的解释器路径不同，VS Code 会自动识别项目下的 `.venv`。
 
 新 clone 后的首次使用：
 

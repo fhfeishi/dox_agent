@@ -86,7 +86,6 @@ def test_two_material_tasks_are_independent_and_keep_program_findings(tmp_path, 
         _env_file=None,
         state_dir=tmp_path / "state",
         corpora_root=tmp_path / "corpora",
-        auto_import_official=False,
     )
     (settings.corpora_root / "fixture" / "source").mkdir(parents=True)
     app = create_app(settings)
@@ -238,7 +237,7 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
     monkeypatch.setattr(routes, "model_configured", lambda: True)
     monkeypatch.setattr(routes, "start_metadata", lambda ident: routes.public_doc(storage.get("document", ident)))
     settings = Settings(_env_file=None, state_dir=tmp_path / "state",
-                        corpora_root=tmp_path / "corpora", auto_import_official=False)
+                        corpora_root=tmp_path / "corpora")
     (settings.corpora_root / "fixture" / "source").mkdir(parents=True)
     with TestClient(create_app(settings)) as client:
         def run(body):
@@ -332,7 +331,7 @@ def test_metadata_extraction_and_confirmation_feed_checks_safely(tmp_path, monke
     monkeypatch.setattr(routes, "Client", MetadataClient)
     monkeypatch.setattr(routes, "model_configured", lambda: True)
     monkeypatch.setattr("src.review.metadata.Client", MetadataClient)
-    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora", auto_import_official=False)
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
     body = ("# 项目基本信息\n项目名称：智能康复机器人研究\n申报单位：甲大学；乙医院\n项目总预算：280万元\n"
             "执行期限：2027年1月至2028年12月\n# 项目摘要\n" + "康复训练研究内容。" * 20)
     with TestClient(create_app(settings)) as client:

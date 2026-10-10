@@ -34,7 +34,6 @@ class Settings(BaseSettings):
     embedding_device: str = "cpu"
     embedding_query_prompt: str = ""
     # B6: the corpus is configurable, so nothing may hard-code one corpus' names or queries.
-    auto_import_official: bool = True
     warmup_query: str = ""
     # H1: corpus registry. CORPORA is a JSON list overriding id/name/kind/domain
     # per corpus-root-relative path.

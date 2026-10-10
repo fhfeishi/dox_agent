@@ -64,7 +64,7 @@ async def main():
         corpus_dir.mkdir(parents=True)
         state_dir = root / "state"
         settings = Settings(_env_file=None, corpora_root=corpus_root, state_dir=state_dir,
-                            model_api_key=SecretStr("offline-test"), auto_import_official=False)
+                            model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus_dir / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
                                      pages=[Page(number=1, text="证据正文")],

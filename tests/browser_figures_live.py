@@ -53,7 +53,7 @@ async def main():
                     {"type": "chart_caption", "content": [{"type": "text", "content": caption}]}]}]})
         (parsed / "middle_json.json").write_text(json.dumps({"pages": pages}, ensure_ascii=False))
         settings = Settings(_env_file=None, corpora_root=root / ".knowledge", state_dir=root / "state",
-                            model_api_key=SecretStr("offline-test"), auto_import_official=False)
+                            model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="云边协同", origin=str(source), kind="pdf", parser="mineru",
             pages=[Page(number=1, text="标题"), Page(number=2, text="云边协同架构"),

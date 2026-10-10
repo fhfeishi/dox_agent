@@ -606,42 +606,27 @@ def test_preparation_guards_and_lightweight_health(tmp_path, monkeypatch):
         response = client.post("/api/chat", json=payload)
         assert response.status_code == 409
         assert "尚无已入库文档" in response.text
-        assert client.post("/api/official-docs", json={}).status_code == 409
         assert client.post("/api/ingest/local").status_code == 409
         assert client.post("/api/web/confirm/unknown", json={"save_for_run": True}).status_code == 409
         app.state.preparation = "error"
         assert client.post("/api/chat", json=payload).status_code == 409
 
 
-@pytest.mark.parametrize("outcome", ["success", "empty", "failure"])
+@pytest.mark.parametrize("outcome", ["success", "empty"])
 def test_background_preparation(tmp_path, monkeypatch, outcome):
-    import asyncio
-    import threading
+    """Startup only checks the existing corpus; nothing is downloaded."""
     import time
 
     from src import main
 
     store = Knowledge(tmp_path / "db")
-    release = threading.Event()
-
-    async def importer(knowledge, sections, progress):
-        while not release.is_set():
-            await asyncio.sleep(0.01)
-        if outcome == "failure":
-            raise RuntimeError("private details")
-        if outcome == "success":
-            knowledge.put(Document(title="Official", origin="test", kind="official", parser="test", pages=[Page(number=1, text="docs")]))
-
+    if outcome == "success":
+        store.put(Document(title="Doc", origin="test", kind="local", parser="test", pages=[Page(number=1, text="docs")]))
     monkeypatch.setattr(main, "Knowledge", lambda *args, **kwargs: store)
-    monkeypatch.setattr(main, "import_official", importer)
     root = tmp_path / ".knowledge"
     (root / "fixture" / "source").mkdir(parents=True)
     app = create_app(settings=Settings(_env_file=None, corpora_root=root, state_dir=tmp_path))
     with TestClient(app) as client:
-        try:
-            assert client.get("/api/health").json()["preparation"] == "running"
-        finally:
-            release.set()
         deadline = time.monotonic() + 3
         while time.monotonic() < deadline:
             health = client.get("/api/health").json()
@@ -649,7 +634,7 @@ def test_background_preparation(tmp_path, monkeypatch, outcome):
                 break
             time.sleep(0.01)
         assert health["preparation"] == ("ready" if outcome == "success" else "error")
-        assert "private details" not in str(health)
+        assert client.get("/api/official-docs").status_code == 404
 
 
 def test_chat_rejects_both_corpus_id_and_corpus_ids(tmp_path):

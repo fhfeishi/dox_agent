@@ -29,7 +29,6 @@ async def main():
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
             await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
 
             await page.goto(origin)
             status = page.get_by_role("status").filter(has_text="LLM")

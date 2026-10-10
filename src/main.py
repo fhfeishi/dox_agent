@@ -66,7 +66,6 @@ from .hierarchy import read as read_hierarchy
 from .hierarchy import synthesize as synthesize_hierarchy
 from .intelligence import router as intelligence_router
 from .knowledge import Knowledge, KnowledgeGroup
-from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
 from .project_index import ProjectIndex
 from .project_similarity import ProjectSimilarity
@@ -286,10 +285,6 @@ class ComposeRequest(BaseModel):
         if any(not v.strip() or len(v) > 60 for v in values):
             raise ValueError("关键词须为 1–60 字")
         return [v.strip() for v in values]
-
-
-class OfficialRequest(BaseModel):
-    sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
 
 class ArtifactCreate(BaseModel):
@@ -519,8 +514,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.import_lock = asyncio.Lock()
         app.state.previews = {}
         app.state.searches = {}
-        app.state.official_job = {"status": "idle", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
-        app.state.official_task = None
         # H1/H2: per-corpus Knowledge cache (default corpus reuses app.state.knowledge),
         # ingest job states and their tasks.
         app.state.corpus_knowledge = {}
@@ -537,21 +530,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 app.state.preparation = "empty"
                 return
             try:
-                if settings.auto_import_official and not any(doc["kind"] == "official" for doc in await asyncio.to_thread(app.state.knowledge.all)):
-                    async with app.state.import_lock:
-                        app.state.official_job["status"] = "running"
-                        await import_official(app.state.knowledge, ["langchain", "langgraph", "deepagents"], app.state.official_job)
-                        app.state.official_job["status"] = "partial" if app.state.official_job["errors"] else "done"
                 if app.state.knowledge.dense and settings.warmup_query.strip():
                     await asyncio.to_thread(app.state.knowledge.search, settings.warmup_query.strip())
                 if not await asyncio.to_thread(app.state.knowledge.count):
                     raise RuntimeError("No documents available after preparation")
                 app.state.preparation = "ready"
-            except Exception as exc:
+            except Exception:
                 logger.exception("Background preparation failed")
-                if app.state.official_job["status"] == "running":
-                    app.state.official_job["status"] = "error"
-                    app.state.official_job["errors"].append({"error": type(exc).__name__})
                 app.state.preparation = "error"
 
         preparation_task = asyncio.create_task(prepare())
@@ -560,9 +545,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         with suppress(asyncio.CancelledError): await cleanup_task
         preparation_task.cancel()
         await asyncio.gather(preparation_task, return_exceptions=True)
-        if app.state.official_task and not app.state.official_task.done():
-            app.state.official_task.cancel()
-            await asyncio.gather(app.state.official_task, return_exceptions=True)
         for corpus_task in app.state.corpus_tasks.values():
             if not corpus_task.done():
                 corpus_task.cancel()
@@ -1535,35 +1517,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, "文档已更新，请重新搜索")
         text = await asyncio.to_thread(kn.read_markdown, doc_id)
         return {"text": text, "version": doc["version"]}
-
-    @app.get("/api/official-docs")
-    async def official_status():
-        return app.state.official_job
-
-    @app.post("/api/official-docs", status_code=202)
-    async def official_import(payload: OfficialRequest):
-        if app.state.preparation == "running":
-            raise HTTPException(409, "知识库正在初始化，请等待初始化结束后更新")
-        info = await asyncio.to_thread(default_corpus_info, settings)
-        if info is None:
-            raise HTTPException(409, "尚无知识库，请先新建知识库")
-        if app.state.official_task and not app.state.official_task.done():
-            raise HTTPException(409, "官方文档正在更新")
-        progress = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0, "errors": []}
-        app.state.official_job = progress
-
-        async def run():
-            try:
-                async with app.state.import_lock:
-                    await import_official(knowledge_for(info), payload.sections, progress)
-                progress["status"] = "partial" if progress["errors"] else "done"
-            except Exception as exc:
-                logger.exception("Official documentation import failed")
-                progress["status"] = "error"
-                progress["errors"].append({"error": type(exc).__name__})
-
-        app.state.official_task = asyncio.create_task(run())
-        return progress
 
     @app.get("/api/documents/{doc_id}")
     async def read_document(

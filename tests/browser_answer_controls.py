@@ -43,7 +43,6 @@ async def main():
                 **r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1],
                 "revision": r.request.post_data_json["revision"] + 1,
             }))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.add_init_script("""(() => {
                 const realFetch = window.fetch.bind(window);
                 window.requests = [];

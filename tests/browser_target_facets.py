@@ -213,8 +213,6 @@ async def main():
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions**", lambda r: r.fulfill(json=[]))
             await page.route(re.compile(r".*/api/workspace/sessions/[^/]+$"), save_session)
-            await page.route("**/api/official-docs", lambda r: r.fulfill(
-                json={"status": "idle", "errors": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=corpora + [{**corpora[0], "id": "c2", "name": "空库", "rel_path": "c2"}]))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"),
                              lambda r: r.fulfill(json={"source_dir": "/tmp", "files": [],

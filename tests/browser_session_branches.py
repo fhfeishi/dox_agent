@@ -67,7 +67,6 @@ async def main():
                  "preparation": "ready", "is_default": False, "index_progress": None, "job": None},
             ]))
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.route("**/api/workspace/sessions", sessions)
             await page.route("**/api/workspace/sessions/*", sessions)
             await page.route("**/api/chat", chat)

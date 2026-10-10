@@ -55,7 +55,6 @@ async def main():
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[DOCUMENT]))
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[{"id": "task1", "name": "精准问答", "description": "x", "output_hint": "结论", "has_template": False}]))
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
 
             await page.goto(origin)
             await page.get_by_role("button", name="知识库", exact=True).click()

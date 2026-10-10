@@ -49,7 +49,6 @@ async def main():
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)

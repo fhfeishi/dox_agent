@@ -26,7 +26,7 @@ async def main():
         corpus = root / ".knowledge" / "fixture"
         corpus.mkdir(parents=True)
         settings = Settings(_env_file=None, corpora_root=corpus.parent, state_dir=root / "state",
-                            model_api_key=SecretStr("offline-test"), auto_import_official=False)
+                            model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
                                      pages=[Page(number=1, text="方法证据")], markdown="填表日期：2025年\n方法证据"))

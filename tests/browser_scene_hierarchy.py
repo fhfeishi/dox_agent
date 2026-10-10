@@ -134,7 +134,6 @@ async def main():
             await page.route("**/api/workspace/sessions**", lambda r: r.fulfill(json=[]))
             await page.route(re.compile(r".*/api/workspace/sessions/[^/]+$"), lambda r: r.fulfill(
                 json={**(r.request.post_data_json or {}), "id": r.request.url.rsplit("/", 1)[-1], "revision": 1}))
-            await page.route("**/api/official-docs", lambda r: r.fulfill(json={"status": "idle", "errors": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=corpora()))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(
                 json={"source_dir": "/tmp", "files": [], "misplaced_files": []}))

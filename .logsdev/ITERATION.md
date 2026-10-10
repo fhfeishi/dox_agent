@@ -3123,3 +3123,9 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 空白节点：`lineage._blanks` 读取 `lineage_blanks.json` 并随谱系接口返回 `blanks`；前端 `withBlanks` 只在五级技术谱系与路网中合并（追加在同级之后，原有节点键不变）；树中为虚线卡片（空白/萌芽），详情说明来源与零散涉及项目数；路网中空白为灰色虚线道路与空心节点，萌芽为淡色。医疗库写入 33 个节点（R3 2、R4 15、R5 16；空白 18、萌芽 15），核对过程见 DECISIONS。
 - 验证：pytest 234 passed、1 failed（同前，工作区删除了 `tests/data/fund_retrieval.jsonl`）；新增 `_blanks` 父路径与覆盖数测试；npm test 43 passed（新增 `withBlanks` 合并测试）；tsc、build 通过；`browser_scene_hierarchy`、`browser_target_facets` PASS。真实界面医疗库：三段标题与收起正常，两栏均 850px 高；路网 R3–R6 视图正常，点击“R4：影像空间对齐”后上方路径为“医学人工智能 › 医学影像分析 › 影像空间对齐”；空白/萌芽节点在树、详情与路网中显示正确；430px 无横向溢出，无页面错误（截图 `verification/query-20261010-1642/`）。
 - 限制：R6 视图约 1300 条叶子，大分支到叶子的连线较密；空白节点的覆盖数按技术名称检索，可能漏掉只在描述中出现的相关工作。
+
+### 16.85 删除 LangChain 官方文档导入（2026-10-10）
+
+- 删除 `src/official_docs.py`、`src/prepare_docs.py`、`tests/test_official_docs.py`；`main.py` 去掉启动时的官方文档自动导入、`official_job/official_task` 状态与 `GET/POST /api/official-docs`；`Settings.auto_import_official` 删除；`test_background_preparation` 改为只验证“有文档即就绪、无文档报错”，并断言该接口已不存在；各浏览器脚本去掉对该接口的模拟；README 去掉“官方文档自动导入需要网络”。
+- 验证：pytest 231 passed、1 failed（同前，工作区删除了 `tests/data/fund_retrieval.jsonl`）；ruff 与改动前相同（仅既有的 B008 一条）；`browser_scene_hierarchy`、`browser_target_facets` PASS。用户在 Windows 上看到的具体报错原文未提供，未在 Windows 上复现。
+

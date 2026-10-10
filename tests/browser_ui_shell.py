@@ -27,7 +27,6 @@ async def main():
         session("s2", "昨天的会话", updated="2026-09-20T08:00:00Z"),
         session("s3", "归档的会话", archived=True),
     ]
-    official = {"count": 0}
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
@@ -35,15 +34,10 @@ async def main():
             errors: list[str] = []
             page.on("pageerror", lambda error: errors.append(str(error)))
 
-            async def official_status(route):
-                official["count"] += 1
-                await route.fulfill(json={"status": "idle", "errors": []})
-
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
-            await page.route("**/api/official-docs", official_status)
 
             await page.goto(origin)
             # Session-list assertions are scoped to the sidebar: the chat header now also shows
@@ -99,7 +93,6 @@ async def main():
 
             # drawer: a11y dialog, Esc closes, focus returns; it only holds connection + model
             trigger = page.get_by_role("button", name="设置", exact=True)
-            before_official = official["count"]
             await trigger.click()
             dialog = page.get_by_role("dialog", name="设置与运维")
             await expect(dialog).to_be_visible()
@@ -109,8 +102,6 @@ async def main():
             assert await dialog.get_by_role("button", name="新建知识库").count() == 0
             assert await dialog.get_by_text("在线文档源").count() == 0
             assert await dialog.get_by_role("button", name="导出诊断 JSON").count() == 0
-            await page.wait_for_timeout(1500)
-            assert official["count"] == before_official, "online document sources must not poll inside the settings drawer"
             await page.keyboard.press("Escape")
             await expect(dialog).to_have_count(0)
             assert await page.evaluate("document.activeElement && document.activeElement.textContent") == "设置"

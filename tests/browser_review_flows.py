@@ -60,7 +60,6 @@ async def main():
             corpora_root=root / "corpora",
             state_dir=root / "state",
             model_api_key=SecretStr("offline"),
-            auto_import_official=False,
             embedding_path="",
         )
         storage.DATA = root / "review"

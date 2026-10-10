@@ -89,9 +89,6 @@ async def main():
                 else:
                     await r.fulfill(json=list(store.values()))
 
-            async def official(r):
-                await r.fulfill(json={"status": "idle", "errors": []})
-
             async def report_metadata(r):
                 await r.fulfill(json={"corpus_id": "c1", "total": 2,
                     "period": {"hits": 1, "missing": 1}, "category": {"hits": 1, "missing": 1},
@@ -251,7 +248,6 @@ async def main():
             await page.route("**/api/templates/*", template_detail)
             await page.route("**/api/workspace/sessions", sessions)
             await page.route("**/api/workspace/sessions/*", sessions)
-            await page.route("**/api/official-docs", official)
             await page.route("**/api/chat", chat)
             await page.route(re.compile(r".*/api/runs/[^/]+$"), run_snapshot)
             await page.route(re.compile(r".*/api/artifacts(?:\?.*)?$"), artifacts)

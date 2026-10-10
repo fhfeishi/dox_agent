@@ -712,3 +712,19 @@ def test_session_can_be_deleted_and_stays_deleted(tmp_path):
         assert not any(item["id"] == "s-1" for item in client.get("/api/workspace/sessions").json())
         assert client.delete("/api/workspace/sessions/s-1").status_code == 404
         assert client.delete("/api/workspace/notes/s-1").status_code == 404
+
+
+def test_origin_from_another_machine_maps_onto_this_corpora_root(tmp_path):
+    """A datadb copied from another clone keeps its absolute origins; files still resolve here."""
+    from src.agent.config import Settings
+    from src.main import local_path_in_roots
+
+    root = tmp_path / ".knowledge"
+    (root / "库" / "source").mkdir(parents=True)
+    (root / "库" / "source" / "a.pdf").write_bytes(b"%PDF")
+    settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path / "state")
+    for origin in ("/home/someone/dox_agent/.knowledge/库/source/a.pdf", r"C:\Users\x\dox_agent\.knowledge\库\source\a.pdf"):
+        path, rel = local_path_in_roots(origin, settings)
+        assert (path, rel) == ((root / "库" / "source" / "a.pdf").resolve(), "库/source/a.pdf")
+    assert local_path_in_roots("/elsewhere/.knowledge/../etc/passwd", settings) is None
+    assert local_path_in_roots("/home/someone/notes/a.pdf", settings) is None

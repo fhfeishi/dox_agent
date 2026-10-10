@@ -3068,7 +3068,7 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 项目关系图：按学部划分扇区（16.76）。
 - 四维提取 v2：另一会话已提交各库 `target/` v2 数据，但读取 v2 的 `src/targets.py`、`src/prompts/target_extract.md` 与 `tools/get_target_v2.py` 当时未提交；缺这些代码时新 clone 会把 v2 数据判为过期、四维为空，本次一并提交。
 
-**Windows clone 运行**：`launch.cmd` 与 `launch.sh` 等价（创建/复用 `.venv`、安装依赖、无 `frontend/dist` 时 `npm ci && npm run build`、启动服务）。新 clone 没有检索数据库 `datadb/`，需在库详情导入一次建库（用已跟踪的解析缓存，不调用模型）。库登记 `corpora.json` 只含相对路径；`.gitattributes` 以 LF 检出（`.cmd` 为 CRLF），保证解析文本版本与提取证据一致；最长跟踪路径 125 字符。README 已补 Windows 步骤与首次使用说明。推送后（f2ab0e9）在 Linux 上对全新 clone 做了首次运行冒烟：不配置模型密钥启动，社会治理库导入完成（4 份），四维技术条目 16 个，`lineage` 与 `hierarchy` 均为 ready、无需重新生成；`target` 为 schema 2 与代码一致，`launch.cmd` 为 CRLF。未在 Windows 实机验证，由用户测试。
+**Windows clone 运行**：`launch.cmd` 与 `launch.sh` 等价（创建/复用 `.venv`、安装依赖、无 `frontend/dist` 时 `npm ci && npm run build`、启动服务）。新 clone 没有检索数据库 `datadb/`，需在库详情导入一次建库（用已跟踪的解析缓存，不调用模型）。库登记 `corpora.json` 只含相对路径；`.gitattributes` 以 LF 检出（`.cmd` 为 CRLF），保证解析文本版本与提取证据一致；最长跟踪路径 125 字符。README 已补 Windows 步骤与首次使用说明。**更正（2026-10-10）**：此处原记“全新 clone 冒烟通过”无效——当时用本仓库的 `.venv`（以可编辑方式安装本仓库）启动 clone，实际加载的是本仓库代码与 `.knowledge` 数据。实际问题见 16.80。未在 Windows 实机验证，由用户测试。
 
 **未完成 / 待定**
 
@@ -3087,3 +3087,9 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 原因：四列各自垂直居中，成果列顺序与技术位置无关；每项成果连到所有有共同项目的技术，多对多连线交叉；只靠问题关联的成果跨过技术列连线，穿过技术卡片；连线没有箭头。
 - 修改（`SceneFlow.tsx`）：改为固定排布——技术按所属问题成组排列、问题居中于其技术、场景居中于全部；成果放在所连节点的平均高度并按需下移避免重叠，无连线的成果排在最后；每项成果默认只画一条实线到共同项目最多的技术，其余共同项目连线仅在选中链条时以虚线出现；只与问题相关的成果不再跨列画线，改在卡片上注明“直接对应问题：…”；连线带箭头，方向为场景 → 问题 → 技术 → 成果；窄屏（宽度 < 720）退化为不画线的分列列表。
 - 验证：`browser_scene_hierarchy` 新增断言（默认 4 条带箭头连线）通过，`browser_review_flows` PASS，npm test 42；真实界面医疗库“肺癌与肺结节”“神经系统疾病与精神障碍”两个场景默认与选中状态截图见 `verification/query-20261010-1147/`，无页面错误、430px 无横向溢出。
+
+### 16.80 让 Windows 新 clone 直接可用：提交检索库并使原文路径可移植（2026-10-10）
+
+- 风险：文档编号 `doc_id = sha256(入库时的绝对路径)[:20]`（`knowledge.put`），`target/<doc_id>.json`、谱系与场景层级都以它为键；若在新 clone 删除检索库后重新导入，会得到全新编号、四维与谱系全部对不上。16.77 的冒烟因使用本仓库可编辑安装的 `.venv` 而误判通过。
+- 核对：11 个库的 `datadb/knowledge.sqlite3`（共约 95 MB，单文件最大 32 MB）其实早已随仓库提交且与本机一致，旧 README“仓库不附带检索库、需导入建库”的说法有误。检索库保存原编号与以相对路径为键的文件清单：clone 后可直接浏览检索；之后若执行导入，未变化的文件按清单沿用原编号。库中原文路径为原机器绝对路径，`local_path_in_roots` 在路径不属于当前库根时，按库根目录名（默认 `.knowledge`）之后的相对部分映射到本机库根，含 `..` 的仍拒绝；新增 `test_origin_from_another_machine_maps_onto_this_corpora_root`。README 首次使用说明同步更正。`.gitignore` 仅加入 `CLAUDE.md`，`.knowledge/*` 的忽略规则保持不变（检索库以 `-f` 提交）；本机会话、运行、成果等运行状态与项目索引缓存不推送。
+

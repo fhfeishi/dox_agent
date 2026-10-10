@@ -121,6 +121,20 @@ def local_path_in_roots(origin: str, settings) -> tuple[Path, str] | None:
     try:
         return path, path.relative_to(root).as_posix()
     except ValueError:
+        pass
+    # A database copied from another machine or clone keeps that machine's absolute origin
+    # (e.g. /home/<user>/…/.knowledge/<corpus>/source/x.pdf). Map the part after the root's own
+    # directory name onto this root; anything climbing out of it is still refused.
+    parts = [part for part in origin.replace("\\", "/").split("/") if part]
+    if root.name not in parts:
+        return None
+    rel = parts[len(parts) - 1 - parts[::-1].index(root.name) + 1:]
+    if not rel or any(part in (".", "..") for part in rel):
+        return None
+    mapped = root.joinpath(*rel).resolve()
+    try:
+        return mapped, mapped.relative_to(root).as_posix()
+    except ValueError:
         return None
 
 

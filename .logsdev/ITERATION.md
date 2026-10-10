@@ -3098,3 +3098,28 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - `launch.cmd`：缺 uv 时用官方 `install.ps1` 装到 `%LOCALAPPDATA%\dox_agent\uv`（`UV_NO_MODIFY_PATH`），缺 Node.js 时由新增的 `scripts/install_node.ps1` 下载便携版 LTS zip 到 `%LOCALAPPDATA%\dox_agent\node`（镜像依次为 `NODE_MIRROR`、nodejs.org、npmmirror；x64/ARM64），均不需管理员、不改系统 PATH，下次启动直接复用；每次启动进入 `frontend` 执行 `npm run build`，`package-lock.json` 与 `node_modules\.dox-lock` 不同时才 `npm ci`，构建失败重装依赖重试一次，仍失败而有旧构建时继续。
 - `.gitignore`：此前强制入库的 `.vscode/settings.json` 写死 WSL 解释器 `.venv/bin/python`，Windows 上解释器为 `.venv\Scripts\python.exe`；改为不入库（`git rm --cached`，本机文件保留），并在忽略规则旁注明原因。
 - 验证（真实 Windows，经 WSL 调用 cmd.exe）：把代码、前端源码与依赖配置复制到 `C:\…\Temp\doxlaunch`，以只含系统目录的 PATH 运行（模拟没有 uv、Node.js 的机器）：自动安装 uv 0.13.0 与 Node.js v24.21.0 LTS，uv 创建 `.venv`（CPython 3.12.10）并安装 194 个 Python 包（下载约 9 分钟），`npm ci` 后前端构建成功，服务启动，`/api/health` 与首页 200。第二次运行未重复安装、跳过 `npm ci`，前端重新构建 1.85 s 后启动。用户 Windows 工作副本 `D:\chyCodespace\agents\dox_agent` 只读检查：已在 e4e81d0，`.venv` 为 Windows 环境，`node_modules` 为 win32-x64；其中缺少 `launch.cmd`（本地被删），拉取前需先恢复。
+
+### 16.82 query「2026-1010 1530」：astra 谱系方案审核与实施（2026-10-10，工作树未提交）
+
+- 后端：`lineage.py` 支持每库 `lineage_frame.json` 固定顶层体系（提示词注入名称/说明/边界，结果只保留框架内体系并以框架措辞为准）；方法主题可带 `plain`；`prompts/lineage.md` 增加命名与固定体系规则；测试覆盖框架外体系丢弃、措辞覆盖与主题说明。医疗库新增 `lineage_frame.json`（五类）并重生成谱系：1336 条归入 5 个体系，未归入 4 条（含疑似非医疗条目“SNN 预测瘤胃甲烷产量”与非技术条目“围术期加速康复方案”），69 个主题中 68 个有通俗说明。
+- 前端：`LineageTree` 重写——四层树、按层分列的图谱（同层保留、单支下钻、两行卡片、体系固定配色、选中统一高亮、超宽从最深列开始），领域/环节筛选，右侧五段详情（原文依据与原文明示关系读取 `/api/corpora/{id}/reports/{doc}/target`）；`lineageOutline` 改为四层大纲；`ZoomPan` 增加 `alignEnd`。
+- 验证：pytest 232 passed；npm test 42；tsc、build 通过；`browser_scene_hierarchy` 改为断言分列图谱、五段详情、原文明示配套/针对关系、筛选计数与恢复，四个离线浏览器脚本 PASS；真实界面医疗库根层、主题层、项目技术详情、“肺癌与肺结节 × 诊断与分型”筛选（匹配 22 个项目、44 条技术）无页面错误、430px 无横向溢出（截图 `verification/query-20261010-1530/`）。
+- 待人工确认：影像组学与临床预测的归属规则、生理信号采集是否为共性底座；机器人库谱系仍需重生成。
+
+### 16.83 query「2026-1010 1537」：谱系页上下布局、分栏细节、路网图、总览要点与 R2–R6 标记（2026-10-10，工作树未提交）
+
+- 交互：`ZoomPan` 拖动时阻止文字选择（`select-none`＋pointerdown `preventDefault`）。
+- 命名：`prompts/lineage.md` 增加节点命名规则；医疗库框架改为学科术语并重生成（1336 条、5 个体系、未归入 1 条；备份 `lineage-backup-v2/医疗.lineage.before-concise.json`）。
+- 布局：`SceneHierarchy` 技术谱系页改为 总览（`Fold` 可收起）→ 细节 → 路网图（`Fold` 可收起），收起状态按浏览器记住；`LineageTree` 细节为可拖动分栏（`SplitPane`）；新增 `LineageRoadmap`（体系为线路、方向/主题为站点、跨体系共同项目连线，点击定位细节，起始缩放不低于 80%）。
+- 五级标记：谱系图首列画出资料库（R2），列标题只显示 R2–R6；详情“技术定位”与无障碍标签同样使用 R 标记。
+- 总览：`briefing.libraryInsights` 生成五张要点卡片，`fieldHeadline` 给出各领域相对全库更侧重的环节与体系；`ReportBoard` 展示；指向细节的链接改为“在下方细节中…↓”。
+- 验证：npm test 42 passed（新增要点卡片与领域结论断言）；tsc、build 通过；`browser_scene_hierarchy` 改为断言要点卡片与 R 标记并 PASS，`browser_target_facets`、`browser_answer_controls` PASS；`browser_library`、`browser_review_flows`、`browser_fund_preview`、`browser_session_branches`、`browser_task_templates`、`browser_smoke` 失败，其中 library、review_flows 在 HEAD 前端上同样失败，与本次改动无关；pytest 233 passed、1 failed（`test_user_fund_dataset_is_well_formed`，因工作区删除了 `tests/data/fund_retrieval.jsonl`，非本次改动）。真实界面医疗库：要点卡片与 6 张领域卡结论各不相同，逐级进入到 R6 项目技术，拖动后无选中文字，分隔条拖动生效，路网图点击定位到 R5 主题，总览收起生效，430px 无横向溢出，无页面错误（截图 `verification/query-20261010-1537/`）。
+- 后续数据处理不再调用 DeepSeek（额度不足），改为派给 Haiku 子代理。
+
+### 16.84 query「2026-1010 1642」：谱系页标题、等高分栏、径向路网与空白知识节点（2026-10-10，工作树未提交）
+
+- 页面：三段改名为“技术谱系总览 - <资料库名>”“五级技术谱系”“五级技术谱系 - 路网形式”，五级技术谱系也可收起；`SplitPane` 两栏等高（`max(600px, 100vh-150px)`），`ZoomPan` 新增 `fill`（占满剩余高度、尺寸变化时重新适配），详情栏内滚动。
+- 路网：`LineageRoadmap` 重写为径向谱图（参照 `tech_landscape_graph.html`）：环半径 300/430/560/680（R6 三档错开），按项目技术数分配角度，道路带浅色描边、宽度随条目数；R3–R6 按缩放显示，层级按钮、放大/缩小/复位/全屏；屏幕空间节点与贪心避让标签（最多 340 个）；悬停高亮路径并显示提示；点击同步选中五级技术谱系并下钻，并跟随上方的选择；面包屑、R3 图例可点击定位。标签不接收点击，较高层级节点绘制在上，避免误点。
+- 空白节点：`lineage._blanks` 读取 `lineage_blanks.json` 并随谱系接口返回 `blanks`；前端 `withBlanks` 只在五级技术谱系与路网中合并（追加在同级之后，原有节点键不变）；树中为虚线卡片（空白/萌芽），详情说明来源与零散涉及项目数；路网中空白为灰色虚线道路与空心节点，萌芽为淡色。医疗库写入 33 个节点（R3 2、R4 15、R5 16；空白 18、萌芽 15），核对过程见 DECISIONS。
+- 验证：pytest 234 passed、1 failed（同前，工作区删除了 `tests/data/fund_retrieval.jsonl`）；新增 `_blanks` 父路径与覆盖数测试；npm test 43 passed（新增 `withBlanks` 合并测试）；tsc、build 通过；`browser_scene_hierarchy`、`browser_target_facets` PASS。真实界面医疗库：三段标题与收起正常，两栏均 850px 高；路网 R3–R6 视图正常，点击“R4：影像空间对齐”后上方路径为“医学人工智能 › 医学影像分析 › 影像空间对齐”；空白/萌芽节点在树、详情与路网中显示正确；430px 无横向溢出，无页面错误（截图 `verification/query-20261010-1642/`）。
+- 限制：R6 视图约 1300 条叶子，大分支到叶子的连线较密；空白节点的覆盖数按技术名称检索，可能漏掉只在描述中出现的相关工作。

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildBoard, buildMatrix, indicators, lineageOutline, matrixCell, matrixOutline, tierOf } from './briefing.ts';
+import { buildBoard, buildMatrix, fieldHeadline, indicators, libraryInsights, lineageOutline, matrixCell, matrixOutline, tierOf } from './briefing.ts';
 
 test('lifts metrics, scale and milestones from cited text, not years', () => {
   assert.deepEqual(indicators(['预测模型AUC=0.813，外部验证AUC 0.816~0.914', '2021年起在全国23家三甲医院超5万例外部验证并投入实战']),
@@ -76,16 +76,37 @@ test('matrix places every item by field and stage, keeps undetermined lanes and 
     [3, 2, ['肿瘤诊疗', '心脑血管'], ['诊断与分型', '疗效评估与预后']]);
 
 
+  const insights = libraryInsights(buildBoard(hierarchy, placed), matrix, placed, [{ start: 2019, end: 2022 }, { start: 2021, end: null }]);
+  assert.deepEqual(insights.map((card) => [card.title, card.headline]), [
+    ['研究规模', '2 个项目、3 条技术，覆盖 1 个应用领域'], ['技术重心', '以统计建模为主'],
+    ['应用重心', '肿瘤诊疗最集中（2 个项目），主要在“疗效评估与预后”'], ['成熟与转化', '50% 的项目报告达到成型技术或示范应用'],
+    ['待突破', '1 个深化布局方向']]);
+  assert.equal(insights[0].points[0], '立项 2019–2022 年');
+  assert.equal(fieldHeadline(matrix, placed, '肿瘤诊疗'), '');  // fewer than 3 items: no claim
+
   const outline = matrixOutline('AI与医疗', matrix, buildBoard(hierarchy, placed));
   assert.match(outline, /## 肿瘤诊疗（2 个项目）\n- 本期突破：早期筛查\n- 深化布局：长尾病例/);
   assert.match(outline, /### 疗效评估与预后（1 个项目，最高 成型技术）\n- 临床预测模型（1 个项目，成型技术；AUC 0.842，多中心验证）/);
 });
 
-test('technology outline runs L1 to L5 with carriers, stage-ordered items and left-out counts', () => {
+test('technology outline runs system, direction, theme and leading techniques with stage', () => {
   const outline = lineageOutline('AI与医疗', lineage, 1);
-  assert.match(outline, /L1 统计建模\n├── L2 临床预测模型\n│   ├── L3 列线图（1 条）\n│   │   ├── L4 承载：肿瘤诊疗（1 个项目）\n│   │   │   └── L5 列线图〔4 成型技术；多中心验证〕 P1/);
-  assert.match(outline, /├── L2 隐私协同〔共性底座〕/);
-  assert.doesNotMatch(outline, /…另/);
-  const two = { ...(lineage as Record<string, unknown>), categories: [{ name: '统计建模', summary: '', children: [{ name: '方向', themes: [{ name: '主题', items: ['P1|t1', 'P2|t3'] }] }] }] } as never;
-  assert.match(lineageOutline('x', two, 1), /L5 列线图〔4 成型技术；多中心验证〕 P1\n│   │   │   └── …另 1 条/);
+  assert.match(outline, /## 统计建模\n- 临床预测模型：用病例数据算风险分\n  - 列线图（1 个项目）\n    - 列线图〔4 成型技术；多中心验证〕 P1/);
+  assert.match(outline, /- 隐私协同〔共性底座〕：数据不出院联合建模/);
+  assert.doesNotMatch(outline, /…另|承载/);
+  const two = { ...(lineage as Record<string, unknown>), categories: [{ name: '统计建模', summary: '', children: [{ name: '方向', themes: [{ name: '主题', plain: '一句说明', items: ['P1|t1', 'P2|t3'] }] }] }] } as never;
+  assert.match(lineageOutline('x', two, 1), /  - 主题（2 个项目）：一句说明\n    - 列线图〔4 成型技术；多中心验证〕 P1\n    - …另 1 条/);
+});
+
+test('blank knowledge nodes merge after their siblings and leave counts alone', async () => {
+  const { withBlanks } = await import('./projects.ts');
+  const merged = withBlanks({ ...(lineage as Record<string, unknown>), blanks: [
+    { level: 4, parent: ['统计建模'], name: '手术视频分析', plain: '', reason: '', covered: 0 },
+    { level: 5, parent: ['统计建模', '手术视频分析'], name: '器械识别', plain: '', reason: '', covered: 0 },
+    { level: 3, parent: [], name: '医学自然语言处理', plain: '', reason: '', covered: 15 }] } as never);
+  assert.deepEqual(merged.categories.map((c) => [c.name, Boolean(c.blank)]), [['统计建模', false], ['未归入体系的条目', false], ['医学自然语言处理', true]]);
+  const added = merged.categories[0].children[2];
+  assert.deepEqual([added.name, added.blank, added.themes.map((t) => [t.name, t.items.length])], ['手术视频分析', true, [['器械识别', 0]]]);
+  assert.equal(merged.categories[2].covered, 15);
+  assert.equal((lineage as { categories: unknown[] }).categories.length, 2);  // the source lineage is untouched
 });

@@ -112,6 +112,74 @@ def _scenes(info) -> list[str]:
     return [scene["name"] for scene in value.get("scenes") or [] if isinstance(scene, dict) and scene.get("name")]
 
 
+def _frame(info) -> list[dict]:
+    """A library's fixed top level (``lineage_frame.json``: systems with name, plain, boundary).
+
+    Query 2026-1010 1530: a reviewed set of technology systems can be pinned per library (e.g.
+    the five medical systems); the model then only proposes directions and themes beneath them.
+    """
+    try:
+        value = json.loads((info.root / "lineage_frame.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return []
+    return [{"name": _text(s.get("name"), 20), "plain": _text(s.get("plain"), 60), "boundary": _text(s.get("boundary"), 80)}
+            for s in value.get("systems") or [] if isinstance(s, dict) and _text(s.get("name"), 20)]
+
+
+def _blanks(info, categories: list[dict]) -> list[dict]:
+    """Blank knowledge nodes (``lineage_blanks.json``) that complete the lineage's story.
+
+    Query 2026-1010 1642: established directions and themes no project in the library covers.
+    They are proposed from general domain knowledge, kept apart from the generated lineage and
+    shown as gaps (``covered``: projects found touching it elsewhere in the lineage, 0 = a true gap); a node is kept only when its parent path exists (in the lineage or among the
+    blanks listed before it), so a regenerated lineage simply drops blanks that no longer fit.
+    """
+    try:
+        value = json.loads((info.root / "lineage_blanks.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return []
+    known = {(): None}
+    for c in categories:
+        if c.get("unplaced"):
+            continue
+        known[(c["name"],)] = None
+        for d in c.get("children") or []:
+            known[(c["name"], d["name"])] = None
+            for t in d.get("themes") or []:
+                known[(c["name"], d["name"], t["name"])] = None
+    kept: list[dict] = []
+    for node in value.get("nodes") or []:
+        if not isinstance(node, dict):
+            continue
+        parent = tuple(_text(n, 20) for n in node.get("parent") or [])
+        name, level = _text(node.get("name"), 20), node.get("level")
+        if not name or level not in (3, 4, 5) or len(parent) != level - 3 or parent not in known or (*parent, name) in known:
+            continue
+        known[(*parent, name)] = None
+        kept.append({"level": level, "parent": list(parent), "name": name,
+                     "plain": _text(node.get("plain"), 60), "reason": _text(node.get("reason"), 80),
+                     "covered": node["covered"] if isinstance(node.get("covered"), int) and node["covered"] > 0 else 0})
+    return kept
+
+
+def _pin(categories: list[dict], frame: list[dict]) -> list[dict]:
+    """Keep only the pinned systems, in the frame's order and wording; others' items stay unplaced."""
+    by_name = {c["name"]: c for c in categories}
+    return [{**by_name[f["name"]], "plain": f["plain"] or by_name[f["name"]]["plain"],
+             "summary": f["boundary"] or by_name[f["name"]]["summary"]} for f in frame if f["name"] in by_name]
+
+
+def _themes(raw_themes) -> tuple[list[str], dict[str, str]]:
+    """Theme names (deduplicated) and their plain lines; a theme may be a string or {name, plain}."""
+    names, plain = [], {}
+    for entry in (raw_themes or [])[:MAX_THEMES]:
+        name = _text(entry.get("name") if isinstance(entry, dict) else entry, 24)
+        if name and name not in names:
+            names.append(name)
+            plain[name] = _text(entry.get("plain"), 40) if isinstance(entry, dict) else ""
+    return names, plain
+
+
 def _framework(raw: dict) -> tuple[str, list[dict]]:
     """Systems › directions › themes; duplicate or empty names are dropped."""
     categories, used = [], set()
@@ -124,11 +192,11 @@ def _framework(raw: dict) -> tuple[str, list[dict]]:
             if not isinstance(child, dict):
                 continue
             direction = _text(child.get("name"), 24)
-            themes = list(dict.fromkeys(t for t in (_text(v, 24) for v in (child.get("themes") or [])[:MAX_THEMES]) if t))
+            themes, theme_plain = _themes(child.get("themes"))
             if direction and direction not in used and themes:
                 used.add(direction)
-                children.append({"name": direction, "themes": themes, "plain": _text(child.get("plain"), 60),
-                                 "foundation": child.get("foundation") is True})
+                children.append({"name": direction, "themes": themes, "theme_plain": theme_plain,
+                                 "plain": _text(child.get("plain"), 60), "foundation": child.get("foundation") is True})
         if name and children:
             categories.append({"name": name, "summary": _text(category.get("summary"), 120),
                                "plain": _text(category.get("plain"), 60), "children": children})
@@ -205,7 +273,8 @@ def _tree(categories: list[dict], entries: list[dict], placed: dict[str, dict]) 
     for c, category in enumerate(categories):
         children = []
         for d, child in enumerate(category["children"]):
-            themes = [{"name": theme, "items": members[(c, d, theme)]} for theme in child["themes"] if members.get((c, d, theme))]
+            themes = [{"name": theme, "plain": child.get("theme_plain", {}).get(theme, ""), "items": members[(c, d, theme)]}
+                      for theme in child["themes"] if members.get((c, d, theme))]
             if themes:
                 children.append({"name": child["name"], "plain": child["plain"], "foundation": child["foundation"],
                                  "themes": sorted(themes, key=lambda t: -len(t["items"]))})
@@ -231,8 +300,13 @@ async def synthesize(info, library: dict, settings, *, llm=None) -> dict:
     model = llm or model_for(settings, timeout=180)
     previous = await asyncio.to_thread(_load, info)
     scenes = await asyncio.to_thread(_scenes, info)
+    frame = await asyncio.to_thread(_frame, info)
     try:
         given = ("应用领域已给定（与场景归纳一致），不要修改，`fields` 原样输出：" + "、".join(scenes) + "\n") if scenes else ""
+        if frame:
+            given += ("技术体系已固定，`categories` 只能使用下列体系，名称与 `plain` 原样照抄、按此顺序，不得新增；"
+                      "在每个体系下按其边界给出技术方向与方法主题：\n"
+                      + "\n".join(f"- {f['name']}｜{f['plain']}｜边界：{f['boundary']}" for f in frame) + "\n")
         async with asyncio.timeout(settings.run_timeout):
             response = await model.ainvoke([
                 SystemMessage(content=lineage_instruction()),
@@ -242,6 +316,10 @@ async def synthesize(info, library: dict, settings, *, llm=None) -> dict:
             ])
         raw = _json_object(response.content)
         branch, categories = _framework(raw)
+        if frame:
+            categories = _pin(categories, frame)
+            if not categories:
+                raise ValueError("模型没有使用给定的技术体系")
         # Application axis (query 2026-1009 1720): fields follow the scene hierarchy when it exists,
         # stages are the domain's classic workflow steps; both are fixed for the whole placement.
         fields = [{"name": name, "plain": ""} for name in scenes] if scenes else _axis(raw, "fields", 8)
@@ -328,4 +406,5 @@ async def read(info, library: dict) -> dict:
     reason = ("四维技术条目已变化" if record.get("fingerprint") != fingerprint(items(library))
               else "场景归纳已重新生成，应用领域需要随之更新"
               if record.get("fields") and scenes and [f["name"] for f in record["fields"]] != scenes else "")
-    return {**record, **base, "state": "stale" if reason else "ready", **({"stale_reason": reason} if reason else {})}
+    blanks = await asyncio.to_thread(_blanks, info, record.get("categories") or [])
+    return {**record, **base, "blanks": blanks, "state": "stale" if reason else "ready", **({"stale_reason": reason} if reason else {})}

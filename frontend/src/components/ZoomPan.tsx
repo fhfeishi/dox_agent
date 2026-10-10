@@ -6,8 +6,12 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
  * click on the drawing, so nodes inside stay clickable. The drawing is `width` × `height` in its
  * own units and starts fitted to the window.
  */
-export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, children }: {
-  width: number; height: number; label: string; minHeight?: number; minFit?: number; children: ReactNode;
+export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, alignEnd = false, fill = false, children }: {
+  width: number; height: number; label: string; minHeight?: number; minFit?: number;
+  /** Take the remaining height of a flex column instead of sizing from the drawing; refit on resize. */
+  fill?: boolean;
+  /** When the drawing is wider than the window, start at its right edge (the deepest column). */
+  alignEnd?: boolean; children: ReactNode;
 }) {
   const box = useRef<HTMLDivElement>(null);
   const [view, setView] = useState({ x: 0, y: 0, k: 1 });
@@ -20,9 +24,18 @@ export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, c
     if (!el) return;
     // Fit, but never below a readable scale: a wider drawing starts at its top-left and is panned.
     const k = Math.max(minFit, Math.min(1.2, (el.clientWidth - 16) / width, (el.clientHeight - 16) / height));
-    setView({ k, x: Math.max(8, (el.clientWidth - width * k) / 2), y: Math.max(8, (el.clientHeight - height * k) / 2) });
-  }, [width, height, minFit]);
+    const over = width * k > el.clientWidth - 16;
+    setView({ k, x: over ? (alignEnd ? el.clientWidth - width * k - 8 : 8) : (el.clientWidth - width * k) / 2,
+      y: Math.max(8, (el.clientHeight - height * k) / 2) });
+  }, [width, height, minFit, alignEnd]);
   useLayoutEffect(() => { fit(); }, [fit, large]);
+  useEffect(() => {
+    const el = box.current;
+    if (!fill || !el) return;
+    const observer = new ResizeObserver(() => fit());
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [fill, fit]);
 
   const zoomAt = useCallback((factor: number, px?: number, py?: number) => {
     const el = box.current;
@@ -54,12 +67,14 @@ export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, c
   }, [large]);
 
   const button = "grid size-7 place-items-center rounded-md border border-[var(--hairline)] bg-[var(--surface)] text-[13px] text-[var(--slate)] hover:bg-[var(--canvas)]";
-  return <div className={large ? "fixed inset-3 z-[80] flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-2 shadow-2xl" : "relative"}>
+  return <div className={large ? "fixed inset-3 z-[80] flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-2 shadow-2xl" : fill ? "relative flex min-h-0 flex-1 flex-col" : "relative"}>
     <div ref={box} role="region" aria-label={label}
-      className={`relative touch-none overflow-hidden rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] ${large ? "flex-1" : ""} ${drag.current?.moved ? "cursor-grabbing" : "cursor-grab"}`}
-      style={large ? undefined : { height: Math.max(minHeight, Math.min(640, height * 0.85 + 40)) }}
+      className={`relative touch-none select-none overflow-hidden rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] ${large || fill ? "min-h-0 flex-1" : ""} ${drag.current?.moved ? "cursor-grabbing" : "cursor-grab"}`}
+      style={large || fill ? undefined : { height: Math.max(minHeight, Math.min(640, height * 0.85 + 40)) }}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
+        // Dragging must not start a text selection (query 2026-1010 1537); clicks still fire.
+        e.preventDefault();
         drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y, moved: false };
         moved.current = false;
       }}

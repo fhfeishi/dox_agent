@@ -114,16 +114,38 @@ export async function generateTopicSummary(corpus: string, dimension: string, na
 /** Keyed by "project|item": extracted item ids repeat across projects with the same item name. */
 /** `field`/`stage`: application field (the scene hierarchy's scenes) and workflow stage; empty when not determinable. */
 export type LineageItem = { name: string; desc: string; project_id: string; item_id: string; maturity: number; basis: string; field?: string; stage?: string };
-export type LineageTheme = { name: string; items: string[] };
+/** `blank`/`reason`: a knowledge node no project covers, added to complete the lineage (see `withBlanks`). */
+type Blank = { blank?: boolean; reason?: string; covered?: number };
+export type LineageTheme = { name: string; plain?: string; items: string[] } & Blank;
 /** `plain`: a sentence for readers new to the technique; `foundation`: shared infrastructure across scenes. */
 export type LineageCategory = { name: string; summary: string; plain?: string; unplaced?: boolean;
-  children: { name: string; plain?: string; foundation?: boolean; themes: LineageTheme[] }[] };
+  children: ({ name: string; plain?: string; foundation?: boolean; themes: LineageTheme[] } & Blank)[] } & Blank;
+/** `covered`: projects found touching it under other nodes (0 = a true gap, more = emerging). */
+export type LineageBlank = { level: 3 | 4 | 5; parent: string[]; name: string; plain: string; reason: string; covered: number };
 export type Lineage = {
   corpus_id: string; state: "missing" | "stale" | "ready"; branch: string; generated_at?: string; error?: string;
-  categories: LineageCategory[]; items: Record<string, LineageItem>; gaps: string[];
+  categories: LineageCategory[]; items: Record<string, LineageItem>; gaps: string[]; blanks?: LineageBlank[];
   fields?: { name: string; plain: string }[]; stages?: { name: string; plain: string }[];
   maturity_levels: Record<string, string>; job?: { status: string; done: number; total: number }; stale_reason?: string;
 };
+/**
+ * The lineage with its blank knowledge nodes merged in (query 2026-1010 1642), for the five-level
+ * tree and the road map only: blanks are appended after their siblings so existing keys stay
+ * stable, carry no items, and never enter counts, the overview or outlines.
+ */
+export function withBlanks(lineage: Lineage): Lineage {
+  if (!lineage.blanks?.length) return lineage;
+  const categories = lineage.categories.map((c) => ({ ...c, children: c.children.map((d) => ({ ...d, themes: [...d.themes] })) }));
+  const system = (name: string) => categories.find((c) => !c.unplaced && c.name === name);
+  for (const b of lineage.blanks) {
+    const node = { name: b.name, plain: b.plain, blank: true, reason: b.reason, covered: b.covered };
+    if (b.level === 3) categories.push({ ...node, summary: "", children: [] });
+    else if (b.level === 4) system(b.parent[0])?.children.push({ ...node, themes: [] });
+    else system(b.parent[0])?.children.find((d) => d.name === b.parent[1])?.themes.push({ ...node, items: [] });
+  }
+  return { ...lineage, categories };
+}
+
 export const lineageQuery = (corpus: string) => ({
   queryKey: ["library", corpus, "lineage"],
   queryFn: async ({ signal }: { signal: AbortSignal }): Promise<Lineage> => {

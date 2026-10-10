@@ -413,9 +413,10 @@ class LineageModel:
         if "技术谱系框架" in messages[0].content:
             self.framework = messages[-1].content
             answer = {"branch": "AI与医疗", "stages": [{"name": "诊断与分型", "plain": "判断是什么病"}, {"name": "疗效评估与预后", "plain": ""}],
-                      "fields": [{"name": "模型自拟领域"}], "categories": [{"name": "机器学习", "summary": "学习方法。", "plain": "让计算机从病例数据中学规律",
+                      "fields": [{"name": "模型自拟领域"}], "categories": [{"name": "自拟体系", "summary": "", "children": [
+                          {"name": "不在框架内", "themes": ["杂项"]}]}, {"name": "机器学习", "summary": "学习方法。", "plain": "让计算机从病例数据中学规律",
                       "children": [{"name": "深度学习方法", "plain": "多层识别模型", "foundation": "yes",
-                                    "themes": ["网络模型", "网络模型", "数据处理"]}]}]}
+                                    "themes": [{"name": "网络模型", "plain": "多层网络识别影像"}, "网络模型", "数据处理"]}]}]}
         else:
             text = messages[-1].content
             assert "K1 机器学习 › 深度学习方法 › 网络模型" in text and "K3" not in text
@@ -451,6 +452,10 @@ def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
     # A scene hierarchy exists: its scenes become the application fields, not the model's own list.
     (root,) = {path.parent.parent for path in tmp_path.rglob("datadb/knowledge.sqlite3")}
     (root / "hierarchy.json").write_text(json.dumps({"scenes": [{"name": "临床诊疗"}, {"name": "康复护理"}]}), encoding="utf-8")
+    # A pinned top level (query 2026-1010 1530): only these systems survive, in this wording.
+    (root / "lineage_frame.json").write_text(json.dumps({"systems": [
+        {"name": "机器学习", "plain": "从病例数据中学规律", "boundary": "侧重学习方法"},
+        {"name": "医学图像计算", "plain": "重建与测量影像", "boundary": "侧重图像"}]}, ensure_ascii=False), encoding="utf-8")
     with TestClient(app) as client:
         assert client.get(f"/api/corpora/{corpus_id}/lineage").json()["state"] == "missing"
         assert client.post(f"/api/corpora/{corpus_id}/lineage").status_code == 202
@@ -474,9 +479,11 @@ def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
         assert (stale["state"], stale["stale_reason"]) == ("stale", "场景归纳已重新生成，应用领域需要随之更新")
         (root / "hierarchy.json").write_text(json.dumps({"scenes": [{"name": "临床诊疗"}, {"name": "康复护理"}]}), encoding="utf-8")
         (system, unplaced) = tree["categories"]
-        assert system["plain"] == "让计算机从病例数据中学规律"
+        assert "技术体系已固定" in model.framework and "医学图像计算｜重建与测量影像｜边界：侧重图像" in model.framework
+        assert [c["name"] for c in tree["categories"]] == ["机器学习", "未归入体系的条目"]  # 自拟体系 dropped
+        assert (system["plain"], system["summary"]) == ("从病例数据中学规律", "侧重学习方法")
         assert system["children"] == [{"name": "深度学习方法", "plain": "多层识别模型", "foundation": False,
-                                       "themes": [{"name": "网络模型", "items": [deep_id]}]}]
+                                       "themes": [{"name": "网络模型", "plain": "多层网络识别影像", "items": [deep_id]}]}]
         assert unplaced["name"] == "未归入体系的条目" and unplaced["unplaced"] is True and unplaced["children"][0]["themes"][0]["items"] == [aug_id]
 
         monkeypatch.setattr(lineage, "model_for", lambda settings, **_: BrokenModel())
@@ -493,3 +500,26 @@ def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
         (listed,) = outputs["projects"].values()
         assert listed["counts"] == {"专利": 1, "期刊论文": 1} and listed["declared"] == 2
         assert listed["items"][0]["title"] == "一种病灶识别方法"
+
+
+def test_lineage_blanks_keep_only_nodes_whose_parent_exists(tmp_path):
+    """Blank knowledge nodes (query 2026-1010 1642) attach under existing or earlier blank parents."""
+    from types import SimpleNamespace
+    from src import lineage
+
+    categories = [{"name": "医学影像分析", "children": [{"name": "病变检测分割", "themes": [{"name": "语义分割", "items": ["a"]}]}]},
+                  {"name": "未归入体系的条目", "unplaced": True, "children": []}]
+    (tmp_path / "lineage_blanks.json").write_text(json.dumps({"nodes": [
+        {"level": 4, "parent": ["医学影像分析"], "name": "手术视频分析", "plain": "看懂手术录像", "reason": "介入场景常见", "covered": 2},
+        {"level": 5, "parent": ["医学影像分析", "手术视频分析"], "name": "器械追踪", "plain": "跟踪器械位置"},
+        {"level": 5, "parent": ["医学影像分析", "病变检测分割"], "name": "语义分割"},  # already covered
+        {"level": 4, "parent": ["不存在的体系"], "name": "孤儿方向"},
+        {"level": 3, "parent": [], "name": "医学自然语言处理", "plain": "读懂病历文本"},
+        {"level": 4, "parent": ["医学自然语言处理"], "name": "临床文本挖掘"},
+        {"level": 5, "parent": ["医学影像分析"], "name": "层级不符"}]}, ensure_ascii=False), encoding="utf-8")
+    kept = lineage._blanks(SimpleNamespace(root=tmp_path), categories)
+    assert [(b["level"], b["parent"], b["name"]) for b in kept] == [
+        (4, ["医学影像分析"], "手术视频分析"), (5, ["医学影像分析", "手术视频分析"], "器械追踪"),
+        (3, [], "医学自然语言处理"), (4, ["医学自然语言处理"], "临床文本挖掘")]
+    assert (kept[0]["reason"], kept[0]["covered"], kept[1]["reason"], kept[1]["covered"]) == ("介入场景常见", 2, "", 0)
+    assert lineage._blanks(SimpleNamespace(root=tmp_path / "none"), categories) == []

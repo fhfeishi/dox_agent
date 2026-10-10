@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { buildBoard, buildMatrix, matrixCell, matrixOutline, TIERS, tierOf, type BoardScene, type MatrixCell } from "../briefing";
+import { buildBoard, buildMatrix, fieldHeadline, libraryInsights, matrixCell, matrixOutline, TIERS, tierOf, type BoardScene, type MatrixCell } from "../briefing";
 import { lineageQuery, projectQuery, type Hierarchy } from "../projects";
 import { useApp } from "../store";
 import { Button } from "./ui";
@@ -28,7 +28,7 @@ function StagePanel({ cell, plain, titles, onTech, onProject }: { cell: MatrixCe
       </summary>
       <ul className="mt-2 space-y-1.5">{d.items.map((item) => <li key={item.key} className="border-l-2 pl-2 text-[13px]" style={{ borderColor: tierOf(item.maturity).color }}>
         <span className="flex flex-wrap items-center gap-1.5">
-          <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在细节视图中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
+          <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在下方细节中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
           <Tier level={item.maturity} /><Chips list={item.indicators} />
         </span>
         <span className="block text-xs text-[var(--steel)]">
@@ -56,7 +56,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   const [copied, setCopied] = useState("");
   if (!lineage) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取技术谱系…</p>;
   if (!hierarchy.scenes.length || !lineage.categories.length) return <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
-    总览需要本库的场景归纳和技术谱系。{!lineage.categories.length ? <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech("")}>到细节视图生成技术谱系 →</button> : "请先在“场景”页生成四维归纳。"}
+    总览需要本库的场景归纳和技术谱系。{!lineage.categories.length ? <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech("")}>在下方细节中生成技术谱系 ↓</button> : "请先在“场景”页生成四维归纳。"}
   </div>;
 
   // Title with the library's own name; the lineage branch name is the model's wording.
@@ -95,12 +95,21 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       </div>
     </div>
 
+    <section aria-label="本库总览要点" className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+      {libraryInsights(board, matrix, lineage, (library?.projects ?? []).map((p) => ({ start: p.start_year, end: p.end_year }))).map((card) =>
+        <article key={card.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
+          <p className="text-xs font-semibold text-[var(--stone)]">{card.title}</p>
+          <p className="mt-1 text-[14px] font-semibold leading-6">{card.headline}</p>
+          <ul className="mt-1.5 space-y-0.5 text-xs leading-5 text-[var(--steel)]">{card.points.map((point) => <li key={point}>{point}</li>)}</ul>
+        </article>)}
+    </section>
+
     {min > 0 ? <p role="status" className="rounded-lg border border-[#d9a92f88] bg-[#fdf6e3] px-3 py-2 text-sm text-[#7a5a00]">
       当前筛选：只统计“{LEVELS.find((level) => level.min === min)?.label}”的技术条目，已收起 {matrix.hidden} 个；问题、成果与共性底座不受筛选影响。
       <button type="button" className="ml-2 underline" onClick={() => setMin(0)}>显示全部</button></p> : null}
 
     {lineage.state === "stale" && !lineage.job ? <p className="rounded-lg bg-[#fdf6e3] px-3 py-2 text-xs text-[#9a6500]">{lineage.stale_reason || "四维技术条目已变化"}，下方仍是上次生成的谱系。
-      <button type="button" className="ml-1 underline" onClick={() => onTech("")}>到细节视图重新生成 →</button></p> : null}
+      <button type="button" className="ml-1 underline" onClick={() => onTech("")}>在下方细节中重新生成 ↓</button></p> : null}
     <section aria-label="主展板" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {matrix.fields.map((field) => {
         const row = matrix.rows.get(field)!;
@@ -112,6 +121,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
           <button type="button" onClick={() => openField(field)} className="text-left">
             <span className="flex items-baseline gap-2"><b className="text-[15px]">{field}</b><span className="text-xs text-[var(--stone)]">{row.projects} 个项目 · {row.items.length} 个技术条目</span></span>
           </button>
+          {fieldHeadline(matrix, lineage, field) ? <p className="text-[13px] font-medium text-[var(--slate)]">{fieldHeadline(matrix, lineage, field)}</p> : null}
           <TierBar tiers={row.tiers} />
           {s ? <ul className="space-y-1 text-[13px]">
             {solved.map((i) => <li key={i.name} className="flex gap-1.5"><span className="text-[#0e7a28]">✔</span><span>{i.name}</span></li>)}
@@ -156,6 +166,6 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“本期突破/深化布局”对应场景归纳中的已解决/待解决问题。
     </p>
     {board.unplaced ? <p className="text-xs text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。
-      <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>在细节视图中逐条查看 →</button></p> : null}
+      <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>在下方细节中逐条查看 ↓</button></p> : null}
   </div>;
 }

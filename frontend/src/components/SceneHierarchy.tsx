@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import {
@@ -8,7 +8,7 @@ import {
 import { useApp } from "../store";
 import { LineageTree } from "./LineageTree";
 import { ReportBoard } from "./ReportBoard";
-import { Icon } from "./Icons";
+import { LineageRoadmap } from "./LineageRoadmap";
 import { Tier } from "./StageMarks";
 import { OutputsPanel } from "./OutputsPanel";
 import { SceneFlow } from "./SceneFlow";
@@ -24,6 +24,22 @@ function Members({ names }: { names?: string[] }) {
   if (!names?.length || (names.length === 1)) return null;
   return <details className="mt-1 text-xs text-[var(--steel)]"><summary className="cursor-pointer">归并 {names.length} 个原提取条目</summary>
     <p className="mt-1 leading-5">{names.join("、")}</p></details>;
+}
+
+/** A collapsible section whose open state is remembered per viewer (query 2026-1010 1537). */
+function Fold({ id, title, hint, children }: { id: string; title: string; hint: string; children: React.ReactNode }) {
+  const keyName = `dox-lineage-fold-${id}`;
+  const [open, setOpen] = useState(() => { try { return localStorage.getItem(keyName) !== "0"; } catch { return true; } });
+  const flip = () => { setOpen(!open); try { localStorage.setItem(keyName, open ? "0" : "1"); } catch { /* preference only */ } };
+  return <section aria-label={title} className="space-y-2">
+    <button type="button" aria-expanded={open} onClick={flip} className="flex w-full items-baseline gap-2 text-left">
+      <span className="w-4 text-xs text-[var(--steel)]">{open ? "▾" : "▸"}</span>
+      <span className="text-base font-semibold">{title}</span>
+      <span className="truncate text-sm text-[var(--stone)]">· {hint}</span>
+      <span className="ml-auto shrink-0 text-xs text-[var(--link)]">{open ? "收起" : "展开"}</span>
+    </button>
+    {open ? children : null}
+  </section>;
 }
 
 export function EvidenceList({ corpusId, evidence, limit = 2, staleHint = "请重新生成层级" }: { corpusId: string; evidence: HierarchyEvidence[]; limit?: number; staleHint?: string }) {
@@ -84,8 +100,7 @@ function AspectTable({ corpusId, achievements }: { corpusId: string; achievement
 const DIMS = ["技术谱系", "场景", "问题", "技术", "成果"] as const;
 /** query 2026-1010 0914: each view answers one question; the line under the tabs says which. */
 const PURPOSE: Record<string, string> = {
-  技术谱系: "总览 · 全库一页：各应用领域的问题进展、报告所述阶段与代表指标，以及跨领域共用的技术底座；点开领域按环节查看全部技术。",
-  细节: "细节 · 按学科体系的五级技术树：每项技术属于什么方法、服务哪个领域、报告所述做到哪一步，并可看项目周期。",
+  技术谱系: "技术谱系 · 由上到下：技术谱系总览（本库要点与各应用领域）、五级技术谱系（逐层查看技术与详情）、路网形式（全库谱系一张图）。",
   场景: "场景 · 为谁做：本库按服务对象归纳的应用领域；点开查看“问题 → 技术 → 成果”逻辑简图。",
   问题: "问题 · 解决什么：各领域的核心问题，已解决（本期突破）与待解决（深化布局），以及对应的典型技术。",
   技术: "技术 · 怎么做：解决各核心问题的典型技术路线及其在技术谱系中的位置；全部技术见技术谱系。",
@@ -150,7 +165,11 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const sceneName = search.get("scene") ?? "";
   const node = search.get("node") ?? "";
   // 技术谱系 opens on the report view; the technology view is the expert's full tree.
-  const tech = search.get("view") === "tech";
+  const detailRef = useRef<HTMLDivElement>(null);
+  const { corpora } = useApp();
+  const libraryName = corpora.find((c) => c.id === corpusId)?.name ?? corpusId;
+  // Overview cards and road-map stations open the node in the detail section and bring it into view.
+  const toDetail = (key: string) => { go({ node: key }); requestAnimationFrame(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })); };
   const go = (next: Record<string, string>) => setSearch((old) => {
     const value = new URLSearchParams(old);
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
@@ -169,7 +188,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
     return route && Object.entries(lineage?.items ?? {}).find(([, item]) =>
       route.item_ids.includes(item.item_id) && route.project_ids.includes(item.project_id))?.[0];
   };
-  const showRoute = (title: string) => { const id = routeItem(title); go({ dim: "", view: "tech", node: id ? `i:${id}` : "", scene: "" }); };
+  const showRoute = (title: string) => { const id = routeItem(title); go({ dim: "", node: id ? `i:${id}` : "", scene: "" }); };
   const lineageClasses = lineage?.categories.filter((c) => !c.unplaced).length ?? 0;
   const lineageItems = Object.keys(lineage?.items ?? {}).length;
   const counts: Record<Dim, number> = {
@@ -183,7 +202,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   return <section aria-label="场景层级" className="mt-5 space-y-4">
     <div role="tablist" aria-label="四维浏览" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
-        onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "", view: "" })}
+        onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
         className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
         style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
         <span className="block text-[15px] font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
@@ -191,22 +210,25 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
           : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类 · 目标 6" : key === "问题" ? `个核心问题 · 目标 ${6 * (coverage.targets?.issues_per_scene ?? 3)}` : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
     </div>
-    <p className="text-sm text-[var(--steel)]">{PURPOSE[dim === "技术谱系" && tech ? "细节" : dim]}</p>
+    <p className="text-sm text-[var(--steel)]">{PURPOSE[dim]}</p>
     {notice ? <p role="alert" className="text-sm text-[var(--red)]">{notice}</p> : null}
     {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-sm">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
-    {dim === "技术谱系" ? <div className="flex flex-wrap items-center gap-2">
-      {/* query 2026-1009 1743: the two views as icons; the name and purpose stay in the tooltip and accessible name. */}
-      <div role="radiogroup" aria-label="谱系视图" className="inline-flex overflow-hidden rounded-lg border border-[var(--hairline)] bg-[var(--surface)]">
-        {([["", "总览", "grid", "按应用领域：本期突破、深化布局、标志成果与共性底座"], ["tech", "细节", "tree", "按学科体系：五级技术谱系树与项目周期图，供专家核查"]] as const).map(([value, label, icon, hint]) =>
-          <button key={label} type="button" role="radio" aria-label={label} aria-checked={(value === "tech") === tech} title={`${label}：${hint}`} onClick={() => go({ view: value, node: "" })}
-            className={`grid h-8 w-10 place-items-center ${(value === "tech") === tech ? "bg-[var(--primary)] text-white" : "text-[var(--slate)] hover:bg-[var(--canvas)]"}`}>
-            <Icon name={icon} size={17} /></button>)}
+    {dim === "技术谱系" ? <>
+      <Fold id="overview" title={`技术谱系总览 - ${libraryName}`} hint="本库的研究规模、技术重心、应用重心、成熟与转化、待突破方向，以及各应用领域">
+        <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
+          onDim={(d, scene) => go({ dim: d, scene, node: "" })} />
+      </Fold>
+      <div ref={detailRef} className="scroll-mt-4">
+        <Fold id="detail" title="五级技术谱系" hint="R2 资料库 › R3 › R4 › R5 › R6 项目技术；左侧谱系与右侧详情联动，中间分隔条可拖动">
+          <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
+            onIssue={(scene) => go({ dim: "问题", scene, node: "" })} />
+        </Fold>
       </div>
-    </div> : null}
-    {dim === "技术谱系" && !tech ? <ReportBoard corpusId={corpusId} hierarchy={data} onTech={(key) => go({ view: "tech", node: key })}
-      onDim={(d, scene) => go({ dim: d, scene, node: "", view: "" })} /> : null}
-    {dim === "技术谱系" && tech ? <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
-      onIssue={(scene) => go({ dim: "问题", scene, node: "" })} /> : null}
+      <Fold id="roadmap" title="五级技术谱系 - 路网形式" hint="资料库居中，R3–R6 逐环展开，放大后显示更深层级；点击节点同步到上方五级技术谱系">
+        {lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={libraryName} selected={node} onSelect={(key) => go({ node: key })} />
+          : <p className="text-sm text-[var(--steel)]">生成技术谱系后显示路网图。</p>}
+      </Fold>
+    </> : null}
     {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
       <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维整理。"}</span>{data.state === "missing" ? regenerate : null}
     </div> : <>

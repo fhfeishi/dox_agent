@@ -102,7 +102,7 @@ export function buildBoard(hierarchy: Hierarchy, lineage: Lineage): Board {
 export const UNDETERMINED_FIELD = "领域未判定";
 export const UNDETERMINED_STAGE = "环节未判定";
 
-export type MatrixItem = { key: string; name: string; projectId: string; maturity: number; basis: string; direction: string; plain: string; indicators: string[] };
+export type MatrixItem = { key: string; name: string; projectId: string; maturity: number; basis: string; direction: string; plain: string; indicators: string[]; stage: string };
 export type MatrixDirection = { name: string; plain: string; items: MatrixItem[]; projects: number; maturity: number; indicators: string[] };
 export type MatrixCell = { field: string; stage: string; items: MatrixItem[]; projects: number; tiers: number[]; maturity: number; indicators: string[]; directions: MatrixDirection[] };
 export type Matrix = { fields: string[]; stages: { name: string; plain: string }[]; cells: Map<string, MatrixCell>; rows: Map<string, MatrixCell>; columns: Map<string, MatrixCell>; hidden: number; total: number; projects: number };
@@ -196,35 +196,108 @@ export function matrixOutline(branch: string, matrix: Matrix, board: Board): str
 }
 
 /**
- * Technology view outline (query 2026-1009 1720, Gemini scheme 2): discipline system → direction →
- * method theme → application carrier (field) → leading project techniques with stage and metrics.
- * Up to `perCarrier` items per carrier, highest stage first; counts say how many are left out.
+ * Technology outline (query 2026-1010 1530): 技术体系 › 技术方向 › 方法主题 › leading project
+ * techniques with their report-described stage and metrics. Up to `perTheme` techniques per
+ * theme, highest stage first; counts say how many are left out.
  */
-export function lineageOutline(name: string, lineage: Lineage, perCarrier = 2): string {
-  const resolve = fieldResolver(lineage);
-  const lines = [`# ${name} 技术谱系（学科体系版）`, "", "层级：学科体系 › 技术方向 › 方法主题 › 应用承载 › 项目技术〔报告所述阶段；指标〕", ""];
+export function lineageOutline(name: string, lineage: Lineage, perTheme = 3): string {
+  const lines = [`# ${name} 技术谱系`, "", "层级：技术体系 › 技术方向 › 方法主题 › 项目技术〔报告所述阶段；指标〕", ""];
   for (const category of lineage.categories) {
-    lines.push(`L1 ${category.name}${category.plain ? `（${category.plain}）` : ""}`);
+    lines.push(`## ${category.name}${category.plain ? `：${category.plain}` : ""}`);
     for (const child of category.children) {
-      lines.push(`├── L2 ${child.name}${child.foundation ? "〔共性底座〕" : ""}`);
+      lines.push(`- ${child.name}${child.foundation ? "〔共性底座〕" : ""}${child.plain ? `：${child.plain}` : ""}`);
       for (const theme of child.themes) {
-        lines.push(`│   ├── L3 ${theme.name}（${theme.items.length} 条）`);
-        const carriers = new Map<string, string[]>();
-        for (const key of theme.items) carriers.set(resolve.of(key), [...(carriers.get(resolve.of(key)) ?? []), key]);
-        for (const [field, keys] of [...carriers].sort((a, b) => Number(a[0] === UNDETERMINED_FIELD) - Number(b[0] === UNDETERMINED_FIELD) || b[1].length - a[1].length)) {
-          lines.push(`│   │   ├── L4 承载：${field}（${new Set(keys.map((k) => lineage.items[k].project_id)).size} 个项目）`);
-          const best = [...keys].sort((a, b) => lineage.items[b].maturity - lineage.items[a].maturity);
-          for (const key of best.slice(0, perCarrier)) {
-            const item = lineage.items[key];
-            const chips = indicators([item.basis, item.desc], 2);
-            lines.push(`│   │   │   └── L5 ${item.name}〔${item.maturity} ${tierOf(item.maturity).label}${chips.length ? `；${chips.join("，")}` : ""}〕 ${item.project_id}`);
-          }
-          if (best.length > perCarrier) lines.push(`│   │   │   └── …另 ${best.length - perCarrier} 条`);
+        const projects = new Set(theme.items.map((k) => lineage.items[k]?.project_id)).size;
+        lines.push(`  - ${theme.name}（${projects} 个项目）${theme.plain ? `：${theme.plain}` : ""}`);
+        const best = [...theme.items].sort((a, b) => lineage.items[b].maturity - lineage.items[a].maturity);
+        for (const key of best.slice(0, perTheme)) {
+          const item = lineage.items[key];
+          const chips = indicators([item.basis, item.desc], 2);
+          lines.push(`    - ${item.name}〔${item.maturity} ${tierOf(item.maturity).label}${chips.length ? `；${chips.join("，")}` : ""}〕 ${item.project_id}`);
         }
+        if (best.length > perTheme) lines.push(`    - …另 ${best.length - perTheme} 条`);
       }
     }
     lines.push("");
   }
   lines.push("注：阶段为模型依据项目报告的判定，不是正式技术成熟度评定；指标摘自判定依据与条目说明，可在系统中回到原文核对。");
   return lines.join("\n");
+}
+
+export type Insight = { title: string; headline: string; points: string[] };
+
+/**
+ * 总览卡片 (query 2026-1010 1537): each card states one conclusion about this library — scale,
+ * technical focus, application focus, maturity and open directions — computed from the lineage
+ * and the scene hierarchy, with the supporting numbers underneath. Nothing is generated.
+ */
+export function libraryInsights(board: Board, matrix: Matrix, lineage: Lineage, years: { start: number | null; end: number | null }[]): Insight[] {
+  const pct = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
+  const projectsOf = (ids: string[]) => new Set(ids.map((id) => lineage.items[id]?.project_id).filter(Boolean)).size;
+  const systems = lineage.categories.filter((c) => !c.unplaced)
+    .map((c) => ({ name: c.name, projects: projectsOf(c.children.flatMap((d) => d.themes.flatMap((t) => t.items))) }))
+    .sort((a, b) => b.projects - a.projects);
+  const directions = lineage.categories.filter((c) => !c.unplaced).flatMap((c) => c.children.map((d) => ({ name: d.name, projects: projectsOf(d.themes.flatMap((t) => t.items)) })))
+    .sort((a, b) => b.projects - a.projects);
+  const fields = matrix.fields.filter((f) => f !== UNDETERMINED_FIELD).map((f) => ({ name: f, row: matrix.rows.get(f)! })).filter((f) => f.row.projects).sort((a, b) => b.row.projects - a.row.projects);
+  const stageCounts = matrix.stages.filter((s) => s.name !== UNDETERMINED_STAGE).map((s) => ({ name: s.name, items: matrix.columns.get(s.name)?.items.length ?? 0 }))
+    .sort((a, b) => b.items - a.items);
+  const totalItems = matrix.total - matrix.hidden;
+  const starts = years.map((y) => y.start).filter((v): v is number => v !== null), ends = years.map((y) => y.end).filter((v): v is number => v !== null);
+  const mature = board.tiers[0] + board.tiers[1];
+  const open = board.scenes.flatMap((s) => s.issues.filter((i) => i.state === "待解决").map((i) => `${i.name}（${s.name}）`));
+  const topStageOf = (field: string) => matrix.stages.filter((s) => s.name !== UNDETERMINED_STAGE)
+    .map((s) => ({ name: s.name, n: matrixCell(matrix, field, s.name)?.items.length ?? 0 })).sort((a, b) => b.n - a.n)[0];
+  const cards: Insight[] = [{
+    title: "研究规模",
+    headline: `${board.projects} 个项目、${totalItems} 条技术，覆盖 ${fields.length} 个应用领域`,
+    points: [starts.length ? `立项 ${Math.min(...starts)}–${Math.max(...ends, ...starts)} 年` : "", `共性技术底座 ${board.foundations.length} 个方向`].filter(Boolean),
+  }];
+  if (systems.length) cards.push({
+    title: "技术重心",
+    headline: systems.length > 1 ? `以${systems[0].name}和${systems[1].name}为主` : `以${systems[0].name}为主`,
+    points: [...systems.slice(0, 3).map((s) => `${s.name} ${s.projects} 个项目（${pct(s.projects, board.projects)}%）`),
+      directions[0] ? `最大方向：${directions[0].name}（${directions[0].projects} 个项目）` : ""].filter(Boolean),
+  });
+  if (fields.length) {
+    const top = topStageOf(fields[0].name);
+    cards.push({
+      title: "应用重心",
+      headline: `${fields[0].name}最集中（${fields[0].row.projects} 个项目）${top?.n ? `，主要在“${top.name}”` : ""}`,
+      points: [...fields.slice(1, 3).map((f) => `${f.name} ${f.row.projects} 个项目`),
+        stageCounts[0] ? `全库以“${stageCounts[0].name}”环节最多（${pct(stageCounts[0].items, totalItems)}% 的技术）` : ""].filter(Boolean),
+    });
+  }
+  cards.push({
+    title: "成熟与转化",
+    headline: `${pct(mature, board.projects)}% 的项目报告达到成型技术或示范应用`,
+    points: [`示范应用 ${board.tiers[0]} 个项目，成型技术 ${board.tiers[1]} 个`, `攻关验证 ${board.tiers[2]} 个，探索或未判定 ${board.tiers[3]} 个`,
+      "按各项目报告所述阶段计，不是正式技术成熟度评定"],
+  });
+  if (open.length) cards.push({ title: "待突破", headline: `${open.length} 个深化布局方向`, points: open.slice(0, 3) });
+  return cards;
+}
+
+/**
+ * One line for a field card: the workflow stage and technology system this field leans on more
+ * than the library as a whole (share in the field ÷ share in the library, at least 3 items), so
+ * cards differ instead of repeating the library-wide leader.
+ */
+export function fieldHeadline(matrix: Matrix, lineage: Lineage, field: string): string {
+  const row = matrix.rows.get(field);
+  if (!row?.items.length) return "";
+  const system = new Map<string, string>();
+  lineage.categories.forEach((c) => { if (!c.unplaced) c.children.forEach((d) => d.themes.forEach((t) => t.items.forEach((id) => system.set(id, c.name)))); });
+  const all = matrix.fields.flatMap((f) => matrix.rows.get(f)!.items);
+  const tally = (items: MatrixItem[], of: (i: MatrixItem) => string) =>
+    items.reduce((m, i) => { const v = of(i); return v ? m.set(v, (m.get(v) ?? 0) + 1) : m; }, new Map<string, number>());
+  const lean = (of: (i: MatrixItem) => string) => {
+    const here = tally(row.items, of), there = tally(all, of);
+    const n = [...here.values()].reduce((a, b) => a + b, 0), total = [...there.values()].reduce((a, b) => a + b, 0);
+    return [...here].filter(([, k]) => k >= 3).map(([v, k]) => ({ v, lift: (k / n) / ((there.get(v) ?? 1) / total) }))
+      .sort((a, b) => b.lift - a.lift)[0]?.v;
+  };
+  const stage = lean((i) => (i.stage === UNDETERMINED_STAGE ? "" : i.stage));
+  const tech = lean((i) => system.get(i.key) ?? "");
+  return [stage ? `侧重“${stage}”` : "", tech ? `${tech}占比高于全库` : ""].filter(Boolean).join(" · ");
 }

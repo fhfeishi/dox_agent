@@ -111,18 +111,29 @@ def task_instruction(task_id: str, *, phase: str = "chat") -> str:
     return "\n\n".join(parts)
 
 
+def default_outline(task: dict) -> str:
+    """Editable starting outline for a task copy (query 2026-1009 1541): goal, output, rules.
+
+    The built-in prompt file stays the engine's fixed text; a user's outline is added after it
+    and can refine the work, never replace citation or evidence rules.
+    """
+    output = "\n".join(f"- {part.strip()}" for part in task.get("output_hint", "").split("+") if part.strip())
+    return (f"## 目标\n{task['description']}\n\n## 输出结构\n{output or '- 结论与依据'}\n\n"
+            "## 要求\n- 只依据所选知识库资料，关键结论标注来源\n- 资料不足时说明缺口，不推测")
+
+
 def list_tasks() -> list[dict]:
     return [{"id": t["id"], "name": t["name"], "description": t["description"],
              "example": t["example"],
              "output_hint": t.get("output_hint", ""), "has_template": t["has_template"],
              "artifacts": t["artifacts"], "templates": t["templates"],
-             "prompt": _read(t["file"])} for t in TASKS]
+             "outline": default_outline(t), "prompt": _read(t["file"])} for t in TASKS]
 
 
 def list_templates() -> list[dict]:
-    """W1: read-only catalogue of the built-in output templates (ids + display names)."""
-    return [{"id": template_id, "name": TEMPLATE_NAMES.get(template_id, template_id)}
-            for template_id in REPORT_TEMPLATES]
+    """Read-only catalogue of the built-in output templates, with their section outline."""
+    return [{"id": template_id, "name": TEMPLATE_NAMES.get(template_id, template_id),
+             "content": report_template(template_id)} for template_id in REPORT_TEMPLATES]
 
 
 def compose_question_instruction() -> str:
@@ -131,5 +142,10 @@ def compose_question_instruction() -> str:
 
 
 def lineage_instruction() -> str:
-    """Two-level technology taxonomy over the hierarchy's existing tech routes."""
+    """Top two lineage levels (technology system › direction) over a corpus's technique items."""
     return _read("lineage.md")
+
+
+def lineage_assign_instruction() -> str:
+    """Per-batch placement of technique items into direction › theme, with a maturity level."""
+    return _read("lineage_assign.md")

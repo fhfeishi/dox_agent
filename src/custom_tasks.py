@@ -107,6 +107,7 @@ def normalize_task(task: dict) -> dict:
     value.setdefault("boundaries", "")
     value.setdefault("clarification_conditions", "")
     value.setdefault("output_instructions", "")
+    value.setdefault("outline", "")
     value.setdefault("parameter_defaults", {})
     value.setdefault("parameters", [])
     value.setdefault("revision", 1)
@@ -133,9 +134,10 @@ class CustomTaskStore:
         source = next((item for item in list_tasks() if item["id"] == source_task_id), None)
         if source is not None and source_task_id in {"task1", "task2", "task3", "task4"}:
             source = {k: v for k, v in source.items() if k != "prompt"}  # built-in prompt stays server text
+            # The copy starts from the task's outline; the built-in prompt still runs underneath it.
             task = {**source, "id": f"custom-{uuid4().hex}", "engine_task_id": source_task_id,
                     "kind": "custom", "status": "draft", "revision": 1, "version": 0,
-                    "background": "", "goal": source["description"], "requirements": "",
+                    "background": "", "goal": "", "requirements": "",
                     "parameter_defaults": {}, "parameters": []}
             if source_task_id == "task4":
                 task["report_template_id"] = ""
@@ -219,8 +221,8 @@ class CustomTaskStore:
                 raise TaskConflict("已归档任务不能发布")
             if task["revision"] != revision:
                 raise TaskConflict("草稿已由其他编辑更新，请刷新后重试")
-            if not task["name"].strip() or not task["goal"].strip():
-                raise TaskInvalid("任务名称和目标不能为空")
+            if not task["name"].strip() or not (task["outline"].strip() or task["goal"].strip()):
+                raise TaskInvalid("任务名称和大纲不能为空")
             self._validate_report_binding(task)
             skill_id = task.get("skill_id")
             if skill_id:
@@ -264,6 +266,17 @@ class CustomTaskStore:
             db.execute("INSERT INTO versions VALUES (?,?,?)", (task_id, task["version"], json.dumps(task, ensure_ascii=False)))
             db.execute("UPDATE tasks SET draft=? WHERE id=?", (json.dumps(task, ensure_ascii=False), task_id))
         return task
+
+    def delete(self, task_id: str) -> None:
+        """Remove a never-published draft; published tasks are archived so runs keep their version."""
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT draft FROM tasks WHERE id=?", (task_id,)).fetchone()
+            if row is None:
+                raise TaskMissing("任务不存在")
+            if normalize_task(json.loads(row[0]))["version"]:
+                raise TaskConflict("已发布的任务被历史运行引用，只能归档")
+            db.execute("DELETE FROM tasks WHERE id=?", (task_id,))
 
     def archive(self, task_id: str) -> dict:
         return self._set_archived(task_id, True)

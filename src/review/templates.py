@@ -23,13 +23,14 @@ FORMAL = [
 ]
 PROOFREAD = ("proofread", "文字规范与错别字", "检查错别字、用词不当和明显的标点、格式不一致，给出原句、位置和建议改法。",
              "校对建议，不作为资格判断；专业术语和缩写不确定时提示核对。")
+# Report order (query 2026-1010 0914): goal → necessity → feasibility → advancement → risk → related work.
 PROFESSIONAL = [
     ("objective", "目标与合理性", "internal", "研究目标是否明确，技术路线能否支撑目标，论证是否自洽。"),
-    ("comparison", "相近工作与实质差异", "comparison", "与所选资料中的相近项目比较，说明实质差异；未命中不等于原创。"),
     ("necessity", "开展必要性", "internal", "说明问题来源与需求，评价开展本项目的必要性，非主流方向重点说明必要性。"),
     ("feasibility", "可行性与资源依赖", "internal", "评价方法、数据、条件、团队与进度的可行性及关键依赖。"),
     ("advancement", "技术先进性与验证", "comparison", "依据有日期的对照材料评价先进性，指出需补充的对比与验证。"),
     ("risk", "风险及薄弱点", "internal", "识别主要技术风险、论证薄弱点与缺失材料，给出具体改进建议。"),
+    ("comparison", "相近工作与实质差异", "comparison", "与所选资料中的相近项目比较，说明实质差异；未命中不等于原创。"),
 ]
 
 

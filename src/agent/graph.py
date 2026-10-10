@@ -324,7 +324,8 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             # but cannot replace citation, insufficient-evidence, or safety constraints.
             instruction += "\n\n自定义任务补充（若与以上规则冲突，以上规则优先）：\n" + "\n".join(
                 f"{label}：{custom_task.get(key, '')}" for key, label in
-                (("background", "背景"), ("goal", "目标"), ("requirements", "具体要求"))
+                (("background", "背景"), ("goal", "目标"), ("requirements", "具体要求"), ("outline", "任务大纲"))
+                if custom_task.get(key)
             )
             if custom_task.get("parameters"):
                 instruction += "\n本次参数：" + ", ".join(

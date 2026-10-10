@@ -164,3 +164,41 @@ def test_user_copies_custom_task_with_new_identity_and_archives_fixed_versions(t
         assert copy["status"] == "draft" and copy["archived"] is False
         restored = client.post(f"/api/tasks/custom/{source['id']}/restore")
         assert restored.status_code == 200 and restored.json()["status"] == "published"
+
+
+def test_outline_edit_reaches_the_run_and_unused_drafts_can_be_removed(tmp_path):
+    """query 2026-1009 1541: a task is edited as one outline; never-published drafts are deletable."""
+    from tests.test_runs import FakeGraph
+
+    seen = []
+
+    class Recording(FakeGraph):
+        async def astream(self, state, **kwargs):
+            seen.append(state["custom_task"])
+            async for event in super().astream(state, **kwargs):
+                yield event
+
+    app, cid = ready_app(tmp_path, factory=Recording)
+    with TestClient(app) as client:
+        builtin = next(t for t in client.get("/api/tasks").json() if t["id"] == "task3")
+        assert builtin["outline"].startswith("## 目标\n")
+        task = client.post("/api/tasks/custom", json={"source_task_id": "task3"}).json()
+        assert task["outline"] == builtin["outline"]
+        outline = "## 目标\n研判视觉导航路线\n\n## 输出结构\n- 已实现工作\n- 可继续工作"
+        saved = client.put(f"/api/tasks/custom/{task['id']}/draft", json={
+            "revision": task["revision"], "name": "导航研判", "outline": outline}).json()
+        published = client.post(f"/api/tasks/custom/{task['id']}/publish", json={"revision": saved["revision"]})
+        assert published.status_code == 200
+        body = chat_body(cid, "outline-run") | {"task_id": task["id"], "task_version": 1}
+        assert client.post("/api/chat", json=body).status_code == 200
+        assert seen[-1]["outline"] == outline
+
+        # A published task is referenced by runs: it can only be archived, not deleted.
+        assert client.delete(f"/api/tasks/custom/{task['id']}").status_code == 409
+        draft = client.post("/api/tasks/custom", json={"source_task_id": "task1"}).json()
+        assert client.delete(f"/api/tasks/custom/{draft['id']}").status_code == 204
+        assert draft["id"] not in {t["id"] for t in client.get("/api/tasks?include_archived=true").json()}
+
+        template = client.post("/api/templates/custom", json={"source_template_id": "hotspots"}).json()
+        assert client.delete(f"/api/templates/custom/{template['id']}").status_code == 204
+        assert client.get(f"/api/templates/custom/{template['id']}").status_code == 404

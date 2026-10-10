@@ -309,6 +309,9 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
             clean.update(id=f"model-{i}", check_id=question["id"], topic=question["title"],
                          other_pages=card.get("other_pages", []) if clean.get("quote") else [])
             cards.append(clean)
+        # Opinions follow the template's question order, whatever order the model answered in.
+        order = {q["id"]: i for i, q in enumerate(active_checks)}
+        cards.sort(key=lambda c: order.get(c["check_id"], len(order)))
         covered_ids = {c["check_id"] for c in cards}
         coverage = [{"check_id": q["id"], "title": q["title"], "evidence_need": q.get("evidence_need", "internal"),
                      "state": "evaluated" if q["id"] in covered_ids else "missing",

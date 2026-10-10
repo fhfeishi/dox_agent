@@ -361,7 +361,7 @@ export function SidePanel() {
           </div>
         ) : null}
         <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
-          <span>当前资料库</span>
+          <span>当前对话使用</span>
           <b className="min-w-0 truncate font-semibold text-[var(--slate)]">
             {corpora.find((c) => c.id === effectiveCorpusId)?.name ?? "未选择"}
           </b>

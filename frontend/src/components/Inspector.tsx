@@ -1,3 +1,4 @@
+import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
 import { InspectorResults } from "./InspectorResults";
 import { ProjectDetail } from "./ProjectOverview";
 import { useEffect, useState, type ReactNode } from "react";
@@ -5,7 +6,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, archiveCustomTemplate, archiveTask, artifactExportUrl, changeArtifactFigure, copyTask, copyTemplate, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchCustomTemplate, fetchFigureCandidates, fetchReport, fetchRun, fetchTemplate, fetchTemplates, fetchWebSnapshot, publishTask, publishTemplate, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type ArtifactInfo, type ArtifactVersion, type CustomTemplate, type ReportInfo, type RunSnapshot, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, artifactExportUrl, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -64,15 +65,10 @@ export function Inspector() {
     setInspectorWidth,
     corpora,
     openCorpus,
-    startTask,
-    refreshTasks,
     openFullPreview,
     showInspector,
   } = useApp();
   const [tab, setTab] = useState<InspTab>("out");
-  const [taskDraft, setTaskDraft] = useState<TaskInfo | null>(null);
-  const [taskEditMessage, setTaskEditMessage] = useState("");
-  const [taskEditBusy, setTaskEditBusy] = useState(false);
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
   const [webSnapshot, setWebSnapshot] = useState<WebSnapshot | null>(null);
@@ -86,12 +82,6 @@ export function Inspector() {
   const [artifactSaveError, setArtifactSaveError] = useState("");
   const [figureCandidates, setFigureCandidates] = useState<ReportFigure[]>([]);
   const [editingFigureId, setEditingFigureId] = useState("");
-  const [template, setTemplate] = useState<TemplateInfo | null>(null);
-  const [templateError, setTemplateError] = useState("");
-  const [templateList, setTemplateList] = useState<TemplateSummary[]>([]);
-  const [templateDraft, setTemplateDraft] = useState<CustomTemplate | null>(null);
-  const [templateEditBusy, setTemplateEditBusy] = useState(false);
-  const [templateEditMessage, setTemplateEditMessage] = useState("");
   const [runSnapshot, setRunSnapshot] = useState<RunSnapshot | null>(null);
   const [runSnapshotMissing, setRunSnapshotMissing] = useState(false);
 
@@ -191,51 +181,6 @@ export function Inspector() {
     }
   }
 
-  useEffect(() => {
-    if (inspectorTarget.kind !== "template") {
-      setTemplate(null);
-      setTemplateError("");
-      setTemplateDraft(null);
-      return;
-    }
-    const templateId = inspectorTarget.templateId;
-    let active = true;
-    setTemplate(null);
-    setTemplateError("");
-    setTemplateDraft(null);
-    // W4-B: custom templates also load their editable draft; built-ins stay read-only.
-    const load = async () => {
-      try {
-        if (templateId.startsWith("custom-")) {
-          const item = await fetchCustomTemplate(templateId);
-          if (!active) return;
-          setTemplate(item);
-          setTemplateDraft(item);
-        } else {
-          const item = await fetchTemplate(templateId);
-          if (active) setTemplate(item);
-        }
-      } catch (error) {
-        if (active) setTemplateError(error instanceof Error ? error.message : "输出模板读取失败");
-      }
-    };
-    void load();
-    return () => { active = false; };
-  }, [inspectorTarget.kind, inspectorTarget.kind === "template" ? inspectorTarget.templateId : ""]);
-
-  async function refreshTemplateList() {
-    try { setTemplateList(await fetchTemplates(undefined, true)); } catch { setTemplateList([]); }
-  }
-
-  useEffect(() => {
-    let active = true;
-    void fetchTemplates(undefined, true).then(
-      (items) => { if (active) setTemplateList(items); },
-      () => { if (active) setTemplateList([]); },
-    );
-    return () => { active = false; };
-  }, []);
-
   // B2: read the persisted run snapshot back for the execution summary; a legacy run without one
   // is shown as "运行信息未记录" instead of failing silently. An artifact can target its own run.
   const latestRunId = turns[turns.length - 1]?.runId ?? "";
@@ -275,88 +220,6 @@ export function Inspector() {
   const citations = latest?.sources ?? [];
   const selectedTask = inspectorTarget.kind === "task"
     ? tasks.find((item) => item.id === inspectorTarget.taskId) : null;
-  useEffect(() => { setTaskDraft(selectedTask ? { ...selectedTask } : null); setTaskEditMessage(""); }, [selectedTask?.id, selectedTask?.revision]);
-  async function persistTask(publish: boolean) {
-    if (!taskDraft) return;
-    setTaskEditBusy(true);
-    try {
-      const saved = await saveTaskDraft(taskDraft);
-      const result = publish ? await publishTask(saved) : saved;
-      setTaskDraft(result);
-      await refreshTasks();
-      setTaskEditMessage(publish ? `已发布 v${result.version}` : "草稿已保存");
-    } catch (e) { setTaskEditMessage((e as Error).message); }
-    finally { setTaskEditBusy(false); }
-  }
-  async function duplicateTask() {
-    if (!selectedTask) return;
-    setTaskEditBusy(true);
-    try {
-      const copied = await copyTask(selectedTask.id);
-      await refreshTasks();
-      setTaskEditMessage(`已复制为「${copied.name}」`);
-      showInspector({ kind: "task", taskId: copied.id });
-    } catch (e) { setTaskEditMessage((e as Error).message); }
-    finally { setTaskEditBusy(false); }
-  }
-  async function setTaskArchived(archived: boolean) {
-    if (!selectedTask) return;
-    setTaskEditBusy(true);
-    try {
-      const result = archived ? await archiveTask(selectedTask.id) : await restoreTask(selectedTask.id);
-      setTaskDraft(result);
-      await refreshTasks();
-      setTaskEditMessage(archived ? "任务已归档" : "任务已恢复");
-    } catch (e) { setTaskEditMessage((e as Error).message); }
-    finally { setTaskEditBusy(false); }
-  }
-  function changeTaskParameter(index: number, change: Partial<TaskParameter>) {
-    if (!taskDraft) return;
-    const parameters = [...(taskDraft.parameters ?? [])];
-    parameters[index] = { ...parameters[index], ...change };
-    setTaskDraft({ ...taskDraft, parameters });
-  }
-  async function persistTemplate(publish: boolean) {
-    if (!templateDraft) return;
-    setTemplateEditBusy(true);
-    try {
-      const saved = await saveTemplateDraft(templateDraft.id, templateDraft.revision, {
-        name: templateDraft.name, purpose: templateDraft.purpose,
-        content: templateDraft.content, variables: templateDraft.variables,
-      });
-      const result = publish ? await publishTemplate(saved.id, saved.revision) : saved;
-      setTemplateDraft(result);
-      setTemplate(result);
-      await refreshTemplateList();
-      setTemplateEditMessage(publish ? `已发布 v${result.version}` : "草稿已保存");
-    } catch (e) { setTemplateEditMessage((e as Error).message); }
-    finally { setTemplateEditBusy(false); }
-  }
-  async function duplicateTemplate() {
-    if (!template) return;
-    setTemplateEditBusy(true);
-    try {
-      const copied = await copyTemplate(template.id);
-      setTemplateEditMessage(`已复制为「${copied.name}」，可编辑后发布`);
-      showInspector({ kind: "template", templateId: copied.id });
-    } catch (e) { setTemplateEditMessage((e as Error).message); }
-    finally { setTemplateEditBusy(false); }
-  }
-  async function setTemplateArchived(archived: boolean) {
-    if (!template) return;
-    setTemplateEditBusy(true);
-    try {
-      const result = archived ? await archiveCustomTemplate(template.id) : await restoreCustomTemplate(template.id);
-      setTemplate(result);
-      setTemplateDraft(result);
-      await refreshTemplateList();
-      setTemplateEditMessage(archived ? "模板已归档" : "模板已恢复");
-    } catch (e) { setTemplateEditMessage((e as Error).message); }
-    finally { setTemplateEditBusy(false); }
-  }
-  const selectedTemplate = inspectorTarget.kind === "template"
-    ? (template?.id === inspectorTarget.templateId ? template : templateList.find((item) => item.id === inspectorTarget.templateId) ?? null)
-    : null;
   const corpus = inspectorTarget.kind === "corpus" ? corpora.find((item) => item.id === inspectorTarget.corpusId) : null;
   // A2/B2: prefer the persisted snapshot's authoritative scope; fall back to the live run event.
   const effectiveCorpusIds = runSnapshot?.effective_corpus_ids?.length
@@ -397,8 +260,8 @@ export function Inspector() {
         ) : null}
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
           {inspectorTarget.kind === "results" ? "成果与回收站"
-            : inspectorTarget.kind === "task" ? "任务预览"
-            : inspectorTarget.kind === "template" ? "输出模板预览"
+            : inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
+            : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
@@ -411,12 +274,13 @@ export function Inspector() {
             : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
         </span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          {selectedTask?.name ?? selectedTemplate?.name ?? corpus?.name ?? artifact?.title
+          {selectedTask?.name ?? corpus?.name ?? artifact?.title
             ?? (inspectorTarget.kind === "document" ? inspectorTarget.doc.title
             : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
             : inspectorTarget.kind === "results" ? "报告分类汇总 · 二级编辑"
+            : inspectorTarget.kind === "task" || inspectorTarget.kind === "template" ? ""
             : activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答")}
         </span>
         <button type="button" aria-label={inspectorPinned ? "取消固定检查器" : "固定检查器"}
@@ -472,120 +336,7 @@ export function Inspector() {
         {inspectorTarget.kind === "task" ? (
           <>
             <SectionTitle>任务模板</SectionTitle>
-            {selectedTask ? (
-              <Card>
-                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{selectedTask.name}</h2>
-                <p className="mt-[8px] text-[12.5px] leading-[1.6] text-[var(--steel)]">{selectedTask.description}</p>
-                <div className="mt-[10px] flex flex-wrap gap-[6px]">
-                  <Button size="sm" disabled={taskEditBusy} onClick={() => void duplicateTask()}>{selectedTask.kind === "builtin" ? "修改（复制为我的任务）" : "复制任务"}</Button>
-                  {selectedTask.kind === "custom" ? <Button size="sm" disabled={taskEditBusy} onClick={() => void setTaskArchived(!(selectedTask.status === "archived" || selectedTask.archived))}>{(selectedTask.status === "archived" || selectedTask.archived) ? "恢复任务" : "归档任务"}</Button> : null}
-                </div>
-                {taskEditMessage && !taskDraft ? <p role="status" className="mt-[6px] text-[12px] text-[var(--steel)]">{taskEditMessage}</p> : null}
-                {(selectedTask.status === "archived" || selectedTask.archived) ? <p className="mt-[7px] text-[12px] text-[#8a3d00]">已归档，不能用于新会话；恢复后可继续选择。</p> : null}
-                {selectedTask.example ? <p className="mt-[10px] text-[12px] text-[var(--slate)]">示例：{selectedTask.example}</p> : null}
-                {selectedTask.output_hint ? <p className="mt-[8px] text-[12px] text-[var(--slate)]">输出：{selectedTask.output_hint}</p> : null}
-                {selectedTask.kind !== "custom" && selectedTask.prompt ? (
-                  <div className="mt-[12px]">
-                    <div className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)]">任务模板正文（内置只读）</div>
-                    <pre className="font-code mt-[6px] max-h-[260px] overflow-auto whitespace-pre-wrap rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-[11.5px] leading-[1.6] text-[var(--ink)]">{selectedTask.prompt}</pre>
-                  </div>
-                ) : null}
-                {selectedTask.kind === "custom" && taskDraft ? (
-                  <div className="mt-[12px] space-y-[8px]">
-                    <p className="text-[12px] text-[var(--steel)]">基于 {selectedTask.engine_task_id} · {(selectedTask.status === "archived" || selectedTask.archived) ? "已归档" : selectedTask.status === "published" ? `已发布 v${selectedTask.version}` : selectedTask.version ? `草稿 · 当前发布 v${selectedTask.version}` : "未发布草稿"}</p>
-                    {([ ["name", "名称"], ["description", "用途说明"], ["background", "背景"], ["goal", "目标"], ["requirements", "具体要求"], ["category", "任务类别"], ["boundaries", "适用边界"], ["clarification_conditions", "需要澄清的条件"], ["output_instructions", "输出说明"] ] as const).map(([key, label]) => (
-                      <label key={key} className="block text-[12px] text-[var(--slate)]">{label}
-                        <textarea aria-label={label} value={taskDraft[key] ?? ""}
-                          onChange={(event) => setTaskDraft({ ...taskDraft, [key]: event.target.value })}
-                          className="mt-[4px] min-h-[44px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
-                      </label>
-                    ))}
-                    {selectedTask.engine_task_id === "task4" ? (
-                      <label className="block text-[12px] text-[var(--slate)]">固定报告模板
-                        <select aria-label="固定报告模板" value={taskDraft.report_template_id ? `${taskDraft.report_template_id}|${taskDraft.report_template_version ?? 0}` : ""}
-                          onChange={(event) => {
-                            const [id, rawVersion] = event.target.value.split("|");
-                            setTaskDraft({ ...taskDraft, report_template_id: id || undefined,
-                              report_template_version: id ? Number(rawVersion) || 0 : undefined });
-                          }}
-                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] px-[7px] py-[5px] text-[12px] text-[var(--ink)]">
-                          <option value="">请选择已发布模板</option>
-                          {templateList.filter((item) => !item.archived && item.status !== "archived" && (item.kind !== "custom" || Boolean(item.version))).map((item) => {
-                            const version = item.kind === "custom" ? item.version ?? 0 : 0;
-                            return <option key={`${item.id}|${version}`} value={`${item.id}|${version}`}>{item.name} · {item.kind === "custom" ? `自定义 v${version}` : "内置 v0"}</option>;
-                          })}
-                        </select>
-                      </label>
-                    ) : null}
-
-                    <label className="block text-[12px] text-[var(--slate)]">默认关注点
-                      <input aria-label="默认关注点" value={taskDraft.parameter_defaults?.focus ?? ""}
-                        onChange={(event) => setTaskDraft({ ...taskDraft, parameter_defaults: { ...taskDraft.parameter_defaults, focus: event.target.value } })}
-                        className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
-                    </label>
-                    <div className="border-t border-[var(--hairline)] pt-[8px]">
-                      <div className="mb-[6px] flex items-center justify-between text-[12px] text-[var(--slate)]"><span>输入参数</span>
-                        <button type="button" className="text-[var(--link)]" onClick={() => setTaskDraft({ ...taskDraft, parameters: [
-                          ...(taskDraft.parameters ?? []), { key: `input_${(taskDraft.parameters?.length ?? 0) + 1}`, label: "新参数", type: "text" },
-                        ] })}>添加参数</button>
-                      </div>
-                      {(taskDraft.parameters ?? []).map((field, index) => <div key={index} className="mb-[8px] rounded-[6px] border border-[var(--hairline)] p-[7px] text-[11px]">
-                        <div className="flex gap-[5px]">
-                          <input aria-label={`参数${index + 1}名称`} value={field.key} onChange={(event) => changeTaskParameter(index, { key: event.target.value })}
-                            placeholder="英文标识" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
-                          <input aria-label={`参数${index + 1}标签`} value={field.label} onChange={(event) => changeTaskParameter(index, { label: event.target.value })}
-                            placeholder="显示名称" className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />
-                          <button type="button" className="text-[var(--red)]" onClick={() => setTaskDraft({ ...taskDraft, parameters: taskDraft.parameters?.filter((_, i) => i !== index) })}>删除</button>
-                        </div>
-                        <div className="mt-[5px] flex items-center gap-[6px]">
-                          <select aria-label={`参数${index + 1}类型`} value={field.type} onChange={(event) => changeTaskParameter(index, { type: event.target.value as TaskParameter["type"], default: undefined, options: [] })}
-                            className="rounded border border-[var(--hairline)] p-[4px]">
-                            <option value="text">文本</option><option value="integer">整数</option><option value="enum">选项</option><option value="boolean">是/否</option><option value="year_range">年份区间</option>
-                          </select>
-                          <label><input type="checkbox" checked={Boolean(field.required)} onChange={(event) => changeTaskParameter(index, { required: event.target.checked })} /> 必填</label>
-                        </div>
-                        <input aria-label={`参数${index + 1}帮助`} value={field.help ?? ""} onChange={(event) => changeTaskParameter(index, { help: event.target.value })}
-                          placeholder="帮助说明（可选）" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" />
-                        {field.type === "enum" ? <input aria-label={`参数${index + 1}选项`} value={field.options?.join("，") ?? ""}
-                          onChange={(event) => changeTaskParameter(index, { options: event.target.value.split(/[，,]/).map((item) => item.trim()).filter(Boolean) })}
-                          placeholder="用逗号分隔选项" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" /> : null}
-                        {field.type === "boolean" ? <select aria-label={`参数${index + 1}默认`} value={field.default === true ? "true" : field.default === false ? "false" : ""}
-                          onChange={(event) => changeTaskParameter(index, { default: event.target.value === "" ? undefined : event.target.value === "true" })}
-                          className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]"><option value="">无默认</option><option value="true">默认是</option><option value="false">默认否</option></select>
-                          : field.type === "year_range" ? <div className="mt-[5px] flex gap-[5px]">{(["from", "to"] as const).map((side) => <input key={side} aria-label={`参数${index + 1}默认${side === "from" ? "起" : "止"}`} type="number" placeholder={side === "from" ? "起始年" : "结束年"}
-                            value={(field.default as { from?: number; to?: number } | undefined)?.[side] ?? ""}
-                            onChange={(event) => changeTaskParameter(index, { default: { ...(field.default as object ?? {}), [side]: event.target.value ? Number(event.target.value) : undefined } })}
-                            className="min-w-0 flex-1 rounded border border-[var(--hairline)] p-[4px]" />)}</div>
-                          : <input aria-label={`参数${index + 1}默认`} type={field.type === "integer" ? "number" : "text"} value={field.default == null ? "" : String(field.default)}
-                            onChange={(event) => changeTaskParameter(index, { default: event.target.value === "" ? undefined : field.type === "integer" ? Number(event.target.value) : event.target.value })}
-                            placeholder="默认值（可选）" className="mt-[5px] w-full rounded border border-[var(--hairline)] p-[4px]" />}
-                      </div>)}
-                    </div>
-                    <p className="text-[11px] text-[var(--stone)]">运行配置：当前会话知识库 · 本地资料 · 网络关闭 · {selectedTask.output_hint || "文本回答"}</p>
-                    <div className="flex gap-[6px]"><Button disabled={taskEditBusy} onClick={() => void persistTask(false)}>保存草稿</Button><Button disabled={taskEditBusy} onClick={() => void persistTask(true)}>保存并发布</Button></div>
-                    {taskEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{taskEditMessage}</p> : null}
-                  </div>
-                ) : null}
-                {selectedTask.templates?.length ? (
-                  <div className="mt-[12px]">
-                    <div className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">输出模板</div>
-                    <div className="mt-[6px] flex flex-wrap gap-[6px]">
-                      {selectedTask.templates.map((id) => (
-                        <button
-                          key={id}
-                          type="button"
-                          onClick={() => showInspector({ kind: "template", templateId: id })}
-                          className="rounded-[6px] border border-[var(--hairline)] px-[8px] py-[5px] text-[11.5px] text-[var(--link)] hover:bg-[var(--primary-soft)]"
-                        >
-                          {templateList.find((item) => item.id === id)?.name ?? id}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-                {selectedTask.status !== "archived" && !selectedTask.archived && (selectedTask.status !== "draft" || selectedTask.version) ? <Button className="mt-[14px]" onClick={() => void startTask(selectedTask.id)}>{selectedTask.status === "draft" ? "使用已发布版本" : "使用此任务"}</Button> : null}
-              </Card>
-            ) : <Card>任务已不可用，请刷新任务列表。</Card>}
+            <TaskTemplatePanel key={`${inspectorTarget.taskId}:${Boolean(inspectorTarget.edit)}`} taskId={inspectorTarget.taskId} edit={Boolean(inspectorTarget.edit)} />
           </>
         ) : null}
 
@@ -738,72 +489,8 @@ export function Inspector() {
 
         {inspectorTarget.kind === "template" ? (
           <>
-            <SectionTitle aside={template?.kind === "custom" ? <span className="text-[11px] text-[var(--stone)]">{template.status === "archived" || template.archived ? "已归档" : template.status === "published" ? `已发布 v${template.version}` : "草稿"}</span> : undefined}>
-              输出模板
-            </SectionTitle>
-            {templateError ? <p role="alert" className="text-[12px] text-[var(--red)]">{templateError}</p> : null}
-            {!template && !templateError ? <p className="text-[12px] text-[var(--steel)]">正在读取输出模板…</p> : null}
-            {template?.id === inspectorTarget.templateId ? (
-              <Card>
-                {template.kind === "custom" && templateDraft ? (
-                  <>
-                    <h2 className="text-[15px] font-semibold text-[var(--ink)]">{templateDraft.name}</h2>
-                    <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">自定义模板 · 发布后作为不可变版本；改模板不影响旧报告</p>
-                    {templateDraft.status === "archived" || templateDraft.archived ? <p className="mt-[5px] text-[12px] text-[#8a3d00]">已归档，不能绑定到新任务。</p> : null}
-                    <div className="mt-[12px] space-y-[8px]">
-                      <label className="block text-[12px] text-[var(--slate)]">名称
-                        <input aria-label="模板名称" value={templateDraft.name}
-                          onChange={(event) => setTemplateDraft({ ...templateDraft, name: event.target.value })}
-                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
-                      </label>
-                      <label className="block text-[12px] text-[var(--slate)]">模板用途
-                        <textarea aria-label="模板用途" rows={3} value={templateDraft.purpose}
-                          onChange={(event) => setTemplateDraft({ ...templateDraft, purpose: event.target.value })}
-                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
-                      </label>
-                      <label className="block text-[12px] text-[var(--slate)]">章节正文（Markdown）
-                        <textarea aria-label="模板正文" value={templateDraft.content} rows={10}
-                          onChange={(event) => setTemplateDraft({ ...templateDraft, content: event.target.value })}
-                          className="font-code mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[11.5px] text-[var(--ink)]" />
-                      </label>
-                      <label className="block text-[12px] text-[var(--slate)]">变量（逗号分隔，可引用 domain/year_range/year_from/year_to/fund_type/focus）
-                        <input aria-label="模板变量" value={templateDraft.variables.join("，")}
-                          onChange={(event) => setTemplateDraft({ ...templateDraft, variables: event.target.value.split(/[，,]/).map((item) => item.trim()).filter(Boolean) })}
-                          className="mt-[4px] w-full rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[7px] text-[12px] text-[var(--ink)]" />
-                      </label>
-                      <div>
-                        <p className="text-[11.5px] text-[var(--slate)]">章节与变量样例预览（仅 UI 样例，不是真实证据）</p>
-                        <pre className="font-code mt-[4px] max-h-[220px] overflow-auto whitespace-pre-wrap rounded-[6px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] text-[11px] leading-[1.55] text-[var(--ink)]">{templateDraft.content
-                          .replaceAll("{{domain}}", "示例领域")
-                          .replaceAll("{{year_range}}", "2025–2025")
-                          .replaceAll("{{year_from}}", "2025")
-                          .replaceAll("{{year_to}}", "2025")
-                          .replaceAll("{{fund_type}}", "示例类别")
-                          .replaceAll("{{focus}}", "示例关注点")}</pre>
-                        {templateDraft.variables.length ? <p className="mt-[4px] text-[11px] text-[var(--stone)]">变量：{templateDraft.variables.join("、")} → 样例值</p> : null}
-                      </div>
-                      <div className="flex flex-wrap gap-[6px]">
-                        <Button disabled={templateEditBusy} onClick={() => void persistTemplate(false)}>保存草稿</Button>
-                        <Button disabled={templateEditBusy} onClick={() => void persistTemplate(true)}>保存并发布</Button>
-                        <Button disabled={templateEditBusy} onClick={() => void duplicateTemplate()}>复制模板</Button>
-                        <Button disabled={templateEditBusy} onClick={() => void setTemplateArchived(!(templateDraft.status === "archived" || templateDraft.archived))}>{templateDraft.status === "archived" || templateDraft.archived ? "恢复模板" : "归档模板"}</Button>
-                      </div>
-                      {templateEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{templateEditMessage}</p> : null}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-[15px] font-semibold text-[var(--ink)]">{template.name}</h2>
-                    <p className="mt-[4px] text-[11.5px] text-[var(--stone)]">内置只读模板 · 报告按此章节结构生成</p>
-                    <div className="markdown mt-[12px]"><Markdown remarkPlugins={[remarkGfm]}>{template.content}</Markdown></div>
-                    <div className="mt-[12px] flex gap-[6px]">
-                      <Button disabled={templateEditBusy} onClick={() => void duplicateTemplate()}>复制为自定义模板</Button>
-                    </div>
-                    {templateEditMessage ? <p role="status" className="text-[12px] text-[var(--steel)]">{templateEditMessage}</p> : null}
-                  </>
-                )}
-              </Card>
-            ) : null}
+            <SectionTitle>报告模板</SectionTitle>
+            <ReportTemplatePanel key={`${inspectorTarget.templateId}:${Boolean(inspectorTarget.edit)}`} templateId={inspectorTarget.templateId} edit={Boolean(inspectorTarget.edit)} />
           </>
         ) : null}
 

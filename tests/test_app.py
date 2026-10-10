@@ -164,8 +164,17 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
                 {"key":"成果","items":[{"id":"o1","name":"原型系统","desc":"报告记载已形成原型。","status":"已取得","evidence":[{"quote":"形成原型系统"}]}]}
               ],
               "relations": [
-                {"from":{"dimension":"场景","item_id":"s1"},"to":{"dimension":"问题","item_id":"p1"},"basis":"原文明示"},
-                {"from":{"dimension":"问题","item_id":"p1"},"to":{"dimension":"技术","item_id":"t1"},"basis":"原文明示"}
+                {"from":{"dimension":"场景","item_id":"s1"},"to":{"dimension":"问题","item_id":"p1"},"type":"场景-问题","basis":"原文明示","evidence":[{"quote":"病灶识别困难"}]},
+                {"from":{"dimension":"技术","item_id":"t1"},"to":{"dimension":"问题","item_id":"p1"},"type":"针对","basis":"原文明示","evidence":[{"quote":"采用深度学习"}]}
+              ],
+              "outputs": [
+                {"id":"a","kind":"期刊论文","title":"深度学习病灶识别","attribution":"本项目","status":"已发表","year":"2022","evidence":[{"quote":"2022年发表《深度学习病灶识别》"}]},
+                {"id":"b","kind":"期刊论文","title":"深度学习病灶识别","attribution":"本项目","status":"已发表","evidence":[{"quote":"《深度学习病灶识别》"}]},
+                {"id":"c","kind":"专利","title":"虚构专利","attribution":"本项目","status":"授权","evidence":[{"quote":"授权发明专利一项"}]}
+              ],
+              "events": [
+                {"id":"e1","type":"试验","date":"2023","desc":"医院试验","status":"已取得","tech_ids":["t1"],"evidence":[{"quote":"2023年完成医院试验"}]},
+                {"id":"e2","type":"部署","date":"2024","desc":"部署","status":"已取得","evidence":[{"quote":"形成原型系统"}]}
               ]
             }'''
             if "预期形成原型系统" in messages[-1].content:
@@ -179,7 +188,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("research shell")
     monkeypatch.setattr(main_module, "DOX_AGENT_ROOT", tmp_path)
-    body = "# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。"
+    body = "# 国家自然科学基金报告\n\n直接费用：100（万元）\n\n临床诊疗场景存在病灶识别困难，项目采用深度学习并形成原型系统。2022年发表《深度学习病灶识别》，2023年完成医院试验。"
     saved = store.put(Document(title="示例报告", origin="2021_2025_P1_张三_report.md", kind="text", parser="markdown",
                                pages=[Page(number=1, text=body)], markdown=body))
     with TestClient(app) as client:
@@ -213,6 +222,13 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         assert detail.status_code == 200
         assert detail.json()["facets"][3]["items"][0]["status"] == "已取得"
         assert detail.json()["relations"][0]["basis"] == "原文明示"
+        v2 = detail.json()
+        # 同一论文重复出现只算一篇并保留两处证据；虚构的专利与年份不在引文中的事件被拒绝且留痕。
+        assert [o["title"] for o in v2["outputs"]] == ["深度学习病灶识别"] and v2["outputs"][0]["year"] == "2022" and len(v2["outputs"][0]["evidence"]) == 2
+        assert [e["type"] for e in v2["events"]] == ["试验"] and v2["events"][0]["precision"] == "年"
+        assert v2["events"][0]["tech_ids"] == [v2["facets"][2]["items"][0]["id"]]
+        assert {r["kind"] for r in v2["rejected"]} >= {"可枚举成果", "事件"}
+        assert v2["process"]["status"] == "已完成" and v2["schema_version"] == 2
         assert detail.json()["facets"][0]["items"][0]["evidence"][0]["version"] == saved["version"]
         extra = store.put(Document(title="申请摘要", origin="2021_2025_P1_张三_abstract.md",
                                    kind="text", parser="markdown", pages=[Page(number=1, text="国家自然科学基金\n直接费用：120（万元）\n临床诊疗场景存在病灶识别困难，拟采用深度学习并预期形成原型系统。")],
@@ -696,19 +712,3 @@ def test_session_can_be_deleted_and_stays_deleted(tmp_path):
         assert not any(item["id"] == "s-1" for item in client.get("/api/workspace/sessions").json())
         assert client.delete("/api/workspace/sessions/s-1").status_code == 404
         assert client.delete("/api/workspace/notes/s-1").status_code == 404
-
-
-def test_model_proxy_switch_persists_and_overrides_env(tmp_path, monkeypatch):
-    """The settings-panel choice decides whether model clients read the system proxy."""
-    from src.agent import models
-
-    monkeypatch.setenv("HTTPS_PROXY", "http://127.0.0.1:9")
-    app, _ = setup(tmp_path)
-    with TestClient(app) as client:
-        settings = app.state.settings
-        assert client.get("/api/model").json()["proxy"] == {"enabled": False, "source": "env", "address": "http://127.0.0.1:9"}
-        assert client.put("/api/model/proxy", json={"enabled": True}).json()["enabled"] is True
-    restarted, _ = setup(tmp_path)
-    with TestClient(restarted) as client:
-        assert client.get("/api/model").json()["proxy"]["source"] == "panel"
-    assert models.use_proxy(settings)

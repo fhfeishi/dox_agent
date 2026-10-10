@@ -34,12 +34,20 @@ LINEAGE_POSTS: list[str] = []
 
 
 def lineage(ready: bool):
+    levels = {"0": "未判定", "1": "理论与方法研究", "2": "算法与模型验证", "3": "原型与样机验证",
+              "4": "系统集成与场景试验", "5": "示范应用与转化"}
     return {"corpus_id": CORPUS_ID, "state": "ready" if ready else "missing", "branch": "AI与医疗", "gaps": [],
-            "categories": [{"name": "机器学习", "summary": "学习方法。",
-                            "children": [{"name": "深度学习方法", "routes": ["深度学习"]}]}] if ready else [],
-            "routes": {"深度学习": {"summary": "以深度学习提升识别。", "project_ids": ["NSFC:123456"],
-                                  "issues": [{"scene": "临床诊疗", "issue": "病灶识别困难", "state": "已解决"}]}},
-            "supporting": {"深度学习": [{"name": "数据增强", "project_ids": ["NSFC:123456"]}]}}
+            "maturity_levels": levels,
+            "categories": [{"name": "机器学习", "summary": "学习方法。", "plain": "让计算机从病例中学规律", "children": [
+                {"name": "深度学习方法", "plain": "多层识别模型", "foundation": False, "themes": [{"name": "网络模型", "items": ["NSFC:123456|t1", "NSFC:123456|t2"]}]},
+                {"name": "数据与样本库", "plain": "规范收集和保存病例数据", "foundation": True, "themes": [{"name": "数据库建设", "items": ["NSFC:123456|t3"]}]}]}]
+            if ready else [],
+            "items": {"NSFC:123456|t1": {"name": "深度学习", "desc": "以深度学习提升识别。", "project_id": "NSFC:123456", "item_id": "t1", "maturity": 3, "basis": "形成原型系统", "field": "临床诊疗", "stage": "诊断与分型"},
+                      "NSFC:123456|t2": {"name": "数据增强", "desc": "扩充样本。", "project_id": "NSFC:123456", "item_id": "t2", "maturity": 2, "basis": "公开数据集验证", "field": "临床诊疗", "stage": "诊断与分型"},
+                      "NSFC:123456|t3": {"name": "多中心数据库", "desc": "建成数据库。", "project_id": "NSFC:123456", "item_id": "t3", "maturity": 4, "basis": "多中心应用", "field": "临床诊疗", "stage": ""}} if ready else {},
+            "fields": [{"name": "临床诊疗", "plain": ""}],
+            "stages": [{"name": "诊断与分型", "plain": "判断是什么病、属于哪一型"}, {"name": "疗效评估与预后", "plain": ""}]}
+
 
 SCENE_EVIDENCE = [{"item_id": "s1", "doc_id": DOC_ID, "version": VERSION,
                    "quote": "临床诊疗场景", "locator": {"basis": "pdf_page", "page": 3}}]
@@ -131,7 +139,11 @@ async def main():
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(
                 json={"source_dir": "/tmp", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/projects$"), lambda r: r.fulfill(json={
-                "projects": [], "coverage": {"files": 0, "identified_projects": 0, "pending_identity_records": 0,
+                "projects": [{"project_id": "NSFC:123456", "number": "123456", "title": "示例项目", "identity_status": "identified",
+                              "start_year": 2019, "end_year": 2022, "year_conflict": False, "code": "F0601", "files": [],
+                              "facets": {key: {"items": [], "covered_files": 0, "evidence_files": 0} for key in ("场景", "问题", "技术", "成果")},
+                              "funding": [], "funding_conflicts": []}],
+                "coverage": {"files": 0, "identified_projects": 1, "pending_identity_records": 0,
                 "dimensions": {key: {"evidence_projects": 0, "fully_processed_projects": 0, "items": []}
                                for key in ("场景", "问题", "技术", "成果")},
                 "funding": {}}}))
@@ -172,13 +184,66 @@ async def main():
             # 技术谱系是第一个视图；只在点击时生成，不在打开页面时调用模型。
             await expect(tabs.get_by_role("tab", name="技术谱系 尚未生成")).to_have_attribute("aria-selected", "true")
             assert LINEAGE_POSTS == [], LINEAGE_POSTS
+            # 默认是汇报视图；谱系未生成时引导到技术视图生成。
+            await block.get_by_role("button", name="到细节视图生成技术谱系 →").click()
             await block.get_by_role("button", name="生成技术谱系").click()
-            await expect(tabs.get_by_role("tab", name="技术谱系 1 个技术体系 · 1 条典型技术")).to_be_visible()
-            assert LINEAGE_POSTS == ['{"force":true}'], LINEAGE_POSTS
-            await block.get_by_role("button", name="深度学习", exact=True).click()
+            await expect(tabs.get_by_role("tab", name="技术谱系 1 个技术体系 · 3 个技术条目")).to_be_visible()
+            assert len(LINEAGE_POSTS) == 1, LINEAGE_POSTS
+
+            # 总览：每个领域一张卡（问题进展与指标）、共性底座；展开页只按环节列全部技术，问题与成果链接到各自页签。
+            await block.get_by_role("radio", name="总览").click()
+            await expect(block).to_contain_text("总览 · 全库一页")
+            board = block.get_by_role("region", name="主展板")
+            await expect(board.locator("article")).to_have_count(1)
+            await expect(board).to_contain_text("临床诊疗1 个项目 · 3 个技术条目")
+            await expect(board).to_contain_text("✔病灶识别困难")
+            await expect(board).to_contain_text("➜标注数据不足")
+            foundation = block.get_by_role("region", name="共性技术底座")
+            await expect(foundation).to_contain_text("数据与样本库")
+            await expect(foundation).to_contain_text("规范收集和保存病例数据")
+            await board.get_by_role("button", name="展开：按环节查看全部技术 →").click()
+            scene = block.get_by_role("region", name="展开页：临床诊疗")
+            await expect(scene.get_by_role("tab", name="诊断与分型 · 1")).to_have_attribute("aria-selected", "true")
+            await expect(scene).to_contain_text("判断是什么病、属于哪一型")
+            await scene.locator("summary").filter(has_text="深度学习方法").click()
+            await expect(scene.get_by_role("button", name="示例项目").first).to_be_visible()
+            await expect(scene).to_contain_text("依据：形成原型系统")
+            await expect(scene).not_to_contain_text("本期突破病灶识别困难")  # problems live on the 问题 tab now
+            await block.get_by_role("radio", name="成型技术及以上").click()
+            await expect(block.get_by_role("status").filter(has_text="当前筛选")).to_contain_text("已收起 2 个")
+            await block.get_by_role("button", name="显示全部").click()
+            await scene.get_by_role("button", name="标志性成果与方面完成度 →").click()
+            await expect(tabs.get_by_role("tab", name=re.compile("^成果"))).to_have_attribute("aria-selected", "true")
+            await expect(block).to_contain_text("成果 · 做到什么程度")
+            await tabs.get_by_role("tab", name=re.compile("^技术谱系")).click()
+            await block.get_by_role("radio", name="总览").click()
+            await board.get_by_role("button", name="展开：按环节查看全部技术 →").click()
+            await scene.locator("summary").filter(has_text="深度学习方法").click()
+            await scene.get_by_role("button", name="深度学习", exact=True).click()
+
+            # 技术视图：五级树逐级展开；分支显示项目周期与报告所述阶段，条目显示阶段与同项目还涉及的技术。
+            tree = block.get_by_label("技术谱系树")
             detail = block.get_by_label("技术详情")
-            await expect(detail).to_contain_text("AI与医疗 › 机器学习 › 深度学习方法")
+            await expect(detail).to_contain_text("报告所述阶段：攻关验证3 原型与样机验证")
+            await expect(tree.get_by_text("共性底座")).to_be_visible()  # opens to L2 by default
+            # L1 学科体系 › L2 技术方向 › L3 方法主题 › L4 应用承载 › L5 项目技术（阶段与指标带文字）。
+            await block.get_by_role("button", name="L5 项目技术").click()
+            carrier = tree.get_by_role("button", name=re.compile(r"^承载 · 临床诊疗"))
+            await expect(carrier.first).to_be_visible()
+            await expect(tree.get_by_role("button", name=re.compile(r"^深度学习(?!方法)"))).to_contain_text("攻关验证")
+            await expect(tree.get_by_role("button", name=re.compile(r"^多中心数据库"))).to_contain_text("成型技术")
+            await tree.get_by_role("button", name=re.compile(r"^L1 学科体系\s*机器学习")).click()
+            await expect(detail.get_by_role("img", name="项目周期与验证阶段图")).to_be_visible()
+            await expect(detail).to_contain_text("最早立项 2019")
+            await expect(detail).to_contain_text("本分支已有项目报告达到 系统集成与场景试验")
+            await expect(detail).to_contain_text("通俗地说：让计算机从病例中学规律")
+            await expect(detail).not_to_contain_text("发展节点")
+            await tree.get_by_role("button", name=re.compile(r"^深度学习(?!方法)")).click()
+            await expect(detail).to_contain_text("应用承载：临床诊疗")
+            await expect(detail).to_contain_text("同项目还涉及的技术")
             await expect(detail).to_contain_text("数据增强")
+            await tree.get_by_role("button", name="折叠 网络模型").click()
+            await expect(tree.get_by_role("button", name=re.compile("^数据增强"))).to_have_count(0)
             await detail.get_by_role("button", name="病灶识别困难").click()
             await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_have_attribute("aria-selected", "true")
 
@@ -195,7 +260,7 @@ async def main():
             assert "scene=" in page.url, page.url
             # 问题卡片上的技术可直接跳回谱系位置。
             await block.get_by_role("button", name="深度学习", exact=True).click()
-            await expect(block.get_by_label("技术详情")).to_contain_text("针对的问题")
+            await expect(block.get_by_label("技术详情")).to_contain_text("报告所述阶段：攻关验证3 原型与样机验证")
 
             # 场景卡片展开逻辑简图，点击节点高亮链条。
             await tabs.get_by_role("tab", name="场景 1 类 · 目标 6").click()
@@ -206,7 +271,7 @@ async def main():
             await expect(flow.get_by_role("button", name=re.compile("^标注数据不足"))).to_have_attribute("aria-pressed", "true")
 
             await tabs.get_by_role("tab", name="技术 1 条技术路线").click()
-            await expect(block.get_by_text("机器学习 › 深度学习方法", exact=True)).to_be_visible()
+            await expect(block.get_by_text("机器学习 › 深度学习方法 › 网络模型", exact=True)).to_be_visible()
 
             # 成果与成果分析；深层链刷新后仍停在同一视图。
             await tabs.get_by_role("tab", name="成果 1 项标志性成果").click()

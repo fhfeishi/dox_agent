@@ -42,8 +42,8 @@ import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocument
 import { useWorkspace } from "./workspace";
 
 export type NavKey = "chat" | "tasks" | "library" | "review" | "intelligence";
-export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string } |
-  { kind: "template"; templateId: string } |
+export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
+  { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
   { kind: "project"; corpusId: string; projectId: string; facet: string } |
@@ -58,8 +58,8 @@ function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
     case "overview": return "overview";
     case "results": return "results";
-    case "task": return `task:${target.taskId}`;
-    case "template": return `template:${target.templateId}`;
+    case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
+    case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
     case "review-source": return "review-source:" + target.fileId + ":" + target.page;
     case "project": return "project:" + target.corpusId + ":" + target.projectId + ":" + target.facet;
     case "input": return "input:" + target.inputId;

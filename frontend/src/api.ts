@@ -17,7 +17,7 @@ export class ApiError extends Error {
   }
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
-export type TaskInfo = { id: string; name: string; description: string; prompt?: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
+export type TaskInfo = { id: string; name: string; description: string; prompt?: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; outline?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
 export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
@@ -354,15 +354,19 @@ export async function copyTask(source_task_id: string): Promise<TaskInfo> {
 
 export async function saveTaskDraft(task: TaskInfo): Promise<TaskInfo> {
   const { revision, name, description, background, goal, requirements, category, boundaries,
-    clarification_conditions, output_instructions, parameter_defaults, report_template_id,
+    clarification_conditions, output_instructions, outline, parameter_defaults, report_template_id,
     report_template_version, skill_id, skill_version } = task;
   const response = await fetch(`/api/tasks/custom/${encodeURIComponent(task.id)}/draft`, {
     method: "PUT", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ revision, name, description, background, goal, requirements, category, boundaries,
-      clarification_conditions, output_instructions, parameter_defaults, parameters: task.parameters,
+      clarification_conditions, output_instructions, outline, parameter_defaults, parameters: task.parameters,
       report_template_id, report_template_version, skill_id, skill_version }),
   });
   return jsonOrThrow(response, "保存草稿失败") as Promise<TaskInfo>;
+}
+
+export async function fetchCustomTask(taskId: string): Promise<TaskInfo> {
+  return jsonOrThrow(await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}`), "任务不可用") as Promise<TaskInfo>;
 }
 
 export async function fetchTaskVersion(taskId: string, version: number): Promise<TaskInfo> {
@@ -375,6 +379,12 @@ export async function publishTask(task: TaskInfo): Promise<TaskInfo> {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: task.revision }),
   });
   return jsonOrThrow(response, "发布任务失败") as Promise<TaskInfo>;
+}
+
+/** Never-published drafts only; the server answers 409 for a published task (archive it instead). */
+export async function deleteTask(taskId: string): Promise<void> {
+  const response = await fetch(`/api/tasks/custom/${encodeURIComponent(taskId)}`, { method: "DELETE" });
+  if (!response.ok) await jsonOrThrow(response, "删除任务失败");
 }
 
 export async function archiveTask(taskId: string): Promise<TaskInfo> {
@@ -421,7 +431,7 @@ export async function testPromptSkill(item: PromptSkill, inputs: Record<string, 
   return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/test`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ inputs }) }), "静态检查失败") as Promise<{ rendered_prompt: string; stages: string[]; structure_valid: boolean; model_executed: boolean }>;
 }
 
-export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number };
+export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number; content?: string; purpose?: string };
 export type TemplateInfo = TemplateSummary & { content: string; variables?: string[]; purpose?: string; revision?: number; source_template_id?: string };
 
 /** W1: read-only built-in output templates for the shared inspector preview. */
@@ -468,6 +478,11 @@ export async function publishTemplate(templateId: string, revision: number): Pro
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision }),
   });
   return jsonOrThrow(response, "发布模板失败") as Promise<CustomTemplate>;
+}
+
+export async function deleteCustomTemplate(templateId: string): Promise<void> {
+  const response = await fetch(`/api/templates/custom/${encodeURIComponent(templateId)}`, { method: "DELETE" });
+  if (!response.ok) await jsonOrThrow(response, "删除模板失败");
 }
 
 export async function archiveCustomTemplate(templateId: string): Promise<CustomTemplate> {
@@ -547,16 +562,11 @@ export async function changeArtifactLifecycle(item: ArtifactSummary, action: "tr
   return result as ArtifactInfo;
 }
 
-export type ModelProxy = { enabled: boolean; source: "panel" | "env"; address: string };
-export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean; proxy: ModelProxy; review_override: Record<string, string> };
+export type ModelInfo = { model: string; base_url: string; api_key_configured: boolean; review_override: Record<string, string> };
 export type ModelCheck = { ok: boolean; latency_ms?: number; error?: string };
 
 export async function fetchModelInfo(): Promise<ModelInfo> {
   return jsonOrThrow(await fetch("/api/model"), "模型信息读取失败") as Promise<ModelInfo>;
-}
-
-export async function setModelProxy(enabled: boolean): Promise<ModelProxy> {
-  return jsonOrThrow(await fetch("/api/model/proxy", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ enabled }) }), "代理设置保存失败") as Promise<ModelProxy>;
 }
 
 export async function checkModel(): Promise<ModelCheck> {

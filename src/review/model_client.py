@@ -114,7 +114,7 @@ class Client:
             ],
         }
         try:
-            # Same proxy switch as the main model client.
+            # Same proxy choice as the main model client (MODEL_USE_PROXY).
             with httpx.Client(timeout=min(c["timeout"], remaining), transport=self.transport,
                               trust_env=use_proxy(get_settings())) as http:
                 response = http.post(

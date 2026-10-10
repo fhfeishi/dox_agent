@@ -20,6 +20,8 @@ from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from . import lineage, topic_summary
+from .achievement_list import library_outputs
 from .agent.config import DOX_AGENT_ROOT, get_settings
 from .agent.corpora import (
     DB_DIRNAME,
@@ -37,12 +39,10 @@ from .agent.corpora import (
     valid_corpus_name,
 )
 from .agent.graph import build_graph
-from .agent.models import check_model, proxy_setting, save_proxy_setting, tracing
+from .agent.models import check_model, tracing
 from .agent.usage import TurnUsage
 from .artifacts import ArtifactStore
-from .project_index import ProjectIndex
-from .project_similarity import ProjectSimilarity
-from .intelligence import router as intelligence_router
+from .compose_question import compose as compose_question
 from .corpus_groups import GroupStore
 from .corpus_groups import router as corpus_groups_router
 from .custom_tasks import (
@@ -61,9 +61,15 @@ from .custom_templates import (
     render_template,
 )
 from .docx_export import markdown_to_docx
+from .hierarchy import HierarchyInvalid
+from .hierarchy import read as read_hierarchy
+from .hierarchy import synthesize as synthesize_hierarchy
+from .intelligence import router as intelligence_router
 from .knowledge import Knowledge, KnowledgeGroup
 from .official_docs import import_official
 from .parsers import collect_sources, import_defaults, parse_web
+from .project_index import ProjectIndex
+from .project_similarity import ProjectSimilarity
 from .prompt_skills import (
     AssetConflict,
     AssetInvalid,
@@ -72,11 +78,7 @@ from .prompt_skills import (
     render_skill,
     validate_asset,
 )
-from .prompts import REPORT_TEMPLATES, list_tasks, list_templates, report_template
-from .hierarchy import HierarchyInvalid, read as read_hierarchy, synthesize as synthesize_hierarchy
-from . import lineage, topic_summary
-from .achievement_list import library_outputs
-from .compose_question import compose as compose_question
+from .prompts import REPORT_TEMPLATES, list_tasks, list_templates
 from .report_figures import change_figure, insert_figures, select_figures
 from .reports import ScopeChanged, generate_markdown, preflight_report, summarize_report_metadata
 from .retrieval import fit_history
@@ -272,10 +274,6 @@ class ComposeRequest(BaseModel):
         return [v.strip() for v in values]
 
 
-class ProxyRequest(BaseModel):
-    enabled: bool
-
-
 class OfficialRequest(BaseModel):
     sections: list[Literal["langchain", "langgraph", "deepagents"]] = Field(default=["langchain", "langgraph", "deepagents"], min_length=1, max_length=3)
 
@@ -343,12 +341,13 @@ class TaskDraft(BaseModel):
     name: str | None = Field(default=None, min_length=1, max_length=120)
     description: str | None = Field(default=None, max_length=500)
     background: str | None = Field(default=None, max_length=4000)
-    goal: str | None = Field(default=None, min_length=1, max_length=4000)
+    goal: str | None = Field(default=None, max_length=4000)
     requirements: str | None = Field(default=None, max_length=4000)
     category: str | None = Field(default=None, max_length=120)
     boundaries: str | None = Field(default=None, max_length=4000)
     clarification_conditions: str | None = Field(default=None, max_length=4000)
     output_instructions: str | None = Field(default=None, max_length=4000)
+    outline: str | None = Field(default=None, max_length=8000)
     parameter_defaults: dict[str, str] | None = None
     parameters: list[TaskParameter] | None = Field(default=None, max_length=20)
     report_template_id: str | None = Field(default=None, max_length=80)
@@ -649,11 +648,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         review = {k: os.environ[k] for k in ("REVIEW_MODEL_NAME", "REVIEW_MODEL_BASE_URL") if os.environ.get(k)}
         return {"model": settings.model_name, "base_url": settings.model_base_url,
                 "api_key_configured": bool(settings.model_api_key),
-                "proxy": proxy_setting(settings), "review_override": review}
-
-    @app.put("/api/model/proxy")
-    async def set_model_proxy(payload: ProxyRequest):
-        return await asyncio.to_thread(save_proxy_setting, settings, payload.enabled)
+                "review_override": review}
 
     @app.post("/api/model/check")
     async def check_model_connection():
@@ -766,6 +761,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TaskMissing as exc:
             raise HTTPException(422, str(exc)) from exc
 
+    @app.delete("/api/tasks/custom/{task_id}", status_code=204)
+    async def delete_task(task_id: str):
+        try:
+            await asyncio.to_thread(app.state.custom_tasks.delete, task_id)
+        except TaskMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except TaskConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+
     @app.post("/api/tasks/custom/{task_id}/archive")
     async def archive_task(task_id: str):
         try:
@@ -839,6 +843,15 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TemplateMissing as exc:
             raise HTTPException(422, str(exc)) from exc
 
+    @app.delete("/api/templates/custom/{template_id}", status_code=204)
+    async def delete_template(template_id: str):
+        try:
+            await asyncio.to_thread(app.state.custom_templates.delete, template_id)
+        except TemplateMissing as exc:
+            raise HTTPException(404, str(exc)) from exc
+        except TemplateConflict as exc:
+            raise HTTPException(409, str(exc)) from exc
+
     @app.post("/api/templates/custom/{template_id}/archive")
     async def archive_template(template_id: str):
         try:
@@ -896,8 +909,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         """W1/W4-B: built-in structure or a custom published version, for the inspector preview."""
         builtin = next((item for item in list_templates() if item["id"] == template_id), None)
         if builtin is not None:
-            return {**builtin, "kind": "builtin", "content": report_template(template_id),
-                    "variables": [], "version": 0}
+            return {**builtin, "kind": "builtin", "variables": [], "version": 0}
         try:
             return await asyncio.to_thread(app.state.custom_templates.version, template_id, version)
         except TemplateMissing as exc:
@@ -1938,8 +1950,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 "corpus_domain": chat_domain,
                                 "web_snapshots": web_snapshots,
                                 "task_id": engine_task_id,
-                                "custom_task": ({**{key: task_definition[key] for key in (
-                                    "background", "category", "goal", "requirements")},
+                                "custom_task": ({**{key: task_definition.get(key, "") for key in (
+                                    "background", "category", "goal", "requirements", "outline")},
                                     "requirements": "\n".join(
                                         f"{label}：{task_definition.get(key, '')}"
                                         for label, key in (("类别", "category"),
@@ -2098,21 +2110,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/corpora/{corpus_id}/lineage")
     async def read_lineage(corpus_id: str):
-        """Technology lineage tree over the hierarchy's routes, with data-derived supporting techniques."""
+        """Five-level technology lineage with per-item maturity; includes a running job's progress."""
         info, library = await project_library(corpus_id)
-        return await lineage.read(info, await read_hierarchy(info, library), library)
+        return await lineage.read(info, library)
 
-    @app.post("/api/corpora/{corpus_id}/lineage")
-    async def generate_lineage(corpus_id: str, payload: dict | None = None):
+    @app.post("/api/corpora/{corpus_id}/lineage", status_code=202)
+    async def generate_lineage(corpus_id: str):
+        """Starts (or joins) the background generation; poll GET for progress."""
         info, library = await project_library(corpus_id)
         if not settings.model_api_key:
             raise HTTPException(503, "模型未配置，无法生成技术谱系")
         try:
-            await lineage.synthesize(info, await read_hierarchy(info, library), settings,
-                                     force=bool((payload or {}).get("force")))
+            lineage.start(info, library, settings)
         except ValueError as exc:
             raise HTTPException(409, str(exc)) from exc
-        return await lineage.read(info, await read_hierarchy(info, library), library)
+        return await lineage.read(info, library)
 
     @app.get("/api/corpora/{corpus_id}/outputs")
     async def corpus_outputs(corpus_id: str):

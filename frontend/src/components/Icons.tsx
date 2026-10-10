@@ -25,6 +25,7 @@ export type IconName =
   | "trash"
   | "external"
   | "grid"
+  | "tree"
   | "book"
   | "copy"
   | "refresh"
@@ -130,6 +131,14 @@ const PATHS: Record<IconName, ReactNode> = {
       <rect x="13" y="4" width="7" height="7" rx="1.6" />
       <rect x="4" y="13" width="7" height="7" rx="1.6" />
       <rect x="13" y="13" width="7" height="7" rx="1.6" />
+    </>
+  ),
+  tree: (
+    <>
+      <rect x="9" y="3.5" width="6" height="4.5" rx="1.2" />
+      <rect x="3.5" y="16" width="6" height="4.5" rx="1.2" />
+      <rect x="14.5" y="16" width="6" height="4.5" rx="1.2" />
+      <path d="M12 8v4M6.5 16v-4h11v4" />
     </>
   ),
   list: (

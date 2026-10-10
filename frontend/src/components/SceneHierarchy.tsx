@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import {
-  buildHierarchy, FACET_COLORS, hierarchyQuery, LINEAGE_COLOR, lineageQuery, locateRoute, projectQuery,
+  buildHierarchy, FACET_COLORS, hierarchyQuery, LINEAGE_COLOR, lineageQuery, locateItem, projectQuery,
   type Achievement, type HierarchyEvidence, type Scene,
 } from "../projects";
 import { useApp } from "../store";
 import { LineageTree } from "./LineageTree";
+import { ReportBoard } from "./ReportBoard";
+import { Icon } from "./Icons";
+import { Tier } from "./StageMarks";
 import { OutputsPanel } from "./OutputsPanel";
 import { SceneFlow } from "./SceneFlow";
 import { Button } from "./ui";
@@ -79,6 +82,15 @@ function AspectTable({ corpusId, achievements }: { corpusId: string; achievement
 }
 
 const DIMS = ["技术谱系", "场景", "问题", "技术", "成果"] as const;
+/** query 2026-1010 0914: each view answers one question; the line under the tabs says which. */
+const PURPOSE: Record<string, string> = {
+  技术谱系: "总览 · 全库一页：各应用领域的问题进展、报告所述阶段与代表指标，以及跨领域共用的技术底座；点开领域按环节查看全部技术。",
+  细节: "细节 · 按学科体系的五级技术树：每项技术属于什么方法、服务哪个领域、报告所述做到哪一步，并可看项目周期。",
+  场景: "场景 · 为谁做：本库按服务对象归纳的应用领域；点开查看“问题 → 技术 → 成果”逻辑简图。",
+  问题: "问题 · 解决什么：各领域的核心问题，已解决（本期突破）与待解决（深化布局），以及对应的典型技术。",
+  技术: "技术 · 怎么做：解决各核心问题的典型技术路线及其在技术谱系中的位置；全部技术见技术谱系。",
+  成果: "成果 · 做到什么程度：各领域的标志性成果、成果各方面完成度与项目成果清单。",
+};
 type Dim = typeof DIMS[number];
 const DIM_COLOR: Record<Dim, string> = { 技术谱系: LINEAGE_COLOR, 场景: FACET_COLORS[0], 问题: FACET_COLORS[1], 技术: FACET_COLORS[2], 成果: FACET_COLORS[3] };
 const STAGE_RANK = ["已取得", "在研", "仅预期", "原文未提及"];
@@ -136,7 +148,9 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   });
   const dim: Dim = DIMS.includes(search.get("dim") as Dim) ? search.get("dim") as Dim : "技术谱系";
   const sceneName = search.get("scene") ?? "";
-  const routeName = search.get("route") ?? "";
+  const node = search.get("node") ?? "";
+  // 技术谱系 opens on the report view; the technology view is the expert's full tree.
+  const tech = search.get("view") === "tech";
   const go = (next: Record<string, string>) => setSearch((old) => {
     const value = new URLSearchParams(old);
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
@@ -149,10 +163,17 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const coverage = data.coverage ?? {};
   const scenes = sceneName ? data.scenes.filter((item) => item.name === sceneName) : data.scenes;
   const issues = data.scenes.flatMap((scene) => scene.issues);
-  const showRoute = (title: string) => go({ dim: "", route: title, scene: "" });
-  const lineageClasses = lineage?.categories.filter((c) => c.name !== "未归类").length ?? 0;
+  // A typical route opens its own technique item in the lineage tree.
+  const routeItem = (title: string) => {
+    const route = data.scenes.flatMap((s) => s.issues.flatMap((i) => i.routes)).find((r) => r.title === title);
+    return route && Object.entries(lineage?.items ?? {}).find(([, item]) =>
+      route.item_ids.includes(item.item_id) && route.project_ids.includes(item.project_id))?.[0];
+  };
+  const showRoute = (title: string) => { const id = routeItem(title); go({ dim: "", view: "tech", node: id ? `i:${id}` : "", scene: "" }); };
+  const lineageClasses = lineage?.categories.filter((c) => !c.unplaced).length ?? 0;
+  const lineageItems = Object.keys(lineage?.items ?? {}).length;
   const counts: Record<Dim, number> = {
-    技术谱系: lineageClasses,
+    技术谱系: lineageItems,
     场景: data.scenes.length, 问题: issues.length,
     技术: issues.reduce((n, issue) => n + issue.routes.length, 0),
     成果: data.scenes.reduce((n, scene) => n + scene.achievements.length, 0),
@@ -160,20 +181,32 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const regenerate = <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
     {busy ? "生成中…" : data.state === "missing" ? "生成四维归纳" : "重新生成"}</Button>;
   return <section aria-label="场景层级" className="mt-5 space-y-4">
-    <div role="tablist" aria-label="四维浏览" className="grid grid-cols-2 gap-3 md:grid-cols-5">
+    <div role="tablist" aria-label="四维浏览" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
-        onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, route: "" })}
-        className="rounded-2xl border-2 bg-[var(--surface)] px-4 py-3 text-left transition-shadow hover:shadow-md"
+        onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "", view: "" })}
+        className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
         style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
-        <span className="block text-lg font-semibold" style={{ color: DIM_COLOR[key] }}>{key}</span>
-        <span className="text-xs text-[var(--steel)]">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${counts.技术} 条典型技术` : "尚未生成")
+        <span className="block text-[15px] font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
+        <span className="hidden text-xs text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
           : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类 · 目标 6" : key === "问题" ? `个核心问题 · 目标 ${6 * (coverage.targets?.issues_per_scene ?? 3)}` : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
     </div>
+    <p className="text-sm text-[var(--steel)]">{PURPOSE[dim === "技术谱系" && tech ? "细节" : dim]}</p>
     {notice ? <p role="alert" className="text-sm text-[var(--red)]">{notice}</p> : null}
     {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-sm">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
-    {dim === "技术谱系" ? <LineageTree corpusId={corpusId} route={routeName} onRoute={(title) => go({ route: title })}
-      onIssue={(scene) => go({ dim: "问题", scene, route: "" })} /> : null}
+    {dim === "技术谱系" ? <div className="flex flex-wrap items-center gap-2">
+      {/* query 2026-1009 1743: the two views as icons; the name and purpose stay in the tooltip and accessible name. */}
+      <div role="radiogroup" aria-label="谱系视图" className="inline-flex overflow-hidden rounded-lg border border-[var(--hairline)] bg-[var(--surface)]">
+        {([["", "总览", "grid", "按应用领域：本期突破、深化布局、标志成果与共性底座"], ["tech", "细节", "tree", "按学科体系：五级技术谱系树与项目周期图，供专家核查"]] as const).map(([value, label, icon, hint]) =>
+          <button key={label} type="button" role="radio" aria-label={label} aria-checked={(value === "tech") === tech} title={`${label}：${hint}`} onClick={() => go({ view: value, node: "" })}
+            className={`grid h-8 w-10 place-items-center ${(value === "tech") === tech ? "bg-[var(--primary)] text-white" : "text-[var(--slate)] hover:bg-[var(--canvas)]"}`}>
+            <Icon name={icon} size={17} /></button>)}
+      </div>
+    </div> : null}
+    {dim === "技术谱系" && !tech ? <ReportBoard corpusId={corpusId} hierarchy={data} onTech={(key) => go({ view: "tech", node: key })}
+      onDim={(d, scene) => go({ dim: d, scene, node: "", view: "" })} /> : null}
+    {dim === "技术谱系" && tech ? <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
+      onIssue={(scene) => go({ dim: "问题", scene, node: "" })} /> : null}
     {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
       <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维整理。"}</span>{data.state === "missing" ? regenerate : null}
     </div> : <>
@@ -216,8 +249,11 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
           <div className="mt-2 grid gap-3 md:grid-cols-2">{issue.routes.map((route) => <article key={route.title} className="rounded-lg bg-[var(--canvas)] p-3" style={{ borderLeft: `3px solid ${FACET_COLORS[2]}` }}>
             <div className="flex flex-wrap items-baseline gap-2"><b className="text-sm">{route.title}</b><span className="text-xs text-[var(--steel)]">{route.project_ids.length} 个项目</span></div>
             <p className="mt-1 text-sm leading-6">{route.summary}</p>
-            {(() => { const at = locateRoute(lineage, route.title); return at ? <p className="mt-1 text-xs text-[var(--steel)]">所属体系：<span style={{ color: LINEAGE_COLOR }}>{at.category.name} › {at.child.name}</span></p> : null; })()}
-            {lineage?.supporting[route.title]?.length ? <p className="mt-1 text-xs text-[var(--steel)]">配套技术：{lineage.supporting[route.title].map((x) => x.name).join("、")}</p> : null}
+            {(() => {
+              const id = routeItem(route.title); const at = id ? locateItem(lineage, id) : null; const level = id ? lineage?.items[id]?.maturity ?? 0 : 0;
+              return at ? <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-[var(--steel)]">技术谱系位置：<span style={{ color: LINEAGE_COLOR }}>{at.category.name} › {at.child.name} › {at.theme.name}</span>
+                <Tier level={level} /></p> : null;
+            })()}
             <button type="button" onClick={() => showRoute(route.title)} className="mt-1 text-xs text-[var(--link)] hover:underline">在技术谱系中查看 →</button>
             <ProjectLinks corpusId={corpusId} ids={route.project_ids} facet="技术" />
             <EvidenceList corpusId={corpusId} evidence={route.evidence} limit={1} />

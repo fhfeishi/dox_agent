@@ -1,0 +1,3377 @@
+{
+  "corpus_id": "自然科学基金-AI与生物医药-e6e81920",
+  "fingerprint": "c2844858230b8c27bdc7b1c6eb94a871f7e991e2990a6fecadb22d8975389307",
+  "model": "deepseek-flash",
+  "generated_at": "2026-10-10T01:26:25.575082+00:00",
+  "process": {
+    "status": "已完成"
+  },
+  "scenes": [
+    {
+      "name": "抗肿瘤药物研发与精准用药",
+      "summary": "四个主题都以肿瘤为服务对象，从作用机理与机制分析、精准用药延伸到新靶点与胶质瘤靶点的先导化合物发现。",
+      "members": [
+        "抗癌药物作用机理研究",
+        "抗癌药物机制分析与精准用药",
+        "胶质瘤靶点PGK1先导开发",
+        "新靶点先导化合物发现"
+      ],
+      "project_ids": [
+        "NSFC:22174120",
+        "NSFC:22174046",
+        "NSFC:22203089"
+      ],
+      "item_ids": [
+        "item-85f45f8b6dcf",
+        "item-0e22cd3bd374",
+        "item-b89327dfc2c3",
+        "item-9721dd10e4e6"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-85f45f8b6dcf",
+          "doc_id": "e18f99bd129e40a62f97",
+          "version": "96d01c3f56a8e4c42467",
+          "quote": "研究不同抗癌药物对癌细胞的凋亡作用过程和作用机理",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 1018,
+            "end_char": 1041
+          }
+        },
+        {
+          "item_id": "item-0e22cd3bd374",
+          "doc_id": "5822782042847b74f51d",
+          "version": "3ea7384ebb92a52c9c57",
+          "quote": "快速识别化疗药物作用机制对新药研发和精准医疗具有重要意义",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2764,
+            "end_char": 2791
+          }
+        },
+        {
+          "item_id": "item-b89327dfc2c3",
+          "doc_id": "b8208d3ce4d523c4d5f3",
+          "version": "fd546d904bca0b86189c",
+          "quote": "并针对本课题组发现的胶质瘤靶点PGK1新机制开展先导化合物开发工作",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 914,
+            "end_char": 946
+          }
+        },
+        {
+          "item_id": "item-9721dd10e4e6",
+          "doc_id": "b8208d3ce4d523c4d5f3",
+          "version": "fd546d904bca0b86189c",
+          "quote": "现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足，极大限制了其在新靶点/难成药靶点药物设计方面的应用",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 710,
+            "end_char": 772
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "新靶点与蛋白界面药物设计工具不足",
+          "state": "已解决",
+          "summary": "两个问题都指向新靶点与蛋白相互作用环节缺少可用设计工具，现有工作以打分、对接与界面设计模型应对。",
+          "members": [
+            "新靶点药物设计缺乏有效工具",
+            "蛋白质相互作用设计方法缺失"
+          ],
+          "project_ids": [
+            "NSFC:22203089",
+            "NSFC:22033001"
+          ],
+          "item_ids": [
+            "item-f6a57ffec9b5",
+            "item-9d35bef98ef1"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-f6a57ffec9b5",
+              "doc_id": "b8208d3ce4d523c4d5f3",
+              "version": "fd546d904bca0b86189c",
+              "quote": "为靶向新靶点的药物设计工作提供有力的工具，为重大疾病创新药物开发提供新的策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 1020,
+                "end_char": 1057
+              }
+            },
+            {
+              "item_id": "item-9d35bef98ef1",
+              "doc_id": "ca526de32145edc6e6c1",
+              "version": "7bc7ce0665227d43c62d",
+              "quote": "探索靶标蛋白与药物相互作用的分子机制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 837,
+                "end_char": 854
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "DeepRLI打分函数与DiffBindFR对接",
+              "summary": "用打分函数与对接模块组合评估新靶点的结合模式。",
+              "project_ids": [
+                "NSFC:22033001"
+              ],
+              "item_ids": [
+                "item-a77d2ab1791a"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-a77d2ab1791a",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "完成了蛋白质–小分子打分函数DeepRLI以及分子对接方法DiffBindFR",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2244,
+                    "end_char": 2282
+                  }
+                }
+              ]
+            },
+            {
+              "title": "ProBID-Net蛋白质界面设计",
+              "summary": "用网络模型完成蛋白质界面设计，补上相互作用设计方法。",
+              "project_ids": [
+                "NSFC:22033001"
+              ],
+              "item_ids": [
+                "item-bbcc5531e1d6"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-bbcc5531e1d6",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "完成了优化蛋白质-蛋白质界面设计的方法ProBID-Net，蛋白质–蛋白质相互作用（PPI）结合亲合力预测模型PPAP",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2383,
+                    "end_char": 2441
+                  }
+                }
+              ]
+            },
+            {
+              "title": "高精度分子对接与分子动力学方法",
+              "summary": "以高精度对接与分子动力学模拟提供设计工具。",
+              "project_ids": [
+                "NSFC:22203089"
+              ],
+              "item_ids": [
+                "item-42b22863f85a"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-42b22863f85a",
+                  "doc_id": "b8208d3ce4d523c4d5f3",
+                  "version": "fd546d904bca0b86189c",
+                  "quote": "本项目立足于自主开发的高精度分子对接和分子动力学方法，充分考虑靶点蛋白的结构柔性和小分子的潜在脱靶效应",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 780,
+                    "end_char": 830
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "药物设计精度与实用性不足",
+          "state": "已解决",
+          "summary": "该问题指出药物设计发现难、精度低、实用性差，现有工作以精准AI模型和预测模型提升可用性。",
+          "members": [
+            "药物设计发现难精度低实用性差"
+          ],
+          "project_ids": [
+            "NSFC:22033001"
+          ],
+          "item_ids": [
+            "item-cc63a806ebbc"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-cc63a806ebbc",
+              "doc_id": "ca526de32145edc6e6c1",
+              "version": "7bc7ce0665227d43c62d",
+              "quote": "以突破药物设计中存在的发现难、精度低、实用性差的难点问题",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 856,
+                "end_char": 883
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "ProBEiT与ProStab精准AI模型",
+              "summary": "以精准AI模型提升药物设计精度。",
+              "project_ids": [
+                "NSFC:32030063"
+              ],
+              "item_ids": [
+                "item-50df569efd40"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-50df569efd40",
+                  "doc_id": "bb2b6acf5436232e7625",
+                  "version": "0ee43cb87ace2cf6abdf",
+                  "quote": "运用生成对抗网络、变分自编码等机器学习算法，开发了ProBEiT、ProStab 等系列精准AI模型，建立了覆盖数据质控、实验设计、因果推断的统计学支撑框架",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2883,
+                    "end_char": 2960
+                  }
+                }
+              ]
+            },
+            {
+              "title": "九宫格网络NGN预测模型",
+              "summary": "用九宫格网络预测模型支撑成药性判断。",
+              "project_ids": [
+                "NSFC:62206081"
+              ],
+              "item_ids": [
+                "item-48c69eb78384"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-48c69eb78384",
+                  "doc_id": "f718ced3bf9c1187fbc0",
+                  "version": "28043829dbcf88e56c23",
+                  "quote": "项目创新性地提出“九宫格网络”（NGN）预测模型，将流场预测速度提升约15倍且SSIM优于0.9",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3214,
+                    "end_char": 3261
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "化疗机制识别准确率99%",
+          "summary": "在化疗机制识别任务上取得99%的准确率，代表该场景机制分析的水平。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "基于人工智能高维SERS阵列传感器的抗癌药物机制分析",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22174046"
+          ],
+          "item_ids": [
+            "item-caa7a19bd8ce"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-caa7a19bd8ce",
+              "doc_id": "5822782042847b74f51d",
+              "version": "3ea7384ebb92a52c9c57",
+              "quote": "在涵盖DNA烷基化、微管抑制等8类化疗机制的识别任务中，判别准确率达99%，显著优于传统一维分析方法（81%）",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3023,
+                "end_char": 3077
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "化疗机制识别准确率达到99%。",
+              "answered": true,
+              "item_ids": [
+                "item-caa7a19bd8ce"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-caa7a19bd8ce",
+                  "doc_id": "5822782042847b74f51d",
+                  "version": "3ea7384ebb92a52c9c57",
+                  "quote": "在涵盖DNA烷基化、微管抑制等8类化疗机制的识别任务中，判别准确率达99%，显著优于传统一维分析方法（81%）",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3023,
+                    "end_char": 3077
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "高效可行的先导化合物计算方案",
+          "summary": "给出高效可行的先导化合物计算方案，服务于新靶点先导发现。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "融合计算模拟数据的人工智能辅助药物设计方法实现及应用研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22203089"
+          ],
+          "item_ids": [
+            "item-9cf3603461c5"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-9cf3603461c5",
+              "doc_id": "b8208d3ce4d523c4d5f3",
+              "version": "fd546d904bca0b86189c",
+              "quote": "实现了对目标靶点化学空间的有效引导，为靶向先导化合物的快速、精准生成提供了一种高效且可行的计算方案",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2903,
+                "end_char": 2951
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "药物分子智能设计与抗病毒研发",
+      "summary": "两个主题都指向药物分子本身的智能设计与抗病毒药物研发，用生成模型与学习方法减少对经验试错的依赖。",
+      "members": [
+        "人工智能辅助药物设计",
+        "抗COVID-19药物设计"
+      ],
+      "project_ids": [
+        "NSFC:22033001"
+      ],
+      "item_ids": [
+        "item-4876b81d644a",
+        "item-0f751eb8fd1d"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-4876b81d644a",
+          "doc_id": "ca526de32145edc6e6c1",
+          "version": "7bc7ce0665227d43c62d",
+          "quote": "通过使用人工智能技术可以有效提升小分子和蛋白质生物大分子药物研发速度，缩短研发周期，节省资金投入，提高新药研发成功率",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 663,
+            "end_char": 720
+          }
+        },
+        {
+          "item_id": "item-0f751eb8fd1d",
+          "doc_id": "ca526de32145edc6e6c1",
+          "version": "7bc7ce0665227d43c62d",
+          "quote": "并将所发展的方法应用于抗击新型冠状病毒疫情的小分子和蛋白质药物设计研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 885,
+            "end_char": 919
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "分子生成依赖已知活性分子",
+          "state": "已解决",
+          "summary": "该问题指出生成模型受限于已知活性分子，现有工作从学习策略与生成模型两方面拓展分子空间。",
+          "members": [
+            "分子生成模型依赖已知活性分子"
+          ],
+          "project_ids": [
+            "NSFC:22203089"
+          ],
+          "item_ids": [
+            "item-cacff2ba2b9f"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-cacff2ba2b9f",
+              "doc_id": "b8208d3ce4d523c4d5f3",
+              "version": "fd546d904bca0b86189c",
+              "quote": "现有分子生成模型存在依赖已知活性分子、忽略靶点柔性及小分子结合特异性等不足",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 710,
+                "end_char": 746
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "迁移学习与强化学习引导的分子生成",
+              "summary": "用迁移与强化学习引导生成，减轻对已知活性分子的依赖。",
+              "project_ids": [
+                "NSFC:22203089"
+              ],
+              "item_ids": [
+                "item-780f3926032e"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-780f3926032e",
+                  "doc_id": "b8208d3ce4d523c4d5f3",
+                  "version": "fd546d904bca0b86189c",
+                  "quote": "基于大规模类药性分子数据集构建了分子生成模型，并引入迁移学习与强化学习策略，实现了对目标靶点化学空间的有效引导",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2865,
+                    "end_char": 2919
+                  }
+                }
+              ]
+            },
+            {
+              "title": "DeepLigbuilder分子生成",
+              "summary": "在结合口袋内直接生成候选分子。",
+              "project_ids": [
+                "NSFC:22033001"
+              ],
+              "item_ids": [
+                "item-067b5960c4e8"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-067b5960c4e8",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "基于结构的药物分子生成方法DeepLigbuilder，基于结构和伪配体的药物分子生成方法、基于药效团（来源于结构和配体）的药物分子生成方法TransPharmer等一系列小分子药物设计方法",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2284,
+                    "end_char": 2378
+                  }
+                }
+              ]
+            },
+            {
+              "title": "环肽与功能蛋白生成模型",
+              "summary": "面向环肽与功能蛋白开展生成建模。",
+              "project_ids": [
+                "NSFC:22033001"
+              ],
+              "item_ids": [
+                "item-49a6e282fbb6"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-49a6e282fbb6",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "基于强化学习的片段拼接设计环肽方法（CycBuilder），可以同时提高活性与热稳定性的功能蛋白质设计方法GeoEvoBuilder，全原子蛋白质序列设计的深度学习方法GeoSeqBuilder",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2443,
+                    "end_char": 2539
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "研发过程依赖专家经验与试错",
+          "state": "已解决",
+          "summary": "该问题指出研发过度依赖专家经验与试错，现有工作以生成模型和闭环迭代替代人工试错。",
+          "members": [
+            "过度依赖专家经验与试错研发"
+          ],
+          "project_ids": [
+            "NSFC:62206081"
+          ],
+          "item_ids": [
+            "item-6d841a1161cc"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-6d841a1161cc",
+              "doc_id": "f718ced3bf9c1187fbc0",
+              "version": "28043829dbcf88e56c23",
+              "quote": "本项目针对传统微流控芯片设计过度依赖专家经验及“试错”式研发导致的周期长、成本高等瓶颈",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2899,
+                "end_char": 2941
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "迁移学习与强化学习引导的分子生成",
+              "summary": "以学习引导替代人工经验试错。",
+              "project_ids": [
+                "NSFC:22203089"
+              ],
+              "item_ids": [
+                "item-780f3926032e"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-780f3926032e",
+                  "doc_id": "b8208d3ce4d523c4d5f3",
+                  "version": "fd546d904bca0b86189c",
+                  "quote": "基于大规模类药性分子数据集构建了分子生成模型，并引入迁移学习与强化学习策略，实现了对目标靶点化学空间的有效引导",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2865,
+                    "end_char": 2919
+                  }
+                }
+              ]
+            },
+            {
+              "title": "计算设计—实验验证—模型迭代闭环",
+              "summary": "用计算设计与实验验证的迭代闭环减少盲目试错。",
+              "project_ids": [
+                "NSFC:32030063"
+              ],
+              "item_ids": [
+                "item-d7682a508080"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-d7682a508080",
+                  "doc_id": "bb2b6acf5436232e7625",
+                  "version": "0ee43cb87ace2cf6abdf",
+                  "quote": "通过“计算设计—实验验证—模型迭代” 闭环流程，揭示了酶分子进化与催化机制",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2982,
+                    "end_char": 3018
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "12个小分子活性化合物与5个多肽",
+          "summary": "产出12个小分子活性化合物与5个多肽，是分子生成与设计的直接结果。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的药物分子和蛋白质设计",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22033001"
+          ],
+          "item_ids": [
+            "item-4e325c65d7ee"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-4e325c65d7ee",
+              "doc_id": "ca526de32145edc6e6c1",
+              "version": "7bc7ce0665227d43c62d",
+              "quote": "在抗 COVID-19 药物设计研究方面，我们设计优化得到了12个小分子活性化合物和5个结合或抑制活性的多肽",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2593,
+                "end_char": 2646
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "获得12个小分子活性化合物与5个多肽。",
+              "answered": true,
+              "item_ids": [
+                "item-4e325c65d7ee"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-4e325c65d7ee",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "在抗 COVID-19 药物设计研究方面，我们设计优化得到了12个小分子活性化合物和5个结合或抑制活性的多肽",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2593,
+                    "end_char": 2646
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "推动新药研发数据驱动化",
+          "summary": "把药物研发推向数据驱动方式，体现方法在研发流程中的应用。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的药物分子和蛋白质设计",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22033001"
+          ],
+          "item_ids": [
+            "item-3f696adc788e"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-3f696adc788e",
+              "doc_id": "ca526de32145edc6e6c1",
+              "version": "7bc7ce0665227d43c62d",
+              "quote": "对于推动新药研发从假设驱动的过程转变为数据驱动的过程起到了一定的作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2746,
+                "end_char": 2779
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "已取得",
+              "note": "推动新药研发走向数据驱动化。",
+              "answered": true,
+              "item_ids": [
+                "item-3f696adc788e"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-3f696adc788e",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "对于推动新药研发从假设驱动的过程转变为数据驱动的过程起到了一定的作用",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2746,
+                    "end_char": 2779
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "临床联合用药与新疗法开发",
+      "summary": "三个主题同属临床用药环节，关注药物相互作用预测以及新疗法、鸡尾酒方案与临床用药策略的衔接。",
+      "members": [
+        "临床联合用药的药物相互作用预测",
+        "新疗法与药物鸡尾酒开发",
+        "新药研发与临床用药策略"
+      ],
+      "project_ids": [
+        "NSFC:62172274",
+        "NSFC:22174046"
+      ],
+      "item_ids": [
+        "item-bb563c9e61f7",
+        "item-ab80a32143b5",
+        "item-21afe59786b7"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-bb563c9e61f7",
+          "doc_id": "7a6eebc79a0c6ff6abc6",
+          "version": "742367764e2aa4a021a1",
+          "quote": "如何快速及准确地在大规模的候选联用药物中识别出药物相互作用及其类型，并揭示其发生机制是亟待解决的关键问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2724,
+            "end_char": 2775
+          }
+        },
+        {
+          "item_id": "item-ab80a32143b5",
+          "doc_id": "5822782042847b74f51d",
+          "version": "3ea7384ebb92a52c9c57",
+          "quote": "为药物评价及多机制药物研发提供了新的技术支撑",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3141,
+            "end_char": 3162
+          }
+        },
+        {
+          "item_id": "item-21afe59786b7",
+          "doc_id": "7a6eebc79a0c6ff6abc6",
+          "version": "742367764e2aa4a021a1",
+          "quote": "计算模型的预测结果为新药研发及患者临床联合用药的策略制定提供理论依据",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3291,
+            "end_char": 3324
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "药物对特征融合方式单一",
+          "state": "已解决",
+          "summary": "该问题指出药物对特征融合方式单一，现有工作以多源融合模型丰富药物对表征。",
+          "members": [
+            "药物对融合方式单一"
+          ],
+          "project_ids": [
+            "NSFC:62172274"
+          ],
+          "item_ids": [
+            "item-ee94e7d5422b"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-ee94e7d5422b",
+              "doc_id": "7a6eebc79a0c6ff6abc6",
+              "version": "742367764e2aa4a021a1",
+              "quote": "药物对融合方式单一，限制了模型的预测能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2822,
+                "end_char": 2841
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "MDF-SA-DDI多源融合模型",
+              "summary": "用多源融合模型整合药物对的多路特征。",
+              "project_ids": [
+                "NSFC:62172274"
+              ],
+              "item_ids": [
+                "item-bf26f5deebc5"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-bf26f5deebc5",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "面向问题一，本项目基于多源药物融合和自注意力机制提出了MDF-SA-DDI模型",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2943,
+                    "end_char": 2981
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "隐特征与相互作用类型不匹配",
+          "state": "已解决",
+          "summary": "该问题指出隐特征分布与相互作用类型不相匹配，现有工作以异构注意力与对比学习对齐表征。",
+          "members": [
+            "隐特征分布与相互作用类型不匹配"
+          ],
+          "project_ids": [
+            "NSFC:62172274"
+          ],
+          "item_ids": [
+            "item-b2f652a6e440"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-b2f652a6e440",
+              "doc_id": "7a6eebc79a0c6ff6abc6",
+              "version": "742367764e2aa4a021a1",
+              "quote": "药物对隐特征分布与药物-药物相互作用类型不匹配，使模型预测困难",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2843,
+                "end_char": 2873
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "MATT-DDI异构注意力",
+              "summary": "用异构注意力匹配不同相互作用类型的特征分布。",
+              "project_ids": [
+                "NSFC:62172274"
+              ],
+              "item_ids": [
+                "item-f7d943adaf11"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-f7d943adaf11",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "面向问题三，本项目基于药物对相似性和多种注意力机制提出了MATT-DDI模型",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3015,
+                    "end_char": 3052
+                  }
+                }
+              ]
+            },
+            {
+              "title": "MDDI-SCL监督对比学习",
+              "summary": "以监督对比学习约束隐特征分布。",
+              "project_ids": [
+                "NSFC:62172274"
+              ],
+              "item_ids": [
+                "item-90d04ab3caf1"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-90d04ab3caf1",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "面向问题二，本项目基于有监督对比学习提出了MDDI-SCL模型",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2983,
+                    "end_char": 3013
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "相似性特征计算引起信息泄漏",
+          "state": "已解决",
+          "summary": "该问题指出相似性特征计算带来信息泄漏，现有工作以对比学习方式规避。",
+          "members": [
+            "相似性特征计算引起信息泄漏"
+          ],
+          "project_ids": [
+            "NSFC:62172274"
+          ],
+          "item_ids": [
+            "item-96031a721c89"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-96031a721c89",
+              "doc_id": "7a6eebc79a0c6ff6abc6",
+              "version": "742367764e2aa4a021a1",
+              "quote": "在整个数据集上计算药物相似性特征引起信息泄漏，使得对模型的评价过于乐观",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2875,
+                "end_char": 2909
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "MDDI-SCL监督对比学习",
+              "summary": "用监督对比学习替代直接相似性特征计算。",
+              "project_ids": [
+                "NSFC:62172274"
+              ],
+              "item_ids": [
+                "item-90d04ab3caf1"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-90d04ab3caf1",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "面向问题二，本项目基于有监督对比学习提出了MDDI-SCL模型",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2983,
+                    "end_char": 3013
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "三个模型性能优于先进模型",
+          "summary": "三个药物相互作用预测模型性能优于已有先进模型。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的药物相互作用预测方法及发生机制研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:62172274"
+          ],
+          "item_ids": [
+            "item-d7ff3c595e19"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-d7ff3c595e19",
+              "doc_id": "7a6eebc79a0c6ff6abc6",
+              "version": "742367764e2aa4a021a1",
+              "quote": "在使用相似性特征作为模型的输入时，MDF-SA-DDI模型和MDDI-SCL模型性能优于其他先进模型",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3115,
+                "end_char": 3164
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "三个模型性能优于先进模型。",
+              "answered": true,
+              "item_ids": [
+                "item-d7ff3c595e19"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-d7ff3c595e19",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "在使用相似性特征作为模型的输入时，MDF-SA-DDI模型和MDDI-SCL模型性能优于其他先进模型",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3115,
+                    "end_char": 3164
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "上海市生物信息学会青年新星奖",
+          "summary": "获得上海市生物信息学会青年新星奖，体现团队人才培养方面的成果。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的药物相互作用预测方法及发生机制研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:62172274"
+          ],
+          "item_ids": [
+            "item-c57ab2e71fad"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-c57ab2e71fad",
+              "doc_id": "7a6eebc79a0c6ff6abc6",
+              "version": "742367764e2aa4a021a1",
+              "quote": "6. [奖励] 上海市生物信息学会2023年度青年新星奖 — 熊毅",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 4230,
+                "end_char": 4262
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "已取得",
+              "note": "获上海市生物信息学会青年新星奖。",
+              "answered": true,
+              "item_ids": [
+                "item-c57ab2e71fad"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-c57ab2e71fad",
+                  "doc_id": "7a6eebc79a0c6ff6abc6",
+                  "version": "742367764e2aa4a021a1",
+                  "quote": "6. [奖励] 上海市生物信息学会2023年度青年新星奖 — 熊毅",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 4230,
+                    "end_char": 4262
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "活体细胞与组织成像监测",
+      "summary": "三个主题都以活细胞或活体组织为观测对象，用荧光寿命成像与光谱表征做动态、无标记监测。",
+      "members": [
+        "细胞凋亡过程的动态研究",
+        "肿瘤微环境实时监测",
+        "荧光寿命成像FLIM"
+      ],
+      "project_ids": [
+        "NSFC:22174120",
+        "NSFC:22204069"
+      ],
+      "item_ids": [
+        "item-11742d08cca3",
+        "item-29a0967bb80e",
+        "item-5fc0e829a1b5"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-11742d08cca3",
+          "doc_id": "e18f99bd129e40a62f97",
+          "version": "96d01c3f56a8e4c42467",
+          "quote": "本项目针对拉曼成像在研究细胞生命动态过程中的挑战，基于人工智能驱动的快速显微拉曼成像技术展开研究",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2919,
+            "end_char": 2966
+          }
+        },
+        {
+          "item_id": "item-29a0967bb80e",
+          "doc_id": "b84fb1fc7563572c5c95",
+          "version": "5992cef217b642d09b5f",
+          "quote": "肿瘤发生、发展与转移依赖其微环境（代谢、pH、温度、缺氧等）的动态调控",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2732,
+            "end_char": 2766
+          }
+        },
+        {
+          "item_id": "item-5fc0e829a1b5",
+          "doc_id": "b84fb1fc7563572c5c95",
+          "version": "5992cef217b642d09b5f",
+          "quote": "荧光寿命成像（FLIM）对微环境敏感且不受浓度与激发强度影响，是精确表征的重要手段",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 2768,
+            "end_char": 2808
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "成像速度不足制约实时监测",
+          "state": "已解决",
+          "summary": "两个问题都指出成像速度慢而限制活体实时监测，现有工作以压缩采样与快速解析方法提速。",
+          "members": [
+            "TCSPC成像速度不足",
+            "成像速度制约活体实时监测"
+          ],
+          "project_ids": [
+            "NSFC:22204069",
+            "NSFC:22174120"
+          ],
+          "item_ids": [
+            "item-efa5c9835ab2",
+            "item-d62c3d90ab84"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-efa5c9835ab2",
+              "doc_id": "b84fb1fc7563572c5c95",
+              "version": "5992cef217b642d09b5f",
+              "quote": "传统时间相关单光子计数（TCSPC）在低光子数下需长时间累积与逐像素拟合，难以满足活体实时监测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2811,
+                "end_char": 2857
+              }
+            },
+            {
+              "item_id": "item-d62c3d90ab84",
+              "doc_id": "e18f99bd129e40a62f97",
+              "version": "96d01c3f56a8e4c42467",
+              "quote": "将拉曼成像速度提高20-50倍，并发展成为集成形态学与化学成像的动态表征手段",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 892,
+                "end_char": 929
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "SS-Net与压缩采样加速成像",
+              "summary": "用压缩采样与网络重建提升成像速度。",
+              "project_ids": [
+                "NSFC:22174120"
+              ],
+              "item_ids": [
+                "item-57e25c0c9e7b"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-57e25c0c9e7b",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "开发了一种SS-Net网络并结合压缩采样来加速纳米红外成像，实现了在受激拉曼散射显微镜上成像速度提高了10倍",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3109,
+                    "end_char": 3162
+                  }
+                }
+              ]
+            },
+            {
+              "title": "物理辅助Phasor U-Net",
+              "summary": "以物理辅助的分析网络加快寿命成像解析。",
+              "project_ids": [
+                "NSFC:22204069"
+              ],
+              "item_ids": [
+                "item-2afbbfba84ef"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-2afbbfba84ef",
+                  "doc_id": "b84fb1fc7563572c5c95",
+                  "version": "5992cef217b642d09b5f",
+                  "quote": "物理辅助Phasor U-Net通过时域去噪与IRF校正双子网络，在低光子计数下实现快速精准的寿命解析",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3156,
+                    "end_char": 3206
+                  }
+                }
+              ]
+            },
+            {
+              "title": "小区域扫描策略",
+              "summary": "用局部扫描策略缩短成像采集时间。",
+              "project_ids": [
+                "NSFC:22174120"
+              ],
+              "item_ids": [
+                "item-e3b5abbe3663"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-e3b5abbe3663",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "提出了一种仅选择感兴趣区域进行成像的小区域扫描策略，其将活细胞拉曼成像的持续时间大幅增加3倍",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3347,
+                    "end_char": 3392
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "光子探测效率限制成像速度",
+          "state": "待解决",
+          "summary": "该问题只描述了光子探测效率对成像速度的限制，清单中没有与之对应的技术或成果条目。",
+          "members": [
+            "光子探测效率限制成像速度"
+          ],
+          "project_ids": [
+            "NSFC:22204069"
+          ],
+          "item_ids": [
+            "item-83777e0b3ca6"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-83777e0b3ca6",
+              "doc_id": "b84fb1fc7563572c5c95",
+              "version": "5992cef217b642d09b5f",
+              "quote": "受限于光子探测效率，目前应用最广泛的时间相关单光子计数法，需对同一个点重复千次以上的脉冲激发和光子计数，极大限制了荧光寿命成像速度",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 787,
+                "end_char": 851
+              }
+            }
+          ],
+          "routes": []
+        },
+        {
+          "name": "光谱检测灵敏度低与谱线重叠",
+          "state": "已解决",
+          "summary": "三个问题都围绕灵敏度、谱线重叠与光损伤，现有工作以超灵敏表征、光谱解析与SERS阵列应对。",
+          "members": [
+            "拉曼成像灵敏度低导致光损伤",
+            "非标记光谱重叠限制检测",
+            "SERS可靠性与灵敏度不足"
+          ],
+          "project_ids": [
+            "NSFC:22174120",
+            "NSFC:22174046"
+          ],
+          "item_ids": [
+            "item-238224c0c52e",
+            "item-5316c2736c03",
+            "item-26e17ff2c978"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-238224c0c52e",
+              "doc_id": "e18f99bd129e40a62f97",
+              "version": "96d01c3f56a8e4c42467",
+              "quote": "由于拉曼信号的强度弱，成像的检测灵敏度很低，需要很长的采谱时间和高激光功率来保证信噪比，这将导致细胞受到光损伤作用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2842,
+                "end_char": 2898
+              }
+            },
+            {
+              "item_id": "item-5316c2736c03",
+              "doc_id": "5822782042847b74f51d",
+              "version": "3ea7384ebb92a52c9c57",
+              "quote": "以期避开生物体系非标记式光谱重叠程度高引起的限制",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 918,
+                "end_char": 941
+              }
+            },
+            {
+              "item_id": "item-26e17ff2c978",
+              "doc_id": "5822782042847b74f51d",
+              "version": "3ea7384ebb92a52c9c57",
+              "quote": "使得该检测平台能够对不同作用机制及相似作用机制药物诱导的细胞表面表型进行精准区分",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 943,
+                "end_char": 982
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "光损伤超灵敏表征方法",
+              "summary": "以超灵敏表征方法缓解拉曼成像的光损伤。",
+              "project_ids": [
+                "NSFC:22174120"
+              ],
+              "item_ids": [
+                "item-7a6c6ef7a72c"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-7a6c6ef7a72c",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "采用细胞色素c的指纹信息来量化光损伤，基于拉曼技术发展了一种光损伤超灵敏表征方法并优化活细胞的长期原位无标记监测方法",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3217,
+                    "end_char": 3274
+                  }
+                }
+              ]
+            },
+            {
+              "title": "卷积神经网络光谱解析",
+              "summary": "用卷积神经网络解析重叠的复谱。",
+              "project_ids": [
+                "NSFC:22174046"
+              ],
+              "item_ids": [
+                "item-cfe52742833d"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-cfe52742833d",
+                  "doc_id": "5822782042847b74f51d",
+                  "version": "3ea7384ebb92a52c9c57",
+                  "quote": "该平台采集了三阴性乳腺癌细胞（BT549）在20种化疗药物作用下的高维SERS指纹，并通过CNN实现对复杂光谱数据的智能解析",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2960,
+                    "end_char": 3021
+                  }
+                }
+              ]
+            },
+            {
+              "title": "噪声学习方法降噪",
+              "summary": "用噪声学习方式降低光谱噪声、提升信噪。",
+              "project_ids": [
+                "NSFC:22174120"
+              ],
+              "item_ids": [
+                "item-ba7c1187f350"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-ba7c1187f350",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "提出了一种噪声学习方法，其可以准确地去除仪器噪声，在拉曼显微镜上的信噪比提高约10倍和荧光成像的激光通量显着降低43倍",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3025,
+                    "end_char": 3083
+                  }
+                }
+              ]
+            },
+            {
+              "title": "星状分形金纳米颗粒SERS阵列",
+              "summary": "以SERS阵列提升检测可靠性与灵敏度。",
+              "project_ids": [
+                "NSFC:22174046"
+              ],
+              "item_ids": [
+                "item-b9ac45c57cb3"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-b9ac45c57cb3",
+                  "doc_id": "5822782042847b74f51d",
+                  "version": "3ea7384ebb92a52c9c57",
+                  "quote": "利用DNA调控策略合成平均尺寸约60 nm的星状分形金纳米颗粒，并将其组装于氧化铟锡（ITO）玻璃基底上",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2843,
+                    "end_char": 2894
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "传感基底高均匀性",
+          "summary": "制备出高均匀性传感基底，支撑SERS类检测的可靠性。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "基于人工智能高维SERS阵列传感器的抗癌药物机制分析",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22174046"
+          ],
+          "item_ids": [
+            "item-b6797613a3ee"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-b6797613a3ee",
+              "doc_id": "5822782042847b74f51d",
+              "version": "3ea7384ebb92a52c9c57",
+              "quote": "传感基底表现出良好的均匀性，信号相对标准偏差仅为 5.3%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3082,
+                "end_char": 3110
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "传感基底达到高均匀性。",
+              "answered": true,
+              "item_ids": [
+                "item-b6797613a3ee"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-b6797613a3ee",
+                  "doc_id": "5822782042847b74f51d",
+                  "version": "3ea7384ebb92a52c9c57",
+                  "quote": "传感基底表现出良好的均匀性，信号相对标准偏差仅为 5.3%",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3082,
+                    "end_char": 3110
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "光损伤表征灵敏度高于传统方法5倍",
+          "summary": "光损伤表征灵敏度达到传统方法的5倍。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的快速拉曼成像系统及其在细胞凋亡研究中的应用",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22174120"
+          ],
+          "item_ids": [
+            "item-03ba86b6a8e6"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-03ba86b6a8e6",
+              "doc_id": "e18f99bd129e40a62f97",
+              "version": "96d01c3f56a8e4c42467",
+              "quote": "其灵敏度比传统形态学评估和线粒体荧光染色高5倍以上",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3300,
+                "end_char": 3324
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "光损伤表征灵敏度高于传统方法5倍。",
+              "answered": true,
+              "item_ids": [
+                "item-03ba86b6a8e6"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-03ba86b6a8e6",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "其灵敏度比传统形态学评估和线粒体荧光染色高5倍以上",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3300,
+                    "end_char": 3324
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "激光功率降低约43倍",
+          "summary": "所需激光功率降低约43倍，减轻样品光损伤。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的超快时间分辨荧光寿命成像及其在肿瘤微环境中的应用",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22204069"
+          ],
+          "item_ids": [
+            "item-37421b5fd432"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-37421b5fd432",
+              "doc_id": "b84fb1fc7563572c5c95",
+              "version": "5992cef217b642d09b5f",
+              "quote": "可将荧光时间序列成像所需激光功率降低约43倍",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3073,
+                "end_char": 3094
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "激光功率降低约43倍。",
+              "answered": true,
+              "item_ids": [
+                "item-37421b5fd432"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-37421b5fd432",
+                  "doc_id": "b84fb1fc7563572c5c95",
+                  "version": "5992cef217b642d09b5f",
+                  "quote": "可将荧光时间序列成像所需激光功率降低约43倍",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3073,
+                    "end_char": 3094
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "解析加速约4000倍",
+          "summary": "光谱或成像的解析速度提升约4000倍。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的超快时间分辨荧光寿命成像及其在肿瘤微环境中的应用",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22204069"
+          ],
+          "item_ids": [
+            "item-71085c8cd01e"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-71085c8cd01e",
+              "doc_id": "b84fb1fc7563572c5c95",
+              "version": "5992cef217b642d09b5f",
+              "quote": "在仿真与组织双染料（FITC/Sytox Green）样本上相较MLE获得更高解析精度，并实现约4000倍解析加速",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2953,
+                "end_char": 3009
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "解析加速约4000倍。",
+              "answered": true,
+              "item_ids": [
+                "item-71085c8cd01e"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-71085c8cd01e",
+                  "doc_id": "b84fb1fc7563572c5c95",
+                  "version": "5992cef217b642d09b5f",
+                  "quote": "在仿真与组织双染料（FITC/Sytox Green）样本上相较MLE获得更高解析精度，并实现约4000倍解析加速",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2953,
+                    "end_char": 3009
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "活体细胞原位培养装置",
+          "summary": "搭建活体细胞原位培养装置，支撑活体实时监测。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的快速拉曼成像系统及其在细胞凋亡研究中的应用",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22174120"
+          ],
+          "item_ids": [
+            "item-e6dc27151230"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-e6dc27151230",
+              "doc_id": "e18f99bd129e40a62f97",
+              "version": "96d01c3f56a8e4c42467",
+              "quote": "自主搭建了一套活体细胞原位培养装置及控制系统，实现了对细胞的长时间原位培养、观察、检测",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2979,
+                "end_char": 3021
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "已取得",
+              "note": "研制出活体细胞原位培养装置。",
+              "answered": true,
+              "item_ids": [
+                "item-e6dc27151230"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-e6dc27151230",
+                  "doc_id": "e18f99bd129e40a62f97",
+                  "version": "96d01c3f56a8e4c42467",
+                  "quote": "自主搭建了一套活体细胞原位培养装置及控制系统，实现了对细胞的长时间原位培养、观察、检测",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2979,
+                    "end_char": 3021
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "微流控芯片设计与研发自动化",
+      "summary": "两个主题同属微流控芯片的设计与研发自动化，覆盖细胞分选芯片设计与芯片仿真、性能评价体系。",
+      "members": [
+        "微流控EDA与芯片研发自动化",
+        "微流控细胞分选芯片设计"
+      ],
+      "project_ids": [
+        "NSFC:62206081"
+      ],
+      "item_ids": [
+        "item-defd51cc9db0",
+        "item-36ccb9f292d7"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-defd51cc9db0",
+          "doc_id": "f718ced3bf9c1187fbc0",
+          "version": "28043829dbcf88e56c23",
+          "quote": "不仅在微流控EDA领域取得了创新性突破，显著缩短了芯片研发周期",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3346,
+            "end_char": 3376
+          }
+        },
+        {
+          "item_id": "item-36ccb9f292d7",
+          "doc_id": "f718ced3bf9c1187fbc0",
+          "version": "28043829dbcf88e56c23",
+          "quote": "微流控细胞分选芯片在医学和生物学研究中有着广泛的应用，但研发微流控细胞分选芯片目前是一个相对低效的过程",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 655,
+            "end_char": 705
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "缺乏芯片性能评价与仿真体系",
+          "state": "已解决",
+          "summary": "该问题指出缺少芯片性能评价与仿真体系，现有工作以粒子仿真、数据库与代理模型补足。",
+          "members": [
+            "缺乏芯片性能评价与仿真体系"
+          ],
+          "project_ids": [
+            "NSFC:62206081"
+          ],
+          "item_ids": [
+            "item-f6a89d0db5ed"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-f6a89d0db5ed",
+              "doc_id": "f718ced3bf9c1187fbc0",
+              "version": "28043829dbcf88e56c23",
+              "quote": "本项目拟研究面向三维细胞的轨迹仿真算法，确立微阵列细胞分选芯片性能指标的评价方法，利用有限元仿真初步建立分选芯片的预仿真数据库",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 756,
+                "end_char": 818
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "三维粒子仿真与大规模数据库",
+              "summary": "用三维粒子仿真与大规模数据库支撑芯片性能评价。",
+              "project_ids": [
+                "NSFC:62206081"
+              ],
+              "item_ids": [
+                "item-d8a4b6a233a5"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-d8a4b6a233a5",
+                  "doc_id": "f718ced3bf9c1187fbc0",
+                  "version": "28043829dbcf88e56c23",
+                  "quote": "研究通过构建高精度3维粒子仿真体系并积累包含数万种方案的大规模数据库",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2974,
+                    "end_char": 3007
+                  }
+                }
+              ]
+            },
+            {
+              "title": "ANN低成本代理模型",
+              "summary": "以ANN代理模型降低仿真评价成本。",
+              "project_ids": [
+                "NSFC:62206081"
+              ],
+              "item_ids": [
+                "item-139a1112bdec"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-139a1112bdec",
+                  "doc_id": "f718ced3bf9c1187fbc0",
+                  "version": "28043829dbcf88e56c23",
+                  "quote": "研发了基于人工神经网络（ANN）的低成本代理模型，实现了预测精度超98.5%、计算速度较传统有限元分析（FEA）提升300倍以上的性能瞬时评估",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3010,
+                    "end_char": 3080
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "分选纯度90%以上且通量提升30%",
+          "summary": "细胞分选纯度达到90%以上，通量提升30%。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能辅助细胞分选芯片智能设计关键技术研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:62206081"
+          ],
+          "item_ids": [
+            "item-cbfc0bfc6c6f"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-cbfc0bfc6c6f",
+              "doc_id": "f718ced3bf9c1187fbc0",
+              "version": "28043829dbcf88e56c23",
+              "quote": "其中DQN系统在典型案例优化中耗时不足0.2秒，且实测分选纯度达90%以上、通量提升约30%",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3163,
+                "end_char": 3208
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "分选纯度90%以上，通量提升30%。",
+              "answered": true,
+              "item_ids": [
+                "item-cbfc0bfc6c6f"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-cbfc0bfc6c6f",
+                  "doc_id": "f718ced3bf9c1187fbc0",
+                  "version": "28043829dbcf88e56c23",
+                  "quote": "其中DQN系统在典型案例优化中耗时不足0.2秒，且实测分选纯度达90%以上、通量提升约30%",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3163,
+                    "end_char": 3208
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "方法与数据库用户超10万人次",
+          "summary": "方法与数据库累计用户超过10万人次，体现成果的转化应用。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能驱动的药物分子和蛋白质设计",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22033001"
+          ],
+          "item_ids": [
+            "item-78cff71554ea"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-78cff71554ea",
+              "doc_id": "ca526de32145edc6e6c1",
+              "version": "7bc7ce0665227d43c62d",
+              "quote": "所发展的方法和程序在国内外用户数超过 100000 人次，具有较好的影响力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 2679,
+                "end_char": 2715
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "已取得",
+              "note": "建成面向用户的方法与数据库。",
+              "answered": true,
+              "item_ids": [
+                "item-78cff71554ea"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-78cff71554ea",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "所发展的方法和程序在国内外用户数超过 100000 人次，具有较好的影响力",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2679,
+                    "end_char": 2715
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "已取得",
+              "note": "方法与数据库用户超10万人次。",
+              "answered": true,
+              "item_ids": [
+                "item-78cff71554ea"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-78cff71554ea",
+                  "doc_id": "ca526de32145edc6e6c1",
+                  "version": "7bc7ce0665227d43c62d",
+                  "quote": "所发展的方法和程序在国内外用户数超过 100000 人次，具有较好的影响力",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2679,
+                    "end_char": 2715
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "工业酶制剂与生物催化",
+      "summary": "四个主题都面向工业酶与生物催化，覆盖酶定向进化、智能改造、酰胺绿色合成与酶制剂产业化。",
+      "members": [
+        "酶制剂产业化与核心生物原料",
+        "酶定向进化与工业酶制剂",
+        "酶的人工进化与智能改造",
+        "酰胺类化合物的绿色合成"
+      ],
+      "project_ids": [
+        "NSFC:32030063",
+        "NSFC:22208217"
+      ],
+      "item_ids": [
+        "item-1b6486c2acd4",
+        "item-b57567c57b33",
+        "item-b4e49f01f12f",
+        "item-e19d0364f101"
+      ],
+      "evidence": [
+        {
+          "item_id": "item-1b6486c2acd4",
+          "doc_id": "bb2b6acf5436232e7625",
+          "version": "0ee43cb87ace2cf6abdf",
+          "quote": "项目将核心技术成果转化为 mRNA 疫苗核心工具酶、临床检测核心酶原料、天然产物合成特色功能酶制剂等系列高附加值产品，填补国内核心生物原料供给缺口，累计新增收入超亿元",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 3141,
+            "end_char": 3223
+          }
+        },
+        {
+          "item_id": "item-b57567c57b33",
+          "doc_id": "bb2b6acf5436232e7625",
+          "version": "0ee43cb87ace2cf6abdf",
+          "quote": "酶定向进化是重要的蛋白质工程技术，在合成生物学、生物化工、生物医药等产业发展创新中居于核心地位",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 634,
+            "end_char": 680
+          }
+        },
+        {
+          "item_id": "item-b4e49f01f12f",
+          "doc_id": "a20370174c8ca663b560",
+          "version": "20f61c04ffd777a9302b",
+          "quote": "本项目的实施将为酰胺的酶法合成提供新的方法，为酶的人工进化提供新的策略，推动酶功能改造向自动化、智能化方向的发展",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 986,
+            "end_char": 1041
+          }
+        },
+        {
+          "item_id": "item-e19d0364f101",
+          "doc_id": "a20370174c8ca663b560",
+          "version": "20f61c04ffd777a9302b",
+          "quote": "酰胺类化合物的合成是目前制药领域亟待解决的合成问题",
+          "locator": {
+            "basis": "parsed_text",
+            "start_char": 661,
+            "end_char": 685
+          }
+        }
+      ],
+      "issues": [
+        {
+          "name": "定向进化流程繁琐耗时成本高",
+          "state": "已解决",
+          "summary": "该问题指出定向进化流程繁琐、耗时且成本高，现有工作以筛选平台、数据体系与智能筛选提速。",
+          "members": [
+            "定向进化流程繁琐耗时成本高"
+          ],
+          "project_ids": [
+            "NSFC:32030063"
+          ],
+          "item_ids": [
+            "item-4b130d3908a1"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-4b130d3908a1",
+              "doc_id": "bb2b6acf5436232e7625",
+              "version": "0ee43cb87ace2cf6abdf",
+              "quote": "然而目前的定向进化技术存在着实验流程繁琐、耗时、成本高等缺点，限制了这一技术的广泛应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 682,
+                "end_char": 724
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "EnzySFC酶筛选平台",
+              "summary": "用酶筛选平台提高筛选通量、压缩流程耗时。",
+              "project_ids": [
+                "NSFC:22208217"
+              ],
+              "item_ids": [
+                "item-5fbdaef5cdce"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-5fbdaef5cdce",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "我们开发了AI辅助平台EnzySFC，实现了对酶催化杂泛性的催化活性与产物特异性多目标协同进化",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3352,
+                    "end_char": 3398
+                  }
+                }
+              ]
+            },
+            {
+              "title": "高通量筛选与数据构建体系",
+              "summary": "以高通量筛选与数据构建体系支撑规模化筛选。",
+              "project_ids": [
+                "NSFC:32030063"
+              ],
+              "item_ids": [
+                "item-bbeec190927b"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-bbeec190927b",
+                  "doc_id": "bb2b6acf5436232e7625",
+                  "version": "0ee43cb87ace2cf6abdf",
+                  "quote": "项目整合大规模基因从头合成、超高通量筛选、二代测序等技术，获取了海量标准化酶序列-功能关系数据",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 2835,
+                    "end_char": 2881
+                  }
+                }
+              ]
+            },
+            {
+              "title": "AI定向进化筛选",
+              "summary": "用AI定向进化筛选减少人工筛选工作量。",
+              "project_ids": [
+                "NSFC:22208217"
+              ],
+              "item_ids": [
+                "item-c58b5461ad04"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-c58b5461ad04",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "随后对底物转化率和酰胺比例最高的新酶实施AI定向进化，仅通过单轮预测即获得16个经实验验证的阳性突变体",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3442,
+                    "end_char": 3492
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "活力与转化率难以兼顾",
+          "state": "已解决",
+          "summary": "该问题指出酶活力与底物转化率难以同时提升，现有工作以多目标优化闭环应对。",
+          "members": [
+            "活力与转化率难以兼顾"
+          ],
+          "project_ids": [
+            "NSFC:22208217"
+          ],
+          "item_ids": [
+            "item-16334d46745a"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-16334d46745a",
+              "doc_id": "a20370174c8ca663b560",
+              "version": "20f61c04ffd777a9302b",
+              "quote": "然而，提高酰胺合成效率的同时保证高底物转化率，仍是该路径的瓶颈。传统酶进化方法耗时费力，限制了酶在制药等领域的应用",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3155,
+                "end_char": 3211
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "多目标遗传算法与强化学习闭环",
+              "summary": "用多目标优化闭环同时兼顾活力与转化率。",
+              "project_ids": [
+                "NSFC:62206081"
+              ],
+              "item_ids": [
+                "item-55533de368bb"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-55533de368bb",
+                  "doc_id": "f718ced3bf9c1187fbc0",
+                  "version": "28043829dbcf88e56c23",
+                  "quote": "融合了多目标遗传算法（NSGA-II）、粒子群算法（PSO）及深度Q网络（DQN）强化学习技术，构建了从设计需求到最优方案生成的闭环逆向设计体系",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3089,
+                    "end_char": 3160
+                  }
+                }
+              ]
+            },
+            {
+              "title": "AI定向进化筛选",
+              "summary": "以AI筛选在多目标间寻找平衡点。",
+              "project_ids": [
+                "NSFC:22208217"
+              ],
+              "item_ids": [
+                "item-c58b5461ad04"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-c58b5461ad04",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "随后对底物转化率和酰胺比例最高的新酶实施AI定向进化，仅通过单轮预测即获得16个经实验验证的阳性突变体",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3442,
+                    "end_char": 3492
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "酶功能在序列空间分布规律不清",
+          "state": "已解决",
+          "summary": "该问题指出酶功能在序列空间的分布规律不清，现有工作以描述符挖掘与机器学习刻画序列—功能关系。",
+          "members": [
+            "酶功能在序列空间分布规律不清"
+          ],
+          "project_ids": [
+            "NSFC:32030063"
+          ],
+          "item_ids": [
+            "item-9adcfd092131"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-9adcfd092131",
+              "doc_id": "bb2b6acf5436232e7625",
+              "version": "0ee43cb87ace2cf6abdf",
+              "quote": "从而掌握酶功能在蛋白质序列空间中的总体分布规律，发展人工智能辅助的定向进化新策略",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 850,
+                "end_char": 889
+              }
+            }
+          ],
+          "routes": [
+            {
+              "title": "序列功能描述符挖掘与机器学习",
+              "summary": "用序列功能描述符与机器学习刻画功能分布规律。",
+              "project_ids": [
+                "NSFC:22208217"
+              ],
+              "item_ids": [
+                "item-d3fdb73620b5"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-d3fdb73620b5",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "拟基于高通量测实验技术获取腈水解酶的大量序列功能数据，采用信息表示、机器学习、深度学习、实验验证等理论与方法，解析腈水解酶序列-功能数据关联",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 794,
+                    "end_char": 863
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "achievements": [
+        {
+          "title": "16个实验验证阳性突变体",
+          "summary": "获得16个经实验验证的阳性突变体。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能辅助进化腈水解酶合成酰胺类化合物",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22208217"
+          ],
+          "item_ids": [
+            "item-955df443f06b"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-955df443f06b",
+              "doc_id": "a20370174c8ca663b560",
+              "version": "20f61c04ffd777a9302b",
+              "quote": "仅通过单轮预测即获得16个经实验验证的阳性突变体。其中7个变体的酰胺比例相较野生型有所提升，包括5个酰胺比例超80%的突变体，更有4个突变体实现了底物完全转化与100%酰胺产率",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3469,
+                "end_char": 3556
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "16个突变体经实验验证为阳性。",
+              "answered": true,
+              "item_ids": [
+                "item-955df443f06b"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-955df443f06b",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "仅通过单轮预测即获得16个经实验验证的阳性突变体。其中7个变体的酰胺比例相较野生型有所提升，包括5个酰胺比例超80%的突变体，更有4个突变体实现了底物完全转化与100%酰胺产率",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3469,
+                    "end_char": 3556
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "关键酶突变体系列",
+          "summary": "构建出关键酶突变体系列，为酶改造提供样本基础。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能辅助的酶定向进化研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:32030063"
+          ],
+          "item_ids": [
+            "item-ef331424a98a"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-ef331424a98a",
+              "doc_id": "bb2b6acf5436232e7625",
+              "version": "0ee43cb87ace2cf6abdf",
+              "quote": "成功研发出肌酸酶、T7 RNA 聚合酶、环糊精酶等一批性能显著提升（热稳定性、催化活性、底物特异性等）的关键酶突变体，设计成功率与进化效率大幅超越传统方法",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3053,
+                "end_char": 3129
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "已取得",
+              "note": "获得关键酶突变体系列。",
+              "answered": true,
+              "item_ids": [
+                "item-ef331424a98a"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-ef331424a98a",
+                  "doc_id": "bb2b6acf5436232e7625",
+                  "version": "0ee43cb87ace2cf6abdf",
+                  "quote": "成功研发出肌酸酶、T7 RNA 聚合酶、环糊精酶等一批性能显著提升（热稳定性、催化活性、底物特异性等）的关键酶突变体，设计成功率与进化效率大幅超越传统方法",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3053,
+                    "end_char": 3129
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "新酶催化活性与酰胺合成能力",
+          "summary": "新酶具备催化活性与酰胺合成能力。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能辅助进化腈水解酶合成酰胺类化合物",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:22208217"
+          ],
+          "item_ids": [
+            "item-8a5954cdc0c7"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-8a5954cdc0c7",
+              "doc_id": "a20370174c8ca663b560",
+              "version": "20f61c04ffd777a9302b",
+              "quote": "在新酶发现环节，所获序列中90%对目标底物显示催化活性，其中80%具备酰胺合成能力",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3400,
+                "end_char": 3440
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "已取得",
+              "note": "新酶表现出催化活性与酰胺合成能力。",
+              "answered": true,
+              "item_ids": [
+                "item-8a5954cdc0c7"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-8a5954cdc0c7",
+                  "doc_id": "a20370174c8ca663b560",
+                  "version": "20f61c04ffd777a9302b",
+                  "quote": "在新酶发现环节，所获序列中90%对目标底物显示催化活性，其中80%具备酰胺合成能力",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3400,
+                    "end_char": 3440
+                  }
+                }
+              ]
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "title": "累计新增收入超亿元",
+          "summary": "相关酶制剂产业化累计新增收入超过亿元。",
+          "marker_basis": {
+            "projects": 1,
+            "representative": "人工智能辅助的酶定向进化研究",
+            "note": ""
+          },
+          "project_ids": [
+            "NSFC:32030063"
+          ],
+          "item_ids": [
+            "item-60647bede54b"
+          ],
+          "evidence": [
+            {
+              "item_id": "item-60647bede54b",
+              "doc_id": "bb2b6acf5436232e7625",
+              "version": "0ee43cb87ace2cf6abdf",
+              "quote": "填补国内核心生物原料供给缺口，累计新增收入超亿元，实现了学术价值与产业价值的统一",
+              "locator": {
+                "basis": "parsed_text",
+                "start_char": 3200,
+                "end_char": 3239
+              }
+            }
+          ],
+          "aspects": [
+            {
+              "aspect": "论文",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "专利",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "人才/团队",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "平台/基地",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "数据与样本",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "指标达成",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "标准/许可",
+              "stage": "原文未提及",
+              "note": "",
+              "answered": true,
+              "item_ids": [],
+              "evidence": []
+            },
+            {
+              "aspect": "转化与应用",
+              "stage": "已取得",
+              "note": "累计新增收入超亿元。",
+              "answered": true,
+              "item_ids": [
+                "item-60647bede54b"
+              ],
+              "evidence": [
+                {
+                  "item_id": "item-60647bede54b",
+                  "doc_id": "bb2b6acf5436232e7625",
+                  "version": "0ee43cb87ace2cf6abdf",
+                  "quote": "填补国内核心生物原料供给缺口，累计新增收入超亿元，实现了学术价值与产业价值的统一",
+                  "locator": {
+                    "basis": "parsed_text",
+                    "start_char": 3200,
+                    "end_char": 3239
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "targets": {
+      "scenes": 6,
+      "issues_per_scene": 3,
+      "routes_per_issue": 2,
+      "achievements_per_scene": 3
+    },
+    "scenes": 6,
+    "issues": 14,
+    "solved_issues": 13,
+    "open_issues": 1,
+    "routes": 29,
+    "achievements": 17,
+    "available_topics": {
+      "场景": 18,
+      "问题": 19,
+      "技术": 32,
+      "成果": 21
+    },
+    "gaps": [
+      {
+        "kind": "composition",
+        "detail": "抗肿瘤药物研发与精准用药：问题 2 个（已解决 2 个），目标 3 个（2 已解决）"
+      },
+      {
+        "kind": "count",
+        "detail": "抗肿瘤药物研发与精准用药：标志性成果 2 项，目标 3–5 项"
+      },
+      {
+        "kind": "composition",
+        "detail": "药物分子智能设计与抗病毒研发：问题 2 个（已解决 2 个），目标 3 个（2 已解决）"
+      },
+      {
+        "kind": "count",
+        "detail": "药物分子智能设计与抗病毒研发：标志性成果 2 项，目标 3–5 项"
+      },
+      {
+        "kind": "composition",
+        "detail": "临床联合用药与新疗法开发：问题 3 个（已解决 3 个），目标 3 个（2 已解决）"
+      },
+      {
+        "kind": "count",
+        "detail": "临床联合用药与新疗法开发：标志性成果 2 项，目标 3–5 项"
+      },
+      {
+        "kind": "composition",
+        "detail": "微流控芯片设计与研发自动化：问题 1 个（已解决 1 个），目标 3 个（2 已解决）"
+      },
+      {
+        "kind": "count",
+        "detail": "微流控芯片设计与研发自动化：标志性成果 2 项，目标 3–5 项"
+      },
+      {
+        "kind": "issue",
+        "detail": "工业酶制剂与生物催化 超出 3 个核心问题，未采用：腈水解酶底物转化率低"
+      },
+      {
+        "kind": "composition",
+        "detail": "工业酶制剂与生物催化：问题 3 个（已解决 3 个），目标 3 个（2 已解决）"
+      }
+    ]
+  }
+}

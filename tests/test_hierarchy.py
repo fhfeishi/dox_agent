@@ -116,7 +116,7 @@ def test_hierarchy_keeps_traceable_entries_and_reports_gaps(tmp_path, monkeypatc
     from src import hierarchy
 
     model = HierarchyModel()
-    monkeypatch.setattr(hierarchy, "model_for", lambda settings: model)
+    monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: model)
     with TestClient(app) as client:
         before = client.get(f"/api/corpora/{corpus_id}/hierarchy").json()
         assert before["state"] == "missing" and before["topics"]["场景"] == 1
@@ -156,16 +156,38 @@ def test_hierarchy_update_failure_keeps_the_previous_version(tmp_path, monkeypat
     app, corpus_id, _ = _prepared(tmp_path, monkeypatch)
     from src import hierarchy
 
-    monkeypatch.setattr(hierarchy, "model_for", lambda settings: HierarchyModel())
+    monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: HierarchyModel())
     with TestClient(app) as client:
         client.post(f"/api/corpora/{corpus_id}/hierarchy", json={})
-        monkeypatch.setattr(hierarchy, "model_for", lambda settings: BrokenModel())
+        monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: BrokenModel())
         failed = client.post(f"/api/corpora/{corpus_id}/hierarchy", json={"force": True}).json()
 
     assert failed["process"]["status"] == "未完成"
     assert "模型未返回合法 JSON" in failed["process"]["error"]
     assert failed["coverage"]["update_error"]
     assert failed["scenes"], "一次失败不得清空已生成的层级"
+
+
+class TimeoutModel:
+    async def ainvoke(self, messages):
+        raise ConnectionError("provider timed out")
+
+
+def test_hierarchy_provider_error_is_recorded_not_a_server_error(tmp_path, monkeypatch):
+    """A provider timeout during a rebuild keeps the previous scenes and says what failed."""
+    app, corpus_id, _ = _prepared(tmp_path, monkeypatch)
+    from src import hierarchy
+
+    monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: HierarchyModel())
+    with TestClient(app) as client:
+        client.post(f"/api/corpora/{corpus_id}/hierarchy", json={})
+        monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: TimeoutModel())
+        response = client.post(f"/api/corpora/{corpus_id}/hierarchy", json={"force": True})
+
+    assert response.status_code == 200
+    failed = response.json()
+    assert failed["process"] == {"status": "未完成", "error": "模型调用失败（ConnectionError）"}
+    assert failed["scenes"]
 
 
 def test_report_body_carries_the_same_hierarchy_with_its_own_citations(tmp_path):
@@ -240,7 +262,7 @@ def test_hierarchy_is_stale_when_the_four_dimension_topics_change(tmp_path, monk
     app, corpus_id, _ = _prepared(tmp_path, monkeypatch)
     from src import hierarchy
 
-    monkeypatch.setattr(hierarchy, "model_for", lambda settings: HierarchyModel())
+    monkeypatch.setattr(hierarchy, "model_for", lambda settings, **_: HierarchyModel())
     with TestClient(app) as client:
         client.post(f"/api/corpora/{corpus_id}/hierarchy", json={})
         assert client.get(f"/api/corpora/{corpus_id}/hierarchy").json()["state"] == "ready"
@@ -381,35 +403,91 @@ class TwoTechModel(TargetModel):
 
 
 class LineageModel:
+    """Framework call, then placement: one valid theme code, one unknown code with a bad level;
+    the second look at the unplaced item still finds no theme."""
+
+    def __init__(self):
+        self.retried: list[str] = []
+
     async def ainvoke(self, messages):
-        assert "深度学习" in messages[-1].content and "临床应用" not in messages[-1].content
-        return SimpleNamespace(content=json.dumps({"branch": "AI与医疗", "categories": [
-            {"name": "机器学习", "summary": "学习方法。", "children": [
-                {"name": "深度学习方法", "routes": ["深度学习", "量子计算"]},
-                {"name": "重复", "routes": ["深度学习"]}]}]}, ensure_ascii=False), response_metadata={})
+        if "技术谱系框架" in messages[0].content:
+            self.framework = messages[-1].content
+            answer = {"branch": "AI与医疗", "stages": [{"name": "诊断与分型", "plain": "判断是什么病"}, {"name": "疗效评估与预后", "plain": ""}],
+                      "fields": [{"name": "模型自拟领域"}], "categories": [{"name": "机器学习", "summary": "学习方法。", "plain": "让计算机从病例数据中学规律",
+                      "children": [{"name": "深度学习方法", "plain": "多层识别模型", "foundation": "yes",
+                                    "themes": ["网络模型", "网络模型", "数据处理"]}]}]}
+        else:
+            text = messages[-1].content
+            assert "K1 机器学习 › 深度学习方法 › 网络模型" in text and "K3" not in text
+            refs = {name: ref for ref, name in re.findall(r"^(T\d+)｜([^｜]+)｜", text, re.MULTILINE)}
+            if "上一轮没有归入" in text:
+                self.retried.extend(refs)
+                answer = {"items": [{"ref": refs["数据增强"], "theme": "K0", "maturity": 4, "basis": "不应覆盖"}]}
+            else:
+                answer = {"items": [{"ref": refs["深度学习"], "theme": "K1", "maturity": 3, "basis": "形成原型系统",
+                                     "field": "F1", "stage": "S1"},
+                                    {"ref": refs["数据增强"], "theme": "K99", "maturity": 9, "basis": "", "field": "F7", "stage": "S0"}]}
+        return SimpleNamespace(content=json.dumps(answer, ensure_ascii=False), response_metadata={})
+
+
+def _lineage_done(client, corpus_id):
+    deadline = time.monotonic() + 5
+    while time.monotonic() < deadline:
+        tree = client.get(f"/api/corpora/{corpus_id}/lineage").json()
+        if not tree.get("job"):
+            return tree
+        time.sleep(0.02)
+    raise AssertionError("谱系生成未结束")
 
 
 def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
-    """Lineage only places existing routes; supporting techniques and 成果列表 come from the reports."""
+    """Lineage places existing items only, levels are bounded; 成果列表 comes from the report."""
     body = BODY + "\n\n## 成果列表（2）\n\n1. [专利] 一种病灶识别方法 — 张三\n2. [期刊论文] Deep lesion detection — Zhang San\n"
     app, corpus_id, _ = _prepared(tmp_path, monkeypatch, TwoTechModel(), body)
-    from src import hierarchy, lineage
+    from src import lineage
 
-    monkeypatch.setattr(hierarchy, "model_for", lambda settings: HierarchyModel())
-    monkeypatch.setattr(lineage, "model_for", lambda settings: LineageModel())
+    model = LineageModel()
+    monkeypatch.setattr(lineage, "model_for", lambda settings, **_: model)
+    # A scene hierarchy exists: its scenes become the application fields, not the model's own list.
+    (root,) = {path.parent.parent for path in tmp_path.rglob("datadb/knowledge.sqlite3")}
+    (root / "hierarchy.json").write_text(json.dumps({"scenes": [{"name": "临床诊疗"}, {"name": "康复护理"}]}), encoding="utf-8")
     with TestClient(app) as client:
         assert client.get(f"/api/corpora/{corpus_id}/lineage").json()["state"] == "missing"
-        client.post(f"/api/corpora/{corpus_id}/hierarchy", json={})
-        tree = client.post(f"/api/corpora/{corpus_id}/lineage", json={}).json()
-        assert tree["state"] == "ready" and tree["categories"] == [
-            {"name": "机器学习", "summary": "学习方法。", "children": [{"name": "深度学习方法", "routes": ["深度学习"]}]}]
-        assert len(tree["gaps"]) == 2  # unknown title and the repeated placement
-        assert [s["name"] for s in tree["supporting"]["深度学习"]] == ["数据增强"]
-        assert tree["routes"]["深度学习"]["issues"][0]["issue"] == "识别精度瓶颈"
+        assert client.post(f"/api/corpora/{corpus_id}/lineage").status_code == 202
+        tree = _lineage_done(client, corpus_id)
+        assert tree["state"] == "ready" and not tree.get("error")
+        names = {item["name"]: (item_id, item) for item_id, item in tree["items"].items()}
+        deep_id, deep = names["深度学习"]
+        aug_id, aug = names["数据增强"]
+        assert (deep["maturity"], deep["basis"]) == (3, "形成原型系统")
+        assert aug["maturity"] == 0  # an out-of-range level is not kept, and a retry does not re-rate
+        assert model.retried == ["数据增强"]  # only the unplaced item gets a second look
+        # Application axis: stages from the framework; fields follow the scene hierarchy when it exists.
+        assert [stage["name"] for stage in tree["stages"]] == ["诊断与分型", "疗效评估与预后"]
+        assert [field["name"] for field in tree["fields"]] == ["临床诊疗", "康复护理"]
+        assert "应用领域已给定" in model.framework and "临床诊疗、康复护理" in model.framework
+        assert (deep["stage"], deep["field"]) == ("诊断与分型", "临床诊疗")
+        assert (aug["stage"], aug["field"]) == ("", "")  # S0 and an out-of-range field stay empty
+        # A rebuilt hierarchy with other scene names makes the lineage stale, with the reason.
+        (root / "hierarchy.json").write_text(json.dumps({"scenes": [{"name": "临床诊疗"}]}), encoding="utf-8")
+        stale = client.get(f"/api/corpora/{corpus_id}/lineage").json()
+        assert (stale["state"], stale["stale_reason"]) == ("stale", "场景归纳已重新生成，应用领域需要随之更新")
+        (root / "hierarchy.json").write_text(json.dumps({"scenes": [{"name": "临床诊疗"}, {"name": "康复护理"}]}), encoding="utf-8")
+        (system, unplaced) = tree["categories"]
+        assert system["plain"] == "让计算机从病例数据中学规律"
+        assert system["children"] == [{"name": "深度学习方法", "plain": "多层识别模型", "foundation": False,
+                                       "themes": [{"name": "网络模型", "items": [deep_id]}]}]
+        assert unplaced["name"] == "未归入体系的条目" and unplaced["unplaced"] is True and unplaced["children"][0]["themes"][0]["items"] == [aug_id]
 
-        monkeypatch.setattr(lineage, "model_for", lambda settings: BrokenModel())
-        failed = client.post(f"/api/corpora/{corpus_id}/lineage", json={"force": True}).json()
+        monkeypatch.setattr(lineage, "model_for", lambda settings, **_: BrokenModel())
+        client.post(f"/api/corpora/{corpus_id}/lineage")
+        failed = _lineage_done(client, corpus_id)
         assert failed["error"] and failed["categories"] == tree["categories"]
+
+        # Extracted item ids derive from the name: the same technique in two projects stays two leaves.
+        same = {"items": [{"id": "item-x", "name": "深度学习", "desc": ""}]}
+        twins = lineage.items({"projects": [{"project_id": p, "facets": {"技术": same}} for p in ("P1", "P2")]})
+        assert sorted(entry["id"] for entry in twins) == ["P1|item-x", "P2|item-x"]
 
         outputs = client.get(f"/api/corpora/{corpus_id}/outputs").json()
         (listed,) = outputs["projects"].values()

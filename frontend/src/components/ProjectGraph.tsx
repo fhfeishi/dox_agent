@@ -1,40 +1,21 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { CATEGORY_COLORS, FACET_COLORS, hierarchyQuery, lineageQuery, locateRoute, type Project } from "../projects";
+import { CATEGORY_COLORS, FACET_COLORS, hierarchyQuery, lineageQuery, locateItem, type Project } from "../projects";
 import { Button } from "./ui";
+import { buildSectors, type Sector } from "../departments";
 
-/** NSFC departments by the first letter of the application code. */
-const DEPARTMENTS: Record<string, [string, string]> = {
-  A: ["数理科学部", "#b45309"], B: ["化学科学部", "#a21caf"], C: ["生命科学部", "#047857"], D: ["地球科学部", "#4d7c0f"],
-  E: ["工程与材料科学部", "#c2410c"], F: ["信息科学部", "#0e7490"], G: ["管理科学部", "#1d4ed8"], H: ["医学科学部", "#be123c"],
-  T: ["交叉科学部", "#6d28d9"],
-};
-const OTHER = "其他代码";
-const UNKNOWN = "代码未知";
 const SIZE = 1000;
 const C = SIZE / 2;
 const R0 = 130;
 const RMAX = 415;
-const MAX_SECTORS = 8;
 const LINKS = 12;
-
-type Sector = { key: string; label: string; color: string; count: number };
-
-function sectorOf(code?: string) {
-  const match = /^([A-Z])(\d{2})/.exec(code ?? "");
-  return match ? match[1] + match[2] : UNKNOWN;
-}
-
-function colorOf(key: string) {
-  return DEPARTMENTS[key[0]]?.[1] ?? "#64748b";
-}
 
 const polar = (r: number, deg: number) => {
   const a = ((deg - 90) * Math.PI) / 180;
   return [C + r * Math.cos(a), C + r * Math.sin(a)] as const;
 };
 
-/** Projects placed by application code (angle) and start year (ring); links show shared topics. */
+/** Projects placed by NSFC department and application code (angle) and start year (ring); links show shared topics. */
 /** Relation types a project pair can share. 成果 is deliberately absent: two projects both having,
  * say, a prototype or papers does not relate them, and outcomes are nearly unique per project. */
 const RELATIONS = {
@@ -67,17 +48,10 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
   const undated = projects.length - dated.length;
 
   const layout = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const p of dated) counts.set(sectorOf(p.code), (counts.get(sectorOf(p.code)) ?? 0) + 1);
-    const ranked = [...counts].filter(([key]) => key !== UNKNOWN).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-    const kept = new Set(ranked.slice(0, MAX_SECTORS).map(([key]) => key));
-    const keyOf = (p: Project) => { const key = sectorOf(p.code); return key === UNKNOWN ? UNKNOWN : kept.has(key) ? key : OTHER; };
-    const sectors: Sector[] = ranked.slice(0, MAX_SECTORS).map(([key, count]) => ({
-      key, count, color: colorOf(key), label: `${key} · ${DEPARTMENTS[key[0]]?.[0] ?? "其他学部"}` }));
-    const rest = dated.filter((p) => keyOf(p) === OTHER).length;
-    if (rest) sectors.push({ key: OTHER, label: OTHER, color: "#64748b", count: rest });
-    const unknown = dated.filter((p) => keyOf(p) === UNKNOWN).length;
-    if (unknown) sectors.push({ key: UNKNOWN, label: UNKNOWN, color: "#94a3b8", count: unknown });
+    // Every department with projects keeps a sector; only large ones are split by code.
+    const built = buildSectors(dated.map((p) => p.code));
+    const sectors = built.sectors;
+    const keyOf = (p: Project) => built.keyOf(p.code);
     const years = [...new Set(dated.map((p) => p.start_year!))].sort((a, b) => a - b);
     const ring = (y: number) => years.length < 2 ? (R0 + RMAX) / 2 : R0 + ((RMAX - R0) * years.indexOf(y)) / (years.length - 1);
     const band = years.length < 2 ? 60 : (RMAX - R0) / (years.length - 1);
@@ -111,7 +85,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
         });
       }
     });
-    return { sectors, years, ring, spans, starts, points, keyOf };
+    return { sectors, departments: built.departments, years, ring, spans, starts, points, keyOf };
   }, [dated]);
 
   const focus = dated.find((p) => p.project_id === selected) ?? null;
@@ -152,11 +126,12 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
       if (relation === "场景") for (const id of scene.project_ids) if (!of.has(id)) of.set(id, scene.name);
       for (const issue of scene.issues) {
         if (relation === "问题") for (const id of issue.project_ids) if (!of.has(id)) of.set(id, issue.name);
-        if (relation === "技术") for (const route of issue.routes) {
-          const system = locateRoute(lineage, route.title)?.category.name ?? "谱系未归类";
-          for (const id of route.project_ids) if (!of.has(id)) of.set(id, system);
-        }
       }
+    }
+    // 技术: each project takes the lineage system of its first placed technique item.
+    if (relation === "技术") for (const [itemId, item] of Object.entries(lineage?.items ?? {})) {
+      const at = locateItem(lineage, itemId);
+      if (at && !at.category.unplaced && !of.has(item.project_id)) of.set(item.project_id, at.category.name);
     }
     const names = [...new Set(of.values())];
     const hue = new Map(names.map((name, i) => [name, names.length <= CATEGORY_COLORS.length
@@ -225,8 +200,10 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
               const mid = layout.starts[i] + layout.spans[i] / 2;
               const [lx, ly] = polar(RMAX + 36, mid);
               const anchor = Math.abs(lx - C) < 60 ? "middle" : lx > C ? "start" : "end";
+              // A department boundary is drawn heavier than a code boundary inside a department.
+              const deptStart = i === 0 || layout.sectors[i - 1].dept !== sector.dept;
               return <g key={sector.key}>
-                <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e8ebf2" strokeWidth={1.4} />
+                <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={deptStart ? "#b9c0d0" : "#e8ebf2"} strokeWidth={deptStart ? 2.6 : 1.2} />
                 <text x={lx} y={ly - 7} textAnchor={anchor} fontSize={13} fontWeight={700} fill={sector.color}>{sector.label}</text>
                 <text x={lx} y={ly + 11} textAnchor={anchor} fontSize={11} fill="#8a90a6">{sector.count} 个项目</text>
               </g>;
@@ -306,9 +283,11 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
       <div className="flex flex-wrap items-center gap-3 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">
         <span className="flex items-center gap-2" aria-label="颜色深浅图例">颜色深浅：关联少
           <span className="inline-block h-2.5 w-24 rounded-full" style={{ background: "linear-gradient(90deg, #6b728026, #6b7280)" }} />关联多（最多 {maxDegree} 个）</span>
-        <span className="mx-1 h-3 w-px bg-[var(--hairline-strong)]" />扇区按学部：
-        {[...new Set(layout.sectors.map((s) => s.key[0]))].filter((k) => DEPARTMENTS[k]).map((k) => (
-          <span key={k} className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: DEPARTMENTS[k][1] }} />{DEPARTMENTS[k][0]}</span>
+        <span className="mx-1 h-3 w-px bg-[var(--hairline-strong)]" />扇区按学部（大学部再按申请代码细分）：
+        {layout.departments.map((d) => (
+          <span key={d.dept} className="flex items-center gap-1" title={d.codes.length ? `申请代码：${d.codes.join("、")}` : undefined}>
+            <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: d.color }} />{d.name} {d.count}
+            {d.name === "代码待核对" ? `（${d.codes.join("、")}，不属于已知学部字母，请核对原文）` : ""}</span>
         ))}
       </div>
       <div aria-label="颜色类别图例" className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">

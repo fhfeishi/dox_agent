@@ -326,7 +326,7 @@ async def generate_markdown(knowledge, settings, params: dict, *, llm=None,
     if task_definition:
         fields = (("背景", "background"), ("目标", "goal"), ("具体要求", "requirements"),
                   ("边界", "boundaries"), ("澄清条件", "clarification_conditions"),
-                  ("输出要求", "output_instructions"))
+                  ("输出要求", "output_instructions"), ("任务大纲", "outline"))
         custom_instruction = "\n\n发布任务约束：\n" + "\n".join(
             f"{label}：{task_definition.get(key, '')}" for label, key in fields
             if task_definition.get(key))

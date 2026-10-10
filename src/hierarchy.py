@@ -321,7 +321,8 @@ async def synthesize(info, library: dict, settings, *, force: bool = False, llm=
             and previous.get("process", {}).get("status") == "已完成":
         return previous
 
-    model = llm or model_for(settings)
+    # One long structured reply for the whole library: allow a slow response rather than fail at 60 s.
+    model = llm or model_for(settings, timeout=180)
     deadline = asyncio.get_running_loop().time() + settings.run_timeout
     failure = ""
     try:
@@ -346,6 +347,9 @@ async def synthesize(info, library: dict, settings, *, force: bool = False, llm=
         scenes, coverage = [], {}
     except ValueError as exc:
         failure = str(exc)
+        scenes, coverage = [], {}
+    except Exception as exc:  # noqa: BLE001 — provider timeout or API error: record it, keep the previous version
+        failure = f"模型调用失败（{type(exc).__name__}）"
         scenes, coverage = [], {}
     record = {
         "corpus_id": info.id,

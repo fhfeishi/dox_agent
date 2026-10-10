@@ -107,13 +107,22 @@ export async function generateTopicSummary(corpus: string, dimension: string, na
   return response.json();
 }
 
-/** Technology lineage (query 2026-1009 ④): category → direction → route, per corpus branch. */
-export type LineageCategory = { name: string; summary: string; children: { name: string; routes: string[] }[] };
+/**
+ * Technology lineage (query 2026-1009 ④ / 1111): library → system → direction → theme → each
+ * project's technique item, with the maturity that project reached (0 = 未判定).
+ */
+/** Keyed by "project|item": extracted item ids repeat across projects with the same item name. */
+/** `field`/`stage`: application field (the scene hierarchy's scenes) and workflow stage; empty when not determinable. */
+export type LineageItem = { name: string; desc: string; project_id: string; item_id: string; maturity: number; basis: string; field?: string; stage?: string };
+export type LineageTheme = { name: string; items: string[] };
+/** `plain`: a sentence for readers new to the technique; `foundation`: shared infrastructure across scenes. */
+export type LineageCategory = { name: string; summary: string; plain?: string; unplaced?: boolean;
+  children: { name: string; plain?: string; foundation?: boolean; themes: LineageTheme[] }[] };
 export type Lineage = {
   corpus_id: string; state: "missing" | "stale" | "ready"; branch: string; generated_at?: string; error?: string;
-  categories: LineageCategory[]; gaps: string[];
-  routes: Record<string, { summary: string; project_ids: string[]; issues: { scene: string; issue: string; state: string }[] }>;
-  supporting: Record<string, { name: string; project_ids: string[] }[]>;
+  categories: LineageCategory[]; items: Record<string, LineageItem>; gaps: string[];
+  fields?: { name: string; plain: string }[]; stages?: { name: string; plain: string }[];
+  maturity_levels: Record<string, string>; job?: { status: string; done: number; total: number }; stale_reason?: string;
 };
 export const lineageQuery = (corpus: string) => ({
   queryKey: ["library", corpus, "lineage"],
@@ -124,21 +133,21 @@ export const lineageQuery = (corpus: string) => ({
   },
 });
 export async function buildLineage(corpus: string): Promise<Lineage> {
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/lineage`, {
-    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ force: true }),
-  });
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/lineage`, { method: "POST" });
   if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "技术谱系生成失败");
   return response.json();
 }
-/** Position of a route in the tree, for parent / sibling navigation. */
-export function locateRoute(lineage: Lineage | undefined, title: string) {
+/** Path of one technique item in the tree. */
+export function locateItem(lineage: Lineage | undefined, itemId: string) {
   for (const category of lineage?.categories ?? []) {
     for (const child of category.children) {
-      if (child.routes.includes(title)) return { category, child };
+      for (const theme of child.themes) if (theme.items.includes(itemId)) return { category, child, theme };
     }
   }
   return null;
 }
+/** Stage colours, light to deep; red is kept for errors and conflicts, never for the top stage. */
+export const MATURITY_COLORS = ["#b8bfcc", "#9ec5e8", "#5b9bd5", "#2f6fae", "#2d9d7e", "#b7791f"];
 
 /** Each report's own 成果列表 (papers, patents, awards…), keyed by project. */
 export type ProjectOutputs = { declared: number; counts: Record<string, number>; items: { type: string; title: string }[]; doc_id: string; version: string };

@@ -14,14 +14,35 @@ from pathlib import Path
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .agent.models import model_for
+from . import achievement_list
 from .prompts import target_instruction
 from .reports import review_segments
 
 DIMENSIONS = ("场景", "问题", "技术", "成果")
-OUTCOME_STATUSES = ("已取得", "预期", "原文未明确")
-SCHEMA_VERSION = 1
-PROMPT_VERSION = 1
+OUTCOME_STATUSES = ("已取得", "在研", "预期", "原文未明确")
+SCHEMA_VERSION = 2
+PROMPT_VERSION = 2
 TARGET_DIRNAME = "target"
+
+TECH_ROLES = ("关键创新", "配套-感知", "配套-控制", "配套-数据", "配套-通信", "配套-制造", "配套-验证", "未标明")
+ATTRIBUTIONS = ("本项目", "前期成果", "参考文献", "待核对")
+_PUBLICATION = ("已投稿", "已录用", "已发表", "原文未明确")
+_GENERIC = ("已取得", "在研", "预期", "原文未明确")
+OUTPUT_KINDS = {
+    "期刊论文": _PUBLICATION, "会议论文": _PUBLICATION,
+    "专利": ("申请", "公开", "授权", "原文未明确"),
+    "软件/数据": _GENERIC, "样机/系统": _GENERIC, "平台/基地": _GENERIC, "标准/许可": _GENERIC,
+    "人才/团队": _GENERIC, "转化/应用": _GENERIC, "指标": _GENERIC, "奖励/专著": _GENERIC,
+}
+EVENT_TYPES = ("试验", "样机", "部署", "论文发表", "专利申请", "专利授权", "其他")
+EVENT_DATE = re.compile(r"\d{4}(?:-\d{2}(?:-\d{2})?)?(?:/\d{4}(?:-\d{2}(?:-\d{2})?)?)?")
+# relation type -> allowed (from, to) dimensions
+RELATION_TYPES = {
+    "场景-问题": {("场景", "问题")},
+    "针对": {("技术", "问题")},
+    "配套": {("技术", "技术")},
+    "验证": {("成果", "技术"), ("成果", "问题")},
+}
 
 
 class TargetMissing(KeyError):
@@ -212,8 +233,102 @@ def _locate(markdown: str, segment_start: int, segment_end: int, quote: str,
     return {"basis": "parsed_text", "start_char": start + 1, "end_char": start + len(quote)}
 
 
+def _clean(value: object, limit: int) -> str:
+    """Optional free text: anything non-text or oversized is dropped rather than trusted."""
+    return value.strip() if isinstance(value, str) and len(value.strip()) <= limit else ""
+
+
+def _citations(raw: dict, label: str, markdown: str, start: int, end: int,
+               chunks: list[dict], is_pdf: bool) -> list[dict]:
+    evidence = raw.get("evidence")
+    if not isinstance(evidence, list) or not evidence or len(evidence) > 8:
+        raise ValueError(f"{label}必须包含 1–8 条证据")
+    citations = []
+    for proof in evidence:
+        if not isinstance(proof, dict):
+            raise ValueError(f"{label}证据结构非法")
+        quote = _bounded_text(proof.get("quote"), f"{label}证据引文", 2000)
+        citations.append({"quote": quote, "locator": _locate(markdown, start, end, quote, chunks, is_pdf)})
+    return citations
+
+
+def _quoted(value: str, citations: list[dict]) -> bool:
+    return bool(value) and any(value in proof["quote"] for proof in citations)
+
+
+def _event_date(raw: object, citations: list[dict]) -> tuple[str, str]:
+    date = raw.strip() if isinstance(raw, str) else ""
+    if not date:
+        return "", "未知"
+    if not EVENT_DATE.fullmatch(date):
+        raise ValueError("事件日期格式非法")
+    # A year the model supplies must be readable in the quoted text, never inferred.
+    for year in re.findall(r"\d{4}", date):
+        if not _quoted(year, citations):
+            raise ValueError("事件日期在引文中找不到")
+    first = date.split("/")
+    return date, "区间" if len(first) == 2 else {4: "年", 7: "月", 10: "日"}[len(date)]
+
+
+def _normalize_output(raw: dict, local_id: str, citations: list[dict]) -> dict:
+    kind, attribution = raw.get("kind"), raw.get("attribution")
+    if kind not in OUTPUT_KINDS or attribution not in ATTRIBUTIONS:
+        raise ValueError("成果类别或归属非法")
+    status = raw.get("status")
+    if status not in OUTPUT_KINDS[kind]:
+        raise ValueError(f"{kind}状态必须是 {'/'.join(OUTPUT_KINDS[kind])}")
+    entry = {"_local_id": local_id, "kind": kind, "attribution": attribution, "status": status,
+             "title": _bounded_text(raw.get("title"), "成果题名", 300),
+             "status_raw": _clean(raw.get("status_raw"), 60), "evidence": citations}
+    year = raw.get("year")
+    if year not in (None, ""):
+        year = str(year)
+        if not re.fullmatch(r"(19|20)\d{2}", year) or not _quoted(year, citations):
+            raise ValueError("成果年份在引文中找不到")
+        entry["year"] = year
+    identifiers = raw.get("identifiers", {})
+    if not isinstance(identifiers, dict) or len(identifiers) > 6:
+        raise ValueError("成果标识结构非法")
+    entry["identifiers"] = {}
+    for name, value in identifiers.items():
+        if not isinstance(name, str) or not isinstance(value, str) or not _quoted(value.strip(), citations):
+            raise ValueError("成果标识在引文中找不到")
+        entry["identifiers"][name.strip()[:30]] = value.strip()
+    for field in ("authors", "venue", "unit", "basis"):
+        text = _clean(raw.get(field), 300)
+        if text and _quoted(text, citations):
+            entry[field] = text
+    if kind == "指标":
+        value = raw.get("value")
+        value = str(value).strip() if isinstance(value, (str, int, float)) else ""
+        if not _quoted(value, citations):
+            raise ValueError("指标数值在引文中找不到")
+        entry["value"] = value
+    return entry
+
+
+def _normalize_event(raw: dict, local_id: str, citations: list[dict]) -> dict:
+    if raw.get("type") not in EVENT_TYPES:
+        raise ValueError("事件类型非法")
+    if raw.get("status") not in OUTCOME_STATUSES:
+        raise ValueError("事件缺少状态")
+    date, precision = _event_date(raw.get("date"), citations)
+    return {"_local_id": local_id, "type": raw["type"], "status": raw["status"], "date": date,
+            "precision": precision, "desc": _bounded_text(raw.get("desc"), "事件说明", 1000),
+            "result": _clean(raw.get("result"), 1000), "environment": _clean(raw.get("environment"), 300),
+            "self_reported": raw.get("self_reported") is True,
+            "tech_refs": [r for r in raw.get("tech_ids", []) if isinstance(r, str)][:10]
+            if isinstance(raw.get("tech_ids", []), list) else [],
+            "output_refs": [r for r in raw.get("output_ids", []) if isinstance(r, str)][:10]
+            if isinstance(raw.get("output_ids", []), list) else [],
+            "evidence": citations}
+
+
 def _normalize_segment(raw: dict, markdown: str, start: int, end: int,
-                       chunks: list[dict], is_pdf: bool) -> tuple[dict[str, list[dict]], list[dict]]:
+                       chunks: list[dict], is_pdf: bool) -> dict:
+    """Validate one model reply. Structure errors abort the segment; a single bad entry
+    (missing/forged quote, unreadable date, illegal enum) is rejected and logged, so one
+    forged fact never discards the rest of the segment."""
     facets = raw.get("facets")
     if not isinstance(facets, list):
         raise ValueError("四维结果缺少 facets")
@@ -224,60 +339,97 @@ def _normalize_segment(raw: dict, markdown: str, start: int, end: int,
         by_key[facet["key"]] = facet
     if set(by_key) != set(DIMENSIONS):
         raise ValueError("四维字段缺失，属于提取异常")
+    for name in ("relations", "outputs", "events"):
+        if not isinstance(raw.get(name, []), list):
+            raise ValueError(f"{name} 结构非法")
+
+    rejected: list[dict] = []
+
+    def attempt(label: str, name: object, build):
+        try:
+            return build()
+        except ValueError as exc:
+            rejected.append({"kind": label, "name": str(name)[:120], "reason": str(exc),
+                             "span": [start + 1, end]})
+            return None
 
     normalized: dict[str, list[dict]] = {key: [] for key in DIMENSIONS}
     local_ids: set[tuple[str, str]] = set()
     for key in DIMENSIONS:
         items = by_key[key].get("items")
-        if not isinstance(items, list) or len(items) > 20:
+        if not isinstance(items, list):
             raise ValueError(f"{key}条目结构非法")
         for index, item in enumerate(items):
             if not isinstance(item, dict):
                 raise ValueError(f"{key}条目结构非法")
-            local_id = _bounded_text(item.get("id", f"{key}-{index + 1}"), f"{key}条目 id", 120)
-            if (key, local_id) in local_ids:
-                raise ValueError(f"{key}条目 id 重复")
-            local_ids.add((key, local_id))
-            evidence = item.get("evidence")
-            if not isinstance(evidence, list) or not evidence or len(evidence) > 5:
-                raise ValueError(f"{key}条目必须包含证据")
-            citations = []
-            for proof in evidence:
-                if not isinstance(proof, dict):
-                    raise ValueError(f"{key}证据结构非法")
-                quote = _bounded_text(proof.get("quote"), f"{key}证据引文", 2000)
-                citations.append({"quote": quote,
-                                  "locator": _locate(markdown, start, end, quote, chunks, is_pdf)})
-            entry = {
-                "name": _bounded_text(item.get("name"), f"{key}名称", 120),
-                "_local_id": local_id,
-                "desc": _bounded_text(item.get("desc", ""), f"{key}说明", 1000, required=False),
-                "evidence": citations,
-            }
-            if key == "成果":
-                status = item.get("status")
-                if status not in OUTCOME_STATUSES:
-                    raise ValueError("成果条目缺少已取得/预期/原文未明确状态")
-                entry["status"] = status
-            normalized[key].append(entry)
 
-    relations = raw.get("relations", [])
-    if not isinstance(relations, list):
-        raise ValueError("relations 结构非法")
-    checked_relations = []
-    for relation in relations:
-        # 只保留原文明示的关联：仅在同一段同时出现两个条目不构成关联。
+            def build_item(key=key, index=index, item=item):
+                local_id = _bounded_text(item.get("id", f"{key}-{index + 1}"), f"{key}条目 id", 120)
+                if (key, local_id) in local_ids:
+                    raise ValueError(f"{key}条目 id 重复")
+                entry = {"name": _bounded_text(item.get("name"), f"{key}名称", 120),
+                         "_local_id": local_id,
+                         "desc": _bounded_text(item.get("desc", ""), f"{key}说明", 1000, required=False),
+                         "evidence": _citations(item, key, markdown, start, end, chunks, is_pdf)}
+                if key == "成果":
+                    if item.get("status") not in OUTCOME_STATUSES:
+                        raise ValueError("成果条目缺少已取得/在研/预期/原文未明确状态")
+                    entry["status"] = item["status"]
+                    entry["status_raw"] = _clean(item.get("status_raw"), 60)
+                    entry["self_reported"] = item.get("self_reported") is True
+                if key == "技术":
+                    role = item.get("role", "未标明")
+                    if role not in TECH_ROLES:
+                        raise ValueError("技术角色非法")
+                    entry["role"] = role
+                local_ids.add((key, local_id))
+                return entry
+
+            entry = attempt(key, item.get("name"), build_item)
+            if entry:
+                normalized[key].append(entry)
+
+    outputs, events = [], []
+    for index, item in enumerate(raw.get("outputs", [])):
+        if not isinstance(item, dict):
+            raise ValueError("outputs 条目结构非法")
+        entry = attempt("可枚举成果", item.get("title"), lambda item=item, index=index: _normalize_output(
+            item, _bounded_text(item.get("id", f"out-{index + 1}"), "成果 id", 120),
+            _citations(item, "可枚举成果", markdown, start, end, chunks, is_pdf)))
+        if entry:
+            outputs.append(entry)
+    for index, item in enumerate(raw.get("events", [])):
+        if not isinstance(item, dict):
+            raise ValueError("events 条目结构非法")
+        entry = attempt("事件", item.get("desc"), lambda item=item, index=index: _normalize_event(
+            item, _bounded_text(item.get("id", f"evt-{index + 1}"), "事件 id", 120),
+            _citations(item, "事件", markdown, start, end, chunks, is_pdf)))
+        if entry:
+            events.append(entry)
+
+    relations = []
+    for relation in raw.get("relations", []):
         if not isinstance(relation, dict) or relation.get("basis") != "原文明示":
-            continue
-        source, target = relation.get("from"), relation.get("to")
-        if not isinstance(source, dict) or not isinstance(target, dict):
-            raise ValueError("关联端点结构非法")
-        source_ref = (source.get("dimension"), source.get("item_id"))
-        target_ref = (target.get("dimension"), target.get("item_id"))
-        if source_ref not in local_ids or target_ref not in local_ids:
-            raise ValueError("关联引用了不存在的条目")
-        checked_relations.append({"from": source_ref, "to": target_ref, "basis": "原文明示"})
-    return normalized, checked_relations
+            continue  # same-paragraph co-occurrence is not a relation
+
+        def build_relation(relation=relation):
+            ends = []
+            for side in ("from", "to"):
+                ref = relation.get(side)
+                if not isinstance(ref, dict) or (ref.get("dimension"), ref.get("item_id")) not in local_ids:
+                    raise ValueError("关联引用了不存在或已被拒绝的条目")
+                ends.append((ref["dimension"], ref["item_id"]))
+            kind = relation.get("type")
+            if kind not in RELATION_TYPES or (ends[0][0], ends[1][0]) not in RELATION_TYPES[kind]:
+                raise ValueError("关联类型与端点维度不符")
+            return {"from": ends[0], "to": ends[1], "type": kind, "basis": "原文明示",
+                    "evidence": _citations(relation, "关联", markdown, start, end, chunks, is_pdf)}
+
+        built = attempt("关系", relation.get("type"), build_relation)
+        if built:
+            relations.append(built)
+    return {"facets": normalized, "relations": relations, "outputs": outputs, "events": events,
+            "rejected": rejected}
 
 
 def item_evidence(info, doc_id: str, version: str, item_ids: set[str]) -> dict[str, list[dict]]:
@@ -307,14 +459,136 @@ def _item_id(dimension: str, key: str) -> str:
     return "item-" + hashlib.sha256(f"{dimension}:{key}".encode()).hexdigest()[:12]
 
 
-async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool = False, llm=None) -> dict:
+def _norm(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip().casefold()
+
+
+def _output_identity(entry: dict) -> str:
+    # A hard identifier (DOI, application number…) decides identity; look-alike titles
+    # without one stay separate rather than being merged on a guess.
+    ids = sorted(f"{k.casefold()}={_norm(v)}" for k, v in entry["identifiers"].items())
+    if ids:
+        return f"{entry['kind']}\0" + "\0".join(ids)
+    return f"{entry['kind']}\0{entry['attribution']}\0{_norm(entry['title'])}"
+
+
+class _Merge:
+    """Accumulates validated segments into one record; ids are derived from content so a
+    re-extraction of the same text yields the same ids downstream already reference."""
+
+    def __init__(self, version: str):
+        self.version = version
+        self.facets: dict[str, dict[str, dict]] = {key: {} for key in DIMENSIONS}
+        self.outputs: dict[str, dict] = {}
+        self.events: dict[str, dict] = {}
+        self.relations: list[dict] = []
+        self.rejected: list[dict] = []
+
+    def _evidence(self, target: dict, proofs: list[dict]) -> None:
+        for proof in proofs:
+            proof = {**proof, "version": self.version}
+            if proof not in target["evidence"]:
+                target["evidence"].append(proof)
+
+    def add(self, segment: dict) -> None:
+        local: dict[tuple[str, str], str] = {}
+        for dimension, items in segment["facets"].items():
+            for item in items:
+                identity = _norm(item["name"])
+                if dimension == "成果":
+                    identity += f"\0{item['status']}"
+                existing = self.facets[dimension].get(identity)
+                if existing is None:
+                    existing = {"id": _item_id(dimension, identity), "name": item["name"],
+                                "desc": item["desc"], "evidence": [],
+                                **{k: item[k] for k in ("status", "status_raw", "self_reported", "role")
+                                   if k in item}}
+                    self.facets[dimension][identity] = existing
+                elif len(item["desc"]) > len(existing["desc"]):
+                    existing["desc"] = item["desc"]
+                local[(dimension, item["_local_id"])] = existing["id"]
+                self._evidence(existing, item["evidence"])
+        output_ids: dict[str, str] = {}
+        for output in segment["outputs"]:
+            identity = _output_identity(output)
+            existing = self.outputs.get(identity)
+            if existing is None:
+                existing = {k: v for k, v in output.items() if k not in ("_local_id", "evidence")}
+                existing["id"] = "out-" + hashlib.sha256(identity.encode()).hexdigest()[:12]
+                existing["evidence"] = []
+                self.outputs[identity] = existing
+            elif existing["attribution"] == "待核对" and output["attribution"] != "待核对":
+                existing["attribution"] = output["attribution"]
+            output_ids[output["_local_id"]] = existing["id"]
+            self._evidence(existing, output["evidence"])
+        for event in segment["events"]:
+            identity = f"{event['type']}\0{event['date']}\0{_norm(event['desc'])[:120]}"
+            existing = self.events.get(identity)
+            if existing is None:
+                existing = {k: v for k, v in event.items()
+                            if k not in ("_local_id", "evidence", "tech_refs", "output_refs")}
+                existing.update(id="evt-" + hashlib.sha256(identity.encode()).hexdigest()[:12],
+                                tech_ids=[], output_ids=[], evidence=[])
+                self.events[identity] = existing
+            for ref in event["tech_refs"]:
+                merged = local.get(("技术", ref))
+                if merged and merged not in existing["tech_ids"]:
+                    existing["tech_ids"].append(merged)
+            for ref in event["output_refs"]:
+                merged = output_ids.get(ref)
+                if merged and merged not in existing["output_ids"]:
+                    existing["output_ids"].append(merged)
+            self._evidence(existing, event["evidence"])
+        for relation in segment["relations"]:
+            value = {"from": {"dimension": relation["from"][0], "item_id": local[relation["from"]]},
+                     "to": {"dimension": relation["to"][0], "item_id": local[relation["to"]]},
+                     "type": relation["type"], "basis": "原文明示", "evidence": []}
+            existing = next((r for r in self.relations if all(r[k] == value[k] for k in ("from", "to", "type"))), None)
+            if existing is None:
+                self.relations.append(value)
+                existing = value
+            self._evidence(existing, relation["evidence"])
+        self.rejected.extend(segment["rejected"])
+
+
+def _outputs_check(markdown: str, outputs: list[dict]) -> dict | None:
+    """Reconcile extracted project outputs with the report's own 成果列表（N）, when it has one."""
+    listed = achievement_list.parse(markdown)
+    if listed is None:
+        return None
+    kinds = {"期刊论文": "期刊论文", "会议论文": "会议论文", "专利": "专利", "奖励": "奖励/专著", "专著": "奖励/专著"}
+    per_kind: dict[str, dict] = {}
+    for item in listed["items"]:
+        kind = kinds.get(item["type"])
+        if kind:
+            per_kind.setdefault(kind, {"listed": 0, "extracted": 0})["listed"] += 1
+    for output in outputs:
+        if output["attribution"] == "本项目" and output["kind"] in kinds.values():
+            per_kind.setdefault(output["kind"], {"listed": 0, "extracted": 0})["extracted"] += 1
+    return {"declared": listed["declared"], "listed": len(listed["items"]), "by_kind": per_kind,
+            "consistent": listed["declared"] == len(listed["items"])
+            and all(v["listed"] == v["extracted"] for v in per_kind.values())}
+
+
+class _Exhausted(Exception):
+    """The per-document model-call budget ran out before the text was fully read."""
+
+
+def needs_extraction(record: dict | None, error: str, doc: dict) -> bool:
+    """True unless a completed record of the current schema already matches this document."""
+    state, _ = _record_state(record, error, doc)
+    return not (state == "current" and record["process"].get("status") == "已完成")
+
+
+async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool = False, llm=None,
+                         max_calls: int | None = None, timeout: float | None = None) -> dict:
     docs = {doc["doc_id"]: doc for doc in await asyncio.to_thread(knowledge.current)}
     doc = docs.get(doc_id)
     if doc is None:
         raise TargetMissing("文档不存在或当前不可用于提取")
     previous, previous_error = await asyncio.to_thread(_load, info, doc_id)
     previous_state, _ = _record_state(previous, previous_error, doc)
-    if not force and previous_state == "current" and previous and previous["process"].get("status") == "已完成":
+    if not force and not needs_extraction(previous, previous_error, doc):
         return previous
 
     markdown = await asyncio.to_thread(knowledge.read_markdown, doc_id, doc["version"])
@@ -324,72 +598,52 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
     chunks = [item for item in await asyncio.to_thread(knowledge.chunk_rows)
               if item["doc_id"] == doc_id and item["version"] == doc["version"]]
     model = llm or model_for(settings)
-    merged: dict[str, dict[str, dict]] = {key: {} for key in DIMENSIONS}
-    relations: list[dict] = []
-    processed = 0
+    is_pdf = doc.get("kind") == "pdf"
+    merge = _Merge(doc["version"])
+    budget = max_calls or settings.max_model_calls
+    calls = processed = 0
+    failed: list[dict] = []
     failure = ""
-    deadline = asyncio.get_running_loop().time() + settings.run_timeout
-    max_segments = min(len(pieces), settings.max_model_calls)
+
+    async def read(start: int, end: int, depth: int = 0) -> None:
+        nonlocal calls
+        if calls >= budget:
+            raise _Exhausted
+        calls += 1
+        response = await model.ainvoke([
+            SystemMessage(content=target_instruction()),
+            HumanMessage(content=(
+                f"文档：{doc['title']}\n正文分段：{start + 1}–{end}（共 {len(markdown)} 字符）\n"
+                f"解析正文字符：{start + 1}–{end}\n\n{markdown[start:end]}")),
+        ])
+        if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
+            middle = markdown.rfind("\n", start + 200, (start + end) // 2 + 200)
+            if depth >= 2 or middle <= start or middle >= end:
+                raise ValueError("模型输出被截断，且分块已无法再缩小")
+            # Truncated output means this block holds more than one reply can carry: read halves.
+            await read(start, middle, depth + 1)
+            await read(middle, end, depth + 1)
+            return
+        merge.add(_normalize_segment(_json_object(response.content), markdown, start, end, chunks, is_pdf))
+
     try:
-        async with asyncio.timeout_at(deadline):
-            for segment_index, (start, end, piece) in enumerate(pieces[:max_segments], 1):
-                response = await model.ainvoke([
-                    SystemMessage(content=target_instruction()),
-                    HumanMessage(content=(
-                        f"文档：{doc['title']}\n正文分段：{segment_index}/{len(pieces)}\n"
-                        f"解析正文字符：{start + 1}–{end}\n\n{piece}"
-                    )),
-                ])
-                if (getattr(response, "response_metadata", None) or {}).get("finish_reason") == "length":
-                    raise ValueError("模型输出被截断")
-                facets, segment_relations = _normalize_segment(
-                    _json_object(response.content), markdown, start, end, chunks, doc.get("kind") == "pdf")
-                local_to_merged: dict[tuple[str, str], str] = {}
-                for dimension, items in facets.items():
-                    for item in items:
-                        identity = re.sub(r"\s+", " ", item["name"]).strip().casefold()
-                        if dimension == "成果":
-                            identity += f"\0{item['status']}"
-                        existing = merged[dimension].get(identity)
-                        if existing is None:
-                            existing = {"id": _item_id(dimension, identity),
-                                        "name": item["name"], "desc": item["desc"],
-                                        "evidence": [], **({"status": item["status"]} if dimension == "成果" else {})}
-                            merged[dimension][identity] = existing
-                        elif len(item["desc"]) > len(existing["desc"]):
-                            existing["desc"] = item["desc"]
-                        local_to_merged[(dimension, item["_local_id"])] = existing["id"]
-                        # The per-segment id is merge bookkeeping, never part of the record.
-                        item.pop("_local_id", None)
-                        for proof in item["evidence"]:
-                            proof = {**proof, "version": doc["version"]}
-                            if proof not in existing["evidence"]:
-                                existing["evidence"].append(proof)
-                for relation in segment_relations:
-                    value = {
-                        "from": {"dimension": relation["from"][0],
-                                 "item_id": local_to_merged[relation["from"]]},
-                        "to": {"dimension": relation["to"][0],
-                               "item_id": local_to_merged[relation["to"]]},
-                        "basis": "原文明示",
-                    }
-                    if value not in relations:
-                        relations.append(value)
-                processed += 1
+        async with asyncio.timeout(timeout or settings.run_timeout):
+            for start, end, _ in pieces:
+                try:
+                    await read(start, end)
+                    processed += 1
+                except ValueError as exc:
+                    # One bad block must not discard what other blocks already yielded.
+                    failed.append({"span": [start + 1, end], "error": str(exc)})
     except TimeoutError:
-        # 超时不是模型结构问题：两者文案与可重试性不同，必须分开。
-        failure = "四维提取超过本次运行时限"
-    except ValueError as exc:
-        failure = str(exc)
-    if not failure and max_segments < len(pieces):
-        failure = f"正文共 {len(pieces)} 段，本次最多处理 {max_segments} 段"
+        failure = "全文提取超过本次运行时限"
+    except _Exhausted:
+        failure = f"本次最多调用模型 {budget} 次，尚有正文未读完"
+    if failed and not failure:
+        failure = f"{len(failed)} 个正文块提取失败"
 
     complete = not failure and processed == len(pieces)
-    facets = [{
-        "key": dimension,
-        "state": ("has" if items else "未提及") if complete else "异常",
-        "items": list(items.values()),
-    } for dimension, items in merged.items()]
+    outputs = list(merge.outputs.values())
     record = {
         "doc_id": doc_id,
         "version": doc["version"],
@@ -397,11 +651,17 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
         "schema_version": SCHEMA_VERSION,
         "prompt_version": PROMPT_VERSION,
         "model": settings.model_name,
+        "params": {"segment_chars": 6000, "model_calls": calls},
         "generated_at": datetime.now(UTC).isoformat(),
         "process": {"status": "已完成" if complete else "未完成",
-                    "coverage": {"processed": processed, "total": len(pieces)}},
-        "facets": facets,
-        "relations": relations,
+                    "coverage": {"processed": processed, "total": len(pieces), "failed": failed}},
+        "facets": [{"key": dimension, "state": ("has" if items else "未提及") if complete else "异常",
+                    "items": list(items.values())} for dimension, items in merge.facets.items()],
+        "relations": merge.relations,
+        "outputs": outputs,
+        "events": list(merge.events.values()),
+        "rejected": merge.rejected,
+        "outputs_check": _outputs_check(markdown, outputs),
         **({"error": failure} if failure else {}),
     }
     # 发布前再核对一次：提取期间资料若已变化，不能用旧正文的结果冒充当前版本。
@@ -409,7 +669,8 @@ async def extract_target(info, knowledge, settings, doc_id: str, *, force: bool 
     if fresh is None or fresh["version"] != doc["version"] or (
             doc.get("source_sha256") and fresh.get("source_sha256") != doc.get("source_sha256")):
         raise TargetStale("资料已更新")
-    preserve_previous = previous_state == "current" and previous and previous["process"].get("status") == "已完成"
-    if complete or not preserve_previous:
+    # A failed run never replaces a readable record; a complete one always does.
+    keep_previous = previous_state == "current" and previous["process"].get("status") == "已完成"
+    if complete or not keep_previous:
         await asyncio.to_thread(_save, info, record)
     return record

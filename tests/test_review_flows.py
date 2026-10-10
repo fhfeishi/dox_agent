@@ -46,6 +46,11 @@ class FixtureReviewClient:
             return {
                 "summary": "现有资料不足以判断原创。",
                 "cards": [
+                    # The last question answered first: the report must still follow template order.
+                    *([{"check_id": payload["questions"][-1]["check_id"], "title": "差异待说明",
+                        "assessment": "需与相近项目逐项对照", "suggestion": "列出对照项目",
+                        "source_id": payload["facts"][0]["source_id"], "evidence_ids": []}]
+                      if len(payload["questions"]) > 1 else []),
                     {
                         "check_id": payload["questions"][0]["check_id"],
                         "title": "创新依据待补充",
@@ -54,7 +59,7 @@ class FixtureReviewClient:
                         # Real models join several passages into one field; the first valid one anchors the card.
                         "source_id": "unknown-id; " + payload["facts"][0]["source_id"],
                         "evidence_ids": [],
-                    }
+                    },
                 ],
             }
         if phase == "05_verify":
@@ -298,6 +303,11 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
         assert professional["technical"]["evidence"] == []
         coverage = {row["check_id"]: row["state"] for row in professional["technical"]["coverage"]}
         assert coverage["objective"] == "evaluated" and coverage["risk"] == "missing"
+        # Report order (query 2026-1010 0914) and opinions follow it whatever order the model used.
+        order = [row["check_id"] for row in professional["technical"]["coverage"]]
+        assert order == ["objective", "necessity", "feasibility", "advancement", "risk", "comparison"]
+        ranks = [order.index(card["check_id"]) for card in professional["technical"]["cards"]]
+        assert len(ranks) == 2 and ranks == sorted(ranks), ranks
         assert any("仅检索到 0 篇相近报告" in note for note in professional["audit"]["limitations"])
 
 

@@ -160,6 +160,17 @@ class TemplateStore:
                        (json.dumps(template, ensure_ascii=False), template_id))
         return template
 
+    def delete(self, template_id: str) -> None:
+        """Remove a never-published draft; published templates are archived so bindings keep working."""
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT draft FROM templates WHERE id=?", (template_id,)).fetchone()
+            if row is None:
+                raise TemplateMissing("模板不存在")
+            if normalize_template(json.loads(row[0]))["version"]:
+                raise TemplateConflict("已发布的模板可能被任务或报告引用，只能归档")
+            db.execute("DELETE FROM templates WHERE id=?", (template_id,))
+
     def archive(self, template_id: str) -> dict:
         return self._set_archived(template_id, True)
 

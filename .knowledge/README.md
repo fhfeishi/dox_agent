@@ -24,8 +24,11 @@
 └── <知识库>/                   # 任意数量；目录名 = 知识库规范名
     ├── source/                 # 原始资料（.pdf .md .markdown .txt .docx），可再分子目录
     ├── parsed/                 # 可选：MinerU 解析缓存，按 source 相对路径镜像
+    ├── target/                 # 四维提取记录
     ├── datadb/                 # knowledge.sqlite3（原文/版本/分块/文件清单）
-    └── vectordb/               # Chroma 向量索引
+    ├── vectordb/               # Chroma 向量索引（按机器生成，不入库）
+    ├── hierarchy.json          # 场景层级
+    └── lineage.json            # 技术谱系；可选 lineage_frame.json（固定顶层）、lineage_blanks.json（空白节点）
 ```
 
 - **一个直接子目录 = 一个自包含知识库**，可整体备份、迁移、删除。
@@ -132,7 +135,7 @@ du -sh */ .state
 
 - 一个库目录 = 自包含单元，可整体拷贝或移动。`datadb/`、`vectordb/` 是派生数据，可由 `source/` + `parsed/` 重建；**`source/` 唯一不可重建**。
 - `.state/` 在语料根下，承载注册表（`corpora.json`）、会话、报告、运行快照与产物。**备份知识库时连同 `.state/` 一起备份**，否则稳定 id 与会话引用会丢。
-- **整个 `.knowledge/` 被 `.gitignore` 排除**（`.gitignore:19-20`），本文与各库内容都不进版本库；备份与回滚只能靠本节的文件拷贝，不要指望 git。
+- **Git 跟踪范围**（见仓库根 `.gitignore`）：各库 `source/`、`parsed/`、`target/`、`datadb/`、`hierarchy.json`、`lineage*.json` 与 `.state/corpora.json` 入库，新 clone 可直接浏览；`.state/` 其余内容（会话、运行、审查、成果、导出等）、`vectordb/` 和 `.pre-*`/`*.bak` 快照不入库，这些只能靠本节的文件拷贝备份。
 - 迁移/升级工具会在原文件旁留 `.pre-*`、`*.bak` 快照（如 `corpora.json.pre-*.bak`、`knowledge.sqlite3.pre-*`）；确认新状态可用后再删。
 - `vectordb/` 是惰性创建的派生索引（未配置 `EMBEDDING_PATH` 时不会生成），当前未接入检索；删掉不丢资料，会在需要时重建。
 - 备份示例：`cp -a .knowledge /备份盘/knowledge-$(date +%F)`（整棵目录含 `.state/`）；只留资料底稿时可只拷各库 `source/`。

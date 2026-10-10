@@ -19,9 +19,15 @@ temp/
 .agents/
 data/
 .workbuddy/*
-# 本地语料、解析缓存与运行状态不入库；已跟踪的历史资料（source/parsed/target）不受影响。
-.knowledge/*
-!.knowledge/README.md
+# .knowledge：跟踪新 clone 直接可用所需的资料与整理结果（各库 source/parsed/target/datadb、
+# hierarchy.json、lineage*.json）；运行状态、按机器生成的向量索引与迁移快照不入库。
+# .state 只保留库注册表 corpora.json（稳定 id 与显示名）。
+.knowledge/.state/*
+!.knowledge/.state/corpora.json
+.knowledge/*/vectordb/
+.knowledge/**/*.bak
+.knowledge/**/*.pre-*
+.knowledge/**/*Zone.Identifier
 
 
 .data/*

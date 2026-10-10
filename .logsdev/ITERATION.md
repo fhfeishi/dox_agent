@@ -3129,3 +3129,9 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 删除 `src/official_docs.py`、`src/prepare_docs.py`、`tests/test_official_docs.py`；`main.py` 去掉启动时的官方文档自动导入、`official_job/official_task` 状态与 `GET/POST /api/official-docs`；`Settings.auto_import_official` 删除；`test_background_preparation` 改为只验证“有文档即就绪、无文档报错”，并断言该接口已不存在；各浏览器脚本去掉对该接口的模拟；README 去掉“官方文档自动导入需要网络”。
 - 验证：pytest 231 passed、1 failed（同前，工作区删除了 `tests/data/fund_retrieval.jsonl`）；ruff 与改动前相同（仅既有的 B008 一条）；`browser_scene_hierarchy`、`browser_target_facets` PASS。用户在 Windows 上看到的具体报错原文未提供，未在 Windows 上复现。
 
+### 16.86 .knowledge 的 Git 跟踪范围（2026-10-10）
+
+- `.gitignore`：`.knowledge/*` 整体忽略改为只忽略 `.knowledge/.state/*`（保留 `corpora.json`）、`.knowledge/*/vectordb/`、`.knowledge/**/*.bak`、`.knowledge/**/*.pre-*`、`*Zone.Identifier`；停止跟踪 `.state` 下 24 个文件与 12 个向量索引/快照文件（本机文件保留）；README 与 `.knowledge/README.md` 的跟踪说明同步更新。
+- 验证：`git check-ignore` 抽查——`.state/workspace.sqlite3`、`target_v2_replies/`、`vectordb/`、`*.pre-*` 被忽略；`corpora.json`、各库 `source/`、`parsed/` 图片、新库 `datadb/`、`lineage_blanks.json` 不被忽略；暂存后工作区无新的未跟踪文件。
+- 注意：其他机器拉取后，这些已停止跟踪的文件会被 Git 从工作区删除（本地改过的会使拉取中止），拉取前应先备份 `.knowledge/.state`，拉取后放回。
+

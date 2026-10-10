@@ -71,7 +71,7 @@ Windows 的 `launch.cmd` 为一键启动：
 
 从旧版本升级时，若 `.state` 下仍有旧的 `artifacts.sqlite3`、`reports.sqlite3` 或 `custom_templates.sqlite3`，服务会拒绝启动并提示迁移：停止服务后运行 `python -m src.artifact_migration --state-dir <STATE_DIR> --backup-dir <独立备份目录> --service-stopped` 完成一次性离线迁移（成组备份、迁移历史报告与会话引用、模板换路径）。
 
-uv 不读取 pip 的镜像配置。首次创建虚拟环境或安装依赖时需要 uv 能访问 PyPI；受限网络可为本此调用指定镜像，如 `UV_DEFAULT_INDEX=https://pypi.tuna.tsinghua.edu.cn/simple bash launch.sh`。新 clone 的语料库只有资料与解析缓存、没有检索数据库，启动后在库详情执行一次导入即可建库。
+uv 不读取 pip 的镜像配置。首次创建虚拟环境或安装依赖时需要 uv 能访问 PyPI；受限网络可为本此调用指定镜像，如 `UV_DEFAULT_INDEX=https://pypi.tuna.tsinghua.edu.cn/simple bash launch.sh`。
 
 修改前端代码后需重新构建：
 
@@ -99,7 +99,7 @@ npm run build
 | .knowledge/.state/artifacts/ | 成果数据库（版本、引用、图片、外部输入快照、回收站状态）与模板数据库 |
 | .knowledge/.state/review/ | 资料审查数据库（模板及版本、申请书与信息表、章节对应、运行记录）、上传的模板原文件和导出报告 |
 
-新本地语料、数据库和运行状态由 .gitignore 排除；仓库中已跟踪的历史资料仍受 Git 管理。备份应包含源文件、数据库、提取结果及应用状态（含 .state/artifacts/ 整个子目录）；会话、运行与成果应成组恢复。
+`.knowledge/` 中跟踪各库资料与整理结果（`source/`、`parsed/`、`target/`、`datadb/`、`hierarchy.json`、`lineage*.json`）及库注册表 `.state/corpora.json`；其余运行状态（会话、运行记录、审查上传与报告、成果、导出等）、按机器生成的 `vectordb/` 与迁移快照不入库，各机器各自保存。备份应包含源文件、数据库、提取结果及应用状态（含 .state/artifacts/ 整个子目录）；会话、运行与成果应成组恢复。
 
 审查材料不会进入知识库，也不参与问答检索。新对话按实际知识库目录名字典序选首库，发送时保存显式库范围。
 

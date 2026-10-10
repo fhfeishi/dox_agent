@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CATEGORY_COLORS, MATURITY_COLORS, type Lineage } from "../projects";
+import { ZoomPan } from "./ZoomPan";
 
 /** One row per project: the highest level its techniques in this branch reached. */
 type Row = { id: string; name: string; projectId: string; title: string; start: number; end: number; level: number; basis: string; group: string; count: number };
@@ -75,8 +76,9 @@ export function TechTimeline({ lineage, itemIds, projects, groupOf, onOpen }: {
       最早立项 <b>{y0}</b> · 最近结题 <b>{y1}</b> · {rows.length} 个项目、{itemIds.length - undated} 个技术条目 ·
       本分支已有项目报告达到 <b style={{ color: MATURITY_COLORS[top] }}>{levels[top]}</b>{undated ? ` · ${undated} 条无项目年份未画出` : ""}
     </p>
-    <div className="mt-2 overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full min-w-[560px]" role="img" aria-label="项目周期与验证阶段图">
+    <div className="mt-2">
+      <ZoomPan width={W} height={H} label="项目周期图窗口" minHeight={300} minFit={0.5}>
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="项目周期与验证阶段图">
         {years.map((year) => <g key={year}>
           <line x1={x(year)} x2={x(year)} y1={TOP} y2={cursor} stroke="#e6e8ee" />
           <text x={(x(year) + x(year + 1)) / 2} y={TOP - 9} textAnchor="middle" fontSize={12.5} fill="#4b5563">{year}</text>
@@ -115,6 +117,7 @@ export function TechTimeline({ lineage, itemIds, projects, groupOf, onOpen }: {
         })}
         <text x={LEFT} y={H - 6} fontSize={12} fill="#4b5563">{dense ? "格内数字：当年在研、且结题报告所述为该阶段的项目数；点击查看" : "每条横条是一个项目，长度为起止年，所在行是其结题报告所述阶段；点击打开"}</text>
       </svg>
+      </ZoomPan>
     </div>
     {!dense && groups.length > 1 ? <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--steel)]">
       {groups.map((g) => <span key={g} className="flex items-center gap-1"><span className="size-2.5 rounded-full" style={{ background: color(g) }} />{g}</span>)}

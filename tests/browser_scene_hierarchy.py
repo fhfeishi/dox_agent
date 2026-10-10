@@ -222,28 +222,31 @@ async def main():
             await scene.get_by_role("button", name="深度学习", exact=True).click()
 
             # 技术视图：五级树逐级展开；分支显示项目周期与报告所述阶段，条目显示阶段与同项目还涉及的技术。
-            tree = block.get_by_label("技术谱系树")
+            # 细节：三级谱系图（上一级、当前、下一级）放在可缩放窗口；右侧为条目详情或项目周期图。
+            graph = block.get_by_role("region", name="技术谱系图谱")
             detail = block.get_by_label("技术详情")
+            nav = block.get_by_role("navigation", name="谱系位置")
             await expect(detail).to_contain_text("报告所述阶段：攻关验证3 原型与样机验证")
-            await expect(tree.get_by_text("共性底座")).to_be_visible()  # opens to L2 by default
-            # L1 学科体系 › L2 技术方向 › L3 方法主题 › L4 应用承载 › L5 项目技术（阶段与指标带文字）。
-            await block.get_by_role("button", name="L5 项目技术").click()
-            carrier = tree.get_by_role("button", name=re.compile(r"^承载 · 临床诊疗"))
-            await expect(carrier.first).to_be_visible()
-            await expect(tree.get_by_role("button", name=re.compile(r"^深度学习(?!方法)"))).to_contain_text("攻关验证")
-            await expect(tree.get_by_role("button", name=re.compile(r"^多中心数据库"))).to_contain_text("成型技术")
-            await tree.get_by_role("button", name=re.compile(r"^L1 学科体系\s*机器学习")).click()
+            await expect(nav).to_contain_text(re.compile(r"机器学习\s*›\s*深度学习方法\s*›\s*网络模型\s*›\s*临床诊疗\s*›\s*深度学习"))
+            await expect(graph.get_by_role("button", name="返回上一级：临床诊疗")).to_be_visible()
+            await expect(graph.get_by_role("button", name="同项目技术：数据增强")).to_be_visible()
+            await expect(graph.get_by_role("button", name="同项目技术：多中心数据库")).to_be_visible()
+            await expect(detail).to_contain_text("应用承载：临床诊疗")
+            await expect(detail).to_contain_text("同项目还涉及的技术")
+            await nav.get_by_role("button", name="AI与医疗").click()
+            await graph.get_by_role("button", name="学科体系：机器学习").click()
+            await expect(graph.get_by_role("button", name="技术方向：数据与样本库")).to_contain_text("共性底座")
+            await expect(graph.get_by_role("button", name="返回上一级：AI与医疗")).to_be_visible()
             await expect(detail.get_by_role("img", name="项目周期与验证阶段图")).to_be_visible()
             await expect(detail).to_contain_text("最早立项 2019")
             await expect(detail).to_contain_text("本分支已有项目报告达到 系统集成与场景试验")
             await expect(detail).to_contain_text("通俗地说：让计算机从病例中学规律")
             await expect(detail).not_to_contain_text("发展节点")
-            await tree.get_by_role("button", name=re.compile(r"^深度学习(?!方法)")).click()
-            await expect(detail).to_contain_text("应用承载：临床诊疗")
-            await expect(detail).to_contain_text("同项目还涉及的技术")
-            await expect(detail).to_contain_text("数据增强")
-            await tree.get_by_role("button", name="折叠 网络模型").click()
-            await expect(tree.get_by_role("button", name=re.compile("^数据增强"))).to_have_count(0)
+            await graph.get_by_role("button", name="放大").click()
+            await expect(graph).to_contain_text(re.compile(r"滚轮缩放 · 拖动平移 · \d+%"))
+            for name in ("技术方向：深度学习方法", "方法主题：网络模型", "应用承载：临床诊疗", "项目技术：深度学习"):
+                await graph.get_by_role("button", name=name).click()
+            await expect(detail).to_contain_text("典型技术 · 针对的问题")
             await detail.get_by_role("button", name="病灶识别困难").click()
             await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_have_attribute("aria-selected", "true")
 
@@ -267,6 +270,8 @@ async def main():
             await block.get_by_role("button", name="查看场景 临床诊疗").click()
             flow = block.get_by_label("临床诊疗 逻辑简图")
             await expect(flow).to_be_visible()
+            # 箭头方向：场景→两个问题、问题→技术、技术→成果，共 4 条带箭头的连线。
+            await expect(flow.locator("path[marker-end]")).to_have_count(4)
             await flow.get_by_role("button", name=re.compile("^标注数据不足")).click()
             await expect(flow.get_by_role("button", name=re.compile("^标注数据不足"))).to_have_attribute("aria-pressed", "true")
 

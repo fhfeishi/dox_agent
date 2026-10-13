@@ -1,15 +1,5 @@
-from src.evaluate import DATASET, evaluate, load_cases
+from src.evaluate import evaluate
 from src.knowledge import Document, Knowledge, Page
-
-
-def test_user_fund_dataset_is_well_formed():
-    # Given the committed fund retrieval dataset
-    cases = load_cases(DATASET)
-    # When checking its shape
-    # Then it has 10-15 unique, complete cases
-    assert 10 <= len(cases) <= 15
-    assert all({"id", "query", "expected_source"} <= set(case) for case in cases)
-    assert len({case["id"] for case in cases}) == len(cases)
 
 
 def test_user_retrieval_evaluation_reports_recall_dedup_and_no_match(tmp_path):

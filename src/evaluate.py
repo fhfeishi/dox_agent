@@ -19,8 +19,6 @@ from .agent.corpora import default_db_path
 from .knowledge import Knowledge
 from .retrieval import RetrievalConfig, assemble_reports
 
-DATASET = Path(__file__).resolve().parents[1] / "tests/data/fund_retrieval.jsonl"
-
 
 def _p95(values: list[float]) -> float:
     if not values:
@@ -81,7 +79,7 @@ def load_cases(path: Path) -> list[dict]:
 def main():
     settings = get_settings()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, default=DATASET)
+    parser.add_argument("--dataset", type=Path, required=True)
     parser.add_argument("--db", type=Path, default=default_db_path(settings))
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--task", default="task1")

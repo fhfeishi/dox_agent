@@ -73,7 +73,7 @@ async def main():
                 page.on("pageerror", lambda error: errors.append(str(error)))
 
                 # Given two URLs, when both are previewed, neither replaces the other.
-                await page.request.post(origin + "/api/auth/setup", data={"password": "browser-test-password"})
+                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
                 await page.goto(origin + "/chat")
                 await page.get_by_title("任务 / 附件").click()
                 await page.get_by_role("button", name=re.compile("指定网址")).click()

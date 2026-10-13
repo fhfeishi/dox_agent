@@ -27,7 +27,7 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
-                await page.request.post(origin + "/api/auth/setup", data={"password": "browser-test-password"})
+                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
                 await page.goto(origin + "/chat")
                 await page.get_by_role("button", name="Prompt / Skill").click()
                 await expect(page.get_by_role("button", name="新建 Prompt")).to_be_visible()

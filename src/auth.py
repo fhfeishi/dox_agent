@@ -1,6 +1,7 @@
 """Local accounts with three roles; salted credentials and revocable server-side sessions.
 
-Roles (query 2026-1013 1133) choose the interface: ``leader`` gets the lean leader view, ``admin``
+An internal system: the store starts with ``admin`` / ``123456`` and every password needs only
+four characters; new accounts default to ``123456``. Roles (query 2026-1013 1133) choose the interface: ``leader`` gets the lean leader view, ``admin``
 the full system plus account management, ``user`` the full workbench. Apart from account
 management there is no permission layer yet. Each account also remembers which first-visit guides
 it has dismissed.
@@ -24,6 +25,7 @@ LIFETIME = 7 * 24 * 3600
 Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
+DEFAULT_PASSWORD = "123456"
 
 
 class Credentials(BaseModel):
@@ -33,7 +35,7 @@ class Credentials(BaseModel):
 
 class NewAccount(BaseModel):
     username: str = Field(max_length=40)
-    password: str = Field(max_length=256)
+    password: str = Field(default=DEFAULT_PASSWORD, max_length=256)
     role: Role
 
 
@@ -47,8 +49,8 @@ class Guide(BaseModel):
 
 
 def _check_password(password: str):
-    if len(password) < 10:
-        raise HTTPException(422, "密码至少需要 10 个字符")
+    if len(password) < 4:
+        raise HTTPException(422, "密码至少需要 4 个字符")
 
 
 class Accounts:
@@ -69,6 +71,9 @@ class Accounts:
             db.execute("DROP TABLE administrator")
             db.execute("DROP TABLE IF EXISTS sessions")
         db.execute("CREATE TABLE IF NOT EXISTS sessions (digest TEXT PRIMARY KEY, username TEXT, expires REAL)")
+        if not db.execute("SELECT 1 FROM accounts").fetchone():
+            salt, digest = self._credentials(DEFAULT_PASSWORD)
+            db.execute("INSERT INTO accounts VALUES ('admin','admin',?,?,?)", (salt, digest, time.time()))
         db.commit()
         self.path.chmod(0o600)
         return db
@@ -81,10 +86,6 @@ class Accounts:
         salt = secrets.token_hex(16)
         return salt, self.password_digest(password, salt)
 
-    def configured(self):
-        with self.connect() as db:
-            return db.execute("SELECT 1 FROM accounts").fetchone() is not None
-
     def user(self, token):
         """(username, role) for a live session, else None."""
         if not token:
@@ -92,15 +93,6 @@ class Accounts:
         with self.connect() as db:
             return db.execute("SELECT a.username, a.role FROM sessions s JOIN accounts a ON a.username = s.username "
                               "WHERE s.digest=? AND s.expires>?", (hashlib.sha256(token.encode()).hexdigest(), time.time())).fetchone()
-
-    def setup(self, password):
-        _check_password(password)
-        salt, digest = self._credentials(password)
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            if db.execute("SELECT 1 FROM accounts").fetchone():
-                raise HTTPException(409, "管理员已设置，请登录")
-            db.execute("INSERT INTO accounts VALUES ('admin','admin',?,?,?)", (salt, digest, time.time()))
 
     def login(self, username, password):
         with self.connect() as db:
@@ -198,7 +190,7 @@ def install_auth(app, directory):
                 origin = request.headers.get("origin")
                 if origin and urlsplit(origin).netloc != request.headers.get("host"):
                     return JSONResponse({"detail": "请求来源不匹配"}, status_code=403)
-            if path not in ("/api/auth/session", "/api/auth/setup", "/api/auth/login"):
+            if path not in ("/api/auth/session", "/api/auth/login"):
                 user = accounts.user(request.cookies.get(COOKIE))
                 if not user:
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
@@ -219,15 +211,10 @@ def install_auth(app, directory):
     @app.get("/api/auth/session")
     def session(request: Request):
         user = accounts.user(request.cookies.get(COOKIE))
-        return JSONResponse({"configured": accounts.configured(), "authenticated": bool(user),
+        return JSONResponse({"authenticated": bool(user),
                              "username": user[0] if user else "", "role": user[1] if user else "",
                              "guides_seen": accounts.guides(user[0]) if user else []},
                             headers={"Cache-Control": "no-store"})
-
-    @app.post("/api/auth/setup")
-    def setup(body: Credentials, request: Request):
-        accounts.setup(body.password)
-        return response(request, "admin")
 
     @app.post("/api/auth/login")
     def login(body: Credentials, request: Request):

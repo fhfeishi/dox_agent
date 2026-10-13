@@ -67,7 +67,7 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
-                await page.request.post(origin + "/api/auth/setup", data={"password": "browser-test-password"})
+                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
                 await page.goto(origin + "/chat")
                 response = await page.request.post(f"{origin}/api/reports", data={
                     "domain": "云边协同", "year_from": 2025, "year_to": 2025,

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 /** Roles choose the interface (query 2026-1013 1133): leader = lean leader view, admin = full + accounts, user = full. */
 export type Role = "admin" | "leader" | "user";
-type Session = { configured: boolean; authenticated: boolean; username: string; role: Role | ""; guides_seen: string[] };
+type Session = { authenticated: boolean; username: string; role: Role | ""; guides_seen: string[] };
 type Auth = { logout: () => Promise<void>; username: string; role: Role; guidesSeen: string[]; seeGuide: (key: string) => void };
 const AuthContext = createContext<Auth>({ logout: async () => {}, username: "", role: "user", guidesSeen: [], seeGuide: () => {} });
 export const useAuth = () => useContext(AuthContext);
@@ -12,7 +12,6 @@ export function AuthGate({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("");
-  const [repeat, setRepeat] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   async function load() {
@@ -42,36 +41,31 @@ export function AuthGate({ children }: { children: ReactNode }) {
   }
   if (session?.authenticated) return <AuthContext.Provider value={{ logout, seeGuide, username: session.username,
     role: (session.role || "user") as Role, guidesSeen: session.guides_seen ?? [] }}>{children}</AuthContext.Provider>;
-  const setup = session && !session.configured;
   return <main className="flex min-h-screen items-center justify-center bg-[var(--surface)] p-5">
     <form className="w-full max-w-sm rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-8 shadow-sm"
       onSubmit={async (event) => {
         event.preventDefault();
-        if (setup && password !== repeat) { setError("两次输入的密码不一致"); return; }
         setBusy(true); setError("");
         try {
-          const response = await fetch("/api/auth/" + (setup ? "setup" : "login"), {
+          const response = await fetch("/api/auth/login", {
             method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: setup ? "admin" : username.trim(), password }),
+            body: JSON.stringify({ username: username.trim(), password }),
           });
           const value = await response.json();
-          if (!response.ok) throw new Error(typeof value.detail === "string" ? value.detail : "请检查密码，首次密码至少 10 个字符");
-          setPassword(""); setRepeat(""); await load();
+          if (!response.ok) throw new Error(typeof value.detail === "string" ? value.detail : "请检查账户和密码");
+          setPassword(""); await load();
         } catch (cause) { setError((cause as Error).message); } finally { setBusy(false); }
       }}>
       <p className="text-sm font-semibold text-[var(--primary)]">DoxAgent · 资料工作台</p>
-      <h1 className="mt-3 text-2xl font-semibold">{setup ? "设置管理员密码" : "登录"}</h1>
-      <p className="mt-2 text-sm text-[var(--steel)]">{setup ? "首次使用，设置此项目的管理员密码。" : "登录后继续查看资料、分析与审查任务。"}</p>
-      <label className="mt-6 block text-sm">账户<input className="mt-2 w-full rounded-lg border p-3" value={setup ? "admin" : username} readOnly={Boolean(setup)}
+      <h1 className="mt-3 text-2xl font-semibold">登录</h1>
+      <p className="mt-2 text-sm text-[var(--steel)]">初始账户 admin，默认密码 123456；登录后可在“设置 → 账户”修改。</p>
+      <label className="mt-6 block text-sm">账户<input className="mt-2 w-full rounded-lg border p-3" value={username}
         required autoComplete="username" onChange={(e) => setUsername(e.target.value)} /></label>
       <label className="mt-4 block text-sm">密码<input className="mt-2 w-full rounded-lg border p-3" type="password" required
-        minLength={setup ? 10 : 1} maxLength={256} autoComplete={setup ? "new-password" : "current-password"}
-        value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-      {setup ? <label className="mt-4 block text-sm">再次输入密码<input className="mt-2 w-full rounded-lg border p-3" type="password"
-        required autoComplete="new-password" value={repeat} onChange={(e) => setRepeat(e.target.value)} /></label> : null}
+        maxLength={256} autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
       {error ? <p role="alert" className="mt-4 text-sm text-[var(--red)]">{error}</p> : null}
       <button className="mt-6 w-full rounded-lg bg-[var(--primary)] p-3 text-white disabled:opacity-50"
-        disabled={busy || !session}>{busy ? "正在登录…" : setup ? "设置并进入" : "登录"}</button>
+        disabled={busy || !session}>{busy ? "正在登录…" : "登录"}</button>
       {!session ? <button type="button" className="mt-3 text-sm text-[var(--link)]" onClick={() => void load()}>重新连接</button> : null}
     </form>
   </main>;

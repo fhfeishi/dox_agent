@@ -35,7 +35,7 @@ export function AccountsPanel() {
         {(Object.keys(ROLE_LABEL) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
       </select>
       <button type="button" className="text-xs text-[var(--link)]" onClick={() => {
-        const password = window.prompt(`为 ${a.username} 设置新密码（至少 10 个字符）`);
+        const password = window.prompt(`为 ${a.username} 设置新密码（至少 4 个字符）`, "123456");
         if (password) void run(() => call("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ password }) }), "密码已重置，该账户需重新登录");
       }}>重置密码</button>
       {a.username !== me ? <button type="button" className="text-xs text-[var(--red)]" onClick={() => {
@@ -44,10 +44,10 @@ export function AccountsPanel() {
     </li>)}</ul>
     <form className="mt-3 grid grid-cols-[1fr_1fr_auto] gap-2" onSubmit={(e) => {
       e.preventDefault();
-      void run(() => call("", { method: "POST", body: JSON.stringify(draft) }), `已添加 ${draft.username}`).then(() => setDraft({ username: "", password: "", role: draft.role }));
+      void run(() => call("", { method: "POST", body: JSON.stringify({ ...draft, password: draft.password || "123456" }) }), `已添加 ${draft.username}`).then(() => setDraft({ username: "", password: "", role: draft.role }));
     }}>
       <input aria-label="新账户名" placeholder="账户名" required className={input} value={draft.username} onChange={(e) => setDraft({ ...draft, username: e.target.value })} />
-      <input aria-label="新账户密码" placeholder="密码（≥10 位）" type="password" required minLength={10} autoComplete="new-password" className={input}
+      <input aria-label="新账户密码" placeholder="密码，默认 123456" type="password" minLength={4} autoComplete="new-password" className={input}
         value={draft.password} onChange={(e) => setDraft({ ...draft, password: e.target.value })} />
       <select aria-label="新账户角色" className={input} value={draft.role} onChange={(e) => setDraft({ ...draft, role: e.target.value as Role })}>
         {(Object.keys(ROLE_LABEL) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}

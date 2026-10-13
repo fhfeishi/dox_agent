@@ -15,9 +15,7 @@ def authenticated_client(request, tmp_path, monkeypatch):
     def logged_in(client):
         result = enter(client)
         if hasattr(client.app.state, "accounts"):
-            status = client.get("/api/auth/session").json()
-            endpoint = "login" if status["configured"] else "setup"
-            response = client.post("/api/auth/" + endpoint, json={"username": "admin", "password": "isolated-test-password"})
+            response = client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
             assert response.status_code == 200, response.text
         return result
 

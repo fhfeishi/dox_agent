@@ -41,10 +41,9 @@ async def main():
                 errors = []
                 page.on("pageerror", lambda e: errors.append(str(e)))
                 await page.goto(origin)
-                await expect(page.get_by_role("heading", name="设置管理员密码")).to_be_visible()
-                await page.get_by_label("密码", exact=True).fill("browser-test-password")
-                await page.get_by_label("再次输入密码").fill("browser-test-password")
-                await page.get_by_role("button", name="设置并进入").click()
+                await expect(page.get_by_role("heading", name="登录")).to_be_visible()
+                await page.get_by_label("密码", exact=True).fill("123456")  # built-in admin / 123456
+                await page.get_by_role("button", name="登录").click()
                 await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
                 # First visit to an area shows its three-step guide once per account.
                 await page.get_by_role("dialog", name="首页 操作指南").get_by_role("button", name="知道了").click()
@@ -103,7 +102,7 @@ async def main():
                 assert (await page.request.get(origin + export_url)).status == 401
                 assert not errors, errors
                 await browser.close()
-            print("PASS: administrator login/logout, protected export, template inspector, three queued reports, leave/reload/return, status feedback, homepage, mobile")
+            print("PASS: default admin login/logout, protected export, template inspector, three queued reports, leave/reload/return, status feedback, homepage, mobile")
         finally:
             gate.set()
             server.should_exit = True

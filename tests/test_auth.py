@@ -4,25 +4,25 @@ from src.agent.config import Settings
 from src.main import create_app
 
 
-def test_admin_setup_login_logout_and_private_api(tmp_path):
+def test_default_admin_login_logout_and_private_api(tmp_path):
+    """An internal system: it starts with admin / 123456; there is no first-run setup."""
     app = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
                               user_dir=tmp_path/"usr"))
-    # No lifespan is needed for authentication: public setup must work before any material exists.
     with TestClient(app) as client:
         client.cookies.clear()
         assert client.get("/api/documents").status_code == 401
-        setup = client.post("/api/auth/setup", json={"password": "test-password-123"})
-        assert setup.status_code == 200
-        assert "httponly" in setup.headers["set-cookie"].lower()
+        assert client.post("/api/auth/setup", json={"password": "123456"}).status_code in (401, 404, 405)
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "wrong"}).status_code == 401
+        login = client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
+        assert login.status_code == 200 and "httponly" in login.headers["set-cookie"].lower()
         assert client.get("/api/auth/session").json()["authenticated"]
-        assert client.post("/api/auth/setup", json={"password": "replacement-password"}).status_code == 409
+        assert client.get("/api/corpora").status_code == 200
+        assert client.post("/api/auth/accounts", json={"username": "viewer", "role": "user"}).status_code == 200
+        assert client.post("/api/auth/logout", headers={"origin": "https://evil.example"}).status_code == 403
+        assert client.post("/api/auth/login", json={"username": "viewer", "password": "123456"}).json()["role"] == "user"
         assert client.post("/api/auth/logout").status_code == 200
         assert client.get("/api/auth/session").json()["authenticated"] is False
-        assert client.post("/api/auth/login", json={"username": "admin", "password": "wrong-password"}).status_code == 401
-        assert client.post("/api/auth/login", json={"username": "admin", "password": "test-password-123"}).status_code == 200
-        assert client.get("/api/corpora").status_code == 200
-        assert client.post("/api/auth/logout", headers={"origin": "https://evil.example"}).status_code == 403
-    assert b"test-password-123" not in (tmp_path/"usr"/"accounts.sqlite3").read_bytes()
+    assert b"123456" not in (tmp_path/"usr"/"accounts.sqlite3").read_bytes()
 
 
 def test_three_roles_account_management_and_guides(tmp_path):
@@ -31,20 +31,23 @@ def test_three_roles_account_management_and_guides(tmp_path):
                               user_dir=tmp_path/"usr"))
     with TestClient(app) as client:
         client.cookies.clear()
-        assert client.post("/api/auth/setup", json={"password": "admin-password-1"}).status_code == 200
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "123456"}).status_code == 200
+        assert client.patch("/api/auth/accounts/admin", json={"password": "admin-password-1"}).status_code == 200
+        assert client.post("/api/auth/login", json={"username": "admin", "password": "admin-password-1"}).status_code == 200
         assert client.get("/api/auth/session").json()["role"] == "admin"
-        for name, role in (("boss", "leader"), ("staff", "user")):
-            assert client.post("/api/auth/accounts", json={"username": name, "password": name + "-password", "role": role}).status_code == 200
+        # Four characters suffice; without a password a new account gets 123456.
+        assert client.post("/api/auth/accounts", json={"username": "boss", "password": "boss", "role": "leader"}).status_code == 200
+        assert client.post("/api/auth/accounts", json={"username": "staff", "role": "user"}).status_code == 200
         assert client.post("/api/auth/accounts", json={"username": "boss", "password": "another-password", "role": "user"}).status_code == 409
         assert client.post("/api/auth/accounts", json={"username": "x y", "password": "another-password", "role": "user"}).status_code == 422
-        assert client.post("/api/auth/accounts", json={"username": "short", "password": "short", "role": "user"}).status_code == 422
+        assert client.post("/api/auth/accounts", json={"username": "short", "password": "abc", "role": "user"}).status_code == 422
         assert [(a["username"], a["role"]) for a in client.get("/api/auth/accounts").json()] == [("admin", "admin"), ("boss", "leader"), ("staff", "user")]
         # The last administrator can neither be demoted nor deleted; the current account cannot delete itself.
         assert client.patch("/api/auth/accounts/admin", json={"role": "user"}).status_code == 409
         assert client.delete("/api/auth/accounts/admin").status_code == 409
 
         client.post("/api/auth/logout")
-        assert client.post("/api/auth/login", json={"username": "boss", "password": "boss-password"}).status_code == 200
+        assert client.post("/api/auth/login", json={"username": "boss", "password": "boss"}).status_code == 200
         session = client.get("/api/auth/session").json()
         assert (session["username"], session["role"], session["guides_seen"]) == ("boss", "leader", [])
         assert client.get("/api/auth/accounts").status_code == 403
@@ -63,7 +66,7 @@ def test_three_roles_account_management_and_guides(tmp_path):
         client.cookies.clear()
         client.cookies.update(boss)
         assert client.get("/api/auth/session").json()["authenticated"] is False
-        assert client.post("/api/auth/login", json={"username": "staff", "password": "staff-password"}).status_code == 401
+        assert client.post("/api/auth/login", json={"username": "staff", "password": "123456"}).status_code == 401
 
 
 def test_single_administrator_store_moves_into_accounts(tmp_path):
@@ -77,6 +80,5 @@ def test_single_administrator_store_moves_into_accounts(tmp_path):
         db.execute("CREATE TABLE administrator (id INTEGER PRIMARY KEY CHECK(id=1), salt TEXT, digest TEXT)")
         db.execute("CREATE TABLE sessions (digest TEXT PRIMARY KEY, expires REAL)")
         db.execute("INSERT INTO administrator VALUES (1,?,?)", (salt, Accounts.password_digest("old-password-1", salt)))
-    assert store.configured()
-    store.login("admin", "old-password-1")
+    store.login("admin", "old-password-1")  # kept, not replaced by the 123456 default
     assert [(a["username"], a["role"]) for a in store.list()] == [("admin", "admin")]

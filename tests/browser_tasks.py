@@ -240,7 +240,7 @@ async def main():
                 await r.fulfill(status=200, content_type="text/event-stream", body=body)
 
             # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
-            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", health)
             await page.route(re.compile(r".*/api/documents(?:\?.*)?$"), documents)
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), corpora)

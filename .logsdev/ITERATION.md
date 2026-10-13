@@ -3148,3 +3148,9 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 修复：页面路由白名单缺 `/home` 与 `/review/templates`，刷新这些页面返回“页面未构建”；已补并加入 `test_app` 路由断言。
 - 浏览器脚本：离线脚本补“已登录管理员”会话桩；不带页面回退的静态服务脚本改为从根路径进入后点“对话”；实服务脚本先调用初始化接口登录；`browser_review_simple` 改为新三步界面。
 - 验证：pytest 235 passed（除外既有的 `test_user_fund_dataset_is_well_formed`，工作区删除了 fund_retrieval.jsonl）；新增 `test_auth` 三类账户/管理权限/重置后会话失效/旧库迁移；npm test 43 passed，tsc、build 通过；`browser_review_simple`、`browser_scene_hierarchy`、`browser_target_facets`、`browser_answer_controls`、`browser_status_power` PASS。`browser_library`、`browser_fund_preview`、`browser_session_branches`（找“当前对话：…（1/6）”）、`browser_export`（找“设置与运维”）、`browser_document_preview`、`browser_markdown_preview`、`browser_refresh`（找“知识库”按钮）、`browser_legacy_scope`（在提交版本上同样失败）为既有过时脚本；实服务 *_live 脚本未运行。真实界面（隔离账户目录）：管理员初始化、首页指南只出现一次且可重开、添加领导与普通用户、审查三步与右侧模板预览、领导登录只见领域全景且账户接口 403、430px 无横向溢出、无页面错误（截图 `verification/query-20261013-1133/`）。未在真实数据上提交审查任务（避免模型费用），队列流程由 `browser_review_simple` 的模型替身覆盖。
+
+### 16.88 默认账户密码（2026-10-13）
+
+- 用户要求：密码 ≥4 位即可，内部系统默认 123456。`auth.py` 去掉首次设置接口与 `configured`，账户库为空时自动建 admin / 123456；最短 4 位；新建账户密码可省略（默认 123456）。登录页去掉“设置管理员密码”，提示初始账户与默认密码；账户管理表单与重置密码按新规则。
+- 验证：pytest 235 passed（除外同前）；`test_auth` 改为默认 admin 登录、4 位下限、省略密码的新账户可用 123456 登录、旧单管理员库保留原密码；npm test 43、build 通过；`browser_review_simple`、`browser_scene_hierarchy`、`browser_target_facets`、`browser_answer_controls`、`browser_status_power` PASS。
+

@@ -13,8 +13,11 @@ export function TaskProgress() {
   const navigate = useNavigate();
   const { showInspector, toggleInspector } = useApp();
   const [onlyActive, setOnlyActive] = useState(false);
-  const review = useQuery({ queryKey: ["activity", "reviews"], queryFn: fetchReviewRuns, refetchInterval: 5000 });
-  const reports = useQuery({ queryKey: ["activity", "reports"], queryFn: () => fetchArtifacts(), refetchInterval: 5000 });
+  // Refreshed every 5 seconds only while something is in progress (节点审查 C1).
+  const review = useQuery({ queryKey: ["activity", "reviews"], queryFn: fetchReviewRuns,
+    refetchInterval: (query) => query.state.data?.some((r) => ACTIVE.has(r.status)) ? 5000 : false });
+  const reports = useQuery({ queryKey: ["activity", "reports"], queryFn: () => fetchArtifacts(),
+    refetchInterval: (query) => query.state.data?.some((r) => ACTIVE.has(r.status)) ? 5000 : false });
   const rows = [
     ...(review.data ?? []).map((r) => ({ key: "review:" + r.id, title: r.document?.metadata.title || r.document?.filename || "申请书",
       type: r.request.kind === "formal" ? "形式审查" : "专业审查", status: r.status,

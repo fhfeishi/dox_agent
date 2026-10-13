@@ -41,7 +41,7 @@ import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 
-export type NavKey = "admin" | "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
+export type NavKey = "admin" | "mine" | "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
@@ -250,8 +250,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { admin: "/admin", home: "/home", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
-  const nav: NavKey = location.pathname.startsWith("/admin") ? "admin" : location.pathname === "/home" || location.pathname === "/" ? "home" : location.pathname.startsWith("/library") ? "library"
+  const navPaths: Record<NavKey, string> = { admin: "/admin", mine: "/mine", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
+  const nav: NavKey = location.pathname.startsWith("/admin") ? "admin" : location.pathname.startsWith("/mine") ? "mine" : location.pathname.startsWith("/library") ? "library"
     : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
       : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };

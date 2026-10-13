@@ -10,7 +10,6 @@ import { useApp } from "../store";
 import { LeaderConstruction, type LibraryOverview } from "./LeaderConstruction";
 import { LeaderRecent } from "./LeaderRecent";
 import { YearDistribution } from "./YearDistribution";
-import { FocusRadars } from "./Charts";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 type Area = "work" | "tech" | "years" | "recent";
@@ -98,7 +97,7 @@ function Work() {
       </div>)}</div>
     </section>
     {/* Choosing a library previews it on the right instead of leaving the page (query 2026-1013 1842). */}
-    <div className="-mx-5"><LeaderConstruction onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} /></div>
+    <div className="-mx-5"><LeaderConstruction maintenance onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} /></div>
     <p className="text-xs leading-5 text-[var(--stone)]">依据资料库与成果库中的报告统计；对当前业务的客观评价、正反两方面的意见与建议需要调用模型，将在下一步提供，由管理员主动生成。</p>
   </div>;
 }
@@ -123,7 +122,6 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
   return <div className="mx-auto max-w-[1180px] space-y-6 px-5 py-6">
     <div className="flex flex-wrap items-baseline gap-3"><h1 className="text-xl font-semibold">{name} · 关键技术</h1>
       <button type="button" className="text-sm text-[var(--link)]" onClick={() => openCorpus(corpusId)}>在资料库中查看技术谱系 →</button></div>
-    <FocusRadars fields={lineage.fields ?? []} items={lineage.items} stages={lineage.stages ?? []} />
     <section aria-label="关键技术方向" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
       <table className="w-full min-w-[720px] text-left text-[13.5px]">
         <thead className="bg-[var(--surface)] text-[12.5px] text-[var(--steel)]"><tr>

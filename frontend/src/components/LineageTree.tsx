@@ -284,7 +284,9 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
     if (!at) return "未归入体系的条目";
     return node.level === 0 ? at.category.name : node.level === 1 ? at.child.name : at.theme.name;
   };
-  const tally = (values: string[]) => [...values.reduce((m, v) => m.set(v, (m.get(v) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]);
+  // Field and stage chips count projects, the same base as the radars and scene cards (节点审查 A1).
+  const tally = (ids: string[], of: (id: string) => string) => [...ids.reduce((m, id) => m.set(of(id), (m.get(of(id)) ?? new Set()).add(data.items[id]?.project_id)),
+    new Map<string, Set<string | undefined>>())].map(([v, set]): [string, number] => [v, set.size]).sort((a, b) => b[1] - a[1]);
 
   const record = target.data;
   const evidence: HierarchyEvidence[] = record && leaf && source
@@ -323,9 +325,10 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
             ["业务环节", [...stageNames, UNDETERMINED_STAGE], stages, setStages, (v: string) => (id: string) => stageOf(id) === v]] as const).map(([label, values, list, set, test]) =>
             <div key={label} className="flex flex-wrap items-center gap-1.5">
               <span className="w-14 shrink-0 text-xs text-[var(--steel)]">{label}</span>
-              {values.map((v) => { const n = all.filter(test(v)).length; return n ? <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))}
+              {values.map((v) => { const n = projectCount(all.filter(test(v))); return n ? <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))}
                 onClick={() => toggle(list, set, v)}>{v} <span className="tabular-nums opacity-70">{n}</span></button> : null; })}
             </div>)}
+          <p className="text-[11px] text-[var(--stone)]">数字为项目数（去重）；一个项目可涉及多个领域与环节。</p>
           {filtered ? <p role="status" className="pt-0.5 text-xs text-[var(--steel)]">已筛选 {[...fields, ...stages].join("、")} · 匹配 {projectCount([...match])} 个项目、{match.size} 条技术
             <button type="button" className="ml-2 text-[var(--link)] hover:underline" onClick={() => { setFields([]); setStages([]); }}>恢复全部</button></p> : null}
         </div>
@@ -397,11 +400,12 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
           {node.foundation ? <p className="text-xs text-[#4a2a8f]">共性底座：支撑其他技术的数据、协同与可信能力。</p> : null}
         </Section>
         <Section title="应用任务">
-          {([["应用领域", tally(matched(node.items).map((id) => resolve.of(id))).slice(0, 8), fields, setFields],
-            ["业务环节", tally(matched(node.items).map(stageOf)), stages, setStages]] as const).map(([label, rows, list, set]) =>
+          {([["应用领域", tally(matched(node.items), (id) => resolve.of(id)).slice(0, 8), fields, setFields],
+            ["业务环节", tally(matched(node.items), stageOf), stages, setStages]] as const).map(([label, rows, list, set]) =>
             <div key={label} className="flex flex-wrap items-center gap-1.5"><span className="w-14 shrink-0 text-xs text-[var(--steel)]">{label}</span>
               {rows.map(([v, n]) => <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))} onClick={() => toggle(list, set, v)}>
                 {v} <span className="tabular-nums opacity-70">{n}</span></button>)}</div>)}
+          <p className="text-[11px] text-[var(--stone)]">数字为项目数（去重）。</p>
         </Section>
         <Section title="项目与成果">
           <p>{projectCount(matched(node.items))} 个项目（去重）· {matched(node.items).length} 条技术{filtered ? "（当前筛选）" : ""}</p>

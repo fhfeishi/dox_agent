@@ -6,6 +6,7 @@ import { confirmWeb, previewSearchResult, previewWeb, searchWeb, webSearchCapabi
 import { Icon } from "./Icons";
 import { CorpusPicker } from "./CorpusPicker";
 import { ScopeSelector } from "./ScopeSelector";
+import { useAuth } from "../auth";
 
 function PopItem({
   title,
@@ -43,6 +44,7 @@ function PopItem({
 }
 
 export function Composer() {
+  const { role } = useAuth();
   const {
     input,
     setInput,
@@ -329,7 +331,7 @@ export function Composer() {
         <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
           本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
             ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
-            : "未选择知识库"} · {options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"} · {model || "模型未记录"} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
+            : "未选择知识库"} · {options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}{role === "admin" ? ` · ${model || "模型未记录"}` : ""} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
         </p>
 
         {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-[11px] text-[var(--steel)]">

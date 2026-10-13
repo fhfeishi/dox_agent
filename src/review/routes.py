@@ -18,6 +18,7 @@ from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
+from ..auth import CURRENT_USER
 from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
 from .export import export_report
@@ -598,7 +599,7 @@ def new_run(req: ReviewRequest, request: Request):
             row["status"] = "automatic"  # Unique, completely read range needs no extra confirmation click.
     bundle["blocks"] = doc.get("blocks", [])
     bundle["section_mappings"] = {r["check_id"]: r for r in rows}
-    run = {"id": ident, "created_at": db.now(), "status": "queued", "stage": 0,
+    run = {"id": ident, "created_at": db.now(), "created_by": CURRENT_USER.get(), "status": "queued", "stage": 0,
            "stage_label": "等待生成报告", "request": data, "rule": rule, "document": public_doc(doc),
            "information_sheet": public_doc(sheet) if sheet else None, "findings": [],
            "mappings": {"revision": mapping.get("revision", 0),
@@ -615,9 +616,39 @@ def new_run(req: ReviewRequest, request: Request):
     return run
 
 
+# What a list row needs; the findings, evidence and audit stay on /runs/{id} (节点审查 C1: the list was
+# polled with every run's full analysis, about 70 KB a run).
+LIST_FIELDS = ("id", "status", "stage", "stage_label", "error", "created_at", "finished_at", "request", "summary",
+               "created_by", "published_at")
+
+
+def _list_row(run: dict) -> dict:
+    row = {key: run[key] for key in LIST_FIELDS if key in run}
+    document = run.get("document") or {}
+    row["document"] = {key: document.get(key) for key in ("id", "filename", "metadata")}
+    rule = run.get("rule") or {}
+    row["rule"] = {key: rule.get(key) for key in ("id", "name", "version", "kind")}
+    return row
+
+
 @router.get("/runs")
 def runs():
-    return [{k: v for k, v in r.items() if k not in ("findings", "technical", "budget")} for r in db.all_items("run")]
+    return [_list_row(r) for r in db.all_items("run")]
+
+
+@router.post("/runs/{id}/publish")
+def publish_run(id: str, body: dict, request: Request):
+    """节点审查 Q2: the author or an administrator publishes a finished review for the leader view."""
+    with run_lock:
+        run = require("run", id)
+        username, role = request.state.user
+        if role != "admin" and run.get("created_by") != username:
+            raise HTTPException(403, "只有作者或管理员可以发布")
+        if body.get("published") and run.get("status") != "completed":
+            raise HTTPException(409, "只有已完成的审查可以发布")
+        run["published_at"] = db.now() if body.get("published") else None
+        db.save("run", run)
+    return _list_row(run)
 
 
 @router.get("/runs/{id}")

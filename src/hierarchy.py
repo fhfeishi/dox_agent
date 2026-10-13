@@ -26,7 +26,6 @@ from .targets import DIMENSIONS, item_evidence
 ASPECTS = ("论文", "专利", "人才/团队", "平台/基地", "数据与样本", "指标达成", "标准/许可", "转化与应用")
 ASPECT_STAGES = ("已取得", "在研", "仅预期", "原文未提及")
 ISSUE_STATES = ("已解决", "待解决")
-TARGETS = {"scenes": 6, "issues_per_scene": 3, "routes_per_issue": 2, "achievements_per_scene": 3}
 HIERARCHY_FILENAME = "hierarchy.json"
 
 
@@ -229,16 +228,6 @@ def _validate(raw: dict, library: dict, info) -> tuple[list[dict], dict]:
                 "project_ids": issue_topic["project_ids"], "item_ids": issue_topic["item_ids"],
                 "evidence": _evidence(info, library, issue_topic["item_ids"]), "routes": routes,
             })
-        if len(issues) > TARGETS["issues_per_scene"]:
-            # Keep the required composition first (2 solved + 1 open), then fill from the rest.
-            keep = [i for i in issues if i["state"] == "已解决"][:2] + [i for i in issues if i["state"] == "待解决"][:1]
-            keep += [i for i in issues if i not in keep][:TARGETS["issues_per_scene"] - len(keep)]
-            for extra in [i for i in issues if i not in keep]:
-                drop("issue", f"{scene_name} 超出 3 个核心问题，未采用：{extra['name']}")
-            issues = [i for i in issues if i in keep]
-        solved = sum(1 for item in issues if item["state"] == "已解决")
-        if issues and (len(issues) != TARGETS["issues_per_scene"] or solved != 2):
-            drop("composition", f"{scene_name}：问题 {len(issues)} 个（已解决 {solved} 个），目标 3 个（2 已解决）")
 
         achievements = []
         for raw_item in (entry.get("achievements") if isinstance(entry.get("achievements"), list) else [])[:8]:
@@ -291,8 +280,6 @@ def _validate(raw: dict, library: dict, info) -> tuple[list[dict], dict]:
             })
         if not achievements and available["成果"]:
             drop("achievement", f"{scene_name}：未给出标志性成果")
-        elif achievements and not TARGETS["achievements_per_scene"] <= len(achievements) <= 5:
-            drop("count", f"{scene_name}：标志性成果 {len(achievements)} 项，目标 3–5 项")
         scenes.append({
             "name": scene_name, "summary": _text(entry.get("summary"), 400), "members": scene_topic["members"],
             "project_ids": scene_topic["project_ids"], "item_ids": scene_topic["item_ids"],
@@ -300,7 +287,6 @@ def _validate(raw: dict, library: dict, info) -> tuple[list[dict], dict]:
             "issues": issues, "achievements": achievements,
         })
     coverage = {
-        "targets": TARGETS,
         "scenes": len(scenes),
         "issues": sum(len(scene["issues"]) for scene in scenes),
         "solved_issues": sum(1 for scene in scenes for issue in scene["issues"] if issue["state"] == "已解决"),
@@ -445,6 +431,24 @@ def render_section(record: dict | None, sources: list[dict]) -> str:
     return "## 场景层级（按四维归纳结果生成）\n\n" + "\n".join(blocks) + note + "\n"
 
 
+def _lineage_members(info, scenes: list[dict]) -> list[dict]:
+    """A scene's projects are those with a technique the lineage places in that application field.
+
+    The scene categories cap their members and are grouped from scene topics, so a scene and the
+    lineage field of the same name gave different project counts on neighbouring pages (节点审查
+    A1, query 2026-1013 1914). Once the lineage names the field, every view counts it this one way;
+    a scene the lineage does not name yet keeps its own members.
+    """
+    from .lineage import _load as load_lineage
+
+    by_field: dict[str, set[str]] = {}
+    for item in ((load_lineage(info) or {}).get("items") or {}).values():
+        if item.get("field") and item.get("project_id"):
+            by_field.setdefault(item["field"], set()).add(item["project_id"])
+    return [{**scene, "project_ids": sorted(by_field[scene["name"]]), "membership": "lineage"}
+            if scene.get("name") in by_field else {**scene, "membership": "scene"} for scene in scenes]
+
+
 async def read(info, library: dict) -> dict:
     """Saved hierarchy plus its freshness; missing and stale are distinct from an empty result."""
     record, error = await asyncio.to_thread(_load, info)
@@ -454,6 +458,7 @@ async def read(info, library: dict) -> dict:
                 "message": error, "scenes": [], "coverage": {},
                 "fingerprint": current, "topics": {key: len(group) for key, group in topics(library).items()}}
     state = "ready" if record.get("fingerprint") == current else "stale"
+    record = {**record, "scenes": await asyncio.to_thread(_lineage_members, info, record.get("scenes") or [])}
     return {**record, "state": state, "current_fingerprint": current,
             "message": "" if state == "ready" else "四维归纳条目已变化，本层级需要重新生成",
             "topics": {key: len(group) for key, group in topics(library).items()}}

@@ -82,7 +82,7 @@ export function IntelligenceView() {
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
           <h2 className="font-semibold">1 · 选择外部材料</h2><p className="my-3 text-xs leading-6 text-[var(--steel)]">支持多份 PDF、Word、Markdown 或文本；替换文件保留旧报告引用的版本。未被成果引用的暂存材料保留 7 天。</p>
-          <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--primary)] bg-[var(--primary-soft)] p-6 text-center text-sm font-medium text-[var(--primary)]">点击选择文件<input aria-label="上传外部材料" className="mt-3 block w-full text-xs" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files); e.target.value = ""; }} /></label>
+          <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--primary)] bg-[var(--primary-soft)] p-6 text-center text-sm font-medium text-[var(--primary)]">点击选择文件<input aria-label="上传外部材料" className="sr-only" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files); e.target.value = ""; }} /></label>
           <div className="mt-4 space-y-2">{inputs.map((input) => <div key={input.input_id} className="rounded-lg border p-3"><div className="flex items-center justify-between gap-3"><button className="text-left text-sm text-[var(--primary)]" onClick={() => showInspector({ kind: "input", inputId: input.input_id })}>{input.filename}</button><button className="text-xs text-[var(--steel)]" disabled={Boolean(busy)} onClick={() => setInputs((old) => old.filter((item) => item.input_id !== input.input_id))}>移出本次选择</button></div><p className="mt-1 text-xs text-[var(--steel)]">{input.text.length.toLocaleString()} 字符 · 点击核对正文</p></div>)}</div>
         </section>
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
@@ -91,7 +91,7 @@ export function IntelligenceView() {
           <p className="mt-3 text-xs leading-6 text-[var(--steel)]">本次材料自述与库内证据分别呈现。没有国外资料或相近项目时会明确提示，不据此判断原创或领先。</p>
         </section>
       </div>
-      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模板</h2><label className="cursor-pointer text-sm text-[var(--primary)]">上传自己的模板<input aria-label="上传情报报告模板" className="mt-2 block text-xs" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
+      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模板</h2><label className="cursor-pointer text-sm text-[var(--primary)]">上传自己的模板<input aria-label="上传情报报告模板" className="sr-only" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
         <div className="my-4 flex flex-wrap gap-3">
           <select aria-label="选择报告模板" className="rounded border p-2 text-sm" value={templateId} disabled={Boolean(busy)} onChange={(e) => {
             const ident = e.target.value; if (!ident) return; setBusy("读取报告模板");

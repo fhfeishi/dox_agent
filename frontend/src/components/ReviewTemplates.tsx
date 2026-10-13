@@ -7,6 +7,7 @@ import {
 } from "../reviewApi";
 import { Button, Pill } from "./ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewViews";
+import { useAuth } from "../auth";
 
 const COUNTING_NOTE = "正文去空白后按 Unicode 码点计数（中文、标点、字母、数字各计 1），不含标题；图片内文字不计入并标为覆盖不足。首版仅支持此口径。";
 
@@ -70,6 +71,7 @@ function strip(rule: ReviewRule): ReviewRule {
 }
 
 export function ReviewTemplates() {
+  const { role } = useAuth();
   const navigate = useNavigate();
   const [rules, setRules] = useState<ReviewRule[]>([]);
   const [error, setError] = useState("");
@@ -101,6 +103,8 @@ export function ReviewTemplates() {
     <Shell title="审查模板" description="模板规定本次审查检查什么。内置示例只读，可复制后修改；也可在网页上新建，或上传文字要求由系统整理成草稿后核对。">
       <Notice text={error} error />
       <Notice text={notice} />
+      {/* Review templates are shared, so administrators maintain them (节点审查 D2); others read and choose. */}
+      {role !== "admin" ? <p className="mb-5 text-sm text-[var(--steel)]">审查模板由管理员维护；这里可以查看各模板检查什么，在审查时选用。</p> : <>
       <div className="mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
         <Button variant="primary" onClick={() => void navigate("/review/templates/new?kind=formal")}>新建形式模板</Button>
         <Button onClick={() => void navigate("/review/templates/new?kind=professional")}>新建专业模板</Button>
@@ -128,6 +132,7 @@ export function ReviewTemplates() {
           ))}
         </section>
       ) : null}
+      </>}
       {(["formal", "professional"] as ReviewKind[]).map((kind) => (
         <section key={kind} className="mb-6">
           <h2 className="mb-3 text-[15px] font-semibold">{REVIEW_KIND_LABEL[kind]}模板</h2>
@@ -156,6 +161,7 @@ function TemplateTile({ rule }: { rule: ReviewRule }) {
 
 export function ReviewTemplateDetail() {
   const { id = "" } = useParams();
+  const { role } = useAuth();
   const [search] = useSearchParams();
   const navigate = useNavigate();
   const back = search.get("back") ?? "";
@@ -265,8 +271,8 @@ export function ReviewTemplateDetail() {
             <Button onClick={() => { if (id === "new") void navigate(-1); else { setDraft(null); setBaseline(""); } }}>{dirty ? "放弃修改" : "退出编辑"}</Button>
           </> : <>
             {rule.confirmed ? <Button variant="primary" onClick={() => void navigate(workbench + (workbench.includes("?") ? "&" : "?") + "template=" + encodeURIComponent(rule.id))}>使用此版本</Button> : null}
-            <Button onClick={() => void navigate(`/review/templates/new?from=${encodeURIComponent(rule.id)}${back ? "&back=" + encodeURIComponent(back) : ""}`)}>复制编辑</Button>
-            {rule.source_kind !== "builtin" ? <Button onClick={() => { setDraft(structuredClone(rule)); setBaseline(JSON.stringify(rule)); setEnable(rule.confirmed); }}>编辑</Button> : null}
+            {role === "admin" ? <Button onClick={() => void navigate(`/review/templates/new?from=${encodeURIComponent(rule.id)}${back ? "&back=" + encodeURIComponent(back) : ""}`)}>复制编辑</Button> : null}
+            {role === "admin" && rule.source_kind !== "builtin" ? <Button onClick={() => { setDraft(structuredClone(rule)); setBaseline(JSON.stringify(rule)); setEnable(rule.confirmed); }}>编辑</Button> : null}
             <span className="flex-1" />
             <Link className="self-center text-sm text-[var(--link)]" to={back ? workbench : "/review/templates"}>{back ? "返回审查工作台" : "返回模板列表"}</Link>
           </>}

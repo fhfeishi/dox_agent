@@ -45,7 +45,7 @@ const lineage = {
 test('board summarises scenes, results and the shared foundation', () => {
   const board = buildBoard(hierarchy, lineage);
   assert.equal(board.branch, 'AI与医疗');
-  assert.deepEqual([board.solved, board.open, board.projects, board.unplaced, board.unplacedKey], [1, 1, 2, 1, 'c:1']);
+  assert.deepEqual([board.projects, board.unplaced, board.unplacedKey], [2, 1, 'c:1']);
   assert.deepEqual(board.scenes[0].issues.map((issue) => [issue.name, issue.state]), [['早期筛查', '已解决'], ['长尾病例', '待解决']]);
   assert.deepEqual(board.scenes[0].achievements[0].indicators, ['AUC 0.9', '5家医院', '多中心验证']);
   assert.deepEqual(board.scenes[0].highlights, ['AUC 0.9', '5家医院', '多中心验证']);
@@ -79,8 +79,8 @@ test('matrix places every item by field and stage, keeps undetermined lanes and 
   const insights = libraryInsights(buildBoard(hierarchy, placed), matrix, placed, [{ start: 2019, end: 2022 }, { start: 2021, end: null }]);
   assert.deepEqual(insights.map((card) => [card.title, card.headline]), [
     ['研究规模', '2 个项目、3 条技术，覆盖 1 个应用领域'], ['技术重心', '以统计建模为主'],
-    ['应用重心', '肿瘤诊疗最集中（2 个项目），主要在“疗效评估与预后”'], ['报告所述验证阶段', '50% 的项目至少有一项技术报告达到成型或应用阶段'],
-    ['待研究问题', '报告所述尚待解决的问题 1 个']]);
+    ['应用重心', '肿瘤诊疗最集中（2 个项目），主要在“疗效评估与预后”'], ['报告所述验证阶段', '50% 的项目至少有一项技术报告达到成型或应用阶段']]);
+  // No count of open issues: their number came from the hierarchy prompt's quota (节点审查 A2).
   assert.equal(insights[0].points[0], '立项 2019–2022 年');
   assert.equal(fieldHeadline(matrix, placed, '肿瘤诊疗'), '');  // fewer than 3 items: no claim
 

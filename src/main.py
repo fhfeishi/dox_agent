@@ -287,6 +287,10 @@ class ComposeRequest(BaseModel):
         return [v.strip() for v in values]
 
 
+class Publish(BaseModel):
+    published: bool
+
+
 class ArtifactCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     type: Literal["answer_snapshot", "report"] = "answer_snapshot"
@@ -1542,19 +1546,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.post("/api/ingest/local")
-    async def ingest(request: Request):
-        if app.state.preparation == "running":
-            raise HTTPException(409, "知识库正在初始化，请稍后导入")
-        # §10/M5: import the default corpus ``source/`` (single root, no sibling exclusion).
-        info = await asyncio.to_thread(default_corpus_info, settings)
-        if info is None:
-            raise HTTPException(409, "尚无知识库，请先新建知识库")
-        await asyncio.to_thread(info.source_dir.mkdir, parents=True, exist_ok=True)
-        async with app.state.import_lock:
-            return await asyncio.to_thread(import_defaults, knowledge_for(info), settings,
-                                           root=info.source_dir, parsed_root=info.root / "parsed")
-
     @app.get("/api/web/search/capability")
     async def web_search_capability():
         return {"provider": "firecrawl", "available": bool(settings.firecrawl_api_key),
@@ -2089,6 +2080,23 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             logger.exception("Period summary failed")
             raise HTTPException(502, "总结未生成：模型调用失败，请重试") from exc
 
+    @app.get("/api/summaries/facts")
+    async def summary_facts(period: str, request: Request):
+        """近期工作 counted on the server over every report and review (节点审查 A4/A5): repeated reviews
+        of one application count once; a leader sees only what was published (Q2)."""
+        from .period_summary import PERIODS, TASK_ID, gather, report_rows
+        from .review import storage as review_db
+        if period not in PERIODS:
+            raise HTTPException(422, "未知时间段")
+        names = {info.id: info.name for info in await asyncio.to_thread(scan_corpora, settings)}
+        rows = await asyncio.to_thread(report_rows, app.state.artifacts)
+        runs = await asyncio.to_thread(review_db.all_items, "run")
+        facts = gather(period, datetime.now().astimezone(), rows, runs, names,
+                       published_only=request.state.user[1] == "leader")
+        summaries = [{"id": r["artifact_id"], "title": r["title"], "created_at": r["created_at"]}
+                     for r in rows if r["task_id"] == TASK_ID and r["status"] == "completed"][:6]
+        return {**facts, "summaries": summaries}
+
     @app.get("/api/overview/libraries")
     async def libraries_overview():
         items = [info for info in await asyncio.to_thread(scan_corpora, settings) if not info.missing and info.docs_count]
@@ -2104,6 +2112,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                                for d in c.get("children") or [] for t in d.get("themes") or []))
             row["hierarchy"]["state"] = scenes.get("state")
             row["pending_identity"] = library["coverage"]["pending_identity_records"]
+            # Where the projects concentrate, for the leader's table: projects per application field,
+            # the same count as the domain radar and scene cards (节点审查 A1/D5).
+            by_field: dict[str, set[str]] = {}
+            for item in (tree.get("items") or {}).values():
+                if item.get("field"):
+                    by_field.setdefault(item["field"], set()).add(item.get("project_id"))
+            row["fields"] = sorted(([name, len(ids)] for name, ids in by_field.items()), key=lambda f: -f[1])
             result.append(row)
         return result
 
@@ -2485,9 +2500,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return {**item, "run_available": item.get("run_id", "") in available}
 
     @app.get("/api/artifacts")
-    async def list_artifacts(session_key: str | None = None, type: str | None = None, status: str | None = None, limit: int = 50, view: str = "active", cursor: str | None = None):
+    async def list_artifacts(session_key: str | None = None, type: str | None = None, status: str | None = None, limit: int = 50, view: str = "active", cursor: str | None = None,
+                             created_by: str | None = None):
         if view not in ("active","trash"): raise HTTPException(422,"未知成果视图")
-        items=await asyncio.to_thread(app.state.artifacts.list,session_key=session_key,type=type,status=status,limit=limit,view=view,cursor=cursor)
+        items=await asyncio.to_thread(app.state.artifacts.list,session_key=session_key,type=type,status=status,limit=limit,view=view,cursor=cursor,created_by=created_by)
         available=await asyncio.to_thread(app.state.runs.existing_ids,[item["run_id"] for item in items])
         return [{**item,"run_available":item["run_id"] in available} for item in items]
 
@@ -2512,6 +2528,18 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     @app.delete("/api/artifacts/{artifact_id}/purge")
     async def purge_artifact(artifact_id: str, request: Request):
         return await lifecycle_change(artifact_id,"purge",request)
+
+    @app.post("/api/artifacts/{artifact_id}/publish")
+    async def publish_artifact(artifact_id: str, payload: Publish, request: Request):
+        """节点审查 Q2: the author or an administrator publishes a report for the leader view and summaries."""
+        try:
+            item = await asyncio.to_thread(app.state.artifacts.get, artifact_id)
+        except KeyError as exc:
+            raise HTTPException(404, "成果不存在") from exc
+        username, role = request.state.user
+        if role != "admin" and item.get("created_by") != username:
+            raise HTTPException(403, "只有作者或管理员可以发布")
+        return await asyncio.to_thread(app.state.artifacts.publish, artifact_id, payload.published)
 
     @app.post("/api/artifacts", status_code=201)
     async def create_artifact(payload: ArtifactCreate):
@@ -2686,7 +2714,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|admin|home|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|admin|mine|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

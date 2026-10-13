@@ -3212,3 +3212,17 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 启动脚本前端按需构建（用户追加要求）：`src/launcher.py frontend check|stamp` 对 `frontend/src` 与 `index.html`、`package*.json`、`vite.config.ts`、`tsconfig.json` 的内容求哈希，与 `frontend/dist/.dox-build` 一致且 `dist/index.html` 存在时跳过构建，`REBUILD_FRONTEND=1` 强制；构建成功后才写记录。两个脚本共用该判断，`package-lock.json` 变化才 `npm ci`（`launch.sh` 补上与 `launch.cmd` 相同的锁文件记录）。用内容哈希而非修改时间，复制或切换分支导致的时间变化不会误判。`tests/test_launch.py` 设 `OPEN_BROWSER=0`：此前后台打开浏览器的轮询占住输出管道，每个用例等满 180 秒。验证：`tests/test_launcher.py` 新增按需构建用例，6 passed（2.45 s）；实跑 `launch.sh`（端口 8031、隔离 USER_DIR）第一次 npm ci＋构建，第二次输出“前端源码未变化，跳过构建。”；`launch.cmd` 前端段落在 Windows cmd 下以替身 python/npm 验证：未变化跳过、变化后构建并记录、锁文件未变不 npm ci、构建失败无旧构建退出、有旧构建继续启动且不记录。
 - 已知：经费相同的项目散点会重叠，只能点到最上层一个（悬停提示显示项目名与金额）；预览面板中的雷达图较小。
 
+### 16.96 query「2026-1013 1914」：项目节点审查（2026-10-13，工作树未提交）
+
+- 产出：`.logsdev/dox_agent_节点审查-20261013-1914.md`，未改业务代码。依据：提交 545452f 的代码、需求文档与此前复核报告；隔离状态副本上以 admin、user、owner 三个账户实机走查（26 张截图，`verification/review-20261013-1914/`），未调用模型。
+- 主要发现：同一领域名称在场景归纳、总览雷达、谱系标签中分别为 59、95、222（项目 / 项目 / 技术条目）；场景层级提示词规定每库 6 个场景、每场景 2 个已解决 1 个待解决，领导页“已解决 12、待研究 6”由此而来；所有存储无创建者，任何账户可见、可删他人内容并可发布共享模板；任务进度每 5 秒拉取约 0.94 MB；首页、管理视图、领导视图三处总览重复。
+- 修改分 N1–N5 五批；N2、N3 等待用户确认 Q1–Q5。
+
+### 16.97 节点审查意见实施（2026-10-13，工作树未提交）
+
+- 用户确认：Q1 暂不做归属，Q2 作者或管理员发布，Q4 只改提示词不重生成，Q5 取消首页、用户落在“我的工作”。逐项状态见审查报告 §八。
+- 后端：`hierarchy.read` 按谱系领域计算场景项目（`membership` 字段）；删除层级配额校验与 `TARGETS`；`auth.CURRENT_USER` 记录当前账户，报告（`created_by`、`published_at` 列）、审查运行、会话写入创建人；`POST /api/artifacts/{id}/publish`、`POST /api/review/runs/{id}/publish`；`GET /api/summaries/facts`（服务端统计、按文件内容哈希合并重复审查、领导只看已发布）；周期总结只用已发布内容、分页读全部报告、单类别不画图、雷达注明未判定数；`/api/review/runs` 只返回摘要；`/api/artifacts?created_by=`；`/api/overview/libraries` 增加各领域项目数；删除 `/api/ingest/local`；`ADMIN_WRITES` 增加分析任务、Prompt/Skill、审查模板；页面路由表 `home` 改 `mine`。
+- 前端：新增 `MyWork.tsx`、`PublishButton.tsx`，删除 `HomeView.tsx`；`recentWork.ts` 改为读服务端统计；领导表格、领域总览、谱系标签、雷达说明按统一口径；对话侧栏只列会话；运行记录、token、模型名与设置面板限管理员；审查列表与任务进度只在有任务时轮询；会话未变化时不保存；模板管理入口限管理员；情报分析隐藏原生文件控件；管理视图关键技术去掉重复雷达。
+- 验证：pytest 244 passed（含新增断言：配额不再报缺口、谱系计数、模板权限、发布权限、领导只见已发布、重复审查合并、单类别不画图）；npm test 44 passed；tsc、build；五个浏览器脚本 PASS（`browser_review_simple` 改走“我的工作”）。实服务（隔离状态副本，未调用模型）：普通用户落在 /mine、无设置与模型按钮、空闲 30 秒仅 2 次健康检查、打开对话无写请求、无 token 与运行记录、模板页无编辑入口；管理员在近期工作发布报告后列表即显示已发布；领导表格四列、雷达注明 223 个项目未判定领域、神经系统疾病与精神障碍各处均为 95、近期工作只见已发布的 1 份。截图 `verification/review-20261013-1914-impl/`。
+- 未做：D2；11 个库场景层级的重新生成；B2 的部署部分。
+

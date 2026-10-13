@@ -7,7 +7,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, artifactExportUrl, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, artifactExportUrl, publishArtifact, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -21,6 +21,7 @@ import { TextPreview } from "./DocumentPreview";
 import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
 import { LibraryPreview } from "./LibraryPreview";
+import { PublishButton } from "./PublishButton";
 
 type InspTab = "out" | "cite" | "src";
 
@@ -385,6 +386,10 @@ export function Inspector() {
                   {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
                 </div>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
+                {artifact.type === "report" && artifact.lifecycle !== "trashed" ? <div className="mt-[6px]"><PublishButton createdBy={artifact.created_by} publishedAt={artifact.published_at}
+                  completed={artifact.status === "completed"} publish={async (published) => {
+                    const next = await publishArtifact(artifact.artifact_id, published); setArtifact({ ...artifact, ...next, version: artifact.version, markdown: artifact.markdown });
+                  }} /></div> : null}
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
                   {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
                   {artifact.legacy ? " · 历史报告（只读兼容）" : ""}

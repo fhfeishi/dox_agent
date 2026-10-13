@@ -196,7 +196,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         page = client.get(f"/library/{corpus_id}/targets/four-facets?scenario=临床诊疗")
         assert page.status_code == 200 and page.text == "research shell"
         assert "no-cache" in page.headers["cache-control"]
-        for route in ("/admin", "/home", "/leader", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
+        for route in ("/admin", "/mine", "/leader", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
             response = client.get(route)
             assert response.status_code == 200 and response.text == "research shell"
         for missing in ("/api/no-such-api", "/assets/missing.js", "/library/no-such-page"):
@@ -609,7 +609,6 @@ def test_preparation_guards_and_lightweight_health(tmp_path, monkeypatch):
         response = client.post("/api/chat", json=payload)
         assert response.status_code == 409
         assert "尚无已入库文档" in response.text
-        assert client.post("/api/ingest/local").status_code == 409
         assert client.post("/api/web/confirm/unknown", json={"save_for_run": True}).status_code == 409
         app.state.preparation = "error"
         assert client.post("/api/chat", json=payload).status_code == 409

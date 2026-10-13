@@ -1,7 +1,8 @@
 /**
- * 近期工作 (query 2026-1013 1637): analysis reports and review tasks grouped by a time period,
- * always by their real dates. Calendar periods start at local midnight: a week on Monday, a
- * quarter on January, April, July or October.
+ * 近期工作 (query 2026-1013 1637): analysis reports and review tasks of a time period. The server
+ * picks the items by their real dates over every record (节点审查 A5, `/api/summaries/facts`),
+ * counts repeated reviews of one application once (A4) and gives a leader only what was published
+ * (Q2); this module turns that into the lists, the one-line summary and the domain tally.
  */
 export type Period = "3d" | "7d" | "30d" | "week" | "month" | "quarter" | "year";
 export const PERIODS: { key: Period; label: string }[] = [
@@ -9,22 +10,17 @@ export const PERIODS: { key: Period; label: string }[] = [
   { key: "week", label: "本周" }, { key: "month", label: "本月" }, { key: "quarter", label: "本季度" }, { key: "year", label: "本年" },
 ];
 
-export function periodStart(period: Period, now: Date): Date {
-  const day = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  switch (period) {
-    case "3d": return new Date(day.getTime() - 2 * 86400000);
-    case "7d": return new Date(day.getTime() - 6 * 86400000);
-    case "30d": return new Date(day.getTime() - 29 * 86400000);
-    case "week": return new Date(day.getFullYear(), day.getMonth(), day.getDate() - ((day.getDay() + 6) % 7));
-    case "month": return new Date(day.getFullYear(), day.getMonth(), 1);
-    case "quarter": return new Date(day.getFullYear(), day.getMonth() - (day.getMonth() % 3), 1);
-    case "year": return new Date(day.getFullYear(), 0, 1);
-  }
-}
+type FactState = "已完成" | "未完成" | "进行中";
+export type Facts = {
+  period: string; start: string; end: string;
+  reports: { id: string; title: string; domains: string[]; date: string; state: FactState; published: boolean }[];
+  reviews: { id: string; title: string; kind: string; domains: string[]; date: string; state: FactState; published: boolean; runs: number }[];
+  summaries: { id: string; title: string; created_at: string }[];
+};
 
 export type WorkItem = {
-  key: string; kind: "report" | "review"; title: string; type: string; date: string;
-  state: "done" | "active" | "failed"; domains: string[];
+  key: string; kind: "report" | "review"; id: string; title: string; type: string; date: string;
+  state: "done" | "active" | "failed"; domains: string[]; published: boolean; runs: number;
 };
 
 export type WorkSummary = {
@@ -32,11 +28,16 @@ export type WorkSummary = {
   reports: number; reviews: number; domains: { name: string; count: number }[];
 };
 
-/** Items whose date falls in the period, newest first, with counts by kind, state and domain. */
-export function summarize(all: WorkItem[], period: Period, now: Date): WorkSummary {
-  const start = periodStart(period, now).getTime();
-  const items = all.filter((item) => { const t = Date.parse(item.date); return t >= start && t <= now.getTime(); })
-    .sort((a, b) => b.date.localeCompare(a.date));
+const STATE = { 已完成: "done", 未完成: "failed", 进行中: "active" } as const;
+
+/** The period's items newest first, with counts by kind, state and domain. */
+export function fromFacts(facts: Facts): WorkSummary {
+  const items: WorkItem[] = [
+    ...facts.reports.map((r): WorkItem => ({ key: "a:" + r.id, kind: "report", id: r.id, title: r.title, type: "分析报告", date: r.date,
+      state: STATE[r.state], domains: r.domains, published: r.published, runs: 1 })),
+    ...facts.reviews.map((r): WorkItem => ({ key: "r:" + r.id, kind: "review", id: r.id, title: r.title, type: r.kind, date: r.date,
+      state: STATE[r.state], domains: r.domains, published: r.published, runs: r.runs })),
+  ].sort((a, b) => b.date.localeCompare(a.date));
   const tally = new Map<string, number>();
   for (const item of items) for (const domain of item.domains) tally.set(domain, (tally.get(domain) ?? 0) + 1);
   return {
@@ -50,7 +51,7 @@ export function summarize(all: WorkItem[], period: Period, now: Date): WorkSumma
 /** One sentence for the period; it names counts and domains only, no judgement. */
 export function headline(summary: WorkSummary, label: string): string {
   if (!summary.items.length) return `${label}没有新的成果报告或审查任务。`;
-  const parts = [summary.reports ? `${summary.reports} 份分析报告` : "", summary.reviews ? `${summary.reviews} 项审查任务` : ""].filter(Boolean);
+  const parts = [summary.reports ? `${summary.reports} 份分析报告` : "", summary.reviews ? `${summary.reviews} 份申请书的审查` : ""].filter(Boolean);
   const where = summary.domains.slice(0, 3).map((d) => d.name).join("、");
   const open = summary.active.length ? `，${summary.active.length} 项仍在处理` : "";
   return `${label}共 ${parts.join("、")}${where ? `，主要涉及${where}` : ""}${open}。`;

@@ -3,7 +3,9 @@ import { branchFromTurn, restoreCorpusSelection, restoreTurns, type Turn } from 
 import type { Options } from "./api";
 import { createBranch as makeBranch, deepCopy, trimBranches, type Branch } from "./branches";
 
-export type Saved<T = Record<string, unknown>> = { id: string; revision: number; title: string; data: T; updated_at?: string; source_status?: string };
+export type Saved<T = Record<string, unknown>> = { id: string; revision: number; title: string; data: T; updated_at?: string; source_status?: string;
+  /** The account that first saved it; "" for sessions saved before authorship was recorded. */
+  created_by?: string };
 /** U1.2: `task_id` binds a session to one task; it lives next to `options`, not inside it. */
 export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; pinned?: boolean; branches?: Branch[]; task_id?: string; task_version?: number; corpus_id?: string; corpus_confirmed?: boolean; corpus_ids?: string[]; source_session_id?: string; source_turn_index?: number };
 export const DEFAULT_TASK_ID = "task1";
@@ -133,12 +135,16 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     if (!loaded || !hydrated.current || !active || !turns.length) return;
     localStorage.setItem("dox-agent-session", active);
     const existing = sessionsRef.current.find(item => item.id === active);
-    pending.current = { id: active, revision: revisions.current[active] ?? 0,
+    const next = { id: active, revision: revisions.current[active] ?? 0,
       title: existing?.title && (existing.title !== "新会话" || existing.data.turns.length > 0)
         ? existing.title : turns[0].question.slice(0, 100),
       data: { ...existing?.data, turns, options, branches,
         task_id: taskIdRef.current, task_version: taskVersionRef.current, corpus_id: corpusIdRef.current, corpus_confirmed: corpusConfirmedRef.current,
         corpus_ids: [...corpusIdsRef.current] } };
+    // Opening a session restores it into these states; that is not a change and is not saved back
+    // (节点审查 B3: merely viewing a page rewrote the session and raced other viewers).
+    if (existing && next.title === existing.title && JSON.stringify(next.data) === JSON.stringify(existing.data)) return;
+    pending.current = next;
     const timer = setTimeout(() => { void flush().catch(() => undefined); }, 500);
     return () => clearTimeout(timer);
   }, [turns, options, branches, active, loaded]);

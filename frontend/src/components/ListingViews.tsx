@@ -5,6 +5,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import type { IconName } from "./Icons";
+import { useAuth } from "../auth";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
   { tint: "var(--tint-mint)", fg: "#0e7a28", icon: "checklist" },
@@ -56,6 +57,8 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
  */
 export function TasksView() {
   const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask } = useApp();
+  // Analysis tasks are shared, so administrators maintain them (节点审查 D2).
+  const { role } = useAuth();
   const [templates, setTemplates] = useState<TemplateSummary[]>([]);
   const [showArchived, setShowArchived] = useState(false);
   const [manage, setManage] = useState(false);
@@ -134,7 +137,7 @@ export function TasksView() {
       title="存量分析"
       description="选择要做的分析，补充或修改问题后发送。生成的报告可随时在右上角“报告中心”查看。"
       actions={<>
-        <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束模板管理" : "管理模板"}</Button>
+        {role === "admin" ? <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束模板管理" : "管理模板"}</Button> : null}
         {manage ? <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button> : null}
         
       </>}

@@ -243,6 +243,8 @@ export type ArtifactSummary = {
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
   task_id: string; task_version?: number | null; template_id: string; template_version?: number | null; export_format: string; export_status: string;
   fail_reason: string; legacy?: boolean;
+  /** 节点审查 Q2: the account that created it ("" for older reports) and when it was published for leaders. */
+  created_by?: string; published_at?: string | null;
   source_verification?: "verified" | "unverified" | "user_modified";
   run_available?: boolean;
 };
@@ -397,39 +399,6 @@ export async function restoreTask(taskId: string): Promise<TaskInfo> {
   return jsonOrThrow(response, "恢复任务失败") as Promise<TaskInfo>;
 }
 
-export type PromptSkill = {
-  id: string; kind: "prompt" | "skill"; name: string; purpose: string; version: number; revision: number;
-  builtin: boolean; enabled: boolean; archived: boolean; referenced_by?: string[];
-  body?: string; variables?: string[]; example?: string; rules?: string; inputs?: string[];
-  prompt_id?: string; prompt_version?: number; tools?: string[];
-  resource_policy?: "local_only" | "allow_selected_web"; output_contract?: string; test_inputs?: Record<string, string>;
-};
-
-export async function fetchPromptSkills(): Promise<PromptSkill[]> {
-  return jsonOrThrow(await fetch("/api/prompt-skills?include_archived=true"), "Prompt / Skill 列表不可用") as Promise<PromptSkill[]>;
-}
-export async function createPromptSkill(kind: "prompt" | "skill", source_id?: string): Promise<PromptSkill> {
-  return jsonOrThrow(await fetch("/api/prompt-skills", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, source_id }) }), "创建失败") as Promise<PromptSkill>;
-}
-export async function savePromptSkill(item: PromptSkill): Promise<PromptSkill> {
-  const { revision, name, purpose, body, variables, example, rules, inputs, prompt_id, prompt_version,
-    tools, resource_policy, output_contract, test_inputs } = item;
-  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/draft`, { method: "PUT", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ revision, name, purpose, body, variables, example, rules, inputs, prompt_id,
-      prompt_version, tools, resource_policy, output_contract, test_inputs }) }), "保存失败") as Promise<PromptSkill>;
-}
-export async function publishPromptSkill(item: PromptSkill): Promise<PromptSkill> {
-  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/publish`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: item.revision }) }), "启用失败") as Promise<PromptSkill>;
-}
-export async function setPromptSkillEnabled(item: PromptSkill, enabled: boolean): Promise<PromptSkill> {
-  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/${enabled ? "enable" : "disable"}`, { method: "POST" }), "状态更新失败") as Promise<PromptSkill>;
-}
-export async function archivePromptSkill(item: PromptSkill): Promise<PromptSkill> {
-  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/archive`, { method: "POST" }), "归档失败") as Promise<PromptSkill>;
-}
-export async function testPromptSkill(item: PromptSkill, inputs: Record<string, string>): Promise<{ rendered_prompt: string; stages: string[]; structure_valid: boolean; model_executed: boolean }> {
-  return jsonOrThrow(await fetch(`/api/prompt-skills/${encodeURIComponent(item.id)}/test`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ inputs }) }), "静态检查失败") as Promise<{ rendered_prompt: string; stages: string[]; structure_valid: boolean; model_executed: boolean }>;
-}
 
 export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number; content?: string; purpose?: string };
 export type TemplateInfo = TemplateSummary & { content: string; variables?: string[]; purpose?: string; revision?: number; source_template_id?: string };
@@ -579,4 +548,10 @@ export type ComposeInput = { task: string; elements: string[]; intents: string[]
 export async function composeQuestion(input: ComposeInput): Promise<string> {
   const payload = await jsonOrThrow(await fetch("/api/compose-question", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input) }), "生成问题失败");
   return (payload as { question: string }).question;
+}
+
+/** Publish a finished report for the leader view and period summaries, or withdraw it (author or administrator). */
+export async function publishArtifact(artifactId: string, published: boolean): Promise<ArtifactSummary> {
+  return jsonOrThrow(await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/publish`, { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ published }) }), published ? "发布失败" : "撤回失败") as Promise<ArtifactSummary>;
 }

@@ -44,7 +44,7 @@ function LibraryIndex() {
   return <p className="p-8 text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可在左侧“新建资料库”。" : "正在读取资料库…"}</p>;
 }
 
-const WORKBENCH = ["/chat", "/library", "/tasks", "/review", "/intelligence"];
+const WORKBENCH = ["/mine", "/chat", "/library", "/tasks", "/review", "/intelligence"];
 
 /** A leader lands on the leader view and reaches the workbench through its 工作台 menu (query 2026-1013 1842); administrators and users get the full system. */
 function Root() {
@@ -56,10 +56,10 @@ function Root() {
   return <AppProvider>{role === "leader" && !workbench ? <LeaderView /> : <App />}</AppProvider>;
 }
 
-/** Where each role starts: administrators in 管理视图 (query 1745), users in the workbench (1522). */
+/** Where each role starts: administrators in 管理视图 (query 1745), users in 我的工作 (节点审查 Q5). */
 function RoleIndex() {
   const { role } = useAuth();
-  return <Navigate to={role === "user" ? "/chat" : "/admin"} replace />;
+  return <Navigate to={role === "user" ? "/mine" : "/admin"} replace />;
 }
 
 /** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
@@ -75,7 +75,7 @@ export const router = createBrowserRouter([{
     { index: true, Component: RoleIndex },
     { path: "leader", element: <Navigate to="/" replace /> },
     { path: "admin", lazy: async () => ({ Component: (await import("./components/AdminView")).AdminView }) },
-    { path: "home", lazy: async () => ({ Component: (await import("./components/HomeView")).HomeView }) },
+    { path: "mine", lazy: async () => ({ Component: (await import("./components/MyWork")).MyWork }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
       { index: true, Component: LibraryIndex },

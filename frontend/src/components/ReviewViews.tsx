@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation, useParams, useSearchParams } from "react-rou
 import {
   addReviewEvidence, createReviewRun, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth,
   fetchReviewMappings, fetchReviewRules, fetchReviewRun, fetchReviewRuns, patchReviewDocument, reextractReviewDocument,
-  reviewExportUrl, saveReviewMappings, searchReviewEvidence, uploadReviewEvidence,
+  publishReviewRun, reviewExportUrl, saveReviewMappings, searchReviewEvidence, uploadReviewEvidence,
   testReviewModel, uploadReviewDocument,
   REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL,
   type ReviewCard, type ReviewDoc, type ReviewEvidence, type ReviewFinding, type ReviewHealth, type ReviewKind,
@@ -12,6 +12,7 @@ import {
 import { useApp } from "../store";
 import { Button, Pill, type Tone } from "./ui";
 import { Icon } from "./Icons";
+import { PublishButton } from "./PublishButton";
 
 const TABS: { to: string; label: string; keep?: boolean }[] = [
   { to: "/review/formal", label: "形式审查", keep: true },
@@ -383,13 +384,15 @@ export function ReviewWorkbench() {
   useEffect(() => {
     if (search.size) sessionStorage.setItem("review-workbench:" + reviewKind, search.toString());
   }, [reviewKind, search]);
+  // Poll only while a review is queued or running (节点审查 C1); returning to the page refreshes once.
+  const reviewing = runs.some((run) => run.status === "queued" || run.status === "running");
   useEffect(() => {
     let active = true;
     const refresh = () => { void fetchReviewRuns().then((value) => { if (active) setRuns(value); }).catch((cause) => { if (active) setError(cause.message); }); };
-    const timer = window.setInterval(refresh, 2500);
+    const timer = reviewing ? window.setInterval(refresh, 2500) : undefined;
     window.addEventListener("focus", refresh);
     return () => { active = false; window.clearInterval(timer); window.removeEventListener("focus", refresh); };
-  }, []);
+  }, [reviewing]);
   const sheet = docs.find((item) => item.id === sheetId) ?? null;
 
   function remember(key: string, value: string) {
@@ -866,6 +869,8 @@ export function ReviewRunPage() {
           {!formal ? <span>评价方式：{run.request.mode === "historical" ? `历史评价 · ${run.request.cutoff_date}` : "更新建议"}</span> : null}
           {!formal ? <span>对照资料库：{corpora.find((item) => item.id === run.request.corpus_ids?.[0])?.name ?? run.request.corpus_ids?.[0] ?? "未记录"} · 参考报告 {run.technical?.local_matches ?? 0}/{run.request.reference_count ?? 3} 篇 · 文献 {run.request.evidence_ids?.length ?? 0} 篇</span> : null}
           <span>生成：{localTime(run.created_at)}</span>
+          <PublishButton createdBy={run.created_by} publishedAt={run.published_at} completed={run.status === "completed"}
+            publish={async (published) => { const next = await publishReviewRun(run.id, published); setRun({ ...run, published_at: next.published_at }); }} />
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-sm text-[var(--primary)]">
           {run.status === "completed" ? <a href={reviewExportUrl(run.id, "docx")}>下载 Word 报告</a> : null}
@@ -1032,9 +1037,17 @@ export function ReviewRunPanel() {
         .catch((cause) => { if (active) setError((cause as Error).message); });
     };
     load();
-    const timer = window.setInterval(load, 5000);
-    return () => { active = false; window.clearInterval(timer); };
+    window.addEventListener("focus", load);
+    return () => { active = false; window.removeEventListener("focus", load); };
   }, []);
+  // Keep the list current only while something is under review (节点审查 C1).
+  const reviewing = runs.some((run) => run.status === "queued" || run.status === "running");
+  useEffect(() => {
+    if (!reviewing) return;
+    let active = true;
+    const timer = window.setInterval(() => { void fetchReviewRuns().then((next) => { if (active) setRuns(next); }).catch(() => undefined); }, 5000);
+    return () => { active = false; window.clearInterval(timer); };
+  }, [reviewing]);
   const ordered = useMemo(() => runs, [runs]);
   if (error) return <p role="alert" className="px-[10px] py-2 text-[12px] text-[var(--red)]">{error}</p>;
   return (

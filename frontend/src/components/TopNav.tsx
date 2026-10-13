@@ -13,7 +13,7 @@ const REVIEW_PAGES = [
 ];
 
 const ITEMS: { key: NavKey; label: string; hint?: string }[] = [
-  { key: "home", label: "首页" },
+  { key: "mine", label: "我的工作", hint: "我发起的对话、报告与审查" },
   { key: "chat", label: "对话工作台" },
   { key: "library", label: "资料库" },
   { key: "tasks", label: "存量分析", hint: "分析已有资料：问答、对比、技术研判、专项报告" },
@@ -58,25 +58,28 @@ export function TopNav() {
   const { nav, setNav, sidebarCollapsed, toggleSidebar, showInspector, setDrawerOpen, llmTone, llmText, model } = useApp();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   return <header className="flex h-[52px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
-    {nav !== "admin" && nav !== "home" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
+    {nav !== "admin" && nav !== "mine" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
-    <button type="button" onClick={() => setNav("home")} className="mr-2 flex shrink-0 items-center gap-2">
+    <Link to="/" className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
       <span className="hidden text-[15px] font-semibold text-[var(--ink)] md:inline">资料工作台</span>
-    </button>
+    </Link>
     <nav aria-label="主导航" className="scrollbar-thin flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">
       {role === "leader" ? <Link to="/" className={tab(false)} title="回到领导视图">领导视图</Link> : null}
       {role === "admin" ? <button type="button" aria-current={nav === "admin" ? "page" : undefined} onClick={() => setNav("admin")} className={tab(nav === "admin")}
         title="关键技术、需要处理的事项与近期工作">管理视图</button> : null}
-      {ITEMS.filter((item) => role !== "leader" || item.key !== "home").map((item) => item.key === "review" ? <ReviewMenu key={item.key} active={nav === "review"} />
+      {ITEMS.map((item) => item.key === "review" ? <ReviewMenu key={item.key} active={nav === "review"} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
     </nav>
-    <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
+    {/* Model name, address and connection test are the administrator's (节点审查 B2); others see whether analysis is available. */}
+    {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
       className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
       <span className={`size-2 rounded-full ${llmTone}`} />模型</button>
+      : <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
+        <span className={`size-2 rounded-full ${llmTone}`} />分析服务</span>}
     <button type="button" onClick={() => showInspector({ kind: "activity" })} className="shrink-0 rounded-lg px-2 py-2 text-sm text-[var(--slate)] hover:bg-[var(--surface)]">任务进度</button>
     <button type="button" onClick={() => showInspector({ kind: "results" })} className="shrink-0 rounded-lg px-2 py-2 text-sm text-[var(--primary)] hover:bg-[var(--surface)]">报告中心</button>
-    <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button>
+    {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;
 }

@@ -78,11 +78,20 @@ export function FocusRadars({ fields, items, stages }: {
   stages: { name: string }[];
 }) {
   const count = (key: "field" | "stage", name: string) => new Set(Object.values(items).filter((i) => i[key] === name).map((i) => i.project_id)).size;
+  // Projects left out of a chart are counted next to it, never silently dropped (节点审查 A3).
+  const all = new Set(Object.values(items).map((i) => i.project_id));
+  const outside = (key: "field" | "stage", names: { name: string }[]) => {
+    const known = new Set(names.map((n) => n.name));
+    const placed = new Set(Object.values(items).filter((i) => i[key] && known.has(i[key]!)).map((i) => i.project_id));
+    return [...all].filter((id) => !placed.has(id)).length;
+  };
+  const note = (what: string, key: "field" | "stage", names: { name: string }[]) =>
+    `有技术${what}的项目数，一个项目可计入多处；${outside(key, names)} 个项目的技术都未判定${key === "field" ? "领域" : "环节"}，不在图中（共 ${all.size} 个项目）`;
   const charts: ChartSpec[] = [
     ...(fields.length ? [{ type: "radar" as const, title: "应用领域分布", labels: fields.map((f) => f.name), values: fields.map((f) => count("field", f.name)), unit: " 项",
-      note: "有技术服务于该领域的项目数；领域未判定的不计" }] : []),
+      note: note("服务于该领域", "field", fields) }] : []),
     ...(stages.length ? [{ type: "radar" as const, title: "业务环节分布", labels: stages.map((s) => s.name), values: stages.map((s) => count("stage", s.name)), unit: " 项",
-      note: "有技术落在该环节的项目数；环节未判定的不计" }] : []),
+      note: note("落在该环节", "stage", stages) }] : []),
   ];
   return <section aria-label="聚焦分布" className="grid gap-3 md:grid-cols-2">
     {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}

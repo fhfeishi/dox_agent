@@ -123,7 +123,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
   return <div className="mx-auto max-w-[1180px] space-y-7 px-5 py-6">
     <div>
       <h1 className="text-2xl font-semibold">{name}</h1>
-      <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系 · 报告所述已解决 {board.solved} 项、待研究 {board.open} 项</p>
+      <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系</p>
     </div>
 
     <FocusRadars fields={lineage.fields ?? []} items={lineage.items} stages={lineage.stages ?? []} />
@@ -144,12 +144,10 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
       <h2 className="mb-2 text-sm font-semibold text-[var(--steel)]">场景与核心问题</h2>
       <div className="grid gap-2 md:grid-cols-2">{hierarchy.scenes.map((scene) => {
         const key = "s:" + scene.name;
-        const solved = scene.issues.filter((i) => i.state === "已解决").length;
         return <div key={scene.name} className={card(open === key)}>
           <button type="button" aria-expanded={open === key} onClick={() => toggle(key)} className="flex w-full items-center gap-3 p-3 text-left">
             <b className="min-w-0 flex-1 text-[14px]">{scene.name}</b>
-            <span className="text-xs text-[#0e7a28]">✔ 报告所述已解决 {solved}</span>
-            <span className="text-xs text-[var(--steel)]">➜ 待研究 {scene.issues.length - solved}</span>
+            <span className="text-xs text-[var(--stone)]">{scene.project_ids.length} 个项目 · 问题 {scene.issues.length} 个</span>
           </button>
           {open === key ? <ul className="space-y-2 border-t border-[var(--hairline)] px-3 py-3">{scene.issues.map((issue) =>
             <li key={issue.name} className="text-[13px]">

@@ -144,6 +144,8 @@ export type ReviewReaderPoint = {
 };
 export type ReviewRun = {
   id: string;
+  /** 节点审查 Q2: the account that started it ("" for older runs) and when it was published for leaders. */
+  created_by?: string; published_at?: string | null;
   source_locations?: Record<string, { file_id: string; source_page: number; kind: string; filename: string }>;
   information_sheet?: ReviewDoc | null;
   input_versions?: { file_id: string; sha256: string; metadata_revision: number }[];
@@ -372,3 +374,9 @@ export const REVIEW_MEASURES: { field: string; label: string; unit: string; kind
 export const REVIEW_EVIDENCE_NEED_LABEL: Record<string, string> = {
   internal: "申请书内部论证", comparison: "需对照资料", policy: "需政策材料",
 };
+
+/** Publish a finished review for the leader view, or withdraw it (author or administrator). */
+export function publishReviewRun(id: string, published: boolean): Promise<ReviewRun> {
+  return request(`/runs/${encodeURIComponent(id)}/publish`, { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ published }) }, published ? "发布失败" : "撤回失败");
+}

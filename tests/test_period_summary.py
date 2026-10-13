@@ -19,19 +19,34 @@ def test_periods_count_from_local_midnight():
 
 def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
     now = datetime.now().astimezone()
-    recent, old = (now - timedelta(days=1)).isoformat(), (now - timedelta(days=40)).isoformat()
-    reports = [{"title": "肺结节研判", "corpus_ids": ["m"], "updated_at": recent, "status": "completed", "markdown": "结论 [1]\n```dox-chart\n{}\n```"},
+    recent, earlier, old = ((now - timedelta(days=d)).isoformat() for d in (1, 2, 40))
+    reports = [{"artifact_id": "r1", "title": "肺结节研判", "corpus_ids": ["m"], "updated_at": recent, "status": "completed",
+                "published_at": recent, "markdown": "结论 [1]\n```dox-chart\n{}\n```"},
+               {"artifact_id": "r2", "title": "草稿", "corpus_ids": ["b"], "updated_at": earlier, "status": "completed", "markdown": ""},
                {"title": "旧报告", "corpus_ids": ["m"], "updated_at": old, "status": "completed", "markdown": ""},
                {"title": "上期总结", "corpus_ids": [], "updated_at": recent, "status": "completed", "task_id": "period_summary", "markdown": ""}]
-    runs = [{"status": "completed", "created_at": recent, "request": {"kind": "professional", "corpus_ids": ["m"]},
-             "document": {"filename": "a.docx", "metadata": {"title": "申请书甲"}}, "summary": {"issue": 2}}]
-    facts = gather("7d", now, reports, runs, {"m": "自然科学基金-AI与医疗"})
-    assert [r["title"] for r in facts["reports"]] == ["肺结节研判"]  # outside the period and earlier summaries are left out
+    run = {"status": "completed", "request": {"kind": "professional", "corpus_ids": ["m"]},
+           "document": {"id": "d1", "filename": "a.docx", "metadata": {"title": "申请书甲"}}, "summary": {"issue": 2}}
+    # The second run is the same file uploaded again: a new document id, the same content hash.
+    runs = [{**run, "id": "x1", "created_at": recent, "published_at": recent, "input_versions": [{"sha256": "s1"}]},
+            {**run, "id": "x0", "created_at": earlier, "document": {**run["document"], "id": "d9"}, "input_versions": [{"sha256": "s1"}]},
+            {"id": "x2", "status": "completed", "created_at": earlier, "request": {}, "document": {"id": "d2", "filename": "b.docx"}}]
+    names = {"m": "自然科学基金-AI与医疗", "b": "自然科学基金-AI与农业"}
+    facts = gather("7d", now, reports, runs, names)
+    assert [r["title"] for r in facts["reports"]] == ["肺结节研判", "草稿"]  # outside the period and earlier summaries are left out
     assert facts["reports"][0]["excerpt"] == "结论"  # citations and chart blocks are not passed on
-    assert facts["reviews"][0] == {"title": "申请书甲", "kind": "专业审查", "domains": ["AI与医疗"], "date": recent[:10], "state": "已完成", "issues": 2}
-    figures = charts(facts, lambda name: [("肿瘤", 5), ("神经", 3), ("心血管", 2)])
+    # Two professional reviews of one application count once, with how many runs; a run without a kind is not called formal.
+    assert facts["reviews"][0] == {"id": "x1", "title": "申请书甲", "kind": "专业审查", "domains": ["AI与医疗"], "date": recent[:10],
+                                   "state": "已完成", "published": True, "issues": 2, "runs": 2}
+    assert [r["kind"] for r in facts["reviews"]] == ["专业审查", "资料审查"]
+    published = gather("7d", now, reports, runs, names, published_only=True)
+    assert [r["title"] for r in published["reports"]] == ["肺结节研判"] and [r["runs"] for r in published["reviews"]] == [1]
+    figures = charts(facts, lambda name: {"fields": [("肿瘤", 5), ("神经", 3), ("心血管", 2)], "outside": 4, "total": 12})
     assert [f["title"] for f in figures] == ["各领域的工作量", "工作类型", "按日产出", "AI与医疗 · 应用领域分布"]
-    assert figures[0]["values"] == [2] and figures[1]["values"] == [1, 0, 1] and figures[3]["type"] == "radar"
+    assert figures[0]["values"] == [2, 1] and figures[1]["values"] == [2, 0, 1, 1] and figures[3]["type"] == "radar"
+    assert "4 个项目的技术都未判定领域" in figures[3]["note"]
+    # A chart with one bar says nothing: one domain and one day draw nothing; two kinds of work still do.
+    assert [f["title"] for f in charts(published, lambda name: {})] == ["工作类型"]
     body = markdown(facts, {"headline": "本期聚焦医疗影像。", "focus": ["《肺结节研判》关注早筛"], "suggestions": [{"issue": "证据少", "proposal": "补充多中心资料"}]}, figures)
     assert body.count("```dox-chart") == 4 and "本期聚焦医疗影像。" in body and "- **证据少**：补充多中心资料" in body
     assert "- 本期无可写内容。" in body  # empty sections say so instead of being filled
@@ -48,15 +63,30 @@ def test_summary_endpoint_saves_a_report_and_leaders_may_ask_for_one(tmp_path, m
     app = main.create_app(Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
                                    user_dir=tmp_path / "usr", model_api_key="test"))
     with TestClient(app) as client:
+        client.post("/api/auth/login", json={"username": "user", "password": "123456"})
+        app.state.artifacts.create("b" * 32, type="report", title="未发布", markdown="正文", status="completed")
+        assert client.post("/api/review/runs/none/publish", json={"published": True}).status_code == 404
+        from src import auth
+        token = auth.CURRENT_USER.set("user")
         app.state.artifacts.create("a" * 32, type="report", title="医疗研判", markdown="正文", status="completed")
+        auth.CURRENT_USER.reset(token)
+        assert client.post("/api/artifacts/" + "b" * 32 + "/publish", json={"published": True}).status_code == 403  # not the author
+        assert client.post("/api/artifacts/" + "a" * 32 + "/publish", json={"published": True}).json()["published_at"]
+        facts = client.get("/api/summaries/facts", params={"period": "7d"}).json()
+        assert sorted((r["title"], r["published"]) for r in facts["reports"]) == [("医疗研判", True), ("未发布", False)]
+        client.post("/api/auth/logout")
+        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
         assert client.post("/api/summaries", json={"period": "decade"}).status_code == 422
         created = client.post("/api/summaries", json={"period": "7d"})
         assert created.status_code == 201, created.text
         saved = created.json()
         assert saved["task_id"] == "period_summary" and saved["title"].startswith("工作总结 · 近 7 天")
-        assert "本期以医疗为主。" in saved["markdown"] and "```dox-chart" in saved["markdown"]
+        # Only the published report is summarised; one report gives no chart and no empty chart heading.
+        assert "本期以医疗为主。" in saved["markdown"] and "数据概览" not in saved["markdown"] and "分析报告 1 份" in saved["markdown"]
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
+        # A leader's recent work shows only published reports, never the unpublished one.
+        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "7d"}).json()["reports"]] == ["医疗研判"]
         assert client.post("/api/summaries", json={"period": "month"}).status_code == 201
 
 

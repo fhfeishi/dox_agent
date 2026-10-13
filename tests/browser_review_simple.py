@@ -44,14 +44,14 @@ async def main():
                 await expect(page.get_by_role("heading", name="登录")).to_be_visible()
                 await page.get_by_label("密码", exact=True).fill("123456")  # built-in admin / 123456
                 await page.get_by_role("button", name="登录").click()
-                # Administrators land in 管理视图 (query 2026-1013 1745); 首页 stays in the menu.
+                # Administrators land in 管理视图 (query 2026-1013 1745); 我的工作 replaced 首页 (节点审查 Q5).
                 await expect(page.get_by_role("heading", name="工作概况")).to_be_visible()
                 # First visit to an area shows its three-step guide once per account.
                 await page.get_by_role("dialog", name="管理视图 操作指南").get_by_role("button", name="知道了").click()
-                await page.get_by_role("button", name="首页", exact=True).click()
-                await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
-                await page.get_by_role("dialog", name="首页 操作指南").get_by_role("button", name="知道了").click()
-                await page.get_by_role("link", name="上传申请书 · 生成审查报告").click()
+                await page.get_by_role("button", name="我的工作", exact=True).click()
+                await expect(page.get_by_role("heading", name="我的工作")).to_be_visible()
+                await page.get_by_role("dialog", name="我的工作 操作指南").get_by_role("button", name="知道了").click()
+                await page.get_by_role("link", name="审查申请书").click()
                 await page.get_by_role("dialog", name="资料审查 操作指南").get_by_role("button", name="知道了").click()
                 # Minimal workbench: template, application and start; details open on click.
                 await page.get_by_role("button", name=re.compile("形式审查模板")).click()
@@ -68,8 +68,8 @@ async def main():
                 await expect(page.locator("details#records")).not_to_have_attribute("open", "")
                 await expect(page.locator("#records a")).to_have_count(3)
                 await expect(page.locator("#records")).to_contain_text("排队中")
-                await page.get_by_role("button", name="首页", exact=True).click()
-                await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
+                await page.get_by_role("button", name="我的工作", exact=True).click()
+                await expect(page.get_by_role("heading", name="我的工作")).to_be_visible()
                 gate.set()
                 await page.get_by_role("button", name="资料审查 ▾").click()
                 await page.get_by_role("menuitem", name="形式审查").click()
@@ -99,8 +99,8 @@ async def main():
                 screenshots.mkdir(parents=True, exist_ok=True)
                 await page.screenshot(path=str(screenshots/"report-mobile.png"), full_page=True)
                 await page.set_viewport_size({"width": 1440, "height": 1000})
-                await page.get_by_role("button", name="首页", exact=True).click()
-                await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
+                await page.get_by_role("button", name="我的工作", exact=True).click()
+                await expect(page.get_by_role("heading", name="我的工作")).to_be_visible()
                 await page.screenshot(path=str(screenshots/"home.png"), full_page=True)
                 await page.get_by_role("button", name="账户：admin").click()
                 await page.get_by_role("menuitem", name="退出登录").click()

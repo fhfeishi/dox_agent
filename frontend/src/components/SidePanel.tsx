@@ -23,14 +23,6 @@ function groupOf(iso: string | undefined): "今天" | "昨天" | "更早" {
   return "更早";
 }
 
-function corpusDot(preparation: string, jobStatus?: string, missing = false): string {
-  if (missing) return "var(--red)";
-  if (jobStatus === "running") return "#e0a000";
-  if (jobStatus === "error" || preparation === "error") return "var(--red)";
-  if (preparation === "ready") return "var(--green)";
-  return "#e0a000";
-}
-
 export function SidePanel() {
   const {
     nav,
@@ -44,9 +36,6 @@ export function SidePanel() {
     taskId,
     taskCapable,
     showInspector,
-    corpora,
-    effectiveCorpusId,
-    selectCorpus,
     sidebarCollapsed,
     progress,
   } = useApp();
@@ -58,7 +47,7 @@ export function SidePanel() {
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   // The top bar keeps the primary entries reachable while the panel is hidden.
   // Task pages keep their context in the main flow; a second task list obscures that flow.
-  if (sidebarCollapsed || ["admin", "home", "review", "tasks", "intelligence"].includes(nav)) return null;
+  if (sidebarCollapsed || ["admin", "mine", "review", "tasks", "intelligence"].includes(nav)) return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;
@@ -78,7 +67,6 @@ export function SidePanel() {
       && (sessionFilter === "all" || s.data.pinned),
   );
   const archived = allSessions.filter((s) => s.data.archived);
-  const visibleKbs = corpora.filter((c) => c.name.toLowerCase().includes(q));
   const visibleTasks = tasks.filter((t) => `${t.name} ${t.description}`.toLowerCase().includes(q));
 
   const unsaved = !allSessions.some((s) => s.id === workspace.active) && !q && sessionFilter === "all";
@@ -134,23 +122,7 @@ export function SidePanel() {
 
       {/* scrollable list */}
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[8px] pb-[12px]">
-        {/* Corpus selection stays reachable from the chat view; the library view owns the full list. */}
-        {nav !== "library" && nav !== "review" && visibleKbs.length ? (
-          <>
-            <GroupLabel className="pt-[2px]">资料库</GroupLabel>
-            {visibleKbs.map((corpus) => (
-              <PanelRow
-                key={corpus.id}
-                dot={corpusDot(corpus.preparation, corpus.job?.status, corpus.missing)}
-                title={corpus.name}
-                meta={`${corpus.docs_count}`}
-                active={corpus.id === effectiveCorpusId}
-                onClick={() => selectCorpus(corpus.id)}
-              />
-            ))}
-          </>
-        ) : null}
-
+        {/* Chat chooses its libraries above the input box only; the library list lives on 资料库 (节点审查 D3). */}
         {nav === "chat" && (
           <>
             <div className="flex gap-[6px] px-[8px] pt-[4px]">
@@ -285,13 +257,6 @@ export function SidePanel() {
             </div>
           </div>
         ) : null}
-        {/* The conversation scope only matters where conversations happen (UI review U3). */}
-        {nav === "chat" ? <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
-          <span>当前对话使用</span>
-          <b className="min-w-0 truncate font-semibold text-[var(--slate)]">
-            {corpora.find((c) => c.id === effectiveCorpusId)?.name ?? "未选择"}
-          </b>
-        </div> : null}
       </div>
     </aside>
   );

@@ -115,6 +115,11 @@ def test_library_maintenance_is_for_administrators_only(tmp_path):
         assert client.delete("/api/corpora/anything").status_code == 403
         # Analysis stays open to users: a topic summary request reaches its handler (404 for an unknown library).
         assert client.post("/api/corpora/none/topic-summary", json={"dimension": "技术", "name": "x"}).status_code != 403
+        # Shared analysis tasks and review templates are maintained by administrators (节点审查 D2);
+        # report templates stay open because 情报分析 saves a user's own template.
+        assert client.post("/api/tasks/custom", json={"source_task_id": "task1"}).status_code == 403
+        assert client.post("/api/review/rules", json={}).status_code == 403
+        assert client.post("/api/templates/custom", json={}).status_code != 403
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
         assert client.post("/api/corpora", json={"name": "管理员新建"}).status_code == 201

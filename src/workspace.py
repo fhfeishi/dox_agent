@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
 from .knowledge import Document, Page
+from .auth import CURRENT_USER
 
 router = APIRouter(prefix="/api")
 
@@ -43,9 +44,12 @@ class Workspace:
             raise HTTPException(413, "单个会话或笔记超过保存大小限制，请新建会话")
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            old = db.execute("SELECT revision, kind FROM records WHERE id=?", (key,)).fetchone()
-            if (old and old != (record.revision, kind)) or (not old and record.revision != 0):
+            old = db.execute("SELECT revision, kind, payload FROM records WHERE id=?", (key,)).fetchone()
+            if (old and old[:2] != (record.revision, kind)) or (not old and record.revision != 0):
                 raise HTTPException(409, "内容已在其他页面更新，请刷新后继续，当前内容未覆盖")
+            # The account that first saved it, kept across later saves (节点审查: 我的工作).
+            payload["created_by"] = json.loads(old[2]).get("created_by", "") if old else CURRENT_USER.get()
+            serialized = json.dumps(payload, ensure_ascii=False)
             db.execute("INSERT OR REPLACE INTO records VALUES (?, ?, ?, ?)", (key, kind, payload["revision"], serialized))
         return payload
 

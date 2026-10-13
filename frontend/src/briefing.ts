@@ -45,7 +45,7 @@ export type BoardIssue = { name: string; summary: string; state: "已解决" | "
 export type BoardAchievement = { title: string; summary: string; maturity: number; indicators: string[]; projectIds: string[]; quote: string };
 export type BoardScene = { name: string; summary: string; projects: number; tiers: number[]; issues: BoardIssue[]; achievements: BoardAchievement[]; highlights: string[] };
 export type Foundation = { key: string; name: string; plain: string; system: string; projects: number; scenes: string[]; maturity: number; items: number };
-export type Board = { branch: string; projects: number; tiers: number[]; solved: number; open: number; scenes: BoardScene[]; foundations: Foundation[]; unplaced: number; unplacedKey: string };
+export type Board = { branch: string; projects: number; tiers: number[]; scenes: BoardScene[]; foundations: Foundation[]; unplaced: number; unplacedKey: string };
 
 const tierIndex = (level: number) => TIERS.indexOf(tierOf(level));
 
@@ -82,10 +82,8 @@ export function buildBoard(hierarchy: Hierarchy, lineage: Lineage): Board {
 
   const tiers = [0, 0, 0, 0];
   for (const level of projectLevel.values()) tiers[tierIndex(level)] += 1;
-  const issues = hierarchy.scenes.flatMap((scene) => scene.issues);
   return {
     branch: lineage.branch.replace(/^自然科学基金-/, ""), projects: projectLevel.size, tiers, scenes,
-    solved: issues.filter((issue) => issue.state === "已解决").length, open: issues.filter((issue) => issue.state === "待解决").length,
     foundations: foundations.sort((a, b) => b.projects - a.projects),
     unplacedKey: (() => { const i = lineage.categories.findIndex((category) => category.unplaced); return i < 0 ? "" : `c:${i}`; })(),
     unplaced: lineage.categories.filter((category) => category.unplaced).reduce((n, category) =>
@@ -245,7 +243,6 @@ export function libraryInsights(board: Board, matrix: Matrix, lineage: Lineage, 
   const totalItems = matrix.total - matrix.hidden;
   const starts = years.map((y) => y.start).filter((v): v is number => v !== null), ends = years.map((y) => y.end).filter((v): v is number => v !== null);
   const mature = board.tiers[0] + board.tiers[1];
-  const open = board.scenes.flatMap((s) => s.issues.filter((i) => i.state === "待解决").map((i) => `${i.name}（${s.name}）`));
   const topStageOf = (field: string) => matrix.stages.filter((s) => s.name !== UNDETERMINED_STAGE)
     .map((s) => ({ name: s.name, n: matrixCell(matrix, field, s.name)?.items.length ?? 0 })).sort((a, b) => b.n - a.n)[0];
   const cards: Insight[] = [{
@@ -274,7 +271,6 @@ export function libraryInsights(board: Board, matrix: Matrix, lineage: Lineage, 
     points: [`示范应用 ${board.tiers[0]} 个项目，成型技术 ${board.tiers[1]} 个`, `攻关验证 ${board.tiers[2]} 个，探索或未判定 ${board.tiers[3]} 个`,
       `按各项目最高阶段计，分母为 ${board.projects} 个已纳入项目；不是整体成熟度或转化率`],
   });
-  if (open.length) cards.push({ title: "待研究问题", headline: `报告所述尚待解决的问题 ${open.length} 个`, points: open.slice(0, 3) });
   return cards;
 }
 

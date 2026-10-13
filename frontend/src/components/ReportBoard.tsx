@@ -80,7 +80,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   return <div className="space-y-4">
     <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
       <b className="text-[15px]">{board.branch}</b>
-      <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · 报告所述已解决 <b className="text-[#0e7a28]">{board.solved}</b> 项 · 待研究 <b>{board.open}</b> 项</span>
+      <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · {board.scenes.length} 个应用场景</span>
       <span className="flex-1" />
       <span className="text-xs text-[var(--steel)]">显示</span>
       <div role="radiogroup" aria-label="阶段门槛" className="flex overflow-hidden rounded-md border border-[var(--hairline)]">

@@ -5,11 +5,14 @@ An internal system: the store starts with ``admin`` (administrator), ``owner`` (
 four characters; new accounts default to ``123456``. Roles (query 2026-1013 1133) choose the interface: ``leader`` gets the lean leader view, ``admin``
 the full system plus account management, ``user`` the full workbench. Leaders also use the workbench
 (query 1842). Enforced on the API: library maintenance (libraries, files, imports, generated
-structure, groups) and account management are the administrator's. Data is not yet separated per person or department. Each account also remembers which first-visit guides
+structure, groups), shared analysis tasks and review templates, and account management are the
+administrator's. Stores record who created a report, review or session (``CURRENT_USER``); data is
+not yet separated per person or department. Each account also remembers which first-visit guides
 it has dismissed.
 """
 import hashlib
 import hmac
+from contextvars import ContextVar
 import re
 import secrets
 import sqlite3
@@ -30,7 +33,14 @@ GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
 # Library maintenance is the administrator's: creating, renaming, deleting and re-linking libraries,
 # their files, imports, extraction and generated structure, and the groups. Topic summaries are analysis.
-ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?)$")
+# Shared analysis tasks, their prompt assets and review templates are maintained by administrators
+# too (节点审查 D2); a review run only reads a template. Report templates stay open: 情报分析 lets
+# anyone save their own.
+ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?"
+                          r"|tasks/custom(/.*)?|prompt-skills(/.*)?|review/(rules|guidelines)(/.*)?)$")
+# The signed-in account for this request, so stores can record who created a report or review
+# (节点审查 Q2). It records authorship only; what each account may see is not separated yet.
+CURRENT_USER: ContextVar[str] = ContextVar("current_user", default="")
 DEFAULT_PASSWORD = "123456"
 # query 2026-1013 1459: the three identity groups each start with one account.
 DEFAULT_ACCOUNTS = (("admin", "admin"), ("owner", "leader"), ("user", "user"))
@@ -220,11 +230,12 @@ def install_auth(app, directory):
                 if not user:
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
                 request.state.user = user
+                CURRENT_USER.set(user[0])
                 # query 2026-1013 1133 / UI review: the first action permissions, enforced here, not by hidden buttons.
                 # Leaders work like users in the workbench (query 2026-1013 1842); maintenance stays admin's.
                 if request.method not in SAFE:
                     if user[1] != "admin" and ADMIN_WRITES.match(path):
-                        return JSONResponse({"detail": "资料库维护需要管理员账户"}, status_code=403)
+                        return JSONResponse({"detail": "资料库与模板维护需要管理员账户"}, status_code=403)
         return await call_next(request)
 
     def admin(request: Request):

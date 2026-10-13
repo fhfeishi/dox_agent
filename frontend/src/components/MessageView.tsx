@@ -12,6 +12,7 @@ import { Icon } from "./Icons";
 import { Button } from "./ui";
 import { ReportMarkdown } from "./ReportMarkdown";
 import { useApp } from "../store";
+import { useAuth } from "../auth";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
   running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[#d5cdf7]" },
@@ -631,6 +632,9 @@ export function MessageView({
   compact?: boolean;
 }) {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  // Run records, token counts and timings are for administrators; others see elapsed time only while
+  // an answer is being written (节点审查 D4).
+  const { role } = useAuth();
   useEffect(() => {
     setCopyState("idle");
   }, [attempt.answer]);
@@ -716,8 +720,8 @@ export function MessageView({
       {/* 对比分析的结论以表内 [n] 引用核对，不再追加整段引用来源列表（query 2026-1008 1547）。 */}
       {!compact && (attempt.runInfo?.task_id ?? attempt.options.task_id) !== "task2" ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
       {!compact ? <ReportCard attempt={attempt} onReport={onReport} /> : null}
-      {!compact ? <Telemetry attempt={attempt} /> : null}
-      {!compact ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}
+      {!compact && role === "admin" ? <Telemetry attempt={attempt} /> : null}
+      {!compact && (role === "admin" || running) ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}
 
       {!compact ? (
         <div className="mt-[10px] flex flex-wrap items-center gap-[2px]">

@@ -142,6 +142,16 @@ def test_hierarchy_keeps_traceable_entries_and_reports_gaps(tmp_path, monkeypatc
         assert stages["人才/团队"]["stage"] == "在研" and stages["人才/团队"]["evidence"]
         assert stages["平台/基地"]["stage"] == "原文未提及" and not stages["平台/基地"]["answered"]
         assert {"issue", "route", "aspect"} <= {gap["kind"] for gap in record["coverage"]["gaps"]}
+        # No quota (节点审查 A2): one solved and one open issue is a finding, not a shortfall to report.
+        assert not {"composition", "count"} & {gap["kind"] for gap in record["coverage"]["gaps"]}
+        assert scene["membership"] == "scene"
+        # Once the lineage names the field, the scene counts its projects the lineage's way (节点审查 A1).
+        (root,) = {path.parent.parent for path in tmp_path.rglob("datadb/knowledge.sqlite3")}
+        (root / "lineage.json").write_text(json.dumps({"corpus_id": corpus_id, "items": {
+            "a": {"project_id": "P2", "field": "临床应用"}, "b": {"project_id": "P1", "field": "临床应用"},
+            "c": {"project_id": "P3", "field": ""}}}), encoding="utf-8")
+        counted = client.get(f"/api/corpora/{corpus_id}/hierarchy").json()["scenes"][0]
+        assert (counted["project_ids"], counted["membership"]) == (["P1", "P2"], "lineage")
 
         # A repeat call reuses the current result; a forced call runs the model again.
         again = client.post(f"/api/corpora/{corpus_id}/hierarchy", json={}).json()

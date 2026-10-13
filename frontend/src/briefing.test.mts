@@ -79,13 +79,13 @@ test('matrix places every item by field and stage, keeps undetermined lanes and 
   const insights = libraryInsights(buildBoard(hierarchy, placed), matrix, placed, [{ start: 2019, end: 2022 }, { start: 2021, end: null }]);
   assert.deepEqual(insights.map((card) => [card.title, card.headline]), [
     ['研究规模', '2 个项目、3 条技术，覆盖 1 个应用领域'], ['技术重心', '以统计建模为主'],
-    ['应用重心', '肿瘤诊疗最集中（2 个项目），主要在“疗效评估与预后”'], ['成熟与转化', '50% 的项目报告达到成型技术或示范应用'],
-    ['待突破', '1 个深化布局方向']]);
+    ['应用重心', '肿瘤诊疗最集中（2 个项目），主要在“疗效评估与预后”'], ['报告所述验证阶段', '50% 的项目至少有一项技术报告达到成型或应用阶段'],
+    ['待研究问题', '报告所述尚待解决的问题 1 个']]);
   assert.equal(insights[0].points[0], '立项 2019–2022 年');
   assert.equal(fieldHeadline(matrix, placed, '肿瘤诊疗'), '');  // fewer than 3 items: no claim
 
   const outline = matrixOutline('AI与医疗', matrix, buildBoard(hierarchy, placed));
-  assert.match(outline, /## 肿瘤诊疗（2 个项目）\n- 本期突破：早期筛查\n- 深化布局：长尾病例/);
+  assert.match(outline, /## 肿瘤诊疗（2 个项目）\n- 报告所述已解决：早期筛查\n- 待研究问题：长尾病例/);
   assert.match(outline, /### 疗效评估与预后（1 个项目，最高 成型技术）\n- 临床预测模型（1 个项目，成型技术；AUC 0.842，多中心验证）/);
 });
 

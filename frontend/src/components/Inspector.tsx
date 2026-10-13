@@ -1,3 +1,4 @@
+import { TaskProgress } from "./TaskProgress";
 import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
 import { InspectorResults } from "./InspectorResults";
 import { ProjectDetail } from "./ProjectOverview";
@@ -248,7 +249,7 @@ export function Inspector() {
     <aside
       aria-hidden={!inspectorOpen}
       aria-label="检查器"
-      className={`fixed inset-y-0 right-0 z-[70] flex w-full flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[10px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] sm:rounded-[14px] ${
+      className={`fixed top-[52px] bottom-0 right-0 z-[70] flex w-full flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] sm:rounded-[14px] ${
         inspectorOpen ? "translate-x-0" : "pointer-events-none translate-x-[calc(100%+20px)]"
       }`}
     >
@@ -260,7 +261,7 @@ export function Inspector() {
           </button>
         ) : null}
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
-          {inspectorTarget.kind === "results" ? "成果与回收站"
+          {inspectorTarget.kind === "activity" ? "任务进度" : inspectorTarget.kind === "results" ? "报告中心"
             : inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
             : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
@@ -276,14 +277,17 @@ export function Inspector() {
             : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
         </span>
         <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          {selectedTask?.name ?? corpus?.name ?? artifact?.title
-            ?? (inspectorTarget.kind === "document" ? inspectorTarget.doc.title
+          {/* The subtitle names only what this view shows (query 2026-1013 1520). */}
+          {inspectorTarget.kind === "task" ? selectedTask?.name ?? ""
+            : inspectorTarget.kind === "corpus" || inspectorTarget.kind === "target" ? corpus?.name ?? ""
+            : inspectorTarget.kind === "artifact" ? artifact?.title ?? ""
+            : inspectorTarget.kind === "document" ? inspectorTarget.doc.title
+            : inspectorTarget.kind === "review-source" ? inspectorTarget.title ?? ""
             : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
-            : inspectorTarget.kind === "results" ? "报告分类汇总 · 二级编辑"
-            : inspectorTarget.kind === "task" || inspectorTarget.kind === "template" ? ""
-            : activeTask && taskCapable ? `· ${activeTask.name}` : "· 专业问答")}
+            : inspectorTarget.kind === "results" ? "报告分类汇总"
+            : inspectorTarget.kind === "overview" ? (activeTask && taskCapable ? activeTask.name : "专业问答") : ""}
         </span>
         <button type="button" aria-label={inspectorPinned ? "取消固定检查器" : "固定检查器"}
           title={inspectorPinned ? "取消固定" : "固定预览"} onClick={toggleInspectorPinned}
@@ -333,6 +337,7 @@ export function Inspector() {
       </div> : null}
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[18px] pt-[18px] pb-[20px]">
+        {inspectorTarget.kind === "activity" ? <TaskProgress /> : null}
         {inspectorTarget.kind === "results" ? <InspectorResults /> : null}
 
         {inspectorTarget.kind === "task" ? (
@@ -400,13 +405,17 @@ export function Inspector() {
                   {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
                   {artifact.legacy ? " · 历史报告（只读兼容）" : ""}
                 </p>
-                <p className="mt-[4px] break-all text-[11px] text-[var(--stone)]">
+                {/* Traceability stays available but folded; readers see the result first (query 2026-1013 1520). */}
+                <details className="mt-[4px] text-[11px] text-[var(--stone)]">
+                <summary className="cursor-pointer">技术信息</summary>
+                <p className="mt-[4px] break-all">
                   来源运行：{artifact.run_available === true ? artifact.run_id : "未记录"} · 会话：{artifact.session_key || "未记录"}
                 </p>
                 <dl className="mt-[7px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[3px] text-[11.5px]">
                   <dt className="text-[var(--stone)]">任务 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.task_id || "未记录"} / {artifact.task_version ? `v${artifact.task_version}` : "未记录"}</dd>
                   <dt className="text-[var(--stone)]">模板 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
+                </details>
                 {artifact.status === "failed" && artifact.fail_reason ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{artifact.fail_reason}</p> : null}
                 {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-[12px] text-[var(--steel)]">
                   {artifact.source_verification === "verified" ? "原始回答已核验"
@@ -576,7 +585,7 @@ export function Inspector() {
         ) : null}
 
         {inspectorTarget.kind === "review-template" ? <ReviewTemplatePreview templateId={inspectorTarget.templateId} /> : null}
-        {inspectorTarget.kind === "review-source" ? <ReviewSourceView fileId={inspectorTarget.fileId} page={inspectorTarget.page} /> : null}
+        {inspectorTarget.kind === "review-source" ? <ReviewSourceView fileId={inspectorTarget.fileId} page={inspectorTarget.page} evidence={inspectorTarget.evidence} /> : null}
         {inspectorTarget.kind === "project" ? <ProjectDetail corpusId={inspectorTarget.corpusId} projectId={inspectorTarget.projectId} facet={inspectorTarget.facet} /> : null}
         {inspectorTarget.kind === "input" ? <ExternalInputView inputId={inspectorTarget.inputId} /> : null}
         {inspectorTarget.kind === "web" ? (

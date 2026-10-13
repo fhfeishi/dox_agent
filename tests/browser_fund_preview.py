@@ -80,7 +80,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await expect(page.get_by_role("button", name=re.compile("基金演示库")).first).to_be_visible()
             await page.get_by_role("button", name=re.compile("基金演示库")).first.click()
             await expect(page.get_by_text("当前对话：基金演示库（1/6）")).to_be_visible()
@@ -119,7 +119,7 @@ async def main():
                 await preview.get_by_role("button", name="关闭 ✕").click()
             preview_file_status = 200
 
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.get_by_role("textbox", name="问题", exact=True).fill("这个项目的结论是什么？")
             await page.get_by_role("button", name="发送 ↑").click()
             stale_citation = page.get_by_role("button", name="[2]", exact=True).last

@@ -73,6 +73,8 @@ export function Composer() {
     startTask,
     taskCapable,
     corpusIds,
+    autoCorpus,
+    setAutoCorpus,
     setSearchCorpusIds,
     setNewCorpusOpen,
     setNav,
@@ -263,7 +265,7 @@ export function Composer() {
             </span>
             {corporaError ? <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => refreshCorpora()}>重试刷新</button> : null}
             {!corporaError && corporaLoaded && repairScope ? (
-              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => corpora.length ? setCorpusOpen(true) : setNewCorpusOpen(true)}>
+              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
                 {corpora.length ? "选择知识库" : "新建知识库"}
               </button>
             ) : null}
@@ -300,6 +302,9 @@ export function Composer() {
         {/* corpus + scope chips */}
         <div className="mb-[8px] flex flex-wrap items-center gap-[6px]">
           <span className="text-xs">对话知识库</span>
+          <label className="inline-flex items-center gap-1 rounded-full border border-[var(--hairline)] px-2.5 py-1 text-xs"
+            title="开启后每次提问按问题内容自动选择最相关的资料库；手动选择资料库会关闭此项">
+            <input type="checkbox" checked={autoCorpus} onChange={(e) => setAutoCorpus(e.target.checked)} />按问题自动选择</label>
           {corpusIds.map(id => <span key={id} className="inline-flex max-w-[280px] items-center rounded-full bg-[var(--primary-soft)] px-3 py-1 text-sm text-[var(--primary-pressed)]">
             <button type="button" className="truncate" onClick={() => setCorpusOpen(true)} title={corpora.find(c => c.id === id)?.name ?? id}>✓ {corpora.find(c => c.id === id)?.name ?? `知识库不可用（${id}）`}</button>
             <button type="button" className="ml-2 disabled:opacity-30" aria-label={`移除对话库 ${corpora.find(c => c.id === id)?.name ?? id}`} disabled={busy || corpusIds.length <= 1} onClick={() => { setSearchCorpusIds(corpusIds.filter(value => value !== id)); corpusButton.current?.focus(); }}>×</button>

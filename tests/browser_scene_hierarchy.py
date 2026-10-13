@@ -203,7 +203,7 @@ async def main():
             # 总览：每个领域一张卡（问题进展与指标）、共性底座；展开页只按环节列全部技术，问题与成果链接到各自页签。
             # 总览、细节上下排列；总览先给本库要点卡片（各有一句结论），可收起。
             insights = block.get_by_role("region", name="本库总览要点")
-            for title in ("研究规模", "技术重心", "应用重心", "成熟与转化"):
+            for title in ("研究规模", "技术重心", "应用重心", "报告所述验证阶段"):
                 await expect(insights).to_contain_text(title)
             board = block.get_by_role("region", name="主展板")
             await expect(board.locator("article")).to_have_count(1)

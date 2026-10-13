@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { IconRail } from "./components/IconRail";
+import { TopNav } from "./components/TopNav";
 import { StatusBanner, Toast } from "./components/Overlays";
 import { Guide } from "./components/Guide";
 import { SidePanel } from "./components/SidePanel";
@@ -13,7 +13,7 @@ const Inspector = lazy(() => import("./components/Inspector").then((module) => (
 const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => ({ default: module.OpsDrawer })));
 
 /**
- * Layout composition only: rail → side panel → main view, plus the floating output
+ * Layout composition only: top bar, then side panel → main view, plus the floating output
  * inspector and the overlays. No business logic lives here (see `store.tsx`).
  */
 export function App() {
@@ -37,8 +37,9 @@ export function App() {
 
   return (
     <div style={{ "--inspector-width": `${inspectorWidth}px` } as CSSProperties}
-      className="font-app flex h-screen w-full overflow-hidden bg-[var(--canvas)] text-[var(--charcoal)]">
-      <IconRail />
+      className="font-app flex h-screen w-full flex-col overflow-hidden bg-[var(--canvas)] text-[var(--charcoal)]">
+      <TopNav />
+      <div className="flex min-h-0 flex-1">
       <SidePanel />
 
       {/*
@@ -54,6 +55,8 @@ export function App() {
           <Outlet />
         </Suspense>
         <Guide area={nav} />
+      </div>
+
       </div>
 
       <Suspense fallback={null}>

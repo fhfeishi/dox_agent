@@ -80,7 +80,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   return <div className="space-y-4">
     <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
       <b className="text-[15px]">{board.branch}</b>
-      <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · 本期突破 <b className="text-[#0e7a28]">{board.solved}</b> 项 · 深化布局 <b>{board.open}</b> 项</span>
+      <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · 报告所述已解决 <b className="text-[#0e7a28]">{board.solved}</b> 项 · 待研究 <b>{board.open}</b> 项</span>
       <span className="flex-1" />
       <span className="text-xs text-[var(--steel)]">显示</span>
       <div role="radiogroup" aria-label="阶段门槛" className="flex overflow-hidden rounded-md border border-[var(--hairline)]">
@@ -163,7 +163,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
     </section> : null}
 
     <p className="text-[11px] leading-5 text-[var(--stone)]">
-      阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“本期突破/深化布局”对应场景归纳中的已解决/待解决问题。
+      阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“已解决/待研究”为各项目报告的自述，不代表本期新增或近期突破。
     </p>
     {board.unplaced ? <p className="text-xs text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。
       <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>在下方细节中逐条查看 ↓</button></p> : null}

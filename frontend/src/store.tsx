@@ -42,13 +42,13 @@ import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocument
 import { useWorkspace } from "./workspace";
 
 export type NavKey = "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
-export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
+export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
   { kind: "project"; corpusId: string; projectId: string; facet: string } |
   { kind: "review-template"; templateId: string } |
-  { kind: "review-source"; fileId: string; page: number } |
+  { kind: "review-source"; fileId: string; page: number; title?: string; evidence?: boolean } |
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
@@ -59,10 +59,11 @@ function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
     case "overview": return "overview";
     case "results": return "results";
+    case "activity": return "activity";
     case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
     case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
     case "review-template": return "review-template:" + target.templateId;
-    case "review-source": return "review-source:" + target.fileId + ":" + target.page;
+    case "review-source": return "review-source:" + (target.evidence ? "evidence:" : "") + target.fileId + ":" + target.page;
     case "project": return "project:" + target.corpusId + ":" + target.projectId + ":" + target.facet;
     case "input": return "input:" + target.inputId;
     case "web": return `web:${target.snapshotId}`;
@@ -110,6 +111,9 @@ export interface AppValue {
   corpusConfirmed: boolean;
   corpusIds: string[];
   setSearchCorpusIds: (ids: string[]) => void;
+  /** Pick the library from each question (query 2026-1013 1520); a manual choice turns it off. */
+  autoCorpus: boolean;
+  setAutoCorpus: (on: boolean) => void;
   currentCorpus: CorpusInfo | null;
   selectCorpus: (id: string) => void;
   refreshCorpora: () => void;
@@ -321,6 +325,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
   const [corpusIds, setCorpusIds] = useState<string[]>([]);
+  const [autoCorpus, setAutoCorpusState] = useState(() => { try { return localStorage.getItem("dox-auto-corpus") !== "0"; } catch { return true; } });
+  const setAutoCorpus = (on: boolean) => { setAutoCorpusState(on); try { localStorage.setItem("dox-auto-corpus", on ? "1" : "0"); } catch { /* preference only */ } };
   const [ingestBusy, setIngestBusy] = useState(false);
   const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
   const [progress, setProgress] = useState<{ stage: string; completed: number; total: number } | null>(null);
@@ -543,6 +549,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function send(regenerate = false, override?: SendOverride) {
+    // Auto library: rank libraries by the question, switch on a clear match, then send there.
+    if (autoCorpus && !regenerate && !override && options.allowed_doc_ids === null && input.trim() && !controller.current && workspace.isSaved()) {
+      const question = input.trim();
+      try {
+        const response = await fetch("/api/corpora/route?" + new URLSearchParams({ q: question }));
+        const ranked: { corpus_id: string; name: string; clear: boolean }[] = response.ok ? await response.json() : [];
+        const best = ranked.find((row) => row.clear && corpora.some((c) => c.id === row.corpus_id && !c.missing));
+        const current = corpora.find((c) => c.id === corpusIds[0])?.name ?? "当前资料库";
+        if (best && !(corpusIds.length === 1 && corpusIds[0] === best.corpus_id)) {
+          await workspace.saveCorpusSelection(best.corpus_id, true, [best.corpus_id], options);
+          showToast(`已按问题自动选择资料库：${best.name}`);
+          return send(false, { question, history: turns, options: { ...options, corpus_ids: [best.corpus_id] } });
+        }
+        if (!best) showToast(`未能判断问题对应的资料库，沿用${current}`);
+      } catch { /* routing is a convenience; the current scope still answers */ }
+    }
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
     const requestTaskId = scope.task_id ?? taskId;
@@ -1001,6 +1023,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   function setSearchCorpusIds(ids: string[]) {
+    setAutoCorpus(false);
     if (controller.current) {
       setError("回答进行中，暂不能更改知识库范围");
       return;
@@ -1171,6 +1194,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       corpusConfirmed,
       corpusIds,
       setSearchCorpusIds,
+      autoCorpus,
+      setAutoCorpus,
       currentCorpus,
       selectCorpus,
       refreshCorpora,
@@ -1286,6 +1311,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       corpusConfirmed,
       corpusIds,
       setSearchCorpusIds,
+      autoCorpus,
       documents,
       scopeDocuments,
       scopeDocumentsError,

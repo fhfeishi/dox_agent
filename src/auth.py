@@ -1,9 +1,11 @@
 """Local accounts with three roles; salted credentials and revocable server-side sessions.
 
-An internal system: the store starts with ``admin`` / ``123456`` and every password needs only
+An internal system: the store starts with ``admin`` (administrator), ``owner`` (leader) and ``user``
+(user), all ``123456``, and every password needs only
 four characters; new accounts default to ``123456``. Roles (query 2026-1013 1133) choose the interface: ``leader`` gets the lean leader view, ``admin``
-the full system plus account management, ``user`` the full workbench. Apart from account
-management there is no permission layer yet. Each account also remembers which first-visit guides
+the full system plus account management, ``user`` the full workbench. Enforced on the API: a leader
+only reads, and library maintenance (libraries, files, imports, generated structure, groups) and
+account management are the administrator's. Data is not yet separated per person or department. Each account also remembers which first-visit guides
 it has dismissed.
 """
 import hashlib
@@ -25,7 +27,15 @@ LIFETIME = 7 * 24 * 3600
 Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
+SAFE = ("GET", "HEAD", "OPTIONS")
+# A leader reads; besides signing in and out it only changes its own password and guide marks.
+LEADER_WRITES = ("/api/auth/logout", "/api/auth/password", "/api/auth/guides")
+# Library maintenance is the administrator's: creating, renaming, deleting and re-linking libraries,
+# their files, imports, extraction and generated structure, and the groups. Topic summaries are analysis.
+ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?)$")
 DEFAULT_PASSWORD = "123456"
+# query 2026-1013 1459: the three identity groups each start with one account.
+DEFAULT_ACCOUNTS = (("admin", "admin"), ("owner", "leader"), ("user", "user"))
 
 
 class Credentials(BaseModel):
@@ -42,6 +52,11 @@ class NewAccount(BaseModel):
 class AccountChange(BaseModel):
     password: str | None = Field(default=None, max_length=256)
     role: Role | None = None
+
+
+class PasswordChange(BaseModel):
+    old: str = Field(max_length=256)
+    new: str = Field(max_length=256)
 
 
 class Guide(BaseModel):
@@ -72,8 +87,9 @@ class Accounts:
             db.execute("DROP TABLE IF EXISTS sessions")
         db.execute("CREATE TABLE IF NOT EXISTS sessions (digest TEXT PRIMARY KEY, username TEXT, expires REAL)")
         if not db.execute("SELECT 1 FROM accounts").fetchone():
-            salt, digest = self._credentials(DEFAULT_PASSWORD)
-            db.execute("INSERT INTO accounts VALUES ('admin','admin',?,?,?)", (salt, digest, time.time()))
+            for order, (username, role) in enumerate(DEFAULT_ACCOUNTS):
+                salt, digest = self._credentials(DEFAULT_PASSWORD)
+                db.execute("INSERT INTO accounts VALUES (?,?,?,?,?)", (username, role, salt, digest, time.time() + order * 1e-3))
         db.commit()
         self.path.chmod(0o600)
         return db
@@ -156,6 +172,17 @@ class Accounts:
             if role:
                 db.execute("UPDATE accounts SET role=? WHERE username=?", (role, username))
 
+    def change_own(self, username, token, old, new):
+        """The signed-in user's own password; other sessions of that account end, this one stays."""
+        _check_password(new)
+        with self.connect() as db:
+            account = db.execute("SELECT salt,digest FROM accounts WHERE username=?", (username,)).fetchone()
+            if not hmac.compare_digest(account[1], self.password_digest(old, account[0])):
+                raise HTTPException(401, "原密码不正确")
+            salt, digest = self._credentials(new)
+            db.execute("UPDATE accounts SET salt=?, digest=? WHERE username=?", (salt, digest, username))
+            db.execute("DELETE FROM sessions WHERE username=? AND digest<>?", (username, hashlib.sha256(token.encode()).hexdigest()))
+
     def delete(self, username):
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
@@ -195,6 +222,12 @@ def install_auth(app, directory):
                 if not user:
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
                 request.state.user = user
+                # query 2026-1013 1133 / UI review: the first action permissions, enforced here, not by hidden buttons.
+                if request.method not in SAFE:
+                    if user[1] == "leader" and path not in LEADER_WRITES:
+                        return JSONResponse({"detail": "领导账户为只读浏览"}, status_code=403)
+                    if user[1] != "admin" and ADMIN_WRITES.match(path):
+                        return JSONResponse({"detail": "资料库维护需要管理员账户"}, status_code=403)
         return await call_next(request)
 
     def admin(request: Request):
@@ -227,6 +260,11 @@ def install_auth(app, directory):
         result = JSONResponse({"authenticated": False})
         result.delete_cookie(COOKIE)
         return result
+
+    @app.post("/api/auth/password")
+    def change_password(body: PasswordChange, request: Request):
+        accounts.change_own(request.state.user[0], request.cookies.get(COOKIE, ""), body.old, body.new)
+        return {"changed": True}
 
     @app.post("/api/auth/guides")
     def see_guide(body: Guide, request: Request):

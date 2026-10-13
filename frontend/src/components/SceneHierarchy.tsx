@@ -1,3 +1,4 @@
+import { useAuth } from "../auth";
 import { useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
@@ -102,7 +103,7 @@ const DIMS = ["技术谱系", "场景", "问题", "技术", "成果"] as const;
 const PURPOSE: Record<string, string> = {
   技术谱系: "技术谱系 · 由上到下：技术谱系总览（本库要点与各应用领域）、五级技术谱系（逐层查看技术与详情）、路网形式（全库谱系一张图）。",
   场景: "场景 · 为谁做：本库按服务对象归纳的应用领域；点开查看“问题 → 技术 → 成果”逻辑简图。",
-  问题: "问题 · 解决什么：各领域的核心问题，已解决（本期突破）与待解决（深化布局），以及对应的典型技术。",
+  问题: "问题 · 解决什么：各领域的核心问题，报告所述已解决与待解决的问题，以及对应的典型技术。",
   技术: "技术 · 怎么做：解决各核心问题的典型技术路线及其在技术谱系中的位置；全部技术见技术谱系。",
   成果: "成果 · 做到什么程度：各领域的标志性成果、成果各方面完成度与项目成果清单。",
 };
@@ -151,6 +152,7 @@ function ProjectLinks({ corpusId, ids, facet }: { corpusId: string; ids: string[
  * somewhere: scenes open their logic diagram, issues and routes open projects and the lineage.
  */
 export function SceneHierarchy({ corpusId }: { corpusId: string }) {
+  const { role } = useAuth();
   const [search, setSearch] = useSearchParams();
   const [notice, setNotice] = useState("");
   const client = useQueryClient();
@@ -197,7 +199,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
     技术: issues.reduce((n, issue) => n + issue.routes.length, 0),
     成果: data.scenes.reduce((n, scene) => n + scene.achievements.length, 0),
   };
-  const regenerate = <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
+  const regenerate = role !== "admin" ? null : <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
     {busy ? "生成中…" : data.state === "missing" ? "生成四维归纳" : "重新生成"}</Button>;
   return <section aria-label="场景层级" className="mt-5 space-y-4">
     <div role="tablist" aria-label="四维浏览" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
@@ -214,7 +216,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
     {notice ? <p role="alert" className="text-sm text-[var(--red)]">{notice}</p> : null}
     {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-sm">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
     {dim === "技术谱系" ? <>
-      <Fold id="overview" title={`技术谱系总览 - ${libraryName}`} hint="本库的研究规模、技术重心、应用重心、成熟与转化、待突破方向，以及各应用领域">
+      <Fold id="overview" title={`技术谱系总览 - ${libraryName}`} hint="本库的研究规模、技术重心、应用重心、报告所述验证阶段、待研究问题，以及各应用领域">
         <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
           onDim={(d, scene) => go({ dim: d, scene, node: "" })} />
       </Fold>

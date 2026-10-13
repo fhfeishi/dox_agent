@@ -32,13 +32,13 @@ function ViewShell({
         {actions}
       </header>
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[1080px] px-[34px] pt-[26px]">
+        <div className="mx-auto w-full max-w-[1080px] px-4 sm:px-8 pt-[26px]">
           <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">
             {title}
           </h1>
           <p className="max-w-[680px] text-[13.5px] leading-[1.6] text-[var(--steel)]">{description}</p>
         </div>
-        <div className="mx-auto grid w-full max-w-[1080px] grid-cols-[repeat(auto-fill,minmax(290px,1fr))] gap-[14px] px-[34px] pt-[22px] pb-[40px]">
+        <div className="mx-auto grid w-full max-w-[1080px] grid-cols-1 md:grid-cols-2 gap-[14px] px-4 sm:px-8 pt-[22px] pb-[40px]">
           {children}
         </div>
       </div>
@@ -58,6 +58,7 @@ export function TasksView() {
   const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask } = useApp();
   const [templates, setTemplates] = useState<TemplateSummary[]>([]);
   const [showArchived, setShowArchived] = useState(false);
+  const [manage, setManage] = useState(false);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const upload = useRef<HTMLInputElement>(null);
@@ -131,10 +132,11 @@ export function TasksView() {
   return (
     <ViewShell
       title="存量分析"
-      description="选择任务开始分析。预览与修改打开同一个大纲视图：内置任务和模板只读，修改后保存为“我的任务/我的模板”，发布后使用。未发布的草稿可直接删除，已发布的可归档。生成的报告在右侧检查器的“成果”中查看。"
+      description="选择要做的分析，补充或修改问题后发送。生成的报告可随时在右上角“报告中心”查看。"
       actions={<>
-        <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button>
-        <Button onClick={() => showInspector({ kind: "results" })}>成果与回收站</Button>
+        <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束模板管理" : "管理模板"}</Button>
+        {manage ? <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button> : null}
+        
       </>}
     >
       <input ref={upload} type="file" accept=".md,.markdown,.txt" className="hidden" aria-label="上传模板文件"
@@ -143,7 +145,7 @@ export function TasksView() {
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
           <p className="text-[13.5px] font-medium text-[var(--ink)]">任务功能未启用</p>
           <p className="mx-auto mt-[8px] max-w-[520px] text-[12.5px] leading-[1.6] text-[var(--steel)]">
-            设置 <code className="font-code">VITE_UI_TASKS=1</code> 后重新构建前端，即可启用任务选择与 chat <code className="font-code">task_id</code> 绑定。
+            请联系管理员启用分析任务。
           </p>
         </div>
       ) : null}
@@ -168,14 +170,16 @@ export function TasksView() {
                     {task.id === taskId ? <Pill tone="lav">当前</Pill> : null}
                     <Pill tone={task.kind === "custom" ? "lav" : "sky"}>{task.kind === "custom" ? `我的任务 · ${statusLabel(task)}` : "内置"}</Pill>
                   </span>
-                  <span className="text-[12.3px] leading-[1.55] text-[var(--steel)]">{task.description}</span>
-                  {task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-[11.5px] leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
+                  <span className="text-[14px] leading-[1.6] text-[var(--steel)]">{task.description}</span>
+                  {manage && task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-[11.5px] leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
                 </button>
                 <div className="mt-auto flex flex-wrap items-center gap-[6px] border-t border-[var(--hairline)] pt-[10px]">
                   <button type="button" className={action} onClick={() => showInspector({ kind: "task", taskId: task.id })}>预览</button>
+                  {manage ? <>
                   <button type="button" className={action} onClick={() => showInspector({ kind: "task", taskId: task.id, edit: true })}>修改</button>
                   <button type="button" className={action} disabled={busy} onClick={() => { uploadFor.current = { kind: "task", task }; upload.current?.click(); }}>上传</button>
                   {task.kind === "custom" ? <button type="button" className={danger} disabled={busy} onClick={() => void removeTask(task)}>{task.version ? "归档" : "删除"}</button> : null}
+                  </> : null}
                   <span className="flex-1" />
                   <button type="button" disabled={!usable || busy} onClick={() => void startTask(task.id)} title={usable ? "" : "草稿发布后才能使用"}
                     className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-45">开始分析</button>
@@ -184,7 +188,7 @@ export function TasksView() {
             );
           })
         : null}
-      {taskCapable ? (
+      {taskCapable && manage ? (
         <section aria-label="报告模板库" className="col-span-full border-t border-[var(--hairline)] pt-[16px]">
           <div className="flex flex-wrap items-baseline gap-[10px]">
             <h2 className="text-[15px] font-semibold text-[var(--ink)]">报告模板库</h2>

@@ -259,7 +259,7 @@ async def main():
             await page.route("**/api/reports/preflight", report_preflight)
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             # New sessions auto-select the first corpus directory; there is no confirmation gate.
             await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
             # Given the current task and scope, when the user prepares to send,
@@ -272,7 +272,7 @@ async def main():
             await expect(page.get_by_role("heading", name="成果")).to_be_visible()
             await expect(page.get_by_text("旧报告", exact=True)).to_be_visible()
             await expect(page.get_by_text(re.compile("报告 · 版本 1"))).to_be_visible()
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
 
             # task views are reachable from the rail and show the output contract
             await page.get_by_role("button", name="Prompt / Skill").click()
@@ -427,7 +427,7 @@ async def main():
             await page.get_by_role("button", name="取消固定检查器").click()
             await page.get_by_role("button", name="任务", exact=True).click()
             await expect(page.get_by_text("检查器", exact=True)).to_be_visible()
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.get_by_role("combobox", name="报告知识库").select_option("c1")
             await page.get_by_role("button", name="查看元数据覆盖与未命中资料").click()
             await expect(page.get_by_text(re.compile("共 2 份.*文件名项目区间可识别 1.*资助类别命中 1"))).to_be_visible()

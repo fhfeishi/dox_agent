@@ -1,45 +1,92 @@
-import { useState } from "react";
+import { lazy, Suspense, useState, type CSSProperties } from "react";
+import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../auth";
 import { buildBoard, buildMatrix, libraryInsights } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
 import { useApp } from "../store";
-import { Guide, GUIDE_EVENT } from "./Guide";
+import { Guide } from "./Guide";
+import { BrandMark } from "./Icons";
+import { UserMenu } from "./UserMenu";
 import { LineageRoadmap } from "./LineageRoadmap";
+import { LineageTree } from "./LineageTree";
+import { ProjectGraph } from "./ProjectGraph";
+import { LeaderConstruction } from "./LeaderConstruction";
+import { LeaderFunding } from "./LeaderFunding";
+import { LeaderRecent } from "./LeaderRecent";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
+const Inspector = lazy(() => import("./Inspector").then((m) => ({ default: m.Inspector })));
+
+type Area = "construction" | "domains" | "recent";
+const AREAS: { key: Area; label: string }[] = [{ key: "construction", label: "资料库建设" }, { key: "domains", label: "领域分析" }, { key: "recent", label: "近期工作" }];
+type View = "overview" | "lineage" | "roadmap" | "relations" | "funding";
+const VIEWS: { key: View; label: string }[] = [{ key: "overview", label: "总览" }, { key: "lineage", label: "技术谱系" },
+  { key: "roadmap", label: "路网形式" }, { key: "relations", label: "项目关系" }, { key: "funding", label: "项目资金" }];
+
 /**
- * 领导视图 (query 2026-1013 1133): the whole interface for a leader account. One domain at a time,
- * read top-down — key conclusions, scenes with their core problems and technical routes, the
- * technology systems — without project lists or technique details. Everything beyond a headline
- * opens on click.
+ * 领导视图 (query 2026-1013 1133 / 1522 / 1637; design language in .logsdev/机关界面设计语言.md):
+ * the whole interface for a leader account, previewed by administrators at /leader. Three areas —
+ * 资料库建设 (how far each library is built), 领域分析 (one domain at a time through five views) and
+ * 近期工作 (reports and reviews by period) — read only, overview first, evidence on demand.
  */
 export function LeaderView() {
-  const { corpora } = useApp();
-  const { username, logout } = useAuth();
+  const { corpora, inspectorWidth, inspectorOpen } = useApp();
+  const { role } = useAuth();
+  const [area, setArea] = useState<Area>("construction");
+  const [view, setView] = useState<View>("overview");
   const domains = corpora.filter((c) => !c.missing && (c.indexed_count ?? 0) > 0)
     .sort((a, b) => (b.indexed_count ?? 0) - (a.indexed_count ?? 0));
   const [chosen, setChosen] = useState("");
   const current = domains.find((c) => c.id === chosen) ?? domains[0];
-  return <div className="font-app relative flex h-screen flex-col bg-[var(--canvas)] text-[var(--charcoal)]">
-    <header className="flex shrink-0 flex-wrap items-center gap-3 border-b border-[var(--hairline)] px-5 py-3">
-      <b className="text-[15px]">领域全景</b>
-      <nav aria-label="选择领域" className="flex min-w-0 flex-1 flex-wrap gap-1.5">
-        {domains.map((c) => <button key={c.id} type="button" aria-pressed={c.id === current?.id} onClick={() => setChosen(c.id)}
-          className={`rounded-full border px-3 py-1 text-[12.5px] ${c.id === current?.id ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
-          {short(c.name)}</button>)}
+  const tab = (on: boolean) => `rounded-lg px-3 py-1.5 text-[14px] ${on ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary-pressed)]" : "text-[var(--slate)] hover:bg-[var(--surface)]"}`;
+  const pill = (on: boolean) => `rounded-full border px-3 py-1 text-[13px] ${on ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`;
+  return <div style={{ "--inspector-width": `${inspectorWidth}px` } as CSSProperties}
+    className="font-app relative flex h-screen flex-col bg-[var(--canvas)] text-[var(--charcoal)]">
+    <header className="flex h-[52px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] px-4">
+      <span className="mr-3 flex items-center gap-2"><span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
+        <b className="text-[15px]">领导视图</b></span>
+      <nav aria-label="领导视图导航" className="flex flex-1 items-center gap-1 overflow-x-auto">
+        {AREAS.map((a) => <button key={a.key} type="button" aria-current={area === a.key ? "page" : undefined} className={tab(area === a.key)} onClick={() => setArea(a.key)}>{a.label}</button>)}
       </nav>
-      <button type="button" className="text-xs text-[var(--steel)]" onClick={() => window.dispatchEvent(new Event(GUIDE_EVENT))}>指南</button>
-      <span className="text-xs text-[var(--stone)]">{username} · 领导</span>
-      <button type="button" className="text-xs text-[var(--steel)]" onClick={() => void logout()}>退出登录</button>
+      {role === "admin" ? <Link to="/home" className="shrink-0 text-[13px] text-[var(--link)]">返回系统</Link> : null}
+      <UserMenu />
     </header>
+    {area === "domains" ? <div className="shrink-0 space-y-2 border-b border-[var(--hairline)] px-5 py-2.5">
+      <nav aria-label="选择领域" className="flex flex-wrap gap-1.5">
+        {domains.map((c) => <button key={c.id} type="button" aria-pressed={c.id === current?.id} onClick={() => setChosen(c.id)} className={pill(c.id === current?.id)}>{short(c.name)}</button>)}
+      </nav>
+      <nav aria-label="分析视角" className="flex flex-wrap gap-1 rounded-lg bg-[var(--surface)] p-1 sm:inline-flex">
+        {VIEWS.map((v) => <button key={v.key} type="button" aria-pressed={view === v.key} onClick={() => setView(v.key)}
+          className={`rounded-md px-3 py-1 text-[13.5px] ${view === v.key ? "bg-[var(--canvas)] font-semibold shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{v.label}</button>)}
+      </nav>
+    </div> : null}
     <Guide area="leader" />
-    <main className="min-h-0 flex-1 overflow-y-auto">
-      {current ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
-        : <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>}
+    <main className={`min-h-0 flex-1 overflow-y-auto transition-[padding] ${inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : ""}`}>
+      {area === "construction" ? <LeaderConstruction onOpen={(id) => { setChosen(id); setView("overview"); setArea("domains"); }} />
+        : area === "recent" ? <LeaderRecent />
+        : !current ? <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>
+        : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
+        : <div className="mx-auto max-w-[1280px] px-5 py-5"><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
     </main>
+    <Suspense fallback={null}><Inspector /></Suspense>
   </div>;
+}
+
+/** The four views beyond the overview, each the library workspace's own component, read only. */
+function DomainView({ corpusId, name, view }: { corpusId: string; name: string; view: Exclude<View, "overview"> }) {
+  const { showInspector } = useApp();
+  const [node, setNode] = useState("");
+  const { data: lineage } = useQuery({ ...lineageQuery(corpusId), enabled: view === "roadmap" });
+  const { data: library } = useQuery({ ...projectQuery(corpusId), enabled: view === "relations" });
+  if (view === "lineage") return <LineageTree corpusId={corpusId} focus={node} onFocus={setNode} onIssue={() => undefined} />;
+  if (view === "funding") return <LeaderFunding corpusId={corpusId} />;
+  if (view === "roadmap") return lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={name} selected={node} onSelect={setNode} />
+    : <p role="status" className="text-sm text-[var(--steel)]">{lineage ? "该领域尚未生成技术谱系。" : "正在读取…"}</p>;
+  return library ? <ProjectGraph corpusId={corpusId} projects={library.projects.filter((p) => p.identity_status === "identified")} title={name}
+    onOpen={(id) => showInspector({ kind: "project", corpusId, projectId: id, facet: "成果" })} />
+    : <p role="status" className="text-sm text-[var(--steel)]">正在读取…</p>;
 }
 
 function Domain({ corpusId, name }: { corpusId: string; name: string }) {
@@ -47,7 +94,6 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
   const { data: lineage } = useQuery(lineageQuery(corpusId));
   const { data: library } = useQuery(projectQuery(corpusId));
   const [open, setOpen] = useState<string>("");
-  const [map, setMap] = useState(false);
   const toggle = (key: string) => setOpen(open === key ? "" : key);
   if (error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">{(error as Error).message}</p>;
   if (!hierarchy || !lineage) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取…</p>;
@@ -62,7 +108,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
   return <div className="mx-auto max-w-[1180px] space-y-7 px-5 py-6">
     <div>
       <h1 className="text-2xl font-semibold">{name}</h1>
-      <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系 · 本期突破 {board.solved} 项、待突破 {board.open} 项</p>
+      <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系 · 报告所述已解决 {board.solved} 项、待研究 {board.open} 项</p>
     </div>
 
     <section aria-label="要点结论">
@@ -85,8 +131,8 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
         return <div key={scene.name} className={card(open === key)}>
           <button type="button" aria-expanded={open === key} onClick={() => toggle(key)} className="flex w-full items-center gap-3 p-3 text-left">
             <b className="min-w-0 flex-1 text-[14px]">{scene.name}</b>
-            <span className="text-xs text-[#0e7a28]">✔ 已突破 {solved}</span>
-            <span className="text-xs text-[var(--steel)]">➜ 待突破 {scene.issues.length - solved}</span>
+            <span className="text-xs text-[#0e7a28]">✔ 报告所述已解决 {solved}</span>
+            <span className="text-xs text-[var(--steel)]">➜ 待研究 {scene.issues.length - solved}</span>
           </button>
           {open === key ? <ul className="space-y-2 border-t border-[var(--hairline)] px-3 py-3">{scene.issues.map((issue) =>
             <li key={issue.name} className="text-[13px]">
@@ -102,9 +148,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
     <section aria-label="技术路线">
       <div className="mb-2 flex items-center gap-3">
         <h2 className="text-sm font-semibold text-[var(--steel)]">技术体系与路线</h2>
-        <button type="button" className="text-xs text-[var(--link)]" onClick={() => setMap(!map)}>{map ? "收起路网全景" : "查看路网全景"}</button>
       </div>
-      {map ? <div className="mb-3"><LineageRoadmap lineage={lineage} title={name} selected="" onSelect={() => undefined} /></div> : null}
       <div className="grid gap-2 md:grid-cols-2">{systems.map((system) => {
         const key = "t:" + system.name;
         return <div key={system.name} className={card(open === key)}>

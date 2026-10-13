@@ -59,7 +59,7 @@ async def main():
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("默认库")).first.click()
             await page.get_by_role("button", name="打开详情").click()

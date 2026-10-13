@@ -60,7 +60,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(f"http://127.0.0.1:{server.server_port}")
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             # Given the old single-corpus record, when it is used, then only c1 is sent.
             await expect(page.get_by_text("旧单库会话").first).to_be_visible()
             await page.get_by_role("textbox", name="问题", exact=True).fill("单库核对")

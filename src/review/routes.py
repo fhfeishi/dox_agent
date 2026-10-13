@@ -364,9 +364,55 @@ def guideline_file(id: str):
 
 
 
+EVIDENCE_TEXT = 6000
+
+
 @router.get("/evidence")
 def evidence():
-    return db.all_items("evidence")
+    # Uploaded files keep their page text for preview; the list stays light.
+    return [{k: v for k, v in item.items() if k not in ("pages", "path")} for item in db.all_items("evidence")]
+
+
+@router.post("/evidence/upload")
+async def upload_evidence(file: UploadFile = File(...), published: str = Form(""), title: str = Form("")):
+    """A local document as evidence (query 2026-1013 1520): the client network is restricted, so
+    local files come first. Its extracted text is what the reviewer model reads."""
+    from datetime import date
+    if published:
+        try:
+            date.fromisoformat(published)
+        except ValueError:
+            raise HTTPException(422, "发表日期格式应为 YYYY-MM-DD") from None
+    name = Path(file.filename or "文献").name
+    ident, path = await persist_upload(file, "evidence")
+    try:
+        parsed = await run_in_threadpool(parse_document, path, False)
+    except Exception as e:
+        path.unlink(missing_ok=True)
+        raise HTTPException(400, str(e) if isinstance(e, ValueError) else "文件无法解析，请检查是否为完整且未加密的文件。") from None
+    text = "\n".join(page["text"] for page in parsed["pages"]).strip()
+    item = db.save("evidence", {
+        "id": ident, "title": (title.strip() or Path(name).stem)[:400], "published": published or None, "url": "",
+        "summary": text[:EVIDENCE_TEXT], "keywords": [], "filename": name, "path": str(path), "pages": parsed["pages"],
+        "origin": "本地文件 · " + name + " · 内容待人工核实", "verified": False,
+    })
+    return {k: v for k, v in item.items() if k not in ("pages", "path")}
+
+
+@router.get("/evidence/{id}/pages")
+def evidence_pages(id: str):
+    item = require("evidence", id)
+    if not item.get("pages"):
+        raise HTTPException(404, "这条证据没有本地文件")
+    return item["pages"]
+
+
+@router.get("/evidence/{id}/file")
+def evidence_file(id: str):
+    item = require("evidence", id)
+    if not item.get("path"):
+        raise HTTPException(404, "这条证据没有本地文件")
+    return FileResponse(item["path"], filename=item["filename"])
 
 
 @router.post("/evidence")
@@ -537,7 +583,8 @@ def new_run(req: ReviewRequest, request: Request):
         if req.corpus_ids[0] not in libraries or libraries[req.corpus_ids[0]].missing:
             raise HTTPException(422, "对照资料库不存在或目录已缺失，请重新选择")
     # Only explicitly chosen literature is read; an empty choice adds none from the stock.
-    items = [e for e in db.all_items("evidence") if e["id"] in req.evidence_ids]
+    # The reviewer reads title, date and text summary; page copies and local paths stay out.
+    items = [{k: v for k, v in e.items() if k not in ("pages", "path")} for e in db.all_items("evidence") if e["id"] in req.evidence_ids]
     if len(items) != len(req.evidence_ids):
         raise HTTPException(422, "所选文献不存在，请刷新后重新选择")
     ident = uuid.uuid4().hex

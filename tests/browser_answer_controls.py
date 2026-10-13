@@ -79,7 +79,7 @@ async def main():
                 };
             })();""")
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             field = page.get_by_role("textbox", name="问题", exact=True)
             await field.fill("第一问")
             await page.get_by_role("button", name="发送 ↑").click()
@@ -105,6 +105,8 @@ async def main():
             await expect(article.get_by_text("答案版本2", exact=True)).to_be_visible()
             await field.fill("追问")
             await page.get_by_role("button", name="发送 ↑").click()
+            # Sending first asks which library fits the question, so wait for the request itself.
+            await page.wait_for_function("window.requests.length === 3")
             await expect(page.get_by_role("button", name="重新生成").last).to_be_enabled()
             messages = await page.evaluate("window.requests.at(-1).messages")
             assert messages[1]["content"].startswith("**答案版本2**")

@@ -70,7 +70,7 @@ async def main():
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name="刷新并入库").click()
             # Progress is observable per corpus, not a single opaque "refreshing" state.

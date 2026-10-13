@@ -1,6 +1,7 @@
 """Offline U6/U8 acceptance: drawer power button and bottom-left LLM status."""
 
 import asyncio
+import re
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -33,34 +34,35 @@ async def main():
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
-            status = page.get_by_role("status").filter(has_text="LLM")
-            await expect(status.get_by_text("offline-test")).to_be_visible()
-            await expect(status.get_by_text("正常")).to_be_visible()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
+            # The model status sits in the rail (query 2026-1013 1520); its title names the model.
+            status = page.get_by_role("button", name=re.compile("^模型状态"))
+            await expect(status).to_have_attribute("title", re.compile("offline-test"))
+            await expect(status).to_have_accessible_name("模型状态：正常")
 
             # long session list must not push the status footer away
             await page.get_by_role("textbox", name="搜索会话").scroll_into_view_if_needed()
-            await expect(status.get_by_text("正常")).to_be_visible()
+            await expect(status).to_have_accessible_name("模型状态：正常")
 
             # 侧栏也有"设置"入口；运维抽屉由导航栏按钮打开。
-            await page.get_by_role("navigation").get_by_role("button", name="设置", exact=True).click()
+            await page.get_by_role("banner").get_by_role("button", name="设置", exact=True).click()
             power = page.get_by_role("button", name="断开连接")
             await expect(power).to_be_enabled()
             await power.click()
             await expect(page.get_by_role("dialog", name="设置与运维")).to_have_count(0)
             await expect(page.get_by_text("已断开连接", exact=False)).to_be_visible()
             await expect(page.get_by_role("button", name="重新连接")).to_be_visible()
-            await expect(status.get_by_text("已断开")).to_be_visible()
+            await expect(status).to_have_accessible_name("模型状态：已断开")
 
             # power button is disabled while disconnected
-            await page.get_by_role("navigation").get_by_role("button", name="设置", exact=True).click()
+            await page.get_by_role("banner").get_by_role("button", name="设置", exact=True).click()
             await expect(page.get_by_role("button", name="断开连接")).to_be_disabled()
             await page.keyboard.press("Escape")
 
             # reconnect from the main banner
             await page.get_by_role("button", name="重新连接").click()
             await expect(page.get_by_text("已断开连接", exact=False)).to_have_count(0)
-            await expect(status.get_by_text("正常")).to_be_visible()
+            await expect(status).to_have_accessible_name("模型状态：正常")
 
             assert not errors, errors
             print("PASS: U6 power button (disconnect/disabled) + U8 sticky status footer")

@@ -15,7 +15,7 @@ export const TIERS = [
   { min: 0, label: "探索/未判定", color: "#9aa3b2", hint: "理论方法研究，或报告文字不足以判定" },
 ] as const;
 export const tierOf = (level: number) => TIERS.find((tier) => level >= tier.min)!;
-export const ISSUE_LABEL = { 已解决: "本期突破", 待解决: "深化布局" } as const;
+export const ISSUE_LABEL = { 已解决: "报告所述已解决", 待解决: "待研究问题" } as const;
 
 const METRIC = /(AUROC|AUC|C-?index|C指数|Dice|DSC|IoU|mAP|F1|准确率|准确度|正确率|灵敏度|敏感度|敏感性|特异度|特异性|召回率|精确率|识别率|检出率|符合率|一致率|成功率)\s*(?:值)?\s*(?:为|达到|达|提升至|提高到|提高至|约|=|：|:)?\s*(\d+(?:\.\d+)?\s*%?(?:\s*[~～\-–—至]\s*\d+(?:\.\d+)?\s*%?)?)/g;
 const SCALE = /(\d[\d,，]*(?:\.\d+)?)\s*(万|千)?\s*(余|多)?\s*(例|名患者|名受试者|名|家三甲医院|家医院|家医疗机构|家单位|个中心|中心|张图像|张|份样本|份)/g;
@@ -269,12 +269,12 @@ export function libraryInsights(board: Board, matrix: Matrix, lineage: Lineage, 
     });
   }
   cards.push({
-    title: "成熟与转化",
-    headline: `${pct(mature, board.projects)}% 的项目报告达到成型技术或示范应用`,
+    title: "报告所述验证阶段",
+    headline: `${pct(mature, board.projects)}% 的项目至少有一项技术报告达到成型或应用阶段`,
     points: [`示范应用 ${board.tiers[0]} 个项目，成型技术 ${board.tiers[1]} 个`, `攻关验证 ${board.tiers[2]} 个，探索或未判定 ${board.tiers[3]} 个`,
-      "按各项目报告所述阶段计，不是正式技术成熟度评定"],
+      `按各项目最高阶段计，分母为 ${board.projects} 个已纳入项目；不是整体成熟度或转化率`],
   });
-  if (open.length) cards.push({ title: "待突破", headline: `${open.length} 个深化布局方向`, points: open.slice(0, 3) });
+  if (open.length) cards.push({ title: "待研究问题", headline: `报告所述尚待解决的问题 ${open.length} 个`, points: open.slice(0, 3) });
   return cards;
 }
 

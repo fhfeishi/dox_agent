@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
+import { createBrowserRouter, Navigate, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
@@ -35,10 +35,27 @@ function LibraryPage() {
   </>;
 }
 
+/** 资料库 opens straight into a library (query 2026-1013 1522): the one the chat uses, else the first. */
+function LibraryIndex() {
+  const { corpora, corporaLoaded, corpusIds } = useApp();
+  const usable = corpora.filter((c) => !c.missing);
+  const target = usable.find((c) => corpusIds.includes(c.id)) ?? usable[0];
+  if (target) return <Navigate to={`/library/${encodeURIComponent(target.id)}/targets/four-facets`} replace />;
+  return <p className="p-8 text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可在左侧“新建资料库”。" : "正在读取资料库…"}</p>;
+}
+
 /** A leader account sees only the lean leader view; administrators and users get the full system. */
 function Root() {
   const { role } = useAuth();
-  return <AppProvider>{role === "leader" ? <LeaderView /> : <App />}</AppProvider>;
+  const { pathname } = useLocation();
+  // Administrators can preview the leader view at /leader; leader accounts only ever see it.
+  return <AppProvider>{role === "leader" || pathname.startsWith("/leader") ? <LeaderView /> : <App />}</AppProvider>;
+}
+
+/** Where each role starts (query 2026-1013 1522): administrators on 首页, users in the workbench. */
+function RoleIndex() {
+  const { role } = useAuth();
+  return <Navigate to={role === "user" ? "/chat" : "/home"} replace />;
 }
 
 /** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
@@ -51,11 +68,12 @@ function ResultsRedirect() {
 export const router = createBrowserRouter([{
   Component: () => <AuthGate><Root /></AuthGate>,
   children: [
-    { index: true, element: <Navigate to="/home" replace /> },
+    { index: true, Component: RoleIndex },
+    { path: "leader", element: null },
     { path: "home", lazy: async () => ({ Component: (await import("./components/HomeView")).HomeView }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
-      { index: true, lazy: async () => ({ Component: (await import("./components/CorpusGrid")).CorpusGrid }) },
+      { index: true, Component: LibraryIndex },
       { path: ":corpusId", Component: LibraryPage, children: [
         { path: "documents" }, { path: "documents/:docId" }, { path: "targets/four-facets" },
       ] },

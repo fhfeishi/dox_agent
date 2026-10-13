@@ -95,6 +95,8 @@ export type ReviewMappingState = {
 };
 export type ReviewEvidence = {
   kind?: string; doc_id?: string; corpus_id?: string; version?: string;
+  /** Set for an uploaded local file (query 2026-1013 1520); its pages preview in the inspector. */
+  filename?: string;
   id: string;
   title: string;
   published: string;
@@ -310,6 +312,12 @@ export function reextractReviewDocument(id: string): Promise<ReviewDoc> {
 }
 export function fetchReviewEvidence(): Promise<ReviewEvidence[]> {
   return request("/evidence", undefined, "证据列表读取失败");
+}
+export async function uploadReviewEvidence(file: File, published: string): Promise<ReviewEvidence> {
+  const form = new FormData();
+  form.append("file", file);
+  form.append("published", published);
+  return request("/evidence/upload", { method: "POST", body: form }, "文献上传失败");
 }
 export function addReviewEvidence(input: {
   title: string; published: string; url: string; summary: string; keywords: string[];

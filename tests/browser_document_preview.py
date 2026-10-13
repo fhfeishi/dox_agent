@@ -64,7 +64,7 @@ async def main():
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             # library grid -> corpus detail -> document preview
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("示例库")).first.click()

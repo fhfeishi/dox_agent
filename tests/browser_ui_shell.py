@@ -42,7 +42,7 @@ async def main():
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             # Session-list assertions are scoped to the sidebar: the chat header now also shows
             # the active session title (top bar), so an unscoped text locator would match twice.
             sidebar = page.locator("aside").first
@@ -59,10 +59,10 @@ async def main():
 
             await page.get_by_role("textbox", name="问题", exact=True).fill("未发送草稿")
             await page.get_by_role("button", name="Prompt / Skill").click()
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await expect(page.get_by_role("textbox", name="问题", exact=True)).to_have_value("未发送草稿")
             await page.get_by_role("button", name="收起侧栏").click()
-            await expect(page.get_by_role("button", name="对话", exact=True)).to_be_visible()
+            await expect(page.get_by_role("button", name="对话工作台", exact=True)).to_be_visible()
             await page.get_by_role("button", name="展开侧栏").click()
 
             # session list: grouping, search, archive

@@ -314,7 +314,7 @@ async def main():
             await expect(page.get_by_text(re.compile("提取中 · 已完成"))).to_be_visible()
             await page.get_by_role("button", name="停止查看进度").click()
             await expect(page.get_by_text("仍在处理：已停止自动刷新，可点击“继续查看状态”查看最新进度")).to_be_visible()
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.go_back()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):
@@ -335,8 +335,9 @@ async def main():
                     pass  # An aborted GET is expected when its view unmounts.
             await page.route(re.compile(r".*/api/corpora/c1/reports$"), delayed_reports)
             await page.get_by_role("button", name="刷新四维列表").click()
-            await page.get_by_role("button", name="返回资料库列表").click()
-            await page.get_by_role("button", name="四维浏览", exact=True).nth(1).click()
+            # Switch libraries from the always-visible library list (query 2026-1013 1522).
+            await page.get_by_role("button", name=re.compile("^空库")).click()
+            await expect(page.get_by_role("heading", name="空库", exact=True)).to_be_visible()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):
                 await page.get_by_text("文件级整理与只读对照", exact=True).click()

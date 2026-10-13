@@ -1,3 +1,4 @@
+import { useAuth } from "../auth";
 import { useSearchParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRef, useState } from "react";
@@ -34,6 +35,7 @@ export function CorpusFiles({
   type UploadState = "waiting" | "uploading" | "indexed" | "parse-error" | "upload-error" | "stopped";
   type UploadItem = { file: File; state: UploadState; detail?: string };
   const client = useQueryClient();
+  const canEdit = useAuth().role === "admin";
   const result = useQuery({ queryKey: ["library", corpusId, "files"],
     queryFn: ({ signal }) => fetchCorpusFiles(corpusId, signal), enabled: connected });
   const listing = result.data;
@@ -140,6 +142,8 @@ export function CorpusFiles({
           本地资料目录：<code>{listing.source_dir}</code>
           <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
         </p> : null}
+        {/* Adding, renaming and deleting files is library maintenance (administrators only). */}
+        {canEdit ? <>
         <div
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {
@@ -179,6 +183,7 @@ export function CorpusFiles({
           </p>
           {busy ? <button type="button" className="mt-[6px] text-[11.5px] text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
         </div>
+        </> : null}
         {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-[11.5px]">
           {uploads.map((item) => <li key={`${item.file.name}:${item.file.size}:${item.file.lastModified}`} className="flex gap-[8px]">
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>
@@ -239,7 +244,7 @@ export function CorpusFiles({
                   </span>
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
-                  {status === "error" ? (
+                  {canEdit && status === "error" ? (
                     <button
                       type="button"
                       disabled={busy || !connected}
@@ -249,6 +254,7 @@ export function CorpusFiles({
                       重试本库待处理项
                     </button>
                   ) : null}
+                  {canEdit ? <>
                   <button
                     type="button"
                     aria-label={`重命名 ${file.rel_path}`}
@@ -273,6 +279,7 @@ export function CorpusFiles({
                   >
                     <Icon name="trash" size={12} />
                   </button>
+                  </> : null}
                 </>
               )}
             </li>

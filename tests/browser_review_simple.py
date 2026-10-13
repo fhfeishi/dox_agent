@@ -67,7 +67,8 @@ async def main():
                 await page.get_by_role("button", name="首页", exact=True).click()
                 await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
                 gate.set()
-                await page.get_by_role("button", name="资料审查", exact=True).click()
+                await page.get_by_role("button", name="资料审查 ▾").click()
+                await page.get_by_role("menuitem", name="形式审查").click()
                 await expect(page.get_by_role("button", name=re.compile("申请书.*队列验收.md"))).to_be_visible()
                 await page.reload()
                 await expect(page.locator("#records a")).to_have_count(3)
@@ -97,7 +98,8 @@ async def main():
                 await page.get_by_role("button", name="首页", exact=True).click()
                 await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
                 await page.screenshot(path=str(screenshots/"home.png"), full_page=True)
-                await page.get_by_role("button", name="退出登录", exact=True).click()
+                await page.get_by_role("button", name="账户：admin").click()
+                await page.get_by_role("menuitem", name="退出登录").click()
                 await expect(page.get_by_role("heading", name="登录")).to_be_visible()
                 assert (await page.request.get(origin + export_url)).status == 401
                 assert not errors, errors

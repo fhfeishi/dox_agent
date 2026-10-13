@@ -426,3 +426,46 @@ def test_queued_reports_accept_three_tasks_and_auto_map_uploaded_sections(tmp_pa
         storage.save("run", {"id": "interrupted", "status": "queued"})
         storage.init()
         assert storage.get("run", "interrupted")["status"] == "failed"
+
+
+def test_local_evidence_file_is_previewable_and_reaches_the_reviewer_as_text(tmp_path, monkeypatch):
+    """query 2026-1013 1520: restricted networks rely on uploaded local literature."""
+    seen = []
+
+    class RecordingClient(FixtureReviewClient):
+        def ask(self, phase, payload):
+            if phase == "04_technical":
+                seen.append(payload["evidence"])
+            return super().ask(phase, payload)
+
+    monkeypatch.setattr(storage, "DATA", tmp_path / "review")
+    monkeypatch.setattr(routes, "Client", RecordingClient)
+    monkeypatch.setattr(routes, "model_configured", lambda: True)
+    monkeypatch.setattr(routes, "start_metadata", lambda ident: routes.public_doc(storage.get("document", ident)))
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
+    (settings.corpora_root / "fixture" / "source").mkdir(parents=True)
+    paper = "# 柔性装配综述\n" + "多模态感知驱动的柔性装配方法在工业场景中已有验证，精度达到亚毫米级。" * 6
+    with TestClient(create_app(settings)) as client:
+        files = {"file": ("综述.md", paper.encode())}
+        assert client.post("/api/review/evidence/upload", files=files, data={"published": "2024-13-01"}).status_code == 422
+        assert client.post("/api/review/evidence/upload", files={"file": ("short.md", "# 空".encode())}).status_code == 400
+        item = client.post("/api/review/evidence/upload", files=files, data={"published": "2024-05-01"}).json()
+        assert (item["title"], item["published"], item["filename"]) == ("综述", "2024-05-01", "综述.md")
+        assert "pages" not in item and "path" not in item and "亚毫米级" in item["summary"]
+        listed = client.get("/api/review/evidence").json()
+        assert [e["id"] for e in listed] == [item["id"]] and "pages" not in listed[0]
+        assert any("亚毫米级" in page["text"] for page in client.get(f"/api/review/evidence/{item['id']}/pages").json())
+        assert client.get(f"/api/review/evidence/{item['id']}/file").content == paper.encode()
+
+        body = "# 项目摘要\n" + "本项目研究柔性装配。" * 20 + "\n# 研究目标\n" + "实现多模态感知驱动的柔性装配。" * 20
+        doc = client.post("/api/review/documents", files={"file": ("proposal.md", body.encode())}).json()
+        library = client.get("/api/corpora").json()[0]["id"]
+        created = client.post("/api/review/runs", json={"document_id": doc["id"], "kind": "professional", "rule_id": "builtin-professional",
+                                                        "rule_version": 1, "corpus_ids": [library], "evidence_ids": [item["id"]]})
+        assert created.status_code == 200, created.text
+        for _ in range(250):
+            if client.get("/api/review/runs/" + created.json()["id"]).json()["status"] not in ("queued", "running"):
+                break
+            time.sleep(.02)
+    assert seen and [e.get("title") for e in seen[0]] == ["综述"]
+    assert all("pages" not in e and "path" not in e for e in seen[0])

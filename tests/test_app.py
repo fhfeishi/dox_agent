@@ -196,11 +196,14 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         page = client.get(f"/library/{corpus_id}/targets/four-facets?scenario=临床诊疗")
         assert page.status_code == 200 and page.text == "research shell"
         assert "no-cache" in page.headers["cache-control"]
-        for route in ("/home", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
+        for route in ("/home", "/leader", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
             response = client.get(route)
             assert response.status_code == 200 and response.text == "research shell"
         for missing in ("/api/no-such-api", "/assets/missing.js", "/library/no-such-page"):
             assert client.get(missing).status_code == 404
+        # 资料库建设 (query 2026-1013 1637): one row per library with its own counts, nothing generated yet.
+        overview = client.get("/api/overview/libraries").json()
+        assert [(row["corpus_id"], row["files"], row["hierarchy"]["scenes"], row["lineage"]["items"]) for row in overview] == [(corpus_id, 1, 0, 0)]
         started = client.post(f"/api/corpora/{corpus_id}/target", json={"doc_ids": [saved["doc_id"]]})
         assert started.status_code == 202
         job_id = started.json()["job_id"]

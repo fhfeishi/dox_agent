@@ -79,7 +79,7 @@ async def main():
                 await expect(page.get_by_text("回答:" + question, exact=False)).to_be_visible()
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             # New sessions auto-select the first corpus directory; no confirmation gate.
             await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
             await ask("第一问")

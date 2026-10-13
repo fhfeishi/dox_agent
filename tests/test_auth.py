@@ -12,6 +12,9 @@ def test_default_admin_login_logout_and_private_api(tmp_path):
         client.cookies.clear()
         assert client.get("/api/documents").status_code == 401
         assert client.post("/api/auth/setup", json={"password": "123456"}).status_code in (401, 404, 405)
+        # query 2026-1013 1459: admin / owner (leader) / user start with the same default password.
+        for name, role in (("owner", "leader"), ("user", "user")):
+            assert client.post("/api/auth/login", json={"username": name, "password": "123456"}).json()["role"] == role
         assert client.post("/api/auth/login", json={"username": "admin", "password": "wrong"}).status_code == 401
         login = client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
         assert login.status_code == 200 and "httponly" in login.headers["set-cookie"].lower()
@@ -20,6 +23,13 @@ def test_default_admin_login_logout_and_private_api(tmp_path):
         assert client.post("/api/auth/accounts", json={"username": "viewer", "role": "user"}).status_code == 200
         assert client.post("/api/auth/logout", headers={"origin": "https://evil.example"}).status_code == 403
         assert client.post("/api/auth/login", json={"username": "viewer", "password": "123456"}).json()["role"] == "user"
+        # A user changes their own password: the old one is checked and four characters suffice.
+        assert client.post("/api/auth/password", json={"old": "wrong", "new": "abcd"}).status_code == 401
+        assert client.post("/api/auth/password", json={"old": "123456", "new": "abc"}).status_code == 422
+        assert client.post("/api/auth/password", json={"old": "123456", "new": "abcd"}).status_code == 200
+        assert client.get("/api/auth/session").json()["authenticated"]  # this session stays signed in
+        client.post("/api/auth/logout")
+        assert client.post("/api/auth/login", json={"username": "viewer", "password": "abcd"}).status_code == 200
         assert client.post("/api/auth/logout").status_code == 200
         assert client.get("/api/auth/session").json()["authenticated"] is False
     assert b"123456" not in (tmp_path/"usr"/"accounts.sqlite3").read_bytes()
@@ -41,7 +51,8 @@ def test_three_roles_account_management_and_guides(tmp_path):
         assert client.post("/api/auth/accounts", json={"username": "boss", "password": "another-password", "role": "user"}).status_code == 409
         assert client.post("/api/auth/accounts", json={"username": "x y", "password": "another-password", "role": "user"}).status_code == 422
         assert client.post("/api/auth/accounts", json={"username": "short", "password": "abc", "role": "user"}).status_code == 422
-        assert [(a["username"], a["role"]) for a in client.get("/api/auth/accounts").json()] == [("admin", "admin"), ("boss", "leader"), ("staff", "user")]
+        assert [(a["username"], a["role"]) for a in client.get("/api/auth/accounts").json()] == [
+            ("admin", "admin"), ("owner", "leader"), ("user", "user"), ("boss", "leader"), ("staff", "user")]
         # The last administrator can neither be demoted nor deleted; the current account cannot delete itself.
         assert client.patch("/api/auth/accounts/admin", json={"role": "user"}).status_code == 409
         assert client.delete("/api/auth/accounts/admin").status_code == 409
@@ -62,7 +73,7 @@ def test_three_roles_account_management_and_guides(tmp_path):
         assert client.post("/api/auth/login", json={"username": "admin", "password": "admin-password-1"}).status_code == 200
         assert client.patch("/api/auth/accounts/boss", json={"password": "boss-new-password"}).status_code == 200
         assert client.delete("/api/auth/accounts/staff").status_code == 200
-        assert [a["username"] for a in client.get("/api/auth/accounts").json()] == ["admin", "boss"]
+        assert [a["username"] for a in client.get("/api/auth/accounts").json()] == ["admin", "owner", "user", "boss"]
         client.cookies.clear()
         client.cookies.update(boss)
         assert client.get("/api/auth/session").json()["authenticated"] is False
@@ -82,3 +93,28 @@ def test_single_administrator_store_moves_into_accounts(tmp_path):
         db.execute("INSERT INTO administrator VALUES (1,?,?)", (salt, Accounts.password_digest("old-password-1", salt)))
     store.login("admin", "old-password-1")  # kept, not replaced by the 123456 default
     assert [(a["username"], a["role"]) for a in store.list()] == [("admin", "admin")]
+
+
+def test_leaders_only_read_and_library_maintenance_is_for_administrators(tmp_path):
+    """The first action permissions are enforced by the server, not only by hidden buttons."""
+    app = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
+                              user_dir=tmp_path/"usr"))
+    with TestClient(app) as client:
+        client.cookies.clear()
+        client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
+        assert client.get("/api/corpora").status_code == 200
+        assert client.post("/api/corpora", json={"name": "领导新建"}).status_code == 403
+        assert client.post("/api/review/evidence", json={}).status_code == 403
+        assert client.post("/api/auth/guides", json={"key": "leader"}).status_code == 200
+        assert client.post("/api/auth/password", json={"old": "123456", "new": "boss"}).status_code == 200
+        client.post("/api/auth/logout")
+        client.post("/api/auth/login", json={"username": "user", "password": "123456"})
+        assert client.post("/api/corpora", json={"name": "用户新建"}).status_code == 403
+        assert client.post("/api/corpus-groups", json={"revision": 0, "action": "create", "name": "组"}).status_code == 403
+        assert client.delete("/api/corpora/anything").status_code == 403
+        # Analysis stays open to users: a topic summary request reaches its handler (404 for an unknown library).
+        assert client.post("/api/corpora/none/topic-summary", json={"dimension": "技术", "name": "x"}).status_code != 403
+        client.post("/api/auth/logout")
+        client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
+        assert client.post("/api/corpora", json={"name": "管理员新建"}).status_code == 201
+

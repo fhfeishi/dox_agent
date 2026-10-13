@@ -1,3 +1,4 @@
+import { useAuth } from "../auth";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fieldResolver, indicators, lineageOutline, TIERS, tierOf, UNDETERMINED_FIELD, UNDETERMINED_STAGE } from "../briefing";
@@ -215,6 +216,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   corpusId: string; focus: string; onFocus: (key: string) => void; onIssue: (scene: string) => void;
 }) {
   const { corpora, showInspector } = useApp();
+  const { role } = useAuth();
   const client = useQueryClient();
   const [notice, setNotice] = useState("");
   const [fields, setFields] = useState<string[]>([]);
@@ -267,7 +269,8 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   const periods = new Map([...projects].map(([id, p]) => [id, { title: p.title, start: p.start_year, end: p.end_year }]));
   const open = (projectId: string) => showInspector({ kind: "project", corpusId, projectId, facet: "技术" });
   const running = data.job?.status === "进行中";
-  const generate = <Button size="sm" variant={data.state === "missing" ? "primary" : "ghost"} disabled={run.isPending || running} onClick={() => run.mutate()}>
+  // Generating the lineage is library maintenance (administrators only).
+  const generate = role !== "admin" ? null : <Button size="sm" variant={data.state === "missing" ? "primary" : "ghost"} disabled={run.isPending || running} onClick={() => run.mutate()}>
     {running ? "正在生成…" : data.state === "missing" ? "生成技术谱系" : "重新生成"}</Button>;
   const outline = async () => {
     const name = corpora.find((c) => c.id === corpusId)?.name.replace(/^自然科学基金-/, "") ?? root.name;

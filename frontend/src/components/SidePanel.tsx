@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useApp } from "../store";
-import { BrandMark, Icon } from "./Icons";
+import { LibraryPanel } from "./LibraryPanel";
+import { Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import { ReviewRunPanel } from "./ReviewViews";
 import type { Saved, SessionData } from "../workspace";
@@ -33,7 +34,6 @@ function corpusDot(preparation: string, jobStatus?: string, missing = false): st
 export function SidePanel() {
   const {
     nav,
-    setNav,
     workspace,
     switchSession,
     sessionBusy,
@@ -45,37 +45,20 @@ export function SidePanel() {
     taskCapable,
     showInspector,
     corpora,
-    corpusIds,
-    corporaError,
     effectiveCorpusId,
     selectCorpus,
-    openCorpus,
-    setNewCorpusOpen,
-    setDrawerOpen,
     sidebarCollapsed,
-    toggleSidebar,
     progress,
-    documents,
-    model,
-    llmText,
-    llmTone,
   } = useApp();
 
   const [localQuery, setLocalQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const query = nav === "library" ? searchParams.get("q") ?? "" : localQuery;
   function setQuery(value: string) { if (nav === "library") setSearchParams(p => { if (value) p.set("q", value); else p.delete("q"); return p; }); else setLocalQuery(value); }
-  const [groups,setGroups] = useState<{id:string;name:string}[]>([]);
-  useEffect(() => {
-    if (nav !== "library") return;
-    let active = true;
-    const refresh = () => { void fetch("/api/corpus-groups").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { if (active) setGroups(data.groups); }).catch(() => { if (active) setGroups([]); }); };
-    refresh(); window.addEventListener("dox-groups-changed",refresh); window.addEventListener("focus",refresh);
-    return () => { active=false; window.removeEventListener("dox-groups-changed",refresh); window.removeEventListener("focus",refresh); };
-  }, [nav]);
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
-  // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
-  if (sidebarCollapsed || nav === "home") return null;
+  // The top bar keeps the primary entries reachable while the panel is hidden.
+  // Task pages keep their context in the main flow; a second task list obscures that flow.
+  if (sidebarCollapsed || ["home", "review", "tasks", "intelligence"].includes(nav)) return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;
@@ -128,32 +111,8 @@ export function SidePanel() {
 
   return (
     <aside className="flex w-[240px] hidden lg:flex shrink-0 flex-col border-r border-[var(--hairline)] bg-[var(--surface-soft)]">
-      {/* header */}
-      <div className="flex items-center gap-[8px] px-[14px] pt-[14px] pb-[10px]">
-        <div className="flex min-w-0 flex-1 items-center gap-[9px]">
-          <div className="grid size-[24px] shrink-0 place-items-center rounded-[6px] bg-[var(--navy)]">
-            <BrandMark size={13} />
-          </div>
-          <span className="text-[15px] leading-none font-semibold tracking-[-0.3px] text-[var(--ink)]">
-            DoxAgent
-          </span>
-          <span className="rounded-full bg-[var(--primary-soft)] px-[6px] py-[2px] text-[10px] font-semibold tracking-[0.2px] text-[var(--primary)]">
-            LOCAL
-          </span>
-        </div>
-        <button
-          type="button"
-          title="收起侧栏"
-          aria-label="收起侧栏"
-          onClick={toggleSidebar}
-          className="grid size-[30px] place-items-center rounded-[6px] text-[var(--slate)] hover:bg-[var(--surface)]"
-        >
-          <Icon name="chevronLeft" size={16} />
-        </button>
-      </div>
-
-      {/* primary action */}
-      <div className="flex flex-col gap-[8px] px-[14px] pb-[12px]">
+      {/* Context action: a new conversation where conversations are the work. */}
+      {nav === "chat" || nav === "tasks" ? <div className="px-[14px] pt-[14px] pb-[12px]">
         <button
           type="button"
           aria-label="＋ 新的问答"
@@ -164,15 +123,7 @@ export function SidePanel() {
           <Icon name="plus" size={15} strokeWidth={2} />
           新建对话
         </button>
-        <button
-          type="button"
-          onClick={() => setNav("library")}
-          className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[14px] py-[8px] text-[12.5px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
-        >
-          <Icon name="library" size={14} strokeWidth={1.9} />
-          资料库 · {documents.length} 份
-        </button>
-      </div>
+      </div> : <div className="h-[12px]" />}
 
       {nav !== "review" ? <SearchField
         value={query}
@@ -312,33 +263,7 @@ export function SidePanel() {
           </>
         )}
 
-        {nav === "library" && (
-          <>
-            <GroupLabel className="pt-[2px]">全部资料库</GroupLabel>
-            {corporaError && (
-              <p role="alert" className="px-[10px] py-2 text-[12px] text-[var(--red)]">
-                {corporaError}
-              </p>
-            )}
-            {[{id:"",name:"全部资料库"},...groups,{id:"ungrouped",name:"未分组"}].map(g => <PanelRow key={g.id} title={g.name} active={(searchParams.get("group") ?? "") === g.id} onClick={() => setSearchParams(p => { if (g.id) p.set("group",g.id); else p.delete("group"); return p; })} />)}
-            <GroupLabel>当前对话范围</GroupLabel>
-            <p className="px-3 text-sm">{corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、") || "未选择"}</p>
-            <div className="px-[8px] pt-[10px]">
-              <Button
-                variant="quiet"
-                size="md"
-                icon="plus"
-                className="w-full justify-center"
-                onClick={() => {
-                  setNav("library");
-                  setNewCorpusOpen(true);
-                }}
-              >
-                新建资料库
-              </Button>
-            </div>
-          </>
-        )}
+        {nav === "library" ? <LibraryPanel query={q} /> : null}
 
       </div>
 
@@ -360,33 +285,13 @@ export function SidePanel() {
             </div>
           </div>
         ) : null}
-        <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
+        {/* The conversation scope only matters where conversations happen (UI review U3). */}
+        {nav === "chat" ? <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
           <span>当前对话使用</span>
           <b className="min-w-0 truncate font-semibold text-[var(--slate)]">
             {corpora.find((c) => c.id === effectiveCorpusId)?.name ?? "未选择"}
           </b>
-        </div>
-        <div role="status" aria-live="polite" aria-label={`LLM ${model || "未知"}`}>
-          <button
-            type="button"
-            onClick={() => setDrawerOpen(true)}
-            title={`LLM：${model || "未知"} · ${llmText}`}
-            className="font-app flex w-full items-center gap-[8px] rounded-[6px] px-[6px] py-[5px] text-left text-[12px] hover:bg-[#f1efec]"
-          >
-            <span className={`size-[8px] shrink-0 rounded-full ${llmTone}`} />
-            <span className="min-w-0 flex-1 truncate text-[var(--charcoal)]">
-              LLM: {model || "未知"}
-            </span>
-            <span className="shrink-0 text-[var(--stone)]">{llmText}</span>
-          </button>
-        </div>
-        <button
-          type="button"
-          onClick={() => setDrawerOpen(true)}
-          className="font-app w-full rounded-[8px] border border-[var(--hairline-strong)] bg-[var(--canvas)] p-[8px] text-[12.5px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
-        >
-          设置
-        </button>
+        </div> : null}
       </div>
     </aside>
   );

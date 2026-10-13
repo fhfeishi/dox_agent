@@ -54,7 +54,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await page.get_by_role("textbox", name="问题", exact=True).fill("导出测试")
             await page.get_by_role("button", name="发送 ↑").click()
 
@@ -89,7 +89,7 @@ async def main():
             assert "<table" in doc
 
             # settings drawer has neither sources nor export
-            await page.get_by_role("navigation").get_by_role("button", name="设置", exact=True).click()
+            await page.get_by_role("banner").get_by_role("button", name="设置", exact=True).click()
             settings = page.get_by_role("dialog", name="设置与运维")
             await expect(settings).to_be_visible()
             assert await settings.get_by_text("在线文档源").count() == 0

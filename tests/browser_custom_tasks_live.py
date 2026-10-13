@@ -201,7 +201,7 @@ async def main():
                 await page.get_by_role("button", name="保存并发布").click()
                 await expect(page.get_by_text("已发布 v2").first).to_be_visible()
                 await page.get_by_role("button", name="关闭检查器").click()
-                await page.get_by_role("button", name="对话", exact=True).click()
+                await page.get_by_role("button", name="对话工作台", exact=True).click()
                 await expect(page.get_by_text("当前 v1 / 最新 v2")).to_be_visible()
                 page.once("dialog", lambda dialog: dialog.accept())
                 await page.get_by_role("button", name="升级到最新版").click()

@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Literal
 from uuid import uuid4
 
-from fastapi import FastAPI, File, HTTPException, Request, Response, UploadFile
+from fastapi import FastAPI, File, HTTPException, Query, Request, Response, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -963,6 +963,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "job": app.state.corpus_jobs.get(info.id),
             **counts,
         }
+
+    @app.get("/api/corpora/route")
+    async def route_corpus(q: str = Query(min_length=1, max_length=2000)):
+        """query 2026-1013 1520: libraries ranked by how well their own terms match a question."""
+        from .corpus_route import rank
+        items = await asyncio.to_thread(scan_corpora, settings)
+        return await asyncio.to_thread(rank, q, items)
 
     @app.get("/api/corpora")
     async def corpora():
@@ -2040,6 +2047,38 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "资料库目录已缺失")
         return info, await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
 
+    def library_overview(info, library):
+        """One library's construction status: material, projects, four-dimension coverage, funding
+        and when its scene hierarchy and technology lineage were generated (query 2026-1013 1637)."""
+        def read(name):
+            try:
+                return json.loads((info.root / name).read_text(encoding="utf-8"))
+            except (OSError, UnicodeError, ValueError):
+                return {}
+        hierarchy, lineage = read("hierarchy.json"), read("lineage.json")
+        coverage = library["coverage"]
+        identified = coverage["identified_projects"]
+        direct = coverage["funding"].get("direct", {})
+        return {
+            "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
+            "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
+            "funding": {"total_yuan": direct.get("total_yuan", "0"), "projects": direct.get("eligible_projects", 0)},
+            "start_years": sorted({p["start_year"] for p in library["projects"] if p.get("start_year")}),
+            "hierarchy": {"generated_at": hierarchy.get("generated_at"), "scenes": len(hierarchy.get("scenes") or []),
+                          "issues": sum(len(s.get("issues") or []) for s in hierarchy.get("scenes") or [])},
+            "lineage": {"generated_at": lineage.get("generated_at"), "items": len(lineage.get("items") or {}),
+                        "systems": sum(1 for c in lineage.get("categories") or [] if not c.get("unplaced"))},
+        }
+
+    @app.get("/api/overview/libraries")
+    async def libraries_overview():
+        items = [info for info in await asyncio.to_thread(scan_corpora, settings) if not info.missing and info.docs_count]
+        result = []
+        for info in items:
+            library = await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
+            result.append(await asyncio.to_thread(library_overview, info, library))
+        return result
+
     @app.get("/api/corpora/{corpus_id}/topics")
     async def topic_merges(corpus_id: str):
         """G1: manual topic grouping log; original extracted names stay with each item."""
@@ -2619,7 +2658,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

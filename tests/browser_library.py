@@ -121,7 +121,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话", exact=True).click()
+            await page.get_by_role("button", name="对话工作台", exact=True).click()
             await expect(page.get_by_text("当前对话：A库（1/6）")).to_be_visible()
 
             # The six-library bound is enforced in the visible selector; the seventh stays disabled.

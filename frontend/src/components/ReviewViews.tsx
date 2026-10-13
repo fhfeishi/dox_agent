@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation, useParams, useSearchParams } from "react-rou
 import {
   addReviewEvidence, createReviewRun, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth,
   fetchReviewMappings, fetchReviewRules, fetchReviewRun, fetchReviewRuns, patchReviewDocument, reextractReviewDocument,
-  reviewDocumentFileUrl, reviewExportUrl, saveReviewMappings, searchReviewEvidence,
+  reviewExportUrl, saveReviewMappings, searchReviewEvidence, uploadReviewEvidence,
   testReviewModel, uploadReviewDocument,
   REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL,
   type ReviewCard, type ReviewDoc, type ReviewEvidence, type ReviewFinding, type ReviewHealth, type ReviewKind,
@@ -66,6 +66,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
   onSave: (meta: Partial<ReviewMetadata>) => Promise<void>;
   onRetry: () => Promise<void>;
 }) {
+  const { showInspector } = useApp();
   const [draft, setDraft] = useState<ReviewMetadata>(doc.metadata);
   // Fields the user has typed into are kept while extraction polls; untouched fields follow the server.
   const [touched, setTouched] = useState<Set<string>>(new Set());
@@ -177,7 +178,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
         </details>
       ) : null}
       <p className="mt-[8px] text-[11.5px] text-[var(--stone)]">
-        计划日期按原文填写实际精度（如只写到月填 YYYY-MM），不能用申报或上传日期代替。审查材料不进入资料库；原文件：<a className="text-[var(--link)]" href={reviewDocumentFileUrl(doc.id)} target="_blank" rel="noreferrer">{doc.filename}</a>
+        计划日期按原文填写实际精度（如只写到月填 YYYY-MM），不能用申报或上传日期代替。审查材料不进入资料库；原文件：<button type="button" className="text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>{doc.filename}</button>
       </p>
     </div>
   );
@@ -511,7 +512,7 @@ export function ReviewWorkbench() {
           <p className="text-[11px] text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <Button disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{doc ? "上传新版本" : "上传申请书"}</Button>
-            {doc ? <a className="text-xs text-[var(--link)]" href={reviewDocumentFileUrl(doc.id)} target="_blank" rel="noreferrer">查看原文</a> : null}
+            {doc ? <button type="button" className="text-xs text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>查看原文</button> : null}
             {proposals.length ? <select aria-label="选择已上传申请书" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 text-xs" value={doc?.id ?? ""}
               onChange={(e) => { const next = docs.find((item) => item.id === e.target.value); if (next) { setDoc(next); remember("proposal", next.id); } }}>
               <option value="">选择已上传的申请书</option>
@@ -637,67 +638,87 @@ async function fetchReviewDocument(id: string): Promise<ReviewDoc> {
 }
 
 export function ReviewEvidence() {
+  const { showInspector } = useApp();
   const [items, setItems] = useState<ReviewEvidence[]>([]);
   const [query, setQuery] = useState("");
   const [cutoff, setCutoff] = useState("");
+  const [published, setPublished] = useState("");
   const [results, setResults] = useState<ReviewEvidence[]>([]);
   const [draft, setDraft] = useState({ title: "", published: "", url: "", summary: "", keywords: "" });
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState("");
+  const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => { void fetchReviewEvidence().then(setItems).catch((cause) => setError((cause as Error).message)); }, []);
   const reload = async () => setItems(await fetchReviewEvidence());
+  const input = "rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-[12.5px]";
 
+  async function upload(files: FileList | null) {
+    if (!files?.length) return;
+    setBusy("上传"); setError(""); setNotice("");
+    try {
+      for (const file of Array.from(files)) await uploadReviewEvidence(file, published);
+      await reload(); setNotice(`已加入 ${files.length} 份本地文献（内容待人工核实）。`);
+    } catch (cause) { setError((cause as Error).message); } finally { setBusy(""); }
+  }
+
+  // query 2026-1013 1520: the client network is restricted, so local files come first.
   return (
-    <Shell title="技术证据库" description="用于技术先进性评议的文献证据：公开题录检索仅发送检索词，检索结果与人工录入内容均需人工核实。">
+    <Shell title="技术证据库">
       <Notice text={error} error />
       <Notice text={notice} />
-      <div className="mb-[14px] flex flex-wrap items-end gap-[8px]">
-        <label className="text-[12px] text-[var(--slate)]">检索词
-          <input value={query} onChange={(event) => setQuery(event.target.value)}
-            className="ml-[6px] rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-[12.5px]" />
-        </label>
-        <label className="text-[12px] text-[var(--slate)]">截止日期
-          <input type="date" value={cutoff} onChange={(event) => setCutoff(event.target.value)}
-            className="ml-[6px] rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-[12.5px]" />
-        </label>
-        <Button disabled={!cutoff || query.trim().length < 3} onClick={() => {
-          setBusy("检索");
-          void searchReviewEvidence(query.trim(), cutoff)
-            .then((next) => { setResults(next); setNotice(`检索到 ${next.length} 条题录，尚未加入证据库。`); })
-            .catch((cause) => setError((cause as Error).message))
-            .finally(() => setBusy(""));
-        }}>{busy === "检索" ? "检索中…" : "公开题录检索"}</Button>
+      <div className="mb-[16px] flex flex-wrap items-center gap-[10px] rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
+        <Button variant="primary" disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{busy === "上传" ? "上传中…" : "上传本地文献"}</Button>
+        <label className="text-[12px] text-[var(--slate)]">发表日期（可选）
+          <input type="date" value={published} onChange={(event) => setPublished(event.target.value)} className={"ml-[6px] " + input} /></label>
+        <span className="text-[11.5px] text-[var(--stone)]">PDF / DOCX / Markdown / TXT，可多选；历史评价只使用有日期的文献。</span>
+        <input ref={fileInput} aria-label="上传本地文献文件" type="file" multiple accept={ACCEPT} className="hidden"
+          onChange={(event) => { const files = event.target.files; void upload(files).then(() => { event.target.value = ""; }); }} />
       </div>
 
-      {results.length ? (
-        <div className="mb-[16px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px]">
-          <strong>检索结果</strong>
-          {results.map((item, index) => (
-            <div key={index} className="mt-[6px] flex flex-wrap items-center gap-[6px]">
-              <span className="flex-1">{item.title}（{item.published}）</span>
-              <Button onClick={() => void addReviewEvidence({
-                title: item.title, published: item.published, url: item.url, summary: item.summary, keywords: item.keywords,
-              }).then(async () => { await reload(); setNotice("已加入证据库（内容待人工核实）。"); }).catch((cause) => setError((cause as Error).message))}>加入证据库</Button>
-            </div>
-          ))}
-        </div>
-      ) : null}
+      <strong className="text-[13.5px] text-[var(--ink)]">证据库（{items.length}）</strong>
+      {!items.length ? <p className="mt-[6px] text-[12.5px] text-[var(--stone)]">证据库为空；没有直接相关文献时，评议只评价申请书内部论证。</p> : null}
+      <div className="mt-[8px] grid gap-[8px]">
+        {items.map((item) => (
+          <div key={item.id} className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px]">
+            {item.filename ? <button type="button" className="text-left text-[13px] font-semibold text-[var(--link)] hover:underline"
+              onClick={() => showInspector({ kind: "review-source", fileId: item.id, page: 1, title: item.filename, evidence: true })}>{item.title}</button>
+              : <a className="text-[13px] font-semibold text-[var(--link)]" href={item.url} target="_blank" rel="noreferrer">{item.title}</a>}
+            <span className="mt-[3px] block text-[var(--steel)]">{item.published || "日期未填"} · {item.origin}</span>
+          </div>
+        ))}
+      </div>
 
-      <div className="mb-[16px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px]">
-        <strong>人工录入</strong>
+      <details className="mt-[18px] rounded-[10px] border border-[var(--hairline)] p-[12px] text-[12px]">
+        <summary className="cursor-pointer text-[12.5px] text-[var(--steel)]">其他方式：联网题录检索（需外网）、手工录入</summary>
+        <div className="mt-[10px] flex flex-wrap items-end gap-[8px]">
+          <label className="text-[12px] text-[var(--slate)]">检索词<input value={query} onChange={(event) => setQuery(event.target.value)} className={"ml-[6px] " + input} /></label>
+          <label className="text-[12px] text-[var(--slate)]">截止日期<input type="date" value={cutoff} onChange={(event) => setCutoff(event.target.value)} className={"ml-[6px] " + input} /></label>
+          <Button disabled={!cutoff || query.trim().length < 3} onClick={() => {
+            setBusy("检索");
+            void searchReviewEvidence(query.trim(), cutoff)
+              .then((next) => { setResults(next); setNotice(`检索到 ${next.length} 条题录，尚未加入证据库。`); })
+              .catch((cause) => setError((cause as Error).message))
+              .finally(() => setBusy(""));
+          }}>{busy === "检索" ? "检索中…" : "公开题录检索"}</Button>
+        </div>
+        {results.map((item, index) => (
+          <div key={index} className="mt-[6px] flex flex-wrap items-center gap-[6px]">
+            <span className="flex-1">{item.title}（{item.published}）</span>
+            <Button onClick={() => void addReviewEvidence({
+              title: item.title, published: item.published, url: item.url, summary: item.summary, keywords: item.keywords,
+            }).then(async () => { await reload(); setNotice("已加入证据库（内容待人工核实）。"); }).catch((cause) => setError((cause as Error).message))}>加入证据库</Button>
+          </div>
+        ))}
+        <p className="mt-[14px] font-semibold">手工录入</p>
         <div className="mt-[6px] grid gap-[8px] sm:grid-cols-2">
-          <input aria-label="题名" placeholder="题名" value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })}
-            className="rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px]" />
-          <input aria-label="发表日期" type="date" value={draft.published} onChange={(event) => setDraft({ ...draft, published: event.target.value })}
-            className="rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px]" />
-          <input aria-label="链接" placeholder="https://" value={draft.url} onChange={(event) => setDraft({ ...draft, url: event.target.value })}
-            className="rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px]" />
-          <input aria-label="关键词" placeholder="关键词，逗号分隔" value={draft.keywords} onChange={(event) => setDraft({ ...draft, keywords: event.target.value })}
-            className="rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px]" />
+          <input aria-label="题名" placeholder="题名" value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} className={input} />
+          <input aria-label="发表日期" type="date" value={draft.published} onChange={(event) => setDraft({ ...draft, published: event.target.value })} className={input} />
+          <input aria-label="链接" placeholder="https://" value={draft.url} onChange={(event) => setDraft({ ...draft, url: event.target.value })} className={input} />
+          <input aria-label="关键词" placeholder="关键词，逗号分隔" value={draft.keywords} onChange={(event) => setDraft({ ...draft, keywords: event.target.value })} className={input} />
           <textarea aria-label="摘要" placeholder="摘要（≥15 字）" value={draft.summary} onChange={(event) => setDraft({ ...draft, summary: event.target.value })}
-            className="min-h-[70px] rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] sm:col-span-2" />
+            className={"min-h-[70px] sm:col-span-2 " + input} />
         </div>
         <div className="mt-[8px]">
           <Button onClick={() => void addReviewEvidence({
@@ -706,18 +727,7 @@ export function ReviewEvidence() {
           }).then(async () => { await reload(); setDraft({ title: "", published: "", url: "", summary: "", keywords: "" }); setNotice("已加入证据库。"); })
             .catch((cause) => setError((cause as Error).message))}>保存证据</Button>
         </div>
-      </div>
-
-      <strong className="text-[13.5px] text-[var(--ink)]">证据库（{items.length}）</strong>
-      {!items.length ? <p className="mt-[6px] text-[12.5px] text-[var(--stone)]">证据库为空；没有直接相关文献时，评议只评价申请书内部论证。</p> : null}
-      <div className="mt-[8px] grid gap-[8px]">
-        {items.map((item) => (
-          <div key={item.id} className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px]">
-            <a className="text-[13px] font-semibold text-[var(--link)]" href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
-            <span className="mt-[3px] block text-[var(--steel)]">{item.published} · {item.origin}{item.verified ? "" : " · 待人工核实"}</span>
-          </div>
-        ))}
-      </div>
+      </details>
     </Shell>
   );
 }
@@ -784,7 +794,9 @@ export function ReviewRunPage() {
   function source(page: number) {
     if (!run) return;
     const loc = run.source_locations?.[String(page)];
-    showInspector({ kind: "review-source", fileId: loc?.file_id ?? run.document.id, page: loc?.source_page ?? page });
+    const fileId = loc?.file_id ?? run.document.id;
+    showInspector({ kind: "review-source", fileId, page: loc?.source_page ?? page,
+      title: fileId === run.information_sheet?.id ? run.information_sheet.filename : run.document.filename });
   }
   const evidenceById = new Map((run?.technical?.evidence ?? []).map((item) => [item.id, item]));
 
@@ -849,14 +861,15 @@ export function ReviewRunPage() {
         </div> : null}
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--steel)]">
           <span>正文：{doc.filename}{versions[0] ? ` · ${versions[0].sha256.slice(0, 8)}` : ""}</span>
-          <span>信息表：{run.information_sheet?.filename || "未提供"}</span>
+          <span>信息表：{run.information_sheet ? <button type="button" className="text-[var(--link)] hover:underline"
+            onClick={() => showInspector({ kind: "review-source", fileId: run.information_sheet!.id, page: 1, title: run.information_sheet!.filename })}>{run.information_sheet.filename}</button> : "未提供"}</span>
           {!formal ? <span>评价方式：{run.request.mode === "historical" ? `历史评价 · ${run.request.cutoff_date}` : "更新建议"}</span> : null}
           {!formal ? <span>对照资料库：{corpora.find((item) => item.id === run.request.corpus_ids?.[0])?.name ?? run.request.corpus_ids?.[0] ?? "未记录"} · 参考报告 {run.technical?.local_matches ?? 0}/{run.request.reference_count ?? 3} 篇 · 文献 {run.request.evidence_ids?.length ?? 0} 篇</span> : null}
           <span>生成：{localTime(run.created_at)}</span>
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-sm text-[var(--primary)]">
           {run.status === "completed" ? <a href={reviewExportUrl(run.id, "docx")}>下载 Word 报告</a> : null}
-          <a href={reviewDocumentFileUrl(doc.id)} target="_blank" rel="noreferrer">查看原申请书</a>
+          <button type="button" className="hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>查看原申请书</button>
           <Link to={"/review/" + (formal ? "professional" : "formal") + "?proposal=" + encodeURIComponent(doc.id) + (run.information_sheet ? "&sheet=" + encodeURIComponent(run.information_sheet.id) : "")}>使用这些材料开展{formal ? "专业审查" : "形式审查"}</Link>
         </div>
       </section>
@@ -957,7 +970,9 @@ export function ReviewRunPage() {
               <article key={item.id} className="mb-3 rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-5">
                 <h3 className="font-semibold">{item.title}</h3>
                 <p className="mt-1 text-xs text-[var(--steel)]">{item.kind === "policy" ? "政策/要求原文" : item.published || "发表时间未明确"}</p>
-                <a className="mt-2 inline-block text-sm text-[var(--primary)]" href={item.url} target="_blank" rel="noreferrer">查看原始出处</a>
+                {item.filename ? <button type="button" className="mt-2 inline-block text-sm text-[var(--primary)] hover:underline"
+                  onClick={() => showInspector({ kind: "review-source", fileId: item.id, page: 1, title: item.filename, evidence: true })}>预览原文</button>
+                  : item.url ? <a className="mt-2 inline-block text-sm text-[var(--primary)]" href={item.url} target="_blank" rel="noreferrer">查看原始出处</a> : null}
               </article>))}
           </> : null}
           {!formal && tab === "suggestions" ? <>

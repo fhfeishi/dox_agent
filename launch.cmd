@@ -121,12 +121,16 @@ if "%embedding_enabled%"=="1" (
 )
 
 rem ------------------------------------------------------------
-rem Frontend: build on every launch so a pulled change is always served.
+rem Frontend: build only when the sources changed since the last build
+rem (hash of src, index.html, package*.json and vite/tsconfig, recorded in
+rem frontend\dist\.dox-build); REBUILD_FRONTEND=1 forces a build.
 rem npm ci runs only when package-lock.json changed since the last install
 rem (stamp file in node_modules). A failed build reinstalls dependencies
 rem once, e.g. when node_modules came from another platform.
 rem ------------------------------------------------------------
 
+call "%python%" src\launcher.py frontend check
+if not errorlevel 1 goto frontend_done
 pushd frontend
 fc /b package-lock.json node_modules\.dox-lock >nul 2>nul
 if errorlevel 1 call :npm_install
@@ -138,7 +142,8 @@ if errorlevel 1 (
   call :npm_install
   if not errorlevel 1 call npm run build
 )
-if errorlevel 1 (
+if errorlevel 1 (set "built=0") else (set "built=1")
+if "%built%"=="0" (
   if exist "dist\index.html" (
     echo Frontend build failed; serving the previous build in frontend\dist.
   ) else (
@@ -148,12 +153,18 @@ if errorlevel 1 (
   )
 )
 popd
+if "%built%"=="1" call "%python%" src\launcher.py frontend stamp
+:frontend_done
 
 rem ------------------------------------------------------------
 rem Main service
 rem ------------------------------------------------------------
 
 echo Open http://%HOST%:%PORT%
+rem Open the default browser once the service answers; set OPEN_BROWSER=0 to skip.
+set "OPEN_HOST=%HOST%"
+if "%HOST%"=="0.0.0.0" set "OPEN_HOST=127.0.0.1"
+if not "%OPEN_BROWSER%"=="0" start "" /b powershell -NoProfile -WindowStyle Hidden -Command "$u='http://%OPEN_HOST%:%PORT%/'; $w=New-Object Net.WebClient; $w.Proxy=$null; for($i=0;$i -lt 180;$i++){ try { [void]$w.DownloadString($u+'api/auth/session'); Start-Process $u; break } catch { Start-Sleep -Seconds 1 } }"
 call "%python%" -m uvicorn src.main:app --loop asyncio --host "%HOST%" --port "%PORT%"
 exit /b %errorlevel%
 

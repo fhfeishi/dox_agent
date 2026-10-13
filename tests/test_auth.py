@@ -95,7 +95,7 @@ def test_single_administrator_store_moves_into_accounts(tmp_path):
     assert [(a["username"], a["role"]) for a in store.list()] == [("admin", "admin")]
 
 
-def test_leaders_only_read_and_library_maintenance_is_for_administrators(tmp_path):
+def test_library_maintenance_is_for_administrators_only(tmp_path):
     """The first action permissions are enforced by the server, not only by hidden buttons."""
     app = create_app(Settings(_env_file=None, state_dir=tmp_path/"state", corpora_root=tmp_path/"corpora",
                               user_dir=tmp_path/"usr"))
@@ -104,7 +104,8 @@ def test_leaders_only_read_and_library_maintenance_is_for_administrators(tmp_pat
         client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
         assert client.get("/api/corpora").status_code == 200
         assert client.post("/api/corpora", json={"name": "领导新建"}).status_code == 403
-        assert client.post("/api/review/evidence", json={}).status_code == 403
+        # Leaders also use the workbench (query 2026-1013 1842): a review evidence request reaches its handler.
+        assert client.post("/api/review/evidence", json={}).status_code == 422
         assert client.post("/api/auth/guides", json={"key": "leader"}).status_code == 200
         assert client.post("/api/auth/password", json={"old": "123456", "new": "boss"}).status_code == 200
         client.post("/api/auth/logout")

@@ -28,9 +28,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   taskId: string = DEFAULT_TASK_ID, setTaskId?: (taskId: string) => void,
   corpusId: string = "", setCorpusId?: (corpusId: string) => void,
   corpusConfirmed = false, setCorpusConfirmed?: (confirmed: boolean) => void,
-  corpusIds: string[] = [], setCorpusIds?: (ids: string[]) => void,
-  /** Leader accounts only read (query 2026-1013 1133); they never create or change sessions. */
-  readOnly = false) {
+  corpusIds: string[] = [], setCorpusIds?: (ids: string[]) => void) {
   const [sessions, setSessions] = useState<Saved<SessionData>[]>([]);
   const [active, setActive] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -95,7 +93,6 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   }, []);
 
   function enqueue(record: Saved<SessionData>) {
-    if (readOnly) return chain.current;
     queued.current += 1; savingState("saving");
     chain.current = chain.current.catch(() => undefined).then(async () => {
       setMessage("正在保存…");

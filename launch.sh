@@ -133,7 +133,9 @@ fi
 # 前端
 # ------------------------------------------------------------
 
-if [[ ! -f frontend/dist/index.html || "${REBUILD_FRONTEND:-0}" == 1 ]]; then
+# 前端源码（src、index.html、package*.json、vite/tsconfig）的哈希与上次构建记录一致时跳过；
+# 设 REBUILD_FRONTEND=1 强制构建。package-lock.json 变化时才重新 npm ci。
+if ! "$python" src/launcher.py frontend check; then
   # WSL can resolve Windows npm from /mnt while Linux node is absent from PATH.
   # Prefer the user's Linux Node installation for a build rooted in the WSL filesystem.
   if ! command -v node >/dev/null 2>&1 && [[ -x "$HOME/.local/bin/node" && -x "$HOME/.local/bin/npm" ]]; then
@@ -141,9 +143,14 @@ if [[ ! -f frontend/dist/index.html || "${REBUILD_FRONTEND:-0}" == 1 ]]; then
   fi
   (
     cd frontend
-    npm ci
+    if ! cmp -s package-lock.json node_modules/.dox-lock; then
+      npm ci
+      cp package-lock.json node_modules/.dox-lock
+    fi
+    printf '构建前端……\n'
     npm run build
   )
+  "$python" src/launcher.py frontend stamp
 fi
 
 # ------------------------------------------------------------
@@ -151,6 +158,25 @@ fi
 # ------------------------------------------------------------
 
 printf '打开 http://127.0.0.1:%s\n' "${PORT:-8000}"
+
+# 服务可访问后自动打开默认浏览器；设 OPEN_BROWSER=0 可关闭。
+open_browser() {
+  local host="${HOST:-127.0.0.1}"
+  [[ "$host" == 0.0.0.0 ]] && host=127.0.0.1
+  local url="http://$host:${PORT:-8000}/"
+  for _ in $(seq 180); do
+    if curl -s --noproxy '*' -o /dev/null "${url}api/auth/session"; then
+      if command -v wslview >/dev/null 2>&1; then wslview "$url"
+      elif grep -qi microsoft /proc/version 2>/dev/null && command -v cmd.exe >/dev/null 2>&1; then (cd /mnt/c 2>/dev/null; cmd.exe /c start "" "$url")
+      elif command -v xdg-open >/dev/null 2>&1; then xdg-open "$url"
+      elif command -v open >/dev/null 2>&1; then open "$url"
+      fi >/dev/null 2>&1
+      return
+    fi
+    sleep 1
+  done
+}
+if [[ "${OPEN_BROWSER:-1}" != 0 ]]; then open_browser & fi
 
 exec "$python" -m uvicorn \
   src.main:app \

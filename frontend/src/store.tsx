@@ -40,7 +40,6 @@ import { uiFlags } from "./uiFlags";
 import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
-import { useAuth } from "./auth";
 
 export type NavKey = "admin" | "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
@@ -248,7 +247,6 @@ export function useApp(): AppValue {
  * lives in the components. This mirrors the reference template's `store.tsx`.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
-  const { role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
@@ -375,7 +373,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setCorpusConfirmed,
     corpusIds,
     setCorpusIds,
-    role === "leader",
   );
   useEffect(() => {
     const selected = tasks.find((task) => task.id === taskId);

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
+import { createBrowserRouter, Navigate, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
@@ -44,11 +44,16 @@ function LibraryIndex() {
   return <p className="p-8 text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可在左侧“新建资料库”。" : "正在读取资料库…"}</p>;
 }
 
-/** A leader account sees only the lean leader view; administrators and users get the full system. */
+const WORKBENCH = ["/chat", "/library", "/tasks", "/review", "/intelligence"];
+
+/** A leader lands on the leader view and reaches the workbench through its 工作台 menu (query 2026-1013 1842); administrators and users get the full system. */
 function Root() {
   const { role } = useAuth();
-  // Leader accounts only ever see the leader view; nobody else can open it (query 2026-1013 1745).
-  return <AppProvider>{role === "leader" ? <LeaderView /> : <App />}</AppProvider>;
+  const { pathname } = useLocation();
+  // Leader accounts start in the leader view, which nobody else can open (query 1745); from its
+  // 工作台 button they use the workbench pages like any user (query 2026-1013 1842).
+  const workbench = WORKBENCH.some((prefix) => pathname.startsWith(prefix));
+  return <AppProvider>{role === "leader" && !workbench ? <LeaderView /> : <App />}</AppProvider>;
 }
 
 /** Where each role starts: administrators in 管理视图 (query 1745), users in the workbench (1522). */

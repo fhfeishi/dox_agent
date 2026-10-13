@@ -68,11 +68,11 @@ function Work() {
   const arts = (reports.data ?? []).filter((a) => a.lifecycle === "active");
   const todos: Todo[] = [
     ...libs.filter((l) => l.lineage.state === "stale").map((l) => ({ key: "ls" + l.corpus_id, what: `${short(l.name)} 技术谱系需要重新生成`,
-      detail: l.lineage.stale_reason || "四维条目已变化", action: "打开资料库", go: () => openCorpus(l.corpus_id) })),
+      detail: l.lineage.stale_reason || "四维条目已变化", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.hierarchy.state && l.hierarchy.state !== "ready").map((l) => ({ key: "hs" + l.corpus_id, what: `${short(l.name)} 场景归纳${l.hierarchy.state === "missing" ? "尚未生成" : "需要更新"}`,
-      detail: "场景、问题、技术路线与成果的归纳", action: "打开资料库", go: () => openCorpus(l.corpus_id) })),
+      detail: "场景、问题、技术路线与成果的归纳", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.lineage.unplaced).map((l) => ({ key: "lu" + l.corpus_id, what: `${short(l.name)} 有 ${l.lineage.unplaced} 条技术未归入体系`,
-      detail: "在技术谱系的“未归入体系的条目”中逐条查看", action: "打开资料库", go: () => openCorpus(l.corpus_id) })),
+      detail: "在技术谱系的“未归入体系的条目”中逐条查看", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.pending_identity).map((l) => ({ key: "pi" + l.corpus_id, what: `${short(l.name)} 有 ${l.pending_identity} 份资料项目身份待核对`,
       detail: "批准号或基金体系不明，未计入项目统计", action: "打开资料文件", go: () => openCorpus(l.corpus_id, "files") })),
     ...runs.filter((r) => r.status === "failed").slice(0, 10).map((r) => ({ key: "rf" + r.id, what: `审查未完成：${r.document?.metadata?.title || r.document?.filename || "申请书"}`,
@@ -97,7 +97,8 @@ function Work() {
         <button type="button" onClick={t.go} className="shrink-0 rounded-md border border-[var(--hairline-strong)] px-3 py-1 text-[13px] hover:bg-[var(--canvas)]">{t.action}</button>
       </div>)}</div>
     </section>
-    <div className="-mx-5"><LeaderConstruction onOpen={(id) => openCorpus(id)} /></div>
+    {/* Choosing a library previews it on the right instead of leaving the page (query 2026-1013 1842). */}
+    <div className="-mx-5"><LeaderConstruction onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} /></div>
     <p className="text-xs leading-5 text-[var(--stone)]">依据资料库与成果库中的报告统计；对当前业务的客观评价、正反两方面的意见与建议需要调用模型，将在下一步提供，由管理员主动生成。</p>
   </div>;
 }

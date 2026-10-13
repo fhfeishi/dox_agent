@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState, type CSSProperties } from "react";
+import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { buildBoard, buildMatrix, libraryInsights } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
@@ -48,6 +49,7 @@ export function LeaderView() {
       <nav aria-label="领导视图导航" className="flex flex-1 items-center gap-1 overflow-x-auto">
         {AREAS.map((a) => <button key={a.key} type="button" aria-current={area === a.key ? "page" : undefined} className={tab(area === a.key)} onClick={() => setArea(a.key)}>{a.label}</button>)}
       </nav>
+      <WorkbenchMenu />
       <UserMenu />
     </header>
     {area === "domains" ? <div className="shrink-0 space-y-2 border-b border-[var(--hairline)] px-5 py-2.5">
@@ -68,6 +70,22 @@ export function LeaderView() {
         : <div className="mx-auto max-w-[1280px] px-5 py-5"><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
     </main>
     <Suspense fallback={null}><Inspector /></Suspense>
+  </div>;
+}
+
+const WORKBENCH = [{ to: "/chat", label: "对话工作台", hint: "向资料库提问" }, { to: "/tasks", label: "存量分析", hint: "分析已有资料" },
+  { to: "/review/formal", label: "资料审查", hint: "审查申请书" }, { to: "/intelligence", label: "情报分析", hint: "上传外部材料进行分析" }];
+
+/** One quiet entry to the workbench (query 2026-1013 1842): leaders can also ask, analyse and review. */
+function WorkbenchMenu() {
+  const [open, setOpen] = useState(false);
+  return <div className="relative shrink-0" onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}>
+    <button type="button" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}
+      className="rounded-lg border border-[var(--hairline)] px-3 py-1.5 text-[13px] text-[var(--slate)] hover:bg-[var(--surface)]">工作台 ▾</button>
+    {open ? <div role="menu" aria-label="工作台" className="absolute top-[calc(100%+6px)] right-0 z-[90] w-[200px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
+      {WORKBENCH.map((item) => <Link key={item.to} role="menuitem" to={item.to} className="block rounded-md px-3 py-2 hover:bg-[var(--surface)]">
+        <span className="block text-[13.5px]">{item.label}</span><span className="block text-xs text-[var(--stone)]">{item.hint}</span></Link>)}
+    </div> : null}
   </div>;
 }
 

@@ -11,9 +11,8 @@ def test_launch_selects_environment_with_uv(tmp_path, mode):
     project = tmp_path / "project"
     project.mkdir()
     shutil.copyfile(Path(__file__).parents[1] / "launch.sh", project / "launch.sh")
-    (project / "frontend/dist").mkdir(parents=True)
-    # launch.sh rebuilds only when the built entry point is missing (frontend/dist/index.html).
-    (project / "frontend/dist/index.html").write_text("", encoding="utf-8")
+    # The fake python answers every launcher.py call with exit 0, so `frontend check` reports an
+    # up-to-date build and no npm command runs.
     commands = tmp_path / "commands"
     commands.mkdir()
     log = tmp_path / "calls"
@@ -23,7 +22,7 @@ def test_launch_selects_environment_with_uv(tmp_path, mode):
     uv = commands / "uv"
     uv.write_text('#!/bin/bash\nprintf "%s\\n" "$*" >> "$CALL_LOG"\nif [[ "$1" == venv ]]; then mkdir -p "${@: -1}/bin"; cp "$FAKE_PYTHON" "${@: -1}/bin/python"; fi\n')
     uv.chmod(0o755)
-    env = {**os.environ, "PATH": str(commands) + ":" + os.environ["PATH"], "CALL_LOG": str(log), "FAKE_PYTHON": str(fake_python)}
+    env = {**os.environ, "PATH": str(commands) + ":" + os.environ["PATH"], "CALL_LOG": str(log), "FAKE_PYTHON": str(fake_python), "OPEN_BROWSER": "0"}
     env.pop("VIRTUAL_ENV", None)
     env.pop("DOX_AGENT_VENV", None)
     env.pop("REBUILD_FRONTEND", None)

@@ -65,9 +65,10 @@ export function TopNav() {
       <span className="hidden text-[15px] font-semibold text-[var(--ink)] md:inline">资料工作台</span>
     </button>
     <nav aria-label="主导航" className="scrollbar-thin flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">
+      {role === "leader" ? <Link to="/" className={tab(false)} title="回到领导视图">领导视图</Link> : null}
       {role === "admin" ? <button type="button" aria-current={nav === "admin" ? "page" : undefined} onClick={() => setNav("admin")} className={tab(nav === "admin")}
         title="关键技术、需要处理的事项与近期工作">管理视图</button> : null}
-      {ITEMS.map((item) => item.key === "review" ? <ReviewMenu key={item.key} active={nav === "review"} />
+      {ITEMS.filter((item) => role !== "leader" || item.key !== "home").map((item) => item.key === "review" ? <ReviewMenu key={item.key} active={nav === "review"} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
     </nav>
     <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}

@@ -3203,3 +3203,12 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 文档：`.logsdev/dox_agent_系统设计梳理-20261013.md`。
 - 验证：pytest 全部通过；npm test 45；tsc、build 通过；五个浏览器脚本 PASS。实服务（隔离状态目录，预置一份示例总结，未调用模型）：领导领域总览两张雷达、近期工作出现生成按钮、示例总结在右侧面板绘出 2 张图，无页面错误（截图 `verification/query-20261013-1801/`）。真实模型生成总结未运行（避免费用）。
 
+### 16.95 query「2026-1013 1842」：年度分布、领导进入工作台、资料库右侧预览；启动后自动打开浏览器（2026-10-13，工作树未提交）
+
+- 前端：`YearDistribution` 改为报告数量柱图（点击按年筛选）＋经费散点与年度平均折线（点击散点 `showInspector` 打开项目）；`ProjectOverview` 的旧时间线块整体替换为该组件；新增 `LibraryPreview.tsx`，检查器 `corpus` 类型改用它；`AdminView` 待办与建设表格改为打开预览；`router.tsx` 领导访问 `/chat` `/library` `/tasks` `/review` `/intelligence` 时进入工作台；`LeaderView` 加“工作台 ▾”菜单，`TopNav` 为领导显示“领导视图”；`workspace.ts` / `store.tsx` 去掉领导只读分支。
+- 后端：`src/auth.py` 删除领导只读规则；`tests/test_auth.py` 相应调整。
+- 启动脚本：`launch.cmd`（后台 PowerShell 轮询 `/api/auth/session` 后 `Start-Process`）、`launch.sh`（curl 轮询后 wslview / cmd.exe start / xdg-open / open）；`OPEN_BROWSER=0` 关闭；README 说明。以替身打开程序验证过两者。
+- 验证：pytest 243 passed；npm test 通过、tsc 与 build 通过；五个浏览器脚本 PASS。实服务（隔离 USER_DIR，未调用模型）：管理视图点建设表格一行停留在 /admin 并在右侧显示 AI与医疗 预览（含雷达），“进入资料库”跳转到该库；年度分布柱图与 17 个经费散点，点击散点右侧显示该项目详情，点击柱子 URL 带 `startYear=2020`；领导经“工作台 ▾ → 对话工作台”到 /chat，再点“领导视图”回到 /；无页面错误（截图 `verification/query-20261013-1842/`）。
+- 启动脚本前端按需构建（用户追加要求）：`src/launcher.py frontend check|stamp` 对 `frontend/src` 与 `index.html`、`package*.json`、`vite.config.ts`、`tsconfig.json` 的内容求哈希，与 `frontend/dist/.dox-build` 一致且 `dist/index.html` 存在时跳过构建，`REBUILD_FRONTEND=1` 强制；构建成功后才写记录。两个脚本共用该判断，`package-lock.json` 变化才 `npm ci`（`launch.sh` 补上与 `launch.cmd` 相同的锁文件记录）。用内容哈希而非修改时间，复制或切换分支导致的时间变化不会误判。`tests/test_launch.py` 设 `OPEN_BROWSER=0`：此前后台打开浏览器的轮询占住输出管道，每个用例等满 180 秒。验证：`tests/test_launcher.py` 新增按需构建用例，6 passed（2.45 s）；实跑 `launch.sh`（端口 8031、隔离 USER_DIR）第一次 npm ci＋构建，第二次输出“前端源码未变化，跳过构建。”；`launch.cmd` 前端段落在 Windows cmd 下以替身 python/npm 验证：未变化跳过、变化后构建并记录、锁文件未变不 npm ci、构建失败无旧构建退出、有旧构建继续启动且不记录。
+- 已知：经费相同的项目散点会重叠，只能点到最上层一个（悬停提示显示项目名与金额）；预览面板中的雷达图较小。
+

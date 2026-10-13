@@ -40,7 +40,36 @@ def install(root: Path, extras: str):
     stamp.write_text(signature)
 
 
+# Everything the frontend build reads; dist/ is rebuilt only when these change (or REBUILD_FRONTEND=1).
+FRONTEND_INPUTS = ("index.html", "package.json", "package-lock.json", "vite.config.ts", "tsconfig.json")
+FRONTEND_STAMP = "dist/.dox-build"
+
+
+def frontend_signature(frontend: Path) -> str:
+    files = [frontend / name for name in FRONTEND_INPUTS if (frontend / name).is_file()]
+    files += sorted(path for path in (frontend / "src").rglob("*") if path.is_file())
+    digest = hashlib.sha256()
+    for path in files:
+        digest.update(path.relative_to(frontend).as_posix().encode() + b"\0" + path.read_bytes() + b"\0")
+    return digest.hexdigest()
+
+
+def frontend(frontend: Path, action: str) -> int:
+    """``check``: 0 when dist/ was built from the current sources, 1 when a build is needed. ``stamp``: record a finished build."""
+    stamp = frontend / FRONTEND_STAMP
+    if action == "stamp":
+        stamp.write_text(frontend_signature(frontend))
+        return 0
+    if os.environ.get("REBUILD_FRONTEND") != "1" and (frontend / "dist/index.html").is_file() \
+            and stamp.is_file() and stamp.read_text() == frontend_signature(frontend):
+        print("前端源码未变化，跳过构建。")
+        return 0
+    return 1
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "frontend":
+        raise SystemExit(frontend(Path.cwd() / "frontend", sys.argv[2]))
     if sys.argv[1] == "check":
         raise SystemExit(check_port(os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8000"))))
     install(Path.cwd(), sys.argv[1])

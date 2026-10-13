@@ -3,9 +3,9 @@
 An internal system: the store starts with ``admin`` (administrator), ``owner`` (leader) and ``user``
 (user), all ``123456``, and every password needs only
 four characters; new accounts default to ``123456``. Roles (query 2026-1013 1133) choose the interface: ``leader`` gets the lean leader view, ``admin``
-the full system plus account management, ``user`` the full workbench. Enforced on the API: a leader
-only reads, and library maintenance (libraries, files, imports, generated structure, groups) and
-account management are the administrator's. Data is not yet separated per person or department. Each account also remembers which first-visit guides
+the full system plus account management, ``user`` the full workbench. Leaders also use the workbench
+(query 1842). Enforced on the API: library maintenance (libraries, files, imports, generated
+structure, groups) and account management are the administrator's. Data is not yet separated per person or department. Each account also remembers which first-visit guides
 it has dismissed.
 """
 import hashlib
@@ -28,9 +28,6 @@ Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
-# A leader reads; besides signing in and out it only changes its own password and guide marks,
-# and asks for a period work summary (query 2026-1013 1801).
-LEADER_WRITES = ("/api/auth/logout", "/api/auth/password", "/api/auth/guides", "/api/summaries")
 # Library maintenance is the administrator's: creating, renaming, deleting and re-linking libraries,
 # their files, imports, extraction and generated structure, and the groups. Topic summaries are analysis.
 ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?)$")
@@ -224,9 +221,8 @@ def install_auth(app, directory):
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
                 request.state.user = user
                 # query 2026-1013 1133 / UI review: the first action permissions, enforced here, not by hidden buttons.
+                # Leaders work like users in the workbench (query 2026-1013 1842); maintenance stays admin's.
                 if request.method not in SAFE:
-                    if user[1] == "leader" and path not in LEADER_WRITES:
-                        return JSONResponse({"detail": "领导账户为只读浏览"}, status_code=403)
                     if user[1] != "admin" and ADMIN_WRITES.match(path):
                         return JSONResponse({"detail": "资料库维护需要管理员账户"}, status_code=403)
         return await call_next(request)

@@ -20,6 +20,7 @@ import remarkGfm from "remark-gfm";
 import { TextPreview } from "./DocumentPreview";
 import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
+import { LibraryPreview } from "./LibraryPreview";
 
 type InspTab = "out" | "cite" | "src";
 
@@ -66,7 +67,6 @@ export function Inspector() {
     inspectorWidth,
     setInspectorWidth,
     corpora,
-    openCorpus,
     openFullPreview,
     showInspector,
   } = useApp();
@@ -265,7 +265,7 @@ export function Inspector() {
             : inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
             : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
-            : inspectorTarget.kind === "corpus" ? "知识库预览"
+            : inspectorTarget.kind === "corpus" ? "资料库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "project" ? "项目详情"
             : inspectorTarget.kind === "review-template" ? "审查模板"
@@ -351,23 +351,7 @@ export function Inspector() {
           <TargetReportView corpusId={inspectorTarget.corpusId} docId={inspectorTarget.docId} />
         ) : null}
 
-        {inspectorTarget.kind === "corpus" ? (
-          <>
-            <SectionTitle>知识库</SectionTitle>
-            {corpus ? (
-              <Card>
-                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{corpus.name}</h2>
-                <p className="mt-[8px] text-[12px] text-[var(--steel)]">
-                  当前可检索 {corpus.indexed_count ?? corpus.docs_count} / 源文件 {corpus.source_count ?? "未记录"}
-                  {corpus.failed_count ? ` · 失败 ${corpus.failed_count}` : ""}
-                </p>
-                <p className="mt-[5px] text-[12px] text-[var(--steel)]">{corpus.missing ? "目录缺失，请重新关联" : corpus.preparation === "ready" ? "可用于检索" : "待处理"}</p>
-                {corpus.description ? <p className="mt-[8px] text-[12px] leading-[1.6] text-[var(--slate)]">{corpus.description}</p> : null}
-                <Button className="mt-[14px]" onClick={() => openCorpus(corpus.id)}>打开详情</Button>
-              </Card>
-            ) : <Card>知识库已不可用，请刷新列表。</Card>}
-          </>
-        ) : null}
+        {inspectorTarget.kind === "corpus" ? <LibraryPreview corpusId={inspectorTarget.corpusId} /> : null}
 
         {inspectorTarget.kind === "report" ? (
           <>

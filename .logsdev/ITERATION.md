@@ -3187,3 +3187,19 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 验证：pytest 239 passed；npm test 45（新增时间段与汇总测试）、tsc、build 通过；五个浏览器脚本 PASS。实服务以 owner 只读浏览：资料库建设显示 11 库、1122 份、1119 个项目、经费记录 72 个项目；机器人领域五个视角均可切换（项目资金：10 个项目有直接经费、500 个未给出）；近期工作“本年”9 份报告、9 项审查；430px 无横向溢出，无页面错误（截图 `verification/query-20261013-1637/`）。
 - 已知：机器人库谱系仍为过期状态，领导在技术谱系页会看到“需要重新生成”提示；近期工作中的审查任务在领导视图暂不能打开报告。
 
+### 16.93 query「2026-1013 1745」：年度分布、领导视图准入、管理视图（2026-10-13，工作树未提交）
+
+- `YearDistribution` 取代 `LeaderFunding`（删除）：项目数量柱状图；直接经费散点＋年度平均折线；年份按等宽槽居中绘制。领导视图视角改名“年度分布”。
+- 准入：`Root` 只对领导账户渲染领导视图，`/leader` 对其他角色重定向；顶部栏去掉“领导视图”链接；`AdminView` 对非管理员重定向。管理员根路径改到 `/admin`；`NavKey` 增加 `admin`，顶部栏仅管理员显示“管理视图”，侧栏在管理视图隐藏；服务端页面白名单加入 `admin`；管理视图指南。
+- 后端：`/api/overview/libraries` 增加谱系状态与过期原因、未归入体系条目数、场景归纳状态、身份待核对资料数（11 库约 1.1 秒）。
+- 修复：`StatusBanner` 原贴在窗口顶部，顶部栏改版后遮挡导航（浏览器脚本点不到“资料审查”），移到顶部栏下方。
+- 验证：pytest 239 passed；npm test 45、tsc、build 通过；`browser_review_simple`（改为管理员先落在管理视图）、`browser_scene_hierarchy`、`browser_target_facets`、`browser_answer_controls`、`browser_status_power` PASS。实服务（隔离账户目录，只读）：admin 落在 /admin，需要处理 4 项（机器人谱系过期、医疗 1 条与机器人 2 条未归入、1 项审查未完成）；医疗关键技术 18 个问题中 6 个缺少技术路线；医疗年度分布 514 个项目、17 个有经费；admin 访问 /leader 回到 /admin；owner 领域分析有两张年度图；user 落在 /chat、无管理视图入口、访问 /admin 回到 /chat；无页面错误（截图 `verification/query-20261013-1745/`）。
+
+### 16.94 query「2026-1013 1801」：可视化、周期总结报告与系统设计梳理（2026-10-13，工作树未提交）
+
+- 前端：新增 `Charts.tsx`（雷达图、条形图、报告内 ```dox-chart 块、`FocusRadars`）；`ReportMarkdown` 把 dox-chart 代码块画成图；领导领域总览与管理视图关键技术加两张雷达；`LeaderRecent` 加本期图表、“生成××总结”按钮与已生成的总结列表（总结不计入工作条目）。
+- 后端：新增 `src/period_summary.py`（时间段起点、事实收集、图表统计、报告组装）与 `prompts/period_summary.md`；`POST /api/summaries`（需配置模型；领导账户允许调用）；Word 导出把 dox-chart 块转为表格。测试 `tests/test_period_summary.py`（时间段、事实筛选与摘录、图表、Markdown、端点以替身模型生成并保存、领导可调用、Word 表格）。
+- 修正：①雷达图原按场景归纳的项目列表计数，与同页要点卡（谱系口径）对同一领域给出 59 与 95 两个数字，统一为谱系口径（前端与总结报告一致）；②领导账户在 AppProvider 中会自动保存会话（PUT /api/workspace/sessions），被只读规则拒绝并报页面错误，改为领导账户的工作区写入为空操作。
+- 文档：`.logsdev/dox_agent_系统设计梳理-20261013.md`。
+- 验证：pytest 全部通过；npm test 45；tsc、build 通过；五个浏览器脚本 PASS。实服务（隔离状态目录，预置一份示例总结，未调用模型）：领导领域总览两张雷达、近期工作出现生成按钮、示例总结在右侧面板绘出 2 张图，无页面错误（截图 `verification/query-20261013-1801/`）。真实模型生成总结未运行（避免费用）。
+

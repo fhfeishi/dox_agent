@@ -1,0 +1,160 @@
+"""Period work summaries for the leader and admin views (query 2026-1013 1801).
+
+The server gathers what happened in a period — analysis reports and review tasks — and counts it
+into charts. The model only writes the text sections from those facts (``prompts/period_summary.md``);
+every number in the saved report comes from the counting here, drawn as ```dox-chart blocks.
+"""
+import json
+import re
+import uuid
+from datetime import datetime, timedelta
+from pathlib import Path
+
+from langchain_core.messages import HumanMessage, SystemMessage
+
+from .hierarchy import _json_object
+
+PERIODS = {"3d": "近 3 天", "7d": "近 7 天", "30d": "近 30 天", "week": "本周", "month": "本月", "quarter": "本季度", "year": "本年"}
+PROMPT = (Path(__file__).parent / "prompts" / "period_summary.md").read_text(encoding="utf-8")
+SECTIONS = (("focus", "关注重点"), ("connections", "结论之间的联系"), ("done", "已形成结论的工作"),
+            ("in_progress", "进行中与尚无结论的工作"), ("gaps", "遗漏与待完善"))
+TASK_ID = "period_summary"
+
+
+def period_start(period: str, now: datetime) -> datetime:
+    """Local midnight of the period's first day; weeks start on Monday, quarters in Jan/Apr/Jul/Oct."""
+    day = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    if period in ("3d", "7d", "30d"):
+        return day - timedelta(days=int(period[:-1]) - 1)
+    if period == "week":
+        return day - timedelta(days=day.weekday())
+    if period == "month":
+        return day.replace(day=1)
+    if period == "quarter":
+        return day.replace(month=day.month - (day.month - 1) % 3, day=1)
+    if period == "year":
+        return day.replace(month=1, day=1)
+    raise ValueError("未知时间段")
+
+
+def _when(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    return parsed.astimezone()  # stored UTC times and naive local times both become local time
+
+
+def _excerpt(markdown: str, limit: int = 800) -> str:
+    text = re.sub(r"```[\s\S]*?```", "", markdown)
+    text = re.sub(r"\[\d+\]", "", text)
+    return re.sub(r"\s+", " ", text).strip()[:limit]
+
+
+def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], names: dict[str, str]) -> dict:
+    """Facts of the period: reports (with body excerpts) and review tasks, newest first."""
+    start = period_start(period, now)
+    inside = lambda value: (t := _when(value)) is not None and start <= t <= now
+    short = lambda cid: names.get(cid, cid).replace("自然科学基金-", "")
+    picked_reports = [{"title": r.get("title") or "分析报告", "domains": [short(c) for c in r.get("corpus_ids") or []],
+                       "date": (r.get("updated_at") or r.get("created_at") or "")[:10],
+                       "state": "已完成" if r.get("status") == "completed" else "未完成" if r.get("status") == "failed" else "进行中",
+                       "excerpt": _excerpt(r.get("markdown") or "")}
+                      for r in reports if r.get("task_id") != TASK_ID and inside(r.get("updated_at") or r.get("created_at"))]
+    picked_runs = [{"title": (r.get("document") or {}).get("metadata", {}).get("title") or (r.get("document") or {}).get("filename") or "申请书",
+                    "kind": "专业审查" if (r.get("request") or {}).get("kind") == "professional" else "形式审查",
+                    "domains": [short(c) for c in (r.get("request") or {}).get("corpus_ids") or []],
+                    "date": (r.get("finished_at") or r.get("created_at") or "")[:10],
+                    "state": {"completed": "已完成", "failed": "未完成"}.get(r.get("status"), "进行中"),
+                    "issues": (r.get("summary") or {}).get("issue")}
+                   for r in runs if inside(r.get("finished_at") or r.get("created_at"))]
+    return {"period": PERIODS[period], "start": start.date().isoformat(), "end": now.date().isoformat(),
+            "reports": sorted(picked_reports, key=lambda r: r["date"], reverse=True),
+            "reviews": sorted(picked_runs, key=lambda r: r["date"], reverse=True)}
+
+
+def charts(facts: dict, scenes_of) -> list[dict]:
+    """Counted charts: work by domain, by kind, over time, and the busiest domain's field focus."""
+    items = facts["reports"] + facts["reviews"]
+    by_domain: dict[str, int] = {}
+    for item in items:
+        for domain in item["domains"]:
+            by_domain[domain] = by_domain.get(domain, 0) + 1
+    out = []
+    if by_domain:
+        ranked = sorted(by_domain.items(), key=lambda kv: (-kv[1], kv[0]))[:8]
+        out.append({"type": "bar", "title": "各领域的工作量", "labels": [k for k, _ in ranked], "values": [v for _, v in ranked], "unit": " 项",
+                    "note": "分析报告与审查任务按所涉资料库计；形式审查不关联资料库"})
+    kinds = [("分析报告", len(facts["reports"])), *[(k, sum(r["kind"] == k for r in facts["reviews"])) for k in ("形式审查", "专业审查")]]
+    out.append({"type": "bar", "title": "工作类型", "labels": [k for k, _ in kinds], "values": [v for _, v in kinds], "unit": " 项"})
+    dates = sorted({item["date"] for item in items if item["date"]})
+    if dates:
+        monthly = facts["period"] in ("本年",)
+        key = (lambda d: d[:7]) if monthly else (lambda d: d)
+        buckets: dict[str, int] = {}
+        for item in items:
+            if item["date"]:
+                buckets[key(item["date"])] = buckets.get(key(item["date"]), 0) + 1
+        out.append({"type": "bar", "title": "按月产出" if monthly else "按日产出", "labels": list(buckets), "values": list(buckets.values()), "unit": " 项"})
+    if by_domain:
+        busiest = max(by_domain.items(), key=lambda kv: (kv[1], kv[0]))[0]
+        scenes = scenes_of(busiest)
+        if len(scenes) >= 3:
+            out.append({"type": "radar", "title": f"{busiest} · 应用领域分布", "labels": [s for s, _ in scenes], "values": [n for _, n in scenes], "unit": " 项",
+                        "note": "该资料库有技术服务于各应用领域的项目数，反映本期工作所在领域的整体结构"})
+    return out
+
+
+def markdown(facts: dict, text: dict, figures: list[dict]) -> str:
+    """The saved report: headline, charts, the model's sections, then how it was counted."""
+    lines = [f"# 工作总结 · {facts['period']}（{facts['start']} 至 {facts['end']}）", "", str(text.get("headline") or "").strip(), "", "## 数据概览", ""]
+    for figure in figures:
+        lines += ["```dox-chart", json.dumps(figure, ensure_ascii=False), "```", ""]
+    for key, title in SECTIONS:
+        points = [str(p).strip() for p in text.get(key) or [] if str(p).strip()]
+        lines += [f"## {title}", ""] + ([f"- {p}" for p in points] or ["- 本期无可写内容。"]) + [""]
+    suggestions = [s for s in text.get("suggestions") or [] if isinstance(s, dict) and s.get("issue")]
+    lines += ["## 问题与建议", ""] + ([f"- **{s['issue']}**：{s.get('proposal', '')}" for s in suggestions] or ["- 本期无。"]) + [""]
+    lines += ["## 统计口径", "",
+              f"- 时间段按真实日期计：{facts['start']} 至 {facts['end']}；分析报告 {len(facts['reports'])} 份，审查任务 {len(facts['reviews'])} 项。",
+              "- 图表数字由系统统计；文字部分由模型依据上述报告与任务撰写，需人工核对。", ""]
+    return "\n".join(lines)
+
+
+async def generate(app, period: str, model) -> dict:
+    """Gather, count, ask the model for the text, and save the summary as a report."""
+    from .agent.corpora import scan_corpora
+    from .review import storage as review_db
+
+    settings = app.state.settings
+    store = app.state.artifacts
+    infos = scan_corpora(settings)
+    names = {info.id: info.name for info in infos}
+    listed = store.list(type="report", status="completed", limit=200)
+    reports = [store.get(item["artifact_id"]) for item in listed]
+    now = datetime.now().astimezone()
+    facts = gather(period, now, reports, review_db.all_items("run"), names)
+
+    def scenes_of(short_name: str):
+        info = next((i for i in infos if i.name.replace("自然科学基金-", "") == short_name), None)
+        if not info:
+            return []
+        try:
+            value = json.loads((info.root / "lineage.json").read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, ValueError):
+            return []
+        # Same base as the views: unique projects with technique items serving each field.
+        items = (value.get("items") or {}).values()
+        return [(f.get("name", ""), len({i.get("project_id") for i in items if i.get("field") == f.get("name")}))
+                for f in value.get("fields") or []]
+
+    figures = charts(facts, scenes_of)
+    response = await model.ainvoke([SystemMessage(content=PROMPT), HumanMessage(content=json.dumps(facts, ensure_ascii=False))])
+    text = _json_object(response.content)
+    body = markdown(facts, text, figures)
+    domains = {d for item in facts["reports"] + facts["reviews"] for d in item["domains"]}
+    corpus_ids = [info.id for info in infos if info.name.replace("自然科学基金-", "") in domains]
+    return store.create(uuid.uuid4().hex, type="report", title=f"工作总结 · {facts['period']}（{facts['start']} 至 {facts['end']}）",
+                        markdown=body, corpus_ids=corpus_ids, task_id=TASK_ID, status="completed")

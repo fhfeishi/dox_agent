@@ -7,6 +7,7 @@ import { useAuth } from "../auth";
  * rail's 指南 button shows the current area's guide again.
  */
 export const GUIDES: Record<string, { title: string; steps: string[] }> = {
+  admin: { title: "管理视图", steps: ["工作概况：先看“需要处理”，点按钮直接去处理", "关键技术：选领域看技术方向、共性技术与问题路线", "年度分布与近期工作：看项目年份、经费与最近产出"] },
   home: { title: "首页", steps: ["看工作概况：资料、进行中的任务", "点领域资料进入场景、问题、技术与成果", "右上角直接上传申请书生成审查报告"] },
   leader: { title: "领导视图", steps: ["资料库建设：看各领域资料与整理进度，点一行进入", "领域分析：选领域后切换总览、技术谱系、路网、项目关系、资金", "近期工作：按近 3 天至本年查看报告与审查"] },
   chat: { title: "对话工作台", steps: ["直接提问，系统按问题自动选择资料库", "也可在输入框上方自行选择资料库", "回答中的编号可在右侧打开原文核对"] },

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
+import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
@@ -47,15 +47,14 @@ function LibraryIndex() {
 /** A leader account sees only the lean leader view; administrators and users get the full system. */
 function Root() {
   const { role } = useAuth();
-  const { pathname } = useLocation();
-  // Administrators can preview the leader view at /leader; leader accounts only ever see it.
-  return <AppProvider>{role === "leader" || pathname.startsWith("/leader") ? <LeaderView /> : <App />}</AppProvider>;
+  // Leader accounts only ever see the leader view; nobody else can open it (query 2026-1013 1745).
+  return <AppProvider>{role === "leader" ? <LeaderView /> : <App />}</AppProvider>;
 }
 
-/** Where each role starts (query 2026-1013 1522): administrators on 首页, users in the workbench. */
+/** Where each role starts: administrators in 管理视图 (query 1745), users in the workbench (1522). */
 function RoleIndex() {
   const { role } = useAuth();
-  return <Navigate to={role === "user" ? "/chat" : "/home"} replace />;
+  return <Navigate to={role === "user" ? "/chat" : "/admin"} replace />;
 }
 
 /** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
@@ -69,7 +68,8 @@ export const router = createBrowserRouter([{
   Component: () => <AuthGate><Root /></AuthGate>,
   children: [
     { index: true, Component: RoleIndex },
-    { path: "leader", element: null },
+    { path: "leader", element: <Navigate to="/" replace /> },
+    { path: "admin", lazy: async () => ({ Component: (await import("./components/AdminView")).AdminView }) },
     { path: "home", lazy: async () => ({ Component: (await import("./components/HomeView")).HomeView }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [

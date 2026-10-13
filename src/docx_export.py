@@ -5,6 +5,7 @@ with python-docx so headings, tables and paragraphs survive a round trip.
 """
 
 import io
+import json
 import re
 
 from docx import Document
@@ -93,6 +94,19 @@ def _append_sources(document, citations: list[dict]) -> None:
         _add_text(document.add_paragraph(), f"[{number}] {title}{suffix}")
 
 
+def _chart_tables(markdown: str) -> str:
+    """Chart blocks of period summaries (```dox-chart JSON) become a titled table in Word."""
+    def table(match):
+        try:
+            spec = json.loads(match.group(1))
+            rows = [f"| {label} | {value}{spec.get('unit', '')} |" for label, value in zip(spec["labels"], spec["values"], strict=True)]
+        except (ValueError, KeyError, TypeError):
+            return "（图表数据不完整）"
+        note = f"\n\n{spec['note']}" if spec.get("note") else ""
+        return f"**{spec.get('title', '图表')}**\n\n| 项目 | 数量 |\n| --- | --- |\n" + "\n".join(rows) + note
+    return re.sub(r"```dox-chart\n([\s\S]*?)\n```", table, markdown)
+
+
 def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None,
                      citations: list[dict] | None = None) -> bytes:
     """Render Markdown headings, lists, tables and paragraphs into a real ``.docx``.
@@ -102,6 +116,7 @@ def markdown_to_docx(markdown: str, images: dict[str, bytes] | None = None,
     """
     if re.search(r"(?m)^\s*\$\$|\\\[|\\\(", markdown) or _INLINE_MATH.search(markdown):
         raise ValueError("当前 Word 导出尚不支持公式排版，请先下载 Markdown 原文")
+    markdown = _chart_tables(markdown)
     document = Document()
     _styles(document)
     lines = markdown.splitlines()

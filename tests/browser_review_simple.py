@@ -44,8 +44,12 @@ async def main():
                 await expect(page.get_by_role("heading", name="登录")).to_be_visible()
                 await page.get_by_label("密码", exact=True).fill("123456")  # built-in admin / 123456
                 await page.get_by_role("button", name="登录").click()
-                await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
+                # Administrators land in 管理视图 (query 2026-1013 1745); 首页 stays in the menu.
+                await expect(page.get_by_role("heading", name="工作概况")).to_be_visible()
                 # First visit to an area shows its three-step guide once per account.
+                await page.get_by_role("dialog", name="管理视图 操作指南").get_by_role("button", name="知道了").click()
+                await page.get_by_role("button", name="首页", exact=True).click()
+                await expect(page.get_by_role("heading", name="工作总览")).to_be_visible()
                 await page.get_by_role("dialog", name="首页 操作指南").get_by_role("button", name="知道了").click()
                 await page.get_by_role("link", name="上传申请书 · 生成审查报告").click()
                 await page.get_by_role("dialog", name="资料审查 操作指南").get_by_role("button", name="知道了").click()

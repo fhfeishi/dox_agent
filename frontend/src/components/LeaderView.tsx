@@ -1,7 +1,5 @@
 import { lazy, Suspense, useState, type CSSProperties } from "react";
-import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../auth";
 import { buildBoard, buildMatrix, libraryInsights } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
 import { useApp } from "../store";
@@ -12,8 +10,9 @@ import { LineageRoadmap } from "./LineageRoadmap";
 import { LineageTree } from "./LineageTree";
 import { ProjectGraph } from "./ProjectGraph";
 import { LeaderConstruction } from "./LeaderConstruction";
-import { LeaderFunding } from "./LeaderFunding";
+import { YearDistribution } from "./YearDistribution";
 import { LeaderRecent } from "./LeaderRecent";
+import { FocusRadars } from "./Charts";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -21,19 +20,18 @@ const Inspector = lazy(() => import("./Inspector").then((m) => ({ default: m.Ins
 
 type Area = "construction" | "domains" | "recent";
 const AREAS: { key: Area; label: string }[] = [{ key: "construction", label: "资料库建设" }, { key: "domains", label: "领域分析" }, { key: "recent", label: "近期工作" }];
-type View = "overview" | "lineage" | "roadmap" | "relations" | "funding";
+type View = "overview" | "lineage" | "roadmap" | "relations" | "years";
 const VIEWS: { key: View; label: string }[] = [{ key: "overview", label: "总览" }, { key: "lineage", label: "技术谱系" },
-  { key: "roadmap", label: "路网形式" }, { key: "relations", label: "项目关系" }, { key: "funding", label: "项目资金" }];
+  { key: "roadmap", label: "路网形式" }, { key: "relations", label: "项目关系" }, { key: "years", label: "年度分布" }];
 
 /**
  * 领导视图 (query 2026-1013 1133 / 1522 / 1637; design language in .logsdev/机关界面设计语言.md):
- * the whole interface for a leader account, previewed by administrators at /leader. Three areas —
+ * the whole interface for a leader account and only for it (query 1745). Three areas —
  * 资料库建设 (how far each library is built), 领域分析 (one domain at a time through five views) and
  * 近期工作 (reports and reviews by period) — read only, overview first, evidence on demand.
  */
 export function LeaderView() {
   const { corpora, inspectorWidth, inspectorOpen } = useApp();
-  const { role } = useAuth();
   const [area, setArea] = useState<Area>("construction");
   const [view, setView] = useState<View>("overview");
   const domains = corpora.filter((c) => !c.missing && (c.indexed_count ?? 0) > 0)
@@ -50,7 +48,6 @@ export function LeaderView() {
       <nav aria-label="领导视图导航" className="flex flex-1 items-center gap-1 overflow-x-auto">
         {AREAS.map((a) => <button key={a.key} type="button" aria-current={area === a.key ? "page" : undefined} className={tab(area === a.key)} onClick={() => setArea(a.key)}>{a.label}</button>)}
       </nav>
-      {role === "admin" ? <Link to="/home" className="shrink-0 text-[13px] text-[var(--link)]">返回系统</Link> : null}
       <UserMenu />
     </header>
     {area === "domains" ? <div className="shrink-0 space-y-2 border-b border-[var(--hairline)] px-5 py-2.5">
@@ -81,7 +78,7 @@ function DomainView({ corpusId, name, view }: { corpusId: string; name: string; 
   const { data: lineage } = useQuery({ ...lineageQuery(corpusId), enabled: view === "roadmap" });
   const { data: library } = useQuery({ ...projectQuery(corpusId), enabled: view === "relations" });
   if (view === "lineage") return <LineageTree corpusId={corpusId} focus={node} onFocus={setNode} onIssue={() => undefined} />;
-  if (view === "funding") return <LeaderFunding corpusId={corpusId} />;
+  if (view === "years") return <YearDistribution corpusId={corpusId} />;
   if (view === "roadmap") return lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={name} selected={node} onSelect={setNode} />
     : <p role="status" className="text-sm text-[var(--steel)]">{lineage ? "该领域尚未生成技术谱系。" : "正在读取…"}</p>;
   return library ? <ProjectGraph corpusId={corpusId} projects={library.projects.filter((p) => p.identity_status === "identified")} title={name}
@@ -110,6 +107,8 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
       <h1 className="text-2xl font-semibold">{name}</h1>
       <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系 · 报告所述已解决 {board.solved} 项、待研究 {board.open} 项</p>
     </div>
+
+    <FocusRadars fields={lineage.fields ?? []} items={lineage.items} stages={lineage.stages ?? []} />
 
     <section aria-label="要点结论">
       <h2 className="mb-2 text-sm font-semibold text-[var(--steel)]">要点结论</h2>

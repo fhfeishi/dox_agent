@@ -40,8 +40,9 @@ import { uiFlags } from "./uiFlags";
 import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
+import { useAuth } from "./auth";
 
-export type NavKey = "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
+export type NavKey = "admin" | "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
@@ -247,11 +248,12 @@ export function useApp(): AppValue {
  * lives in the components. This mirrors the reference template's `store.tsx`.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
+  const { role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { home: "/home", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
-  const nav: NavKey = location.pathname === "/home" || location.pathname === "/" ? "home" : location.pathname.startsWith("/library") ? "library"
+  const navPaths: Record<NavKey, string> = { admin: "/admin", home: "/home", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
+  const nav: NavKey = location.pathname.startsWith("/admin") ? "admin" : location.pathname === "/home" || location.pathname === "/" ? "home" : location.pathname.startsWith("/library") ? "library"
     : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
       : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
@@ -373,6 +375,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setCorpusConfirmed,
     corpusIds,
     setCorpusIds,
+    role === "leader",
   );
   useEffect(() => {
     const selected = tasks.find((task) => task.id === taskId);

@@ -39,7 +39,7 @@ from .agent.corpora import (
     valid_corpus_name,
 )
 from .agent.graph import build_graph
-from .agent.models import check_model, tracing
+from .agent.models import check_model, model_for, tracing
 from .agent.usage import TurnUsage
 from .artifacts import ArtifactStore
 from .compose_question import compose as compose_question
@@ -2070,13 +2070,41 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                         "systems": sum(1 for c in lineage.get("categories") or [] if not c.get("unplaced"))},
         }
 
+    class SummaryRequest(BaseModel):
+        period: Literal["3d", "7d", "30d", "week", "month", "quarter", "year"]
+
+    @app.post("/api/summaries", status_code=201)
+    async def create_summary(payload: SummaryRequest):
+        """A period work summary (query 2026-1013 1801): counted charts plus model-written sections,
+        saved as a report. Runs only when someone asks for it."""
+        from .period_summary import generate
+        if not settings.model_api_key:
+            raise HTTPException(409, "分析模型尚未配置")
+        try:
+            async with asyncio.timeout(settings.answer_timeout):
+                return await generate(app, payload.period, model_for(settings))
+        except ValueError as exc:
+            raise HTTPException(502, "总结未生成：" + str(exc)) from exc
+        except Exception as exc:
+            logger.exception("Period summary failed")
+            raise HTTPException(502, "总结未生成：模型调用失败，请重试") from exc
+
     @app.get("/api/overview/libraries")
     async def libraries_overview():
         items = [info for info in await asyncio.to_thread(scan_corpora, settings) if not info.missing and info.docs_count]
         result = []
         for info in items:
             library = await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
-            result.append(await asyncio.to_thread(library_overview, info, library))
+            row = await asyncio.to_thread(library_overview, info, library)
+            # Maintenance state for the administrator view (query 2026-1013 1745).
+            tree = await lineage.read(info, library)
+            scenes = await read_hierarchy(info, library)
+            row["lineage"].update(state=tree.get("state"), stale_reason=tree.get("stale_reason", ""),
+                                  unplaced=sum(len(t["items"]) for c in tree.get("categories") or [] if c.get("unplaced")
+                                               for d in c.get("children") or [] for t in d.get("themes") or []))
+            row["hierarchy"]["state"] = scenes.get("state")
+            row["pending_identity"] = library["coverage"]["pending_identity_records"]
+            result.append(row)
         return result
 
     @app.get("/api/corpora/{corpus_id}/topics")
@@ -2658,7 +2686,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|admin|home|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

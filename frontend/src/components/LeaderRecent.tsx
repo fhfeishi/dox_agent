@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchArtifacts } from "../api";
 import { fetchReviewRuns } from "../reviewApi";
 import { headline, PERIODS, summarize, type Period, type WorkItem } from "../recentWork";
 import { useApp } from "../store";
+import { Chart, type ChartSpec } from "./Charts";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as const;
@@ -15,14 +16,17 @@ const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as
  */
 export function LeaderRecent() {
   const { corpora, showInspector } = useApp();
+  const client = useQueryClient();
   const [period, setPeriod] = useState<Period>("7d");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
   const reports = useQuery({ queryKey: ["leader", "artifacts"], queryFn: () => fetchArtifacts() });
   const reviews = useQuery({ queryKey: ["leader", "reviews"], queryFn: fetchReviewRuns });
   if (reports.error || reviews.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">近期工作暂不可读，请稍后重试。</p>;
   if (!reports.data || !reviews.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取近期工作…</p>;
   const name = (id: string) => short(corpora.find((c) => c.id === id)?.name ?? id);
   const all: WorkItem[] = [
-    ...reports.data.filter((a) => a.lifecycle === "active").map((a): WorkItem => ({
+    ...reports.data.filter((a) => a.lifecycle === "active" && a.task_id !== "period_summary").map((a): WorkItem => ({
       key: "a:" + a.artifact_id, kind: "report", title: a.title || "分析报告", type: "分析报告", date: a.updated_at || a.created_at,
       state: a.status === "completed" ? "done" : a.status === "failed" ? "failed" : "active", domains: a.corpus_ids.map(name) })),
     ...reviews.data.map((r): WorkItem => ({
@@ -32,6 +36,26 @@ export function LeaderRecent() {
   ];
   const label = PERIODS.find((p) => p.key === period)!.label;
   const summary = summarize(all, period, new Date());
+  const summaries = reports.data.filter((a) => a.lifecycle === "active" && a.task_id === "period_summary" && a.status === "completed")
+    .sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 6);
+  // Counted charts for the period; the year is shown by month, shorter periods by day.
+  const buckets = new Map<string, number>();
+  for (const item of summary.items) { const key = period === "year" ? item.date.slice(0, 7) : item.date.slice(5, 10); buckets.set(key, (buckets.get(key) ?? 0) + 1); }
+  const timeline = [...buckets].sort((a, b) => a[0].localeCompare(b[0]));
+  const charts: ChartSpec[] = [
+    ...(summary.domains.length ? [{ type: "bar" as const, title: "各领域的工作量", labels: summary.domains.slice(0, 8).map((d) => d.name), values: summary.domains.slice(0, 8).map((d) => d.count), unit: " 项" }] : []),
+    ...(timeline.length ? [{ type: "bar" as const, title: period === "year" ? "按月产出" : "按日产出", labels: timeline.map(([k]) => k), values: timeline.map(([, v]) => v), unit: " 项" }] : []),
+  ];
+  async function generate() {
+    setBusy(true); setError("");
+    try {
+      const response = await fetch("/api/summaries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ period }) });
+      const value = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "总结未生成");
+      await client.invalidateQueries({ queryKey: ["leader", "artifacts"] });
+      showInspector({ kind: "artifact", artifactId: value.artifact_id });
+    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+  }
   const open = (item: WorkItem) => {
     if (item.kind === "report") showInspector({ kind: "artifact", artifactId: item.key.slice(2) });
   };
@@ -53,6 +77,20 @@ export function LeaderRecent() {
           className={`rounded-full border px-3 py-1 text-[13px] ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>
     </div>
     <p className="rounded-xl bg-[var(--surface)] px-4 py-3 text-[15px] leading-7">{headline(summary, label)}</p>
+    {charts.length ? <section aria-label="本期图表" className="grid gap-3 md:grid-cols-2">
+      {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}
+    </section> : null}
+    <section aria-label="总结报告" className="rounded-xl border border-[var(--hairline)] p-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <h2 className="text-sm font-semibold">总结报告</h2>
+        <span className="flex-1 text-xs text-[var(--stone)]">由模型依据本期报告与任务撰写文字，图表数字由系统统计；生成约需一分钟。</span>
+        <button type="button" disabled={busy} onClick={() => void generate()}
+          className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white disabled:opacity-50">{busy ? "正在生成…" : `生成${label}总结`}</button>
+      </div>
+      {error ? <p role="alert" className="mt-2 text-xs text-[var(--red)]">{error}</p> : null}
+      {summaries.length ? <div className="mt-3 space-y-1">{summaries.map((a) => <button key={a.artifact_id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: a.artifact_id })}
+        className="block w-full truncate rounded-md px-2 py-1 text-left text-[13.5px] text-[var(--link)] hover:bg-[var(--surface)]">{a.title}</button>)}</div> : null}
+    </section>
     {summary.domains.length ? <p className="flex flex-wrap gap-1.5 text-[13px]">{summary.domains.map((d) =>
       <span key={d.name} className="rounded-md border border-[var(--hairline)] px-2 py-0.5">{d.name} <span className="text-[var(--stone)]">{d.count}</span></span>)}</p> : null}
     {list("进行中", summary.active)}

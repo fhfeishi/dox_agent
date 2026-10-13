@@ -28,8 +28,9 @@ Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
-# A leader reads; besides signing in and out it only changes its own password and guide marks.
-LEADER_WRITES = ("/api/auth/logout", "/api/auth/password", "/api/auth/guides")
+# A leader reads; besides signing in and out it only changes its own password and guide marks,
+# and asks for a period work summary (query 2026-1013 1801).
+LEADER_WRITES = ("/api/auth/logout", "/api/auth/password", "/api/auth/guides", "/api/summaries")
 # Library maintenance is the administrator's: creating, renaming, deleting and re-linking libraries,
 # their files, imports, extraction and generated structure, and the groups. Topic summaries are analysis.
 ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?)$")

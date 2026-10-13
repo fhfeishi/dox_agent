@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 export type LibraryOverview = {
   corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
   funding: { total_yuan: string; projects: number }; start_years: number[];
-  hierarchy: { generated_at?: string | null; scenes: number; issues: number };
-  lineage: { generated_at?: string | null; items: number; systems: number };
+  hierarchy: { generated_at?: string | null; scenes: number; issues: number; state?: string };
+  lineage: { generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number };
+  pending_identity?: number;
 };
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");

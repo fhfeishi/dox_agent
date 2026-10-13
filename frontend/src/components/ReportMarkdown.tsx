@@ -2,6 +2,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { ArtifactInfo, Source } from "../api";
 import { rehypeCitations } from "../citation";
+import { ChartBlock } from "./Charts";
 
 export type ReportFigure = {
   figure_id: string; caption: string; page: number; corpus_id: string;
@@ -34,5 +35,11 @@ export function ReportMarkdown({ markdown, figures = [], reportId, artifact, sou
     return <a href={pdfUrl} target="_blank" rel="noreferrer" title={`查看原 PDF 第 ${figure.page} 页`}>
       <img src={imageUrl} alt={alt ?? figure.caption} className="max-w-full" />
     </a>;
+  }, pre: ({ children, ...props }) => {
+    // A ```dox-chart block is drawn as a chart (period summaries, query 2026-1013 1801).
+    const child = Array.isArray(children) ? children[0] : children;
+    const code = child as { props?: { className?: string; children?: unknown } } | undefined;
+    if (code?.props?.className === "language-dox-chart") return <ChartBlock source={String(code.props.children ?? "")} />;
+    return <pre {...props}>{children}</pre>;
   } }}>{markdown}</Markdown>;
 }

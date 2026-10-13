@@ -15,12 +15,12 @@ export function Toast() {
   );
 }
 
-/** Top banner: connection lost or the corpus is still preparing / failed. */
+/** Banner below the top bar (never over the navigation): connection lost or the corpus is still preparing / failed. */
 export function StatusBanner() {
   const { connected, ready, corpusReady, health, progress } = useApp();
   if (!connected || (ready && corpusReady)) return null;
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-[10px] z-[75] flex justify-center px-4">
+    <div className="pointer-events-none fixed inset-x-0 top-[60px] z-[75] flex justify-center px-4">
       <div
         role="status"
         className="pointer-events-auto flex items-center gap-[10px] rounded-[10px] border border-[var(--tint-peach)] bg-[var(--tint-cream)] px-[14px] py-[9px] text-[12.5px] text-[#8a3d00] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]"

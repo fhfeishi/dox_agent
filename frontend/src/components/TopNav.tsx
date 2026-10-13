@@ -58,16 +58,17 @@ export function TopNav() {
   const { nav, setNav, sidebarCollapsed, toggleSidebar, showInspector, setDrawerOpen, llmTone, llmText, model } = useApp();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   return <header className="flex h-[52px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
-    {nav !== "home" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
+    {nav !== "admin" && nav !== "home" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
     <button type="button" onClick={() => setNav("home")} className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
       <span className="hidden text-[15px] font-semibold text-[var(--ink)] md:inline">资料工作台</span>
     </button>
     <nav aria-label="主导航" className="scrollbar-thin flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">
+      {role === "admin" ? <button type="button" aria-current={nav === "admin" ? "page" : undefined} onClick={() => setNav("admin")} className={tab(nav === "admin")}
+        title="关键技术、需要处理的事项与近期工作">管理视图</button> : null}
       {ITEMS.map((item) => item.key === "review" ? <ReviewMenu key={item.key} active={nav === "review"} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
-      {role === "admin" ? <Link to="/leader" className={tab(false) + " text-[var(--steel)]"} title="以领导账户看到的界面预览">领导视图</Link> : null}
     </nav>
     <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
       className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">

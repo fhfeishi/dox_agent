@@ -75,7 +75,7 @@ export function SidePanel() {
   }, [nav]);
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   // U9.1: the IconRail keeps the primary entries reachable while the panel is hidden.
-  if (sidebarCollapsed) return null;
+  if (sidebarCollapsed || nav === "home") return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;

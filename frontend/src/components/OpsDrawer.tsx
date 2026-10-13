@@ -4,6 +4,7 @@ import { Drawer } from "./Drawer";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import { useApp } from "../store";
+import { AccountsPanel } from "./AccountsPanel";
 
 /**
  * Global settings opened from the rail's model button: model connection (details and a
@@ -35,7 +36,7 @@ export function OpsDrawer() {
     <Drawer
       open={drawerOpen}
       onClose={() => setDrawerOpen(false)}
-      title="模型与连接"
+      title="设置"
       headerAction={
         <button
           type="button"
@@ -74,6 +75,7 @@ export function OpsDrawer() {
           <p className="mt-[8px] text-[11.5px] leading-[1.6] text-[var(--stone)]">读取一次服务端模型列表，只验证网络与密钥，不产生生成费用。</p>
         </section>
       </> : null}
+      <AccountsPanel />
     </Drawer>
   );
 }

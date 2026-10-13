@@ -143,7 +143,7 @@ def section_result(doc, check, spec):
             "location": {"pages": value["pages"], "block_ids": value["block_ids"]}, "counted_text": value["text"][:300]}
     gap = f"另有 {value['unread_images']} 处图片内容未读取，完整字符数未能核对。" if value["unread_images"] else ""
     detail = f"已读取{spec['section']}正文 {value['count']} 字符（{ALGORITHM_NOTE}）要求不超过 {spec['value']}。" + gap
-    if mapping["status"] != "confirmed":
+    if mapping["status"] not in ("confirmed", "automatic"):
         return "pending", detail + "章节范围为自动识别，尚未确认，结论待核实。", value["count"], meta
     if over:
         return "issue", detail + "已确认范围内的可读正文已超出上限。", value["count"], meta
@@ -191,7 +191,7 @@ def schedule_result(doc, check, spec):
             problems.append(f"整体{label}日期 {meta.get('plan_' + ('start' if label == '开始' else 'end'))} 超出要求区间")
         elif item[0] < low or item[1] > high:
             unsure.append(f"整体{label}日期仅精确到{item[2]}，无法判断是否越界")
-    confirmed_range = mapping.get("status") == "confirmed"
+    confirmed_range = mapping.get("status") in ("confirmed", "automatic")
     for lo, hi, precision, raw in stages:
         if hi < low or lo > high:
             (problems if confirmed_range else unsure).append(f"进度计划中的“{raw}”超出要求区间")

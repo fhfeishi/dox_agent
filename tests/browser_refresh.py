@@ -59,6 +59,8 @@ async def main():
                                            "changed": 0, "errors": []}
                 await r.fulfill(json=corpora[cid]["job"])
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route(re.compile(r".*/api/documents(\?.*)?$"), lambda r: r.fulfill(json=[]))
             await page.route(re.compile(r".*/api/corpora/[^/]+/ingest(?:\?.*)?$"), ingest)
@@ -68,6 +70,7 @@ async def main():
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name="刷新并入库").click()
             # Progress is observable per corpus, not a single opaque "refreshing" state.

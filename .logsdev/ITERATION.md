@@ -3135,3 +3135,16 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 验证：`git check-ignore` 抽查——`.state/workspace.sqlite3`、`target_v2_replies/`、`vectordb/`、`*.pre-*` 被忽略；`corpora.json`、各库 `source/`、`parsed/` 图片、新库 `datadb/`、`lineage_blanks.json` 不被忽略；暂存后工作区无新的未跟踪文件。
 - 注意：其他机器拉取后，这些已停止跟踪的文件会被 Git 从工作区删除（本地改过的会使拉取中止），拉取前应先备份 `.knowledge/.state`，拉取后放回。
 
+
+### 16.87 query「2026-1013 1133」实施（2026-10-13，工作树未提交；前半由另一会话完成，本会话接手）
+
+基线工作树仅已有 .gitignore/query 修改与 tests/data/fund_retrieval.jsonl 删除，保留。工作范围：审查双卡与右侧模板预览、后台队列和返回回读、状态筛选简化、本地管理员登录、领导首页。
+关键验证：未登录不能读取正文/导出，初始化不可覆盖账户，登录退出会话有效；三个任务可进入队列，离开并刷新后能回读；五状态入口实际筛选含未复核条目；首页统计来自实际列表。验证在隔离目录，模型替身只控制耗时与输出。
+- 接手（另一会话已完成：本地管理员登录、审查后台队列与回读、模板右侧预览、五状态筛选、首页 HomeView）。核对其改动：pytest 中 `test_generic_template_sections_versions_and_internal_review` 仍断言旧行为（自动定位的章节为“待核实”），与其“唯一且完整读取的章节自动核对”的有意改动冲突，改为断言 `automatic` 定位并通过。
+- 三类账户：`src/auth.py` 改为多账户（admin/leader/user）、会话绑定账户、每账户的操作指南记录；单管理员旧库迁入；新增管理员专用 `GET/POST/PATCH/DELETE /api/auth/accounts`、`POST /api/auth/guides`；登录页可填账户名；设置抽屉“账户”区（`AccountsPanel`）。
+- 领导视图：`LeaderView`（领导账户的唯一界面）——领域切换、要点结论（`libraryInsights`，点开看依据）、场景与核心问题（点开看问题与技术路线名称）、技术体系与方向（点开）、可选路网全景；不显示项目与技术条目。
+- 审查界面极简：两张说明卡改为“①模板 ②申请书 开始审查”三步，详情点开显示；页面说明去掉；最新一次任务一行直达报告；审查记录默认折叠；“测试模型连接”只在模型连接失败提示中提供“重新测试”。
+- 新手引导：`Guide` 七个功能区（首页、领域全景、对话、资料库、存量分析、资料审查、情报分析）首次进入弹出三步指南，按账户记录，“指南”按钮可再次查看。
+- 修复：页面路由白名单缺 `/home` 与 `/review/templates`，刷新这些页面返回“页面未构建”；已补并加入 `test_app` 路由断言。
+- 浏览器脚本：离线脚本补“已登录管理员”会话桩；不带页面回退的静态服务脚本改为从根路径进入后点“对话”；实服务脚本先调用初始化接口登录；`browser_review_simple` 改为新三步界面。
+- 验证：pytest 235 passed（除外既有的 `test_user_fund_dataset_is_well_formed`，工作区删除了 fund_retrieval.jsonl）；新增 `test_auth` 三类账户/管理权限/重置后会话失效/旧库迁移；npm test 43 passed，tsc、build 通过；`browser_review_simple`、`browser_scene_hierarchy`、`browser_target_facets`、`browser_answer_controls`、`browser_status_power` PASS。`browser_library`、`browser_fund_preview`、`browser_session_branches`（找“当前对话：…（1/6）”）、`browser_export`（找“设置与运维”）、`browser_document_preview`、`browser_markdown_preview`、`browser_refresh`（找“知识库”按钮）、`browser_legacy_scope`（在提交版本上同样失败）为既有过时脚本；实服务 *_live 脚本未运行。真实界面（隔离账户目录）：管理员初始化、首页指南只出现一次且可重开、添加领导与普通用户、审查三步与右侧模板预览、领导登录只见领域全景且账户接口 403、430px 无横向溢出、无页面错误（截图 `verification/query-20261013-1133/`）。未在真实数据上提交审查任务（避免模型费用），队列流程由 `browser_review_simple` 的模型替身覆盖。

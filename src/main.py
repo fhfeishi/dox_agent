@@ -557,6 +557,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await asyncio.gather(*app.state.target_tasks.values(), return_exceptions=True)
 
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
+    from .auth import install_auth
+    install_auth(app, settings.user_dir)
 
     app.include_router(corpus_groups_router)
     app.include_router(workspace_router)
@@ -2616,7 +2618,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # Only known application routes use the SPA entry; missing APIs/assets stay 404.
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
-            r"|review(?:/(?:formal|professional|guidelines|evidence|runs/[^/.]+))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
+            r"|home|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

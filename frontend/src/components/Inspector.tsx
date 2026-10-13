@@ -10,6 +10,7 @@ import { changeArtifactLifecycle, artifactExportUrl, changeArtifactFigure, creat
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
+import { ReviewTemplatePreview } from "./ReviewTemplatePreview";
 import { ReviewSourceView } from "./ReviewSourceView";
 import { ExternalInputView } from "./IntelligenceView";
 import { ReportMarkdown } from "./ReportMarkdown";
@@ -266,6 +267,7 @@ export function Inspector() {
             : inspectorTarget.kind === "corpus" ? "知识库预览"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "project" ? "项目详情"
+            : inspectorTarget.kind === "review-template" ? "审查模板"
             : inspectorTarget.kind === "review-source" ? "审查原文"
             : inspectorTarget.kind === "input" ? "外部原始材料"
             : inspectorTarget.kind === "web" ? "网页快照"
@@ -573,6 +575,7 @@ export function Inspector() {
           </>
         ) : null}
 
+        {inspectorTarget.kind === "review-template" ? <ReviewTemplatePreview templateId={inspectorTarget.templateId} /> : null}
         {inspectorTarget.kind === "review-source" ? <ReviewSourceView fileId={inspectorTarget.fileId} page={inspectorTarget.page} /> : null}
         {inspectorTarget.kind === "project" ? <ProjectDetail corpusId={inspectorTarget.corpusId} projectId={inspectorTarget.projectId} facet={inspectorTarget.facet} /> : null}
         {inspectorTarget.kind === "input" ? <ExternalInputView inputId={inspectorTarget.inputId} /> : null}

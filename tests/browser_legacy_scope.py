@@ -46,6 +46,8 @@ async def main():
                         'event: done\ndata: {"ok":true}\n\n')
                 await route.fulfill(status=200, content_type="text/event-stream", body=body)
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), lambda r: r.fulfill(json=[
                 {"id": cid, "name": name, "kind": "demo", "domain": "x", "rel_path": cid,
@@ -58,6 +60,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(f"http://127.0.0.1:{server.server_port}")
+            await page.get_by_role("button", name="对话", exact=True).click()
             # Given the old single-corpus record, when it is used, then only c1 is sent.
             await expect(page.get_by_text("旧单库会话").first).to_be_visible()
             await page.get_by_role("textbox", name="问题", exact=True).fill("单库核对")

@@ -31,6 +31,8 @@ logger = logging.getLogger(__name__)
 executor = ThreadPoolExecutor(max_workers=2)
 metadata_executor = ThreadPoolExecutor(max_workers=2)
 metadata_lock = threading.RLock()
+_metadata_futures = {}
+run_lock = threading.RLock()
 
 router = APIRouter(prefix="/api/review")
 
@@ -124,7 +126,7 @@ def start_metadata(id):
         revision = doc.get("metadata_revision", 0)
         doc["metadata_extraction"] = {"status": "running", "method": "model", "stage_label": "等待模型读取申请书"}
         db.save("document", doc)
-        metadata_executor.submit(extract_document_metadata, id, revision)
+        _metadata_futures[id] = metadata_executor.submit(extract_document_metadata, id, revision)
     return public_doc(require("document", id))
 
 
@@ -397,6 +399,29 @@ def run_review(id, doc, rule, req, evidence, settings):
         db.save("run", run)
 
     try:
+        run.update(status="running", stage_label="整理申请书并准备审查")
+        db.save("run", run)
+        # Upload may still be extracting metadata. Queue the task immediately, then
+        # reuse that extraction; changes made by the user after submission do not enter this run.
+        materials = doc.pop("_materials", [])
+        prepared = []
+        for material in materials:
+            future = _metadata_futures.get(material["id"])
+            if future and material.get("metadata_extraction", {}).get("status") == "running":
+                future.result(timeout=240)
+                current = require("document", material["id"])
+                if current.get("metadata_revision", 0) == material.get("metadata_revision", 0):
+                    material = {**material, "metadata": current["metadata"],
+                                "metadata_extraction": current.get("metadata_extraction", {})}
+            prepared.append(material)
+        if prepared:
+            refreshed = material_bundle(prepared[0], prepared[1] if len(prepared) > 1 else None)
+            doc.update(metadata=refreshed["metadata"], field_conflicts=refreshed["field_conflicts"])
+            run["document"] = public_doc(prepared[0])
+            if len(prepared) > 1:
+                run["information_sheet"] = public_doc(prepared[1])
+        doc["metadata"]["title"] = doc["metadata"].get("title") or Path(run["document"]["filename"]).stem
+        run["document"]["metadata"]["title"] = doc["metadata"]["title"]
         client = Client()
         run["audit"] = {"provider": "OpenAI 兼容模型服务", "model": client.settings["model"], "calls": client.calls}
         guides = [require("guideline", gid) for gid in rule.get("guideline_ids", [])]
@@ -492,10 +517,6 @@ def new_run(req: ReviewRequest, request: Request):
     sheet = require("document", req.information_sheet_id) if req.information_sheet_id else None
     if sheet and sheet["id"] == doc["id"]:
         raise HTTPException(422, "正文和信息表须分别指定，不能用同一文件冒充两份材料")
-    if doc.get("metadata_extraction", {}).get("status") == "running" or (sheet and sheet.get("metadata_extraction", {}).get("status") == "running"):
-        raise HTTPException(409, "材料基本信息仍在提取，请完成后核对")
-    if not doc["metadata"].get("title", "").strip():
-        raise HTTPException(400, "请先确认项目名称")
     current = require("rule", req.rule_id)
     if current.get("kind") != req.kind:
         raise HTTPException(422, "模板类型与审查任务不一致，请选择对应类型的模板")
@@ -510,8 +531,6 @@ def new_run(req: ReviewRequest, request: Request):
         raise HTTPException(422, str(e))
     if not model_configured():
         raise HTTPException(400, "审查模型尚未配置")
-    if sum(r["status"] == "running" for r in db.all_items("run")) >= 2:
-        raise HTTPException(429, "已有两个审核任务在执行，请稍后再试")
     if req.kind == "professional":
         from ..agent.corpora import scan_corpora
         libraries = {c.id: c for c in scan_corpora(request.app.state.settings)}
@@ -524,12 +543,16 @@ def new_run(req: ReviewRequest, request: Request):
     ident = uuid.uuid4().hex
     data = req.model_dump(mode="json")
     bundle = material_bundle(doc, sheet)
+    bundle["_materials"] = [doc] + ([sheet] if sheet else [])
     mapping = db.get("mapping", f"{doc['id']}:{req.rule_id}") or {}
     rows = sections.effective(doc.get("blocks", []), rule, mapping) if req.kind == "formal" else []
+    for row in rows:
+        if row["status"] == "found" and row.get("selected", {}).get("complete"):
+            row["status"] = "automatic"  # Unique, completely read range needs no extra confirmation click.
     bundle["blocks"] = doc.get("blocks", [])
     bundle["section_mappings"] = {r["check_id"]: r for r in rows}
-    run = {"id": ident, "created_at": db.now(), "status": "running", "stage": 0,
-           "stage_label": STAGES[0], "request": data, "rule": rule, "document": public_doc(doc),
+    run = {"id": ident, "created_at": db.now(), "status": "queued", "stage": 0,
+           "stage_label": "等待生成报告", "request": data, "rule": rule, "document": public_doc(doc),
            "information_sheet": public_doc(sheet) if sheet else None, "findings": [],
            "mappings": {"revision": mapping.get("revision", 0),
                         "rows": [{k: v for k, v in r.items() if k != "candidates"} for r in rows]},
@@ -537,8 +560,11 @@ def new_run(req: ReviewRequest, request: Request):
            "source_locations": bundle["source_locations"],
            "input_versions": [{"file_id": d["id"], "sha256": hashlib.sha256(Path(d["path"]).read_bytes()).hexdigest(), "metadata_revision": d.get("metadata_revision", 0)}
                               for d in [doc] + ([sheet] if sheet else [])]}
-    db.save("run", run)
-    executor.submit(run_review, ident, bundle, rule, data, items, request.app.state.settings)
+    with run_lock:
+        if sum(r["status"] in ("queued", "running") for r in db.all_items("run")) >= 20:
+            raise HTTPException(429, "任务队列已满，请稍后再提交")
+        db.save("run", run)
+        executor.submit(run_review, ident, bundle, rule, data, items, request.app.state.settings)
     return run
 
 

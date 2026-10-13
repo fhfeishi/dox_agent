@@ -127,6 +127,7 @@ export type ReviewFinding = {
   calculations?: { expression: string; computed_yuan: number; stated_yuan: number; ok: boolean }[];
 };
 export type ReviewCard = {
+  verification_status?: "pending" | "completed"; verification_note?: string;
   id: string; check_id?: string; topic?: string; title: string; assessment: string; suggestion: string; status: string;
   page: number | null; quote: string; evidence_ids: string[]; basis: string; other_pages?: number[];
 };
@@ -147,7 +148,7 @@ export type ReviewRun = {
   budget?: { rows?: { name: string; amount: number }[]; total?: number | null; sum?: number; page?: number };
   created_at: string;
   finished_at?: string;
-  status: "running" | "completed" | "failed";
+  status: "queued" | "running" | "completed" | "failed";
   stage: number;
   stage_label: string;
   error?: string;
@@ -219,7 +220,7 @@ async function request<T>(path: string, init?: RequestInit, fallback = "请求�
   return (await response.json()) as T;
 }
 
-export const REVIEW_STATUS_LABEL: Record<string, string> = {
+export const REVIEW_STATUS_LABEL: Record<string, string> = { queued: "排队中",
   pass: "通过",
   issue: "发现问题",
   warning: "建议调整",

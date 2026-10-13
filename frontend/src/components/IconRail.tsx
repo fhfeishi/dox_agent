@@ -1,3 +1,5 @@
+import { ROLE_LABEL, useAuth } from "../auth";
+import { GUIDE_EVENT } from "./Guide";
 import { useApp } from "../store";
 import type { NavKey } from "../store";
 import { BrandMark, Icon, type IconName } from "./Icons";
@@ -43,6 +45,7 @@ function RailButton({
 }
 
 export function IconRail() {
+  const { logout, username, role } = useAuth();
   const {
     nav,
     setNav,
@@ -60,9 +63,9 @@ export function IconRail() {
 
   return (
     <nav className="flex w-[88px] shrink-0 flex-col items-center gap-[4px] overflow-y-auto px-1 border-r border-[var(--hairline)] bg-[var(--surface)] py-[10px] pb-[12px]">
-      <div className="mb-[10px] grid size-[30px] place-items-center rounded-[8px] bg-[var(--navy)]">
-        <BrandMark size={16} />
-      </div>
+      <button type="button" aria-label="首页" onClick={() => setNav("home")} className="mb-2 flex flex-col items-center gap-1 rounded-lg bg-[var(--navy)] p-2 text-white">
+        <BrandMark size={16} /><span className="text-xs">首页</span>
+      </button>
 
       {NAV_ITEMS.map((item) => (
         <RailButton
@@ -75,6 +78,11 @@ export function IconRail() {
       ))}
 
       <span className="flex-1" />
+      <button type="button" onClick={() => window.dispatchEvent(new Event(GUIDE_EVENT))} aria-label="指南" title="查看本页操作指南"
+        className="py-1.5 text-xs text-[var(--steel)] hover:text-[var(--charcoal)]">指南</button>
+      <span className="max-w-full truncate px-1 text-center text-[11px] leading-4 text-[var(--stone)]" title={`${username}（${ROLE_LABEL[role]}）`}>
+        {username}<br />{ROLE_LABEL[role]}</span>
+      <button type="button" onClick={() => void logout()} className="py-1.5 text-xs text-[var(--steel)] hover:text-[var(--charcoal)]">退出登录</button>
       <div className={sidebarCollapsed ? "w-full" : "w-full lg:hidden"}>
       <RailButton
         icon="plus"

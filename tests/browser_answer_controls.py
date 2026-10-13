@@ -28,6 +28,8 @@ async def main():
             page = await context.new_page()
             errors = []
             page.on("pageerror", lambda error: errors.append(str(error)))
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
@@ -77,6 +79,7 @@ async def main():
                 };
             })();""")
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             field = page.get_by_role("textbox", name="问题", exact=True)
             await field.fill("第一问")
             await page.get_by_role("button", name="发送 ↑").click()

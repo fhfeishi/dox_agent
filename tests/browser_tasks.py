@@ -239,6 +239,8 @@ async def main():
                         'event: done\ndata: {"ok":true}\n\n')
                 await r.fulfill(status=200, content_type="text/event-stream", body=body)
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", health)
             await page.route(re.compile(r".*/api/documents(?:\?.*)?$"), documents)
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), corpora)
@@ -257,6 +259,7 @@ async def main():
             await page.route("**/api/reports/preflight", report_preflight)
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             # New sessions auto-select the first corpus directory; there is no confirmation gate.
             await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
             # Given the current task and scope, when the user prepares to send,

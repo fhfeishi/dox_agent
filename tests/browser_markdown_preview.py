@@ -48,6 +48,8 @@ async def main():
                 markdown_reads += 1
                 await r.fulfill(json={"text": MARKDOWN, "version": "v1"})
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[CORPUS]))
@@ -57,6 +59,7 @@ async def main():
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("默认库")).first.click()
             await page.get_by_role("button", name="打开详情").click()

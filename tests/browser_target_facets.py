@@ -208,6 +208,8 @@ async def main():
                 saved_sessions[session_id] = {**body, "id": session_id, "revision": 1}
                 await r.fulfill(json=saved_sessions[session_id])
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(
                 json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
@@ -228,7 +230,7 @@ async def main():
             await page.route(re.compile(r".*/api/documents/[^/]+/markdown.*$"), markdown)
             await page.route(re.compile(r".*/api/documents/[^/]+/file.*$"), pdf_file)
 
-            await page.goto(origin)
+            await page.goto(origin + "/chat")
             # 交互方案 §3.1：范围改为输入框上方对话库 chip，"当前对话：…"重复文字已删除。
             await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
 

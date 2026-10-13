@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { Link, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
+import { Link, Outlet, useLocation, useParams, useSearchParams } from "react-router";
 import {
   addReviewEvidence, createReviewRun, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth,
   fetchReviewMappings, fetchReviewRules, fetchReviewRun, fetchReviewRuns, patchReviewDocument, reextractReviewDocument,
@@ -22,7 +22,7 @@ const TABS: { to: string; label: string; keep?: boolean }[] = [
 const ACCEPT = ".pdf,.doc,.docx,.md,.txt";
 const STATUS_TONE: Record<string, Tone> = { issue: "rose", warning: "peach", pending: "yellow", pass: "mint", advisory: "sky", na: "gray" };
 
-export function ReviewPageShell({ title, description, children }: { title: string; description: string; children: ReactNode }) {
+export function ReviewPageShell({ title, description = "", children }: { title: string; description?: string; children: ReactNode }) {
   const [search] = useSearchParams();
   const { pathname } = useLocation();
   // Materials travel between the two task entries; templates are per task type and do not.
@@ -42,7 +42,7 @@ export function ReviewPageShell({ title, description, children }: { title: strin
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-[1080px] px-4 pt-[26px] sm:px-[34px]">
           <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
-          <p className="max-w-[720px] text-[13.5px] leading-[1.6] text-[var(--steel)]">{description}</p>
+          {description ? <p className="max-w-[720px] text-[13.5px] leading-[1.6] text-[var(--steel)]">{description}</p> : null}
         </div>
         <div className="mx-auto w-full max-w-[1080px] px-4 pt-[22px] pb-[40px] sm:px-[34px]">{children}</div>
       </div>
@@ -286,28 +286,43 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
       <div className="flex flex-wrap items-center gap-2">
         <Button variant={dirty || confirmed < state.mappings.length ? "primary" : "outline"} disabled={busy || (!dirty && confirmed === state.mappings.length)}
           onClick={() => void save()}>{busy ? "保存中…" : "确认并保存章节对应"}</Button>
-        <span className="text-xs text-[var(--stone)]">只有保存确认的范围才能判定通过或超限；未确认的章节会列为待核实。{state.saved_at ? `上次保存 ${localTime(state.saved_at)}` : ""}</span>
+        <span className="text-xs text-[var(--stone)]">唯一且完整读取的章节会自动核对；有歧义时可在这里确认范围。{state.saved_at ? `上次保存 ${localTime(state.saved_at)}` : ""}</span>
       </div>
     </div>
   );
 }
 
-function TaskCard({ tone, label, title, children, actions, onOpen }: {
-  tone: "lav" | "sky"; label: string; title: ReactNode; children: ReactNode; actions: ReactNode; onOpen?: () => void;
+/** One step of the review: a label and its current value; details open on click (query 2026-1013 1133). */
+function StepTile({ step, label, value, open, onClick, onDrop }: {
+  step: number; label: string; value: string; open: boolean; onClick: () => void; onDrop?: (file: File) => void;
 }) {
-  const accent = tone === "lav" ? "border-[#cfc6f5] bg-[var(--tint-lavender)]" : "border-[#b9d7f2] bg-[var(--tint-sky)]";
-  return (
-    <section aria-label={label} className={`flex min-h-[200px] flex-col rounded-2xl border p-5 ${accent}`}>
-      <div className="flex items-center gap-2">
-        <Icon name={tone === "lav" ? "checklist" : "upload"} size={16} />
-        <span className="text-[12px] font-semibold tracking-wide text-[var(--slate)]">{label}</span>
-      </div>
-      {onOpen ? <button type="button" onClick={onOpen} className="mt-2 text-left text-[17px] font-semibold text-[var(--ink)] hover:underline focus-visible:outline-2">{title}</button>
-        : <div className="mt-2 text-[17px] font-semibold text-[var(--ink)]">{title}</div>}
-      <div className="mt-2 flex-1 text-[12.5px] leading-6 text-[var(--slate)]">{children}</div>
-      <div className="mt-3 flex flex-wrap gap-2">{actions}</div>
-    </section>
-  );
+  const [over, setOver] = useState(false);
+  return <button type="button" onClick={onClick} aria-expanded={open}
+    onDragOver={onDrop ? (e) => { e.preventDefault(); setOver(true); } : undefined} onDragLeave={onDrop ? () => setOver(false) : undefined}
+    onDrop={onDrop ? (e) => { e.preventDefault(); setOver(false); const file = e.dataTransfer.files[0]; if (file) onDrop(file); } : undefined}
+    className={`flex min-w-0 items-center gap-3 rounded-xl border px-4 py-3 text-left hover:border-[var(--primary)] ${open || over ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface)]"}`}>
+    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-xs font-semibold text-white">{step}</span>
+    <span className="min-w-0 flex-1"><span className="block text-[11.5px] text-[var(--steel)]">{label}</span>
+      <span className="block truncate text-[14px] font-semibold text-[var(--ink)]">{value}</span></span>
+    <span className="text-xs text-[var(--steel)]">{open ? "▴" : "▾"}</span>
+  </button>;
+}
+
+/** The newest task of this kind, so a finished report is one click away; all records stay folded. */
+function LatestRun({ runs }: { runs: ReviewRun[] }) {
+  const latest = runs[0];
+  if (!latest) return null;
+  const title = latest.document?.metadata?.title || latest.document?.filename || "申请书";
+  const active = runs.filter((run) => run.status === "queued" || run.status === "running").length;
+  return <div className="mt-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 text-[13px]">
+    <Link to={`/review/runs/${latest.id}`} className="flex flex-wrap items-center gap-2 hover:text-[var(--link)]">
+      <Pill tone={latest.status === "completed" ? "mint" : latest.status === "failed" ? "rose" : "sky"}>
+        {latest.status === "completed" ? "审查完成" : latest.status === "failed" ? "未完成" : REVIEW_STATUS_LABEL[latest.status] ?? "审查中"}</Pill>
+      <b className="min-w-0 flex-1 truncate">{title}</b>
+      <span className="text-xs text-[var(--link)]">{latest.status === "completed" ? "打开报告 →" : latest.status === "failed" ? "查看原因 →" : latest.stage_label}</span>
+    </Link>
+    {active ? <p className="mt-1 text-xs text-[var(--steel)]">共 {active} 项在排队或审查中，可离开本页，完成后从这里或左侧审核任务打开。</p> : null}
+  </div>;
 }
 
 const CARD_TEXT: Record<ReviewKind, { label: string; lead: string; note: string }> = {
@@ -318,10 +333,9 @@ const CARD_TEXT: Record<ReviewKind, { label: string; lead: string; note: string 
 };
 
 export function ReviewWorkbench() {
-  const navigate = useNavigate();
   const { kind } = useParams();
   const reviewKind: ReviewKind = kind === "professional" ? "professional" : "formal";
-  const { corpora, corpusIds } = useApp();
+  const { corpora, corpusIds, showInspector } = useApp();
   const [search, setSearch] = useSearchParams();
   const sheetId = search.get("sheet") ?? "";
   const [health, setHealth] = useState<ReviewHealth | null>(null);
@@ -330,8 +344,7 @@ export function ReviewWorkbench() {
   const [runs, setRuns] = useState<ReviewRun[]>([]);
   const [evidence, setEvidence] = useState<ReviewEvidence[]>([]);
   const [doc, setDoc] = useState<ReviewDoc | null>(null);
-  const [choosing, setChoosing] = useState(false);
-  const [picking, setPicking] = useState(false);
+  const [panel, setPanel] = useState<"" | "template" | "upload">("");
   const [library, setLibrary] = useState("");
   const [references, setReferences] = useState(3);
   const [literature, setLiterature] = useState<string[]>([]);
@@ -341,7 +354,6 @@ export function ReviewWorkbench() {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const [dragging, setDragging] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const poller = useRef<number | null>(null);
 
@@ -362,6 +374,21 @@ export function ReviewWorkbench() {
     void fetchReviewDocument(ident).then((value) => { if (active) setDoc(value); }, (cause) => { if (active) setError(cause.message); });
     return () => { active = false; };
   }, [search.get("proposal")]);
+  useEffect(() => {
+    if (search.size) return;
+    const previous = sessionStorage.getItem("review-workbench:" + reviewKind);
+    if (previous) setSearch(previous, { replace: true });
+  }, [reviewKind]);
+  useEffect(() => {
+    if (search.size) sessionStorage.setItem("review-workbench:" + reviewKind, search.toString());
+  }, [reviewKind, search]);
+  useEffect(() => {
+    let active = true;
+    const refresh = () => { void fetchReviewRuns().then((value) => { if (active) setRuns(value); }).catch((cause) => { if (active) setError(cause.message); }); };
+    const timer = window.setInterval(refresh, 2500);
+    window.addEventListener("focus", refresh);
+    return () => { active = false; window.clearInterval(timer); window.removeEventListener("focus", refresh); };
+  }, []);
   const sheet = docs.find((item) => item.id === sheetId) ?? null;
 
   function remember(key: string, value: string) {
@@ -394,7 +421,7 @@ export function ReviewWorkbench() {
     setBusy("读取申请书"); setError(""); setNotice("");
     try {
       const next = await uploadReviewDocument(file);
-      setDoc(next); remember("proposal", next.id); setPicking(false);
+      setDoc(next); remember("proposal", next.id);
       if (next.metadata_extraction?.status === "running") watchExtraction(next.id);
       void reload();
     } catch (cause) { setError((cause as Error).message); } finally { setBusy(""); }
@@ -405,13 +432,10 @@ export function ReviewWorkbench() {
   // Default: the library the conversation currently uses, else the first one; always shown and changeable.
   const chosenLibrary = available.some((item) => item.id === library) ? library
     : available.find((item) => corpusIds.includes(item.id))?.id ?? available[0]?.id ?? "";
-  const extracting = doc?.metadata_extraction?.status === "running" || sheet?.metadata_extraction?.status === "running";
   const blockers = [
     !health?.model_configured ? "审查模型未配置" : "",
     !template ? "没有可用的已启用模板" : "",
     !doc ? "尚未上传申请书" : "",
-    doc && !doc.metadata.title.trim() ? "请确认项目名称" : "",
-    extracting ? "基本信息仍在整理" : "",
     mapping.dirty ? "章节对应有未保存修改" : "",
     reviewKind === "professional" && mode === "historical" && !cutoff ? "历史评价需填写评价时点" : "",
     reviewKind === "professional" && !chosenLibrary ? "请选择对照资料库" : "",
@@ -426,78 +450,80 @@ export function ReviewWorkbench() {
         cutoff_date: reviewKind === "professional" && mode === "historical" ? cutoff : undefined,
         corpus_ids: reviewKind === "professional" ? [chosenLibrary] : [], reference_count: references,
         evidence_ids: reviewKind === "professional" ? literature : [] });
-      void navigate(`/review/runs/${run.id}`);
+      setRuns((old) => [run, ...old.filter((item) => item.id !== run.id)]);
+      setNotice("已开始审查，可离开本页处理其他工作；完成后在下方打开报告。");
     } catch (cause) { setError((cause as Error).message); } finally { setBusy(""); }
   }
 
   const text = CARD_TEXT[reviewKind];
   const back = encodeURIComponent(search.toString());
   return (
-    <Shell title={REVIEW_KIND_LABEL[reviewKind]} description={reviewKind === "formal"
-      ? "选择模板、上传申请书、核对准备信息后开始审查。结果说明是否符合本模板的要求，并定位到原文。"
-      : "选择评价问题模板与对照资料，审查技术正文的合理性、必要性、可行性与论证充分性。"}>
+    <Shell title={REVIEW_KIND_LABEL[reviewKind]}>
       <Notice text={error} error />
       <Notice text={notice} />
       {health && !health.model_configured ? <Notice text="审查模型未配置：请先配置 MODEL_API_KEY（或 REVIEW_MODEL_*），未配置时不能发起审查。" error /> : null}
-      {health?.model_connection === "failed" ? <Notice text="最近一次模型连接测试失败，请检查密钥与接口地址。" error /> : null}
+      {health?.model_connection === "failed" ? <div className="mb-3 flex flex-wrap items-center gap-2"><Notice text="最近一次模型连接测试失败，请检查密钥与接口地址。" error />
+        <Button size="sm" variant="ghost" onClick={() => void testReviewModel().then(() => { setNotice("模型连接及 JSON 输出测试成功。"); void fetchReviewHealth().then(setHealth); })
+          .catch((cause) => setError((cause as Error).message))}>重新测试</Button></div> : null}
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <TaskCard tone="lav" label={text.label} onOpen={template ? () => void navigate(`/review/templates/${encodeURIComponent(template.id)}?back=${back}`) : undefined}
-          title={template ? <>{template.name} <span className="text-[13px] font-normal text-[var(--steel)]">· v{template.version}</span></> : "尚无可用模板"}
-          actions={<>
-            {template ? <Button onClick={() => void navigate(`/review/templates/${encodeURIComponent(template.id)}?back=${back}`)}>预览模板</Button> : null}
-            <Button onClick={() => setChoosing(!choosing)} >{choosing ? "收起" : "更换模板"}</Button>
-          </>}>
+      {/* query 2026-1013 1133: three steps, details hidden until clicked. */}
+      <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto]">
+        <StepTile step={1} label={text.label} open={panel === "template"}
+          value={template ? `${template.name} · v${template.version}` : "尚无可用模板"}
+          onClick={() => { setPanel(panel === "template" ? "" : "template"); if (template && panel !== "template") showInspector({ kind: "review-template", templateId: template.id }); }} />
+        <StepTile step={2} label="申请书" open={panel === "upload"} value={busy === "读取申请书" ? "读取中…" : doc ? doc.filename : "上传申请书"}
+          onClick={() => { if (!doc && !busy) fileInput.current?.click(); else setPanel(panel === "upload" ? "" : "upload"); }}
+          onDrop={(file) => void upload(file)} />
+        <Button variant="primary" size="md" disabled={Boolean(blockers.length) || Boolean(busy)} onClick={() => void start()}
+          title={blockers.length ? "尚需：" + blockers.join("；") : undefined}>
+          {busy === "创建审核任务" ? "提交中…" : "开始审查"}
+        </Button>
+      </div>
+      <input ref={fileInput} aria-label="上传申请书文件" type="file" accept={ACCEPT} className="hidden"
+        onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void upload(file); }} />
+      {blockers.length && doc ? <p className="mt-2 text-[11.5px] text-[var(--stone)]">尚需：{blockers.join("；")}</p> : null}
+
+      {panel === "template" ? (
+        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-[12.5px] leading-6 text-[var(--slate)]">
           <p>{text.lead}</p>
           {template ? <p className="mt-1">本次启用 <b>{enabled.length}</b> 项：{enabled.slice(0, 6).map((c) => c.title).join("、")}{enabled.length > 6 ? "…" : ""}</p> : null}
-          <p className="mt-1 text-[11.5px] text-[var(--steel)]">{text.note}</p>
-          {choosing ? (
-            <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3">
-              {usable.map((rule) => (
-                <button key={rule.id} type="button" disabled={!rule.confirmed} onClick={() => { remember("template", rule.id); setChoosing(false); }}
-                  className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[12.5px] disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--surface)]"}`}>
-                  <span className="min-w-0 flex-1 truncate">{rule.name} · v{rule.version}</span>
-                  <Pill tone="gray">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
-                  {!rule.confirmed ? <Pill tone="yellow">草稿</Pill> : null}
-                </button>
-              ))}
-              <div className="mt-2 flex flex-wrap gap-2 border-t border-[var(--hairline)] pt-2">
-                {template ? <Link className="text-xs text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模板编辑</Link> : null}
-                <Link className="text-xs text-[var(--link)]" to="/review/templates">新建或上传模板</Link>
-              </div>
-            </div>
-          ) : null}
-        </TaskCard>
-
-        <TaskCard tone="sky" label="上传申请书" title={doc ? doc.filename : "拖入文件或点击上传"}
-          actions={<>
-            <Button variant={doc ? "outline" : "primary"} disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{busy === "读取申请书" ? "读取中…" : doc ? "上传新版本" : "上传申请书"}</Button>
-            {proposals.length ? <Button onClick={() => setPicking(!picking)}>选择已上传</Button> : null}
-            {doc ? <a className="self-center text-xs text-[var(--link)]" href={reviewDocumentFileUrl(doc.id)} target="_blank" rel="noreferrer">查看原文</a> : null}
-          </>}>
-          <div onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
-            onDrop={(e) => { e.preventDefault(); setDragging(false); const file = e.dataTransfer.files[0]; if (file) void upload(file); }}
-            className={`rounded-xl border border-dashed p-3 ${dragging ? "border-[var(--link)] bg-[var(--canvas)]" : "border-[#9cc4ea]"}`}>
-            {doc ? <>
-              <p>{doc.kind.toUpperCase()} · {doc.page_count} {doc.kind === "pdf" ? "页" : "个文本块"} · {doc.confirmed_at ? "基本信息已确认" : "基本信息待核对"}</p>
-              {doc.warnings?.length ? <p className="text-[11.5px] text-[#8a6a00]">{doc.warnings[0]}</p> : null}
-            </> : <p>上传待审正文，自动整理内容与基本信息。需要时补充信息表；原文件保留，可随时查看。</p>}
-            <p className="mt-1 text-[11px] text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。</p>
+          <p className="mt-1 text-[11.5px] text-[var(--steel)]">{text.note} 完整条款已在右侧预览。</p>
+          <p className="mt-3 text-xs font-semibold text-[var(--steel)]">更换模板</p>
+          <div className="mt-1">{usable.map((rule) => (
+            <button key={rule.id} type="button" disabled={!rule.confirmed} onClick={() => { remember("template", rule.id); showInspector({ kind: "review-template", templateId: rule.id }); }}
+              className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[12.5px] disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--canvas)]"}`}>
+              <span className="min-w-0 flex-1 truncate">{rule.name} · v{rule.version}</span>
+              <Pill tone="gray">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
+              {!rule.confirmed ? <Pill tone="yellow">草稿</Pill> : null}
+            </button>))}</div>
+          <div className="mt-2 flex flex-wrap gap-3 border-t border-[var(--hairline)] pt-2">
+            {template ? <Link className="text-xs text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模板编辑</Link> : null}
+            <Link className="text-xs text-[var(--link)]" to="/review/templates">新建或上传模板</Link>
           </div>
-          <input ref={fileInput} aria-label="上传申请书文件" type="file" accept={ACCEPT} className="hidden"
-            onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void upload(file); }} />
-          {picking ? (
-            <select aria-label="选择已上传申请书" className="mt-2 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-2" value={doc?.id ?? ""}
-              onChange={(e) => { const next = docs.find((item) => item.id === e.target.value); if (next) { setDoc(next); remember("proposal", next.id); setPicking(false); } }}>
-              <option value="">请选择</option>
+        </div>
+      ) : null}
+      {panel === "upload" ? (
+        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-[12.5px] leading-6 text-[var(--slate)]">
+          {doc ? <>
+            <p>{doc.kind.toUpperCase()} · {doc.page_count} {doc.kind === "pdf" ? "页" : "个文本块"} · {doc.confirmed_at ? "基本信息已确认" : "基本信息待核对"}</p>
+            {doc.warnings?.length ? <p className="text-[11.5px] text-[#8a6a00]">{doc.warnings[0]}</p> : null}
+          </> : null}
+          <p className="text-[11px] text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <Button disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{doc ? "上传新版本" : "上传申请书"}</Button>
+            {doc ? <a className="text-xs text-[var(--link)]" href={reviewDocumentFileUrl(doc.id)} target="_blank" rel="noreferrer">查看原文</a> : null}
+            {proposals.length ? <select aria-label="选择已上传申请书" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 text-xs" value={doc?.id ?? ""}
+              onChange={(e) => { const next = docs.find((item) => item.id === e.target.value); if (next) { setDoc(next); remember("proposal", next.id); } }}>
+              <option value="">选择已上传的申请书</option>
               {proposals.map((item) => <option key={item.id} value={item.id}>{item.metadata.title || item.filename} · {item.created_at?.slice(0, 10)}</option>)}
-            </select>
-          ) : null}
-        </TaskCard>
-      </div>
-
+            </select> : null}
+          </div>
+        </div>
+      ) : null}
+      <LatestRun runs={runs.filter((run) => (run.request?.kind ?? "formal") === reviewKind)} />
       {doc ? (
-        <section aria-label="准备核对" className="mt-6 space-y-4">
+        <details aria-label="准备核对" className="mt-4 space-y-4 rounded-xl border border-[var(--hairline)] p-4">
+          <summary className="cursor-pointer text-sm font-medium">补充信息与高级选项（可选）</summary>
           <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3 text-[12.5px]">
             <strong className="mr-2">准备核对</strong>
             <Pill tone={template ? "mint" : "rose"}>{template ? "模板已保存" : "缺少模板"}</Pill>
@@ -570,17 +596,9 @@ export function ReviewWorkbench() {
               onSave={async (meta) => { const updated = await patchReviewDocument(sheet.id, meta); setDocs((old) => old.map((item) => item.id === updated.id ? updated : item)); }}
               onRetry={async () => { await reextractReviewDocument(sheet.id); await reload(); }} /></div> : null}
           </details>
-        </section>
+        </details>
       ) : null}
 
-      <div className="sticky bottom-0 mt-6 flex flex-wrap items-center gap-3 border-t border-[var(--hairline)] bg-[var(--canvas)] py-3">
-        <Button variant="primary" size="md" disabled={Boolean(blockers.length) || Boolean(busy)} onClick={() => void start()}>
-          {busy === "创建审核任务" ? "创建中…" : "开始审查"}
-        </Button>
-        <span className="min-w-0 flex-1 text-[11.5px] text-[var(--stone)]">{blockers.length ? "尚需：" + blockers.join("；") : "审查约需数分钟，可离开页面后从审查记录返回。"}</span>
-        {health ? <Pill tone={health.model_configured ? "mint" : "gray"}>{health.model_name} · {health.model_configured ? "已配置" : "未配置"}</Pill> : null}
-        <Button size="sm" variant="ghost" onClick={() => void testReviewModel().then(() => setNotice("模型连接及 JSON 输出测试成功。")).catch((cause) => setError((cause as Error).message))}>测试模型连接</Button>
-      </div>
 
       <RunList runs={runs.filter((run) => (run.request?.kind ?? "formal") === reviewKind)} />
     </Shell>
@@ -590,8 +608,8 @@ export function ReviewWorkbench() {
 function RunList({ runs }: { runs: ReviewRun[] }) {
   if (!runs.length) return null;
   return (
-    <div id="records" className="mt-[18px]">
-      <strong className="text-[13.5px] text-[var(--ink)]">审查记录</strong>
+    <details id="records" className="mt-[18px]">
+      <summary className="cursor-pointer text-[13px] text-[var(--steel)]">审查记录 · {runs.length} 份</summary>
       <div className="mt-[8px] grid gap-[8px]">
         {runs.map((run) => (
           <Link key={run.id} to={`/review/runs/${run.id}`}
@@ -604,7 +622,7 @@ function RunList({ runs }: { runs: ReviewRun[] }) {
           </Link>
         ))}
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -726,7 +744,7 @@ export function ReviewRunPage() {
   const [search, setSearch] = useSearchParams();
   const [run, setRun] = useState<ReviewRun | null>(null);
   const [error, setError] = useState("");
-  const [filter, setFilter] = useState("needs");
+  const [filter, setFilter] = useState("all");
   useEffect(() => {
     let active = true; let timer: number | null = null;
     const load = async () => {
@@ -734,7 +752,7 @@ export function ReviewRunPage() {
         const next = await fetchReviewRun(id);
         if (!active) return;
         setRun(next);
-        if (next.status === "running") timer = window.setTimeout(load, 2000);
+        if (["queued", "running"].includes(next.status)) timer = window.setTimeout(load, 2000);
       } catch (cause) { if (active) setError((cause as Error).message); }
     };
     void load();
@@ -746,10 +764,16 @@ export function ReviewRunPage() {
   const checks = useMemo(() => new Map((run?.rule?.checks ?? []).map((check) => [check.id, check])), [run]);
   const findings = run?.findings ?? [];
   const cards = run?.technical?.cards ?? [];
-  const items: { status: string }[] = formal ? findings : cards;
-  const count = (status: string) => items.filter((item) => item.status === status).length;
+  const items = formal ? findings : cards;
+  const statusOf = (status: string) => status === "advisory" ? "warning" : status;
+  const count = (status: string) => items.filter((item) => statusOf(item.status) === status).length;
   const verificationPending = run?.audit?.verification?.pending ?? 0;
-  const visible = (status: string) => filter === "all" || (filter === "needs" ? !["pass", "na"].includes(status) : status === filter);
+  const visible = (item: ReviewFinding | ReviewCard) => filter === "all"
+    || (filter === "unverified" ? item.verification_status === "pending" : statusOf(item.status) === filter);
+  const selectStatus = (value: string) => {
+    setFilter(filter === value ? "all" : value);
+    setSearch((old) => { const next = new URLSearchParams(old); next.set("tab", "overview"); return next; }, { replace: true });
+  };
 
   function topic(finding: ReviewFinding) {
     const field = finding.clause_ids?.map((cid) => checks.get(cid)?.execution?.field).find(Boolean) ?? "";
@@ -786,7 +810,7 @@ export function ReviewRunPage() {
     </article>
   );
   const list = (rows: ReviewFinding[], empty: string) => {
-    const shown = rows.filter((item) => visible(item.status));
+    const shown = rows.filter((item) => visible(item));
     return shown.length ? shown.map(findingCard) : <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] p-5 text-sm text-[var(--steel)]">{empty}</p>;
   };
   const card = (item: ReviewCard) => (
@@ -820,7 +844,9 @@ export function ReviewRunPage() {
           <Pill tone={run.status === "completed" ? "mint" : run.status === "failed" ? "rose" : "sky"}>{run.status === "completed" ? "已生成" : REVIEW_STATUS_LABEL[run.status] ?? run.status}</Pill>
         </div>
         <p className="mt-4 text-sm leading-7">{run.reader_report?.summary || run.stage_label}</p>
-        {run.error ? <p role="alert" className="mt-3 rounded bg-[var(--tint-rose)] p-3 text-sm">{run.error}</p> : null}
+        {run.error ? <div role="alert" className="mt-3 rounded bg-[var(--tint-rose)] p-3 text-sm">{run.error}
+          <Link className="ml-3 text-[var(--link)]" to={`/review/${run.request.kind}?proposal=${encodeURIComponent(doc.id)}&template=${encodeURIComponent(run.request.rule_id ?? "")}`}>返回准备并重试</Link>
+        </div> : null}
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--steel)]">
           <span>正文：{doc.filename}{versions[0] ? ` · ${versions[0].sha256.slice(0, 8)}` : ""}</span>
           <span>信息表：{run.information_sheet?.filename || "未提供"}</span>
@@ -836,17 +862,18 @@ export function ReviewRunPage() {
       </section>
       {run.status === "completed" ? <>
         <div className="my-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
-          {(formal ? [["issue", "发现问题"], ["warning", "修改建议"], ["pending", "待核实"], ["pass", "已核对通过"]] : [["advisory", "评议意见"], ["pending", "待核实"]]).map(([key, label]) => (
-            <button key={key} type="button" onClick={() => setFilter(filter === key ? "needs" : key)} aria-pressed={filter === key}
+          {[["issue", "发现问题"], ["warning", "修改建议"], ["pending", "待核实"], ["pass", "已核对通过"]].map(([key, label]) => (
+            <button key={key} type="button" onClick={() => selectStatus(key)} aria-pressed={filter === key}
               className={`rounded-xl border bg-[var(--canvas)] p-4 text-left ${filter === key ? "border-[var(--primary)]" : "border-[var(--hairline)]"}`}>
               <span className="text-xs text-[var(--steel)]">{label}</span><strong className="mt-2 block text-2xl">{count(key)}</strong>
             </button>))}
-          <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><span className="text-xs text-[var(--steel)]">最终复核未完成</span><strong className="mt-2 block text-2xl">{verificationPending}</strong></div>
+          <button type="button" onClick={() => selectStatus("unverified")} aria-pressed={filter === "unverified"}
+            className={`rounded-xl border p-4 text-left ${filter === "unverified" ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--canvas)]"}`}>
+            <span className="text-xs text-[var(--steel)]">最终复核未完成</span><strong className="mt-2 block text-2xl">{verificationPending}</strong></button>
         </div>
-        <div className="mb-4 flex flex-wrap gap-2">
-          <Button size="sm" variant={filter === "needs" ? "primary" : "ghost"} onClick={() => setFilter("needs")}>优先查看待处理事项</Button>
-          <Button size="sm" variant={filter === "all" ? "primary" : "ghost"} onClick={() => setFilter("all")}>查看全部结果</Button>
-        </div>
+        <p role="status" className="mb-4 text-xs text-[var(--steel)]">
+          {filter === "all" ? "显示全部结果；点击上方状态查看对应事项。" : `已筛选 ${filter === "unverified" ? "最终复核未完成" : REVIEW_STATUS_LABEL[filter]}，再次点击已选状态恢复全部。`}
+        </p>
         <div role="tablist" aria-label="报告专题" className="mb-5 flex flex-wrap gap-1 border-b border-[var(--hairline)]">
           {tabs.map((item) => (
             <button key={item.key} role="tab" type="button" aria-selected={tab === item.key}
@@ -870,7 +897,7 @@ export function ReviewRunPage() {
                   return <tr key={row.id} className="border-t border-[var(--hairline)]">
                     <td className="p-3 font-medium">{spec?.section || row.title}</td><td className="p-3">≤ {spec?.value}</td>
                     <td className="p-3">{row.actual ?? "未读取"}</td><td className={`p-3 ${diff !== null && diff > 0 ? "text-[var(--red)]" : ""}`}>{diff === null ? "—" : diff > 0 ? `超出 ${diff}` : `余 ${-diff}`}</td>
-                    <td className="p-3 text-xs">{row.mapping === "confirmed" ? "已确认" : "未确认"} · {row.coverage === "complete" ? "完整读取" : row.coverage === "partial" ? "覆盖不足" : "未读取"}</td>
+                    <td className="p-3 text-xs">{row.mapping === "confirmed" ? "已确认" : row.mapping === "automatic" ? "自动定位" : "未确认"} · {row.coverage === "complete" ? "完整读取" : row.coverage === "partial" ? "覆盖不足" : "未读取"}</td>
                     <td className="p-3"><StatusPill status={row.status} /></td>
                   </tr>;
                 })}</tbody>
@@ -909,7 +936,7 @@ export function ReviewRunPage() {
             <section key={row.check_id} className="mb-6">
               <h2 className="mb-3 text-lg font-semibold">{row.title}</h2>
               {row.state === "missing" ? <p className="rounded-xl border border-dashed border-[var(--red)] p-4 text-sm">未完成评价：模型没有就该问题给出有效意见，请重新运行或人工评议。</p> : null}
-              {cards.filter((item) => item.check_id === row.check_id && visible(item.status)).map(card)}
+              {cards.filter((item) => item.check_id === row.check_id && visible(item)).map(card)}
             </section>)) : null}
           {!formal && tab === "projects" ? <>
             <h2 className="mb-3 text-lg font-semibold">相近项目 · {projectGroups.length} 个（{projects.length} 份文件）</h2>
@@ -936,7 +963,7 @@ export function ReviewRunPage() {
           {!formal && tab === "suggestions" ? <>
             <h2 className="mb-3 text-lg font-semibold">修改建议</h2>
             <p className="mb-3 text-sm text-[var(--steel)]">原申请书保持只读；修改后上传新版本重新审查，本报告保留不变。</p>
-            {cards.filter((item) => visible(item.status)).map((item) => (
+            {cards.filter((item) => visible(item)).map((item) => (
               <article key={item.id} className="mb-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 text-sm">
                 <p className="text-xs text-[var(--steel)]">{item.topic ?? "评议"} · {item.title}</p>
                 <p className="mt-2 whitespace-pre-wrap leading-7">{item.suggestion}</p>

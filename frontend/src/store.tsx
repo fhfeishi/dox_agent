@@ -41,12 +41,13 @@ import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 
-export type NavKey = "chat" | "tasks" | "library" | "review" | "intelligence";
+export type NavKey = "home" | "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
   { kind: "project"; corpusId: string; projectId: string; facet: string } |
+  { kind: "review-template"; templateId: string } |
   { kind: "review-source"; fileId: string; page: number } |
   { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
   { kind: "artifact"; artifactId: string } |
@@ -60,6 +61,7 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "results": return "results";
     case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
     case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
+    case "review-template": return "review-template:" + target.templateId;
     case "review-source": return "review-source:" + target.fileId + ":" + target.page;
     case "project": return "project:" + target.corpusId + ":" + target.projectId + ":" + target.facet;
     case "input": return "input:" + target.inputId;
@@ -244,8 +246,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
-  const nav: NavKey = location.pathname.startsWith("/library") ? "library"
+  const navPaths: Record<NavKey, string> = { home: "/home", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
+  const nav: NavKey = location.pathname === "/home" || location.pathname === "/" ? "home" : location.pathname.startsWith("/library") ? "library"
     : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
       : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };

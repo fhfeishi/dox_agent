@@ -34,12 +34,15 @@ async def main():
             errors: list[str] = []
             page.on("pageerror", lambda error: errors.append(str(error)))
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             # Session-list assertions are scoped to the sidebar: the chat header now also shows
             # the active session title (top bar), so an unscoped text locator would match twice.
             sidebar = page.locator("aside").first

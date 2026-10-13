@@ -155,7 +155,7 @@ def test_two_material_tasks_are_independent_and_keep_program_findings(tmp_path, 
         def wait(run_id):
             for _ in range(100):
                 run = client.get("/api/review/runs/" + run_id).json()
-                if run["status"] != "running":
+                if run["status"] not in ("queued", "running"):
                     return run
                 time.sleep(0.02)
             raise AssertionError("run did not finish")
@@ -245,7 +245,7 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
             assert created.status_code == 200, created.text
             for _ in range(200):
                 result = client.get("/api/review/runs/" + created.json()["id"]).json()
-                if result["status"] != "running":
+                if result["status"] not in ("queued", "running"):
                     assert result["status"] == "completed", result
                     return result
                 time.sleep(.02)
@@ -262,9 +262,10 @@ def test_generic_template_sections_versions_and_internal_review(tmp_path, monkey
             "total_budget": 300.01, "plan_start": "2026-10-01", "plan_end": "2028-09-30"}).status_code == 200
         formal = {"document_id": doc["id"], "kind": "formal", "rule_id": builtin["id"], "rule_version": builtin["version"]}
 
-        # Auto-detected ranges are proposals: even a within-limit count stays pending.
+        # A unique, completely read range is located automatically and judged without a confirmation click.
         auto = {f["id"]: f for f in run(formal)["calculation_findings"]}
-        assert auto["check-abstract"]["status"] == "pending" and auto["check-abstract"]["actual"] == 300
+        assert auto["check-abstract"]["status"] == "pass" and auto["check-abstract"]["actual"] == 300
+        assert auto["check-abstract"]["mapping"] == "automatic"
 
         prep = client.get(f"/api/review/documents/{doc['id']}/mappings", params={"rule_id": builtin["id"]}).json()
         assert [m["status"] for m in prep["mappings"]] == ["found"] * 4
@@ -365,7 +366,7 @@ def test_metadata_extraction_and_confirmation_feed_checks_safely(tmp_path, monke
             assert created.status_code == 200, created.text
             for _ in range(200):
                 run = client.get("/api/review/runs/" + created.json()["id"]).json()
-                if run["status"] != "running":
+                if run["status"] not in ("queued", "running"):
                     return {f["id"]: f for f in run["calculation_findings"]}
                 time.sleep(.02)
             raise AssertionError("run did not finish")
@@ -378,3 +379,50 @@ def test_metadata_extraction_and_confirmation_feed_checks_safely(tmp_path, monke
         assert unconfirmed["metadata"]["organizations"] and not unconfirmed.get("confirmed_at")
         results = calc(unconfirmed["id"])
         assert results["check-organizations"]["status"] == "pending" and results["check-budget"]["actual"] == 300
+
+
+def test_queued_reports_accept_three_tasks_and_auto_map_uploaded_sections(tmp_path, monkeypatch):
+    import threading
+    gate = threading.Event()
+
+    class WaitingModel(FixtureReviewClient):
+        def ask(self, phase, payload):
+            if phase == "01_extract":
+                assert gate.wait(8), "model fixture was not released"
+            return super().ask(phase, payload)
+
+    monkeypatch.setattr(storage, "DATA", tmp_path / "review")
+    monkeypatch.setattr(routes, "Client", WaitingModel)
+    monkeypatch.setattr(routes, "model_configured", lambda: True)
+    monkeypatch.setattr(routes, "start_metadata", lambda ident: routes.public_doc(storage.get("document", ident)))
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
+    with TestClient(create_app(settings)) as client:
+        body = "# 项目摘要\n" + "甲" * 300 + "\n# 项目背景\n" + "乙" * 201 + "\n# 项目方案\n" + "丙" * 100
+        doc = client.post("/api/review/documents", files={"file": ("queue.md", body.encode())}).json()
+        ids = []
+        try:
+            for _ in range(3):
+                response = client.post("/api/review/runs", json={"document_id": doc["id"], "kind": "formal",
+                                       "rule_id": "builtin-formal", "rule_version": 1})
+                assert response.status_code == 200, response.text
+                ids.append(response.json()["id"])
+            last = client.get("/api/review/runs/" + ids[-1]).json()
+            assert last["status"] == "queued"
+            assert len(client.get("/api/review/runs").json()) == 3
+        finally:
+            gate.set()
+        for ident in ids:
+            for _ in range(250):
+                result = client.get("/api/review/runs/" + ident).json()
+                if result["status"] not in ("queued", "running"):
+                    break
+                time.sleep(.02)
+            assert result["status"] == "completed", result
+            measured = {f["id"]: f for f in result["calculation_findings"]}
+            assert measured["check-abstract"]["status"] == "pass"
+            assert measured["check-background"]["status"] == "issue"
+            assert measured["check-abstract"]["mapping"] == "automatic"
+        # Startup recovery distinguishes interrupted queue entries from live work.
+        storage.save("run", {"id": "interrupted", "status": "queued"})
+        storage.init()
+        assert storage.get("run", "interrupted")["status"] == "failed"

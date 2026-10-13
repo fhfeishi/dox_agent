@@ -84,7 +84,8 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
-                await page.goto(origin)
+                await page.request.post(origin + "/api/auth/setup", data={"password": "browser-test-password"})
+                await page.goto(origin + "/chat")
                 await expect(page.get_by_role("button",name="✓ fixture",exact=True)).to_be_visible()
                 await page.get_by_role("button",name="＋管理知识库",exact=True).click()
                 async def fail_save(route):
@@ -273,7 +274,7 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
-                await page.goto(origin)
+                await page.goto(origin + "/chat")
                 await page.get_by_role("navigation").get_by_role("button", name="存量分析", exact=True).click()
                 await page.get_by_role("link", name="分析成果与回收站", exact=True).click()
                 await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()

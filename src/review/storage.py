@@ -32,7 +32,7 @@ def init():
         # A process restart cannot silently leave jobs running forever.
         for row in con.execute("SELECT id,payload FROM objects WHERE kind='run'").fetchall():
             value = json.loads(row["payload"])
-            if value.get("status") == "running":
+            if value.get("status") in ("queued", "running"):
                 value.update(status="failed", error="服务重启中断了本次审核，请重新运行。")
                 con.execute(
                     "UPDATE objects SET payload=? WHERE kind='run' AND id=?",

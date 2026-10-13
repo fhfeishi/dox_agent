@@ -1,6 +1,8 @@
 import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
+import { AuthGate, useAuth } from "./auth";
+import { LeaderView } from "./components/LeaderView";
 import { AppProvider, useApp } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
 import { ReviewShell } from "./components/ReviewViews";
@@ -33,6 +35,12 @@ function LibraryPage() {
   </>;
 }
 
+/** A leader account sees only the lean leader view; administrators and users get the full system. */
+function Root() {
+  const { role } = useAuth();
+  return <AppProvider>{role === "leader" ? <LeaderView /> : <App />}</AppProvider>;
+}
+
 /** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
 function ResultsRedirect() {
   const { showInspector } = useApp();
@@ -41,9 +49,10 @@ function ResultsRedirect() {
 }
 
 export const router = createBrowserRouter([{
-  Component: () => <AppProvider><App /></AppProvider>,
+  Component: () => <AuthGate><Root /></AuthGate>,
   children: [
-    { index: true, element: <Navigate to="/chat" replace /> },
+    { index: true, element: <Navigate to="/home" replace /> },
+    { path: "home", lazy: async () => ({ Component: (await import("./components/HomeView")).HomeView }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
       { index: true, lazy: async () => ({ Component: (await import("./components/CorpusGrid")).CorpusGrid }) },

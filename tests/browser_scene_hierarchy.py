@@ -128,6 +128,8 @@ async def main():
             page_errors: list[str] = []
             page.on("pageerror", lambda error: page_errors.append(str(error)))
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(
                 json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
@@ -183,7 +185,7 @@ async def main():
                 headers={"Content-Disposition": "inline; filename=x.pdf"},
                 body=b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF"))
 
-            await page.goto(origin)
+            await page.goto(origin + "/chat")
             await page.get_by_role("button", name="资料库", exact=True).click()
             await page.get_by_role("button", name="四维浏览", exact=True).first.click()
 

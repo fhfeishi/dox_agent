@@ -53,6 +53,8 @@ async def main():
                                           "start_line": start, "next_start_line": nxt, "text": text,
                                           "kind": "official", "parser": "official-markdown"})
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/c1/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(\?.*)?$"), lambda r: r.fulfill(json=[corpus]))
@@ -62,6 +64,7 @@ async def main():
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             # library grid -> corpus detail -> document preview
             await page.get_by_role("button", name="知识库", exact=True).click()
             await page.get_by_role("button", name=re.compile("示例库")).first.click()

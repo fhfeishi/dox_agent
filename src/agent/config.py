@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     corpora_root: Path = CORPORA_ROOT_DEFAULT
     # 应用级状态目录（会话/报告/覆盖）；缺省从 corpora_root 派生为 <corpora_root>/.state。
     state_dir: Path | None = None
+    user_dir: Path | None = None
     embedding_path: str = ""
     embedding_device: str = "cpu"
     embedding_query_prompt: str = ""
@@ -77,6 +78,10 @@ class Settings(BaseSettings):
     def _derive_state_dir(self):
         if self.state_dir is None:
             object.__setattr__(self, "state_dir", Path(self.corpora_root) / ".state")
+        if self.user_dir is None:
+            default_state = Path(self.corpora_root) / ".state"
+            self.user_dir = (Path(self.corpora_root).parent / ".local" / "usr"
+                             if Path(self.state_dir) == default_state else Path(self.state_dir) / "usr")
         return self
 
 

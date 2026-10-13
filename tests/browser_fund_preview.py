@@ -67,6 +67,8 @@ async def main():
                         'event: done\ndata: {"ok":true}\n\n')
                 await route.fulfill(status=200, content_type="text/event-stream", body=body)
 
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline"}))
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir": "/tmp/.knowledge/fund/source", "files": [], "misplaced_files": []}))
             await page.route(re.compile(r".*/api/corpora(?:\?.*)?$"), corpora)
@@ -78,6 +80,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             await expect(page.get_by_role("button", name=re.compile("基金演示库")).first).to_be_visible()
             await page.get_by_role("button", name=re.compile("基金演示库")).first.click()
             await expect(page.get_by_text("当前对话：基金演示库（1/6）")).to_be_visible()

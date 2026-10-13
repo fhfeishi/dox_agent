@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import { IconRail } from "./components/IconRail";
 import { StatusBanner, Toast } from "./components/Overlays";
+import { Guide } from "./components/Guide";
 import { SidePanel } from "./components/SidePanel";
 import { useApp } from "./store";
 import { lazy, Suspense } from "react";
@@ -31,6 +32,7 @@ export function App() {
     setExplorerOpen,
     explorerDoc,
     setExplorerDoc,
+    nav,
   } = useApp();
 
   return (
@@ -44,13 +46,14 @@ export function App() {
         只有内容区让出右侧空间，避免被盖住。窄屏下不让位，直接覆盖。
       */}
       <div
-        className={`flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        className={`relative flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : ""
         }`}
       >
         <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>
           <Outlet />
         </Suspense>
+        <Guide area={nav} />
       </div>
 
       <Suspense fallback={null}>

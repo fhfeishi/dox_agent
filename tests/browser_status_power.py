@@ -26,11 +26,14 @@ async def main():
             page = await browser.new_page(viewport={"width": 1280, "height": 950})
             errors: list[str] = []
             page.on("pageerror", lambda error: errors.append(str(error)))
+            # Login exists since query 2026-1013 1133; offline scripts run as a signed-in administrator.
+            await page.route("**/api/auth/session", lambda r: r.fulfill(json={"configured": True, "authenticated": True, "username": "admin", "role": "admin", "guides_seen": ["home", "leader", "chat", "library", "tasks", "review", "intelligence"]}))
             await page.route("**/api/health", lambda r: r.fulfill(json={"preparation": "ready", "api_key_configured": True, "model": "offline-test"}))
             await page.route("**/api/documents", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=sessions))
 
             await page.goto(origin)
+            await page.get_by_role("button", name="对话", exact=True).click()
             status = page.get_by_role("status").filter(has_text="LLM")
             await expect(status.get_by_text("offline-test")).to_be_visible()
             await expect(status.get_by_text("正常")).to_be_visible()

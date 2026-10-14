@@ -23,11 +23,12 @@ export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, a
     const el = box.current;
     if (!el) return;
     // Fit, but never below a readable scale: a wider drawing starts at its top-left and is panned.
-    const k = Math.max(minFit, Math.min(1.2, (el.clientWidth - 16) / width, (el.clientHeight - 16) / height));
+    // A window that fills the page may enlarge a small drawing further, so it uses the space (query 2026-1014 1642).
+    const k = Math.max(minFit, Math.min(fill || large ? 1.6 : 1.2, (el.clientWidth - 16) / width, (el.clientHeight - 16) / height));
     const over = width * k > el.clientWidth - 16;
     setView({ k, x: over ? (alignEnd ? el.clientWidth - width * k - 8 : 8) : (el.clientWidth - width * k) / 2,
       y: Math.max(8, (el.clientHeight - height * k) / 2) });
-  }, [width, height, minFit, alignEnd]);
+  }, [width, height, minFit, alignEnd, fill, large]);
   useLayoutEffect(() => { fit(); }, [fit, large]);
   useEffect(() => {
     const el = box.current;
@@ -67,7 +68,7 @@ export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, a
   }, [large]);
 
   const button = "grid size-7 place-items-center rounded-md border border-[var(--hairline)] bg-[var(--surface)] text-[13px] text-[var(--slate)] hover:bg-[var(--canvas)]";
-  return <div className={large ? "fixed inset-3 z-[80] flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-2 shadow-2xl" : fill ? "relative flex min-h-0 flex-1 flex-col" : "relative"}>
+  return <div data-zoompan-large={large || undefined} className={large ? "fixed inset-3 z-[80] flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-2 shadow-2xl" : fill ? "relative flex min-h-0 flex-1 flex-col" : "relative"}>
     <div ref={box} role="region" aria-label={label}
       className={`relative touch-none select-none overflow-hidden rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] ${large || fill ? "min-h-0 flex-1" : ""} ${drag.current?.moved ? "cursor-grabbing" : "cursor-grab"}`}
       style={large || fill ? undefined : { height: Math.max(minHeight, Math.min(640, height * 0.85 + 40)) }}

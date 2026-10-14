@@ -3324,3 +3324,34 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
     - 390px 窄屏下“工作导航 ▾”进入概览·领域分析并切换视角下拉，无横向滚动。
   - 实服务（隔离状态副本，未调用模型）：用户、领导、管理员均落在 /home，有“我的工作”与统计（已完成报告 17、生成中 0、未完成 1）；进入 /library 后顶部菜单不变；无页面错误。截图在 `verification/query-20261014-1516/*-home.png`。
 
+### 16.102 query「2026-1014 1642」：资料库默认资料文件、“四维浏览”改名（2026-10-14，工作树未提交）
+
+- 前端：
+  - `store.openCorpus` 默认视图改为资料文件；`CorpusDetail` 视图顺序改为 资料文件 · 研究归纳 · 年度分布 · 项目关系；
+  - 概览“在资料库中查看技术谱系”和资料库预览的第二个按钮明确打开研究归纳；
+  - “四维浏览”在页签、标签、报告单元标题、主题整理说明和指南中改为“研究归纳”。
+- 测试：`browser_scene_hierarchy`、`browser_target_facets`、`browser_review_flows` 中的页签名同步更新。
+- 验证：
+  - tsc、build 通过；npm test 44 passed；五个浏览器脚本 PASS。
+  - 实服务（隔离状态副本）：
+    - 管理员从资料库卡片打开 AI与农业，进入 `/documents`，“资料文件”为当前视图；
+    - 有上传入口，13 个文件各有重命名与删除；
+    - 切到“研究归纳”出现对应页签；从首页“领域资料”打开同样进入资料文件；
+    - 无页面错误。
+- 未做：资料信息的单独编辑表单（目前通过重命名文件修改），待用户确认是否需要。
+- 同日补充（query 1642 第二条）：
+  - `LineageTree` 增加“铺满屏幕”（谱系与详情 `fixed` 覆盖窗口，Esc 退出；图内大窗口打开时 Esc 先关闭大窗口）；
+  - `ZoomPan` 在占满或大窗口时适应比例上限由 1.2 提高到 1.6；
+  - 概览技术谱系视角去掉 1280px 宽度限制。
+  - 实测 1920×1080：概览谱系图区 1094×824；铺满后 1104×884，覆盖整个窗口，图按 155% 适应；Esc 退出；无页面错误。截图 `verification/query-20261014-1642/`。
+
+### 16.103 query「2026-1014 1703」：Ctrl+C 后立即重新启动不再报端口占用（2026-10-14，工作树未提交）
+
+- 复现：保持一个类浏览器的长连接后对服务按 Ctrl+C（SIGINT），服务端连接进入 TIME_WAIT。此时 `launcher.py check` 不带 `SO_REUSEADDR` 绑定失败，报“端口已被占用”；uvicorn 本身带该选项，其实可以启动。
+- 修改：`check_port` 在非 Windows 平台设置 `SO_REUSEADDR`；绑定失败时再尝试连接，没有服务应答即视为可用（Windows 下 TIME_WAIT 不阻止绑定，但也走这一兜底）。
+- 验证：
+  - 新增 `test_port_left_by_a_stopped_service_is_free`，launcher 测试 9 passed；
+  - 实跑 `launch.sh`（端口 8031）：保持长连接 → Ctrl+C → 立即再次 `launch.sh`，存在 TIME-WAIT 时正常启动（“Uvicorn running”）；
+  - 被其他程序监听的端口仍返回 1（原测试 `test_foreign_port_is_not_replaced`）。
+  - 未在 Windows 上实跑 `launch.cmd` 的 Ctrl+C 场景。
+

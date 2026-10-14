@@ -189,10 +189,10 @@ async def main():
             await page.get_by_role("button", name="资料库", exact=True).click()
             # 资料库 opens on the cards (query 2026-1013 2012); a card opens the library in place.
             await page.get_by_role("button", name="打开", exact=True).first.click()
-            await page.get_by_role("button", name="四维浏览", exact=True).first.click()
+            await page.get_by_role("button", name="研究归纳", exact=True).first.click()
 
             block = page.get_by_label("场景层级", exact=True)
-            tabs = block.get_by_role("tablist", name="四维浏览")
+            tabs = block.get_by_role("tablist", name="研究归纳")
             # 技术谱系是第一个视图；只在点击时生成，不在打开页面时调用模型。
             await expect(tabs.get_by_role("tab", name="技术谱系 尚未生成")).to_have_attribute("aria-selected", "true")
             assert LINEAGE_POSTS == [], LINEAGE_POSTS

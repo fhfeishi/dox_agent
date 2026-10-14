@@ -13,9 +13,10 @@ import { Button, Pill } from "./ui";
 
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
 type View = "target" | "timeline" | "relations" | "files";
-const VIEWS: [View, string][] = [["target", "四维浏览"], ["timeline", "年度分布"], ["relations", "项目关系"], ["files", "资料文件"]];
+// 资料文件 first and opened by default (query 2026-1014 1642); 研究归纳 was 四维浏览.
+const VIEWS: [View, string][] = [["files", "资料文件"], ["target", "研究归纳"], ["timeline", "年度分布"], ["relations", "项目关系"]];
 
-/** Corpus main-area view: 资料（源文件管理）与四维浏览（报告单元）。 */
+/** Corpus main-area view: 资料文件（增删改查）与研究归纳、年度分布、项目关系。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
   const {
     corpora,

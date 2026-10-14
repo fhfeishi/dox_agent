@@ -168,21 +168,22 @@ type TargetRecord = {
  * its top when they open, so the lineage fills the screen (query 2026-1013 2012); both panes share
  * the height on wide screens, so the lineage and its detail line up.
  */
-function useFillHeight(box: React.RefObject<HTMLDivElement | null>) {
+function useFillHeight(box: React.RefObject<HTMLDivElement | null>, full: boolean) {
   const [height, setHeight] = useState(640);
   useEffect(() => {
     const scroller = (() => { let el = box.current?.parentElement; while (el && !/(auto|scroll)/.test(getComputedStyle(el).overflowY)) el = el.parentElement; return el; })();
-    const measure = () => setHeight(Math.max(520, Math.round((scroller?.clientHeight ?? window.innerHeight) - 24)));
+    // 铺满屏幕 covers the window; otherwise the panes take the page's visible area.
+    const measure = () => setHeight(Math.max(520, Math.round((full ? window.innerHeight : scroller?.clientHeight ?? window.innerHeight) - 24)));
     measure();
-    requestAnimationFrame(() => box.current?.scrollIntoView({ block: "start" }));
+    if (!full) requestAnimationFrame(() => box.current?.scrollIntoView({ block: "start" }));
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [box]);
+  }, [box, full]);
   return height;
 }
 
 /** Left/right panes of equal height with a draggable divider on wide screens; stacked on narrow ones. */
-function SplitPane({ left, right }: { left: ReactNode; right: ReactNode }) {
+function SplitPane({ left, right, full }: { left: ReactNode; right: ReactNode; full: boolean }) {
   const box = useRef<HTMLDivElement>(null);
   const [wide, setWide] = useState(() => typeof window !== "undefined" && window.matchMedia("(min-width: 1280px)").matches);
   const [share, setShare] = useState(() => {
@@ -194,12 +195,14 @@ function SplitPane({ left, right }: { left: ReactNode; right: ReactNode }) {
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
-  const height = useFillHeight(box);
+  const height = useFillHeight(box, full);
   const save = (value: number) => { try { localStorage.setItem("dox-lineage-split", String(value)); } catch { /* preference only */ } };
   const set = (value: number) => { const next = Math.min(75, Math.max(35, value)); setShare(next); return next; };
-  if (!wide) return <div ref={box} className="grid gap-4"><div style={{ height }}>{left}</div>{right}</div>;
-  return <div ref={box} className="flex" style={{ height }}>
-    <div className="h-full min-w-0" style={{ width: `${share}%` }}>{left}</div>
+  // 铺满屏幕 (query 2026-1014 1642): the tree and its detail cover the whole window until Esc.
+  const cover = full ? "fixed inset-0 z-[60] overflow-auto bg-[var(--canvas)] p-3" : "";
+  if (!wide) return <div ref={box} className={`grid gap-4 ${cover}`}><div style={{ height }}>{left}</div>{right}</div>;
+  return <div ref={box} className={`flex ${cover}`} style={full ? undefined : { height }}>
+    <div className="h-full min-w-0" style={{ width: `${share}%`, height: full ? height : undefined }}>{left}</div>
     <div role="separator" aria-orientation="vertical" aria-label="调整左右窗格宽度" aria-valuemin={35} aria-valuemax={75} aria-valuenow={Math.round(share)} tabIndex={0}
       className="group mx-1 flex w-3 shrink-0 cursor-col-resize touch-none select-none items-center justify-center self-stretch rounded hover:bg-[var(--primary-soft)]"
       onPointerDown={(e) => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); }}
@@ -212,7 +215,7 @@ function SplitPane({ left, right }: { left: ReactNode; right: ReactNode }) {
       onKeyDown={(e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); save(set(share + (e.key === "ArrowLeft" ? -3 : 3))); } }}>
       <span className="h-12 w-1 rounded-full bg-[var(--hairline-strong)] group-hover:bg-[var(--primary)]" />
     </div>
-    <div className="h-full min-w-0 flex-1">{right}</div>
+    <div className="h-full min-w-0 flex-1" style={{ height: full ? height : undefined }}>{right}</div>
   </div>;
 }
 
@@ -231,6 +234,13 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   corpusId: string; focus: string; onFocus: (key: string) => void; onIssue: (scene: string) => void;
 }) {
+  const [full, setFull] = useState(false);
+  useEffect(() => {
+    if (!full) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && !document.querySelector("[data-zoompan-large]")) setFull(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [full]);
   const { corpora, showInspector } = useApp();
   const { role } = useAuth();
   const client = useQueryClient();
@@ -320,7 +330,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   const at = leaf ? locateItem(data, leafId) : null;
   const project = leaf ? projects.get(leaf.project_id) : undefined;
 
-  return <SplitPane left={
+  return <SplitPane full={full} left={
     <div className="flex h-full flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="size-3 rounded-full" style={{ background: color }} />
@@ -329,6 +339,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
         <span className="flex-1" />
         {data.categories.length ? <Button size="sm" variant="ghost" onClick={() => void outline()}>复制谱系大纲</Button> : null}
         {generate}
+        {data.categories.length ? <Button size="sm" variant={full ? "primary" : "ghost"} onClick={() => setFull(!full)}>{full ? "退出铺满（Esc）" : "铺满屏幕"}</Button> : null}
       </div>
       {running ? <div role="status" className="mb-2 text-xs text-[var(--steel)]">正在归类与判定报告所述阶段 {data.job!.done}/{data.job!.total} 条（大库约需数分钟，可离开本页）
         <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-[var(--hairline)]"><span className="block h-full bg-[var(--primary)]" style={{ width: `${data.job!.done / Math.max(1, data.job!.total) * 100}%` }} /></span></div> : null}

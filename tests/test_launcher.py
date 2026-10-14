@@ -86,3 +86,11 @@ def test_running_service_with_older_code_is_reported(monkeypatch, capsys):
         server.listen()
         assert launcher.check_port("127.0.0.1", server.getsockname()[1]) == 10
     assert "旧版本的后端代码" in capsys.readouterr().out
+
+
+def test_port_left_by_a_stopped_service_is_free():
+    """After Ctrl+C the port can still be bound by leftover connections (query 2026-1014 1703):
+    nothing listens there, so the launcher starts instead of reporting the port as taken."""
+    with socket.socket() as leftover:
+        leftover.bind(("127.0.0.1", 0))  # bound, not listening, like a closed service's connections
+        assert launcher.check_port("127.0.0.1", leftover.getsockname()[1]) == 0

@@ -189,7 +189,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const regenerate = role !== "admin" ? null : <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
     {busy ? "生成中…" : data.state === "missing" ? "生成四维归纳" : "重新生成"}</Button>;
   return <section aria-label="场景层级" className="mt-5 space-y-4">
-    <div role="tablist" aria-label="四维浏览" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
+    <div role="tablist" aria-label="研究归纳" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
         className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"

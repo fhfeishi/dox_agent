@@ -25,12 +25,28 @@ def service_url(host: str, port: int) -> str:
     return f"http://{'127.0.0.1' if host in ('0.0.0.0', '') else host}:{port}/"
 
 
+def _listening(host: str, port: int) -> bool:
+    """Whether something accepts connections on the port (a bind can fail on leftovers alone)."""
+    try:
+        with socket.create_connection(("127.0.0.1" if host in ("0.0.0.0", "") else host, port), timeout=1):
+            return True
+    except OSError:
+        return False
+
+
 def check_port(host: str, port: int) -> int:
     try:
         with socket.socket() as listener:
+            # After Ctrl+C the stopped service's connections linger in TIME_WAIT for about a minute;
+            # uvicorn binds with SO_REUSEADDR, so the check does too (query 2026-1014 1703). On Windows
+            # the flag would allow taking a port that is really in use, and TIME_WAIT does not block.
+            if os.name != "nt":
+                listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             listener.bind((host, port))
         return 0
     except OSError:
+        if not _listening(host, port):
+            return 0  # nothing answers: only connections of a stopped service are left
         url = f"http://{'127.0.0.1' if host == '0.0.0.0' else host}:{port}"
         try:
             opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))

@@ -46,7 +46,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     </div>
     <div className="flex flex-wrap gap-2">
       <button type="button" onClick={() => openCorpus(corpusId)} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white">进入资料库</button>
-      <button type="button" onClick={() => openCorpus(corpusId, "files")} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">资料文件</button>
+      <button type="button" onClick={() => openCorpus(corpusId, "target")} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">研究归纳</button>
     </div>
     {facts.length ? <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-xl bg-[var(--surface)] p-3 text-[13px]">
       {facts.map(([k, v]) => <div key={k} className="contents"><dt className="text-[var(--steel)]">{k}</dt><dd>{v}</dd></div>)}

@@ -73,7 +73,8 @@ export function Overview() {
       : !current ? <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
       : view === "tech" ? <KeyTechnology key={current.id} corpusId={current.id} name={short(current.name)} />
-      : <div className="mx-auto max-w-[1280px] px-5 py-5"><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
+      // The lineage takes the full width (query 2026-1014 1642); other views keep a reading width.
+      : <div className={view === "lineage" ? "px-5 py-4" : "mx-auto max-w-[1280px] px-5 py-5"}><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
   </main>;
 }
 
@@ -238,7 +239,7 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
   const noRoute = issues.filter((i) => !i.routes.length);
   return <div className="mx-auto max-w-[1180px] space-y-6 px-5 py-6">
     <div className="flex flex-wrap items-baseline gap-3"><h1 className="text-xl font-semibold">{name} · 关键技术</h1>
-      <button type="button" className="text-sm text-[var(--link)]" onClick={() => openCorpus(corpusId)}>在资料库中查看技术谱系 →</button></div>
+      <button type="button" className="text-sm text-[var(--link)]" onClick={() => openCorpus(corpusId, "target")}>在资料库中查看技术谱系 →</button></div>
     <section aria-label="关键技术方向" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
       <table className="w-full min-w-[720px] text-left text-[13.5px]">
         <thead className="bg-[var(--surface)] text-[12.5px] text-[var(--steel)]"><tr>

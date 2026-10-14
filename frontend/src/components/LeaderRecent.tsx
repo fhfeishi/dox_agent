@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "../auth";
 import { fromFacts, headline, PERIODS, type Facts, type Period, type WorkItem } from "../recentWork";
 import { useApp } from "../store";
 import { Chart, type ChartSpec } from "./Charts";
@@ -11,12 +10,11 @@ const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as
 /**
  * 近期工作 (query 2026-1013 1637): analysis reports and review tasks in a chosen period — a one-line
  * summary first, then finished and unfinished work. The server counts the period over every record,
- * merges repeated reviews of one application and, for a leader, keeps only published work
- * (节点审查 A4/A5/Q2). Reports open in the right-hand panel, reviews on their own page.
+ * merges repeated reviews of one application (节点审查 A4/A5); every role sees the same work
+ * (query 2026-1014 1516). Reports open in the right-hand panel, reviews on their own page.
  */
 export function LeaderRecent() {
   const { showInspector } = useApp();
-  const { role } = useAuth();
   const navigate = useNavigate();
   const client = useQueryClient();
   const [period, setPeriod] = useState<Period>("7d");
@@ -63,7 +61,6 @@ export function LeaderRecent() {
       <span className="min-w-0 flex-1"><b className="block truncate text-[14px] font-medium">{item.title}</b>
         {item.domains.length ? <span className="block truncate text-xs text-[var(--steel)]">{item.domains.join("、")}</span> : null}</span>
       {item.runs > 1 ? <span className="shrink-0 text-xs text-[var(--stone)]">共审查 {item.runs} 次</span> : null}
-      {role !== "leader" ? <span className={`shrink-0 text-xs ${item.published ? "text-[#0e7a28]" : "text-[var(--stone)]"}`}>{item.published ? "已发布" : "未发布"}</span> : null}
       <span className="shrink-0 text-xs text-[var(--steel)]">{STATE[item.state]} · {item.date.slice(0, 10)}</span>
     </button>)}</div>
   </section> : null;
@@ -81,7 +78,7 @@ export function LeaderRecent() {
     <section aria-label="总结报告" className="rounded-xl border border-[var(--hairline)] p-4">
       <div className="flex flex-wrap items-center gap-3">
         <h2 className="text-sm font-semibold">总结报告</h2>
-        <span className="flex-1 text-xs text-[var(--stone)]">由模型依据本期已发布的报告与审查撰写文字，图表数字由系统统计；生成约需一分钟。</span>
+        <span className="flex-1 text-xs text-[var(--stone)]">由模型依据本期的报告与审查撰写文字，图表数字由系统统计；生成约需一分钟。</span>
         <button type="button" disabled={busy} onClick={() => void generate()}
           className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white disabled:opacity-50">{busy ? "正在生成…" : `生成${label}总结`}</button>
       </div>
@@ -94,6 +91,6 @@ export function LeaderRecent() {
     {list("进行中", summary.active)}
     {list("已完成", summary.done)}
     {list("未完成", summary.failed)}
-    <p className="text-xs leading-5 text-[var(--stone)]">按报告更新时间与审查完成时间统计；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。{role === "leader" ? "这里只列出作者或管理员已发布的报告与审查。" : "领导视图与总结报告只采用已发布的内容；报告和审查结果页可发布。"}</p>
+    <p className="text-xs leading-5 text-[var(--stone)]">按报告更新时间与审查完成时间统计；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。</p>
   </div>;
 }

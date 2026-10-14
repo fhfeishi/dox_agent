@@ -1,4 +1,4 @@
-import { TaskProgress } from "./TaskProgress";
+import { GenerationProgress } from "./GenerationProgress";
 import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
 import { InspectorResults } from "./InspectorResults";
 import { ProjectDetail } from "./ProjectOverview";
@@ -7,7 +7,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, artifactExportUrl, publishArtifact, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, artifactExportUrl, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -21,7 +21,6 @@ import { TextPreview } from "./DocumentPreview";
 import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
 import { LibraryPreview } from "./LibraryPreview";
-import { PublishButton } from "./PublishButton";
 import { YearReports } from "./YearDistribution";
 
 type InspTab = "out" | "cite" | "src";
@@ -263,7 +262,7 @@ export function Inspector() {
           </button>
         ) : null}
         <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
-          {inspectorTarget.kind === "activity" ? "任务进度" : inspectorTarget.kind === "results" ? "报告中心"
+          {inspectorTarget.kind === "results" ? "成果"
             : inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
             : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
@@ -340,7 +339,6 @@ export function Inspector() {
       </div> : null}
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[18px] pt-[18px] pb-[20px]">
-        {inspectorTarget.kind === "activity" ? <TaskProgress /> : null}
         {inspectorTarget.kind === "results" ? <InspectorResults /> : null}
 
         {inspectorTarget.kind === "task" ? (
@@ -383,16 +381,13 @@ export function Inspector() {
             </SectionTitle>
             {artifactError ? <p role="alert" className="text-[12px] text-[var(--red)]">{artifactError}</p> : null}
             {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取成果…</p> : null}
+            {artifact?.status === "generating" ? <GenerationProgress status="generating" /> : null}
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
                 <div className="mb-3 flex flex-wrap gap-2 text-sm">
                   {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
                 </div>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
-                {artifact.type === "report" && artifact.lifecycle !== "trashed" ? <div className="mt-[6px]"><PublishButton createdBy={artifact.created_by} publishedAt={artifact.published_at}
-                  completed={artifact.status === "completed"} publish={async (published) => {
-                    const next = await publishArtifact(artifact.artifact_id, published); setArtifact({ ...artifact, ...next, version: artifact.version, markdown: artifact.markdown });
-                  }} /></div> : null}
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
                   {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
                   {artifact.legacy ? " · 历史报告（只读兼容）" : ""}

@@ -42,8 +42,8 @@ import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocument
 import { useWorkspace } from "./workspace";
 import { useAuth } from "./auth";
 
-export type NavKey = "admin" | "mine" | "chat" | "tasks" | "library" | "review" | "intelligence";
-export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
+export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence";
+export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
@@ -61,7 +61,6 @@ function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
     case "overview": return "overview";
     case "results": return "results";
-    case "activity": return "activity";
     case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
     case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
     case "review-template": return "review-template:" + target.templateId;
@@ -254,8 +253,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { admin: "/admin", mine: "/mine", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
-  const nav: NavKey = location.pathname.startsWith("/admin") ? "admin" : location.pathname.startsWith("/mine") ? "mine" : location.pathname.startsWith("/library") ? "library"
+  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
+  const nav: NavKey = location.pathname === "/home" ? "home" : location.pathname.startsWith("/overview") ? "overview" : location.pathname.startsWith("/library") ? "library"
     : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
       : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };

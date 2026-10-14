@@ -1,3 +1,4 @@
+import { GenerationProgress } from "./GenerationProgress";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Markdown from "react-markdown";
@@ -104,6 +105,7 @@ export function IntelligenceView() {
         <details><summary className="cursor-pointer text-sm text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-sm" /></details>
       </section>
       {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-sm text-red-800">{error}</p> : null}
+      {busy ? <GenerationProgress status="generating" stage_label={busy} /> : null}
       <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-sm text-[var(--steel)]">{busy || "完成后自动进入存量分析的分析成果"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
     </div>
   </section>;

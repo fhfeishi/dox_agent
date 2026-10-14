@@ -1,3 +1,4 @@
+import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -572,6 +573,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           ) : null}
         </div>
       ) : null}
+      {busy ? <GenerationProgress status="generating" /> : null}
       {error ? (
         <p role="alert" className="mt-[6px] text-[11.5px] text-[var(--red)]">
           {error}

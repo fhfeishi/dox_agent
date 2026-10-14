@@ -287,10 +287,6 @@ class ComposeRequest(BaseModel):
         return [v.strip() for v in values]
 
 
-class Publish(BaseModel):
-    published: bool
-
-
 class ArtifactCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     type: Literal["answer_snapshot", "report"] = "answer_snapshot"
@@ -2083,7 +2079,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     @app.get("/api/summaries/facts")
     async def summary_facts(period: str, request: Request):
         """近期工作 counted on the server over every report and review (节点审查 A4/A5): repeated reviews
-        of one application count once; a leader sees only what was published (Q2)."""
+        of one application count once. Every role sees the same reports (query 2026-1014 1516)."""
         from .period_summary import PERIODS, TASK_ID, gather, report_rows
         from .review import storage as review_db
         if period not in PERIODS:
@@ -2091,11 +2087,39 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         names = {info.id: info.name for info in await asyncio.to_thread(scan_corpora, settings)}
         rows = await asyncio.to_thread(report_rows, app.state.artifacts)
         runs = await asyncio.to_thread(review_db.all_items, "run")
-        facts = gather(period, datetime.now().astimezone(), rows, runs, names,
-                       published_only=request.state.user[1] == "leader")
+        facts = gather(period, datetime.now().astimezone(), rows, runs, names)
         summaries = [{"id": r["artifact_id"], "title": r["title"], "created_at": r["created_at"]}
                      for r in rows if r["task_id"] == TASK_ID and r["status"] == "completed"][:6]
         return {**facts, "summaries": summaries}
+
+    @app.get("/api/results/summary")
+    async def results_summary():
+        """Global report totals, independent of list pagination and user role."""
+        def count():
+            from .review import storage as review_storage
+            completed = {"analysis": 0, "review": 0, "intelligence": 0}
+            active = failed = recent = 0
+            with app.state.artifacts.connect() as db:
+                rows = db.execute(
+                    "SELECT CASE WHEN task_id='intelligence' THEN 'intelligence' ELSE 'analysis' END, "
+                    "status, COUNT(*), SUM(CASE WHEN julianday(created_at)>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
+                    "FROM artifacts WHERE type='report' AND trashed_at IS NULL GROUP BY 1,2").fetchall()
+            with review_storage.connect() as db:
+                rows += db.execute(
+                    "SELECT 'review', json_extract(payload,'$.status'), COUNT(*), "
+                    "SUM(CASE WHEN julianday(json_extract(payload,'$.created_at'))>=julianday('now','-7 days') THEN 1 ELSE 0 END) "
+                    "FROM objects WHERE kind='run' GROUP BY 2").fetchall()
+            for group, status, amount, new in rows:
+                if status == "completed":
+                    completed[group] += amount
+                    recent += new or 0
+                elif status in ("queued", "running", "generating"):
+                    active += amount
+                elif status == "failed":
+                    failed += amount
+            completed["total"] = sum(completed.values())
+            return {"completed": completed, "active": active, "failed": failed, "recent_completed": recent}
+        return await asyncio.to_thread(count)
 
     @app.get("/api/overview/libraries")
     async def libraries_overview():
@@ -2529,18 +2553,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def purge_artifact(artifact_id: str, request: Request):
         return await lifecycle_change(artifact_id,"purge",request)
 
-    @app.post("/api/artifacts/{artifact_id}/publish")
-    async def publish_artifact(artifact_id: str, payload: Publish, request: Request):
-        """节点审查 Q2: the author or an administrator publishes a report for the leader view and summaries."""
-        try:
-            item = await asyncio.to_thread(app.state.artifacts.get, artifact_id)
-        except KeyError as exc:
-            raise HTTPException(404, "成果不存在") from exc
-        username, role = request.state.user
-        if role != "admin" and item.get("created_by") != username:
-            raise HTTPException(403, "只有作者或管理员可以发布")
-        return await asyncio.to_thread(app.state.artifacts.publish, artifact_id, payload.published)
-
     @app.post("/api/artifacts", status_code=201)
     async def create_artifact(payload: ArtifactCreate):
         """Save only the exact completed chat output as an original answer snapshot."""
@@ -2714,7 +2726,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|admin|mine|leader|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|overview(?:/(?:build|domains|recent))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

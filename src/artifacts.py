@@ -72,9 +72,8 @@ class ArtifactStore:
                 "report_id": "TEXT",
                 "report_params": "TEXT NOT NULL DEFAULT '{}'",
                 "generated_version": "INTEGER",
-                # 节点审查 Q2: who created it (authorship only) and when it was published for leaders.
+                # Who created it (authorship only; 我的工作 lists one's own reports).
                 "created_by": "TEXT NOT NULL DEFAULT ''",
-                "published_at": "TEXT",
             }.items():
                 if name not in columns:
                     db.execute(f"ALTER TABLE artifacts ADD COLUMN {name} {definition}")
@@ -480,20 +479,6 @@ class ArtifactStore:
             )
         return self.get(artifact_id)
 
-    def publish(self, artifact_id: str, published: bool) -> dict:
-        """Mark a completed report as published for the leader view and period summaries, or withdraw it."""
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            self._guard(db, artifact_id, writing=True)
-            row = db.execute("SELECT status FROM artifacts WHERE id=?", (artifact_id,)).fetchone()
-            if row is None:
-                raise KeyError("成果不存在")
-            if published and row[0] != "completed":
-                raise HTTPException(409, "只有已完成的报告可以发布")
-            db.execute("UPDATE artifacts SET published_at=?, revision=revision+1 WHERE id=?",
-                       (_now() if published else None, artifact_id))
-        return self.get(artifact_id)
-
     def add_version(
         self,
         artifact_id: str,
@@ -605,14 +590,13 @@ class ArtifactStore:
             report_params=json.loads(row[20]),
             generated_version=row[21],
             created_by=row[22],
-            published_at=row[23],
             lifecycle="trashed" if row[17] else "active",
         )
         return item
 
     _COLUMNS = (
         "id, created_at, updated_at, type, status, title, current_version, session_key, "
-        "run_id, corpus_ids, task_id, template_id, export_format, export_status, fail_reason, payload, revision, trashed_at, purge_after, report_id, report_params, generated_version, created_by, published_at"
+        "run_id, corpus_ids, task_id, template_id, export_format, export_status, fail_reason, payload, revision, trashed_at, purge_after, report_id, report_params, generated_version, created_by"
     )
 
     def get(self, artifact_id: str, version: int | None = None, *, include_trashed=False) -> dict:
@@ -713,7 +697,6 @@ class ArtifactStore:
         limit: int = 50,
         view: str = "active",
         cursor: str | None = None,
-        published: bool | None = None,
         created_by: str | None = None,
     ) -> list[dict]:
         """Metadata-only list. ``session_key=None`` means global; ``""`` filters empty session.
@@ -743,8 +726,6 @@ class ArtifactStore:
         if status is not None:
             clauses.append("status=?")
             args.append(status)
-        if published is not None:
-            clauses.append("published_at IS NOT NULL" if published else "published_at IS NULL")
         if created_by is not None:
             clauses.append("created_by=?")
             args.append(created_by)

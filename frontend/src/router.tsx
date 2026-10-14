@@ -1,13 +1,13 @@
-import { createBrowserRouter, Navigate, Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
+import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
-import { LeaderView } from "./components/LeaderView";
 import { AppProvider, useApp } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
 import { ReviewShell } from "./components/ReviewViews";
 import { useDocuments } from "./useDocuments";
 
+const Overview = lazy(() => import("./components/Overview").then((m) => ({ default: m.Overview })));
 const CorpusDetail = lazy(() => import("./components/CorpusDetail").then((m) => ({ default: m.CorpusDetail })));
 const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((m) => ({ default: m.DocumentPreview })));
 function LibraryPage() {
@@ -36,22 +36,21 @@ function LibraryPage() {
 }
 
 
-const WORKBENCH = ["/mine", "/chat", "/library", "/tasks", "/review", "/intelligence"];
-
-/** A leader lands on the leader view and reaches the workbench through its 工作台 menu (query 2026-1013 1842); administrators and users get the full system. */
+/** Every role works under the same top bar (query 2026-1014 1516); only the landing page differs. */
 function Root() {
-  const { role } = useAuth();
-  const { pathname } = useLocation();
-  // Leader accounts start in the leader view, which nobody else can open (query 1745); from its
-  // 工作台 button they use the workbench pages like any user (query 2026-1013 1842).
-  const workbench = WORKBENCH.some((prefix) => pathname.startsWith(prefix));
-  return <AppProvider>{role === "leader" && !workbench ? <LeaderView /> : <App />}</AppProvider>;
+  return <AppProvider><App /></AppProvider>;
 }
 
-/** Where each role starts: administrators in 管理视图 (query 1745), users in 我的工作 (节点审查 Q5). */
+/** Every role starts on 首页, which also holds 我的工作 (user's choice, 2026-10-14). */
 function RoleIndex() {
+  return <Navigate to="/home" replace />;
+}
+
+/** 概览 is for administrators and leaders; a user who follows a link to it goes to 首页. */
+function OverviewPage() {
   const { role } = useAuth();
-  return <Navigate to={role === "user" ? "/mine" : "/admin"} replace />;
+  if (role === "user") return <Navigate to="/home" replace />;
+  return <Suspense fallback={null}><Overview /></Suspense>;
 }
 
 /** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
@@ -65,9 +64,8 @@ export const router = createBrowserRouter([{
   Component: () => <AuthGate><Root /></AuthGate>,
   children: [
     { index: true, Component: RoleIndex },
-    { path: "leader", element: <Navigate to="/" replace /> },
-    { path: "admin", lazy: async () => ({ Component: (await import("./components/AdminView")).AdminView }) },
-    { path: "mine", lazy: async () => ({ Component: (await import("./components/MyWork")).MyWork }) },
+    { path: "home", lazy: async () => ({ Component: (await import("./components/WorkspaceHome")).WorkspaceHome }) },
+    { path: "overview/:area?", Component: OverviewPage },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
       // 资料库 opens on the library cards (query 2026-1013 2012); a card opens one in the same workspace.

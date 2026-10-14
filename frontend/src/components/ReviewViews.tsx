@@ -1,9 +1,10 @@
+import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, Outlet, useLocation, useParams, useSearchParams } from "react-router";
 import {
   addReviewEvidence, createReviewRun, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth,
   fetchReviewMappings, fetchReviewRules, fetchReviewRun, fetchReviewRuns, patchReviewDocument, reextractReviewDocument,
-  publishReviewRun, reviewExportUrl, saveReviewMappings, searchReviewEvidence, uploadReviewEvidence,
+  reviewExportUrl, saveReviewMappings, searchReviewEvidence, uploadReviewEvidence,
   testReviewModel, uploadReviewDocument,
   REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL,
   type ReviewCard, type ReviewDoc, type ReviewEvidence, type ReviewFinding, type ReviewHealth, type ReviewKind,
@@ -12,7 +13,6 @@ import {
 import { useApp } from "../store";
 import { Button, Pill, type Tone } from "./ui";
 import { Icon } from "./Icons";
-import { PublishButton } from "./PublishButton";
 
 const TABS: { to: string; label: string; keep?: boolean }[] = [
   { to: "/review/formal", label: "形式审查", keep: true },
@@ -323,6 +323,7 @@ function LatestRun({ runs }: { runs: ReviewRun[] }) {
       <b className="min-w-0 flex-1 truncate">{title}</b>
       <span className="text-xs text-[var(--link)]">{latest.status === "completed" ? "打开报告 →" : latest.status === "failed" ? "查看原因 →" : latest.stage_label}</span>
     </Link>
+    {["queued", "running"].includes(latest.status) ? <GenerationProgress compact status={latest.status} stage={latest.stage} stage_label={latest.stage_label} kind={latest.request.kind} /> : null}
     {active ? <p className="mt-1 text-xs text-[var(--steel)]">共 {active} 项在排队或审查中，可离开本页，完成后从这里或左侧审核任务打开。</p> : null}
   </div>;
 }
@@ -859,6 +860,7 @@ export function ReviewRunPage() {
           <Pill tone={run.status === "completed" ? "mint" : run.status === "failed" ? "rose" : "sky"}>{run.status === "completed" ? "已生成" : REVIEW_STATUS_LABEL[run.status] ?? run.status}</Pill>
         </div>
         <p className="mt-4 text-sm leading-7">{run.reader_report?.summary || run.stage_label}</p>
+        {["queued", "running", "failed"].includes(run.status) ? <GenerationProgress status={run.status} stage={run.stage} stage_label={run.stage_label} kind={run.request.kind} /> : null}
         {run.error ? <div role="alert" className="mt-3 rounded bg-[var(--tint-rose)] p-3 text-sm">{run.error}
           <Link className="ml-3 text-[var(--link)]" to={`/review/${run.request.kind}?proposal=${encodeURIComponent(doc.id)}&template=${encodeURIComponent(run.request.rule_id ?? "")}`}>返回准备并重试</Link>
         </div> : null}
@@ -869,8 +871,6 @@ export function ReviewRunPage() {
           {!formal ? <span>评价方式：{run.request.mode === "historical" ? `历史评价 · ${run.request.cutoff_date}` : "更新建议"}</span> : null}
           {!formal ? <span>对照资料库：{corpora.find((item) => item.id === run.request.corpus_ids?.[0])?.name ?? run.request.corpus_ids?.[0] ?? "未记录"} · 参考报告 {run.technical?.local_matches ?? 0}/{run.request.reference_count ?? 3} 篇 · 文献 {run.request.evidence_ids?.length ?? 0} 篇</span> : null}
           <span>生成：{localTime(run.created_at)}</span>
-          <PublishButton createdBy={run.created_by} publishedAt={run.published_at} completed={run.status === "completed"}
-            publish={async (published) => { const next = await publishReviewRun(run.id, published); setRun({ ...run, published_at: next.published_at }); }} />
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-sm text-[var(--primary)]">
           {run.status === "completed" ? <a href={reviewExportUrl(run.id, "docx")}>下载 Word 报告</a> : null}

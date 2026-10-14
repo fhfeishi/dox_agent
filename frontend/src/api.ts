@@ -243,8 +243,8 @@ export type ArtifactSummary = {
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
   task_id: string; task_version?: number | null; template_id: string; template_version?: number | null; export_format: string; export_status: string;
   fail_reason: string; legacy?: boolean;
-  /** 节点审查 Q2: the account that created it ("" for older reports) and when it was published for leaders. */
-  created_by?: string; published_at?: string | null;
+  /** The account that created it ("" for older reports); 首页的“我的工作” lists one's own. */
+  created_by?: string;
   source_verification?: "verified" | "unverified" | "user_modified";
   run_available?: boolean;
 };
@@ -550,8 +550,3 @@ export async function composeQuestion(input: ComposeInput): Promise<string> {
   return (payload as { question: string }).question;
 }
 
-/** Publish a finished report for the leader view and period summaries, or withdraw it (author or administrator). */
-export async function publishArtifact(artifactId: string, published: boolean): Promise<ArtifactSummary> {
-  return jsonOrThrow(await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/publish`, { method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ published }) }), published ? "发布失败" : "撤回失败") as Promise<ArtifactSummary>;
-}

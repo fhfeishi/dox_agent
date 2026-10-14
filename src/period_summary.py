@@ -61,29 +61,25 @@ def in_period(period: str, now: datetime, value: str | None) -> bool:
     return (t := _when(value)) is not None and start <= t <= now
 
 
-def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], names: dict[str, str], *,
-           published_only: bool = False) -> dict:
+def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], names: dict[str, str]) -> dict:
     """Facts of the period: reports (with body excerpts) and review tasks, newest first.
 
-    节点审查 A4 / Q2: repeated reviews of one application (same file content) in one kind count once
-    (the newest, with how many runs it took); ``published_only`` keeps what the author or an administrator published,
-    which is all the leader view and the period summaries read.
+    节点审查 A4: repeated reviews of one application (same file content) in one kind count once (the
+    newest, with how many runs it took). Every role reads the same work (query 2026-1014 1516 removed
+    publishing).
     """
     start = period_start(period, now)
     inside = lambda value: in_period(period, now, value)
     short = lambda cid: names.get(cid, cid).replace("自然科学基金-", "")
-    shown = lambda r: not published_only or bool(r.get("published_at"))
-    # A leader reads what was published in the period, so published work is dated by its publication
-    # (节点审查复核 2012 §十三); others see work by when it was last updated or finished.
-    report_date = lambda r: (r.get("published_at") if published_only else None) or r.get("updated_at") or r.get("created_at")
-    run_date = lambda r: (r.get("published_at") if published_only else None) or r.get("finished_at") or r.get("created_at")
+    report_date = lambda r: r.get("updated_at") or r.get("created_at")
+    run_date = lambda r: r.get("finished_at") or r.get("created_at")
     picked_reports = [{"id": r.get("artifact_id", ""), "title": r.get("title") or "分析报告", "domains": [short(c) for c in r.get("corpus_ids") or []],
                        "date": (report_date(r) or "")[:10],
                        "state": "已完成" if r.get("status") == "completed" else "未完成" if r.get("status") == "failed" else "进行中",
-                       "published": bool(r.get("published_at")), "excerpt": _excerpt(r.get("markdown") or "")}
-                      for r in reports if r.get("task_id") != TASK_ID and shown(r) and inside(report_date(r))]
+                       "excerpt": _excerpt(r.get("markdown") or "")}
+                      for r in reports if r.get("task_id") != TASK_ID and inside(report_date(r))]
     latest: dict[tuple, dict] = {}
-    for r in sorted((r for r in runs if shown(r) and inside(run_date(r))), key=lambda r: run_date(r) or "", reverse=True):
+    for r in sorted((r for r in runs if inside(run_date(r))), key=lambda r: run_date(r) or "", reverse=True):
         document = r.get("document") or {}
         kind = KINDS.get((r.get("request") or {}).get("kind"), "资料审查")  # runs from before the two kinds
         # The same file uploaded again gets a new document id; its content hash says it is one application.
@@ -96,7 +92,7 @@ def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], na
                        "kind": kind, "domains": [short(c) for c in (r.get("request") or {}).get("corpus_ids") or []],
                        "date": (run_date(r) or "")[:10],
                        "state": {"completed": "已完成", "failed": "未完成"}.get(r.get("status"), "进行中"),
-                       "published": bool(r.get("published_at")), "issues": (r.get("summary") or {}).get("issue"), "runs": 1}
+                       "issues": (r.get("summary") or {}).get("issue"), "runs": 1}
     return {"period": PERIODS[period], "start": start.date().isoformat(), "end": now.date().isoformat(),
             "reports": sorted(picked_reports, key=lambda r: r["date"], reverse=True),
             "reviews": sorted(latest.values(), key=lambda r: r["date"], reverse=True)}
@@ -177,10 +173,10 @@ async def generate(app, period: str, model) -> dict:
     infos = scan_corpora(settings)
     names = {info.id: info.name for info in infos}
     now = datetime.now().astimezone()
-    rows = [r for r in report_rows(store) if r["status"] == "completed" and r.get("published_at")
-            and in_period(period, now, r["published_at"])]
+    rows = [r for r in report_rows(store) if r["status"] == "completed"
+            and in_period(period, now, r.get("updated_at") or r.get("created_at"))]
     reports = [store.get(row["artifact_id"]) for row in rows]  # bodies for the excerpts
-    facts = gather(period, now, reports, review_db.all_items("run"), names, published_only=True)
+    facts = gather(period, now, reports, review_db.all_items("run"), names)
 
     def scenes_of(short_name: str) -> dict:
         info = next((i for i in infos if i.name.replace("自然科学基金-", "") == short_name), None)
@@ -200,7 +196,7 @@ async def generate(app, period: str, model) -> dict:
                 "outside": len(projects - placed), "total": len(projects)}
 
     figures = charts(facts, scenes_of)
-    for_model = {**facts, **{key: [{k: v for k, v in item.items() if k not in ("id", "published")} for item in facts[key]]
+    for_model = {**facts, **{key: [{k: v for k, v in item.items() if k != "id"} for item in facts[key]]
                                 for key in ("reports", "reviews")}}
     response = await model.ainvoke([SystemMessage(content=PROMPT), HumanMessage(content=json.dumps(for_model, ensure_ascii=False))])
     text = _json_object(response.content)

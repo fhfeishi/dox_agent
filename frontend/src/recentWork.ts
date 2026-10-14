@@ -1,8 +1,8 @@
 /**
  * 近期工作 (query 2026-1013 1637): analysis reports and review tasks of a time period. The server
  * picks the items by their real dates over every record (节点审查 A5, `/api/summaries/facts`),
- * counts repeated reviews of one application once (A4) and gives a leader only what was published
- * (Q2); this module turns that into the lists, the one-line summary and the domain tally.
+ * counts repeated reviews of one application once (A4), the same for every role (query 2026-1014
+ * 1516); this module turns that into the lists, the one-line summary and the domain tally.
  */
 export type Period = "3d" | "7d" | "30d" | "week" | "month" | "quarter" | "year";
 export const PERIODS: { key: Period; label: string }[] = [
@@ -13,14 +13,14 @@ export const PERIODS: { key: Period; label: string }[] = [
 type FactState = "已完成" | "未完成" | "进行中";
 export type Facts = {
   period: string; start: string; end: string;
-  reports: { id: string; title: string; domains: string[]; date: string; state: FactState; published: boolean }[];
-  reviews: { id: string; title: string; kind: string; domains: string[]; date: string; state: FactState; published: boolean; runs: number }[];
+  reports: { id: string; title: string; domains: string[]; date: string; state: FactState }[];
+  reviews: { id: string; title: string; kind: string; domains: string[]; date: string; state: FactState; runs: number }[];
   summaries: { id: string; title: string; created_at: string }[];
 };
 
 export type WorkItem = {
   key: string; kind: "report" | "review"; id: string; title: string; type: string; date: string;
-  state: "done" | "active" | "failed"; domains: string[]; published: boolean; runs: number;
+  state: "done" | "active" | "failed"; domains: string[]; runs: number;
 };
 
 export type WorkSummary = {
@@ -34,9 +34,9 @@ const STATE = { 已完成: "done", 未完成: "failed", 进行中: "active" } as
 export function fromFacts(facts: Facts): WorkSummary {
   const items: WorkItem[] = [
     ...facts.reports.map((r): WorkItem => ({ key: "a:" + r.id, kind: "report", id: r.id, title: r.title, type: "分析报告", date: r.date,
-      state: STATE[r.state], domains: r.domains, published: r.published, runs: 1 })),
+      state: STATE[r.state], domains: r.domains, runs: 1 })),
     ...facts.reviews.map((r): WorkItem => ({ key: "r:" + r.id, kind: "review", id: r.id, title: r.title, type: r.kind, date: r.date,
-      state: STATE[r.state], domains: r.domains, published: r.published, runs: r.runs })),
+      state: STATE[r.state], domains: r.domains, runs: r.runs })),
   ].sort((a, b) => b.date.localeCompare(a.date));
   const tally = new Map<string, number>();
   for (const item of items) for (const domain of item.domains) tally.set(domain, (tally.get(domain) ?? 0) + 1);

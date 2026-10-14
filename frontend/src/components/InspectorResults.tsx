@@ -1,6 +1,9 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { resultsSummaryQuery } from "../resultsSummary";
+import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { changeArtifactLifecycle, fetchArtifacts, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { changeArtifactLifecycle, type ArtifactInfo, type ArtifactSummary } from "../api";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
 import { Pill } from "./ui";
@@ -11,13 +14,17 @@ const TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答快照", re
 const STATUS_LABEL: Record<string, string> = { completed: "已完成", draft: "草稿", failed: "失败", generating: "生成中", running: "进行中" };
 
 /**
- * One entry for every saved result (query 2026-1009 ②): analysis, review and intelligence reports
- * grouped in the inspector, plus the recycle bin. Opening an artifact goes to the artifact view,
- * which keeps the existing edit/save/export actions.
+ * 成果 — one entry for every generated report (query 2026-1009 ②, 2026-1014 1516): how many there
+ * are by kind and how many were added this week, what is still being produced, then analysis,
+ * review and intelligence reports by group, plus the recycle bin. Every role sees the same reports.
+ * Opening an artifact goes to the artifact view, which keeps the edit/save/export actions. It
+ * replaces the separate 任务进度 panel; lists refresh while something is in progress.
  */
 export function InspectorResults() {
   const { showInspector, corpora, workspace } = useApp();
   const navigate = useNavigate();
+  const totals = useQuery(resultsSummaryQuery);
+  const client = useQueryClient();
   const [group, setGroup] = useState<Group>("analysis");
   const [currentOnly, setCurrentOnly] = useState(false);
   const [artifacts, setArtifacts] = useState<ArtifactSummary[] | null>(null);
@@ -28,16 +35,26 @@ export function InspectorResults() {
   const [revision, setRevision] = useState(0);
 
   useEffect(() => {
-    const refresh = () => setRevision((value) => value + 1);
+    const refresh = () => { setRevision((value) => value + 1); void client.invalidateQueries({ queryKey: ["results", "summary"] }); };
     window.addEventListener("dox-artifacts-changed", refresh);
-    return () => window.removeEventListener("dox-artifacts-changed", refresh);
+    window.addEventListener("focus", refresh);
+    return () => { window.removeEventListener("dox-artifacts-changed", refresh); window.removeEventListener("focus", refresh); };
   }, []);
+
+  const working = [...(runs ?? []).filter((r) => r.status === "queued" || r.status === "running"),
+    ...(artifacts ?? []).filter((a) => a.status === "generating")];
+  useEffect(() => {
+    const timer = window.setTimeout(() => setRevision((value) => value + 1), working.length ? 5000 : 30000);
+    return () => window.clearTimeout(timer);
+  }, [working.length, revision]);
 
   useEffect(() => {
     let active = true;
     setError("");
     const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "成果读取失败"); };
-    fetchArtifacts().then((items) => { if (active) setArtifacts(items); }, fail);
+    fetch("/api/artifacts?limit=200")
+      .then(async (r) => { if (!r.ok) throw new Error("成果列表不可用"); return await r.json() as ArtifactSummary[]; })
+      .then((items) => { if (active) setArtifacts(items); }, fail);
     fetch("/api/artifacts?view=trash&limit=50")
       .then(async (r) => { if (!r.ok) throw new Error("回收站读取失败"); return await r.json() as ArtifactSummary[]; })
       .then((items) => { if (active) setTrash(items); }, fail);
@@ -88,6 +105,24 @@ export function InspectorResults() {
   const empty = (text: string) => <p className="py-[18px] text-center text-[12.5px] text-[var(--steel)]">{text}</p>;
   return (
     <div>
+      {totals.data ? <section aria-label="成果统计" className="mb-3 rounded-xl bg-[var(--surface)] p-3 text-xs leading-6">
+        <p><b className="text-lg text-[var(--ink)]">{totals.data.completed.total}</b> 份已完成报告</p>
+        <p>存量分析 {totals.data.completed.analysis} · 资料审查 {totals.data.completed.review} · 情报分析 {totals.data.completed.intelligence}</p>
+        <p className="text-[var(--steel)]">生成中 {totals.data.active} · 未完成 {totals.data.failed} · 近 7 天创建并完成 {totals.data.recent_completed}</p>
+      </section> : null}
+      {totals.error ? <p role="alert" className="mb-2 text-xs text-[var(--red)]">成果统计暂不可读</p> : null}
+      {artifacts && artifacts.length >= 200 ? <p className="mb-3 text-xs text-[var(--steel)]">分析与情报列表显示最近 200 条，顶部统计包含全部报告。</p> : null}
+      {working.length ? <section aria-label="处理中" className="mb-[12px]">
+        <p className="mb-[6px] text-[12px] font-semibold text-[var(--steel)]">处理中 · {working.length}<span className="ml-[6px] font-normal text-[var(--stone)]">可离开本页，完成后在这里打开</span></p>
+        <ul className="space-y-[6px]">{working.map((item) => "artifact_id" in item
+          ? <li key={item.artifact_id}><button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
+              className="flex w-full items-center gap-[8px] rounded-[8px] border border-[var(--hairline)] px-[10px] py-[7px] text-left text-[12.5px] hover:border-[var(--primary)]">
+              <span className="min-w-0 flex-1 truncate">{item.title || "分析报告"}</span><span className="shrink-0 text-[var(--stone)]">生成中</span></button><GenerationProgress compact status="generating" /></li>
+          : <li key={item.id}><button type="button" onClick={() => void navigate(`/review/runs/${encodeURIComponent(item.id)}`)}
+              className="flex w-full items-center gap-[8px] rounded-[8px] border border-[var(--hairline)] px-[10px] py-[7px] text-left text-[12.5px] hover:border-[var(--primary)]">
+              <span className="min-w-0 flex-1 truncate">{item.document?.metadata?.title || item.document?.filename || "申请书"}</span>
+              <span className="shrink-0 text-[var(--stone)]">{item.status === "queued" ? "排队中" : item.stage_label || "审查中"}</span></button><GenerationProgress compact status={item.status} stage={item.stage} stage_label={item.stage_label} kind={item.request.kind} /></li>)}</ul>
+      </section> : null}
       <div role="tablist" aria-label="成果分类" className="mb-[12px] grid grid-cols-2 gap-[6px]">
         {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => setGroup(key)}
           className={`flex items-center justify-between rounded-[8px] border px-[10px] py-[7px] text-[12.5px] ${group === key
@@ -115,7 +150,7 @@ export function InspectorResults() {
 
       {group === "review" ? <>
         {runs && !runs.length ? empty("还没有资料审查报告。") : null}
-        <ul className="space-y-[8px]">{(runs ?? []).slice().reverse().map((run) => <li key={run.id} className={row}>
+        <ul className="space-y-[8px]">{(runs ?? []).slice().sort((a, b) => b.created_at.localeCompare(a.created_at)).map((run) => <li key={run.id} className={row}>
           <button type="button" onClick={() => void navigate(`/review/runs/${encodeURIComponent(run.id)}`)}
             className="block text-left text-[13px] font-semibold text-[var(--ink)] hover:text-[var(--primary)]">
             {run.document?.filename || run.document?.metadata?.title || "未命名申请书"}

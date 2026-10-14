@@ -619,7 +619,7 @@ def new_run(req: ReviewRequest, request: Request):
 # What a list row needs; the findings, evidence and audit stay on /runs/{id} (节点审查 C1: the list was
 # polled with every run's full analysis, about 70 KB a run).
 LIST_FIELDS = ("id", "status", "stage", "stage_label", "error", "created_at", "finished_at", "request", "summary",
-               "created_by", "published_at")
+               "created_by")
 
 
 def _list_row(run: dict) -> dict:
@@ -634,21 +634,6 @@ def _list_row(run: dict) -> dict:
 @router.get("/runs")
 def runs():
     return [_list_row(r) for r in db.all_items("run")]
-
-
-@router.post("/runs/{id}/publish")
-def publish_run(id: str, body: dict, request: Request):
-    """节点审查 Q2: the author or an administrator publishes a finished review for the leader view."""
-    with run_lock:
-        run = require("run", id)
-        username, role = request.state.user
-        if role != "admin" and run.get("created_by") != username:
-            raise HTTPException(403, "只有作者或管理员可以发布")
-        if body.get("published") and run.get("status") != "completed":
-            raise HTTPException(409, "只有已完成的审查可以发布")
-        run["published_at"] = db.now() if body.get("published") else None
-        db.save("run", run)
-    return _list_row(run)
 
 
 @router.get("/runs/{id}")

@@ -44,7 +44,7 @@ export function SidePanel() {
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   // The top bar keeps the primary entries reachable while the panel is hidden.
   // Task pages keep their context in the main flow; a second task list obscures that flow.
-  if (sidebarCollapsed || ["admin", "mine", "library", "review", "tasks", "intelligence"].includes(nav)) return null;
+  if (sidebarCollapsed || ["home", "overview", "library", "review", "tasks", "intelligence"].includes(nav)) return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;

@@ -6,10 +6,10 @@ const facts = (reports: Facts['reports'], reviews: Facts['reviews']): Facts => (
 
 test('the period summary counts by state and domain and says so plainly', () => {
   const summary = fromFacts(facts([
-    { id: 'a', title: '医疗研判', domains: ['AI与医疗'], date: '2026-10-12', state: '已完成', published: true },
-    { id: 'c', title: '机器人对比', domains: ['AI与机器人自动化', 'AI与医疗'], date: '2026-10-08', state: '已完成', published: false },
+    { id: 'a', title: '医疗研判', domains: ['AI与医疗'], date: '2026-10-12', state: '已完成' },
+    { id: 'c', title: '机器人对比', domains: ['AI与机器人自动化', 'AI与医疗'], date: '2026-10-08', state: '已完成' },
   ], [
-    { id: 'b', title: '申请书甲', kind: '形式审查', domains: [], date: '2026-10-13', state: '进行中', published: false, runs: 3 },
+    { id: 'b', title: '申请书甲', kind: '形式审查', domains: [], date: '2026-10-13', state: '进行中', runs: 3 },
   ]));
   assert.deepEqual(summary.items.map((i) => i.key), ['r:b', 'a:a', 'a:c']);
   assert.deepEqual([summary.reports, summary.reviews, summary.active.length, summary.done.length], [2, 1, 1, 2]);

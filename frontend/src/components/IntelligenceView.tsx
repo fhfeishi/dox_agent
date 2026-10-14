@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Markdown from "react-markdown";
 import { useApp } from "../store";
-import { copyTemplate, saveTemplateDraft, publishTemplate, fetchTemplates, fetchTemplate } from "../api";
+import { copyTemplate, saveTemplateDraft, publishTemplate, fetchTemplates, fetchTemplate, templateArea } from "../api";
 import { Button } from "./ui";
+import { TemplateLibrary } from "./TemplateLibrary";
 
 type Input = { input_id: string; filename: string; version: string; text: string };
 const PURPOSES = [["comprehensive", "综合情报报告"], ["background", "技术背景"], ["research", "国内外研究现状"], ["feasibility", "可行性"], ["weakness", "痛点与薄弱点"]];
@@ -98,11 +99,14 @@ export function IntelligenceView() {
             const ident = e.target.value; if (!ident) return; setBusy("读取报告模板");
             void fetchTemplate(ident).then((value) => { setTemplateId(value.id); setTemplateVersion(value.version); setTemplate(value.content); setTemplateInput(null); })
               .catch((error) => setError(error.message)).finally(() => setBusy(""));
-          }}><option value="">本次临时章节</option>{(templates.data ?? []).filter((item) => item.status === "published").map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+          }}><option value="">本次临时章节</option>{(templates.data ?? []).filter((item) => item.status === "published" && templateArea(item) === "intelligence").map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
           <Button size="sm" variant="ghost" disabled={Boolean(busy) || !template.trim()} onClick={() => void saveTemplate()}>保存为我的模板</Button>
         </div>
         <p className="my-3 text-xs text-[var(--steel)]">{templateInput ? templateInput.filename : "使用默认综合研判模板"} · 正文与模板版本随本次结果保存。</p>
         <details><summary className="cursor-pointer text-sm text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-sm" /></details>
+        {/* 情报分析's own template library, kept apart from 存量分析's (query 2026-1014 1820). */}
+        <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-sm text-[var(--primary)]">管理情报分析模板（新建、上传提取、修改、删除）</summary>
+          <div className="mt-3"><TemplateLibrary area="intelligence" /></div></details>
       </section>
       {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-sm text-red-800">{error}</p> : null}
       {busy ? <GenerationProgress status="generating" stage_label={busy} /> : null}

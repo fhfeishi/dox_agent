@@ -400,8 +400,15 @@ export async function restoreTask(taskId: string): Promise<TaskInfo> {
 }
 
 
-export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number; content?: string; purpose?: string };
+export type TemplateSummary = { id: string; name: string; kind?: string; status?: string; archived?: boolean; version?: number; content?: string; purpose?: string;
+  /** The built-in template a custom one was copied from (kept through further copies). */
+  source_template_id?: string };
 export type TemplateInfo = TemplateSummary & { content: string; variables?: string[]; purpose?: string; revision?: number; source_template_id?: string };
+
+export type TemplateArea = "analysis" | "intelligence";
+/** 情报分析 templates are the built-in `intelligence` one and its copies; the rest belong to 存量分析 (query 2026-1014 1820). */
+export const templateArea = (t: TemplateSummary): TemplateArea =>
+  t.id === "intelligence" || t.source_template_id === "intelligence" ? "intelligence" : "analysis";
 
 /** W1: read-only built-in output templates for the shared inspector preview. */
 export async function fetchTemplates(signal?: AbortSignal, includeArchived = false): Promise<TemplateSummary[]> {

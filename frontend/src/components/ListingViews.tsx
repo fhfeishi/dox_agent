@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { archiveCustomTemplate, archiveTask, copyTask, copyTemplate, deleteCustomTemplate, deleteTask, fetchTemplates, restoreCustomTemplate, restoreTask, saveTaskDraft, saveTemplateDraft, type TaskInfo, type TemplateSummary } from "../api";
-import { TEMPLATES_CHANGED, sectionsOf, statusLabel } from "./TemplatePanels";
+import { useRef, useState, type ReactNode } from "react";
+import { archiveTask, copyTask, deleteTask, restoreTask, saveTaskDraft, type TaskInfo } from "../api";
+import { statusLabel } from "./TemplatePanels";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import type { IconName } from "./Icons";
 import { useAuth } from "../auth";
-import { extractTemplate } from "../templateOutline";
+import { TemplateLibrary, readText } from "./TemplateLibrary";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
   { tint: "var(--tint-mint)", fg: "#0e7a28", icon: "checklist" },
@@ -48,18 +48,9 @@ function ViewShell({
   );
 }
 
-const UPLOAD_LIMIT = { task: 8000, template: 20000 };
+const TASK_LIMIT = 8000;
 const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|markdown|txt|docx|doc|pdf)$/i, "").slice(0, 80) || fallback;
 
-/** Text of an uploaded file: plain text is read here; Word and PDF are read by the server. */
-async function readText(file: File): Promise<string> {
-  if (/\.(md|markdown|txt)$/i.test(file.name)) return (await file.text()).trim();
-  const form = new FormData(); form.append("file", file); form.append("template", "true");
-  const response = await fetch("/api/intelligence/inputs", { method: "POST", body: form });
-  const value = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "文件读取失败");
-  return String(value?.text ?? "").trim();
-}
 
 /**
  * 存量分析 (query 2026-1009 1541): task cards and the report template library. Preview and
@@ -70,21 +61,12 @@ export function TasksView() {
   const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask } = useApp();
   // Analysis tasks are shared, so administrators maintain them (节点审查 D2).
   const { role } = useAuth();
-  const [templates, setTemplates] = useState<TemplateSummary[]>([]);
   const [showArchived, setShowArchived] = useState(false);
   const [manage, setManage] = useState(false);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const upload = useRef<HTMLInputElement>(null);
-  const uploadFor = useRef<{ kind: "task"; task: TaskInfo } | { kind: "template" } | null>(null);
-
-  const loadTemplates = () => fetchTemplates(undefined, true).then(setTemplates).catch(() => setTemplates([]));
-  useEffect(() => {
-    void loadTemplates();
-    const reload = () => void loadTemplates();
-    window.addEventListener(TEMPLATES_CHANGED, reload);
-    return () => window.removeEventListener(TEMPLATES_CHANGED, reload);
-  }, []);
+  const uploadFor = useRef<{ kind: "task"; task: TaskInfo } | null>(null);
 
   async function run(work: () => Promise<void>) {
     setBusy(true); setMessage("");
@@ -96,44 +78,19 @@ export function TasksView() {
     else if (window.confirm(`删除未发布的草稿“${task.name}”？`)) { await deleteTask(task.id); setMessage(`已删除草稿“${task.name}”`); }
     await refreshTasks();
   });
-  // 删除 removes a template from the library (query 2026-1014 1737). A published one is archived so
-  // reports already written with it keep their version; it can be restored from 已归档.
-  const removeTemplate = (template: TemplateSummary) => run(async () => {
-    if (!window.confirm(`删除模板“${template.name}”？${template.version ? "已生成的报告仍保留所用版本，可在“已归档”中恢复。" : ""}`)) return;
-    if (template.version) await archiveCustomTemplate(template.id); else await deleteCustomTemplate(template.id);
-    setMessage(`已删除模板“${template.name}”`);
-    await loadTemplates();
-  });
-  const restore = (item: TaskInfo | TemplateSummary, kind: "task" | "template") => run(async () => {
-    if (kind === "task") { await restoreTask(item.id); await refreshTasks(); }
-    else { await restoreCustomTemplate(item.id); await loadTemplates(); }
+  const restore = (item: TaskInfo) => run(async () => {
+    await restoreTask(item.id); await refreshTasks();
     setMessage(`已恢复“${item.name}”`);
   });
 
   async function uploaded(file: File) {
     const target = uploadFor.current;
     if (!target) return;
-    const report = target.kind === "template" || (target.task.engine_task_id ?? target.task.id) === "task4";
     await run(async () => {
       const raw = await readText(file);
       if (!raw) throw new Error("上传的文件没有可读取的文字");
-      if (report) {
-        // Report structure lives in the template library; an upload becomes a template draft whose
-        // chapters are extracted from the document's headings (query 2026-1014 1737).
-        const name = fileName(file, "上传的模板");
-        const extracted = extractTemplate(raw, name);
-        if (extracted.content.length > UPLOAD_LIMIT.template) throw new Error(`提取后约 ${extracted.content.length} 字，超过 ${UPLOAD_LIMIT.template} 字上限，请精简后上传`);
-        const copy = await copyTemplate("comprehensive");
-        const variables = [...new Set([...extracted.content.matchAll(/\{\{\s*([a-z_]+)\s*\}\}/g)].map((m) => m[1]))];
-        const saved = await saveTemplateDraft(copy.id, copy.revision, { name, content: extracted.content, purpose: `上传自 ${file.name}`, variables });
-        await loadTemplates();
-        showInspector({ kind: "template", templateId: saved.id, edit: true });
-        setMessage(extracted.extracted ? `已从“${file.name}”提取 ${extracted.sections} 个章节，生成模板草稿“${saved.name}”，请在右侧核对后发布`
-          : `“${file.name}”中没有识别出章节标题，已保留全文为模板草稿“${saved.name}”，请在右侧整理章节后发布`);
-        return;
-      }
       const text = raw;
-      if (text.length > UPLOAD_LIMIT.task) throw new Error(`文件约 ${text.length} 字，超过 ${UPLOAD_LIMIT.task} 字上限，请精简后上传`);
+      if (text.length > TASK_LIMIT) throw new Error(`文件约 ${text.length} 字，超过 ${TASK_LIMIT} 字上限，请精简后上传`);
       const task = target.task;
       const copy = task.kind === "custom" ? task : await copyTask(task.id);
       await saveTaskDraft({ ...copy, name: task.kind === "custom" ? copy.name : fileName(file, copy.name), outline: text });
@@ -149,8 +106,6 @@ export function TasksView() {
   const isArchived = (item: { archived?: boolean; status?: string }) => Boolean(item.archived) || item.status === "archived";
   const liveTasks = tasks.filter((t) => !isArchived(t));
   const archivedTasks = tasks.filter(isArchived);
-  const live = templates.filter((t) => !t.archived && t.status !== "archived");
-  const archivedTemplates = templates.filter((t) => t.archived || t.status === "archived");
   return (
     <ViewShell
       title="存量分析"
@@ -210,47 +165,19 @@ export function TasksView() {
             );
           })
         : null}
-      {/* 报告模板 is always listed as cards (query 2026-1014 1737); administrators upload, modify and delete. */}
-      {taskCapable ? (
-        <section aria-label="报告模板库" className="col-span-full border-t border-[var(--hairline)] pt-[16px]">
-          <div className="flex flex-wrap items-baseline gap-[10px]">
-            <h2 className="text-[15px] font-semibold text-[var(--ink)]">报告模板 · {live.length}</h2>
-            <span className="text-[12px] text-[var(--stone)]">专项报告按所选模板的章节大纲生成</span>
-            <span className="flex-1" />
-            {role === "admin" ? <button type="button" className={action} disabled={busy} title="支持 Word、PDF、Markdown、文本；自动提取章节大纲"
-              onClick={() => { uploadFor.current = { kind: "template" }; upload.current?.click(); }}>上传模板（Word / PDF / Markdown）</button> : null}
-          </div>
-          <div className="mt-[10px] grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-[10px]">
-            {live.map((t) => {
-              const sections = sectionsOf(t.content);
-              return <article key={t.id} className="flex flex-col gap-[6px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px]">
-                <button type="button" onClick={() => showInspector({ kind: "template", templateId: t.id })} className="flex flex-col gap-[6px] text-left">
-                  <span className="flex flex-wrap items-center gap-[6px] text-[13px] font-semibold text-[var(--ink)]">{t.name}<Pill tone={t.kind === "custom" ? "lav" : "sky"}>{statusLabel(t)}</Pill></span>
-                  <span className="line-clamp-2 text-[11.5px] leading-[1.5] text-[var(--steel)]">{sections.length ? `${sections.length} 节：${sections.join(" · ")}` : t.purpose || "无章节"}</span>
-                </button>
-                <div className="mt-auto flex flex-wrap gap-[6px] pt-[4px]">
-                  <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id })}>预览</button>
-                  {role === "admin" ? <button type="button" className={action} onClick={() => showInspector({ kind: "template", templateId: t.id, edit: true })}>修改</button> : null}
-                  {role === "admin" && t.kind === "custom" ? <button type="button" className={danger} disabled={busy} onClick={() => void removeTemplate(t)}>删除</button> : null}
-                  {t.kind !== "custom" ? <span className="self-center text-[11px] text-[var(--stone)]">内置，修改时另存为新模板</span> : null}
-                </div>
-              </article>;
-            })}
-          </div>
-        </section>
-      ) : null}
+      {/* 存量分析's own report templates (query 2026-1014 1820); 情报分析's are on its page. */}
+      {taskCapable ? <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div> : null}
       {taskCapable && showArchived ? (
         <section aria-label="已归档" className="col-span-full rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[14px]">
-          <h2 className="text-[13px] font-semibold text-[var(--ink)]">已归档 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
-          {!archivedTasks.length && !archivedTemplates.length ? <p className="mt-[8px] text-[12px] text-[var(--stone)]">没有已归档的任务或模板。</p> : null}
+          <h2 className="text-[13px] font-semibold text-[var(--ink)]">已归档的分析任务 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
+          {!archivedTasks.length ? <p className="mt-[8px] text-[12px] text-[var(--stone)]">没有已归档的分析任务。</p> : null}
           <ul className="mt-[8px] space-y-[6px] text-[12.5px]">
-            {[...archivedTasks.map((item) => ({ item, kind: "task" as const })), ...archivedTemplates.map((item) => ({ item, kind: "template" as const }))].map(({ item, kind }) =>
+            {archivedTasks.map((item) =>
               <li key={item.id} className="flex items-center gap-[8px]">
-                <Pill tone="yellow">{kind === "task" ? "任务" : "模板"}</Pill>
                 <button type="button" className="text-left text-[var(--link)] hover:underline"
-                  onClick={() => showInspector(kind === "task" ? { kind: "task", taskId: item.id } : { kind: "template", templateId: item.id })}>{item.name}</button>
+                  onClick={() => showInspector({ kind: "task", taskId: item.id })}>{item.name}</button>
                 <span className="text-[var(--stone)]">v{item.version}</span>
-                <button type="button" className={action} disabled={busy} onClick={() => void restore(item, kind)}>恢复</button>
+                <button type="button" className={action} disabled={busy} onClick={() => void restore(item)}>恢复</button>
               </li>)}
           </ul>
         </section>

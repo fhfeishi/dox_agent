@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
   archiveCustomTemplate, archiveTask, copyTask, copyTemplate, deleteCustomTemplate, deleteTask, fetchCustomTask,
-  fetchCustomTemplate, fetchTemplate, fetchTemplates, publishTask, publishTemplate, restoreCustomTemplate, restoreTask,
+  fetchCustomTemplate, fetchTemplate, fetchTemplates, templateArea, publishTask, publishTemplate, restoreCustomTemplate, restoreTask,
   saveTaskDraft, saveTemplateDraft, type TaskInfo, type TaskParameter, type TemplateInfo, type TemplateSummary,
 } from "../api";
 import { useApp } from "../store";
@@ -116,7 +116,8 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
     if (listed) setTask(listed);
     else if (taskId.startsWith("custom-")) void fetchCustomTask(taskId).then(setTask, (e: Error) => setMessage(e.message));
   }, [taskId, tasks]);
-  useEffect(() => { void fetchTemplates(undefined, true).then(setLibrary, () => setLibrary([])); }, []);
+  // A report-type analysis task binds one of 存量分析's templates, never 情报分析's (query 2026-1014 1820).
+  useEffect(() => { void fetchTemplates(undefined, true).then((all) => setLibrary(all.filter((t) => templateArea(t) === "analysis")), () => setLibrary([])); }, []);
   useEffect(() => {
     if (edit && task && !draft) setDraft({ ...task, name: task.kind === "custom" ? task.name : `${task.name}（我的）`, outline: outlineOf(task) });
   }, [edit, task, draft]);

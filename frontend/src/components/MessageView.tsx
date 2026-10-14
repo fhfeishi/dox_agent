@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, templateArea, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -360,7 +360,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
   useEffect(() => {
     let active = true;
     void fetchTemplates().then(
-      (items) => { if (active) setTemplateOptions(items.filter((item) => item.kind !== "custom" || (!item.archived && (item.version ?? 0) > 0))); },
+      (items) => { if (active) setTemplateOptions(items.filter((item) => templateArea(item) === "analysis" && (item.kind !== "custom" || (!item.archived && (item.version ?? 0) > 0)))); },
       () => { if (active) setTemplateOptions([]); },
     );
     return () => { active = false; };

@@ -91,37 +91,8 @@ echo Using virtual environment: %runtime%
 for /f "delims=" %%V in ('""%python%" --version"') do echo Python: %%V
 
 rem ------------------------------------------------------------
-rem Preflight check
-rem ------------------------------------------------------------
-
-call "%python%" src\launcher.py check
-set "result=%errorlevel%"
-
-if "%result%"=="10" (
-  echo The service is already running; nothing else was started.
-  exit /b 0
-)
-if not "%result%"=="0" exit /b %result%
-
-rem ------------------------------------------------------------
-rem Auxiliary services
-rem ------------------------------------------------------------
-
-call "%python%" src\launcher.py web
-if errorlevel 1 exit /b 1
-
-rem for /f clauses choke on parentheses in inline Python; use the exit code instead.
-set "embedding_enabled=0"
-"%python%" -c "from src.agent.config import get_settings; import sys; sys.exit(0 if get_settings().embedding_path.strip() else 1)"
-if not errorlevel 1 set "embedding_enabled=1"
-
-if "%embedding_enabled%"=="1" (
-  call "%python%" src\launcher.py embedding
-  if errorlevel 1 exit /b 1
-)
-
-rem ------------------------------------------------------------
-rem Frontend: build only when the sources changed since the last build
+rem Frontend: build only when the sources changed since the last build,
+rem before the port check, since a running service serves the new build too
 rem (hash of src, index.html, package*.json and vite/tsconfig, recorded in
 rem frontend\dist\.dox-build); REBUILD_FRONTEND=1 forces a build.
 rem npm ci runs only when package-lock.json changed since the last install
@@ -157,14 +128,43 @@ if "%built%"=="1" call "%python%" src\launcher.py frontend stamp
 :frontend_done
 
 rem ------------------------------------------------------------
+rem Preflight check
+rem ------------------------------------------------------------
+
+call "%python%" src\launcher.py check
+set "result=%errorlevel%"
+
+if "%result%"=="10" (
+  rem Already running: open the page; OPEN_BROWSER=0 skips it.
+  call "%python%" src\launcher.py open
+  exit /b 0
+)
+if not "%result%"=="0" exit /b %result%
+
+rem ------------------------------------------------------------
+rem Auxiliary services
+rem ------------------------------------------------------------
+
+call "%python%" src\launcher.py web
+if errorlevel 1 exit /b 1
+
+rem for /f clauses choke on parentheses in inline Python; use the exit code instead.
+set "embedding_enabled=0"
+"%python%" -c "from src.agent.config import get_settings; import sys; sys.exit(0 if get_settings().embedding_path.strip() else 1)"
+if not errorlevel 1 set "embedding_enabled=1"
+
+if "%embedding_enabled%"=="1" (
+  call "%python%" src\launcher.py embedding
+  if errorlevel 1 exit /b 1
+)
+
+rem ------------------------------------------------------------
 rem Main service
 rem ------------------------------------------------------------
 
 echo Open http://%HOST%:%PORT%
 rem Open the default browser once the service answers; set OPEN_BROWSER=0 to skip.
-set "OPEN_HOST=%HOST%"
-if "%HOST%"=="0.0.0.0" set "OPEN_HOST=127.0.0.1"
-if not "%OPEN_BROWSER%"=="0" start "" /b powershell -NoProfile -WindowStyle Hidden -Command "$u='http://%OPEN_HOST%:%PORT%/'; $w=New-Object Net.WebClient; $w.Proxy=$null; for($i=0;$i -lt 180;$i++){ try { [void]$w.DownloadString($u+'api/auth/session'); Start-Process $u; break } catch { Start-Sleep -Seconds 1 } }"
+start "" /b "%python%" src\launcher.py open
 call "%python%" -m uvicorn src.main:app --loop asyncio --host "%HOST%" --port "%PORT%"
 exit /b %errorlevel%
 

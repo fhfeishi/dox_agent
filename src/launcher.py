@@ -6,8 +6,23 @@ import os
 import socket
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
+import webbrowser
 from pathlib import Path
+
+
+def code_version(root: Path) -> str:
+    """Hash of the backend sources; a running service reports the one it started with."""
+    digest = hashlib.sha256()
+    for path in sorted((root / "src").rglob("*.py")):
+        digest.update(path.relative_to(root).as_posix().encode() + b"\0" + path.read_bytes())
+    return digest.hexdigest()[:12]
+
+
+def service_url(host: str, port: int) -> str:
+    return f"http://{'127.0.0.1' if host in ('0.0.0.0', '') else host}:{port}/"
 
 
 def check_port(host: str, port: int) -> int:
@@ -19,10 +34,14 @@ def check_port(host: str, port: int) -> int:
         url = f"http://{'127.0.0.1' if host == '0.0.0.0' else host}:{port}"
         try:
             opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-            with opener.open(url + "/api/health", timeout=2) as response:
+            with opener.open(url + "/api/auth/session", timeout=2) as response:
                 health = json.load(response)
             if health.get("app_id") == "dox-agent":
-                print(f"服务已经运行，无需重复启动：{url}（{health.get('preparation', 'unknown')}）")
+                print(f"服务已经运行，无需重复启动：{url}")
+                # A service started before the latest code still runs the old backend (the frontend is
+                # read from frontend/dist on each request, so a rebuild reaches it without a restart).
+                if health.get("code_version") != code_version(Path(__file__).resolve().parents[1]):
+                    print("注意：正在运行的服务是旧版本的后端代码。请关闭原服务窗口（或结束其进程）后重新运行启动脚本。")
                 return 10
         except (OSError, ValueError):
             pass
@@ -67,7 +86,48 @@ def frontend(frontend: Path, action: str) -> int:
     return 1
 
 
+def open_when_ready(url: str, timeout: float = 180) -> bool:
+    """Wait until the service answers, then open the page in the default browser.
+
+    Under WSL the Windows browser is opened through cmd.exe; elsewhere Python's webbrowser picks the
+    platform's default (os.startfile on Windows, xdg-open or open on Linux and macOS).
+    """
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            with opener.open(url + "api/auth/session", timeout=2):
+                break
+        except urllib.error.HTTPError:
+            break  # it answered: the service is up
+        except OSError:
+            time.sleep(1)
+    else:
+        print(f"服务在 {int(timeout)} 秒内未就绪，请稍后手动打开 {url}", file=sys.stderr)
+        return False
+    try:
+        wsl = "microsoft" in Path("/proc/version").read_text().lower()
+    except OSError:
+        wsl = False
+    if wsl:
+        for command in (["wslview", url], ["cmd.exe", "/c", "start", "", url], ["explorer.exe", url]):
+            try:
+                # cmd.exe warns about a Linux working directory; run it from the Windows drive.
+                subprocess.run(command, cwd="/mnt/c" if Path("/mnt/c").is_dir() else None,
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15)
+                return True
+            except (OSError, subprocess.SubprocessError):
+                continue
+    if webbrowser.open(url):
+        return True
+    print(f"未能自动打开浏览器，请手动访问 {url}", file=sys.stderr)
+    return False
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "open":
+        url = service_url(os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8000")))
+        raise SystemExit(0 if os.environ.get("OPEN_BROWSER") == "0" or open_when_ready(url) else 1)
     if sys.argv[1] == "frontend":
         raise SystemExit(frontend(Path.cwd() / "frontend", sys.argv[2]))
     if sys.argv[1] == "check":

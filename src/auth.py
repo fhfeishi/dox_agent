@@ -25,6 +25,8 @@ from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+from .launcher import code_version
+
 COOKIE = "dox_session"
 LIFETIME = 7 * 24 * 3600
 Role = Literal["admin", "leader", "user"]
@@ -41,6 +43,8 @@ ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus
 # The signed-in account for this request, so stores can record who created a report or review
 # (节点审查 Q2). It records authorship only; what each account may see is not separated yet.
 CURRENT_USER: ContextVar[str] = ContextVar("current_user", default="")
+# The backend sources this process started with; the launcher compares it to find a stale service.
+CODE_VERSION = code_version(Path(__file__).resolve().parents[1])
 DEFAULT_PASSWORD = "123456"
 # query 2026-1013 1459: the three identity groups each start with one account.
 DEFAULT_ACCOUNTS = (("admin", "admin"), ("owner", "leader"), ("user", "user"))
@@ -252,7 +256,9 @@ def install_auth(app, directory):
     @app.get("/api/auth/session")
     def session(request: Request):
         user = accounts.user(request.cookies.get(COOKIE))
-        return JSONResponse({"authenticated": bool(user),
+        # app_id and code_version let the launcher recognise a running copy (and an outdated one)
+        # without signing in; /api/health needs a session since accounts were added.
+        return JSONResponse({"authenticated": bool(user), "app_id": "dox-agent", "code_version": CODE_VERSION,
                              "username": user[0] if user else "", "role": user[1] if user else "",
                              "guides_seen": accounts.guides(user[0]) if user else []},
                             headers={"Cache-Control": "no-store"})

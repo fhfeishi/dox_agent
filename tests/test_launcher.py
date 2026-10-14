@@ -46,3 +46,43 @@ def test_frontend_builds_only_when_sources_change(tmp_path, monkeypatch):
     launcher.frontend(web, "stamp")
     (web / "dist/index.html").unlink()
     assert launcher.frontend(web, "check") == 1
+
+
+def test_open_waits_for_the_service_then_opens_the_page(monkeypatch):
+    import http.server
+    import threading
+
+    server = http.server.HTTPServer(("127.0.0.1", 0), http.server.SimpleHTTPRequestHandler)
+    server.RequestHandlerClass.log_message = lambda *args: None
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    url = launcher.service_url("0.0.0.0", server.server_address[1])
+    assert url.startswith("http://127.0.0.1:")
+    opened = []
+    monkeypatch.setattr(launcher.webbrowser, "open", lambda target: opened.append(target) or True)
+    monkeypatch.setattr(launcher.Path, "read_text", lambda self, *a, **k: "Linux version (not WSL)")
+    try:
+        assert launcher.open_when_ready(url, timeout=5)  # any HTTP answer means the service is up
+    finally:
+        server.shutdown()
+    assert opened == [url]
+    assert not launcher.open_when_ready("http://127.0.0.1:9/", timeout=1.5)  # nothing answers: not opened
+
+
+def test_running_service_with_older_code_is_reported(monkeypatch, capsys):
+    import io
+    import json
+
+    class Answer(io.BytesIO):
+        def __enter__(self): return self
+        def __exit__(self, *args): return False
+
+    class Opener:
+        def open(self, url, timeout):
+            return Answer(json.dumps({"app_id": "dox-agent", "preparation": "ready", "code_version": "old"}).encode())
+
+    monkeypatch.setattr(launcher.urllib.request, "build_opener", lambda *a: Opener())
+    with socket.socket() as server:
+        server.bind(("127.0.0.1", 0))
+        server.listen()
+        assert launcher.check_port("127.0.0.1", server.getsockname()[1]) == 10
+    assert "旧版本的后端代码" in capsys.readouterr().out

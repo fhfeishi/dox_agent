@@ -957,6 +957,7 @@ query「2026-1007 1241」新增四维层级与成果相关分析要求：结论�
 - 管理视图中点击资料库（建设表格的一行、待办的“查看”）在右侧打开资料库预览：数字概况、需要处理、要点结论、聚焦雷达；“进入资料库”“资料文件”两个按钮才跳转。
 - 启动脚本 `launch.cmd` / `launch.sh` 在服务可访问后自动打开浏览器，`OPEN_BROWSER=0` 关闭。
 - 两个启动脚本都自动构建前端，但只在前端源码内容变化（或 `frontend/dist` 缺失）时构建，未变化时跳过；`REBUILD_FRONTEND=1` 强制构建。
+- 启动顺序：先按需构建前端，再检查端口。服务已在运行时打开页面并退出，并比较代码版本（`/api/auth/session` 返回 `app_id` 与 `code_version`），旧版本给出提示。打开浏览器由 `src/launcher.py open` 统一完成（WSL 下用 wslview、cmd.exe 或 explorer.exe，其他平台用 Python webbrowser）。
 
 ## query 2026-1013 1914：节点审查后的修改
 

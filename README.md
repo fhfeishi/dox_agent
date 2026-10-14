@@ -57,9 +57,9 @@ Windows 的 `launch.cmd` 为一键启动：
 - 缺少 uv 时自动用官方脚本安装，缺少 Node.js 时自动下载便携版 LTS（依次尝试 `NODE_MIRROR`、nodejs.org、npmmirror），都装在 `%LOCALAPPDATA%\dox_agent`（可用 `DOX_TOOLS_DIR` 改），不需要管理员权限、不修改系统 PATH；缺少 Python 3.12 时由 uv 自动下载。
 - 创建或复用 `.venv`（Windows 为 `.venv\Scripts\python.exe`），依赖变化时才安装。
 - 前端源码（`src`、`index.html`、`package*.json`、`vite.config.ts`、`tsconfig.json`）与上次构建时相比有变化、或 `frontend/dist` 不存在时才执行 `npm run build`，未变化时跳过；设 `REBUILD_FRONTEND=1` 强制构建。`package-lock.json` 变化时先 `npm ci`；构建失败会重装依赖再试一次，仍失败但已有旧构建时继续用旧构建启动。
-- 首次启动需联网下载依赖（Python 依赖约数分钟）；之后启动只重新构建前端（几秒）。
+- 首次启动需联网下载依赖（Python 依赖约数分钟）；之后启动只在前端源码变化时重新构建（几秒）。
 
-`launch.sh`（Linux / WSL）仍要求预先安装 uv 与 Node.js，前端按同样规则（源码变化才构建、锁文件变化才 `npm ci`）自动构建。两个启动脚本都会在服务可以访问后自动用默认浏览器打开页面（WSL 下通过 Windows 浏览器）；不需要时设置 `OPEN_BROWSER=0`。编辑器设置不入库：Windows 与 WSL 的解释器路径不同，VS Code 会自动识别项目下的 `.venv`。
+`launch.sh`（Linux / WSL）仍要求预先安装 uv 与 Node.js，前端按同样规则（源码变化才构建、锁文件变化才 `npm ci`）自动构建。两个启动脚本都会在服务可以访问后自动用默认浏览器打开页面（WSL 下通过 Windows 浏览器）；不需要时设置 `OPEN_BROWSER=0`。服务已在运行时再次启动：仍按需构建前端（运行中的服务直接使用新构建），然后打开页面并退出；如果运行中的服务是旧版本后端代码，会提示先关闭原服务再启动。编辑器设置不入库：Windows 与 WSL 的解释器路径不同，VS Code 会自动识别项目下的 `.venv`。
 
 新 clone 后的首次使用：
 

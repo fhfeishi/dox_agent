@@ -119,6 +119,7 @@ def test_library_maintenance_is_for_administrators_only(tmp_path):
         # report templates stay open because 情报分析 saves a user's own template.
         assert client.post("/api/tasks/custom", json={"source_task_id": "task1"}).status_code == 403
         assert client.post("/api/review/rules", json={}).status_code == 403
+        assert client.delete("/api/review/rules/builtin-formal").status_code == 403  # deleting templates too
         assert client.post("/api/templates/custom", json={}).status_code != 403
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "admin", "password": "123456"})

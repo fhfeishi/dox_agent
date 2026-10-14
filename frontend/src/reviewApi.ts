@@ -375,3 +375,8 @@ export const REVIEW_EVIDENCE_NEED_LABEL: Record<string, string> = {
   internal: "申请书内部论证", comparison: "需对照资料", policy: "需政策材料",
 };
 
+
+/** Remove a template from the list (query 2026-1014 1737); past reviews keep their version. */
+export function deleteReviewRule(id: string): Promise<{ id: string; archived: boolean }> {
+  return request(`/rules/${encodeURIComponent(id)}`, { method: "DELETE" }, "模板删除失败");
+}

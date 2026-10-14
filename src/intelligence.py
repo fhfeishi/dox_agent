@@ -9,7 +9,7 @@ from urllib.parse import quote
 from uuid import uuid4
 from zipfile import BadZipFile
 
-from fastapi import APIRouter, File, HTTPException, Request, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import Response
 from langchain_core.messages import HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
@@ -52,7 +52,7 @@ class AnalysisRequest(BaseModel):
 
 
 @router.post("/inputs", status_code=201)
-async def upload_input(request: Request, file: Annotated[UploadFile, File()]):
+async def upload_input(request: Request, file: Annotated[UploadFile, File()], template: Annotated[bool, Form()] = False):
     filename = Path(file.filename or "材料").name
     suffix = Path(filename).suffix.lower()
     if suffix not in (".md", ".txt", ".pdf", ".docx", ".doc"):
@@ -71,7 +71,8 @@ async def upload_input(request: Request, file: Annotated[UploadFile, File()]):
             with tempfile.TemporaryDirectory(prefix="dox-intelligence-") as directory:
                 path = Path(directory) / ("input" + suffix)
                 path.write_bytes(data)
-                parsed = await asyncio.to_thread(parse_document, path, False)
+                # A report template is mostly headings and can be short (query 2026-1014 1737).
+                parsed = await asyncio.to_thread(parse_document, path, False, 10 if template else 100)
                 text = "\n\n".join(p["text"] for p in parsed["pages"])
         if not text.strip():
             raise ValueError("材料没有可读取的正文")

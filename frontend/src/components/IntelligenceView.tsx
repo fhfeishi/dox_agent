@@ -44,7 +44,7 @@ export function IntelligenceView() {
     setBusy("保存并读取材料"); setError("");
     try {
       for (const file of Array.from(files)) {
-        const form = new FormData(); form.append("file", file);
+        const form = new FormData(); form.append("file", file); if (isTemplate) form.append("template", "true");
         const saved: Input = await responseJson(await fetch("/api/intelligence/inputs", { method: "POST", body: form }));
         if (isTemplate) { setTemplate(saved.text); setTemplateInput(saved); setTemplateId(""); setTemplateVersion(undefined); }
         else setInputs((old) => [...old, saved]);

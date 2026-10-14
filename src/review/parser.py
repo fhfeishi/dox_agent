@@ -93,7 +93,7 @@ def run_fonts(document, paragraph):
     return out
 
 
-def parse_document(path: Path, extract_fields=True):
+def parse_document(path: Path, extract_fields=True, min_chars=100):
     suffix = path.suffix.lower()
     if suffix == '.pdf':
         reader = PdfReader(path)
@@ -142,7 +142,9 @@ def parse_document(path: Path, extract_fields=True):
     else: raise ValueError('请上传 PDF、DOC、DOCX、Markdown 或 TXT 文件。')
     blocks = [{**b, 'id': f'k{i+1}'} for i, b in enumerate(blocks)]
     full = '\n'.join(p['text'] for p in pages)
-    if len(compact(full)) < 100: raise ValueError('未提取到足够文字。扫描件暂不自动 OCR，请上传文字型 PDF 或 DOCX。')
+    # Applications are long; a short result usually means a scan. A template outline may be short
+    # (query 2026-1014 1737), so callers reading templates ask for less.
+    if len(compact(full)) < min_chars: raise ValueError('未提取到足够文字。扫描件暂不自动 OCR，请上传文字型 PDF 或 DOCX。')
     if len(full) > 1500000: raise ValueError('文字量超过演示版上限。')
     if not extract_fields:
         return {'pages':pages,'blocks':blocks,'kind':kind,'metadata':{'title':'','fund':'','category':'','year':None,'birth_date':'','budget':None,'domain':''},'warnings':[f'第 {p["page"]} 页文字较少，可能含扫描内容。' for p in pages if kind=='pdf' and len(compact(p['text']))<30]}

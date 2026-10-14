@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useBlocker, useNavigate, useParams, useSearchParams } from "react-router";
 import {
-  fetchReviewRules, reviewGuidelineFileUrl, saveReviewRule, uploadReviewGuidelines,
+  deleteReviewRule, fetchReviewRules, reviewGuidelineFileUrl, saveReviewRule, uploadReviewGuidelines,
   REVIEW_EVIDENCE_NEED_LABEL, REVIEW_KIND_LABEL, REVIEW_MEASURES, REVIEW_SOURCE_LABEL,
   type ReviewCheck, type ReviewExecution, type ReviewKind, type ReviewRule,
 } from "../reviewApi";
 import { Button, Pill } from "./ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewViews";
 import { useAuth } from "../auth";
+import { useApp } from "../store";
 
 const COUNTING_NOTE = "正文去空白后按 Unicode 码点计数（中文、标点、字母、数字各计 1），不含标题；图片内文字不计入并标为覆盖不足。首版仅支持此口径。";
 
@@ -91,6 +92,13 @@ export function ReviewTemplates() {
     } catch (cause) { setError((cause as Error).message); } finally { setBusy(""); }
   }
 
+  async function remove(rule: ReviewRule) {
+    if (!window.confirm(`删除审查模板“${rule.name}”？已完成的审查仍保留所用版本。`)) return;
+    setError(""); setNotice("");
+    try { await deleteReviewRule(rule.id); setNotice(`已删除“${rule.name}”。`); await reload(); }
+    catch (cause) { setError((cause as Error).message); }
+  }
+
   async function classify(rule: ReviewRule, kind: ReviewKind) {
     try {
       await saveReviewRule({ ...strip(rule), kind, source_kind: rule.guideline_ids.length ? "upload" : "manual", confirmed: false });
@@ -137,7 +145,8 @@ export function ReviewTemplates() {
         <section key={kind} className="mb-6">
           <h2 className="mb-3 text-[15px] font-semibold">{REVIEW_KIND_LABEL[kind]}模板</h2>
           <div className="grid gap-3 sm:grid-cols-2">
-            {rules.filter((rule) => rule.kind === kind && !rule.archived).map((rule) => <TemplateTile key={rule.id} rule={rule} />)}
+            {rules.filter((rule) => rule.kind === kind && !rule.archived).map((rule) => <TemplateTile key={rule.id} rule={rule} admin={role === "admin"}
+              onDelete={() => void remove(rule)} />)}
           </div>
         </section>
       ))}
@@ -145,17 +154,28 @@ export function ReviewTemplates() {
   );
 }
 
-function TemplateTile({ rule }: { rule: ReviewRule }) {
+/** A template card: 预览 opens it on the right, 修改 opens its page, 删除 removes it (query 2026-1014 1737). */
+function TemplateTile({ rule, admin, onDelete }: { rule: ReviewRule; admin: boolean; onDelete: () => void }) {
+  const { showInspector } = useApp();
+  const builtin = rule.id.startsWith("builtin-") || rule.source_kind === "builtin";
+  const action = "rounded-md border border-[var(--hairline)] px-2.5 py-1 text-[12px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]";
   return (
-    <Link to={`/review/templates/${encodeURIComponent(rule.id)}`}
-      className="block rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 hover:border-[var(--primary)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
-      <span className="flex flex-wrap items-center gap-2">
-        <strong className="text-[14px] text-[var(--ink)]">{rule.name}</strong>
-        <Pill tone="lav">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
-        <Pill tone={rule.confirmed ? "mint" : "yellow"}>{rule.confirmed ? "已启用" : "草稿"}</Pill>
-      </span>
-      <span className="mt-2 block text-xs text-[var(--steel)]">v{rule.version} · 启用 {rule.checks.filter((check) => check.enabled).length}/{rule.checks.length} 项 · {rule.checks.filter((c) => c.enabled).slice(0, 4).map((c) => c.title).join("、")}</span>
-    </Link>
+    <article className="flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 hover:border-[var(--primary)]">
+      <button type="button" onClick={() => showInspector({ kind: "review-template", templateId: rule.id })} className="text-left">
+        <span className="flex flex-wrap items-center gap-2">
+          <strong className="text-[14px] text-[var(--ink)]">{rule.name}</strong>
+          <Pill tone="lav">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
+          <Pill tone={rule.confirmed ? "mint" : "yellow"}>{rule.confirmed ? "已启用" : "草稿"}</Pill>
+        </span>
+        <span className="mt-2 block text-xs text-[var(--steel)]">v{rule.version} · 启用 {rule.checks.filter((check) => check.enabled).length}/{rule.checks.length} 项 · {rule.checks.filter((c) => c.enabled).slice(0, 4).map((c) => c.title).join("、")}</span>
+      </button>
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <button type="button" className={action} onClick={() => showInspector({ kind: "review-template", templateId: rule.id })}>预览</button>
+        <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}`}>{admin ? "修改" : "查看全部条目"}</Link>
+        {admin && !builtin ? <button type="button" className="rounded-md px-2 py-1 text-[12px] text-[var(--stone)] hover:text-[var(--red)]" onClick={onDelete}>删除</button> : null}
+        {builtin ? <span className="text-[11px] text-[var(--stone)]">内置，修改时另存为新模板</span> : null}
+      </div>
+    </article>
   );
 }
 

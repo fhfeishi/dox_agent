@@ -469,3 +469,17 @@ def test_local_evidence_file_is_previewable_and_reaches_the_reviewer_as_text(tmp
             time.sleep(.02)
     assert seen and [e.get("title") for e in seen[0]] == ["综述"]
     assert all("pages" not in e and "path" not in e for e in seen[0])
+
+
+def test_review_templates_can_be_deleted_but_built_in_ones_stay(tmp_path, monkeypatch):
+    """query 2026-1014 1737: 删除 takes a template out of the list; past reviews keep their version."""
+    monkeypatch.setattr(storage, "DATA", tmp_path / "review")
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
+    with TestClient(create_app(settings)) as client:
+        rules = client.get("/api/review/rules").json()
+        builtin = next(rule for rule in rules if rule["id"].startswith("builtin-"))
+        storage.save("rule", {**builtin, "id": "mine", "name": "我的模板", "source_kind": "manual"})
+        assert client.delete("/api/review/rules/mine").json() == {"id": "mine", "archived": True}
+        assert next(rule for rule in client.get("/api/review/rules").json() if rule["id"] == "mine")["archived"]
+        assert client.delete(f"/api/review/rules/{builtin['id']}").status_code == 403
+        assert client.delete("/api/review/rules/none").status_code == 404

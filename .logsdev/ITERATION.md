@@ -3372,3 +3372,21 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
     - 近期工作时间段为 一周内 · 一个月内 · 一个季度内 · 半年内 · 一年内，半年内显示“9 份分析报告、5 份申请书的审查”；
     - 无页面错误。截图在 `verification/query-20261014-1716/`。
 
+### 16.105 query「2026-1014 1737」：模板卡片、上传自动提取、删除（2026-10-14）
+
+- 前端：
+  - 新增 `templateOutline.ts`（按 Markdown #、第…章、一、、1. 识别章节，按（一）、1.1 识别小节，并保留每节的第一段说明；无标题时保留全文）及其测试；
+  - `ListingViews` 的报告模板区始终显示，上传支持 docx/pdf（经 `/api/intelligence/inputs` 读取文字，带 `template=true`），按钮改为“删除”并确认；
+  - `ReviewTemplates` 模板卡片加 预览 / 修改 / 删除，新增 `deleteReviewRule`。
+- 后端：
+  - `DELETE /api/review/rules/{id}` 将模板标为 archived（内置 403，非管理员由 `ADMIN_WRITES` 拒绝）；
+  - `parse_document` 增加 `min_chars`，`/api/intelligence/inputs` 收到 `template=true` 时下限为 10 字。
+- 测试：`templateOutline.test.mts`（2）、`test_review_templates_can_be_deleted_but_built_in_ones_stay`、`test_a_short_word_template_is_read_but_short_material_is_still_refused`、`test_auth` 增加删除审查模板的非管理员断言。
+- 验证：
+  - pytest 250 passed；npm test 46 passed；tsc、build 通过；五个浏览器脚本 PASS。
+  - 实服务（隔离状态副本）：
+    - 管理员在存量分析看到 5 张报告模板卡片，经文件选择上传 Word 模板后提示“已提取 5 个章节”，右侧打开草稿编辑；删除后卡片消失；
+    - 资料审查模板卡片有预览与修改（内置模板标注“修改时另存为新模板”），预览在右侧打开；
+    - 普通用户看到 5 张卡片，只有预览；
+    - 无页面错误。截图在 `verification/query-20261014-1737/`。
+

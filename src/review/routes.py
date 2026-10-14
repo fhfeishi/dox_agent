@@ -280,6 +280,18 @@ def save_rule(rule: RulePack):
     return publish(data, old)
 
 
+@router.delete("/rules/{id}")
+def delete_rule(id: str):
+    """删除 a template (query 2026-1014 1737): it leaves the list and the workbench; reviews already run
+    keep the version they used. Built-in templates are read only. Administrators only (auth)."""
+    rule = require("rule", id)
+    if id.startswith("builtin-") or rule.get("source_kind") == "builtin":
+        raise HTTPException(403, "内置模板不能删除。")
+    rule["archived"] = True
+    db.save("rule", rule)
+    return {"id": id, "archived": True}
+
+
 @router.get("/rules/{id}/versions/{version}")
 def rule_version(id: str, version: int):
     return require("rule_version", f"{id}-v{version}")

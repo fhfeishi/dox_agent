@@ -596,3 +596,19 @@ def test_external_inputs_stay_versioned_until_the_last_artifact_is_purged(tmp_pa
         records = client.get("/api/artifacts").json()
         assert records[0]["status"] == "failed"
         assert client.get("/api/runs/" + records[0]["run_id"]).json()["status"] == "failed"
+
+
+def test_a_short_word_template_is_read_but_short_material_is_still_refused(tmp_path):
+    """query 2026-1014 1737: an uploaded template outline may be short; material still needs real text."""
+    document = DocxDocument()
+    for line in ("一、研究背景", "二、主要结论", "三、建议"):
+        document.add_paragraph(line)
+    data = io.BytesIO()
+    document.save(data)
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora")
+    with TestClient(create_app(settings)) as client:
+        upload = lambda **form: client.post("/api/intelligence/inputs", data=form,
+                                            files={"file": ("模板.docx", data.getvalue(), "application/octet-stream")})
+        assert upload().status_code == 422  # as material: too little text, likely a scan
+        read = upload(template="true")
+        assert read.status_code == 201 and "二、主要结论" in read.json()["text"]

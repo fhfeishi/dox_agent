@@ -9,12 +9,14 @@ from src.agent.config import Settings
 from src.period_summary import charts, gather, markdown, period_start
 
 
-def test_periods_count_from_local_midnight():
-    now = datetime(2026, 10, 13, 16, 30)  # a Tuesday
-    assert period_start("3d", now) == datetime(2026, 10, 11)
-    assert period_start("week", now) == datetime(2026, 10, 12)
-    assert period_start("quarter", now) == datetime(2026, 10, 1)
-    assert period_start("year", datetime(2026, 2, 3)) == datetime(2026, 1, 1)
+def test_periods_are_rolling_windows_from_local_midnight():
+    now = datetime(2026, 10, 13, 16, 30)
+    # 一周内 … 一年内 (query 2026-1014 1716): the last 7/30/90/180/365 days including today.
+    assert period_start("week", now) == datetime(2026, 10, 7)
+    assert period_start("month", now) == datetime(2026, 9, 14)
+    assert period_start("quarter", now) == datetime(2026, 7, 16)
+    assert period_start("half", now) == datetime(2026, 4, 17)
+    assert period_start("year", now) == datetime(2025, 10, 14)
 
 
 def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
@@ -32,7 +34,7 @@ def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
             {**run, "id": "x0", "created_at": earlier, "document": {**run["document"], "id": "d9"}, "input_versions": [{"sha256": "s1"}]},
             {"id": "x2", "status": "completed", "created_at": earlier, "request": {}, "document": {"id": "d2", "filename": "b.docx"}}]
     names = {"m": "自然科学基金-AI与医疗", "b": "自然科学基金-AI与农业"}
-    facts = gather("7d", now, reports, runs, names)
+    facts = gather("week", now, reports, runs, names)
     assert [r["title"] for r in facts["reports"]] == ["肺结节研判", "草稿"]  # outside the period and earlier summaries are left out
     assert facts["reports"][0]["excerpt"] == "结论"  # citations and chart blocks are not passed on
     # Two professional reviews of one application count once, with how many runs; a run without a kind is not called formal.
@@ -44,7 +46,7 @@ def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
     assert figures[0]["values"] == [2, 1] and figures[1]["values"] == [2, 0, 1, 1] and figures[3]["type"] == "radar"
     assert "4 个项目的技术都未判定领域" in figures[3]["note"]
     # A chart with one bar says nothing: one domain and one day draw nothing; two kinds of work still do.
-    one = gather("7d", now, reports[:1], runs[:1], names)
+    one = gather("week", now, reports[:1], runs[:1], names)
     assert [f["title"] for f in charts(one, lambda name: {})] == ["工作类型"]
     body = markdown(facts, {"headline": "本期聚焦医疗影像。", "focus": ["《肺结节研判》关注早筛"], "suggestions": [{"issue": "证据少", "proposal": "补充多中心资料"}]}, figures)
     assert body.count("```dox-chart") == 4 and "本期聚焦医疗影像。" in body and "- **证据少**：补充多中心资料" in body
@@ -66,20 +68,20 @@ def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_p
         app.state.artifacts.create("a" * 32, type="report", title="医疗研判", markdown="正文", status="completed")
         # Publishing was removed (query 2026-1014 1516): no publish endpoint, every report counts.
         assert client.post("/api/artifacts/" + "a" * 32 + "/publish", json={"published": True}).status_code in (404, 405)
-        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "7d"}).json()["reports"]] == ["医疗研判"]
+        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "week"}).json()["reports"]] == ["医疗研判"]
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "admin", "password": "123456"})
         assert client.post("/api/summaries", json={"period": "decade"}).status_code == 422
-        created = client.post("/api/summaries", json={"period": "7d"})
+        created = client.post("/api/summaries", json={"period": "week"})
         assert created.status_code == 201, created.text
         saved = created.json()
-        assert saved["task_id"] == "period_summary" and saved["title"].startswith("工作总结 · 近 7 天")
+        assert saved["task_id"] == "period_summary" and saved["title"].startswith("工作总结 · 一周内")
         # One report gives no chart and no empty chart heading.
         assert "本期以医疗为主。" in saved["markdown"] and "数据概览" not in saved["markdown"] and "分析报告 1 份" in saved["markdown"]
         client.post("/api/auth/logout")
         client.post("/api/auth/login", json={"username": "owner", "password": "123456"})
         # A leader sees the same recent work as everyone else.
-        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "7d"}).json()["reports"]] == ["医疗研判"]
+        assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "week"}).json()["reports"]] == ["医疗研判"]
         assert client.post("/api/summaries", json={"period": "month"}).status_code == 201
 
 

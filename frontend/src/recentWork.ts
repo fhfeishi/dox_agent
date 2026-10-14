@@ -4,10 +4,11 @@
  * counts repeated reviews of one application once (A4), the same for every role (query 2026-1014
  * 1516); this module turns that into the lists, the one-line summary and the domain tally.
  */
-export type Period = "3d" | "7d" | "30d" | "week" | "month" | "quarter" | "year";
+// One set of rolling windows ending today (query 2026-1014 1716); the server counts them.
+export type Period = "week" | "month" | "quarter" | "half" | "year";
 export const PERIODS: { key: Period; label: string }[] = [
-  { key: "3d", label: "近 3 天" }, { key: "7d", label: "近 7 天" }, { key: "30d", label: "近 30 天" },
-  { key: "week", label: "本周" }, { key: "month", label: "本月" }, { key: "quarter", label: "本季度" }, { key: "year", label: "本年" },
+  { key: "week", label: "一周内" }, { key: "month", label: "一个月内" }, { key: "quarter", label: "一个季度内" },
+  { key: "half", label: "半年内" }, { key: "year", label: "一年内" },
 ];
 
 type FactState = "已完成" | "未完成" | "进行中";

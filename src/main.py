@@ -2058,7 +2058,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         }
 
     class SummaryRequest(BaseModel):
-        period: Literal["3d", "7d", "30d", "week", "month", "quarter", "year"]
+        period: Literal["week", "month", "quarter", "half", "year"]
 
     @app.post("/api/summaries", status_code=201)
     async def create_summary(payload: SummaryRequest):

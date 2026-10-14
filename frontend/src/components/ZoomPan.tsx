@@ -6,8 +6,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
  * click on the drawing, so nodes inside stay clickable. The drawing is `width` × `height` in its
  * own units and starts fitted to the window.
  */
-export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, alignEnd = false, fill = false, children }: {
+export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, alignEnd = false, fill = false, refit = "", children }: {
   width: number; height: number; label: string; minHeight?: number; minFit?: number;
+  /** Changing it refits the drawing (e.g. another branch) while keeping the window and its 大窗口 state. */
+  refit?: string;
   /** Take the remaining height of a flex column instead of sizing from the drawing; refit on resize. */
   fill?: boolean;
   /** When the drawing is wider than the window, start at its right edge (the deepest column). */
@@ -29,7 +31,7 @@ export function ZoomPan({ width, height, label, minHeight = 320, minFit = 0.7, a
     setView({ k, x: over ? (alignEnd ? el.clientWidth - width * k - 8 : 8) : (el.clientWidth - width * k) / 2,
       y: Math.max(8, (el.clientHeight - height * k) / 2) });
   }, [width, height, minFit, alignEnd, fill, large]);
-  useLayoutEffect(() => { fit(); }, [fit, large]);
+  useLayoutEffect(() => { fit(); }, [fit, large, refit]);
   useEffect(() => {
     const el = box.current;
     if (!fill || !el) return;

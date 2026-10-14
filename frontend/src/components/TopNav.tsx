@@ -21,6 +21,14 @@ const ITEMS: { key: NavKey; label: string; hint?: string }[] = [
   { key: "intelligence", label: "情报分析", hint: "上传外部材料进行分析" },
 ];
 
+// A leader's bar stays short (query 2026-1014 1703): the work pages sit in one 工作台 menu.
+const WORKBENCH_PAGES = [
+  { to: "/chat", label: "对话工作台" },
+  { to: "/tasks", label: "存量分析" },
+  { to: "/review/formal", label: "资料审查" },
+  { to: "/intelligence", label: "情报分析" },
+];
+
 const OVERVIEW_PAGES = [
   { to: "/overview/build", label: "资料库建设" },
   { to: "/overview/domains", label: "领域分析" },
@@ -104,7 +112,11 @@ export function TopNav() {
       {ITEMS.slice(0, 1).map((item) => <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
       {role !== "user" ? <MenuTab label="概览" pages={OVERVIEW_PAGES} active={nav === "overview"}
         current={(to) => pathname === to || (to === "/overview/build" && pathname.replace(/\/$/, "") === "/overview")} /> : null}
-      {ITEMS.slice(1).map((item) => item.key === "review" ? <MenuTab key={item.key} label="资料审查" pages={REVIEW_PAGES} active={nav === "review"} current={(to) => pathname.startsWith(to)} />
+      {role === "leader" ? <>
+        <button type="button" aria-current={nav === "library" ? "page" : undefined} onClick={() => setNav("library")} className={tab(nav === "library")}>资料库</button>
+        <MenuTab label="工作台" pages={WORKBENCH_PAGES} active={["chat", "tasks", "review", "intelligence"].includes(nav)}
+          current={(to) => pathname.startsWith(to.replace(/\/formal$/, ""))} />
+      </> : ITEMS.slice(1).map((item) => item.key === "review" ? <MenuTab key={item.key} label="资料审查" pages={REVIEW_PAGES} active={nav === "review"} current={(to) => pathname.startsWith(to)} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
     </nav>
     <nav aria-label="工作导航" className="min-w-0 flex-1 xl:hidden">
@@ -114,8 +126,9 @@ export function TopNav() {
     {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
       className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
       <span className={`size-2 rounded-full ${llmTone}`} />模型</button>
-      : <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
-        <span className={`size-2 rounded-full ${llmTone}`} />分析服务</span>}
+      // Others are told about the analysis service only when it is not available.
+      : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
+        <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
     {/* 成果: every generated report with its counts and what is still being produced (query 2026-1014 1516). */}
     <button type="button" onClick={() => showInspector({ kind: "results" })} className="shrink-0 rounded-lg px-3 py-2 text-sm text-[var(--primary)] hover:bg-[var(--surface)]">成果</button>
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}

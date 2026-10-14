@@ -14,7 +14,11 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .hierarchy import _json_object
 
-PERIODS = {"3d": "近 3 天", "7d": "近 7 天", "30d": "近 30 天", "week": "本周", "month": "本月", "quarter": "本季度", "year": "本年"}
+# One set of rolling windows ending today (query 2026-1014 1716): days counted back, today included.
+PERIODS = {"week": "一周内", "month": "一个月内", "quarter": "一个季度内", "half": "半年内", "year": "一年内"}
+DAYS = {"week": 7, "month": 30, "quarter": 90, "half": 180, "year": 365}
+# Long windows are charted by month, short ones by day.
+MONTHLY = ("quarter", "half", "year")
 PROMPT = (Path(__file__).parent / "prompts" / "period_summary.md").read_text(encoding="utf-8")
 SECTIONS = (("focus", "关注重点"), ("connections", "结论之间的联系"), ("done", "已形成结论的工作"),
             ("in_progress", "进行中与尚无结论的工作"), ("gaps", "遗漏与待完善"))
@@ -22,19 +26,11 @@ TASK_ID = "period_summary"
 
 
 def period_start(period: str, now: datetime) -> datetime:
-    """Local midnight of the period's first day; weeks start on Monday, quarters in Jan/Apr/Jul/Oct."""
+    """Local midnight of the window's first day: the last 7, 30, 90, 180 or 365 days including today."""
+    if period not in DAYS:
+        raise ValueError("未知时间段")
     day = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    if period in ("3d", "7d", "30d"):
-        return day - timedelta(days=int(period[:-1]) - 1)
-    if period == "week":
-        return day - timedelta(days=day.weekday())
-    if period == "month":
-        return day.replace(day=1)
-    if period == "quarter":
-        return day.replace(month=day.month - (day.month - 1) % 3, day=1)
-    if period == "year":
-        return day.replace(month=1, day=1)
-    raise ValueError("未知时间段")
+    return day - timedelta(days=DAYS[period] - 1)
 
 
 def _when(value: str | None) -> datetime | None:
@@ -117,7 +113,7 @@ def charts(facts: dict, scenes_of) -> list[dict]:
         out.append({"type": "bar", "title": "工作类型", "labels": [k for k, _ in kinds], "values": [v for _, v in kinds], "unit": " 项"})
     dates = sorted({item["date"] for item in items if item["date"]})
     if len(dates) > 1:
-        monthly = facts["period"] in ("本年",)
+        monthly = facts["period"] in {PERIODS[key] for key in MONTHLY}
         key = (lambda d: d[:7]) if monthly else (lambda d: d)
         buckets: dict[str, int] = {}
         for item in items:

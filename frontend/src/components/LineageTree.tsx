@@ -107,7 +107,8 @@ function LineageColumns({ path, lineage, match, projects, onSelect }: {
   const x = (c: number) => 12 + c * (COL_W + GAP);
   const y = (c: number, i: number) => tops[c] + i * ROW;
 
-  return <ZoomPan key={columns.map((col) => col.parent.key).join("|")} width={width} height={height} label="技术谱系图谱" minHeight={360} minFit={0.72} alignEnd fill>
+  // Refit on a new branch without remounting, so 大窗口 stays open while nodes are clicked (query 2026-1014 1716).
+  return <ZoomPan refit={columns.map((col) => col.parent.key).join("|")} width={width} height={height} label="技术谱系图谱" minHeight={360} minFit={0.72} alignEnd fill>
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label="技术谱系图谱">
       {columns.map((col, c) => <text key={`h${c}`} x={x(c)} y={36} fontSize={12} fontWeight={700} fill="#8a90a6">
         {LEVEL_NAMES[c]}</text>)}

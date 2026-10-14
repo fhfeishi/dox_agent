@@ -55,7 +55,7 @@ export function WorkspaceHome() {
             <p className="mt-3 max-w-xl text-sm leading-7 text-[#c5d0dd]">查看领域资料，开展分析与审查，接续最新报告。<br className="hidden sm:block" />生成的报告自动收录到成果，相关人员可直接查看。</p>
           </div>
           <div className="min-w-[180px] border-l border-white/20 pl-6">
-            <p className="text-xs text-[#b7c5d6]">近 7 天创建并完成的报告</p>
+            <p className="text-xs text-[#b7c5d6]">一周内创建并完成的报告</p>
             <p className="mt-2 text-4xl font-medium tabular-nums">{total?.recent_completed ?? "—"}<span className="ml-2 text-sm text-[#b7c5d6]">份</span></p>
             <button onClick={() => showInspector({ kind: "results" })} className="mt-3 text-sm text-[#e3ebf6] hover:underline">查看成果 →</button>
           </div>

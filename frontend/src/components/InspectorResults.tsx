@@ -108,7 +108,7 @@ export function InspectorResults() {
       {totals.data ? <section aria-label="成果统计" className="mb-3 rounded-xl bg-[var(--surface)] p-3 text-xs leading-6">
         <p><b className="text-lg text-[var(--ink)]">{totals.data.completed.total}</b> 份已完成报告</p>
         <p>存量分析 {totals.data.completed.analysis} · 资料审查 {totals.data.completed.review} · 情报分析 {totals.data.completed.intelligence}</p>
-        <p className="text-[var(--steel)]">生成中 {totals.data.active} · 未完成 {totals.data.failed} · 近 7 天创建并完成 {totals.data.recent_completed}</p>
+        <p className="text-[var(--steel)]">生成中 {totals.data.active} · 未完成 {totals.data.failed} · 一周内创建并完成 {totals.data.recent_completed}</p>
       </section> : null}
       {totals.error ? <p role="alert" className="mb-2 text-xs text-[var(--red)]">成果统计暂不可读</p> : null}
       {artifacts && artifacts.length >= 200 ? <p className="mb-3 text-xs text-[var(--steel)]">分析与情报列表显示最近 200 条，顶部统计包含全部报告。</p> : null}

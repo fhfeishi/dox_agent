@@ -17,7 +17,7 @@ export function LeaderRecent() {
   const { showInspector } = useApp();
   const navigate = useNavigate();
   const client = useQueryClient();
-  const [period, setPeriod] = useState<Period>("7d");
+  const [period, setPeriod] = useState<Period>("week");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const facts = useQuery({ queryKey: ["recent", period], queryFn: async ({ signal }): Promise<Facts> => {
@@ -33,11 +33,12 @@ export function LeaderRecent() {
   // Counted charts for the period; the year is shown by month, shorter periods by day. A chart with a
   // single bar says nothing the sentence above it does not, so it is left out (节点审查 A4).
   const buckets = new Map<string, number>();
-  for (const item of summary.items) { const key = period === "year" ? item.date.slice(0, 7) : item.date.slice(5, 10); buckets.set(key, (buckets.get(key) ?? 0) + 1); }
+  const monthly = period === "quarter" || period === "half" || period === "year";
+  for (const item of summary.items) { const key = monthly ? item.date.slice(0, 7) : item.date.slice(5, 10); buckets.set(key, (buckets.get(key) ?? 0) + 1); }
   const timeline = [...buckets].sort((a, b) => a[0].localeCompare(b[0]));
   const charts: ChartSpec[] = [
     ...(summary.domains.length > 1 ? [{ type: "bar" as const, title: "各领域的工作量", labels: summary.domains.slice(0, 8).map((d) => d.name), values: summary.domains.slice(0, 8).map((d) => d.count), unit: " 项" }] : []),
-    ...(timeline.length > 1 ? [{ type: "bar" as const, title: period === "year" ? "按月产出" : "按日产出", labels: timeline.map(([k]) => k), values: timeline.map(([, v]) => v), unit: " 项" }] : []),
+    ...(timeline.length > 1 ? [{ type: "bar" as const, title: monthly ? "按月产出" : "按日产出", labels: timeline.map(([k]) => k), values: timeline.map(([, v]) => v), unit: " 项" }] : []),
   ];
   async function generate() {
     setBusy(true); setError("");

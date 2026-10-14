@@ -1,7 +1,5 @@
-import { useSearchParams } from "react-router";
 import { Fragment, useState } from "react";
 import { useApp } from "../store";
-import { LibraryPanel } from "./LibraryPanel";
 import { Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import { ReviewRunPanel } from "./ReviewViews";
@@ -41,13 +39,12 @@ export function SidePanel() {
   } = useApp();
 
   const [localQuery, setLocalQuery] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = nav === "library" ? searchParams.get("q") ?? "" : localQuery;
-  function setQuery(value: string) { if (nav === "library") setSearchParams(p => { if (value) p.set("q", value); else p.delete("q"); return p; }); else setLocalQuery(value); }
+  const query = localQuery;
+  const setQuery = setLocalQuery;
   const [sessionFilter, setSessionFilter] = useState<"all" | "pinned">("all");
   // The top bar keeps the primary entries reachable while the panel is hidden.
   // Task pages keep their context in the main flow; a second task list obscures that flow.
-  if (sidebarCollapsed || ["admin", "mine", "review", "tasks", "intelligence"].includes(nav)) return null;
+  if (sidebarCollapsed || ["admin", "mine", "library", "review", "tasks", "intelligence"].includes(nav)) return null;
 
   const q = query.trim().toLowerCase();
   const allSessions = workspace.sessions;
@@ -117,7 +114,7 @@ export function SidePanel() {
         value={query}
         onChange={setQuery}
         ariaLabel="搜索会话"
-        placeholder={nav === "library" ? "搜索资料库" : nav === "tasks" ? "搜索任务" : "搜索会话"}
+        placeholder="搜索会话"
       /> : null}
 
       {/* scrollable list */}
@@ -235,7 +232,6 @@ export function SidePanel() {
           </>
         )}
 
-        {nav === "library" ? <LibraryPanel query={q} /> : null}
 
       </div>
 

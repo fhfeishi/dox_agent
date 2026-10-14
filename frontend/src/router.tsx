@@ -35,14 +35,6 @@ function LibraryPage() {
   </>;
 }
 
-/** 资料库 opens straight into a library (query 2026-1013 1522): the one the chat uses, else the first. */
-function LibraryIndex() {
-  const { corpora, corporaLoaded, corpusIds } = useApp();
-  const usable = corpora.filter((c) => !c.missing);
-  const target = usable.find((c) => corpusIds.includes(c.id)) ?? usable[0];
-  if (target) return <Navigate to={`/library/${encodeURIComponent(target.id)}/targets/four-facets`} replace />;
-  return <p className="p-8 text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可在左侧“新建资料库”。" : "正在读取资料库…"}</p>;
-}
 
 const WORKBENCH = ["/mine", "/chat", "/library", "/tasks", "/review", "/intelligence"];
 
@@ -78,7 +70,8 @@ export const router = createBrowserRouter([{
     { path: "mine", lazy: async () => ({ Component: (await import("./components/MyWork")).MyWork }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
-      { index: true, Component: LibraryIndex },
+      // 资料库 opens on the library cards (query 2026-1013 2012); a card opens one in the same workspace.
+      { index: true, lazy: async () => ({ Component: (await import("./components/LibraryHome")).LibraryHome }) },
       { path: ":corpusId", Component: LibraryPage, children: [
         { path: "documents" }, { path: "documents/:docId" }, { path: "targets/four-facets" },
       ] },

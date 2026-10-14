@@ -2,7 +2,7 @@ import { useAuth } from "../auth";
 import { useNavigate, useSearchParams } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { deleteCorpus, reassociateCorpus, renameCorpus, setCorpusDescription, type CorpusInfo } from "../api";
-import { changeGroups, useGroups } from "./LibraryPanel";
+import { changeGroups, useGroups } from "./LibraryHome";
 import { useApp } from "../store";
 import { useDocuments } from "../useDocuments";
 import { CorpusFiles } from "./CorpusFiles";
@@ -12,6 +12,8 @@ import { ProjectOverview } from "./ProjectOverview";
 import { Button, Pill } from "./ui";
 
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
+type View = "target" | "timeline" | "relations" | "files";
+const VIEWS: [View, string][] = [["target", "四维浏览"], ["timeline", "年度分布"], ["relations", "项目关系"], ["files", "资料文件"]];
 
 /** Corpus main-area view: 资料（源文件管理）与四维浏览（报告单元）。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
@@ -24,6 +26,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     connected,
     corpusView,
     setCorpusView,
+    openCorpus,
   } = useApp();
   const navigate = useNavigate();
   const [search] = useSearchParams();
@@ -47,6 +50,12 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
   }, [corpus?.description]);
 
   if (!corpus) return <p role="status" className="p-6">资料库正在读取或已不可用。<button onClick={onClose}>返回资料库列表</button></p>;
+  const projectView = search.get("projectView") ?? "";
+  const view: View = corpusView === "files" ? "files" : projectView === "timeline" || projectView === "relations" ? projectView : "target";
+  const showView = (key: View) => {
+    if (key === "files") { setCorpusView("files"); return; }
+    void navigate(`/library/${encodeURIComponent(corpus.id)}/targets/four-facets${key === "target" ? "" : `?projectView=${key}`}`);
+  };
   const isActive = corpusIds.includes(corpus.id);
   const status =
     corpus.missing
@@ -86,16 +95,26 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               className="font-app w-[260px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-[15px] font-semibold outline-none focus:border-[var(--primary)]" />
             <Button type="submit" size="sm" disabled={busy || !name.trim()}>保存</Button>
             <Button variant="ghost" size="sm" onClick={() => { setEditing(false); setName(corpus.name); }}>取消</Button>
-          </form> : <h1 className="text-[19px] font-semibold text-[var(--ink)]">{corpus.name}</h1>}
+          </form> : <>
+            {/* query 2026-1013 2012: back to the cards, or straight to another library, without a side list. */}
+            <button type="button" onClick={onClose} className="text-[13px] text-[var(--link)] hover:underline">← 全部资料库</button>
+            <span className="text-[var(--stone)]">/</span>
+            <h1 className="sr-only">{corpus.name}</h1>
+            <select aria-label="切换资料库" value={corpus.id} onChange={(e) => openCorpus(e.target.value, corpusView)}
+              className="max-w-[360px] rounded-md border border-transparent bg-transparent py-0.5 pr-1 text-[19px] font-semibold text-[var(--ink)] hover:border-[var(--hairline-strong)]">
+              {corpora.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </select>
+          </>}
           <Pill tone={status.tone}>{status.label}</Pill>
           <span className="text-[12px] text-[var(--stone)]">{KIND_LABEL[corpus.kind] ?? corpus.kind} · {corpus.docs_count} 份</span>
           {isActive ? <Pill tone="lav">当前对话使用</Pill> : null}
           <span className="flex-1" />
+          {/* One row of views, one shown at a time in this page (query 2026-1013 2012). */}
           {!corpus.missing ? <nav aria-label="库内视图" className="flex items-center gap-[2px] rounded-lg bg-[var(--surface)] p-[3px]">
-            {(["target", "files"] as const).map((key) => (
-              <button key={key} type="button" onClick={() => setCorpusView(key)} aria-pressed={corpusView === key}
-                className={`whitespace-nowrap rounded-md px-[12px] py-[5px] text-[13px] ${corpusView === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
-                {key === "target" ? "四维浏览" : "资料文件"}
+            {VIEWS.map(([key, label]) => (
+              <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key}
+                className={`whitespace-nowrap rounded-md px-[12px] py-[5px] text-[13px] ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
+                {label}
               </button>
             ))}
           </nav> : null}
@@ -147,7 +166,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             />
           ) : null}
           {corpusView === "files" ? (admin ? <TopicAdmin corpusId={corpus.id} /> : null) : (
-            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} /><details className="mt-5"><summary className="cursor-pointer text-sm text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details></>
+            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <details className="mt-5"><summary className="cursor-pointer text-sm text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details> : null}</>
           )}
           {corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
             {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :

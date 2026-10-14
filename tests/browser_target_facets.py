@@ -236,6 +236,7 @@ async def main():
 
             # ---- 进入库内的四维浏览 ------------------------------------------------
             await page.get_by_role("button", name="资料库", exact=True).click()
+            await page.get_by_role("button", name="打开", exact=True).first.click()  # the library cards (query 2026-1013 2012)
             await page.get_by_role("button", name="四维浏览", exact=True).first.click()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):
@@ -335,8 +336,8 @@ async def main():
                     pass  # An aborted GET is expected when its view unmounts.
             await page.route(re.compile(r".*/api/corpora/c1/reports$"), delayed_reports)
             await page.get_by_role("button", name="刷新四维列表").click()
-            # Switch libraries from the always-visible library list (query 2026-1013 1522).
-            await page.get_by_role("button", name=re.compile("^空库")).click()
+            # Switch libraries from the switcher by the library name (query 2026-1013 2012).
+            await page.get_by_label("切换资料库").select_option(label="空库")
             await expect(page.get_by_role("heading", name="空库", exact=True)).to_be_visible()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):

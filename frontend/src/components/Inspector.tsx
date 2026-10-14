@@ -22,6 +22,7 @@ import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
 import { LibraryPreview } from "./LibraryPreview";
 import { PublishButton } from "./PublishButton";
+import { YearReports } from "./YearDistribution";
 
 type InspTab = "out" | "cite" | "src";
 
@@ -267,6 +268,7 @@ export function Inspector() {
             : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "资料库预览"
+            : inspectorTarget.kind === "year" ? "年度资料"
             : inspectorTarget.kind === "document" ? "资料预览"
             : inspectorTarget.kind === "project" ? "项目详情"
             : inspectorTarget.kind === "review-template" ? "审查模板"
@@ -353,6 +355,7 @@ export function Inspector() {
         ) : null}
 
         {inspectorTarget.kind === "corpus" ? <LibraryPreview corpusId={inspectorTarget.corpusId} /> : null}
+        {inspectorTarget.kind === "year" ? <YearReports corpusId={inspectorTarget.corpusId} year={inspectorTarget.year} /> : null}
 
         {inspectorTarget.kind === "report" ? (
           <>

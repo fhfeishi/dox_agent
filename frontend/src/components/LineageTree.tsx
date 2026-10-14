@@ -163,8 +163,23 @@ type TargetRecord = {
     evidence?: { quote: string }[] }[];
 };
 
-/** Pane height: both panes share it on wide screens, so the lineage and its detail line up. */
-const PANE_H = "max(600px, calc(100vh - 150px))";
+/**
+ * Pane height: the whole visible area of the page's scrolling region, and the panes are brought to
+ * its top when they open, so the lineage fills the screen (query 2026-1013 2012); both panes share
+ * the height on wide screens, so the lineage and its detail line up.
+ */
+function useFillHeight(box: React.RefObject<HTMLDivElement | null>) {
+  const [height, setHeight] = useState(640);
+  useEffect(() => {
+    const scroller = (() => { let el = box.current?.parentElement; while (el && !/(auto|scroll)/.test(getComputedStyle(el).overflowY)) el = el.parentElement; return el; })();
+    const measure = () => setHeight(Math.max(520, Math.round((scroller?.clientHeight ?? window.innerHeight) - 24)));
+    measure();
+    requestAnimationFrame(() => box.current?.scrollIntoView({ block: "start" }));
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [box]);
+  return height;
+}
 
 /** Left/right panes of equal height with a draggable divider on wide screens; stacked on narrow ones. */
 function SplitPane({ left, right }: { left: ReactNode; right: ReactNode }) {
@@ -179,10 +194,11 @@ function SplitPane({ left, right }: { left: ReactNode; right: ReactNode }) {
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
+  const height = useFillHeight(box);
   const save = (value: number) => { try { localStorage.setItem("dox-lineage-split", String(value)); } catch { /* preference only */ } };
   const set = (value: number) => { const next = Math.min(75, Math.max(35, value)); setShare(next); return next; };
-  if (!wide) return <div className="grid gap-4"><div style={{ height: PANE_H }}>{left}</div>{right}</div>;
-  return <div ref={box} className="flex" style={{ height: PANE_H }}>
+  if (!wide) return <div ref={box} className="grid gap-4"><div style={{ height }}>{left}</div>{right}</div>;
+  return <div ref={box} className="flex" style={{ height }}>
     <div className="h-full min-w-0" style={{ width: `${share}%` }}>{left}</div>
     <div role="separator" aria-orientation="vertical" aria-label="调整左右窗格宽度" aria-valuemin={35} aria-valuemax={75} aria-valuenow={Math.round(share)} tabIndex={0}
       className="group mx-1 flex w-3 shrink-0 cursor-col-resize touch-none select-none items-center justify-center self-stretch rounded hover:bg-[var(--primary-soft)]"
@@ -320,7 +336,9 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
       {data.error ? <p role="alert" className="mb-2 text-xs text-[var(--red)]">上次生成未完成：{data.error}{data.categories.length ? "，下方为之前的结果。" : ""}</p> : null}
       {data.state === "stale" && !running ? <p className="mb-2 text-xs text-[#9a6500]">{data.stale_reason || "四维技术条目已变化"}，谱系需要重新生成。</p> : null}
       {!data.categories.length ? <p className="text-sm text-[var(--steel)]">{running ? "生成完成后显示。" : "尚未生成。生成时由模型把本库全部项目的技术条目归入“体系 › 方向 › 主题”，并依据各项目报告判定所述阶段；条目名称保持原样。"}</p> : <>
-        <div aria-label="谱系筛选" className="mb-3 space-y-1.5 rounded-lg bg-[var(--canvas)] px-3 py-2.5">
+        {/* Folded by default so the drawing keeps the pane's height (query 2026-1013 2012). */}
+        <details aria-label="谱系筛选" open={filtered || undefined} className="mb-3 space-y-1.5 rounded-lg bg-[var(--canvas)] px-3 py-2">
+          <summary className="cursor-pointer text-xs text-[var(--steel)]">按应用领域、业务环节筛选{filtered ? ` · 已筛选 ${[...fields, ...stages].join("、")}` : ""}</summary>
           {([["应用领域", [...resolve.names, UNDETERMINED_FIELD], fields, setFields, (v: string) => (id: string) => resolve.of(id) === v],
             ["业务环节", [...stageNames, UNDETERMINED_STAGE], stages, setStages, (v: string) => (id: string) => stageOf(id) === v]] as const).map(([label, values, list, set, test]) =>
             <div key={label} className="flex flex-wrap items-center gap-1.5">
@@ -331,7 +349,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
           <p className="text-[11px] text-[var(--stone)]">数字为项目数（去重）；一个项目可涉及多个领域与环节。</p>
           {filtered ? <p role="status" className="pt-0.5 text-xs text-[var(--steel)]">已筛选 {[...fields, ...stages].join("、")} · 匹配 {projectCount([...match])} 个项目、{match.size} 条技术
             <button type="button" className="ml-2 text-[var(--link)] hover:underline" onClick={() => { setFields([]); setStages([]); }}>恢复全部</button></p> : null}
-        </div>
+        </details>
         <nav aria-label="谱系位置" className="mb-2 flex flex-wrap items-center gap-1 text-xs">
           {path.map((n, i) => <span key={n.key} className="flex items-center gap-1">{i ? <span className="text-[var(--stone)]">›</span> : null}
             {i < path.length - 1 ? <button type="button" onClick={() => onFocus(n.key)} className="rounded px-1 text-[var(--link)] hover:bg-[var(--canvas)]">{n.name}</button>

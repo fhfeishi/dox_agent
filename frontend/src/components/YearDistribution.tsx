@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useApp } from "../store";
 import { useQuery } from "@tanstack/react-query";
 import { projectQuery, type Project } from "../projects";
@@ -15,11 +16,18 @@ const fmt = (v: number) => v.toLocaleString("zh-CN", { maximumFractionDigits: 1 
 /**
  * 年度分布 (query 2026-1013 1745 / 1842): reports per start year, and each project's direct funding
  * by start year as a scatter with the yearly average as a line. Projects without a stated amount are
- * counted, never plotted as zero. A bar selects its year; a point opens its project on the right.
+ * counted, never plotted as zero. A bar opens that year's reports on the right (and, where the page
+ * lists projects, selects the year there); a point opens its project on the right.
  */
 export function YearDistribution({ corpusId, year, onYear }: { corpusId: string; year?: string; onYear?: (year: string) => void }) {
   const { showInspector } = useApp();
   const result = useQuery(projectQuery(corpusId));
+  // query 2026-1013 2012: a bar opens the year's reports on the right, by mouse or keyboard.
+  const pick = (value: number, count: number) => {
+    if (!count) return;
+    onYear?.(String(value));
+    showInspector({ kind: "year", corpusId, year: value });
+  };
   if (result.error) return <p role="alert" className="text-sm text-[var(--red)]">{(result.error as Error).message}</p>;
   if (!result.data) return <p role="status" className="text-sm text-[var(--steel)]">正在读取项目…</p>;
   const projects = result.data.projects.filter((p) => p.identity_status === "identified");
@@ -50,10 +58,12 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
   return <div className="space-y-6">
     <section aria-label="年度分布-报告数量" className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
       <h3 className="font-semibold">年度分布 · 报告数量</h3>
-      <p className="mb-2 text-xs text-[var(--steel)]">按项目立项年份统计 {counts.reduce((n, c) => n + c.count, 0)} 份报告；立项年份待核对的项目 {projects.length - dated.length} 个。{onYear ? "点击柱子筛选该年项目。" : ""}</p>
+      <p className="mb-2 text-xs text-[var(--steel)]">按项目立项年份统计 {counts.reduce((n, c) => n + c.count, 0)} 份报告；立项年份待核对的项目 {projects.length - dated.length} 个。点击柱子在右侧查看当年的报告。</p>
       <svg role="img" aria-label="各立项年份的报告数量柱状图" viewBox={`0 0 ${W} ${H}`} className="w-full">
         {axis((v) => String(Math.round(v)), yCount, maxCount)}
-        {counts.map((c) => <g key={c.year} className={onYear ? "cursor-pointer" : ""} onClick={() => onYear?.(year === String(c.year) ? "" : String(c.year))}>
+        {counts.map((c) => <g key={c.year} role={c.count ? "button" : undefined} tabIndex={c.count ? 0 : undefined}
+          aria-label={c.count ? `${c.year} 年：${c.count} 份报告，查看清单` : undefined} className={c.count ? "cursor-pointer outline-none focus-visible:opacity-70" : ""}
+          onClick={() => pick(c.year, c.count)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(c.year, c.count); } }}>
           <rect x={x(c.year) - bar / 2} y={yCount(c.count)} width={bar} height={yCount(0) - yCount(c.count)} rx="3" fill="var(--primary)"
             fillOpacity={!year || year === String(c.year) ? .8 : .3}><title>{c.year} 年：{c.count} 份报告</title></rect>
           {c.count ? <text x={x(c.year)} y={yCount(c.count) - 4} textAnchor="middle" fontSize="11" fill="var(--slate)">{c.count}</text> : null}
@@ -77,3 +87,39 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
     </section>
   </div>;
 }
+
+/**
+ * One year's reports (query 2026-1013 2012), opened from a bar: the same set the bar counts — the
+ * report files of projects that started that year — grouped by project. A file opens its text, a
+ * project its detail; back returns here.
+ */
+export function YearReports({ corpusId, year }: { corpusId: string; year: number }) {
+  const { corpora, showInspector, openPreview } = useApp();
+  const result = useQuery(projectQuery(corpusId));
+  const [query, setQuery] = useState("");
+  if (result.error) return <p role="alert" className="text-sm text-[var(--red)]">{(result.error as Error).message}</p>;
+  if (!result.data) return <p role="status" className="text-sm text-[var(--steel)]">正在读取…</p>;
+  const name = (corpora.find((c) => c.id === corpusId)?.name ?? corpusId).replace(/^自然科学基金-/, "");
+  const projects = result.data.projects.filter((p) => p.identity_status === "identified" && p.start_year === year);
+  const files = projects.reduce((n, p) => n + p.files.length, 0);
+  const q = query.trim().toLowerCase();
+  const shown = q ? projects.filter((p) => `${p.title} ${p.number} ${p.files.map((f) => f.document.title).join(" ")}`.toLowerCase().includes(q)) : projects;
+  return <div className="space-y-3 p-1">
+    <div>
+      <h2 className="text-[16px] font-semibold">{year} 年 · {name}</h2>
+      <p className="mt-1 text-[12.5px] text-[var(--steel)]">报告 {files} 份 · 项目 {projects.length} 个。按项目立项年份归入，不是当年提交或发布的报告数。</p>
+    </div>
+    {projects.length > 6 ? <input type="search" aria-label="在本年报告中搜索" placeholder="搜索项目或报告" value={query} onChange={(e) => setQuery(e.target.value)}
+      className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px]" /> : null}
+    {!projects.length ? <p className="text-sm text-[var(--steel)]">本年没有纳入的报告。</p> : null}
+    <ul className="space-y-2">{shown.map((p) => <li key={p.project_id} className="rounded-lg border border-[var(--hairline)] p-3">
+      <button type="button" onClick={() => showInspector({ kind: "project", corpusId, projectId: p.project_id, facet: "成果" })}
+        className="block text-left text-[13.5px] font-medium leading-5 hover:text-[var(--primary)]">{p.title}</button>
+      <p className="mt-0.5 text-xs text-[var(--stone)]">{p.number || "批准号待核对"} · {p.files.length} 份报告</p>
+      <div className="mt-1.5 space-y-0.5">{p.files.map((f) => <button key={f.document.doc_id} type="button" onClick={() => openPreview(f.document, null, corpusId)}
+        className="block w-full truncate text-left text-xs text-[var(--link)] hover:underline" title={f.document.title}>{f.document.title}</button>)}</div>
+    </li>)}</ul>
+    {q && !shown.length ? <p className="text-sm text-[var(--steel)]">没有匹配的项目或报告。</p> : null}
+  </div>;
+}
+

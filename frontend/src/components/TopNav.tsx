@@ -58,7 +58,7 @@ export function TopNav() {
   const { nav, setNav, sidebarCollapsed, toggleSidebar, showInspector, setDrawerOpen, llmTone, llmText, model } = useApp();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   return <header className="flex h-[52px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
-    {nav !== "admin" && nav !== "mine" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
+    {nav !== "admin" && nav !== "mine" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
     <Link to="/" className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>

@@ -40,6 +40,7 @@ import { uiFlags } from "./uiFlags";
 import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
+import { useAuth } from "./auth";
 
 export type NavKey = "admin" | "mine" | "chat" | "tasks" | "library" | "review" | "intelligence";
 export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
@@ -53,7 +54,8 @@ export type InspectorTarget = { kind: "overview" } | { kind: "activity" } | { ki
   { kind: "artifact"; artifactId: string } |
   { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
   { kind: "execution"; runId?: string }
-  | { kind: "target"; corpusId: string; docId: string; index: number };
+  | { kind: "target"; corpusId: string; docId: string; index: number }
+  | { kind: "year"; corpusId: string; year: number };
 
 function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
@@ -73,6 +75,7 @@ function inspectorIdentity(target: InspectorTarget): string {
     case "document": return `document:${target.corpusId}:${target.doc.doc_id}:${target.doc.version}:${target.page ?? 0}`;
     case "execution": return `execution:${target.runId ?? "latest"}`;
     case "target": return `target:${target.corpusId}:${target.docId}:${target.index}`;
+    case "year": return `year:${target.corpusId}:${target.year}`;
   }
 }
 export type EditState = { index: number; text: string } | null;
@@ -247,6 +250,7 @@ export function useApp(): AppValue {
  * lives in the components. This mirrors the reference template's `store.tsx`.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
+  const { role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
@@ -325,8 +329,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
   const [corpusIds, setCorpusIds] = useState<string[]>([]);
-  const [autoCorpus, setAutoCorpusState] = useState(() => { try { return localStorage.getItem("dox-auto-corpus") !== "0"; } catch { return true; } });
-  const setAutoCorpus = (on: boolean) => { setAutoCorpusState(on); try { localStorage.setItem("dox-auto-corpus", on ? "1" : "0"); } catch { /* preference only */ } };
+  // query 2026-1013 2012: every new conversation chooses its library from the question; choosing one by
+  // hand keeps it for this conversation only and is not remembered as a preference.
+  const [autoCorpus, setAutoCorpus] = useState(true);
   const [ingestBusy, setIngestBusy] = useState(false);
   const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
   const [progress, setProgress] = useState<{ stage: string; completed: number; total: number } | null>(null);
@@ -484,7 +489,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setPreparation(typeof data.preparation === "string" ? data.preparation : "running");
         setHealth(
           !state.ready
-            ? "请在 .env 配置模型密钥后重启"
+            ? (role === "admin" ? "请在 .env 配置模型密钥后重启" : "分析服务暂不可用，请联系管理员")
             : data.preparation === "running"
               ? "知识库正在加载"
               : data.preparation === "error"
@@ -563,7 +568,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
           return send(false, { question, history: turns, options: { ...options, corpus_ids: [best.corpus_id] } });
         }
         if (!best) showToast(`未能判断问题对应的资料库，沿用${current}`);
-      } catch { /* routing is a convenience; the current scope still answers */ }
+      } catch {
+        // Routing is a convenience; the answer still comes from the current scope, which is said plainly.
+        showToast(`自动选择资料库暂不可用，本次沿用${corpora.find((c) => c.id === corpusIds[0])?.name ?? "当前资料库"}`);
+      }
     }
     const history = override?.history ?? turns;
     const scope = override?.options ?? options;
@@ -764,6 +772,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   async function switchSession(id?: string, task?: string, corpus?: string, version?: number) {
     setSessionBusy(true);
+    if (!id) setAutoCorpus(true);
     await settleActiveRun();
     try {
       await workspace.saveNow(latestTurns.current, options);
@@ -973,6 +982,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setInspectorStack((stack) => {
       const current = stack[stack.length - 1];
       if (inspectorIdentity(current) === inspectorIdentity(target)) return stack;
+      // Another year replaces the year list on top instead of piling up (query 2026-1013 2012).
+      if (current.kind === "year" && target.kind === "year") return [...stack.slice(0, -1), target];
       return [...stack.slice(-3), target];
     });
     setInspectorOpen(true);

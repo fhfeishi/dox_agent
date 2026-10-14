@@ -28,7 +28,7 @@ function StagePanel({ cell, plain, titles, onTech, onProject }: { cell: MatrixCe
       </summary>
       <ul className="mt-2 space-y-1.5">{d.items.map((item) => <li key={item.key} className="border-l-2 pl-2 text-[13px]" style={{ borderColor: tierOf(item.maturity).color }}>
         <span className="flex flex-wrap items-center gap-1.5">
-          <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在下方细节中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
+          <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在五级谱系中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
           <Tier level={item.maturity} /><Chips list={item.indicators} />
         </span>
         <span className="block text-xs text-[var(--steel)]">
@@ -56,7 +56,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   const [copied, setCopied] = useState("");
   if (!lineage) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取技术谱系…</p>;
   if (!hierarchy.scenes.length || !lineage.categories.length) return <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
-    总览需要本库的场景归纳和技术谱系。{!lineage.categories.length ? <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech("")}>在下方细节中生成技术谱系 ↓</button> : "请先在“场景”页生成四维归纳。"}
+    总览需要本库的场景归纳和技术谱系。{!lineage.categories.length ? <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech("")}>到五级谱系中生成技术谱系 →</button> : "请先在“场景”页生成四维归纳。"}
   </div>;
 
   // Title with the library's own name; the lineage branch name is the model's wording.
@@ -108,8 +108,8 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       当前筛选：只统计“{LEVELS.find((level) => level.min === min)?.label}”的技术条目，已收起 {matrix.hidden} 个；问题、成果与共性底座不受筛选影响。
       <button type="button" className="ml-2 underline" onClick={() => setMin(0)}>显示全部</button></p> : null}
 
-    {lineage.state === "stale" && !lineage.job ? <p className="rounded-lg bg-[#fdf6e3] px-3 py-2 text-xs text-[#9a6500]">{lineage.stale_reason || "四维技术条目已变化"}，下方仍是上次生成的谱系。
-      <button type="button" className="ml-1 underline" onClick={() => onTech("")}>在下方细节中重新生成 ↓</button></p> : null}
+    {lineage.state === "stale" && !lineage.job ? <p className="rounded-lg bg-[#fdf6e3] px-3 py-2 text-xs text-[#9a6500]">{lineage.stale_reason || "四维技术条目已变化"}，当前显示的仍是上次生成的谱系。
+      <button type="button" className="ml-1 underline" onClick={() => onTech("")}>到五级谱系中重新生成 →</button></p> : null}
     <section aria-label="主展板" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {matrix.fields.map((field) => {
         const row = matrix.rows.get(field)!;
@@ -166,6 +166,6 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“已解决/待研究”为各项目报告的自述，不代表本期新增或近期突破。
     </p>
     {board.unplaced ? <p className="text-xs text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。
-      <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>在下方细节中逐条查看 ↓</button></p> : null}
+      <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>到五级谱系中逐条查看 →</button></p> : null}
   </div>;
 }

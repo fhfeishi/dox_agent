@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { FACETS, projectQuery, type Project } from "../projects";
@@ -19,12 +19,10 @@ export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; co
   const result = useQuery(projectQuery(corpusId));
   const { startResearch, sessionBusy, openPreview } = useApp();
   const [search, setSearch] = useSearchParams();
-  // The four-dimension hierarchy is always on top; these secondary views open on demand below it.
   const view = ["timeline", "relations"].includes(search.get("projectView") ?? "") ? search.get("projectView")! : "";
   const year = search.get("startYear") ?? "";
   const selected = search.get("project") ?? "";
   const [message, setMessage] = useState("");
-  const workbenchRef = useRef<HTMLDivElement>(null);
   const [projectLimit, setProjectLimit] = useState(24);
   const set = (key: string, value: string) => setSearch((old) => {
     const next = new URLSearchParams(old);
@@ -54,18 +52,13 @@ export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; co
     catch (error) { setMessage((error as Error).message); }
   }
   return <div className="mt-5 space-y-5" aria-label="项目归纳">
-    <SceneHierarchy corpusId={corpusId} />
-    <div ref={workbenchRef} aria-label="更多视图" className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
-      <span className="mr-1 text-xs font-semibold text-[var(--steel)]">更多视图</span>
-      {[["timeline", "年度分布"], ["relations", "项目关系"]].map(([key, label]) =>
-        <Button key={key} size="sm" variant={view === key ? "primary" : "ghost"} onClick={() => set("projectView", view === key ? "" : key)}>{label}</Button>)}
-      <span className="flex-1" />
-      {!view ? <span className="text-xs text-[var(--stone)]"><span>本库已识别项目</span> {data.coverage.identified_projects}</span> : null}
-      {view === "timeline" ? <>
-      <select aria-label="立项年份" value={year} onChange={(e) => set("startYear", e.target.value)} className="rounded border border-[var(--hairline)] bg-[var(--canvas)] p-2"><option value="">全部立项年份</option>{years.map((y) => <option key={y}>{y}</option>)}</select>
-      <Button size="sm" variant="ghost" onClick={() => setSearch((old) => { const next = new URLSearchParams(old); ["startYear", "project"].forEach((key) => next.delete(key)); return next; })}>重置筛选</Button>
-      </> : null}
-    </div>
+    {/* The library header switches views (query 2026-1013 2012); one is shown at a time. */}
+    {!view ? <SceneHierarchy corpusId={corpusId} /> : null}
+    {view === "timeline" ? <div aria-label="年度筛选" className="flex flex-wrap items-center gap-2">
+      <select aria-label="立项年份" value={year} onChange={(e) => set("startYear", e.target.value)} className="rounded border border-[var(--hairline)] bg-[var(--canvas)] p-2 text-sm"><option value="">全部立项年份</option>{years.map((y) => <option key={y}>{y}</option>)}</select>
+      {year ? <Button size="sm" variant="ghost" onClick={() => setSearch((old) => { const next = new URLSearchParams(old); ["startYear", "project"].forEach((key) => next.delete(key)); return next; })}>清除筛选</Button> : null}
+      <span className="text-xs text-[var(--stone)]">本库已识别项目 {data.coverage.identified_projects} 个；点柱子在右侧查看当年资料</span>
+    </div> : null}
     {/* query 2026-1013 1842: reports per year and funding scatter, no dimension filter; a bar picks a year. */}
     {view === "timeline" ? <YearDistribution corpusId={corpusId} year={year} onYear={(value) => set("startYear", value)} /> : null}
     {view === "relations" ? <ProjectGraph corpusId={corpusId} projects={identified} title={corpusName ?? ""} onOpen={(id) => set("project", id)} /> : null}

@@ -73,14 +73,17 @@ def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], na
     inside = lambda value: in_period(period, now, value)
     short = lambda cid: names.get(cid, cid).replace("自然科学基金-", "")
     shown = lambda r: not published_only or bool(r.get("published_at"))
+    # A leader reads what was published in the period, so published work is dated by its publication
+    # (节点审查复核 2012 §十三); others see work by when it was last updated or finished.
+    report_date = lambda r: (r.get("published_at") if published_only else None) or r.get("updated_at") or r.get("created_at")
+    run_date = lambda r: (r.get("published_at") if published_only else None) or r.get("finished_at") or r.get("created_at")
     picked_reports = [{"id": r.get("artifact_id", ""), "title": r.get("title") or "分析报告", "domains": [short(c) for c in r.get("corpus_ids") or []],
-                       "date": (r.get("updated_at") or r.get("created_at") or "")[:10],
+                       "date": (report_date(r) or "")[:10],
                        "state": "已完成" if r.get("status") == "completed" else "未完成" if r.get("status") == "failed" else "进行中",
                        "published": bool(r.get("published_at")), "excerpt": _excerpt(r.get("markdown") or "")}
-                      for r in reports if r.get("task_id") != TASK_ID and shown(r) and inside(r.get("updated_at") or r.get("created_at"))]
+                      for r in reports if r.get("task_id") != TASK_ID and shown(r) and inside(report_date(r))]
     latest: dict[tuple, dict] = {}
-    for r in sorted((r for r in runs if shown(r) and inside(r.get("finished_at") or r.get("created_at"))),
-                    key=lambda r: r.get("finished_at") or r.get("created_at") or "", reverse=True):
+    for r in sorted((r for r in runs if shown(r) and inside(run_date(r))), key=lambda r: run_date(r) or "", reverse=True):
         document = r.get("document") or {}
         kind = KINDS.get((r.get("request") or {}).get("kind"), "资料审查")  # runs from before the two kinds
         # The same file uploaded again gets a new document id; its content hash says it is one application.
@@ -91,7 +94,7 @@ def gather(period: str, now: datetime, reports: list[dict], runs: list[dict], na
             continue
         latest[key] = {"id": r.get("id", ""), "title": document.get("metadata", {}).get("title") or document.get("filename") or "申请书",
                        "kind": kind, "domains": [short(c) for c in (r.get("request") or {}).get("corpus_ids") or []],
-                       "date": (r.get("finished_at") or r.get("created_at") or "")[:10],
+                       "date": (run_date(r) or "")[:10],
                        "state": {"completed": "已完成", "failed": "未完成"}.get(r.get("status"), "进行中"),
                        "published": bool(r.get("published_at")), "issues": (r.get("summary") or {}).get("issue"), "runs": 1}
     return {"period": PERIODS[period], "start": start.date().isoformat(), "end": now.date().isoformat(),
@@ -175,7 +178,7 @@ async def generate(app, period: str, model) -> dict:
     names = {info.id: info.name for info in infos}
     now = datetime.now().astimezone()
     rows = [r for r in report_rows(store) if r["status"] == "completed" and r.get("published_at")
-            and in_period(period, now, r.get("updated_at") or r.get("created_at"))]
+            and in_period(period, now, r["published_at"])]
     reports = [store.get(row["artifact_id"]) for row in rows]  # bodies for the excerpts
     facts = gather(period, now, reports, review_db.all_items("run"), names, published_only=True)
 

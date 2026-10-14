@@ -187,6 +187,8 @@ async def main():
 
             await page.goto(origin + "/chat")
             await page.get_by_role("button", name="资料库", exact=True).click()
+            # 资料库 opens on the cards (query 2026-1013 2012); a card opens the library in place.
+            await page.get_by_role("button", name="打开", exact=True).first.click()
             await page.get_by_role("button", name="四维浏览", exact=True).first.click()
 
             block = page.get_by_label("场景层级", exact=True)
@@ -195,10 +197,12 @@ async def main():
             await expect(tabs.get_by_role("tab", name="技术谱系 尚未生成")).to_have_attribute("aria-selected", "true")
             assert LINEAGE_POSTS == [], LINEAGE_POSTS
             # 默认是汇报视图；谱系未生成时引导到技术视图生成。
-            await block.get_by_role("button", name="在下方细节中生成技术谱系 ↓").click()
+            await block.get_by_role("button", name="到五级谱系中生成技术谱系 →").click()
             await block.get_by_role("button", name="生成技术谱系", exact=True).click()
             await expect(tabs.get_by_role("tab", name="技术谱系 1 个技术体系 · 3 个技术条目")).to_be_visible()
             assert len(LINEAGE_POSTS) == 1, LINEAGE_POSTS
+            # 总览、五级谱系、路网一次显示一个（query 2026-1013 2012）。
+            await block.get_by_role("tablist", name="技术谱系视图").get_by_role("tab", name="总览").click()
 
             # 总览：每个领域一张卡（问题进展与指标）、共性底座；展开页只按环节列全部技术，问题与成果链接到各自页签。
             # 总览、细节上下排列；总览先给本库要点卡片（各有一句结论），可收起。
@@ -253,6 +257,7 @@ async def main():
             await expect(detail).to_contain_text("以深度学习提升病灶识别")
             # 筛选：只看“环节未判定”时只剩多中心数据库，网络模型分支显示 0 并弱化。
             filters = block.get_by_label("谱系筛选")
+            await filters.locator("summary").click()  # folded so the drawing keeps its height (query 2026-1013 2012)
             await filters.get_by_role("button", name=re.compile("^环节未判定")).click()
             await expect(filters.get_by_role("status")).to_contain_text("匹配 1 个项目、1 条技术")
             await expect(graph.get_by_role("button", name="R5：网络模型")).to_contain_text("0 项目")
@@ -269,14 +274,14 @@ async def main():
             for name in ("R4：深度学习方法", "R5：网络模型", "R6：深度学习"):
                 await graph.get_by_role("button", name=name).click()
             await detail.get_by_role("button", name="病灶识别困难").click()
-            await expect(tabs.get_by_role("tab", name="问题 2 个核心问题 · 目标 18")).to_have_attribute("aria-selected", "true")
+            await expect(tabs.get_by_role("tab", name="问题 2 个核心问题")).to_have_attribute("aria-selected", "true")
 
-            # 四个维度按钮显示实际数量与目标，缺量不被写成达标。
-            await expect(tabs.get_by_role("tab", name="场景 1 类 · 目标 6")).to_be_visible()
-            await expect(block.get_by_text("未达目标或未采用的条目", exact=False)).to_be_visible()
-            # 主题归纳等视图移到下方，默认不展开。
+            # 四个维度按钮只显示实际数量；场景归纳不设目标数（节点审查 A2）。
+            await expect(tabs.get_by_role("tab", name="场景 1 类")).to_be_visible()
+            await expect(block.get_by_text("未采用的条目", exact=False)).to_be_visible()
+            # 年度分布、项目关系在库内视图中切换，不在本页下方。
             await expect(page.get_by_label("四维概览")).to_have_count(0)
-            await expect(page.get_by_label("更多视图").get_by_role("button", name="项目关系")).to_be_visible()
+            await expect(page.get_by_role("navigation", name="库内视图").get_by_role("button", name="项目关系")).to_be_visible()
 
             await expect(block.get_by_text("已解决", exact=True)).to_be_visible()
             await expect(block.get_by_text("待解决", exact=True)).to_be_visible()
@@ -287,7 +292,7 @@ async def main():
             await expect(block.get_by_label("技术详情")).to_contain_text("报告所述阶段：攻关验证3 原型与样机验证")
 
             # 场景卡片展开逻辑简图，点击节点高亮链条。
-            await tabs.get_by_role("tab", name="场景 1 类 · 目标 6").click()
+            await tabs.get_by_role("tab", name="场景 1 类").click()
             await block.get_by_role("button", name="查看场景 临床诊疗").click()
             flow = block.get_by_label("临床诊疗 逻辑简图")
             await expect(flow).to_be_visible()

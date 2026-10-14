@@ -1,5 +1,5 @@
 import { useAuth } from "../auth";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import {
@@ -28,20 +28,7 @@ function Members({ names }: { names?: string[] }) {
 }
 
 /** A collapsible section whose open state is remembered per viewer (query 2026-1010 1537). */
-function Fold({ id, title, hint, children }: { id: string; title: string; hint: string; children: React.ReactNode }) {
-  const keyName = `dox-lineage-fold-${id}`;
-  const [open, setOpen] = useState(() => { try { return localStorage.getItem(keyName) !== "0"; } catch { return true; } });
-  const flip = () => { setOpen(!open); try { localStorage.setItem(keyName, open ? "0" : "1"); } catch { /* preference only */ } };
-  return <section aria-label={title} className="space-y-2">
-    <button type="button" aria-expanded={open} onClick={flip} className="flex w-full items-baseline gap-2 text-left">
-      <span className="w-4 text-xs text-[var(--steel)]">{open ? "▾" : "▸"}</span>
-      <span className="text-base font-semibold">{title}</span>
-      <span className="truncate text-sm text-[var(--stone)]">· {hint}</span>
-      <span className="ml-auto shrink-0 text-xs text-[var(--link)]">{open ? "收起" : "展开"}</span>
-    </button>
-    {open ? children : null}
-  </section>;
-}
+const LINEAGE_VIEWS = [["overview", "总览"], ["tree", "五级谱系"], ["roadmap", "路网"]] as const;
 
 export function EvidenceList({ corpusId, evidence, limit = 2, staleHint = "请重新生成层级" }: { corpusId: string; evidence: HierarchyEvidence[]; limit?: number; staleHint?: string }) {
   const { openPreview } = useApp();
@@ -166,12 +153,12 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const dim: Dim = DIMS.includes(search.get("dim") as Dim) ? search.get("dim") as Dim : "技术谱系";
   const sceneName = search.get("scene") ?? "";
   const node = search.get("node") ?? "";
+  const lineageView = LINEAGE_VIEWS.some(([key]) => key === search.get("lineage")) ? search.get("lineage")! : "overview";
   // 技术谱系 opens on the report view; the technology view is the expert's full tree.
-  const detailRef = useRef<HTMLDivElement>(null);
   const { corpora } = useApp();
   const libraryName = corpora.find((c) => c.id === corpusId)?.name ?? corpusId;
   // Overview cards and road-map stations open the node in the detail section and bring it into view.
-  const toDetail = (key: string) => { go({ node: key }); requestAnimationFrame(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })); };
+  const toDetail = (key: string) => go({ node: key, lineage: "tree" });
   const go = (next: Record<string, string>) => setSearch((old) => {
     const value = new URLSearchParams(old);
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
@@ -209,27 +196,26 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
         style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
         <span className="block text-[15px] font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
         <span className="hidden text-xs text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
-          : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类 · 目标 6" : key === "问题" ? `个核心问题 · 目标 ${6 * (coverage.targets?.issues_per_scene ?? 3)}` : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
+          : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类" : key === "问题" ? "个核心问题" : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
     </div>
     <p className="text-sm text-[var(--steel)]">{PURPOSE[dim]}</p>
     {notice ? <p role="alert" className="text-sm text-[var(--red)]">{notice}</p> : null}
     {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-sm">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
+    {/* 总览, the five-level lineage and the road map one at a time, so the chosen one has the whole
+        page (query 2026-1013 2012); a technique picked in one is selected in the others. */}
     {dim === "技术谱系" ? <>
-      <Fold id="overview" title={`技术谱系总览 - ${libraryName}`} hint="本库的研究规模、技术重心、应用重心、报告所述验证阶段、待研究问题，以及各应用领域">
-        <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
-          onDim={(d, scene) => go({ dim: d, scene, node: "" })} />
-      </Fold>
-      <div ref={detailRef} className="scroll-mt-4">
-        <Fold id="detail" title="五级技术谱系" hint="R2 资料库 › R3 › R4 › R5 › R6 项目技术；左侧谱系与右侧详情联动，中间分隔条可拖动">
-          <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
-            onIssue={(scene) => go({ dim: "问题", scene, node: "" })} />
-        </Fold>
+      <div role="tablist" aria-label="技术谱系视图" className="inline-flex gap-1 rounded-lg bg-[var(--surface)] p-1">
+        {LINEAGE_VIEWS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={lineageView === key}
+          onClick={() => go({ lineage: key === "overview" ? "" : key })}
+          className={`rounded-md px-3 py-1 text-[13.5px] ${lineageView === key ? "bg-[var(--canvas)] font-semibold shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
       </div>
-      <Fold id="roadmap" title="五级技术谱系 - 路网形式" hint="资料库居中，R3–R6 逐环展开，放大后显示更深层级；点击节点同步到上方五级技术谱系">
-        {lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={libraryName} selected={node} onSelect={(key) => go({ node: key })} />
-          : <p className="text-sm text-[var(--steel)]">生成技术谱系后显示路网图。</p>}
-      </Fold>
+      {lineageView === "overview" ? <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
+        onDim={(d, scene) => go({ dim: d, scene, node: "" })} /> : null}
+      {lineageView === "tree" ? <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
+        onIssue={(scene) => go({ dim: "问题", scene, node: "" })} /> : null}
+      {lineageView === "roadmap" ? lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={libraryName} selected={node} onSelect={(key) => go({ node: key })} />
+        : <p className="text-sm text-[var(--steel)]">生成技术谱系后显示路网图。</p> : null}
     </> : null}
     {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
       <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维整理。"}</span>{data.state === "missing" ? regenerate : null}
@@ -300,7 +286,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
 
       <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--stone)]">
         <span>{data.state === "stale" ? "四维整理条目已变化，结果需更新。" : data.generated_at ? `生成于 ${new Date(data.generated_at).toLocaleString("zh-CN")}` : ""}</span>
-        {coverage.gaps?.length ? <details><summary className="cursor-pointer">未达目标或未采用的条目 {coverage.gaps.length} 项</summary>
+        {coverage.gaps?.length ? <details><summary className="cursor-pointer">未采用的条目 {coverage.gaps.length} 项</summary>
           <ul className="mt-1 space-y-1">{coverage.gaps.map((gap, index) => <li key={index}>{gap.detail}</li>)}</ul></details> : null}
         <span className="flex-1" />{regenerate}
       </div>

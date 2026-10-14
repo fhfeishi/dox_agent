@@ -24,6 +24,7 @@ def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
                 "published_at": recent, "markdown": "结论 [1]\n```dox-chart\n{}\n```"},
                {"artifact_id": "r2", "title": "草稿", "corpus_ids": ["b"], "updated_at": earlier, "status": "completed", "markdown": ""},
                {"title": "旧报告", "corpus_ids": ["m"], "updated_at": old, "status": "completed", "markdown": ""},
+               {"artifact_id": "r3", "title": "旧报告新发布", "corpus_ids": ["m"], "updated_at": old, "published_at": recent, "status": "completed", "markdown": ""},
                {"title": "上期总结", "corpus_ids": [], "updated_at": recent, "status": "completed", "task_id": "period_summary", "markdown": ""}]
     run = {"status": "completed", "request": {"kind": "professional", "corpus_ids": ["m"]},
            "document": {"id": "d1", "filename": "a.docx", "metadata": {"title": "申请书甲"}}, "summary": {"issue": 2}}
@@ -40,7 +41,8 @@ def test_facts_charts_and_markdown_keep_numbers_out_of_the_model():
                                    "state": "已完成", "published": True, "issues": 2, "runs": 2}
     assert [r["kind"] for r in facts["reviews"]] == ["专业审查", "资料审查"]
     published = gather("7d", now, reports, runs, names, published_only=True)
-    assert [r["title"] for r in published["reports"]] == ["肺结节研判"] and [r["runs"] for r in published["reviews"]] == [1]
+    # A leader's period follows publication: an old report published this week is this week's.
+    assert [r["title"] for r in published["reports"]] == ["肺结节研判", "旧报告新发布"] and [r["runs"] for r in published["reviews"]] == [1]
     figures = charts(facts, lambda name: {"fields": [("肿瘤", 5), ("神经", 3), ("心血管", 2)], "outside": 4, "total": 12})
     assert [f["title"] for f in figures] == ["各领域的工作量", "工作类型", "按日产出", "AI与医疗 · 应用领域分布"]
     assert figures[0]["values"] == [2, 1] and figures[1]["values"] == [2, 0, 1, 1] and figures[3]["type"] == "radar"

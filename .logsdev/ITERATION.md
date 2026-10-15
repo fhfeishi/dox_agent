@@ -3532,3 +3532,32 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
 - 验证：
   - 实数据 1280×720（隔离状态副本）：内容高 1568、可视 660，滚轮可滚到最后一行，页签固定在顶部；无页面错误。截图 `verification/query-20261015-1700/results-scrolled.png`。
   - `browser_review_simple` 增加对成果页滚动区域的断言，PASS；`browser_library_documents` PASS；npm test 47 passed。
+
+### 16.112 query「2026-1015 1714」：年度分布独立为库内视图（2026-10-15，已实施，未提交）
+
+- 库内视图改为“资料文件 · 技术研判 · 年度分布 · 项目关系”。“年度分布”含按立项年分布与资助，从技术研判中分出，地址仍为 `?projectView=timeline`。
+- 去掉技术研判页上方的“技术研判视角”下拉（“四维归纳与技术谱系 / 年度分布与资助情况”）；技术研判只显示四维归纳与技术谱系。取代 16.107 中“年度分布在技术研判内切换”的安排。
+- 验证：
+  - tsc、build 通过；npm test 47 passed。
+  - `browser_library_documents`（改为点“年度分布”，并断言下拉已不存在）、`browser_scene_hierarchy`（断言库内视图有“年度分布”）、`browser_target_facets`、`browser_review_simple` PASS。
+  - `browser_library_documents` 首次运行报 `sqlite3.OperationalError: unable to open database file`，重跑通过，判断为偶发的临时目录问题。
+
+### 16.113 query「2026-1015 1733」：Windows launch.cmd 按 Ctrl+C 停不下来（2026-10-15，已实施，未提交）
+
+- 复现（本机 Linux，未在 Windows 实跑）：
+  - 无后台任务时，按 Ctrl+C（SIGINT）0.5–0.7 秒退出（刚启动、打开首页/资料库/对话工作台均如此）。
+  - 有后台线程任务时：uvicorn 打印“Finished server process”后进程不退出，直到任务结束；最小示例 20 秒任务即 20 秒才退出。
+  - 原因：资料审查、上传后的基本信息提取在 `ThreadPoolExecutor` 中调用模型，报告等也在工作线程中运行；Python 退出时等待所有正在运行的线程任务，可达数分钟，控制台看起来“已结束却回不到提示符”。未完成的请求（如流式回答）uvicorn 也会无限期等待。
+- 处理：
+  - 新增 `launcher.py serve`：以 `timeout_graceful_shutdown=5` 运行 uvicorn；停止后刷新日志并立即退出进程，不等待后台线程。
+  - 中断的审查、信息提取、报告在下次启动时已有恢复逻辑，标为失败并提示重新运行。
+  - `launch.cmd` 与 `launch.sh` 都改用该命令，替换原 `python -m uvicorn` 行。
+  - 启动失败（如端口被占）仍返回非零（实测 3）。
+- 验证：
+  - 最小示例带 20 秒后台任务：原方式 20.2 秒退出，`serve` 0.2 秒。
+  - 实际应用经 `serve`（隔离状态副本）打开资料库、成果页后 Ctrl+C 均 0.2 秒退出；`launch.sh` 全流程启动后 Ctrl+C 0.2 秒退出。
+  - 新增 `test_serve_stops_without_waiting_for_background_jobs`；全量 pytest 253 passed。
+- 限制：
+  - 未在 Windows 实机验证。
+  - cmd 在批处理中按 Ctrl+C 后仍会询问“终止批处理操作吗(Y/N)?”，这是 cmd 自身行为，按 Y 即可。
+  - Windows 副本 `D:\chyCodespace\agents\dox_agent` 仍在旧提交，需要 `git pull` 后才生效。

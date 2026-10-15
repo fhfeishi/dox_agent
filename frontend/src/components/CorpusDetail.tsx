@@ -14,7 +14,8 @@ import { Button, Pill } from "./ui";
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
 type View = "target" | "timeline" | "relations" | "files";
 // 资料文件 first and opened by default (query 2026-1014 1642); 技术研判 was 四维浏览.
-const VIEWS: [View, string][] = [["files", "资料文件"], ["target", "技术研判"], ["relations", "项目关系"]];
+// 年度分布 is a view of its own again beside the others (query 2026-1015 1714).
+const VIEWS: [View, string][] = [["files", "资料文件"], ["target", "技术研判"], ["timeline", "年度分布"], ["relations", "项目关系"]];
 
 /** Corpus main-area view: 资料文件（增删改查）与技术研判、年度分布、项目关系。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
@@ -114,8 +115,8 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {/* One row of views, one shown at a time in this page (query 2026-1013 2012). */}
           {!corpus.missing ? <nav aria-label="库内视图" className="flex flex-wrap items-center gap-[2px] rounded-lg bg-[var(--surface)] p-[3px]">
             {VIEWS.map(([key, label]) => (
-              <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key || (key === "target" && view === "timeline")}
-                className={`whitespace-nowrap rounded-md px-[12px] py-[7px] text-[13px] transition-colors motion-reduce:transition-none ${view === key || (key === "target" && view === "timeline") ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
+              <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key}
+                className={`whitespace-nowrap rounded-md px-[12px] py-[7px] text-[13px] transition-colors motion-reduce:transition-none ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
                 {label}
               </button>
             ))}
@@ -137,12 +138,6 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
       </header>
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[24px] py-[16px]">
-      {!corpus.missing && (view === "target" || view === "timeline") ? <label className="mb-4 flex items-center gap-2 text-sm text-[var(--steel)]">
-        技术研判视角<select aria-label="技术研判视角" value={view} onChange={(e) => showView(e.target.value as View)}
-          className="cursor-pointer rounded-lg border border-[var(--primary)] bg-[var(--primary-soft)] px-3 py-2 text-[var(--primary-pressed)]">
-          <option value="target">四维归纳与技术谱系</option><option value="timeline">年度分布与资助情况</option>
-        </select>
-      </label> : null}
       {corpus.missing ? (
         <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-[12px]">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>

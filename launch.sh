@@ -164,8 +164,5 @@ printf '打开 http://127.0.0.1:%s\n' "${PORT:-8000}"
 # 服务可访问后自动打开默认浏览器（WSL 下打开 Windows 浏览器）；设 OPEN_BROWSER=0 可关闭。
 "$python" src/launcher.py open >/dev/null 2>&1 &
 
-exec "$python" -m uvicorn \
-  src.main:app \
-  --loop asyncio \
-  --host "${HOST:-127.0.0.1}" \
-  --port "${PORT:-8000}"
+# Ctrl+C 后不等待仍在运行的后台任务（审查、报告），见 launcher.py serve。
+HOST="${HOST:-127.0.0.1}" PORT="${PORT:-8000}" exec "$python" src/launcher.py serve

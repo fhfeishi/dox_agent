@@ -1,4 +1,5 @@
 import socket
+from pathlib import Path
 
 from src import launcher
 
@@ -94,3 +95,40 @@ def test_port_left_by_a_stopped_service_is_free():
     with socket.socket() as leftover:
         leftover.bind(("127.0.0.1", 0))  # bound, not listening, like a closed service's connections
         assert launcher.check_port("127.0.0.1", leftover.getsockname()[1]) == 0
+
+
+def test_serve_stops_without_waiting_for_background_jobs(tmp_path):
+    """Ctrl+C must not wait for a running review or report (Windows launch.cmd could not be stopped)."""
+    import signal
+    import subprocess
+    import sys
+    import time
+    import urllib.request
+
+    (tmp_path / "jobapp.py").write_text(
+        "import time\nfrom concurrent.futures import ThreadPoolExecutor\nfrom fastapi import FastAPI\n"
+        "executor = ThreadPoolExecutor(max_workers=1)\napp = FastAPI()\n"
+        "@app.post('/job')\ndef job():\n    executor.submit(time.sleep, 30)\n    return {}\n")
+    with socket.socket() as probe:
+        probe.bind(("127.0.0.1", 0))
+        port = probe.getsockname()[1]
+    launcher_dir = Path(__file__).resolve().parents[1] / "src"
+    code = f"import sys; sys.path.insert(0, {str(launcher_dir)!r}); import launcher; launcher.serve('127.0.0.1', {port}, 'jobapp:app')"
+    process = subprocess.Popen([sys.executable, "-c", code], cwd=tmp_path, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    try:
+        for _ in range(100):
+            try:
+                opener.open(urllib.request.Request(f"http://127.0.0.1:{port}/job", method="POST"), timeout=1)
+                break
+            except OSError:
+                time.sleep(0.1)
+        else:
+            raise AssertionError("service did not start")
+        started = time.monotonic()
+        process.send_signal(signal.SIGINT)
+        assert process.wait(timeout=10) == 0
+        assert time.monotonic() - started < 5
+    finally:
+        if process.poll() is None:
+            process.kill()

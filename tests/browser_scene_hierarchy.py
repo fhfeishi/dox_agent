@@ -281,6 +281,7 @@ async def main():
             await expect(block.get_by_text("未采用的条目", exact=False)).to_be_visible()
             # 年度分布、项目关系在库内视图中切换，不在本页下方。
             await expect(page.get_by_label("四维概览")).to_have_count(0)
+            await expect(page.get_by_role("navigation", name="库内视图").get_by_role("button", name="年度分布")).to_be_visible()
             await expect(page.get_by_role("navigation", name="库内视图").get_by_role("button", name="项目关系")).to_be_visible()
 
             await expect(block.get_by_text("已解决", exact=True)).to_be_visible()

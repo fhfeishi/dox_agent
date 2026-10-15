@@ -140,7 +140,32 @@ def open_when_ready(url: str, timeout: float = 180) -> bool:
     return False
 
 
+def serve(host: str, port: int, app: str = "src.main:app") -> int:
+    """Run the service until Ctrl+C, then leave at once.
+
+    Reviews, metadata extraction and reports run in worker threads. Python's exit waits for every
+    running one, so after Ctrl+C the console stayed blocked for minutes (query: Windows launch.cmd
+    could not be stopped). Requests still open get at most 5 s; unfinished background jobs are
+    marked interrupted when the service next starts.
+    """
+    import logging
+    import uvicorn
+
+    sys.path.insert(0, str(Path.cwd()))  # src.main is imported from the project root
+    server = uvicorn.Server(uvicorn.Config(app, host=host, port=port, loop="asyncio", timeout_graceful_shutdown=5))
+    try:
+        server.run()
+    except KeyboardInterrupt:
+        pass  # uvicorn re-raises the Ctrl+C it handled
+    logging.shutdown()
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(0 if server.started else 1)
+
+
 if __name__ == "__main__":
+    if sys.argv[1] == "serve":
+        serve(os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8000")))
     if sys.argv[1] == "open":
         url = service_url(os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8000")))
         raise SystemExit(0 if os.environ.get("OPEN_BROWSER") == "0" or open_when_ready(url) else 1)

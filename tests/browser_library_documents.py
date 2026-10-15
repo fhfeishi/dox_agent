@@ -80,8 +80,9 @@ async def main():
                 await expect(page.get_by_role("list",name="本次添加进度").get_by_text("已入库",exact=True)).to_have_count(2)
                 files=(await (await page.request.get(origin+f"/api/corpora/{quote(cid)}/files")).json())["files"]
                 assert {"新资料/甲/same.md", "新资料/乙/same.md"} <= {f["rel_path"] for f in files}
-                await page.get_by_role("button",name="技术研判",exact=True).click()
-                await page.get_by_label("技术研判视角").select_option("timeline")
+                # 年度分布与资料文件、技术研判、项目关系并列（query 2026-1015 1714）。
+                await page.get_by_role("button",name="年度分布",exact=True).click()
+                await expect(page.get_by_label("技术研判视角")).to_have_count(0)
                 await expect(page.get_by_role("button",name="2021 年已知批准资助金额合计 300 万元，2 个项目",exact=True)).to_be_visible()
                 await page.get_by_label("金额口径").select_option("direct")
                 await expect(page.get_by_role("button",name="2021 年已知直接经费合计 30 万元，2 个项目",exact=True)).to_be_visible()

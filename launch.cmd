@@ -165,7 +165,8 @@ rem ------------------------------------------------------------
 echo Open http://%HOST%:%PORT%
 rem Open the default browser once the service answers; set OPEN_BROWSER=0 to skip.
 start "" /b "%python%" src\launcher.py open
-call "%python%" -m uvicorn src.main:app --loop asyncio --host "%HOST%" --port "%PORT%"
+rem Ctrl+C stops at once without waiting for running reviews or reports (launcher.py serve).
+call "%python%" src\launcher.py serve
 exit /b %errorlevel%
 
 rem ------------------------------------------------------------

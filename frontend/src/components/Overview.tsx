@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../auth";
 import { fetchArtifacts } from "../api";
+import { resultsSummaryQuery } from "../resultsSummary";
 import { buildBoard, buildMatrix, libraryInsights, tierOf } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
 import { fetchReviewRuns } from "../reviewApi";
@@ -49,7 +50,7 @@ export function Overview() {
     const value = new URLSearchParams(old);
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
     return value;
-  });
+  }, { replace: true });
   const navigate = useNavigate();
   const openDomain = (id: string) => void navigate(`/overview/domains?domain=${encodeURIComponent(id)}`);
   return <main className="min-h-0 flex-1 overflow-y-auto">
@@ -85,6 +86,7 @@ type Todo = { key: string; what: string; detail: string; action: string; go: () 
 function Work() {
   const { openCorpus, showInspector } = useApp();
   const navigate = useNavigate();
+  const totals = useQuery(resultsSummaryQuery);
   const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
     if (!response.ok) throw new Error("资料库概况暂不可读");
@@ -96,8 +98,8 @@ function Work() {
   const runs = reviews.data ?? [];
   const arts = (reports.data ?? []).filter((a) => a.lifecycle === "active");
   const todos: Todo[] = [
-    ...libs.filter((l) => l.lineage.state === "stale").map((l) => ({ key: "ls" + l.corpus_id, what: `${short(l.name)} 技术谱系需要重新生成`,
-      detail: l.lineage.stale_reason || "四维条目已变化", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
+    ...libs.filter((l) => l.lineage.state === "stale" || l.lineage.state === "missing").map((l) => ({ key: "ls" + l.corpus_id, what: `${short(l.name)} 技术谱系${l.lineage.state === "missing" ? "尚未生成" : "需要重新生成"}`,
+      detail: l.lineage.state === "missing" ? "已有资料尚未生成技术谱系" : l.lineage.stale_reason || "四维条目已变化", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.hierarchy.state && l.hierarchy.state !== "ready").map((l) => ({ key: "hs" + l.corpus_id, what: `${short(l.name)} 场景归纳${l.hierarchy.state === "missing" ? "尚未生成" : "需要更新"}`,
       detail: "场景、问题、技术路线与成果的归纳", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.lineage.unplaced).map((l) => ({ key: "lu" + l.corpus_id, what: `${short(l.name)} 有 ${l.lineage.unplaced} 条技术未归入体系`,
@@ -109,19 +111,24 @@ function Work() {
     ...arts.filter((a) => a.status === "failed").slice(0, 10).map((a) => ({ key: "af" + a.artifact_id, what: `报告未完成：${a.title || "分析报告"}`,
       detail: a.fail_reason || "原因未记录", action: "查看", go: () => showInspector({ kind: "artifact", artifactId: a.artifact_id }) })),
   ];
-  const active = runs.filter((r) => r.status === "queued" || r.status === "running").length + arts.filter((a) => a.status === "generating").length;
-  const kpis: [string, string][] = [["资料库", String(libs.length)], ["项目", String(libs.reduce((n, l) => n + l.projects, 0))],
-    ["处理中的任务", String(active)], ["需要处理", String(todos.length)]];
+  const ready = Boolean(overview.data && reviews.data && reports.data && totals.data);
+  const errors = [overview.error, reviews.error, reports.error, totals.error].filter(Boolean);
+  const kpis: [string, string][] = [["资料库", overview.data ? String(libs.length) : "—"],
+    ["项目（各库合计）", overview.data ? String(libs.reduce((n, l) => n + l.projects, 0)) : "—"],
+    ["处理中的任务", totals.data ? String(totals.data.active) : "—"],
+    ["未完成任务", totals.data ? String(totals.data.failed) : "—"]];
   return <div className="mx-auto max-w-[1180px] space-y-6 px-5 pt-6">
-    <h1 className="text-xl font-semibold">工作概况</h1>
+    <header><p className="text-xs text-[var(--steel)]">管理员概览</p><h1 className="mt-2 text-2xl font-semibold">资料建设与运行维护</h1><p className="mt-2 text-sm text-[var(--steel)]">先处理待办，再查看各库覆盖与归纳状态。</p></header>
     <section aria-label="总体数字" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
       {kpis.map(([title, value]) => <div key={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-        <p className="text-[13px] text-[var(--steel)]">{title}</p><p className="mt-1 text-2xl font-semibold">{overview.data ? value : "…"}</p></div>)}
+        <p className="text-[13px] text-[var(--steel)]">{title}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}
     </section>
     <section aria-label="需要处理">
-      <h2 className="mb-2 text-base font-semibold">需要处理 · {todos.length}</h2>
-      {!todos.length && overview.data ? <p className="rounded-xl border border-dashed p-4 text-sm text-[var(--steel)]">暂无需要处理的事项。</p> : null}
-      <div className="space-y-1.5">{todos.map((t) => <div key={t.key} className="flex items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5">
+      <h2 className="mb-2 text-base font-semibold">需要处理{ready ? " · " + todos.length : ""}</h2>
+      {errors.length ? <p role="alert" className="mb-3 text-sm text-[var(--red)]">部分数据读取失败：{errors.map(e => (e as Error).message).join("；")}。以下仅展示已读取事项。</p> : !ready ? <p role="status" className="mb-3 text-sm text-[var(--steel)]">正在读取维护事项…</p> : null}
+      <p className="mb-3 text-xs text-[var(--steel)]">库内项目分别计数，跨库未去重。下方列出当前可读取的维护事项；失败任务完整列表见成果。</p>
+      {!todos.length && ready && !errors.length ? <p className="rounded-xl border border-dashed p-4 text-sm text-[var(--steel)]">暂无需要处理的事项。</p> : null}
+      <div className="max-h-[360px] space-y-1.5 overflow-y-auto">{todos.map((t) => <div key={t.key} className="flex items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5">
         <span className="min-w-0 flex-1"><b className="block text-[14px] font-medium">{t.what}</b><span className="block truncate text-xs text-[var(--steel)]">{t.detail}</span></span>
         <button type="button" onClick={t.go} className="shrink-0 rounded-md border border-[var(--hairline-strong)] px-3 py-1 text-[13px] hover:bg-[var(--canvas)]">{t.action}</button>
       </div>)}</div>
@@ -170,7 +177,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
 
     <section aria-label="要点结论">
       <h2 className="mb-2 text-sm font-semibold text-[var(--steel)]">要点结论</h2>
-      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">{insights.map((i) => {
+      <div className="grid gap-2 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">{insights.map((i) => {
         const key = "i:" + i.title;
         return <button key={i.title} type="button" aria-expanded={open === key} onClick={() => toggle(key)} className={`${card(open === key)} p-3`}>
           <span className="block text-xs text-[var(--stone)]">{i.title}</span>
@@ -223,7 +230,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
 }
 /** Key and supporting technologies and open problems of one domain, counted from its lineage and scenes. */
 function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
-  const { openCorpus } = useApp();
+  const [, setSearch] = useSearchParams();
   const { data: lineage } = useQuery(lineageQuery(corpusId));
   const { data: hierarchy } = useQuery(hierarchyQuery(corpusId));
   if (!lineage || !hierarchy) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取…</p>;
@@ -240,7 +247,7 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
   const noRoute = issues.filter((i) => !i.routes.length);
   return <div className="mx-auto max-w-[1180px] space-y-6 px-5 py-6">
     <div className="flex flex-wrap items-baseline gap-3"><h1 className="text-xl font-semibold">{name} · 关键技术</h1>
-      <button type="button" className="text-sm text-[var(--link)]" onClick={() => openCorpus(corpusId, "target")}>在资料库中查看技术谱系 →</button></div>
+      <button type="button" className="text-sm text-[var(--link)]" onClick={() => setSearch({ domain: corpusId, view: "lineage" }, { replace: true })}>查看技术谱系 →</button></div>
     <section aria-label="关键技术方向" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
       <table className="w-full min-w-[720px] text-left text-[13.5px]">
         <thead className="bg-[var(--surface)] text-[12.5px] text-[var(--steel)]"><tr>

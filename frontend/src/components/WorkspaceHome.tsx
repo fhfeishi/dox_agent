@@ -2,7 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../auth";
 import { useApp } from "../store";
-import { fetchReviewRuns } from "../reviewApi";
+import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
+
+/** The latest run of each application and review kind, newest first, with how many runs it had. */
+function latestReviews(runs: ReviewRun[]) {
+  const groups = new Map<string, { run: ReviewRun; count: number }>();
+  for (const run of [...runs].sort((a, b) => b.created_at.localeCompare(a.created_at))) {
+    const key = `${run.request.kind}:${run.document?.metadata?.title || run.document?.filename || run.id}`;
+    const group = groups.get(key);
+    if (group) group.count += 1; else groups.set(key, { run, count: 1 });
+  }
+  return [...groups.values()];
+}
 import { resultsSummaryQuery } from "../resultsSummary";
 import type { ArtifactSummary } from "../api";
 import { Icon, type IconName } from "./Icons";
@@ -42,8 +53,9 @@ function WorkHome() {
     ...(recent.data?.reports ?? []).map((r) => ({ id: "a:" + r.artifact_id, title: r.title || "分析报告", date: r.created_at,
       status: r.status, type: r.task_id === "intelligence" ? "情报分析" : "存量分析", stage: undefined as number | undefined,
       stage_label: "", kind: "", open: () => showInspector({ kind: "artifact", artifactId: r.artifact_id }) })),
-    ...(recent.data?.reviews ?? []).slice(0, 8).map((r) => ({ id: "r:" + r.id,
-      title: r.document?.metadata?.title || r.document?.filename || "申请书", date: r.created_at,
+    // Repeated reviews of one application are one line with the latest run (as in 成果周期总结).
+    ...latestReviews(recent.data?.reviews ?? []).slice(0, 8).map(({ run: r, count }) => ({ id: "r:" + r.id,
+      title: (r.document?.metadata?.title || r.document?.filename || "申请书") + (count > 1 ? `（共审查 ${count} 次）` : ""), date: r.created_at,
       status: r.status, type: r.request.kind === "professional" ? "专业审查" : "形式审查",
       stage: r.stage, stage_label: r.stage_label, kind: r.request.kind,
       open: () => void navigate("/review/runs/" + encodeURIComponent(r.id)) })),
@@ -53,48 +65,29 @@ function WorkHome() {
   const readDate = (text: string) => new Date(text).toLocaleDateString("zh-CN", { month: "2-digit", day: "2-digit" });
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[#f6f7f9]">
     <div className="mx-auto max-w-[1440px] space-y-7 px-5 py-7 lg:px-10 lg:py-9">
-      <header className="relative overflow-hidden rounded-2xl border border-[#dce1e9] bg-[#182c46] px-6 py-7 text-white sm:px-9 sm:py-9">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-24 size-80 rounded-full border-[45px] border-white/[0.025]" />
-        <div className="relative flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="text-xs tracking-[0.16em] text-[#b7c5d6]">工作首页 · 资料 / 分析 / 审查</p>
-            <h1 className="mt-4 text-2xl font-semibold tracking-wide sm:text-3xl">资料与研究工作台</h1>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-[#c5d0dd]">查看领域资料，开展分析与审查，接续最新报告。<br className="hidden sm:block" />生成的报告自动收录到成果，相关人员可直接查看。</p>
-          </div>
-          <div className="min-w-[180px] border-l border-white/20 pl-6">
-            <p className="text-xs text-[#b7c5d6]">一周内创建并完成的报告</p>
-            <p className="mt-2 text-4xl font-medium tabular-nums">{total?.recent_completed ?? "—"}<span className="ml-2 text-sm text-[#b7c5d6]">份</span></p>
-            <button onClick={() => navigate("/results")} className="mt-3 text-sm text-[#e3ebf6] hover:underline">查看成果 →</button>
-          </div>
-        </div>
+      <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--hairline)] pb-5">
+        <div><p className="text-xs text-[var(--steel)]">资料与研究工作台</p>
+          <h1 className="mt-2 text-2xl font-semibold">今天，从哪项工作开始？</h1></div>
+        <button onClick={() => void switchSession()} className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-medium text-white hover:bg-[var(--primary-pressed)]">新建对话</button>
       </header>
-
-      <section aria-label="工作概况" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {[
-          { label: "资料库", value: corporaError ? "—" : corpora.length, note: "按已接入的资料库计数" },
-          { label: "已完成报告", value: total?.completed.total ?? "—", note: "存量分析、情报分析与资料审查" },
-          { label: "生成中", value: total?.active ?? "—", note: "含排队任务，可在成果中接续" },
-          { label: "未完成", value: total?.failed ?? "—", note: "查看失败原因后可重新发起" },
-        ].map((m) => <div key={m.label} className="rounded-xl border border-[#e3e7ec] bg-white px-5 py-4">
-          <p className="text-xs text-[var(--steel)]">{m.label}</p><p className="my-2 text-3xl font-semibold tabular-nums text-[#24364c]">{m.value}</p>
-          <p className="text-[11px] leading-5 text-[var(--steel)]">{m.note}</p>
-        </div>)}
+      <section aria-label="工作概况" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--steel)]">
+        <span>资料库 <b className="text-[var(--ink)]">{corporaError ? "—" : corpora.length}</b></span>
+        <button onClick={() => navigate("/results")} className="hover:text-[var(--primary)]">已完成报告 <b>{total?.completed.total ?? "—"}</b></button>
+        <button onClick={() => navigate("/results?status=active")} className="hover:text-[var(--primary)]">生成中 <b>{total?.active ?? "—"}</b></button>
+        <button onClick={() => navigate("/results?status=failed")} className="hover:text-[var(--primary)]">未完成 <b>{total?.failed ?? "—"}</b></button>
       </section>
       {totals.error || corporaError ? <p role="alert" className="text-sm text-[var(--red)]">{totals.error?.message || corporaError}</p> : null}
 
       <section aria-label="开始工作">
-        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3"><h2 className="text-base font-semibold text-[#24364c]">开始一项工作</h2>
-          <button className="text-xs text-[var(--link)] hover:underline" onClick={() => void switchSession()}>也可以直接提问 →</button></div>
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex min-h-[160px] flex-col rounded-xl border border-[#e3e7ec] bg-white p-5 transition-colors hover:border-[#acb8c9] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+        <div className="mb-3"><h2 className="text-base font-semibold text-[#24364c]">开始一项工作</h2></div>
+        <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+          {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex min-h-[140px] min-w-0 flex-col rounded-xl border border-[#e3e7ec] bg-white p-4 sm:p-5 transition-colors hover:border-[#acb8c9] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
             <span className="flex items-center justify-between"><span className="grid size-9 place-items-center rounded-lg bg-[#f3f5f8]" style={{ color: a.accent }}><Icon name={a.icon} size={20} /></span>
               <span aria-hidden="true" className="text-[#b4bdc9] group-hover:text-[var(--primary)]">↗</span></span>
             <h3 className="mt-3 text-[15px] font-semibold">{a.title}</h3><p className="mt-2 text-xs leading-6 text-[var(--steel)]">{a.text}</p>
           </Link>)}
         </div>
       </section>
-
-      <MyWorkSection />
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]">
         <section aria-label="最近报告" className="overflow-hidden rounded-xl border border-[#e3e7ec] bg-white">
@@ -126,6 +119,7 @@ function WorkHome() {
             {role !== "user" ? <Link to="/overview/build" className="mt-2 block text-[var(--link)] hover:underline">进入概览，了解资料建设与领域分布 →</Link> : null}</div>
         </section>
       </div>
+      <MyWorkSection />
     </div>
   </main>;
 }
@@ -169,7 +163,7 @@ function LeaderHome() {
           : <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{rows.map((row) => {
             const years = row.start_years.length ? `${row.start_years[0]}–${row.start_years.at(-1)}` : "年份待核对";
             return <button key={row.corpus_id} type="button" onClick={() => openCorpus(row.corpus_id, "target")}
-              className="group flex flex-col rounded-xl border border-[#e3e7ec] bg-white p-5 text-left transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-[#acb8c9] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+              className="group flex flex-col rounded-xl border border-[#e3e7ec] bg-white p-5 text-left transition-[border-color,box-shadow,transform] hover:border-[#acb8c9] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
               <span className="flex items-baseline justify-between gap-3">
                 <b className="text-[16px] text-[#24364c]">{row.name.replace(/^自然科学基金-/, "")}</b>
                 <span className="shrink-0 text-xs tabular-nums text-[var(--steel)]">{row.projects} 个项目</span>
@@ -185,7 +179,7 @@ function LeaderHome() {
 
       <section aria-label="开始工作">
         <h2 className="mb-3 text-base font-semibold text-[#24364c]">开始一项工作</h2>
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
           {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex items-center gap-3 rounded-xl border border-[#e3e7ec] bg-white px-4 py-3 transition-colors hover:border-[#acb8c9]">
             <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#f3f5f8]" style={{ color: a.accent }}><Icon name={a.icon} size={18} /></span>
             <span className="min-w-0"><b className="block text-[14px]">{a.title}</b><span className="block truncate text-xs text-[var(--steel)]">{a.text}</span></span>

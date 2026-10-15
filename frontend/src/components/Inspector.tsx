@@ -1,7 +1,7 @@
 import { GenerationProgress } from "./GenerationProgress";
 import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
 import { ProjectDetail } from "./ProjectOverview";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
@@ -89,6 +89,14 @@ export function Inspector() {
     openFullPreview,
     showInspector,
   } = useApp();
+  const panelRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!inspectorOpen) return;
+    const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    panelRef.current?.focus({ preventScroll: true });
+    return () => { if (trigger?.isConnected) trigger.focus({ preventScroll: true }); };
+  }, [inspectorOpen]);
+
   const [tab, setTab] = useState<InspTab>("cite");
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
@@ -266,9 +274,12 @@ export function Inspector() {
 
   return (
     <aside
+      ref={panelRef}
+      tabIndex={-1}
+      inert={!inspectorOpen}
       aria-hidden={!inspectorOpen}
       aria-label="预览面板"
-      className={`${PANEL_SHELL} fixed top-[52px] bottom-0 right-0 z-[70] w-full transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] ${
+      className={`${PANEL_SHELL} fixed top-[52px] bottom-0 right-0 z-[70] w-full transition-transform duration-150 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] ${
         inspectorOpen ? "translate-x-0" : "pointer-events-none translate-x-[calc(100%+20px)]"
       }`}
     >

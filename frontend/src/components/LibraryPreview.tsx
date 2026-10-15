@@ -35,7 +35,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     row.pending_identity ? `${row.pending_identity} 份资料项目身份待核对` : "",
   ].filter(Boolean) : [];
   const facts: [string, string][] = row ? [["资料 / 项目", `${row.files} 份 / ${row.projects} 个`],
-    ["技术研判", `${Math.min(...Object.values(row.dimensions))} / ${row.projects}`],
+    ["技术研判", ["场景", "问题", "技术", "成果"].map(key => key + " " + (row.dimensions[key] ?? 0)).join(" · ")],
     ["场景 / 问题", row.hierarchy.scenes ? `${row.hierarchy.scenes} / ${row.hierarchy.issues}` : "未生成"],
     ["技术条目", row.lineage.items ? `${row.lineage.items} 条 · ${row.lineage.systems} 个体系` : "未生成"],
     ["立项年份", row.start_years.length ? `${row.start_years[0]}–${row.start_years.at(-1)}` : "待核对"]] : [];

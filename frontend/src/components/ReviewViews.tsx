@@ -756,6 +756,10 @@ export function ReviewRunPage() {
   const { id = "" } = useParams();
   const { showInspector, handleOpenSource, corpora } = useApp();
   const [search, setSearch] = useSearchParams();
+  // Only allow a local results route; a copied report URL must never redirect off-site.
+  const requestedReturn = search.get("return") ?? "";
+  const returnTo = /^\/results(?:\?|$)/.test(requestedReturn) ? requestedReturn : "/results";
+  const returnLink = <Link to={returnTo} className="inline-flex text-sm text-[var(--link)] hover:underline">← 返回成果列表</Link>;
   const [run, setRun] = useState<ReviewRun | null>(null);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
@@ -844,7 +848,7 @@ export function ReviewRunPage() {
     </article>
   );
 
-  if (!run) return <Shell title="审查报告" description="正在读取审查结果…"><Notice text={error} error /></Shell>;
+  if (!run) return <Shell title="审查报告" description={error ? "审查结果读取失败" : "正在读取审查结果…"}>{returnLink}<Notice text={error} error /></Shell>;
   const sectionRows = findings.filter((f) => f.clause_ids?.some((cid) => checks.get(cid)?.execution?.field === "section_characters"));
   const projects = (run.technical?.evidence ?? []).filter((item) => item.kind === "project");
   const projectGroups = [...projects.reduce((map, item) => map.set(item.title, [...(map.get(item.title) ?? []), item]), new Map<string, typeof projects>())];
@@ -853,6 +857,7 @@ export function ReviewRunPage() {
   const versions = run.input_versions ?? [];
   return (
     <Shell title={formal ? "形式审查报告" : "专业审查报告"} description="先看需要处理的问题，再展开说明和原文。待核实不等于不合格；没有发现问题也不等于通过。">
+      {returnLink}
       <Notice text={error} error />
       <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">

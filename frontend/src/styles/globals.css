@@ -19,16 +19,16 @@
   --charcoal: #37352f;
   --slate: #5d5b54;
   --steel: #787671;
-  --stone: #a4a097;
+  --stone: #777e87;
   --muted: #bbb8b1;
 
-  --primary: #5645d4;
-  --primary-pressed: #4534b3;
-  --primary-soft: #eeebfb;
-  --primary-soft-2: #f5f3fd;
+  --primary: #345a78;
+  --primary-pressed: #25435c;
+  --primary-soft: #eaf0f5;
+  --primary-soft-2: #f3f6f9;
 
   --navy: #0a1530;
-  --link: #0075de;
+  --link: #2f6289;
 
   --green: #1aae39;
   --orange: #dd5b00;
@@ -197,4 +197,29 @@
 .markdown th {
   background: var(--surface-soft);
   font-weight: 600;
+}
+
+/* Shared interaction language: semantic emphasis, stable geometry, keyboard visibility. */
+@layer base {
+  :where(button, a, input, select, textarea):focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+  :where(button, a, select) { transition-duration: 140ms; }
+  :where(select) { max-width: 100%; }
+}
+.overview-hero {
+  padding: 28px 32px;
+  border-radius: 16px;
+  color: white;
+  background: linear-gradient(115deg, #193248, #315872);
+}
+.domain-card { transition: border-color 140ms ease, background-color 140ms ease; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

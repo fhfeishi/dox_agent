@@ -12,6 +12,8 @@ import { Pill } from "./ui";
 type Group = "all" | "analysis" | "review" | "intelligence" | "trash";
 type Kind = Exclude<Group, "all" | "trash">;
 const GROUPS: [Group, string][] = [["all", "全部"], ["analysis", "存量分析"], ["review", "资料审查"], ["intelligence", "情报分析"], ["trash", "回收站"]];
+const STATES = [["all", "全部状态"], ["active", "生成中"], ["completed", "已完成"], ["failed", "未完成"], ["draft", "草稿"]] as const;
+type State = typeof STATES[number][0];
 const KIND_TONE = { analysis: "sky", review: "lav", intelligence: "mint" } as const;
 const KIND_LABEL: Record<Kind, string> = { analysis: "存量分析", review: "资料审查", intelligence: "情报分析" };
 const STATUS_LABEL: Record<string, string> = { completed: "已完成", draft: "草稿", failed: "未完成", generating: "生成中", running: "审查中", queued: "排队中" };
@@ -19,18 +21,18 @@ const STATUS_LABEL: Record<string, string> = { completed: "已完成", draft: "�
 /** One report in the list, whichever tool produced it. */
 type Row = {
   key: string; kind: Kind; title: string; detail: string; status: string; date: string;
-  corpusIds: string[]; createdBy: string; artifact?: ArtifactSummary; runId?: string;
+  corpusIds: string[]; artifact?: ArtifactSummary; runId?: string;
 };
 
 const artifactRow = (item: ArtifactSummary): Row => ({
   key: item.artifact_id, kind: item.task_id === "intelligence" ? "intelligence" : "analysis",
   title: item.title || "未命名报告", detail: item.type === "answer_snapshot" ? "回答快照" : `第 ${item.current_version} 版`,
-  status: item.status, date: item.updated_at || item.created_at, corpusIds: item.corpus_ids, createdBy: item.created_by ?? "", artifact: item,
+  status: item.status, date: item.updated_at || item.created_at, corpusIds: item.corpus_ids, artifact: item,
 });
 const reviewRow = (run: ReviewRun): Row => ({
   key: run.id, kind: "review", title: run.document?.metadata?.title || run.document?.filename || "未命名申请书",
   detail: run.request.kind === "professional" ? "专业审查" : "形式审查", status: run.status, date: run.finished_at || run.created_at,
-  corpusIds: run.request.corpus_ids ?? [], createdBy: run.created_by ?? "", runId: run.id,
+  corpusIds: run.request.corpus_ids ?? [], runId: run.id,
 });
 
 /**
@@ -49,12 +51,20 @@ export function ResultsPage() {
   const [search, setSearch] = useSearchParams();
   // Reports and the period summary are two views of the page (query 2026-1015 1639).
   const view = search.get("view") === "period" ? "period" : "reports";
-  const setView = (next: "reports" | "period") => setSearch((old) => {
-    const value = new URLSearchParams(old); if (next === "period") value.set("view", "period"); else value.delete("view"); return value;
-  }, { replace: true });
-  const [group, setGroup] = useState<Group>("all");
-  const [query, setQuery] = useState("");
-  const [library, setLibrary] = useState("");
+  // URL filters are committed synchronously so rapid typing/selection cannot overwrite a pending filter.
+  const filter = (values: Record<string, string>) => setSearch((old) => {
+    const next = new URLSearchParams(old);
+    for (const [key, value] of Object.entries(values)) {
+      if (value && value !== "all" && value !== "reports") next.set(key, value);
+      else next.delete(key);
+    }
+    return next;
+  }, { replace: true, flushSync: true });
+  const setView = (next: "reports" | "period") => filter({ view: next });
+  const group = GROUPS.find(([key]) => key === search.get("group"))?.[0] ?? "all";
+  const query = search.get("q") ?? "";
+  const library = search.get("library") ?? "";
+  const state: State = STATES.find(([key]) => key === search.get("status"))?.[0] ?? "all";
   const [artifacts, setArtifacts] = useState<ArtifactSummary[] | null>(null);
   const [trash, setTrash] = useState<ArtifactSummary[] | null>(null);
   const [runs, setRuns] = useState<ReviewRun[] | null>(null);
@@ -105,11 +115,12 @@ export function ResultsPage() {
   const needle = query.trim().toLowerCase();
   const shown = (group === "trash" ? trashed : reports.filter((r) => group === "all" || r.kind === group))
     .filter((r) => !needle || r.title.toLowerCase().includes(needle))
-    .filter((r) => !library || r.corpusIds.includes(library));
+    .filter((r) => !library || r.corpusIds.includes(library))
+    .filter((r) => state === "all" || (state === "active" ? ["queued", "running", "generating"].includes(r.status) : r.status === state));
   const loaded = group === "trash" ? trash !== null : artifacts !== null && runs !== null;
-  const libraries = corpora.filter((c) => reports.some((r) => r.corpusIds.includes(c.id)));
+  const libraries = corpora.filter((c) => c.id === library || [...reports, ...trashed].some((r) => r.corpusIds.includes(c.id)));
   const corpusNames = (ids: string[]) => ids.map((id) => corpora.find((c) => c.id === id)?.name ?? id).join("、");
-  const open = (row: Row) => row.runId ? void navigate(`/review/runs/${encodeURIComponent(row.runId)}`)
+  const open = (row: Row) => row.runId ? void navigate(`/review/runs/${encodeURIComponent(row.runId)}?return=${encodeURIComponent("/results?" + search.toString())}`)
     : showInspector({ kind: "artifact", artifactId: row.key });
   const link = "text-[12.5px] text-[var(--link)] hover:underline disabled:opacity-40";
   const stat = (label: string, value: number | undefined, note?: string) => <div className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3">
@@ -157,28 +168,38 @@ export function ResultsPage() {
       {/* Categories and search stay in view while a long list scrolls. */}
       <div className="sticky top-0 z-10 -mx-1 flex flex-wrap items-center gap-2 bg-[var(--canvas)]/95 px-1 py-2 backdrop-blur">
         <div role="tablist" aria-label="成果分类" className="flex flex-wrap gap-1 rounded-xl bg-[var(--surface)] p-1">
-          {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => setGroup(key)}
+          {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => filter({ group: key })}
             className={`rounded-lg px-3 py-1.5 text-[13px] ${group === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
             {label} <span className="tabular-nums text-[11.5px] text-[var(--stone)]">{count(key) ?? "…"}</span></button>)}
         </div>
         <div className="flex min-w-[260px] flex-1 flex-wrap justify-end gap-2">
-        <input aria-label="按标题搜索成果" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="按标题搜索"
+        <input aria-label="按标题搜索成果" value={query} onChange={(e) => filter({ q: e.target.value })} placeholder="按标题搜索"
           className="min-w-[140px] flex-1 rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px] outline-none focus:border-[var(--primary)] @3xl:max-w-[220px]" />
-        <select aria-label="来源资料库" value={library} onChange={(e) => setLibrary(e.target.value)}
+        <select aria-label="来源资料库" value={library} onChange={(e) => filter({ library: e.target.value })}
           className="min-w-0 max-w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px] @3xl:max-w-[220px]">
           <option value="">全部资料库</option>
           {libraries.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+          {library && !libraries.some(c => c.id === library) ? <option value={library}>已移除的资料库</option> : null}
+        </select>
+        <select aria-label="成果状态" value={state} onChange={(e) => filter({ status: e.target.value })}
+          className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px]">
+          {STATES.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
         </select>
         </div>
       </div>
-      {error ? <p role="alert" className="text-[12px] text-[var(--red)]">{error}</p> : null}
+      {query || library || state !== "all" || group !== "all" ? <div className="flex items-center justify-between gap-3 text-xs text-[var(--steel)]">
+        <span>{loaded ? "当前显示 " + shown.length + " 份" : "正在读取筛选结果"}</span>
+        <button type="button" className={link} onClick={() => filter({ q: "", library: "", status: "", group: "" })}>清除筛选</button>
+      </div> : null}
+      {error ? <p role="alert" className="text-[12px] text-[var(--red)]">{error}
+        <button type="button" className={link + " ml-3"} onClick={() => setRevision(value => value + 1)}>重新加载</button></p> : null}
       {lastTrash ? <p role="status" className="text-[12.5px] text-[var(--steel)]">已移入回收站
         <button type="button" className="ml-2 text-[var(--link)]" onClick={() => void lifecycle(lastTrash, "restore")}>撤销</button></p> : null}
       {group === "trash" ? <p className="text-[12px] text-[var(--stone)]">删除后保留 7 天，到期自动清理且不可恢复。资料审查记录不进入回收站。</p> : null}
       {artifacts && artifacts.length >= 200 ? <p className="text-[12px] text-[var(--stone)]">分析与情报报告显示最近 200 份，顶部统计包含全部报告。</p> : null}
-      {!loaded ? <p role="status" className="py-6 text-center text-[13px] text-[var(--steel)]">正在读取成果…</p>
+      {!loaded && error ? null : !loaded ? <p role="status" className="py-6 text-center text-[13px] text-[var(--steel)]">正在读取成果…</p>
         : !shown.length ? <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] py-8 text-center text-[13px] text-[var(--steel)]">
-          {needle || library ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成。"}</p>
+          {needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成。"}</p>
         : <ul className="divide-y divide-[var(--hairline)] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
           {shown.map((row) => <li key={row.key} className="px-4 py-3 hover:bg-[var(--surface)]">
             {/* Two lines that fit any width: title and actions, then what it is and when (query 2026-1015 1639). */}
@@ -200,7 +221,6 @@ export function ResultsPage() {
               <span className="tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
               <span>{row.detail}</span>
               {row.corpusIds.length ? <span className="min-w-0 max-w-full truncate">{corpusNames(row.corpusIds)}</span> : null}
-              {row.createdBy ? <span>{row.createdBy}</span> : null}
             </p>
           </li>)}
         </ul>}

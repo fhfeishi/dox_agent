@@ -5,7 +5,7 @@ import { Icon } from "./Icons";
  * The shared look of the right-hand panels (query 2026-1015 1553): the preview panel and the library
  * chat use the same shell, header (back, title over a one-line subtitle, actions) and tabs.
  */
-export const PANEL_SHELL = "flex flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] sm:rounded-[14px]";
+export const PANEL_SHELL = "flex flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-8px_0_28px_-12px_rgba(15,23,42,0.18)] sm:rounded-[14px]";
 
 export function PanelButton({ label, onClick, active, disabled, children }: {
   label: string; onClick: () => void; active?: boolean; disabled?: boolean; children: ReactNode;
@@ -32,7 +32,17 @@ export function PanelTabs<K extends string>({ tabs, value, onChange, label }: {
   tabs: readonly (readonly [K, string])[]; value: K; onChange: (key: K) => void; label: string;
 }) {
   return <div role="tablist" aria-label={label} className="flex gap-[2px] border-b border-[var(--hairline)] bg-[var(--canvas)] px-[10px]">
-    {tabs.map(([key, text]) => <button key={key} type="button" role="tab" aria-selected={value === key} onClick={() => onChange(key)}
+    {tabs.map(([key, text]) => <button key={key} type="button" role="tab" aria-selected={value === key} tabIndex={value === key ? 0 : -1}
+      onKeyDown={(event) => {
+        const index = tabs.findIndex(([id]) => id === key);
+        const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
+          : event.key === "ArrowRight" ? (index + 1) % tabs.length
+          : event.key === "ArrowLeft" ? (index - 1 + tabs.length) % tabs.length : -1;
+        if (next < 0) return;
+        event.preventDefault();
+        onChange(tabs[next][0]);
+        (event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next])?.focus();
+      }} onClick={() => onChange(key)}
       className={`font-app -mb-px border-b-2 px-[10px] py-[8px] text-[12.5px] transition-colors ${value === key
         ? "border-b-[var(--primary)] font-semibold text-[var(--ink)]" : "border-b-transparent text-[var(--steel)] hover:text-[var(--charcoal)]"}`}>{text}</button>)}
   </div>;

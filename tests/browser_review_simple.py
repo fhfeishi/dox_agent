@@ -61,7 +61,7 @@ async def main():
                 await page.get_by_role("button", name=re.compile("形式审查模板")).click()
                 await expect(page.get_by_role("region", name="审查模板预览")).to_be_visible()
                 await expect(page).to_have_url(origin + "/review/formal")
-                await page.get_by_role("button", name="关闭检查器").click()
+                await page.get_by_role("button", name="关闭预览面板").click()
                 body = "# 项目摘要\n" + "甲"*300 + "\n# 项目背景\n" + "乙"*201 + "\n# 项目方案\n" + "丙"*100
                 await page.get_by_label("上传申请书文件", exact=True).set_input_files({
                     "name": "队列验收.md", "mimeType": "text/markdown", "buffer": body.encode()})
@@ -75,9 +75,9 @@ async def main():
                 await expect(page.get_by_role("progressbar", name="报告生成进度").first).to_be_visible()
                 await expect(page.get_by_role("progressbar", name="报告生成进度").first).to_have_attribute("aria-valuenow", "0")
                 await page.get_by_role("button", name="成果", exact=True).click()
-                await expect(page.get_by_role("region", name="成果统计")).to_contain_text("0 份已完成报告")
+                await expect(page.get_by_role("heading", name="成果", exact=True)).to_be_visible()
+                await expect(page.get_by_role("region", name="成果统计")).to_contain_text("已完成报告0")
                 await expect(page.get_by_role("region", name="处理中").get_by_role("progressbar")).to_have_count(3)
-                await page.get_by_role("button", name="关闭检查器").click()
                 await page.get_by_role("button", name="首页", exact=True).click()
                 await expect(page.get_by_role("region", name="我的工作")).to_be_visible()
                 gate.set()

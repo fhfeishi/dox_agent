@@ -64,7 +64,7 @@ function WorkHome() {
           <div className="min-w-[180px] border-l border-white/20 pl-6">
             <p className="text-xs text-[#b7c5d6]">一周内创建并完成的报告</p>
             <p className="mt-2 text-4xl font-medium tabular-nums">{total?.recent_completed ?? "—"}<span className="ml-2 text-sm text-[#b7c5d6]">份</span></p>
-            <button onClick={() => showInspector({ kind: "results" })} className="mt-3 text-sm text-[#e3ebf6] hover:underline">查看成果 →</button>
+            <button onClick={() => navigate("/results")} className="mt-3 text-sm text-[#e3ebf6] hover:underline">查看成果 →</button>
           </div>
         </div>
       </header>
@@ -99,7 +99,7 @@ function WorkHome() {
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]">
         <section aria-label="最近报告" className="overflow-hidden rounded-xl border border-[#e3e7ec] bg-white">
           <div className="flex items-center justify-between border-b border-[#edf0f4] px-5 py-4"><h2 className="text-base font-semibold">最近报告</h2>
-            <button onClick={() => showInspector({ kind: "results" })} className="text-xs text-[var(--link)] hover:underline">全部成果 →</button></div>
+            <button onClick={() => navigate("/results")} className="text-xs text-[var(--link)] hover:underline">全部成果 →</button></div>
           {recent.error ? <p role="alert" className="p-5 text-sm text-[var(--red)]">{recent.error.message}</p>
             : !recent.data ? <p className="p-6 text-sm text-[var(--steel)]">正在读取最近工作…</p>
             : !records.length ? <p className="p-6 text-sm text-[var(--steel)]">还没有报告。选择上方任务即可开始。</p>
@@ -136,7 +136,8 @@ function WorkHome() {
  * summaries are in 成果.
  */
 function LeaderHome() {
-  const { openCorpus, showInspector } = useApp();
+  const { openCorpus } = useApp();
+  const navigate = useNavigate();
   const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
     if (!response.ok) throw new Error("资料库概况暂不可读");
@@ -154,7 +155,7 @@ function LeaderHome() {
         <p className="relative mt-3 max-w-2xl text-sm leading-7 text-[#c5d0dd]">从各领域的项目资料了解研究现状与技术布局；分析报告与一周至一年的成果总结在“成果”中查看。</p>
         <div className="relative mt-6 flex flex-wrap gap-3">
           <Link to="/library" className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-[#182c46] transition-transform hover:-translate-y-0.5">浏览资料库</Link>
-          <button type="button" onClick={() => showInspector({ kind: "results" })} className="rounded-lg border border-white/40 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10">查看成果</button>
+          <button type="button" onClick={() => navigate("/results")} className="rounded-lg border border-white/40 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10">查看成果</button>
         </div>
       </header>
 

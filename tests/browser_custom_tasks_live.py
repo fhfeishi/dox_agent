@@ -200,7 +200,7 @@ async def main():
                 await page.get_by_role("combobox", name="固定报告模板").select_option("comprehensive|0")
                 await page.get_by_role("button", name="保存并发布").click()
                 await expect(page.get_by_text("已发布 v2").first).to_be_visible()
-                await page.get_by_role("button", name="关闭检查器").click()
+                await page.get_by_role("button", name="关闭预览面板").click()
                 await page.get_by_role("button", name="对话工作台", exact=True).click()
                 await expect(page.get_by_text("当前 v1 / 最新 v2")).to_be_visible()
                 page.once("dialog", lambda dialog: dialog.accept())
@@ -261,7 +261,7 @@ async def main():
                     data={"revision": latest_template["revision"], "name": "未发布草稿"})).status == 200
                 await page.get_by_role("button", name="任务", exact=True).first.click()
                 await page.get_by_role("button", name=re.compile("技术研判.*查看任务详情")).click()
-                await expect(page.get_by_role("complementary", name="检查器").get_by_role("button", name="复制任务")).to_have_count(0)
+                await expect(page.get_by_role("complementary", name="预览面板").get_by_role("button", name="复制任务")).to_have_count(0)
                 await page.get_by_role("button", name=re.compile(r"^专项报告.*查看任务详情")).first.click()
                 await page.get_by_role("button", name="使用此任务").click()
                 await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")

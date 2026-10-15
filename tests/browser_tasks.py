@@ -307,7 +307,7 @@ async def main():
             await expect(page.get_by_text("运行 ID")).to_be_visible()
             await expect(page.get_by_text("搜索资料").first).to_be_visible()
             # A2: the server-effective scope is shown from the run event, not inferred from the request.
-            inspector = page.get_by_role("complementary", name="检查器")
+            inspector = page.get_by_role("complementary", name="预览面板")
             await expect(inspector.get_by_text("服务端实际范围")).to_be_visible()
             await expect(inspector.get_by_text("演示库", exact=True)).to_be_visible()
             # B2: the persisted run snapshot is read back and takes precedence over the live event.
@@ -319,7 +319,7 @@ async def main():
             await page.get_by_label("检查器宽度").fill("500")
             await page.wait_for_function("localStorage.getItem('dox.inspector.width') === '500'")
             await page.set_viewport_size({"width": 390, "height": 844})
-            narrow = await page.get_by_role("complementary", name="检查器").bounding_box()
+            narrow = await page.get_by_role("complementary", name="预览面板").bounding_box()
             assert narrow and narrow["width"] >= 380, narrow
             await page.set_viewport_size({"width": 1440, "height": 950})
 
@@ -421,10 +421,10 @@ async def main():
             await page.get_by_role("button", name="返回上一预览").click()
             await expect(page.get_by_text("检查器", exact=True)).to_be_visible()
             await page.get_by_role("button", name=re.compile("医疗.*报告 · 版本")).last.click()
-            await page.get_by_role("button", name="固定检查器").click()
+            await page.get_by_role("button", name="固定预览面板").click()
             await page.get_by_role("button", name="Prompt / Skill").click()
             await expect(page.get_by_text("成果预览", exact=True)).to_be_visible()
-            await page.get_by_role("button", name="取消固定检查器").click()
+            await page.get_by_role("button", name="取消固定预览面板").click()
             await page.get_by_role("button", name="任务", exact=True).click()
             await expect(page.get_by_text("检查器", exact=True)).to_be_visible()
             await page.get_by_role("button", name="对话工作台", exact=True).click()

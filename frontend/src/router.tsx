@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearchParams } from "react-router";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
-import { AppProvider, useApp } from "./store";
+import { AppProvider } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
 import { ReviewShell } from "./components/ReviewViews";
 import { useDocuments } from "./useDocuments";
@@ -53,19 +53,13 @@ function OverviewPage() {
   return <Suspense fallback={null}><Overview /></Suspense>;
 }
 
-/** Old 成果 pages now open the inspector's 成果 view over 存量分析. */
-function ResultsRedirect() {
-  const { showInspector } = useApp();
-  useEffect(() => { showInspector({ kind: "results" }); }, []);
-  return <Navigate to="/tasks" replace />;
-}
-
 export const router = createBrowserRouter([{
   Component: () => <AuthGate><Root /></AuthGate>,
   children: [
     { index: true, Component: RoleIndex },
     { path: "home", lazy: async () => ({ Component: (await import("./components/WorkspaceHome")).WorkspaceHome }) },
     { path: "overview/:area?", Component: OverviewPage },
+    { path: "results", lazy: async () => ({ Component: (await import("./components/ResultsPage")).ResultsPage }) },
     { path: "chat", lazy: async () => ({ Component: (await import("./components/ChatView")).ChatView }) },
     { path: "library", Component: Outlet, children: [
       // 资料库 opens on the library cards (query 2026-1013 2012); a card opens one in the same workspace.
@@ -76,10 +70,10 @@ export const router = createBrowserRouter([{
     ] },
     { path: "tasks", Component: AnalysisShell, children: [
       { index: true, lazy: async () => ({ Component: (await import("./components/ListingViews")).TasksView }) },
-      { path: "results", Component: ResultsRedirect },
+      { path: "results", element: <Navigate to="/results" replace /> },
     ] },
     { path: "intelligence", lazy: async () => ({ Component: (await import("./components/IntelligenceView")).IntelligenceView }) },
-    { path: "artifacts", Component: ResultsRedirect },
+    { path: "artifacts", element: <Navigate to="/results" replace /> },
     { path: "prompts", element: <Navigate to="/tasks" replace /> },
     { path: "review", Component: ReviewShell, children: [
       { index: true, element: <Navigate to="/review/formal" replace /> },

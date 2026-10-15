@@ -1,5 +1,6 @@
 """Real library files, local retrieval and same-page scoped chat; only the answer model is controlled."""
 import asyncio
+import re
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -57,8 +58,10 @@ async def main():
                 await expect(listing.get_by_role("listitem")).to_have_count(2)
                 await listing.get_by_role("checkbox").nth(0).check()
                 await listing.get_by_role("checkbox").nth(1).check()
-                await page.get_by_label("向所选资料提问").fill("量子传感有什么光学方法？")
+                await page.get_by_role("region",name="已选资料",exact=True).get_by_role("button",name="与这些资料对话").click()
                 chat=page.get_by_role("region",name="与所选资料对话",exact=True)
+                await expect(chat.get_by_role("button",name=re.compile("^移出范围"))).to_have_count(2)
+                await page.get_by_label("向所选资料提问").fill("量子传感有什么光学方法？")
                 await chat.get_by_role("button",name="发送",exact=True).click()
                 await expect(chat).to_contain_text("量子传感的光学方法见所选资料")
                 assert "/documents" in page.url and "/chat" not in page.url

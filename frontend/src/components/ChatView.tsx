@@ -209,10 +209,10 @@ export function ChatView() {
         </div>
         <ToolButton
           icon="panel"
-          label="产出"
+          label="本轮回答"
           active={inspectorOpen}
           onClick={toggleInspector}
-          title="打开产出面板（引用与原文）"
+          title="本轮回答的引用、资料与会话"
         />
       </header>
 

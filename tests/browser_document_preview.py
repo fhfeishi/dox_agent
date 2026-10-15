@@ -94,7 +94,7 @@ async def main():
             await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
 
             # closing the preview leaves the retrieval scope unchanged
-            await dialog.get_by_role("button", name="关闭检查器").click()
+            await dialog.get_by_role("button", name="关闭预览面板").click()
             await expect(page.locator("aside[aria-hidden='false']")).to_have_count(0)
             await page.get_by_role("button", name="返回对话").click()
             await expect(page.get_by_text("资料范围：全部")).to_be_visible()

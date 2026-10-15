@@ -91,7 +91,7 @@ function tab(active: boolean) {
 export function TopNav() {
   const { role } = useAuth();
   const { pathname } = useLocation();
-  const { nav, setNav, sidebarCollapsed, toggleSidebar, showInspector, setDrawerOpen, llmTone, llmText, model } = useApp();
+  const { nav, setNav, sidebarCollapsed, toggleSidebar, setDrawerOpen, llmTone, llmText, model } = useApp();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   const links = [
     { to: "/home", label: "首页" },
@@ -101,7 +101,7 @@ export function TopNav() {
     ...REVIEW_PAGES, { to: "/intelligence", label: "情报分析" },
   ];
   return <header className="flex h-[60px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
-    {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
+    {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" && nav !== "results" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
     <Link to="/home" aria-label="回到工作首页" className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
@@ -128,8 +128,9 @@ export function TopNav() {
       // Others are told about the analysis service only when it is not available.
       : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
         <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
-    {/* 成果: every generated report with its counts and what is still being produced (query 2026-1014 1516). */}
-    <button type="button" onClick={() => showInspector({ kind: "results" })} className="shrink-0 rounded-lg px-3 py-2 text-sm text-[var(--primary)] hover:bg-[var(--surface)]">成果</button>
+    {/* 成果: the page of every generated report (query 2026-1014 1516, a page since 2026-1015 1553). */}
+    <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")}
+      className={`shrink-0 rounded-lg px-3 py-2 text-sm ${nav === "results" ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary)]" : "text-[var(--primary)] hover:bg-[var(--surface)]"}`}>成果</button>
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;

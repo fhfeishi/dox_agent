@@ -61,6 +61,7 @@ export function CorpusFiles({
   const folderRef = useRef<HTMLInputElement>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [mode, setMode] = useState("name");
   const [bodyQuery, setBodyQuery] = useState("");
@@ -150,11 +151,12 @@ export function CorpusFiles({
     const document = (file.doc_id ? docsById.get(file.doc_id) : undefined) ?? documents.find((item) =>
       item.rel_path === `${corpusName}/source/${file.rel_path}` || item.rel_path?.endsWith(`/${corpusName}/source/${file.rel_path}`));
     if (document) represented.add(document.doc_id);
-    return { file, document, status: file.status };
+    return { key: "file:" + file.rel_path, file, document, status: file.status };
   });
   for (const document of documents) {
     if (!represented.has(document.doc_id)) {
-      rows.push({ file: { rel_path: document.title, size: 0, status: "indexed", doc_id: document.doc_id }, document, status: "indexed" });
+      // Keyed by document: a report's Markdown and PDF versions share a title (query 2026-1015 1553).
+      rows.push({ key: "doc:" + document.doc_id, file: { rel_path: document.title, size: 0, status: "indexed", doc_id: document.doc_id }, document, status: "indexed" });
     }
   }
   const counts = {
@@ -256,15 +258,21 @@ export function CorpusFiles({
             <option value="name">文件名搜索</option><option value="content">正文检索</option>
           </select>
           <span className="text-xs text-[var(--steel)]">{searchedRows.length} 份 · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
-          <button disabled={chatBusy} onClick={() => setSelectedIds([])} className="text-xs text-[var(--link)]">清空选择</button>
+          {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-xs text-[var(--link)]">清空选择</button> : null}
+          {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-xs text-[var(--link)]"
+            onClick={() => setSelectedIds([...new Set([...selectedIds, ...searchedRows.flatMap((row) => row.document && row.status === "indexed" ? [row.document.doc_id] : [])])].slice(0, 20))}>
+            勾选搜索结果（最多 20 份）</button> : null}
+          <span className="flex-1" />
+          {!chatOpen ? <button type="button" onClick={() => setChatOpen(true)}
+            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">与资料对话{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
           {matches.isFetching && mode === "content" ? <span role="status">正在检索正文…</span> : null}
           {mode === "content" && matches.error ? <span role="alert">{matches.error.message}</span> : null}
         </div>
         <ul aria-label="资料列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
-          {pageRows.map(({ file, document, status }) => (
-            <li key={file.rel_path} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
+          {pageRows.map(({ key, file, document, status }) => (
+            <li key={key} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
               className={`group relative flex min-h-[58px] flex-wrap items-center gap-3 rounded-lg border border-l-4 px-3 py-2 text-xs transition-[background-color,border-color] duration-150 ${document && selectedIds.includes(document.doc_id) ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
-              <input type="checkbox" aria-label={`选择 ${file.rel_path}`} disabled={!document || status !== "indexed" || chatBusy}
+              <input type="checkbox" aria-label={`选择 ${file.rel_path}`} disabled={!document || status !== "indexed"}
                 checked={!!document && selectedIds.includes(document.doc_id)} onChange={() => document && select(document.doc_id)} />
               {hovered?.doc_id === document?.doc_id && document ? <div role="tooltip" className="pointer-events-none absolute left-9 right-4 top-full z-10 hidden rounded-lg border bg-[var(--canvas)] p-3 leading-6 shadow-lg group-hover:block">
                 <b>原文摘录</b><p>{excerpt.data || excerpt.error?.message || "正在读取…"}</p></div> : null}
@@ -358,8 +366,14 @@ export function CorpusFiles({
           <span>第 {currentPage + 1} / {Math.max(1, Math.ceil(searchedRows.length / 40))} 页 · 每页 40 份</span>
           <button disabled={(currentPage + 1) * 40 >= searchedRows.length} onClick={() => setPage(currentPage + 1)} className="rounded border px-3 py-2 disabled:opacity-40">下一页</button>
         </div>
-        {selectedDocs.length ? <LibraryChat key={selectedDocs.map((d) => d.doc_id + d.version).sort().join(",")}
-          corpusId={corpusId} documents={selectedDocs} onBusy={setChatBusy} onClear={() => setSelectedIds([])} /> : null}
+        {chatOpen ? <LibraryChat corpusId={corpusId} documents={selectedDocs} onBusy={setChatBusy}
+          onRemove={(id) => setSelectedIds((old) => old.filter((item) => item !== id))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
+          // Ticking files offers the conversation without opening it over the list.
+          : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-[13px] shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
+            <span className="whitespace-nowrap text-[var(--slate)]">已选 <b className="text-[var(--ink)]">{selectedDocs.length}</b> 份资料</span>
+            <button type="button" onClick={() => setSelectedIds([])} className="whitespace-nowrap text-[12.5px] text-[var(--steel)] hover:text-[var(--ink)]">清空</button>
+            <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">与这些资料对话</button>
+          </div> : null}
         {notice || result.error ? (
           <p role="alert" className="text-[12px] text-[var(--red)]">
             {notice || result.error?.message}

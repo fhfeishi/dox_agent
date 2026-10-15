@@ -142,7 +142,7 @@ async def main():
             await expect(preview).to_be_visible()
             await preview.get_by_role("button", name="关闭 ✕").click()
             await expect(page.locator("aside[aria-hidden='false']")).to_be_visible()
-            await page.get_by_role("button", name="关闭检查器").click()
+            await page.get_by_role("button", name="关闭预览面板").click()
             await page.get_by_role("button", name="[3]", exact=True).last.click()
             await expect(page.get_by_role("alert")).to_contain_text("文档不在当前列表中")
             await page.set_viewport_size({"width": 390, "height": 844})

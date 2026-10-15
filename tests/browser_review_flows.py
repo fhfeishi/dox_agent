@@ -163,8 +163,8 @@ async def main():
                 await digest.get_by_text("依据 2 条 · 2 个项目", exact=True).click()
                 await digest.screenshot(path=str(screenshots / "topic-summary.png"), animations="disabled")
                 await digest.get_by_role("button", name="解析正文位置 · 查看原文 临床诊疗场景").first.click()
-                await expect(page.get_by_role("complementary", name="检查器")).to_be_visible()
-                await page.get_by_role("button", name="关闭检查器", exact=True).click()
+                await expect(page.get_by_role("complementary", name="预览面板")).to_be_visible()
+                await page.get_by_role("button", name="关闭预览面板", exact=True).click()
                 await page.get_by_role("button", name="技术研判", exact=True).first.click()
                 await page.get_by_role("button", name="年度分布", exact=True).click()
                 await expect(overview.get_by_label("年度项目数量")).to_be_visible()
@@ -178,7 +178,7 @@ async def main():
                 await overview.get_by_role("button", name="病理项目", exact=True).click()
                 await expect(page.get_by_label("项目详情", exact=True)).to_contain_text("批准号 A02")
                 await page.get_by_role("button", name="查看此文件的原文依据", exact=False).first.click()
-                await expect(page.get_by_role("complementary", name="检查器")).to_contain_text("四维信息")
+                await expect(page.get_by_role("complementary", name="预览面板")).to_contain_text("四维信息")
                 await page.get_by_role("button", name="返回上一预览").click()
                 await expect(page.get_by_label("项目详情", exact=True)).to_contain_text("批准号 A02")
                 await page.get_by_role("button", name="返回上一预览").click()
@@ -222,15 +222,13 @@ async def main():
                 await expect(pane.get_by_role("heading", name="验收情报报告", exact=True)).to_be_visible()
                 await pane.get_by_role("button", name="[1]", exact=True).first.click()
                 await expect(pane.get_by_text("外部材料自述 · 原输入版本保留", exact=True)).to_be_visible()
-                await page.get_by_role("button", name="关闭检查器", exact=True).click()
-                await page.get_by_role("button", name="存量分析", exact=True).click()
-                # 成果与回收站统一在检查器中，按报告类别分组。
-                await page.get_by_role("button", name="成果与回收站", exact=True).click()
-                results = page.locator("aside[aria-hidden='false']")
-                await results.get_by_role("tab", name=re.compile("^情报分析报告")).click()
+                await page.get_by_role("button", name="关闭预览面板", exact=True).click()
+                # 成果是独立页面，报告按类别分组（query 2026-1015 1553）。
+                await page.get_by_role("button", name="成果", exact=True).click()
+                results = page.get_by_role("region", name="报告列表", exact=True)
+                await results.get_by_role("tab", name=re.compile("^情报分析")).click()
                 await expect(results.get_by_text("综合情报报告", exact=True).first).to_be_visible()
-                await expect(results.get_by_role("tab", name=re.compile("^资料审查报告"))).to_be_visible()
-                await page.get_by_role("button", name="关闭检查器", exact=True).click()
+                await expect(results.get_by_role("tab", name=re.compile("^资料审查"))).to_be_visible()
 
                 proposal = WordDocument()
                 proposal.add_heading("项目摘要", 1)
@@ -320,7 +318,7 @@ async def main():
                 await expect(
                     page.get_by_text("Word 按段落或表格定位，PDF 按原文件页码定位。", exact=True)
                 ).to_be_visible()
-                await page.get_by_role("button", name="关闭检查器", exact=True).click()
+                await page.get_by_role("button", name="关闭预览面板", exact=True).click()
                 await page.screenshot(
                     path=str(screenshots / "professional-review.png"), full_page=True, animations="disabled"
                 )

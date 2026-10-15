@@ -1,13 +1,13 @@
 import { GenerationProgress } from "./GenerationProgress";
 import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
-import { InspectorResults } from "./InspectorResults";
 import { ProjectDetail } from "./ProjectOverview";
 import { useEffect, useState, type ReactNode } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
+import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, artifactExportUrl, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -23,7 +23,7 @@ import { TargetReportView } from "./TargetReportView";
 import { LibraryPreview } from "./LibraryPreview";
 import { YearReports } from "./YearDistribution";
 
-type InspTab = "out" | "cite" | "src";
+type InspTab = "cite" | "src" | "session";
 
 const OUTCOME_LABEL: Record<string, string> = {
   running: "进行中", completed: "已完成", interrupted: "已中断", failed: "未完成", timed_out: "已超时",
@@ -40,6 +40,24 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
       {aside}
     </div>
   );
+}
+
+/** The reports made in this conversation; the full list with the recycle bin is the 成果 page. */
+function SessionReports({ sessionKey }: { sessionKey: string }) {
+  const { showInspector } = useApp();
+  const [items, setItems] = useState<ArtifactSummary[] | null>(null);
+  useEffect(() => {
+    const abort = new AbortController();
+    setItems(null);
+    fetchArtifacts(sessionKey, abort.signal).then(setItems, () => { if (!abort.signal.aborted) setItems([]); });
+    return () => abort.abort();
+  }, [sessionKey]);
+  if (!items) return <p className="mb-[14px] text-[12px] text-[var(--stone)]">正在读取…</p>;
+  if (!items.length) return <p className="mb-[14px] text-[12px] leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存为成果”；专项报告在对话中的报告卡生成。</p>;
+  return <ul className="mb-[14px] space-y-[6px]">{items.map((item) => <li key={item.artifact_id}>
+    <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
+      className="block w-full truncate rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-[12.5px] text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
+  </li>)}</ul>;
 }
 
 export function Inspector() {
@@ -71,7 +89,7 @@ export function Inspector() {
     openFullPreview,
     showInspector,
   } = useApp();
-  const [tab, setTab] = useState<InspTab>("out");
+  const [tab, setTab] = useState<InspTab>("cite");
   const [report, setReport] = useState<ReportInfo | null>(null);
   const [reportError, setReportError] = useState("");
   const [webSnapshot, setWebSnapshot] = useState<WebSnapshot | null>(null);
@@ -249,21 +267,14 @@ export function Inspector() {
   return (
     <aside
       aria-hidden={!inspectorOpen}
-      aria-label="检查器"
-      className={`fixed top-[52px] bottom-0 right-0 z-[70] flex w-full flex-col overflow-hidden border border-[var(--hairline)] bg-[var(--surface-soft)] shadow-[-24px_8px_60px_-24px_rgba(15,15,15,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] sm:rounded-[14px] ${
+      aria-label="预览面板"
+      className={`${PANEL_SHELL} fixed top-[52px] bottom-0 right-0 z-[70] w-full transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[var(--inspector-width)] ${
         inspectorOpen ? "translate-x-0" : "pointer-events-none translate-x-[calc(100%+20px)]"
       }`}
     >
-      <div className="flex items-center gap-[8px] px-[18px] pt-[14px] pb-[12px]">
-        {inspectorCanGoBack ? (
-          <button type="button" aria-label="返回上一预览" onClick={backInspector}
-            className="grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]">
-            <Icon name="chevronLeft" size={14} />
-          </button>
-        ) : null}
-        <span className="text-[13.5px] font-semibold tracking-[-0.1px] text-[var(--ink)]">
-          {inspectorTarget.kind === "results" ? "成果"
-            : inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
+      <PanelHeader
+        onBack={inspectorCanGoBack ? backInspector : undefined}
+        title={inspectorTarget.kind === "task" ? (inspectorTarget.edit ? "编辑任务模板" : "任务模板")
             : inspectorTarget.kind === "template" ? (inspectorTarget.edit ? "编辑报告模板" : "报告模板")
             : inspectorTarget.kind === "target" ? "四维信息"
             : inspectorTarget.kind === "corpus" ? "资料库预览"
@@ -275,12 +286,10 @@ export function Inspector() {
             : inspectorTarget.kind === "input" ? "外部原始材料"
             : inspectorTarget.kind === "web" ? "网页快照"
             : inspectorTarget.kind === "report" ? "报告预览"
-            : inspectorTarget.kind === "artifact" ? "成果预览"
-            : inspectorTarget.kind === "execution" ? "执行摘要" : "检查器"}
-        </span>
-        <span className="min-w-0 flex-1 truncate text-[11.5px] text-[var(--stone)]">
-          {/* The subtitle names only what this view shows (query 2026-1013 1520). */}
-          {inspectorTarget.kind === "task" ? selectedTask?.name ?? ""
+            : inspectorTarget.kind === "artifact" ? "报告"
+            : inspectorTarget.kind === "execution" ? "执行摘要" : "本轮回答"}
+        // The subtitle names only what this view shows (query 2026-1013 1520).
+        subtitle={inspectorTarget.kind === "task" ? selectedTask?.name ?? ""
             : inspectorTarget.kind === "corpus" || inspectorTarget.kind === "target" ? corpus?.name ?? ""
             : inspectorTarget.kind === "artifact" ? artifact?.title ?? ""
             : inspectorTarget.kind === "document" ? inspectorTarget.doc.title
@@ -288,58 +297,21 @@ export function Inspector() {
             : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
-            : inspectorTarget.kind === "results" ? "报告分类汇总"
-            : inspectorTarget.kind === "overview" ? (activeTask && taskCapable ? activeTask.name : "专业问答") : ""}
-        </span>
-        <button type="button" aria-label={inspectorPinned ? "取消固定检查器" : "固定检查器"}
-          title={inspectorPinned ? "取消固定" : "固定预览"} onClick={toggleInspectorPinned}
-          className={`grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[12px] ${inspectorPinned ? "bg-[var(--primary-soft)] text-[var(--primary)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
-          {inspectorPinned ? "●" : "○"}
-        </button>
-        <input type="range" aria-label="检查器宽度" title="调整检查器宽度" min={400} max={520} step={20}
-          value={inspectorWidth} onChange={(event) => setInspectorWidth(Number(event.target.value))}
-          className="hidden w-[52px] accent-[var(--primary)] sm:block" />
-        <button
-          type="button"
-          aria-label="关闭检查器"
-          title="关闭检查器"
-          onClick={toggleInspector}
-          className="grid size-[26px] shrink-0 place-items-center rounded-[6px] text-[var(--steel)] hover:bg-[var(--surface)]"
-        >
-          <Icon name="close" size={14} strokeWidth={2} />
-        </button>
-      </div>
+            : inspectorTarget.kind === "answer" ? (activeTask && taskCapable ? activeTask.name : "专业问答") : ""}
+        actions={<>
+          <PanelButton label={inspectorPinned ? "取消固定预览面板" : "固定预览面板"} active={inspectorPinned} onClick={toggleInspectorPinned}>
+            {inspectorPinned ? "●" : "○"}</PanelButton>
+          <span className="hidden sm:contents"><PanelButton label={inspectorWidth >= 520 ? "还原面板宽度" : "加宽面板"} active={inspectorWidth >= 520}
+            onClick={() => setInspectorWidth(inspectorWidth >= 520 ? 404 : 520)}>{inspectorWidth >= 520 ? "⇥" : "⇤"}</PanelButton></span>
+          <PanelButton label="关闭预览面板" onClick={toggleInspector}><Icon name="close" size={14} strokeWidth={2} /></PanelButton>
+        </>}
+      />
 
-      {inspectorTarget.kind === "overview" || inspectorTarget.kind === "results" ? <div className="flex gap-[4px] border-b border-[var(--hairline)] px-[14px]">
-        {(
-          [
-            ["out", "概览"],
-            ["cite", "引用"],
-            ["src", "原文预览"],
-            ["results", "成果"],
-          ] as const
-        ).map(([key, label]) => (
-          <button
-            key={key}
-            type="button"
-            onClick={() => {
-              if (key === "results") { showInspector({ kind: "results" }); return; }
-              if (inspectorTarget.kind === "results") showInspector({ kind: "overview" });
-              setTab(key);
-            }}
-            className={`font-app -mb-px rounded-t-[6px] border-b-2 px-[10px] py-[8px] text-[12.5px] transition-colors ${
-              (inspectorTarget.kind === "results" ? key === "results" : tab === key)
-                ? "border-b-[var(--ink)] font-semibold text-[var(--ink)]"
-                : "border-b-transparent text-[var(--steel)] hover:text-[var(--charcoal)]"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div> : null}
+      {/* Tabs only for the 对话工作台's latest answer (query 2026-1015 1553); every other view is a single preview. */}
+      {inspectorTarget.kind === "answer" ? <PanelTabs label="本轮回答" value={tab} onChange={setTab}
+        tabs={[["cite", "引用"], ["src", "资料"], ["session", "会话"]] as const} /> : null}
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[18px] pt-[18px] pb-[20px]">
-        {inspectorTarget.kind === "results" ? <InspectorResults /> : null}
 
         {inspectorTarget.kind === "task" ? (
           <>
@@ -589,14 +561,14 @@ export function Inspector() {
           </div>
         ) : null}
 
-        {inspectorTarget.kind === "overview" && tab === "out" ? (
+        {inspectorTarget.kind === "answer" && tab === "session" ? (
           <>
             <SectionTitle
               aside={
                 <span className="text-[11px] text-[var(--stone)]">本轮会话 · {answered} 轮已答</span>
               }
             >
-              概览
+              会话
             </SectionTitle>
             <Card className="mb-[10px]">
               <div className="text-[13px] font-medium text-[var(--ink)]">
@@ -615,15 +587,8 @@ export function Inspector() {
               </div>
             </Card>
 
-            <Card className="mb-[10px]">
-              <div className="text-[12.8px] font-medium text-[var(--ink)]">结构化报告</div>
-              <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
-                使用“专项报告”任务确认需求后，在对话中的报告卡生成；本会话报告可集中预览和下载。
-              </p>
-              <div className="mt-[10px] flex gap-[8px]">
-                <Button size="sm" variant="ghost" onClick={() => showInspector({ kind: "results" })}>查看成果与回收站</Button>
-              </div>
-            </Card>
+            <SectionTitle>本会话报告</SectionTitle>
+            <SessionReports sessionKey={workspace.active} />
 
             <SectionTitle>会话</SectionTitle>
             <Card>
@@ -638,7 +603,7 @@ export function Inspector() {
           </>
         ) : null}
 
-        {inspectorTarget.kind === "overview" && tab === "cite" ? (
+        {inspectorTarget.kind === "answer" && tab === "cite" ? (
           <SectionTitle
             aside={<span className="text-[11px] text-[var(--stone)]">{citations.length} 处引用</span>}
           >
@@ -646,7 +611,7 @@ export function Inspector() {
           </SectionTitle>
         ) : null}
 
-        {inspectorTarget.kind === "overview" && tab === "cite" && !citations.length ? (
+        {inspectorTarget.kind === "answer" && tab === "cite" && !citations.length ? (
           <Card>
             <p className="text-[12.5px] leading-[1.6] text-[var(--steel)]">
               本轮回答还没有引用。提问后，命中资料的来源会在这里逐条列出。
@@ -654,7 +619,7 @@ export function Inspector() {
           </Card>
         ) : null}
 
-        {inspectorTarget.kind === "overview" && tab === "cite" ? (
+        {inspectorTarget.kind === "answer" && tab === "cite" ? (
           <div className="flex flex-col gap-[10px]">
             {citations.map((s, i) => {
               const n = s.citation ?? i + 1;
@@ -695,7 +660,7 @@ export function Inspector() {
           </div>
         ) : null}
 
-        {inspectorTarget.kind === "overview" && tab === "src" ? (
+        {inspectorTarget.kind === "answer" && tab === "src" ? (
           <>
             <SectionTitle
               aside={
@@ -704,7 +669,7 @@ export function Inspector() {
                 </span>
               }
             >
-              原文预览
+              资料
             </SectionTitle>
             <p className="mb-[12px] text-[12px] leading-[1.6] text-[var(--steel)]">
               浏览不会改变检索范围；打开后为 PDF 原文或规范化正文。

@@ -42,8 +42,9 @@ import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocument
 import { useWorkspace } from "./workspace";
 import { useAuth } from "./auth";
 
-export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence";
-export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kind: "task"; taskId: string; edit?: boolean } |
+export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence" | "results";
+/** What the right-hand panel shows. "answer" is the 对话工作台's own view of the latest answer and is shown only there. */
+export type InspectorTarget = { kind: "answer" } | { kind: "task"; taskId: string; edit?: boolean } |
   { kind: "template"; templateId: string; edit?: boolean } |
   { kind: "web"; snapshotId: string } |
   { kind: "input"; inputId: string } |
@@ -59,8 +60,7 @@ export type InspectorTarget = { kind: "overview" } | { kind: "results" } | { kin
 
 function inspectorIdentity(target: InspectorTarget): string {
   switch (target.kind) {
-    case "overview": return "overview";
-    case "results": return "results";
+    case "answer": return "answer";
     case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
     case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
     case "review-template": return "review-template:" + target.templateId;
@@ -210,6 +210,9 @@ export interface AppValue {
 
   /* output inspector */
   inspectorOpen: boolean;
+  /** The library chat is docked at the right; the page makes room for it as for the preview panel. */
+  chatDocked: boolean;
+  setChatDocked: (docked: boolean) => void;
   toggleInspector: () => void;
   inspectorTarget: InspectorTarget;
   inspectorCanGoBack: boolean;
@@ -253,9 +256,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence" };
+  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence", results: "/results" };
   const nav: NavKey = location.pathname === "/home" ? "home" : location.pathname.startsWith("/overview") ? "overview" : location.pathname.startsWith("/library") ? "library"
-    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/artifacts") ? "tasks"
+    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/results") ? "results"
       : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
   const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
   const corpusView = location.pathname.includes("/documents") ? "files" : "target";
@@ -280,7 +283,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [sessionBusy, setSessionBusy] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(false);
-  const [inspectorStack, setInspectorStack] = useState<InspectorTarget[]>([{ kind: "overview" }]);
+  const [chatDocked, setChatDocked] = useState(false);
+  const [inspectorStack, setInspectorStack] = useState<InspectorTarget[]>([{ kind: "answer" }]);
   const routeSearch = new URLSearchParams(location.search);
   const routeDoc = corpusView === "target" ? routeSearch.get("doc") : null;
   const routeFacet = Number(routeSearch.get("facet") ?? 0);
@@ -347,7 +351,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (inspectorNav.current !== nav) {
       inspectorNav.current = nav;
-      if (!inspectorPinned) setInspectorStack([{ kind: "overview" }]);
+      // A preview belongs to the page it was opened on (query 2026-1015 1553): leaving the page closes it.
+      if (!inspectorPinned) { setInspectorStack([{ kind: "answer" }]); if (!routeTargetKey) setInspectorOpen(false); }
     }
   }, [nav, inspectorPinned]);
 
@@ -955,6 +960,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     void navigate(`/library/${encodeURIComponent(id)}/${view === "target" ? "targets/four-facets" : "documents"}`);
   }
 
+  // The latest-answer view is the 对话工作台's; elsewhere the panel shows only a preview that was asked for.
+  const panelTarget = routeTarget ?? inspectorStack[inspectorStack.length - 1];
+  const panelOpen = inspectorOpen && (panelTarget.kind !== "answer" || nav === "chat");
+
   function toggleInspector() {
     if (inspectorOpen && routeTarget) { closeRouteTarget(); return; }
     if (!inspectorOpen) {
@@ -1282,10 +1291,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setNewCorpusOpen,
       drawerOpen,
       setDrawerOpen,
-      inspectorOpen,
+      inspectorOpen: panelOpen,
+      chatDocked,
+      setChatDocked,
       toggleInspector,
-      inspectorTarget: routeTarget ?? inspectorStack[inspectorStack.length - 1],
-      inspectorCanGoBack: Boolean(routeTarget) || inspectorStack.length > 1,
+      inspectorTarget: panelTarget,
+      inspectorCanGoBack: Boolean(routeTarget) || (inspectorStack.length > 1 && (nav === "chat" || inspectorStack[inspectorStack.length - 2].kind !== "answer")),
       inspectorPinned,
       inspectorWidth,
       setInspectorWidth: (width) => setInspectorWidth(Math.max(400, Math.min(520, width))),
@@ -1349,6 +1360,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       explorerDoc,
       drawerOpen,
       inspectorOpen,
+      chatDocked,
       sidebarCollapsed,
       newCorpusOpen,
       corpusView,

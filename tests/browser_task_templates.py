@@ -45,7 +45,7 @@ async def main():
                     assert (await page.request.post(f"{origin}/api/tasks/custom", data={"source_task_id": "task1"})).status == 201
                 await page.goto(f"{origin}/tasks")
                 cards = page.locator("article").filter(has=page.get_by_role("button", name="开始分析"))
-                inspector = page.get_by_role("complementary", name="检查器")
+                inspector = page.get_by_role("complementary", name="预览面板")
                 await expect(cards).to_have_count(6)
 
                 # Preview is the outline itself; modify opens the same view as an editor.

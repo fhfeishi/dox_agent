@@ -19,6 +19,7 @@ const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => (
 export function App() {
   const {
     inspectorOpen,
+    chatDocked,
     inspectorWidth,
     uiDocPanel,
     corpusReady,
@@ -48,7 +49,8 @@ export function App() {
       */}
       <div
         className={`relative flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-          inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : ""
+          inspectorOpen && chatDocked ? "xl:pr-[calc(var(--inspector-width)+458px)]"
+            : inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "xl:pr-[448px]" : ""
         }`}
       >
         <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>

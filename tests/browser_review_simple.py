@@ -77,6 +77,8 @@ async def main():
                 await page.get_by_role("button", name="成果", exact=True).click()
                 await expect(page.get_by_role("heading", name="成果", exact=True)).to_be_visible()
                 await expect(page.get_by_role("region", name="成果统计")).to_contain_text("已完成报告0")
+                # 成果页自带滚动区域，内容多时可上下滑动（query 2026-1015 1700）。
+                assert await page.get_by_role("region", name="成果统计").evaluate("e => getComputedStyle(e.closest(\"main\")).overflowY") == "auto"
                 await expect(page.get_by_role("region", name="处理中").get_by_role("progressbar")).to_have_count(3)
                 await page.get_by_role("button", name="首页", exact=True).click()
                 await expect(page.get_by_role("region", name="我的工作")).to_be_visible()

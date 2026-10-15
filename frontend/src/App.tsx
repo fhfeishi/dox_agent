@@ -45,12 +45,14 @@ export function App() {
 
       {/*
         检查器是浮层，不是 flex 兄弟节点：它从右边缘滑入，主区宽度不变，
-        只有内容区让出右侧空间，避免被盖住。窄屏下不让位，直接覆盖。
+        只有内容区让出右侧空间，避免被盖住。1024 px 以下不让位，直接覆盖。
       */}
       <div
         className={`relative flex min-w-0 flex-1 flex-col transition-[padding] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-          inspectorOpen && chatDocked ? "xl:pr-[calc(var(--inspector-width)+458px)]"
-            : inspectorOpen ? "xl:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "xl:pr-[448px]" : ""
+          // From 1024 px the page makes room instead of being covered (query 2026-1015 1639); below
+          // 1280 px a preview opened beside the library chat lies over the chat.
+          inspectorOpen && chatDocked ? "lg:pr-[448px] xl:pr-[calc(var(--inspector-width)+458px)]"
+            : inspectorOpen ? "lg:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "lg:pr-[448px]" : ""
         }`}
       >
         <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>

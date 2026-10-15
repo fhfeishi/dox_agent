@@ -66,7 +66,7 @@ export function PeriodSummary() {
     </button>)}</div>
   </section> : null;
   const items = summary.active.length + summary.done.length + summary.failed.length;
-  return <section aria-label="成果周期总结" className="space-y-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 sm:p-5">
+  return <section aria-label="成果周期总结" className="@container space-y-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 sm:p-5">
     <div className="flex flex-wrap items-center gap-3">
       <h2 className="text-[16px] font-semibold">成果周期总结</h2>
       <div role="group" aria-label="时间段" className="flex flex-wrap gap-1">{PERIODS.map((p) =>
@@ -74,7 +74,7 @@ export function PeriodSummary() {
           className={`rounded-full border px-3 py-1 text-[13px] ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>
     </div>
     <p className="rounded-xl bg-[var(--surface)] px-4 py-3 text-[15px] leading-7">{headline(summary, label)}</p>
-    {charts.length ? <section aria-label="本期图表" className="grid gap-3 md:grid-cols-2">
+    {charts.length ? <section aria-label="本期图表" className="grid gap-3 @2xl:grid-cols-2">
       {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}
     </section> : null}
     <section aria-label="总结报告" className="rounded-xl border border-[var(--hairline)] p-4">

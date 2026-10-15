@@ -865,7 +865,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       await settleActiveRun();
       await workspace.saveNow(latestTurns.current, options);
       await workspace.select(undefined, task, keep[0]);
-      await workspace.saveCorpusSelection(keep[0], true, keep, { allowed_doc_ids: null });
+      // With no library chosen yet the new conversation chooses one from the question as usual.
+      if (keep.length) await workspace.saveCorpusSelection(keep[0], true, keep, { allowed_doc_ids: null });
       setEditing(null);
       setInput(question);
       setError("");

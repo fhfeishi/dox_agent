@@ -8,6 +8,13 @@ const TASKS: [string, string][] = [["task1", "精准问答"], ["task2", "对比�
 const ELEMENTS = ["技术谱系", "场景", "问题", "关键技术", "成果"];
 const INTENTS = ["这个领域有哪些研究路线", "已经实现了哪些工作", "还有哪些工作可以做", "关键技术还需要哪些配套技术", "有哪些代表性项目"];
 const OPEN_KEY = "dox-quick-ask-open";
+// Each task starts with a typical choice, so 生成问题 works the moment the page opens (query 2026-1015 1639).
+const DEFAULTS: Record<string, { elements: string[]; intents: string[] }> = {
+  task1: { elements: ["关键技术"], intents: ["已经实现了哪些工作"] },
+  task2: { elements: ["技术谱系", "成果"], intents: ["有哪些代表性项目"] },
+  task3: { elements: ["技术谱系", "关键技术"], intents: ["这个领域有哪些研究路线", "还有哪些工作可以做"] },
+  task4: { elements: ["场景", "问题", "关键技术", "成果"], intents: ["已经实现了哪些工作"] },
+};
 
 function readOpen() {
   try { return localStorage.getItem(OPEN_KEY) !== "0"; } catch { return true; }
@@ -30,8 +37,10 @@ export function QuickAsk() {
   const [task, setTask] = useState(TASKS.some(([id]) => id === taskId) ? taskId : "task1");
   // Follow the session's task when it changes elsewhere (task menu, session list).
   useEffect(() => { if (TASKS.some(([id]) => id === taskId)) setTask(taskId); }, [taskId]);
-  const [elements, setElements] = useState<string[]>([]);
-  const [intents, setIntents] = useState<string[]>([]);
+  const [elements, setElements] = useState<string[]>(() => DEFAULTS[task].elements);
+  const [intents, setIntents] = useState<string[]>(() => DEFAULTS[task].intents);
+  // Choosing another task brings that task's typical choice.
+  useEffect(() => { setElements(DEFAULTS[task].elements); setIntents(DEFAULTS[task].intents); }, [task]);
   const [scene, setScene] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -66,7 +75,7 @@ export function QuickAsk() {
     <section aria-label="点选提问" className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[9px]">
       <div className="mb-[6px] flex items-center gap-[8px]">
         <span className="text-[12.5px] font-semibold text-[var(--ink)]">点选提问</span>
-        <span className="text-[11.5px] text-[var(--stone)]">点选后生成问题，填入输入框，可修改再发送</span>
+        <span className="text-[11.5px] text-[var(--stone)]">已按任务预选常用项，点“生成问题”填入输入框，再点发送</span>
         <span className="flex-1" />
         <button type="button" onClick={() => setOpenSaved(false)} className="text-[11.5px] text-[var(--stone)] hover:text-[var(--ink)]">收起</button>
       </div>
@@ -85,7 +94,7 @@ export function QuickAsk() {
         </div></div>
       </div>
       <div className="mt-[8px] flex flex-wrap items-center gap-[8px]">
-        <button type="button" disabled={pending || busy || sessionBusy || !corpusIds.length || (!elements.length && !intents.length && !scene)}
+        <button type="button" disabled={pending || busy || sessionBusy || (!elements.length && !intents.length && !scene)}
           onClick={() => void generate()}
           className="rounded-[7px] bg-[var(--primary)] px-[12px] py-[5px] text-[12.5px] text-white disabled:opacity-45">
           {pending ? "正在生成问题…" : "生成问题"}

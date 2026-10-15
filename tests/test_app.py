@@ -196,7 +196,7 @@ def test_user_extracts_one_target_and_stale_evidence_is_blocked(tmp_path, monkey
         page = client.get(f"/library/{corpus_id}/targets/four-facets?scenario=临床诊疗")
         assert page.status_code == 200 and page.text == "research shell"
         assert "no-cache" in page.headers["cache-control"]
-        for route in ("/home", "/overview", "/overview/domains", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
+        for route in ("/home", "/results", "/overview", "/overview/domains", "/review", "/review/guidelines", "/review/evidence", "/review/templates", "/review/templates/builtin-formal", "/review/runs/example"):
             response = client.get(route)
             assert response.status_code == 200 and response.text == "research shell"
         for missing in ("/api/no-such-api", "/assets/missing.js", "/library/no-such-page", "/admin", "/leader", "/mine"):
@@ -743,3 +743,16 @@ def test_folder_upload_preserves_paths_and_body_search_stays_in_library(tmp_path
             assert client.post(f"/api/corpora/{one}/files",
                                files={"upload": (name, "量子传感的研究".encode(), "text/markdown")}).status_code == 201
         assert len(client.get(f"/api/corpora/{one}/search", params={"q": "量子传感"}).json()["hits"]) == 3
+
+
+def test_model_failure_message_names_the_reason():
+    from src.main import model_failure_message
+
+    class APIConnectionError(Exception): ...
+    class APITimeoutError(Exception): ...
+    class AuthenticationError(Exception): ...
+
+    assert "MODEL_USE_PROXY=true" in model_failure_message(APIConnectionError(), "超时")
+    assert model_failure_message(APITimeoutError(), "超时") == "超时"
+    assert "密钥或额度" in model_failure_message(AuthenticationError(), "超时")
+    assert model_failure_message(ValueError(), "超时") == ""

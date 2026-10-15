@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { resultsSummaryQuery } from "../resultsSummary";
 import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { changeArtifactLifecycle, type ArtifactInfo, type ArtifactSummary } from "../api";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
@@ -36,7 +36,8 @@ const reviewRow = (run: ReviewRun): Row => ({
 /**
  * 成果 (query 2026-1015 1553): a page of its own for every generated report, replacing the 成果 view
  * squeezed into the right-hand panel. Counts by kind first, then what is still being produced, the
- * report list (by kind, title, source library; recycle bin last) and the rolling period summary.
+ * report list (by kind, title, source library; recycle bin last). The rolling period summary is the
+ * page's second view, so it no longer trails every list (query 2026-1015 1639); both fit any width.
  * Every role sees the same reports (query 2026-1014 1516). Analysis and intelligence reports open in
  * the right-hand preview for reading, editing and export; a review report opens on its review page.
  */
@@ -45,6 +46,12 @@ export function ResultsPage() {
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
   const client = useQueryClient();
+  const [search, setSearch] = useSearchParams();
+  // Reports and the period summary are two views of the page (query 2026-1015 1639).
+  const view = search.get("view") === "period" ? "period" : "reports";
+  const setView = (next: "reports" | "period") => setSearch((old) => {
+    const value = new URLSearchParams(old); if (next === "period") value.set("view", "period"); else value.delete("view"); return value;
+  }, { replace: true });
   const [group, setGroup] = useState<Group>("all");
   const [query, setQuery] = useState("");
   const [library, setLibrary] = useState("");
@@ -111,13 +118,21 @@ export function ResultsPage() {
     {note ? <p className="text-[11.5px] text-[var(--stone)]">{note}</p> : null}
   </div>;
 
-  return <main className="mx-auto w-full max-w-[1120px] space-y-6 px-4 py-6 sm:px-8">
-    <header className="flex flex-wrap items-end gap-x-4 gap-y-1">
+  // The page scrolls on its own, like the other pages: the app frame is one screen high (query 2026-1015 1700).
+  return <main className="min-h-0 flex-1 overflow-y-auto">
+  <div className="@container mx-auto w-full max-w-[1120px] space-y-5 px-4 py-6 sm:px-8">
+    <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
       <h1 className="text-[22px] font-semibold text-[var(--ink)]">成果</h1>
-      <p className="text-[13px] text-[var(--steel)]">存量分析、资料审查、情报分析生成的全部报告；各角色看到的相同。</p>
+      <div role="tablist" aria-label="成果视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
+        {([["reports", "报告"], ["period", "周期总结"]] as const).map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={view === key}
+          onClick={() => setView(key)} className={`rounded-lg px-4 py-1.5 text-[13.5px] ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
+      </div>
+      <p className="basis-full text-[13px] text-[var(--steel)] @3xl:basis-auto">{view === "period"
+        ? "按一周至一年汇总期内完成与进行中的工作，可生成总结报告。" : "存量分析、资料审查、情报分析生成的全部报告；各角色看到的相同。"}</p>
     </header>
 
-    <section aria-label="成果统计" className="grid grid-cols-2 gap-3 md:grid-cols-4">
+    {view === "period" ? <PeriodSummary /> : <>
+    <section aria-label="成果统计" className="grid grid-cols-2 gap-3 @2xl:grid-cols-4">
       {stat("已完成报告", totals.data?.completed.total, totals.data ? `一周内新完成 ${totals.data.recent_completed}` : undefined)}
       {stat("存量分析", totals.data?.completed.analysis)}
       {stat("资料审查", totals.data?.completed.review)}
@@ -129,7 +144,7 @@ export function ResultsPage() {
 
     {working.length ? <section aria-label="处理中" className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
       <h2 className="mb-2 text-[14px] font-semibold">处理中 · {working.length}<span className="ml-2 text-[12px] font-normal text-[var(--stone)]">可离开本页，完成后在下方列表打开</span></h2>
-      <ul className="grid gap-2 md:grid-cols-2">{working.map((row) => <li key={row.key} className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2">
+      <ul className="grid gap-2 @2xl:grid-cols-2">{working.map((row) => <li key={row.key} className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2">
         <button type="button" onClick={() => open(row)} className="flex w-full items-center gap-2 text-left text-[13px] hover:text-[var(--primary)]">
           <span className="min-w-0 flex-1 truncate">{row.title}</span><span className="shrink-0 text-[12px] text-[var(--stone)]">{KIND_LABEL[row.kind]}</span></button>
         {row.runId ? (() => { const run = runs!.find((r) => r.id === row.runId)!;
@@ -139,20 +154,22 @@ export function ResultsPage() {
     </section> : null}
 
     <section aria-label="报告列表" className="space-y-3">
-      <div className="flex flex-wrap items-center gap-2">
+      {/* Categories and search stay in view while a long list scrolls. */}
+      <div className="sticky top-0 z-10 -mx-1 flex flex-wrap items-center gap-2 bg-[var(--canvas)]/95 px-1 py-2 backdrop-blur">
         <div role="tablist" aria-label="成果分类" className="flex flex-wrap gap-1 rounded-xl bg-[var(--surface)] p-1">
           {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => setGroup(key)}
             className={`rounded-lg px-3 py-1.5 text-[13px] ${group === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
             {label} <span className="tabular-nums text-[11.5px] text-[var(--stone)]">{count(key) ?? "…"}</span></button>)}
         </div>
-        <span className="flex-1" />
+        <div className="flex min-w-[260px] flex-1 flex-wrap justify-end gap-2">
         <input aria-label="按标题搜索成果" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="按标题搜索"
-          className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px] outline-none focus:border-[var(--primary)] sm:w-[200px]" />
+          className="min-w-[140px] flex-1 rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px] outline-none focus:border-[var(--primary)] @3xl:max-w-[220px]" />
         <select aria-label="来源资料库" value={library} onChange={(e) => setLibrary(e.target.value)}
-          className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px] sm:w-auto sm:max-w-[220px]">
+          className="min-w-0 max-w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px] @3xl:max-w-[220px]">
           <option value="">全部资料库</option>
           {libraries.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
+        </div>
       </div>
       {error ? <p role="alert" className="text-[12px] text-[var(--red)]">{error}</p> : null}
       {lastTrash ? <p role="status" className="text-[12.5px] text-[var(--steel)]">已移入回收站
@@ -163,31 +180,32 @@ export function ResultsPage() {
         : !shown.length ? <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] py-8 text-center text-[13px] text-[var(--steel)]">
           {needle || library ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成。"}</p>
         : <ul className="divide-y divide-[var(--hairline)] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">
-          {shown.map((row) => <li key={row.key} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3 hover:bg-[var(--surface)]">
-            <div className="min-w-0 flex-1">
-              <button type="button" onClick={() => open(row)} className="block max-w-full truncate text-left text-[14px] font-medium text-[var(--ink)] hover:text-[var(--primary)]">{row.title}</button>
-              <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[var(--steel)]">
-                <Pill tone={KIND_TONE[row.kind]}>{KIND_LABEL[row.kind]}</Pill>
-                <span>{row.detail}</span>
-                {row.corpusIds.length ? <span className="max-w-[320px] truncate">{corpusNames(row.corpusIds)}</span> : null}
-                {row.createdBy ? <span>{row.createdBy}</span> : null}
-              </p>
+          {shown.map((row) => <li key={row.key} className="px-4 py-3 hover:bg-[var(--surface)]">
+            {/* Two lines that fit any width: title and actions, then what it is and when (query 2026-1015 1639). */}
+            <div className="flex items-start gap-3">
+              <button type="button" onClick={() => open(row)} className="min-w-0 flex-1 truncate text-left text-[14px] font-medium text-[var(--ink)] hover:text-[var(--primary)]" title={row.title}>{row.title}</button>
+              <span className="flex shrink-0 gap-3">
+                {group === "trash" && row.artifact ? <>
+                  <button type="button" className={link} onClick={() => void lifecycle(row.artifact!, "restore")}>还原</button>
+                  <button type="button" className="text-[12.5px] text-[var(--red)] hover:underline" onClick={() => void lifecycle(row.artifact!, "purge")}>彻底删除</button>
+                </> : <>
+                  <button type="button" className={link} onClick={() => open(row)}>打开</button>
+                  {row.artifact ? <button type="button" className={link} disabled={row.status === "generating"} onClick={() => void lifecycle(row.artifact!, "trash")}>移入回收站</button> : null}
+                </>}
+              </span>
             </div>
-            <span className={`shrink-0 text-[12.5px] ${row.status === "failed" ? "text-[var(--red)]" : "text-[var(--steel)]"}`}>{STATUS_LABEL[row.status] ?? row.status}</span>
-            <span className="w-[84px] shrink-0 text-right text-[12.5px] tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
-            <span className="flex w-[150px] shrink-0 justify-end gap-3">
-              {group === "trash" && row.artifact ? <>
-                <button type="button" className={link} onClick={() => void lifecycle(row.artifact!, "restore")}>还原</button>
-                <button type="button" className="text-[12.5px] text-[var(--red)] hover:underline" onClick={() => void lifecycle(row.artifact!, "purge")}>彻底删除</button>
-              </> : <>
-                <button type="button" className={link} onClick={() => open(row)}>打开</button>
-                {row.artifact ? <button type="button" className={link} disabled={row.status === "generating"} onClick={() => void lifecycle(row.artifact!, "trash")}>移入回收站</button> : null}
-              </>}
-            </span>
+            <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[var(--steel)]">
+              <Pill tone={KIND_TONE[row.kind]}>{KIND_LABEL[row.kind]}</Pill>
+              <span className={row.status === "failed" ? "text-[var(--red)]" : ""}>{STATUS_LABEL[row.status] ?? row.status}</span>
+              <span className="tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
+              <span>{row.detail}</span>
+              {row.corpusIds.length ? <span className="min-w-0 max-w-full truncate">{corpusNames(row.corpusIds)}</span> : null}
+              {row.createdBy ? <span>{row.createdBy}</span> : null}
+            </p>
           </li>)}
         </ul>}
     </section>
-
-    <PeriodSummary />
+    </>}
+  </div>
   </main>;
 }

@@ -456,6 +456,18 @@ def workspace_path(settings, knowledge) -> Path:
     return target
 
 
+def model_failure_message(exc: BaseException, timeout_hint: str) -> str:
+    """A readable reason for a failed model call; the provider's own text stays in the log."""
+    name = type(exc).__name__
+    if "Timeout" in name:
+        return timeout_hint
+    if "Connection" in name:
+        return "无法连接模型服务（网络不通）。本机须经代理时，请管理员在 .env 设 MODEL_USE_PROXY=true 后重启"
+    if name in ("AuthenticationError", "PermissionDeniedError", "RateLimitError"):
+        return "模型服务拒绝了请求（密钥或额度），请联系管理员"
+    return ""
+
+
 def sse(event: str, data: object) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
 
@@ -637,8 +649,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TimeoutError as exc:
             raise HTTPException(504, "生成问题超时，请重试或直接填写") from exc
         except Exception as exc:  # provider/network errors surface as one readable message
-            logger.warning("compose question failed: %s", exc)
-            raise HTTPException(502, f"生成问题失败（{type(exc).__name__}），请重试或直接填写") from exc
+            logger.warning("compose question failed: %s: %s", type(exc).__name__, str(exc)[:300])
+            reason = model_failure_message(exc, "生成问题超时")
+            raise HTTPException(502, f"生成问题失败：{reason}" if reason else f"生成问题失败（{type(exc).__name__}），请重试或直接填写") from exc
         return {"question": question}
 
     @app.get("/api/model")
@@ -2024,11 +2037,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 logger.warning("chat failed: %s: %s", type(exc).__name__, str(exc)[:300])
                 if policy:
                     yield sse("policy", {**policy, "stop_reason": "failed"})
-                name = type(exc).__name__
-                message = ("模型响应超时，所选资料较长时可减少资料份数后重试" if "Timeout" in name
-                           else "无法连接模型服务，请检查网络或稍后重试" if "Connection" in name
-                           else "模型服务拒绝了请求（密钥或额度），请联系管理员" if name in ("AuthenticationError", "PermissionDeniedError", "RateLimitError")
-                           else "问答未完成，请稍后重试；如持续失败请联系管理员")
+                message = (model_failure_message(exc, "模型响应超时，所选资料较长时可减少资料份数后重试")
+                           or "问答未完成，请稍后重试；如持续失败请联系管理员")
                 yield sse("error", {"message": message})
             finally:
                 if not snapshot_finished:
@@ -2770,7 +2780,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|results|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

@@ -234,14 +234,14 @@ async def main():
             # 交互方案 §3.1：范围改为输入框上方对话库 chip，"当前对话：…"重复文字已删除。
             await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
 
-            # ---- 进入库内的研究归纳 ------------------------------------------------
+            # ---- 进入库内的技术研判 ------------------------------------------------
             await page.get_by_role("button", name="资料库", exact=True).click()
             await page.get_by_role("button", name="打开", exact=True).first.click()  # the library cards (query 2026-1013 2012)
-            await page.get_by_role("button", name="研究归纳", exact=True).first.click()
+            await page.get_by_role("button", name="技术研判", exact=True).first.click()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):
                 await page.get_by_text("文件级整理与只读对照", exact=True).click()
-            await expect(page.get_by_text("研究归纳 · 报告单元 5 份")).to_be_visible()
+            await expect(page.get_by_text("技术研判 · 报告单元 5 份")).to_be_visible()
 
             # ---- ① 四种状态必须彼此分开 -------------------------------------------
             await expect(page.get_by_text("场景：有内容").first).to_be_visible()
@@ -276,7 +276,7 @@ async def main():
             await expect(body.get_by_text(re.compile("未能在当前正文中找到该引文"))).to_have_count(0)
             await page.get_by_label("关闭 ✕").click()
             await expect(body).to_be_hidden()
-            await expect(page.get_by_text("研究归纳 · 报告单元 5 份")).to_be_visible()
+            await expect(page.get_by_text("技术研判 · 报告单元 5 份")).to_be_visible()
 
             # Deep-link refresh retains the selected document, facet and filter.
             await page.get_by_label("场景筛选").select_option("临床诊疗")
@@ -342,9 +342,9 @@ async def main():
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):
                 await page.get_by_text("文件级整理与只读对照", exact=True).click()
-            await expect(page.get_by_text("研究归纳 · 报告单元 0 份")).to_be_visible()
+            await expect(page.get_by_text("技术研判 · 报告单元 0 份")).to_be_visible()
             await page.wait_for_timeout(400)
-            await expect(page.get_by_text("研究归纳 · 报告单元 0 份")).to_be_visible()
+            await expect(page.get_by_text("技术研判 · 报告单元 0 份")).to_be_visible()
 
             assert not page_errors, page_errors
             await browser.close()

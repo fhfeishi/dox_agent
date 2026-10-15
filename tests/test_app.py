@@ -715,3 +715,31 @@ def test_origin_from_another_machine_maps_onto_this_corpora_root(tmp_path):
         assert (path, rel) == ((root / "库" / "source" / "a.pdf").resolve(), "库/source/a.pdf")
     assert local_path_in_roots("/elsewhere/.knowledge/../etc/passwd", settings) is None
     assert local_path_in_roots("/home/someone/notes/a.pdf", settings) is None
+
+
+def test_folder_upload_preserves_paths_and_body_search_stays_in_library(tmp_path):
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        one = client.post("/api/corpora", json={"name": "folder-one"}).json()["id"]
+        two = client.post("/api/corpora", json={"name": "folder-two"}).json()["id"]
+        for cid, path, body in [(one, "材料/甲/same.md", "# 项目\n量子传感的光学读出与噪声控制"),
+                                (one, "材料/乙/same.md", "# 另一个项目\n农业土壤灌溉"),
+                                (two, "same.md", "# 外部项目\n量子传感")]:
+            response = client.post(f"/api/corpora/{cid}/files", params={"relative_path": path},
+                                   files={"upload": ("same.md", body.encode(), "text/markdown")})
+            assert response.status_code == 201, response.text
+        files = client.get(f"/api/corpora/{one}/files").json()["files"]
+        assert {f["rel_path"] for f in files} == {"材料/甲/same.md", "材料/乙/same.md"}
+        hits = client.get(f"/api/corpora/{one}/search", params={"q": "量子传感"}).json()["hits"]
+        assert {h["doc_id"] for h in hits} == {next(f["doc_id"] for f in files if "/甲/" in f["rel_path"])}
+        bad = client.post(f"/api/corpora/{one}/files", params={"relative_path": "../same.md"},
+                          files={"upload": ("same.md", b"escape", "text/markdown")})
+        assert bad.status_code == 422
+        existing = client.post(f"/api/corpora/{one}/files", params={"relative_path": "材料/甲/same.md"},
+                               files={"upload": ("same.md", b"replacement", "text/markdown")})
+        assert existing.status_code == 409
+        for suffix in ("摘要", "报告"):
+            name = f"2021_2025_A01_甲_量子{suffix}.md"
+            assert client.post(f"/api/corpora/{one}/files",
+                               files={"upload": (name, "量子传感的研究".encode(), "text/markdown")}).status_code == 201
+        assert len(client.get(f"/api/corpora/{one}/search", params={"q": "量子传感"}).json()["hits"]) == 3

@@ -32,7 +32,6 @@ const WORKBENCH_PAGES = [
 const OVERVIEW_PAGES = [
   { to: "/overview/build", label: "资料库建设" },
   { to: "/overview/domains", label: "领域分析" },
-  { to: "/overview/recent", label: "近期工作" },
 ];
 
 /**

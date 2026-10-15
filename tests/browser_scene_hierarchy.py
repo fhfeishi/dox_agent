@@ -189,10 +189,10 @@ async def main():
             await page.get_by_role("button", name="资料库", exact=True).click()
             # 资料库 opens on the cards (query 2026-1013 2012); a card opens the library in place.
             await page.get_by_role("button", name="打开", exact=True).first.click()
-            await page.get_by_role("button", name="研究归纳", exact=True).first.click()
+            await page.get_by_role("button", name="技术研判", exact=True).first.click()
 
             block = page.get_by_label("场景层级", exact=True)
-            tabs = block.get_by_role("tablist", name="研究归纳")
+            tabs = block.get_by_role("tablist", name="技术研判")
             # 技术谱系是第一个视图；只在点击时生成，不在打开页面时调用模型。
             await expect(tabs.get_by_role("tab", name="技术谱系 尚未生成")).to_have_attribute("aria-selected", "true")
             assert LINEAGE_POSTS == [], LINEAGE_POSTS
@@ -308,13 +308,21 @@ async def main():
             await tabs.get_by_role("tab", name="成果 1 项标志性成果").click()
             await expect(block.get_by_label("临床诊疗 成果板块")).to_contain_text("一种病灶识别方法")
             await expect(block.get_by_text("原型系统", exact=True).first).to_be_visible()
-            await expect(block.get_by_label("临床诊疗 成果分析")).to_contain_text("人才/团队 · 在研")
-            await block.get_by_text("按成果查看各方面完成度与原文", exact=True).click()
+            # 成果分析 is a radar of how many projects show each kind of outcome, counted from the reports'
+            # 成果列表 (query 2026-1015 1518); the full list is folded until asked for.
+            analysis = block.get_by_label("临床诊疗 成果分析")
+            await expect(analysis.get_by_role("img")).to_be_visible()
+            await expect(analysis).to_contain_text("专利（1 个项目）")
+            await expect(analysis).to_contain_text("论文（1 个项目）")
+            await analysis.get_by_text("展开成果清单", exact=False).click()
+            await expect(block.get_by_label("临床诊疗 成果板块")).to_be_visible()
+            await block.get_by_text("按标志性成果查看各方面完成度与原文", exact=True).click()
             await expect(page.locator("caption", has_text="原型系统 的成果方面完成度")).to_be_attached()
             await expect(page.get_by_text("原文未提及", exact=True).first).to_be_visible()
             await expect(page.get_by_text("本次综合未给出该方面结论", exact=False).first).to_be_visible()
             await page.reload()
             await expect(block.get_by_label("临床诊疗 成果分析")).to_be_visible()
+            await block.get_by_label("临床诊疗 成果分析").get_by_text("展开成果清单", exact=False).click()
 
             # 引用可回读原文；文件版本变化后不得用新正文冒充旧引用。
             await block.get_by_role("button", name="查看原文", exact=False).first.click()
@@ -332,7 +340,7 @@ async def main():
 
             # 窄屏：页面本身不横向溢出。
             await page.set_viewport_size({"width": 430, "height": 900})
-            await block.get_by_text("按成果查看各方面完成度与原文", exact=True).click()
+            await block.get_by_text("按标志性成果查看各方面完成度与原文", exact=True).click()
             overflow = await page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
             assert overflow <= 1, f"窄屏出现横向溢出 {overflow}px"
 

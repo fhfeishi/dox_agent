@@ -35,7 +35,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     row.pending_identity ? `${row.pending_identity} 份资料项目身份待核对` : "",
   ].filter(Boolean) : [];
   const facts: [string, string][] = row ? [["资料 / 项目", `${row.files} 份 / ${row.projects} 个`],
-    ["四维整理", `${Math.min(...Object.values(row.dimensions))} / ${row.projects}`],
+    ["技术研判", `${Math.min(...Object.values(row.dimensions))} / ${row.projects}`],
     ["场景 / 问题", row.hierarchy.scenes ? `${row.hierarchy.scenes} / ${row.hierarchy.issues}` : "未生成"],
     ["技术条目", row.lineage.items ? `${row.lineage.items} 条 · ${row.lineage.systems} 个体系` : "未生成"],
     ["立项年份", row.start_years.length ? `${row.start_years[0]}–${row.start_years.at(-1)}` : "待核对"]] : [];
@@ -46,7 +46,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     </div>
     <div className="flex flex-wrap gap-2">
       <button type="button" onClick={() => openCorpus(corpusId)} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white">进入资料库</button>
-      <button type="button" onClick={() => openCorpus(corpusId, "target")} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">研究归纳</button>
+      <button type="button" onClick={() => openCorpus(corpusId, "target")} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">技术研判</button>
     </div>
     {facts.length ? <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-xl bg-[var(--surface)] p-3 text-[13px]">
       {facts.map(([k, v]) => <div key={k} className="contents"><dt className="text-[var(--steel)]">{k}</dt><dd>{v}</dd></div>)}

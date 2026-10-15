@@ -1,3 +1,4 @@
+import { PeriodSummary } from "./PeriodSummary";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { resultsSummaryQuery } from "../resultsSummary";
 import { GenerationProgress } from "./GenerationProgress";
@@ -105,6 +106,7 @@ export function InspectorResults() {
   const empty = (text: string) => <p className="py-[18px] text-center text-[12.5px] text-[var(--steel)]">{text}</p>;
   return (
     <div>
+      <details className="mb-4 rounded-xl border p-3"><summary className="cursor-pointer text-sm font-medium">成果周期总结</summary><PeriodSummary /></details>
       {totals.data ? <section aria-label="成果统计" className="mb-3 rounded-xl bg-[var(--surface)] p-3 text-xs leading-6">
         <p><b className="text-lg text-[var(--ink)]">{totals.data.completed.total}</b> 份已完成报告</p>
         <p>存量分析 {totals.data.completed.analysis} · 资料审查 {totals.data.completed.review} · 情报分析 {totals.data.completed.intelligence}</p>

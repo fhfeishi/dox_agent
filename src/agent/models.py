@@ -39,7 +39,10 @@ def check_model(settings: Settings) -> dict:
     return {"ok": True, "latency_ms": latency}
 
 
-def model_for(settings: Settings, timeout: float = 60):
+def model_for(settings: Settings, timeout: float | None = None):
+    """A chat model client. Without an explicit timeout it waits as long as an answer may take
+    (``answer_timeout``): a question over whole reports can wait over a minute for its first token,
+    which the former fixed 60 s cut off as a failed answer (query 2026-1015 1518)."""
     if not settings.model_api_key:
         raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY）")
     http_client, http_async_client = _http_clients(use_proxy(settings))
@@ -51,7 +54,7 @@ def model_for(settings: Settings, timeout: float = 60):
         http_async_client=http_async_client,
         http_socket_options=(),  # our own clients decide proxy use; keep langchain from overriding it
         temperature=0.1,
-        timeout=timeout,
+        timeout=timeout if timeout is not None else settings.answer_timeout,
         max_retries=1,
         max_tokens=4096,
         stream_usage=True,

@@ -8,6 +8,7 @@ import type { ArtifactSummary } from "../api";
 import { Icon, type IconName } from "./Icons";
 import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
+import type { LibraryOverview } from "./LeaderConstruction";
 
 const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
   { to: "/library", title: "查阅资料", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "#4f6554" },
@@ -17,6 +18,12 @@ const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent
 ];
 
 export function WorkspaceHome() {
+  const { role } = useAuth();
+  return role === "leader" ? <LeaderHome /> : <WorkHome />;
+}
+
+/** 首页 for administrators and users: report counts, starting work, 我的工作 and recent reports. */
+function WorkHome() {
   const { role } = useAuth();
   const { corpora, corporaError, showInspector, openCorpus, switchSession } = useApp();
   const navigate = useNavigate();
@@ -119,6 +126,73 @@ export function WorkspaceHome() {
             {role !== "user" ? <Link to="/overview/build" className="mt-2 block text-[var(--link)] hover:underline">进入概览，了解资料建设与领域分布 →</Link> : null}</div>
         </section>
       </div>
+    </div>
+  </main>;
+}
+
+/**
+ * 首页 for leaders (query 2026-1015 1518): no work counts or recent progress — the domains first,
+ * each opening its 技术研判, then starting a piece of work and 我的工作. Reports and the period
+ * summaries are in 成果.
+ */
+function LeaderHome() {
+  const { openCorpus, showInspector } = useApp();
+  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
+    const response = await fetch("/api/overview/libraries", { signal });
+    if (!response.ok) throw new Error("资料库概况暂不可读");
+    return response.json();
+  } });
+  const rows = [...(overview.data ?? [])].sort((a, b) => b.projects - a.projects);
+  const most = Math.max(1, ...rows.map((r) => r.projects));
+  return <main className="min-h-0 flex-1 overflow-y-auto bg-[#f6f7f9]">
+    <div className="mx-auto max-w-[1360px] space-y-8 px-5 py-7 lg:px-10 lg:py-9">
+      <header className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#182c46] to-[#22406a] px-6 py-8 text-white sm:px-10 sm:py-10">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-28 size-96 rounded-full border-[56px] border-white/[0.04]" />
+        <div aria-hidden="true" className="pointer-events-none absolute right-40 -bottom-24 size-56 rounded-full border-[28px] border-white/[0.03]" />
+        <p className="relative text-xs tracking-[0.18em] text-[#b7c5d6]">领域资料 · 技术研判 · 成果</p>
+        <h1 className="relative mt-4 text-2xl font-semibold tracking-wide sm:text-[32px]">资料与研究工作台</h1>
+        <p className="relative mt-3 max-w-2xl text-sm leading-7 text-[#c5d0dd]">从各领域的项目资料了解研究现状与技术布局；分析报告与一周至一年的成果总结在“成果”中查看。</p>
+        <div className="relative mt-6 flex flex-wrap gap-3">
+          <Link to="/library" className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-[#182c46] transition-transform hover:-translate-y-0.5">浏览资料库</Link>
+          <button type="button" onClick={() => showInspector({ kind: "results" })} className="rounded-lg border border-white/40 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10">查看成果</button>
+        </div>
+      </header>
+
+      <section aria-label="领域资料">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-base font-semibold text-[#24364c]">领域资料</h2>
+          <span className="text-xs text-[var(--steel)]">点开一个领域，进入它的技术研判</span>
+        </div>
+        {overview.error ? <p role="alert" className="text-sm text-[var(--red)]">{(overview.error as Error).message}</p>
+          : !overview.data ? <p role="status" className="text-sm text-[var(--steel)]">正在读取领域资料…</p>
+          : <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{rows.map((row) => {
+            const years = row.start_years.length ? `${row.start_years[0]}–${row.start_years.at(-1)}` : "年份待核对";
+            return <button key={row.corpus_id} type="button" onClick={() => openCorpus(row.corpus_id, "target")}
+              className="group flex flex-col rounded-xl border border-[#e3e7ec] bg-white p-5 text-left transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-[#acb8c9] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+              <span className="flex items-baseline justify-between gap-3">
+                <b className="text-[16px] text-[#24364c]">{row.name.replace(/^自然科学基金-/, "")}</b>
+                <span className="shrink-0 text-xs tabular-nums text-[var(--steel)]">{row.projects} 个项目</span>
+              </span>
+              <span className="mt-2 block h-1.5 overflow-hidden rounded-full bg-[#eef1f5]"><span className="block h-full rounded-full bg-[#3f5f8a]" style={{ width: `${Math.max(4, row.projects / most * 100)}%` }} /></span>
+              <span className="mt-2 text-xs text-[var(--steel)]">立项 {years}</span>
+              <span className="mt-3 flex min-h-[26px] flex-wrap gap-1.5">{(row.fields ?? []).slice(0, 3).map(([name, n]) =>
+                <span key={name} className="rounded-md bg-[#f3f5f8] px-2 py-0.5 text-xs text-[#4b5d74]">{name} <span className="tabular-nums text-[var(--stone)]">{n}</span></span>)}</span>
+              <span className="mt-4 text-xs text-[var(--link)] opacity-70 transition-opacity group-hover:opacity-100">查看技术研判 →</span>
+            </button>;
+          })}</div>}
+      </section>
+
+      <section aria-label="开始工作">
+        <h2 className="mb-3 text-base font-semibold text-[#24364c]">开始一项工作</h2>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex items-center gap-3 rounded-xl border border-[#e3e7ec] bg-white px-4 py-3 transition-colors hover:border-[#acb8c9]">
+            <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#f3f5f8]" style={{ color: a.accent }}><Icon name={a.icon} size={18} /></span>
+            <span className="min-w-0"><b className="block text-[14px]">{a.title}</b><span className="block truncate text-xs text-[var(--steel)]">{a.text}</span></span>
+          </Link>)}
+        </div>
+      </section>
+
+      <MyWorkSection />
     </div>
   </main>;
 }

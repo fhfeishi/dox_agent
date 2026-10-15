@@ -1,5 +1,5 @@
 /**
- * 近期工作 (query 2026-1013 1637): analysis reports and review tasks of a time period. The server
+ * 成果周期总结 (query 2026-1013 1637; in 成果 since 2026-1015 1142): analysis reports and review tasks of a time period. The server
  * picks the items by their real dates over every record (节点审查 A5, `/api/summaries/facts`),
  * counts repeated reviews of one application once (A4), the same for every role (query 2026-1014
  * 1516); this module turns that into the lists, the one-line summary and the domain tally.

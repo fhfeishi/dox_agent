@@ -455,8 +455,11 @@ def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
     """Lineage places existing items only, levels are bounded; 成果列表 comes from the report."""
     body = BODY + "\n\n## 成果列表（2）\n\n1. [专利] 一种病灶识别方法 — 张三\n2. [期刊论文] Deep lesion detection — Zhang San\n"
     app, corpus_id, _ = _prepared(tmp_path, monkeypatch, TwoTechModel(), body)
-    from src import lineage
+    from pydantic import SecretStr
 
+    from src import lineage
+    # The answer model below is a fixture; the API availability gate must also be isolated from local secrets.
+    monkeypatch.setattr(app.state.settings, "model_api_key", SecretStr("fixture"))
     model = LineageModel()
     monkeypatch.setattr(lineage, "model_for", lambda settings, **_: model)
     # A scene hierarchy exists: its scenes become the application fields, not the model's own list.

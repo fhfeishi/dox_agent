@@ -9,7 +9,6 @@ import { fetchReviewRuns } from "../reviewApi";
 import { useApp } from "../store";
 import { FocusRadars } from "./Charts";
 import { LeaderConstruction, type LibraryOverview } from "./LeaderConstruction";
-import { LeaderRecent } from "./LeaderRecent";
 import { LineageRoadmap } from "./LineageRoadmap";
 import { LineageTree } from "./LineageTree";
 import { ProjectGraph } from "./ProjectGraph";
@@ -17,9 +16,9 @@ import { YearDistribution } from "./YearDistribution";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
-export type OverviewArea = "build" | "domains" | "recent";
+export type OverviewArea = "build" | "domains";
 export const OVERVIEW_AREAS: { key: OverviewArea; label: string }[] = [
-  { key: "build", label: "资料库建设" }, { key: "domains", label: "领域分析" }, { key: "recent", label: "近期工作" }];
+  { key: "build", label: "资料库建设" }, { key: "domains", label: "领域分析" }];
 type View = "overview" | "lineage" | "roadmap" | "relations" | "years" | "tech";
 const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "overview", label: "总览" }, { key: "lineage", label: "技术谱系" },
   { key: "roadmap", label: "路网形式" }, { key: "relations", label: "项目关系" }, { key: "years", label: "年度分布" },
@@ -30,15 +29,17 @@ const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "overview
  * the rest of the system, replacing the separate 领导视图 and 管理视图. Its three parts are chosen
  * from the top bar's 概览 menu, so the bar itself never changes: 资料库建设 (an administrator also sees
  * what needs handling and each library's organisation), 领域分析 (a domain from a dropdown, one view
- * at a time; 关键技术 for administrators) and 近期工作. Everything is counted from the libraries and
- * the saved reports; nothing here is judged by a model.
+ * at a time; 关键技术 for administrators). Period summaries of reports live in 成果 (query 2026-1015
+ * 1142). Everything is counted from the libraries and the saved reports; nothing here is judged by a model.
  */
 export function Overview() {
-  const { area = "build" } = useParams();
+  const { area: requestedArea = "build" } = useParams();
   const { role } = useAuth();
   const { corpora, showInspector } = useApp();
   const [search, setSearch] = useSearchParams();
   const admin = role === "admin";
+  // 近期工作 left 概览 (query 2026-1015 1142); period summaries of reports are in 成果.
+  const area = requestedArea === "domains" ? "domains" : "build";
   const domains = corpora.filter((c) => !c.missing && (c.indexed_count ?? 0) > 0)
     .sort((a, b) => (b.indexed_count ?? 0) - (a.indexed_count ?? 0));
   const current = domains.find((c) => c.id === search.get("domain")) ?? domains[0];
@@ -69,7 +70,7 @@ export function Overview() {
       {admin ? <Work /> : null}
       {/* A leader opens the domain in 领域分析; an administrator previews the library on the right. */}
       <LeaderConstruction maintenance={admin} onOpen={(id) => admin ? showInspector({ kind: "corpus", corpusId: id }) : openDomain(id)} />
-    </> : area === "recent" ? <LeaderRecent />
+    </>
       : !current ? <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
       : view === "tech" ? <KeyTechnology key={current.id} corpusId={current.id} name={short(current.name)} />

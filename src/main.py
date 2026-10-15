@@ -1330,6 +1330,36 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             return await asyncio.to_thread(import_defaults, knowledge_for(info), settings, root=info.source_dir,
                                            force=force, parsed_root=info.root / "parsed")
 
+    @app.get("/api/corpora/{corpus_id}/search")
+    async def search_corpus_files(corpus_id: str, q: str = Query(min_length=2, max_length=300)):
+        info = await asyncio.to_thread(find_corpus, corpus_id)
+        if info is None or info.missing:
+            raise HTTPException(404, "资料库不存在或目录缺失")
+        library = knowledge_for(info)
+        def search():
+            from rank_bm25 import BM25Plus
+
+            from .knowledge import tokens
+            docs = library.current()
+            current = {d["doc_id"]: d["version"] for d in docs}
+            chunks = {d["doc_id"]: [] for d in docs}
+            for row in library.chunk_rows():
+                if current.get(row["doc_id"]) == row["version"]:
+                    chunks[row["doc_id"]].append(row["text"])
+            terms = set(tokens(q))
+            corpus = [tokens(d["title"] + " " + " ".join(chunks[d["doc_id"]])) or ["_empty_"] for d in docs]
+            if not docs or not terms:
+                return {"hits": [], "limit": 100}
+            scores = BM25Plus(corpus).get_scores(list(terms))
+            ranked = sorted((i for i, words in enumerate(corpus) if terms.intersection(words)),
+                            key=lambda i: (-scores[i], docs[i]["doc_id"]))[:100]
+            # A file search must keep both the abstract and report of one project.
+            # The research pipeline's project-level deduplication does not apply here.
+            return {"hits": [{"doc_id": docs[i]["doc_id"], "version": docs[i]["version"],
+                              "snippet": max(chunks[docs[i]["doc_id"]], key=lambda text: len(terms.intersection(tokens(text))),
+                                             default=docs[i]["title"])[:400]} for i in ranked], "limit": 100}
+        return await asyncio.to_thread(search)
+
     @app.get("/api/corpora/{corpus_id}/files")
     async def corpus_files(corpus_id: str):
         """Read source file status without creating an index database."""
@@ -1366,18 +1396,25 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return {"source_dir": str(info.source_dir), "files": files, "misplaced_files": misplaced}
 
     @app.post("/api/corpora/{corpus_id}/files", status_code=201)
-    async def upload_corpus_file(corpus_id: str, upload: UploadFile = File(...)):
+    async def upload_corpus_file(corpus_id: str, upload: UploadFile = File(...), relative_path: str | None = None):
         """K7: stream an md/pdf/txt into ``source/`` then import incrementally."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
         name = safe_file_name(upload.filename or "")
+        if relative_path is not None:
+            parts = relative_path.replace("\\", "/").split("/")
+            if any(not part or part in (".", "..") or part.startswith(".") or ":" in part for part in parts):
+                raise HTTPException(422, "文件夹路径非法")
+            if parts[-1] != name:
+                raise HTTPException(422, "文件名与文件夹路径不一致")
+            name = "/".join(parts)
         target = (info.source_dir / name).resolve()
         if not target.is_relative_to(info.source_dir.resolve()):
             raise HTTPException(422, "文件名非法")
 
         def save() -> None:
-            info.source_dir.mkdir(parents=True, exist_ok=True)
+            target.parent.mkdir(parents=True, exist_ok=True)
             written = 0
             temporary: Path | None = None
             try:
@@ -1437,7 +1474,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "知识库不存在")
         old = await asyncio.to_thread(source_file, info, payload.rel_path)
         new_name = safe_file_name(payload.new_name)
-        new = (info.source_dir / new_name).resolve()
+        new = (old.parent / new_name).resolve()
         if not new.is_relative_to(info.source_dir.resolve()):
             raise HTTPException(422, "文件名非法")
         if new.exists():
@@ -1445,7 +1482,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         await asyncio.to_thread(old.rename, new)
         await asyncio.to_thread(knowledge_for(info).drop_file, payload.rel_path)
         report = await import_corpus(info)
-        return {"rel_path": new_name, "added": report["added"], "updated": report["updated"],
+        return {"rel_path": new.relative_to(info.source_dir.resolve()).as_posix(), "added": report["added"], "updated": report["updated"],
                 "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
 
     @app.get("/api/documents")
@@ -1982,10 +2019,17 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             except Exception as exc:  # noqa: BLE001 - API boundary hides provider secrets
                 outcome = "failed"
                 yield sse("usage", {**usage.snapshot(), "run_id": payload.run_id})
-                logger.warning("chat failed: %s", type(exc).__name__)
+                # The provider's message (status, reason) is logged so a failure can be diagnosed;
+                # the key never appears in it.
+                logger.warning("chat failed: %s: %s", type(exc).__name__, str(exc)[:300])
                 if policy:
                     yield sse("policy", {**policy, "stop_reason": "failed"})
-                yield sse("error", {"message": "问答未完成，请检查模型配置或稍后重试"})
+                name = type(exc).__name__
+                message = ("模型响应超时，所选资料较长时可减少资料份数后重试" if "Timeout" in name
+                           else "无法连接模型服务，请检查网络或稍后重试" if "Connection" in name
+                           else "模型服务拒绝了请求（密钥或额度），请联系管理员" if name in ("AuthenticationError", "PermissionDeniedError", "RateLimitError")
+                           else "问答未完成，请稍后重试；如持续失败请联系管理员")
+                yield sse("error", {"message": message})
             finally:
                 if not snapshot_finished:
                     try:
@@ -2726,7 +2770,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         page_route = re.fullmatch(
             r"(?:library(?:/[^/.]+/(?:documents(?:/[^/.]+)?|targets/four-facets))?"
             r"|review(?:/(?:formal|professional|guidelines|evidence|templates(?:/[^/.]+)?|runs/[^/.]+))?"
-            r"|home|overview(?:/(?:build|domains|recent))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
+            r"|home|overview(?:/(?:build|domains))?|chat|tasks(?:/results)?|intelligence|artifacts|prompts)/?", asset_path)
         if page_route:
             path = root / "index.html"
         if asset_path == "api" or asset_path.startswith("api/") or not path.is_relative_to(root) or not path.is_file():

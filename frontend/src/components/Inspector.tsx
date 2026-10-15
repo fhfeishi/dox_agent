@@ -399,7 +399,7 @@ export function Inspector() {
                   来源运行：{artifact.run_available === true ? artifact.run_id : "未记录"} · 会话：{artifact.session_key || "未记录"}
                 </p>
                 <dl className="mt-[7px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[3px] text-[11.5px]">
-                  <dt className="text-[var(--stone)]">任务 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.task_id || "未记录"} / {artifact.task_version ? `v${artifact.task_version}` : "未记录"}</dd>
+                  <dt className="text-[var(--stone)]">生成人</dt><dd>{artifact.created_by || "未记录"}</dd><dt className="text-[var(--stone)]">任务 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.task_id || "未记录"} / {artifact.task_version ? `v${artifact.task_version}` : "未记录"}</dd>
                   <dt className="text-[var(--stone)]">模板 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
                 </details>

@@ -92,10 +92,10 @@ export async function fetchCorpusFiles(corpusId: string, signal?: AbortSignal): 
   return payload as CorpusFileListing;
 }
 
-export async function uploadCorpusFile(corpusId: string, file: File): Promise<{ errors: { source?: string; error: string }[] }> {
+export async function uploadCorpusFile(corpusId: string, file: File, relativePath?: string): Promise<{ errors: { source?: string; error: string }[] }> {
   const form = new FormData();
   form.append("upload", file);
-  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files`, { method: "POST", body: form });
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/files${relativePath ? "?relative_path=" + encodeURIComponent(relativePath) : ""}`, { method: "POST", body: form });
   const result = await jsonOrThrow(response, "上传失败") as { errors?: { source?: string; error: string }[] };
   return { errors: result.errors ?? [] };
 }

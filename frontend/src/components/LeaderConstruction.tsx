@@ -38,7 +38,7 @@ export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (c
     ["资料库", String(rows.length), "有已入库资料的资料库"],
     ...(maintenance ? [["资料", `${sum((r) => r.files)} 份`, "当前文件，未跨库去重"] as [string, string, string]] : []),
     ["项目", `${projects} 个`, years.length ? `立项 ${Math.min(...years)}–${Math.max(...years)} 年` : "立项年份待核对"],
-    ...(maintenance ? [["四维整理", `${covered} / ${projects}`, "场景、问题、技术、成果均已整理的项目"] as [string, string, string]] : []),
+    ...(maintenance ? [["技术研判", `${covered} / ${projects}`, "场景、问题、技术、成果均已从报告整理、可用于技术研判的项目"] as [string, string, string]] : []),
     ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出直接经费`],
   ];
   const fields = (row: LibraryOverview) => (row.fields ?? []).slice(0, 3).map(([name, n]) => `${name} ${n}`).join("、") || "未归纳";
@@ -52,7 +52,7 @@ export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (c
     <section aria-label="各资料库" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
       <table className="w-full min-w-[760px] text-left text-[13.5px]">
         <thead className="bg-[var(--surface)] text-[12.5px] text-[var(--steel)]"><tr>
-          {(maintenance ? ["领域", "资料 / 项目", "四维整理", "场景 / 问题", "技术条目", "立项年份", "最近归纳"]
+          {(maintenance ? ["领域", "资料 / 项目", "技术研判", "场景 / 问题", "技术条目", "立项年份", "最近归纳"]
             : ["领域", "项目", "立项年份", "主要应用领域（项目数）"]).map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}
         </tr></thead>
         <tbody>{rows.map((row) => {
@@ -76,7 +76,7 @@ export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (c
       </table>
     </section>
     <p className="text-xs leading-5 text-[var(--stone)]">项目按批准号去重。{maintenance
-      ? "“四维整理”指场景、问题、技术、成果四个维度都已从报告中整理的项目数；场景、问题与技术条目由模型归纳，需人工核对。"
+      ? "“技术研判”列为场景、问题、技术、成果四个维度都已从报告中整理、可进入技术研判的项目数；场景、问题与技术条目由模型归纳，需人工核对。"
       : "主要应用领域按有技术服务于该领域的项目计，一个项目可计入多个领域；领域由模型归纳，需人工核对。"}点一行查看该领域分析。</p>
   </div>;
 }

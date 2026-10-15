@@ -946,8 +946,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     requestAnimationFrame(() => evidenceTrigger.current?.focus());
   }
 
-  // A library opens on its files (query 2026-1014 1642); 研究归纳 is one click away.
-  function openCorpus(id: string, view: "files" | "target" = "files") {
+  // A library opens on its files (query 2026-1014 1642); 技术研判 is one click away.
+  function openCorpus(id: string, view: "files" | "target" = role === "leader" ? "target" : "files") {
     setInspectorOpen(false);
     setDrawerOpen(false);
     setPreviewDoc(null);

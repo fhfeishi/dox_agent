@@ -78,7 +78,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
   }
   return <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-[13px]">
     <div className="flex flex-wrap items-center gap-[8px]">
-      <h3 className="font-medium">研究归纳 · 报告单元 {items.length} 份</h3>
+      <h3 className="font-medium">技术研判 · 报告单元 {items.length} 份</h3>
       <span className="flex-1" />
       <Button size="sm" variant="quiet" onClick={() => void reports.refetch()}>刷新四维列表</Button>
       <Button size="sm" disabled={busy || !selected.size || Boolean(unavailable)} onClick={() => extraction.mutate(false)}>生成四维信息{selected.size ? `（${selected.size}）` : ""}</Button>

@@ -870,7 +870,7 @@ export function ReviewRunPage() {
             onClick={() => showInspector({ kind: "review-source", fileId: run.information_sheet!.id, page: 1, title: run.information_sheet!.filename })}>{run.information_sheet.filename}</button> : "未提供"}</span>
           {!formal ? <span>评价方式：{run.request.mode === "historical" ? `历史评价 · ${run.request.cutoff_date}` : "更新建议"}</span> : null}
           {!formal ? <span>对照资料库：{corpora.find((item) => item.id === run.request.corpus_ids?.[0])?.name ?? run.request.corpus_ids?.[0] ?? "未记录"} · 参考报告 {run.technical?.local_matches ?? 0}/{run.request.reference_count ?? 3} 篇 · 文献 {run.request.evidence_ids?.length ?? 0} 篇</span> : null}
-          <span>生成：{localTime(run.created_at)}</span>
+          <span>生成：{localTime(run.created_at)}</span><details><summary className="cursor-pointer">生成人</summary>{run.created_by || "未记录"}</details>
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-sm text-[var(--primary)]">
           {run.status === "completed" ? <a href={reviewExportUrl(run.id, "docx")}>下载 Word 报告</a> : null}

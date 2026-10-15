@@ -8,12 +8,12 @@ import { Chart, type ChartSpec } from "./Charts";
 const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as const;
 
 /**
- * 近期工作 (query 2026-1013 1637): analysis reports and review tasks in a chosen period — a one-line
+ * 成果周期总结 (query 2026-1013 1637, moved into 成果 by 2026-1015 1142): analysis reports and review tasks in a chosen period — a one-line
  * summary first, then finished and unfinished work. The server counts the period over every record,
  * merges repeated reviews of one application (节点审查 A4/A5); every role sees the same work
  * (query 2026-1014 1516). Reports open in the right-hand panel, reviews on their own page.
  */
-export function LeaderRecent() {
+export function PeriodSummary() {
   const { showInspector } = useApp();
   const navigate = useNavigate();
   const client = useQueryClient();
@@ -22,11 +22,11 @@ export function LeaderRecent() {
   const [error, setError] = useState("");
   const facts = useQuery({ queryKey: ["recent", period], queryFn: async ({ signal }): Promise<Facts> => {
     const response = await fetch(`/api/summaries/facts?period=${period}`, { signal });
-    if (!response.ok) throw new Error("近期工作暂不可读");
+    if (!response.ok) throw new Error("成果周期总结暂不可读");
     return response.json();
   } });
-  if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">近期工作暂不可读，请稍后重试。</p>;
-  if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取近期工作…</p>;
+  if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">成果周期总结暂不可读，请稍后重试。</p>;
+  if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取成果周期总结…</p>;
   const label = PERIODS.find((p) => p.key === period)!.label;
   const summary = fromFacts(facts.data);
   const summaries = facts.data.summaries;
@@ -67,7 +67,7 @@ export function LeaderRecent() {
   </section> : null;
   return <div className="mx-auto max-w-[960px] space-y-5 px-5 py-6">
     <div className="flex flex-wrap items-center gap-3">
-      <h1 className="text-xl font-semibold">近期工作</h1>
+      <h1 className="text-xl font-semibold">成果周期总结</h1>
       <div role="group" aria-label="时间段" className="flex flex-wrap gap-1">{PERIODS.map((p) =>
         <button key={p.key} type="button" aria-pressed={period === p.key} onClick={() => setPeriod(p.key)}
           className={`rounded-full border px-3 py-1 text-[13px] ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>

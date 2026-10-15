@@ -2,7 +2,7 @@ import { useAuth } from "../auth";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
-import {
+import { outputsQuery,
   buildHierarchy, FACET_COLORS, hierarchyQuery, LINEAGE_COLOR, lineageQuery, locateItem, projectQuery,
   type Achievement, type HierarchyEvidence, type Scene,
 } from "../projects";
@@ -14,6 +14,7 @@ import { Tier } from "./StageMarks";
 import { OutputsPanel } from "./OutputsPanel";
 import { SceneFlow } from "./SceneFlow";
 import { Button } from "./ui";
+import { Chart } from "./Charts";
 
 const ASPECTS = ["论文", "专利", "人才/团队", "平台/基地", "数据与样本", "指标达成", "标准/许可", "转化与应用"];
 const STAGE_TONE: Record<string, string> = {
@@ -96,30 +97,53 @@ const PURPOSE: Record<string, string> = {
 };
 type Dim = typeof DIMS[number];
 const DIM_COLOR: Record<Dim, string> = { 技术谱系: LINEAGE_COLOR, 场景: FACET_COLORS[0], 问题: FACET_COLORS[1], 技术: FACET_COLORS[2], 成果: FACET_COLORS[3] };
-const STAGE_RANK = ["已取得", "在研", "仅预期", "原文未提及"];
 
 function Pill({ text, color }: { text: string; color: string }) {
   return <span className="rounded-full px-2 py-0.5 text-xs" style={{ color, background: color + "18" }}>{text}</span>;
 }
 
-/** Per-scene outcome analysis: the furthest stage each aspect reached across the flagship outcomes. */
+// 成果分析 dimensions (query 2026-1015 1518). Papers, patents, monographs and awards are counted from
+// each report's own 成果列表; the rest from the flagship achievements judged 已取得.
+const LISTED: [string, string[]][] = [["论文", ["期刊论文", "会议论文"]], ["专利", ["专利"]], ["专著", ["专著"]], ["奖励", ["奖励"]]];
+const JUDGED = ["人才/团队", "平台/基地", "数据与样本", "标准/许可", "转化与应用"];
+
+/**
+ * Per-scene 成果分析 (query 2026-1015 1518): one radar of how many of the scene's projects show each
+ * kind of outcome, a sentence naming the strongest, and — folded — the per-achievement aspect table
+ * and the full 成果清单. Every axis says where its count comes from, so a paper-rich scene no longer
+ * reads “论文 · 原文未提及” above hundreds of listed papers.
+ */
 function OutcomeAnalysis({ corpusId, scene }: { corpusId: string; scene: Scene }) {
-  const rows = ASPECTS.map((aspect) => {
-    const hits = scene.achievements.map((item) => ({ item, found: item.aspects.find((a) => a.aspect === aspect) }))
-      .filter((row) => row.found && row.found.stage !== "原文未提及");
-    const best = hits.map((row) => row.found!.stage).sort((x, y) => STAGE_RANK.indexOf(x) - STAGE_RANK.indexOf(y))[0] ?? "原文未提及";
-    return { aspect, best, count: hits.length };
-  });
-  const reached = rows.filter((row) => row.best !== "原文未提及");
-  return <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4" aria-label={scene.name + " 成果分析"}>
-    <p className="text-sm font-semibold">成果分析</p>
-    <p className="mt-1 text-xs text-[var(--steel)]">{reached.length
-      ? `成果主要体现在${reached.map((row) => row.aspect).join("、")}；${rows.filter((row) => row.best === "已取得").length} 个方面已有取得的成果。`
-      : "本场景成果条目中未见可判断的方面。"}没有依据的方面标“原文未提及”。</p>
-    <div className="mt-3 flex flex-wrap gap-2">{rows.map((row) => <span key={row.aspect} className="rounded-lg border border-[var(--hairline)] px-2 py-1 text-xs">
-      {row.aspect} · <b style={{ color: STAGE_TONE[row.best] }}>{row.best}</b>{row.count ? `（${row.count} 项成果）` : ""}</span>)}</div>
-    <details className="mt-3 text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">按成果查看各方面完成度与原文</summary>
-      <div className="mt-3"><AspectTable corpusId={corpusId} achievements={scene.achievements} /></div></details>
+  const { data: outputs } = useQuery(outputsQuery(corpusId));
+  const projects = scene.project_ids;
+  const listedValues = LISTED.map(([label, types]) => [label, projects.filter((id) =>
+    (outputs?.projects[id]?.items ?? []).some((item) => types.includes(item.type))).length] as [string, number]);
+  const judgedValues = JUDGED.map((aspect) => [aspect, new Set(scene.achievements.flatMap((item) =>
+    item.aspects.some((a) => a.aspect === aspect && a.stage === "已取得") ? item.project_ids : [])).size] as [string, number]);
+  const values = [...listedValues, ...judgedValues];
+  const listed = projects.filter((id) => outputs?.projects[id]).length;
+  const entries = projects.reduce((n, id) => n + (outputs?.projects[id]?.items.length ?? 0), 0);
+  const leading = values.filter(([, n]) => n > 0).sort((x, y) => y[1] - x[1]).slice(0, 3);
+  return <div className="mt-3 space-y-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4" aria-label={scene.name + " 成果分析"}>
+    <div className="flex flex-wrap items-baseline gap-2">
+      <p className="text-sm font-semibold">成果分析</p>
+      <span className="text-xs text-[var(--steel)]">{scene.name} · {projects.length} 个项目</span>
+    </div>
+    {!outputs ? <p role="status" className="text-xs text-[var(--stone)]">正在读取成果列表…</p> : <div className="grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      <div className="mx-auto w-full max-w-[420px]"><Chart spec={{ type: "radar", title: "各类成果覆盖的项目数", labels: values.map(([l]) => l), values: values.map(([, n]) => n), unit: " 个项目",
+        note: `论文、专利、专著、奖励取自 ${listed}/${projects.length} 个项目报告的“成果列表”；其余取自标志性成果中判定为“已取得”的方面` }} /></div>
+      <div className="space-y-2 text-[13px] leading-6">
+        <p>{leading.length ? <>成果集中在 <b>{leading.map(([l, n]) => `${l}（${n} 个项目）`).join("、")}</b>。</> : "本场景报告中暂未整理出可计数的成果。"}</p>
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-[var(--steel)]">{values.map(([l, n]) =>
+          <li key={l} className="flex justify-between gap-2"><span>{l}</span><span className="tabular-nums">{n ? `${n} 个项目` : "—"}</span></li>)}</ul>
+        <p className="text-[11px] text-[var(--stone)]">“—”表示本场景资料中没有对应记录，不等于没有该类成果。</p>
+      </div>
+    </div>}
+    {scene.achievements.length ? <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">按标志性成果查看各方面完成度与原文</summary>
+      <div className="mt-3"><AspectTable corpusId={corpusId} achievements={scene.achievements} /></div></details> : null}
+    {/* The full list is long; it opens on demand (query 2026-1015 1518). */}
+    <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">展开成果清单 · {entries} 项（取自报告原文的“成果列表”）</summary>
+      <div className="mt-3"><OutputsPanel corpusId={corpusId} projectIds={projects} label={scene.name} /></div></details>
   </div>;
 }
 
@@ -189,7 +213,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
   const regenerate = role !== "admin" ? null : <Button size="sm" variant="ghost" disabled={busy} onClick={() => run.mutate(data.state !== "missing")}>
     {busy ? "生成中…" : data.state === "missing" ? "生成四维归纳" : "重新生成"}</Button>;
   return <section aria-label="场景层级" className="mt-5 space-y-4">
-    <div role="tablist" aria-label="研究归纳" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
+    <div role="tablist" aria-label="技术研判" className="flex gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:gap-3 md:pb-0">
       {DIMS.map((key) => <button key={key} role="tab" type="button" aria-selected={dim === key}
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
         className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
@@ -280,8 +304,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
           <p className="mt-2 text-xs text-[var(--steel)]">覆盖 {item.marker_basis.projects} 个项目{item.marker_basis.representative ? ` · 代表项目 ${item.marker_basis.representative}` : ""}</p>
           <EvidenceList corpusId={corpusId} evidence={item.evidence} limit={1} />
         </article>)}</div> : <p className="text-xs text-[var(--stone)]">该场景暂无可对应的成果条目。</p>}
-        {scene.achievements.length ? <OutcomeAnalysis corpusId={corpusId} scene={scene} /> : null}
-        <OutputsPanel corpusId={corpusId} projectIds={scene.project_ids} label={scene.name} />
+        <OutcomeAnalysis corpusId={corpusId} scene={scene} />
       </div>) : null}
 
       <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--stone)]">

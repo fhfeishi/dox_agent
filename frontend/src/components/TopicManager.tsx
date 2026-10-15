@@ -80,7 +80,7 @@ export function TopicAdmin({ corpusId }: { corpusId: string }) {
   return (
     <details className="mt-5 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4" aria-label="四维条目整理">
       <summary className="cursor-pointer text-sm font-semibold">四维条目整理（合并同义、改名、撤销，查看条目归纳）</summary>
-      <p className="mt-2 text-xs text-[var(--steel)]">整理后研究归纳的场景层级会提示“需更新”，重新生成后按整理后的条目归纳。</p>
+      <p className="mt-2 text-xs text-[var(--steel)]">整理后技术研判的场景层级会提示“需更新”，重新生成后按整理后的条目归纳。</p>
       <div className="mt-3 flex flex-wrap gap-2">{FACETS.map((key, i) => <button key={key} type="button" aria-pressed={dimension === key}
         onClick={() => { setDimension(key); setTopic(""); }} className="rounded-full border px-3 py-1 text-xs"
         style={{ borderColor: FACET_COLORS[i], background: dimension === key ? FACET_COLORS[i] + "18" : "transparent" }}>{key}</button>)}</div>

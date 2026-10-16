@@ -12,10 +12,10 @@ const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh
 const span = (years: number[]) => years.length ? `${years[0]}–${years.at(-1)}` : "年份待核对";
 
 const WORK: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
-  { to: "/library", title: "查阅资料", text: "按领域浏览项目资料、技术研判与原文", icon: "library", accent: "#4f6554" },
-  { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势，形成有出处的报告", icon: "tasks", accent: "#65569b" },
-  { to: "/review/formal", title: "资料审查", text: "上传申请书，核对规范或开展技术评议", icon: "review", accent: "#356d8c" },
-  { to: "/intelligence", title: "情报分析", text: "结合外部材料与库内资料分析背景与可行性", icon: "forecast", accent: "#997346" },
+  { to: "/library", title: "查阅资料", text: "按领域浏览项目资料与原文", icon: "library", accent: "#4f6554" },
+  { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势、形成报告", icon: "tasks", accent: "#65569b" },
+  { to: "/review/formal", title: "资料审查", text: "核对申请书规范，开展技术评议", icon: "review", accent: "#356d8c" },
+  { to: "/intelligence", title: "情报分析", text: "结合外部材料分析背景与可行性", icon: "forecast", accent: "#997346" },
 ];
 
 function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
@@ -66,7 +66,7 @@ export function LeaderHome() {
             <span className="grid size-10 shrink-0 place-items-center rounded-lg" style={{ color: w.accent, background: w.accent + "14" }}><Icon name={w.icon} size={19} /></span>
             <span className="min-w-0 flex-1">
               <b className="block text-[15px] text-[#1f3147]">{w.title}</b>
-              <span className="mt-0.5 block text-[12px] leading-5 text-[var(--steel)]">{w.text}</span>
+              <span className="mt-0.5 block truncate text-[12px] leading-5 text-[var(--steel)]" title={w.text}>{w.text}</span>
             </span>
             <span aria-hidden="true" className="shrink-0 text-[var(--stone)] transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--link)]">→</span>
           </Link>)}
@@ -113,18 +113,28 @@ export function LeaderHome() {
             </div>
 
             <div aria-label="资料库卡片" className="mt-4 grid gap-3 @xl:grid-cols-2 @3xl:grid-cols-3 @5xl:grid-cols-4">
-              {rows.map((r) => <button key={r.corpus_id} type="button" onClick={() => openLibrary(r.corpus_id)} aria-pressed={r.corpus_id === chosen.corpus_id}
-                className={`flex flex-col rounded-xl border bg-white p-4 text-left transition-[border-color,box-shadow] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-[var(--primary)] ${r.corpus_id === chosen.corpus_id ? "border-[#7f97b1]" : "border-[#e2e7ee] hover:border-[#b4c1d2]"}`}>
-                <span className="flex items-baseline justify-between gap-3">
-                  <b className="truncate text-[15px] text-[#1f3147]">{short(r.name)}</b>
-                  <span className="shrink-0 text-xs text-[var(--steel)]"><b className="text-[17px] font-semibold tabular-nums text-[#1f3147]">{r.projects}</b> 个项目</span>
+              {rows.map((r) => { const top = (r.fields ?? []).slice(0, 2);
+                return <button key={r.corpus_id} type="button" onClick={() => openLibrary(r.corpus_id)} aria-pressed={r.corpus_id === chosen.corpus_id}
+                className={`group flex flex-col rounded-xl border bg-white text-left transition-[border-color,box-shadow] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-[var(--primary)] ${r.corpus_id === chosen.corpus_id ? "border-[#7f97b1]" : "border-[#e2e7ee] hover:border-[#b4c1d2]"}`}>
+                {/* A fixed structure, so every card lines up: name and size, the two main directions, then dates and funding. */}
+                <span className="block px-4 pt-4">
+                  <span className="flex items-baseline justify-between gap-3">
+                    <b className="truncate text-[15px] text-[#1f3147]" title={short(r.name)}>{short(r.name)}</b>
+                    <span className="shrink-0 text-xs text-[var(--steel)]"><b className="text-[18px] font-semibold tabular-nums text-[#1f3147]">{r.projects}</b> 个项目</span>
+                  </span>
+                  <span aria-hidden="true" className="mt-2 block h-1 overflow-hidden rounded-full bg-[#edf1f5]"><span className="block h-full rounded-full bg-[#7f97b1]" style={{ width: `${Math.max(2, r.projects / most * 100)}%` }} /></span>
                 </span>
-                <span className="mt-1 text-xs text-[var(--stone)]">立项 {span(r.start_years)}{r.funding.projects ? ` · 已知经费 ${wan(r.funding.total_yuan)} 万元` : ""}</span>
-                <span className="mt-3 flex min-h-[24px] flex-wrap gap-1.5">{(r.fields ?? []).slice(0, 2).map(([name, n]) =>
-                  <span key={name} className="rounded-md bg-[#f1f4f8] px-2 py-0.5 text-xs text-[#4b5d74]">{name} <span className="tabular-nums text-[var(--stone)]">{n}</span></span>)}
-                  {!(r.fields ?? []).length ? <span className="text-xs text-[var(--stone)]">应用方向尚未归纳</span> : null}</span>
-                <span className="mt-auto pt-3 text-xs text-[var(--link)]">在右侧查看 →</span>
-              </button>)}
+                <span className="block flex-1 px-4 py-3">
+                  <span className="block text-[11px] text-[var(--stone)]">主要方向</span>
+                  {[0, 1].map((i) => <span key={i} className="mt-1 flex items-baseline justify-between gap-3 text-[12.5px]">
+                    <span className="truncate text-[var(--slate)]" title={top[i]?.[0]}>{top[i]?.[0] ?? (i ? "" : "尚未归纳")}</span>
+                    <span className="shrink-0 tabular-nums text-[var(--stone)]">{top[i] ? `${top[i][1]} 个` : ""}</span></span>)}
+                </span>
+                <span className="flex items-center justify-between gap-2 border-t border-[#eef1f5] px-4 py-2.5 text-xs text-[var(--stone)]">
+                  <span className="truncate">立项 {span(r.start_years)}{r.funding.projects ? ` · 经费 ${wan(r.funding.total_yuan)} 万元` : ""}</span>
+                  <span className="shrink-0 text-[var(--link)] opacity-70 group-hover:opacity-100">查看 →</span>
+                </span>
+              </button>; })}
             </div>
           </>}
       </section>

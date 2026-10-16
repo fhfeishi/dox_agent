@@ -130,7 +130,7 @@ function OutcomeAnalysis({ corpusId, scene }: { corpusId: string; scene: Scene }
       <span className="text-xs text-[var(--steel)]">{scene.name} · {projects.length} 个项目</span>
     </div>
     {!outputs ? <p role="status" className="text-xs text-[var(--stone)]">正在读取成果列表…</p> : <div className="grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      <div className="mx-auto w-full max-w-[420px]"><Chart spec={{ type: "radar", title: "各类成果覆盖的项目数", labels: values.map(([l]) => l), values: values.map(([, n]) => n), unit: " 个项目",
+      <div className="mx-auto w-full max-w-[420px]"><Chart spec={{ type: "radar", title: "各类成果覆盖的项目数", labels: values.map(([l]) => l), values: values.map(([, n]) => n), unit: " 个项目", max: projects.length,
         note: `论文、专利、专著、奖励取自 ${listed}/${projects.length} 个项目报告的“成果列表”；其余取自标志性成果中判定为“已取得”的方面` }} /></div>
       <div className="space-y-2 text-[13px] leading-6">
         <p>{leading.length ? <>成果集中在 <b>{leading.map(([l, n]) => `${l}（${n} 个项目）`).join("、")}</b>。</> : "本场景报告中暂未整理出可计数的成果。"}</p>

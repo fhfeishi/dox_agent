@@ -3,14 +3,27 @@
  * (query 2026-1013 1801). Every value comes from counted data; a chart always says what it
  * counts in its note.
  */
-export type ChartSpec = { type: "radar" | "bar"; title: string; labels: string[]; values: number[]; unit?: string; note?: string };
+/** max: the total the values are counted against, such as the projects of the domain; a radar's
+ * outer ring never goes beyond it. */
+export type ChartSpec = { type: "radar" | "bar"; title: string; labels: string[]; values: number[]; unit?: string; note?: string; max?: number };
+
+/** The smallest of 1, 2, 2.5, 5 × 10^k not below v, so a scale reads as a round number. */
+function ceiling(v: number) {
+  if (v <= 1) return 1;
+  const p = 10 ** Math.floor(Math.log10(v));
+  return [1, 2, 2.5, 5, 10].map((m) => m * p).find((c) => c >= v)!;
+}
 
 const clip = (text: string, n: number) => (text.length > n ? text.slice(0, n - 1) + "…" : text);
 
 export function RadarChart({ spec }: { spec: ChartSpec }) {
   const n = spec.labels.length;
   if (n < 3) return <BarChart spec={spec} />;
-  const size = 300, c = size / 2, r = 100, max = Math.max(1, ...spec.values);
+  // The radius is the value on a scale from zero (query 2026-1016 1613), not the value against the
+  // largest one: equal values must not fill the web. The outer ring is a round number with headroom
+  // above the largest value, never beyond the total the values are counted against.
+  const top = Math.max(...spec.values, 0);
+  const size = 300, c = size / 2, r = 100, max = Math.max(top, 1, Math.min(spec.max ?? Infinity, ceiling(top * 1.25)));
   const point = (i: number, v: number) => {
     const a = -Math.PI / 2 + (2 * Math.PI * i) / n;
     return [c + Math.cos(a) * r * v, c + Math.sin(a) * r * v] as const;
@@ -21,6 +34,7 @@ export function RadarChart({ spec }: { spec: ChartSpec }) {
     <svg role="img" aria-label={spec.title} viewBox={`-90 -6 ${size + 180} ${size + 12}`} className="mx-auto w-full max-w-[460px]">
       {[0.25, 0.5, 0.75, 1].map((f) => <polygon key={f} points={ring(f)} fill="none" stroke="var(--hairline)" />)}
       {spec.labels.map((_, i) => { const [x, y] = point(i, 1); return <line key={i} x1={c} y1={c} x2={x} y2={y} stroke="var(--hairline)" />; })}
+      {[0.5, 1].map((f) => <text key={f} x={c + 4} y={c - r * f + 10} fontSize="9" fill="var(--stone)">{Number((max * f).toFixed(1))}</text>)}
       <polygon points={spec.values.map((v, i) => point(i, v / max).join(",")).join(" ")} fill="var(--primary)" fillOpacity=".22" stroke="var(--primary)" strokeWidth="2" />
       {spec.values.map((v, i) => { const [x, y] = point(i, v / max); return <circle key={i} cx={x} cy={y} r="3" fill="var(--primary)"><title>{spec.labels[i]}：{v}{spec.unit ?? ""}</title></circle>; })}
       {spec.labels.map((label, i) => {
@@ -29,7 +43,7 @@ export function RadarChart({ spec }: { spec: ChartSpec }) {
           {clip(label, 10)} {spec.values[i]}</text>;
       })}
     </svg>
-    <Caption spec={spec} />
+    <Caption spec={spec} scale={`外圈为 ${max}${spec.unit?.trim() ? " " + spec.unit.trim() : ""}${spec.max ? (max === spec.max ? "，即全部" : `，共 ${spec.max}`) : ""}`} />
   </figure>;
 }
 
@@ -47,8 +61,9 @@ export function BarChart({ spec }: { spec: ChartSpec }) {
   </figure>;
 }
 
-function Caption({ spec }: { spec: ChartSpec }) {
+function Caption({ spec, scale }: { spec: ChartSpec; scale?: string }) {
   return <figcaption className="mt-2 text-center text-xs text-[var(--steel)]"><b className="font-semibold text-[var(--slate)]">{spec.title}</b>
+    {scale ? <span className="ml-2 text-[var(--stone)]">{scale}</span> : null}
     {spec.note ? <span className="block text-[var(--stone)]">{spec.note}</span> : null}</figcaption>;
 }
 
@@ -88,9 +103,9 @@ export function FocusRadars({ fields, items, stages }: {
   const note = (what: string, key: "field" | "stage", names: { name: string }[]) =>
     `有技术${what}的项目数，一个项目可计入多处；${outside(key, names)} 个项目的技术都未判定${key === "field" ? "领域" : "环节"}，不在图中（共 ${all.size} 个项目）`;
   const charts: ChartSpec[] = [
-    ...(fields.length ? [{ type: "radar" as const, title: "应用领域分布", labels: fields.map((f) => f.name), values: fields.map((f) => count("field", f.name)), unit: " 项",
+    ...(fields.length ? [{ type: "radar" as const, title: "应用领域分布", labels: fields.map((f) => f.name), values: fields.map((f) => count("field", f.name)), unit: " 项", max: all.size,
       note: note("服务于该领域", "field", fields) }] : []),
-    ...(stages.length ? [{ type: "radar" as const, title: "业务环节分布", labels: stages.map((s) => s.name), values: stages.map((s) => count("stage", s.name)), unit: " 项",
+    ...(stages.length ? [{ type: "radar" as const, title: "业务环节分布", labels: stages.map((s) => s.name), values: stages.map((s) => count("stage", s.name)), unit: " 项", max: all.size,
       note: note("落在该环节", "stage", stages) }] : []),
   ];
   // Two side by side only where the container is wide enough, e.g. not in the right-hand panel.

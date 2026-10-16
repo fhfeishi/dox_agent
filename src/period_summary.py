@@ -126,6 +126,8 @@ def charts(facts: dict, scenes_of) -> list[dict]:
         scenes = focus.get("fields") or []
         if len(scenes) >= 3:
             out.append({"type": "radar", "title": f"{busiest} · 应用领域分布", "labels": [s for s, _ in scenes], "values": [n for _, n in scenes], "unit": " 项",
+                        # The outer ring is the library's project total, so the radius is a real share (query 2026-1016 1613).
+                        "max": focus.get("total") or None,
                         "note": f"该资料库有技术服务于各应用领域的项目数，一个项目可计入多处；{focus.get('outside', 0)} 个项目的技术都未判定领域，"
                                 f"不在图中（共 {focus.get('total', 0)} 个项目）。反映本期工作所在领域的整体结构"})
     return out

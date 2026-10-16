@@ -131,6 +131,12 @@ async def main():
                 for part in ("开始今天的工作", "资料库概览"):
                     await expect(page.get_by_role("region",name=part)).to_be_visible()
                 await expect(page.get_by_role("region",name="开始今天的工作").get_by_role("link")).to_have_count(4)
+                # The banner introduces the top bar and switches by hand too (query 2026-1016 1613).
+                banner=page.get_by_role("region",name="首页导览")
+                await expect(banner.get_by_role("group",name="切换导览").get_by_role("button")).to_have_count(5)
+                await banner.get_by_role("button",name="第 3 张：资料库").click()
+                await expect(banner.get_by_role("heading",name="回到原文，有据可查")).to_be_visible()
+                await banner.get_by_role("button",name="第 1 张：研究版图").click()
                 await expect(page.get_by_role("region",name="我的工作")).to_be_visible()
                 await expect(page.get_by_role("group",name="各领域项目数").get_by_role("button")).to_have_count(1)
                 await page.get_by_label("资料库卡片").get_by_role("button").first.click()

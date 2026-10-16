@@ -5,6 +5,7 @@ import { RadarChart } from "./Charts";
 import { Icon, type IconName } from "./Icons";
 import type { LibraryOverview } from "./LeaderConstruction";
 import { MyWorkSection } from "./MyWorkSection";
+import { HeroCarousel } from "./HeroCarousel";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -48,27 +49,14 @@ export function LeaderHome() {
   // The choice lives in the address, replaced rather than added, so a refresh keeps it and Back leaves the page.
   const choose = (id: string) => setSearch((old) => { const next = new URLSearchParams(old); next.set("domain", id); return next; }, { replace: true });
   const openLibrary = (id: string) => { choose(id); showInspector({ kind: "corpus", corpusId: id }); };
-  const projects = rows.reduce((n, r) => n + r.projects, 0);
-  const funded = rows.reduce((n, r) => n + r.funding.projects, 0);
-  const fundTotal = rows.reduce((n, r) => n + Number(r.funding.total_yuan), 0);
-  const years = rows.flatMap((r) => r.start_years);
   const most = Math.max(1, ...rows.map((r) => r.projects));
   const fields = (chosen?.fields ?? []).slice(0, 8);
 
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[#f5f7fa]">
     <div className="mx-auto max-w-[1240px] space-y-9 px-5 py-7 lg:px-8">
-      <header className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#172a40] via-[#1f3a57] to-[#2c5373] px-6 py-7 text-white sm:px-9">
-        <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-10 size-80 rounded-full border-[46px] border-white/[0.04]" />
-        <p className="relative text-xs tracking-[0.16em] text-[#aebdd0]">研究版图</p>
-        <h1 className="relative mt-3 text-[26px] font-semibold tracking-wide">从领域分布，看研究积累</h1>
-        {overview.data ? <dl className="relative mt-5 flex flex-wrap gap-x-10 gap-y-3">
-          {([["领域", `${rows.length}`, "个有项目的资料库"], ["项目", `${projects}`, `立项 ${years.length ? `${Math.min(...years)}–${Math.max(...years)}` : "年份待核对"}`],
-            ["已知经费", `${wan(fundTotal)} 万元`, `${funded} 个项目给出金额，其余未给出`]] as const).map(([label, value, note]) =>
-            <div key={label}><dt className="text-xs text-[#aebdd0]">{label}</dt>
-              <dd className="mt-0.5"><b className="text-[22px] font-semibold tabular-nums">{value}</b><span className="ml-2 text-xs text-[#c9d4e1]">{note}</span></dd></div>)}
-        </dl> : null}
-        <p className="relative mt-4 text-xs text-[#9fb0c4]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>
-      </header>
+      {overview.data ? <HeroCarousel rows={rows} />
+        : <div className="h-[264px] rounded-2xl bg-gradient-to-br from-[#172a40] via-[#1f3a57] to-[#2c5373]" aria-hidden="true" />}
+      <p className="-mt-6 text-xs text-[var(--stone)]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>
 
       <section aria-label="开始今天的工作" className="@container">
         <SectionHead index="01" title="开始今天的工作" note="选择一项工作进入对应工作台" />
@@ -111,7 +99,7 @@ export function LeaderHome() {
                   <span className="text-xs text-[var(--steel)]">{chosen.projects} 个项目 · 立项 {span(chosen.start_years)}{chosen.funding.projects ? ` · 已知经费 ${wan(chosen.funding.total_yuan)} 万元（${chosen.funding.projects} 个项目）` : ""}</span>
                 </div>
                 <div className="flex-1 py-2">
-                  {fields.length ? <RadarChart spec={{ type: "radar", title: "应用方向分布", labels: fields.map(([n]) => n), values: fields.map(([, v]) => v), unit: " 个项目",
+                  {fields.length ? <RadarChart spec={{ type: "radar", title: "应用方向分布", labels: fields.map(([n]) => n), values: fields.map(([, v]) => v), unit: " 个项目", max: chosen.projects,
                     note: "有技术服务于该方向的项目数，一个项目可计入多个方向；方向由模型归纳，需人工核对" }} />
                     : <p className="py-10 text-center text-sm text-[var(--steel)]">该领域尚未归纳应用方向。</p>}
                 </div>

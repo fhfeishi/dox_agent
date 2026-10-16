@@ -208,6 +208,9 @@
   :where(button, a, select) { transition-duration: 140ms; }
   :where(select) { max-width: 100%; }
 }
+/* Leader home banner: each slide fades in (query 2026-1016 1613); reduced motion removes it below. */
+.hero-slide { animation: hero-in 420ms ease both; }
+@keyframes hero-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

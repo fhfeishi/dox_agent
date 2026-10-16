@@ -36,7 +36,7 @@ export function WorkspaceHome() {
 /** 首页 for administrators and users: report counts, starting work, 我的工作 and recent reports. */
 function WorkHome() {
   const { role } = useAuth();
-  const { corpora, corporaError, showInspector, openCorpus, switchSession } = useApp();
+  const { corpora, corporaError, showInspector, openCorpus } = useApp();
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
   const recent = useQuery({
@@ -68,7 +68,6 @@ function WorkHome() {
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--hairline)] pb-5">
         <div><p className="text-xs text-[var(--steel)]">资料与研究工作台</p>
           <h1 className="mt-2 text-2xl font-semibold">今天，从哪项工作开始？</h1></div>
-        <button onClick={() => void switchSession()} className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-sm font-medium text-white hover:bg-[var(--primary-pressed)]">新建对话</button>
       </header>
       <section aria-label="工作概况" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--steel)]">
         <span>资料库 <b className="text-[var(--ink)]">{corporaError ? "—" : corpora.length}</b></span>

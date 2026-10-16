@@ -159,6 +159,7 @@ async def main():
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("region",name="开始工作").get_by_role("link")).to_have_count(4)
+                await expect(page.get_by_role("button",name="新建对话",exact=True)).to_have_count(0)  # query 2026-1016 1037
                 # Users keep libraries too (query 2026-1016 0919); regenerating structure stays the administrator's.
                 created = await page.request.post(origin+"/api/corpora",data={"name":"用户资料库"})
                 assert created.status == 201, created.status

@@ -3604,3 +3604,10 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
     - 用户可见上传、管理·重命名、新建资料库与新建分组；对话默认“整个资料库”。
   - 截图 `verification/query-20261016-0919/year-linked.png`、`chat-library.png`。
 
+### 16.116 query「2026-1016 1037」：首页去掉“新建对话”（2026-10-16，已实施，未提交）
+
+- 管理员与普通用户首页标题区的“新建对话”按钮与顶部“对话工作台”及开始一项工作的入口重复，已删除。对话工作台内的新建对话不变。
+- 验证：
+  - tsc、build 通过；npm test 47 passed。
+  - `browser_library_documents`（新增断言用户首页无“新建对话”）与 `browser_review_simple` PASS。
+

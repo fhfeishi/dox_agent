@@ -95,6 +95,31 @@ def test_user_upload_parse_failure_stays_saved_and_can_be_retried(tmp_path):
     assert "UnicodeDecodeError" in files[0]["reason"]
 
 
+def test_upload_after_a_broken_file_reports_only_its_own_result(tmp_path):
+    """Each upload imports the whole folder; a good file uploaded after a broken one is not shown as failed."""
+    app, _ = setup(tmp_path)
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "upload-batch"}).json()
+        client.post(f"/api/corpora/{corpus['id']}/files", files={"upload": ("broken.txt", BytesIO(b"\xff\xfe\x00broken"), "text/plain")})
+        good = client.post(f"/api/corpora/{corpus['id']}/files", files={"upload": ("good.md", BytesIO("# 正常资料\n内容".encode()), "text/markdown")})
+        files = {f["rel_path"]: f["status"] for f in client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]}
+    assert good.status_code == 201 and good.json()["errors"] == []
+    assert files == {"broken.txt": "error", "good.md": "indexed"}
+
+
+def test_upload_of_identical_content_is_pointed_out(tmp_path):
+    """A copy under another name is reported against the first file, in the upload reply and the listing."""
+    app, _ = setup(tmp_path)
+    body = "# 项目报告\n同一份内容".encode()
+    with TestClient(app) as client:
+        corpus = client.post("/api/corpora", json={"name": "duplicates"}).json()
+        first = client.post(f"/api/corpora/{corpus['id']}/files", files={"upload": ("原件.md", BytesIO(body), "text/markdown")})
+        copy = client.post(f"/api/corpora/{corpus['id']}/files", files={"upload": ("副本.md", BytesIO(body), "text/markdown")})
+        files = {f["rel_path"]: f["duplicate_of"] for f in client.get(f"/api/corpora/{corpus['id']}/files").json()["files"]}
+    assert first.json()["duplicate_of"] == "" and copy.json()["duplicate_of"] == "原件.md"
+    assert files == {"原件.md": "", "副本.md": "原件.md"}
+
+
 def test_user_corpus_overview_reports_source_and_index_status_counts(tmp_path):
     app, _ = setup(tmp_path)
     with TestClient(app) as client:

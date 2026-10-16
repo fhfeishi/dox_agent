@@ -46,7 +46,8 @@ async def main():
                 page.on("pageerror", lambda e: errors.append(str(e)))
                 page.on("request", lambda req: payloads.append(req.post_data_json) if req.url.endswith("/api/chat") and req.method=="POST" else None)
                 await page.request.post(origin+"/api/auth/login", data={"username":"admin","password":"123456"})
-                url=origin+"/library/"+quote(cid)+"/documents"
+                # File-level steps (paging, search, ticking files) use the by-file list; 按项目 is the default.
+                url=origin+"/library/"+quote(cid)+"/documents?by=file"
                 await page.goto(url)
                 await page.get_by_role("dialog", name="资料库 操作指南").get_by_role("button",name="知道了").click()
                 listing=page.get_by_role("list",name="资料列表",exact=True)
@@ -58,8 +59,8 @@ async def main():
                 await expect(listing.get_by_role("listitem")).to_have_count(2)
                 await listing.get_by_role("checkbox").nth(0).check()
                 await listing.get_by_role("checkbox").nth(1).check()
-                await page.get_by_role("region",name="已选资料",exact=True).get_by_role("button",name="与这些资料对话").click()
-                chat=page.get_by_role("region",name="与所选资料对话",exact=True)
+                await page.get_by_role("region",name="已选资料",exact=True).get_by_role("button",name="分析这些资料").click()
+                chat=page.get_by_role("region",name="分析工作区",exact=True)
                 await expect(chat.get_by_role("button",name=re.compile("^移出范围"))).to_have_count(2)
                 await page.get_by_label("向所选资料提问").fill("量子传感有什么光学方法？")
                 await chat.get_by_role("button",name="发送",exact=True).click()
@@ -68,11 +69,11 @@ async def main():
                 assert payloads[-1]["corpus_ids"] == [cid]
                 assert len(payloads[-1]["allowed_doc_ids"]) == 2
                 # With nothing ticked the chat asks the whole library; its starters carry their task (query 2026-1016 0919).
-                await chat.get_by_role("button",name="新对话").click()
+                await chat.get_by_role("button",name="清空记录").click()
                 await chat.get_by_role("button",name="清空",exact=True).click()
                 await expect(chat).to_contain_text("范围 · 整个资料库")
                 await chat.get_by_role("button",name="比较这些项目的数据、方法和已取得成果。").click()
-                await expect(chat).to_contain_text("在整个资料库中")
+                await expect(chat.locator("article").first).to_contain_text("整个资料库")
                 await expect(chat.get_by_text("量子传感的光学方法见所选资料")).to_have_count(1)
                 assert payloads[-1]["allowed_doc_ids"] is None and payloads[-1]["task_id"] == "task2"
                 shots=Path(".logsdev/verification/query-20261015-1142");shots.mkdir(parents=True,exist_ok=True)

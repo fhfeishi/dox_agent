@@ -468,6 +468,22 @@ def model_failure_message(exc: BaseException, timeout_hint: str) -> str:
     return ""
 
 
+def duplicate_sources(manifest: dict[str, dict]) -> dict[str, str]:
+    """Files whose content equals an earlier one, mapped to that file (query 2026-1016 1814: a copy
+    under another name is pointed out, and the user keeps or deletes it)."""
+    first: dict[str, str] = {}
+    copies: dict[str, str] = {}
+    for rel, entry in sorted(manifest.items(), key=lambda item: (item[1].get("updated_at") or "", item[0])):
+        digest = entry.get("sha256") or ""
+        if not digest:
+            continue
+        if digest in first:
+            copies[rel] = first[digest]
+        else:
+            first[digest] = rel
+    return copies
+
+
 def sse(event: str, data: object) -> str:
     return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
 
@@ -1385,6 +1401,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         current_ids = ({doc["doc_id"] for doc in await asyncio.to_thread(knowledge_for(info).current)}
                        if info.sqlite is not None else set())
 
+        copies = duplicate_sources(manifest)
+
         def listing():
             on_disk = {path.relative_to(info.source_dir).as_posix(): path
                        for path in collect_sources(info.source_dir)} if info.source_dir.is_dir() else {}
@@ -1396,7 +1414,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 items.append({"rel_path": rel, "size": path.stat().st_size,
                               "status": status, "doc_id": entry["doc_id"] if entry else None,
                               "reason": entry["last_error"] if entry and status == "error" else
-                              "源文件已变化，请刷新" if status == "pending" else ""})
+                              "源文件已变化，请刷新" if status == "pending" else "",
+                              "duplicate_of": copies.get(rel, "")})
             for rel, entry in sorted(manifest.items()):
                 if rel not in on_disk:
                     items.append({"rel_path": rel, "size": entry["size"], "status": "removed", "doc_id": entry["doc_id"]})
@@ -1464,8 +1483,13 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 raise HTTPException(413, str(exc)) from exc
             report = await asyncio.to_thread(import_defaults, knowledge_for(info), settings,
                                               root=info.source_dir, parsed_root=info.root / "parsed")
+        # The import covers the whole folder; report only this file's errors, or a file uploaded after a
+        # broken one is shown as failed although it was indexed (query 2026-1016 1814 baseline walk).
+        own = [error for error in report["errors"] if error.get("source") == Path(name).name]
+        copies = duplicate_sources(await asyncio.to_thread(knowledge_for(info).files))
         return {"rel_path": name, "added": report["added"], "updated": report["updated"],
-                "skipped": report["skipped"], "deleted": report["deleted"], "errors": report["errors"]}
+                "skipped": report["skipped"], "deleted": report["deleted"], "errors": own,
+                "duplicate_of": copies.get(name, "")}
 
     @app.delete("/api/corpora/{corpus_id}/files")
     async def delete_corpus_file(corpus_id: str, rel_path: str):

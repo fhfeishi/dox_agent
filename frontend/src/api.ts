@@ -44,7 +44,8 @@ export async function ingestCorpus(corpusId: string, force = false): Promise<Cor
 }
 
 
-export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null; reason?: string };
+/** duplicate_of: the earlier file with exactly the same content, if any (query 2026-1016 1814). */
+export type CorpusFile = { rel_path: string; size: number; status: string; doc_id: string | null; reason?: string; duplicate_of?: string };
 export type CorpusFileListing = { source_dir: string; files: CorpusFile[]; misplaced_files: string[] };
 
 async function jsonOrThrow(response: Response, fallback: string) {

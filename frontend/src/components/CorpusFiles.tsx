@@ -1,4 +1,4 @@
-import { LibraryChat } from "./LibraryChat";
+import { AnalysisWorkspace } from "./AnalysisWorkspace";
 import { droppedFiles } from "../folderUpload";
 import { useAuth } from "../auth";
 import { useSearchParams } from "react-router";
@@ -8,6 +8,8 @@ import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, uploadCorpusFile,
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 import { fundMetaFromPath } from "../fundMeta";
+import { projectQuery } from "../projects";
+import { ProjectList } from "./ProjectList";
 
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
@@ -62,7 +64,14 @@ export function CorpusFiles({
   const folderRef = useRef<HTMLInputElement>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
+  // The workspace opens on arrival from 存量分析 (?workspace=1&task=…), keeping the task it was started with.
+  const [chatOpen, setChatOpen] = useState(() => params.get("workspace") === "1");
+  const workspaceTask = params.get("task") ?? "";
+  // 按项目 is the default list (query 2026-1016 1814): a comparison is between projects, not files.
+  const byFile = params.get("by") === "file";
+  const projectsResult = useQuery({ ...projectQuery(corpusId), enabled: connected });
+  const projects = projectsResult.data?.projects ?? [];
+  const pendingDocs = new Set(projects.filter((p) => p.identity_status === "pending").flatMap((p) => p.files.map((f) => f.document.doc_id)));
   const [page, setPage] = useState(0);
   const [mode, setMode] = useState("name");
   const [bodyQuery, setBodyQuery] = useState("");
@@ -89,6 +98,12 @@ export function CorpusFiles({
       const value = await response.json();
       return String(value.text || "").replace(/^---[\s\S]*?\n---\s*/, "").replace(/[#*|]/g, "").trim().slice(0, 260);
     }, staleTime: 60000 });
+  function toggleMany(ids: string[], on: boolean) {
+    if (!on) { setSelectedIds((old) => old.filter((id) => !ids.includes(id))); return; }
+    const next = [...new Set([...selectedIds, ...ids])];
+    if (next.length > 20) { setNotice("一次最多选择 20 份资料，请先移除部分选择。"); return; }
+    setNotice(""); setSelectedIds(next);
+  }
   function select(id: string) {
     if (selectedIds.includes(id)) setSelectedIds((old) => old.filter((item) => item !== id));
     else if (selectedIds.length >= 20) setNotice("一次最多选择 20 份资料，请先移除部分选择。");
@@ -255,20 +270,28 @@ export function CorpusFiles({
           </button>)}
         </div>
         <div className="flex flex-wrap items-center gap-3">
+          <div role="group" aria-label="列表方式" className="flex rounded-lg bg-[var(--surface)] p-0.5 text-xs">
+            {([["", "按项目"], ["file", "按文件"]] as const).map(([key, label]) => <button key={label} type="button" aria-pressed={(key === "file") === byFile}
+              onClick={() => updateFilter("by", key)} className={`rounded-md px-2.5 py-1.5 ${(key === "file") === byFile ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)]"}`}>{label}</button>)}
+          </div>
           <select aria-label="搜索方式" value={mode} onChange={(e) => setMode(e.target.value)} className="rounded-lg border bg-[var(--primary-soft)] p-2 text-xs">
             <option value="name">文件名搜索</option><option value="content">正文检索</option>
           </select>
-          <span className="text-xs text-[var(--steel)]">{searchedRows.length} 份 · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
+          <span className="text-xs text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : `${projects.length} 个项目`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
           {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-xs text-[var(--link)]">清空选择</button> : null}
           {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-xs text-[var(--link)]"
             onClick={() => setSelectedIds([...new Set([...selectedIds, ...searchedRows.flatMap((row) => row.document && row.status === "indexed" ? [row.document.doc_id] : [])])].slice(0, 20))}>
             勾选搜索结果（最多 20 份）</button> : null}
           <span className="flex-1" />
           {!chatOpen ? <button type="button" onClick={() => setChatOpen(true)}
-            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">与资料对话{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
+            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">分析工作区{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
           {matches.isFetching && mode === "content" ? <span role="status">正在检索正文…</span> : null}
           {mode === "content" && matches.error ? <span role="alert">{matches.error.message}</span> : null}
         </div>
+        {!byFile ? <ProjectList projects={mode === "content" && needle ? projects.filter((p) => p.files.some((f) => matchIds.has(f.document.doc_id))) : projects}
+          files={files} selectedIds={selectedIds} onToggle={toggleMany} onPreview={onPreview} busy={busy}
+          query={mode === "content" ? "" : search}
+          onDelete={(rel) => { if (window.confirm(`删除源文件「${rel}」并从索引移除？`)) void run(async () => { await deleteCorpusFile(corpusId, rel); }); }} /> : <>
         <ul aria-label="资料列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
           {pageRows.map(({ key, file, document, status }) => (
             <li key={key} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
@@ -319,6 +342,8 @@ export function CorpusFiles({
                     {status === "error" ? "已保存，未入库 · 解析失败" : STATUS_LABEL[status] ?? status}
                   </span>
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
+                  {file.duplicate_of ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-[11px] text-[#9b2c2c]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
+                  {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-[11px] text-[#7a5a00]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                   {status === "error" ? (
                     <button
@@ -367,13 +392,14 @@ export function CorpusFiles({
           <span>第 {currentPage + 1} / {Math.max(1, Math.ceil(searchedRows.length / 40))} 页 · 每页 40 份</span>
           <button disabled={(currentPage + 1) * 40 >= searchedRows.length} onClick={() => setPage(currentPage + 1)} className="rounded border px-3 py-2 disabled:opacity-40">下一页</button>
         </div>
-        {chatOpen ? <LibraryChat corpusId={corpusId} documents={selectedDocs} onBusy={setChatBusy}
-          onRemove={(id) => setSelectedIds((old) => old.filter((item) => item !== id))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
+        </>}
+        {chatOpen ? <AnalysisWorkspace corpusId={corpusId} corpusName={corpusName} documents={selectedDocs} onBusy={setChatBusy} projects={projects} task={workspaceTask}
+          onRemove={(ids) => setSelectedIds((old) => old.filter((item) => !ids.includes(item)))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
           // Ticking files offers the conversation without opening it over the list.
           : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-[13px] shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
             <span className="whitespace-nowrap text-[var(--slate)]">已选 <b className="text-[var(--ink)]">{selectedDocs.length}</b> 份资料</span>
             <button type="button" onClick={() => setSelectedIds([])} className="whitespace-nowrap text-[12.5px] text-[var(--steel)] hover:text-[var(--ink)]">清空</button>
-            <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">与这些资料对话</button>
+            <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">分析这些资料</button>
           </div> : null}
         {notice || result.error ? (
           <p role="alert" className="text-[12px] text-[var(--red)]">

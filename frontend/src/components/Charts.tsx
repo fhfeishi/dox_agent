@@ -93,7 +93,10 @@ export function FocusRadars({ fields, items, stages }: {
     ...(stages.length ? [{ type: "radar" as const, title: "业务环节分布", labels: stages.map((s) => s.name), values: stages.map((s) => count("stage", s.name)), unit: " 项",
       note: note("落在该环节", "stage", stages) }] : []),
   ];
-  return <section aria-label="聚焦分布" className="grid gap-3 md:grid-cols-2">
-    {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}
+  // Two side by side only where the container is wide enough, e.g. not in the right-hand panel.
+  return <section aria-label="聚焦分布" className="@container">
+    <div className="grid gap-3 @2xl:grid-cols-2">
+      {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}
+    </div>
   </section>;
 }

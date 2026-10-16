@@ -19,7 +19,7 @@ import type { ArtifactSummary } from "../api";
 import { Icon, type IconName } from "./Icons";
 import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
-import { LeaderConstruction } from "./LeaderConstruction";
+import { LeaderHome } from "./LeaderHome";
 
 const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
   { to: "/library", title: "查阅资料", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "#4f6554" },
@@ -118,30 +118,6 @@ function WorkHome() {
             {role !== "user" ? <Link to="/overview/build" className="mt-2 block text-[var(--link)] hover:underline">进入概览，了解资料建设与领域分布 →</Link> : null}</div>
         </section>
       </div>
-      <MyWorkSection />
-    </div>
-  </main>;
-}
-
-/**
- * 首页 for leaders (query 2026-1015 1518; merged with 概览 · 资料库建设 by query 2026-1016): no work
- * counts or recent progress — the research landscape and its domains first, each opening its 领域分析,
- * then starting a piece of work and 我的工作. Reports and the period summaries are in 成果.
- */
-function LeaderHome() {
-  const navigate = useNavigate();
-  return <main className="min-h-0 flex-1 overflow-y-auto">
-    <LeaderConstruction onOpen={(id) => navigate(`/overview/domains?domain=${encodeURIComponent(id)}`)} />
-    <div className="mx-auto max-w-[1180px] space-y-6 px-5 pb-8">
-      <section aria-label="开始工作">
-        <h2 className="mb-3 text-base font-semibold text-[#24364c]">开始一项工作</h2>
-        <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-          {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex items-center gap-3 rounded-xl border border-[#e3e7ec] bg-white px-4 py-3 transition-colors hover:border-[#acb8c9]">
-            <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#f3f5f8]" style={{ color: a.accent }}><Icon name={a.icon} size={18} /></span>
-            <span className="min-w-0"><b className="block text-[14px]">{a.title}</b><span className="block truncate text-xs text-[var(--steel)]">{a.text}</span></span>
-          </Link>)}
-        </div>
-      </section>
       <MyWorkSection />
     </div>
   </main>;

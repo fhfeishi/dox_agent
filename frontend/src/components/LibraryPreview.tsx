@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+import { useAuth } from "../auth";
 import { useQuery } from "@tanstack/react-query";
 import { buildBoard, buildMatrix, libraryInsights } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
@@ -14,6 +16,9 @@ const short = (name: string) => name.replace(/^自然科学基金-/, "");
  */
 export function LibraryPreview({ corpusId }: { corpusId: string }) {
   const { corpora, openCorpus } = useApp();
+  // A leader reads the library, not its upkeep (节点审查 角色表; query 2026-1016 1551).
+  const leader = useAuth().role === "leader";
+  const navigate = useNavigate();
   const corpus = corpora.find((c) => c.id === corpusId);
   const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
@@ -28,13 +33,16 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
   const insights = hierarchy?.scenes.length && lineage?.categories.length
     ? libraryInsights(buildBoard(hierarchy, lineage), buildMatrix(lineage), lineage, (library?.projects ?? []).map((p) => ({ start: p.start_year, end: p.end_year })))
     : [];
-  const attention = row ? [
+  const attention = row && !leader ? [
     row.lineage.state === "stale" ? `技术谱系需要重新生成：${row.lineage.stale_reason || "四维条目已变化"}` : "",
     row.hierarchy.state && row.hierarchy.state !== "ready" ? "场景归纳需要更新" : "",
     row.lineage.unplaced ? `${row.lineage.unplaced} 条技术未归入体系` : "",
     row.pending_identity ? `${row.pending_identity} 份资料项目身份待核对` : "",
   ].filter(Boolean) : [];
-  const facts: [string, string][] = row ? [["资料 / 项目", `${row.files} 份 / ${row.projects} 个`],
+  const facts: [string, string][] = row && leader ? [["项目", `${row.projects} 个`],
+    ["立项年份", row.start_years.length ? `${row.start_years[0]}–${row.start_years.at(-1)}` : "待核对"],
+    ["已知经费", row.funding.projects ? `${(Number(row.funding.total_yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 })} 万元（${row.funding.projects} 个项目给出金额）` : "报告未给出"]]
+    : row ? [["资料 / 项目", `${row.files} 份 / ${row.projects} 个`],
     ["技术研判", ["场景", "问题", "技术", "成果"].map(key => key + " " + (row.dimensions[key] ?? 0)).join(" · ")],
     ["场景 / 问题", row.hierarchy.scenes ? `${row.hierarchy.scenes} / ${row.hierarchy.issues}` : "未生成"],
     ["技术条目", row.lineage.items ? `${row.lineage.items} 条 · ${row.lineage.systems} 个体系` : "未生成"],
@@ -45,7 +53,8 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
       {corpus.description ? <p className="mt-1 text-[13px] leading-6 text-[var(--steel)]">{corpus.description}</p> : null}
     </div>
     <div className="flex flex-wrap gap-2">
-      <button type="button" onClick={() => openCorpus(corpusId)} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white">进入资料库</button>
+      {leader ? <button type="button" onClick={() => navigate(`/overview/domains?domain=${encodeURIComponent(corpusId)}`)} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white">领域分析</button> : null}
+      <button type="button" onClick={() => openCorpus(corpusId)} className={leader ? "rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]" : "rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white"}>进入资料库</button>
       <button type="button" onClick={() => openCorpus(corpusId, "target")} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">技术研判</button>
     </div>
     {facts.length ? <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-xl bg-[var(--surface)] p-3 text-[13px]">

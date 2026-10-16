@@ -70,7 +70,7 @@ export function Overview() {
     {area === "build" ? <>
       {/* Only administrators reach this area; a library previews on the right. */}
       <Work />
-      <LeaderConstruction maintenance onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} />
+      <LeaderConstruction onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} />
     </>
       : !current ? <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />

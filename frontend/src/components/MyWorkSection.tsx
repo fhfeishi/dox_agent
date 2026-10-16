@@ -14,7 +14,7 @@ const ACTIVE = new Set(["queued", "running", "generating"]);
  * left off. Authorship is recorded from 2026-10-13 on; earlier items have no author and stay in 成果.
  * This is a view of one's own work, not a visibility rule: other accounts can still open them.
  */
-export function MyWorkSection() {
+export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
   const { username } = useAuth();
   const { workspace, switchSession, showInspector } = useApp();
   const navigate = useNavigate();
@@ -39,10 +39,12 @@ export function MyWorkSection() {
   const empty = (text: string) => <p className="px-3 py-2 text-[13px] text-[var(--stone)]">{text}</p>;
 
   return <section aria-label="我的工作">
-    <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
+    {/* bare: the page supplies the heading (leader 首页) and only the progress line remains. */}
+    {bare ? (working ? <p className="mb-2 text-xs text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
+      : <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
       <h2 className="text-base font-semibold text-[#24364c]">我的工作</h2>
       <span className="text-xs text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“成果”中"}</span>
-    </div>
+    </div>}
     <div className="grid gap-3 lg:grid-cols-3">
       <section aria-label="我的对话" className={box}>
         <h3 className="mb-2 text-sm font-semibold">我的对话</h3>

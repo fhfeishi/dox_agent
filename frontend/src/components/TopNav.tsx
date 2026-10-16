@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { useAuth } from "../auth";
 import { useApp, type NavKey } from "../store";
@@ -93,9 +93,27 @@ export function TopNav() {
   const { pathname } = useLocation();
   const { nav, setNav, sidebarCollapsed, toggleSidebar, setDrawerOpen, llmTone, llmText, model } = useApp();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
+  // The full bar folds into one menu only when its entries do not fit (query 2026-1016: a laptop
+  // screen folded it at the old fixed 1280 px although the entries fit in about 950 px).
+  const navRef = useRef<HTMLElement>(null);
+  const [folded, setFolded] = useState(false);
+  const needed = useRef(0);
+  useLayoutEffect(() => {
+    const check = () => {
+      const bar = navRef.current;
+      if (bar && !folded && bar.scrollWidth > bar.clientWidth + 1) {
+        needed.current = window.innerWidth + bar.scrollWidth - bar.clientWidth;
+        setFolded(true);
+      } else if (folded && window.innerWidth >= needed.current) setFolded(false);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [folded, role]);
+  useEffect(() => { setFolded(false); }, [role]);
   const links = [
     { to: "/home", label: "首页" },
-    ...(role !== "user" ? OVERVIEW_PAGES.map((p) => ({ ...p, label: "概览 · " + p.label })) : []),
+    ...(role === "admin" ? OVERVIEW_PAGES.map((p) => ({ ...p, label: "概览 · " + p.label })) : role === "leader" ? [{ to: "/overview/domains", label: "领域分析" }] : []),
     { to: "/chat", label: "对话工作台" },
     { to: "/library", label: "资料库" }, { to: "/tasks", label: "存量分析" },
     ...REVIEW_PAGES, { to: "/intelligence", label: "情报分析" },
@@ -107,10 +125,12 @@ export function TopNav() {
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
       <span className="hidden text-[15px] font-semibold text-[var(--ink)] md:inline">资料工作台</span>
     </Link>
-    <nav aria-label="主导航" className="hidden min-w-0 flex-1 items-center gap-1 xl:flex">
+    <nav ref={navRef} aria-label="主导航" className={`min-w-0 flex-1 items-center gap-1 overflow-hidden ${folded ? "hidden" : "flex"}`}>
       {ITEMS.slice(0, 1).map((item) => <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
-      {role !== "user" ? <MenuTab label="概览" pages={OVERVIEW_PAGES} active={nav === "overview"}
-        current={(to) => pathname === to || (to === "/overview/build" && pathname.replace(/\/$/, "") === "/overview")} /> : null}
+      {role === "admin" ? <MenuTab label="概览" pages={OVERVIEW_PAGES} active={nav === "overview"}
+        current={(to) => pathname === to || (to === "/overview/build" && pathname.replace(/\/$/, "") === "/overview")} />
+        // A leader's 资料库建设 is on 首页, so their 概览 is the one page 领域分析 (query 2026-1016).
+        : role === "leader" ? <Link to="/overview/domains" aria-current={nav === "overview" ? "page" : undefined} className={tab(nav === "overview")}>领域分析</Link> : null}
       {role === "leader" ? <>
         <button type="button" aria-current={nav === "library" ? "page" : undefined} onClick={() => setNav("library")} className={tab(nav === "library")}>资料库</button>
         <MenuTab label="工作台" pages={WORKBENCH_PAGES} active={["chat", "tasks", "review", "intelligence"].includes(nav)}
@@ -118,9 +138,9 @@ export function TopNav() {
       </> : ITEMS.slice(1).map((item) => item.key === "review" ? <MenuTab key={item.key} label="资料审查" pages={REVIEW_PAGES} active={nav === "review"} current={(to) => pathname.startsWith(to)} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
     </nav>
-    <nav aria-label="工作导航" className="min-w-0 flex-1 xl:hidden">
+    {folded ? <nav aria-label="工作导航" className="min-w-0 flex-1">
       <MenuTab label="工作导航" pages={links} active={false} current={(to) => pathname === to} />
-    </nav>
+    </nav> : null}
     {/* Model name, address and connection test are the administrator's (节点审查 B2); others see whether analysis is available. */}
     {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
       className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">

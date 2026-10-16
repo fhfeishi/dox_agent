@@ -1,4 +1,3 @@
-import { useAuth } from "../auth";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
@@ -44,7 +43,6 @@ export function LibraryHome() {
   const [search, setSearch] = useSearchParams();
   const query = (search.get("q") ?? "").trim().toLowerCase();
   const data = useGroups();
-  const admin = useAuth().role === "admin";
   const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
     if (!response.ok) throw new Error("资料库概况暂不可读");
@@ -69,7 +67,8 @@ export function LibraryHome() {
         <input type="search" aria-label="搜索资料库" placeholder="搜索资料库名称或说明" value={search.get("q") ?? ""}
           onChange={(e) => setSearch((old) => { const next = new URLSearchParams(old); if (e.target.value) next.set("q", e.target.value); else next.delete("q"); return next; }, { replace: true })}
           className="w-[240px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px]" />
-        {admin ? <>
+        {/* Every account keeps libraries and their groups (query 2026-1016 0919). */}
+        <>
           {creating ? <form className="flex gap-1.5" onSubmit={(e) => {
             e.preventDefault();
             void act(async () => { const created = await createCorpus(name.trim()); setName(""); setCreating(false); refreshCorpora(); openCorpus(created.id, "files"); });
@@ -82,17 +81,17 @@ export function LibraryHome() {
             <Icon name="plus" size={14} />新建资料库</button>}
           {data ? <button type="button" onClick={() => { const next = window.prompt("新分组名称"); if (next?.trim()) void act(() => changeGroups(data.revision, "create", "", next.trim())); }}
             className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">新建分组</button> : null}
-        </> : null}
+        </>
       </header>
       {corporaError || error ? <p role="alert" className="text-sm text-[var(--red)]">{corporaError || error}</p> : null}
-      {!corpora.length ? <p className="text-sm text-[var(--steel)]">{corporaLoaded ? (admin ? "还没有资料库，可点“新建资料库”。" : "还没有资料库，请联系管理员建立。") : "正在读取资料库…"}</p> : null}
+      {!corpora.length ? <p className="text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可点“新建资料库”。" : "正在读取资料库…"}</p> : null}
       {sections.map((section) => {
         const ids = section.ids.filter(visible);
         if (!ids.length && (!section.id || query)) return null;
         return <section key={section.id || "_"} aria-label={section.name || "资料库"}>
           {section.name ? <div className="group mb-2 flex items-center gap-2">
             <h2 className="text-sm font-semibold text-[var(--steel)]">{section.name} · {ids.length}</h2>
-            {admin && section.id && data ? <span className="flex gap-2 text-xs text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
+            {section.id && data ? <span className="flex gap-2 text-xs text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
               <button type="button" onClick={() => { const next = window.prompt("分组名称", section.name); if (next?.trim()) void act(() => changeGroups(data.revision, "rename", section.id, next.trim())); }}>改名</button>
               <button type="button" onClick={() => { if (window.confirm(`解散分组「${section.name}」？其中的资料库回到未分组，不会删除。`)) void act(() => changeGroups(data.revision, "dissolve", section.id)); }}>解散</button>
             </span> : null}

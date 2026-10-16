@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { FACETS, projectQuery, type Project } from "../projects";
@@ -9,21 +8,13 @@ import { SceneHierarchy } from "./SceneHierarchy";
 import { YearDistribution } from "./YearDistribution";
 
 const SCOPES: Record<string, string> = { awarded: "批准资助金额", direct: "直接费用", total: "总经费" };
-const PURPOSES = [
-  ["场景、问题和应用对象有哪些共性？", "task1"],
-  ["比较这些项目的数据、方法和已取得成果。", "task2"],
-  ["这些项目体现了哪些走向？区分事实与推断并说明资料范围。", "task3"],
-] as const;
 
 export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; corpusName?: string }) {
   const result = useQuery(projectQuery(corpusId));
-  const { startResearch, sessionBusy, openPreview } = useApp();
+  const { openPreview } = useApp();
   const [search, setSearch] = useSearchParams();
   const view = ["timeline", "relations"].includes(search.get("projectView") ?? "") ? search.get("projectView")! : "";
   const year = search.get("startYear") ?? "";
-  const selected = search.get("project") ?? "";
-  const [message, setMessage] = useState("");
-  const [projectLimit, setProjectLimit] = useState(24);
   const set = (key: string, value: string) => setSearch((old) => {
     const next = new URLSearchParams(old);
     if (value) next.set(key, value); else next.delete(key);
@@ -34,39 +25,20 @@ export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; co
   if (result.isPending) return <p role="status" className="p-6">正在按项目整理资料…</p>;
   if (result.error || !data) return <p role="alert" className="p-6">{result.error?.message}</p>;
   const identified = data.projects.filter((p) => p.identity_status === "identified");
-  const yearProjects = identified.filter((p) => !year || p.start_year === Number(year));
-  const visible = yearProjects;
   const years = [...new Set(identified.map((p) => p.start_year).filter((y): y is number => y !== null))].sort();
-  const focus = data.projects.find((p) => p.project_id === selected);
-  async function analyze(question: string, task: string) {
-    if (!focus && !year) {
-      try { await startResearch(corpusId, null, task, question); } catch (error) { setMessage((error as Error).message); }
-      return;
-    }
-    const projects = focus ? [focus] : visible;
-    const ids = [...new Set(projects.flatMap((p) => p.files.map((f) => f.document.doc_id)))];
-    if (!ids.length) { setMessage("请选择可读取的项目"); return; }
-    if (ids.length > 20) { setMessage(`当前范围包含 ${ids.length} 份资料。逐项目阅读最多选择 20 份，请缩小范围；项目统计仍覆盖当前全部项目。`); return; }
-    try { await startResearch(corpusId, ids, task, question + (year ? `
-资料已按立项年 ${year} 选择。` : "")); }
-    catch (error) { setMessage((error as Error).message); }
-  }
   return <div className="mt-5 space-y-5" aria-label="项目归纳">
     {/* The library header switches views (query 2026-1013 2012); one is shown at a time. */}
     {!view ? <SceneHierarchy corpusId={corpusId} /> : null}
     {view === "timeline" ? <div aria-label="年度筛选" className="flex flex-wrap items-center gap-2">
       <select aria-label="立项年份" value={year} onChange={(e) => set("startYear", e.target.value)} className="rounded border border-[var(--hairline)] bg-[var(--canvas)] p-2 text-sm"><option value="">全部立项年份</option>{years.map((y) => <option key={y}>{y}</option>)}</select>
       {year ? <Button size="sm" variant="ghost" onClick={() => setSearch((old) => { const next = new URLSearchParams(old); ["startYear", "project"].forEach((key) => next.delete(key)); return next; })}>清除筛选</Button> : null}
-      <span className="text-xs text-[var(--stone)]">本库已识别项目 {data.coverage.identified_projects} 个；点柱子在右侧查看当年资料</span>
+      <span className="text-xs text-[var(--stone)]">本库已识别项目 {data.coverage.identified_projects} 个；选择年份或点柱子，两图同时标出</span>
     </div> : null}
-    {/* query 2026-1013 1842: reports per year and funding scatter, no dimension filter; a bar picks a year. */}
+    {/* query 2026-1013 1842 / 2026-1016 0919: projects per year beside funding, linked by year. Asking about
+        the library moved to the chat in 资料文件, and the related-project list was removed. */}
     {view === "timeline" ? <YearDistribution corpusId={corpusId} year={year} onYear={(value) => set("startYear", value)} /> : null}
     {view === "relations" ? <ProjectGraph corpusId={corpusId} projects={identified} title={corpusName ?? ""} onOpen={(id) => set("project", id)} /> : null}
     {view === "timeline" ? <>
-    <section className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><h3 className="mb-3 font-semibold">{focus ? "分析当前项目：" + focus.title : year ? "选择一个问题，分析当前筛选项目" : "选择一个问题，分析本资料库"}</h3><div className="flex flex-wrap gap-2">{PURPOSES.map(([question, task]) => <Button key={task} size="sm" variant="ghost" disabled={sessionBusy} onClick={() => void analyze(question, task)}>{question}</Button>)}</div>{message ? <p role="alert" className="mt-3 text-sm">{message}</p> : null}</section>
-    <section><h3 className="mb-3 font-semibold">关联项目 · {visible.length}</h3><div className="grid gap-3 md:grid-cols-2">{visible.slice(0, projectLimit).map((project) => <button key={project.project_id} type="button" onClick={() => set("project", project.project_id)}
-      className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-left hover:border-[var(--primary)]"><b className="text-sm">{project.title}</b><p className="mt-2 text-xs text-[var(--steel)]">{project.number} · {project.start_year ?? "年份待核对"} · {project.files.length} 份报告</p></button>)}</div></section>
-    {visible.length > projectLimit ? <Button size="sm" variant="ghost" onClick={() => setProjectLimit((value) => value + 24)}>继续查看项目（已显示 {projectLimit} / {visible.length}）</Button> : null}
     {data.coverage.pending_identity_records ? <details className="rounded-xl border border-[var(--hairline)] p-4"><summary className="cursor-pointer text-sm">身份待核对的资料 · {data.coverage.pending_identity_records}</summary>{data.projects.filter((p) => p.identity_status === "pending").map((p) => <button key={p.project_id} className="my-2 block text-left text-sm text-[var(--primary)]" onClick={() => openPreview(p.files[0].document, null, corpusId)}>{p.title} · {p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"} · 查看原文</button>)}</details> : null}
     </> : null}
   </div>;

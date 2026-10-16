@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router";
+import { Navigate, useNavigate, useParams, useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../auth";
 import { fetchArtifacts } from "../api";
@@ -51,8 +51,8 @@ export function Overview() {
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
     return value;
   }, { replace: true });
-  const navigate = useNavigate();
-  const openDomain = (id: string) => void navigate(`/overview/domains?domain=${encodeURIComponent(id)}`);
+  // A leader's 资料库建设 is the top of 首页 (query 2026-1016); 概览 keeps 领域分析 for them.
+  if (!admin && area === "build") return <Navigate to="/home" replace />;
   return <main className="min-h-0 flex-1 overflow-y-auto">
     {area === "domains" ? <div className="sticky top-0 z-10 flex flex-wrap items-center gap-3 border-b border-[var(--hairline)] bg-[var(--canvas)] px-5 py-2.5">
       <label className="flex items-center gap-2 text-[13px] text-[var(--steel)]">领域
@@ -68,9 +68,9 @@ export function Overview() {
       </label>
     </div> : null}
     {area === "build" ? <>
-      {admin ? <Work /> : null}
-      {/* A leader opens the domain in 领域分析; an administrator previews the library on the right. */}
-      <LeaderConstruction maintenance={admin} onOpen={(id) => admin ? showInspector({ kind: "corpus", corpusId: id }) : openDomain(id)} />
+      {/* Only administrators reach this area; a library previews on the right. */}
+      <Work />
+      <LeaderConstruction maintenance onOpen={(id) => showInspector({ kind: "corpus", corpusId: id })} />
     </>
       : !current ? <p className="p-8 text-sm text-[var(--steel)]">还没有可浏览的领域资料。</p>
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />

@@ -38,7 +38,8 @@ export function CorpusFiles({
   type UploadState = "waiting" | "uploading" | "indexed" | "parse-error" | "upload-error" | "stopped";
   type UploadItem = { file: File; path: string; state: UploadState; detail?: string };
   const client = useQueryClient();
-  const canEdit = useAuth().role === "admin";
+  // Any account adds, renames and deletes files (query 2026-1016 0919); the folder path on disk is the administrator's.
+  const showPath = useAuth().role === "admin";
   const result = useQuery({ queryKey: ["library", corpusId, "files"],
     queryFn: ({ signal }) => fetchCorpusFiles(corpusId, signal), enabled: connected });
   const listing = result.data;
@@ -184,12 +185,12 @@ export function CorpusFiles({
         {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[#fff7e6] px-[10px] py-[8px] text-[11.5px] text-[#805900]">
           在知识库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
-        {canEdit && listing?.source_dir ? <details className="break-all text-[11.5px] text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
+        {showPath && listing?.source_dir ? <details className="break-all text-[11.5px] text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
           本地资料目录：<code>{listing.source_dir}</code>
           <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
         </p></details> : null}
-        {/* Adding, renaming and deleting files is library maintenance (administrators only). */}
-        {canEdit ? <>
+        {/* Every account adds, renames and deletes files (query 2026-1016 0919). */}
+        <>
         <div className={`rounded-xl border-2 border-dashed p-4 transition-colors ${dragging ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface-soft)]"}`}
           onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
           onDrop={(e) => { e.preventDefault(); setDragging(false);
@@ -230,7 +231,7 @@ export function CorpusFiles({
           </p>
           {busy ? <button type="button" className="mt-[6px] text-[11.5px] text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
         </div>
-        </> : null}
+        </>
         {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-[11.5px]">
           {uploads.map((item) => <li key={item.path} className="flex gap-[8px]">
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>
@@ -319,7 +320,7 @@ export function CorpusFiles({
                   </span>
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
-                  {canEdit && status === "error" ? (
+                  {status === "error" ? (
                     <button
                       type="button"
                       disabled={busy || !connected}
@@ -329,7 +330,7 @@ export function CorpusFiles({
                       重试本库待处理项
                     </button>
                   ) : null}
-                  {canEdit ? <>
+                  <>
                   <button
                     type="button"
                     aria-label={`重命名 ${file.rel_path}`}
@@ -354,7 +355,7 @@ export function CorpusFiles({
                   >
                     <Icon name="trash" size={12} />
                   </button>
-                  </> : null}
+                  </>
                 </>
               )}
             </li>

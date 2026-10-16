@@ -33,12 +33,13 @@ Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
-# Library maintenance is the administrator's: creating, renaming, deleting and re-linking libraries,
-# their files, imports, extraction and generated structure, and the groups. Topic summaries are analysis.
-# Shared analysis tasks, their prompt assets and review templates are maintained by administrators
-# too (节点审查 D2); a review run only reads a template. Report templates stay open: 情报分析 lets
-# anyone save their own.
-ADMIN_WRITES = re.compile(r"^/api/(corpora(?!/[^/]+/topic-summary$)(/.*)?|corpus-groups(/.*)?"
+# Libraries are everyone's to keep (query 2026-1016 0919): any account may create, rename, describe,
+# group and delete libraries and add, rename, delete and re-import their files. What stays with the
+# administrator is the model-heavy regeneration of a library's structure (four-facet extraction, topic
+# merges, lineage, hierarchy) and re-linking its folder on disk. Shared analysis tasks, their prompt
+# assets and review templates are maintained by administrators too (节点审查 D2); a review run only
+# reads a template. Report templates stay open: 情报分析 lets anyone save their own.
+ADMIN_WRITES = re.compile(r"^/api/(corpora/[^/]+/(reassociate|target|topics(/.*)?|lineage|hierarchy)"
                           r"|tasks/custom(/.*)?|prompt-skills(/.*)?|review/(rules|guidelines)(/.*)?)$")
 # The signed-in account for this request, so stores can record who created a report or review
 # (节点审查 Q2). It records authorship only; what each account may see is not separated yet.
@@ -239,7 +240,7 @@ def install_auth(app, directory):
                 # Leaders work like users in the workbench (query 2026-1013 1842); maintenance stays admin's.
                 if request.method not in SAFE:
                     if user[1] != "admin" and ADMIN_WRITES.match(path):
-                        return JSONResponse({"detail": "资料库与模板维护需要管理员账户"}, status_code=403)
+                        return JSONResponse({"detail": "资料库结构重新生成与共享模板维护需要管理员账户"}, status_code=403)
         return await call_next(request)
 
     def admin(request: Request):

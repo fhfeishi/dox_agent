@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link, useNavigate } from "react-router";
 
 export type LibraryOverview = {
   corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
@@ -18,9 +19,11 @@ const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh
  * 资料库建设 (query 2026-1013 1637): what each library holds, with every number's base stated next to
  * it. A leader sees the domains, their projects, years and where the projects concentrate; the
  * administrator also sees how far each library is organised (节点审查 D5:整理进度 is maintenance).
- * Choosing a library opens its domain analysis.
+ * Choosing a library opens its domain analysis. For a leader this is the top of 首页 (query 2026-1016:
+ * 首页 and 概览 · 资料库建设 merged); the administrator's maintenance view stays in 概览.
  */
 export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (corpusId: string) => void; maintenance?: boolean }) {
+  const navigate = useNavigate();
   const result = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
     if (!response.ok) throw new Error("资料库概况暂不可读");
@@ -34,7 +37,6 @@ export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (c
   const funded = sum((r) => r.funding.projects);
   const years = rows.flatMap((r) => r.start_years);
   const kpis: [string, string, string][] = [
-    ...(!maintenance ? [["资料库", String(rows.length), "有已入库资料的资料库"] as [string, string, string]] : []),
     ...(maintenance ? [["资料", `${sum((r) => r.files)} 份`, "当前文件，未跨库去重"] as [string, string, string]] : []),
     ...(!maintenance ? [["项目", `${projects} 个`, years.length ? `立项 ${Math.min(...years)}–${Math.max(...years)} 年` : "立项年份待核对"] as [string, string, string]] : []),
     ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出直接经费`],
@@ -44,9 +46,15 @@ export function LeaderConstruction({ onOpen, maintenance = false }: { onOpen: (c
     <header className={maintenance ? "" : "overview-hero"}>
       <p className={maintenance ? "text-xs text-[var(--steel)]" : "text-xs text-white/70"}>{maintenance ? "资料覆盖与归纳状态" : "研究版图 · 资料库建设"}</p>
       <h1 className="mt-2 text-2xl font-semibold">{maintenance ? "资料库建设情况" : "从领域分布，看研究积累"}</h1>
-      {!maintenance ? <p className="mt-3 text-sm leading-6 text-white/75">查看各领域的项目覆盖、立项时间和应用方向，选择领域继续分析。</p> : null}
+      {!maintenance ? <>
+        <p className="mt-3 text-sm leading-6 text-white/75">查看各领域的项目覆盖、立项时间和应用方向，选择领域继续分析；分析报告与周期总结在“成果”中。</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link to="/library" className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-[#182c46]">浏览资料库</Link>
+          <button type="button" onClick={() => navigate("/results")} className="rounded-lg border border-white/40 px-4 py-2 text-sm text-white hover:bg-white/10">查看成果</button>
+        </div>
+      </> : null}
     </header>
-    <section aria-label="总体数字" className={`grid gap-2 sm:grid-cols-2 ${maintenance ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
+    <section aria-label="总体数字" className="grid gap-2 sm:grid-cols-2">
       {kpis.map(([title, value, note]) => <div key={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
         <p className="text-[13px] text-[var(--steel)]">{title}</p><p className="my-1 text-2xl font-semibold">{value}</p><p className="text-xs leading-5 text-[var(--stone)]">{note}</p>
       </div>)}

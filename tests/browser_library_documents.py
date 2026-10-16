@@ -67,6 +67,14 @@ async def main():
                 assert "/documents" in page.url and "/chat" not in page.url
                 assert payloads[-1]["corpus_ids"] == [cid]
                 assert len(payloads[-1]["allowed_doc_ids"]) == 2
+                # With nothing ticked the chat asks the whole library; its starters carry their task (query 2026-1016 0919).
+                await chat.get_by_role("button",name="新对话").click()
+                await chat.get_by_role("button",name="清空",exact=True).click()
+                await expect(chat).to_contain_text("范围 · 整个资料库")
+                await chat.get_by_role("button",name="比较这些项目的数据、方法和已取得成果。").click()
+                await expect(chat).to_contain_text("在整个资料库中")
+                await expect(chat.get_by_text("量子传感的光学方法见所选资料")).to_have_count(1)
+                assert payloads[-1]["allowed_doc_ids"] is None and payloads[-1]["task_id"] == "task2"
                 shots=Path(".logsdev/verification/query-20261015-1142");shots.mkdir(parents=True,exist_ok=True)
                 await page.screenshot(path=str(shots/"files-chat.png"),full_page=True)
                 await page.set_viewport_size({"width":390,"height":844})
@@ -83,6 +91,13 @@ async def main():
                 # 年度分布与资料文件、技术研判、项目关系并列（query 2026-1015 1714）。
                 await page.get_by_role("button",name="年度分布",exact=True).click()
                 await expect(page.get_by_label("技术研判视角")).to_have_count(0)
+                # Projects per year beside funding; the question block and related projects are gone.
+                await expect(page.get_by_role("region",name="年度分布-项目数量")).to_be_visible()
+                await expect(page.get_by_role("button",name="2021 年：2 个项目，查看清单",exact=True)).to_be_visible()
+                await expect(page.get_by_text("选择一个问题",exact=False)).to_have_count(0)
+                await expect(page.get_by_role("heading",name=re.compile("^关联项目"))).to_have_count(0)
+                await page.get_by_role("button",name="2021 年：2 个项目，查看清单",exact=True).hover()
+                await expect(page.get_by_role("status").filter(has_text="2021 年")).to_contain_text("2 个项目立项")
                 await expect(page.get_by_role("button",name="2021 年已知批准资助金额合计 300 万元，2 个项目",exact=True)).to_be_visible()
                 await page.get_by_label("金额口径").select_option("direct")
                 await expect(page.get_by_role("button",name="2021 年已知直接经费合计 30 万元，2 个项目",exact=True)).to_be_visible()
@@ -91,13 +106,13 @@ async def main():
                 await page.request.post(origin+"/api/auth/logout")
                 await page.request.post(origin+"/api/auth/login",data={"username":"owner","password":"123456"})
                 await page.goto(origin+"/home")
-                await expect(page.get_by_role("heading",name="资料与研究工作台")).to_be_visible()
+                # 领导首页与“概览·资料库建设”合并（query 2026-1016）。
+                await expect(page.get_by_role("heading",name="从领域分布，看研究积累")).to_be_visible()
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("region",name="最近报告",exact=True)).to_have_count(0)
-                await page.get_by_role("button",name="概览 ▾",exact=True).click()
-                await expect(page.get_by_role("menuitem",name="近期工作",exact=True)).to_have_count(0)
-                await page.keyboard.press("Escape")
+                await expect(page.get_by_role("button",name="概览 ▾",exact=True)).to_have_count(0)
+                await expect(page.get_by_role("navigation",name="主导航").get_by_role("link",name="领域分析",exact=True)).to_be_visible()
                 await page.get_by_role("button",name="资料库",exact=True).click()
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
@@ -110,6 +125,7 @@ async def main():
                 shots.mkdir(parents=True, exist_ok=True)
                 await page.set_viewport_size({"width":1440,"height":1000})
                 await page.goto(origin+"/overview/build")
+                await expect(page).to_have_url(re.compile(r"/home$"))
                 await expect(page.get_by_role("heading",name="从领域分布，看研究积累")).to_be_visible()
                 await expect(page.get_by_role("region",name="领域分布").get_by_role("button")).to_have_count(1)
                 guide=page.get_by_role("button",name="知道了")
@@ -143,6 +159,13 @@ async def main():
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("region",name="开始工作").get_by_role("link")).to_have_count(4)
+                # Users keep libraries too (query 2026-1016 0919); regenerating structure stays the administrator's.
+                created = await page.request.post(origin+"/api/corpora",data={"name":"用户资料库"})
+                assert created.status == 201, created.status
+                assert (await page.request.post(origin+f"/api/corpora/{quote((await created.json())['id'])}/lineage",data={})).status == 403
+                await page.goto(origin+"/library")
+                await expect(page.get_by_role("button",name="新建资料库")).to_be_visible()
+                await page.goto(origin+"/home")
                 await page.screenshot(path=str(shots/"user.png"))
                 await page.set_viewport_size({"width":390,"height":844})
                 assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth+1")

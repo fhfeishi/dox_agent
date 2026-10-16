@@ -130,10 +130,9 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-[12.5px] leading-[1.5] outline-none focus:border-[var(--primary)]" />
           <Button size="sm" disabled={busy} onClick={() => void run(async () => { await setCorpusDescription(corpus.id, description.trim()); setEditingDescription(false); })}>保存</Button>
           <Button size="sm" variant="ghost" onClick={() => { setEditingDescription(false); setDescription(corpus.description ?? ""); }}>取消</Button>
-        </div> : admin ? <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
+        </div> : <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
           className="mt-[4px] block max-w-[900px] text-left text-[12.5px] leading-[1.6] text-[var(--steel)] hover:text-[var(--ink)]">
-          {corpus.description || "添加说明：这个资料库收录什么资料"}</button>
-          : corpus.description ? <p className="mt-[4px] max-w-[900px] text-[12.5px] leading-[1.6] text-[var(--steel)]">{corpus.description}</p> : null}
+          {corpus.description || "添加说明：这个资料库收录什么资料"}</button>}
         {notice ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{notice}</p> : null}
       </header>
 
@@ -188,7 +187,6 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
 }) {
   const { corpusIds, setSearchCorpusIds, runCorpusIngest } = useApp();
   const groups = useGroups();
-  const admin = useAuth().role === "admin";
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -205,7 +203,7 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
     <Button size="sm" variant="outline" onClick={() => setOpen(!open)}>管理 ▾</Button>
     {open ? <div role="menu" aria-label="管理资料库" className="absolute top-[calc(100%+6px)] right-0 z-[60] w-[220px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
       {!corpus.missing ? <>
-        {admin ? <>
+        <>
         <button type="button" role="menuitem" className={item} onClick={pick(onRename)}>重命名</button>
         <button type="button" role="menuitem" className={item} onClick={pick(onDescribe)}>编辑说明</button>
         {groups ? <label className="flex items-center gap-2 px-3 py-1.5 text-[13px]">分组
@@ -214,12 +212,12 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
             <option value="">未分组</option>{groups.groups.map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select></label> : null}
         <div className="my-1 border-t border-[var(--hairline)]" />
-        </> : null}
+        </>
         {isActive ? <button type="button" role="menuitem" className={item} disabled={corpusIds.length <= 1}
           onClick={pick(() => setSearchCorpusIds(corpusIds.filter((id) => id !== corpus.id)))}>从当前对话移除</button>
           : <button type="button" role="menuitem" className={item} disabled={corpusIds.length >= 6} onClick={pick(() => setSearchCorpusIds([...corpusIds, corpus.id]))}>加入当前对话</button>}
         {!(corpusIds.length === 1 && isActive) ? <button type="button" role="menuitem" className={item} onClick={pick(() => setSearchCorpusIds([corpus.id]))}>当前对话只用此库</button> : null}
-        {admin ? <>
+        <>
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => void runCorpusIngest(corpus.id))}>刷新本库</button>
         <div className="my-1 border-t border-[var(--hairline)]" />
         <button type="button" role="menuitem" className={item} disabled={busy} onClick={pick(() => {
@@ -228,8 +226,8 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
         <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
           if (window.confirm(`删除资料库「${corpus.name}」及其源文件和索引？此操作不可撤销。`)) void run(async () => { await deleteCorpus(corpus.id, true); onClose(); });
         })}>删除资料库及文件</button>
-        </> : null}
-      </> : !admin ? null : <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
+        </>
+      </> : <button type="button" role="menuitem" className={item + " text-[var(--red)]"} disabled={busy} onClick={pick(() => {
         if (window.confirm(`仅移除「${corpus.name}」的失效登记？不会删除磁盘文件。`)) void run(async () => { await deleteCorpus(corpus.id); onClose(); });
       })}>移除失效记录</button>}
     </div> : null}

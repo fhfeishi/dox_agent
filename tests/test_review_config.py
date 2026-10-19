@@ -22,7 +22,10 @@ REVIEW_VARS = (
 @pytest.fixture
 def env_file(tmp_path, monkeypatch):
     """Point the review client at a throwaway .env; never touches the real one."""
-    for name in REVIEW_VARS + ("MODEL_API_KEY", "MODEL_BASE_URL", "MODEL_NAME"):
+    # Settings also accepts the DEEPSEEK_* aliases; an exported one (common in a developer shell) would
+    # beat the throwaway .env and leak the machine's real key into the assertions.
+    for name in REVIEW_VARS + ("MODEL_API_KEY", "MODEL_BASE_URL", "MODEL_NAME",
+                               "DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL", "DEEPSEEK_MODEL"):
         monkeypatch.delenv(name, raising=False)
     path = tmp_path / ".env"
 

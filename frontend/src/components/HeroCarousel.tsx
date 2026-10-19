@@ -16,9 +16,14 @@ const OTHER = "#8597ab";
 type Group = { key: string; name: string; color: string; ids: string[] };
 
 function groups(rows: LibraryOverview[]): Group[] {
-  const named = rows.slice(0, HUES.length).map((r, i) => ({ key: r.corpus_id, name: short(r.name), color: HUES[i], ids: [r.corpus_id] }));
-  const rest = rows.slice(HUES.length);
-  return rest.length ? [...named, { key: "other", name: `其他领域（${rest.length} 个）`, color: OTHER, ids: rest.map((r) => r.corpus_id) }] : named;
+  // Card B4: hues follow project count with ties broken by library id, computed once for all slides, so
+  // re-sorting a slide (e.g. by funding) or equal counts never repaint a library. Binding hues to ids
+  // alphabetically was tried and rejected: it put the palette's weakest pair (orange/yellow) on the two
+  // largest libraries; by size, the two dominant ones get the clearest pair (blue/orange).
+  const ranked = [...rows].sort((a, b) => b.projects - a.projects || a.corpus_id.localeCompare(b.corpus_id));
+  const named = ranked.slice(0, HUES.length).map((r, i) => ({ key: r.corpus_id, name: short(r.name), color: HUES[i], ids: [r.corpus_id] }));
+  const rest = ranked.slice(HUES.length);
+  return rest.length ? [...named, { key: "other", name: `其他领域（${rest.map((r) => short(r.name)).join("、")}）`, color: OTHER, ids: rest.map((r) => r.corpus_id) }] : named;
 }
 
 /** Horizontal bars, one per library, value written at the end of each bar. */

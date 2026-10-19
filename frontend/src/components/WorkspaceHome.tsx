@@ -24,7 +24,7 @@ import { LeaderHome } from "./LeaderHome";
 const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
   { to: "/library", title: "资料查阅", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "#4f6554" },
   { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势，形成有出处的报告。", icon: "tasks", accent: "#65569b" },
-  { to: "/review/formal", title: "审查申请书", text: "上传材料，按模板核对规范或开展技术评议。", icon: "review", accent: "#356d8c" },
+  { to: "/review/formal", title: "资料审查", text: "上传材料，按模板核对规范或开展技术评议。", icon: "review", accent: "#356d8c" },
   { to: "/intelligence", title: "情报分析", text: "结合外部信息与库内资料，分析背景与可行性。", icon: "forecast", accent: "#997346" },
 ];
 

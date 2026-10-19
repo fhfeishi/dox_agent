@@ -19,8 +19,7 @@ from tests.browser_artifacts_live import start_server
 ROOT = Path(__file__).resolve().parents[1]
 SHOTS = ROOT / ".logsdev/verification/query-20261019-2021"
 # A writable copy of the knowledge metadata: the overview caches into the corpus database, so the
-# real .knowledge must not be used directly. A few source files per library keep the counts and the
-# library picker non-empty without copying several gigabytes of material.
+# real .knowledge must not be used directly.
 SNAPSHOT = Path("/tmp/dox-shots-corpora")
 
 
@@ -52,9 +51,10 @@ def snapshot_corpora():
         for name in ("hierarchy.json", "lineage.json", "lineage_frame.json", "lineage_blanks.json"):
             if (src / name).exists():
                 shutil.copy2(src / name, dst / name)
-        files = [f for f in sorted((src / "source").rglob("*")) if f.is_file() and f.stat().st_size < 400_000][:6]
-        for f in files:
-            shutil.copy2(f, dst / "source" / f.name)
+        # The whole source tree with its timestamps: a report whose file is missing counts as
+        # unavailable and loses its funding, which left the funding slides empty (~1.7 GB, seconds).
+        if (src / "source").is_dir():
+            shutil.copytree(src / "source", dst / "source", dirs_exist_ok=True)
 
 
 async def shot(page, name):

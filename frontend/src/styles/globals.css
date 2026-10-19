@@ -210,6 +210,12 @@
 }
 /* Leader home banner: each slide fades in (query 2026-1016 1613); reduced motion removes it below. */
 .hero-slide { animation: hero-in 420ms ease both; }
+.hero-bar { transform-origin: left center; animation: hero-grow 620ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-col { transform-box: fill-box; transform-origin: 50% 100%; animation: hero-rise 620ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-timer { animation: hero-timer 7000ms linear both; }
+@keyframes hero-grow { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes hero-rise { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes hero-timer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes hero-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

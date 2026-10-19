@@ -53,7 +53,7 @@ async def main():
                 await page.get_by_role("dialog", name="首页 操作指南").get_by_role("button", name="知道了").click()
                 # 我的工作 is part of 首页 (user's choice, 2026-10-14).
                 await expect(page.get_by_role("region", name="我的工作")).to_be_visible()
-                await page.get_by_role("link", name=re.compile("审查申请书")).click()
+                await page.get_by_role("link", name=re.compile("资料审查")).click()
                 await page.get_by_role("dialog", name="资料审查 操作指南").get_by_role("button", name="知道了").click()
                 # The top bar keeps the same entries in the same places on every page (query 2026-1014 1516).
                 assert await navigation.locator("button").all_text_contents() == nav_before

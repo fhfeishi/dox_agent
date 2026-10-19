@@ -4,10 +4,12 @@ import asyncio
 import hashlib
 import json
 import os
+import shlex
 import shutil
 import signal
 import subprocess
-from pathlib import Path
+import unicodedata
+from pathlib import Path, PureWindowsPath
 from urllib.parse import urlsplit
 
 import httpx
@@ -117,11 +119,48 @@ def read_mineru_blocks(out_dir: Path) -> list[RawBlock]:
     return blocks
 
 
+# F1: MINERU_CMD no longer runs through a shell; these template tokens only made sense there.
+_SHELL_TOKENS = {"|", "||", "&", "&&", ";", "<", ">", ">>", "2>", "2>&1"}
+# cmd.exe re-parses the arguments of .bat/.cmd programs even without shell=True.
+_CMD_META = set('&|<>^%!"()')
+# Rejected in uploaded names: shell/cmd quoting and substitution, plus characters Windows forbids.
+UNSAFE_NAME_CHARS = set('"`$<>|*?:\\')
+
+
+def unsafe_name(name: str) -> bool:
+    """F1: True when an uploaded file or folder name has characters we refuse to store."""
+    return any(char in UNSAFE_NAME_CHARS or unicodedata.category(char) == "Cc" for char in name)
+
+
+def mineru_args(template: str, pdf: Path, out: Path, *, search_path: str | None = None,
+                windows: bool | None = None) -> list[str]:
+    """F1: split MINERU_CMD into argv first, then fill ``{pdf}``/``{out}`` into single arguments.
+
+    Quotes in the template (the default wraps ``"{pdf}"``) only group words. ``~`` and
+    environment variables in the template are still expanded; pipes, ``&&`` or redirection are not.
+    """
+    windows = os.name == "nt" if windows is None else windows
+    # Windows: non-POSIX split keeps backslashes in paths such as C:\tools\mineru-kit.exe.
+    tokens = shlex.split(template, posix=not windows)
+    if windows:
+        tokens = [token[1:-1] if len(token) >= 2 and token[0] == token[-1] == '"' else token for token in tokens]
+    if not tokens:
+        raise ValueError("MINERU_CMD 为空")
+    if any(token in _SHELL_TOKENS for token in tokens):
+        raise ValueError("MINERU_CMD 不经过 shell，不能用管道、重定向或 && / ;，请写成一条命令")
+    values = {"pdf": str(pdf), "out": str(out)}
+    args = [os.path.expanduser(os.path.expandvars(token)).format(**values) for token in tokens]
+    args[0] = shutil.which(args[0], path=search_path) or args[0]
+    program = PureWindowsPath(args[0]) if windows else Path(args[0])
+    if windows and program.suffix.lower() in {".bat", ".cmd"} and any(_CMD_META & set(arg) for arg in args[1:]):
+        raise ValueError("MINERU_CMD 指向 .bat/.cmd，而文件路径含 cmd 特殊字符，已拒绝执行；请改名或改用 .exe")
+    return args
+
+
 def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
     """K13: run mineru into ``out_dir`` and return ``(markdown, per-page text)``."""
     shutil.rmtree(out_dir, ignore_errors=True)
     out_dir.mkdir(parents=True, exist_ok=True)
-    command = settings.mineru_cmd.format(pdf=str(path), out=str(out_dir))
     environment = {**os.environ}
     # B1: `mineru-kit` lives in the running venv's bin dir; make it resolvable even when
     # launch.sh runs uvicorn without activating the venv.
@@ -130,8 +169,10 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
     environment["PATH"] = str(Path(sys.executable).parent) + os.pathsep + environment.get("PATH", "")
     if settings.mineru_home:
         environment["MINERU_HOME"] = str(settings.mineru_home)
+    args = mineru_args(settings.mineru_cmd, path, out_dir, search_path=environment["PATH"])
     try:
-        process = subprocess.Popen(command, shell=True, env=environment, stdout=subprocess.PIPE,
+        # F1: no shell, so file names stay literal argv entries and are never parsed as commands.
+        process = subprocess.Popen(args, env=environment, stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT, start_new_session=True)
     except OSError as exc:
         raise ValueError("无法启动 mineru：" + str(exc)) from exc
@@ -150,10 +191,10 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
 
 
 def _kill_process_group(process) -> None:
-    """Kill the whole mineru process tree (``shell=True`` otherwise orphans grandchildren)."""
+    """Kill the whole mineru process tree (mineru may spawn workers that would be orphaned)."""
     try:
         os.killpg(os.getpgid(process.pid), signal.SIGKILL)
-    except (ProcessLookupError, PermissionError, OSError):
+    except (ProcessLookupError, PermissionError, OSError, AttributeError):  # AttributeError: no killpg on Windows
         process.kill()
     try:
         process.wait(timeout=10)

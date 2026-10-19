@@ -66,7 +66,7 @@ from .hierarchy import read as read_hierarchy
 from .hierarchy import synthesize as synthesize_hierarchy
 from .intelligence import router as intelligence_router
 from .knowledge import Knowledge, KnowledgeGroup
-from .parsers import collect_sources, import_defaults, parse_web
+from .parsers import collect_sources, import_defaults, parse_web, unsafe_name
 from .project_index import ProjectIndex
 from .project_similarity import ProjectSimilarity
 from .prompt_skills import (
@@ -1350,6 +1350,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         name = Path(name or "").name.strip()
         if not name or name.startswith(".") or name in {".", ".."}:
             raise HTTPException(422, "文件名非法")
+        if unsafe_name(name):  # F1
+            raise HTTPException(422, '文件名含不允许的字符：" ` $ < > | * ? : \\ 或控制字符')
         if Path(name).suffix.lower() not in SOURCE_SUFFIXES:
             raise HTTPException(415, "仅支持 md/markdown/txt/pdf/docx")
         return name
@@ -1436,7 +1438,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         name = safe_file_name(upload.filename or "")
         if relative_path is not None:
             parts = relative_path.replace("\\", "/").split("/")
-            if any(not part or part in (".", "..") or part.startswith(".") or ":" in part for part in parts):
+            if any(not part or part in (".", "..") or part.startswith(".") or unsafe_name(part) for part in parts):
                 raise HTTPException(422, "文件夹路径非法")
             if parts[-1] != name:
                 raise HTTPException(422, "文件名与文件夹路径不一致")

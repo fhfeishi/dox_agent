@@ -16,6 +16,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from tests.browser_support import login
 
 
 def start_server(app):
@@ -46,7 +47,7 @@ async def main():
         for name in ("alpha", "beta"):
             (root / ".knowledge" / name).mkdir(parents=True)
         settings = Settings(_env_file=None, corpora_root=root / ".knowledge", state_dir=root / "state",
-                            firecrawl_api_key=SecretStr("offline"))
+                            model_api_key=SecretStr("offline"), firecrawl_api_key=SecretStr("offline"))
         store = Knowledge(root / ".knowledge" / "alpha" / "datadb" / "knowledge.sqlite3", settings=settings)
         store.put(Document(title="本地资料", origin="local", kind="text", parser="text",
                            pages=[Page(number=1, text="本地资料")]))
@@ -73,7 +74,7 @@ async def main():
                 page.on("pageerror", lambda error: errors.append(str(error)))
 
                 # Given two URLs, when both are previewed, neither replaces the other.
-                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
+                await login(page, origin)
                 await page.goto(origin + "/chat")
                 await page.get_by_title("任务 / 附件").click()
                 await page.get_by_role("button", name=re.compile("指定网址")).click()

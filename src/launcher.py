@@ -89,6 +89,31 @@ def frontend_signature(frontend: Path) -> str:
     return digest.hexdigest()
 
 
+def model_check() -> int:
+    """One real request to the configured model; prints endpoint, model name and proxy mode."""
+    sys.path.insert(0, str(Path.cwd()))
+    from src.agent.config import get_settings
+    from src.agent.models import check_model
+
+    settings = get_settings()
+    mode = "走系统代理" if settings.model_use_proxy else "直连，不使用代理"
+    print(f"模型：{settings.model_name} @ {settings.model_base_url}（{mode}）")
+    result = check_model(settings)
+    if result.get("ok"):
+        print(f"模型连接正常（{result.get('latency_ms')} ms）")
+        return 0
+    # Everything on stdout, so the lines stay in order in the terminal.
+    print(f"模型连接失败：{result.get('error')}")
+    proxy = any(os.environ.get(name) for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"))
+    if not settings.model_use_proxy and proxy:
+        # A failed direct connection with a system proxy present is the usual WSL case: say so plainly.
+        if check_model(settings.model_copy(update={"model_use_proxy": True})).get("ok"):
+            print("经系统代理可以连通：请在 .env 中设 MODEL_USE_PROXY=true 后重启。")
+            return 1
+    print("直连失败时，若本机须经代理上网，在 .env 设 MODEL_USE_PROXY=true；否则检查网络与 MODEL_BASE_URL。")
+    return 1
+
+
 def frontend(frontend: Path, action: str) -> int:
     """``check``: 0 when dist/ was built from the current sources, 1 when a build is needed. ``stamp``: record a finished build."""
     stamp = frontend / FRONTEND_STAMP
@@ -149,6 +174,7 @@ def serve(host: str, port: int, app: str = "src.main:app") -> int:
     marked interrupted when the service next starts.
     """
     import logging
+
     import uvicorn
 
     sys.path.insert(0, str(Path.cwd()))  # src.main is imported from the project root
@@ -171,6 +197,8 @@ if __name__ == "__main__":
         raise SystemExit(0 if os.environ.get("OPEN_BROWSER") == "0" or open_when_ready(url) else 1)
     if sys.argv[1] == "frontend":
         raise SystemExit(frontend(Path.cwd() / "frontend", sys.argv[2]))
+    if sys.argv[1] == "model":
+        raise SystemExit(model_check())
     if sys.argv[1] == "check":
         raise SystemExit(check_port(os.environ.get("HOST", "127.0.0.1"), int(os.environ.get("PORT", "8000"))))
     install(Path.cwd(), sys.argv[1])

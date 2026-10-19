@@ -87,6 +87,7 @@ def test_force_import_reparses_unchanged(tmp_path):
 
 def test_missing_or_unreadable_source_tree_never_prunes_existing_index(tmp_path, monkeypatch):
     import pytest
+
     import src.parsers as parsers
 
     source = tmp_path / "source"

@@ -72,10 +72,10 @@ class ProjectSimilarity:
             with sqlite3.connect(self.path) as db:
                 db.executemany("INSERT OR REPLACE INTO project_vectors VALUES (?,?,?,?,?)", [
                     (corpus, dimension, pid, digests[pid], np.asarray(vec, dtype=np.float32).tobytes())
-                    for pid, vec in zip(missing, fresh)])
+                    for pid, vec in zip(missing, fresh, strict=True)])
                 db.execute(f"DELETE FROM project_vectors WHERE corpus=? AND dim=? AND project NOT IN ({','.join('?' * len(texts))})",
                            (corpus, dimension, *texts))
-            for pid, vec in zip(missing, fresh):
+            for pid, vec in zip(missing, fresh, strict=True):
                 cached[pid] = (digests[pid], np.asarray(vec, dtype=np.float32).tobytes())
         return np.vstack([np.frombuffer(cached[pid][1], dtype=np.float32) for pid in texts])
 

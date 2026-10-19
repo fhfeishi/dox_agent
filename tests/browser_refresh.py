@@ -8,11 +8,13 @@ libraries with reasons. Reuses the built `frontend/dist` and mock APIs; no backe
 import asyncio
 import re
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
+
+from tests.browser_support import FrontendHandler
 
 
 def corpus(cid: str, name: str) -> dict:
@@ -24,7 +26,7 @@ def corpus(cid: str, name: str) -> dict:
 
 async def main():
     root = Path(__file__).resolve().parents[1]
-    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(FrontendHandler, directory=str(root / "frontend/dist")))
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     corpora = {cid: corpus(cid, f"{cid.upper()}库") for cid in ("a", "b", "c", "d")}
@@ -40,9 +42,6 @@ async def main():
             page.on("pageerror", lambda error: errors.append(str(error)))
 
             async def list_corpora(r):
-                # Once any ingest started, the pre-existing D job finishes on its own.
-                if ingest_requests:
-                    corpora["d"]["job"]["status"] = "done"
                 await r.fulfill(json=list(corpora.values()))
 
             async def ingest(r):
@@ -69,18 +68,19 @@ async def main():
             await page.route("**/api/workspace/sessions", lambda r: r.fulfill(json=[]))
             await page.route("**/api/workspace/sessions/*", lambda r: r.fulfill(json={**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
-            await page.goto(origin)
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
-            await page.get_by_role("button", name="知识库", exact=True).click()
-            await page.get_by_role("button", name="刷新并入库").click()
-            # Progress is observable per corpus, not a single opaque "refreshing" state.
-            await expect(page.get_by_text(re.compile(r"正在处理 .+（\d/4）"))).to_be_visible()
-            # One failing corpus does not stop the later ones, and failures are named with reasons.
-            await expect(page.get_by_text(re.compile(r"刷新完成：.*失败 2 项；.*B库（导入失败）.*C库（1 项解析失败）"))).to_be_visible(timeout=20000)
-            # D's already-running job is attached, never re-created.
-            assert ingest_requests == ["a", "b", "c"], ingest_requests
+            await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir":"/tmp/source", "files":[], "misplaced_files":[]}))
+            # Refresh is now explicitly per library; the old global-refresh action is gone.
+            for cid, message in (("a","最近刷新"),("b","刷新失败，现有索引保留"),("c","部分完成：1 项失败")):
+                await page.goto(origin + "/library/" + cid + "/documents")
+                await page.get_by_role("button",name="管理 ▾",exact=True).click()
+                await page.get_by_role("menuitem",name="刷新本库",exact=True).click()
+                await expect(page.get_by_role("status").filter(has_text=message)).to_be_visible()
+            await page.goto(origin + "/library/d/documents")
+            await page.get_by_role("button",name="管理 ▾",exact=True).click()
+            await expect(page.get_by_role("menuitem",name="刷新本库",exact=True)).to_be_disabled()
+            assert ingest_requests == ["a","b","c"], ingest_requests
             assert not errors, errors
-            print("PASS: refresh reports current corpus, continues after failure, lists failed libraries with reasons, attaches to a running job")
+            print("PASS: per-library refresh, failure and partial state, later libraries unaffected, running job cannot be restarted")
             await browser.close()
     finally:
         server.shutdown()

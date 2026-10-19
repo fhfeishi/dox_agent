@@ -32,3 +32,17 @@ is imported by `src/` or `tests/`.
 `tests/test_hygiene.py` checks that these do not come back: every module imports, every
 setting is read, every `.env.example` key is read, every declared dependency is imported, and
 no file except `src/main.py` is over 800 lines.
+
+## Q1 浏览器流程清理（2026-10-19）
+
+恢复基线为 0744bcc；使用 git show 0744bcc:tests/<文件名> 恢复单个脚本。本次不删除任何用户资料。
+
+| 删除脚本 | 原流程与理由 | 现行覆盖 |
+| --- | --- | --- |
+| browser_prompt_skills_live.py | Prompt/Skill 独立页面已取消，脚本依赖已删除的导航入口 | 资产接口契约仍由 pytest 检查；不表示恢复隐藏页面 |
+| browser_library.py | 旧库详情 Drawer、设置页 CRUD 和选库布局被原位资料管理替代 | browser_library_documents / browser_analysis_workspace；分组在 browser_artifacts_live |
+| browser_ui_shell.py | 旧左栏与底栏布局断言，当前顶栏架构已替代 | browser_review_simple 的稳定导航、角色、窄屏检查 |
+| browser_tasks.py | 功能开关时期的任务绑定旧入口，被先选资料的工作区替代 | browser_analysis_workspace / browser_task_templates |
+| browser_smoke.py | 依赖外部已运行 8011 端口，且使用旧设置入口 | check.sh full 启动临时服务；browser_export / browser_answer_controls |
+
+没有删除仍有效的原文预览、网络快照、分支和范围恢复等能力测试。它们尚需迁移的具体问题登记在 [Q1 盘点](upgrade-Q1-20261019.md)。

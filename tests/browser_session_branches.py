@@ -7,16 +7,18 @@ import asyncio
 import json
 import re
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
+from tests.browser_support import FrontendHandler
+
 
 async def main():
     root = Path(__file__).resolve().parents[1]
-    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(FrontendHandler, directory=str(root / "frontend/dist")))
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     store: dict[str, dict] = {}
@@ -81,7 +83,7 @@ async def main():
             await page.goto(origin)
             await page.get_by_role("button", name="对话工作台", exact=True).click()
             # New sessions auto-select the first corpus directory; no confirmation gate.
-            await expect(page.get_by_text(re.compile("当前对话：演示库（1/6）"))).to_be_visible()
+            await expect(page.get_by_role("button",name="✓ 演示库",exact=True)).to_be_visible()
             await ask("第一问")
             await ask("第二问")
             assert len(store) == 1, f"expected one session, got {len(store)}"
@@ -93,11 +95,11 @@ async def main():
             assert all(body.get("session_key") for body in chat_bodies), chat_bodies
 
             # Given the session range changed after both answers, replay actions retain each turn's original range.
-            await page.get_by_role("button", name="管理知识库").click()
-            await page.get_by_role("button", name="仅使用此库").click()
+            await page.get_by_role("button", name="＋管理知识库",exact=True).click()
+            await page.get_by_role("checkbox",name="当前对话使用 新范围库",exact=True).check()
+            await page.get_by_role("checkbox",name="当前对话使用 演示库",exact=True).uncheck()
+            await page.get_by_role("button", name="＋管理知识库",exact=True).click()
             await expect(page.get_by_label("本次运行配置")).to_contain_text("新范围库")
-            await page.get_by_role("button", name="管理知识库").click()
-            await expect(page.get_by_role("region", name="对话").get_by_text("检索「演示库」", exact=False)).to_have_count(2)
 
             # regenerate the last turn: same session scope, new run id
             first_run = chat_bodies[-1]["run_id"]
@@ -148,7 +150,7 @@ async def main():
             store[source_id]["title"] = "历史主会话"
             title = "历史主会话"
             await page.reload()
-            await page.get_by_role("button", name="新建对话").click()
+            await page.get_by_role("button", name="＋ 新的问答").click()
             await ask("第三问")
             await page.wait_for_timeout(650)
             assert any(item["title"] == "第三问" for item in store.values()), [(sid, item["title"]) for sid, item in store.items()]

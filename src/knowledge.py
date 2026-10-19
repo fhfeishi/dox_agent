@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import logging
 import re
 import sqlite3
 from datetime import UTC, datetime
@@ -59,7 +60,12 @@ class Knowledge:
             from .dense import DenseIndex
             # 方案 A: vector store is the corpus ``vectordb/`` sibling of ``datadb/`` (§10).
             directory = vectordb_dir or path.parent.parent / "vectordb"
-            self.dense = DenseIndex(directory, settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
+            try:
+                self.dense = DenseIndex(directory, settings.embedding_path, settings.embedding_device, settings.embedding_query_prompt)
+            except (ValueError, OSError) as exc:
+                # A path copied from another machine must not stop the service; BM25 still answers.
+                logging.getLogger(__name__).warning("向量模型不可用，检索退回 BM25：%s", exc)
+                self.dense = None
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
             db.execute("""CREATE TABLE IF NOT EXISTS docs (

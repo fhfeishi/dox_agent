@@ -56,7 +56,7 @@ def extract(doc,client=None,progress=lambda *a:None):
         allowed={s['source_id']:s for s in context_sources+batch}
         data={'sources':batch,'context_sources':context_sources,'primary_context':redact(primer),'document_kind':doc['kind']}
         accepted=[];valid=False;failure='引用或返回格式未通过校验'
-        for attempt in range(2):
+        for _attempt in range(2):
             try:result=client.ask('00_metadata',data)
             except ModelError as exc:
                 failure=str(exc);break

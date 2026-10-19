@@ -26,8 +26,9 @@ def env_files() -> tuple[Path, ...]:
 
 
 class Settings(BaseSettings):
+    # DeepSeek retired deepseek-chat / deepseek-reasoner on 2026-07-24; V4 names are the current ones.
     model_name: str = Field(
-        default="deepseek-chat", validation_alias=AliasChoices("MODEL_NAME", "DEEPSEEK_MODEL")
+        default="deepseek-v4-flash", validation_alias=AliasChoices("MODEL_NAME", "DEEPSEEK_MODEL")
     )
     model_base_url: str = Field(
         default="https://api.deepseek.com",
@@ -36,7 +37,8 @@ class Settings(BaseSettings):
     model_api_key: SecretStr | None = Field(
         default=None, validation_alias=AliasChoices("MODEL_API_KEY", "DEEPSEEK_API_KEY")
     )
-    # Model calls connect directly unless enabled here or in the settings panel (panel wins).
+    # Model calls connect directly; only an explicit MODEL_USE_PROXY=true uses the system proxy
+    # (HTTP(S)_PROXY). There is no settings-panel override.
     model_use_proxy: bool = False
     # §10: all local persistence lives under CORPORA_ROOT (default .knowledge); no data/ dir.
     # 语料根：其下每个直接子目录是一个自包含知识库（source/datadb/vectordb）。

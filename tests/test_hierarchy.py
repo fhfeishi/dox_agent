@@ -518,6 +518,7 @@ def test_lineage_and_outcome_list_stay_traceable(tmp_path, monkeypatch):
 def test_lineage_blanks_keep_only_nodes_whose_parent_exists(tmp_path):
     """Blank knowledge nodes (query 2026-1010 1642) attach under existing or earlier blank parents."""
     from types import SimpleNamespace
+
     from src import lineage
 
     categories = [{"name": "医学影像分析", "children": [{"name": "病变检测分割", "themes": [{"name": "语义分割", "items": ["a"]}]}]},

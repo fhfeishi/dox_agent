@@ -18,6 +18,7 @@ from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
 from tests.browser_custom_tasks_live import OfflineGraph, start_server
+from tests.browser_support import login
 
 
 async def main():
@@ -25,7 +26,7 @@ async def main():
         root = Path(directory)
         corpus = root / ".knowledge" / "fixture"
         corpus.mkdir(parents=True)
-        settings = Settings(_env_file=None, corpora_root=corpus.parent, state_dir=root / "state",
+        settings = Settings(_env_file=None, corpora_root=corpus.parent, state_dir=root / "state", user_dir=root / "usr",
                             model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
@@ -37,6 +38,7 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
+                await login(page, origin)
                 errors: list[str] = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
                 page.on("dialog", lambda dialog: asyncio.ensure_future(dialog.accept()))
@@ -64,6 +66,8 @@ async def main():
                 tasks = await (await page.request.get(f"{origin}/api/tasks")).json()
                 assert next(t for t in tasks if t["name"] == "技术研判（我的）")["outline"].endswith("- 可继续工作")
 
+                await inspector.get_by_role("button",name="关闭预览面板",exact=True).click()
+                await page.get_by_role("button",name="管理分析任务",exact=True).click()
                 # Cleanup: drafts are deleted, a published task is archived and can come back.
                 while await cards.filter(has_text="未发布草稿").count():
                     before = await cards.count()
@@ -79,7 +83,8 @@ async def main():
 
                 # Template library: edit a built-in outline, preview it, save as my draft, delete it.
                 library = page.get_by_role("region", name="报告模板库")
-                await expect(library.locator("article")).to_have_count(5)
+                # Analysis excludes the intelligence template (query 2026-1014 1820).
+                await expect(library.locator("article")).to_have_count(4)
                 await library.locator("article").filter(has_text="热点报告").get_by_role("button", name="修改").click()
                 sections = inspector.get_by_label("章节大纲")
                 await sections.fill(await sections.input_value() + "\n\n## 区域分布\n按地区统计。")
@@ -93,7 +98,8 @@ async def main():
 
                 # A report task picks its template from the library while editing.
                 await cards.filter(has_text="专项报告").get_by_role("button", name="修改").click()
-                await expect(inspector.get_by_label("报告模板").locator("option")).to_have_count(6)
+                await expect(inspector.get_by_label("报告模板").locator("option")).to_have_count(5)
+                await expect(inspector.get_by_label("报告模板").get_by_role("option",name=re.compile("情报"))).to_have_count(0)
                 assert not errors, errors
                 await browser.close()
         finally:

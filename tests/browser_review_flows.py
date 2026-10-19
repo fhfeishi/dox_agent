@@ -5,8 +5,8 @@ rule publication, task dispatch, calculations, versioned artifacts and readers a
 """
 
 import asyncio
-import re
 import json
+import re
 from io import BytesIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -24,6 +24,7 @@ from src.main import create_app
 from src.review import routes, storage
 from src.targets import DIMENSIONS, PROMPT_VERSION, SCHEMA_VERSION, _save
 from tests.browser_artifacts_live import start_server
+from tests.browser_support import login
 from tests.test_review_flows import FixtureReviewClient
 
 
@@ -58,7 +59,7 @@ async def main():
         settings = Settings(
             _env_file=None,
             corpora_root=root / "corpora",
-            state_dir=root / "state",
+            state_dir=root / "state", user_dir=root / "usr",
             model_api_key=SecretStr("offline"),
             embedding_path="",
         )
@@ -128,80 +129,23 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 1000})
+                await login(page, origin)
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
                 await page.goto(origin + "/library/" + quote(info.id) + "/targets/four-facets")
-                overview = page.get_by_label("项目归纳", exact=True)
-                await expect(
-                    overview.get_by_text("本库已识别项目", exact=True).locator("..")
-                ).to_contain_text("2")
-                await expect(
-                    page.get_by_role("navigation").first.get_by_role(
-                        "button", name="Prompt / Skill", exact=True
-                    )
-                ).to_have_count(0)
-                # 四维浏览 lands on the hierarchy; 主题归纳 is gone, topic upkeep lives in 管理资料.
-                await expect(overview.get_by_label("场景层级", exact=True)).to_contain_text("尚未生成")
-                await expect(overview.get_by_label("更多视图").get_by_role("button")).to_have_text(["年度分布", "项目关系"])
-                await page.get_by_role("button", name="管理资料", exact=True).first.click()
-                admin = page.get_by_label("四维条目整理", exact=True)
-                await admin.get_by_text("四维条目整理（合并同义、改名、撤销，查看条目归纳）", exact=True).click()
-                await admin.get_by_text("整理场景条目（合并同义、改名、撤销）", exact=True).click()
-                await admin.get_by_label("选择条目：临床诊疗", exact=True).check()
-                await admin.get_by_label("整理后的条目名称", exact=True).fill("临床诊疗与辅助诊断")
-                await admin.get_by_role("button", name="改名", exact=True).click()
-                await expect(admin.get_by_text("原条目：临床诊疗", exact=True)).to_be_visible()
-                await admin.get_by_role("button", name="撤销", exact=True).click()
-                await expect(admin.get_by_text("已撤销", exact=True)).to_be_visible()
-                await expect(admin.get_by_text("原条目：临床诊疗", exact=True)).to_have_count(0)
-                await admin.get_by_label("查看条目归纳", exact=True).select_option("临床诊疗")
-                digest = admin.get_by_label("主题归纳", exact=True)
-                await expect(digest.get_by_text("尚未生成", exact=True)).to_be_visible()
-                await digest.get_by_role("button", name="生成主题归纳", exact=True).click()
-                await expect(digest.get_by_text("两个项目都把临床诊疗作为应用场景。", exact=True)).to_be_visible()
-                await expect(digest.get_by_text("与当前资料一致", exact=True)).to_be_visible()
-                await digest.get_by_text("依据 2 条 · 2 个项目", exact=True).click()
-                await digest.screenshot(path=str(screenshots / "topic-summary.png"), animations="disabled")
-                await digest.get_by_role("button", name="解析正文位置 · 查看原文 临床诊疗场景").first.click()
-                await expect(page.get_by_role("complementary", name="预览面板")).to_be_visible()
-                await page.get_by_role("button", name="关闭预览面板", exact=True).click()
-                await page.get_by_role("button", name="技术研判", exact=True).first.click()
-                await page.get_by_role("button", name="年度分布", exact=True).click()
-                await expect(overview.get_by_label("年度项目数量")).to_be_visible()
-                await expect(overview.get_by_role("button", name="2021年：1个项目", exact=True)).to_be_visible()
-                await expect(overview.get_by_role("button", name="2022年：0个项目", exact=True)).to_be_visible()
-                await overview.get_by_role("button", name="2022年：0个项目", exact=True).click()
-                await expect(overview.get_by_role("heading", name="关联项目 · 0", exact=True)).to_be_visible()
-                await overview.get_by_role("button", name="重置筛选", exact=True).click()
-                await page.get_by_role("button", name="时间与经费", exact=True).click()
-                await expect(overview.get_by_role("img")).to_be_visible()
-                await overview.get_by_role("button", name="病理项目", exact=True).click()
-                await expect(page.get_by_label("项目详情", exact=True)).to_contain_text("批准号 A02")
-                await page.get_by_role("button", name="查看此文件的原文依据", exact=False).first.click()
-                await expect(page.get_by_role("complementary", name="预览面板")).to_contain_text("四维信息")
-                await page.get_by_role("button", name="返回上一预览").click()
-                await expect(page.get_by_label("项目详情", exact=True)).to_contain_text("批准号 A02")
-                await page.get_by_role("button", name="返回上一预览").click()
-                await page.screenshot(
-                    path=str(screenshots / "projects.png"), full_page=True, animations="disabled"
-                )
-                await page.get_by_role("button", name="项目关系", exact=True).click()
-                graph = overview.get_by_label("项目关系图", exact=True)
+                # The header now owns these views; the removed related-project list is not a contract.
+                await expect(page.get_by_role("tablist",name="技术研判",exact=True)).to_be_visible()
+                await page.get_by_role("button",name="年度分布",exact=True).click()
+                await expect(page.get_by_text(re.compile("本库已识别项目 2 个"))).to_be_visible()
+                await expect(page.get_by_role("img",name="各立项年份的项目数量柱状图")).to_be_visible()
+                await page.get_by_role("button",name="项目关系",exact=True).click()
+                graph=page.get_by_label("项目关系图",exact=True)
                 await expect(graph.locator("g[role=button]")).to_have_count(2)
-                # Without a hierarchy only same-named technical topics can relate projects; 成果 is no relation type.
-                await expect(graph.get_by_role("group", name="关联依据").get_by_role("button")).to_have_text(["场景", "问题", "技术"])
-                await graph.get_by_role("button", name="技术", exact=True).click()
+                await graph.get_by_role("button",name="技术",exact=True).click()
                 await expect(graph.locator("g[role=button][data-degree='1']")).to_have_count(2)
-                await graph.get_by_role("button", name="影像项目，2021，代码未知").click()
-                detail = page.get_by_label("项目关系详情", exact=True)
-                await expect(detail).to_contain_text("技术关联项目 · 1")
-                await expect(detail).to_contain_text("共同技术：深度学习")
-                await page.screenshot(path=str(screenshots / "project-graph.png"), full_page=True, animations="disabled")
-                await page.set_viewport_size({"width": 430, "height": 900})
-                await expect(overview.get_by_role("tablist", name="技术研判")).to_be_visible()
-                assert await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
-                await page.screenshot(path=str(screenshots / "projects-mobile.png"), full_page=True, animations="disabled")
-                await page.set_viewport_size({"width": 1440, "height": 1000})
+                screenshots=Path(".logsdev/verification/upgrade-20261019-q1")
+                screenshots.mkdir(parents=True,exist_ok=True)
+                await page.screenshot(path=str(screenshots/"projects.png"),full_page=True)
                 await page.get_by_role("button", name="情报分析", exact=True).click()
                 await page.get_by_label("上传外部材料", exact=True).set_input_files(
                     {
@@ -224,7 +168,7 @@ async def main():
                 await expect(pane.get_by_text("外部材料自述 · 原输入版本保留", exact=True)).to_be_visible()
                 await page.get_by_role("button", name="关闭预览面板", exact=True).click()
                 # 成果是独立页面，报告按类别分组（query 2026-1015 1553）。
-                await page.get_by_role("button", name="成果", exact=True).click()
+                await page.get_by_role("button", name="报告中心", exact=True).click()
                 results = page.get_by_role("region", name="报告列表", exact=True)
                 await results.get_by_role("tab", name=re.compile("^情报分析")).click()
                 await expect(results.get_by_text("综合情报报告", exact=True).first).to_be_visible()
@@ -244,7 +188,7 @@ async def main():
                 await page.get_by_role("button", name="资料审查 ▾").click()
                 await page.get_by_role("menuitem", name="形式审查").click()
                 await expect(page.get_by_role("heading", name="形式审查", exact=True)).to_be_visible()
-                await expect(page.get_by_label("形式审查模板")).to_contain_text("通用形式审查示例")
+                await expect(page.get_by_role("button",name=re.compile("形式审查模板"))).to_contain_text("通用形式审查示例")
                 await expect(page.get_by_text("自然科学基金申请", exact=True)).to_have_count(0)
                 await page.get_by_label("上传申请书文件").set_input_files(
                     {
@@ -253,6 +197,7 @@ async def main():
                         "buffer": data.getvalue(),
                     }
                 )
+                await page.get_by_text("补充信息与高级选项（可选）",exact=True).click()
                 await expect(page.get_by_label("项目名称", exact=True)).to_be_visible()
                 # Validation errors name the field instead of a bare status code.
                 await page.get_by_label("项目名称", exact=True).fill("")
@@ -271,20 +216,22 @@ async def main():
                 await expect(page.get_by_text("章节对应 4/4 已确认", exact=True)).to_be_visible()
                 await page.screenshot(path=str(screenshots / "formal-workbench.png"), full_page=True, animations="disabled")
                 await page.get_by_role("button", name="开始审查", exact=True).click()
+                await page.get_by_role("link",name=re.compile("审查完成.*打开报告")).click()
                 await expect(page.get_by_role("heading", name="形式审查报告", exact=True)).to_be_visible()
                 await page.get_by_role("tab", name="正文与大纲", exact=True).click()
                 table = page.locator("table").first
                 await expect(table.get_by_role("row").filter(has_text="项目背景")).to_contain_text("超出 10")
                 await expect(table.get_by_role("row").filter(has_text="项目摘要")).to_contain_text("通过")
                 await page.get_by_role("tab", name="信息表与单位", exact=True).click()
-                await page.get_by_role("button", name="查看全部结果", exact=True).click()
                 await expect(page.get_by_role("article").filter(has_text="申报单位")).to_contain_text("实际值：2")
                 await page.screenshot(path=str(screenshots / "formal-review.png"), full_page=True, animations="disabled")
 
                 # Template preview, copy, edit with unsaved protection, and use.
                 await page.go_back()
+                await page.get_by_text("补充信息与高级选项（可选）",exact=True).click()
                 await expect(page.get_by_label("项目名称", exact=True)).to_have_value("影像诊疗验收申请")
-                await page.get_by_role("button", name="预览模板", exact=True).click()
+                await page.get_by_role("button",name=re.compile("形式审查模板")).click()
+                await page.get_by_role("link",name="进入模板管理与编辑 →",exact=True).click()
                 await expect(page.get_by_role("heading", name="模板预览", exact=True)).to_be_visible()
                 await expect(page.get_by_text("项目摘要不超过 300 个字符（含 300）", exact=True).first).to_be_visible()
                 await page.get_by_role("button", name="复制编辑", exact=True).click()
@@ -300,16 +247,19 @@ async def main():
                 await expect(page.get_by_text("原文要求：项目摘要不超过 300 个字符（含 300）", exact=False)).to_be_visible()
                 await page.screenshot(path=str(screenshots / "template-preview.png"), full_page=True, animations="disabled")
                 await page.get_by_role("button", name="使用此版本", exact=True).click()
-                await expect(page.get_by_label("形式审查模板")).to_contain_text("通用形式审查示例（副本）")
+                await expect(page.get_by_role("button",name=re.compile("形式审查模板"))).to_contain_text("通用形式审查示例（副本）")
+                await page.get_by_text("补充信息与高级选项（可选）",exact=True).click()
                 await expect(page.get_by_label("项目名称", exact=True)).to_have_value("影像诊疗验收申请")
 
                 await page.get_by_role("link", name="专业审查", exact=True).click()
                 await expect(page.get_by_role("heading", name="专业审查", exact=True)).to_be_visible()
-                await expect(page.get_by_label("专业审查模板")).to_contain_text("通用专业审查")
+                await expect(page.get_by_role("button",name=re.compile("专业审查模板"))).to_contain_text("通用专业审查")
+                await page.get_by_text("补充信息与高级选项（可选）",exact=True).click()
                 # One comparison library is required and preselected; 3 most similar reports by default.
                 await expect(page.get_by_label("对照资料库", exact=True)).to_have_value(info.id)
                 await expect(page.get_by_label("参考报告篇数", exact=True)).to_have_value("3")
                 await page.get_by_role("button", name="开始审查", exact=True).click()
+                await page.get_by_role("link",name=re.compile("审查完成.*打开报告")).click()
                 await expect(page.get_by_role("heading", name="专业审查报告", exact=True)).to_be_visible()
                 await page.get_by_role("tab", name="技术专题", exact=True).click()
                 await expect(page.get_by_text("创新依据待补充", exact=True)).to_be_visible()

@@ -112,6 +112,15 @@ async def remove_input(input_id: str, request: Request):
     return await asyncio.to_thread(request.app.state.artifacts.remove_input, input_id)
 
 
+def local_material(local_sources: list[dict], reports: list[dict]) -> str:
+    """Library reports numbered with their own citations. assemble_reports gives a source only to a
+    report that has matched chunks, so sources pair with those reports in order, not with every report;
+    pairing by position mislabelled every report after one without chunks (found by lint B905, 2026-10-19)."""
+    cited = [report for report in reports if report.get("chunks")]
+    return "\n\n".join(f"[{source['citation']}] {report['doc'].title}\n{report['markdown']}"
+                         for source, report in zip(local_sources, cited, strict=True))
+
+
 def corpus_knowledge(settings: Settings, corpus_ids):
     registry = {c.id: c for c in scan_corpora(settings)}
     members = []
@@ -226,10 +235,7 @@ async def analyze(payload: AnalysisRequest, request: Request):
             f"[{index}] 外部材料自述：{item['filename']}\n{redact(item['text'])}"
             for index, item in enumerate(inputs, 1)
         )
-        local = "\n\n".join(
-            f"[{source['citation']}] {report['doc'].title}\n{report['markdown']}"
-            for source, report in zip(local_sources, context.reports)
-        )
+        local = local_material(local_sources, context.reports)
         # R-SCN-07: the intelligence report reuses the library's stored hierarchy instead of
         # synthesizing its own; only entries whose evidence is among this run's local sources show.
         hierarchy_section = ""

@@ -462,7 +462,7 @@ def model_failure_message(exc: BaseException, timeout_hint: str) -> str:
     if "Timeout" in name:
         return timeout_hint
     if "Connection" in name:
-        return "无法连接模型服务（网络不通）。本机须经代理时，请管理员在 .env 设 MODEL_USE_PROXY=true 后重启"
+        return "无法连接模型服务（DNS 或网络不可达）。默认直连、不需要代理；只有本机必须经代理时才在 .env 设 MODEL_USE_PROXY=true 后重启"
     if name in ("AuthenticationError", "PermissionDeniedError", "RateLimitError"):
         return "模型服务拒绝了请求（密钥或额度），请联系管理员"
     return ""
@@ -2584,7 +2584,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except Exception:  # a failed atomic save must leave a recoverable failure
             logger.exception("report artifact save failed")
             await record_report_failure(run_id, report_params, "成果保存失败")
-            raise HTTPException(500, "成果保存失败，请重试")
+            raise HTTPException(500, "成果保存失败，请重试") from None
         try:
             await asyncio.to_thread(app.state.runs.update, run_id, status="completed", ended_at=datetime.now(UTC).isoformat(), metrics={"report_id": saved["report_id"]})
         except Exception: logger.exception("report run update failed")

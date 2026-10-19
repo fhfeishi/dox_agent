@@ -6,16 +6,18 @@ Serves built `frontend/dist` with mocked documents/read APIs.
 import asyncio
 import re
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
+from tests.browser_support import FrontendHandler
+
 
 async def main():
     root = Path(__file__).resolve().parents[1]
-    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(FrontendHandler, directory=str(root / "frontend/dist")))
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     document = {"doc_id": "d1", "title": "示例文档", "origin": "https://example.test/doc", "version": "v1",
@@ -63,19 +65,10 @@ async def main():
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[]))
 
-            await page.goto(origin)
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
-            # library grid -> corpus detail -> document preview
-            await page.get_by_role("button", name="知识库", exact=True).click()
-            await page.get_by_role("button", name=re.compile("示例库")).first.click()
-            await page.get_by_role("button", name="打开详情").click()
-            detail = page.get_by_role("dialog", name=re.compile("示例库"))
-            await expect(detail).to_be_visible()
-            await detail.get_by_role("button", name="预览", exact=True).first.click()
-
-            dialog = page.locator("aside[aria-hidden='false']")
-            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
-            await expect(page.get_by_role("dialog", name=re.compile("示例库"))).to_have_count(0)  # detail closed, not occluding
+            # The library now has a routable document preview, rather than a corpus drawer.
+            await page.goto(origin + "/library/c1/documents/d1?version=v1")
+            dialog = page.get_by_role("dialog", name="文档预览：示例文档", exact=True)
+            await expect(dialog).to_be_visible()
             await expect(dialog.get_by_text("正文一")).to_be_visible()
             await expect(dialog.get_by_text("续读第一页")).to_be_visible()
             await expect(dialog.get_by_text("第二页内容")).to_be_visible()  # multi-page continuation
@@ -86,18 +79,11 @@ async def main():
             await dialog.get_by_role("button", name="查看原文").click()
             await expect(dialog.get_by_text("# 第一页", exact=False)).to_be_visible()
 
-            # Enlarging the text reader returns to the same inspector preview.
-            await dialog.get_by_role("button", name="放大阅读").click()
-            enlarged = page.get_by_role("dialog", name=re.compile("文档预览"))
-            await expect(enlarged).to_be_visible()
-            await enlarged.get_by_role("button", name="关闭 ✕").click()
-            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
-
-            # closing the preview leaves the retrieval scope unchanged
-            await dialog.get_by_role("button", name="关闭预览面板").click()
-            await expect(page.locator("aside[aria-hidden='false']")).to_have_count(0)
-            await page.get_by_role("button", name="返回对话").click()
-            await expect(page.get_by_text("资料范围：全部")).to_be_visible()
+            # Closing the reader returns to the file list without changing the chat scope.
+            await dialog.get_by_role("button",name="关闭 ✕",exact=True).click()
+            await expect(dialog).to_have_count(0)
+            await page.get_by_role("button",name="对话工作台",exact=True).click()
+            await expect(page.get_by_role("button",name="✓ 示例库",exact=True)).to_be_visible()
 
             assert not errors, errors
             print(f"PASS: U7 preview + multi-page continuation + metadata + raw toggle + scope unchanged ({len(reads)} reads)")

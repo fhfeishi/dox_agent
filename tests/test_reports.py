@@ -452,6 +452,7 @@ def test_illustrated_report_keeps_verified_images_across_versions(tmp_path, monk
 
 def test_report_store_migrates_legacy_schema(tmp_path):
     import sqlite3
+
     from src.artifact_migration import migrate
     from src.artifacts import ArtifactStore
     state=tmp_path/"state"; state.mkdir()

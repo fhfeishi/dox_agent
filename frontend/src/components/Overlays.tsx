@@ -20,10 +20,10 @@ export function StatusBanner() {
   const { connected, ready, corpusReady, health, progress } = useApp();
   if (!connected || (ready && corpusReady)) return null;
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-[60px] z-[75] flex justify-center px-4">
+    <div className="flex shrink-0 justify-center border-b border-[var(--tint-peach)] bg-[var(--tint-cream)] px-4 py-[7px]">
       <div
         role="status"
-        className="pointer-events-auto flex items-center gap-[10px] rounded-[10px] border border-[var(--tint-peach)] bg-[var(--tint-cream)] px-[14px] py-[9px] text-[12.5px] text-[#8a3d00] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]"
+        className="flex items-center gap-[10px] text-[12.5px] leading-5 text-[#8a3d00]"
       >
         <Icon name="warning" size={14} />
         <span>

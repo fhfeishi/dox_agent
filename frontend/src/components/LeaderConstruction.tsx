@@ -37,7 +37,7 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
     ["资料", `${sum((r) => r.files)} 份`, "当前文件，未跨库去重"],
     ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出直接经费`],
   ];
-  return <div className="mx-auto max-w-[1180px] space-y-6 px-5 py-6">
+  return <div className="mx-auto max-w-[1200px] space-y-6 px-5 py-7 sm:px-8">
     <header>
       <p className="text-xs text-[var(--steel)]">资料覆盖与归纳状态</p>
       <h1 className="mt-2 text-2xl font-semibold">资料库建设情况</h1>

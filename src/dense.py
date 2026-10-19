@@ -51,7 +51,7 @@ class DenseIndex:
                 embedding_function=embeddings,
                 persist_directory=str(self.directory),
             )
-        ids = [hashlib.sha256((json.dumps(item, sort_keys=True) + text).encode()).hexdigest() for item, text in zip(candidates, texts)]
+        ids = [hashlib.sha256((json.dumps(item, sort_keys=True) + text).encode()).hexdigest() for item, text in zip(candidates, texts, strict=True)]
         existing = set(self.store.get(include=[])["ids"])
         positions = {key: position for position, key in enumerate(ids)}
         missing = [position for position, key in enumerate(ids) if key not in existing]

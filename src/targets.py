@@ -13,8 +13,8 @@ from pathlib import Path
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from .agent.models import model_for
 from . import achievement_list
+from .agent.models import model_for
 from .prompts import target_instruction
 from .reports import review_segments
 

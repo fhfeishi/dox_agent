@@ -40,6 +40,7 @@ export function App() {
     <div style={{ "--inspector-width": `${inspectorWidth}px` } as CSSProperties}
       className="font-app flex h-screen w-full flex-col overflow-hidden bg-[var(--canvas)] text-[var(--charcoal)]">
       <TopNav />
+      <StatusBanner />
       <div className="flex min-h-0 flex-1">
       <SidePanel />
 
@@ -91,7 +92,6 @@ export function App() {
       </Suspense>
 
       <Toast />
-      <StatusBanner />
     </div>
   );
 }

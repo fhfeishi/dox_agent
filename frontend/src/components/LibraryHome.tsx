@@ -58,8 +58,9 @@ export function LibraryHome() {
   const act = async (action: () => Promise<unknown>) => { setError(""); try { await action(); } catch (e) { setError((e as Error).message); } };
   const row = (id: string) => overview.data?.find((r) => r.corpus_id === id);
 
-  return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-8">
-    <div className="mx-auto max-w-[1180px] space-y-5">
+  // Same column as 任务模版 and 成果, so list pages share one gutter (query 2026-1019 2021).
+  return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8">
+    <div className="mx-auto max-w-[1200px] space-y-6">
       <header className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-semibold">资料库</h1>
         <span className="text-sm text-[var(--steel)]">{corpora.length} 个资料库</span>

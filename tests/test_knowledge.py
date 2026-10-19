@@ -2,6 +2,7 @@ import pytest
 
 from src.agent.config import Settings
 from src.knowledge import Document, Knowledge, Page
+from src.parsers import import_defaults, parse_file, session_for
 
 
 def test_search_first_page_keeps_multiple_sources(tmp_path):
@@ -20,7 +21,6 @@ def test_search_accepts_task_id_for_task_specific_budget(tmp_path):
                        pages=[Page(number=1, text="南溪地基基础施工于2025年10月22日完成")]))
     # The task id selects the retrieval budget (min/max reports); search must forward it.
     assert store.search("南溪地基基础施工", task_id="task2")
-from src.parsers import import_defaults, parse_file, session_for
 
 
 def document(text="南溪地基基础施工于2025年10月22日完成"):

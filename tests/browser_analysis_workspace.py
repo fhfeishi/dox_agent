@@ -112,7 +112,7 @@ async def main():
                 await act(work.get_by_role("button", name="以此生成报告"))
                 await act(work.get_by_role("form", name="生成报告").get_by_role("button", name="生成"))
                 report = work.get_by_role("article", name=re.compile("^报告："))
-                await expect(report).to_contain_text("已生成并保存到“成果”", timeout=30000)
+                await expect(report).to_contain_text("已生成并保存到“报告中心”", timeout=30000)
                 await act(report.get_by_role("button", name="打开报告"))
                 await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("两种装配路线对比")
                 # The report used exactly the picked files, never the whole library.

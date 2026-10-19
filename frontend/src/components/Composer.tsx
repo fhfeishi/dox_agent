@@ -126,14 +126,18 @@ export function Composer() {
   }, [webOpen, webMode]);
 
   // One dismiss handler for every composer popover: click outside closes that popover,
-  // Escape closes all of them.
+  // Escape closes all of them. It closes on click, not mousedown: the library menu sits in the page
+  // flow above the input, so closing it on mousedown moved everything below before the mouse came
+  // up, and the first click on 重试保存 or 发送 was lost (found by browser_artifacts_live, 2026-10-19).
+  // The event path is used because a click inside a popover may remove its own target.
   useEffect(() => {
     if (!popOpen && !corpusOpen && !scopeOpen) return;
     const onDown = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (popOpen && !popRef.current?.contains(target)) setPopOpen(false);
-      if (corpusOpen && !corpusRef.current?.contains(target) && !corpusButton.current?.contains(target)) setCorpusOpen(false);
-      if (scopeOpen && !scopeRef.current?.contains(target)) setScopeOpen(false);
+      const path = e.composedPath();
+      const inside = (node: Element | null) => Boolean(node && path.includes(node));
+      if (popOpen && !inside(popRef.current)) setPopOpen(false);
+      if (corpusOpen && !inside(corpusRef.current) && !inside(corpusButton.current)) setCorpusOpen(false);
+      if (scopeOpen && !inside(scopeRef.current)) setScopeOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
@@ -142,10 +146,10 @@ export function Composer() {
       if (corpusOpen) corpusButton.current?.focus();
       setScopeOpen(false);
     };
-    document.addEventListener("mousedown", onDown);
+    document.addEventListener("click", onDown);
     document.addEventListener("keydown", onKey);
     return () => {
-      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("click", onDown);
       document.removeEventListener("keydown", onKey);
     };
   }, [popOpen, corpusOpen, scopeOpen]);

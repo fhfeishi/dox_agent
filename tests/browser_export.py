@@ -90,7 +90,7 @@ async def main():
 
             # settings drawer has neither sources nor export
             await page.get_by_role("banner").get_by_role("button", name="设置", exact=True).click()
-            settings = page.get_by_role("dialog", name="设置与运维")
+            settings = page.get_by_role("dialog", name="设置", exact=True)
             await expect(settings).to_be_visible()
             assert await settings.get_by_text("在线文档源").count() == 0
             assert await settings.get_by_role("button", name="导出诊断 JSON").count() == 0

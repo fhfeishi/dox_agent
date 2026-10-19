@@ -14,12 +14,25 @@ set -euo pipefail
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROJECT_ROOT"
 
+# 缺少 .env 时给出明确提示：模型密钥和路径会退回默认值，页面能打开但分析不可用。
+if [[ ! -f "$PROJECT_ROOT/.env" ]]; then
+  printf '未找到 .env：模型密钥与路径使用默认值。可复制 .env.example 为 .env 后填写。\n' >&2
+fi
+
 # ------------------------------------------------------------
 # 基础依赖
 # ------------------------------------------------------------
 
+# 官方安装脚本把 uv 放在 ~/.local/bin（cargo 安装则在 ~/.cargo/bin）；非交互 shell 的 PATH
+# 往往不含这两个目录，所以先补上再判断，避免“明明装了却报未安装”。
+if ! command -v uv >/dev/null 2>&1; then
+  for candidate in "$HOME/.local/bin" "$HOME/.cargo/bin"; do
+    if [[ -x "$candidate/uv" ]]; then export PATH="$candidate:$PATH"; break; fi
+  done
+fi
+
 command -v uv >/dev/null 2>&1 || {
-  printf '需要先安装 uv。\n' >&2
+  printf '需要先安装 uv：https://docs.astral.sh/uv/\n' >&2
   exit 1
 }
 
@@ -109,6 +122,10 @@ if ! "$python" src/launcher.py frontend check; then
   if ! command -v node >/dev/null 2>&1 && [[ -x "$HOME/.local/bin/node" && -x "$HOME/.local/bin/npm" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
   fi
+  command -v npm >/dev/null 2>&1 || {
+    printf '需要 Node.js 22+ 才能构建前端：https://nodejs.org/\n' >&2
+    exit 1
+  }
   (
     cd frontend
     if ! cmp -s package-lock.json node_modules/.dox-lock; then
@@ -158,6 +175,9 @@ fi
 # ------------------------------------------------------------
 # 主服务
 # ------------------------------------------------------------
+
+# 模型自检：打印接口、模型名与直连/代理模式；失败只提示，不阻止启动。
+"$python" src/launcher.py model || printf '模型连接未通过，服务仍会启动；可在管理员设置中复查。\n'
 
 printf '打开 http://127.0.0.1:%s\n' "${PORT:-8000}"
 

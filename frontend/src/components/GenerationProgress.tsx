@@ -16,7 +16,7 @@ export function GenerationProgress(props: GenerationState & { compact?: boolean 
         : <div className="h-full w-full bg-[var(--stone)]" />}
     </div>
     {!props.compact && state.active ? <p className="mt-2 text-[11px] text-[var(--stone)]">
-      {state.percent == null ? "正在处理，尚无法估算完成比例。" : "按已完成阶段显示，实际耗时因材料而异。"}可继续其他工作，在“成果”中打开结果。
+      {state.percent == null ? "正在处理，尚无法估算完成比例。" : "按已完成阶段显示，实际耗时因材料而异。"}可继续其他工作，在“报告中心”中打开结果。
     </p> : null}
   </div>;
 }

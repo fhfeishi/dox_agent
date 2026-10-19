@@ -5,6 +5,8 @@ import { useApp, type NavKey } from "../store";
 import { BrandMark, Icon } from "./Icons";
 import { UserMenu } from "./UserMenu";
 
+type MenuSection = { to?: string; label: string; children?: { to: string; label: string }[] };
+
 const REVIEW_PAGES = [
   { to: "/review/formal", label: "形式审查" },
   { to: "/review/professional", label: "专业审查" },
@@ -14,20 +16,32 @@ const REVIEW_PAGES = [
 
 const ITEMS: { key: NavKey; label: string; hint?: string }[] = [
   { key: "home", label: "首页", hint: "开始工作、我的工作、最近报告" },
-  { key: "chat", label: "对话工作台" },
+  // 资料库 before 对话工作台 (query 2026-1019 2021).
   { key: "library", label: "资料库" },
-  { key: "tasks", label: "存量分析", hint: "分析已有资料：问答、对比、技术研判、专项报告" },
+  { key: "chat", label: "对话工作台" },
+  { key: "tasks", label: "存量分析", hint: "任务模版：精准问答、对比分析、技术研判、专项报告" },
   { key: "review", label: "资料审查" },
   { key: "intelligence", label: "情报分析", hint: "上传外部材料进行分析" },
-  // 成果 is a page of its own, so it sits in the main bar after the work areas (query 2026-1019 1458).
-  { key: "results", label: "成果", hint: "全部报告、周期总结与回收站" },
+  // 报告中心 (named 成果 until query 2026-1019 2021: it holds reports and period summaries) is a page of its own, so it sits in the main bar after the work areas (query 2026-1019 1458).
+  { key: "results", label: "报告中心", hint: "全部报告、周期总结与回收站" },
 ];
 
-// A leader's bar stays short (query 2026-1014 1703): the work pages sit in one 工作台 menu.
-const WORKBENCH_PAGES = [
+// 存量分析 opens on the 任务模版 page, and the four built-in tasks are one click away
+// (query 2026-1019 2021). `?task=` opens that task's start form with the library picker in place.
+const TASK_PAGES = [
+  { to: "/tasks", label: "任务模版" },
+  { to: "/tasks?task=task1", label: "精准问答" },
+  { to: "/tasks?task=task2", label: "对比分析" },
+  { to: "/tasks?task=task3", label: "技术研判" },
+  { to: "/tasks?task=task4", label: "专项报告" },
+];
+
+// A leader's bar stays short (query 2026-1014 1703): the work pages sit in one 工作台 menu, where
+// 存量分析 and 资料审查 fold open in place (query 2026-1019 2021).
+const WORKBENCH_SECTIONS: MenuSection[] = [
   { to: "/chat", label: "对话工作台" },
-  { to: "/tasks", label: "存量分析" },
-  { to: "/review/formal", label: "资料审查" },
+  { label: "存量分析", children: TASK_PAGES },
+  { label: "资料审查", children: REVIEW_PAGES },
   { to: "/intelligence", label: "情报分析" },
 ];
 
@@ -37,11 +51,13 @@ const OVERVIEW_PAGES = [
 ];
 
 /**
- * A top-bar entry that opens a menu of its pages (资料审查, 概览); the menu closes on choice, outside
- * click or Esc. The bar keeps the same entries on every page (query 2026-1014 1516).
+ * A top-bar entry that opens a menu of its pages (概览, 存量分析, 资料审查, 工作台); a section with
+ * `children` folds open in place. The menu closes on choice, outside click or Esc, and keeps one
+ * fixed entry order on every page for a role (query 2026-1014 1516).
  */
-function MenuTab({ label, pages, active, current }: { label: string; pages: { to: string; label: string }[]; active: boolean; current: (to: string) => boolean }) {
+function MenuTab({ label, sections, active, current }: { label: string; sections: MenuSection[]; active: boolean; current: (to: string) => boolean }) {
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const [position, setPosition] = useState({ top: 52, left: 8 });
   const trigger = useRef<HTMLButtonElement>(null);
   function reveal() {
@@ -50,8 +66,8 @@ function MenuTab({ label, pages, active, current }: { label: string; pages: { to
     setOpen(true);
   }
   const box = useRef<HTMLDivElement>(null);
-  const { pathname } = useLocation();
-  useEffect(() => { setOpen(false); }, [pathname]);
+  const { pathname, search } = useLocation();
+  useEffect(() => { setOpen(false); setExpanded(null); }, [pathname, search]);
   useEffect(() => {
     if (!open) return;
     const close = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); };
@@ -74,8 +90,18 @@ function MenuTab({ label, pages, active, current }: { label: string; pages: { to
           : e.key === "Home" ? 0 : e.key === "End" ? entries.length - 1 : -1;
         if (next >= 0) { e.preventDefault(); entries[next]?.focus(); }
       }} className="fixed z-[90] max-h-[70vh] w-[208px] overflow-y-auto rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 shadow-xl">
-      {pages.map((page) => <Link key={page.to} role="menuitem" to={page.to}
-        className={`block rounded-md px-3 py-2 text-[13px] hover:bg-[var(--surface)] ${current(page.to) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{page.label}</Link>)}
+      {sections.map((section) => section.children ? <div key={section.label}>
+        <button type="button" role="menuitem" aria-expanded={expanded === section.label}
+          onClick={() => setExpanded(expanded === section.label ? null : section.label)}
+          className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-[13px] text-[var(--ink)] hover:bg-[var(--surface)]">
+          {section.label}<span aria-hidden="true" className="text-[var(--stone)]">{expanded === section.label ? "−" : "+"}</span>
+        </button>
+        {expanded === section.label ? <div className="mb-1 ml-3 space-y-0.5 border-l border-[var(--hairline)] pl-1.5">
+          {section.children.map((page) => <Link key={page.to} role="menuitem" to={page.to}
+            className={`block rounded-md px-3 py-1.5 text-[13px] hover:bg-[var(--surface)] ${current(page.to) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{page.label}</Link>)}
+        </div> : null}
+      </div> : <Link key={section.to} role="menuitem" to={section.to!}
+        className={`block rounded-md px-3 py-2 text-[13px] hover:bg-[var(--surface)] ${current(section.to!) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{section.label}</Link>)}
     </div> : null}
   </div>;
 }
@@ -86,9 +112,9 @@ function tab(active: boolean) {
 }
 
 /**
- * The top navigation bar (query 2026-1013 1522, 2026-1014 1516): one row with the main areas in a
- * fixed order — 首页, then 概览 for administrators and leaders and 资料审查 as menus of their pages — and on the
- * right the analysis status, settings and the account; 成果 is the last main entry (query 2026-1019 1458). The same bar on every page for a role.
+ * The top navigation bar (query 2026-1013 1522, 2026-1014 1516, 2026-1019 2021): one row with the
+ * main areas in a fixed order — 首页, 资料库, 对话工作台, then 存量分析 and 资料审查 as menus — and on
+ * the right the analysis status, settings and the account; 成果 is the last main entry.
  */
 export function TopNav() {
   const { role } = useAuth();
@@ -113,13 +139,18 @@ export function TopNav() {
     return () => window.removeEventListener("resize", check);
   }, [folded, role]);
   useEffect(() => { setFolded(false); }, [role]);
-  const links = [
+  const links: MenuSection[] = [
     { to: "/home", label: "首页" },
-    ...(role === "admin" ? OVERVIEW_PAGES.map((p) => ({ ...p, label: "概览 · " + p.label })) : role === "leader" ? [{ to: "/overview/domains", label: "领域分析" }] : []),
+    ...(role === "admin" ? OVERVIEW_PAGES.map((p) => ({ to: p.to, label: "概览 · " + p.label })) : role === "leader" ? [{ to: "/overview/domains", label: "领域分析" }] : []),
+    { to: "/library", label: "资料库" },
     { to: "/chat", label: "对话工作台" },
-    { to: "/library", label: "资料库" }, { to: "/tasks", label: "存量分析" },
-    ...REVIEW_PAGES, { to: "/intelligence", label: "情报分析" }, { to: "/results", label: "成果" },
+    { label: "存量分析", children: TASK_PAGES },
+    { label: "资料审查", children: REVIEW_PAGES },
+    { to: "/intelligence", label: "情报分析" },
+    { to: "/results", label: "报告中心" },
   ];
+  const tasksActive = nav === "tasks" || pathname.startsWith("/tasks");
+  const reviewActive = nav === "review" || pathname.startsWith("/review");
   return <header className="flex h-[60px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
     {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" && nav !== "results" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
@@ -129,20 +160,26 @@ export function TopNav() {
     </Link>
     <nav ref={navRef} aria-label="主导航" className={`min-w-0 flex-1 items-center gap-1 overflow-hidden ${folded ? "hidden" : "flex"}`}>
       {ITEMS.slice(0, 1).map((item) => <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
-      {role === "admin" ? <MenuTab label="概览" pages={OVERVIEW_PAGES} active={nav === "overview"}
+      {role === "admin" ? <MenuTab label="概览" sections={OVERVIEW_PAGES} active={nav === "overview"}
         current={(to) => pathname === to || (to === "/overview/build" && pathname.replace(/\/$/, "") === "/overview")} />
         // A leader's 资料库建设 is on 首页, so their 概览 is the one page 领域分析 (query 2026-1016).
         : role === "leader" ? <Link to="/overview/domains" aria-current={nav === "overview" ? "page" : undefined} className={tab(nav === "overview")}>领域分析</Link> : null}
       {role === "leader" ? <>
         <button type="button" aria-current={nav === "library" ? "page" : undefined} onClick={() => setNav("library")} className={tab(nav === "library")}>资料库</button>
-        <MenuTab label="工作台" pages={WORKBENCH_PAGES} active={["chat", "tasks", "review", "intelligence"].includes(nav)}
+        <MenuTab label="工作台" sections={WORKBENCH_SECTIONS} active={["chat", "tasks", "review", "intelligence"].includes(nav)}
           current={(to) => pathname.startsWith(to.replace(/\/formal$/, ""))} />
-        <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")} className={tab(nav === "results")}>成果</button>
-      </> : ITEMS.slice(1).map((item) => item.key === "review" ? <MenuTab key={item.key} label="资料审查" pages={REVIEW_PAGES} active={nav === "review"} current={(to) => pathname.startsWith(to)} />
-        : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
+        <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")} className={tab(nav === "results")}>报告中心</button>
+      </> : <>
+        <button type="button" aria-current={nav === "library" ? "page" : undefined} onClick={() => setNav("library")} className={tab(nav === "library")}>资料库</button>
+        <button type="button" aria-current={nav === "chat" ? "page" : undefined} onClick={() => setNav("chat")} className={tab(nav === "chat")}>对话工作台</button>
+        <MenuTab label="存量分析" sections={TASK_PAGES} active={tasksActive} current={(to) => pathname === new URL(to, "http://x").pathname} />
+        <MenuTab label="资料审查" sections={REVIEW_PAGES} active={reviewActive} current={(to) => pathname.startsWith(to)} />
+        <button type="button" aria-current={nav === "intelligence" ? "page" : undefined} onClick={() => setNav("intelligence")} title="上传外部材料进行分析" className={tab(nav === "intelligence")}>情报分析</button>
+        <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")} className={tab(nav === "results")}>报告中心</button>
+      </>}
     </nav>
     {folded ? <nav aria-label="工作导航" className="min-w-0 flex-1">
-      <MenuTab label="工作导航" pages={links} active={false} current={(to) => pathname === to} />
+      <MenuTab label="工作导航" sections={links} active={false} current={(to) => pathname === to} />
     </nav> : null}
     {/* Model name, address and connection test are the administrator's (节点审查 B2); others see whether analysis is available. */}
     {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}

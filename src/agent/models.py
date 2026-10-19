@@ -23,20 +23,46 @@ def _http_clients(trust_env: bool):
 
 
 def check_model(settings: Settings) -> dict:
-    """One bounded request to the provider's model list; proves reachability and credentials only."""
+    """One minimal completion; proves address, key and model name together.
+
+    A model-list request is not enough: a retired or misspelled model name still lists fine but fails
+    every later call, which shows up as a broken demo instead of a configuration error.
+    """
     if not settings.model_api_key:
         return {"ok": False, "error": "未配置 MODEL_API_KEY"}
+    base = settings.model_base_url.rstrip("/")
     started = time.monotonic()
+    payload = {"model": settings.model_name, "messages": [{"role": "user", "content": "ping"}],
+               "max_tokens": 8, "stream": False}
     try:
-        with httpx.Client(trust_env=use_proxy(settings), timeout=15) as http:
-            response = http.get(settings.model_base_url.rstrip("/") + "/models",
-                                headers={"Authorization": "Bearer " + settings.model_api_key.get_secret_value()})
+        # Short timeout: this runs as a launch preflight and must not hold the start for 20 s.
+        with httpx.Client(trust_env=use_proxy(settings), timeout=8) as http:
+            response = http.post(base + "/chat/completions",
+                                 headers={"Authorization": "Bearer " + settings.model_api_key.get_secret_value()},
+                                 json=payload)
+    except httpx.TimeoutException:
+        return {"ok": False, "error": "连接超时：网络不可达（默认直连，不经代理）",
+                "latency_ms": round((time.monotonic() - started) * 1000)}
     except httpx.HTTPError as exc:
-        return {"ok": False, "error": f"连接失败：{type(exc).__name__}", "latency_ms": round((time.monotonic() - started) * 1000)}
+        return {"ok": False, "error": f"无法连接 {base}（DNS 或网络不可达）：{type(exc).__name__}",
+                "latency_ms": round((time.monotonic() - started) * 1000)}
     latency = round((time.monotonic() - started) * 1000)
     if response.is_error:
-        return {"ok": False, "error": f"服务返回 HTTP {response.status_code}", "latency_ms": latency}
-    return {"ok": True, "latency_ms": latency}
+        detail = ""
+        try:
+            detail = str(response.json().get("error", {}).get("message", ""))[:120]
+        except ValueError:
+            detail = response.text[:120]
+        if response.status_code in (401, 403):
+            reason = "密钥被拒绝（401/403）"
+        elif response.status_code == 404:
+            reason = "接口地址不存在（404）"
+        elif response.status_code == 400:
+            reason = f"请求被拒绝（400，常见原因：模型名 {settings.model_name} 不可用）"
+        else:
+            reason = f"服务返回 HTTP {response.status_code}"
+        return {"ok": False, "error": reason + (f"：{detail}" if detail else ""), "latency_ms": latency}
+    return {"ok": True, "latency_ms": latency, "model": settings.model_name}
 
 
 def model_for(settings: Settings, timeout: float | None = None):

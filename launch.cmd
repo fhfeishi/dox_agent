@@ -4,11 +4,15 @@ rem dox_agent Windows launcher; equivalent to launch.sh
 rem ------------------------------------------------------------
 chcp 65001 >nul
 setlocal
+set "PYTHONUTF8=1"
 
 rem Use paths without brackets in this section: cmd parses rem lines
 rem inside parenthesized blocks.
 cd /d "%~dp0"
 set "PROJECT_ROOT=%CD%"
+
+rem Without .env the model key and paths fall back to defaults: warn instead of failing silently.
+if not exist "%PROJECT_ROOT%\.env" echo No .env found; copy .env.example to .env and fill in the model key.
 
 rem Set PORT/HOST before the preflight: launcher.py check reads the same
 rem variables, and its own fallback is 8000.
@@ -161,6 +165,10 @@ if "%embedding_enabled%"=="1" (
 rem ------------------------------------------------------------
 rem Main service
 rem ------------------------------------------------------------
+
+rem Model preflight: endpoint, model name and direct/proxy mode; a failure only warns.
+call "%python%" src\launcher.py model
+if errorlevel 1 echo Model check failed; the service still starts. Recheck it in the admin settings.
 
 echo Open http://%HOST%:%PORT%
 rem Open the default browser once the service answers; set OPEN_BROWSER=0 to skip.

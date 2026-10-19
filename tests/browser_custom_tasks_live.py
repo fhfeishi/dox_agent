@@ -16,6 +16,7 @@ from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
+from tests.browser_support import login
 
 
 class OfflineGraph:
@@ -65,7 +66,7 @@ async def main():
         root = Path(directory)
         corpus = root / ".knowledge" / "fixture"
         corpus.mkdir(parents=True)
-        settings = Settings(_env_file=None, corpora_root=corpus.parent, state_dir=root / "state",
+        settings = Settings(_env_file=None, corpora_root=corpus.parent, state_dir=root / "state", user_dir=root / "usr",
                             model_api_key=SecretStr("offline-test"))
         knowledge = Knowledge(corpus / "datadb" / "knowledge.sqlite3", settings=settings)
         doc = knowledge.put(Document(title="样本", origin="2021_2025_P1_张三_sample.md", kind="text", parser="text",
@@ -79,80 +80,35 @@ async def main():
             async with async_playwright() as playwright:
                 browser = await playwright.chromium.launch(headless=True)
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
-                await page.request.post(origin + "/api/auth/login", data={"username": "admin", "password": "123456"})
-                await page.goto(origin + "/chat")
-                await page.get_by_role("button", name="任务", exact=True).click()
-                await page.get_by_role("button", name="复制问答任务").click()
-                await expect(page.get_by_text("未发布草稿")).to_be_visible()
-                await page.get_by_role("textbox", name="名称").fill("基金项目方法问答")
-                await page.get_by_role("textbox", name="用途说明").fill("回答基金项目方法问题")
-                await page.get_by_role("textbox", name="背景").fill("基金项目资料")
-                await page.get_by_role("textbox", name="目标").fill("比较方法")
-                await page.get_by_role("textbox", name="具体要求").fill("逐项引用")
-                await page.get_by_role("textbox", name="任务类别").fill("方法比较")
-                await page.get_by_role("textbox", name="适用边界").fill("仅限当前知识库")
-                await page.get_by_role("textbox", name="需要澄清的条件").fill("主题或年份范围缺失时澄清")
-                await page.get_by_role("textbox", name="输出说明").fill("逐条引用并说明局限")
-                await page.get_by_role("textbox", name="默认关注点").fill("技术路线")
-                await page.get_by_role("button", name="添加参数").click()
-                await page.get_by_role("textbox", name="参数1名称").fill("topic")
-                await page.get_by_role("textbox", name="参数1标签").fill("研究主题")
-                await page.get_by_role("checkbox", name="必填").check()
-                await page.get_by_role("button", name="保存并发布").click()
-                await expect(page.get_by_text("已发布 v1").first).to_be_visible()
-                await page.get_by_role("button", name="使用此任务").click()
-                await expect(page.get_by_role("textbox", name="研究主题")).to_be_visible()
-                await page.get_by_role("textbox", name="研究主题").fill("研究方法")
-                await page.get_by_role("textbox", name="问题", exact=True).fill("有哪些方法？")
-                await page.get_by_role("button", name="发送 ↑").click()
-                await expect(page.get_by_role("button", name="保存为成果")).to_be_visible()
-                await page.get_by_role("button", name="保存为成果").click()
+                await login(page, origin)
+                async def publish(kind, source, fields):
+                    response=await page.request.post(f"{origin}/api/{kind}/custom",data={("source_task_id" if kind=="tasks" else "source_template_id"):source})
+                    assert response.status==201,await response.text()
+                    item=await response.json()
+                    draft=await page.request.put(f"{origin}/api/{kind}/custom/{item['id']}/draft",data={"revision":item["revision"],**fields})
+                    assert draft.status==200,await draft.text()
+                    response=await page.request.post(f"{origin}/api/{kind}/custom/{item['id']}/publish",data={"revision":(await draft.json())["revision"]})
+                    assert response.status==200,await response.text()
+                    return await response.json()
+
+                async def start_task(name):
+                    await page.goto(origin+"/tasks")
+                    await page.locator("article").filter(has_text=name).get_by_role("button",name="开始分析",exact=True).click()
+                    await expect(page.get_by_role("textbox",name="问题",exact=True)).to_be_visible()
+
+                # Editor creation/archive is covered by browser_task_templates; this journey checks
+                # runtime parameters and frozen task/template versions through the current task cards.
+                qa_task=await publish("tasks","task1",{"name":"基金项目方法问答","parameters":[{"key":"topic","label":"研究主题","type":"text","required":True}]})
+                await start_task(qa_task["name"])
+                await page.get_by_role("textbox",name="问题",exact=True).fill("有哪些方法？")
+                await expect(page.get_by_role("button",name="发送 ↑",exact=True)).to_be_disabled()
+                await page.get_by_label("研究主题",exact=True).fill("研究方法")
+                await page.get_by_role("button",name="发送 ↑",exact=True).click()
+                await page.get_by_role("button",name="保存为成果",exact=True).click()
                 await expect(page.get_by_text(re.compile("已保存为成果"))).to_be_visible()
-
-                await page.get_by_role("button", name="任务", exact=True).first.click()
-                await page.get_by_role("button", name=re.compile("基金项目方法问答.*查看任务详情")).click()
-                await page.get_by_role("button", name="归档任务").click()
-                await expect(page.get_by_text("任务已归档")).to_be_visible()
-                await expect(page.get_by_text("已归档，不能用于新会话；恢复后可继续选择。")).to_be_visible()
-                await page.get_by_role("button", name="恢复任务").click()
-                await expect(page.get_by_text("任务已恢复")).to_be_visible()
-
-                await page.get_by_role("button", name="复制专项报告任务").click()
-                await expect(page.get_by_text("未发布草稿")).to_be_visible()
-                await page.get_by_role("button", name="综合报告", exact=True).click()
-                await expect(page.get_by_role("heading", name="综合报告模板")).to_be_visible()
-                await page.get_by_role("button", name="复制为自定义模板").click()
-                await expect(page.get_by_role("textbox", name="模板用途")).to_be_visible()
-                await expect(page.get_by_text("章节与变量样例预览（仅 UI 样例，不是真实证据）")).to_be_visible()
-                await page.get_by_role("textbox", name="模板用途").fill("用于人工智能与医疗专项报告")
-                await page.get_by_role("button", name="保存并发布").click()
-                await expect(page.get_by_text("已发布 v1").first).to_be_visible()
-                await page.get_by_role("button", name="返回上一预览").click()
-                await page.get_by_role("button", name="返回上一预览").click()
-                templates = await (await page.request.get(f"{origin}/api/templates?include_archived=true")).json()
-                custom_template = next(item for item in templates if item["kind"] == "custom")
-                await page.get_by_role("textbox", name="名称").fill("绑定自定义模板的专项报告")
-                await page.get_by_role("textbox", name="用途说明").fill("生成固定模板专项报告")
-                await page.get_by_role("textbox", name="目标").fill("形成专项报告 v1")
-                await page.get_by_role("textbox", name="具体要求").fill("按绑定模板输出")
-                await page.get_by_role("textbox", name="任务类别").fill("专项报告")
-                await page.get_by_role("textbox", name="适用边界").fill("仅限选定知识库")
-                await page.get_by_role("textbox", name="需要澄清的条件").fill("年份或领域缺失时澄清")
-                await page.get_by_role("textbox", name="输出说明").fill("使用固定发布版本")
-                template_select = page.get_by_role("combobox", name="固定报告模板")
-                await template_select.select_option(f"{custom_template['id']}|{custom_template['version']}")
-                await page.get_by_role("button", name="添加参数").click()
-                await page.get_by_role("textbox", name="参数1名称").fill("audience")
-                await page.get_by_role("textbox", name="参数1标签").fill("报告受众")
-                await page.get_by_role("button", name="保存并发布").click()
-                await expect(page.get_by_text("已发布 v1").first).to_be_visible()
-                tasks = await (await page.request.get(f"{origin}/api/tasks?include_archived=true")).json()
-                report_task = next(item for item in tasks if item["name"] == "绑定自定义模板的专项报告")
-                qa_task = next(item for item in tasks if item["name"] == "基金项目方法问答")
-                assert report_task["report_template_id"] == custom_template["id"]
-                assert report_task["report_template_version"] == custom_template["version"] == 1
-
-                await page.get_by_role("button", name="使用此任务").click()
+                custom_template=await publish("templates","comprehensive",{"name":"绑定模板","purpose":"验收固定模板","content":"# 实测专项报告\n\n## 方法\n"})
+                report_task=await publish("tasks","task4",{"name":"绑定自定义模板的专项报告","report_template_id":custom_template["id"],"report_template_version":1,"parameters":[{"key":"audience","label":"报告受众","type":"text"}]})
+                await start_task(report_task["name"])
                 await page.get_by_role("textbox", name="报告受众").fill("项目评审专家")
                 await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")
                 await page.get_by_role("button", name="发送 ↑").click()
@@ -193,15 +149,12 @@ async def main():
                 assert len([item for item in reports if item["template_id"] == custom_template["id"]]) == 2
                 assert all(item["template_version"] == 1 for item in reports)
 
-                await page.get_by_role("button", name="任务", exact=True).first.click()
-                await page.get_by_role("button", name=re.compile("绑定自定义模板的专项报告.*查看任务详情")).click()
-                await page.get_by_role("textbox", name="目标").fill("形成专项报告 v2")
-                await page.get_by_role("button", name="删除", exact=True).click()
-                await page.get_by_role("combobox", name="固定报告模板").select_option("comprehensive|0")
-                await page.get_by_role("button", name="保存并发布").click()
-                await expect(page.get_by_text("已发布 v2").first).to_be_visible()
-                await page.get_by_role("button", name="关闭预览面板").click()
-                await page.get_by_role("button", name="对话工作台", exact=True).click()
+                latest=await (await page.request.get(f"{origin}/api/tasks/custom/{report_task['id']}")).json()
+                updated=await page.request.put(f"{origin}/api/tasks/custom/{report_task['id']}/draft",data={"revision":latest["revision"],"goal":"形成专项报告 v2","parameters":[],"report_template_id":"comprehensive","report_template_version":0})
+                assert updated.status==200,await updated.text()
+                published=await page.request.post(f"{origin}/api/tasks/custom/{report_task['id']}/publish",data={"revision":(await updated.json())["revision"]})
+                assert published.status==200,await published.text()
+                await page.reload()
                 await expect(page.get_by_text("当前 v1 / 最新 v2")).to_be_visible()
                 page.once("dialog", lambda dialog: dialog.accept())
                 await page.get_by_role("button", name="升级到最新版").click()
@@ -240,9 +193,7 @@ async def main():
                     f"{origin}/api/tasks/custom/{builtin_task['id']}/publish",
                     data={"revision": builtin_draft["revision"]})).status == 200
                 await page.reload()
-                await page.get_by_role("button", name="任务", exact=True).first.click()
-                await page.get_by_role("button", name=re.compile("内置模板专项报告.*查看任务详情")).click()
-                await page.get_by_role("button", name="使用此任务").click()
+                await start_task("内置模板专项报告")
                 await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")
                 await page.get_by_role("button", name="发送 ↑").click()
                 await expect(page.get_by_role("button", name="生成报告")).to_be_visible()
@@ -259,14 +210,8 @@ async def main():
                 assert (await page.request.put(
                     f"{origin}/api/templates/custom/{custom_template['id']}/draft",
                     data={"revision": latest_template["revision"], "name": "未发布草稿"})).status == 200
-                await page.get_by_role("button", name="任务", exact=True).first.click()
-                await page.get_by_role("button", name=re.compile("技术研判.*查看任务详情")).click()
-                await expect(page.get_by_role("complementary", name="预览面板").get_by_role("button", name="复制任务")).to_have_count(0)
-                await page.get_by_role("button", name=re.compile(r"^专项报告.*查看任务详情")).first.click()
-                await page.get_by_role("button", name="使用此任务").click()
-                await page.get_by_role("textbox", name="问题", exact=True).fill("生成人工智能与医疗 2024 至 2025 报告")
-                await page.get_by_role("button", name="发送 ↑").click()
-                await expect(page.get_by_role("combobox", name="报告模板").locator("option", has_text="另有草稿")).to_have_count(1)
+                await page.reload()
+                await expect(page.get_by_role("combobox",name="报告模板").locator("option",has_text="另有草稿")).to_have_count(1)
                 await browser.close()
         finally:
             server.should_exit = True

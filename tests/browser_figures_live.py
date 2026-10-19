@@ -8,7 +8,6 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from zipfile import ZipFile
 
-from browser_artifacts_live import start_server
 from PIL import Image, ImageDraw
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
@@ -19,6 +18,7 @@ from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
 from src.parsers import sha256_file
+from tests.browser_artifacts_live import start_server
 
 
 class FigureModel:
@@ -93,8 +93,9 @@ async def main():
                 assert zip_response.status == 200
                 with ZipFile(BytesIO(await zip_response.body())) as package:
                     assert package.read(f"figures/{figure_id}.jpg") == figure_bytes
-                await page.get_by_role("button", name="成果", exact=True).click()
-                await page.get_by_role("button", name="云边协同", exact=False).first.click()
+                # 成果 is a page in the main bar (query 2026-1019 1458); its report list opens the report on the right.
+                await page.get_by_role("navigation", name="主导航").get_by_role("button", name="报告中心", exact=True).click()
+                await page.get_by_role("region", name="报告列表").get_by_role("button", name="云边协同", exact=False).first.click()
                 image = page.get_by_role("img", name="图1 云边协同架构")
                 await expect(image).to_be_visible()
                 assert await image.evaluate("image => image.complete && image.naturalWidth > 0")

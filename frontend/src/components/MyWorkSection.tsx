@@ -43,7 +43,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
     {bare ? (working ? <p className="mb-2 text-xs text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
       : <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
       <h2 className="text-base font-semibold text-[#24364c]">我的工作</h2>
-      <span className="text-xs text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“成果”中"}</span>
+      <span className="text-xs text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
     </div>}
     <div className="grid gap-3 lg:grid-cols-3">
       <section aria-label="我的对话" className={box}>

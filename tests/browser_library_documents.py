@@ -5,8 +5,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from urllib.parse import quote
+
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
+
 from src.agent.config import Settings
 from src.agent.corpora import scan_corpora
 from src.agent.graph import build_graph
@@ -142,7 +144,7 @@ async def main():
                 await banner.get_by_role("button",name="第 1 张：领域项目分布").click()
                 await expect(page.get_by_role("button",name="在右侧查看资料库")).to_have_count(0)
                 # 成果 is a main-bar entry (query 2026-1019 1458).
-                await expect(page.get_by_role("navigation",name="主导航").get_by_role("button",name="成果",exact=True)).to_be_visible()
+                await expect(page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True)).to_be_visible()
                 await expect(page.get_by_role("region",name="我的工作")).to_be_visible()
                 await expect(page.get_by_role("group",name="各领域项目数").get_by_role("button")).to_have_count(1)
                 await page.get_by_label("资料库卡片").get_by_role("button").first.click()
@@ -152,7 +154,8 @@ async def main():
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await page.screenshot(path=str(shots/"leader.png"))
-                await page.get_by_label("所选领域").get_by_role("button",name="领域分析",exact=True).click()
+                # The per-domain jump button is gone (query 2026-1019 2021); 领域分析 is the leader top entry.
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="领域分析",exact=True).click()
                 await expect(page.get_by_label("分析视角")).to_be_visible()
                 history = await page.evaluate("history.length")
                 await page.get_by_label("分析视角").select_option("years")

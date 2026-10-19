@@ -9,11 +9,13 @@ Serves `frontend/dist` with mocked APIs. Verifies:
 import asyncio
 import re
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
+
+from tests.browser_support import FrontendHandler
 
 MARKDOWN = (
     "# 标题\n\n"
@@ -31,7 +33,7 @@ CORPUS = {"id": "c1", "name": "默认库", "kind": "demo", "domain": "x", "rel_p
 
 async def main():
     root = Path(__file__).resolve().parents[1]
-    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(FrontendHandler, directory=str(root / "frontend/dist")))
     Thread(target=server.serve_forever, daemon=True).start()
     origin = f"http://127.0.0.1:{server.server_port}"
     markdown_reads = 0
@@ -58,17 +60,9 @@ async def main():
             await page.route("**/api/tasks**", lambda r: r.fulfill(json=[{"id": "task1", "name": "精准问答", "description": "x", "output_hint": "结论", "has_template": False}]))
             await page.route(re.compile(r".*/api/workspace/sessions.*$"), lambda r: r.fulfill(json=[] if r.request.method == "GET" else {**r.request.post_data_json, "id": r.request.url.rsplit("/", 1)[-1]}))
 
-            await page.goto(origin)
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
-            await page.get_by_role("button", name="知识库", exact=True).click()
-            await page.get_by_role("button", name=re.compile("默认库")).first.click()
-            await page.get_by_role("button", name="打开详情").click()
-            detail = page.get_by_role("dialog", name=re.compile("默认库"))
-            await expect(detail).to_be_visible()
-            await detail.get_by_role("button", name="预览", exact=True).first.click()
-
-            dialog = page.locator("aside[aria-hidden='false']")
-            await expect(dialog.get_by_text("资料预览", exact=True)).to_be_visible()
+            await page.goto(origin + "/library/c1/documents/d1?version=v1")
+            dialog = page.get_by_role("dialog",name="文档预览：README",exact=True)
+            await expect(dialog).to_be_visible()
             assert markdown_reads >= 1, "preview did not use the markdown channel"
             await expect(dialog.locator("table")).to_have_count(3)
             assert await dialog.locator("pre").count() == 0, "markdown rendered as raw pre"

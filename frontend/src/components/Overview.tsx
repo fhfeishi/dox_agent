@@ -54,7 +54,9 @@ export function Overview() {
   // A leader's 资料库建设 is the top of 首页 (query 2026-1016); 概览 keeps 领域分析 for them.
   if (!admin && area === "build") return <Navigate to="/home" replace />;
   return <main className="min-h-0 flex-1 overflow-y-auto">
-    {area === "domains" ? <div className="sticky top-0 z-10 flex flex-wrap items-center gap-3 border-b border-[var(--hairline)] bg-[var(--canvas)] px-5 py-2.5">
+    {area === "domains" ? <div className="sticky top-0 z-10 border-b border-[var(--hairline)] bg-[var(--canvas)]/95 backdrop-blur">
+      {/* The toolbar sits on the page's content column, not the window edge (query 2026-1019 2021). */}
+      <div className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center gap-4 px-5 py-2.5 sm:px-8">
       <label className="flex items-center gap-2 text-[13px] text-[var(--steel)]">领域
         <select aria-label="选择领域" value={current?.id ?? ""} onChange={(e) => set({ domain: e.target.value })}
           className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[14px] font-semibold text-[var(--ink)]">
@@ -66,6 +68,7 @@ export function Overview() {
           {views.map((v) => <option key={v.key} value={v.key}>{v.label}</option>)}
         </select>
       </label>
+      </div>
     </div> : null}
     {area === "build" ? <>
       {/* Only administrators reach this area; a library previews on the right. */}
@@ -76,7 +79,7 @@ export function Overview() {
       : view === "overview" ? <Domain key={current.id} corpusId={current.id} name={short(current.name)} />
       : view === "tech" ? <KeyTechnology key={current.id} corpusId={current.id} name={short(current.name)} />
       // The lineage takes the full width (query 2026-1014 1642); other views keep a reading width.
-      : <div className={view === "lineage" ? "px-5 py-4" : "mx-auto max-w-[1280px] px-5 py-5"}><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
+      : <div className={view === "lineage" ? "px-5 py-4" : "mx-auto max-w-[1200px] px-5 py-7 sm:px-8"}><DomainView key={current.id + view} corpusId={current.id} name={short(current.name)} view={view} /></div>}
   </main>;
 }
 
@@ -117,7 +120,7 @@ function Work() {
     ["项目（各库合计）", overview.data ? String(libs.reduce((n, l) => n + l.projects, 0)) : "—"],
     ["处理中的任务", totals.data ? String(totals.data.active) : "—"],
     ["未完成任务", totals.data ? String(totals.data.failed) : "—"]];
-  return <div className="mx-auto max-w-[1180px] space-y-6 px-5 pt-6">
+  return <div className="mx-auto max-w-[1200px] space-y-6 px-5 pt-7 sm:px-8">
     <header><p className="text-xs text-[var(--steel)]">管理员概览</p><h1 className="mt-2 text-2xl font-semibold">资料建设与运行维护</h1><p className="mt-2 text-sm text-[var(--steel)]">先处理待办，再查看各库覆盖与归纳状态。</p></header>
     <section aria-label="总体数字" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
       {kpis.map(([title, value]) => <div key={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
@@ -167,7 +170,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
     projects: projectsOf(c.children.flatMap((d) => d.themes.flatMap((t) => t.items))) })).sort((a, b) => b.projects - a.projects);
   const card = (on: boolean) => `w-full rounded-xl border text-left ${on ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface)] hover:border-[var(--primary)]"}`;
 
-  return <div className="mx-auto max-w-[1180px] space-y-7 px-5 py-6">
+  return <div className="mx-auto max-w-[1200px] space-y-7 px-5 py-7 sm:px-8">
     <div>
       <h1 className="text-2xl font-semibold">{name}</h1>
       <p className="mt-1 text-sm text-[var(--steel)]">{board.projects} 个项目 · {hierarchy.scenes.length} 个应用场景 · {systems.length} 个技术体系</p>
@@ -245,7 +248,7 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
   const board = hierarchy.scenes.length ? buildBoard(hierarchy, lineage) : null;
   const issues = hierarchy.scenes.flatMap((s) => s.issues.map((i) => ({ scene: s.name, ...i })));
   const noRoute = issues.filter((i) => !i.routes.length);
-  return <div className="mx-auto max-w-[1180px] space-y-6 px-5 py-6">
+  return <div className="mx-auto max-w-[1200px] space-y-6 px-5 py-7 sm:px-8">
     <div className="flex flex-wrap items-baseline gap-3"><h1 className="text-xl font-semibold">{name} · 关键技术</h1>
       <button type="button" className="text-sm text-[var(--link)]" onClick={() => setSearch({ domain: corpusId, view: "lineage" }, { replace: true })}>查看技术谱系 →</button></div>
     <section aria-label="关键技术方向" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">

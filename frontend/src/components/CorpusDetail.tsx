@@ -89,7 +89,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
   return (
     <section aria-label={`资料库 ${corpus.name}`} className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
       {/* query 2026-1013 1522: the library list stays beside; everything about this library is here. */}
-      <header className="shrink-0 border-b border-[var(--hairline)] px-[24px] pt-[14px] pb-[10px]">
+      <header className="shrink-0 border-b border-[var(--hairline)] px-5 pt-[14px] pb-[10px] sm:px-8">
         <div className="flex flex-wrap items-center gap-[10px]">
           {editing ? <form className="flex items-center gap-[6px]" onSubmit={(e) => {
             e.preventDefault();
@@ -122,7 +122,8 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
               </button>
             ))}
           </nav> : null}
-          <ManageMenu corpus={corpus} busy={busy || ingestBusy} isActive={isActive}
+          {/* After reload the local flag resets, but a server-side import may still be running. */}
+          <ManageMenu corpus={corpus} busy={busy || ingestBusy || corpus.job?.status === "running"} isActive={isActive}
             onRename={() => setEditing(true)} onDescribe={() => setEditingDescription(true)} run={run} onClose={onClose} />
         </div>
         {editingDescription ? <div className="mt-[8px] flex items-start gap-[8px]">
@@ -137,7 +138,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
         {notice ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{notice}</p> : null}
       </header>
 
-      <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-[24px] py-[16px]">
+      <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-5 py-[18px] sm:px-8">
       {corpus.missing ? (
         <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-[12px]">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>

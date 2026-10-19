@@ -280,7 +280,7 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
                        for index, report in enumerate(retrieval.reports)]
             markdown = "\n\n".join(
                 f"[{source['citation']}] {chunk.text}"
-                for source, report in zip(sources, retrieval.reports) for chunk in report.chunks)
+                for source, report in zip(sources, retrieval.reports, strict=True) for chunk in report.chunks)
             scope, path = "本轮命中的报告片段", "chunk_only"
         else:
             sources, markdown, scope, path = [], "", "", "direct"

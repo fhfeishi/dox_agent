@@ -9,8 +9,8 @@ from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
-from .knowledge import Document, Page
 from .auth import CURRENT_USER
+from .knowledge import Document, Page
 
 router = APIRouter(prefix="/api")
 

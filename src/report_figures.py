@@ -58,7 +58,7 @@ def _verified_image(pdf_path: Path, page_idx: int, bbox: list, image_path: Path)
         # White document backgrounds can hide a wrong sparse chart in the mean error.
         # Pixel correlation also requires the chart marks to occupy the same locations.
         covariance = sum((a - image_stat.mean[0]) * (b - reference_stat.mean[0])
-                         for a, b in zip(image.tobytes(), reference.tobytes())) / (128 * 128)
+                         for a, b in zip(image.tobytes(), reference.tobytes(), strict=True)) / (128 * 128)
         return data if covariance / contrast >= .9 else None
     except (OSError, ValueError, RuntimeError, IndexError):
         return None

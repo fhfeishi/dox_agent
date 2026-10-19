@@ -4,16 +4,18 @@ import asyncio
 import json
 import re
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from threading import Thread
 
 from playwright.async_api import async_playwright, expect
 
+from tests.browser_support import FrontendHandler
+
 
 async def main():
     root = Path(__file__).resolve().parents[1]
-    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
+    server = ThreadingHTTPServer(("127.0.0.1", 0), partial(FrontendHandler, directory=str(root / "frontend/dist")))
     Thread(target=server.serve_forever, daemon=True).start()
     store = {
         "single": {"id": "single", "revision": 1, "title": "旧单库会话", "data": {

@@ -27,6 +27,22 @@ testpaths = ["tests"]
 line-length = 110
 target-version = "py312"
 
+# Fixed rule set (upgrade plan card Q1, 2026-10-19); the version is pinned by uv.lock.
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+# House style, not defects: the code keeps short related statements on one line, and long Chinese
+# messages and SQL read better unwrapped. Reformatting ~1,300 lines would bury real changes in churn.
+ignore = [
+    "E501",  # line length
+    "E701",  # one-line `if x: return`
+    "E702",  # `a = 1; b = 2` for tightly related assignments
+    "E731",  # small named lambdas used as local helpers
+]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI declares request parameters through default values; these calls are not shared mutable state.
+extend-immutable-calls = ["fastapi.File", "fastapi.Form", "fastapi.Depends", "fastapi.Query"]
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"

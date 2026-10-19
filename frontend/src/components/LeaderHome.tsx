@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useApp } from "../store";
 import { RadarChart } from "./Charts";
 import { Icon, type IconName } from "./Icons";
@@ -37,7 +37,6 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
  */
 export function LeaderHome() {
   const { showInspector } = useApp();
-  const navigate = useNavigate();
   const [search, setSearch] = useSearchParams();
   const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
     const response = await fetch("/api/overview/libraries", { signal });
@@ -53,7 +52,7 @@ export function LeaderHome() {
   const fields = (chosen?.fields ?? []).slice(0, 8);
 
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[#f5f7fa]">
-    <div className="mx-auto max-w-[1240px] space-y-9 px-5 py-7 lg:px-8">
+    <div className="mx-auto max-w-[1200px] space-y-9 px-5 py-7 sm:px-8">
       {overview.data ? <HeroCarousel rows={rows} />
         : <div className="h-[300px] rounded-2xl bg-gradient-to-br from-[#172a40] via-[#1f3a57] to-[#2c5373]" aria-hidden="true" />}
       <p className="-mt-6 text-xs text-[var(--stone)]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>
@@ -63,11 +62,14 @@ export function LeaderHome() {
         <SectionHead index="01" title="工作台" />
         <div className="grid grid-cols-2 gap-4 @5xl:grid-cols-4">
           {WORK.map((w) => <Link key={w.to} to={w.to}
-            className="group flex aspect-[5/4] flex-col rounded-2xl border border-[#e2e7ee] bg-white p-5 transition-[border-color,box-shadow] hover:border-[#b4c1d2] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
-            <span className="grid size-12 place-items-center rounded-xl" style={{ color: w.accent, background: w.accent + "14" }}><Icon name={w.icon} size={24} /></span>
-            <b className="mt-auto text-[18px] text-[#1f3147]">{w.title}</b>
-            <span className="mt-1 text-[12.5px] leading-5 text-[var(--steel)]">{w.text}</span>
-            <span className="mt-3 text-xs text-[var(--link)] opacity-60 transition-opacity group-hover:opacity-100">进入 →</span>
+            className="group relative flex min-h-[158px] flex-col overflow-hidden rounded-2xl border border-[#e2e7ee] bg-white p-5 transition-[border-color,box-shadow] hover:border-[#b4c1d2] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+            <span aria-hidden="true" className="pointer-events-none absolute -right-3 -bottom-4 opacity-[0.06]" style={{ color: w.accent }}><Icon name={w.icon} size={112} /></span>
+            <span className="relative flex items-center gap-3">
+              <span className="grid size-11 place-items-center rounded-xl" style={{ color: w.accent, background: w.accent + "14" }}><Icon name={w.icon} size={22} /></span>
+              <b className="text-[18px] text-[#1f3147]">{w.title}</b>
+            </span>
+            <span className="relative mt-3 text-[13px] leading-5 text-[var(--steel)]">{w.text}</span>
+            <span className="relative mt-auto text-xs text-[var(--link)] opacity-60 transition-opacity group-hover:opacity-100">进入 →</span>
           </Link>)}
         </div>
       </section>
@@ -101,10 +103,6 @@ export function LeaderHome() {
                   {fields.length ? <RadarChart spec={{ type: "radar", title: "应用方向分布", labels: fields.map(([n]) => n), values: fields.map(([, v]) => v), unit: " 个项目", max: chosen.projects,
                     note: "有技术服务于该方向的项目数，一个项目可计入多个方向；方向由模型归纳，需人工核对" }} />
                     : <p className="py-10 text-center text-sm text-[var(--steel)]">该领域尚未归纳应用方向。</p>}
-                </div>
-                <div className="border-t border-[#e6ebf1] pt-3">
-                  <button type="button" onClick={() => navigate(`/overview/domains?domain=${encodeURIComponent(chosen.corpus_id)}`)}
-                    className="rounded-lg bg-[#1f3a57] px-3 py-1.5 text-[13px] text-white hover:bg-[#172a40]">领域分析</button>
                 </div>
               </div>
             </div>

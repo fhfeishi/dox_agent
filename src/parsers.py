@@ -180,7 +180,7 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
         output, _ = process.communicate(timeout=settings.mineru_timeout)
     except subprocess.TimeoutExpired:
         _kill_process_group(process)
-        raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）")
+        raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
     if process.returncode != 0:
         tail = (output or b"")[-500:].decode("utf-8", "ignore")
         raise ValueError("mineru 解析失败：" + tail)

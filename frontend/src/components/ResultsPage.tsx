@@ -131,9 +131,9 @@ export function ResultsPage() {
 
   // The page scrolls on its own, like the other pages: the app frame is one screen high (query 2026-1015 1700).
   return <main className="min-h-0 flex-1 overflow-y-auto">
-  <div className="@container mx-auto w-full max-w-[1120px] space-y-5 px-4 py-6 sm:px-8">
+  <div className="@container mx-auto w-full max-w-[1200px] space-y-5 px-5 py-7 sm:px-8">
     <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
-      <h1 className="text-[22px] font-semibold text-[var(--ink)]">成果</h1>
+      <h1 className="text-[22px] font-semibold text-[var(--ink)]">报告中心</h1>
       <div role="tablist" aria-label="成果视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
         {([["reports", "报告"], ["period", "周期总结"]] as const).map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={view === key}
           onClick={() => setView(key)} className={`rounded-lg px-4 py-1.5 text-[13.5px] ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}

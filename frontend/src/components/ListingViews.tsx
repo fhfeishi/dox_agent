@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { archiveTask, copyTask, deleteTask, restoreTask, saveTaskDraft, type TaskInfo } from "../api";
 import { statusLabel } from "./TemplatePanels";
 import { useApp } from "../store";
@@ -6,7 +6,7 @@ import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import type { IconName } from "./Icons";
 import { useAuth } from "../auth";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { TemplateLibrary, readText } from "./TemplateLibrary";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
@@ -29,19 +29,16 @@ function ViewShell({
 }) {
   return (
     <section className="flex min-h-0 flex-1 flex-col bg-[var(--canvas)]">
-      <header className="flex h-[52px] shrink-0 items-center gap-[10px] border-b border-[var(--hairline)] pr-[14px] pl-[18px]">
-        <span className="text-[14px] font-semibold text-[var(--ink)]">{title}</span>
-        <span className="flex-1" />
-        {actions}
-      </header>
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[1080px] px-4 sm:px-8 pt-[26px]">
-          <h1 className="mb-[6px] text-[26px] font-semibold tracking-[-0.6px] text-[var(--ink)]">
-            {title}
-          </h1>
+        <div className="mx-auto w-full max-w-[1200px] px-5 pt-7 sm:px-8">
+          <div className="mb-[6px] flex flex-wrap items-center gap-[10px]">
+            <h1 className="text-[24px] font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
+            <span className="flex-1" />
+            {actions}
+          </div>
           <p className="max-w-[680px] text-[13.5px] leading-[1.6] text-[var(--steel)]">{description}</p>
         </div>
-        <div className="mx-auto grid w-full max-w-[1080px] grid-cols-1 md:grid-cols-2 gap-[14px] px-4 sm:px-8 pt-[22px] pb-[40px]">
+        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 md:grid-cols-2 gap-[16px] px-5 sm:px-8 pt-[20px] pb-[40px]">
           {children}
         </div>
       </div>
@@ -66,6 +63,16 @@ export function TasksView() {
   // report. Custom tasks keep the conversation, where their own parameters are filled in.
   const [picking, setPicking] = useState<{ task: string; corpus: string } | null>(null);
   const libraries = corpora.filter((c) => !c.missing && (c.indexed_count ?? c.docs_count ?? 0) > 0);
+  // A dropdown entry (/tasks?task=task1) opens that task's start form with the library picker
+  // already in place (query 2026-1019 2021).
+  const [query] = useSearchParams();
+  const wanted = query.get("task");
+  const firstLibrary = libraries[0]?.id ?? "";
+  useEffect(() => {
+    if (!wanted || !firstLibrary) return;
+    if (!tasks.some((item) => item.id === wanted && !item.archived && item.status !== "archived")) return;
+    setPicking((prev) => (prev?.task === wanted ? prev : { task: wanted, corpus: firstLibrary }));
+  }, [wanted, firstLibrary, tasks]);
   // Analysis tasks are shared, so administrators maintain them (节点审查 D2).
   const { role } = useAuth();
   const [showArchived, setShowArchived] = useState(false);
@@ -115,8 +122,8 @@ export function TasksView() {
   const archivedTasks = tasks.filter(isArchived);
   return (
     <ViewShell
-      title="存量分析"
-      description="选择要做的分析，补充或修改问题后发送。生成的报告可随时在右上角“成果”查看。"
+      title="任务模版"
+      description="存量分析从这里开始：选一个任务模版，选择资料库后补充问题并发送。生成的报告可在“报告中心”查看。"
       actions={<>
         {role === "admin" ? <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束任务管理" : "管理分析任务"}</Button> : null}
         {manage ? <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button> : null}
@@ -143,8 +150,8 @@ export function TasksView() {
             const style = TASK_STYLE[index % TASK_STYLE.length];
             const usable = task.status !== "draft" || Boolean(task.version);
             return (
-              <article key={task.id}
-                className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]">
+              <article key={task.id} ref={picking?.task === task.id ? (el) => el?.scrollIntoView({ block: "nearest", behavior: "smooth" }) : undefined}
+                className={`font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)] ${picking?.task === task.id ? "!border-[var(--primary)] ring-2 ring-[var(--primary-soft)]" : ""}`}>
                 <button type="button" onClick={() => showInspector({ kind: "task", taskId: task.id })} className="flex flex-col gap-[10px] text-left">
                   <span className="grid size-[34px] place-items-center rounded-[8px]" style={{ background: style.tint, color: style.fg }}>
                     <Icon name={style.icon} size={16} strokeWidth={1.9} />

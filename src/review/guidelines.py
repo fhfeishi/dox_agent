@@ -4,8 +4,8 @@ from datetime import date
 
 from .model_client import Client, ModelError, TruncatedModelError
 from .models import GuideCheck, RulePack
-from .templates import suggest_execution
 from .research import redact
+from .templates import suggest_execution
 
 
 def generate(guides,kind='formal',client=None):

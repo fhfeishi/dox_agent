@@ -22,7 +22,7 @@ import { MyWorkSection } from "./MyWorkSection";
 import { LeaderHome } from "./LeaderHome";
 
 const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
-  { to: "/library", title: "查阅资料", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "#4f6554" },
+  { to: "/library", title: "资料查阅", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "#4f6554" },
   { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势，形成有出处的报告。", icon: "tasks", accent: "#65569b" },
   { to: "/review/formal", title: "审查申请书", text: "上传材料，按模板核对规范或开展技术评议。", icon: "review", accent: "#356d8c" },
   { to: "/intelligence", title: "情报分析", text: "结合外部信息与库内资料，分析背景与可行性。", icon: "forecast", accent: "#997346" },
@@ -64,7 +64,7 @@ function WorkHome() {
   const fields = [...corpora].filter((c) => !c.missing).sort((a, b) => (b.indexed_count ?? 0) - (a.indexed_count ?? 0)).slice(0, 5);
   const readDate = (text: string) => new Date(text).toLocaleDateString("zh-CN", { month: "2-digit", day: "2-digit" });
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[#f6f7f9]">
-    <div className="mx-auto max-w-[1440px] space-y-7 px-5 py-7 lg:px-10 lg:py-9">
+    <div className="mx-auto max-w-[1200px] space-y-7 px-5 py-7 sm:px-8">
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--hairline)] pb-5">
         <div><p className="text-xs text-[var(--steel)]">资料与研究工作台</p>
           <h1 className="mt-2 text-2xl font-semibold">今天，从哪项工作开始？</h1></div>
@@ -91,7 +91,7 @@ function WorkHome() {
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]">
         <section aria-label="最近报告" className="overflow-hidden rounded-xl border border-[#e3e7ec] bg-white">
           <div className="flex items-center justify-between border-b border-[#edf0f4] px-5 py-4"><h2 className="text-base font-semibold">最近报告</h2>
-            <button onClick={() => navigate("/results")} className="text-xs text-[var(--link)] hover:underline">全部成果 →</button></div>
+            <button onClick={() => navigate("/results")} className="text-xs text-[var(--link)] hover:underline">报告中心 →</button></div>
           {recent.error ? <p role="alert" className="p-5 text-sm text-[var(--red)]">{recent.error.message}</p>
             : !recent.data ? <p className="p-6 text-sm text-[var(--steel)]">正在读取最近工作…</p>
             : !records.length ? <p className="p-6 text-sm text-[var(--steel)]">还没有报告。选择上方任务即可开始。</p>

@@ -103,7 +103,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
       const years = wide.observed_years?.length ? wide.observed_years : [];
       if (!wide.eligible_count) throw new Error(`所选 ${wide.total} 份资料都缺少项目年份，不能进入报告；请改选有年份的资料，或在文件名中补上立项年份`);
       const left = wide.total - wide.eligible_count;
-      update(runId, { state: "generating", note: `纳入 ${wide.eligible_count} 份资料${left ? `；${left} 份缺少项目年份，未纳入` : ""}。生成约需一至数分钟，可继续浏览，完成后在此打开，也会出现在“成果”中。` });
+      update(runId, { state: "generating", note: `纳入 ${wide.eligible_count} 份资料${left ? `；${left} 份缺少项目年份，未纳入` : ""}。生成约需一至数分钟，可继续浏览，完成后在此打开，也会出现在“报告中心”中。` });
       const report = await createReport({ ...base, year_from: Math.min(...years), year_to: Math.max(...years) });
       update(runId, { state: "done", artifactId: report.artifact_id });
     } catch (e) { update(runId, { state: "failed", error: (e as Error).message }); }
@@ -146,7 +146,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
 
     <div className="scrollbar-thin min-h-0 flex-1 space-y-5 overflow-y-auto px-[14px] py-[14px]" aria-live="polite">
       {!items.length && !form ? <div className="space-y-2">
-        <p className="text-[12px] text-[var(--steel)]">回答附原文出处；满意的回答可保存到“成果”，或直接生成报告。可以这样问：</p>
+        <p className="text-[12px] text-[var(--steel)]">回答附原文出处；满意的回答可保存到“报告中心”，或直接生成报告。可以这样问：</p>
         {starters(groups.length, ids.length).map(([text, t]) => <button key={text} type="button" onClick={() => void ask(text, t)}
           className="block w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2 text-left text-[13px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">{text}</button>)}
       </div> : null}
@@ -178,7 +178,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
         <p className="flex items-center gap-2"><Icon name="doc" size={14} /><b className="min-w-0 flex-1 truncate" title={t.topic}>报告 · {t.topic}</b></p>
         <p className="mt-0.5 text-[11px] text-[var(--stone)]">{t.scope}</p>
         {t.state === "failed" ? <p role="alert" className="mt-2 text-[12.5px] text-[var(--red)]">{t.error}</p>
-          : <p className="mt-2 text-[12.5px] text-[var(--steel)]">{t.state === "done" ? "已生成并保存到“成果”。" : t.note}</p>}
+          : <p className="mt-2 text-[12.5px] text-[var(--steel)]">{t.state === "done" ? "已生成并保存到“报告中心”。" : t.note}</p>}
         {t.state === "generating" ? <GenerationProgress compact status="generating" /> : null}
         {t.state === "done" && t.artifactId ? <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: t.artifactId! })}
           className="mt-2 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[12.5px] text-white">打开报告</button> : null}

@@ -417,7 +417,7 @@ export function ReviewWorkbench() {
           .catch((cause) => setError((cause as Error).message))}>重新测试</Button></div> : null}
 
       {/* query 2026-1013 1133: three steps, details hidden until clicked. */}
-      <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto]">
+      <div className="grid items-center gap-3 md:grid-cols-[1fr_1fr_auto]">
         <StepTile step={1} label={text.label} open={panel === "template"}
           value={template ? `${template.name} · v${template.version}` : "尚无可用模板"}
           onClick={() => { setPanel(panel === "template" ? "" : "template"); if (template && panel !== "template") showInspector({ kind: "review-template", templateId: template.id }); }} />

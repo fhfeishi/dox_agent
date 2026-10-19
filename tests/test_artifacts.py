@@ -461,8 +461,8 @@ def test_saving_an_artifact_for_an_unknown_run_is_rejected(tmp_path):
 
 
 def test_report_trash_expiry_shared_images_and_restart(tmp_path, monkeypatch):
-    from datetime import datetime, timedelta, UTC
     import hashlib
+    from datetime import UTC, datetime, timedelta
     clock=datetime(2026,9,30,tzinfo=UTC)
     monkeypatch.setattr("src.artifacts._now",lambda: clock.isoformat())
     app,cid=ready_app(tmp_path)
@@ -512,6 +512,7 @@ def test_report_trash_expiry_shared_images_and_restart(tmp_path, monkeypatch):
 
 def test_offline_migration_preserves_edits_and_normalizes_all_session_branches(tmp_path):
     import json
+
     from src.artifact_migration import migrate
     state=tmp_path/"state"; state.mkdir()
     store=ArtifactStore(state/"artifacts.sqlite3")
@@ -612,3 +613,14 @@ def test_a_short_word_template_is_read_but_short_material_is_still_refused(tmp_p
         assert upload().status_code == 422  # as material: too little text, likely a scan
         read = upload(template="true")
         assert read.status_code == 201 and "二、主要结论" in read.json()["text"]
+
+
+def test_intelligence_local_material_skips_reports_without_a_source():
+    """A report without matched chunks has no source; the next report must keep its own citation."""
+    from types import SimpleNamespace
+
+    from src.intelligence import local_material
+    reports = [{"doc": SimpleNamespace(title=t), "markdown": t + "正文", "chunks": c} for t, c in
+               (("甲", ["x"]), ("乙", []), ("丙", ["y"]))]
+    text = local_material([{"citation": 2}, {"citation": 3}], reports)
+    assert "[2] 甲" in text and "[3] 丙" in text and "乙" not in text

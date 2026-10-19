@@ -1,5 +1,6 @@
 """Real HTTP/cookie/SQLite authentication lifecycle, no substitute authentication."""
 from fastapi.testclient import TestClient
+
 from src.agent.config import Settings
 from src.main import create_app
 
@@ -83,6 +84,7 @@ def test_three_roles_account_management_and_guides(tmp_path):
 def test_single_administrator_store_moves_into_accounts(tmp_path):
     """An existing single-administrator store keeps its password after the upgrade."""
     import sqlite3
+
     from src.auth import Accounts
     store = Accounts(tmp_path)
     salt = "00" * 16

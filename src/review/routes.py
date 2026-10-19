@@ -178,7 +178,7 @@ def test_connection():
         return {"ok": True, **connection_state(client.settings), "model": client.settings["model"], "message": "模型连接及 JSON 输出测试成功。"}
     except ModelError as e:
         db.save("model_connection", {"id": connection_id(client.settings), "status": "failed", "tested_at": db.now()})
-        raise HTTPException(502, str(e))
+        raise HTTPException(502, str(e)) from e
 
 
 @router.get("/documents")
@@ -219,7 +219,7 @@ async def upload_document(file: UploadFile = File(...)):
         return await run_in_threadpool(ingest, path, name, id)
     except Exception as e:
         path.unlink(missing_ok=True)
-        raise HTTPException(400, str(e) if isinstance(e, ValueError) else "文件无法解析，请检查是否为完整且未加密的 PDF / DOCX。")
+        raise HTTPException(400, str(e) if isinstance(e, ValueError) else "文件无法解析，请检查是否为完整且未加密的 PDF / DOCX。") from e
 
 
 @router.get("/documents/{id}")
@@ -276,7 +276,7 @@ def save_rule(rule: RulePack):
         try:
             templates.validate_enabled(data)
         except ValueError as e:
-            raise HTTPException(422, str(e))
+            raise HTTPException(422, str(e)) from e
     return publish(data, old)
 
 
@@ -356,7 +356,7 @@ async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form(
         try:
             parsed = await run_in_threadpool(parse_document, path)
         except ValueError as e:
-            raise HTTPException(400, str(e))
+            raise HTTPException(400, str(e)) from e
         guide = {**parsed, "id": gid, "filename": name, "path": str(path)}
         db.save("guideline", guide)
         documents.append(guide)
@@ -366,7 +366,7 @@ async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form(
         draft = await run_in_threadpool(guidelines.generate, documents, kind)
         return publish(draft, None)
     except ModelError as e:
-        raise HTTPException(502, str(e))
+        raise HTTPException(502, str(e)) from e
 
 
 @router.get("/guidelines/{id}/file")
@@ -443,7 +443,7 @@ def research(q: ResearchQuery):
     try:
         return search_crossref(q.query, q.cutoff.isoformat())
     except Exception:
-        raise HTTPException(502, "公开文献检索暂不可用。可改用本地证据或手动录入，不影响规范审核。")
+        raise HTTPException(502, "公开文献检索暂不可用。可改用本地证据或手动录入，不影响规范审核。") from None
 
 
 STAGES = audit.STAGES
@@ -486,9 +486,8 @@ def run_review(id, doc, rule, req, evidence, settings):
         guides = [require("guideline", gid) for gid in rule.get("guideline_ids", [])]
         local_count = 0
         if req["kind"] == "professional":
-            from urllib.parse import urlencode
-
             from dataclasses import replace
+            from urllib.parse import urlencode
 
             from ..intelligence import corpus_knowledge
             from ..retrieval import RetrievalConfig, assemble_reports
@@ -587,7 +586,7 @@ def new_run(req: ReviewRequest, request: Request):
     try:
         templates.validate_enabled(rule)
     except ValueError as e:
-        raise HTTPException(422, str(e))
+        raise HTTPException(422, str(e)) from e
     if not model_configured():
         raise HTTPException(400, "审查模型尚未配置")
     if req.kind == "professional":

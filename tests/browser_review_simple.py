@@ -6,6 +6,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from playwright.async_api import async_playwright, expect
+
 from src.agent.config import Settings
 from src.main import create_app
 from src.review import routes, storage
@@ -77,8 +78,8 @@ async def main():
                 await expect(page.locator("#records")).to_contain_text("排队中")
                 await expect(page.get_by_role("progressbar", name="报告生成进度").first).to_be_visible()
                 await expect(page.get_by_role("progressbar", name="报告生成进度").first).to_have_attribute("aria-valuenow", "0")
-                await page.get_by_role("button", name="成果", exact=True).click()
-                await expect(page.get_by_role("heading", name="成果", exact=True)).to_be_visible()
+                await page.get_by_role("button", name="报告中心", exact=True).click()
+                await expect(page.get_by_role("heading", name="报告中心", exact=True)).to_be_visible()
                 await expect(page.get_by_role("region", name="成果统计")).to_contain_text("已完成报告0")
                 # 成果页自带滚动区域，内容多时可上下滑动（query 2026-1015 1700）。
                 assert await page.get_by_role("region", name="成果统计").evaluate("e => getComputedStyle(e.closest(\"main\")).overflowY") == "auto"
@@ -94,7 +95,7 @@ async def main():
                 await expect(page.locator("#records")).not_to_contain_text("排队中", timeout=15000)
                 await expect(page.get_by_role("link", name=re.compile("审查完成.*打开报告"))).to_be_visible()
                 await page.locator("#records summary").click()
-                await page.get_by_role("button", name="成果", exact=True).click()
+                await page.get_by_role("button", name="报告中心", exact=True).click()
                 await page.get_by_role("tab", name=re.compile("^资料审查 ")).click()
                 await page.get_by_label("按标题搜索成果").fill("队列验收")
                 await page.get_by_label("成果状态").select_option("completed")

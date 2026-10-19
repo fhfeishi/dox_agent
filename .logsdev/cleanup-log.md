@@ -45,4 +45,4 @@ no file except `src/main.py` is over 800 lines.
 | browser_tasks.py | 功能开关时期的任务绑定旧入口，被先选资料的工作区替代 | browser_analysis_workspace / browser_task_templates |
 | browser_smoke.py | 依赖外部已运行 8011 端口，且使用旧设置入口 | check.sh full 启动临时服务；browser_export / browser_answer_controls |
 
-没有删除仍有效的原文预览、网络快照、分支和范围恢复等能力测试。它们尚需迁移的具体问题登记在 [Q1 盘点](upgrade-Q1-20261019.md)。
+没有删除仍有效的原文预览、网络快照、分支和范围恢复等能力测试。它们尚需迁移的具体问题登记在 [Q1 盘点](tasks/upgrade-Q1-20261019.md)。

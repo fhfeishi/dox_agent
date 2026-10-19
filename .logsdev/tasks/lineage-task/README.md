@@ -2,7 +2,7 @@
 
 供其他模型执行。每个资料库独立处理，分三步：① 搭框架（一次调用）；② 分批归类并判定阶段（每批 25 条）；③ 对第②步没归入主题的条目再归类一次。三步产出交回后，由本系统按现有规则校验并组装成 `lineage.json`。
 
-## 输入文件（`.logsdev/lineage-task/inputs/`）
+## 输入文件（`.logsdev/tasks/lineage-task/inputs`）
 
 - `<库名>.step1.txt`：第①步的用户消息，已按系统格式生成，可直接使用。
 - `<库名>.items.json`：`corpus_id`、`scenes`（场景归纳的 6 个场景名，即“应用领域”）、`items`（全部技术条目）。每个条目：`id`（`项目号|条目号`，唯一键）、`name`、`desc`、`project_id`、`start`/`end`（项目起止年，可能为空）、`outcomes`（该项目已取得的成果，最多 4 条）。

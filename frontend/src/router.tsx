@@ -4,7 +4,6 @@ import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
 import { AppProvider } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
-import { ReviewShell } from "./components/ReviewViews";
 import { useDocuments } from "./useDocuments";
 
 const Overview = lazy(() => import("./components/Overview").then((m) => ({ default: m.Overview })));
@@ -75,14 +74,14 @@ export const router = createBrowserRouter([{
     { path: "intelligence", lazy: async () => ({ Component: (await import("./components/IntelligenceView")).IntelligenceView }) },
     { path: "artifacts", element: <Navigate to="/results" replace /> },
     { path: "prompts", element: <Navigate to="/tasks" replace /> },
-    { path: "review", Component: ReviewShell, children: [
+    { path: "review", Component: Outlet, children: [
       { index: true, element: <Navigate to="/review/formal" replace /> },
-      { path: ":kind", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewWorkbench }) },
+      { path: ":kind", lazy: async () => ({ Component: (await import("./components/review/ReviewWorkbench")).ReviewWorkbench }) },
       { path: "templates", lazy: async () => ({ Component: (await import("./components/ReviewTemplates")).ReviewTemplates }) },
       { path: "templates/:id", lazy: async () => ({ Component: (await import("./components/ReviewTemplates")).ReviewTemplateDetail }) },
       { path: "guidelines", element: <Navigate to="/review/templates" replace /> },
-      { path: "evidence", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewEvidence }) },
-      { path: "runs/:id", lazy: async () => ({ Component: (await import("./components/ReviewViews")).ReviewRunPage }) },
+      { path: "evidence", lazy: async () => ({ Component: (await import("./components/review/ReviewEvidence")).ReviewEvidence }) },
+      { path: "runs/:id", lazy: async () => ({ Component: (await import("./components/review/ReviewReport")).ReviewRunPage }) },
     ] },
     { path: "*", Component: () => <p className="p-6">页面不存在。<a href="/library">返回知识库</a></p> },
   ],

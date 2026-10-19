@@ -12,11 +12,11 @@
            应用背景/应用场景/应用示范→场景；成果/进展/结论→成果），引文=原句。
   outputs —— 直接消费报告自带的「成果列表(N)」著录（achievement_list.parse），
            每条 title 就是原文行，kind 由 type 映射，status 按 type 固定。
-  events —— 复用 derive_events 的规则（仅专利/论文/样机/部署/试验叙述段）。
+  events —— 复用 derive_target_events 的规则（仅专利/论文/样机/部署/试验叙述段）。
 
 用法：
-    python3 .workbuddy/local_extract_v2.py 机器人自动化 --dry     # 只统计不落盘
-    python3 .workbuddy/local_extract_v2.py 机器人自动化           # 实际写入
+    python datapipe/scripts/extract_targets_rules.py 机器人自动化 --dry     # 只统计不落盘
+    python datapipe/scripts/extract_targets_rules.py 机器人自动化           # 实际写入
 """
 from __future__ import annotations
 
@@ -25,13 +25,13 @@ import sqlite3
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src import achievement_list, targets  # noqa: E402
 
-sys.path.insert(0, str(ROOT / ".workbuddy"))
-import derive_events  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import derive_target_events  # noqa: E402
 
 
 # ---------- 版式小节 -> 维度 ----------
@@ -249,7 +249,7 @@ def extract_outputs(markdown: str) -> list[dict]:
 def build_record(info, doc, markdown: str, chunks: list[dict], is_pdf: bool) -> dict:
     facets = extract_facets(markdown)
     outputs = extract_outputs(markdown)
-    events = derive_events.extract_events(markdown)
+    events = derive_target_events.extract_events(markdown)
 
     raw = {
         "facets": [{"key": key, "items": facets.get(key, [])} for key in targets.DIMENSIONS],

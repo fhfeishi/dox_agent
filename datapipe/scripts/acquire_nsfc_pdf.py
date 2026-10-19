@@ -3,12 +3,12 @@ NSFC结题报告下载工具
 从 kd.nsfc.cn 下载结题报告全文图片并合成PDF
 
 用法:
-    python nsfc_report_download.py <URL或项目ID> [输出目录]
+    python datapipe/scripts/acquire_nsfc_pdf.py <URL或项目ID> [输出目录]
 
 示例:
-    python nsfc_report_download.py https://kd.nsfc.cn/finalDetails?id=f61c67b8a6908051a73399e4975e071c
-    python nsfc_report_download.py f61c67b8a6908051a73399e4975e071c
-    python nsfc_report_download.py f61c67b8a6908051a73399e4975e071c ./.output
+    python datapipe/scripts/acquire_nsfc_pdf.py https://kd.nsfc.cn/finalDetails?id=f61c67b8a6908051a73399e4975e071c
+    python datapipe/scripts/acquire_nsfc_pdf.py f61c67b8a6908051a73399e4975e071c
+    python datapipe/scripts/acquire_nsfc_pdf.py f61c67b8a6908051a73399e4975e071c ./.output
 """
 
 import sys

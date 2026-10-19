@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
-import { ReviewRunPanel } from "./ReviewViews";
+import { ReviewRunPanel } from "./review/ReviewRunPanel";
 import type { Saved, SessionData } from "../workspace";
 
 function sessionTime(session: Saved<SessionData>): string | undefined {

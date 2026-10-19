@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """target-v2 本地提交器：不调用模型，用草稿产出 schema_version=2 记录。
 
-与 tools/get_target_v2.py 的线上产出走**同一份**校验与合并逻辑
+与 datapipe/scripts/extract_targets.py 的线上产出走**同一份**校验与合并逻辑
 （src/targets.py 的 _normalize_segment / _Merge / _outputs_check），因此
 schema、枚举校验、引文可溯源、id 派生、证据定位与线上完全一致；
 唯一区别是四维内容来自草稿而非模型。
 
 用法:
-    python3 .workbuddy/commit_target_v2.py <库名片段> <draft.json> [...]
-    python3 .workbuddy/commit_target_v2.py 医疗 draft1.json draft2.json
+    python datapipe/scripts/commit_target_drafts.py <库名片段> <draft.json> [...]
+    python datapipe/scripts/commit_target_drafts.py 医疗 draft1.json draft2.json
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src import targets  # noqa: E402

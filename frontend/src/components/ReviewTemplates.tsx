@@ -6,7 +6,7 @@ import {
   type ReviewCheck, type ReviewExecution, type ReviewKind, type ReviewRule,
 } from "../reviewApi";
 import { Button, Pill } from "./ui";
-import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewViews";
+import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./review/ReviewLayout";
 import { useAuth } from "../auth";
 import { useApp } from "../store";
 

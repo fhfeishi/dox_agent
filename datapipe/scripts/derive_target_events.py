@@ -11,6 +11,10 @@
   事件类型由原文状态词决定，缺状态词则不提取；
   日期必须能在该条引文中读到（targets._normalize_event 会再校验一次）；
   派生出的事件 id 与 _Merge 一致（type\\0date\\0desc），重复运行幂等。
+
+用法（默认试跑，不写盘）：
+    python datapipe/scripts/derive_target_events.py 医疗 --sample   # 试跑并打印样本
+    python datapipe/scripts/derive_target_events.py 医疗 --apply    # 写入 target/
 """
 from __future__ import annotations
 
@@ -22,7 +26,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src import targets  # noqa: E402

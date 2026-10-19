@@ -10,8 +10,8 @@ Plan (confirmed 2026-09-23):
   * delete the old library and the empty placeholder corpora, then rewrite `.state/corpora.json`.
 
 Usage:
-    python tools/split_knowledge_corpora.py            # dry run: print the plan only
-    python tools/split_knowledge_corpora.py --apply    # execute
+    python datapipe/scripts/layout_corpora.py            # dry run: print the plan only
+    python datapipe/scripts/layout_corpora.py --apply    # execute
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ import shutil
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 KB = ROOT / ".knowledge"
 OLD = KB / "自然科学基金"
 MDS = ROOT / ".logsdev" / "archive" / "mds"

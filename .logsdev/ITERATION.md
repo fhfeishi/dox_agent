@@ -3706,3 +3706,21 @@ verifier 在 §16.22 提出 2 个 P1 + 2 个 P2 作为提交门禁。本轮逐�
     - `browser_task_templates` 在创建自定义任务的接口步骤即失败，与本次无关，未处理。
   - 真实数据副本（普通用户，无模型请求、无页面错误）：按项目列表、勾选、工作区与报告表单正常。
 
+
+### GitHub 产品调研与首批模块解耦（2026-10-16）
+
+用户要求补充产品调研，随后追加继续实施和代码模块化。外部资料仅作为设计参考，未执行其安装或代理指令、未上传本项目资料；固定8个仓库默认分支提交及23份选定源码/指南，报告与来源哈希见 DeepResearch-products/README.md、sources.json。Paperless公开demo受403限制，Docmost/Open Notebook只浏览官方文档/官网，未宣称外部产品实机业务验收。
+
+本轮代码：删除1072行ReviewViews.tsx；提取components/review下ReviewLayout、ReviewWorkbench、ReviewReport、ReviewEvidence、ReviewRunPanel；router使用Outlet并独立延迟加载业务页，ReviewTemplates和SidePanel分别依赖轻量共享布局/侧栏列表。未改API、身份、审查规则、存储或权限，无第三方代码复制与新增依赖。
+
+验证：改前/改后构建通过，最大包均为React vendor316.53 kB；应用代码一块index由199.38变137.15 kB，增加审查功能分包（不是总资源/实际耗时减少的声明）。npm test 47 passed；browser_review_simple PASS；隔离服务四个审查子页面直接加载均200、标题正常、无页面错误。browser_review_flows因脚本没有登录停在登录页，未进入业务，保留失败记录且未更改无关脚本。本轮未重跑后端全套或真实模型。
+
+待续：按调研R1验证连续资料分析原型；M2分离任务上下文与显示状态，M3逐域拆main.py路由。当前只是首批解耦，不宣称完成全系统模块化。改动未提交、未推送。
+
+交付核对（2026-10-17）：8项目/10份Markdown报告与来源清单链接检查通过。当前已有AnalysisWorkspace主链，运行browser_analysis_workspace通过（固定样本15次操作，报告请求保持所选范围），整合文档已改为沿现有工作区增量改进、不另造Notebook系统。构建及测试证据集中保存到DeepResearch-products/evidence。代码首批拆分完成，main.py/store的大范围模块化是后续任务，不作本轮已完成声明。
+
+### 16.122 query「2026-1017 审查节点0900」：开发流程与工程化审查（2026-10-17，只读审查，未提交）
+
+- 结论与需要确认的 Q1–Q6 见 [节点审查](dox_agent_节点审查-20261017-0900/README.md)；没有修改代码、规则文件和三份主文档的结构。
+- 检查（基线 `4052711` 加工作区）：pytest 255 passed；npm test 47 passed；tsc 通过；ruff 67 项（项目未固定规则集）；浏览器脚本和真实模型未运行。
+- 下一步：等用户就 Q1–Q6 作出决定，然后按审查 03 第六节执行首次收口。

@@ -4,6 +4,9 @@
 
 前端采用 React 19、TypeScript、React Router、TanStack Query、Tailwind 4 和 Vite；后端采用 FastAPI、LangGraph、SQLite 和 BM25。
 
+- 开发文档: ./.logsdev/, 项目需求记录在./.logsdev/query.md,新的需求大概率也会留存到此处，这里是与项目需求的简单交互空间。
+
+
 ## 当前进度
 
 截至 **2026-10-10**，界面包含对话、资料库、存量分析、资料审查、情报分析五个入口。成果与回收站统一在右侧检查器的「成果」中，按存量分析、资料审查、情报分析报告分组。

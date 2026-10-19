@@ -35,7 +35,7 @@ export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; co
       <span className="text-xs text-[var(--stone)]">本库已识别项目 {data.coverage.identified_projects} 个；选择年份或点柱子，两图同时标出</span>
     </div> : null}
     {/* query 2026-1013 1842 / 2026-1016 0919: projects per year beside funding, linked by year. Asking about
-        the library moved to the chat in 资料文件, and the related-project list was removed. */}
+        the library moved to the chat in 资料管理, and the related-project list was removed. */}
     {view === "timeline" ? <YearDistribution corpusId={corpusId} year={year} onYear={(value) => set("startYear", value)} /> : null}
     {view === "relations" ? <ProjectGraph corpusId={corpusId} projects={identified} title={corpusName ?? ""} onOpen={(id) => set("project", id)} /> : null}
     {view === "timeline" ? <>

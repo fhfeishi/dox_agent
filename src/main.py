@@ -2117,6 +2117,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "资料库目录已缺失")
         return info, await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
 
+    def per_year(library, value):
+        """Sum value(project) over identified projects by start year, as {"2021": n}."""
+        totals: dict[str, float] = {}
+        for p in library["projects"]:
+            if p.get("identity_status") == "identified" and p.get("start_year"):
+                totals[str(p["start_year"])] = totals.get(str(p["start_year"]), 0) + value(p)
+        return totals
+
     def library_overview(info, library):
         """One library's construction status: material, projects, four-dimension coverage, funding
         and when its scene hierarchy and technology lineage were generated (query 2026-1013 1637)."""
@@ -2134,6 +2142,12 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
             "funding": {"total_yuan": direct.get("total_yuan", "0"), "projects": direct.get("eligible_projects", 0)},
             "start_years": sorted({p["start_year"] for p in library["projects"] if p.get("start_year")}),
+            # Per start year, for the leader's yearly charts (query 2026-1019 1458): identified projects, and
+            # the known direct funding (amounts stated without conflict, never a missing one as zero).
+            "by_year": per_year(library, lambda p: 1),
+            "funding_by_year": per_year(library, lambda p: next((float(m["amount_yuan"]) for m in p.get("funding") or []
+                if m.get("scope") == "direct" and m.get("amount_yuan") is not None and m.get("currency") == "CNY"
+                and "direct" not in (p.get("funding_conflicts") or [])), 0.0)),
             "hierarchy": {"generated_at": hierarchy.get("generated_at"), "scenes": len(hierarchy.get("scenes") or []),
                           "issues": sum(len(s.get("issues") or []) for s in hierarchy.get("scenes") or [])},
             "lineage": {"generated_at": lineage.get("generated_at"), "items": len(lineage.get("items") or {}),

@@ -6,7 +6,7 @@ import type { DocumentInfo } from "../useDocuments";
 const name = (path: string) => path.split("/").at(-1) ?? path;
 
 /**
- * 资料文件 by project (query 2026-1016 1814): one row per project with its years, number and lead;
+ * 资料管理 by project (query 2026-1016 1814): one row per project with its years, number and lead;
  * ticking a project ticks all its readable files, and the row expands to its files. What needs
  * attention is said on the row — an unconfirmed project identity, a file that repeats another — so it
  * is seen where the material is chosen. Files that could not be read are listed after the projects.

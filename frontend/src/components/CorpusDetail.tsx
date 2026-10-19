@@ -15,9 +15,10 @@ const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演
 type View = "target" | "timeline" | "relations" | "files";
 // 资料文件 first and opened by default (query 2026-1014 1642); 技术研判 was 四维浏览.
 // 年度分布 is a view of its own again beside the others (query 2026-1015 1714).
-const VIEWS: [View, string][] = [["files", "资料文件"], ["target", "技术研判"], ["timeline", "年度分布"], ["relations", "项目关系"]];
+// “资料文件” was renamed 资料管理 (query 2026-1019 1458).
+const VIEWS: [View, string][] = [["files", "资料管理"], ["target", "技术研判"], ["timeline", "年度分布"], ["relations", "项目关系"]];
 
-/** Corpus main-area view: 资料文件（增删改查）与技术研判、年度分布、项目关系。 */
+/** Corpus main-area view: 资料管理（增删改查）与技术研判、年度分布、项目关系。 */
 export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose: () => void }) {
   const {
     corpora,

@@ -105,7 +105,7 @@ function Work() {
     ...libs.filter((l) => l.lineage.unplaced).map((l) => ({ key: "lu" + l.corpus_id, what: `${short(l.name)} 有 ${l.lineage.unplaced} 条技术未归入体系`,
       detail: "在技术谱系的“未归入体系的条目”中逐条查看", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
     ...libs.filter((l) => l.pending_identity).map((l) => ({ key: "pi" + l.corpus_id, what: `${short(l.name)} 有 ${l.pending_identity} 份资料项目身份待核对`,
-      detail: "批准号或基金体系不明，未计入项目统计", action: "打开资料文件", go: () => openCorpus(l.corpus_id, "files") })),
+      detail: "批准号或基金体系不明，未计入项目统计", action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files") })),
     ...runs.filter((r) => r.status === "failed").slice(0, 10).map((r) => ({ key: "rf" + r.id, what: `审查未完成：${r.document?.metadata?.title || r.document?.filename || "申请书"}`,
       detail: r.error || "原因未记录", action: "查看", go: () => navigate("/review/runs/" + r.id) })),
     ...arts.filter((a) => a.status === "failed").slice(0, 10).map((a) => ({ key: "af" + a.artifact_id, what: `报告未完成：${a.title || "分析报告"}`,

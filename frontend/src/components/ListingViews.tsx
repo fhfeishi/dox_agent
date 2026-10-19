@@ -61,7 +61,7 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
 export function TasksView() {
   const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask, corpora } = useApp();
   const navigate = useNavigate();
-  // A built-in task starts by choosing the library, then opens its 资料文件 with the analysis workspace
+  // A built-in task starts by choosing the library, then opens its 资料管理 with the analysis workspace
   // and this task (query 2026-1016 1814): the projects ticked there are the scope from question to
   // report. Custom tasks keep the conversation, where their own parameters are filled in.
   const [picking, setPicking] = useState<{ task: string; corpus: string } | null>(null);

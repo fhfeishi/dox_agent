@@ -89,7 +89,7 @@ async def main():
                 await expect(page.get_by_role("list",name="本次添加进度").get_by_text("已入库",exact=True)).to_have_count(2)
                 files=(await (await page.request.get(origin+f"/api/corpora/{quote(cid)}/files")).json())["files"]
                 assert {"新资料/甲/same.md", "新资料/乙/same.md"} <= {f["rel_path"] for f in files}
-                # 年度分布与资料文件、技术研判、项目关系并列（query 2026-1015 1714）。
+                # 年度分布与资料管理、技术研判、项目关系并列（query 2026-1015 1714）。
                 await page.get_by_role("button",name="年度分布",exact=True).click()
                 await expect(page.get_by_label("技术研判视角")).to_have_count(0)
                 # Projects per year beside funding; the question block and related projects are gone.
@@ -108,7 +108,7 @@ async def main():
                 await page.request.post(origin+"/api/auth/login",data={"username":"owner","password":"123456"})
                 await page.goto(origin+"/home")
                 # 领导首页与“概览·资料库建设”合并（query 2026-1016）。
-                await expect(page.get_by_role("heading",name="从领域分布，看研究积累")).to_be_visible()
+                await expect(page.get_by_role("heading",name="领域项目分布")).to_be_visible()
                 guide=page.get_by_role("button",name="知道了")
                 if await guide.count(): await guide.click()
                 await expect(page.get_by_role("region",name="最近报告",exact=True)).to_have_count(0)
@@ -127,17 +127,22 @@ async def main():
                 await page.set_viewport_size({"width":1440,"height":1000})
                 await page.goto(origin+"/overview/build")
                 await expect(page).to_have_url(re.compile(r"/home$"))
-                await expect(page.get_by_role("heading",name="从领域分布，看研究积累")).to_be_visible()
-                # Leader 首页 (query 2026-1016 1551): start today's work, the library overview, then 我的工作.
-                for part in ("开始今天的工作", "资料库概览"):
+                await expect(page.get_by_role("heading",name="领域项目分布")).to_be_visible()
+                # Leader 首页 (query 2026-1019 1458): the landscape banner, 工作台, the library overview, then 我的工作.
+                for part in ("工作台", "资料库概览"):
                     await expect(page.get_by_role("region",name=part)).to_be_visible()
-                await expect(page.get_by_role("region",name="开始今天的工作").get_by_role("link")).to_have_count(4)
-                # The banner introduces the top bar and switches by hand too (query 2026-1016 1613).
+                await expect(page.get_by_role("region",name="工作台").get_by_role("link")).to_have_count(4)
+                await expect(page.get_by_role("region",name="工作台").get_by_role("link",name=re.compile("^资料查阅"))).to_be_visible()
+                # Four slides: projects and known funding by library, then by year; they switch by hand too.
                 banner=page.get_by_role("region",name="首页导览")
-                await expect(banner.get_by_role("group",name="切换导览").get_by_role("button")).to_have_count(5)
-                await banner.get_by_role("button",name="第 3 张：资料库").click()
-                await expect(banner.get_by_role("heading",name="回到原文，有据可查")).to_be_visible()
-                await banner.get_by_role("button",name="第 1 张：研究版图").click()
+                await expect(banner.get_by_role("group",name="切换导览").get_by_role("button")).to_have_count(4)
+                await banner.get_by_role("button",name="第 3 张：年度项目分布").click()
+                await expect(banner.get_by_role("heading",name="年度项目分布")).to_be_visible()
+                await expect(banner.get_by_role("img",name="近十年各领域堆叠柱状图")).to_be_visible()
+                await banner.get_by_role("button",name="第 1 张：领域项目分布").click()
+                await expect(page.get_by_role("button",name="在右侧查看资料库")).to_have_count(0)
+                # 成果 is a main-bar entry (query 2026-1019 1458).
+                await expect(page.get_by_role("navigation",name="主导航").get_by_role("button",name="成果",exact=True)).to_be_visible()
                 await expect(page.get_by_role("region",name="我的工作")).to_be_visible()
                 await expect(page.get_by_role("group",name="各领域项目数").get_by_role("button")).to_have_count(1)
                 await page.get_by_label("资料库卡片").get_by_role("button").first.click()

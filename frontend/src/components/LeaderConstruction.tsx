@@ -8,6 +8,8 @@ export type LibraryOverview = {
   pending_identity?: number;
   /** Projects per application field, largest first. */
   fields?: [string, number][];
+  /** Identified projects and known direct funding (yuan) per start year, keyed "2021". */
+  by_year?: Record<string, number>; funding_by_year?: Record<string, number>;
 };
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");

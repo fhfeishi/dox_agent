@@ -19,6 +19,8 @@ const ITEMS: { key: NavKey; label: string; hint?: string }[] = [
   { key: "tasks", label: "存量分析", hint: "分析已有资料：问答、对比、技术研判、专项报告" },
   { key: "review", label: "资料审查" },
   { key: "intelligence", label: "情报分析", hint: "上传外部材料进行分析" },
+  // 成果 is a page of its own, so it sits in the main bar after the work areas (query 2026-1019 1458).
+  { key: "results", label: "成果", hint: "全部报告、周期总结与回收站" },
 ];
 
 // A leader's bar stays short (query 2026-1014 1703): the work pages sit in one 工作台 menu.
@@ -86,7 +88,7 @@ function tab(active: boolean) {
 /**
  * The top navigation bar (query 2026-1013 1522, 2026-1014 1516): one row with the main areas in a
  * fixed order — 首页, then 概览 for administrators and leaders and 资料审查 as menus of their pages — and on the
- * right the analysis status, 成果, settings and the account. The same bar on every page for a role.
+ * right the analysis status, settings and the account; 成果 is the last main entry (query 2026-1019 1458). The same bar on every page for a role.
  */
 export function TopNav() {
   const { role } = useAuth();
@@ -116,7 +118,7 @@ export function TopNav() {
     ...(role === "admin" ? OVERVIEW_PAGES.map((p) => ({ ...p, label: "概览 · " + p.label })) : role === "leader" ? [{ to: "/overview/domains", label: "领域分析" }] : []),
     { to: "/chat", label: "对话工作台" },
     { to: "/library", label: "资料库" }, { to: "/tasks", label: "存量分析" },
-    ...REVIEW_PAGES, { to: "/intelligence", label: "情报分析" },
+    ...REVIEW_PAGES, { to: "/intelligence", label: "情报分析" }, { to: "/results", label: "成果" },
   ];
   return <header className="flex h-[60px] shrink-0 items-center gap-2 border-b border-[var(--hairline)] bg-[var(--canvas)] px-3">
     {nav !== "home" && nav !== "overview" && nav !== "library" && nav !== "review" && nav !== "tasks" && nav !== "intelligence" && nav !== "results" ? <button type="button" aria-label={sidebarCollapsed ? "展开侧栏" : "收起侧栏"} title={sidebarCollapsed ? "展开侧栏" : "收起侧栏"}
@@ -135,6 +137,7 @@ export function TopNav() {
         <button type="button" aria-current={nav === "library" ? "page" : undefined} onClick={() => setNav("library")} className={tab(nav === "library")}>资料库</button>
         <MenuTab label="工作台" pages={WORKBENCH_PAGES} active={["chat", "tasks", "review", "intelligence"].includes(nav)}
           current={(to) => pathname.startsWith(to.replace(/\/formal$/, ""))} />
+        <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")} className={tab(nav === "results")}>成果</button>
       </> : ITEMS.slice(1).map((item) => item.key === "review" ? <MenuTab key={item.key} label="资料审查" pages={REVIEW_PAGES} active={nav === "review"} current={(to) => pathname.startsWith(to)} />
         : <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
     </nav>
@@ -148,9 +151,6 @@ export function TopNav() {
       // Others are told about the analysis service only when it is not available.
       : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
         <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
-    {/* 成果: the page of every generated report (query 2026-1014 1516, a page since 2026-1015 1553). */}
-    <button type="button" aria-current={nav === "results" ? "page" : undefined} onClick={() => setNav("results")}
-      className={`shrink-0 rounded-lg px-3 py-2 text-sm ${nav === "results" ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary)]" : "text-[var(--primary)] hover:bg-[var(--surface)]"}`}>成果</button>
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />
   </header>;

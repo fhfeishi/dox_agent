@@ -25,7 +25,7 @@ function starters(projects: number, files: number): (readonly [string, string])[
 }
 
 /**
- * 分析工作区 (query 2026-1016 1814, user's choice A): the right-hand panel of 资料文件 that carries one
+ * 分析工作区 (query 2026-1016 1814, user's choice A): the right-hand panel of 资料管理 that carries one
  * scope — the projects and files ticked in the list — from asking and comparing to a delivered report,
  * so nothing is chosen twice. An answer can be saved to 成果 or become the topic of a report; a report
  * is generated for exactly this scope (`/api/reports` with its documents), its progress is shown here and

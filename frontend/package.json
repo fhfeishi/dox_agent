@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
-    "test": "node --test src/"
+    "test": "node scripts/run-tests.mjs"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=23.6.0"
   },
   "dependencies": {
     "@tanstack/react-query": "5.104.0",

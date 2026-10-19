@@ -7,6 +7,7 @@ import time
 from urllib.parse import urlparse
 
 import httpx
+from pydantic import SecretStr
 
 from ..agent.config import get_settings
 from ..agent.models import use_proxy
@@ -37,14 +38,24 @@ def _number(value, default, low, high):
 
 
 def config():
-    """REVIEW_MODEL_* 可选覆盖优先；未设置时复用主配置 MODEL_*。"""
+    """REVIEW_MODEL_* 可选覆盖优先；未设置时复用主配置 MODEL_*。
+
+    F6/Q4: values come from the exported environment first (as before), then from Settings, which
+    also reads the project .env. Before this change .env-only REVIEW_* values were ignored.
+    """
     settings = get_settings()
     env = os.environ
-    key = env.get("REVIEW_MODEL_API_KEY") or (
+
+    def pick(name, value):
+        if isinstance(value, SecretStr):
+            value = value.get_secret_value()
+        return env.get(name) or value
+
+    key = pick("REVIEW_MODEL_API_KEY", settings.review_model_api_key) or (
         settings.model_api_key.get_secret_value() if settings.model_api_key else ""
     )
-    base = (env.get("REVIEW_MODEL_BASE_URL") or settings.model_base_url).rstrip("/")
-    model = env.get("REVIEW_MODEL_NAME") or settings.model_name
+    base = (pick("REVIEW_MODEL_BASE_URL", settings.review_model_base_url) or settings.model_base_url).rstrip("/")
+    model = pick("REVIEW_MODEL_NAME", settings.review_model_name) or settings.model_name
     placeholder = not key or any(
         x in key.lower() for x in ("replace", "placeholder", "your_", "example")
     )
@@ -58,12 +69,12 @@ def config():
         base=base,
         model=model,
         ready=not placeholder and valid,
-        timeout=_number(env.get("REVIEW_MODEL_TIMEOUT"), 180, 10, 300),
-        deadline=_number(env.get("REVIEW_RUN_TIMEOUT"), 900, 60, 1800),
-        max_calls=_number(env.get("REVIEW_MAX_CALLS"), 32, 5, 60),
-        chunk=_number(env.get("REVIEW_CHUNK_CHARS"), 12000, 2000, 20000),
-        max_chars=_number(env.get("REVIEW_MAX_DOCUMENT_CHARS"), 240000, 10000, 500000),
-        tokens=_number(env.get("REVIEW_MAX_OUTPUT_TOKENS"), 16000, 1000, 32768),
+        timeout=_number(pick("REVIEW_MODEL_TIMEOUT", settings.review_model_timeout), 180, 10, 300),
+        deadline=_number(pick("REVIEW_RUN_TIMEOUT", settings.review_run_timeout), 900, 60, 1800),
+        max_calls=_number(pick("REVIEW_MAX_CALLS", settings.review_max_calls), 32, 5, 60),
+        chunk=_number(pick("REVIEW_CHUNK_CHARS", settings.review_chunk_chars), 12000, 2000, 20000),
+        max_chars=_number(pick("REVIEW_MAX_DOCUMENT_CHARS", settings.review_max_document_chars), 240000, 10000, 500000),
+        tokens=_number(pick("REVIEW_MAX_OUTPUT_TOKENS", settings.review_max_output_tokens), 16000, 1000, 32768),
     )
 
 

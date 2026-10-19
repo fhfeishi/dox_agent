@@ -1,8 +1,8 @@
 # Cleanup log
 
-Removed items, why, and how to get them back. Base commit for every restore below: `4ce4616`
-(`quality-pilot`, right after the Q1 command-injection fix). Background: Baha's review of
-2026-10-18, finding F4 and quick-win Q3.
+Removed items, why, and how to get them back. Each restore command names the commit just before
+the removal: `4ce4616` (after the Q1 fix) for the F4/Q3 rows, `9f76318` (after Q3) for the F6/Q4 row.
+Background: Baha's review of 2026-10-18, findings F4/F6 and quick wins Q3/Q4.
 
 | Date | Removed | Old location | Why | Restore |
 |---|---|---|---|---|
@@ -10,6 +10,7 @@ Removed items, why, and how to get them back. Base commit for every restore belo
 | 2026-10-19 | Settings `max_research_steps`, `max_rounds`, `evidence_routing`, `max_searches`, `max_reads`, `model_context_tokens`, `answer_reserve_tokens`, `research_timeout` | `src/agent/config.py` (class `Settings`) | Left over from the old research loop; no code outside `config.py` read them, so changing them did nothing. Old values in a user's `.env` are ignored (`extra="ignore"`), so nothing breaks. | `git show 4ce4616:src/agent/config.py` |
 | 2026-10-19 | Dependency `deepagents>=0.7.8,<0.8` | `pyproject.toml` `[project].dependencies` (and `uv.lock`) | Never imported anywhere in `src/` or `tests/`. Also dropped "Deep Agents" from the project description. | `git show 4ce4616:pyproject.toml`, then `uv lock` |
 | 2026-10-19 | `.env.example`: `MINERU_API_KEY`, `MAX_RESEARCH_STEPS`, `MAX_ROUNDS`, `EVIDENCE_ROUTING`, `MAX_SEARCHES`, `MAX_READS`, `RESEARCH_TIMEOUT`, `QUICK_VERIFICATION` | `.env.example` | No code reads them (the first is for an unused cloud API, the last had no setting at all, the rest are the settings above). | `git show 4ce4616:.env.example` |
+| 2026-10-19 | Automatic read of the parent directory's `.env` (`DOX_AGENT_ROOT.parent / ".env"`) | `src/agent/config.py` (`Settings.model_config.env_file`) | F6/Q4: a stray `.env` one level up could silently change settings. Checked before removing: no such file existed next to either checkout (`/home/mvr/wslcodespace/.env`, `D:\chyCodespace\.env`). Replaced by opt-in `DOX_ENV_FILE`. | Set `DOX_ENV_FILE=<parent>/.env` (same priority as before), or `git show 9f76318:src/agent/config.py` |
 
 `uv.lock` was regenerated with `uv lock --offline` (no version changes). Besides `deepagents` it dropped
 11 packages only `deepagents` pulled in: anthropic, bracex, docstring-parser, filetype, google-auth,

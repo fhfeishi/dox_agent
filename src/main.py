@@ -672,7 +672,10 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
 
     @app.get("/api/model")
     async def model_info():
-        review = {k: os.environ[k] for k in ("REVIEW_MODEL_NAME", "REVIEW_MODEL_BASE_URL") if os.environ.get(k)}
+        # F6/Q4: exported variables first, then the project .env (via Settings).
+        review = {k: v for k, v in (("REVIEW_MODEL_NAME", os.environ.get("REVIEW_MODEL_NAME") or settings.review_model_name),
+                                    ("REVIEW_MODEL_BASE_URL", os.environ.get("REVIEW_MODEL_BASE_URL")
+                                     or settings.review_model_base_url)) if v}
         return {"model": settings.model_name, "base_url": settings.model_base_url,
                 "api_key_configured": bool(settings.model_api_key),
                 "review_override": review}

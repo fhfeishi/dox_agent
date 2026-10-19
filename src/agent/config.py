@@ -1,15 +1,28 @@
 """Configuration shared by local parsing, API models and the agent."""
 
+import os
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import AliasChoices, Field, SecretStr, model_validator
+from pydantic import AliasChoices, Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DOX_AGENT_ROOT = Path(__file__).resolve().parents[2]
 # 方案 A（每个直接子目录 = 一个自包含知识库）：
 # .knowledge/<corpus>/ 内含 source/（原始文件）、datadb/（sqlite）、vectordb/（向量库）。
 CORPORA_ROOT_DEFAULT = DOX_AGENT_ROOT / ".knowledge"
+
+
+def env_files() -> tuple[Path, ...]:
+    """The .env files Settings reads; later files win, and exported variables beat all of them.
+
+    Changed in F6/Q4 (2026-10-19): the parent directory's .env (DOX_AGENT_ROOT.parent / ".env") used
+    to be read automatically. It is now read only when DOX_ENV_FILE names it (or any other file),
+    with the same lower priority than the project .env. Old line:
+    env_file=(DOX_AGENT_ROOT.parent / ".env", DOX_AGENT_ROOT / ".env"). See docs/cleanup-log.md.
+    """
+    extra = os.environ.get("DOX_ENV_FILE")
+    return (Path(extra), DOX_AGENT_ROOT / ".env") if extra else (DOX_AGENT_ROOT / ".env",)
 
 
 class Settings(BaseSettings):
@@ -63,12 +76,34 @@ class Settings(BaseSettings):
     langsmith_tracing: bool = False
     langsmith_api_key: SecretStr | None = None
     langsmith_project: str = "dox-agent"
+    # Review model overrides (F6/Q4): read from the project .env like everything else. An exported
+    # REVIEW_* variable still wins (review/model_client.py checks os.environ first). Empty means
+    # "reuse MODEL_*". Numbers stay lenient as before: invalid -> default, out of range -> clamped
+    # in model_client.config().
+    review_model_api_key: SecretStr | None = None
+    review_model_base_url: str = ""
+    review_model_name: str = ""
+    review_model_timeout: int | None = None
+    review_run_timeout: int | None = None
+    review_max_calls: int | None = None
+    review_chunk_chars: int | None = None
+    review_max_document_chars: int | None = None
+    review_max_output_tokens: int | None = None
     model_config = SettingsConfigDict(
-        env_file=(DOX_AGENT_ROOT.parent / ".env", DOX_AGENT_ROOT / ".env"),
+        env_file=env_files(),
         env_file_encoding="utf-8",
         extra="ignore",
         populate_by_name=True,
     )
+
+    @field_validator("review_model_timeout", "review_run_timeout", "review_max_calls", "review_chunk_chars",
+                     "review_max_document_chars", "review_max_output_tokens", mode="before")
+    @classmethod
+    def _lenient_review_number(cls, value):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
 
     @model_validator(mode="after")
     def _derive_state_dir(self):

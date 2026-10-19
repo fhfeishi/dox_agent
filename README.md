@@ -116,7 +116,7 @@ BM25 在既有报告预算内选择互补主题资料，复用分词结果，补
 
 ## 常用配置
 
-以 [.env.example](.env.example) 为模板。仓库 .env 覆盖上一级目录的同名配置。
+以 [.env.example](.env.example) 为模板。终端里 export 的变量优先于 .env。上一级目录的 .env 不再自动读取；需要共用一份配置时，设 `DOX_ENV_FILE=<文件路径>`（本项目 .env 仍然优先）。
 
 | 变量 | 默认值 / 用途 |
 | --- | --- |
@@ -128,7 +128,7 @@ BM25 在既有报告预算内选择互补主题资料，复用分词结果，补
 | MINERU_CMD / MINERU_HOME | PDF 解析命令与缓存；支持 {pdf}、{out}，默认输出 ZIP |
 | WEB_PROVIDER | crawl4ai；也支持 firecrawl |
 | RUN_TIMEOUT | 180；对话运行时限 |
-| REVIEW_MODEL_* | 审查模型覆盖配置；未设置时复用 MODEL_* |
+| REVIEW_MODEL_* | 审查模型覆盖配置；未设置时复用 MODEL_*；可写在 .env，也可 export（export 优先） |
 | REVIEW_RUN_TIMEOUT / REVIEW_MAX_CALLS | 900 / 32；审查运行预算 |
 
 不要提交 .env。完整配置见 [src/agent/config.py](src/agent/config.py)，审查模型配置见 [src/review/model_client.py](src/review/model_client.py)。

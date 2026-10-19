@@ -19,7 +19,7 @@ def env_files() -> tuple[Path, ...]:
     Changed in F6/Q4 (2026-10-19): the parent directory's .env (DOX_AGENT_ROOT.parent / ".env") used
     to be read automatically. It is now read only when DOX_ENV_FILE names it (or any other file),
     with the same lower priority than the project .env. Old line:
-    env_file=(DOX_AGENT_ROOT.parent / ".env", DOX_AGENT_ROOT / ".env"). See docs/cleanup-log.md.
+    env_file=(DOX_AGENT_ROOT.parent / ".env", DOX_AGENT_ROOT / ".env"). See .logsdev/cleanup-log.md.
     """
     extra = os.environ.get("DOX_ENV_FILE")
     return (Path(extra), DOX_AGENT_ROOT / ".env") if extra else (DOX_AGENT_ROOT / ".env",)
@@ -63,7 +63,7 @@ class Settings(BaseSettings):
     mineru_timeout: float = Field(default=3600, ge=30, le=7200)
     # Removed 8 settings nothing read any more (F4/Q3, 2026-10-19): max_research_steps, max_rounds,
     # evidence_routing, max_searches, max_reads, model_context_tokens, answer_reserve_tokens,
-    # research_timeout. Old .env values are ignored (extra="ignore"). See docs/cleanup-log.md;
+    # research_timeout. Old .env values are ignored (extra="ignore"). See .logsdev/cleanup-log.md;
     # restore with: git show 4ce4616:src/agent/config.py
     retrieve_retry: int = Field(default=1, ge=0, le=1)  # L6: at most one bounded re-retrieve
     max_model_calls: int = Field(default=12, ge=3, le=40)

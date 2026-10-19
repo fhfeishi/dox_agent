@@ -28,22 +28,34 @@ def main():
     elif args.action == "preview":
         result = asyncio.run(parse_web(args.query, settings)).model_dump()
     else:
-        from .agent.graph import build_graph
-        from .agent.models import tracing
-
-        async def ask():
-            async with asyncio.timeout(settings.run_timeout):
-                with tracing(settings):
-                    result = await build_graph(store, settings).ainvoke(
-                        {"messages": [{"role": "user", "content": args.query}], "rounds": 0, "evidence": []}
-                    )
-                return {
-                    "answer": result["answer"],
-                    "sources": [{"title": e["title"], "page": e["page"]} for e in result["evidence"]],
-                }
-
-        result = asyncio.run(ask())
+        result = asyncio.run(ask(store, settings, args.query))
     print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+async def ask(store: Knowledge, settings, question: str) -> dict:
+    """Answer one question with the current graph, as the web chat does, without a server.
+
+    Fixed in F4/Q3 (2026-10-19): this used to pass the removed ``rounds``/``evidence`` state and
+    read ``result["evidence"]``, which the graph no longer returns. Sources now come from the
+    graph's ``sources`` event. Old version: git show 4ce4616:src/cli.py
+    """
+    from .agent.graph import build_graph
+    from .agent.models import tracing
+
+    sources: list[dict] = []
+    final: dict = {}
+    async with asyncio.timeout(settings.run_timeout):
+        with tracing(settings):
+            graph = build_graph(store, settings)
+            async for mode, chunk in graph.astream({"messages": [{"role": "user", "content": question}]},
+                                                   stream_mode=["custom", "values"]):
+                if mode == "custom" and chunk.get("event") == "sources":
+                    sources = chunk["data"]
+                elif mode == "values":
+                    final = chunk
+    return {"answer": final.get("answer", ""),
+            "sources": [{"citation": s.get("citation"), "title": s.get("title"), "page": s.get("page")}
+                        for s in sources]}
 
 
 if __name__ == "__main__":

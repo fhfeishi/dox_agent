@@ -265,9 +265,11 @@ async def main():
                 await expect(page.get_by_text("创新依据待补充", exact=True)).to_be_visible()
                 await expect(page.get_by_text("未完成评价", exact=False).first).to_be_visible()
                 await page.get_by_role("button", name="定位这条意见的原文", exact=True).first.click()
-                await expect(
-                    page.get_by_text("Word 按段落或表格定位，PDF 按原文件页码定位。", exact=True)
-                ).to_be_visible()
+                # The source opens in the shared right-hand panel, titled 审查原文 with the file name (query 2026-1013 1520).
+                reader = page.locator("aside[aria-hidden='false']")
+                await expect(reader).to_contain_text("审查原文")
+                await expect(reader).to_contain_text("验收申请书.docx")
+                await expect(reader.get_by_text("原文位置 1", exact=True)).to_be_visible()
                 await page.get_by_role("button", name="关闭预览面板", exact=True).click()
                 await page.screenshot(
                     path=str(screenshots / "professional-review.png"), full_page=True, animations="disabled"

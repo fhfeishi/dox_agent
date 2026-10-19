@@ -3,6 +3,7 @@
 #
 #   scripts/check.sh quick   lint, Python tests, frontend tests, type check        (~3 min)
 #   scripts/check.sh full    quick + frontend build + the browser smoke set         (~10 min)
+#   scripts/check.sh all     full + every other browser journey script               (~20 min)
 #
 # Each browser script starts its own server on a free port with a temporary state directory and
 # stand-in models, so `full` never touches .knowledge/.state or calls a real model. A failing step
@@ -22,8 +23,7 @@ step() {  # step <name> <command...>
   else printf -- '-- %s: FAILED (%ss)\n' "$name" $((SECONDS - start)); failed+=("$name"); return 1; fi
 }
 
-# The browser scripts that cover the main journeys; the others stay runnable by hand
-# (python -m tests.<name>). Chosen in Q1, see .logsdev/cleanup-log.md.
+# The browser scripts that cover the main journeys, chosen in Q1 (see .logsdev/cleanup-log.md).
 SMOKE=(
   browser_review_simple        # login and roles, template preview, queued reviews, 成果, leave and return
   browser_library_documents    # library files, upload, scoped chat, year charts, leader and user homes
@@ -34,10 +34,26 @@ SMOKE=(
   browser_scene_hierarchy      # 技术研判 view, outcome radar
   browser_answer_controls      # chat answer copy, retry, cancel and failure
 )
+# The remaining journeys, run by `all` so they cannot silently fall behind the interface again.
+# browser_ui_shots is not a check: it photographs pages from a copy of the local libraries.
+EXTRA=(
+  browser_custom_tasks_live    # custom task and template versions, bound templates, drafts
+  browser_review_flows         # formal and professional review, template copy and use, source reader
+  browser_task_templates       # task and template cards, management entry
+  browser_document_preview     # multi-page preview, raw toggle
+  browser_markdown_preview     # Markdown tables, reading in a new window
+  browser_fund_preview         # fund PDF preview, citation to the physical page
+  browser_legacy_scope         # single and multi-library sessions restored
+  browser_refresh              # per-library refresh, failures and partial state
+  browser_session_branches     # answer branches, edit in place, restore
+  browser_web_live             # web page snapshots and cited URLs
+  browser_status_power         # service status and power control
+  browser_target_facets        # research facets
+)
 
 case "$mode" in
-  quick|full) ;;
-  *) echo "usage: scripts/check.sh [quick|full]" >&2; exit 2 ;;
+  quick|full|all) ;;
+  *) echo "usage: scripts/check.sh [quick|full|all]" >&2; exit 2 ;;
 esac
 
 step ruff "$python" -m ruff check src tests
@@ -46,9 +62,11 @@ step pytest "$python" -m pytest -q
 step "npm test" npm --prefix frontend test --silent
 step tsc npx --prefix frontend tsc --noEmit -p frontend
 
-if [ "$mode" = full ]; then
+if [ "$mode" != quick ]; then
+  scripts=("${SMOKE[@]}")
+  [ "$mode" = all ] && scripts+=("${EXTRA[@]}")
   if step build npm --prefix frontend run build --silent; then
-    for script in "${SMOKE[@]}"; do
+    for script in "${scripts[@]}"; do
       step "$script" timeout 180 "$python" -m "tests.$script"
     done
   else

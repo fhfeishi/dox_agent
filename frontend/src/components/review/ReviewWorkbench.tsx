@@ -322,10 +322,12 @@ export function ReviewWorkbench() {
     void fetchReviewDocument(ident).then((value) => { if (active) setDoc(value); }, (cause) => { if (active) setError(cause.message); });
     return () => { active = false; };
   }, [search.get("proposal")]);
+  // Coming back restores what the address does not name: “使用此版本” returns with only ?template=,
+  // and the proposal already uploaded must stay chosen.
   useEffect(() => {
-    if (search.size) return;
-    const previous = sessionStorage.getItem("review-workbench:" + reviewKind);
-    if (previous) setSearch(previous, { replace: true });
+    const previous = new URLSearchParams(sessionStorage.getItem("review-workbench:" + reviewKind) ?? "");
+    const missing = [...previous].filter(([key]) => !search.has(key));
+    if (missing.length) setSearch((old) => { const next = new URLSearchParams(old); for (const [key, value] of missing) next.set(key, value); return next; }, { replace: true });
   }, [reviewKind]);
   useEffect(() => {
     if (search.size) sessionStorage.setItem("review-workbench:" + reviewKind, search.toString());

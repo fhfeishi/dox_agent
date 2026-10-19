@@ -411,6 +411,11 @@ export type TemplateArea = "analysis" | "intelligence";
 export const templateArea = (t: TemplateSummary): TemplateArea =>
   t.id === "intelligence" || t.source_template_id === "intelligence" ? "intelligence" : "analysis";
 
+/** One label wherever a report template is chosen: a custom template's name is its current draft's,
+ * so the label names the published version a report will use and says when a newer draft is open. */
+export const templateLabel = (t: Pick<TemplateSummary, "name" | "kind" | "status" | "version">): string =>
+  t.kind === "custom" ? `${t.name}（已发布 v${t.version}${t.status === "draft" ? "，另有草稿" : ""}）` : t.name;
+
 /** W1: read-only built-in output templates for the shared inspector preview. */
 export async function fetchTemplates(signal?: AbortSignal, includeArchived = false): Promise<TemplateSummary[]> {
   const query = includeArchived ? "?include_archived=true" : "";

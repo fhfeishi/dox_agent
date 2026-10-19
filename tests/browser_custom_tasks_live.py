@@ -6,6 +6,7 @@ import socket
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from threading import Thread
+from urllib.parse import quote
 
 import uvicorn
 from playwright.async_api import async_playwright, expect
@@ -210,8 +211,12 @@ async def main():
                 assert (await page.request.put(
                     f"{origin}/api/templates/custom/{custom_template['id']}/draft",
                     data={"revision": latest_template["revision"], "name": "未发布草稿"})).status == 200
-                await page.reload()
-                await expect(page.get_by_role("combobox",name="报告模板").locator("option",has_text="另有草稿")).to_have_count(1)
+                # Templates are chosen freely in the analysis workspace (a bound task offers only its own):
+                # the published version stays selectable while a new draft is open, and the label says so.
+                await page.goto(f"{origin}/library/{quote(corpus_id)}/documents?workspace=1&task=task4")
+                work=page.get_by_role("region",name="分析工作区")
+                await work.get_by_role("button",name="生成报告…").click()
+                await expect(work.get_by_role("combobox",name="报告模板").locator("option",has_text=re.compile(r"（已发布 v\d+，另有草稿）"))).to_have_count(1)
                 await browser.close()
         finally:
             server.should_exit = True

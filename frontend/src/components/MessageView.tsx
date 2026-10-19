@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, templateArea, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, templateArea, templateLabel, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -477,7 +477,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
             onChange={(event) => setTemplateId(event.target.value)}
             className="ml-[5px] rounded border border-[var(--hairline)] bg-[var(--canvas)] px-[5px] py-[3px]">
             {availableTemplates.map((item) => (
-              <option key={item.id} value={item.id}>{item.name}{item.kind === "custom" ? `（已发布 v${item.version}${item.status === "draft" ? "，另有草稿" : ""}）` : "（内置 v0）"}</option>
+              <option key={item.id} value={item.id}>{templateLabel(item)}</option>
             ))}
           </select>
         </label>

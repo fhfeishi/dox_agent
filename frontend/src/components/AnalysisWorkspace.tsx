@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ReportMarkdown } from "./ReportMarkdown";
-import { createArtifact, createReport, fetchTemplates, preflightReport, streamChat, templateArea, type Message, type Source, type TemplateSummary } from "../api";
+import { createArtifact, createReport, fetchTemplates, preflightReport, streamChat, templateArea, templateLabel, type Message, type Source, type TemplateSummary } from "../api";
 import { useApp } from "../store";
 import type { DocumentInfo } from "../useDocuments";
 import type { Project } from "../projects";
@@ -194,7 +194,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
         <label className="block text-[12px] text-[var(--steel)]">报告模板
           <select aria-label="报告模板" value={form.template || templates.data?.[0]?.id || ""} onChange={(e) => setForm({ ...form, template: e.target.value })}
             className="mt-1 w-full rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-[13px] text-[var(--ink)]">
-            {(templates.data ?? []).map((t) => <option key={t.id} value={t.id}>{t.name}{t.kind === "custom" ? "（我的模板）" : ""}</option>)}
+            {(templates.data ?? []).map((t) => <option key={t.id} value={t.id}>{templateLabel(t)}</option>)}
           </select></label>
         <div className="flex gap-2"><button disabled={!form.topic.trim()} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[12.5px] text-white disabled:opacity-40">生成</button>
           <button type="button" onClick={() => setForm(null)} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[12.5px]">取消</button></div>

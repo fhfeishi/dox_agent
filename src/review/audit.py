@@ -10,6 +10,7 @@ from .checks import budget_checks, finding, guideline_checks
 from .compliance_output import repair_explanations
 from .model_client import Client, ModelError, TruncatedModelError
 from .parser import compact
+from .presentation import LEVELS
 from .research import redact, validate_model_result
 from .verification import verify
 
@@ -230,6 +231,8 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
             if any(authorities[x].get("method") in ("calculation", "manual") for x in cids) and f["status"] in ("pass", "issue", "warning"):
                 f["status"] = "pending"
                 f["detail"] = "此项依赖精确计量或外部证明，模型文本判断不能完成核验。" + f["detail"]
+            if f.get("level") not in LEVELS:
+                f.pop("level", None)
             covered.update(tids)
             source = "；".join([authorities[x]["source"] for x in cids] + [tools[x]["source"] for x in tids]) or "模型修改建议，非基金硬性要求"
             findings.append({**f, "id": f"ai-{i}", "source": source, "origin": "model", "page": f.get("page"), "quote": f.get("quote", "")})
@@ -306,6 +309,8 @@ def review(doc, rule, evidence, cutoff, progress, client=None, guidelines=None, 
             elif question.get("evidence_need") != "internal" and not clean.get("evidence_ids"):
                 clean["status"] = "pending"
                 clean["basis"] = "本问题需要对照材料，本条未引用任何已选证据，仅为申请书内部论证意见。" + clean.get("basis", "")
+            if card.get("level") in LEVELS:
+                clean["level"] = card["level"]
             clean.update(id=f"model-{i}", check_id=question["id"], topic=question["title"],
                          other_pages=card.get("other_pages", []) if clean.get("quote") else [])
             cards.append(clean)

@@ -19,7 +19,7 @@ export const TERMS = {
   taskTemplates: { name: "任务模版", retired: ["分析任务"] },
   review: { name: "资料审查", retired: ["审查申请书"] },
   intelligence: { name: "情报分析", retired: [] },
-  results: { name: "报告中心", retired: ["成果周期总结", "保存为成果", "保存到成果", "分析成果", "成果回收站", "打开报告成果"] },
+  results: { name: "报告中心", retired: ["成果周期总结", "保存为成果", "保存到成果", "分析成果", "成果回收站", "打开报告成果", "返回成果列表", "成果列表不可用"] },
   saveAnswer: { name: "保存到报告中心", retired: [] },
   savedAnswer: { name: "保存的回答", retired: ["回答快照"] },
   periodSummary: { name: "周期总结", retired: [] },

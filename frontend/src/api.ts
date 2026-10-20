@@ -292,7 +292,7 @@ export async function changeArtifactFigure(artifactId: string, figureId: string,
 export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal): Promise<ArtifactSummary[]> {
   const query = sessionKey === undefined ? "" : `?session_key=${encodeURIComponent(sessionKey)}`;
   const response = await fetch(`/api/artifacts${query}`, signal ? { signal } : undefined);
-  if (!response.ok) throw new Error("成果列表不可用（" + response.status + "）");
+  if (!response.ok) throw new Error("报告列表不可用（" + response.status + "）");
   return response.json();
 }
 

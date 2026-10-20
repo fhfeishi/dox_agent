@@ -126,13 +126,23 @@ export type ReviewFinding = {
   counted_text?: string;
   stage_dates?: string[];
   verification_status?: string;
+  /** 修改建议 高 / 中 / 低 for an item that asks for a change; null when it asks for none. */
+  level?: ReviewLevel | null;
   calculations?: { expression: string; computed_yuan: number; stated_yuan: number; ok: boolean }[];
 };
 export type ReviewCard = {
   verification_status?: "pending" | "completed"; verification_note?: string;
   id: string; check_id?: string; topic?: string; title: string; assessment: string; suggestion: string; status: string;
   page: number | null; quote: string; evidence_ids: string[]; basis: string; other_pages?: number[];
+  level?: ReviewLevel | null;
 };
+export type ReviewLevel = "high" | "medium" | "low";
+/** One scale for what to change (query 2026-1020 1719): red, amber, green. */
+export const REVIEW_LEVELS: { key: ReviewLevel; label: string; fg: string; bg: string; line: string; dot: string }[] = [
+  { key: "high", label: "高", fg: "var(--danger-fg)", bg: "var(--danger-bg)", line: "var(--danger-line)", dot: "var(--red)" },
+  { key: "medium", label: "中", fg: "var(--warn-fg)", bg: "var(--warn-bg)", line: "var(--warn-line)", dot: "var(--warn-dot)" },
+  { key: "low", label: "低", fg: "var(--ok-fg)", bg: "var(--ok-bg)", line: "var(--ok-line)", dot: "var(--ok-fg)" },
+];
 export type ReviewReaderPoint = {
   id: string;
   title: string;
@@ -170,11 +180,14 @@ export type ReviewRun = {
     coverage?: { check_id: string; title: string; evidence_need: string; state: "evaluated" | "missing"; cards: number }[];
   };
   summary?: Record<string, number>;
+  /** On list rows: 修改建议 高 / 中 / 低 and 待核实 counts. */
+  levels?: Record<ReviewLevel | "pending", number>;
   reader_report?: {
     summary: string;
     issues: ReviewReaderPoint[];
     technical: ReviewReaderPoint[];
     pending: ReviewReaderPoint[];
+    levels?: Record<ReviewLevel, number>;
     missing_documents: string[];
   };
   calculation_findings?: ReviewFinding[];

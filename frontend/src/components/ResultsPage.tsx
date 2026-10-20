@@ -93,7 +93,7 @@ export function ResultsPage() {
     setError("");
     const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "报告读取失败"); };
     fetch("/api/artifacts?limit=200")
-      .then(async (r) => { if (!r.ok) throw new Error("成果列表不可用"); return await r.json() as ArtifactSummary[]; })
+      .then(async (r) => { if (!r.ok) throw new Error("报告列表不可用"); return await r.json() as ArtifactSummary[]; })
       .then((items) => { if (active) setArtifacts(items); }, fail);
     fetch("/api/artifacts?view=trash&limit=50")
       .then(async (r) => { if (!r.ok) throw new Error("回收站读取失败"); return await r.json() as ArtifactSummary[]; })

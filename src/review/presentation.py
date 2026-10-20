@@ -2,6 +2,22 @@
 import re
 from copy import deepcopy
 
+# One scale for what to change (query 2026-1020 1719): 发现问题 and 修改建议 were two scales that did not
+# line up, so every item that asks for a change carries one 修改建议 level instead.
+LEVELS = {'high': '高', 'medium': '中', 'low': '低'}
+ACTIONABLE = ('issue', 'warning', 'advisory')
+
+
+def suggestion_level(item):
+    """高 for a breach of a definite requirement; otherwise the model's level, 中 when it gave none.
+    Pending, passed and not-applicable items ask for no change and have no level."""
+    status = item.get('status')
+    if status not in ACTIONABLE:
+        return None
+    if status == 'issue':
+        return 'high'
+    return item.get('level') if item.get('level') in LEVELS else 'medium'
+
 
 def present_report(run):
     result = deepcopy(run)
@@ -26,6 +42,7 @@ def present_report(run):
         return text
 
     for item in findings + cards:
+        item['level'] = suggestion_level(item)
         for field in ('title', 'detail', 'assessment', 'suggestion', 'basis', 'verification_note'):
             if field in item:
                 item[field] = readable(item[field])
@@ -33,23 +50,30 @@ def present_report(run):
         technical['summary'] = readable(technical['summary'])
 
     def point(item):
-        return {k: item.get(k, '') for k in ('id', 'title', 'status', 'suggestion', 'page', 'quote', 'evidence_ids', 'basis')} | {
+        return {k: item.get(k, '') for k in ('id', 'title', 'status', 'level', 'suggestion', 'page', 'quote', 'evidence_ids', 'basis')} | {
             'detail': item.get('detail', item.get('assessment', ''))}
 
-    issues = [point(x) for x in findings if x.get('status') in ('issue', 'warning')]
-    pending = [point(x) for x in findings if x.get('status') == 'pending']
+    order = list(LEVELS)
+    by_level = lambda rows: sorted(rows, key=lambda x: order.index(x['level']))
+    issues = by_level([point(x) for x in findings if x['level']])
+    technical_points = by_level([point(x) for x in cards if x['level']])
+    pending = [point(x) for x in findings + cards if x.get('status') == 'pending']
+    actionable = [x for x in findings + cards if x['level']]
+    levels = {key: sum(x['level'] == key for x in actionable) for key in LEVELS}
+    spoken = '、'.join(f'{LEVELS[k]} {n} 项' for k, n in levels.items() if n) or '无'
     result['reader_report'] = {
         'issues': issues,
-        'technical': [point(x) for x in cards],
+        'technical': technical_points,
         'pending': pending,
+        'levels': levels,
         'missing_documents': list(dict.fromkeys((run.get('rule') or {}).get('missing_documents', []))),
-        'summary': f'规范审核有 {len(issues)} 项问题或修改提醒、{len(pending)} 项待核实；技术部分有 {len(cards)} 项评议意见。待核实不等于不合格，技术建议也不代表已确认先进性。',
+        'summary': f'修改建议：{spoken}；另有 {len(pending)} 项待核实。待核实不等于不合格，技术建议也不代表已确认先进性。',
     }
     if (run.get("request") or {}).get("kind") == "professional":
         missing = [row["title"] for row in technical.get("coverage", []) if row["state"] == "missing"]
-        result["reader_report"]["summary"] = (f"专业评议 {len(cards)} 项；对照资料匹配 {technical.get('local_matches', 0)} 个项目。"
+        result["reader_report"]["summary"] = (f"专业评议 {len(cards)} 项，修改建议{spoken}；对照资料匹配 {technical.get('local_matches', 0)} 个项目。"
             + (f"{len(missing)} 个评价问题未完成：{'、'.join(missing)}。" if missing else "")
             + "检索未命中不等于原创，当前资料不足的意见须复核。")
     elif (run.get("request") or {}).get("kind") == "formal":
-        result["reader_report"]["summary"] = f"按所选模板核对，有 {len(issues)} 项问题或修改提醒、{len(pending)} 项待核实；结果表示是否符合本模板要求，本次未执行专业技术评议。"
+        result["reader_report"]["summary"] = f"按所选模板核对，修改建议{spoken}，{len(pending)} 项待核实；结果表示是否符合本模板要求，本次未执行专业技术评议。"
     return result

@@ -25,7 +25,7 @@ from .export import export_report
 from .model_client import Client, ModelError, config, model_configured
 from .models import EvidenceInput, MappingUpdate, MetadataUpdate, ResearchQuery, ReviewRequest, RulePack
 from .parser import parse_document
-from .presentation import present_report
+from .presentation import LEVELS, present_report, suggestion_level
 from .research import redact, search_crossref
 
 logger = logging.getLogger(__name__)
@@ -639,6 +639,10 @@ def _list_row(run: dict) -> dict:
     row["document"] = {key: document.get(key) for key in ("id", "filename", "metadata")}
     rule = run.get("rule") or {}
     row["rule"] = {key: rule.get(key) for key in ("id", "name", "version", "kind")}
+    if run.get("status") == "completed":
+        items = run.get("findings", []) + (run.get("technical") or {}).get("cards", [])
+        levels = [suggestion_level(item) for item in items]
+        row["levels"] = {key: levels.count(key) for key in LEVELS} | {"pending": sum(i.get("status") == "pending" for i in items)}
     return row
 
 

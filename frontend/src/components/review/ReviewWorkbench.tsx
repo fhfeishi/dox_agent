@@ -569,7 +569,7 @@ function RunList({ runs }: { runs: ReviewRun[] }) {
             <span className="block text-body font-semibold text-[var(--ink)]">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
             <span className="mt-[3px] block text-[var(--steel)]">
               {REVIEW_STATUS_LABEL[run.status] ?? run.status} · {run.rule?.name ?? "模板"} v{run.rule?.version ?? "-"}
-              {run.summary ? ` · 问题 ${run.summary.issue ?? 0} / 建议 ${run.summary.warning ?? 0} / 待核实 ${run.summary.pending ?? 0}` : ""} · {run.created_at?.slice(0, 10)}
+              {run.levels ? ` · 修改建议 高 ${run.levels.high} / 中 ${run.levels.medium} / 低 ${run.levels.low} · 待核实 ${run.levels.pending}` : ""} · {run.created_at?.slice(0, 10)}
             </span>
           </Link>
         ))}

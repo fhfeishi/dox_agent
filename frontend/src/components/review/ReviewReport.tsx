@@ -1,12 +1,18 @@
 import { GenerationProgress } from "../GenerationProgress";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
-import { fetchReviewRun, reviewExportUrl, REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIELD_LABEL, REVIEW_STATUS_LABEL, type ReviewCard, type ReviewFinding, type ReviewRun } from "../../reviewApi";
+import { fetchReviewRun, reviewExportUrl, REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIELD_LABEL, REVIEW_LEVELS, REVIEW_STATUS_LABEL, type ReviewCard, type ReviewFinding, type ReviewRun } from "../../reviewApi";
 import { useApp } from "../../store";
 import { Button, Pill, type Tone } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
 
-const STATUS_TONE: Record<string, Tone> = { issue: "rose", warning: "peach", pending: "yellow", pass: "mint", advisory: "sky", na: "gray" };
+// Red, amber and green belong to 修改建议 alone; the states that ask for no change stay neutral.
+const STATUS_TONE: Record<string, Tone> = { pending: "sky", pass: "gray", na: "gray" };
+const LEVEL = Object.fromEntries(REVIEW_LEVELS.map((level) => [level.key, level]));
+type Item = ReviewFinding | ReviewCard;
+// Order of reading: 高 → 中 → 低, then 待核实, then what passed.
+const rank = (item: Item) => item.level ? REVIEW_LEVELS.findIndex((l) => l.key === item.level) : 3 + ["pending", "pass", "na"].indexOf(item.status);
+const byRank = <T extends Item>(rows: T[]) => [...rows].sort((a, b) => rank(a) - rank(b));
 
 function localTime(value: string) { return new Date(value).toLocaleString("zh-CN", { hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }); }
 const SHEET_FIELDS = ["organizations", "organization_count", "university_present", "education", "submitted_at", "patent_count"];
@@ -21,8 +27,23 @@ const PROFESSIONAL_TABS: Topic[] = [
   { key: "literature", label: "政策与文献" }, { key: "suggestions", label: "修改建议" },
 ];
 
-function StatusPill({ status }: { status: string }) {
-  return <Pill tone={STATUS_TONE[status] ?? "gray"}>{REVIEW_STATUS_LABEL[status] ?? status}</Pill>;
+/** 修改建议 · 高/中/低 in its colour for an item that asks for a change; otherwise its plain state. */
+function Mark({ item }: { item: Pick<Item, "status" | "level"> }) {
+  const level = item.level ? LEVEL[item.level] : null;
+  if (!level) return <Pill tone={STATUS_TONE[item.status] ?? "gray"}>{REVIEW_STATUS_LABEL[item.status] ?? item.status}</Pill>;
+  return <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-caption font-semibold"
+    style={{ color: level.fg, background: level.bg, borderColor: level.line }}>
+    <span aria-hidden="true" className="size-2 rounded-full" style={{ background: level.dot }} />修改建议 · {level.label}</span>;
+}
+
+/** The suggestion itself, tinted in its level's colour so what to change stands out. */
+function Advice({ item, label }: { item: Item; label: string }) {
+  const level = item.level ? LEVEL[item.level] : null;
+  return <div className="my-3 rounded-xl border-l-4 px-4 py-3 text-body leading-7"
+    style={level ? { background: level.bg, borderColor: level.dot } : { background: "var(--surface)", borderColor: "var(--hairline-strong)" }}>
+    <strong className="mb-1 block text-caption" style={{ color: level?.fg ?? "var(--steel)" }}>{label}</strong>
+    <p className="whitespace-pre-wrap" style={level ? { color: level.fg } : undefined}>{(item.suggestion || "结合原文逐项核对。").trim()}</p>
+  </div>;
 }
 
 export function ReviewRunPage() {
@@ -32,7 +53,7 @@ export function ReviewRunPage() {
   // Only allow a local results route; a copied report URL must never redirect off-site.
   const requestedReturn = search.get("return") ?? "";
   const returnTo = /^\/results(?:\?|$)/.test(requestedReturn) ? requestedReturn : "/results";
-  const returnLink = <Link to={returnTo} className="inline-flex text-sm text-[var(--link)] hover:underline">← 返回成果列表</Link>;
+  const returnLink = <Link to={returnTo} className="inline-flex text-sm text-[var(--link)] hover:underline">← 返回报告中心</Link>;
   const [run, setRun] = useState<ReviewRun | null>(null);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
@@ -56,11 +77,11 @@ export function ReviewRunPage() {
   const findings = run?.findings ?? [];
   const cards = run?.technical?.cards ?? [];
   const items = formal ? findings : cards;
-  const statusOf = (status: string) => status === "advisory" ? "warning" : status;
-  const count = (status: string) => items.filter((item) => statusOf(item.status) === status).length;
+  const matches = (item: Item, key: string) => key in LEVEL ? item.level === key
+    : key === "unverified" ? item.verification_status === "pending" : !item.level && item.status === key;
+  const count = (key: string) => items.filter((item) => matches(item, key)).length;
   const verificationPending = run?.audit?.verification?.pending ?? 0;
-  const visible = (item: ReviewFinding | ReviewCard) => filter === "all"
-    || (filter === "unverified" ? item.verification_status === "pending" : statusOf(item.status) === filter);
+  const visible = (item: Item) => filter === "all" || matches(item, filter);
   const selectStatus = (value: string) => {
     setFilter(filter === value ? "all" : value);
     setSearch((old) => { const next = new URLSearchParams(old); next.set("tab", "overview"); return next; }, { replace: true });
@@ -85,13 +106,13 @@ export function ReviewRunPage() {
     <article key={item.id} className="mb-3 rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-5 shadow-sm">
       <div className="flex flex-wrap items-start gap-2">
         <h3 className="min-w-0 flex-1 text-base font-semibold">{item.title}</h3>
-        {item.origin === "program" ? <Pill tone="sky">程序核对</Pill> : item.origin === "model" ? <Pill tone="lav">模型意见</Pill> : null}
-        {item.coverage === "partial" ? <Pill tone="peach">读取覆盖不足</Pill> : null}
-        {item.mapping && item.mapping !== "confirmed" ? <Pill tone="yellow">范围未确认</Pill> : null}
-        <StatusPill status={item.status} />
+        <Mark item={item} />
       </div>
+      <p className="mt-1 text-caption text-[var(--steel)]">{[item.origin === "program" ? "程序核对" : item.origin === "model" ? "模型意见" : "",
+        item.status === "issue" ? "不符合明确要求" : "", item.coverage === "partial" ? "读取覆盖不足" : "",
+        item.mapping && item.mapping !== "confirmed" ? "章节范围未确认" : ""].filter(Boolean).join(" · ")}</p>
       {item.requirement ? <p className="mt-2 text-body text-[var(--slate)]">要求：{item.requirement}{item.actual !== undefined && item.actual !== null ? <> · 实际值：<b>{String(item.actual)}</b></> : null}</p> : null}
-      <div className="my-3 rounded-xl bg-[var(--surface)] p-4 text-sm leading-7"><strong className="mb-1 block text-xs text-[var(--steel)]">修改或核对建议</strong>{item.suggestion || "结合原文逐项核对。"}</div>
+      {item.level || item.status === "pending" ? <Advice item={item} label={item.level ? "修改建议" : "核对建议"} /> : null}
       <details className="text-sm leading-7"><summary className="cursor-pointer font-medium text-[var(--primary)]">查看问题说明、要求和原文依据</summary>
         <p className="mt-3 whitespace-pre-wrap">{item.detail}</p>
         {item.stage_dates?.length ? <p className="mt-2 text-xs">进度计划识别日期：{item.stage_dates.join("、")}</p> : null}
@@ -108,9 +129,9 @@ export function ReviewRunPage() {
   };
   const card = (item: ReviewCard) => (
     <article key={item.id} className="mb-3 rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] p-5 shadow-sm">
-      <div className="flex flex-wrap items-start gap-2"><h3 className="min-w-0 flex-1 text-base font-semibold">{item.title}</h3><StatusPill status={item.status} /></div>
+      <div className="flex flex-wrap items-start gap-2"><h3 className="min-w-0 flex-1 text-base font-semibold">{item.title}</h3><Mark item={item} /></div>
       <p className="mt-3 whitespace-pre-wrap text-sm leading-7">{item.assessment}</p>
-      <div className="my-3 rounded-xl bg-[var(--surface)] p-4 text-sm leading-7 whitespace-pre-wrap"><strong className="mb-1 block text-xs text-[var(--steel)]">修改建议</strong>{item.suggestion}</div>
+      <Advice item={item} label="修改建议" />
       <p className="text-xs text-[var(--steel)]">评议方式：{item.basis}</p>
       {item.evidence_ids.length ? <p className="mt-2 text-xs">本条依据：{item.evidence_ids.map((eid) => <span key={eid} className="mr-2 inline-block rounded bg-[var(--tint-sky)] px-2 py-0.5">{evidenceById.get(eid)?.title ?? eid}</span>)}</p>
         : <p className="mt-2 text-xs text-[var(--stone)]">本条未引用外部证据，仅依据申请书原文。</p>}
@@ -157,18 +178,25 @@ export function ReviewRunPage() {
         </div>
       </section>
       {run.status === "completed" ? <>
-        <div className="my-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
-          {[["issue", "发现问题"], ["warning", "修改建议"], ["pending", "待核实"], ["pass", "已核对通过"]].map(([key, label]) => (
-            <button key={key} type="button" onClick={() => selectStatus(key)} aria-pressed={filter === key}
-              className={`rounded-xl border bg-[var(--canvas)] p-4 text-left ${filter === key ? "border-[var(--primary)]" : "border-[var(--hairline)]"}`}>
-              <span className="text-xs text-[var(--steel)]">{label}</span><strong className="mt-2 block text-2xl">{count(key)}</strong>
+        <div className="my-5 flex flex-wrap items-stretch gap-2" role="group" aria-label="按修改建议筛选">
+          <span className="flex items-center pr-1 text-body font-semibold">修改建议</span>
+          {REVIEW_LEVELS.map((level) => (
+            <button key={level.key} type="button" onClick={() => selectStatus(level.key)} aria-pressed={filter === level.key}
+              className="flex min-w-[96px] items-center gap-2 rounded-xl border-2 px-4 py-2.5 text-left transition"
+              style={{ background: level.bg, borderColor: filter === level.key ? level.dot : level.line, color: level.fg }}>
+              <span aria-hidden="true" className="size-2.5 rounded-full" style={{ background: level.dot }} />
+              <span className="text-body font-semibold">{level.label}</span><strong className="ml-auto text-stat tabular-nums">{count(level.key)}</strong>
             </button>))}
-          <button type="button" onClick={() => selectStatus("unverified")} aria-pressed={filter === "unverified"}
-            className={`rounded-xl border p-4 text-left ${filter === "unverified" ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--canvas)]"}`}>
-            <span className="text-xs text-[var(--steel)]">最终复核未完成</span><strong className="mt-2 block text-2xl">{verificationPending}</strong></button>
+          <span aria-hidden="true" className="mx-1 w-px bg-[var(--hairline)]" />
+          {[["pending", "待核实"], ["pass", "已核对通过"]].map(([key, label]) => (
+            <button key={key} type="button" onClick={() => selectStatus(key)} aria-pressed={filter === key}
+              className={`flex items-center gap-2 rounded-xl border-2 px-4 py-2.5 text-body ${filter === key ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--canvas)] text-[var(--slate)]"}`}>
+              {label}<strong className="text-stat tabular-nums text-[var(--ink)]">{count(key)}</strong></button>))}
         </div>
-        <p role="status" className="mb-4 text-xs text-[var(--steel)]">
-          {filter === "all" ? "显示全部结果；点击上方状态查看对应事项。" : `已筛选 ${filter === "unverified" ? "最终复核未完成" : REVIEW_STATUS_LABEL[filter]}，再次点击已选状态恢复全部。`}
+        <p role="status" className="mb-4 text-caption text-[var(--steel)]">
+          {filter === "all" ? "显示全部事项，按 高 → 中 → 低 → 待核实 排列；点击上方任一项只看这一类。"
+            : <>只看{filter in LEVEL ? `修改建议 · ${LEVEL[filter].label}` : filter === "unverified" ? "最终复核未完成" : REVIEW_STATUS_LABEL[filter]}；<button type="button" className="text-[var(--link)] hover:underline" onClick={() => selectStatus(filter)}>显示全部</button></>}
+          {verificationPending ? <> · <button type="button" className="text-[var(--link)] hover:underline" onClick={() => selectStatus("unverified")}>{verificationPending} 项最终复核未完成</button></> : null}
         </p>
         <div role="tablist" aria-label="报告专题" className="mb-5 flex flex-wrap gap-1 border-b border-[var(--hairline)]">
           {tabs.map((item) => (
@@ -180,7 +208,7 @@ export function ReviewRunPage() {
         <div role="tabpanel" className="min-w-0">
           {formal && tab === "overview" ? <>
             <h2 className="mb-3 text-lg font-semibold">主要问题与处理顺序</h2>
-            {list([...findings].sort((a, b) => ["issue", "warning", "pending", "pass", "na"].indexOf(a.status) - ["issue", "warning", "pending", "pass", "na"].indexOf(b.status)), "当前筛选下没有事项；未检查的内容不视为通过。")}
+            {list(byRank(findings), "当前筛选下没有事项；未检查的内容不视为通过。")}
           </> : null}
           {formal && tab === "outline" ? <>
             <h2 className="mb-3 text-lg font-semibold">章节篇幅</h2>
@@ -194,7 +222,7 @@ export function ReviewRunPage() {
                     <td className="p-3 font-medium">{spec?.section || row.title}</td><td className="p-3">≤ {spec?.value}</td>
                     <td className="p-3">{row.actual ?? "未读取"}</td><td className={`p-3 ${diff !== null && diff > 0 ? "text-[var(--red)]" : ""}`}>{diff === null ? "—" : diff > 0 ? `超出 ${diff}` : `余 ${-diff}`}</td>
                     <td className="p-3 text-xs">{row.mapping === "confirmed" ? "已确认" : row.mapping === "automatic" ? "自动定位" : "未确认"} · {row.coverage === "complete" ? "完整读取" : row.coverage === "partial" ? "覆盖不足" : "未读取"}</td>
-                    <td className="p-3"><StatusPill status={row.status} /></td>
+                    <td className="p-3"><Mark item={row} /></td>
                   </tr>;
                 })}</tbody>
               </table>
@@ -232,7 +260,7 @@ export function ReviewRunPage() {
             <section key={row.check_id} className="mb-6">
               <h2 className="mb-3 text-lg font-semibold">{row.title}</h2>
               {row.state === "missing" ? <p className="rounded-xl border border-dashed border-[var(--red)] p-4 text-sm">未完成评价：模型没有就该问题给出有效意见，请重新运行或人工评议。</p> : null}
-              {cards.filter((item) => item.check_id === row.check_id && visible(item)).map(card)}
+              {byRank(cards.filter((item) => item.check_id === row.check_id && visible(item))).map(card)}
             </section>)) : null}
           {!formal && tab === "projects" ? <>
             <h2 className="mb-3 text-lg font-semibold">相近项目 · {projectGroups.length} 个（{projects.length} 份文件）</h2>
@@ -261,10 +289,10 @@ export function ReviewRunPage() {
           {!formal && tab === "suggestions" ? <>
             <h2 className="mb-3 text-lg font-semibold">修改建议</h2>
             <p className="mb-3 text-sm text-[var(--steel)]">原申请书保持只读；修改后上传新版本重新审查，本报告保留不变。</p>
-            {cards.filter((item) => visible(item)).map((item) => (
-              <article key={item.id} className="mb-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 text-sm">
-                <p className="text-xs text-[var(--steel)]">{item.topic ?? "评议"} · {item.title}</p>
-                <p className="mt-2 whitespace-pre-wrap leading-7">{item.suggestion}</p>
+            {byRank(cards.filter((item) => visible(item))).map((item) => (
+              <article key={item.id} className="mb-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4">
+                <div className="flex flex-wrap items-start gap-2"><p className="min-w-0 flex-1 text-caption text-[var(--steel)]">{item.topic ?? "评议"} · {item.title}</p><Mark item={item} /></div>
+                <Advice item={item} label="修改建议" />
               </article>))}
           </> : null}
         </div>
@@ -275,15 +303,15 @@ export function ReviewRunPage() {
 
 function BasisPanel({ run }: { run: ReviewRun }) {
   const enabled = run.rule?.checks.filter((check) => check.enabled) ?? [];
-  const results = new Map<string, string>();
-  for (const f of run.findings ?? []) for (const cid of f.clause_ids ?? []) results.set(cid, f.status);
+  const results = new Map<string, ReviewFinding>();
+  for (const f of run.findings ?? []) for (const cid of f.clause_ids ?? []) results.set(cid, f);
   return (
     <section className="space-y-4">
       <div className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-5">
         <h3 className="font-semibold">模板条目与执行情况 · {enabled.length} 项启用</h3>
         {enabled.map((check) => (
           <div key={check.id} className="mt-3 border-t border-[var(--hairline)] pt-3 text-sm">
-            <div className="flex flex-wrap items-center gap-2"><b className="flex-1">{check.title}</b>{results.has(check.id) ? <StatusPill status={results.get(check.id)!} /> : run.request.kind === "professional" ? null : <Pill tone="gray">未生成结果</Pill>}</div>
+            <div className="flex flex-wrap items-center gap-2"><b className="flex-1">{check.title}</b>{results.has(check.id) ? <Mark item={results.get(check.id)!} /> : run.request.kind === "professional" ? null : <Pill tone="gray">未生成结果</Pill>}</div>
             <p className="mt-1">{check.requirement}</p>
             {check.revised && check.original ? <p className="mt-1 text-xs text-[var(--warn-fg)]">原文要求：{check.original.requirement}／本模板人工修订为上述要求</p> : null}
             <p className="mt-1 text-xs text-[var(--steel)]">来源：{check.source}</p>

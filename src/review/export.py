@@ -5,9 +5,24 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
-from .presentation import present_report
+from .presentation import LEVELS, present_report
 
-STATUS={'pass':'通过','issue':'发现问题','warning':'建议调整','pending':'待核实','na':'不适用','advisory':'评议建议'}
+STATUS={'pass':'通过','pending':'待核实','na':'不适用'}
+# 修改建议 高 / 中 / 低 print in the report's red, amber and green, as on screen.
+LEVEL_COLOR={'high':'B42318','medium':'8A6100','low':'1E7A3C'}
+
+def mark(item):
+    return f'修改建议 · {LEVELS[item["level"]]}' if item.get('level') else STATUS.get(item['status'],item['status'])
+
+def level_heading(doc,item,title):
+    h=doc.add_heading('',2); tag=h.add_run(mark(item)+'  ')
+    if item.get('level'): tag.font.color.rgb=RGBColor.from_string(LEVEL_COLOR[item['level']])
+    h.add_run(title)
+
+def level_suggestion(doc,item,label):
+    p=doc.add_paragraph(); p.add_run(label).bold=True
+    text=p.add_run(item.get('suggestion') or '请结合原文核查。')
+    if item.get('level'): text.font.color.rgb=RGBColor.from_string(LEVEL_COLOR[item['level']])
 
 def export_report(run,path:Path):
     run=present_report(run)
@@ -23,7 +38,8 @@ def export_report(run,path:Path):
     doc.styles['Heading 1'].font.size=Pt(16); doc.styles['Heading 2'].font.size=Pt(12)
     doc.add_paragraph("专业审查报告" if run["request"].get("kind") == "professional" else "形式审查报告", "Title")
     doc.add_paragraph(run['document']['metadata']['title'])
-    counts=run['summary']; doc.add_paragraph(f'本次预审发现 {counts["issue"]} 项明确问题、{counts["warning"]} 项建议调整、{counts["pending"]} 项待核实。以下为内部预审结果，尚未覆盖的资格与政策要求仍需人工审核。')
+    levels=run['reader_report']['levels']; pending=len(run['reader_report']['pending'])
+    doc.add_paragraph(f'本次预审修改建议：高 {levels["high"]} 项、中 {levels["medium"]} 项、低 {levels["low"]} 项；{pending} 项待核实。以下为内部预审结果，尚未覆盖的资格与政策要求仍需人工审核。')
     rows=[('审查模板',f'{run["rule"]["name"]} · v{run["rule"]["version"]}'),('生成时间',run['created_at'])]
     if run['request'].get('kind')=='professional':
         rows.append(('评价方式',f'历史评价 · 评价时点 {run["request"]["cutoff_date"]}' if run['request']['mode']=='historical' else '更新建议'))
@@ -42,14 +58,14 @@ def export_report(run,path:Path):
         items=reader.get(key,[])
         if not items: doc.add_paragraph('本次未列出此类事项，不代表未核验的内容已经通过。')
         for index,item in enumerate(items,1):
-            doc.add_paragraph(f'{index}. {item["title"]}（{STATUS.get(item["status"],item["status"])}）')
-            doc.add_paragraph('建议：'+item.get('suggestion','请结合原文核查。'))
+            level_heading(doc,item,f'{index}. {item["title"]}')
+            level_suggestion(doc,item,'建议：')
     if reader.get('missing_documents'):
         doc.add_heading('尚未提供的依据文件',2)
         for index,name in enumerate(reader['missing_documents'],1): doc.add_paragraph(f'{index}. {name}')
     if run['request'].get('kind') != 'professional': doc.add_heading('规范性审核',1)
     for f in run['findings']:
-        doc.add_heading(f'{STATUS.get(f["status"],f["status"])}  {f["title"]}',2)
+        level_heading(doc,f,f['title'])
         doc.add_paragraph(f['detail'])
         if f.get('page'):
             location = run.get('source_locations', {}).get(str(f['page']))
@@ -57,7 +73,7 @@ def export_report(run,path:Path):
         doc.add_paragraph('判断依据：'+f['source'])
         if f.get('coverage')=='partial': doc.add_paragraph('读取覆盖：部分内容（如图片文字）未读取，完整结果未能核对。')
         if f.get('mapping') and f['mapping']!='confirmed': doc.add_paragraph('章节范围：自动识别或未定位，尚未人工确认。')
-        if f.get('suggestion'): doc.add_paragraph('修改建议：'+f['suggestion'])
+        if f.get('suggestion'): level_suggestion(doc,f,'修改建议：')
         for calc in f.get('calculations',[]): doc.add_paragraph(f'{calc["expression"]}；复算 {calc["computed_yuan"]:g} 元；'+('一致' if calc['ok'] else '不一致'))
     if run['request'].get('kind') != 'formal':
         doc.add_heading('技术分析与修改建议',1)
@@ -66,12 +82,12 @@ def export_report(run,path:Path):
     tech=run['technical']; doc.add_paragraph(tech['summary'])
     if tech.get('error'): doc.add_paragraph('模型评议未完成：'+tech['error'])
     for card in tech['cards']:
-        doc.add_heading(card['title'],2); doc.add_paragraph(card['assessment'])
+        level_heading(doc,card,card['title']); doc.add_paragraph(card['assessment'])
         if card.get('quote'): doc.add_paragraph('原文摘录：'+card['quote'])
         if card.get('page'):
             location = run.get('source_locations', {}).get(str(card['page']))
             doc.add_paragraph(f"原文位置：{location['filename']} · {location['source_page']}" if location else f"原文位置：{card['page']}")
-        doc.add_paragraph('建议：'+card['suggestion']); doc.add_paragraph('评议方式：'+card['basis'])
+        level_suggestion(doc,card,'建议：'); doc.add_paragraph('评议方式：'+card['basis'])
         if card['evidence_ids']: doc.add_paragraph('关联证据：'+', '.join(card['evidence_ids']))
     doc.add_heading('参考证据',1)
     for e in tech['evidence']:

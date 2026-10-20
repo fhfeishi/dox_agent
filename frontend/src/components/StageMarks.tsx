@@ -22,7 +22,7 @@ export function TierCounts({ tiers, unit = "" }: { tiers: number[]; unit?: strin
 
 export function Chips({ list, large }: { list: string[]; large?: boolean }) {
   return list.length ? <span className="inline-flex flex-wrap gap-1">{list.map((chip) =>
-    <span key={chip} className={`rounded border border-[#d9a92f66] bg-[#fdf6e3] font-semibold text-[#7a5a00] tabular-nums ${large ? "px-2 py-0.5 text-body" : "px-1.5 py-px text-caption"}`}>{chip}</span>)}</span> : null;
+    <span key={chip} className={`rounded border border-[var(--warn-line)] bg-[var(--warn-bg)] font-semibold text-[var(--warn-fg)] tabular-nums ${large ? "px-2 py-0.5 text-body" : "px-1.5 py-px text-caption"}`}>{chip}</span>)}</span> : null;
 }
 
 /** Stage counts of a set of levels, as TierCounts input. */

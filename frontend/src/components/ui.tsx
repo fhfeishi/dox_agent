@@ -4,13 +4,13 @@ import { Icon, type IconName } from "./Icons";
 export type Tone = "mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yellow";
 
 export const TONE_BG: Record<Tone, string> = {
-  mint: "bg-[var(--tint-mint)] text-[#0e7a28]",
-  peach: "bg-[var(--tint-peach)] text-[#8a3d00]",
-  lav: "bg-[var(--tint-lavender)] text-[#4a2a8f]",
-  sky: "bg-[var(--tint-sky)] text-[#12609e]",
-  rose: "bg-[var(--tint-rose)] text-[#a02e6d]",
+  mint: "bg-[var(--tint-mint)] text-[var(--ok-fg)]",
+  peach: "bg-[var(--tint-peach)] text-[var(--orange-fg)]",
+  lav: "bg-[var(--tint-lavender)] text-[var(--lav-fg)]",
+  sky: "bg-[var(--tint-sky)] text-[var(--info-fg)]",
+  rose: "bg-[var(--tint-rose)] text-[var(--rose-fg)]",
   gray: "bg-[var(--tint-gray)] text-[var(--slate)]",
-  yellow: "bg-[var(--tint-yellow)] text-[#8a6a00]",
+  yellow: "bg-[var(--tint-yellow)] text-[var(--warn-fg)]",
 };
 
 /* ---------------------------------------------------------------- Pill */
@@ -151,8 +151,8 @@ export function PanelRow({
       onClick={onClick}
       className={`font-app flex w-full items-center gap-[9px] rounded-[6px] px-[8px] py-[8px] text-left transition-colors ${
         active
-          ? "bg-[#eae7e3] font-medium text-[var(--ink)]"
-          : "text-[var(--slate)] hover:bg-[#f1efec]"
+          ? "bg-[var(--surface-press)] font-medium text-[var(--ink)]"
+          : "text-[var(--slate)] hover:bg-[var(--surface-sink)]"
       }`}
     >
       {dot ? (

@@ -114,7 +114,7 @@ function StatusMark({ doc }: { doc: DocumentInfo }) {
   return (
     <span
       className={`ml-2 inline-block size-[6px] rounded-full align-middle`}
-      style={{ background: indexed ? "var(--green)" : "#e0a000" }}
+      style={{ background: indexed ? "var(--green)" : "var(--warn-dot)" }}
       title={indexed ? "已建立索引" : doc.status}
     />
   );

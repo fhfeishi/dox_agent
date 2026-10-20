@@ -1243,7 +1243,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       ? { tone: "bg-[var(--red)]", text: "异常" }
       : preparation === "ready"
         ? { tone: "bg-[var(--green)]", text: "正常" }
-        : { tone: "bg-[#e0a000]", text: "知识库准备中" };
+        : { tone: "bg-[var(--warn-dot)]", text: "知识库准备中" };
 
   const value = useMemo<AppValue>(
     () => ({

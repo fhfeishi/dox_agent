@@ -40,9 +40,9 @@ export function TopicSummaryPanel({ corpusId, dimension, name }: { corpusId: str
       </div>
       <p className="mt-1 text-xs text-[var(--steel)]">只依据本主题各项目的原文摘录生成，每条要点可展开依据；项目数与代表项目由索引统计。已取得与预期不合并为同一事实。</p>
       {error ? <p role="alert" className="mt-2 text-xs text-[var(--red)]">{error}</p> : null}
-      {summary?.update_error ? <p role="alert" className="mt-2 text-xs text-[#8a3d00]">最近一次更新未完成（{summary.update_error}），以下保留上一版本。</p> : null}
+      {summary?.update_error ? <p role="alert" className="mt-2 text-xs text-[var(--orange-fg)]">最近一次更新未完成（{summary.update_error}），以下保留上一版本。</p> : null}
       {summary?.status === "未完成" && !summary.overview ? <p className="mt-2 text-xs text-[var(--red)]">归纳未完成：{summary.error}</p> : null}
-      {summary?.state === "stale" ? <p className="mt-2 text-xs text-[#8a6a00]">本主题的成员或来源版本已变化；下方为原归纳及其当时的原文快照，打开已更新的文件会提示版本变化。</p> : null}
+      {summary?.state === "stale" ? <p className="mt-2 text-xs text-[var(--warn-fg)]">本主题的成员或来源版本已变化；下方为原归纳及其当时的原文快照，打开已更新的文件会提示版本变化。</p> : null}
       {summary && summary.state !== "missing" && summary.overview !== undefined ? <>
         {summary.overview ? <p className="mt-3 text-body leading-7">{summary.overview}</p> : null}
         <p className="mt-2 text-xs text-[var(--steel)]">涉及 {summary.project_count} 个项目 · 代表项目：{(summary.representatives ?? []).map((r) => `${r.title}（${r.items} 条依据）`).join("、") || "无"}{summary.unsupported_items ? ` · ${summary.unsupported_items} 条描述无可回读原文，未参与归纳` : ""}</p>

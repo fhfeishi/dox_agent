@@ -23,7 +23,7 @@ export function StatusBanner() {
     <div className="flex shrink-0 justify-center border-b border-[var(--tint-peach)] bg-[var(--tint-cream)] px-4 py-[7px]">
       <div
         role="status"
-        className="flex items-center gap-[10px] text-body leading-5 text-[#8a3d00]"
+        className="flex items-center gap-[10px] text-body leading-5 text-[var(--orange-fg)]"
       >
         <Icon name="warning" size={14} />
         <span>

@@ -201,7 +201,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
           </button>
           {open === key ? <ul className="space-y-2 border-t border-[var(--hairline)] px-3 py-3">{scene.issues.map((issue) =>
             <li key={issue.name} className="text-body">
-              <span className="flex gap-1.5"><span className={issue.state === "已解决" ? "text-[#0e7a28]" : "text-[var(--steel)]"}>{issue.state === "已解决" ? "✔" : "➜"}</span><b className="font-medium">{issue.name}</b></span>
+              <span className="flex gap-1.5"><span className={issue.state === "已解决" ? "text-[var(--ok-fg)]" : "text-[var(--steel)]"}>{issue.state === "已解决" ? "✔" : "➜"}</span><b className="font-medium">{issue.name}</b></span>
               {issue.routes.length ? <span className="mt-1 flex flex-wrap gap-1 pl-5">{issue.routes.map((r) =>
                 <span key={r.title} className="rounded-md bg-[var(--canvas)] px-2 py-0.5 text-xs text-[var(--slate)]">{r.title}</span>)}</span>
                 : <span className="block pl-5 text-xs text-[var(--stone)]">本库暂无对应技术路线</span>}
@@ -256,7 +256,7 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
         <thead className="bg-[var(--surface)] text-body text-[var(--steel)]"><tr>
           {["技术方向", "所属体系", "项目", `${tierOf(4).label}及以上`, "主要主题"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr></thead>
         <tbody>{directions.slice(0, 12).map((d) => <tr key={d.system + d.name} className="border-t border-[var(--hairline)]">
-          <td className="px-4 py-2.5"><b className="font-medium">{d.name}</b>{d.foundation ? <span className="ml-2 rounded bg-[#7c5cd61a] px-1.5 text-xs text-[#4a2a8f]">共性</span> : null}
+          <td className="px-4 py-2.5"><b className="font-medium">{d.name}</b>{d.foundation ? <span className="ml-2 rounded bg-[var(--lav-tint)] px-1.5 text-xs text-[var(--lav-fg)]">共性</span> : null}
             {d.plain ? <span className="block text-xs text-[var(--steel)]">{d.plain}</span> : null}</td>
           <td className="px-4 py-2.5">{d.system}</td><td className="px-4 py-2.5">{d.projects}</td>
           <td className="px-4 py-2.5">{d.shaped} 个项目</td><td className="px-4 py-2.5 text-[var(--steel)]">{d.themes.join("、")}</td>
@@ -272,11 +272,11 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
     <section aria-label="问题与技术路线">
       <h2 className="mb-2 text-base font-semibold">问题与技术路线 · {issues.length} 个问题{noRoute.length ? `，${noRoute.length} 个缺少对应技术路线` : ""}</h2>
       <div className="space-y-1.5">{issues.map((i) => <div key={i.scene + i.name} className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2 text-body">
-        <span className={i.state === "已解决" ? "text-[#0e7a28]" : "text-[var(--steel)]"}>{i.state === "已解决" ? "✔ 报告所述已解决" : "➜ 待研究"}</span>
+        <span className={i.state === "已解决" ? "text-[var(--ok-fg)]" : "text-[var(--steel)]"}>{i.state === "已解决" ? "✔ 报告所述已解决" : "➜ 待研究"}</span>
         <b className="font-medium">{i.name}</b><span className="text-xs text-[var(--stone)]">{i.scene}</span>
         <span className="flex-1" />
         {i.routes.length ? <span className="text-xs text-[var(--steel)]">{i.routes.map((r) => r.title).slice(0, 3).join("、")}{i.routes.length > 3 ? ` 等 ${i.routes.length} 条` : ""}</span>
-          : <span className="text-xs text-[#9a6500]">本库暂无对应技术路线</span>}
+          : <span className="text-xs text-[var(--warn-fg)]">本库暂无对应技术路线</span>}
       </div>)}</div>
     </section>
     <p className="text-xs leading-5 text-[var(--stone)]">方向按项目数排序；“{tierOf(4).label}及以上”为至少有一条技术报告达到该阶段的项目数；技术方向与问题由模型归纳，需人工核对。</p>

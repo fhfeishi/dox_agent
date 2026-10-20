@@ -10,10 +10,10 @@ import { useNavigate, useSearchParams } from "react-router";
 import { TemplateLibrary, readText } from "./TemplateLibrary";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
-  { tint: "var(--tint-mint)", fg: "#0e7a28", icon: "checklist" },
-  { tint: "var(--tint-lavender)", fg: "#4a2a8f", icon: "competitors" },
-  { tint: "var(--tint-sky)", fg: "#12609e", icon: "forecast" },
-  { tint: "var(--tint-peach)", fg: "#8a3d00", icon: "reports" },
+  { tint: "var(--tint-mint)", fg: "var(--ok-fg)", icon: "checklist" },
+  { tint: "var(--tint-lavender)", fg: "var(--lav-fg)", icon: "competitors" },
+  { tint: "var(--tint-sky)", fg: "var(--info-fg)", icon: "forecast" },
+  { tint: "var(--tint-peach)", fg: "var(--orange-fg)", icon: "reports" },
 ];
 
 function ViewShell({

@@ -285,7 +285,7 @@ function BasisPanel({ run }: { run: ReviewRun }) {
           <div key={check.id} className="mt-3 border-t border-[var(--hairline)] pt-3 text-sm">
             <div className="flex flex-wrap items-center gap-2"><b className="flex-1">{check.title}</b>{results.has(check.id) ? <StatusPill status={results.get(check.id)!} /> : run.request.kind === "professional" ? null : <Pill tone="gray">未生成结果</Pill>}</div>
             <p className="mt-1">{check.requirement}</p>
-            {check.revised && check.original ? <p className="mt-1 text-xs text-[#8a6a00]">原文要求：{check.original.requirement}／本模板人工修订为上述要求</p> : null}
+            {check.revised && check.original ? <p className="mt-1 text-xs text-[var(--warn-fg)]">原文要求：{check.original.requirement}／本模板人工修订为上述要求</p> : null}
             <p className="mt-1 text-xs text-[var(--steel)]">来源：{check.source}</p>
           </div>
         ))}

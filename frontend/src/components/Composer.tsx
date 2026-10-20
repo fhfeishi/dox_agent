@@ -278,14 +278,14 @@ export function Composer() {
           </div>
         ) : null}
         {editing ? (
-          <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[#d5cdf7] bg-[var(--primary-soft)] px-[10px] py-[7px] text-caption text-[var(--primary-pressed)]">
+          <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[var(--lav-line)] bg-[var(--primary-soft)] px-[10px] py-[7px] text-caption text-[var(--primary-pressed)]">
             <Icon name="edit" size={13} strokeWidth={1.9} />
             <span className="flex-1">
               正在编辑第 {editing.index + 1} 轮的提问 · 确认后将从这条消息重新生成回答
             </span>
             <button
               type="button"
-              className="font-app rounded-[5px] px-[7px] py-[2px] text-caption font-medium hover:bg-[#ddd5f8]"
+              className="font-app rounded-[5px] px-[7px] py-[2px] text-caption font-medium hover:bg-[var(--lav-bg)]"
               onClick={() => setEditing(null)}
             >
               取消
@@ -318,7 +318,7 @@ export function Composer() {
           <button ref={corpusButton} type="button" aria-expanded={corpusOpen} onClick={() => { setCorpusOpen(v => !v); setPopOpen(false); setScopeOpen(false); }} className="rounded-full border px-3 py-1 text-sm">＋管理知识库</button>
           <span className="text-xs">{corpusIds.length}/6</span>
           {emptyScopeCorpus ? (
-            <span className="flex items-center gap-[6px] text-caption text-[#9a6500]">
+            <span className="flex items-center gap-[6px] text-caption text-[var(--warn-fg)]">
               「{emptyScopeCorpus.name}」暂无已入库文档
               <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id, "files")}>
                 添加文档

@@ -82,7 +82,7 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
         </button>
       </div>
       {located ? null : (
-        <p role="status" className="mb-[10px] text-caption text-[#8a6a00]">
+        <p role="status" className="mb-[10px] text-caption text-[var(--warn-fg)]">
           未能在当前正文中找到该引文（资料可能已更新）。已显示正文开头，请重新提取或刷新资料后再定位；不用旧位置冒充新内容。
         </p>
       )}

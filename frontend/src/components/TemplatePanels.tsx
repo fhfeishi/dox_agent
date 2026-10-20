@@ -193,7 +193,7 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
       <Pill tone={task.kind === "custom" ? (archived ? "yellow" : "lav") : "sky"}>{statusLabel(task)}</Pill>
     </div>
     <p className="mt-[6px] text-body leading-[1.6] text-[var(--steel)]">{task.description}</p>
-    {archived ? <p className="mt-[6px] text-caption text-[#8a3d00]">已归档，不能用于新的分析；恢复后可继续使用。</p> : null}
+    {archived ? <p className="mt-[6px] text-caption text-[var(--orange-fg)]">已归档，不能用于新的分析；恢复后可继续使用。</p> : null}
     <div className="mt-[10px] flex flex-wrap gap-[6px]">
       {!archived ? <Button size="sm" disabled={busy} onClick={() => showInspector({ kind: "task", taskId: task.id, edit: true })}>{task.kind === "custom" ? "编辑大纲" : "编辑（保存为我的任务）"}</Button> : null}
       {usable ? <Button size="sm" disabled={busy} onClick={() => void startTask(task.id)}>{task.status === "draft" ? "用已发布版本分析" : "开始分析"}</Button> : null}
@@ -295,7 +295,7 @@ export function ReportTemplatePanel({ templateId, edit }: { templateId: string; 
       <Pill tone={custom ? (archived ? "yellow" : "lav") : "sky"}>{statusLabel(template)}</Pill>
     </div>
     {template.purpose ? <p className="mt-[6px] text-body text-[var(--steel)]">{template.purpose}</p> : null}
-    {archived ? <p className="mt-[6px] text-caption text-[#8a3d00]">已归档，不能绑定到新任务；已绑定的任务版本仍可运行。</p> : null}
+    {archived ? <p className="mt-[6px] text-caption text-[var(--orange-fg)]">已归档，不能绑定到新任务；已绑定的任务版本仍可运行。</p> : null}
     <div className="mt-[10px] flex flex-wrap gap-[6px]">
       {!archived ? <Button size="sm" disabled={busy} onClick={() => showInspector({ kind: "template", templateId: template.id, edit: true })}>{custom ? "编辑大纲" : "编辑（另存为我的模板）"}</Button> : null}
       <Lifecycle item={template} busy={busy} onDelete={() => void remove()} onArchive={(value) => void archive(value)} />

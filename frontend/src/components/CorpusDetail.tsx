@@ -140,7 +140,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-5 py-[18px] sm:px-8">
       {corpus.missing ? (
-        <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-caption">
+        <section className="space-y-[10px] rounded-[10px] border border-[var(--danger-line)] bg-[var(--danger-bg)] p-[14px] text-caption">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>
           <p className="text-[var(--steel)]">若你已在资料库根目录中重新放置或改名该文件夹，请明确选择对应目录。系统不会按相似名称自动合并。</p>
           <div className="flex flex-wrap gap-[8px]">

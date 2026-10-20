@@ -16,10 +16,10 @@ import { useApp } from "../store";
 import { useAuth } from "../auth";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
-  running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[#d5cdf7]" },
+  running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[var(--lav-line)]" },
   completed: { label: "完成", cls: "bg-[var(--canvas)] text-[var(--slate)] ring-[var(--hairline)]" },
-  failed: { label: "失败", cls: "bg-[var(--tint-rose)] text-[#a02e6d] ring-[#f6cfe0]" },
-  interrupted: { label: "已中断", cls: "bg-[var(--tint-peach)] text-[#8a3d00] ring-[#f6d8bd]" },
+  failed: { label: "失败", cls: "bg-[var(--tint-rose)] text-[var(--rose-fg)] ring-[var(--rose-line)]" },
+  interrupted: { label: "已中断", cls: "bg-[var(--tint-peach)] text-[var(--orange-fg)] ring-[var(--orange-line)]" },
 };
 
 function StepBadge({ sequence, status }: { sequence: number; status: Step["status"] }) {
@@ -687,7 +687,7 @@ export function MessageView({
                   type="button"
                   title={source.title}
                   aria-label={`[${n}]`}
-                  className="font-app mx-[2px] inline-block h-[16px] rounded-[4px] bg-[var(--primary-soft)] px-[4px] align-[1px] text-caption leading-[16px] font-semibold text-[var(--primary)] hover:bg-[#e3defa]"
+                  className="font-app mx-[2px] inline-block h-[16px] rounded-[4px] bg-[var(--primary-soft)] px-[4px] align-[1px] text-caption leading-[16px] font-semibold text-[var(--primary)] hover:bg-[var(--lav-bg)]"
                   onClick={() => onOpenSource(source, n)}
                 >
                   {n}

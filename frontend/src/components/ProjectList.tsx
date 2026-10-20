@@ -46,8 +46,8 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
               <span className="block truncate text-caption text-[var(--stone)]">
                 {p.start_year ? `${p.start_year}–${p.end_year ?? "?"}` : "年份待核对"} · {p.number || "批准号待核对"}{p.admin ? ` · ${p.admin}` : ""}</span>
             </button>
-            {pending ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-caption text-[#7a5a00]" title={p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"}>项目待核对</span> : null}
-            {copies.length ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-caption text-[#9b2c2c]">含重复内容 {copies.length}</span> : null}
+            {pending ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]" title={p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"}>项目待核对</span> : null}
+            {copies.length ? <span className="shrink-0 rounded bg-[var(--danger-bg)] px-1.5 py-0.5 text-caption text-[var(--danger-fg)]">含重复内容 {copies.length}</span> : null}
             <button type="button" onClick={() => toggleOpen(p.project_id)} className="shrink-0 text-[var(--steel)] hover:text-[var(--ink)]">{p.files.length} 份文件 {expanded ? "▴" : "▾"}</button>
           </div>
           {expanded ? <ul aria-label={`${p.title} 的文件`} className="mt-2 space-y-1 border-t border-[var(--hairline)] pt-2 pl-7">
@@ -56,13 +56,13 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
                 <input type="checkbox" aria-label={`选择 ${file?.rel_path ?? document.title}`} checked={selectedIds.includes(document.doc_id)}
                   onChange={() => onToggle([document.doc_id], !selectedIds.includes(document.doc_id))} />
                 <span className="min-w-0 flex-1 truncate text-[var(--slate)]" title={file?.rel_path}>{file ? name(file.rel_path) : document.title}</span>
-                {file?.duplicate_of ? <span className="shrink-0 text-[#9b2c2c]">与 {name(file.duplicate_of)} 内容相同</span> : null}
+                {file?.duplicate_of ? <span className="shrink-0 text-[var(--danger-fg)]">与 {name(file.duplicate_of)} 内容相同</span> : null}
                 {onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                 {file?.duplicate_of ? <button type="button" disabled={busy} onClick={() => onDelete(file.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button> : null}
               </li>; })}
             {copies.filter((f) => !own.includes(f.rel_path)).map((f) => <li key={f.rel_path} className="flex items-center gap-2 pl-5">
               <span className="min-w-0 flex-1 truncate text-[var(--stone)]" title={f.rel_path}>{name(f.rel_path)}</span>
-              <span className="shrink-0 text-[#9b2c2c]">与 {name(f.duplicate_of!)} 内容相同，未单独计入</span>
+              <span className="shrink-0 text-[var(--danger-fg)]">与 {name(f.duplicate_of!)} 内容相同，未单独计入</span>
               <button type="button" disabled={busy} onClick={() => onDelete(f.rel_path)} className="shrink-0 text-[var(--red)] hover:underline disabled:opacity-40">删除副本</button>
             </li>)}
           </ul> : null}
@@ -72,7 +72,7 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
       {shown.length > limit ? <li><button type="button" onClick={() => setLimit(limit + 60)} className="w-full rounded-lg py-2 text-caption text-[var(--link)] hover:bg-[var(--surface)]">
         显示更多（已显示 {limit} / {shown.length} 个项目）</button></li> : null}
     </ul>
-    {unread.length ? <details open className="rounded-xl border border-[#f1c8c8] bg-[#fff8f8] px-3 py-2 text-xs">
+    {unread.length ? <details open className="rounded-xl border border-[var(--danger-line)] bg-[var(--danger-bg)] px-3 py-2 text-xs">
       <summary className="cursor-pointer font-medium text-[var(--red)]">未入库的文件 · {unread.length}</summary>
       <ul aria-label="未入库的文件" className="mt-2 space-y-1">{unread.map((f) => <li key={f.rel_path} className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate" title={f.rel_path}>{name(f.rel_path)}</span>

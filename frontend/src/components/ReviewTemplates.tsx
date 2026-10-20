@@ -128,7 +128,7 @@ export function ReviewTemplates() {
         <span className="text-caption text-[var(--stone)]">支持 TXT、Markdown、DOCX、可提取文字的 PDF；整理结果是草稿，原文件与各条出处保留。</span>
       </div>
       {legacy.length ? (
-        <section className="mb-6 rounded-xl border border-[#f2d98a] bg-[var(--tint-yellow)] p-4">
+        <section className="mb-6 rounded-xl border border-[var(--warn-line)] bg-[var(--tint-yellow)] p-4">
           <h2 className="text-sm font-semibold">旧版检查清单 · 需选择审查类型</h2>
           <p className="mt-1 text-xs text-[var(--slate)]">这些清单在通用模板之前建立，系统无法确定用于形式还是专业审查。选择后另存为新版本草稿，原清单内容不删除。</p>
           {legacy.map((rule) => (
@@ -342,7 +342,7 @@ function CheckPreview({ kind, check }: { kind: ReviewKind; check: ReviewCheck })
       </div>
       <p className="mt-2 text-body leading-6">{check.requirement}</p>
       <p className="mt-1 text-xs leading-5 text-[var(--steel)]">{check.applicability}</p>
-      {requirementLine(check) ? <p className="mt-2 inline-block rounded-md bg-[var(--tint-sky)] px-2 py-1 text-xs text-[#12609e]">执行参数：{requirementLine(check)}</p> : null}
+      {requirementLine(check) ? <p className="mt-2 inline-block rounded-md bg-[var(--tint-sky)] px-2 py-1 text-xs text-[var(--info-fg)]">执行参数：{requirementLine(check)}</p> : null}
       {check.execution?.field === "section_characters" ? (
         <details className="mt-2 text-xs"><summary className="cursor-pointer text-[var(--link)]">查看计数说明</summary><p className="mt-1 text-[var(--slate)]">{COUNTING_NOTE}</p></details>
       ) : null}
@@ -415,7 +415,7 @@ function CheckEditor({ kind, check, problem, onChange, onMove, onDelete }: {
         <textarea aria-label={"要求：" + check.title} rows={2} className={input} value={check.requirement} onChange={(e) => onChange({ ...check, requirement: e.target.value })} /></label>
       <label className="mt-2 block text-xs text-[var(--slate)]">{kind === "formal" ? "检查口径说明" : "期望的解释"}
         <input aria-label={"口径：" + check.title} className={input} value={check.applicability} onChange={(e) => onChange({ ...check, applicability: e.target.value })} /></label>
-      {check.original?.requirement && check.original.requirement !== check.requirement ? <p className="mt-2 text-xs text-[#8a6a00]">原文要求：{check.original.requirement}（保存后标为人工修订）</p> : null}
+      {check.original?.requirement && check.original.requirement !== check.requirement ? <p className="mt-2 text-xs text-[var(--warn-fg)]">原文要求：{check.original.requirement}（保存后标为人工修订）</p> : null}
       {problem ? <p role="alert" className="mt-2 text-xs text-[var(--red)]">{problem}</p> : null}
     </article>
   );

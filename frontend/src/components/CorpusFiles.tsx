@@ -197,7 +197,7 @@ export function CorpusFiles({
     <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-body">
       <h3 className="font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
       <div className="mt-[10px] space-y-[10px]">
-        {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[#fff7e6] px-[10px] py-[8px] text-caption text-[#805900]">
+        {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[var(--warn-bg)] px-[10px] py-[8px] text-caption text-[var(--warn-fg)]">
           在知识库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
         {showPath && listing?.source_dir ? <details className="break-all text-caption text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
@@ -342,8 +342,8 @@ export function CorpusFiles({
                     {status === "error" ? "已保存，未入库 · 解析失败" : STATUS_LABEL[status] ?? status}
                   </span>
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
-                  {file.duplicate_of ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-caption text-[#9b2c2c]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
-                  {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-caption text-[#7a5a00]">项目待核对</span> : null}
+                  {file.duplicate_of ? <span className="shrink-0 rounded bg-[var(--danger-bg)] px-1.5 py-0.5 text-caption text-[var(--danger-fg)]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
+                  {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                   {status === "error" ? (
                     <button

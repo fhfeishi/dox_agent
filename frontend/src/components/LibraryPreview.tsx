@@ -60,7 +60,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     {facts.length ? <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-xl bg-[var(--surface)] p-3 text-body">
       {facts.map(([k, v]) => <div key={k} className="contents"><dt className="text-[var(--steel)]">{k}</dt><dd>{v}</dd></div>)}
     </dl> : <p role="status" className="text-sm text-[var(--steel)]">正在读取…</p>}
-    {attention.length ? <section aria-label="需要处理" className="rounded-xl border border-[#e8c98a] bg-[#fdf6e3] p-3 text-body text-[#7a5a00]">
+    {attention.length ? <section aria-label="需要处理" className="rounded-xl border border-[var(--warn-line)] bg-[var(--warn-bg)] p-3 text-body text-[var(--warn-fg)]">
       <p className="font-semibold">需要处理</p>{attention.map((a) => <p key={a} className="mt-1">· {a}</p>)}</section> : null}
     {insights.length ? <section aria-label="要点结论" className="space-y-1.5">{insights.map((i) =>
       <div key={i.title} className="rounded-lg border border-[var(--hairline)] px-3 py-2"><span className="block text-xs text-[var(--stone)]">{i.title}</span>

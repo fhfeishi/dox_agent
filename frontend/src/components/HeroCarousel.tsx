@@ -164,7 +164,7 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
     onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
     onFocus={() => setPaused(true)} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false); }}
     onKeyDown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1); } if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); } }}
-    className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#172a40] via-[#1f3a57] to-[#2c5373] text-white outline-none focus-visible:ring-2 focus-visible:ring-[#9fb3c8]">
+    className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--banner-1)] via-[var(--banner-2)] to-[var(--banner-3)] text-white outline-none focus-visible:ring-2 focus-visible:ring-[#9fb3c8]">
     <span aria-hidden="true" className="pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-[#3987e5]/10 blur-3xl" />
     <div key={slide.key} aria-roledescription="slide" aria-label={`${index + 1} / ${slides.length}：${slide.label}`} aria-live={paused ? "polite" : "off"}
       className="hero-slide relative grid min-h-[300px] items-stretch gap-8 px-6 pt-6 pb-16 sm:px-9 md:h-[300px] md:grid-cols-[minmax(0,0.78fr)_minmax(0,1.42fr)]">

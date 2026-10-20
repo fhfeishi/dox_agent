@@ -223,7 +223,7 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
             {selected && !changed ? (
               <div className="mt-2 rounded-lg bg-[var(--surface)] p-2 text-xs leading-5">
                 <span className="font-semibold">计入 {selected.count} 字符</span> · {doc.kind === "pdf" ? "页" : "块"} {selected.pages.join("、")}
-                {selected.unread_images ? <span className="ml-2 text-[#8a3d00]">含 {selected.unread_images} 处未读取图片，覆盖不足</span> : null}
+                {selected.unread_images ? <span className="ml-2 text-[var(--orange-fg)]">含 {selected.unread_images} 处未读取图片，覆盖不足</span> : null}
                 <p className="mt-1 line-clamp-2 text-[var(--steel)]">{selected.text}</p>
               </div>
             ) : changed ? <p className="mt-2 text-xs text-[var(--steel)]">保存后按新范围重新计数。</p> : null}
@@ -458,7 +458,7 @@ export function ReviewWorkbench() {
         <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-body leading-6 text-[var(--slate)]">
           {doc ? <>
             <p>{doc.kind.toUpperCase()} · {doc.page_count} {doc.kind === "pdf" ? "页" : "个文本块"} · {doc.confirmed_at ? "基本信息已确认" : "基本信息待核对"}</p>
-            {doc.warnings?.length ? <p className="text-caption text-[#8a6a00]">{doc.warnings[0]}</p> : null}
+            {doc.warnings?.length ? <p className="text-caption text-[var(--warn-fg)]">{doc.warnings[0]}</p> : null}
           </> : null}
           <p className="text-caption text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">

@@ -68,7 +68,7 @@ export function OpsDrawer() {
         <section aria-label="连接测试" className="mt-[22px]">
           <div className="flex items-center gap-3">
             <Button size="sm" disabled={busy || !info.api_key_configured} onClick={() => void runCheck()}>{busy ? "正在测试…" : "测试连接"}</Button>
-            {check ? <span role="status" className={`text-body ${check.ok ? "text-[#0e7a28]" : "text-[var(--red)]"}`}>
+            {check ? <span role="status" className={`text-body ${check.ok ? "text-[var(--ok-fg)]" : "text-[var(--red)]"}`}>
               {check.ok ? `连接正常 · ${check.latency_ms} ms` : `${check.error}${check.latency_ms != null ? ` · ${check.latency_ms} ms` : ""}`}
             </span> : null}
           </div>

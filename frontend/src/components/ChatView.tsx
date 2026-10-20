@@ -221,7 +221,7 @@ export function ChatView() {
           {!connected ? (
             <section
               role="alert"
-              className="mb-[18px] flex items-center justify-between gap-3 rounded-[12px] border border-[var(--tint-peach)] bg-[var(--tint-peach)]/40 px-[14px] py-[11px] text-body text-[#8a3d00]"
+              className="mb-[18px] flex items-center justify-between gap-3 rounded-[12px] border border-[var(--tint-peach)] bg-[var(--tint-peach)]/40 px-[14px] py-[11px] text-body text-[var(--orange-fg)]"
             >
               <span>已断开连接；历史仍可查看，未完成的回答不会作为上下文。</span>
               <button
@@ -337,7 +337,7 @@ export function ChatView() {
             ))}
 
           {viewingBranch ? (
-            <section aria-label="分支查看" className="mb-[26px] rounded-[12px] border border-[#d5cdf7] bg-[var(--canvas)] p-[18px]">
+            <section aria-label="分支查看" className="mb-[26px] rounded-[12px] border border-[var(--lav-line)] bg-[var(--canvas)] p-[18px]">
               <div className="mb-[14px] flex flex-wrap items-center justify-between gap-2">
                 <h2 className="text-body font-semibold text-[var(--ink)]">
                   {viewingBranch.label} · 从第 {viewingBranch.fromIndex + 1} 轮起
@@ -368,7 +368,7 @@ export function ChatView() {
           ) : null}
 
           {error ? (
-            <p role="alert" className="mt-[6px] rounded-[8px] bg-[var(--tint-rose)]/40 px-[12px] py-[8px] text-body text-[#a02e6d]">
+            <p role="alert" className="mt-[6px] rounded-[8px] bg-[var(--tint-rose)]/40 px-[12px] py-[8px] text-body text-[var(--rose-fg)]">
               {error}
             </p>
           ) : null}

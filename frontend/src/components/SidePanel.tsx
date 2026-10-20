@@ -85,7 +85,7 @@ export function SidePanel() {
           {childrenOf(session.id).map((child) => (
             <li key={child.id}><button type="button" disabled={!workspace.loaded || sessionBusy}
               onClick={() => void switchSession(child.id)}
-              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-caption text-[var(--steel)] transition-colors hover:bg-[#f1efec] disabled:opacity-40">
+              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-caption text-[var(--steel)] transition-colors hover:bg-[var(--surface-sink)] disabled:opacity-40">
               {child.title} <span className="text-[var(--stone)]">· 历史分支</span>
             </button></li>
           ))}
@@ -321,7 +321,7 @@ function SessionRow({
         disabled={disabled}
         onClick={onSelect}
         className={`font-app flex min-w-0 flex-1 items-center gap-[9px] rounded-[6px] px-[8px] py-[8px] text-left transition-colors disabled:opacity-40 ${
-          active ? "bg-[#eae7e3] font-medium text-[var(--ink)]" : "text-[var(--slate)] hover:bg-[#f1efec]"
+          active ? "bg-[var(--surface-press)] font-medium text-[var(--ink)]" : "text-[var(--slate)] hover:bg-[var(--surface-sink)]"
         }`}
       >
         <span className="min-w-0 flex-1 truncate text-body">{title || "未命名会话"}</span>

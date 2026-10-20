@@ -34,15 +34,15 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
   });
   const sessions = workspace.sessions.filter((s) => s.created_by === username && !s.data.archived).slice(0, 8);
   const working = [...(reviews.data ?? []).filter((r) => ACTIVE.has(r.status)), ...(reports.data ?? []).filter((r) => ACTIVE.has(r.status))].length;
-  const box = "rounded-xl border border-[#e3e7ec] bg-white p-4";
-  const row = "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-body hover:bg-[#f6f7f9]";
+  const box = "rounded-xl border border-[var(--line-cool)] bg-white p-4";
+  const row = "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-body hover:bg-[var(--surface-cool)]";
   const empty = (text: string) => <p className="px-3 py-2 text-body text-[var(--stone)]">{text}</p>;
 
   return <section aria-label="我的工作">
     {/* bare: the page supplies the heading (leader 首页) and only the progress line remains. */}
     {bare ? (working ? <p className="mb-2 text-xs text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
       : <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
-      <h2 className="text-base font-semibold text-[#24364c]">我的工作</h2>
+      <h2 className="text-base font-semibold text-[var(--heading)]">我的工作</h2>
       <span className="text-xs text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
     </div>}
     <div className="grid gap-3 lg:grid-cols-3">

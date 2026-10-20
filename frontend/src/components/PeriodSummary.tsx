@@ -22,11 +22,11 @@ export function PeriodSummary() {
   const [error, setError] = useState("");
   const facts = useQuery({ queryKey: ["recent", period], queryFn: async ({ signal }): Promise<Facts> => {
     const response = await fetch(`/api/summaries/facts?period=${period}`, { signal });
-    if (!response.ok) throw new Error("成果周期总结暂不可读");
+    if (!response.ok) throw new Error("周期总结暂不可读");
     return response.json();
   } });
-  if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">成果周期总结暂不可读，请稍后重试。</p>;
-  if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取成果周期总结…</p>;
+  if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">周期总结暂不可读，请稍后重试。</p>;
+  if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取周期总结…</p>;
   const label = PERIODS.find((p) => p.key === period)!.label;
   const summary = fromFacts(facts.data);
   const summaries = facts.data.summaries;
@@ -66,9 +66,9 @@ export function PeriodSummary() {
     </button>)}</div>
   </section> : null;
   const items = summary.active.length + summary.done.length + summary.failed.length;
-  return <section aria-label="成果周期总结" className="@container space-y-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 sm:p-5">
+  return <section aria-label="周期总结" className="@container space-y-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 sm:p-5">
     <div className="flex flex-wrap items-center gap-3">
-      <h2 className="text-[16px] font-semibold">成果周期总结</h2>
+      <h2 className="text-[16px] font-semibold">周期总结</h2>
       <div role="group" aria-label="时间段" className="flex flex-wrap gap-1">{PERIODS.map((p) =>
         <button key={p.key} type="button" aria-pressed={period === p.key} onClick={() => setPeriod(p.key)}
           className={`rounded-full border px-3 py-1 text-[13px] ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>

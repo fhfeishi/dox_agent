@@ -170,7 +170,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
           {t.answer && !t.error && !(busy && t === items.at(-1)) ? <div className="mt-2 flex flex-wrap justify-end gap-3 border-t border-[var(--hairline)] pt-2">
             <button type="button" onClick={() => copy(t.answer, t.runId)} className={link}>{copied === t.runId ? "已复制" : "复制"}</button>
             {t.saved ? <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: t.saved! })} className={link}>已保存，打开</button>
-              : <button type="button" onClick={() => void save(t)} className={link}>保存到成果</button>}
+              : <button type="button" onClick={() => void save(t)} className={link}>保存到报告中心</button>}
             <button type="button" disabled={reporting} onClick={() => setForm({ topic: t.question, template: form?.template ?? "" })} className={link}>以此生成报告</button>
           </div> : null}
         </div>

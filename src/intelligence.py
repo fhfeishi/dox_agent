@@ -280,7 +280,7 @@ async def analyze(payload: AnalysisRequest, request: Request):
             or validate_citations(body, sources)
             or not re.search(r"\[\d+\]", body)
         ):
-            raise ValueError("报告正文或引用不完整，未保存为完成成果")
+            raise ValueError("报告正文或引用不完整，未作为已完成报告保存")
         if (getattr(response, "response_metadata", {}) or {}).get("finish_reason") == "length":
             raise ValueError("报告生成被截断，未标记完成")
         await asyncio.to_thread(knowledge.assert_current_sources, context.sources)

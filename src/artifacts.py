@@ -116,19 +116,19 @@ class ArtifactStore:
         ).fetchone()
         if row is None:
             if db.execute("SELECT 1 FROM purged_artifacts WHERE artifact_id=?", (artifact_id,)).fetchone():
-                raise HTTPException(410, {"lifecycle": "purged", "message": "成果已永久删除"})
-            raise KeyError("成果不存在")
+                raise HTTPException(410, {"lifecycle": "purged", "message": "报告已永久删除"})
+            raise KeyError("报告中心没有这条记录")
         if row[2] and _now() >= row[2]:
-            raise HTTPException(410, {"lifecycle": "expired", "message": "成果已到期，不可恢复"})
+            raise HTTPException(410, {"lifecycle": "expired", "message": "报告已过回收站保留期，不可恢复"})
         if revision is not None and row[0] != revision:
-            raise HTTPException(412, "成果已更新，请刷新后重试")
+            raise HTTPException(412, "报告已被更新，请刷新后重试")
         if row[1] and (not include_trashed or writing):
             raise HTTPException(
                 409 if writing else 410,
-                {"lifecycle": "trashed", "purge_after": row[2], "message": "成果已移入回收站，请先还原"},
+                {"lifecycle": "trashed", "purge_after": row[2], "message": "报告已在回收站，请先还原"},
             )
         if writing and row[3] == "generating":
-            raise HTTPException(409, "成果生成中，请等待完成")
+            raise HTTPException(409, "报告生成中，请等待完成")
         return row
 
     def report_identity(self, report_id):
@@ -137,7 +137,7 @@ class ArtifactStore:
             if row:
                 return row[0]
             if db.execute("SELECT 1 FROM purged_artifacts WHERE report_id=?", (report_id,)).fetchone():
-                raise HTTPException(410, {"lifecycle": "purged", "message": "成果已永久删除"})
+                raise HTTPException(410, {"lifecycle": "purged", "message": "报告已永久删除"})
         raise KeyError("报告不存在")
 
     def report_artifact(self, run_id):
@@ -151,7 +151,7 @@ class ArtifactStore:
                 not row
                 and db.execute("SELECT 1 FROM purged_artifacts WHERE report_run_id=?", (run_id,)).fetchone()
             ):
-                raise HTTPException(410, {"lifecycle": "purged", "message": "成果已永久删除，请明确重新生成"})
+                raise HTTPException(410, {"lifecycle": "purged", "message": "报告已永久删除，请重新生成"})
         return self.get(row[0]) if row else None
 
     def get_report(self, report_id):
@@ -223,7 +223,7 @@ class ArtifactStore:
                     raise HTTPException(409, "外部输入已移除或清理，请重新选择")
 
             if db.execute("SELECT 1 FROM purged_artifacts WHERE report_run_id=?", (run_id,)).fetchone():
-                raise HTTPException(410, "成果已永久删除")
+                raise HTTPException(410, "报告已永久删除")
             row = db.execute(
                 "SELECT id,status FROM artifacts WHERE type='report' AND run_id=?", (run_id,)
             ).fetchone()
@@ -348,7 +348,7 @@ class ArtifactStore:
                 return {"artifact_id": artifact_id, "lifecycle": "purged"}
             row = self._guard(db, artifact_id, include_trashed=True, revision=revision)
             if row[3] == "generating":
-                raise HTTPException(409, "成果生成中，请等待完成")
+                raise HTTPException(409, "报告生成中，请等待完成")
             if action == "trash" and not row[1]:
                 now = _now()
                 until = (datetime.fromisoformat(now) + timedelta(days=7)).isoformat()
@@ -521,7 +521,7 @@ class ArtifactStore:
                 "SELECT current_version, payload FROM artifacts WHERE id=?", (artifact_id,)
             ).fetchone()
             if row is None:
-                raise KeyError("成果不存在")
+                raise KeyError("报告中心没有这条记录")
             version = db.execute(
                 "SELECT COALESCE(MAX(version),0)+1 FROM artifact_versions WHERE artifact_id=?", (artifact_id,)
             ).fetchone()[0]
@@ -535,7 +535,7 @@ class ArtifactStore:
                 figures = [figure for figure in old_figures if f"figures/{figure['figure_id']}." in markdown]
             referenced = set(re.findall(r"\(figures/([a-f0-9]{20})\.(?:jpg|png)\)", markdown))
             if referenced != {figure["figure_id"] for figure in figures}:
-                raise ValueError("成果正文中的图片与附件不一致")
+                raise ValueError("报告正文中的图片与附件不一致")
             for figure in figures:
                 if "bytes" in figure:
                     db.execute(
@@ -628,7 +628,7 @@ class ArtifactStore:
             self._guard(db, artifact_id, include_trashed=include_trashed)
             row = db.execute(f"SELECT {self._COLUMNS} FROM artifacts WHERE id=?", (artifact_id,)).fetchone()
             if row is None:
-                raise KeyError("成果不存在")
+                raise KeyError("报告中心没有这条记录")
             item = self._row_payload(row)
             version_row = db.execute(
                 "SELECT version, created_at, markdown, citations, status, source_verification, fail_reason, figures "
@@ -636,7 +636,7 @@ class ArtifactStore:
                 (artifact_id, version if version is not None else item["current_version"]),
             ).fetchone()
         if version is not None and not version_row:
-            raise KeyError("成果版本不存在")
+            raise KeyError("报告版本不存在")
         item["version"] = version_row[0] if version_row else 0
         item["version_created_at"] = version_row[1] if version_row else ""
         item["markdown"] = version_row[2] if version_row else ""
@@ -659,10 +659,10 @@ class ArtifactStore:
                 (artifact_id, version),
             ).fetchone()
             if not row:
-                raise KeyError("成果版本不存在")
+                raise KeyError("报告版本不存在")
             figure = next((item for item in json.loads(row[0]) if item["figure_id"] == figure_id), None)
             if not figure:
-                raise KeyError("图片不属于该成果版本")
+                raise KeyError("图片不属于该报告版本")
             data = db.execute(
                 "SELECT data FROM artifact_images WHERE sha256=?", (figure["sha256"],)
             ).fetchone()
@@ -679,7 +679,7 @@ class ArtifactStore:
                 (artifact_id, version),
             ).fetchone()
         if row is None:
-            raise KeyError("成果版本不存在")
+            raise KeyError("报告版本不存在")
         return {
             "artifact_id": artifact_id,
             "version": row[0],
@@ -695,7 +695,7 @@ class ArtifactStore:
         with self.connect() as db:
             self._guard(db, artifact_id, include_trashed=include_trashed)
             if not db.execute("SELECT 1 FROM artifacts WHERE id=?", (artifact_id,)).fetchone():
-                raise KeyError("成果不存在")
+                raise KeyError("报告中心没有这条记录")
             rows = db.execute(
                 "SELECT version, created_at, status, source_verification, fail_reason "
                 "FROM artifact_versions WHERE artifact_id=? ORDER BY version",

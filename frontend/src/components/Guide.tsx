@@ -13,7 +13,7 @@ export const GUIDES: Record<string, { title: string; steps: string[] }> = {
   library: { title: "资料库", steps: ["点资料库卡片“打开”，或点“信息”在右侧预览", "打开后先看“资料管理”，可增删改资料与信息；再切换“技术研判 · 年度分布 · 项目关系”", "“← 全部资料库”返回卡片，库名下拉可切换资料库"] },
   tasks: { title: "存量分析", steps: ["选择要做的任务，点“开始分析”", "补充问题，核对系统选用的资料范围后发送", "“报告中心”查看生成进度与报告"] },
   review: { title: "资料审查", steps: ["模板已默认选好，点模板可预览或更换", "上传申请书", "点“开始审查”，完成后在本页打开报告"] },
-  intelligence: { title: "情报分析", steps: ["上传外部材料", "选择输出模板", "生成成果并在右侧查看"] },
+  intelligence: { title: "情报分析", steps: ["上传外部材料", "选择输出模板", "生成报告并在右侧查看"] },
 };
 
 export const GUIDE_EVENT = "dox-guide";

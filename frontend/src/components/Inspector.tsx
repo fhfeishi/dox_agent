@@ -29,7 +29,7 @@ type InspTab = "cite" | "src" | "session";
 const OUTCOME_LABEL: Record<string, string> = {
   running: "进行中", completed: "已完成", interrupted: "已中断", failed: "未完成", timed_out: "已超时",
 };
-const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "回答快照", report: "报告" };
+const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "保存的回答", report: "报告" };
 
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
@@ -54,7 +54,7 @@ function SessionReports({ sessionKey }: { sessionKey: string }) {
     return () => abort.abort();
   }, [sessionKey]);
   if (!items) return <p className="mb-[14px] text-[12px] text-[var(--stone)]">正在读取…</p>;
-  if (!items.length) return <p className="mb-[14px] text-[12px] leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存为成果”；专项报告在对话中的报告卡生成。</p>;
+  if (!items.length) return <p className="mb-[14px] text-[12px] leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存到报告中心”；专项报告在对话中的报告卡生成。</p>;
   return <ul className="mb-[14px] space-y-[6px]">{items.map((item) => <li key={item.artifact_id}>
     <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
       className="block w-full truncate rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-[12.5px] text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
@@ -152,7 +152,7 @@ export function Inspector() {
   }, []);
   useEffect(() => {
     if (!artifact?.purge_after) return;
-    const timer = setTimeout(() => { setArtifact(null); setArtifactError("成果已到期，不可恢复"); }, Math.max(0, Date.parse(artifact.purge_after)-Date.now()));
+    const timer = setTimeout(() => { setArtifact(null); setArtifactError("报告已过回收站保留期，不可恢复"); }, Math.max(0, Date.parse(artifact.purge_after)-Date.now()));
     return () => clearTimeout(timer);
   }, [artifact?.purge_after]);
   useEffect(() => {
@@ -187,7 +187,7 @@ export function Inspector() {
     setArtifactSaveError("");
     void fetchArtifact(inspectorTarget.artifactId, undefined, true).then(
       (item) => { if (active) setArtifact(item); },
-      (error) => { if (active) setArtifactError(error instanceof Error ? error.message : "成果读取失败"); },
+      (error) => { if (active) setArtifactError(error instanceof Error ? error.message : "报告读取失败"); },
     );
     void fetchArtifactVersions(inspectorTarget.artifactId, true).then(
       (items) => { if (active) setArtifactVersions(items); },
@@ -380,10 +380,10 @@ export function Inspector() {
         {inspectorTarget.kind === "artifact" ? (
           <>
             <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{artifact ? ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type : ""}</span>}>
-              成果
+              报告中心
             </SectionTitle>
             {artifactError ? <p role="alert" className="text-[12px] text-[var(--red)]">{artifactError}</p> : null}
-            {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取成果…</p> : null}
+            {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取…</p> : null}
             {artifact?.status === "generating" ? <GenerationProgress status="generating" /> : null}
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
@@ -422,7 +422,7 @@ export function Inspector() {
                 </p> : null}
                 {artifactVersions.length > 1 ? <label className="mt-[9px] flex items-center gap-[8px] text-[12px] text-[var(--steel)]">
                   查看版本
-                  <select aria-label="成果版本" value={artifact.version} disabled={editingArtifact}
+                  <select aria-label="报告版本" value={artifact.version} disabled={editingArtifact}
                     onChange={(event) => {
                       if (inspectorTarget.kind !== "artifact") return;
                       setArtifactSaveError("");
@@ -483,7 +483,7 @@ export function Inspector() {
                   </div>)}
                 </div> : null}
                 {editingArtifact ? <div className="mt-[12px]">
-                  <textarea aria-label="成果 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
+                  <textarea aria-label="报告正文 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
                     className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px] leading-[1.6] text-[var(--ink)]" />
                   <div className="mt-[8px] flex flex-wrap gap-[7px]">
                     <Button size="sm" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("draft")}>保存草稿</Button>

@@ -514,7 +514,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def lifespan(app):
         old_files = [settings.state_dir / name for name in ("artifacts.sqlite3", "reports.sqlite3", "custom_templates.sqlite3")]
         if (any(path.exists() for path in old_files) or (settings.state_dir / ".migration-stage").exists()) and not (settings.state_dir / "artifacts" / "migration.complete").exists():
-            raise RuntimeError("成果状态需要离线迁移。停止服务后运行 python -m src.artifact_migration --state-dir <STATE_DIR> --backup-dir <独立备份目录> --service-stopped")
+            raise RuntimeError("报告中心数据需要离线迁移。停止服务后运行 python -m src.artifact_migration --state-dir <STATE_DIR> --backup-dir <独立备份目录> --service-stopped")
         info = await asyncio.to_thread(default_corpus_info, settings)
         db_path = info.db_dir / "knowledge.sqlite3" if info else Path(settings.state_dir) / "knowledge.sqlite3"
         app.state.knowledge = knowledge or Knowledge(
@@ -2625,8 +2625,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             saved = await asyncio.to_thread(app.state.artifacts.finish_report, run_id, report_params, markdown, figures)
         except Exception:  # a failed atomic save must leave a recoverable failure
             logger.exception("report artifact save failed")
-            await record_report_failure(run_id, report_params, "成果保存失败")
-            raise HTTPException(500, "成果保存失败，请重试") from None
+            await record_report_failure(run_id, report_params, "保存到报告中心失败")
+            raise HTTPException(500, "保存到报告中心失败，请重试") from None
         try:
             await asyncio.to_thread(app.state.runs.update, run_id, status="completed", ended_at=datetime.now(UTC).isoformat(), metrics={"report_id": saved["report_id"]})
         except Exception: logger.exception("report run update failed")
@@ -2641,7 +2641,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         try:
             item = await asyncio.to_thread(app.state.artifacts.get, artifact_id)
         except KeyError as exc:
-            raise HTTPException(404, "成果不存在") from exc
+            raise HTTPException(404, "报告中心没有这条记录") from exc
         if item["type"] != "report" or item["status"] != "failed":
             raise HTTPException(409, "只有未完成的报告可以重新生成")
         if item.get("task_id") == "intelligence":
@@ -2687,21 +2687,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             if artifact_id.startswith("report:"):
                 artifact_id = await asyncio.to_thread(app.state.artifacts.report_identity, artifact_id[7:])
             item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, version, include_trashed=include_trashed)
-        except KeyError as exc: raise HTTPException(404, "成果不存在") from exc
+        except KeyError as exc: raise HTTPException(404, "报告中心没有这条记录") from exc
         available = await asyncio.to_thread(app.state.runs.existing_ids, [item.get("run_id", "")])
         return {**item, "run_available": item.get("run_id", "") in available}
 
     @app.get("/api/artifacts")
     async def list_artifacts(session_key: str | None = None, type: str | None = None, status: str | None = None, limit: int = 50, view: str = "active", cursor: str | None = None,
                              created_by: str | None = None):
-        if view not in ("active","trash"): raise HTTPException(422,"未知成果视图")
+        if view not in ("active","trash"): raise HTTPException(422,"未知的报告中心视图")
         items=await asyncio.to_thread(app.state.artifacts.list,session_key=session_key,type=type,status=status,limit=limit,view=view,cursor=cursor,created_by=created_by)
         available=await asyncio.to_thread(app.state.runs.existing_ids,[item["run_id"] for item in items])
         return [{**item,"run_available":item["run_id"] in available} for item in items]
 
     def match_revision(request: Request):
         value=request.headers.get("if-match")
-        if value is None: raise HTTPException(428,"修改成果需要 If-Match")
+        if value is None: raise HTTPException(428,"修改报告需要 If-Match")
         if not re.fullmatch(r'"[0-9]+"',value): raise HTTPException(400,"If-Match 格式无效")
         return int(value[1:-1])
 
@@ -2716,7 +2716,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             try:
                 item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, include_trashed=True)
             except KeyError as exc:
-                raise HTTPException(404, "成果不存在") from exc
+                raise HTTPException(404, "报告中心没有这条记录") from exc
             except HTTPException as exc:
                 if exc.status_code != 410:
                     raise
@@ -2725,7 +2725,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 raise HTTPException(403, "只有报告的生成人或管理员可以删除")
         try:
             result=await asyncio.to_thread(app.state.artifacts.transition,artifact_id,action,match_revision(request))
-        except KeyError as exc: raise HTTPException(404,"成果不存在") from exc
+        except KeyError as exc: raise HTTPException(404,"报告中心没有这条记录") from exc
         return JSONResponse(result,headers={"Cache-Control":"no-store",**({"ETag":f'"{result["revision"]}"'} if "revision" in result else {})})
 
     @app.delete("/api/artifacts/{artifact_id}")
@@ -2744,23 +2744,23 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         try:
             snapshot = await asyncio.to_thread(app.state.runs.get, payload.run_id)
         except KeyError as exc:
-            raise HTTPException(422, "该运行没有持久化记录，不能保存为可追溯成果") from exc
+            raise HTTPException(422, "该次回答没有运行记录，不能保存到报告中心") from exc
         if payload.type != "answer_snapshot" or snapshot.get("run_type") != "chat":
             raise HTTPException(422, "此入口只能保存问答运行的回答快照")
         if snapshot.get("status") != "completed":
             raise HTTPException(422, "运行尚未完成，不能保存原始回答快照")
         if snapshot.get("metrics", {}).get("report_brief") is not None:
-            raise HTTPException(422, "报告需求说明不是报告正文，请生成报告后打开报告成果")
+            raise HTTPException(422, "报告需求说明不是报告正文，请生成报告后打开报告")
         expected_hash = snapshot.get("answer_sha256")
         if not expected_hash:
             raise HTTPException(422, "该运行没有可核验的输出；旧运行不能保存为原始回答快照")
         if hashlib.sha256(payload.markdown.encode("utf-8")).hexdigest() != expected_hash:
-            raise HTTPException(422, "成果正文与该次运行的实际回答不一致")
+            raise HTTPException(422, "保存的正文与该次回答不一致")
         if payload.session_key is not None and payload.session_key != snapshot.get("session_key", ""):
-            raise HTTPException(422, "成果会话与来源运行不一致")
+            raise HTTPException(422, "保存的会话与来源回答不一致")
         if payload.corpus_ids is not None and payload.corpus_ids != snapshot.get("effective_corpus_ids", []):
-            raise HTTPException(422, "成果知识库范围与来源运行不一致")
-        title = payload.title.strip() or (payload.markdown.strip().splitlines() or ["未命名成果"])[0][:60]
+            raise HTTPException(422, "保存的资料库范围与来源回答不一致")
+        title = payload.title.strip() or (payload.markdown.strip().splitlines() or ["未命名回答"])[0][:60]
         created = await asyncio.to_thread(
             app.state.artifacts.create, uuid4().hex, type="answer_snapshot", title=title,
             markdown=payload.markdown, session_key=snapshot.get("session_key", ""),
@@ -2785,9 +2785,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         current = await resolve_artifact(artifact_id)
         artifact_id = current["artifact_id"]
         if current["status"] == "generating":
-            raise HTTPException(409, "成果生成中，不能编辑")
+            raise HTTPException(409, "报告生成中，不能编辑")
         if current["status"] == "failed" and payload.status != "draft":
-            raise HTTPException(409, "失败成果须先保存为草稿再完成")
+            raise HTTPException(409, "未完成的报告须先保存为草稿再完成")
         try:
             return await asyncio.to_thread(app.state.artifacts.add_version, artifact_id,
                                            markdown=payload.markdown, citations=current["citations"],
@@ -2798,7 +2798,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def figure_candidates_for_artifact(artifact_id: str) -> list[dict]:
         item = await resolve_artifact(artifact_id)
         if item["type"] != "report" or item.get("legacy") or len(item["corpus_ids"]) != 1:
-            raise HTTPException(422, "该成果没有可替换的原 PDF 图片")
+            raise HTTPException(422, "该报告没有可替换的原 PDF 图片")
         reports = await asyncio.to_thread(app.state.artifacts.list_reports, run_id=item["run_id"], limit=1)
         if not reports:
             raise HTTPException(422, "来源报告未记录")
@@ -2818,14 +2818,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
     async def change_artifact_figure(artifact_id: str, figure_id: str, replacement: dict | None, revision: int):
         item = await resolve_artifact(artifact_id)
         if item["type"] != "report" or item.get("legacy") or item["status"] == "generating":
-            raise HTTPException(409, "当前成果不能修改图片")
+            raise HTTPException(409, "当前报告不能修改图片")
         old = next((figure for figure in item["figures"] if figure["figure_id"] == figure_id), None)
         if not old:
-            raise HTTPException(404, "图片不属于当前成果版本")
+            raise HTTPException(404, "图片不属于当前报告版本")
         if replacement and replacement["figure_id"] == figure_id:
             raise HTTPException(422, "请选择另一张图片")
         if replacement and any(figure["figure_id"] == replacement["figure_id"] for figure in item["figures"]):
-            raise HTTPException(422, "该图片已在当前成果中")
+            raise HTTPException(422, "该图片已在当前报告中")
         try:
             markdown = change_figure(item["markdown"], old, replacement)
         except ValueError as exc:
@@ -2846,7 +2846,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         current = await resolve_artifact(artifact_id)
         old = next((item for item in current.get("figures", []) if item["figure_id"] == figure_id), None)
         if not old:
-            raise HTTPException(404, "图片不属于当前成果版本")
+            raise HTTPException(404, "图片不属于当前报告版本")
         candidates = await figure_candidates_for_artifact(artifact_id)
         replacement = next((item for item in candidates if item["figure_id"] == payload.figure_id
                             and item["doc_id"] == old["doc_id"] and item["citation"] == old["citation"]), None)
@@ -2866,7 +2866,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 data, _ = await asyncio.to_thread(app.state.artifacts.image, artifact_id,
                                                    item["version"], figure["figure_id"])
             except KeyError as exc:
-                raise HTTPException(409, "成果图片附件缺失") from exc
+                raise HTTPException(409, "报告图片附件缺失") from exc
             images[f"figures/{figure['figure_id']}.{extension}"] = data
         if format == "md":
             if images:
@@ -2888,14 +2888,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     bundle.writestr(name, data)
             return Response(output.getvalue(), media_type="application/zip",
                             headers={"Content-Disposition": f'attachment; filename="{filename}.zip"'})
-        raise HTTPException(422, "可导出 md / docx；图文成果还可导出 zip")
+        raise HTTPException(422, "可导出 md / docx；图文报告还可导出 zip")
 
     @app.get("/api/artifacts/{artifact_id}/versions/{version}/figures/{figure_id}")
     async def artifact_figure(artifact_id: str, version: int, figure_id: str, include_trashed: bool = False):
         try:
             data, media_type = await asyncio.to_thread(app.state.artifacts.image, artifact_id, version, figure_id, include_trashed=include_trashed)
         except KeyError as exc:
-            raise HTTPException(404, "成果图片不存在") from exc
+            raise HTTPException(404, "报告图片不存在") from exc
         return Response(data, media_type=media_type, headers={"Cache-Control": "no-store"})
 
     @app.get("/api/reports/{report_id}/export")

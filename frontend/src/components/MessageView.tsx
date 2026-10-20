@@ -585,7 +585,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
           ) : null}
         </p>
       ) : null}
-      {reportState ? <p role="status">{reportState} · 请到成果回收站查看或还原。</p> : null}
+      {reportState ? <p role="status">{reportState} · 请到报告中心的回收站查看或还原。</p> : null}
       {report ? (
         <div className="mt-[8px]">
           <div className="markdown max-h-[360px] overflow-auto rounded-[8px] border border-[var(--hairline-soft)] bg-[var(--canvas)] p-[10px]">
@@ -597,7 +597,7 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
                 (artifact) => showInspector({ kind: "artifact", artifactId: artifact.artifact_id }),
                 (error: Error) => setError(error.message));
             }}
-              className="text-[var(--primary)] hover:underline">打开报告成果</button>
+              className="text-[var(--primary)] hover:underline">打开报告</button>
             <button type="button" onClick={() => void copyReport()} className="text-[var(--primary)] hover:underline">
               复制
             </button>
@@ -763,13 +763,13 @@ export function MessageView({
           {onSaveArtifact && attempt.policy?.stop_reason !== "report_pending" && attempt.outcome === "completed" && attempt.answer ? (
             <button
               type="button"
-              aria-label="保存为成果"
+              aria-label="保存到报告中心"
               onClick={onSaveArtifact}
-              title="把这条回答保存为可追溯成果"
+              title="把这条回答连同引用来源保存到报告中心"
               className="font-app inline-flex h-[26px] items-center gap-[5px] rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)] disabled:opacity-40"
             >
               <Icon name="library" size={13} strokeWidth={1.9} />
-              保存为成果
+              保存到报告中心
             </button>
           ) : null}
           {onRegenerate ? (

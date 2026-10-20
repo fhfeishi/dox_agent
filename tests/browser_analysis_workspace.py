@@ -107,7 +107,7 @@ async def main():
                 await expect(work).to_contain_text("两个项目的装配路线不同")
                 stages["选择与对比"] = actions - sum(stages.values())
                 # 5. Keep the answer and deliver a report for the same scope.
-                await act(work.get_by_role("button", name="保存到成果"))
+                await act(work.get_by_role("button", name="保存到报告中心"))
                 await expect(work.get_by_role("button", name="已保存，打开")).to_be_visible()
                 await act(work.get_by_role("button", name="以此生成报告"))
                 await act(work.get_by_role("form", name="生成报告").get_by_role("button", name="生成"))

@@ -83,7 +83,7 @@ export function IntelligenceView() {
       <header><p className="text-xs font-semibold tracking-widest text-[var(--primary)]">外部信息 × 已有项目</p><h1 className="mt-2 text-3xl font-semibold">情报分析</h1><p className="mt-3 text-sm leading-6 text-[var(--steel)]">上传技术说明或方案，选择一个分析目的，得到有依据的整理报告。外部材料不会自动进入资料库。</p></header>
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
-          <h2 className="font-semibold">1 · 选择外部材料</h2><p className="my-3 text-xs leading-6 text-[var(--steel)]">支持多份 PDF、Word、Markdown 或文本；替换文件保留旧报告引用的版本。未被成果引用的暂存材料保留 7 天。</p>
+          <h2 className="font-semibold">1 · 选择外部材料</h2><p className="my-3 text-xs leading-6 text-[var(--steel)]">支持多份 PDF、Word、Markdown 或文本；替换文件保留旧报告引用的版本。未被报告引用的暂存材料保留 7 天。</p>
           <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--primary)] bg-[var(--primary-soft)] p-6 text-center text-sm font-medium text-[var(--primary)]">点击选择文件<input aria-label="上传外部材料" className="sr-only" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files); e.target.value = ""; }} /></label>
           <div className="mt-4 space-y-2">{inputs.map((input) => <div key={input.input_id} className="rounded-lg border p-3"><div className="flex items-center justify-between gap-3"><button className="text-left text-sm text-[var(--primary)]" onClick={() => showInspector({ kind: "input", inputId: input.input_id })}>{input.filename}</button><button className="text-xs text-[var(--steel)]" disabled={Boolean(busy)} onClick={() => setInputs((old) => old.filter((item) => item.input_id !== input.input_id))}>移出本次选择</button></div><p className="mt-1 text-xs text-[var(--steel)]">{input.text.length.toLocaleString()} 字符 · 点击核对正文</p></div>)}</div>
         </section>
@@ -110,7 +110,7 @@ export function IntelligenceView() {
       </section>
       {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-sm text-red-800">{error}</p> : null}
       {busy ? <GenerationProgress status="generating" stage_label={busy} /> : null}
-      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-sm text-[var(--steel)]">{busy || "完成后自动进入存量分析的分析成果"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
+      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-sm text-[var(--steel)]">{busy || "完成后自动保存到报告中心"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
     </div>
   </section>;
 }

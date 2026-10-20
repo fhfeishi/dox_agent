@@ -106,7 +106,7 @@ async def main():
                 await expect(page.get_by_role("img", name="图2 边缘计算拓扑").last).to_be_visible()
                 await page.get_by_role("button", name="移除图片").click()
                 await expect(page.get_by_role("img", name="图2 边缘计算拓扑")).to_have_count(0)
-                await page.get_by_role("combobox", name="成果版本").select_option("1")
+                await page.get_by_role("combobox", name="报告版本").select_option("1")
                 await expect(page.get_by_role("img", name="图1 云边协同架构")).to_be_visible()
                 await browser.close()
                 print(f"PASS: versioned PDF figure, page 2, preview and DOCX/ZIP; source_sha256={source_digest}")

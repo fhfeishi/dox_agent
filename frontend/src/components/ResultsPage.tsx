@@ -27,7 +27,7 @@ type Row = {
 
 const artifactRow = (item: ArtifactSummary): Row => ({
   key: item.artifact_id, kind: item.task_id === "intelligence" ? "intelligence" : "analysis",
-  title: item.title || "未命名报告", detail: item.type === "answer_snapshot" ? "回答快照" : `第 ${item.current_version} 版`,
+  title: item.title || "未命名报告", detail: item.type === "answer_snapshot" ? "保存的回答" : `第 ${item.current_version} 版`,
   status: item.status, date: item.updated_at || item.created_at, corpusIds: item.corpus_ids, artifact: item,
 });
 const reviewRow = (run: ReviewRun): Row => ({
@@ -91,7 +91,7 @@ export function ResultsPage() {
   useEffect(() => {
     let active = true;
     setError("");
-    const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "成果读取失败"); };
+    const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "报告读取失败"); };
     fetch("/api/artifacts?limit=200")
       .then(async (r) => { if (!r.ok) throw new Error("成果列表不可用"); return await r.json() as ArtifactSummary[]; })
       .then((items) => { if (active) setArtifacts(items); }, fail);
@@ -136,7 +136,7 @@ export function ResultsPage() {
   <div className="@container mx-auto w-full max-w-[1200px] space-y-5 px-5 py-7 sm:px-8">
     <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
       <h1 className="text-[22px] font-semibold text-[var(--ink)]">报告中心</h1>
-      <div role="tablist" aria-label="成果视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
+      <div role="tablist" aria-label="报告中心视图" className="flex gap-1 rounded-xl bg-[var(--surface)] p-1">
         {([["reports", "报告"], ["period", "周期总结"]] as const).map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={view === key}
           onClick={() => setView(key)} className={`rounded-lg px-4 py-1.5 text-[13.5px] ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
       </div>
@@ -145,13 +145,13 @@ export function ResultsPage() {
     </header>
 
     {view === "period" ? <PeriodSummary /> : <>
-    <section aria-label="成果统计" className="grid grid-cols-2 gap-3 @2xl:grid-cols-4">
+    <section aria-label="报告统计" className="grid grid-cols-2 gap-3 @2xl:grid-cols-4">
       {stat("已完成报告", totals.data?.completed.total, totals.data ? `一周内新完成 ${totals.data.recent_completed}` : undefined)}
       {stat("存量分析", totals.data?.completed.analysis)}
       {stat("资料审查", totals.data?.completed.review)}
       {stat("情报分析", totals.data?.completed.intelligence)}
     </section>
-    {totals.error ? <p role="alert" className="text-xs text-[var(--red)]">成果统计暂不可读</p> : null}
+    {totals.error ? <p role="alert" className="text-xs text-[var(--red)]">报告统计暂不可读</p> : null}
     {totals.data && (totals.data.active || totals.data.failed) ? <p className="-mt-3 text-[12.5px] text-[var(--steel)]">
       另有生成中 {totals.data.active} 份、未完成 {totals.data.failed} 份，未计入已完成。</p> : null}
 
@@ -169,13 +169,13 @@ export function ResultsPage() {
     <section aria-label="报告列表" className="space-y-3">
       {/* Categories and search stay in view while a long list scrolls. */}
       <div className="sticky top-0 z-10 -mx-1 flex flex-wrap items-center gap-2 bg-[var(--canvas)]/95 px-1 py-2 backdrop-blur">
-        <div role="tablist" aria-label="成果分类" className="flex flex-wrap gap-1 rounded-xl bg-[var(--surface)] p-1">
+        <div role="tablist" aria-label="报告分类" className="flex flex-wrap gap-1 rounded-xl bg-[var(--surface)] p-1">
           {GROUPS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={group === key} onClick={() => filter({ group: key })}
             className={`rounded-lg px-3 py-1.5 text-[13px] ${group === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
             {label} <span className="tabular-nums text-[11.5px] text-[var(--stone)]">{count(key) ?? "…"}</span></button>)}
         </div>
         <div className="flex min-w-[260px] flex-1 flex-wrap justify-end gap-2">
-        <input aria-label="按标题搜索成果" value={query} onChange={(e) => filter({ q: e.target.value })} placeholder="按标题搜索"
+        <input aria-label="按标题搜索报告" value={query} onChange={(e) => filter({ q: e.target.value })} placeholder="按标题搜索"
           className="min-w-[140px] flex-1 rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px] outline-none focus:border-[var(--primary)] @3xl:max-w-[220px]" />
         <select aria-label="来源资料库" value={library} onChange={(e) => filter({ library: e.target.value })}
           className="min-w-0 max-w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px] @3xl:max-w-[220px]">
@@ -183,7 +183,7 @@ export function ResultsPage() {
           {libraries.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
           {library && !libraries.some(c => c.id === library) ? <option value={library}>已移除的资料库</option> : null}
         </select>
-        <select aria-label="成果状态" value={state} onChange={(e) => filter({ status: e.target.value })}
+        <select aria-label="报告状态" value={state} onChange={(e) => filter({ status: e.target.value })}
           className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px]">
           {STATES.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
         </select>
@@ -199,7 +199,7 @@ export function ResultsPage() {
         <button type="button" className="ml-2 text-[var(--link)]" onClick={() => void lifecycle(lastTrash, "restore")}>撤销</button></p> : null}
       {group === "trash" ? <p className="text-[12px] text-[var(--stone)]">删除后保留 7 天，到期自动清理且不可恢复。资料审查记录不进入回收站。</p> : null}
       {artifacts && artifacts.length >= 200 ? <p className="text-[12px] text-[var(--stone)]">分析与情报报告显示最近 200 份，顶部统计包含全部报告。</p> : null}
-      {!loaded && error ? null : !loaded ? <p role="status" className="py-6 text-center text-[13px] text-[var(--steel)]">正在读取成果…</p>
+      {!loaded && error ? null : !loaded ? <p role="status" className="py-6 text-center text-[13px] text-[var(--steel)]">正在读取报告…</p>
         : !shown.length ? <p className="rounded-xl border border-dashed border-[var(--hairline-strong)] py-8 text-center text-[13px] text-[var(--steel)]">
           {needle || library || state !== "all" ? "没有符合条件的报告。" : group === "trash" ? "回收站为空。" : "还没有报告。可在存量分析、资料审查或情报分析中生成。"}</p>
         : <ul className="divide-y divide-[var(--hairline)] overflow-hidden rounded-xl border border-[var(--hairline)] bg-[var(--canvas)]">

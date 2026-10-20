@@ -554,9 +554,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         type: "answer_snapshot", run_id: runId, markdown,
         session_key: workspace.active || undefined, title,
       });
-      showToast(`已保存为成果「${artifact.title}」`);
+      showToast(`已保存到报告中心「${artifact.title}」`);
     } catch (e) {
-      setError(`保存成果失败：${(e as Error).message}`);
+      setError(`保存到报告中心失败：${(e as Error).message}`);
     }
   }
 

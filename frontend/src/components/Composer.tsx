@@ -306,7 +306,7 @@ export function Composer() {
         ) : null}
 
         {/* corpus + scope chips */}
-        <div className="mb-[8px] flex flex-wrap items-center gap-[6px]">
+        <div data-guide="chat-scope" className="mb-[8px] flex flex-wrap items-center gap-[6px]">
           <span className="text-xs">对话知识库</span>
           <label className="inline-flex items-center gap-1 rounded-full border border-[var(--hairline)] px-2.5 py-1 text-xs"
             title="开启后每次提问按问题内容自动选择最相关的资料库；手动选择资料库会关闭此项">
@@ -464,6 +464,7 @@ export function Composer() {
         {/* input */}
         <div className="rounded-[12px] border border-[var(--hairline-strong)] bg-[var(--canvas)] shadow-[0_1px_2px_rgba(15,15,15,0.04)] transition-[border-color,box-shadow] focus-within:border-[var(--primary)] focus-within:shadow-[0_0_0_3px_var(--primary-soft)]">
           <textarea
+            data-guide="chat-input"
             ref={taRef}
             rows={1}
             aria-label={editing ? "编辑历史问题" : "问题"}

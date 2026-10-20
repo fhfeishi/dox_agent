@@ -9,7 +9,7 @@ const ELEMENTS = ["技术谱系", "场景", "问题", "关键技术", "成果"];
 const INTENTS = ["这个领域有哪些研究路线", "已经实现了哪些工作", "还有哪些工作可以做", "关键技术还需要哪些配套技术", "有哪些代表性项目"];
 const OPEN_KEY = "dox-quick-ask-open";
 // Each task starts with a typical choice, so 生成问题 works the moment the page opens (query 2026-1015 1639).
-const DEFAULTS: Record<string, { elements: string[]; intents: string[] }> = {
+export const DEFAULTS: Record<string, { elements: string[]; intents: string[] }> = {
   task1: { elements: ["关键技术"], intents: ["已经实现了哪些工作"] },
   task2: { elements: ["技术谱系", "成果"], intents: ["有哪些代表性项目"] },
   task3: { elements: ["技术谱系", "关键技术"], intents: ["这个领域有哪些研究路线", "还有哪些工作可以做"] },
@@ -72,7 +72,7 @@ export function QuickAsk() {
 
   const label = "w-[64px] shrink-0 pt-[4px] text-caption text-[var(--stone)]";
   return (
-    <section aria-label="点选提问" className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[9px]">
+    <section aria-label="点选提问" data-guide="chat-quick" className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[9px]">
       <div className="mb-[6px] flex items-center gap-[8px]">
         <span className="text-body font-semibold text-[var(--ink)]">点选提问</span>
         <span className="text-caption text-[var(--stone)]">已按任务预选常用项，点“生成问题”填入输入框，再点发送</span>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { archiveTask, copyTask, deleteTask, restoreTask, saveTaskDraft, type TaskInfo } from "../api";
 import { statusLabel } from "./TemplatePanels";
 import { useApp } from "../store";
@@ -6,7 +6,7 @@ import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import type { IconName } from "./Icons";
 import { useAuth } from "../auth";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { TemplateLibrary, readText } from "./TemplateLibrary";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
@@ -58,21 +58,9 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
 export function TasksView() {
   const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask, corpora } = useApp();
   const navigate = useNavigate();
-  // A built-in task starts by choosing the library, then opens its 资料管理 with the analysis workspace
-  // and this task (query 2026-1016 1814): the projects ticked there are the scope from question to
-  // report. Custom tasks keep the conversation, where their own parameters are filled in.
-  const [picking, setPicking] = useState<{ task: string; corpus: string } | null>(null);
+  // Every task starts in 对话工作台 with that task and its own 点选提问 presets (query 2026-1020 1719:
+  // choosing a library and material and landing in the analysis workspace was the wrong way in).
   const libraries = corpora.filter((c) => !c.missing && (c.indexed_count ?? c.docs_count ?? 0) > 0);
-  // A dropdown entry (/tasks?task=task1) opens that task's start form with the library picker
-  // already in place (query 2026-1019 2021).
-  const [query] = useSearchParams();
-  const wanted = query.get("task");
-  const firstLibrary = libraries[0]?.id ?? "";
-  useEffect(() => {
-    if (!wanted || !firstLibrary) return;
-    if (!tasks.some((item) => item.id === wanted && !item.archived && item.status !== "archived")) return;
-    setPicking((prev) => (prev?.task === wanted ? prev : { task: wanted, corpus: firstLibrary }));
-  }, [wanted, firstLibrary, tasks]);
   // Analysis tasks are shared, so administrators maintain them (节点审查 D2).
   const { role } = useAuth();
   const [showArchived, setShowArchived] = useState(false);
@@ -150,8 +138,8 @@ export function TasksView() {
             const style = TASK_STYLE[index % TASK_STYLE.length];
             const usable = task.status !== "draft" || Boolean(task.version);
             return (
-              <article key={task.id} ref={picking?.task === task.id ? (el) => el?.scrollIntoView({ block: "nearest", behavior: "smooth" }) : undefined}
-                className={`font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)] ${picking?.task === task.id ? "!border-[var(--primary)] ring-2 ring-[var(--primary-soft)]" : ""}`}>
+              <article key={task.id}
+                className="font-app flex flex-col gap-[10px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[16px] transition-[border-color,box-shadow] hover:border-[var(--primary)] hover:shadow-[0_4px_12px_rgba(15,15,15,0.08)]">
                 <button type="button" onClick={() => showInspector({ kind: "task", taskId: task.id })} className="flex flex-col gap-[10px] text-left">
                   <span className="grid size-[34px] place-items-center rounded-[8px]" style={{ background: style.tint, color: style.fg }}>
                     <Icon name={style.icon} size={16} strokeWidth={1.9} />
@@ -172,18 +160,9 @@ export function TasksView() {
                   {task.kind === "custom" ? <button type="button" className={danger} disabled={busy} onClick={() => void removeTask(task)}>{task.version ? "归档" : "删除"}</button> : null}
                   </> : null}
                   <span className="flex-1" />
-                  {picking?.task === task.id ? <form className="flex items-center gap-[6px]" onSubmit={(e) => { e.preventDefault();
-                      void navigate(`/library/${encodeURIComponent(picking.corpus)}/documents?workspace=1&task=${encodeURIComponent(task.id)}`); }}>
-                    <select aria-label="选择资料库" autoFocus value={picking.corpus} onChange={(e) => setPicking({ ...picking, corpus: e.target.value })}
-                      className="max-w-[180px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[6px] py-[3px] text-caption">
-                      {libraries.map((c) => <option key={c.id} value={c.id}>{c.name.replace(/^自然科学基金-/, "")}</option>)}
-                    </select>
-                    <button className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white">选择资料</button>
-                    <button type="button" onClick={() => setPicking(null)} className="text-caption text-[var(--steel)]">取消</button>
-                  </form>
-                    : <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
-                    onClick={() => task.kind === "custom" ? void startTask(task.id) : libraries.length ? setPicking({ task: task.id, corpus: libraries[0].id }) : setMessage("还没有已入库资料的资料库")}
-                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">开始分析</button>}
+                  <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
+                    onClick={() => libraries.length ? void navigate(`/chat?task=${encodeURIComponent(task.id)}`) : setMessage("还没有已入库资料的资料库")}
+                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">开始分析</button>
                 </div>
               </article>
             );

@@ -7,7 +7,6 @@ import re
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
-from urllib.parse import quote
 
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
@@ -51,7 +50,7 @@ async def main():
                             model_api_key=SecretStr("fixture"), embedding_path="")
         import_defaults(Knowledge(corpus/"datadb"/"knowledge.sqlite3", settings=settings, source_root=source), settings,
                         root=source, parsed_root=corpus/"parsed")
-        cid = scan_corpora(settings)[0].id
+        scan_corpora(settings)
         pack = root/"新到资料"; pack.mkdir()
         for name, body in PACK.items():
             (pack/name).write_bytes(body if isinstance(body, bytes) else body.encode())
@@ -123,15 +122,19 @@ async def main():
                 # The report covers exactly the three files of the two picked projects; nothing was chosen twice.
                 assert len(reports) == 1 and len(reports[0]["doc_ids"]) == 3, reports
                 await page.screenshot(path=str(Path(".logsdev/verification/query-20261016-1814")/"workspace-report.png"))
-                # 6. 存量分析 starts from the scope: pick the library, land in the workspace with the task.
+                # 6. 存量分析 opens the task's conversation with its walkthrough (query 2026-1020 1719).
                 await page.goto(origin+"/tasks")
                 await page.get_by_role("button", name="开始分析").nth(1).click()
-                await page.get_by_role("button", name="选择资料", exact=True).click()
-                await expect(page).to_have_url(re.compile(rf"/library/{re.escape(quote(cid))}/documents\?workspace=1&task=task2"))
-                await expect(page.get_by_role("region", name="分析工作区")).to_contain_text("对比分析")
+                await expect(page).to_have_url(re.compile(r"/chat$"))
+                guide = page.get_by_role("dialog", name="对比分析使用指引")
+                await expect(guide).to_contain_text("第 1/5 步")
+                await guide.get_by_role("button", name="下一步").click()
+                await expect(guide).to_contain_text("选择资料范围")
+                await guide.get_by_role("button", name="跳过").click()
+                await expect(guide).to_be_hidden()
                 assert not errors, errors
                 await browser.close()
-            print(f"PASS fixed task in {actions} actions {stages}: upload, duplicates and failures named, two projects, compare, save, report for the same scope, 存量分析 into the workspace")
+            print(f"PASS fixed task in {actions} actions {stages}: upload, duplicates and failures named, two projects, compare, save, report for the same scope, 存量分析 into the task conversation")
         finally:
             server.should_exit = True; thread.join(timeout=10); listener.close()
 

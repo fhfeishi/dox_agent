@@ -1,6 +1,10 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useApp } from "../store";
+import { useSearchParams } from "react-router";
+import { useAuth } from "../auth";
+import { CoachMarks, taskGuide } from "./CoachMarks";
 import { Composer } from "./Composer";
+import { DEFAULTS } from "./QuickAsk";
 import { BranchNote, EmptyState, MessageView } from "./MessageView";
 import { BrandMark, Icon } from "./Icons";
 import { Button, ToolButton } from "./ui";
@@ -78,6 +82,14 @@ function UserRow({
   );
 }
 
+const GUIDE_OFF = "dox-task-guide-off:";
+function guideMuted(task: string) {
+  try { return localStorage.getItem(GUIDE_OFF + task) === "1"; } catch { return false; }
+}
+function muteGuide(task: string) {
+  try { localStorage.setItem(GUIDE_OFF + task, "1"); } catch { /* the guide simply shows again */ }
+}
+
 export function ChatView() {
   const {
     turns,
@@ -100,6 +112,8 @@ export function ChatView() {
     sessionBusy,
     activeTitle,
     activeTask,
+    tasks,
+    startTask,
     corpusIds,
     corpora,
     taskCapable,
@@ -133,6 +147,34 @@ export function ChatView() {
       document.removeEventListener("keydown", onKey);
     };
   }, [exportOpen]);
+
+  // 存量分析 ▾ and 任务模版 open a task here (/chat?task=task2, query 2026-1020 1719): a new session with
+  // that task and its 点选提问 presets, then its walkthrough. An empty session of the same task is
+  // reused, and the parameter is dropped so a reload does not open yet another session.
+  const [search, setSearch] = useSearchParams();
+  const wanted = search.get("task");
+  const [guideTask, setGuideTask] = useState<string | null>(null);
+  useEffect(() => {
+    if (!wanted || !workspace.loaded || !tasks.length) return;
+    setSearch((old) => { const next = new URLSearchParams(old); next.delete("task"); return next; }, { replace: true });
+    if (!tasks.some((item) => item.id === wanted)) return;
+    const reuse = activeTask?.id === wanted && !turns.length;
+    // An untouched session left behind (no question asked) would only add another “新会话” to the list.
+    const previous = workspace.sessions.find((item) => item.id === workspace.active);
+    const untouched = previous && !previous.data.turns?.length && !turns.length ? previous.id : null;
+    void (reuse ? Promise.resolve() : startTask(wanted)).then(async () => {
+      // Only once the task's own session is the active one (startTask can refuse, e.g. an archived task).
+      let now: string | null = null;
+      try { now = localStorage.getItem("dox-agent-session"); } catch { /* keep the old session */ }
+      if (!reuse && untouched && now && now !== untouched) await workspace.remove(untouched).catch(() => undefined);
+      if (!guideMuted(wanted)) setGuideTask(wanted);
+    });
+  }, [wanted, workspace.loaded, tasks.length]);
+  const guided = guideTask ? tasks.find((item) => item.id === guideTask) : undefined;
+  // Only the four built-in tasks have a walkthrough; a custom task opens without one.
+  const guideSteps = guided ? taskGuide(guided, DEFAULTS[guided.id]?.elements) : [];
+  const [mute, setMute] = useState(false);
+  const { guidesSeen, seeGuide } = useAuth();  // the walkthrough covers the area's three-step card
 
   // Follow a streaming answer only while the reader is at the bottom (query 2026-1020 1719: the
   // page used to jump back down on every token, so nothing above could be read until it finished).
@@ -173,7 +215,7 @@ export function ChatView() {
           {activeTitle || "新对话"}
         </span>
         {activeTask && taskCapable ? (
-          <span className="shrink-0 rounded-full bg-[var(--primary-soft)] px-[7px] py-[2px] text-caption font-semibold text-[var(--primary)]">
+          <span data-guide="chat-task" className="shrink-0 rounded-full bg-[var(--primary-soft)] px-[7px] py-[2px] text-caption font-semibold text-[var(--primary)]">
             {activeTask.name}
           </span>
         ) : (
@@ -410,6 +452,11 @@ export function ChatView() {
       </div>
 
       <Composer />
+      {guided && guideSteps.length ? (
+        <CoachMarks label={`${guided.name}使用指引`} steps={guideSteps}
+          onClose={() => { if (mute) muteGuide(guided.id); setGuideTask(null); setMute(false); if (!guidesSeen.includes("chat")) seeGuide("chat"); }}
+          footer={<label className="flex items-center gap-[6px]"><input type="checkbox" checked={mute} onChange={(e) => setMute(e.target.checked)} />以后进入“{guided.name}”时不再自动显示</label>} />
+      ) : null}
     </section>
   );
 }

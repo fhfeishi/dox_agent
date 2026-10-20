@@ -25,14 +25,14 @@ export type NavEntry = {
 
 const ALL: Role[] = ["admin", "leader", "user"];
 
-// 存量分析 opens on 任务模版 and the four built-in tasks are one click away; `?task=` highlights that
-// task's card with its library picker (query 2026-1019 2021).
+// 存量分析 opens on 任务模版 and the four built-in tasks are one click away: each opens 对话工作台 on that
+// task with its walkthrough (query 2026-1020 1719).
 export const TASK_PAGES: NavPage[] = [
   { to: "/tasks", label: TERMS.taskTemplates.name },
-  { to: "/tasks?task=task1", label: "精准问答" },
-  { to: "/tasks?task=task2", label: "对比分析" },
-  { to: "/tasks?task=task3", label: "技术研判" },
-  { to: "/tasks?task=task4", label: "专项报告" },
+  { to: "/chat?task=task1", label: "精准问答" },
+  { to: "/chat?task=task2", label: "对比分析" },
+  { to: "/chat?task=task3", label: "技术研判" },
+  { to: "/chat?task=task4", label: "专项报告" },
 ];
 export const REVIEW_PAGES: NavPage[] = [
   { to: "/review/formal", label: "形式审查" },
@@ -86,7 +86,7 @@ export function workCards(role: Role) {
   return NAV.filter((entry) => entry.card && entry.roles.includes(role)).map((entry) => ({ key: entry.key, ...entry.card! }));
 }
 
-/** Whether a menu page is the one shown: the query must match too, so on /tasks?task=task2 only 对比分析
+/** Whether a menu page is the one shown: the query must match too, so on /chat?task=task2 only 对比分析
  * is marked, not 任务模版 as well. */
 export function isCurrent(to: string, pathname: string, search: string) {
   const target = new URL(to, "http://local");

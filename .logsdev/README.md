@@ -44,7 +44,6 @@
 | | [成果管理与回收站实施指南](design/成果管理与回收站实施指南.md) | 参考（已实施；“成果”现称“报告中心”） |
 | | [资料管理人员业务需求与实施方案](design/资料管理人员业务需求与实施方案.md) | 参考（导航与成果归属以正式需求为准） |
 | | [对话知识库交互优化方案](design/对话知识库交互优化方案.md)、[工程设计复核与审查界面优化方案](design/工程设计复核与审查界面优化方案.md)、[系统设计梳理 1013](design/dox_agent_系统设计梳理-20261013.md) | 参考 |
-| | [资料库外置与数据分组实施方案](design/资料库外置与数据分组实施方案.md) | 待确认 |
 | [requirements/](requirements/) | [需求文档：资料管理、存量分析、情报分析与资料审查](requirements/需求文档-资料管理与分析审查.md) | 现行（正式需求，导航与页面以后续 query 为准） |
 | [reviews/](reviews/) | [节点审查 1013-1914](reviews/dox_agent_节点审查-20261013-1914.md)、[千人使用场景 UI 复核 1013](reviews/机关单位千人使用场景_UI与易用性复核-20261013.md)、[从 Demo 到可用产品 1016](reviews/dox_agent从Demo到可用产品_重构建议-20261016.md)、[节点审查 1017-0900](reviews/dox_agent_节点审查-20261017-0900/README.md) | 历史（结论已进入升级方案） |
 | [tasks/](tasks/) | [升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md) | 现行（当前批次） |
@@ -53,7 +52,7 @@
 | [DeepResearch-products/](DeepResearch-products/README.md) | 同类产品调研与整合方案 | 参考 |
 | [verification/](verification/) | 各批次截图与验证记录 | 证据 |
 | [archive/2026-10-19-节点/](archive/2026-10-19-节点/) | 收口前的完整 PROJECT、ITERATION | 历史 |
-| interactions/ | 2026-09-28/29 的界面目标稿与对齐记录 | 历史（删除候选，待用户确认） |
+| interactions/、design/资料库外置与数据分组实施方案.md | 早期界面目标稿与对齐记录；状态未定的外置方案 | 本地保留，不入库（2026-10-20 用户决定） |
 
 ---
 

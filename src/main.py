@@ -2606,7 +2606,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return JSONResponse({**saved, "idempotent": False}, status_code=201)
 
     @app.post("/api/artifacts/{artifact_id}/retry", status_code=201)
-    async def retry_report(artifact_id: str):
+    async def retry_report(artifact_id: str, request: Request):
         """Run a failed or interrupted report again with the settings it was started with (card B1).
 
         The new attempt is a report of its own, checked and generated like any other; once it is
@@ -2625,10 +2625,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except ValidationError as exc:
             raise HTTPException(422, "原报告的设置不完整，请从分析页重新发起") from exc
         response = await create_report(payload)
-        try:
-            await asyncio.to_thread(app.state.artifacts.transition, artifact_id, "trash", item["revision"])
-        except HTTPException:
-            pass  # someone changed or removed the failed record meanwhile; leave it as it is
+        if may_delete(request, item):  # someone else's failed record is theirs to remove
+            try:
+                await asyncio.to_thread(app.state.artifacts.transition, artifact_id, "trash", item["revision"])
+            except HTTPException:
+                pass  # someone changed or removed the failed record meanwhile; leave it as it is
         return response
 
     @app.get("/api/reports/{report_id}")
@@ -2675,7 +2676,24 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         if not re.fullmatch(r'"[0-9]+"',value): raise HTTPException(400,"If-Match 格式无效")
         return int(value[1:-1])
 
+    def may_delete(request: Request, item: dict) -> bool:
+        """Moving a report to the recycle bin or purging it is for its author or an administrator
+        (user, 2026-10-20). Reports from before authorship was recorded are the administrator's."""
+        username, role = request.state.user[:2]
+        return role == "admin" or (bool(item.get("created_by")) and item["created_by"] == username)
+
     async def lifecycle_change(artifact_id, action, request):
+        if action in ("trash", "purge"):
+            try:
+                item = await asyncio.to_thread(app.state.artifacts.get, artifact_id, include_trashed=True)
+            except KeyError as exc:
+                raise HTTPException(404, "成果不存在") from exc
+            except HTTPException as exc:
+                if exc.status_code != 410:
+                    raise
+                item = None  # already purged: the store answers that itself
+            if item is not None and not may_delete(request, item):
+                raise HTTPException(403, "只有报告的生成人或管理员可以删除")
         try:
             result=await asyncio.to_thread(app.state.artifacts.transition,artifact_id,action,match_revision(request))
         except KeyError as exc: raise HTTPException(404,"成果不存在") from exc

@@ -4,7 +4,8 @@ import { resultsSummaryQuery } from "../resultsSummary";
 import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { changeArtifactLifecycle, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { canDeleteArtifact, changeArtifactLifecycle, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { useAuth } from "../auth";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
 import { Pill } from "./ui";
@@ -44,6 +45,7 @@ const reviewRow = (run: ReviewRun): Row => ({
  * the right-hand preview for reading, editing and export; a review report opens on its review page.
  */
 export function ResultsPage() {
+  const { username, role } = useAuth();
   const { showInspector, corpora } = useApp();
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
@@ -208,10 +210,10 @@ export function ResultsPage() {
               <span className="flex shrink-0 gap-3">
                 {group === "trash" && row.artifact ? <>
                   <button type="button" className={link} onClick={() => void lifecycle(row.artifact!, "restore")}>还原</button>
-                  <button type="button" className="text-[12.5px] text-[var(--red)] hover:underline" onClick={() => void lifecycle(row.artifact!, "purge")}>彻底删除</button>
+                  {canDeleteArtifact(row.artifact, username, role) ? <button type="button" className="text-[12.5px] text-[var(--red)] hover:underline" onClick={() => void lifecycle(row.artifact!, "purge")}>彻底删除</button> : null}
                 </> : <>
                   <button type="button" className={link} onClick={() => open(row)}>打开</button>
-                  {row.artifact ? <button type="button" className={link} disabled={row.status === "generating"} onClick={() => void lifecycle(row.artifact!, "trash")}>移入回收站</button> : null}
+                  {row.artifact && canDeleteArtifact(row.artifact, username, role) ? <button type="button" className={link} disabled={row.status === "generating"} onClick={() => void lifecycle(row.artifact!, "trash")}>移入回收站</button> : null}
                 </>}
               </span>
             </div>

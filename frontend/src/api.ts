@@ -263,6 +263,10 @@ export type ArtifactSummary = {
   source_verification?: "verified" | "unverified" | "user_modified";
   run_available?: boolean;
 };
+/** Moving a report to the recycle bin or purging it is for its author or an administrator (user,
+ * 2026-10-20; the server enforces it). Reports from before authorship was recorded are the administrator's. */
+export const canDeleteArtifact = (item: Pick<ArtifactSummary, "created_by">, username: string, role: string) =>
+  role === "admin" || (Boolean(item.created_by) && item.created_by === username);
 export type ArtifactInfo = ArtifactSummary & {
   version: number; markdown: string; citations: ({ input_id?: string; citation?: number; doc_id?: string; corpus_id?: string; version?: string; title?: string;
     page?: number | null; kind?: string; snapshot_id?: string; url?: string; fetched_at?: string })[];

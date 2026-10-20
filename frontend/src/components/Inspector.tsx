@@ -2,12 +2,13 @@ import { GenerationProgress } from "./GenerationProgress";
 import { ReportTemplatePanel, TaskTemplatePanel } from "./TemplatePanels";
 import { ProjectDetail } from "./ProjectOverview";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useAuth } from "../auth";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, retryReport, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
+import { canDeleteArtifact, changeArtifactLifecycle, retryReport, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -110,6 +111,8 @@ export function Inspector() {
   const [savingArtifact, setSavingArtifact] = useState(false);
   const [retrying, setRetrying] = useState(false);
   const [retryNote, setRetryNote] = useState("");
+  const { username, role } = useAuth();
+  const deletable = artifact ? canDeleteArtifact(artifact, username, role) : false;
   // A failed report runs again with its saved settings; the model is called again, so ask first (02 §1.3).
   async function retryArtifact(artifactId: string) {
     if (!window.confirm("将按原来的设置再次调用模型生成这份报告，确定吗？")) return;
@@ -385,7 +388,7 @@ export function Inspector() {
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
                 <div className="mb-3 flex flex-wrap gap-2 text-sm">
-                  {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" }) : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
+                  {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" }) : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button>{deletable ? <button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button> : null}</> : deletable ? <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button> : <span className="text-[var(--stone)]">仅生成人或管理员可删除</span>}
                 </div>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">

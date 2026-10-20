@@ -833,3 +833,42 @@ def test_a_report_is_named_after_its_question():
     assert report_title({"domain": "机器人", "focus": "无"}) == "机器人"
     assert report_title({"domain": "机器人", "focus": ""}) == "机器人"
     assert report_title({"domain": "机器人", "focus": "长" * 80}).endswith("…")
+
+
+def test_only_the_author_or_an_administrator_may_delete_a_report(tmp_path):
+    """User, 2026-10-20: moving to the recycle bin and purging are the author's or an administrator's."""
+    from pydantic import SecretStr
+
+    from src.auth import CURRENT_USER
+
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
+                        user_dir=tmp_path / "usr", model_api_key=SecretStr("fixture"), embedding_path="")
+    with TestClient(create_app(settings)) as client:
+        store = client.app.state.artifacts
+        token = CURRENT_USER.set("owner")
+        try:
+            store.create("by-owner", type="answer_snapshot", title="领导的回答", markdown="正文")
+        finally:
+            CURRENT_USER.reset(token)
+        store.create("no-author", type="answer_snapshot", title="早期回答", markdown="正文")
+
+        def as_user(name):
+            client.cookies.clear()
+            assert client.post("/api/auth/login", json={"username": name, "password": "123456"}).status_code == 200
+
+        def act(method, path):
+            revision = client.get(f"/api/artifacts/{path.split('/')[3]}?include_trashed=true").headers.get("ETag", '"1"')
+            return client.request(method, path, headers={"If-Match": revision}).status_code
+
+        as_user("user")
+        assert act("DELETE", "/api/artifacts/by-owner") == 403
+        assert act("DELETE", "/api/artifacts/no-author") == 403
+        as_user("owner")
+        assert act("DELETE", "/api/artifacts/no-author") == 403
+        assert act("DELETE", "/api/artifacts/by-owner") == 200
+        as_user("user")
+        assert act("DELETE", "/api/artifacts/by-owner/purge") == 403
+        assert act("POST", "/api/artifacts/by-owner/restore") == 200  # restoring removes nothing
+        as_user("admin")
+        assert act("DELETE", "/api/artifacts/no-author") == 200
+        assert act("DELETE", "/api/artifacts/no-author/purge") == 200

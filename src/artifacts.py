@@ -237,7 +237,8 @@ class ArtifactStore:
                 aid = uuid4().hex
                 timestamp = _now()
                 db.execute(
-                    "INSERT INTO artifacts (id,created_at,updated_at,type,status,title,session_key,run_id,corpus_ids,task_id,template_id,payload,report_id,report_params) VALUES (?,?,?,'report','generating',?,?,?,?,?,?,?,?,?)",
+                    # The account that asked for it: 我的工作 and deletion rights go by it (empty before 2026-10-20).
+                    "INSERT INTO artifacts (id,created_at,updated_at,type,status,title,session_key,run_id,corpus_ids,task_id,template_id,payload,report_id,report_params,created_by) VALUES (?,?,?,'report','generating',?,?,?,?,?,?,?,?,?,?)",
                     (
                         aid,
                         timestamp,
@@ -256,6 +257,7 @@ class ArtifactStore:
                         ),
                         uuid4().hex,
                         json.dumps(params),
+                        CURRENT_USER.get(),
                     ),
                 )
         return self.get(aid)

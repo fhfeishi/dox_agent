@@ -127,6 +127,9 @@ async def main():
                 await until(page, rows.filter(has_text="已完成"))
                 await rows.get_by_role("button", name="打开").first.click()
                 await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("巡检机器人项目的研究进展")
+                # The report is recorded as the user's own: it is listed under 我的工作 on 首页.
+                await page.goto(origin + "/home")
+                await expect(page.get_by_role("region", name="我的工作")).to_contain_text("巡检机器人研究进展")
 
                 # 2. A report still being written when the service is killed comes back as 已中断，可重试.
                 (root / "delay").write_text("120")

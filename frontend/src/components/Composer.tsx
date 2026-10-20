@@ -8,6 +8,7 @@ import { CorpusPicker } from "./CorpusPicker";
 import { ScopeSelector } from "./ScopeSelector";
 import { useAuth } from "../auth";
 import { useLayout } from "../layout";
+import { Button } from "./ui";
 
 function PopItem({
   title,
@@ -282,11 +283,11 @@ export function Composer() {
                           ? "此会话原范围含目录缺失的知识库，请移除或重新关联。"
                           : "当前对话使用的范围不可用。"}
             </span>
-            {corporaError ? <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-caption" onClick={() => refreshCorpora()}>重试刷新</button> : null}
+            {corporaError ? <Button size="sm" onClick={() => refreshCorpora()}>重试刷新</Button> : null}
             {!corporaError && corporaLoaded && repairScope ? (
-              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-caption" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
+              <Button size="sm" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
                 {corpora.length ? "选择知识库" : "新建知识库"}
-              </button>
+              </Button>
             ) : null}
           </div>
         ) : null}
@@ -310,10 +311,10 @@ export function Composer() {
             {taskVersionState === "missing" ? "此旧会话未记录任务版本，已阻止发送。" : taskVersionState === "failed" ? `${taskVersionError} 可从成组状态备份恢复，或新建最新版会话。` : "正在读取此会话固定的任务版本…"}
             {latestVersion ? <div className="mt-[5px] flex flex-wrap items-center gap-[7px]">
               {workspace.taskVersion ? <span>当前 v{workspace.taskVersion} / 最新 v{latestVersion}</span> : <span>最新 v{latestVersion}</span>}
-              {workspace.taskVersion ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption" onClick={() => {
+              {workspace.taskVersion ? <Button size="sm" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
-              }}>升级到最新版</button> : null}
-              <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption" onClick={() => void startTask(taskId)}>新建最新版会话</button>
+              }}>升级到最新版</Button> : null}
+              <Button size="sm" onClick={() => void startTask(taskId)}>新建最新版会话</Button>
             </div> : null}
           </div>
         ) : null}
@@ -416,9 +417,9 @@ export function Composer() {
           <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <div className="flex flex-wrap items-center gap-[7px]">
               <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
-              {versionUpdateAvailable ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[2px] text-caption" onClick={() => {
+              {versionUpdateAvailable ? <Button size="sm" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
-              }}>升级到最新版</button> : null}
+              }}>升级到最新版</Button> : null}
             </div>
             {Object.entries(activeTask.parameter_defaults ?? {}).length ? <div className="mt-[3px]">文本默认：{Object.entries(activeTask.parameter_defaults ?? {}).map(([key, value]) => `${key}=${value}`).join("；")}</div> : null}
             {taskFields.length ? <div className="mt-[8px] flex flex-wrap gap-[8px]">{taskFields.map((field) => {

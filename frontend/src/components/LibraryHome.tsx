@@ -6,6 +6,7 @@ import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { libraryOverviewQuery } from "../libraryQueries";
 import { useLayout } from "../layout";
+import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -70,7 +71,7 @@ export function LibraryHome() {
           }}>
             <input autoFocus aria-label="新资料库名称" placeholder="资料库名称" required value={name} onChange={(e) => setName(e.target.value)}
               className="w-[180px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body" />
-            <button type="submit" className="rounded-lg bg-[var(--primary)] px-3 text-body text-white">创建</button>
+            <Button type="submit" variant="primary">创建</Button>
             <button type="button" className="text-body text-[var(--steel)]" onClick={() => setCreating(false)}>取消</button>
           </form> : <button type="button" onClick={() => setCreating(true)} className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white">
             <Icon name="plus" size={14} />新建资料库</button>}

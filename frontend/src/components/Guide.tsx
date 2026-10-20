@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../auth";
+import { Button } from "./ui";
 
 /**
  * First-visit guides (query 2026-1013 1133): a small bubble with three steps the first time an
@@ -39,7 +40,7 @@ export function Guide({ area }: { area: string }) {
     </ol>
     <div className="mt-3 flex items-center justify-between">
       <span className="text-caption text-[var(--stone)]">可随时点“指南”再次查看</span>
-      <button type="button" onClick={close} className="rounded-md bg-[var(--primary)] px-3 py-1 text-caption text-white">知道了</button>
+      <Button size="sm" variant="primary" onClick={close}>知道了</Button>
     </div>
   </div>;
 }

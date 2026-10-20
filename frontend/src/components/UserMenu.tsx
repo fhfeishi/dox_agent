@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ROLE_LABEL, useAuth } from "../auth";
 import { GUIDE_EVENT } from "./Guide";
 import { changePassword } from "../authApi";
+import { Button } from "./ui";
 
 /**
  * The account at the right of the top bar (query 2026-1013 1520 / 1522): an avatar that opens a small menu
@@ -44,7 +45,7 @@ export function UserMenu() {
           onChange={(e) => setForm({ ...form, old: e.target.value })} className="w-full rounded-md border border-[var(--hairline)] px-2 py-1 text-caption" />
         <input aria-label="新密码" type="password" placeholder="新密码（至少 4 位）" required minLength={4} autoComplete="new-password" value={form.next}
           onChange={(e) => setForm({ ...form, next: e.target.value })} className="w-full rounded-md border border-[var(--hairline)] px-2 py-1 text-caption" />
-        <button type="submit" className="rounded-md bg-[var(--primary)] px-3 py-1 text-caption text-white">保存</button>
+        <Button type="submit" size="sm" variant="primary">保存</Button>
       </form> : null}
       {message ? <p role="status" className="px-3 py-1 text-caption text-[var(--steel)]">{message}</p> : null}
       <button type="button" role="menuitem" className={item + " text-[var(--red)]"} onClick={() => void logout()}>退出登录</button>

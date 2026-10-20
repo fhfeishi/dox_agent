@@ -6,6 +6,7 @@ import { fetchReviewRuns } from "../reviewApi";
 import { useApp } from "../store";
 import { libraryOverviewQuery } from "../libraryQueries";
 import { useLayout } from "../layout";
+import { Button } from "./ui";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -83,7 +84,7 @@ export function AdminTodoList({ todos, ready, errors, limit = 6 }: { todos: Todo
     <ul className="space-y-1.5">{shown.map((t) => <li key={t.key} className="flex items-center gap-3 rounded-xl border border-[var(--line-cool)] bg-white px-4 py-2.5">
       <span className="shrink-0 rounded-md bg-[var(--surface-cool)] px-2 py-0.5 text-caption text-[var(--muted-cool)]">{t.group}</span>
       <span className="min-w-0 flex-1"><b className="block text-body font-medium">{t.what}</b><span className="block truncate text-caption text-[var(--steel)]">{t.detail}</span></span>
-      <button type="button" onClick={t.go} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body hover:bg-[var(--surface)]">{t.action}</button>
+      <Button onClick={t.go}>{t.action}</Button>
     </li>)}</ul>
     {todos.length > limit ? <button type="button" onClick={() => setAll(!all)} className="text-caption text-[var(--link)] hover:underline">
       {all ? "收起" : `展开其余 ${todos.length - limit} 项`}</button> : null}

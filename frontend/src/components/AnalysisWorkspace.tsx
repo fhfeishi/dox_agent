@@ -14,6 +14,7 @@ import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader } from "./Panel";
 import { GenerationProgress } from "./GenerationProgress";
 import { useLayout } from "../layout";
+import { Button } from "./ui";
 
 type Report = { kind: "report"; topic: string; scope: string; runId: string; state: "checking" | "generating" | "done" | "failed"; note: string; artifactId?: string; error?: string };
 
@@ -219,7 +220,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
             className="mt-1 w-full rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-body text-[var(--ink)]">
             {(templates.data ?? []).map((t) => <option key={t.id} value={t.id}>{templateLabel(t)}</option>)}
           </select></label>
-        <div className="flex gap-2"><button disabled={!form.topic.trim()} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white disabled:opacity-40">生成</button>
+        <div className="flex gap-2"><Button type="submit" variant="primary" disabled={!form.topic.trim()}>生成</Button>
           <button type="button" onClick={() => setForm(null)} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">取消</button></div>
       </form> : null}
       <div ref={bottom} />
@@ -232,8 +233,8 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); void ask(question); } }}
           placeholder={ids.length ? "向所选资料提问…" : "向本资料库提问…"}
           className="max-h-[120px] min-w-0 flex-1 resize-none bg-transparent px-2 py-1.5 text-body leading-[1.5] outline-none" />
-        {busy ? <button type="button" onClick={stop} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">停止</button>
-          : <button disabled={!question.trim() || !opened || sessionBusy} className="shrink-0 rounded-lg bg-[var(--primary)] px-3.5 py-1.5 text-body text-white disabled:opacity-40">发送</button>}
+        {busy ? <Button onClick={stop}>停止</Button>
+          : <Button type="submit" variant="primary" disabled={!question.trim() || !opened || sessionBusy}>发送</Button>}
       </div>
       <div className="mt-1 flex items-center justify-between px-1 text-caption text-[var(--stone)]">
         <span>Enter 发送 · Shift+Enter 换行</span>

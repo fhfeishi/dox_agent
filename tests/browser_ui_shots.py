@@ -6,6 +6,7 @@ not exercised: the pages here are navigation, 任务模版 and the two home page
 """
 import asyncio
 import os
+import re
 import shutil
 import sqlite3
 from pathlib import Path
@@ -141,6 +142,7 @@ async def main():
                 await guide.get_by_role("button", name="跳过").click()
                 await page.goto(origin + "/library")
                 await dismiss(page)
+                await expect(page.get_by_text(re.compile(r"^\d+ 个资料库$"))).to_be_visible(timeout=120000)
                 await shot(page, "admin-06-library")
                 await page.goto(origin + "/review/formal")
                 await dismiss(page)

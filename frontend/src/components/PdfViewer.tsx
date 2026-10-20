@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
 import { fileStatus } from "../api";
+import { Button } from "./ui";
 
 /**
  * U2.3（对 D6 的降级实现）：不引入 PDF.js，改用浏览器原生 PDF 渲染 —— 通过
@@ -65,25 +66,11 @@ export function PdfViewer({
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex items-center gap-[8px] pb-[10px] text-caption text-[var(--slate)]">
-        <button
-          type="button"
-          className="rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[5px] disabled:opacity-40"
-          disabled={current <= 1}
-          onClick={() => jump(current - 1)}
-        >
-          上一页
-        </button>
+        <Button size="sm" disabled={current <= 1} onClick={() => jump(current - 1)}>上一页</Button>
         <span aria-live="polite" className="font-code tabular-nums">
           第 {current} 页{pages ? ` / 约 ${pages} 页` : ""}
         </span>
-        <button
-          type="button"
-          className="rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[5px] disabled:opacity-40"
-          disabled={pages > 0 && current >= pages}
-          onClick={() => jump(current + 1)}
-        >
-          下一页
-        </button>
+        <Button size="sm" disabled={pages > 0 && current >= pages} onClick={() => jump(current + 1)}>下一页</Button>
         <a
           className="ml-auto inline-flex items-center gap-[4px] text-[var(--link)] hover:underline"
           href={fileUrl}

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { Icon, type IconName } from "./Icons";
 
 export type Tone = "mint" | "peach" | "lav" | "sky" | "rose" | "gray" | "yellow";
@@ -27,12 +27,10 @@ export function Pill({ tone = "gray", children }: { tone?: Tone; children: React
 
 /* --------------------------------------------------------------- Button */
 
-type ButtonVariant = "primary" | "outline" | "ghost" | "solid" | "quiet";
+type ButtonVariant = "primary" | "outline" | "ghost" | "quiet";
 
 const BUTTON: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--primary)] text-white hover:bg-[var(--primary-pressed)] border border-transparent",
-  solid:
     "bg-[var(--primary)] text-white hover:bg-[var(--primary-pressed)] border border-transparent",
   outline:
     "bg-[var(--canvas)] text-[var(--ink)] border border-[var(--hairline-strong)] hover:bg-[var(--surface)]",
@@ -53,6 +51,7 @@ export function Button({
   disabled,
   title,
   type = "button",
+  ...rest
 }: {
   variant?: ButtonVariant;
   size?: "sm" | "md" | "lg";
@@ -64,7 +63,7 @@ export function Button({
   disabled?: boolean;
   title?: string;
   type?: "button" | "submit";
-}) {
+} & Pick<ButtonHTMLAttributes<HTMLButtonElement>, "aria-label" | "aria-pressed" | "aria-expanded" | "form">) {
   const sizeCls =
     size === "sm"
       ? "h-[26px] px-[10px] text-caption"
@@ -74,6 +73,7 @@ export function Button({
 
   return (
     <button
+      {...rest}
       type={type}
       title={title}
       disabled={disabled}

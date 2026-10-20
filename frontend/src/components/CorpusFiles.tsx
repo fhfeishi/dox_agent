@@ -11,6 +11,7 @@ import { fundMetaFromPath } from "../fundMeta";
 import { projectQuery } from "../projects";
 import { ProjectList } from "./ProjectList";
 import { loadDocumentMarkdown } from "../documentText";
+import { Button } from "./ui";
 
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
@@ -215,15 +216,7 @@ export function CorpusFiles({
             if (!busy && connected) void droppedFiles(e.dataTransfer.items, e.dataTransfer.files).then(uploadFiles).catch((error) => setNotice(error.message));
           }}>
           <div className="flex flex-wrap items-center gap-[8px]">
-            <button
-              type="button"
-              disabled={busy || !connected}
-              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[7px] bg-[var(--primary)] px-[12px] text-body font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
-              onClick={() => inputRef.current?.click()}
-            >
-              <Icon name="plus" size={13} strokeWidth={2.2} />
-              选择文件
-            </button>
+            <Button variant="primary" icon="plus" iconSize={13} disabled={busy || !connected} onClick={() => inputRef.current?.click()}>选择文件</Button>
             <button type="button" disabled={busy || !connected} onClick={() => folderRef.current?.click()} className="rounded-lg border bg-[var(--canvas)] px-3 py-2 text-caption">选择文件夹</button>
             <span className="text-caption text-[var(--steel)]">或将文件、文件夹拖入此处</span>
             <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
@@ -321,9 +314,7 @@ export function CorpusFiles({
                     value={editing.name}
                     onChange={(e) => setEditing({ ...editing, name: e.target.value })}
                   />
-                  <button type="submit" className="rounded-[6px] border border-[var(--hairline-strong)] px-[8px]">
-                    保存
-                  </button>
+                  <Button type="submit" size="sm">保存</Button>
                   <button type="button" className="px-[4px]" onClick={() => setEditing(null)}>
                     取消
                   </button>
@@ -349,14 +340,7 @@ export function CorpusFiles({
                   {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 py-0.5 text-caption text-[var(--warn-fg)]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                   {status === "error" ? (
-                    <button
-                      type="button"
-                      disabled={busy || !connected}
-                      className="shrink-0 rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption text-[var(--link)] disabled:opacity-50"
-                      onClick={() => void run(onRetryImport)}
-                    >
-                      重试本库待处理项
-                    </button>
+                    <Button size="sm" disabled={busy || !connected} onClick={() => void run(onRetryImport)}>重试本库待处理项</Button>
                   ) : null}
                   <>
                   <button

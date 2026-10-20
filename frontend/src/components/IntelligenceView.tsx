@@ -1,5 +1,5 @@
 import { GenerationProgress } from "./GenerationProgress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Markdown from "react-markdown";
 import { useApp } from "../store";
@@ -8,17 +8,8 @@ import { Button } from "./ui";
 import { TemplateLibrary } from "./TemplateLibrary";
 
 type Input = { input_id: string; filename: string; version: string; text: string };
-const PURPOSES = [["comprehensive", "综合情报报告"], ["background", "技术背景"], ["research", "国内外研究现状"], ["feasibility", "可行性"], ["weakness", "痛点与薄弱点"]];
-const TEMPLATE = `# 情报分析报告
-
-## 结论摘要
-## 技术背景
-## 国内外研究现状
-## 与已有项目的对比
-## 可行性条件
-## 痛点与薄弱点
-## 建议补充资料
-## 来源与分析局限`;
+/** A purpose of the analysis, what it answers and its own built-in template (query 2026-1020 1653). */
+type Purpose = { key: string; label: string; focus: string; template_id: string };
 
 async function responseJson(response: Response) {
   const value = await response.json();
@@ -30,10 +21,24 @@ export function IntelligenceView() {
   const [inputs, setInputs] = useState<Input[]>([]);
   const [purpose, setPurpose] = useState("comprehensive");
   const [corpus, setCorpus] = useState("");
-  const [template, setTemplate] = useState(TEMPLATE);
-  const [templateId, setTemplateId] = useState("intelligence");
+  const [template, setTemplate] = useState("");
+  const [templateId, setTemplateId] = useState("");
   const [templateVersion, setTemplateVersion] = useState<number | undefined>(0);
   const templates = useQuery({ queryKey: ["templates", "published"], queryFn: () => fetchTemplates() });
+  const purposes = useQuery({ queryKey: ["intelligence", "purposes"], queryFn: async ({ signal }): Promise<Purpose[]> =>
+    responseJson(await fetch("/api/intelligence/purposes", { signal })) });
+  // Choosing a purpose takes up its template; another template can still be chosen afterwards.
+  async function choosePurpose(key: string) {
+    const chosen = purposes.data?.find((item) => item.key === key);
+    setPurpose(key);
+    if (!chosen) return;
+    try {
+      const value = await fetchTemplate(chosen.template_id);
+      setTemplateId(value.id); setTemplateVersion(value.version); setTemplate(value.content); setTemplateInput(null);
+    } catch (cause) { setError((cause as Error).message); }
+  }
+  useEffect(() => { if (purposes.data && !templateId && !template) void choosePurpose(purpose); }, [purposes.data]);
+  const templateName = (templates.data ?? []).find((item) => item.id === templateId)?.name;
   const [templateInput, setTemplateInput] = useState<Input | null>(null);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
@@ -88,7 +93,13 @@ export function IntelligenceView() {
           <div className="mt-4 space-y-2">{inputs.map((input) => <div key={input.input_id} className="rounded-lg border p-3"><div className="flex items-center justify-between gap-3"><button className="text-left text-sm text-[var(--primary)]" onClick={() => showInspector({ kind: "input", inputId: input.input_id })}>{input.filename}</button><button className="text-xs text-[var(--steel)]" disabled={Boolean(busy)} onClick={() => setInputs((old) => old.filter((item) => item.input_id !== input.input_id))}>移出本次选择</button></div><p className="mt-1 text-xs text-[var(--steel)]">{input.text.length.toLocaleString()} 字符 · 点击核对正文</p></div>)}</div>
         </section>
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
-          <h2 className="font-semibold">2 · 选择分析目的</h2><div className="my-4 grid grid-cols-2 gap-2">{PURPOSES.map(([key, label]) => <button key={key} aria-pressed={purpose === key} disabled={Boolean(busy)} onClick={() => setPurpose(key)} className="rounded-xl border p-3 text-left text-sm" style={{ borderColor: purpose === key ? "var(--primary)" : "var(--hairline)", background: purpose === key ? "var(--primary-soft)" : "transparent" }}>{label}</button>)}</div>
+          <h2 className="font-semibold">2 · 选择分析目的</h2>
+          <p className="mt-1 text-caption text-[var(--steel)]">每个目的有自己的报告模板：展开的尺度、维度与方向不同。</p>
+          <div className="my-4 grid grid-cols-1 gap-2 sm:grid-cols-2">{(purposes.data ?? []).map((item) => <button key={item.key} aria-pressed={purpose === item.key} disabled={Boolean(busy)} onClick={() => void choosePurpose(item.key)}
+            className="rounded-xl border p-3 text-left" style={{ borderColor: purpose === item.key ? "var(--primary)" : "var(--hairline)", background: purpose === item.key ? "var(--primary-soft)" : "transparent" }}>
+            <span className="block text-body font-medium">{item.label}</span>
+            <span className="mt-0.5 block text-caption leading-5 text-[var(--steel)]">{item.focus}</span>
+          </button>)}</div>
           <label className="block text-sm">对照资料库<select aria-label="情报分析资料库" className="mt-2 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3" value={chosenCorpus} disabled={Boolean(busy)} onChange={(e) => setCorpus(e.target.value)}>{corpora.filter((item) => !item.missing).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
           <p className="mt-3 text-xs leading-6 text-[var(--steel)]">本次材料自述与库内证据分别呈现。没有国外资料或相近项目时会明确提示，不据此判断原创或领先。</p>
         </section>
@@ -102,7 +113,7 @@ export function IntelligenceView() {
           }}><option value="">本次临时章节</option>{(templates.data ?? []).filter((item) => item.status === "published" && templateArea(item) === "intelligence").map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
           <Button size="sm" variant="ghost" disabled={Boolean(busy) || !template.trim()} onClick={() => void saveTemplate()}>保存为我的模板</Button>
         </div>
-        <p className="my-3 text-xs text-[var(--steel)]">{templateInput ? templateInput.filename : "使用默认综合研判模板"} · 正文与模板版本随本次结果保存。</p>
+        <p className="my-3 text-xs text-[var(--steel)]">{templateInput ? templateInput.filename : templateName ?? (templateId ? templateId : "本次临时章节")} · {template.split("\n").filter((line) => line.startsWith("## ")).length} 节 · 正文与模板版本随本次结果保存。</p>
         <details><summary className="cursor-pointer text-sm text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-sm" /></details>
         {/* 情报分析's own template library, kept apart from 存量分析's (query 2026-1014 1820). */}
         <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-sm text-[var(--primary)]">管理情报分析模板（新建、上传提取、修改、删除）</summary>

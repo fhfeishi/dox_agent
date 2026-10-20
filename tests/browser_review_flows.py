@@ -171,7 +171,7 @@ async def main():
                 await page.get_by_role("link", name="报告中心", exact=True).click()
                 results = page.get_by_role("region", name="报告列表", exact=True)
                 await results.get_by_role("tab", name=re.compile("^情报分析")).click()
-                await expect(results.get_by_text("综合情报报告", exact=True).first).to_be_visible()
+                await expect(results.get_by_text("情报分析-综合报告", exact=True).first).to_be_visible()
                 await expect(results.get_by_role("tab", name=re.compile("^资料审查"))).to_be_visible()
 
                 proposal = WordDocument()

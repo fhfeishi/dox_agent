@@ -889,3 +889,19 @@ def test_retry_runs_only_failed_reports_that_can_be_rebuilt(tmp_path):
         response = client.post(f"/api/artifacts/{failed['artifact_id']}/retry")
         assert response.status_code == 409 and "情报分析" in response.json()["detail"]
         assert client.post("/api/artifacts/missing/retry").status_code == 404
+
+
+def test_each_intelligence_purpose_has_its_own_template(tmp_path):
+    """Query 2026-1020 1653: 综合报告, 技术背景, 国内外研究现状, 可行性分析, 痛点和薄弱点分析 each unfold differently."""
+    from src.prompts import report_template
+
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora", user_dir=tmp_path / "usr")
+    with TestClient(create_app(settings)) as client:
+        purposes = client.get("/api/intelligence/purposes").json()
+        names = {item["id"]: item["name"] for item in client.get("/api/templates").json()}
+    assert [item["label"] for item in purposes] == ["综合报告", "技术背景", "国内外研究现状", "可行性分析", "痛点和薄弱点分析"]
+    templates = [item["template_id"] for item in purposes]
+    assert len(set(templates)) == 5 and all(names[t].startswith("情报分析-") for t in templates)
+    outlines = [tuple(line for line in report_template(t).splitlines() if line.startswith("## ")) for t in templates]
+    assert len(set(outlines)) == 5  # five different structures, not one outline under five names
+    assert all(item["focus"] for item in purposes)

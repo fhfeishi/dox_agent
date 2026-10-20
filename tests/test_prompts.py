@@ -1,6 +1,7 @@
 import pytest
 
 from src.prompts import (
+    ANALYSIS_TEMPLATES,
     REPORT_TEMPLATES,
     UnknownTaskError,
     list_tasks,
@@ -44,7 +45,8 @@ def test_tasks_declare_artifacts_and_templates():
     assert tasks["task1"]["artifacts"] == {"default": "text", "allowed": ["text"]}
     assert tasks["task2"]["artifacts"]["allowed"] == ["text", "table"]
     assert tasks["task4"]["artifacts"]["default"] == "document"
-    assert tasks["task4"]["templates"] == list(REPORT_TEMPLATES)
+    # 专项报告 offers 存量分析's templates; 情报分析 has its own per purpose (query 2026-1020 1653).
+    assert tasks["task4"]["templates"] == list(ANALYSIS_TEMPLATES)
     assert tasks["task4"]["has_template"] is True
     assert tasks["task1"]["templates"] == [] and tasks["task1"]["has_template"] is False
 

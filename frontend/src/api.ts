@@ -442,7 +442,8 @@ export type TemplateInfo = TemplateSummary & { content: string; variables?: stri
 export type TemplateArea = "analysis" | "intelligence";
 /** 情报分析 templates are the built-in `intelligence` one and its copies; the rest belong to 存量分析 (query 2026-1014 1820). */
 export const templateArea = (t: TemplateSummary): TemplateArea =>
-  t.id === "intelligence" || t.source_template_id === "intelligence" ? "intelligence" : "analysis";
+  // 情报分析 has one built-in template per purpose (query 2026-1020 1653): intelligence, intelligence_background …
+  /^intelligence(_|$)/.test(t.id) || /^intelligence(_|$)/.test(t.source_template_id ?? "") ? "intelligence" : "analysis";
 
 /** One label wherever a report template is chosen: a custom template's name is its current draft's,
  * so the label names the published version a report will use and says when a newer draft is open. */

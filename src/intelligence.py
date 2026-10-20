@@ -30,14 +30,26 @@ from .review.research import redact
 from .runs import request_fingerprint
 
 router = APIRouter(prefix="/api/intelligence")
-PURPOSES = {
-    "background": "技术背景分析",
-    "research": "国内外研究现状分析",
+PURPOSES = {  # in the order of query 2026-1020 1653
+    "comprehensive": "综合报告",
+    "background": "技术背景",
+    "research": "国内外研究现状",
     "feasibility": "可行性分析",
-    "weakness": "痛点与薄弱点分析",
-    "comprehensive": "综合情报报告",
+    "weakness": "痛点和薄弱点分析",
 }
+# Each purpose has its own built-in template (query 2026-1020 1653); the page picks it with the purpose.
+PURPOSE_TEMPLATES = {"comprehensive": "intelligence", "background": "intelligence_background",
+                     "research": "intelligence_research", "feasibility": "intelligence_feasibility",
+                     "weakness": "intelligence_weakness"}
 DEFAULT_TEMPLATE = report_template("intelligence")
+# What each purpose answers, shown with its choice so the difference is visible before generating.
+PURPOSE_FOCUS = {
+    "comprehensive": "全貌判断：各方面要点与结论，供决策参考",
+    "background": "从哪里来、解决什么问题、怎样构成、如何演进",
+    "research": "国内外谁在做、做到什么程度、差距在哪里",
+    "feasibility": "某个目标能否做成、需要什么条件、风险在哪里",
+    "weakness": "最卡脖子的问题、成因，以及已有工作解决到哪一步",
+}
 
 
 class AnalysisRequest(BaseModel):
@@ -49,6 +61,13 @@ class AnalysisRequest(BaseModel):
     template_id: str | None = None
     template_version: int | None = None
     session_key: str = ""
+
+
+@router.get("/purposes")
+async def purposes():
+    """The purposes of an intelligence analysis, each with what it answers and its own template."""
+    return [{"key": key, "label": label, "focus": PURPOSE_FOCUS[key], "template_id": PURPOSE_TEMPLATES[key]}
+            for key, label in PURPOSES.items()]
 
 
 @router.post("/inputs", status_code=201)
@@ -183,7 +202,7 @@ async def analyze(payload: AnalysisRequest, request: Request):
 
     params = {
         **payload.model_dump(),
-        "domain": PURPOSES[payload.purpose],
+        "domain": "情报分析-" + PURPOSES[payload.purpose],  # the report's name in 报告中心
         "task_id": "intelligence",
         "template_id": payload.template_id
         or ("intelligence" if payload.template == DEFAULT_TEMPLATE else ""),

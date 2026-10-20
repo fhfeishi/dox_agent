@@ -14,13 +14,22 @@ BASE_FILE = "base.md"
 DEFAULT_TASK_ID = "task1"
 CHAT_TASK_IDS = ("task1", "task2", "task3", "task4")
 # Single authority for report section structure (§9.3); task4_report.md keeps only instructions.
-REPORT_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehensive", "intelligence")
+ANALYSIS_TEMPLATES = ("achievements", "hotspots", "future_directions", "comprehensive")
+# 情报分析: one template per purpose (query 2026-1020 1653) — each unfolds the material at its own
+# scale, along its own dimensions and towards its own question; ``intelligence`` stays the overview.
+INTELLIGENCE_TEMPLATES = ("intelligence", "intelligence_background", "intelligence_research",
+                          "intelligence_feasibility", "intelligence_weakness")
+REPORT_TEMPLATES = ANALYSIS_TEMPLATES + INTELLIGENCE_TEMPLATES
 TEMPLATE_NAMES = {
     "achievements": "成果报告",
     "hotspots": "热点报告",
     "future_directions": "技术研判报告",
     "comprehensive": "综合报告",
-    "intelligence": "情报分析报告",
+    "intelligence": "情报分析-综合报告",
+    "intelligence_background": "情报分析-技术背景",
+    "intelligence_research": "情报分析-国内外研究现状",
+    "intelligence_feasibility": "情报分析-可行性分析",
+    "intelligence_weakness": "情报分析-痛点和薄弱点分析",
 }
 
 TASKS: tuple[dict, ...] = (
@@ -40,7 +49,7 @@ TASKS: tuple[dict, ...] = (
      "example": "生成一份面上项目成果报告。",
      "output_hint": "Markdown 报告 + 来源清单 + 局限", "has_template": True, "file": "task4_report.md",
      "intake_file": "task4_intake.md",
-     "artifacts": {"default": "document", "allowed": ["document"]}, "templates": list(REPORT_TEMPLATES)},
+     "artifacts": {"default": "document", "allowed": ["document"]}, "templates": list(ANALYSIS_TEMPLATES)},
 )
 
 

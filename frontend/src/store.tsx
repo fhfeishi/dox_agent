@@ -38,7 +38,6 @@ import {
   turnScope,
   type Turn,
 } from "./conversation";
-import { uiFlags } from "./uiFlags";
 import { useCorpora } from "./useCorpora";
 import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
@@ -81,7 +80,6 @@ function inspectorIdentity(target: InspectorTarget): string {
 }
 export type EditState = { index: number; text: string } | null;
 export type PreviewTarget = { doc: DocumentInfo; page: number | null; corpusId?: string } | null;
-export type ExplorerTarget = { docId: string; page: number | null; corpusId?: string } | null;
 export type SendOverride = { question: string; history: Turn[]; options: Options };
 
 export interface AppValue {
@@ -184,12 +182,12 @@ export interface AppValue {
   copyQuestion: (question: string) => Promise<void>;
   startedTick: number;
 
-  /* sources, preview & explorer */
+  /* sources & preview */
   handleOpenSource: (source: Source, n: number) => void;
   openDocument: (docId: string, page?: number) => void;
   /** Open a preview for a specific corpus (browsing must not depend on the active corpus). */
   openPreview: (doc: DocumentInfo, page: number | null, corpusId: string) => void;
-  openFullPreview: (doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector?: boolean, focus?: string, evidence?: boolean) => void;
+  openFullPreview: (doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector?: boolean, focus?: string) => void;
   /** 四维证据：统一走放大预览（可靠页码 PDF 跳页，否则在解析正文中定位引文）。 */
   openEvidence: (doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) => void;
   closeFullPreview: () => void;
@@ -198,10 +196,6 @@ export interface AppValue {
   setPreviewDoc: Dispatch<SetStateAction<PreviewTarget>>;
   /** 放大预览承载的证据引文：命中时在解析正文中定位，为空表示按页码/普通预览打开。 */
   previewFocus: string | null;
-  explorerOpen: boolean;
-  setExplorerOpen: Dispatch<SetStateAction<boolean>>;
-  explorerDoc: ExplorerTarget;
-  setExplorerDoc: Dispatch<SetStateAction<ExplorerTarget>>;
 
   /* corpus detail drawer */
   openCorpus: (id: string, view?: "files" | "target") => void;
@@ -233,13 +227,6 @@ export interface AppValue {
   /* sidebar collapse (U9.1) */
   sidebarCollapsed: boolean;
   toggleSidebar: () => void;
-
-  /* feature switches */
-  taskCapable: boolean;
-  uiDocPanel: boolean;
-
-  /* local document explorer */
-  openExplorer: () => void;
 
   /* export */
   exportChat: () => void;
@@ -334,8 +321,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const evidenceTrigger = useRef<HTMLElement | null>(null);
   const [previewFocus, setPreviewFocus] = useState<string | null>(null);
   const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
-  const [explorerOpen, setExplorerOpen] = useState(false);
-  const [explorerDoc, setExplorerDoc] = useState<ExplorerTarget>(null);
   const [newCorpusOpen, setNewCorpusOpen] = useState(false);
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
@@ -470,7 +455,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    if (!uiFlags.tasks) return;
     void refreshTasks();
   }, []);
 
@@ -621,7 +605,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // task_id is sent with chat; task4 goes through intake (parameter collection, no report body).
     // Requests use the explicit conversation scope, independently of browsing.
     const effectiveOptions: Options = {
-      ...(uiFlags.tasks ? { ...scope, task_id: requestTaskId, task_version: requestTaskVersion } : { allowed_doc_ids: scope.allowed_doc_ids ?? null }),
+      ...scope, task_id: requestTaskId, task_version: requestTaskVersion,
       web_snapshot_ids: scope.web_snapshot_ids ?? [],
       ...corpusOptions,
     };
@@ -633,8 +617,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // A replay carries its original turn scope; ordinary sends use the current session scope.
     const requestOptions: ChatRequestOptions = {
       ...turn.options,
-      ...(uiFlags.tasks ? { task_id: requestTaskId } : {}),
-      ...(uiFlags.tasks && requestTaskVersion ? { task_version: requestTaskVersion } : {}),
+      task_id: requestTaskId,
+      ...(requestTaskVersion ? { task_version: requestTaskVersion } : {}),
       task_params: scope.task_params ?? {},
       corpus_id: corpusOptions.corpus_id,
       corpus_ids: corpusOptions.corpus_ids,
@@ -1028,36 +1012,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   /** Preview a document together with the corpus it belongs to, so `/file` never hits the wrong library. */
   function openPreview(doc: DocumentInfo, page: number | null, corpusId: string) {
-    if (!uiFlags.docPanel && doc.kind !== "pdf") {
+    if (doc.kind !== "pdf") {
       showInspector({ kind: "document", doc, page, corpusId });
       return;
     }
     openFullPreview(doc, page, corpusId, inspectorOpen);
   }
 
-  function openFullPreview(doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector = false, focus?: string, evidence = false) {
+  function openFullPreview(doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector = false, focus?: string) {
     setDrawerOpen(false);
     setInspectorOpen(false);
     setFullPreviewReturnsToInspector(returnToInspector);
     setPreviewFocus(focus ?? null);
     // 库内视图是主区而非抽屉：预览时不关闭它，返回后仍保留筛选、选中报告与滚动位置。
-    // With the doc-panel flag on, plain document browsing opens the explorer (tree + raw
-    // file viewer); otherwise fall back to the text-only / PDF preview.
-    // 四维证据统一走放大预览：文件浏览器没有“回到该报告四维分区”的返回路径；
     // 可靠页码在这里表现为 PDF 跳页，其余表现为正文定位。
-    if (uiFlags.docPanel && !evidence) {
-      setExplorerDoc({ docId: doc.doc_id, page, corpusId });
-      setExplorerOpen(true);
-      return;
-    }
     setPreviewDoc({ doc, page, corpusId });
   }
 
   /** 四维证据入口：放大预览承载正文定位，关闭后回到该报告的四维分区。 */
   function openEvidence(doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) {
-    // 证据（页码跳页或正文定位）一律走放大预览，不再分支到文件浏览器。
     evidenceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    openFullPreview(doc, page, corpusId, true, focus, true);
+    openFullPreview(doc, page, corpusId, true, focus);
   }
 
   function closeFullPreview() {
@@ -1073,7 +1048,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setInspectorOpen(false);
     setDrawerOpen(false);
     setPreviewDoc(null);
-    setExplorerOpen(false);
     void navigate(`/library/${encodeURIComponent(id)}/${view === "target" ? "targets/four-facets" : "documents"}`);
   }
 
@@ -1088,15 +1062,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       // showing the shared inspector so two right-side layers cannot conflict.
       setDrawerOpen(false);
       setPreviewDoc(null);
-      setExplorerOpen(false);
-    }
+      }
     setInspectorOpen((open) => !open);
   }
 
   function showInspector(target: InspectorTarget) {
     setDrawerOpen(false);
     setPreviewDoc(null);
-    setExplorerOpen(false);
     if (target.kind === "target") {
       const search = new URLSearchParams(location.search);
       search.set("doc", target.docId);
@@ -1122,12 +1094,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   function closeCorpus() {
     void navigate("/library");
-  }
-
-  function openExplorer() {
-    setInspectorOpen(false);
-    setExplorerDoc(null);
-    setExplorerOpen(true);
   }
 
   const handleOpenSource = async (source: Source, n: number) => {
@@ -1400,10 +1366,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       previewDoc,
       setPreviewDoc,
       previewFocus,
-      explorerOpen,
-      setExplorerOpen,
-      explorerDoc,
-      setExplorerDoc,
       openCorpus,
       closeCorpus,
       corpusView,
@@ -1426,9 +1388,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       toggleInspectorPinned: () => setInspectorPinned((pinned) => !pinned),
       sidebarCollapsed,
       toggleSidebar: () => setSidebarCollapsed((v) => !v),
-      taskCapable: uiFlags.tasks,
-      uiDocPanel: uiFlags.docPanel,
-      openExplorer,
       exportChat,
     }),
     // The handlers close over the latest state on every render; rebuilding the value
@@ -1477,8 +1436,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       viewingBranch,
       previewDoc,
       previewFocus,
-      explorerOpen,
-      explorerDoc,
       drawerOpen,
       inspectorOpen,
       chatDocked,

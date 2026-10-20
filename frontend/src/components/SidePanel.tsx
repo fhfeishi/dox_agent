@@ -33,7 +33,6 @@ export function SidePanel() {
     tasks,
     tasksError,
     taskId,
-    taskCapable,
     showInspector,
     sidebarCollapsed,
     progress,
@@ -191,18 +190,12 @@ export function SidePanel() {
         {nav === "tasks" && (
           <>
             <GroupLabel className="pt-[2px]">任务模板</GroupLabel>
-            {!taskCapable ? (
-              <p className="px-[10px] py-3 text-body leading-[1.6] text-[var(--stone)]">
-                任务功能未启用（需 <code className="font-code">VITE_UI_TASKS=1</code>）。
-              </p>
-            ) : null}
             {tasksError ? (
               <p role="alert" className="px-[10px] py-2 text-caption text-[var(--red)]">
                 {tasksError}
               </p>
             ) : null}
-            {taskCapable
-              ? visibleTasks.map((task) => (
+            {visibleTasks.map((task) => (
                   <PanelRow
                     key={task.id}
                     dot={task.id === taskId ? "var(--purple)" : "var(--stone)"}
@@ -211,12 +204,11 @@ export function SidePanel() {
                     active={task.id === taskId}
                     onClick={() => showInspector({ kind: "task", taskId: task.id })}
                   />
-                ))
-              : null}
-            {taskCapable && !tasks.length && !tasksError ? (
+                ))}
+            {!tasks.length && !tasksError ? (
               <p className="px-[10px] py-3 text-body text-[var(--stone)]">正在读取任务…</p>
             ) : null}
-            {taskCapable && !!tasks.length && !visibleTasks.length ? (
+            {!!tasks.length && !visibleTasks.length ? (
               <p className="px-[10px] py-3 text-body text-[var(--stone)]">没有匹配的任务。</p>
             ) : null}
             <div className="px-[8px] pt-[10px]">

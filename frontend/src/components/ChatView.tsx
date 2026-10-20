@@ -116,10 +116,7 @@ export function ChatView() {
     startTask,
     corpusIds,
     corpora,
-    taskCapable,
     setInput,
-    uiDocPanel,
-    openExplorer,
     inspectorOpen,
     toggleInspector,
     setTurnReport,
@@ -214,7 +211,7 @@ export function ChatView() {
         <span className="max-w-[32%] truncate text-body font-semibold tracking-[-0.1px] text-[var(--ink)]">
           {activeTitle || "新对话"}
         </span>
-        {activeTask && taskCapable ? (
+        {activeTask ? (
           <span data-guide="chat-task" className="shrink-0 rounded-full bg-[var(--primary-soft)] px-[7px] py-[2px] text-caption font-semibold text-[var(--primary)]">
             {activeTask.name}
           </span>
@@ -232,9 +229,6 @@ export function ChatView() {
 
         <span className="flex-1" />
 
-        {uiDocPanel ? (
-          <ToolButton icon="book" label="本地文档" onClick={openExplorer} title="浏览本地文档原文" />
-        ) : null}
         <div ref={exportRef} className="relative">
           <ToolButton
             icon="download"
@@ -252,7 +246,7 @@ export function ChatView() {
                 onClick={() => {
                   setExportOpen(false);
                   downloadSessionMarkdown(
-                    { title: activeTitle, corpusName: corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、"), taskName: taskCapable ? activeTask?.name : undefined },
+                    { title: activeTitle, corpusName: corpusIds.map(id => corpora.find(c => c.id === id)?.name ?? id).join("、"), taskName: activeTask?.name },
                     turns,
                   );
                   showToast("已导出会话 Markdown");
@@ -362,7 +356,7 @@ export function ChatView() {
                           {
                             question: turn.question,
                             corpusName: turnCorpusName || undefined,
-                            taskName: taskCapable ? activeTask?.name : undefined,
+                            taskName: activeTask?.name,
                           },
                           turn,
                           format,

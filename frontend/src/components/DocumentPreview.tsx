@@ -63,7 +63,7 @@ export function DocumentPreview({
   );
 }
 
-/** Non-PDF fallback: the normalized text reader shared with the document explorer's TextPane. */
+/** Non-PDF fallback: the normalized text reader. */
 export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?: string }) {
   const [text, setText] = useState("");
   const [markdown, setMarkdown] = useState(false);

@@ -73,7 +73,6 @@ export function Composer() {
     taskVersionError,
     upgradeTaskVersion,
     startTask,
-    taskCapable,
     corpusIds,
     autoCorpus,
     setAutoCorpus,
@@ -480,7 +479,7 @@ export function Composer() {
             placeholder={
               editing
                 ? "修改后按 Enter 重新发送…"
-                : taskCapable && taskId === "task4"
+                : taskId === "task4"
                   ? "描述报告需求：领域、年份范围、模板（成果/热点/未来/综合）…"
                   : "基于当前知识库提问，或点击 + 选择一项任务…"
             }
@@ -508,7 +507,7 @@ export function Composer() {
                       {tasksError}
                     </p>
                   ) : null}
-                  {taskCapable && tasks.length ? (
+                  {tasks.length ? (
                     tasks.filter((task) => !task.archived && (task.kind !== "custom" || Boolean(task.version))).map((task) => (
                       <PopItem
                         key={task.id}
@@ -593,7 +592,7 @@ export function Composer() {
               title={runConfig}
             >
               <Icon name="info" size={14} />
-              {taskCapable ? tasks.find((t) => t.id === taskId)?.name ?? "任务" : "专业问答"}
+              {tasks.find((t) => t.id === taskId)?.name ?? "任务"}
             </span>
 
             {busy ? (

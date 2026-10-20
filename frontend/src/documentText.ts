@@ -5,7 +5,7 @@ type ReadResult = { text: string; next_start_line: number | null; start_line: nu
 const MAX_PAGES = 2000;
 
 /** True when a document's stored text should be rendered as Markdown, not as raw text. */
-export function isMarkdownDocument(doc: {
+function isMarkdownDocument(doc: {
   kind?: string;
   parser?: string;
   rel_path?: string;
@@ -35,7 +35,7 @@ async function readPage(docId: string, page: number, startLine: number, version:
  * Markdown documents: it returns the parser output verbatim, without the 300-char line
  * splits and 60-line windows that break tables/code blocks. Falls back to `loadDocumentText`.
  */
-export async function loadDocumentMarkdown(doc: DocumentInfo, corpus?: string): Promise<{ text: string; version: string }> {
+async function loadDocumentMarkdown(doc: DocumentInfo, corpus?: string): Promise<{ text: string; version: string }> {
   const query = new URLSearchParams({ version: doc.version });
   if (corpus) query.set("corpus", corpus);
   const response = await fetch(`/api/documents/${encodeURIComponent(doc.doc_id)}/markdown?${query}`);
@@ -52,7 +52,7 @@ export async function loadDocumentMarkdown(doc: DocumentInfo, corpus?: string): 
  * Windows inside a page are joined with "\n" (a window boundary must not terminate a table or
  * list); only page boundaries use "\n\n".
  */
-export async function loadDocumentText(doc: DocumentInfo, corpus?: string): Promise<{ text: string; kind: string; parser: string }> {
+async function loadDocumentText(doc: DocumentInfo, corpus?: string): Promise<{ text: string; kind: string; parser: string }> {
   const pages: string[] = [];
   let kind = doc.kind ?? "text";
   let parser = doc.parser ?? "";
@@ -81,7 +81,7 @@ export async function loadDocumentText(doc: DocumentInfo, corpus?: string): Prom
   return { text: pages.join("\n\n"), kind, parser };
 }
 
-/** Preview loader shared by the document panel and the explorer. */
+/** Preview loader shared by the document panel and the four-facet evidence reader. */
 export async function loadPreviewText(
   doc: DocumentInfo,
   corpus?: string,

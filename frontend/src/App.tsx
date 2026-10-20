@@ -7,7 +7,6 @@ import { useApp } from "./store";
 import { lazy, Suspense } from "react";
 import type { CSSProperties } from "react";
 
-const DocumentExplorer = lazy(() => import("./components/DocumentExplorer").then((module) => ({ default: module.DocumentExplorer })));
 const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((module) => ({ default: module.DocumentPreview })));
 const Inspector = lazy(() => import("./components/Inspector").then((module) => ({ default: module.Inspector })));
 const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => ({ default: module.OpsDrawer })));
@@ -21,18 +20,10 @@ export function App() {
     inspectorOpen,
     chatDocked,
     inspectorWidth,
-    uiDocPanel,
-    corpusReady,
     effectiveCorpusId,
-    options,
-    setOptions,
     previewDoc,
     previewFocus,
     closeFullPreview,
-    explorerOpen,
-    setExplorerOpen,
-    explorerDoc,
-    setExplorerDoc,
     nav,
   } = useApp();
 
@@ -76,19 +67,6 @@ export function App() {
           onClose={closeFullPreview}
         />
 
-        {uiDocPanel ? (
-          <DocumentExplorer
-            open={explorerOpen}
-            onClose={() => setExplorerOpen(false)}
-            corpusReady={corpusReady}
-            corpus={explorerDoc?.corpusId ?? effectiveCorpusId}
-            docId={explorerDoc?.docId ?? null}
-            page={explorerDoc?.page ?? null}
-            onNavigate={(docId, page) => setExplorerDoc(docId ? { docId, page } : null)}
-            allowedDocIds={options.allowed_doc_ids}
-            onLimitScope={(ids) => setOptions((o) => ({ ...o, allowed_doc_ids: ids }))}
-          />
-        ) : null}
       </Suspense>
 
       <Toast />

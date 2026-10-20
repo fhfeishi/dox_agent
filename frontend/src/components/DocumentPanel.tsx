@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Icon } from "./Icons";
 
-/** Shared right slide-over shell for document preview / explorer. */
+/** Shared right slide-over shell for document preview. */
 export function DocumentPanel({
   open,
   onClose,

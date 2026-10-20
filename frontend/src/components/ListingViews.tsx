@@ -56,7 +56,7 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
  * deleted, published ones archived and restored from the archived list.
  */
 export function TasksView() {
-  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks } = useApp();
+  const { tasks, tasksError, taskId, showInspector, refreshTasks } = useApp();
   const navigate = useNavigate();
   // Every task starts in 对话工作台 with that task and its own 点选提问 presets (query 2026-1020 1719:
   // choosing a library and material and landing in the analysis workspace was the wrong way in).
@@ -119,21 +119,12 @@ export function TasksView() {
     >
       <input ref={upload} type="file" accept=".md,.markdown,.txt,.docx,.pdf" className="hidden" aria-label="上传模板文件"
         onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void uploaded(file); }} />
-      {!taskCapable ? (
-        <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
-          <p className="text-body font-medium text-[var(--ink)]">任务功能未启用</p>
-          <p className="mx-auto mt-[8px] max-w-[520px] text-body leading-[1.6] text-[var(--steel)]">
-            请联系管理员启用任务模版。
-          </p>
-        </div>
-      ) : null}
-      {taskCapable && tasksError ? <p role="alert" className="col-span-full text-body text-[var(--red)]">{tasksError}</p> : null}
+      {tasksError ? <p role="alert" className="col-span-full text-body text-[var(--red)]">{tasksError}</p> : null}
       {message ? <p role="status" className="col-span-full text-body text-[var(--steel)]">{message}</p> : null}
-      {taskCapable && !tasks.length && !tasksError ? (
+      {!tasks.length && !tasksError ? (
         <p className="text-body text-[var(--stone)]">正在读取任务列表…</p>
       ) : null}
-      {taskCapable
-        ? liveTasks.map((task, index) => {
+      {liveTasks.map((task, index) => {
             const style = TASK_STYLE[index % TASK_STYLE.length];
             const usable = task.status !== "draft" || Boolean(task.version);
             return (
@@ -165,11 +156,10 @@ export function TasksView() {
                 </div>
               </article>
             );
-          })
-        : null}
+          })}
       {/* 存量分析's own report templates (query 2026-1014 1820); 情报分析's are on its page. */}
-      {taskCapable ? <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div> : null}
-      {taskCapable && showArchived ? (
+      <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div>
+      {showArchived ? (
         <section aria-label="已归档" className="col-span-full rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[14px]">
           <h2 className="text-body font-semibold text-[var(--ink)]">已归档的任务模版 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
           {!archivedTasks.length ? <p className="mt-[8px] text-caption text-[var(--stone)]">没有已归档的任务模版。</p> : null}

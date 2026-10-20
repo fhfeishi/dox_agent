@@ -70,7 +70,6 @@ export function Inspector() {
     currentCorpus,
     activeTask,
     tasks,
-    taskCapable,
     documents,
     openDocument,
     corpusReady,
@@ -78,7 +77,6 @@ export function Inspector() {
     options,
     drawerOpen,
     previewDoc,
-    explorerOpen,
     inspectorTarget,
     inspectorCanGoBack,
     inspectorPinned,
@@ -253,7 +251,7 @@ export function Inspector() {
   }, [inspectorTarget.kind, executionRunId]);
 
   useEffect(() => {
-    if (!inspectorOpen || drawerOpen || previewDoc || explorerOpen) return;
+    if (!inspectorOpen || drawerOpen || previewDoc) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -262,7 +260,7 @@ export function Inspector() {
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [inspectorOpen, drawerOpen, previewDoc, explorerOpen, toggleInspector]);
+  }, [inspectorOpen, drawerOpen, previewDoc, toggleInspector]);
 
   const latest = turns[turns.length - 1];
   const answered = turns.filter((t) => t.outcome === "completed").length;
@@ -328,7 +326,7 @@ export function Inspector() {
             : inspectorTarget.kind === "web" ? webSnapshot?.title ?? "正在读取网页"
             : inspectorTarget.kind === "report" ? "本会话报告"
             : inspectorTarget.kind === "execution" ? "最近一轮回答"
-            : inspectorTarget.kind === "answer" ? (activeTask && taskCapable ? activeTask.name : "专业问答") : ""}
+            : inspectorTarget.kind === "answer" ? (activeTask ? activeTask.name : "专业问答") : ""}
         actions={<>
           <PanelButton label={inspectorPinned ? "取消固定预览面板" : "固定预览面板"} active={inspectorPinned} onClick={toggleInspectorPinned}>
             {inspectorPinned ? "●" : "○"}</PanelButton>

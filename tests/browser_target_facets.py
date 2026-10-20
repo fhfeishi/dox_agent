@@ -9,10 +9,7 @@ Serves the built `frontend/dist` with mocked APIs. Verifies:
 - deep links, deduplicated filters, read-only comparison and new scoped research sessions;
 - stopping progress viewing leaves the job running and a manual query remains available.
 
-`uiFlags.docPanel` is a build-time switch (`VITE_UI_DOC_PANEL`), so the two document-panel
-variants are two builds. Point `DOX_WEB_DIST` at another build to run the same acceptance against
-it; evidence clicks must behave identically in both because the facet evidence path never branches
-to the document explorer.
+Point `DOX_WEB_DIST` at another build to run the same acceptance against it.
 """
 
 import asyncio

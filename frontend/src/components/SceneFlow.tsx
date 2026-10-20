@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FACET_COLORS, projectQuery, type Scene } from "../projects";
-import { useApp } from "../store";
+import { useLayout } from "../layout";
 
 type Node = { key: string; column: 0 | 1 | 2 | 3; label: string; note: string; projects: string[]; color: string };
 /** `primary`: drawn always; other result links appear (dashed) only inside a selected chain. */
@@ -84,7 +84,7 @@ function chain(selected: string, edges: Edge[]) {
  * Outcome links come from shared projects; a missing line means no project connects them.
  */
 export function SceneFlow({ corpusId, scene, onRoute }: { corpusId: string; scene: Scene; onRoute: (title: string) => void }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const { data: library } = useQuery(projectQuery(corpusId));
   const { nodes, edges } = build(scene);
   const [selected, setSelected] = useState("s");

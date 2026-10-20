@@ -1,9 +1,10 @@
 import { Icon } from "./Icons";
 import { useApp } from "../store";
+import { useLayout } from "../layout";
 
 /** Bottom-center transient toast. */
 export function Toast() {
-  const { toast } = useApp();
+  const { toast } = useLayout();
   if (!toast) return null;
   return (
     <div

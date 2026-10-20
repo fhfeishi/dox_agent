@@ -6,9 +6,11 @@ import { useApp } from "../store";
 import { analyzeIntelligence, copyTemplate, fetchIntelligenceInput, fetchIntelligencePurposes, fetchTemplate, fetchTemplates, publishTemplate, saveTemplateDraft, templateArea, uploadIntelligenceInput, type IntelligenceInput } from "../api";
 import { Button } from "./ui";
 import { TemplateLibrary } from "./TemplateLibrary";
+import { useLayout } from "../layout";
 
 export function IntelligenceView() {
-  const { corpora, corpusIds, workspace, showInspector } = useApp();
+  const { corpora, corpusIds, workspace } = useApp();
+  const { showInspector } = useLayout();
   const [inputs, setInputs] = useState<IntelligenceInput[]>([]);
   const [purpose, setPurpose] = useState("comprehensive");
   const [corpus, setCorpus] = useState("");

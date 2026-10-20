@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate, Outlet, useNavigate, useParams, useSearc
 import { lazy, Suspense } from "react";
 import { App } from "./App";
 import { AuthGate, useAuth } from "./auth";
+import { LayoutProvider } from "./layout";
 import { AppProvider } from "./store";
 import { AnalysisShell } from "./components/AnalysisShell";
 import { useDocuments } from "./useDocuments";
@@ -37,7 +38,7 @@ function LibraryPage() {
 
 /** Every role works under the same top bar (query 2026-1014 1516); only the landing page differs. */
 function Root() {
-  return <AppProvider><App /></AppProvider>;
+  return <LayoutProvider><AppProvider><App /></AppProvider></LayoutProvider>;
 }
 
 /** Every role starts on 首页, which also holds 我的工作 (user's choice, 2026-10-14). */

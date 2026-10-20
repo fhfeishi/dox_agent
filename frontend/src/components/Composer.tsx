@@ -7,6 +7,7 @@ import { Icon } from "./Icons";
 import { CorpusPicker } from "./CorpusPicker";
 import { ScopeSelector } from "./ScopeSelector";
 import { useAuth } from "../auth";
+import { useLayout } from "../layout";
 
 function PopItem({
   title,
@@ -77,16 +78,18 @@ export function Composer() {
     autoCorpus,
     setAutoCorpus,
     setSearchCorpusIds,
-    setNewCorpusOpen,
-    setNav,
-    openCorpus,
     runCorpusIngest,
     ingestBusy,
-    showToast,
     status,
     model,
     turns,
   } = useApp();
+  const {
+    setNewCorpusOpen,
+    setNav,
+    openCorpus,
+    showToast,
+  } = useLayout();
   // 点选提问 belongs to the start of a conversation; afterwards it is one button away, so the answers
   // keep the screen (query 2026-1020 1719: the composer took half the page while reading).
   const empty = turns.length === 0;

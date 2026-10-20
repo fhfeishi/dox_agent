@@ -96,6 +96,14 @@ async def main():
                 await page.get_by_label("搜索资料", exact=True).fill("装配"); actions += 1
                 await act(zhang.get_by_role("checkbox").first)
                 await act(projects.get_by_role("checkbox", name=re.compile("选择项目 面向精密装配")))
+                # Opening a file and reloading the page keep what was ticked (upgrade plan F2).
+                picked = page.get_by_role("region", name="已选资料")
+                await expect(picked).to_contain_text("已选 3 份资料")
+                await zhang.get_by_role("button", name="预览").first.click()
+                await expect(page.locator("aside[aria-hidden='false']")).to_contain_text("62273001")
+                await expect(picked).to_contain_text("已选 3 份资料")
+                await page.reload()
+                await expect(picked).to_contain_text("已选 3 份资料")
                 await act(page.get_by_role("region", name="已选资料").get_by_role("button", name="分析这些资料"))
                 work = page.get_by_role("region", name="分析工作区")
                 await expect(work.get_by_label("分析范围")).to_contain_text("2 个项目 · 3 份文件")

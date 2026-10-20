@@ -2,6 +2,7 @@ import { useState, type KeyboardEvent } from "react";
 import { useApp } from "../store";
 import { useQuery } from "@tanstack/react-query";
 import { projectQuery, type Project } from "../projects";
+import { useLayout } from "../layout";
 
 /** A project's funding in the selected scope in 万元, or null when its reports give none or conflict. */
 function fundingWan(p: Project, scope: string): number | null {
@@ -22,7 +23,7 @@ const fmt = (v: number) => v.toLocaleString("zh-CN", { maximumFractionDigits: 1 
  * that year's projects on the right; a point opens its project.
  */
 export function YearDistribution({ corpusId, year, onYear }: { corpusId: string; year?: string; onYear?: (year: string) => void }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [chosenScope, setScope] = useState("");
   const [hover, setHover] = useState<number | null>(null);
   const result = useQuery(projectQuery(corpusId));
@@ -144,7 +145,8 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
  * project its detail; back returns here.
  */
 export function YearReports({ corpusId, year }: { corpusId: string; year: number }) {
-  const { corpora, showInspector, openPreview } = useApp();
+  const { corpora } = useApp();
+  const { showInspector, openPreview } = useLayout();
   const result = useQuery(projectQuery(corpusId));
   const [query, setQuery] = useState("");
   if (result.error) return <p role="alert" className="text-sm text-[var(--red)]">{(result.error as Error).message}</p>;

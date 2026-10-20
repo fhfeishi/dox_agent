@@ -5,6 +5,7 @@ import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import { ReviewRunPanel } from "./review/ReviewRunPanel";
 import type { Saved, SessionData } from "../workspace";
 import { TERMS } from "../copy";
+import { useLayout } from "../layout";
 
 function sessionTime(session: Saved<SessionData>): string | undefined {
   return session.updated_at ?? session.data.turns?.[0]?.startedAt;
@@ -24,7 +25,6 @@ function groupOf(iso: string | undefined): "今天" | "昨天" | "更早" {
 
 export function SidePanel() {
   const {
-    nav,
     workspace,
     switchSession,
     sessionBusy,
@@ -33,10 +33,13 @@ export function SidePanel() {
     tasks,
     tasksError,
     taskId,
-    showInspector,
-    sidebarCollapsed,
     progress,
   } = useApp();
+  const {
+    nav,
+    showInspector,
+    sidebarCollapsed,
+  } = useLayout();
 
   const [localQuery, setLocalQuery] = useState("");
   const query = localQuery;

@@ -28,7 +28,8 @@ import {
   type Source,
   type TaskInfo,
 } from "./api";
-import { useLocation, useNavigate, useMatch } from "react-router";
+import { useNavigate } from "react-router";
+import { useLayout } from "./layout";
 import type { Branch } from "./branches";
 import { copyToClipboard } from "./clipboard";
 import {
@@ -45,49 +46,11 @@ import { fetchDocuments, useDocumentScope, useDocuments, type DocumentInfo } fro
 import { useWorkspace } from "./workspace";
 import { useAuth } from "./auth";
 
-export type NavKey = "home" | "overview" | "chat" | "tasks" | "library" | "review" | "intelligence" | "results";
-/** What the right-hand panel shows. "answer" is the 对话工作台's own view of the latest answer and is shown only there. */
-export type InspectorTarget = { kind: "answer" } | { kind: "task"; taskId: string; edit?: boolean } |
-  { kind: "template"; templateId: string; edit?: boolean } |
-  { kind: "web"; snapshotId: string } |
-  { kind: "input"; inputId: string } |
-  { kind: "project"; corpusId: string; projectId: string; facet: string } |
-  { kind: "review-template"; templateId: string } |
-  { kind: "review-source"; fileId: string; page: number; title?: string; evidence?: boolean } |
-  { kind: "corpus"; corpusId: string } | { kind: "report"; reportId: string; sessionKey: string } |
-  { kind: "artifact"; artifactId: string } |
-  { kind: "document"; doc: DocumentInfo; page: number | null; corpusId: string } |
-  { kind: "execution"; runId?: string }
-  | { kind: "target"; corpusId: string; docId: string; index: number }
-  | { kind: "year"; corpusId: string; year: number };
-
-function inspectorIdentity(target: InspectorTarget): string {
-  switch (target.kind) {
-    case "answer": return "answer";
-    case "task": return `task:${target.taskId}${target.edit ? ":edit" : ""}`;
-    case "template": return `template:${target.templateId}${target.edit ? ":edit" : ""}`;
-    case "review-template": return "review-template:" + target.templateId;
-    case "review-source": return "review-source:" + (target.evidence ? "evidence:" : "") + target.fileId + ":" + target.page;
-    case "project": return "project:" + target.corpusId + ":" + target.projectId + ":" + target.facet;
-    case "input": return "input:" + target.inputId;
-    case "web": return `web:${target.snapshotId}`;
-    case "corpus": return `corpus:${target.corpusId}`;
-    case "report": return `report:${target.sessionKey}:${target.reportId}`;
-    case "artifact": return `artifact:${target.artifactId}`;
-    case "document": return `document:${target.corpusId}:${target.doc.doc_id}:${target.doc.version}:${target.page ?? 0}`;
-    case "execution": return `execution:${target.runId ?? "latest"}`;
-    case "target": return `target:${target.corpusId}:${target.docId}:${target.index}`;
-    case "year": return `year:${target.corpusId}:${target.year}`;
-  }
-}
 export type EditState = { index: number; text: string } | null;
-export type PreviewTarget = { doc: DocumentInfo; page: number | null; corpusId?: string } | null;
+
 export type SendOverride = { question: string; history: Turn[]; options: Options };
 
 export interface AppValue {
-  /* navigation */
-  nav: NavKey;
-  setNav: (n: NavKey) => void;
 
   /* connection & model status */
   connected: boolean;
@@ -102,9 +65,6 @@ export interface AppValue {
   llmText: string;
   disconnect: () => Promise<void>;
 
-  /* toast */
-  toast: string | null;
-  showToast: (message: string) => void;
 
   /* corpora & documents */
   corpora: CorpusInfo[];
@@ -187,48 +147,11 @@ export interface AppValue {
   /* sources & preview */
   handleOpenSource: (source: Source, n: number) => void;
   openDocument: (docId: string, page?: number) => void;
-  /** Open a preview for a specific corpus (browsing must not depend on the active corpus). */
-  openPreview: (doc: DocumentInfo, page: number | null, corpusId: string) => void;
-  openFullPreview: (doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector?: boolean, focus?: string) => void;
-  /** 四维证据：统一走放大预览（可靠页码 PDF 跳页，否则在解析正文中定位引文）。 */
-  openEvidence: (doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) => void;
-  closeFullPreview: () => void;
   limitScope: (ids: string[] | null) => void;
-  previewDoc: PreviewTarget;
-  setPreviewDoc: Dispatch<SetStateAction<PreviewTarget>>;
-  /** 放大预览承载的证据引文：命中时在解析正文中定位，为空表示按页码/普通预览打开。 */
-  previewFocus: string | null;
 
-  /* corpus detail drawer */
-  openCorpus: (id: string, view?: "files" | "target") => void;
-  corpusView: "files" | "target";
-  setCorpusView: (view: "files" | "target") => void;
-  closeCorpus: () => void;
-  newCorpusOpen: boolean;
-  setNewCorpusOpen: Dispatch<SetStateAction<boolean>>;
 
-  /* settings & ops drawer */
-  drawerOpen: boolean;
-  setDrawerOpen: Dispatch<SetStateAction<boolean>>;
 
-  /* output inspector */
-  inspectorOpen: boolean;
-  /** The library chat is docked at the right; the page makes room for it as for the preview panel. */
-  chatDocked: boolean;
-  setChatDocked: (docked: boolean) => void;
-  toggleInspector: () => void;
-  inspectorTarget: InspectorTarget;
-  inspectorCanGoBack: boolean;
-  inspectorPinned: boolean;
-  inspectorWidth: number;
-  setInspectorWidth: (width: number) => void;
-  showInspector: (target: InspectorTarget) => void;
-  backInspector: () => void;
-  toggleInspectorPinned: () => void;
 
-  /* sidebar collapse (U9.1) */
-  sidebarCollapsed: boolean;
-  toggleSidebar: () => void;
 
   /* export */
   exportChat: () => void;
@@ -243,24 +166,15 @@ export function useApp(): AppValue {
 }
 
 /**
- * Owns every piece of application state and the handlers that mutate it.
- * Presentational components consume this through `useApp()`; no business logic
- * lives in the components. This mirrors the reference template's `store.tsx`.
+ * The work context: libraries, tasks, the conversation and its session, and the handlers that change
+ * them. Pages read it through `useApp()`; where things are shown on the page is layout.tsx's
+ * (`useLayout()`, upgrade plan F2), which this provider sits inside.
  */
 export function AppProvider({ children }: { children: ReactNode }) {
   const { role } = useAuth();
-  const location = useLocation();
   const navigate = useNavigate();
-  const routeParams: { corpusId?: string } = useMatch("/library/:corpusId/*")?.params ?? {};
-  const navPaths: Record<NavKey, string> = { home: "/home", overview: "/overview", chat: "/chat", library: "/library", tasks: "/tasks", review: "/review", intelligence: "/intelligence", results: "/results" };
-  const nav: NavKey = location.pathname === "/home" ? "home" : location.pathname.startsWith("/overview") ? "overview" : location.pathname.startsWith("/library") ? "library"
-    : location.pathname.startsWith("/tasks") ? "tasks" : location.pathname.startsWith("/results") ? "results"
-      : location.pathname.startsWith("/intelligence") ? "intelligence" : location.pathname.startsWith("/review") ? "review" : "chat";
-  const setNav = (value: NavKey) => { void navigate(navPaths[value]); };
-  const corpusView = location.pathname.includes("/documents") ? "files" : "target";
-  const setCorpusView = (view: "files" | "target") => {
-    if (routeParams.corpusId) openCorpus(routeParams.corpusId, view);
-  };
+  const layout = useLayout();
+  const { setNav, showToast, openPreview, showInspector } = layout;
   const [targetJobs, setTargetJobs] = useState<Record<string, string>>({});
   const rememberTargetJob = (corpus: string, job: string) => setTargetJobs((current) => ({ ...current, [corpus]: job }));
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -278,52 +192,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [editing, setEditing] = useState<EditState>(null);
   const [viewingBranch, setViewingBranch] = useState<Branch | null>(null);
   const [sessionBusy, setSessionBusy] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [inspectorOpen, setInspectorOpen] = useState(false);
-  const [chatDocked, setChatDocked] = useState(false);
-  const [inspectorStack, setInspectorStack] = useState<InspectorTarget[]>([{ kind: "answer" }]);
-  const routeSearch = new URLSearchParams(location.search);
-  const routeDoc = corpusView === "target" ? routeSearch.get("doc") : null;
-  const routeFacet = Number(routeSearch.get("facet") ?? 0);
-  const routeTarget: InspectorTarget | null = routeDoc && routeParams.corpusId
-    ? { kind: "target", corpusId: routeParams.corpusId, docId: routeDoc,
-        index: Number.isInteger(routeFacet) && routeFacet >= 0 && routeFacet < 4 ? routeFacet : 0 }
-    : corpusView === "target" && routeParams.corpusId && routeSearch.get("project")
-      ? { kind: "project", corpusId: routeParams.corpusId, projectId: routeSearch.get("project")!, facet: ["场景", "问题", "技术", "成果"].includes(routeSearch.get("dimension") ?? "") ? routeSearch.get("dimension")! : "场景" } : null;
-  const routeTargetKey = routeTarget ? inspectorIdentity(routeTarget) : "";
-  const previousRouteTarget = useRef("");
-  useEffect(() => {
-    if (routeTargetKey || previousRouteTarget.current) setInspectorOpen(Boolean(routeTargetKey));
-    previousRouteTarget.current = routeTargetKey;
-  }, [routeTargetKey]);
-  function closeRouteTarget() {
-    const search = new URLSearchParams(location.search);
-    if (!search.has("doc")) search.delete("project");
-    for (const key of ["doc", "facet", "version"]) search.delete(key);
-    void navigate({ pathname: location.pathname, search: search.toString() });
-  }
-
-  const [inspectorPinned, setInspectorPinned] = useState(false);
-  const [inspectorWidth, setInspectorWidth] = useState(() => {
-    const saved = Number(localStorage.getItem("dox.inspector.width"));
-    return Number.isFinite(saved) && saved >= 400 && saved <= 520 ? saved : 404;
-  });
-  const inspectorNav = useRef<NavKey>(nav);
-  // U9.1: sidebar collapse survives a reload.
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(
-    () => typeof localStorage !== "undefined" && localStorage.getItem("dox.sidebar.collapsed") === "1",
-  );
   const [taskId, setTaskId] = useState("task1");
   const [tasks, setTasks] = useState<TaskInfo[]>([]);
   const [publishedTask, setPublishedTask] = useState<{ id: string; version: number; task: TaskInfo } | null>(null);
   const [taskVersionState, setTaskVersionState] = useState<AppValue["taskVersionState"]>("ready");
   const [taskVersionError, setTaskVersionError] = useState("");
   const [tasksError, setTasksError] = useState("");
-  const [previewDoc, setPreviewDoc] = useState<PreviewTarget>(null);
-  const evidenceTrigger = useRef<HTMLElement | null>(null);
-  const [previewFocus, setPreviewFocus] = useState<string | null>(null);
-  const [fullPreviewReturnsToInspector, setFullPreviewReturnsToInspector] = useState(false);
-  const [newCorpusOpen, setNewCorpusOpen] = useState(false);
   const [corpusId, setCorpusId] = useState("");
   const [corpusConfirmed, setCorpusConfirmed] = useState(false);
   const [corpusIds, setCorpusIds] = useState<string[]>([]);
@@ -333,25 +207,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ingestBusy, setIngestBusy] = useState(false);
   const [options, setOptions] = useState<Options>({ allowed_doc_ids: null });
   const [progress, setProgress] = useState<{ stage: string; completed: number; total: number } | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (drawerOpen) setInspectorOpen(false);
-  }, [drawerOpen]);
 
-  useEffect(() => {
-    localStorage.setItem("dox.inspector.width", String(inspectorWidth));
-  }, [inspectorWidth]);
-
-  useEffect(() => {
-    if (inspectorNav.current !== nav) {
-      inspectorNav.current = nav;
-      // A preview belongs to the page it was opened on (query 2026-1015 1553): leaving the page closes it.
-      if (!inspectorPinned) { setInspectorStack([{ kind: "answer" }]); if (!routeTargetKey) setInspectorOpen(false); }
-    }
-  }, [nav, inspectorPinned]);
-
-  const toastTimer = useRef<number | undefined>(undefined);
   const controller = useRef<AbortController | null>(null);
   const activeRun = useRef<Promise<void> | null>(null);
   const latestTurns = useRef<Turn[]>([]);
@@ -445,12 +302,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await Promise.all([refreshBaseDocuments(), refreshScopeDocuments()]);
   }
 
-  function showToast(message: string) {
-    setToast(message);
-    window.clearTimeout(toastTimer.current);
-    toastTimer.current = window.setTimeout(() => setToast(null), 2200);
-  }
-
   async function refreshTasks() {
     try { setTasks(await fetchTasks(undefined, true)); setTasksError(""); }
     catch (e) { setTasksError(e instanceof Error ? e.message : "任务列表不可用"); }
@@ -459,11 +310,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     void refreshTasks();
   }, []);
-
-  useEffect(() => {
-    if (typeof localStorage === "undefined") return;
-    localStorage.setItem("dox.sidebar.collapsed", sidebarCollapsed ? "1" : "0");
-  }, [sidebarCollapsed]);
 
   useEffect(() => {
     if (!connected) {
@@ -1009,92 +855,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     openPreview(doc, page ?? null, effectiveCorpusId ?? "");
   }
 
-  /** Preview a document together with the corpus it belongs to, so `/file` never hits the wrong library. */
-  function openPreview(doc: DocumentInfo, page: number | null, corpusId: string) {
-    if (doc.kind !== "pdf") {
-      showInspector({ kind: "document", doc, page, corpusId });
-      return;
-    }
-    openFullPreview(doc, page, corpusId, inspectorOpen);
-  }
-
-  function openFullPreview(doc: DocumentInfo, page: number | null, corpusId: string, returnToInspector = false, focus?: string) {
-    setDrawerOpen(false);
-    setInspectorOpen(false);
-    setFullPreviewReturnsToInspector(returnToInspector);
-    setPreviewFocus(focus ?? null);
-    // 库内视图是主区而非抽屉：预览时不关闭它，返回后仍保留筛选、选中报告与滚动位置。
-    // 可靠页码在这里表现为 PDF 跳页，其余表现为正文定位。
-    setPreviewDoc({ doc, page, corpusId });
-  }
-
-  /** 四维证据入口：放大预览承载正文定位，关闭后回到该报告的四维分区。 */
-  function openEvidence(doc: DocumentInfo, page: number | null, corpusId: string, focus?: string) {
-    evidenceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    openFullPreview(doc, page, corpusId, true, focus);
-  }
-
-  function closeFullPreview() {
-    setPreviewDoc(null);
-    setPreviewFocus(null);
-    if (fullPreviewReturnsToInspector) setInspectorOpen(true);
-    setFullPreviewReturnsToInspector(false);
-    requestAnimationFrame(() => evidenceTrigger.current?.focus());
-  }
-
-  // A library opens on its files (query 2026-1014 1642); 技术研判 is one click away.
-  function openCorpus(id: string, view: "files" | "target" = role === "leader" ? "target" : "files") {
-    setInspectorOpen(false);
-    setDrawerOpen(false);
-    setPreviewDoc(null);
-    void navigate(`/library/${encodeURIComponent(id)}/${view === "target" ? "targets/four-facets" : "documents"}`);
-  }
-
-  // The latest-answer view is the 对话工作台's; elsewhere the panel shows only a preview that was asked for.
-  const panelTarget = routeTarget ?? inspectorStack[inspectorStack.length - 1];
-  const panelOpen = inspectorOpen && (panelTarget.kind !== "answer" || nav === "chat");
-
-  function toggleInspector() {
-    if (inspectorOpen && routeTarget) { closeRouteTarget(); return; }
-    if (!inspectorOpen) {
-      // W1 migration: legacy document/corpus surfaces still exist. Close them before
-      // showing the shared inspector so two right-side layers cannot conflict.
-      setDrawerOpen(false);
-      setPreviewDoc(null);
-      }
-    setInspectorOpen((open) => !open);
-  }
-
-  function showInspector(target: InspectorTarget) {
-    setDrawerOpen(false);
-    setPreviewDoc(null);
-    if (target.kind === "target") {
-      const search = new URLSearchParams(location.search);
-      search.set("doc", target.docId);
-      search.set("facet", String(target.index));
-      void navigate({ pathname: `/library/${encodeURIComponent(target.corpusId)}/targets/four-facets`, search: search.toString() });
-      setInspectorOpen(true);
-      return;
-    }
-    setInspectorStack((stack) => {
-      const current = stack[stack.length - 1];
-      if (inspectorIdentity(current) === inspectorIdentity(target)) return stack;
-      // Another year replaces the year list on top instead of piling up (query 2026-1013 2012).
-      if (current.kind === "year" && target.kind === "year") return [...stack.slice(0, -1), target];
-      return [...stack.slice(-3), target];
-    });
-    setInspectorOpen(true);
-  }
-
-  function backInspector() {
-    if (routeTarget) { closeRouteTarget(); return; }
-    setInspectorStack((stack) => stack.length > 1 ? stack.slice(0, -1) : stack);
-  }
-
-  function closeCorpus() {
-    void navigate("/library");
-  }
-
   const handleOpenSource = async (source: Source, n: number) => {
     if (source.kind === "external" && source.input_id) { showInspector({ kind: "input", inputId: source.input_id }); return; }
     if (source.kind === "web" && source.snapshot_id) {
@@ -1271,8 +1031,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<AppValue>(
     () => ({
-      nav,
-      setNav,
       connected,
       setConnected,
       ready,
@@ -1284,8 +1042,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       llmTone: llm.tone,
       llmText: llm.text,
       disconnect,
-      toast,
-      showToast,
       corpora,
       corporaError,
       corporaLoaded,
@@ -1355,46 +1111,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       startedTick: startedTick.current,
       handleOpenSource,
       openDocument,
-      openPreview,
-      openFullPreview,
-      openEvidence,
-      closeFullPreview,
       limitScope: (ids) => updateOptions((o) => ({ ...o, allowed_doc_ids: ids })),
-      previewDoc,
-      setPreviewDoc,
-      previewFocus,
-      openCorpus,
-      closeCorpus,
-      corpusView,
-      setCorpusView,
-      newCorpusOpen,
-      setNewCorpusOpen,
-      drawerOpen,
-      setDrawerOpen,
-      inspectorOpen: panelOpen,
-      chatDocked,
-      setChatDocked,
-      toggleInspector,
-      inspectorTarget: panelTarget,
-      inspectorCanGoBack: Boolean(routeTarget) || (inspectorStack.length > 1 && (nav === "chat" || inspectorStack[inspectorStack.length - 2].kind !== "answer")),
-      inspectorPinned,
-      inspectorWidth,
-      setInspectorWidth: (width) => setInspectorWidth(Math.max(400, Math.min(520, width))),
-      showInspector,
-      backInspector,
-      toggleInspectorPinned: () => setInspectorPinned((pinned) => !pinned),
-      sidebarCollapsed,
-      toggleSidebar: () => setSidebarCollapsed((v) => !v),
       exportChat,
     }),
     // The handlers close over the latest state on every render; rebuilding the value
     // keeps consumers in sync (the app is small enough that this is cheap).
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      nav,
-      inspectorStack,
-      inspectorPinned,
-      inspectorWidth,
+      layout,
       connected,
       ready,
       corpusReady,
@@ -1402,7 +1126,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       health,
       model,
       progress,
-      toast,
       corpora,
       corporaError,
       corpusId,
@@ -1431,14 +1154,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       options,
       editing,
       viewingBranch,
-      previewDoc,
-      previewFocus,
-      drawerOpen,
-      inspectorOpen,
-      chatDocked,
-      sidebarCollapsed,
-      newCorpusOpen,
-      corpusView,
       location,
       targetJobs,
       workspace,

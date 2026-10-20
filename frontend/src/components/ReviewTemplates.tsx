@@ -8,7 +8,7 @@ import {
 import { Button, Pill } from "./ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./review/ReviewLayout";
 import { useAuth } from "../auth";
-import { useApp } from "../store";
+import { useLayout } from "../layout";
 
 const COUNTING_NOTE = "正文去空白后按 Unicode 码点计数（中文、标点、字母、数字各计 1），不含标题；图片内文字不计入并标为覆盖不足。首版仅支持此口径。";
 
@@ -156,7 +156,7 @@ export function ReviewTemplates() {
 
 /** A template card: 预览 opens it on the right, 修改 opens its page, 删除 removes it (query 2026-1014 1737). */
 function TemplateTile({ rule, admin, onDelete }: { rule: ReviewRule; admin: boolean; onDelete: () => void }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const builtin = rule.id.startsWith("builtin-") || rule.source_kind === "builtin";
   const action = "rounded-md border border-[var(--hairline)] px-2.5 py-1 text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]";
   return (

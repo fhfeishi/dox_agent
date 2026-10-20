@@ -16,6 +16,7 @@ import { SceneFlow } from "./SceneFlow";
 import { Button } from "./ui";
 import { Chart } from "./Charts";
 import { fetchDocuments } from "../useDocuments";
+import { useLayout } from "../layout";
 
 const ASPECTS = ["论文", "专利", "人才/团队", "平台/基地", "数据与样本", "指标达成", "标准/许可", "转化与应用"];
 const STAGE_TONE: Record<string, string> = {
@@ -33,7 +34,7 @@ function Members({ names }: { names?: string[] }) {
 const LINEAGE_VIEWS = [["overview", "总览"], ["tree", "五级谱系"], ["roadmap", "路网"]] as const;
 
 export function EvidenceList({ corpusId, evidence, limit = 2, staleHint = "请重新生成层级" }: { corpusId: string; evidence: HierarchyEvidence[]; limit?: number; staleHint?: string }) {
-  const { openPreview } = useApp();
+  const { openPreview } = useLayout();
   const [error, setError] = useState("");
   // Open the exact cited file version; a re-uploaded report must not silently answer for it.
   async function open(item: HierarchyEvidence) {
@@ -148,7 +149,7 @@ function OutcomeAnalysis({ corpusId, scene }: { corpusId: string; scene: Scene }
 
 /** Projects behind an issue or route, opened in the inspector with one click. */
 function ProjectLinks({ corpusId, ids, facet }: { corpusId: string; ids: string[]; facet: string }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const { data } = useQuery(projectQuery(corpusId));
   const titles = new Map((data?.projects ?? []).map((p) => [p.project_id, p.title]));
   if (!ids.length) return null;

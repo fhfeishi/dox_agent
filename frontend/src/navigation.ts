@@ -1,6 +1,6 @@
 import type { IconName } from "./components/Icons";
 import { TERMS } from "./copy.ts";
-import type { NavKey } from "./store";
+import type { NavKey } from "./layout";
 
 /**
  * Every way into the work areas, in one table (upgrade plan U2, design/界面.md §2): the top bar, the

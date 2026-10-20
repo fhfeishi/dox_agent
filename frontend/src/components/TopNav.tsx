@@ -5,6 +5,7 @@ import { barFor, foldedFor, isCurrent, type NavEntry } from "../navigation";
 import { useApp } from "../store";
 import { BrandMark, Icon } from "./Icons";
 import { UserMenu } from "./UserMenu";
+import { useLayout } from "../layout";
 
 type MenuSection = { to?: string; label: string; children?: { to: string; label: string }[] };
 
@@ -77,7 +78,8 @@ function tab(active: boolean) {
 export function TopNav() {
   const { role } = useAuth();
   const { pathname } = useLocation();
-  const { nav, sidebarCollapsed, toggleSidebar, setDrawerOpen, llmTone, llmText, model } = useApp();
+  const { llmTone, llmText, model } = useApp();
+  const { nav, sidebarCollapsed, toggleSidebar, setDrawerOpen } = useLayout();
   const icon = "grid size-8 shrink-0 place-items-center rounded-lg text-[var(--slate)] hover:bg-[var(--surface)]";
   // The full bar folds into one menu only when its entries do not fit (query 2026-1016: a laptop
   // screen folded it at the old fixed 1280 px although the entries fit in about 950 px).

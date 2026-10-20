@@ -22,6 +22,7 @@ import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
 import { LeaderHome } from "./LeaderHome";
 import { AdminTodoList, LibraryHealth, libraryProblems, useAdminTodos } from "./AdminTodos";
+import { useLayout } from "../layout";
 
 
 export function WorkspaceHome() {
@@ -32,7 +33,8 @@ export function WorkspaceHome() {
 /** 首页 for administrators and users: report counts, starting work, 我的工作 and recent reports. */
 function WorkHome() {
   const { role } = useAuth();
-  const { corpora, corporaError, showInspector, openCorpus } = useApp();
+  const { corpora, corporaError } = useApp();
+  const { showInspector, openCorpus } = useLayout();
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
   const recent = useQuery({

@@ -6,6 +6,7 @@ import { SidePanel } from "./components/SidePanel";
 import { useApp } from "./store";
 import { lazy, Suspense } from "react";
 import type { CSSProperties } from "react";
+import { useLayout } from "./layout";
 
 const DocumentPreview = lazy(() => import("./components/DocumentPreview").then((module) => ({ default: module.DocumentPreview })));
 const Inspector = lazy(() => import("./components/Inspector").then((module) => ({ default: module.Inspector })));
@@ -17,15 +18,17 @@ const OpsDrawer = lazy(() => import("./components/OpsDrawer").then((module) => (
  */
 export function App() {
   const {
+    effectiveCorpusId,
+  } = useApp();
+  const {
     inspectorOpen,
     chatDocked,
     inspectorWidth,
-    effectiveCorpusId,
     previewDoc,
     previewFocus,
     closeFullPreview,
     nav,
-  } = useApp();
+  } = useLayout();
 
   return (
     <div style={{ "--inspector-width": `${inspectorWidth}px` } as CSSProperties}

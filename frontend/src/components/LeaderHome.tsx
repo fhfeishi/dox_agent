@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router";
 import { workCards } from "../navigation";
-import { useApp } from "../store";
 import { RadarChart } from "./Charts";
 import { Icon } from "./Icons";
 import { MyWorkSection } from "./MyWorkSection";
 import { HeroCarousel } from "./HeroCarousel";
 import { libraryOverviewQuery } from "../libraryQueries";
+import { useLayout } from "../layout";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -31,7 +31,7 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
  * names its basis (机关界面设计语言 “口径可信”).
  */
 export function LeaderHome() {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [search, setSearch] = useSearchParams();
   const overview = useQuery({ ...libraryOverviewQuery() });
   const rows = [...(overview.data ?? [])].filter((r) => r.projects > 0).sort((a, b) => b.projects - a.projects);

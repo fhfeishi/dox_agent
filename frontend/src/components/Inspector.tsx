@@ -23,6 +23,7 @@ import { TargetFocusedText } from "./TargetFocusedText";
 import { TargetReportView } from "./TargetReportView";
 import { LibraryPreview } from "./LibraryPreview";
 import { YearReports } from "./YearDistribution";
+import { useLayout } from "../layout";
 
 type InspTab = "cite" | "src" | "session";
 
@@ -45,7 +46,7 @@ function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactN
 
 /** The reports made in this conversation; the full list with the recycle bin is the 成果 page. */
 function SessionReports({ sessionKey }: { sessionKey: string }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [items, setItems] = useState<ArtifactSummary[] | null>(null);
   useEffect(() => {
     const abort = new AbortController();
@@ -63,8 +64,6 @@ function SessionReports({ sessionKey }: { sessionKey: string }) {
 
 export function Inspector() {
   const {
-    inspectorOpen,
-    toggleInspector,
     handleOpenSource,
     turns,
     currentCorpus,
@@ -75,6 +74,11 @@ export function Inspector() {
     corpusReady,
     workspace,
     options,
+    corpora,
+  } = useApp();
+  const {
+    inspectorOpen,
+    toggleInspector,
     drawerOpen,
     previewDoc,
     inspectorTarget,
@@ -84,10 +88,9 @@ export function Inspector() {
     toggleInspectorPinned,
     inspectorWidth,
     setInspectorWidth,
-    corpora,
     openFullPreview,
     showInspector,
-  } = useApp();
+  } = useLayout();
   const panelRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!inspectorOpen) return;

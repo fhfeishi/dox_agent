@@ -13,6 +13,7 @@ import type { Project } from "../projects";
 import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader } from "./Panel";
 import { GenerationProgress } from "./GenerationProgress";
+import { useLayout } from "../layout";
 
 type Report = { kind: "report"; topic: string; scope: string; runId: string; state: "checking" | "generating" | "done" | "failed"; note: string; artifactId?: string; error?: string };
 
@@ -42,8 +43,31 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
   onRestore: (docIds: string[]) => void; onBusy: (busy: boolean) => void;
   onRemove: (docIds: string[]) => void; onClear: () => void; onClose: () => void;
 }) {
-  const { handleOpenSource, inspectorOpen, setChatDocked, showInspector, turns, busy, error, status, stop, sessionBusy, startedTick,
-    openWorkspace, setWorkspaceDocs, leaveWorkspace, askWorkspace, regenerateAt, setTurnReport, saveAnswerArtifact, workspace, connected, ready } = useApp();
+  const {
+    handleOpenSource,
+    turns,
+    busy,
+    error,
+    status,
+    stop,
+    sessionBusy,
+    startedTick,
+    openWorkspace,
+    setWorkspaceDocs,
+    leaveWorkspace,
+    askWorkspace,
+    regenerateAt,
+    setTurnReport,
+    saveAnswerArtifact,
+    workspace,
+    connected,
+    ready,
+  } = useApp();
+  const {
+    inspectorOpen,
+    setChatDocked,
+    showInspector,
+  } = useLayout();
   const [, setParams] = useSearchParams();
   const [reports, setReports] = useState<Report[]>([]);
   const [question, setQuestion] = useState("");

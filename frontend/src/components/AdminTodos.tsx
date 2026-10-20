@@ -5,6 +5,7 @@ import { fetchArtifacts, type CorpusInfo } from "../api";
 import { fetchReviewRuns } from "../reviewApi";
 import { useApp } from "../store";
 import { libraryOverviewQuery } from "../libraryQueries";
+import { useLayout } from "../layout";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -30,7 +31,8 @@ export function libraryProblems(c: CorpusInfo): string[] {
  * finish. 首页 and 概览 · 资料库建设 show this one list.
  */
 export function useAdminTodos(enabled = true) {
-  const { corpora, openCorpus, showInspector } = useApp();
+  const { corpora } = useApp();
+  const { openCorpus, showInspector } = useLayout();
   const navigate = useNavigate();
   const overview = useQuery({ ...libraryOverviewQuery(), enabled });
   const reviews = useQuery({ queryKey: ["admin", "reviews"], queryFn: fetchReviewRuns, enabled });
@@ -90,7 +92,8 @@ export function AdminTodoList({ todos, ready, errors, limit = 6 }: { todos: Todo
 
 /** Each library's reading state for the administrator: libraries that need a look first, the rest folded. */
 export function LibraryHealth() {
-  const { corpora, openCorpus } = useApp();
+  const { corpora } = useApp();
+  const { openCorpus } = useLayout();
   const rows = [...corpora].sort((a, b) => libraryProblems(b).length - libraryProblems(a).length || (b.indexed_count ?? 0) - (a.indexed_count ?? 0));
   const troubled = rows.filter((c) => libraryProblems(c).length);
   const healthy = rows.filter((c) => !libraryProblems(c).length);

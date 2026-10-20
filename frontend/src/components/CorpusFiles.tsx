@@ -63,7 +63,17 @@ export function CorpusFiles({
   const stopAfterCurrent = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const folderRef = useRef<HTMLInputElement>(null);
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  // What is ticked survives a reload in this tab (upgrade plan F2): a page refreshed mid-comparison
+  // keeps its materials. Per viewer and per library; the page works the same without storage.
+  const pickedKey = "dox-picked:" + corpusId;
+  const [selectedIds, setSelectedIds] = useState<string[]>(() => {
+    try { const saved = JSON.parse(sessionStorage.getItem(pickedKey) ?? "[]"); return Array.isArray(saved) ? saved.filter((id) => typeof id === "string").slice(0, 20) : []; }
+    catch { return []; }
+  });
+  useEffect(() => {
+    try { if (selectedIds.length) sessionStorage.setItem(pickedKey, JSON.stringify(selectedIds)); else sessionStorage.removeItem(pickedKey); }
+    catch { /* storage unavailable: the selection simply does not outlive the page */ }
+  }, [pickedKey, selectedIds]);
   const [chatBusy, setChatBusy] = useState(false);
   // The workspace opens from a link (?workspace=1), and with &session= on the conversation 会话历史 reopened.
   const [chatOpen, setChatOpen] = useState(() => params.get("workspace") === "1");

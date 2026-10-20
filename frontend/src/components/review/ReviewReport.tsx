@@ -5,6 +5,7 @@ import { fetchReviewRun, reviewExportUrl, REVIEW_EVIDENCE_NEED_LABEL, REVIEW_FIE
 import { useApp } from "../../store";
 import { Button, Pill, type Tone } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
+import { useLayout } from "../../layout";
 
 // Red, amber and green belong to 修改建议 alone; the states that ask for no change stay neutral.
 const STATUS_TONE: Record<string, Tone> = { pending: "sky", pass: "gray", na: "gray" };
@@ -48,7 +49,8 @@ function Advice({ item, label }: { item: Item; label: string }) {
 
 export function ReviewRunPage() {
   const { id = "" } = useParams();
-  const { showInspector, handleOpenSource, corpora } = useApp();
+  const { handleOpenSource, corpora } = useApp();
+  const { showInspector } = useLayout();
   const [search, setSearch] = useSearchParams();
   // Only allow a local results route; a copied report URL must never redirect off-site.
   const requestedReturn = search.get("return") ?? "";

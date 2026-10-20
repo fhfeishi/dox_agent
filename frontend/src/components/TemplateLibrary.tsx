@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { archiveCustomTemplate, copyTemplate, deleteCustomTemplate, fetchTemplates, restoreCustomTemplate, saveTemplateDraft, templateArea, uploadIntelligenceInput, type TemplateArea, type TemplateSummary } from "../api";
 import { extractTemplate } from "../templateOutline";
-import { useApp } from "../store";
 import { TEMPLATES_CHANGED, sectionsOf, statusLabel } from "./TemplatePanels";
 import { Pill } from "./ui";
+import { useLayout } from "../layout";
 
 
 const BASE: Record<TemplateArea, string> = { analysis: "comprehensive", intelligence: "intelligence" };
@@ -24,7 +24,7 @@ export async function readText(file: File): Promise<string> {
  * reports already written with it keep their version, and can be restored.
  */
 export function TemplateLibrary({ area }: { area: TemplateArea }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [templates, setTemplates] = useState<TemplateSummary[]>([]);
   const [showArchived, setShowArchived] = useState(false);
   const [message, setMessage] = useState("");

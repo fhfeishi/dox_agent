@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { targetDetailQuery } from "../libraryQueries";
 import { type TargetDetail, type TargetEvidence } from "../api";
-import { useApp } from "../store";
 import { Pill } from "./ui";
+import { useLayout } from "../layout";
 
 /** 报告详情：四个分区 + 原文明示关联 + 证据定位（版本不符显示“资料已更新”）。 */
 export function TargetReportView({ corpusId, docId }: { corpusId: string; docId: string }) {
-  const { inspectorTarget, showInspector, openEvidence } = useApp();
+  const { inspectorTarget, showInspector, openEvidence } = useLayout();
   const index = inspectorTarget.kind === "target" ? inspectorTarget.index : 0;
   const [search] = useSearchParams();
   const result = useQuery(targetDetailQuery(corpusId, docId, search.get("version") ?? undefined));

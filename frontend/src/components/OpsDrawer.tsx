@@ -5,6 +5,7 @@ import { Icon } from "./Icons";
 import { Button, Pill } from "./ui";
 import { useApp } from "../store";
 import { AccountsPanel } from "./AccountsPanel";
+import { useLayout } from "../layout";
 
 /**
  * Global settings opened from the rail's model button: model connection (details and a
@@ -12,7 +13,8 @@ import { AccountsPanel } from "./AccountsPanel";
  * chat/session export lives in the chat top bar.
  */
 export function OpsDrawer() {
-  const { drawerOpen, setDrawerOpen, disconnect, connected } = useApp();
+  const { disconnect, connected } = useApp();
+  const { drawerOpen, setDrawerOpen } = useLayout();
   const [info, setInfo] = useState<ModelInfo | null>(null);
   const [error, setError] = useState("");
   const [check, setCheck] = useState<ModelCheck | null>(null);

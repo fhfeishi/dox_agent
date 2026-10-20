@@ -5,6 +5,7 @@ import { lineageQuery, projectQuery, type Hierarchy } from "../projects";
 import { useApp } from "../store";
 import { Button } from "./ui";
 import { Chips, Tier, TierCounts } from "./StageMarks";
+import { useLayout } from "../layout";
 
 const LEVELS = [{ min: 0, label: "全部" }, { min: 2, label: "攻关验证及以上" }, { min: 4, label: "成型技术及以上" }];
 
@@ -47,7 +48,8 @@ function StagePanel({ cell, plain, titles, onTech, onProject }: { cell: MatrixCe
  */
 export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: string; hierarchy: Hierarchy; onTech: (node: string) => void;
   onDim: (dim: "问题" | "成果", scene: string) => void }) {
-  const { showInspector, corpora } = useApp();
+  const { corpora } = useApp();
+  const { showInspector } = useLayout();
   const { data: lineage } = useQuery(lineageQuery(corpusId));
   const { data: library } = useQuery(projectQuery(corpusId));
   const [min, setMin] = useState(0);

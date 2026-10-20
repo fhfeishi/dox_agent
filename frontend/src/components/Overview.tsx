@@ -13,6 +13,7 @@ import { LineageRoadmap } from "./LineageRoadmap";
 import { LineageTree } from "./LineageTree";
 import { ProjectGraph } from "./ProjectGraph";
 import { YearDistribution } from "./YearDistribution";
+import { useLayout } from "../layout";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -35,7 +36,8 @@ const VIEWS: { key: View; label: string; admin?: boolean }[] = [{ key: "overview
 export function Overview() {
   const { area: requestedArea = "build" } = useParams();
   const { role } = useAuth();
-  const { corpora, showInspector } = useApp();
+  const { corpora } = useApp();
+  const { showInspector } = useLayout();
   const [search, setSearch] = useSearchParams();
   const admin = role === "admin";
   // 近期工作 left 概览 (query 2026-1015 1142); period summaries of reports are in 成果.
@@ -107,7 +109,7 @@ function Work() {
 
 /** The four views beyond the overview, each the library workspace's own component, read only. */
 function DomainView({ corpusId, name, view }: { corpusId: string; name: string; view: Exclude<View, "overview" | "tech"> }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [node, setNode] = useState("");
   const { data: lineage } = useQuery({ ...lineageQuery(corpusId), enabled: view === "roadmap" });
   const { data: library } = useQuery({ ...projectQuery(corpusId), enabled: view === "relations" });

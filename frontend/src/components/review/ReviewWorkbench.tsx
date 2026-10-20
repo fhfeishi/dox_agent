@@ -5,6 +5,7 @@ import { createReviewRun, fetchReviewDocument, fetchReviewDocuments, fetchReview
 import { useApp } from "../../store";
 import { Button, Pill } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
+import { useLayout } from "../../layout";
 
 const ACCEPT = ".pdf,.doc,.docx,.md,.txt";
 function MetadataFields({ doc, onSave, onRetry }: {
@@ -12,7 +13,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
   onSave: (meta: Partial<ReviewMetadata>) => Promise<void>;
   onRetry: () => Promise<void>;
 }) {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [draft, setDraft] = useState<ReviewMetadata>(doc.metadata);
   // Fields the user has typed into are kept while extraction polls; untouched fields follow the server.
   const [touched, setTouched] = useState<Set<string>>(new Set());
@@ -283,7 +284,8 @@ const CARD_TEXT: Record<ReviewKind, { label: string; lead: string; note: string 
 export function ReviewWorkbench() {
   const { kind } = useParams();
   const reviewKind: ReviewKind = kind === "professional" ? "professional" : "formal";
-  const { corpora, corpusIds, showInspector } = useApp();
+  const { corpora, corpusIds } = useApp();
+  const { showInspector } = useLayout();
   const [search, setSearch] = useSearchParams();
   const sheetId = search.get("sheet") ?? "";
   const [health, setHealth] = useState<ReviewHealth | null>(null);

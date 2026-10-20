@@ -9,6 +9,7 @@ import { useAuth } from "../auth";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
 import { Pill } from "./ui";
+import { useLayout } from "../layout";
 
 type Group = "all" | "analysis" | "review" | "intelligence" | "trash";
 type Kind = Exclude<Group, "all" | "trash">;
@@ -46,7 +47,8 @@ const reviewRow = (run: ReviewRun): Row => ({
  */
 export function ResultsPage() {
   const { username, role } = useAuth();
-  const { showInspector, corpora } = useApp();
+  const { corpora } = useApp();
+  const { showInspector } = useLayout();
   const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
   const client = useQueryClient();

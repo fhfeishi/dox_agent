@@ -10,6 +10,7 @@ import { BrandMark, Icon } from "./Icons";
 import { Button, ToolButton } from "./ui";
 import { downloadSessionMarkdown } from "../sessionExport";
 import { downloadTurn } from "../turnExport";
+import { useLayout } from "../layout";
 
 function UserRow({
   index,
@@ -116,13 +117,15 @@ export function ChatView() {
     corpusIds,
     corpora,
     setInput,
-    inspectorOpen,
-    toggleInspector,
     setTurnReport,
     saveAnswerArtifact,
     exportChat,
-    showToast,
   } = useApp();
+  const {
+    inspectorOpen,
+    toggleInspector,
+    showToast,
+  } = useLayout();
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const exportRef = useRef<HTMLDivElement>(null);

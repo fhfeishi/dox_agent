@@ -10,6 +10,7 @@ import { TargetReports } from "./TargetReports";
 import { TopicAdmin } from "./TopicManager";
 import { ProjectOverview } from "./ProjectOverview";
 import { Button, Pill } from "./ui";
+import { useLayout } from "../layout";
 
 const KIND_LABEL: Record<string, string> = { fund: "基金报告库", demo: "演示库", unknown: "资料库" };
 type View = "target" | "timeline" | "relations" | "files";
@@ -27,11 +28,13 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
     runCorpusIngest,
     ingestBusy,
     connected,
+  } = useApp();
+  const {
     corpusView,
     setCorpusView,
     openCorpus,
     openPreview,
-  } = useApp();
+  } = useLayout();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const admin = useAuth().role === "admin";
@@ -168,6 +171,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           </p> : null}
           {corpusView === "files" ? (
             <CorpusFiles
+              key={corpus.id}
               corpusId={corpus.id}
               corpusName={corpus.rel_path}
               documents={documents}

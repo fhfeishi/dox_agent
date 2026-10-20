@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createSummary, fetchSummaryFacts, fromFacts, headline, PERIODS, type Period, type WorkItem } from "../recentWork";
-import { useApp } from "../store";
 import { Chart, type ChartSpec } from "./Charts";
+import { useLayout } from "../layout";
 
 const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as const;
 
@@ -14,7 +14,7 @@ const STATE = { done: "已完成", active: "处理中", failed: "未完成" } as
  * (query 2026-1014 1516). Reports open in the right-hand panel, reviews on their own page.
  */
 export function PeriodSummary() {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const navigate = useNavigate();
   const client = useQueryClient();
   const [period, setPeriod] = useState<Period>("week");

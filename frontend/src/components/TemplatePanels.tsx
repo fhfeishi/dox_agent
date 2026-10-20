@@ -8,6 +8,7 @@ import {
 } from "../api";
 import { useApp } from "../store";
 import { Button, Card, Pill } from "./ui";
+import { useLayout } from "../layout";
 
 /**
  * Task and report templates (query 2026-1009 1541): one view that reads as an outline and turns
@@ -104,7 +105,8 @@ function ParameterEditor({ parameters, onChange }: { parameters: TaskParameter[]
 }
 
 export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: boolean }) {
-  const { tasks, refreshTasks, startTask, showInspector, toggleInspector } = useApp();
+  const { tasks, refreshTasks, startTask } = useApp();
+  const { showInspector, toggleInspector } = useLayout();
   const [task, setTask] = useState<TaskInfo | null>(() => tasks.find((t) => t.id === taskId) ?? null);
   const [draft, setDraft] = useState<TaskInfo | null>(null);
   const [library, setLibrary] = useState<TemplateSummary[]>([]);
@@ -221,7 +223,7 @@ export function TaskTemplatePanel({ taskId, edit }: { taskId: string; edit: bool
 }
 
 export function ReportTemplatePanel({ templateId, edit }: { templateId: string; edit: boolean }) {
-  const { showInspector, toggleInspector } = useApp();
+  const { showInspector, toggleInspector } = useLayout();
   const [template, setTemplate] = useState<TemplateInfo | null>(null);
   const [draft, setDraft] = useState<{ name: string; purpose: string; content: string } | null>(null);
   const [busy, setBusy] = useState(false);

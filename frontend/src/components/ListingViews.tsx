@@ -8,6 +8,7 @@ import type { IconName } from "./Icons";
 import { useAuth } from "../auth";
 import { useNavigate } from "react-router";
 import { TemplateLibrary, readText } from "./TemplateLibrary";
+import { useLayout } from "../layout";
 
 const TASK_STYLE: { tint: string; fg: string; icon: IconName }[] = [
   { tint: "var(--tint-mint)", fg: "var(--ok-fg)", icon: "checklist" },
@@ -56,7 +57,8 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
  * deleted, published ones archived and restored from the archived list.
  */
 export function TasksView() {
-  const { tasks, tasksError, taskId, showInspector, refreshTasks } = useApp();
+  const { tasks, tasksError, taskId, refreshTasks } = useApp();
+  const { showInspector } = useLayout();
   const navigate = useNavigate();
   // Every task starts in 对话工作台 with that task and its own 点选提问 presets (query 2026-1020 1719:
   // choosing a library and material and landing in the analysis workspace was the wrong way in).

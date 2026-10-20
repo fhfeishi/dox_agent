@@ -5,6 +5,7 @@ import { createCorpus, fetchCorpusGroups, postCorpusGroups, type CorpusGroups } 
 import { useApp } from "../store";
 import { Icon } from "./Icons";
 import { libraryOverviewQuery } from "../libraryQueries";
+import { useLayout } from "../layout";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -35,7 +36,8 @@ export function useGroups() {
  * maintenance controls follow the server's administrator rule.
  */
 export function LibraryHome() {
-  const { corpora, corporaError, corporaLoaded, openCorpus, refreshCorpora, showInspector, newCorpusOpen: creating, setNewCorpusOpen: setCreating } = useApp();
+  const { corpora, corporaError, corporaLoaded, refreshCorpora } = useApp();
+  const { openCorpus, showInspector, newCorpusOpen: creating, setNewCorpusOpen: setCreating } = useLayout();
   const [search, setSearch] = useSearchParams();
   const query = (search.get("q") ?? "").trim().toLowerCase();
   const data = useGroups();

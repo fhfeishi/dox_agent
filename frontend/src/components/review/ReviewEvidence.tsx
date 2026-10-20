@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { addReviewEvidence, fetchReviewEvidence, searchReviewEvidence, uploadReviewEvidence, type ReviewEvidence } from "../../reviewApi";
-import { useApp } from "../../store";
 import { Button } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
+import { useLayout } from "../../layout";
 
 const ACCEPT = ".pdf,.doc,.docx,.md,.txt";
 export function ReviewEvidence() {
-  const { showInspector } = useApp();
+  const { showInspector } = useLayout();
   const [items, setItems] = useState<ReviewEvidence[]>([]);
   const [query, setQuery] = useState("");
   const [cutoff, setCutoff] = useState("");

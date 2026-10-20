@@ -5,6 +5,7 @@ import { REVIEW_STATUS_LABEL, fetchReviewRuns } from "../reviewApi";
 import { fetchArtifacts } from "../api";
 import { useApp } from "../store";
 import { TERMS } from "../copy";
+import { useLayout } from "../layout";
 
 const REPORT_STATE: Record<string, string> = { completed: "已完成", failed: "未完成", draft: "草稿", generating: "生成中" };
 const ACTIVE = new Set(["queued", "running", "generating"]);
@@ -17,7 +18,8 @@ const ACTIVE = new Set(["queued", "running", "generating"]);
  */
 export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
   const { username } = useAuth();
-  const { workspace, switchSession, showInspector } = useApp();
+  const { workspace, switchSession } = useApp();
+  const { showInspector } = useLayout();
   const navigate = useNavigate();
   const reports = useQuery({
     queryKey: ["mine", "reports", username],

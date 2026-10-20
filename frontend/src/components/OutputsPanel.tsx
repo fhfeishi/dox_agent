@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { outputsQuery, projectQuery, FACET_COLORS } from "../projects";
-import { useApp } from "../store";
+import { useLayout } from "../layout";
 
 const ORDER = ["奖励", "专利", "专著", "期刊论文", "会议论文"];
 const rank = (type: string) => { const i = ORDER.indexOf(type); return i < 0 ? ORDER.length : i; };
@@ -11,7 +11,7 @@ const rank = (type: string) => { const i = ORDER.indexOf(type); return i < 0 ? O
  * type and the entries themselves — rather than one sentence taken from an abstract.
  */
 export function OutputsPanel({ corpusId, projectIds, label }: { corpusId: string; projectIds: string[]; label: string }) {
-  const { openPreview } = useApp();
+  const { openPreview } = useLayout();
   const [all, setAll] = useState(false);
   const { data, error } = useQuery(outputsQuery(corpusId));
   const { data: library } = useQuery(projectQuery(corpusId));

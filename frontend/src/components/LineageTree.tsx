@@ -13,6 +13,7 @@ import { TechTimeline } from "./TechTimeline";
 import { ZoomPan } from "./ZoomPan";
 import { Button } from "./ui";
 import { Chips, Tier, TierCounts, tierCounts } from "./StageMarks";
+import { useLayout } from "../layout";
 
 /** One colour per sub-library branch, stable by its place in the library list. */
 export function branchColor(corpusIds: string[], corpusId: string) {
@@ -237,7 +238,8 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [full]);
-  const { corpora, showInspector } = useApp();
+  const { corpora } = useApp();
+  const { showInspector } = useLayout();
   const { role } = useAuth();
   const client = useQueryClient();
   const [notice, setNotice] = useState("");

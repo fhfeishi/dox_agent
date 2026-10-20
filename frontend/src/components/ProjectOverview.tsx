@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { FACETS, projectQuery, type Project } from "../projects";
-import { useApp } from "../store";
 import { Button } from "./ui";
 import { ProjectGraph } from "./ProjectGraph";
 import { SceneHierarchy } from "./SceneHierarchy";
 import { YearDistribution } from "./YearDistribution";
+import { useLayout } from "../layout";
 
 const SCOPES: Record<string, string> = { awarded: "批准资助金额", direct: "直接费用", total: "总经费" };
 
 export function ProjectOverview({ corpusId, corpusName }: { corpusId: string; corpusName?: string }) {
   const result = useQuery(projectQuery(corpusId));
-  const { openPreview } = useApp();
+  const { openPreview } = useLayout();
   const [search, setSearch] = useSearchParams();
   const view = ["timeline", "relations"].includes(search.get("projectView") ?? "") ? search.get("projectView")! : "";
   const year = search.get("startYear") ?? "";

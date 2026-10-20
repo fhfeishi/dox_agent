@@ -6,6 +6,7 @@ import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
 import { useApp } from "../store";
 import { FocusRadars } from "./Charts";
 import { libraryOverviewQuery } from "../libraryQueries";
+import { useLayout } from "../layout";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -15,7 +16,8 @@ const short = (name: string) => name.replace(/^自然科学基金-/, "");
  * admin view does not leave the page. Entering the library is one explicit button.
  */
 export function LibraryPreview({ corpusId }: { corpusId: string }) {
-  const { corpora, openCorpus } = useApp();
+  const { corpora } = useApp();
+  const { openCorpus } = useLayout();
   // A leader reads the library, not its upkeep (节点审查 角色表; query 2026-1016 1551).
   const leader = useAuth().role === "leader";
   const navigate = useNavigate();

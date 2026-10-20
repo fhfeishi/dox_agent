@@ -27,7 +27,7 @@
 | B2 | 2 | Q1 | 已完成：① 管理员专属写接口声明 `dependencies=ADMIN_ONLY`，中间件路径正则删除，权限矩阵 80 个写接口 0 差异；② `main.py` 2934 → 约 200 行，只做装配（生命周期、共用的库查找、按声明顺序安装各领域、前端兜底），路由分到 `src/api/` 的 system、assets、library、web、chat、structure、reports，共用请求模型在 `api/common.py`；拆分前后 152 个路由的路径、方法、状态码、依赖与同前缀匹配顺序逐一比对相同；测试中对模型与网页的替换改指向实际使用的模块（`monkeypatch` 找不到属性即报错，防止误调真实模型）。`check.sh all` 通过 |
 | B5 | G3 | 生产部署决定 | 本轮不实施 |
 | F1 | 2 | Q1 | 已完成（范围调整，见 DECISIONS 2026-10-20）：组件中 40 处直接 `fetch(` 归零，请求进入 API 与数据模块，重复的资料库概况读取合并为一处查询；`layers.test.mts` 守住规则，`noUnusedLocals` 开启。按领域分目录与 OpenAPI 类型生成暂不做 |
-| F2 | 2 | F1、B1订阅契约 | 未开始 |
+| F2 | 2 | F1、B1订阅契约 | 布局层完成：`layout.tsx` 分出当前工作区、右侧面板与返回栈、放大预览、设置抽屉、侧栏和提示（33 个字段），`store.tsx` 1430 → 约 1170 行只留工作上下文；41 个文件改用 `useLayout()`，类型 `NavKey`/`InspectorTarget`/`PreviewTarget` 随之迁出；store 的 memo 依赖整个布局值，闭包时序与拆分前一致。验收断言已加入 `browser_analysis_workspace`：勾选两项目后预览原文、刷新页面，勾选仍在（此前刷新即丢，现按标签页保存；切换资料库各自独立），并以去掉恢复逻辑的反证确认该断言会失败。服务端数据层（资料库、任务、健康状态）仍在 store 中，未再拆 |
 | F3 | 2 | C7已定案 | 已完成：`uiFlags.ts` 删除，任务相关的未启用分支与提示去掉；文档浏览开关默认关闭，按 C7 连同旧文件目录树（`DocumentExplorer`、`DocumentTree`、对话页“本地文档”按钮与 store 中的 explorer 状态）删除，原文统一经预览面板与放大预览；`check.sh all` 通过 |
 | F3b | 2/3 | F3、U1必要组件 | 已有预览，待完善 |
 | U1 | 3 | 最小版无；完整版 F1 | 令牌完成：字号 7 级（正文 14px）、界面颜色角色 40 个，`tokens.test.mts` 拒绝硬编码字号与色值（图表数据色按清单例外）；三种屏幕尺寸截图复核。`shared/ui` 组件目录依赖 F1，随前端分域迁移做 |

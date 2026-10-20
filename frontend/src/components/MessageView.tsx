@@ -13,6 +13,7 @@ import { ReportMarkdown } from "./ReportMarkdown";
 import { useApp } from "../store";
 import { useAuth } from "../auth";
 import { fetchDocuments } from "../useDocuments";
+import { useLayout } from "../layout";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
   running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[var(--lav-line)]" },
@@ -364,7 +365,8 @@ function Telemetry({ attempt }: { attempt: Attempt }) {
 }
 
 function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (report: ReportInfo) => void }) {
-  const { corpora, workspace, activeTask, showInspector, handleOpenSource } = useApp();
+  const { corpora, workspace, activeTask, handleOpenSource } = useApp();
+  const { showInspector } = useLayout();
   const taskId = attempt.runInfo?.task_id ?? attempt.options.task_id;
   const taskVersion = attempt.runInfo?.task_version ?? attempt.options.task_version;
   const currentTaskMatches = activeTask?.id === taskId && activeTask?.version === taskVersion;

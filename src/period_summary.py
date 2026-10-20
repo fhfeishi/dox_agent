@@ -4,6 +4,7 @@ The server gathers what happened in a period — analysis reports and review tas
 into charts. The model only writes the text sections from those facts (``prompts/period_summary.md``);
 every number in the saved report comes from the counting here, drawn as ```dox-chart blocks.
 """
+import asyncio
 import json
 import re
 import uuid
@@ -162,7 +163,10 @@ def report_rows(store) -> list[dict]:
 
 
 async def generate(app, period: str, model) -> dict:
-    """Gather, count, ask the model for the text, and save the summary as a report."""
+    """Gather, count, ask the model for the text, and save the summary as a report.
+
+    The summary is a report record from the moment it starts (card B1): 报告中心 shows it as 生成中, a
+    page closed meanwhile does not lose it, a failure says why, and a restart marks it 已中断."""
     from .agent.corpora import scan_corpora
     from .review import storage as review_db
 
@@ -196,10 +200,18 @@ async def generate(app, period: str, model) -> dict:
     figures = charts(facts, scenes_of)
     for_model = {**facts, **{key: [{k: v for k, v in item.items() if k != "id"} for item in facts[key]]
                                 for key in ("reports", "reviews")}}
-    response = await model.ainvoke([SystemMessage(content=PROMPT), HumanMessage(content=json.dumps(for_model, ensure_ascii=False))])
-    text = _json_object(response.content)
-    body = markdown(facts, text, figures)
     domains = {d for item in facts["reports"] + facts["reviews"] for d in item["domains"]}
     corpus_ids = [info.id for info in infos if info.name.replace("自然科学基金-", "") in domains]
-    return store.create(uuid.uuid4().hex, type="report", title=f"工作总结 · {facts['period']}（{facts['start']} 至 {facts['end']}）",
-                        markdown=body, corpus_ids=corpus_ids, task_id=TASK_ID, status="completed")
+    run_id = "summary-" + uuid.uuid4().hex
+    params = {"focus": f"工作总结 · {facts['period']}（{facts['start']} 至 {facts['end']}）", "domain": "工作总结",
+              "task_id": TASK_ID, "period": period, "corpus_ids": corpus_ids}
+    artifact = await asyncio.to_thread(store.begin_report, run_id, params)
+    try:
+        response = await model.ainvoke([SystemMessage(content=PROMPT), HumanMessage(content=json.dumps(for_model, ensure_ascii=False))])
+        body = markdown(facts, _json_object(response.content), figures)
+        await asyncio.to_thread(store.finish_report, run_id, params, body, [])
+    except BaseException as exc:  # timeouts and cancellation included: the record must not stay 生成中
+        reason = str(exc) if isinstance(exc, ValueError) else "生成已中断" if isinstance(exc, (asyncio.CancelledError, TimeoutError)) else "模型调用失败"
+        await asyncio.shield(asyncio.to_thread(store.record_failed_report, run_id=run_id, reason=reason))
+        raise
+    return await asyncio.to_thread(store.get, artifact["artifact_id"])

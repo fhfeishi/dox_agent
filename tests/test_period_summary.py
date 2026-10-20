@@ -83,6 +83,16 @@ def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_p
         # A leader sees the same recent work as everyone else.
         assert [r["title"] for r in client.get("/api/summaries/facts", params={"period": "week"}).json()["reports"]] == ["医疗研判"]
         assert client.post("/api/summaries", json={"period": "month"}).status_code == 201
+        # A summary is a report record while it is written (card B1): a failure leaves it 未完成 with
+        # its reason, never a silent loss or a record stuck at 生成中.
+        class Broken:
+            async def ainvoke(self, messages):
+                raise RuntimeError("model down")
+        monkeypatch.setattr(main, "model_for", lambda settings, **_: Broken())
+        assert client.post("/api/summaries", json={"period": "year"}).status_code == 502
+        failed = [a for a in app.state.artifacts.list() if a.get("task_id") == "period_summary" and a["status"] == "failed"]
+        assert len(failed) == 1 and failed[0]["fail_reason"] == "模型调用失败", failed
+        assert not [a for a in app.state.artifacts.list() if a["status"] == "generating"]
 
 
 def test_word_export_turns_chart_blocks_into_tables():

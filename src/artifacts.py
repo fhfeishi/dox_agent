@@ -246,7 +246,8 @@ class ArtifactStore:
                         report_title(params),
                         (params.get("session_key") or ""),
                         run_id,
-                        json.dumps([params["corpus_id"]] if params.get("corpus_id") else []),
+                        # A summary spans several libraries; a report is about one.
+                        json.dumps(params.get("corpus_ids") or ([params["corpus_id"]] if params.get("corpus_id") else [])),
                         params.get("task_id", "task4"),
                         (params.get("template_id") or ""),
                         json.dumps(

@@ -1,29 +1,18 @@
 import { useEffect, useState, type ReactNode } from "react";
 import type { LibraryOverview } from "../api";
+import { LIBRARY_HUES, OTHER_LIBRARIES, rankLibraries } from "../libraryColors";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: number) => (yuan / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
 
-/**
- * One colour per library, kept on every slide (query 2026-1019 1458). Eight distinct hues is the most a
- * reader separates, so the seven largest libraries get the validated dark-surface categorical slots in
- * fixed order and the rest share a neutral “其他领域”. Checked with the dataviz palette validator on the
- * banner surface #1f3a57: all checks pass; magenta and green sit under 3:1, so every chart also names
- * its series in text (legend, labels, hover).
- */
-const HUES = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9"];
-const OTHER = "#8597ab";
 type Group = { key: string; name: string; color: string; ids: string[] };
 
 function groups(rows: LibraryOverview[]): Group[] {
-  // Card B4: hues follow project count with ties broken by library id, computed once for all slides, so
-  // re-sorting a slide (e.g. by funding) or equal counts never repaint a library. Binding hues to ids
-  // alphabetically was tried and rejected: it put the palette's weakest pair (orange/yellow) on the two
-  // largest libraries; by size, the two dominant ones get the clearest pair (blue/orange).
-  const ranked = [...rows].sort((a, b) => b.projects - a.projects || a.corpus_id.localeCompare(b.corpus_id));
-  const named = ranked.slice(0, HUES.length).map((r, i) => ({ key: r.corpus_id, name: short(r.name), color: HUES[i], ids: [r.corpus_id] }));
-  const rest = ranked.slice(HUES.length);
-  return rest.length ? [...named, { key: "other", name: `其他领域（${rest.map((r) => short(r.name)).join("、")}）`, color: OTHER, ids: rest.map((r) => r.corpus_id) }] : named;
+  // Hues are computed once for all slides (libraryColors.ts), so re-sorting a slide never repaints a library.
+  const ranked = rankLibraries(rows);
+  const named = ranked.slice(0, LIBRARY_HUES.length).map((r, i) => ({ key: r.corpus_id, name: short(r.name), color: LIBRARY_HUES[i], ids: [r.corpus_id] }));
+  const rest = ranked.slice(LIBRARY_HUES.length);
+  return rest.length ? [...named, { key: "other", name: `其他领域（${rest.map((r) => short(r.name)).join("、")}）`, color: OTHER_LIBRARIES, ids: rest.map((r) => r.corpus_id) }] : named;
 }
 
 const fmt = (n: number) => n.toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -111,7 +100,7 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
   const [paused, setPaused] = useState(false);
   const [still] = useState(() => typeof window !== "undefined" && Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches));
   const gs = groups(rows);
-  const colorOf = (id: string) => gs.find((g) => g.ids.includes(id))?.color ?? OTHER;
+  const colorOf = (id: string) => gs.find((g) => g.ids.includes(id))?.color ?? OTHER_LIBRARIES;
   // Every library here is “AI与…”: the shared prefix moves to the eyebrow so the labels say what differs.
   const prefix = rows.length && rows.every((r) => short(r.name).startsWith("AI与")) ? "AI与" : "";
   const bare = (name: string) => prefix && name.startsWith(prefix) ? name.slice(prefix.length) : name;

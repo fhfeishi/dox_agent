@@ -8,6 +8,7 @@ import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
+import { DocumentCard } from "./DocumentCard";
 import { canDeleteArtifact, changeArtifactLifecycle, retryReport, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
@@ -88,7 +89,6 @@ export function Inspector() {
     toggleInspectorPinned,
     inspectorWidth,
     setInspectorWidth,
-    openFullPreview,
     showInspector,
   } = useLayout();
   const panelRef = useRef<HTMLElement>(null);
@@ -572,9 +572,8 @@ export function Inspector() {
 
         {inspectorTarget.kind === "document" ? (
           <>
+            <DocumentCard doc={inspectorTarget.doc} page={inspectorTarget.page} corpusId={inspectorTarget.corpusId} />
             <SectionTitle>资料原文</SectionTitle>
-            <p className="mb-[12px] break-all text-caption text-[var(--stone)]">{documentMeta(inspectorTarget.doc)}</p>
-            <Button size="sm" className="mb-[14px]" onClick={() => openFullPreview(inspectorTarget.doc, inspectorTarget.page, inspectorTarget.corpusId, true)}>放大阅读</Button>
             {inspectorTarget.doc.focus ? (
               <TargetFocusedText doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} quote={inspectorTarget.doc.focus} />
             ) : (

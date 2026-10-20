@@ -20,6 +20,7 @@ const DATA_COLOURS = new Set([
   'projects.ts',                     // facet, maturity and category palettes shared by the charts
   'departments.ts',                  // NSFC department colours
   'briefing.ts',                     // maturity levels
+  'libraryColors.ts',                // one hue per library (banner, material preview)
   'exportText.ts',                   // the stylesheet inside exported HTML documents
   'components/HeroCarousel.tsx',     // library hues on the leader banner (dataviz-validated)
   'components/LineageRoadmap.tsx', 'components/LineageTree.tsx', 'components/ProjectGraph.tsx',

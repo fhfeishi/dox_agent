@@ -83,6 +83,21 @@ async def main():
                 await page.set_viewport_size({"width":390,"height":844})
                 assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth+1")
                 await page.set_viewport_size({"width":1440,"height":1000})
+                # The material preview says what a file is and offers its own actions (upgrade plan F3b).
+                await page.goto(url)
+                await listing.get_by_role("button", name="预览").first.click()
+                card = page.locator("aside[aria-hidden='false']").get_by_role("region", name="资料信息")
+                await expect(card).to_contain_text("项目年份")
+                await expect(card.get_by_role("link", name="下载原文")).to_have_attribute("href", re.compile(r"/api/documents/.+/file\?corpus="))
+                await card.get_by_role("button", name="就此提问").click()
+                await expect(page).to_have_url(re.compile(r"/chat$"))
+                for guide in await page.get_by_role("dialog", name=re.compile("操作指南")).all():
+                    await guide.get_by_role("button", name="知道了").click()
+                await expect(page.get_by_role("textbox", name="问题", exact=True)).to_have_value(re.compile("请概括这份资料"))
+                async with page.expect_request(lambda r: r.url.endswith("/api/chat") and r.method == "POST") as asked:
+                    await page.get_by_role("button", name="发送 ↑").click()
+                assert len((await asked.value).post_data_json["allowed_doc_ids"]) == 1
+                await page.goto(url)
                 upload_dir = root/"新资料"
                 (upload_dir/"甲").mkdir(parents=True); (upload_dir/"乙").mkdir()
                 for folder in ("甲", "乙"):

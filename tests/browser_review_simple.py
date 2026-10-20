@@ -45,7 +45,7 @@ async def main():
                 await expect(page.get_by_role("heading", name="登录")).to_be_visible()
                 await page.get_by_label("密码", exact=True).fill("123456")  # built-in admin / 123456
                 await page.get_by_role("button", name="登录").click()
-                await expect(page.get_by_role("heading", name="今天，从哪项工作开始？")).to_be_visible()
+                await expect(page.get_by_role("heading", name="今天的维护与工作")).to_be_visible()  # the administrator's 首页 (U4b)
                 navigation = page.get_by_role("navigation", name="主导航", exact=True)
                 nav_before = await navigation.locator("a, button").all_text_contents()
                 nav_positions = await navigation.locator("a, button").evaluate_all("(buttons) => buttons.map(b => Math.round(b.getBoundingClientRect().x))")
@@ -146,7 +146,7 @@ async def main():
                 await page.set_viewport_size({"width": 1440, "height": 1000})
                 await page.get_by_role("link", name="首页", exact=True).click()
                 await expect(page.get_by_role("region", name="我的工作")).to_be_visible()
-                await expect(page.get_by_role("heading", name="今天，从哪项工作开始？")).to_be_visible()
+                await expect(page.get_by_role("heading", name="今天的维护与工作")).to_be_visible()  # the administrator's 首页 (U4b)
                 await page.screenshot(path=str(screenshots/"home.png"), full_page=True)
                 await page.set_viewport_size({"width": 390, "height": 844})
                 await page.get_by_role("button", name="工作导航 ▾", exact=True).click()

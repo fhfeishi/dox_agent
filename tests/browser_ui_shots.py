@@ -114,6 +114,8 @@ async def main():
                 await page.goto(origin + "/home")
                 await dismiss(page)
                 await expect(page.get_by_role("navigation", name="主导航")).to_be_visible()
+                # The administrator's 首页 reads its to-dos from the library overview: wait for it.
+                await expect(page.get_by_role("region", name="需要处理").get_by_text("正在读取维护事项…")).to_have_count(0, timeout=180000)
                 await shot(page, "admin-01-home")
                 await open_menu(page, "存量分析 ▾")
                 await shot(page, "admin-02-menu-tasks")

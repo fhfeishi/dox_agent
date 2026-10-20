@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { Navigate, useNavigate, useParams, useSearchParams } from "react-router";
+import { Navigate, useParams, useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../auth";
-import { fetchArtifacts } from "../api";
 import { resultsSummaryQuery } from "../resultsSummary";
 import { buildBoard, buildMatrix, libraryInsights, tierOf } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
-import { fetchReviewRuns } from "../reviewApi";
 import { useApp } from "../store";
+import { AdminTodoList, useAdminTodos } from "./AdminTodos";
 import { FocusRadars } from "./Charts";
-import { LeaderConstruction, type LibraryOverview } from "./LeaderConstruction";
+import { LeaderConstruction } from "./LeaderConstruction";
 import { LineageRoadmap } from "./LineageRoadmap";
 import { LineageTree } from "./LineageTree";
 import { ProjectGraph } from "./ProjectGraph";
@@ -83,41 +82,12 @@ export function Overview() {
   </main>;
 }
 
-type Todo = { key: string; what: string; detail: string; action: string; go: () => void };
-
-/** What needs the administrator: library structure to refresh and tasks that did not finish. */
+/** What needs the administrator, the same list as on 首页 (AdminTodos), with the overall numbers. */
 function Work() {
-  const { openCorpus, showInspector } = useApp();
-  const navigate = useNavigate();
   const totals = useQuery(resultsSummaryQuery);
-  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  } });
-  const reviews = useQuery({ queryKey: ["admin", "reviews"], queryFn: fetchReviewRuns });
-  const reports = useQuery({ queryKey: ["admin", "artifacts"], queryFn: () => fetchArtifacts() });
-  const libs = overview.data ?? [];
-  const runs = reviews.data ?? [];
-  const arts = (reports.data ?? []).filter((a) => a.lifecycle === "active");
-  const todos: Todo[] = [
-    ...libs.filter((l) => l.lineage.state === "stale" || l.lineage.state === "missing").map((l) => ({ key: "ls" + l.corpus_id, what: `${short(l.name)} 技术谱系${l.lineage.state === "missing" ? "尚未生成" : "需要重新生成"}`,
-      detail: l.lineage.state === "missing" ? "已有资料尚未生成技术谱系" : l.lineage.stale_reason || "四维条目已变化", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
-    ...libs.filter((l) => l.hierarchy.state && l.hierarchy.state !== "ready").map((l) => ({ key: "hs" + l.corpus_id, what: `${short(l.name)} 场景归纳${l.hierarchy.state === "missing" ? "尚未生成" : "需要更新"}`,
-      detail: "场景、问题、技术路线与成果的归纳", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
-    ...libs.filter((l) => l.lineage.unplaced).map((l) => ({ key: "lu" + l.corpus_id, what: `${short(l.name)} 有 ${l.lineage.unplaced} 条技术未归入体系`,
-      detail: "在技术谱系的“未归入体系的条目”中逐条查看", action: "查看", go: () => showInspector({ kind: "corpus", corpusId: l.corpus_id }) })),
-    ...libs.filter((l) => l.pending_identity).map((l) => ({ key: "pi" + l.corpus_id, what: `${short(l.name)} 有 ${l.pending_identity} 份资料项目身份待核对`,
-      detail: "批准号或基金体系不明，未计入项目统计", action: "打开资料管理", go: () => openCorpus(l.corpus_id, "files") })),
-    ...runs.filter((r) => r.status === "failed").slice(0, 10).map((r) => ({ key: "rf" + r.id, what: `审查未完成：${r.document?.metadata?.title || r.document?.filename || "申请书"}`,
-      detail: r.error || "原因未记录", action: "查看", go: () => navigate("/review/runs/" + r.id) })),
-    ...arts.filter((a) => a.status === "failed").slice(0, 10).map((a) => ({ key: "af" + a.artifact_id, what: `报告未完成：${a.title || "分析报告"}`,
-      detail: a.fail_reason || "原因未记录", action: "查看", go: () => showInspector({ kind: "artifact", artifactId: a.artifact_id }) })),
-  ];
-  const ready = Boolean(overview.data && reviews.data && reports.data && totals.data);
-  const errors = [overview.error, reviews.error, reports.error, totals.error].filter(Boolean);
-  const kpis: [string, string][] = [["资料库", overview.data ? String(libs.length) : "—"],
-    ["项目（各库合计）", overview.data ? String(libs.reduce((n, l) => n + l.projects, 0)) : "—"],
+  const { todos, ready, errors, libs } = useAdminTodos();
+  const kpis: [string, string][] = [["资料库", ready ? String(libs.length) : "—"],
+    ["项目（各库合计）", ready ? String(libs.reduce((n, l) => n + l.projects, 0)) : "—"],
     ["处理中的任务", totals.data ? String(totals.data.active) : "—"],
     ["未完成任务", totals.data ? String(totals.data.failed) : "—"]];
   return <div className="mx-auto max-w-[1200px] space-y-6 px-5 pt-7 sm:px-8">
@@ -127,14 +97,10 @@ function Work() {
         <p className="text-body text-[var(--steel)]">{title}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}
     </section>
     <section aria-label="需要处理">
-      <h2 className="mb-2 text-base font-semibold">需要处理{ready ? " · " + todos.length : ""}</h2>
-      {errors.length ? <p role="alert" className="mb-3 text-sm text-[var(--red)]">部分数据读取失败：{errors.map(e => (e as Error).message).join("；")}。以下仅展示已读取事项。</p> : !ready ? <p role="status" className="mb-3 text-sm text-[var(--steel)]">正在读取维护事项…</p> : null}
-      <p className="mb-3 text-xs text-[var(--steel)]">库内项目分别计数，跨库未去重。下方列出当前可读取的维护事项；失败任务的完整列表在“报告中心”。</p>
-      {!todos.length && ready && !errors.length ? <p className="rounded-xl border border-dashed p-4 text-sm text-[var(--steel)]">暂无需要处理的事项。</p> : null}
-      <div className="max-h-[360px] space-y-1.5 overflow-y-auto">{todos.map((t) => <div key={t.key} className="flex items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5">
-        <span className="min-w-0 flex-1"><b className="block text-body font-medium">{t.what}</b><span className="block truncate text-xs text-[var(--steel)]">{t.detail}</span></span>
-        <button type="button" onClick={t.go} className="shrink-0 rounded-md border border-[var(--hairline-strong)] px-3 py-1 text-body hover:bg-[var(--canvas)]">{t.action}</button>
-      </div>)}</div>
+      <h2 className="mb-1 text-base font-semibold">需要处理{ready ? " · " + todos.length : ""}</h2>
+      <p className="mb-3 text-xs text-[var(--steel)]">库内项目分别计数，跨库未去重；失败任务的完整列表在“报告中心”。</p>
+      <AdminTodoList todos={todos} ready={ready} limit={10}
+        errors={totals.error ? [...errors, (totals.error as Error).message] : errors} />
     </section>
   </div>;
 }

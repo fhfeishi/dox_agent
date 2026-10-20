@@ -21,6 +21,7 @@ import { Icon } from "./Icons";
 import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
 import { LeaderHome } from "./LeaderHome";
+import { AdminTodoList, LibraryHealth, libraryProblems, useAdminTodos } from "./AdminTodos";
 
 
 export function WorkspaceHome() {
@@ -58,18 +59,35 @@ function WorkHome() {
   const total = totals.data;
   const fields = [...corpora].filter((c) => !c.missing).sort((a, b) => (b.indexed_count ?? 0) - (a.indexed_count ?? 0)).slice(0, 5);
   const readDate = (text: string) => new Date(text).toLocaleDateString("zh-CN", { month: "2-digit", day: "2-digit" });
+  // Administrators start from what needs them (upgrade plan U4b): to-dos and library health above the work cards.
+  const admin = role === "admin";
+  const maintenance = useAdminTodos(admin);
+  const troubled = corpora.filter((c) => libraryProblems(c).length).length;
   return <main className="min-h-0 flex-1 overflow-y-auto bg-[var(--surface-cool)]">
     <div className="mx-auto max-w-[1200px] space-y-7 px-5 py-7 sm:px-8">
       <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--hairline)] pb-5">
-        <div><p className="text-xs text-[var(--steel)]">资料与研究工作台</p>
-          <h1 className="mt-2 text-2xl font-semibold">今天，从哪项工作开始？</h1></div>
+        <div><p className="text-xs text-[var(--steel)]">{admin ? "资料与运行维护" : "资料与研究工作台"}</p>
+          <h1 className="mt-2 text-2xl font-semibold">{admin ? "今天的维护与工作" : "今天，从哪项工作开始？"}</h1>
+          {admin && maintenance.ready ? <p className="mt-2 flex items-center gap-2 text-body text-[var(--steel)]">
+            <span aria-hidden="true" className={`size-2 rounded-full ${maintenance.todos.length ? "bg-[var(--warn-dot)]" : "bg-[var(--ok-fg)]"}`} />
+            {maintenance.todos.length ? `${maintenance.todos.length} 项需要处理` : "没有需要处理的事项"}
+            {troubled ? ` · ${troubled} 个资料库有待处理资料` : ""}{total?.active ? ` · ${total.active} 个任务进行中` : ""}</p> : null}</div>
       </header>
-      <section aria-label="工作概况" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--steel)]">
+      {admin ? <>
+        <section aria-label="需要处理">
+          <h2 className="mb-3 text-base font-semibold text-[var(--heading)]">需要处理{maintenance.ready ? <span className="ml-2 text-caption font-normal text-[var(--steel)]">{maintenance.todos.length} 项</span> : null}</h2>
+          <AdminTodoList todos={maintenance.todos} ready={maintenance.ready} errors={maintenance.errors} limit={5} />
+        </section>
+        <section aria-label="资料处理">
+          <h2 className="mb-3 text-base font-semibold text-[var(--heading)]">资料处理<span className="ml-2 text-caption font-normal text-[var(--steel)]">点资料库名打开资料管理</span></h2>
+          <LibraryHealth />
+        </section>
+      </> : <section aria-label="工作概况" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--steel)]">
         <span>资料库 <b className="text-[var(--ink)]">{corporaError ? "—" : corpora.length}</b></span>
         <button onClick={() => navigate("/results")} className="hover:text-[var(--primary)]">已完成报告 <b>{total?.completed.total ?? "—"}</b></button>
         <button onClick={() => navigate("/results?status=active")} className="hover:text-[var(--primary)]">生成中 <b>{total?.active ?? "—"}</b></button>
         <button onClick={() => navigate("/results?status=failed")} className="hover:text-[var(--primary)]">未完成 <b>{total?.failed ?? "—"}</b></button>
-      </section>
+      </section>}
       {totals.error || corporaError ? <p role="alert" className="text-sm text-[var(--red)]">{totals.error?.message || corporaError}</p> : null}
 
       <section aria-label="开始工作">
@@ -83,7 +101,7 @@ function WorkHome() {
         </div>
       </section>
 
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]">
+      <div className={`grid items-start gap-5 ${admin ? "" : "lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,1fr)]"}`}>
         <section aria-label="最近报告" className="overflow-hidden rounded-xl border border-[var(--line-cool)] bg-white">
           <div className="flex items-center justify-between border-b border-[var(--line-cool-soft)] px-5 py-4"><h2 className="text-base font-semibold">最近报告</h2>
             <button onClick={() => navigate("/results")} className="text-xs text-[var(--link)] hover:underline">报告中心 →</button></div>
@@ -102,7 +120,7 @@ function WorkHome() {
               {["queued", "running", "generating"].includes(r.status) ? <GenerationProgress compact {...r} /> : null}
             </li>)}</ul>}
         </section>
-        <section aria-label="领域资料" className="rounded-xl border border-[var(--line-cool)] bg-white p-5">
+        {admin ? null : <section aria-label="领域资料" className="rounded-xl border border-[var(--line-cool)] bg-white p-5">
           <div className="mb-4 flex items-center justify-between"><h2 className="text-base font-semibold">领域资料</h2><Link to="/library" className="text-xs text-[var(--link)] hover:underline">全部资料库 →</Link></div>
           {!fields.length ? <p className="py-4 text-sm text-[var(--steel)]">尚无可浏览的资料库。</p> : <ul className="space-y-1">{fields.map((c) => <li key={c.id}>
             <button onClick={() => openCorpus(c.id)} className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-3 text-left text-sm hover:bg-[var(--surface-cool)]">
@@ -111,7 +129,7 @@ function WorkHome() {
             </button></li>)}</ul>}
           <div className="mt-4 border-t border-[var(--line-cool-soft)] pt-4 text-xs leading-6 text-[var(--steel)]">按可检索文件份数展示，未作跨库去重。
             {role !== "user" ? <Link to="/overview/build" className="mt-2 block text-[var(--link)] hover:underline">进入概览，了解资料建设与领域分布 →</Link> : null}</div>
-        </section>
+        </section>}
       </div>
       <MyWorkSection />
     </div>

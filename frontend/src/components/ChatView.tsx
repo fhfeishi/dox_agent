@@ -82,6 +82,7 @@ export function ChatView() {
   const {
     turns,
     workspace,
+    busy,
     ready,
     connected,
     setConnected,
@@ -133,9 +134,34 @@ export function ChatView() {
     };
   }, [exportOpen]);
 
+  // Follow a streaming answer only while the reader is at the bottom (query 2026-1020 1719: the
+  // page used to jump back down on every token, so nothing above could be read until it finished).
+  const following = useRef(true);
+  const [behind, setBehind] = useState(false);
+  const turnCount = turns.length;
+  function atBottom(el: HTMLElement) {
+    return el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+  }
+  function onScroll() {
+    const el = scrollRef.current;
+    if (!el) return;
+    following.current = atBottom(el);
+    setBehind(!following.current);
+  }
+  function toLatest() {
+    const el = scrollRef.current;
+    if (!el) return;
+    following.current = true;
+    setBehind(false);
+    el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+  }
+  useEffect(() => {
+    following.current = true;  // a new question (or another session) follows its answer again
+    setBehind(false);
+  }, [turnCount, workspace.active]);
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (el && following.current) el.scrollTop = el.scrollHeight;
   }, [turns, error]);
 
   const visibleBranches = workspace.branches;
@@ -216,7 +242,8 @@ export function ChatView() {
         />
       </header>
 
-      <section ref={scrollRef} aria-label="对话" className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
+      <div className="relative flex min-h-0 flex-1 flex-col">
+      <section ref={scrollRef} onScroll={onScroll} aria-label="对话" className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-[820px] px-[32px] pt-[28px] pb-[8px]">
           {!connected ? (
             <section
@@ -374,6 +401,13 @@ export function ChatView() {
           ) : null}
         </div>
       </section>
+      {behind ? (
+        <button type="button" onClick={toLatest}
+          className="absolute bottom-[14px] left-1/2 -translate-x-1/2 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] px-[14px] py-[6px] text-caption text-[var(--slate)] shadow-md hover:bg-[var(--surface)]">
+          {busy ? "回答仍在生成 · 回到最新 ↓" : "回到最新 ↓"}
+        </button>
+      ) : null}
+      </div>
 
       <Composer />
     </section>

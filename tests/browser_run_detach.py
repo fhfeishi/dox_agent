@@ -228,10 +228,23 @@ async def main():
                 run = await (await page.request.get(origin + "/api/runs/" + stopped["runId"])).json()
                 assert run["status"] == "interrupted" and not run.get("replay"), run.get("status")
                 await expect(page.locator("article").last).not_to_contain_text("第五段完。")
+
+                # 6. While an answer is written the reader can scroll up and stay there (query 2026-1020 1719).
+                await ask("巡检机器人还有哪些应用场景？")
+                conversation = page.get_by_role("region", name="对话")
+                await conversation.evaluate("el => { el.scrollTop = 0; el.dispatchEvent(new Event('scroll')); }")
+                await page.wait_for_timeout(2500)  # two more parts arrive meanwhile
+                assert await conversation.evaluate("el => el.scrollTop") < 40, "the page jumped back to the bottom"
+                back = page.get_by_role("button", name=re.compile("回到最新"))
+                await expect(back).to_be_visible()
+                await back.click()
+                await page.wait_for_timeout(800)
+                assert await conversation.evaluate("el => el.scrollHeight - el.scrollTop - el.clientHeight") < 80
                 assert not errors, errors
                 await browser.close()
             print("PASS report survives a closed page; after kill -9 it shows 已中断，可重试 and the retry completes; "
-                  "an import cut off by kill -9 shows as interrupted; an answer keeps going after its page closes; 停止 stops it at the server")
+                  "an import cut off by kill -9 shows as interrupted; an answer keeps going after its page closes; 停止 stops it at the server; "
+                  "the reader can scroll up while an answer is written")
         finally:
             child.kill()
             child.wait(timeout=10)

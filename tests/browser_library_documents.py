@@ -71,7 +71,7 @@ async def main():
                 assert payloads[-1]["corpus_ids"] == [cid]
                 assert len(payloads[-1]["allowed_doc_ids"]) == 2
                 # With nothing ticked the chat asks the whole library; its starters carry their task (query 2026-1016 0919).
-                await chat.get_by_role("button",name="清空记录").click()
+                await chat.get_by_role("button",name="开始新的分析").click()
                 await chat.get_by_role("button",name="清空",exact=True).click()
                 await expect(chat).to_contain_text("范围 · 整个资料库")
                 await chat.get_by_role("button",name="比较这些项目的数据、方法和已取得成果。").click()

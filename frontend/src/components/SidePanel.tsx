@@ -4,6 +4,7 @@ import { Icon } from "./Icons";
 import { Button, GroupLabel, PanelRow, SearchField } from "./ui";
 import { ReviewRunPanel } from "./review/ReviewRunPanel";
 import type { Saved, SessionData } from "../workspace";
+import { TERMS } from "../copy";
 
 function sessionTime(session: Saved<SessionData>): string | undefined {
   return session.updated_at ?? session.data.turns?.[0]?.startedAt;
@@ -72,7 +73,7 @@ export function SidePanel() {
       <SessionRow
         id={session.id} title={session.title} active={session.id === workspace.active}
         pinned={Boolean(session.data.pinned)}
-        taskName={session.data.task_id ? taskNames[session.data.task_id] : undefined}
+        taskName={session.data.origin === "workspace" ? TERMS.workspaceAnalysis.name : session.data.task_id ? taskNames[session.data.task_id] : undefined}
         disabled={!workspace.loaded || sessionBusy}
         onSelect={() => void switchSession(session.id)}
         onRename={(title) => void workspace.rename(title, session.id)}

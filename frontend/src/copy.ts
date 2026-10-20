@@ -15,6 +15,8 @@ export const TERMS = {
   research: { name: "技术研判", retired: ["研究归纳", "四维浏览"] },
   extraction: { name: "四维提取", retired: ["四维整理"] },
   chat: { name: "对话工作台", retired: [] },
+  // A conversation held in 资料管理 · 分析工作区 (query 2026-1020 1719).
+  workspaceAnalysis: { name: "资料分析（精准问答）", retired: [] },
   tasks: { name: "存量分析", retired: [] },
   taskTemplates: { name: "任务模版", retired: ["分析任务"] },
   review: { name: "资料审查", retired: ["审查申请书"] },

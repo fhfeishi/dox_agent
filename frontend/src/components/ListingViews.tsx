@@ -56,11 +56,10 @@ const fileName = (file: File, fallback: string) => file.name.replace(/\.(md|mark
  * deleted, published ones archived and restored from the archived list.
  */
 export function TasksView() {
-  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks, startTask, corpora } = useApp();
+  const { tasks, tasksError, taskId, showInspector, taskCapable, refreshTasks } = useApp();
   const navigate = useNavigate();
   // Every task starts in 对话工作台 with that task and its own 点选提问 presets (query 2026-1020 1719:
   // choosing a library and material and landing in the analysis workspace was the wrong way in).
-  const libraries = corpora.filter((c) => !c.missing && (c.indexed_count ?? c.docs_count ?? 0) > 0);
   // Analysis tasks are shared, so administrators maintain them (节点审查 D2).
   const { role } = useAuth();
   const [showArchived, setShowArchived] = useState(false);
@@ -111,7 +110,7 @@ export function TasksView() {
   return (
     <ViewShell
       title="任务模版"
-      description="存量分析从这里开始：选一个任务模版，选择资料库后补充问题并发送。生成的报告可在“报告中心”查看。"
+      description="存量分析从这里开始：选一个任务模版进入对话工作台，按指引选择资料范围并提问。生成的报告可在“报告中心”查看。"
       actions={<>
         {role === "admin" ? <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束任务管理" : "管理任务模版"}</Button> : null}
         {manage ? <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button> : null}
@@ -161,7 +160,7 @@ export function TasksView() {
                   </> : null}
                   <span className="flex-1" />
                   <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
-                    onClick={() => libraries.length ? void navigate(`/chat?task=${encodeURIComponent(task.id)}`) : setMessage("还没有已入库资料的资料库")}
+                    onClick={() => void navigate(`/chat?task=${encodeURIComponent(task.id)}`)}
                     className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">开始分析</button>
                 </div>
               </article>

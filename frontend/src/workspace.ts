@@ -7,7 +7,10 @@ export type Saved<T = Record<string, unknown>> = { id: string; revision: number;
   /** The account that first saved it; "" for sessions saved before authorship was recorded. */
   created_by?: string };
 /** U1.2: `task_id` binds a session to one task; it lives next to `options`, not inside it. */
-export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; pinned?: boolean; branches?: Branch[]; task_id?: string; task_version?: number; corpus_id?: string; corpus_confirmed?: boolean; corpus_ids?: string[]; source_session_id?: string; source_turn_index?: number };
+export type SessionData = { turns: Turn[]; options: Options; archived?: boolean; pinned?: boolean; branches?: Branch[]; task_id?: string; task_version?: number; corpus_id?: string; corpus_confirmed?: boolean; corpus_ids?: string[]; source_session_id?: string; source_turn_index?: number;
+  /** Started in 资料管理 · 分析工作区 (query 2026-1020 1719): listed as 资料分析（精准问答） and reopened there. */
+  origin?: SessionOrigin };
+export type SessionOrigin = "workspace";
 export const DEFAULT_TASK_ID = "task1";
 
 export async function workspaceRequest(path: string, body?: unknown) {
@@ -54,6 +57,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
   const corpusIdRef = useRef(corpusId);
   const corpusConfirmedRef = useRef(corpusConfirmed);
   const corpusIdsRef = useRef(corpusIds);
+  const originRef = useRef<SessionOrigin | undefined>(undefined);
   const hydrated = useRef(false);
 
   function updateSessions(value: Saved<SessionData>[]) { sessionsRef.current = value; setSessions(value); }
@@ -76,6 +80,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
         const task = selected.data.task_id ?? DEFAULT_TASK_ID;
         taskIdRef.current = task; setTaskId?.(task);
         taskVersionRef.current = selected.data.task_version; setBoundTaskVersion(selected.data.task_version);
+        originRef.current = selected.data.origin;
         const binding = restoreCorpusSelection(selected.data.corpus_id, selected.data.corpus_ids,
           selected.data.corpus_confirmed);
         corpusIdRef.current = binding.corpusId; setCorpusId?.(binding.corpusId);
@@ -122,7 +127,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
         ? existing.title : snapshot[0]?.question.slice(0, 100) ?? "新会话",
       data: { ...existing?.data, turns: snapshot, options: effectiveOptions, branches: branchSnapshot,
         task_id: taskSnapshot, task_version: taskVersionRef.current, corpus_id: corpusSnapshot,
-        corpus_confirmed: corpusConfirmedRef.current, corpus_ids: [...corpusIdsRef.current] } });
+        corpus_confirmed: corpusConfirmedRef.current, corpus_ids: [...corpusIdsRef.current], origin: originRef.current } });
   }
   async function saveCorpusSelection(id: string, confirmed: boolean, ids: string[], nextOptions = optionsRef.current) {
     corpusIdRef.current = id; setCorpusId?.(id);
@@ -140,7 +145,7 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
         ? existing.title : turns[0].question.slice(0, 100),
       data: { ...existing?.data, turns, options, branches,
         task_id: taskIdRef.current, task_version: taskVersionRef.current, corpus_id: corpusIdRef.current, corpus_confirmed: corpusConfirmedRef.current,
-        corpus_ids: [...corpusIdsRef.current] } };
+        corpus_ids: [...corpusIdsRef.current], origin: originRef.current } };
     // Opening a session restores it into these states; that is not a change and is not saved back
     // (节点审查 B3: merely viewing a page rewrote the session and raced other viewers).
     if (existing && next.title === existing.title && JSON.stringify(next.data) === JSON.stringify(existing.data)) return;
@@ -148,14 +153,16 @@ export function useWorkspace(turns: Turn[], options: Options, setTurns: Dispatch
     const timer = setTimeout(() => { void flush().catch(() => undefined); }, 500);
     return () => clearTimeout(timer);
   }, [turns, options, branches, active, loaded]);
-  /** `task` binds the session created from the task picker (U1.2); omitted means keep the stored one. */
-  async function select(id?: string, task?: string, corpus?: string, version?: number) {
+  /** `task` binds the session created from the task picker (U1.2); omitted means keep the stored one.
+   * `origin` marks a new session started in the analysis workspace. */
+  async function select(id?: string, task?: string, corpus?: string, version?: number, origin?: SessionOrigin) {
     await flush();
     const item = sessionsRef.current.find(session => session.id === id);
     const next = item?.id ?? crypto.randomUUID();
     const nextTask = task ?? item?.data.task_id ?? DEFAULT_TASK_ID;
     taskIdRef.current = nextTask; setTaskId?.(nextTask);
     taskVersionRef.current = version ?? item?.data.task_version; setBoundTaskVersion(taskVersionRef.current);
+    originRef.current = item ? item.data.origin : origin;
     // Existing sessions restore their binding; a new session gets an unconfirmed candidate.
     const binding = item
       ? restoreCorpusSelection(item.data.corpus_id, item.data.corpus_ids, item.data.corpus_confirmed)

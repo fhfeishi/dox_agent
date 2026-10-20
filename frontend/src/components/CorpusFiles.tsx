@@ -64,7 +64,7 @@ export function CorpusFiles({
   const folderRef = useRef<HTMLInputElement>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
-  // The workspace opens on arrival from 存量分析 (?workspace=1&task=…), keeping the task it was started with.
+  // The workspace opens from a link (?workspace=1), and with &session= on the conversation 会话历史 reopened.
   const [chatOpen, setChatOpen] = useState(() => params.get("workspace") === "1");
   const workspaceTask = params.get("task") ?? "";
   // 按项目 is the default list (query 2026-1016 1814): a comparison is between projects, not files.
@@ -394,6 +394,7 @@ export function CorpusFiles({
         </div>
         </>}
         {chatOpen ? <AnalysisWorkspace corpusId={corpusId} corpusName={corpusName} documents={selectedDocs} onBusy={setChatBusy} projects={projects} task={workspaceTask}
+          sessionId={params.get("session") ?? undefined} onRestore={(ids) => setSelectedIds(ids.slice(0, 20))}
           onRemove={(ids) => setSelectedIds((old) => old.filter((item) => !ids.includes(item)))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
           // Ticking files offers the conversation without opening it over the list.
           : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">

@@ -4,6 +4,7 @@ import { useAuth } from "../auth";
 import { REVIEW_STATUS_LABEL, fetchReviewRuns } from "../reviewApi";
 import type { ArtifactSummary } from "../api";
 import { useApp } from "../store";
+import { TERMS } from "../copy";
 
 const REPORT_STATE: Record<string, string> = { completed: "已完成", failed: "未完成", draft: "草稿", generating: "生成中" };
 const ACTIVE = new Set(["queued", "running", "generating"]);
@@ -50,6 +51,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
         <h3 className="mb-2 text-sm font-semibold">我的对话</h3>
         {sessions.length ? sessions.map((s) => <button key={s.id} type="button" onClick={() => void switchSession(s.id)} className={row}>
           <span className="min-w-0 flex-1 truncate">{s.title}</span>
+          {s.data.origin === "workspace" ? <span className="shrink-0 text-xs text-[var(--steel)]">{TERMS.workspaceAnalysis.name}</span> : null}
           <span className="shrink-0 text-xs text-[var(--stone)]">{s.updated_at?.slice(5, 10)}</span></button>) : empty("还没有对话。")}
       </section>
       <section aria-label="我的报告" className={box}>

@@ -146,6 +146,11 @@ export interface AppValue {
   upgradeTaskVersion: () => Promise<void>;
   startTask: (taskId: string) => Promise<void>;
   refreshTasks: () => Promise<void>;
+  /* 分析工作区: its conversation is an ordinary session marked origin "workspace" */
+  openWorkspace: (corpus: string, docIds: string[], sessionId?: string, fresh?: boolean) => Promise<string[] | null>;
+  setWorkspaceDocs: (docIds: string[]) => void;
+  leaveWorkspace: () => void;
+  askWorkspace: (question: string, task: string, corpus: string, docIds: string[]) => Promise<void>;
 
   /* workspace / sessions */
   workspace: ReturnType<typeof useWorkspace>;
@@ -271,6 +276,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const rememberTargetJob = (corpus: string, job: string) => setTargetJobs((current) => ({ ...current, [corpus]: job }));
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
+  const returnFromWorkspace = useRef("");
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
@@ -830,6 +836,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   async function switchSession(id?: string, task?: string, corpus?: string, version?: number) {
+    // A conversation held in 分析工作区 reopens there, with the materials it was asked about.
+    const saved = id ? workspace.sessions.find((s) => s.id === id) : undefined;
+    if (saved?.data.origin === "workspace" && saved.data.corpus_id) {
+      void navigate(`/library/${encodeURIComponent(saved.data.corpus_id)}/documents?workspace=1&session=${encodeURIComponent(saved.id)}`);
+      return;
+    }
     setSessionBusy(true);
     if (!id) setAutoCorpus(true);
     await settleActiveRun();
@@ -930,6 +942,55 @@ export function AppProvider({ children }: { children: ReactNode }) {
     } finally {
       setSessionBusy(false);
     }
+  }
+
+  /**
+   * Make the analysis workspace's conversation the active session (query 2026-1020 1719): the one named
+   * by `sessionId`, the current one if it is an untouched workspace conversation on this library, or a
+   * new one. Returns the materials a reopened conversation was asked about, null otherwise.
+   */
+  async function openWorkspace(corpus: string, docIds: string[], sessionId?: string, fresh = false) {
+    const saved = sessionId ? workspace.sessions.find((s) => s.id === sessionId && s.data.origin === "workspace") : undefined;
+    const current = workspace.sessions.find((s) => s.id === workspace.active);
+    if (sessionId && sessionId === workspace.active) return saved?.data.options.allowed_doc_ids ?? options.allowed_doc_ids ?? [];
+    if (!saved && !fresh && !turns.length && current?.data.origin === "workspace" && corpusIds[0] === corpus) {
+      setWorkspaceDocs(docIds);
+      return null;
+    }
+    setSessionBusy(true);
+    try {
+      await settleActiveRun();
+      await workspace.saveNow(latestTurns.current, options);
+      if (saved) {
+        await workspace.select(saved.id);
+        return saved.data.options.allowed_doc_ids ?? [];
+      }
+      returnFromWorkspace.current = latestTurns.current.length ? workspace.active : "";
+      await workspace.select(undefined, "task1", corpus, undefined, "workspace");
+      // Not saved until the first question: opening the panel must not leave empty conversations behind.
+      setOptions({ allowed_doc_ids: docIds.length ? docIds : null });
+      setError("");
+      return null;
+    } finally {
+      setSessionBusy(false);
+    }
+  }
+
+  /** Closing the panel without asking anything puts back the conversation 对话工作台 had before. */
+  function leaveWorkspace() {
+    const previous = returnFromWorkspace.current;
+    returnFromWorkspace.current = "";
+    if (previous && !latestTurns.current.length && !controller.current) void workspace.select(previous);
+  }
+
+  /** The ticked materials are the scope of the next question; earlier turns keep their own. */
+  function setWorkspaceDocs(docIds: string[]) {
+    setOptions((old) => ({ ...old, allowed_doc_ids: docIds.length ? [...new Set(docIds)] : null }));
+  }
+
+  async function askWorkspace(question: string, task: string, corpus: string, docIds: string[]) {
+    await send(false, { question, history: turns,
+      options: { ...options, task_id: task, corpus_ids: [corpus], allowed_doc_ids: docIds.length ? [...new Set(docIds)] : null } });
   }
 
   async function startResearch(corpus: string, docIds: string[] | null, task: string, question: string) {
@@ -1298,6 +1359,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       upgradeTaskVersion,
       startTask,
       refreshTasks,
+      openWorkspace,
+      setWorkspaceDocs,
+      leaveWorkspace,
+      askWorkspace,
       workspace,
       activeTitle,
       sessionBusy,

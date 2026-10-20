@@ -107,7 +107,7 @@ async def main():
                 stages["选择与对比"] = actions - sum(stages.values())
                 # 5. Keep the answer and deliver a report for the same scope.
                 await act(work.get_by_role("button", name="保存到报告中心"))
-                await expect(work.get_by_role("button", name="已保存，打开")).to_be_visible()
+                await expect(page.get_by_text(re.compile("已保存到报告中心「"))).to_be_visible()
                 await act(work.get_by_role("button", name="以此生成报告"))
                 await act(work.get_by_role("form", name="生成报告").get_by_role("button", name="生成"))
                 report = work.get_by_role("article", name=re.compile("^报告："))
@@ -122,6 +122,18 @@ async def main():
                 # The report covers exactly the three files of the two picked projects; nothing was chosen twice.
                 assert len(reports) == 1 and len(reports[0]["doc_ids"]) == 3, reports
                 await page.screenshot(path=str(Path(".logsdev/verification/query-20261016-1814")/"workspace-report.png"))
+                # 5b. The conversation is kept in 会话历史 as 资料分析（精准问答） and reopens in the workspace
+                # with the materials it was asked about (query 2026-1020 1719).
+                await expect(work.get_by_role("button", name="导出此回答为 Word")).to_be_visible()
+                await expect(page).to_have_url(re.compile(r"[?&]session="))
+                await page.goto(origin+"/chat")
+                held = page.get_by_role("button", name=re.compile("这两个装配项目的路线有何不同？.*资料分析（精准问答）"))
+                await held.click()
+                await expect(page).to_have_url(re.compile(r"/documents\?.*workspace=1&session="))
+                back = page.get_by_role("region", name="分析工作区")
+                await expect(back.get_by_label("分析范围")).to_contain_text("2 个项目 · 3 份文件")
+                await expect(back).to_contain_text("两个项目的装配路线不同")
+                await page.screenshot(path=str(Path(".logsdev/verification/query-20261020-1719")/"workspace-reopened.png"))
                 # 6. 存量分析 opens the task's conversation with its walkthrough (query 2026-1020 1719).
                 await page.goto(origin+"/tasks")
                 await page.get_by_role("button", name="开始分析").nth(1).click()
@@ -134,7 +146,7 @@ async def main():
                 await expect(guide).to_be_hidden()
                 assert not errors, errors
                 await browser.close()
-            print(f"PASS fixed task in {actions} actions {stages}: upload, duplicates and failures named, two projects, compare, save, report for the same scope, 存量分析 into the task conversation")
+            print(f"PASS fixed task in {actions} actions {stages}: upload, duplicates and failures named, two projects, compare, save, report for the same scope, reopened from 会话历史 with its materials, 存量分析 into the task conversation")
         finally:
             server.should_exit = True; thread.join(timeout=10); listener.close()
 

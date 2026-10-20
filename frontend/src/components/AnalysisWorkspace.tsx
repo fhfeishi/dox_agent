@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ReportMarkdown } from "./ReportMarkdown";
-import { createArtifact, createReport, fetchTemplates, preflightReport, streamChat, templateArea, templateLabel, type Message, type Source, type TemplateSummary } from "../api";
+import { createReport, fetchTemplates, preflightReport, templateArea, templateLabel, type TemplateSummary } from "../api";
+import { downloadTurn } from "../turnExport";
+import { TERMS } from "../copy";
+
+const WORKSPACE_TASK_LABEL = TERMS.workspaceAnalysis.name;
+import { MessageView } from "./MessageView";
 import { useApp } from "../store";
 import type { DocumentInfo } from "../useDocuments";
 import type { Project } from "../projects";
@@ -9,9 +14,7 @@ import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader } from "./Panel";
 import { GenerationProgress } from "./GenerationProgress";
 
-type Answer = { kind: "answer"; question: string; task: string; scope: string; runId: string; answer: string; sources: Source[]; error?: string; saved?: string };
 type Report = { kind: "report"; topic: string; scope: string; runId: string; state: "checking" | "generating" | "done" | "failed"; note: string; artifactId?: string; error?: string };
-type Item = Answer | Report;
 
 const TASK_NAME: Record<string, string> = { task1: "精准问答", task2: "对比分析", task3: "技术研判", task4: "专项报告" };
 
@@ -27,67 +30,74 @@ function starters(projects: number, files: number): (readonly [string, string])[
 /**
  * 分析工作区 (query 2026-1016 1814, user's choice A): the right-hand panel of 资料管理 that carries one
  * scope — the projects and files ticked in the list — from asking and comparing to a delivered report,
- * so nothing is chosen twice. An answer can be saved to 成果 or become the topic of a report; a report
- * is generated for exactly this scope (`/api/reports` with its documents), its progress is shown here and
- * it opens on the right when done, already in 成果. With nothing ticked it works on the whole library.
+ * so nothing is chosen twice. With nothing ticked it works on the whole library.
+ *
+ * Its conversation is an ordinary session on the chat engine (query 2026-1020 1719), marked as started
+ * here: it is listed in 会话历史 as 资料分析（精准问答）, reopening it from there comes back to this panel
+ * with the same materials ticked (`?workspace=1&session=`), and each answer has the same 复制 / 导出 MD /
+ * 导出 Word / 保存到报告中心 and 资料检索 trace as in 对话工作台.
  */
-export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, task, onBusy, onRemove, onClear, onClose }: {
-  corpusId: string; corpusName: string; documents: DocumentInfo[]; projects: Project[]; task: string; onBusy: (busy: boolean) => void;
+export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, task, sessionId, onRestore, onBusy, onRemove, onClear, onClose }: {
+  corpusId: string; corpusName: string; documents: DocumentInfo[]; projects: Project[]; task: string; sessionId?: string;
+  onRestore: (docIds: string[]) => void; onBusy: (busy: boolean) => void;
   onRemove: (docIds: string[]) => void; onClear: () => void; onClose: () => void;
 }) {
-  const { handleOpenSource, inspectorOpen, setChatDocked, showInspector } = useApp();
-  const [items, setItems] = useState<Item[]>([]);
+  const { handleOpenSource, inspectorOpen, setChatDocked, showInspector, turns, busy, error, status, stop, sessionBusy, startedTick,
+    openWorkspace, setWorkspaceDocs, leaveWorkspace, askWorkspace, regenerateAt, setTurnReport, saveAnswerArtifact, workspace, connected, ready } = useApp();
+  const [, setParams] = useSearchParams();
+  const [reports, setReports] = useState<Report[]>([]);
   const [question, setQuestion] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [copied, setCopied] = useState("");
+  const [opened, setOpened] = useState(false);
   const [form, setForm] = useState<{ topic: string; template: string } | null>(null);
-  const controller = useRef<AbortController | null>(null);
   const bottom = useRef<HTMLDivElement>(null);
   // 存量分析's templates, the comprehensive one first: it is the area's base template.
   const templates = useQuery({ queryKey: ["templates", "analysis"], queryFn: async ({ signal }) =>
     (await fetchTemplates(signal)).filter((t: TemplateSummary) => templateArea(t) === "analysis" && (t.kind !== "custom" || (t.version && t.status !== "archived")))
       .sort((a, b) => Number(b.id === "comprehensive") - Number(a.id === "comprehensive")) });
+  const ids = documents.map((d) => d.doc_id);
+
+  // Open this panel's conversation: the one asked for in the address, or a fresh one for this library.
+  // Only on opening: the address then follows the conversation and must not reopen it.
+  const initialSession = useRef(sessionId);
   useEffect(() => {
     setChatDocked(true);
-    return () => { controller.current?.abort(); onBusy(false); setChatDocked(false); };
-  }, []);
-  useEffect(() => { bottom.current?.scrollIntoView({ block: "end" }); }, [items, form]);
+    let live = true;
+    void openWorkspace(corpusId, ids, initialSession.current).then((restored) => {
+      if (!live) return;
+      if (restored) onRestore(restored);
+      setOpened(true);
+    });
+    return () => { live = false; setChatDocked(false); leaveWorkspace(); };
+  }, [corpusId]);
+  // Ticking and unticking changes the scope of the next question.
+  const idKey = ids.join(",");
+  useEffect(() => { if (opened) setWorkspaceDocs(ids); }, [idKey, opened]);
+  useEffect(() => { onBusy(busy); }, [busy]);
+  // Once asked, the address names the conversation, so a reload or a copied link comes back to it.
+  useEffect(() => {
+    if (!opened || !turns.length || !workspace.active) return;
+    setParams((old) => { if (old.get("session") === workspace.active) return old;
+      const next = new URLSearchParams(old); next.set("workspace", "1"); next.set("session", workspace.active); return next; }, { replace: true });
+  }, [opened, turns.length, workspace.active]);
+  useEffect(() => { bottom.current?.scrollIntoView({ block: "end" }); }, [turns.length, reports, form]);
 
   // The scope in the reader's terms: which projects, how many files.
-  const ids = documents.map((d) => d.doc_id);
   const groups = projects.map((p) => ({ p, docs: p.files.map((f) => f.document.doc_id).filter((id) => ids.includes(id)) })).filter((g) => g.docs.length);
   const loose = ids.filter((id) => !groups.some((g) => g.docs.includes(id)));
   const scope = !ids.length ? "整个资料库" : `${groups.length} 个项目${loose.length ? ` 及 ${loose.length} 份其他资料` : ""} · ${ids.length} 份文件`;
-  const update = (runId: string, patch: Partial<Answer> | Partial<Report>) => setItems((old) => old.map((it) => it.runId === runId ? { ...it, ...patch } as Item : it));
+  const turnScope = (allowed: string[] | null | undefined) => !allowed?.length ? "整个资料库" : `${allowed.length} 份资料`;
+  const updateReport = (runId: string, patch: Partial<Report>) => setReports((old) => old.map((it) => it.runId === runId ? { ...it, ...patch } : it));
 
   async function ask(text: string, chosenTask = task || "task1") {
-    if (!text.trim() || busy) return;
-    const answered = items.filter((t): t is Answer => t.kind === "answer" && !t.error && Boolean(t.answer));
-    const messages: Message[] = answered.flatMap((t): Message[] => [{ role: "user", content: t.question }, { role: "assistant", content: t.answer }]).slice(-18);
-    messages.push({ role: "user", content: text.trim() });
-    const runId = crypto.randomUUID();
-    const next: Answer = { kind: "answer", question: text.trim(), task: chosenTask, scope, runId, answer: "", sources: [] };
-    setItems((old) => [...old, next]); setQuestion(""); setBusy(true); onBusy(true);
-    const abort = new AbortController(); controller.current = abort;
-    let done = false;
-    try {
-      await streamChat(messages, runId, abort.signal, (event) => {
-        if (event.event === "token") next.answer += event.data.text;
-        if (event.event === "sources") next.sources = event.data;
-        if (event.event === "error") next.error = event.data.message;
-        if (event.event === "done") done = event.data.ok;
-        update(runId, { ...next });
-      }, { task_id: chosenTask, corpus_ids: [corpusId], allowed_doc_ids: ids.length ? ids : null });
-      if (!done && !abort.signal.aborted && !next.error) next.error = "本次回答未完成，请查看已有内容后重试。";
-    } catch (cause) { next.error = abort.signal.aborted ? "已停止生成。" : (cause as Error).message; }
-    finally { update(runId, { ...next }); setBusy(false); onBusy(false); }
+    if (!text.trim() || busy || !opened) return;
+    setQuestion("");
+    await askWorkspace(text.trim(), chosenTask, corpusId, ids);
   }
 
-  async function save(item: Answer) {
-    try {
-      const saved = await createArtifact({ type: "answer_snapshot", run_id: item.runId, markdown: item.answer, title: item.question.slice(0, 60) });
-      update(item.runId, { saved: saved.artifact_id });
-    } catch (e) { update(item.runId, { error: (e as Error).message }); }
+  async function fresh() {
+    setReports([]);
+    await openWorkspace(corpusId, ids, undefined, true);
+    setParams((old) => { const next = new URLSearchParams(old); next.delete("session"); return next; }, { replace: true });
   }
 
   /** A report for exactly this scope: checked first (which files can enter and why others cannot), then generated. */
@@ -97,31 +107,28 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
     const base = { domain: corpusName.replace(/^自然科学基金-/, ""), corpus_id: corpusId, doc_ids: ids.length ? ids : undefined,
       template_id: templateId, template_version: template?.kind === "custom" ? template.version : undefined, focus: topic.trim(), run_id: runId };
     setForm(null);
-    setItems((old) => [...old, { kind: "report", topic: topic.trim(), scope, runId, state: "checking", note: "正在核对资料范围…" }]);
+    setReports((old) => [...old, { kind: "report", topic: topic.trim(), scope, runId, state: "checking", note: "正在核对资料范围…" }]);
     try {
       const wide = await preflightReport({ ...base, year_from: 1900, year_to: 2100 });
       const years = wide.observed_years?.length ? wide.observed_years : [];
       if (!wide.eligible_count) throw new Error(`所选 ${wide.total} 份资料都缺少项目年份，不能进入报告；请改选有年份的资料，或在文件名中补上立项年份`);
       const left = wide.total - wide.eligible_count;
-      update(runId, { state: "generating", note: `纳入 ${wide.eligible_count} 份资料${left ? `；${left} 份缺少项目年份，未纳入` : ""}。生成约需一至数分钟，可继续浏览，完成后在此打开，也会出现在“报告中心”中。` });
+      updateReport(runId, { state: "generating", note: `纳入 ${wide.eligible_count} 份资料${left ? `；${left} 份缺少项目年份，未纳入` : ""}。生成约需一至数分钟，可继续浏览，完成后在此打开，也会出现在“报告中心”中。` });
       const report = await createReport({ ...base, year_from: Math.min(...years), year_to: Math.max(...years) });
-      update(runId, { state: "done", artifactId: report.artifact_id });
-    } catch (e) { update(runId, { state: "failed", error: (e as Error).message }); }
+      updateReport(runId, { state: "done", artifactId: report.artifact_id });
+    } catch (e) { updateReport(runId, { state: "failed", error: (e as Error).message }); }
   }
 
-  function copy(text: string, key: string) {
-    void navigator.clipboard?.writeText(text).then(() => { setCopied(key); window.setTimeout(() => setCopied(""), 1500); });
-  }
-  const lastQuestion = [...items].reverse().find((t): t is Answer => t.kind === "answer")?.question ?? "";
-  const reporting = items.some((t) => t.kind === "report" && (t.state === "checking" || t.state === "generating"));
+  const lastQuestion = turns.at(-1)?.question ?? "";
+  const reporting = reports.some((t) => t.state === "checking" || t.state === "generating");
   const right = inspectorOpen ? "xl:right-[calc(var(--inspector-width)+20px)]" : "";
   const link = "text-caption text-[var(--link)] hover:underline disabled:opacity-40";
 
   return <section aria-label="分析工作区"
     className={`${PANEL_SHELL} fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[440px] ${right}`}>
-    <PanelHeader title="分析工作区" subtitle={`${scope}${task && TASK_NAME[task] ? ` · ${TASK_NAME[task]}` : ""}`}
+    <PanelHeader title="分析工作区" subtitle={`${WORKSPACE_TASK_LABEL}${task && TASK_NAME[task] && task !== "task1" ? ` · ${TASK_NAME[task]}` : ""} · 记入会话历史`}
       actions={<>
-        <PanelButton label="清空记录" disabled={busy || reporting || !items.length} onClick={() => setItems([])}><Icon name="refresh" size={14} /></PanelButton>
+        <PanelButton label="开始新的分析" disabled={busy || reporting || sessionBusy || !turns.length} onClick={() => void fresh()}><Icon name="refresh" size={14} /></PanelButton>
         <PanelButton label="收起工作区" onClick={onClose}><Icon name="close" size={14} strokeWidth={2} /></PanelButton>
       </>} />
 
@@ -145,36 +152,29 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
     </div>
 
     <div className="scrollbar-thin min-h-0 flex-1 space-y-5 overflow-y-auto px-[14px] py-[14px]" aria-live="polite">
-      {!items.length && !form ? <div className="space-y-2">
-        <p className="text-caption text-[var(--steel)]">回答附原文出处；满意的回答可保存到“报告中心”，或直接生成报告。可以这样问：</p>
-        {starters(groups.length, ids.length).map(([text, t]) => <button key={text} type="button" onClick={() => void ask(text, t)}
-          className="block w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2 text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">{text}</button>)}
+      {!turns.length && !reports.length && !form ? <div className="space-y-2">
+        <p className="text-caption text-[var(--steel)]">回答附原文出处，可复制、导出 Markdown / Word、保存到“报告中心”，或直接生成报告；这次分析记入会话历史，之后可从那里回到这里。可以这样问：</p>
+        {starters(groups.length, ids.length).map(([text, t]) => <button key={text} type="button" disabled={!opened || busy} onClick={() => void ask(text, t)}
+          className="block w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2 text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-50">{text}</button>)}
       </div> : null}
-      {items.map((t) => t.kind === "answer" ? <article key={t.runId} className="space-y-2">
+      {turns.map((turn, i) => <article key={turn.runId} aria-label={`第 ${i + 1} 问`} className="space-y-2">
         <div className="ml-auto w-fit max-w-[88%]">
-          <p className="rounded-2xl rounded-br-md bg-[var(--primary)] px-3 py-2 text-body whitespace-pre-wrap text-white">{t.question}</p>
-          <p className="mt-0.5 text-right text-caption text-[var(--stone)]">{t.scope}</p>
+          <p className="rounded-2xl rounded-br-md bg-[var(--primary)] px-3 py-2 text-body whitespace-pre-wrap text-white">{turn.question}</p>
+          <p className="mt-0.5 text-right text-caption text-[var(--stone)]">{TASK_NAME[turn.runInfo?.task_id ?? turn.options.task_id ?? "task1"] ?? "精准问答"} · {turnScope(turn.runInfo?.allowed_doc_ids ?? turn.options.allowed_doc_ids)}</p>
         </div>
         <div className="rounded-2xl rounded-bl-md border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2.5">
-          {t.answer ? <div className="markdown text-body"><ReportMarkdown markdown={t.answer} sources={t.sources} onOpenSource={handleOpenSource} /></div>
-            : !t.error ? <p className="text-body text-[var(--steel)]">正在查阅资料<span className="animate-pulse">…</span></p> : null}
-          {t.sources.length ? <div className="mt-2 border-t border-[var(--hairline)] pt-2">
-            <p className="mb-1 text-caption text-[var(--stone)]">出处</p>
-            <div className="flex flex-wrap gap-1.5">{t.sources.map((source, n) => <button key={`${source.doc_id ?? ""}-${n}`} type="button"
-              className="max-w-full truncate rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] px-2 py-0.5 text-caption text-[var(--link)] hover:border-[var(--primary)]"
-              onClick={() => void handleOpenSource(source, source.citation ?? n + 1)}>[{source.citation ?? n + 1}] {source.title}</button>)}</div>
-          </div> : null}
-          {t.error ? <p role="alert" className="mt-1 flex flex-wrap items-center gap-2 text-body text-[var(--red)]">{t.error}
-            {!busy ? <button type="button" onClick={() => { setItems((old) => old.filter((x) => x.runId !== t.runId)); void ask(t.question, t.task); }}
-              className="rounded-md border border-[var(--red)] px-2 py-0.5 text-caption">重试</button> : null}</p> : null}
-          {t.answer && !t.error && !(busy && t === items.at(-1)) ? <div className="mt-2 flex flex-wrap justify-end gap-3 border-t border-[var(--hairline)] pt-2">
-            <button type="button" onClick={() => copy(t.answer, t.runId)} className={link}>{copied === t.runId ? "已复制" : "复制"}</button>
-            {t.saved ? <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: t.saved! })} className={link}>已保存，打开</button>
-              : <button type="button" onClick={() => void save(t)} className={link}>保存到报告中心</button>}
-            <button type="button" disabled={reporting} onClick={() => setForm({ topic: t.question, template: form?.template ?? "" })} className={link}>以此生成报告</button>
-          </div> : null}
+          <MessageView attempt={turn} startedTick={i === turns.length - 1 ? startedTick : undefined} onOpenSource={handleOpenSource}
+            onRegenerate={connected && ready && !busy ? () => void regenerateAt(i) : undefined}
+            onReport={(report) => setTurnReport(i, report)}
+            onSaveArtifact={turn.outcome === "completed" ? () => void saveAnswerArtifact(turn.runId, turn.answer, turn.question.slice(0, 60)) : undefined}
+            onExport={(format) => void downloadTurn({ question: turn.question, corpusName, taskName: WORKSPACE_TASK_LABEL }, turn, format)} />
+          {turn.answer && turn.outcome === "completed" ? <div className="mt-1 flex justify-end">
+            <button type="button" disabled={reporting} onClick={() => setForm({ topic: turn.question, template: form?.template ?? "" })}
+              className="text-caption text-[var(--link)] hover:underline disabled:opacity-40">以此生成报告</button></div> : null}
         </div>
-      </article> : <article key={t.runId} aria-label={`报告：${t.topic}`} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body">
+      </article>)}
+      {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : busy && status ? <p role="status" className="text-caption text-[var(--steel)]">{status}</p> : null}
+      {reports.map((t) => <article key={t.runId} aria-label={`报告：${t.topic}`} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body">
         <p className="flex items-center gap-2"><Icon name="doc" size={14} /><b className="min-w-0 flex-1 truncate" title={t.topic}>报告 · {t.topic}</b></p>
         <p className="mt-0.5 text-caption text-[var(--stone)]">{t.scope}</p>
         {t.state === "failed" ? <p role="alert" className="mt-2 text-body text-[var(--red)]">{t.error}</p>
@@ -209,8 +209,8 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); void ask(question); } }}
           placeholder={ids.length ? "向所选资料提问…" : "向本资料库提问…"}
           className="max-h-[120px] min-w-0 flex-1 resize-none bg-transparent px-2 py-1.5 text-body leading-[1.5] outline-none" />
-        {busy ? <button type="button" onClick={() => controller.current?.abort()} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">停止</button>
-          : <button disabled={!question.trim()} className="shrink-0 rounded-lg bg-[var(--primary)] px-3.5 py-1.5 text-body text-white disabled:opacity-40">发送</button>}
+        {busy ? <button type="button" onClick={stop} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">停止</button>
+          : <button disabled={!question.trim() || !opened || sessionBusy} className="shrink-0 rounded-lg bg-[var(--primary)] px-3.5 py-1.5 text-body text-white disabled:opacity-40">发送</button>}
       </div>
       <div className="mt-1 flex items-center justify-between px-1 text-caption text-[var(--stone)]">
         <span>Enter 发送 · Shift+Enter 换行</span>

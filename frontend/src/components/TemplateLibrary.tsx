@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { archiveCustomTemplate, copyTemplate, deleteCustomTemplate, fetchTemplates, restoreCustomTemplate, saveTemplateDraft, templateArea, type TemplateArea, type TemplateSummary } from "../api";
+import { archiveCustomTemplate, copyTemplate, deleteCustomTemplate, fetchTemplates, restoreCustomTemplate, saveTemplateDraft, templateArea, uploadIntelligenceInput, type TemplateArea, type TemplateSummary } from "../api";
 import { extractTemplate } from "../templateOutline";
 import { useApp } from "../store";
 import { TEMPLATES_CHANGED, sectionsOf, statusLabel } from "./TemplatePanels";
@@ -13,11 +13,7 @@ const stripExtension = (name: string) => name.replace(/\.(md|markdown|txt|docx|d
 /** Text of an uploaded file: plain text is read here; Word and PDF are read by the server. */
 export async function readText(file: File): Promise<string> {
   if (/\.(md|markdown|txt)$/i.test(file.name)) return (await file.text()).trim();
-  const form = new FormData(); form.append("file", file); form.append("template", "true");
-  const response = await fetch("/api/intelligence/inputs", { method: "POST", body: form });
-  const value = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "文件读取失败");
-  return String(value?.text ?? "").trim();
+  return (await uploadIntelligenceInput(file, true)).text.trim();
 }
 
 /**

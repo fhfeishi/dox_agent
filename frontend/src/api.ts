@@ -31,6 +31,24 @@ export type CorpusInfo = {
 };
 
 /** GET /api/corpora: corpus registry (H1). Read-only disk scan + config overrides. */
+/** What each library holds and how far it is organised (`/api/overview/libraries`). */
+export type LibraryOverview = {
+  corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
+  /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
+  funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];
+  hierarchy: { generated_at?: string | null; scenes: number; issues: number; state?: string };
+  lineage: { generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number };
+  pending_identity?: number;
+  /** Projects per application field, largest first. */
+  fields?: [string, number][];
+  /** Identified projects and known funding (yuan, the same measure as funding) per start year, keyed "2021". */
+  by_year?: Record<string, number>; funding_by_year?: Record<string, number>;
+};
+
+export async function fetchLibraryOverview(signal?: AbortSignal): Promise<LibraryOverview[]> {
+  return jsonOrThrow(await fetch("/api/overview/libraries", { signal }), "资料库概况暂不可读");
+}
+
 export async function fetchCorpora(signal?: AbortSignal): Promise<CorpusInfo[]> {
   const response = await fetch("/api/corpora", signal ? { signal } : undefined);
   if (!response.ok) throw new Error("知识库列表不可用（" + response.status + "）");
@@ -127,7 +145,7 @@ export type TargetItem = {
   evidence: TargetEvidence[];
 };
 export type TargetFacet = { key: string; state: "has" | "未提及" | "异常"; items: TargetItem[] };
-export type TargetRelation = { from: { dimension: string; item_id: string }; to: { dimension: string; item_id: string }; basis: string };
+export type TargetRelation = { from: { dimension: string; item_id: string }; to: { dimension: string; item_id: string }; type: string; basis: string; evidence?: TargetEvidence[] };
 export type TargetReport = {
   doc_id: string; version: string; schema_version: number; prompt_version: number;
   title: string; source_name: string; index_status: string;
@@ -289,17 +307,20 @@ export async function changeArtifactFigure(artifactId: string, figureId: string,
 }
 
 /** W3-B: artifacts for one session (undefined = global list; "" filters empty session). */
-export async function fetchArtifacts(sessionKey?: string, signal?: AbortSignal): Promise<ArtifactSummary[]> {
-  const query = sessionKey === undefined ? "" : `?session_key=${encodeURIComponent(sessionKey)}`;
-  const response = await fetch(`/api/artifacts${query}`, signal ? { signal } : undefined);
-  if (!response.ok) throw new Error("报告列表不可用（" + response.status + "）");
+/** 报告中心 records; `view: "trash"` lists the recycle bin, `created_by` one account's own. */
+export type ArtifactFilter = { session_key?: string; type?: string; limit?: number; view?: "trash"; created_by?: string };
+
+export async function fetchArtifacts(filter: ArtifactFilter = {}, signal?: AbortSignal): Promise<ArtifactSummary[]> {
+  const query = new URLSearchParams(Object.entries(filter).flatMap(([key, value]) => value === undefined ? [] : [[key, String(value)]]));
+  const response = await fetch(`/api/artifacts${query.size ? `?${query}` : ""}`, { signal });
+  if (!response.ok) throw new Error(`${filter.view === "trash" ? "回收站读取失败" : "报告列表不可用"}（${response.status}）`);
   return response.json();
 }
 
 export async function fetchArtifact(artifactId: string, version?: number, includeTrashed = false): Promise<ArtifactInfo> {
   const suffix = `?include_trashed=${includeTrashed}${version === undefined ? "" : `&version=${version}`}`;
   const response = await fetch(`/api/artifacts/${encodeURIComponent(artifactId)}${suffix}`);
-  return jsonOrThrow(response, "成果不可用") as Promise<ArtifactInfo>;
+  return jsonOrThrow(response, "报告不可用") as Promise<ArtifactInfo>;
 }
 
 export async function fetchArtifactVersions(artifactId: string, includeTrashed = false): Promise<ArtifactVersion[]> {
@@ -619,3 +640,64 @@ export async function composeQuestion(input: ComposeInput): Promise<string> {
   return (payload as { question: string }).question;
 }
 
+
+/* 情报分析: external material is saved as an input first, then analysed with a library (intelligence.py). */
+export type IntelligenceInput = { input_id: string; filename: string; version: string; text: string };
+/** A purpose of the analysis, what it answers and its own built-in template (query 2026-1020 1653). */
+export type IntelligencePurpose = { key: string; label: string; focus: string; template_id: string };
+export type IntelligenceRequest = { input_ids: string[]; corpus_id: string; purpose: string; template: string; template_id: string | null;
+  template_version: number | null; input_template_id: string | null; session_key: string };
+
+export async function fetchIntelligencePurposes(signal?: AbortSignal): Promise<IntelligencePurpose[]> {
+  return jsonOrThrow(await fetch("/api/intelligence/purposes", { signal }), "分析目的暂不可读");
+}
+
+/** Saves one file as external material, or as a template when `template` is set; the server reads Word and PDF. */
+export async function uploadIntelligenceInput(file: File, template = false): Promise<IntelligenceInput> {
+  const form = new FormData(); form.append("file", file); if (template) form.append("template", "true");
+  return jsonOrThrow(await fetch("/api/intelligence/inputs", { method: "POST", body: form }), "文件读取失败");
+}
+
+export async function fetchIntelligenceInput(inputId: string, signal?: AbortSignal): Promise<IntelligenceInput> {
+  return jsonOrThrow(await fetch("/api/intelligence/inputs/" + encodeURIComponent(inputId), { signal }), "原输入暂不可读");
+}
+
+export async function analyzeIntelligence(request: IntelligenceRequest): Promise<ArtifactSummary> {
+  return jsonOrThrow(await fetch("/api/intelligence/analyze", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(request) }), "情报分析未完成");
+}
+
+/** Library groups on 资料库 (src/corpus_groups.py); a change carries the revision it was made against. */
+export type CorpusGroup = { id: string; name: string; members: string[] };
+export type CorpusGroups = { revision: number; groups: CorpusGroup[] };
+export async function fetchCorpusGroups(): Promise<CorpusGroups> {
+  return jsonOrThrow(await fetch("/api/corpus-groups"), "分组读取失败");
+}
+export async function postCorpusGroups(change: { revision: number; action: string; group_id: string; name: string; corpus_id: string }): Promise<CorpusGroups> {
+  return jsonOrThrow(await fetch("/api/corpus-groups", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(change) }), "分组修改失败，请刷新后重试");
+}
+
+/** Full-text search within one library; at most `limit` documents come back. */
+export async function searchCorpus(corpusId: string, q: string, signal?: AbortSignal): Promise<{ hits: { doc_id: string; snippet: string }[]; limit: number }> {
+  return jsonOrThrow(await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/search?q=${encodeURIComponent(q)}`, { signal }), "正文检索失败，请稍后重试");
+}
+
+/** Libraries ranked for a question; `clear` marks a match strong enough to switch to. */
+export async function routeCorpora(q: string): Promise<{ corpus_id: string; name: string; clear: boolean }[]> {
+  const response = await fetch("/api/corpora/route?" + new URLSearchParams({ q }));
+  return response.ok ? response.json() : [];
+}
+
+export type Health = { api_key_configured?: boolean; preparation?: string; index_progress?: { stage: string; completed: number; total: number } | null; model?: string; docs_count?: number;
+  web_provider?: string; [key: string]: unknown };
+export async function fetchHealth(signal?: AbortSignal): Promise<Health> {
+  const response = await fetch("/api/health", { signal });
+  if (!response.ok) throw new Error("服务暂不可用");
+  return response.json();
+}
+
+/** HTTP status of a file without downloading it (200 when it can be shown). */
+export async function fileStatus(url: string, signal?: AbortSignal): Promise<number> {
+  return (await fetch(url, { method: "HEAD", signal })).status;
+}

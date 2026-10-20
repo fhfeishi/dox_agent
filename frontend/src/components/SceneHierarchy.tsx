@@ -15,6 +15,7 @@ import { OutputsPanel } from "./OutputsPanel";
 import { SceneFlow } from "./SceneFlow";
 import { Button } from "./ui";
 import { Chart } from "./Charts";
+import { fetchDocuments } from "../useDocuments";
 
 const ASPECTS = ["论文", "专利", "人才/团队", "平台/基地", "数据与样本", "指标达成", "标准/许可", "转化与应用"];
 const STAGE_TONE: Record<string, string> = {
@@ -38,13 +39,11 @@ export function EvidenceList({ corpusId, evidence, limit = 2, staleHint = "请�
   async function open(item: HierarchyEvidence) {
     setError("");
     try {
-      const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
-      if (!response.ok) throw new Error("无法读取该库文件列表");
-      const docs = (await response.json()) as { doc_id: string; version: string }[];
+      const docs = await fetchDocuments(corpusId, { failure: "无法读取该库文件列表" });
       const doc = docs.find((value) => value.doc_id === item.doc_id);
       if (!doc) throw new Error("引用文件已移除或尚未完成索引");
       if (doc.version !== item.version) throw new Error("引用文件已更新，" + staleHint);
-      openPreview(doc as never, item.locator.basis === "pdf_page" ? item.locator.page ?? null : null, corpusId);
+      openPreview(doc, item.locator.basis === "pdf_page" ? item.locator.page ?? null : null, corpusId);
     } catch (reason) {
       setError((reason as Error).message);
     }

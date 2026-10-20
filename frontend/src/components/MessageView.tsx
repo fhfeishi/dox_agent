@@ -8,11 +8,11 @@ import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
 import { formatDuration, type Attempt } from "../conversation";
-import { stopLabels } from "../policy";
 import { Icon } from "./Icons";
 import { ReportMarkdown } from "./ReportMarkdown";
 import { useApp } from "../store";
 import { useAuth } from "../auth";
+import { fetchDocuments } from "../useDocuments";
 
 const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
   running: { label: "进行中", cls: "bg-[var(--primary-soft)] text-[var(--primary)] ring-[var(--lav-line)]" },
@@ -468,10 +468,8 @@ function ReportCard({ attempt, onReport }: { attempt: Attempt; onReport?: (repor
       if (!scopeIds.includes(corpusId)) throw new Error("请确认本次报告使用的单一知识库");
       let docIds: string[] | undefined;
       if (allowedDocIds?.length) {
-        const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
-        if (!response.ok) throw new Error("无法读取所选知识库的文档范围");
         const [docs, files] = await Promise.all([
-          response.json() as Promise<{ doc_id: string }[]>, fetchCorpusFiles(corpusId),
+          fetchDocuments(corpusId, { failure: "无法读取所选知识库的文档范围" }), fetchCorpusFiles(corpusId),
         ]);
         // The current document list omits stale entries; keep their manifest membership
         // so an explicit selection reaches the server and receives a conflict response.

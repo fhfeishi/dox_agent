@@ -6,6 +6,7 @@ import {
   buildLineage, CATEGORY_COLORS, hierarchyQuery, lineageQuery, locateItem, projectQuery,
   type HierarchyEvidence, type Lineage, withBlanks,
 } from "../projects";
+import { fetchTargetDetail } from "../api";
 import { useApp } from "../store";
 import { EvidenceList } from "./SceneHierarchy";
 import { TechTimeline } from "./TechTimeline";
@@ -158,12 +159,6 @@ function LineageColumns({ path, lineage, match, projects, onSelect }: {
   </ZoomPan>;
 }
 
-type TargetRecord = {
-  facets: { key: string; items: { id: string; name: string; evidence?: { quote: string; locator: HierarchyEvidence["locator"]; version?: string }[] }[] }[];
-  relations?: { from: { dimension: string; item_id: string }; to: { dimension: string; item_id: string }; type: string;
-    evidence?: { quote: string }[] }[];
-};
-
 /**
  * Pane height: the whole visible area of the page's scrolling region, and the panes are brought to
  * its top when they open, so the lineage fills the screen (query 2026-1013 2012); both panes share
@@ -273,11 +268,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
   const target = useQuery({
     queryKey: ["library", corpusId, "target", source?.docId],
     enabled: Boolean(source),
-    queryFn: async (): Promise<TargetRecord> => {
-      const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/reports/${encodeURIComponent(source!.docId)}/target`);
-      if (!response.ok) throw new Error("原文提取记录不可用");
-      return response.json();
-    },
+    queryFn: ({ signal }) => fetchTargetDetail(corpusId, source!.docId, signal),
   });
 
   if (isPending) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取技术谱系…</p>;

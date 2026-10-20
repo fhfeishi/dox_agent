@@ -5,7 +5,7 @@ import { buildBoard, buildMatrix, libraryInsights } from "../briefing";
 import { hierarchyQuery, lineageQuery, projectQuery } from "../projects";
 import { useApp } from "../store";
 import { FocusRadars } from "./Charts";
-import type { LibraryOverview } from "./LeaderConstruction";
+import { libraryOverviewQuery } from "../libraryQueries";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -20,11 +20,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
   const leader = useAuth().role === "leader";
   const navigate = useNavigate();
   const corpus = corpora.find((c) => c.id === corpusId);
-  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  } });
+  const overview = useQuery({ ...libraryOverviewQuery() });
   const { data: hierarchy } = useQuery(hierarchyQuery(corpusId));
   const { data: lineage } = useQuery(lineageQuery(corpusId));
   const { data: library } = useQuery(projectQuery(corpusId));

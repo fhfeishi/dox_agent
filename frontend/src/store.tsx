@@ -14,9 +14,11 @@ import {
   ApiError,
   createArtifact,
   fetchCorpora,
+  fetchHealth,
   fetchTaskVersion,
   fetchTasks,
   ingestCorpus,
+  routeCorpora,
   streamChat,
   followRun,
   cancelRun,
@@ -39,7 +41,7 @@ import {
   type Turn,
 } from "./conversation";
 import { useCorpora } from "./useCorpora";
-import { useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
+import { fetchDocuments, useDocumentScope, useDocuments, type DocumentInfo } from "./useDocuments";
 import { useWorkspace } from "./workspace";
 import { useAuth } from "./auth";
 
@@ -474,9 +476,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const state = { ready: false, corpus: false };
     const refresh = async () => {
       try {
-        const response = await fetch("/api/health", { signal: AbortSignal.timeout(5000) });
-        if (!response.ok) throw new Error();
-        const data = await response.json();
+        const data = await fetchHealth(AbortSignal.timeout(5000));
         state.ready = Boolean(data.api_key_configured);
         state.corpus = data.preparation === "ready";
         setReady(state.ready);
@@ -555,8 +555,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (autoCorpus && !regenerate && !override && options.allowed_doc_ids === null && input.trim() && !controller.current && workspace.isSaved()) {
       const question = input.trim();
       try {
-        const response = await fetch("/api/corpora/route?" + new URLSearchParams({ q: question }));
-        const ranked: { corpus_id: string; name: string; clear: boolean }[] = response.ok ? await response.json() : [];
+        const ranked = await routeCorpora(question);
         const best = ranked.find((row) => row.clear && corpora.some((c) => c.id === row.corpus_id && !c.missing));
         const current = corpora.find((c) => c.id === corpusIds[0])?.name ?? "当前资料库";
         if (best && !(corpusIds.length === 1 && corpusIds[0] === best.corpus_id)) {
@@ -1109,9 +1108,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const corpusId = source.corpus_id || effectiveCorpusId || "";
     try {
       // Citation identity belongs to its source corpus; never infer kind or reuse another library's list.
-      const response = await fetch(`/api/documents?corpus=${encodeURIComponent(corpusId)}`);
-      if (!response.ok) throw new Error("无法读取引用所属知识库");
-      const items: DocumentInfo[] = await response.json();
+      const items = await fetchDocuments(corpusId, { failure: "无法读取引用所属知识库" });
       const doc = items.find((item) => item.doc_id === source.doc_id);
       if (!doc) throw new Error("引用文档已移除或尚未完成索引");
       if (source.version && doc.version !== source.version) throw new Error("引用文档已更新，请重新提问");

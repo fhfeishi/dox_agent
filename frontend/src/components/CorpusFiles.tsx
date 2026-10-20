@@ -4,12 +4,13 @@ import { useAuth } from "../auth";
 import { useSearchParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, uploadCorpusFile, type CorpusFile } from "../api";
+import { deleteCorpusFile, fetchCorpusFiles, renameCorpusFile, searchCorpus, uploadCorpusFile, type CorpusFile } from "../api";
 import type { DocumentInfo } from "../useDocuments";
 import { Icon } from "./Icons";
 import { fundMetaFromPath } from "../fundMeta";
 import { projectQuery } from "../projects";
 import { ProjectList } from "./ProjectList";
+import { loadDocumentMarkdown } from "../documentText";
 
 const STATUS_LABEL: Record<string, string> = {
   new: "待导入",
@@ -85,19 +86,11 @@ export function CorpusFiles({
   useEffect(() => setPage(0), [search, filter, mode]);
   const matches = useQuery({ queryKey: ["library", corpusId, "search", bodyQuery],
     enabled: mode === "content" && bodyQuery.length >= 2,
-    queryFn: async ({ signal }): Promise<{ hits: { doc_id: string; snippet: string }[]; limit: number }> => {
-      const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/search?q=${encodeURIComponent(bodyQuery)}`, { signal });
-      if (!response.ok) throw new Error("正文检索失败，请稍后重试");
-      return response.json();
-    }, staleTime: 30000 });
+    queryFn: ({ signal }) => searchCorpus(corpusId, bodyQuery, signal), staleTime: 30000 });
   const excerpt = useQuery({ queryKey: ["library", corpusId, "excerpt", hovered?.doc_id, hovered?.version],
     enabled: !!hovered,
-    queryFn: async ({ signal }): Promise<string> => {
-      const response = await fetch(`/api/documents/${hovered!.doc_id}/markdown?corpus=${encodeURIComponent(corpusId)}&version=${encodeURIComponent(hovered!.version)}`, { signal });
-      if (!response.ok) throw new Error("原文摘录暂不可读");
-      const value = await response.json();
-      return String(value.text || "").replace(/^---[\s\S]*?\n---\s*/, "").replace(/[#*|]/g, "").trim().slice(0, 260);
-    }, staleTime: 60000 });
+    queryFn: async ({ signal }) => (await loadDocumentMarkdown(hovered!, corpusId, signal)).text
+      .replace(/^---[\s\S]*?\n---\s*/, "").replace(/[#*|]/g, "").trim().slice(0, 260), staleTime: 60000 });
   function toggleMany(ids: string[], on: boolean) {
     if (!on) { setSelectedIds((old) => old.filter((id) => !ids.includes(id))); return; }
     const next = [...new Set([...selectedIds, ...ids])];

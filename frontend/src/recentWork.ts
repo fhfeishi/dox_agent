@@ -57,3 +57,18 @@ export function headline(summary: WorkSummary, label: string): string {
   const open = summary.active.length ? `，${summary.active.length} 项仍在处理` : "";
   return `${label}共 ${parts.join("、")}${where ? `，主要涉及${where}` : ""}${open}。`;
 }
+
+/** The period counted on the server over every report and review (src/period_summary.py). */
+export async function fetchSummaryFacts(period: Period, signal?: AbortSignal): Promise<Facts> {
+  const response = await fetch(`/api/summaries/facts?period=${period}`, { signal });
+  if (!response.ok) throw new Error("周期总结暂不可读");
+  return response.json();
+}
+
+/** Writes the period's summary as a report in 报告中心 and returns it. */
+export async function createSummary(period: Period): Promise<{ artifact_id: string }> {
+  const response = await fetch("/api/summaries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ period }) });
+  const value = await response.json().catch(() => null);
+  if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "总结未生成");
+  return value;
+}

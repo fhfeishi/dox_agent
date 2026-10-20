@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
+import { fileStatus } from "../api";
 
 /**
  * U2.3（对 D6 的降级实现）：不引入 PDF.js，改用浏览器原生 PDF 渲染 —— 通过
@@ -36,17 +37,17 @@ export function PdfViewer({
     const controller = new AbortController();
     setAvailability("checking");
     setFileError("");
-    fetch(fileUrl, { method: "HEAD", signal: controller.signal })
-      .then((response) => {
-        if (response.ok) {
+    fileStatus(fileUrl, controller.signal)
+      .then((status) => {
+        if (status >= 200 && status < 300) {
           setAvailability("available");
           return;
         }
-        setFileError(response.status === 404
+        setFileError(status === 404
           ? "原文件已缺失或已移动，请刷新文献库后重试"
-          : response.status === 422
+          : status === 422
             ? "文档已更新，请刷新文献库后重试"
-            : `无法预览原文件（HTTP ${response.status}）`);
+            : `无法预览原文件（HTTP ${status}）`);
         setAvailability("error");
       })
       .catch((error: unknown) => {

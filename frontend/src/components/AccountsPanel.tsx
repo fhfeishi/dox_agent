@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
 import { ROLE_LABEL, useAuth, type Role } from "../auth";
+import { accountsRequest, type Account } from "../authApi";
 import { Button } from "./ui";
 
-type Account = { username: string; role: Role; created: number };
-
-async function call(path: string, init?: RequestInit): Promise<Account[]> {
-  const response = await fetch("/api/auth/accounts" + path, { ...init, headers: { "Content-Type": "application/json" } });
-  const value = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "账户操作失败");
-  return value as Account[];
-}
 
 /** Administrator-only account list (query 2026-1013 1133): add leader/admin/user accounts, reset, delete. */
 export function AccountsPanel() {
@@ -18,7 +11,7 @@ export function AccountsPanel() {
   const [draft, setDraft] = useState({ username: "", password: "", role: "leader" as Role });
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  useEffect(() => { if (role === "admin") void call("").then(setAccounts, (e: Error) => setError(e.message)); }, [role]);
+  useEffect(() => { if (role === "admin") void accountsRequest("").then(setAccounts, (e: Error) => setError(e.message)); }, [role]);
   if (role !== "admin") return null;
   const run = async (action: () => Promise<Account[]>, done: string) => {
     setError(""); setNotice("");
@@ -31,20 +24,20 @@ export function AccountsPanel() {
     <ul className="mt-2">{accounts.map((a) => <li key={a.username} className="flex items-center gap-2 border-b border-[var(--hairline)] py-[7px] text-body">
       <span className="min-w-0 flex-1 truncate font-medium">{a.username}{a.username === me ? "（当前）" : ""}</span>
       <select aria-label={`${a.username} 的角色`} className={input} value={a.role}
-        onChange={(e) => void run(() => call("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ role: e.target.value }) }), "角色已更新")}>
+        onChange={(e) => void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ role: e.target.value }) }), "角色已更新")}>
         {(Object.keys(ROLE_LABEL) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
       </select>
       <button type="button" className="text-xs text-[var(--link)]" onClick={() => {
         const password = window.prompt(`为 ${a.username} 设置新密码（至少 4 个字符）`, "123456");
-        if (password) void run(() => call("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ password }) }), "密码已重置，该账户需重新登录");
+        if (password) void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ password }) }), "密码已重置，该账户需重新登录");
       }}>重置密码</button>
       {a.username !== me ? <button type="button" className="text-xs text-[var(--red)]" onClick={() => {
-        if (window.confirm(`删除账户 ${a.username}？`)) void run(() => call("/" + encodeURIComponent(a.username), { method: "DELETE" }), "账户已删除");
+        if (window.confirm(`删除账户 ${a.username}？`)) void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "DELETE" }), "账户已删除");
       }}>删除</button> : null}
     </li>)}</ul>
     <form className="mt-3 grid grid-cols-[1fr_1fr_auto] gap-2" onSubmit={(e) => {
       e.preventDefault();
-      void run(() => call("", { method: "POST", body: JSON.stringify({ ...draft, password: draft.password || "123456" }) }), `已添加 ${draft.username}`).then(() => setDraft({ username: "", password: "", role: draft.role }));
+      void run(() => accountsRequest("", { method: "POST", body: JSON.stringify({ ...draft, password: draft.password || "123456" }) }), `已添加 ${draft.username}`).then(() => setDraft({ username: "", password: "", role: draft.role }));
     }}>
       <input aria-label="新账户名" placeholder="账户名" required className={input} value={draft.username} onChange={(e) => setDraft({ ...draft, username: e.target.value })} />
       <input aria-label="新账户密码" placeholder="密码，默认 123456" type="password" minLength={4} autoComplete="new-password" className={input}

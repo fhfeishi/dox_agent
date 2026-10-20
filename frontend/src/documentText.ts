@@ -35,10 +35,10 @@ async function readPage(docId: string, page: number, startLine: number, version:
  * Markdown documents: it returns the parser output verbatim, without the 300-char line
  * splits and 60-line windows that break tables/code blocks. Falls back to `loadDocumentText`.
  */
-async function loadDocumentMarkdown(doc: DocumentInfo, corpus?: string): Promise<{ text: string; version: string }> {
+export async function loadDocumentMarkdown(doc: DocumentInfo, corpus?: string, signal?: AbortSignal): Promise<{ text: string; version: string }> {
   const query = new URLSearchParams({ version: doc.version });
   if (corpus) query.set("corpus", corpus);
-  const response = await fetch(`/api/documents/${encodeURIComponent(doc.doc_id)}/markdown?${query}`);
+  const response = await fetch(`/api/documents/${encodeURIComponent(doc.doc_id)}/markdown?${query}`, { signal });
   if (!response.ok) {
     const payload = await response.json().catch(() => null);
     throw new Error(typeof payload?.detail === "string" ? payload.detail : `读取失败（HTTP ${response.status}）`);

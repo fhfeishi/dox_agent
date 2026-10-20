@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { fetchSession, login, logout as signOut, markGuideSeen, type Session } from "./authApi";
 
 /** Roles choose the interface (query 2026-1013 1133): leader = lean leader view, admin = full + accounts, user = full. */
 export type Role = "admin" | "leader" | "user";
-type Session = { authenticated: boolean; username: string; role: Role | ""; guides_seen: string[] };
 type Auth = { logout: () => Promise<void>; username: string; role: Role; guidesSeen: string[]; seeGuide: (key: string) => void };
 const AuthContext = createContext<Auth>({ logout: async () => {}, username: "", role: "user", guidesSeen: [], seeGuide: () => {} });
 export const useAuth = () => useContext(AuthContext);
@@ -16,9 +16,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
   const [busy, setBusy] = useState(false);
   async function load() {
     try {
-      const response = await fetch("/api/auth/session", { cache: "no-store" });
-      if (!response.ok) throw new Error("无法连接登录服务");
-      setSession(await response.json()); setError("");
+      setSession(await fetchSession()); setError("");
     } catch (cause) { setError((cause as Error).message); }
   }
   useEffect(() => {
@@ -29,15 +27,14 @@ export function AuthGate({ children }: { children: ReactNode }) {
     return () => { window.removeEventListener("focus", focus); window.clearInterval(timer); };
   }, []);
   async function logout() {
-    const response = await fetch("/api/auth/logout", { method: "POST" });
-    if (response.ok || response.status === 401) {
+    if (await signOut()) {
       setSession((old) => old ? { ...old, authenticated: false } : null);
       window.location.assign("/");
     }
   }
   function seeGuide(key: string) {
     setSession((old) => old ? { ...old, guides_seen: [...new Set([...old.guides_seen, key])] } : old);
-    void fetch("/api/auth/guides", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key }) });
+    markGuideSeen(key);
   }
   if (session?.authenticated) return <AuthContext.Provider value={{ logout, seeGuide, username: session.username,
     role: (session.role || "user") as Role, guidesSeen: session.guides_seen ?? [] }}>{children}</AuthContext.Provider>;
@@ -47,12 +44,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
         event.preventDefault();
         setBusy(true); setError("");
         try {
-          const response = await fetch("/api/auth/login", {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: username.trim(), password }),
-          });
-          const value = await response.json();
-          if (!response.ok) throw new Error(typeof value.detail === "string" ? value.detail : "请检查账户和密码");
+          await login(username.trim(), password);
           setPassword(""); await load();
         } catch (cause) { setError((cause as Error).message); } finally { setBusy(false); }
       }}>

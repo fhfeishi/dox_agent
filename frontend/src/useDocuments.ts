@@ -10,13 +10,16 @@ export type DocumentInfo = {
   focus?: string;
 };
 
+/** A library's current documents; `failure` says what could not be done without them. */
+export async function fetchDocuments(corpus?: string, { signal, failure = "无法读取文档列表" }: { signal?: AbortSignal; failure?: string } = {}): Promise<DocumentInfo[]> {
+  const response = await fetch(corpus ? `/api/documents?corpus=${encodeURIComponent(corpus)}` : "/api/documents", { signal });
+  if (!response.ok) throw new Error(failure);
+  return response.json();
+}
+
 export const documentsQuery = (corpus?: string) => ({
   queryKey: ["library", corpus ?? "default", "documents"],
-  queryFn: async ({ signal }: { signal: AbortSignal }): Promise<DocumentInfo[]> => {
-    const response = await fetch(corpus ? `/api/documents?corpus=${encodeURIComponent(corpus)}` : "/api/documents", { signal });
-    if (!response.ok) throw new Error("无法读取文档列表");
-    return response.json();
-  },
+  queryFn: ({ signal }: { signal: AbortSignal }) => fetchDocuments(corpus, { signal }),
   staleTime: 15_000,
 });
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ROLE_LABEL, useAuth } from "../auth";
 import { GUIDE_EVENT } from "./Guide";
+import { changePassword } from "../authApi";
 
 /**
  * The account at the right of the top bar (query 2026-1013 1520 / 1522): an avatar that opens a small menu
@@ -22,10 +23,7 @@ export function UserMenu() {
   }, [open]);
   async function change() {
     setMessage("");
-    const response = await fetch("/api/auth/password", { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ old: form.old, new: form.next }) });
-    const value = await response.json().catch(() => null);
-    if (!response.ok) { setMessage(typeof value?.detail === "string" ? value.detail : "修改失败"); return; }
+    try { await changePassword(form.old, form.next); } catch (cause) { setMessage((cause as Error).message); return; }
     setForm({ old: "", next: "" }); setChanging(false); setMessage("密码已修改");
   }
   const item = "block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)]";

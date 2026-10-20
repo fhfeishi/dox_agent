@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { fetchTargetDetail, fetchTargetReports, type TargetReport } from "./api";
+import { fetchLibraryOverview, fetchTargetDetail, fetchTargetReports, type TargetReport } from "./api";
 
 export const DIMENSIONS = ["场景", "问题", "技术", "成果"] as const;
 export const FILTER_KEYS = ["scenario", "problem", "technology", "outcome"] as const;
@@ -23,4 +23,9 @@ export const targetDetailQuery = (corpus: string, doc: string, version?: string)
     return detail;
   },
   staleTime: 0,
+});
+/** One cache for every page that shows the libraries' overview (首页, 资料库, 概览, 预览). */
+export const libraryOverviewQuery = () => queryOptions({
+  queryKey: ["overview", "libraries"],
+  queryFn: ({ signal }) => fetchLibraryOverview(signal),
 });

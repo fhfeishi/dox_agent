@@ -101,7 +101,6 @@ export function ChatView() {
     error,
     editing,
     beginEdit,
-    setEditing,
     viewingBranch,
     setViewingBranch,
     restoreSelectedBranch,

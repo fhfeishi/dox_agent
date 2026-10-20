@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import type { LibraryOverview } from "./LeaderConstruction";
-import { createCorpus } from "../api";
+import { createCorpus, fetchCorpusGroups, postCorpusGroups, type CorpusGroups } from "../api";
 import { useApp } from "../store";
 import { Icon } from "./Icons";
+import { libraryOverviewQuery } from "../libraryQueries";
 
-type Group = { id: string; name: string; members: string[] };
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
 /** Notify every list of a group change (the library header's 移动到分组 uses this too). */
 export async function changeGroups(revision: number, action: string, group_id = "", name = "", corpus_id = "") {
-  const response = await fetch("/api/corpus-groups", { method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ revision, action, group_id, name, corpus_id }) });
-  const value = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "分组修改失败，请刷新后重试");
+  const value = await postCorpusGroups({ revision, action, group_id, name, corpus_id });
   window.dispatchEvent(new Event("dox-groups-changed"));
-  return value as { revision: number; groups: Group[] };
+  return value;
 }
 
 export function useGroups() {
-  const [data, setData] = useState<{ revision: number; groups: Group[] } | null>(null);
+  const [data, setData] = useState<CorpusGroups | null>(null);
   useEffect(() => {
     let active = true;
-    const load = () => void fetch("/api/corpus-groups").then((r) => r.ok ? r.json() : null).then((value) => { if (active) setData(value); }).catch(() => undefined);
+    const load = () => void fetchCorpusGroups().then((value) => { if (active) setData(value); }, () => undefined);
     load();
     window.addEventListener("dox-groups-changed", load); window.addEventListener("focus", load);
     return () => { active = false; window.removeEventListener("dox-groups-changed", load); window.removeEventListener("focus", load); };
@@ -43,11 +39,7 @@ export function LibraryHome() {
   const [search, setSearch] = useSearchParams();
   const query = (search.get("q") ?? "").trim().toLowerCase();
   const data = useGroups();
-  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  } });
+  const overview = useQuery({ ...libraryOverviewQuery() });
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const groups = data?.groups ?? [];

@@ -1,17 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-
-export type LibraryOverview = {
-  corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
-  /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
-  funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];
-  hierarchy: { generated_at?: string | null; scenes: number; issues: number; state?: string };
-  lineage: { generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number };
-  pending_identity?: number;
-  /** Projects per application field, largest first. */
-  fields?: [string, number][];
-  /** Identified projects and known funding (yuan, the same measure as funding) per start year, keyed "2021". */
-  by_year?: Record<string, number>; funding_by_year?: Record<string, number>;
-};
+import { libraryOverviewQuery } from "../libraryQueries";
+import type { LibraryOverview } from "../api";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const day = (value?: string | null) => value ? value.slice(0, 10) : "未生成";
@@ -23,11 +12,7 @@ const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh
  * Choosing a row previews the library on the right.
  */
 export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => void }) {
-  const result = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  } });
+  const result = useQuery({ ...libraryOverviewQuery() });
   // Waiting and failure sit in the same column as the page they stand in for.
   const column = "mx-auto max-w-[1200px] px-5 py-7 text-sm sm:px-8";
   if (result.error) return <p role="alert" className={`${column} text-[var(--red)]`}>{(result.error as Error).message}</p>;

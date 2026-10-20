@@ -4,7 +4,7 @@ import { resultsSummaryQuery } from "../resultsSummary";
 import { GenerationProgress } from "./GenerationProgress";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { canDeleteArtifact, changeArtifactLifecycle, type ArtifactInfo, type ArtifactSummary } from "../api";
+import { canDeleteArtifact, changeArtifactLifecycle, fetchArtifacts, type ArtifactInfo, type ArtifactSummary } from "../api";
 import { useAuth } from "../auth";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 import { useApp } from "../store";
@@ -92,12 +92,8 @@ export function ResultsPage() {
     let active = true;
     setError("");
     const fail = (cause: unknown) => { if (active) setError(cause instanceof Error ? cause.message : "报告读取失败"); };
-    fetch("/api/artifacts?limit=200")
-      .then(async (r) => { if (!r.ok) throw new Error("报告列表不可用"); return await r.json() as ArtifactSummary[]; })
-      .then((items) => { if (active) setArtifacts(items); }, fail);
-    fetch("/api/artifacts?view=trash&limit=50")
-      .then(async (r) => { if (!r.ok) throw new Error("回收站读取失败"); return await r.json() as ArtifactSummary[]; })
-      .then((items) => { if (active) setTrash(items); }, fail);
+    fetchArtifacts({ limit: 200 }).then((items) => { if (active) setArtifacts(items); }, fail);
+    fetchArtifacts({ view: "trash", limit: 50 }).then((items) => { if (active) setTrash(items); }, fail);
     fetchReviewRuns().then((items) => { if (active) setRuns(items); }, fail);
     return () => { active = false; };
   }, [revision]);

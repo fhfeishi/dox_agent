@@ -122,7 +122,6 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
   const lastQuestion = turns.at(-1)?.question ?? "";
   const reporting = reports.some((t) => t.state === "checking" || t.state === "generating");
   const right = inspectorOpen ? "xl:right-[calc(var(--inspector-width)+20px)]" : "";
-  const link = "text-caption text-[var(--link)] hover:underline disabled:opacity-40";
 
   return <section aria-label="分析工作区"
     className={`${PANEL_SHELL} fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[440px] ${right}`}>

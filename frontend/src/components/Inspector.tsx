@@ -50,7 +50,7 @@ function SessionReports({ sessionKey }: { sessionKey: string }) {
   useEffect(() => {
     const abort = new AbortController();
     setItems(null);
-    fetchArtifacts(sessionKey, abort.signal).then(setItems, () => { if (!abort.signal.aborted) setItems([]); });
+    fetchArtifacts({ session_key: sessionKey }, abort.signal).then(setItems, () => { if (!abort.signal.aborted) setItems([]); });
     return () => abort.abort();
   }, [sessionKey]);
   if (!items) return <p className="mb-[14px] text-caption text-[var(--stone)]">正在读取…</p>;

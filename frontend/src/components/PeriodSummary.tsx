@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fromFacts, headline, PERIODS, type Facts, type Period, type WorkItem } from "../recentWork";
+import { createSummary, fetchSummaryFacts, fromFacts, headline, PERIODS, type Period, type WorkItem } from "../recentWork";
 import { useApp } from "../store";
 import { Chart, type ChartSpec } from "./Charts";
 
@@ -20,11 +20,7 @@ export function PeriodSummary() {
   const [period, setPeriod] = useState<Period>("week");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const facts = useQuery({ queryKey: ["recent", period], queryFn: async ({ signal }): Promise<Facts> => {
-    const response = await fetch(`/api/summaries/facts?period=${period}`, { signal });
-    if (!response.ok) throw new Error("周期总结暂不可读");
-    return response.json();
-  } });
+  const facts = useQuery({ queryKey: ["recent", period], queryFn: ({ signal }) => fetchSummaryFacts(period, signal) });
   if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">周期总结暂不可读，请稍后重试。</p>;
   if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取周期总结…</p>;
   const label = PERIODS.find((p) => p.key === period)!.label;
@@ -43,9 +39,7 @@ export function PeriodSummary() {
   async function generate() {
     setBusy(true); setError("");
     try {
-      const response = await fetch("/api/summaries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ period }) });
-      const value = await response.json().catch(() => null);
-      if (!response.ok) throw new Error(typeof value?.detail === "string" ? value.detail : "总结未生成");
+      const value = await createSummary(period);
       await client.invalidateQueries({ queryKey: ["recent"] });
       showInspector({ kind: "artifact", artifactId: value.artifact_id });
     } catch (e) { setError((e as Error).message); } finally { setBusy(false); }

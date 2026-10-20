@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { useAuth } from "../auth";
 import { REVIEW_STATUS_LABEL, fetchReviewRuns } from "../reviewApi";
-import type { ArtifactSummary } from "../api";
+import { fetchArtifacts } from "../api";
 import { useApp } from "../store";
 import { TERMS } from "../copy";
 
@@ -21,11 +21,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
   const navigate = useNavigate();
   const reports = useQuery({
     queryKey: ["mine", "reports", username],
-    queryFn: async ({ signal }): Promise<ArtifactSummary[]> => {
-      const response = await fetch(`/api/artifacts?type=report&limit=20&created_by=${encodeURIComponent(username)}`, { signal });
-      if (!response.ok) throw new Error("我的报告暂不可读");
-      return response.json();
-    },
+    queryFn: ({ signal }) => fetchArtifacts({ type: "report", limit: 20, created_by: username }, signal),
     refetchInterval: (query) => query.state.data?.some((r) => ACTIVE.has(r.status)) ? 5000 : false,
   });
   const reviews = useQuery({

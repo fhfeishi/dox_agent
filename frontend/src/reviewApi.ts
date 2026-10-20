@@ -281,6 +281,16 @@ export function fetchReviewHealth(): Promise<ReviewHealth> {
 export function testReviewModel(): Promise<{ ok: boolean; message?: string; model_connection?: string }> {
   return request("/model/test", { method: "POST" }, "模型连接测试失败");
 }
+export function fetchReviewDocument(id: string): Promise<ReviewDoc> {
+  return request(`/documents/${encodeURIComponent(id)}`, undefined, "申请书状态读取失败");
+}
+/** A review material's text by page: an application or information sheet, or an uploaded evidence file. */
+export function reviewSourceBase(fileId: string, evidence = false) {
+  return "/api/review/" + (evidence ? "evidence/" : "documents/") + encodeURIComponent(fileId);
+}
+export function fetchReviewSourcePages(fileId: string, evidence = false, signal?: AbortSignal): Promise<{ page: number; text: string }[]> {
+  return request(`/${evidence ? "evidence" : "documents"}/${encodeURIComponent(fileId)}/pages`, { signal }, "这份原始材料暂不可读");
+}
 export function fetchReviewDocuments(): Promise<ReviewDoc[]> {
   return request("/documents", undefined, "申请书列表读取失败");
 }

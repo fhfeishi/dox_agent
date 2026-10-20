@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { fetchArtifacts, type CorpusInfo } from "../api";
 import { fetchReviewRuns } from "../reviewApi";
 import { useApp } from "../store";
-import type { LibraryOverview } from "./LeaderConstruction";
+import { libraryOverviewQuery } from "../libraryQueries";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 
@@ -32,11 +32,7 @@ export function libraryProblems(c: CorpusInfo): string[] {
 export function useAdminTodos(enabled = true) {
   const { corpora, openCorpus, showInspector } = useApp();
   const navigate = useNavigate();
-  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  }, enabled });
+  const overview = useQuery({ ...libraryOverviewQuery(), enabled });
   const reviews = useQuery({ queryKey: ["admin", "reviews"], queryFn: fetchReviewRuns, enabled });
   const reports = useQuery({ queryKey: ["admin", "artifacts"], queryFn: () => fetchArtifacts(), enabled });
   const libs = overview.data ?? [];

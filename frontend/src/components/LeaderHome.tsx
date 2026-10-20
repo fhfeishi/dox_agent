@@ -4,9 +4,9 @@ import { workCards } from "../navigation";
 import { useApp } from "../store";
 import { RadarChart } from "./Charts";
 import { Icon } from "./Icons";
-import type { LibraryOverview } from "./LeaderConstruction";
 import { MyWorkSection } from "./MyWorkSection";
 import { HeroCarousel } from "./HeroCarousel";
+import { libraryOverviewQuery } from "../libraryQueries";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
@@ -33,11 +33,7 @@ function SectionHead({ index, title, note }: { index: string; title: string; not
 export function LeaderHome() {
   const { showInspector } = useApp();
   const [search, setSearch] = useSearchParams();
-  const overview = useQuery({ queryKey: ["overview", "libraries"], queryFn: async ({ signal }): Promise<LibraryOverview[]> => {
-    const response = await fetch("/api/overview/libraries", { signal });
-    if (!response.ok) throw new Error("资料库概况暂不可读");
-    return response.json();
-  } });
+  const overview = useQuery({ ...libraryOverviewQuery() });
   const rows = [...(overview.data ?? [])].filter((r) => r.projects > 0).sort((a, b) => b.projects - a.projects);
   const chosen = rows.find((r) => r.corpus_id === search.get("domain")) ?? rows[0];
   // The choice lives in the address, replaced rather than added, so a refresh keeps it and Back leaves the page.

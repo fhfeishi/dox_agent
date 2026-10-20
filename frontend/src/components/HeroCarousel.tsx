@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { LibraryOverview } from "./LeaderConstruction";
+import type { LibraryOverview } from "../api";
 
 const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: number) => (yuan / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });

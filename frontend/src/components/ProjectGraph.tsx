@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CATEGORY_COLORS, FACET_COLORS, hierarchyQuery, lineageQuery, locateItem, type Project } from "../projects";
 import { Button } from "./ui";
 import { buildSectors, type Sector } from "../departments";
+import { fetchProjectRelations } from "../projects";
 
 const SIZE = 1000;
 const C = SIZE / 2;
@@ -36,11 +37,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
   // Graded relations by description similarity (server, local embeddings, cached per library).
   const similarity = useQuery({
     queryKey: ["library", corpusId, "relations", relation], retry: false, staleTime: Infinity,
-    queryFn: async ({ signal }): Promise<{ threshold: number | null; degree: Record<string, number>; edges: Record<string, [string, number][]> }> => {
-      const response = await fetch(`/api/corpora/${encodeURIComponent(corpusId)}/relations?dimension=${encodeURIComponent(relation)}`, { signal });
-      if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "相似关联计算失败");
-      return response.json();
-    },
+    queryFn: ({ signal }) => fetchProjectRelations(corpusId, relation, signal),
   });
   const graded = similarity.data;
   const color = RELATIONS[relation].color;

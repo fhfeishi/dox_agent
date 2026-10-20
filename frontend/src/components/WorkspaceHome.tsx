@@ -16,7 +16,7 @@ function latestReviews(runs: ReviewRun[]) {
   return [...groups.values()];
 }
 import { resultsSummaryQuery } from "../resultsSummary";
-import type { ArtifactSummary } from "../api";
+import { fetchArtifacts } from "../api";
 import { Icon } from "./Icons";
 import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
@@ -38,9 +38,8 @@ function WorkHome() {
   const recent = useQuery({
     queryKey: ["home", "recent"],
     queryFn: async ({ signal }) => {
-      const [response, reviews] = await Promise.all([fetch("/api/artifacts?type=report&limit=8", { signal }), fetchReviewRuns()]);
-      if (!response.ok) throw new Error("最近报告暂不可读");
-      return { reports: await response.json() as ArtifactSummary[], reviews };
+      const [reports, reviews] = await Promise.all([fetchArtifacts({ type: "report", limit: 8 }, signal), fetchReviewRuns()]);
+      return { reports, reviews };
     },
     refetchOnWindowFocus: true,
     refetchInterval: totals.data?.active ? 5000 : 30000,

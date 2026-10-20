@@ -3,30 +3,20 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Markdown from "react-markdown";
 import { useApp } from "../store";
-import { copyTemplate, saveTemplateDraft, publishTemplate, fetchTemplates, fetchTemplate, templateArea } from "../api";
+import { analyzeIntelligence, copyTemplate, fetchIntelligenceInput, fetchIntelligencePurposes, fetchTemplate, fetchTemplates, publishTemplate, saveTemplateDraft, templateArea, uploadIntelligenceInput, type IntelligenceInput } from "../api";
 import { Button } from "./ui";
 import { TemplateLibrary } from "./TemplateLibrary";
 
-type Input = { input_id: string; filename: string; version: string; text: string };
-/** A purpose of the analysis, what it answers and its own built-in template (query 2026-1020 1653). */
-type Purpose = { key: string; label: string; focus: string; template_id: string };
-
-async function responseJson(response: Response) {
-  const value = await response.json();
-  if (!response.ok) throw new Error(typeof value.detail === "string" ? value.detail : "操作未完成，请重试");
-  return value;
-}
 export function IntelligenceView() {
   const { corpora, corpusIds, workspace, showInspector } = useApp();
-  const [inputs, setInputs] = useState<Input[]>([]);
+  const [inputs, setInputs] = useState<IntelligenceInput[]>([]);
   const [purpose, setPurpose] = useState("comprehensive");
   const [corpus, setCorpus] = useState("");
   const [template, setTemplate] = useState("");
   const [templateId, setTemplateId] = useState("");
   const [templateVersion, setTemplateVersion] = useState<number | undefined>(0);
   const templates = useQuery({ queryKey: ["templates", "published"], queryFn: () => fetchTemplates() });
-  const purposes = useQuery({ queryKey: ["intelligence", "purposes"], queryFn: async ({ signal }): Promise<Purpose[]> =>
-    responseJson(await fetch("/api/intelligence/purposes", { signal })) });
+  const purposes = useQuery({ queryKey: ["intelligence", "purposes"], queryFn: ({ signal }) => fetchIntelligencePurposes(signal) });
   // Choosing a purpose takes up its template; another template can still be chosen afterwards.
   async function choosePurpose(key: string) {
     const chosen = purposes.data?.find((item) => item.key === key);
@@ -39,7 +29,7 @@ export function IntelligenceView() {
   }
   useEffect(() => { if (purposes.data && !templateId && !template) void choosePurpose(purpose); }, [purposes.data]);
   const templateName = (templates.data ?? []).find((item) => item.id === templateId)?.name;
-  const [templateInput, setTemplateInput] = useState<Input | null>(null);
+  const [templateInput, setTemplateInput] = useState<IntelligenceInput | null>(null);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [resultId, setResultId] = useState("");
@@ -50,8 +40,7 @@ export function IntelligenceView() {
     setBusy("保存并读取材料"); setError("");
     try {
       for (const file of Array.from(files)) {
-        const form = new FormData(); form.append("file", file); if (isTemplate) form.append("template", "true");
-        const saved: Input = await responseJson(await fetch("/api/intelligence/inputs", { method: "POST", body: form }));
+        const saved = await uploadIntelligenceInput(file, isTemplate);
         if (isTemplate) { setTemplate(saved.text); setTemplateInput(saved); setTemplateId(""); setTemplateVersion(undefined); }
         else setInputs((old) => [...old, saved]);
       }
@@ -61,11 +50,8 @@ export function IntelligenceView() {
   async function analyze() {
     setBusy("正在核对外部材料与资料库，完成后自动保存报告"); setError("");
     try {
-      const result = await responseJson(await fetch("/api/intelligence/analyze", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input_ids: inputs.map((item) => item.input_id), corpus_id: chosenCorpus,
-          purpose, template, template_id: templateId || null, template_version: templateVersion ?? null, input_template_id: templateInput?.input_id ?? null, session_key: workspace.active || "" }),
-      }));
+      const result = await analyzeIntelligence({ input_ids: inputs.map((item) => item.input_id), corpus_id: chosenCorpus,
+        purpose, template, template_id: templateId || null, template_version: templateVersion ?? null, input_template_id: templateInput?.input_id ?? null, session_key: workspace.active || "" });
       setResultId(result.artifact_id);
       window.dispatchEvent(new Event("dox-artifacts-changed"));
       showInspector({ kind: "artifact", artifactId: result.artifact_id });
@@ -127,8 +113,7 @@ export function IntelligenceView() {
 }
 
 export function ExternalInputView({ inputId }: { inputId: string }) {
-  const result = useQuery({ queryKey: ["external-input", inputId], queryFn: async ({ signal }): Promise<Input> =>
-    responseJson(await fetch("/api/intelligence/inputs/" + encodeURIComponent(inputId), { signal })) });
+  const result = useQuery({ queryKey: ["external-input", inputId], queryFn: ({ signal }) => fetchIntelligenceInput(inputId, signal) });
   return <div className="p-4">{result.error ? <p role="alert">{result.error.message}</p> : result.data ? <>
     <h3 className="font-semibold">{result.data.filename}</h3><p className="my-2 text-xs text-[var(--steel)]">外部材料自述 · 原输入版本保留</p>
     <div className="markdown"><Markdown>{result.data.text}</Markdown></div></> : <p>正在读取原输入…</p>}</div>;

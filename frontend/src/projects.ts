@@ -186,3 +186,11 @@ export const outputsQuery = (corpus: string) => ({
 /** Distinct hues for categories (scenes, issues, lineage classes) and corpus branches. */
 export const CATEGORY_COLORS = ["#dc5b62", "#478bdb", "#2d9d7e", "#d9a92f", "#7c5cd6", "#e07b39", "#1f9fb4", "#b5508f", "#6b8e23", "#8d6e63"];
 export const LINEAGE_COLOR = "#7c5cd6";
+
+/** Graded relations between a library's projects by description similarity (server, local embeddings). */
+export type ProjectRelations = { threshold: number | null; degree: Record<string, number>; edges: Record<string, [string, number][]> };
+export async function fetchProjectRelations(corpus: string, dimension: string, signal?: AbortSignal): Promise<ProjectRelations> {
+  const response = await fetch(`/api/corpora/${encodeURIComponent(corpus)}/relations?dimension=${encodeURIComponent(dimension)}`, { signal });
+  if (!response.ok) throw new Error((await response.json().catch(() => null))?.detail ?? "相似关联计算失败");
+  return response.json();
+}

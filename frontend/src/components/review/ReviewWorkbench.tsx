@@ -1,7 +1,7 @@
 import { GenerationProgress } from "../GenerationProgress";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router";
-import { createReviewRun, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth, fetchReviewMappings, fetchReviewRules, fetchReviewRuns, patchReviewDocument, reextractReviewDocument, saveReviewMappings, testReviewModel, uploadReviewDocument, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL, type ReviewDoc, type ReviewEvidence, type ReviewHealth, type ReviewKind, type ReviewMappingState, type ReviewMetadata, type ReviewRule, type ReviewRun } from "../../reviewApi";
+import { createReviewRun, fetchReviewDocument, fetchReviewDocuments, fetchReviewEvidence, fetchReviewHealth, fetchReviewMappings, fetchReviewRules, fetchReviewRuns, patchReviewDocument, reextractReviewDocument, saveReviewMappings, testReviewModel, uploadReviewDocument, REVIEW_FIELD_LABEL, REVIEW_KIND_LABEL, REVIEW_SOURCE_LABEL, REVIEW_STATUS_LABEL, type ReviewDoc, type ReviewEvidence, type ReviewHealth, type ReviewKind, type ReviewMappingState, type ReviewMetadata, type ReviewRule, type ReviewRun } from "../../reviewApi";
 import { useApp } from "../../store";
 import { Button, Pill } from "../ui";
 import { ReviewPageShell as Shell, ReviewNotice as Notice } from "./ReviewLayout";
@@ -582,9 +582,4 @@ function localTime(value: string) {
   return new Date(value).toLocaleString("zh-CN", { hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
 }
 
-async function fetchReviewDocument(id: string): Promise<ReviewDoc> {
-  const response = await fetch(`/api/review/documents/${encodeURIComponent(id)}`);
-  if (!response.ok) throw new Error("申请书状态读取失败");
-  return (await response.json()) as ReviewDoc;
-}
 

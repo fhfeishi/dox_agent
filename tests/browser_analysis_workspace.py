@@ -11,7 +11,7 @@ from types import SimpleNamespace
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
 
-import src.main as main_module
+import src.api.reports as reports_api
 from src.agent.config import Settings
 from src.agent.corpora import scan_corpora
 from src.agent.graph import build_graph
@@ -40,7 +40,7 @@ async def fake_report(knowledge, settings, params, **kwargs):
 
 
 async def main():
-    main_module.generate_markdown = fake_report
+    reports_api.generate_markdown = fake_report
     with TemporaryDirectory(prefix="dox-workspace-") as directory:
         root = Path(directory)
         corpus = root/"corpora"/"自然科学基金-机器人验收"

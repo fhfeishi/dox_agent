@@ -12,7 +12,7 @@ import uvicorn
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
 
-import src.main as main_module
+import src.api.reports as reports_api
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
@@ -74,7 +74,7 @@ async def main():
                                      pages=[Page(number=1, text="基金项目方法证据")],
                                      markdown="填表日期：2025年\n资助类别：重点项目\n基金项目方法证据"))
         corpus_id = corpus_id_for("fixture")
-        main_module.generate_markdown = offline_report
+        reports_api.generate_markdown = offline_report
         app = create_app(settings, knowledge, lambda *_: CustomTaskOfflineGraph(corpus_id, doc["doc_id"]))
         origin, server, thread, listener = start_server(app)
         try:

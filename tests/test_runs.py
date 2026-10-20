@@ -192,7 +192,7 @@ def test_user_report_run_is_a_child_of_the_intake_run(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     body = {"domain": "医疗", "year_from": 2024, "year_to": 2025, "template_id": "comprehensive",
             "corpus_id": cid, "session_key": "sess-1", "run_id": "report-run-0001",
@@ -226,7 +226,7 @@ def test_user_report_run_records_server_verified_brief_origins(tmp_path, monkeyp
     async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path, factory=lambda _: BriefGraph())
     with TestClient(app) as client:
         intake = {**chat_body(cid, "intake-brief-0001"), "task_id": "task4"}

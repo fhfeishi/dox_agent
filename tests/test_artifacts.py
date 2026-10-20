@@ -139,7 +139,7 @@ def test_user_artifact_uses_null_for_unrecorded_versions_and_retries_preserve_pr
             raise ValueError("临时失败")
         return "# 重试报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", generate_once_failed)
+    monkeypatch.setattr("src.api.reports.generate_markdown", generate_once_failed)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         old = app.state.artifacts.create("old-versioned", type="answer_snapshot",
@@ -268,7 +268,7 @@ def test_report_generation_creates_a_linked_artifact(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         created = client.post("/api/reports", json={
@@ -292,7 +292,7 @@ def test_user_report_retry_finishes_the_same_failed_entity(tmp_path, monkeypatch
     async def fake_generate(knowledge, settings, params, *, llm=None, visible_sources=None):
         return "# 报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         original = app.state.artifacts.finish_report
@@ -329,7 +329,7 @@ def test_user_failed_report_is_visible_and_retry_keeps_the_failed_version(tmp_pa
             raise ValueError("资料不足")
         return "# 重试成功\n\n来源 [1]"
 
-    monkeypatch.setattr("src.main.generate_markdown", generate_once_failed)
+    monkeypatch.setattr("src.api.reports.generate_markdown", generate_once_failed)
     app, cid = ready_app(tmp_path)
     request = {"domain": "医疗", "year_from": 2024, "year_to": 2025,
                "template_id": "comprehensive", "corpus_id": cid,
@@ -357,7 +357,7 @@ def test_user_sees_a_safe_failed_report_status_without_provider_details(tmp_path
     async def generate_failed(knowledge, settings, params, *, llm=None, visible_sources=None):
         raise RuntimeError("private provider token")
 
-    monkeypatch.setattr("src.main.generate_markdown", generate_failed)
+    monkeypatch.setattr("src.api.reports.generate_markdown", generate_failed)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         response = client.post("/api/reports", json={

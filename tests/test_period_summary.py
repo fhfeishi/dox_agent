@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 
 from src import main
 from src.agent.config import Settings
+from src.api import reports as reports_api
 from src.period_summary import charts, gather, markdown, period_start
 
 
@@ -60,7 +61,7 @@ def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_p
             assert facts["reports"][0]["title"] == "医疗研判"
             return type("R", (), {"content": json.dumps({"headline": "本期以医疗为主。", "focus": ["《医疗研判》"], "suggestions": []})})()
 
-    monkeypatch.setattr(main, "model_for", lambda settings, **_: Model())
+    monkeypatch.setattr(reports_api, "model_for", lambda settings, **_: Model())
     app = main.create_app(Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
                                    user_dir=tmp_path / "usr", model_api_key="test"))
     with TestClient(app) as client:
@@ -88,7 +89,7 @@ def test_summary_endpoint_saves_a_report_and_every_role_sees_the_same_work(tmp_p
         class Broken:
             async def ainvoke(self, messages):
                 raise RuntimeError("model down")
-        monkeypatch.setattr(main, "model_for", lambda settings, **_: Broken())
+        monkeypatch.setattr(reports_api, "model_for", lambda settings, **_: Broken())
         assert client.post("/api/summaries", json={"period": "year"}).status_code == 502
         failed = [a for a in app.state.artifacts.list() if a.get("task_id") == "period_summary" and a["status"] == "failed"]
         assert len(failed) == 1 and failed[0]["fail_reason"] == "模型调用失败", failed

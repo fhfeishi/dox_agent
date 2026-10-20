@@ -11,7 +11,7 @@ import uvicorn
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
 
-import src.main as main_module
+import src.api.web as web_api
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
 from src.knowledge import Document, Knowledge, Page
@@ -58,12 +58,12 @@ async def main():
             return Document(title=name, origin=url, kind="web", parser="offline",
                             pages=[Page(number=1, text="网页正文 " + name)], markdown="网页正文 " + name)
 
-        main_module.parse_web = fake_page
+        web_api.parse_web = fake_page
         async def fake_search(query, domains, time_filter, limit, settings):
             return [{"url": "https://example.com/search", "title": "搜索证据", "description": "域内结果"},
                     {"url": "https://outside.test/skip", "title": "域外结果"}]
 
-        main_module.search_web = fake_search
+        web_api.search_web = fake_search
         app = create_app(settings, store, lambda *_: WebGraph())
         origin, server, thread, listener = start_server(app)
         try:

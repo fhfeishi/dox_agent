@@ -287,7 +287,7 @@ def test_rename_syncs_directory_and_keeps_doc_identity(tmp_path):
 
 
 def test_rename_rolls_back_directory_and_origins_when_registry_write_fails(tmp_path, monkeypatch):
-    import src.main as main
+    import src.api.library as library_api
 
     doc_id, _ = seed_corpus(tmp_path, "旧名")
     seed_corpus(tmp_path, "demo")
@@ -295,7 +295,7 @@ def test_rename_rolls_back_directory_and_origins_when_registry_write_fails(tmp_p
     app = create_app(settings, Knowledge(demo_db(tmp_path)))
     with TestClient(app, raise_server_exceptions=False) as client:
         cid = next(item["id"] for item in client.get("/api/corpora").json() if item["rel_path"] == "旧名")
-        monkeypatch.setattr(main, "save_corpus_overrides", lambda *_args: (_ for _ in ()).throw(OSError("disk full")))
+        monkeypatch.setattr(library_api, "save_corpus_overrides", lambda *_args: (_ for _ in ()).throw(OSError("disk full")))
         response = client.patch(f"/api/corpora/{cid}", json={"name": "新名"})
         assert response.status_code == 500
         assert (tmp_path / "knowledge" / "旧名" / "source" / "报告.md").is_file()

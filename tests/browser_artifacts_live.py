@@ -16,6 +16,7 @@ import uvicorn
 from playwright.async_api import async_playwright, expect
 from pydantic import SecretStr
 
+import src.api.reports as reports_api
 import src.main as main_module
 from src.agent.config import Settings
 from src.agent.corpora import corpus_id_for
@@ -74,7 +75,7 @@ async def main():
             other=Knowledge(corpus_root/name/"datadb"/"knowledge.sqlite3",settings=settings)
             other.put(Document(title=name,origin=f"2021_2025_P2_李四_{name}.md",kind="text",parser="text",pages=[Page(number=1,text="独立库资料")],markdown="独立库资料"))
         corpus_id = corpus_id_for("fixture")
-        main_module.generate_markdown = offline_report
+        reports_api.generate_markdown = offline_report
 
         def application():
             return main_module.create_app(settings, knowledge,

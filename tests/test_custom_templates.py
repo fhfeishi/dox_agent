@@ -38,7 +38,7 @@ def test_custom_template_draft_publish_and_report_binding(tmp_path, monkeypatch)
         captured["params"] = params
         return "# 自定义报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         template_id = copy_template(client)
@@ -84,7 +84,7 @@ def test_report_type_custom_task_records_task_and_template_versions(tmp_path, mo
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         template_id = copy_template(client)
@@ -118,7 +118,7 @@ def test_user_report_task_bound_to_builtin_template_accepts_version_zero(tmp_pat
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 内置模板报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         task = client.post("/api/tasks/custom", json={"source_task_id": "task4"}).json()
@@ -148,7 +148,7 @@ def test_user_report_requires_explicit_task_version_and_rejects_parameter_bypass
         assert task_definition["background"] == "只依据资料"
         assert params["task_params"] == {"topic": "医疗"}
         return "# 报告"
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         template_id = copy_template(client)
@@ -255,7 +255,7 @@ def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, 
                             task_definition=None, visible_sources=None):
         return "# 固定版本报告"
 
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, cid = ready_app(tmp_path)
     with TestClient(app) as client:
         template = client.post("/api/templates/custom", json={"source_template_id": "comprehensive"}).json()
@@ -278,7 +278,7 @@ def test_user_archived_template_keeps_published_task_version_runnable(tmp_path, 
 def test_user_cannot_publish_report_task_without_authoritative_template_binding(tmp_path, monkeypatch):
     async def fake_generate(knowledge, settings, params, *, llm=None, template_content=None, task_definition=None, visible_sources=None):
         return "# 报告"
-    monkeypatch.setattr("src.main.generate_markdown", fake_generate)
+    monkeypatch.setattr("src.api.reports.generate_markdown", fake_generate)
     app, _ = ready_app(tmp_path)
     with TestClient(app) as client:
         task = client.post("/api/tasks/custom", json={"source_task_id": "task4"}).json()

@@ -24,6 +24,8 @@ def serve(root: Path, port: int):
     import uvicorn
     from pydantic import SecretStr
 
+    import src.api.library as library_api
+    import src.api.reports as reports_api
     import src.main as main_module
     from src.agent.config import Settings
     from src.review import storage
@@ -32,14 +34,14 @@ def serve(root: Path, port: int):
         await asyncio.sleep(float((root / "delay").read_text()))
         return f"# {params['domain']}\n\n巡检机器人项目的研究进展 [1]。\n"
 
-    main_module.generate_markdown = writer
-    importer = main_module.import_defaults
+    reports_api.generate_markdown = writer
+    importer = library_api.import_defaults
 
     def slow_import(*args, **kwargs):  # a library refresh that takes root/import_delay seconds
         time.sleep(float((root / "import_delay").read_text()))
         return importer(*args, **kwargs)
 
-    main_module.import_defaults = slow_import
+    library_api.import_defaults = slow_import
 
     class Answer:  # a model that writes five parts, root/answer_delay seconds apart
         async def astream(self, messages):

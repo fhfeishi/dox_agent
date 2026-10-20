@@ -4,6 +4,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from src.agent.config import Settings
+from src.api import library as library_api
+from src.api import web as web_api
 from src.knowledge import Document, Knowledge, Page
 from src.main import create_app
 
@@ -58,9 +60,8 @@ def test_user_upload_new_markdown_is_published_and_imported(tmp_path):
 
 
 def test_user_upload_over_limit_does_not_publish_partial_source(tmp_path, monkeypatch):
-    from src import main
 
-    monkeypatch.setattr(main, "MAX_PREVIEW_BYTES", 4)
+    monkeypatch.setattr(library_api, "MAX_PREVIEW_BYTES", 4)
     app, _ = setup(tmp_path)
     with TestClient(app) as client:
         corpus = client.post("/api/corpora", json={"name": "upload-limit"}).json()
@@ -441,7 +442,6 @@ def test_chat_rejects_client_research_state_and_starts_fresh(tmp_path):
 
 
 def test_user_web_previews_are_isolated_and_confirmed_to_an_explicit_destination(tmp_path, monkeypatch):
-    from src import main
 
     async def fake(url, settings):
         return Document(
@@ -452,7 +452,7 @@ def test_user_web_previews_are_isolated_and_confirmed_to_an_explicit_destination
             pages=[Page(number=1, text="review " + url)],
         )
 
-    monkeypatch.setattr(main, "parse_web", fake)
+    monkeypatch.setattr(web_api, "parse_web", fake)
     app, store = setup(tmp_path)
     with TestClient(app) as client:
         second = client.post("/api/corpora", json={"name": "second"}).json()
@@ -482,7 +482,6 @@ def test_user_web_previews_are_isolated_and_confirmed_to_an_explicit_destination
 def test_user_searches_allowed_domains_then_confirms_only_selected_results(tmp_path, monkeypatch):
     from pydantic import SecretStr
 
-    from src import main
 
     # Given explicit search settings and a provider result outside the chosen domain
     calls = []
@@ -496,8 +495,8 @@ def test_user_searches_allowed_domains_then_confirms_only_selected_results(tmp_p
         return Document(title="研究一", origin=url, kind="web", parser="fake",
                         pages=[Page(number=1, text="确认后的正文")], markdown="确认后的正文")
 
-    monkeypatch.setattr(main, "search_web", fake_search)
-    monkeypatch.setattr(main, "parse_web", fake_page)
+    monkeypatch.setattr(web_api, "search_web", fake_search)
+    monkeypatch.setattr(web_api, "parse_web", fake_page)
     root = tmp_path / ".knowledge"
     (root / "fixture" / "source").mkdir(parents=True)
     settings = Settings(_env_file=None, corpora_root=root, state_dir=tmp_path,
@@ -541,7 +540,7 @@ def test_user_searches_allowed_domains_then_confirms_only_selected_results(tmp_p
         async def failing_search(*args):
             raise ValueError("搜索服务暂时不可用")
 
-        monkeypatch.setattr(main, "search_web", failing_search)
+        monkeypatch.setattr(web_api, "search_web", failing_search)
         failed = client.post("/api/web/search", json={"query": "另一项研究", "domains": ["example.org"]})
         assert failed.status_code == 502
         assert client.get(f"/api/documents?corpus={corpus_id}").json() == []
@@ -549,7 +548,6 @@ def test_user_searches_allowed_domains_then_confirms_only_selected_results(tmp_p
 
 def test_user_confirmed_web_snapshot_is_bound_to_the_actual_chat_run(tmp_path, monkeypatch):
     # Given a confirmed web snapshot kept outside the knowledge base
-    from src import main
 
     async def fake_page(url, settings):
         return Document(title="网页证据", origin=url, kind="web", parser="fake",
@@ -564,7 +562,7 @@ def test_user_confirmed_web_snapshot_is_bound_to_the_actual_chat_run(tmp_path, m
             yield {"event": "token", "data": {"text": "网页事实 [1]"}}
             yield {"event": "done", "data": {"ok": True}}
 
-    monkeypatch.setattr(main, "parse_web", fake_page)
+    monkeypatch.setattr(web_api, "parse_web", fake_page)
     app, _ = setup(tmp_path, lambda *_: RecordingGraph())
     with TestClient(app) as client:
         preview = client.post("/api/web/preview", json={"url": "https://example.com/one"}).json()
@@ -677,7 +675,6 @@ def test_chat_rejects_both_corpus_id_and_corpus_ids(tmp_path):
 
 def test_web_run_reports_the_real_corpus_state(tmp_path, monkeypatch):
     # Given a corpus without documents and one snapshot confirmed for this run only
-    from src import main
 
     async def fake_page(url, settings):
         return Document(title="网页证据", origin=url, kind="web", parser="fake",
@@ -692,7 +689,7 @@ def test_web_run_reports_the_real_corpus_state(tmp_path, monkeypatch):
             yield {"event": "token", "data": {"text": "网页事实 [1]"}}
             yield {"event": "done", "data": {"ok": True}}
 
-    monkeypatch.setattr(main, "parse_web", fake_page)
+    monkeypatch.setattr(web_api, "parse_web", fake_page)
     app, store = setup(tmp_path, lambda *_: RecordingGraph())
     with TestClient(app) as client:
         corpus_id = client.get("/api/corpora").json()[0]["id"]
@@ -729,7 +726,7 @@ def test_session_can_be_deleted_and_stays_deleted(tmp_path):
 def test_origin_from_another_machine_maps_onto_this_corpora_root(tmp_path):
     """A datadb copied from another clone keeps its absolute origins; files still resolve here."""
     from src.agent.config import Settings
-    from src.main import local_path_in_roots
+    from src.api.common import local_path_in_roots
 
     root = tmp_path / ".knowledge"
     (root / "库" / "source").mkdir(parents=True)
@@ -798,7 +795,7 @@ def test_model_calls_never_use_the_system_proxy(monkeypatch):
 
 
 def test_model_failure_message_names_the_reason():
-    from src.main import model_failure_message
+    from src.api.common import model_failure_message
 
     class APIConnectionError(Exception): ...
     class APITimeoutError(Exception): ...

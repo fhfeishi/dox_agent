@@ -18,7 +18,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, File, HTTPException, Query, Request, Response, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from . import lineage, topic_summary
 from .achievement_list import library_outputs
@@ -41,7 +41,7 @@ from .agent.corpora import (
 from .agent.graph import build_graph
 from .agent.models import check_model, model_for, tracing
 from .agent.usage import TurnUsage
-from .artifacts import ArtifactStore
+from .artifacts import ArtifactStore, report_title
 from .compose_question import compose as compose_question
 from .corpus_groups import GroupStore
 from .corpus_groups import router as corpus_groups_router
@@ -2093,7 +2093,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await asyncio.to_thread(app.state.runs.update, run_id, status="failed",
                                     ended_at=datetime.now(UTC).isoformat())
             await asyncio.to_thread(app.state.artifacts.record_failed_report,
-                                    run_id=run_id, title=params.get("domain", ""),
+                                    run_id=run_id, title=report_title(params),
                                     session_key=params.get("session_key", ""),
                                     corpus_id=params.get("corpus_id", ""),
                                     task_id=params.get("task_id", "task4"),
@@ -2604,6 +2604,32 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             await asyncio.to_thread(app.state.runs.update, run_id, status="completed", ended_at=datetime.now(UTC).isoformat(), metrics={"report_id": saved["report_id"]})
         except Exception: logger.exception("report run update failed")
         return JSONResponse({**saved, "idempotent": False}, status_code=201)
+
+    @app.post("/api/artifacts/{artifact_id}/retry", status_code=201)
+    async def retry_report(artifact_id: str):
+        """Run a failed or interrupted report again with the settings it was started with (card B1).
+
+        The new attempt is a report of its own, checked and generated like any other; once it is
+        saved, the failed record moves to the recycle bin, where it can still be restored."""
+        try:
+            item = await asyncio.to_thread(app.state.artifacts.get, artifact_id)
+        except KeyError as exc:
+            raise HTTPException(404, "成果不存在") from exc
+        if item["type"] != "report" or item["status"] != "failed":
+            raise HTTPException(409, "只有未完成的报告可以重新生成")
+        params = item.get("report_params") or {}
+        fields = {key: params[key] for key in ReportRequest.model_fields
+                  if key not in ("run_id", "parent_run_id", "scope_fingerprint") and params.get(key) is not None}
+        try:
+            payload = ReportRequest(**fields)
+        except ValidationError as exc:
+            raise HTTPException(422, "原报告的设置不完整，请从分析页重新发起") from exc
+        response = await create_report(payload)
+        try:
+            await asyncio.to_thread(app.state.artifacts.transition, artifact_id, "trash", item["revision"])
+        except HTTPException:
+            pass  # someone changed or removed the failed record meanwhile; leave it as it is
+        return response
 
     @app.get("/api/reports/{report_id}")
     async def get_report(report_id: str):

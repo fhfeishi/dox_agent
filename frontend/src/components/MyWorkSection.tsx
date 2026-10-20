@@ -57,7 +57,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
         {reports.error ? <p role="alert" className="px-3 text-[13px] text-[var(--red)]">{(reports.error as Error).message}</p> : null}
         {reports.data?.length ? reports.data.map((r) => <button key={r.artifact_id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: r.artifact_id })} className={row}>
           <span className="min-w-0 flex-1 truncate">{r.title || "分析报告"}</span>
-          <span className="shrink-0 text-xs text-[var(--stone)]">{REPORT_STATE[r.status] ?? r.status}</span></button>)
+          <span className="shrink-0 text-xs text-[var(--stone)]">{r.interrupted ? "已中断，可重试" : REPORT_STATE[r.status] ?? r.status}</span></button>)
           : reports.data ? empty("还没有报告。") : empty("正在读取…")}
       </section>
       <section aria-label="我的审查" className={box}>

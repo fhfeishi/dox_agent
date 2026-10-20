@@ -7,7 +7,7 @@ import { Icon } from "./Icons";
 import { PANEL_SHELL, PanelButton, PanelHeader, PanelTabs } from "./Panel";
 import { Button, Card, Pill } from "./ui";
 import { documentMeta } from "../documentMeta";
-import { changeArtifactLifecycle, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
+import { changeArtifactLifecycle, retryReport, artifactExportUrl, fetchArtifacts, type ArtifactSummary, changeArtifactFigure, createArtifactVersion, fetchArtifact, fetchArtifactVersions, fetchFigureCandidates, fetchReport, fetchRun, fetchWebSnapshot, type ArtifactInfo, type ArtifactVersion, type ReportInfo, type RunSnapshot, type WebSnapshot } from "../api";
 import { downloadText } from "../exportText";
 import { formatDuration } from "../conversation";
 import Markdown from "react-markdown";
@@ -108,6 +108,23 @@ export function Inspector() {
   const [editingArtifact, setEditingArtifact] = useState(false);
   const [artifactDraft, setArtifactDraft] = useState("");
   const [savingArtifact, setSavingArtifact] = useState(false);
+  const [retrying, setRetrying] = useState(false);
+  const [retryNote, setRetryNote] = useState("");
+  // A failed report runs again with its saved settings; the model is called again, so ask first (02 §1.3).
+  async function retryArtifact(artifactId: string) {
+    if (!window.confirm("将按原来的设置再次调用模型生成这份报告，确定吗？")) return;
+    setRetrying(true);
+    try {
+      const result = await retryReport(artifactId);
+      window.dispatchEvent(new Event("dox-artifacts-changed"));
+      if (result !== "started" && result.artifact_id) showInspector({ kind: "artifact", artifactId: result.artifact_id });
+      else setRetryNote("已重新开始生成，可以离开本页；进度与结果在“报告中心”。");
+    } catch (error) {
+      setArtifactSaveError(error instanceof Error ? error.message : "重新生成失败");
+    } finally {
+      setRetrying(false);
+    }
+  }
   const [artifactSaveError, setArtifactSaveError] = useState("");
   const [figureCandidates, setFigureCandidates] = useState<ReportFigure[]>([]);
   const [editingFigureId, setEditingFigureId] = useState("");
@@ -368,7 +385,7 @@ export function Inspector() {
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
                 <div className="mb-3 flex flex-wrap gap-2 text-sm">
-                  {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString() : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
+                  {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" }) : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button><button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button></> : <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button>}
                 </div>
                 <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
                 <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
@@ -386,7 +403,13 @@ export function Inspector() {
                   <dt className="text-[var(--stone)]">模板 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
                 </details>
-                {artifact.status === "failed" && artifact.fail_reason ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{artifact.fail_reason}</p> : null}
+                {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-[12.5px]">
+                  <p className="font-semibold text-[var(--red)]">{artifact.interrupted ? "已中断，可重试" : "生成未完成"}</p>
+                  {artifact.fail_reason ? <p className="mt-[2px] text-[var(--slate)]">{artifact.fail_reason}</p> : null}
+                  {artifact.type === "report" && artifact.lifecycle !== "trashed" ? <Button size="sm" className="mt-[7px]" disabled={retrying || Boolean(retryNote)}
+                    onClick={() => void retryArtifact(artifact.artifact_id)}>{retrying ? "正在重新发起…" : "按原设置重新生成"}</Button> : null}
+                  {retryNote ? <p className="mt-[5px] text-[var(--steel)]">{retryNote}</p> : null}
+                </div> : null}
                 {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-[12px] text-[var(--steel)]">
                   {artifact.source_verification === "verified" ? "原始回答已核验"
                     : artifact.source_verification === "user_modified" ? "用户修订版本"
@@ -406,7 +429,7 @@ export function Inspector() {
                   </select>
                 </label> : null}
                 {artifactSaveError ? <p role="alert" className="mt-[7px] text-[12px] text-[var(--red)]">{artifactSaveError}</p> : null}
-                {artifact.lifecycle !== "trashed" && artifact.status !== "generating" ? <>
+                {artifact.lifecycle !== "trashed" && artifact.status !== "generating" && (artifact.status !== "failed" || artifact.markdown) ? <>
                 <div className="mt-[12px] flex flex-wrap gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
                   {artifact.figures?.length ? <a href={artifactExportUrl(artifact.artifact_id, "zip", artifact.version)}>下载图文 ZIP</a>

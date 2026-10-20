@@ -232,6 +232,18 @@ export async function createReport(params: ReportParams): Promise<ReportInfo> {
   return jsonOrThrow(response, "生成报告失败") as Promise<ReportInfo>;
 }
 
+/**
+ * POST /api/artifacts/{id}/retry: run a failed report again with the settings it was started with
+ * (card B1). Generation takes minutes and carries on at the server if the page closes, so this settles
+ * as "started" after a short wait unless the server turned the attempt down straight away.
+ */
+export async function retryReport(artifactId: string, wait = 2500): Promise<"started" | ReportInfo> {
+  const request = fetch(`/api/artifacts/${encodeURIComponent(artifactId)}/retry`, { method: "POST" })
+    .then((response) => jsonOrThrow(response, "重新生成失败") as Promise<ReportInfo>);
+  request.catch(() => undefined);  // a late failure shows on the report itself, not as an unhandled error
+  return Promise.race([request, new Promise<"started">((resolve) => window.setTimeout(() => resolve("started"), wait))]);
+}
+
 /** GET /api/reports/{id}: one report with its markdown body. */
 export async function fetchReport(reportId: string): Promise<ReportInfo> {
   const response = await fetch(`/api/reports/${encodeURIComponent(reportId)}`);
@@ -244,6 +256,8 @@ export type ArtifactSummary = {
   created_at: string; updated_at: string; session_key: string; run_id: string; corpus_ids: string[];
   task_id: string; task_version?: number | null; template_id: string; template_version?: number | null; export_format: string; export_status: string;
   fail_reason: string; legacy?: boolean;
+  /** Failed because the service restarted under it: running it again is the whole remedy. */
+  interrupted?: boolean;
   /** The account that created it ("" for older reports); 首页的“我的工作” lists one's own. */
   created_by?: string;
   source_verification?: "verified" | "unverified" | "user_modified";

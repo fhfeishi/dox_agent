@@ -33,6 +33,7 @@ SMOKE=(
   browser_figures_live         # versioned figures, PDF and DOCX/ZIP
   browser_scene_hierarchy      # 技术研判 view, outcome radar
   browser_answer_controls      # chat answer copy, retry, cancel and failure
+  browser_run_detach           # G2-3: report survives a closed page; kill -9 → 已中断，可重试 → retry
 )
 # The remaining journeys, run by `all` so they cannot silently fall behind the interface again.
 # browser_ui_shots is not a check: it photographs pages from a copy of the local libraries.

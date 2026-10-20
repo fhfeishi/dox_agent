@@ -823,3 +823,13 @@ def test_support_num_without_unit_counts_as_wan_yuan(tmp_path):
     assert [(m["scope"], m["amount_yuan"], m["currency"]) for m in row["funding"]] == [("awarded", "3030000.0", "CNY")]
     unreadable = index.document(SimpleNamespace(id="c", root=tmp_path, dir_name="自然科学基金-测试", name="自然科学基金-测试"), doc, "---\nsupportNum: 未知\n---\n")
     assert unreadable["funding"][0]["amount_yuan"] is None
+
+
+def test_a_report_is_named_after_its_question():
+    """Card B1: reports of one library no longer all carry the library's domain as their name."""
+    from src.artifacts import report_title
+
+    assert report_title({"domain": "机器人", "focus": "巡检机器人 研究进展"}) == "巡检机器人 研究进展"
+    assert report_title({"domain": "机器人", "focus": "无"}) == "机器人"
+    assert report_title({"domain": "机器人", "focus": ""}) == "机器人"
+    assert report_title({"domain": "机器人", "focus": "长" * 80}).endswith("…")

@@ -217,7 +217,7 @@ export function ResultsPage() {
             </div>
             <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-[var(--steel)]">
               <Pill tone={KIND_TONE[row.kind]}>{KIND_LABEL[row.kind]}</Pill>
-              <span className={row.status === "failed" ? "text-[var(--red)]" : ""}>{STATUS_LABEL[row.status] ?? row.status}</span>
+              <span className={row.status === "failed" ? "text-[var(--red)]" : ""}>{row.artifact?.interrupted ? "已中断，可重试" : STATUS_LABEL[row.status] ?? row.status}</span>
               <span className="tabular-nums text-[var(--stone)]">{row.date.slice(0, 10)}</span>
               <span>{row.detail}</span>
               {row.corpusIds.length ? <span className="min-w-0 max-w-full truncate">{corpusNames(row.corpusIds)}</span> : null}

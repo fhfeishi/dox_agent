@@ -15,6 +15,17 @@ from .core.db import connect, migrate
 CONTRACT_VERSION = 1
 ARTIFACT_TYPES = ("answer_snapshot", "report")
 ARTIFACT_STATUSES = ("draft", "generating", "completed", "failed")
+# The reason a report gets when the service restarted under it; such a report can simply be run again.
+INTERRUPTED = "服务重启，生成已中断"
+
+
+def report_title(params: dict) -> str:
+    """A report is named after the question it answers; the domain alone named every report of a
+    library alike (“机器人”, “机器人” …). Intake reports without a question keep the domain."""
+    focus = " ".join(str(params.get("focus") or "").split())
+    if focus and focus not in ("无", "不限"):
+        return focus if len(focus) <= 60 else focus[:59] + "…"
+    return params.get("domain", "")
 
 
 def _now() -> str:
@@ -231,7 +242,7 @@ class ArtifactStore:
                         aid,
                         timestamp,
                         timestamp,
-                        params.get("domain", ""),
+                        report_title(params),
                         (params.get("session_key") or ""),
                         run_id,
                         json.dumps([params["corpus_id"]] if params.get("corpus_id") else []),
@@ -318,7 +329,8 @@ class ArtifactStore:
         with self.connect() as db:
             rows = db.execute("SELECT run_id FROM artifacts WHERE status='generating'").fetchall()
             db.execute(
-                "UPDATE artifacts SET status='failed',fail_reason='服务重启，生成已中断',revision=revision+1 WHERE status='generating'"
+                "UPDATE artifacts SET status='failed',fail_reason=?,revision=revision+1 WHERE status='generating'",
+                (INTERRUPTED,),
             )
         return [row[0] for row in rows]
 
@@ -585,6 +597,7 @@ class ArtifactStore:
             "export_format": row[12],
             "export_status": row[13],
             "fail_reason": row[14],
+            "interrupted": row[14] == INTERRUPTED,
             # Rows from the first W3-B slice had an empty payload. They cannot claim an
             # exact source match retroactively, even when their linked run is available.
             "source_verification": json.loads(row[15]).get("source_verification", "unverified"),

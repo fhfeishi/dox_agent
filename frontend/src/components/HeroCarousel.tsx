@@ -90,14 +90,16 @@ type Slide = { key: string; label: string; title: string; value: number; unit: s
  * The banner of the leader's 首页 (query 2026-1019 1458, replacing 1613's guide to the top bar): four
  * slides of the research landscape — projects and known funding by library, then both by start year over
  * the last ten years, each library in its own colour. Each slide leads with its total and one takeaway
- * computed from the same numbers as the chart. It turns every 7 seconds; hovering or focusing pauses it;
- * the labels, the arrows and the arrow keys switch by hand; reduced motion stops the turning and the
+ * computed from the same numbers as the chart. It turns every 7 seconds; hovering or focusing pauses it, and
+ * the pause button stops it until pressed again (touch and keyboard readers, card U4a); the labels, the
+ * arrows and the arrow keys switch by hand; reduced motion stops the turning and the
  * count-up. Funding is the one measure most reports state (funding.label, e.g. 批准资助金额); how many
  * projects state it is written on the slide.
  */
 export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [held, setHeld] = useState(false);
   const [still] = useState(() => typeof window !== "undefined" && Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches));
   const gs = groups(rows);
   const colorOf = (id: string) => gs.find((g) => g.ids.includes(id))?.color ?? OTHER_LIBRARIES;
@@ -142,10 +144,10 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
   ];
   const go = (next: number) => setIndex((next + slides.length) % slides.length);
   useEffect(() => {
-    if (paused || still) return;
+    if (paused || held || still) return;
     const timer = window.setTimeout(() => go(index + 1), 7000);
     return () => window.clearTimeout(timer);
-  }, [index, paused, still]);
+  }, [index, paused, held, still]);
   const slide = slides[index];
   const counted = useCountUp(slide.value, still);
 
@@ -175,9 +177,11 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
         {slides.map((s, i) => <button key={s.key} type="button" aria-label={`第 ${i + 1} 张：${s.label}`} aria-current={i === index ? "true" : undefined} onClick={() => go(i)}
           className={`relative overflow-hidden rounded-full px-2.5 py-0.5 text-caption transition-colors ${i === index ? "bg-white text-[#172a40]" : "bg-white/10 text-[#c9d4e1] hover:bg-white/20"}`}>
           {s.label}
-          {i === index && !paused && !still ? <span aria-hidden="true" key={index} className="hero-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#3987e5]" /> : null}
+          {i === index && !paused && !held && !still ? <span aria-hidden="true" key={index} className="hero-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#3987e5]" /> : null}
         </button>)}
       </div>
+      {still ? null : <button type="button" aria-label={held ? "继续播放" : "暂停播放"} aria-pressed={held} onClick={() => setHeld(!held)}
+        className="grid size-7 place-items-center rounded-full bg-white/10 text-caption hover:bg-white/20">{held ? "▶" : "❚❚"}</button>}
       <button type="button" aria-label="上一张" onClick={() => go(index - 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-sm hover:bg-white/20">‹</button>
       <button type="button" aria-label="下一张" onClick={() => go(index + 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-sm hover:bg-white/20">›</button>
     </div>

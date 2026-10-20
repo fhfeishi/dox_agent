@@ -157,6 +157,12 @@ async def main():
                 await expect(banner.get_by_role("heading",name="年度项目分布")).to_be_visible()
                 await expect(banner.get_by_role("img",name="近十年各领域堆叠柱状图")).to_be_visible()
                 await banner.get_by_role("button",name="第 1 张：领域项目分布").click()
+                # The pause button holds the slide without hovering (card U4a): one full 7 s turn later it is unchanged.
+                await banner.get_by_role("button",name="暂停播放").click()
+                await page.mouse.move(0, 0); await page.evaluate("document.activeElement.blur()")
+                await page.wait_for_timeout(7600)
+                await expect(banner.get_by_role("heading",name="领域项目分布")).to_be_visible()
+                await banner.get_by_role("button",name="继续播放").click()
                 await expect(page.get_by_role("button",name="在右侧查看资料库")).to_have_count(0)
                 # 成果 is a main-bar entry (query 2026-1019 1458).
                 await expect(page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True)).to_be_visible()

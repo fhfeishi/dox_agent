@@ -86,7 +86,13 @@ export function Composer() {
     showToast,
     status,
     model,
+    turns,
   } = useApp();
+  // 点选提问 belongs to the start of a conversation; afterwards it is one button away, so the answers
+  // keep the screen (query 2026-1020 1719: the composer took half the page while reading).
+  const empty = turns.length === 0;
+  const [quickOpen, setQuickOpen] = useState(empty);
+  useEffect(() => { setQuickOpen(empty); }, [empty, workspace.active]);
 
   const [uploadOpen, setUploadOpen] = useState(false);
   const [uploadTarget, setUploadTarget] = useState("");
@@ -247,8 +253,13 @@ export function Composer() {
     setWebBusy(false);
   }
 
+  const shortName = (id: string) => (corpora.find((c) => c.id === id)?.name ?? `不可用（${id}）`).replace(/^自然科学基金-/, "");
+  const libraryNames = corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、");
+  // What the next send will use, in one line; shown on the task label rather than as a row of its own.
+  const runConfig = `本次配置：${activeTask?.name ?? taskId} · ${libraryNames || "未选择知识库"} · ${options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · ${options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}${role === "admin" ? ` · ${model || "模型未记录"}` : ""} · ${taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}`;
+
   return (
-    <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[20px]">
+    <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[10px]">
       <div className="mx-auto w-full max-w-[820px]">
         {!scopeReady ? (
           <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
@@ -305,43 +316,19 @@ export function Composer() {
           </div>
         ) : null}
 
-        {/* corpus + scope chips */}
-        <div data-guide="chat-scope" className="mb-[8px] flex flex-wrap items-center gap-[6px]">
-          <span className="text-xs">对话知识库</span>
-          <label className="inline-flex items-center gap-1 rounded-full border border-[var(--hairline)] px-2.5 py-1 text-xs"
-            title="开启后每次提问按问题内容自动选择最相关的资料库；手动选择资料库会关闭此项">
-            <input type="checkbox" checked={autoCorpus} onChange={(e) => setAutoCorpus(e.target.checked)} />按问题自动选择</label>
-          {corpusIds.map(id => <span key={id} className="inline-flex max-w-[280px] items-center rounded-full bg-[var(--primary-soft)] px-3 py-1 text-sm text-[var(--primary-pressed)]">
-            <button type="button" className="truncate" onClick={() => setCorpusOpen(true)} title={corpora.find(c => c.id === id)?.name ?? id}>✓ {corpora.find(c => c.id === id)?.name ?? `知识库不可用（${id}）`}</button>
-            <button type="button" className="ml-2 disabled:opacity-30" aria-label={`移除对话库 ${corpora.find(c => c.id === id)?.name ?? id}`} disabled={busy || corpusIds.length <= 1} onClick={() => { setSearchCorpusIds(corpusIds.filter(value => value !== id)); corpusButton.current?.focus(); }}>×</button>
-          </span>)}
-          <button ref={corpusButton} type="button" aria-expanded={corpusOpen} onClick={() => { setCorpusOpen(v => !v); setPopOpen(false); setScopeOpen(false); }} className="rounded-full border px-3 py-1 text-sm">＋管理知识库</button>
-          <span className="text-xs">{corpusIds.length}/6</span>
-          {emptyScopeCorpus ? (
-            <span className="flex items-center gap-[6px] text-caption text-[var(--warn-fg)]">
-              「{emptyScopeCorpus.name}」暂无已入库文档
-              <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id, "files")}>
-                添加文档
-              </button>
-              <button type="button" className="text-[var(--link)] hover:underline disabled:opacity-50" disabled={ingestBusy} onClick={() => void runCorpusIngest(emptyScopeCorpus.id)}>
-                刷新本库
-              </button>
-            </span>
-          ) : null}
-        </div>
+        {emptyScopeCorpus ? (
+          <p className="mb-[8px] flex flex-wrap items-center gap-[6px] text-caption text-[var(--warn-fg)]">
+            「{emptyScopeCorpus.name}」暂无已入库文档
+            <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id, "files")}>
+              添加文档
+            </button>
+            <button type="button" className="text-[var(--link)] hover:underline disabled:opacity-50" disabled={ingestBusy} onClick={() => void runCorpusIngest(emptyScopeCorpus.id)}>
+              刷新本库
+            </button>
+          </p>
+        ) : null}
 
-        {!editing ? <QuickAsk /> : null}
-
-        <p aria-label="本次运行配置" className="mb-[7px] text-caption leading-[1.5] text-[var(--stone)]">
-          本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
-            ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
-            : "未选择知识库"} · {options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}{role === "admin" ? ` · ${model || "模型未记录"}` : ""} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
-        </p>
-
-        {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-caption text-[var(--steel)]">
-          已确认网页快照 {options.web_snapshot_ids.length} 个
-          <button type="button" className="text-[var(--link)]" onClick={() => setOptions((current) => ({ ...current, web_snapshot_ids: [] }))}>清除本次网页范围</button>
-        </div> : null}
+        {!editing && quickOpen ? <QuickAsk onClose={() => setQuickOpen(false)} /> : null}
 
         {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption">
           <div className="mb-[7px] flex gap-[5px]">
@@ -393,6 +380,12 @@ export function Composer() {
 
         {corpusOpen ? (
           <div ref={corpusRef} className="mb-[8px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[8px] shadow-[0_8px_24px_-12px_rgba(15,15,15,0.2)]">
+            <div className="mb-[6px] flex items-center gap-[8px] px-[4px] text-caption text-[var(--steel)]">
+              <label className="inline-flex items-center gap-1" title="开启后每次提问按问题内容自动选择最相关的资料库；手动选择资料库会关闭此项">
+                <input type="checkbox" checked={autoCorpus} onChange={(e) => setAutoCorpus(e.target.checked)} />按问题自动选择</label>
+              <span className="flex-1" />
+              <span>已选 {corpusIds.length}/6</span>
+            </div>
             <CorpusPicker
               corpora={corpora}
               selectedIds={corpusIds}
@@ -494,7 +487,7 @@ export function Composer() {
             className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-body leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
           />
 
-          <div className="flex items-center gap-[6px] px-[9px] pt-[7px] pb-[9px]">
+          <div className="flex flex-wrap items-center gap-[4px] px-[9px] pt-[7px] pb-[9px]">
             <div ref={popRef} className="relative">
               <button
                 type="button"
@@ -558,6 +551,15 @@ export function Composer() {
               ) : null}
             </div>
 
+            <button ref={corpusButton} type="button" data-guide="chat-scope" aria-expanded={corpusOpen}
+              aria-label={`对话知识库：${libraryNames || "未选择"}`} title={libraryNames || "选择对话知识库"}
+              onClick={() => { setCorpusOpen((v) => !v); setPopOpen(false); setScopeOpen(false); }}
+              className="font-app inline-flex h-[30px] max-w-[260px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
+              <Icon name="library" size={15} />
+              <span className="truncate">{autoCorpus ? "自动 · " : ""}{corpusIds.length
+                ? `${shortName(corpusIds[0])}${corpusIds.length > 1 ? ` 等 ${corpusIds.length} 个` : ""}` : "选择知识库"}</span>
+            </button>
+
             <button
               type="button"
               onClick={() => setScopeOpen((v) => !v)}
@@ -568,11 +570,27 @@ export function Composer() {
               <b className="font-semibold text-[var(--primary)]">{options.allowed_doc_ids !== null ? `${scoped} 份` : "全部"}</b>
             </button>
 
+            {options.web_snapshot_ids?.length ? (
+              <span className="inline-flex h-[30px] items-center gap-[4px] rounded-[6px] bg-[var(--tint-sky)] px-[9px] text-caption text-[var(--info-fg)]">
+                {options.web_snapshot_ids.length} 个指定网址快照
+                <button type="button" aria-label="清除本次网页范围" className="ml-[2px] hover:text-[var(--ink)]"
+                  onClick={() => setOptions((current) => ({ ...current, web_snapshot_ids: [] }))}>×</button>
+              </span>
+            ) : null}
+
+            {!editing && !quickOpen ? (
+              <button type="button" onClick={() => setQuickOpen(true)}
+                className="font-app inline-flex h-[30px] items-center rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]">
+                点选提问
+              </button>
+            ) : null}
+
             <span className="flex-1" />
 
             <span
               className="font-app hidden h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--stone)] sm:inline-flex"
-              title="首期为服务端固定单一模型，暂不支持切换"
+              aria-label="本次运行配置"
+              title={runConfig}
             >
               <Icon name="info" size={14} />
               {taskCapable ? tasks.find((t) => t.id === taskId)?.name ?? "任务" : "专业问答"}
@@ -614,9 +632,8 @@ export function Composer() {
           </div>
         </div>
 
-        <p className="mt-[9px] text-center text-caption text-[var(--stone)]" role="status">
-          {status ? `${status} · ` : ""}
-          DoxAgent 会基于当前知识库作答并标注来源；重要结论建议核对原文
+        <p className="mt-[6px] min-h-[18px] text-center text-caption text-[var(--stone)]" role="status">
+          {status || (empty ? "DoxAgent 会基于当前知识库作答并标注来源；重要结论建议核对原文" : "")}
         </p>
       </div>
     </div>

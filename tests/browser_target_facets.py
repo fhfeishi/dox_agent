@@ -232,7 +232,7 @@ async def main():
 
             await page.goto(origin + "/chat")
             # 交互方案 §3.1：范围改为输入框上方对话库 chip，"当前对话：…"重复文字已删除。
-            await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^对话知识库：.*演示库"))).to_be_visible()
 
             # ---- 进入库内的技术研判 ------------------------------------------------
             await page.get_by_role("link", name="资料库", exact=True).click()

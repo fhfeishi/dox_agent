@@ -10,7 +10,6 @@ import { markdownComponents } from "../markdownComponents";
 import { formatDuration, type Attempt } from "../conversation";
 import { stopLabels } from "../policy";
 import { Icon } from "./Icons";
-import { Button } from "./ui";
 import { ReportMarkdown } from "./ReportMarkdown";
 import { useApp } from "../store";
 import { useAuth } from "../auth";
@@ -46,8 +45,8 @@ function TraceNode({ index, title, last, children }: { index: number; title: str
  * looked for, which reports were chosen and where they match, what could not be covered, and what the
  * answer rests on. Timings and tokens sit in 技术信息 for administrators.
  */
-function Trace({ attempt, live, defaultOpen, corpusName, onOpenSource, technical }: {
-  attempt: Attempt; live: boolean; defaultOpen: boolean; corpusName: (id: string) => string;
+function Trace({ attempt, live, corpusName, onOpenSource, technical }: {
+  attempt: Attempt; live: boolean; corpusName: (id: string) => string;
   onOpenSource?: (s: Source, n: number) => void; technical?: ReactNode;
 }) {
   const items = attempt.trace ?? [];
@@ -56,10 +55,10 @@ function Trace({ attempt, live, defaultOpen, corpusName, onOpenSource, technical
   const answer = items.find((item): item is Extract<TraceItem, { kind: "answer" }> => item.kind === "answer");
   const search = searches.at(-1);
   const terms = searches[0]?.terms ?? [];
-  const [open, setOpen] = useState(defaultOpen || live);
-  useEffect(() => {
-    if (live) setOpen(true);
-  }, [live]);
+  // Open while the answer is being found, so the search can be followed; folded to its one line once
+  // done, so the answer comes first (query 2026-1020 1719).
+  const [open, setOpen] = useState(live);
+  useEffect(() => { setOpen(live); }, [live]);
   const summary = live
     ? !search ? "正在理解问题、确定检索词" : !answer ? `已选出 ${search.reports.length} 份报告，正在核对覆盖` : `正在依据 ${answer.sources} 份资料组织回答`
     : attempt.outcome === "interrupted" ? "已中断，结果未确认"
@@ -699,7 +698,6 @@ export function MessageView({
   onDraft,
   onExport,
   onSaveArtifact,
-  defaultOpen = false,
   compact = false,
 }: {
   attempt: Attempt;
@@ -710,7 +708,6 @@ export function MessageView({
   onDraft?: () => void;
   onExport?: (format: "md" | "word") => void;
   onSaveArtifact?: () => void;
-  defaultOpen?: boolean;
   compact?: boolean;
 }) {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
@@ -784,7 +781,7 @@ export function MessageView({
 
   return (
     <>
-      {!compact ? <Trace attempt={attempt} live={running} defaultOpen={defaultOpen} onOpenSource={onOpenSource}
+      {!compact ? <Trace attempt={attempt} live={running} onOpenSource={onOpenSource}
         corpusName={(id) => (corpora.find((item) => item.id === id)?.name ?? id).replace(/^自然科学基金-/, "")}
         technical={role === "admin" ? <><Metrics attempt={attempt} startedTick={startedTick} /><StepList attempt={attempt} /><Telemetry attempt={attempt} /></> : undefined} /> : null}
       {attempt.answer ? (
@@ -905,34 +902,32 @@ export function BranchNote({ label, onOpen }: { label: string; onOpen: () => voi
   );
 }
 
-export function EmptyState({ onPick }: { onPick: (question: string) => void }) {
-  const examples: [string, string][] = [
-    ["精准问答", "请基于资料说明一个关键结论，并逐条给出出处。"],
-    ["对比分析", "请对比资料中相近方案的主要差异与适用条件。"],
-    ["技术研判", "这个领域有哪些研究路线，已经实现了哪些工作，还有哪些工作可以做？"],
-  ];
+// Questions that show what each built-in task is for; a custom task offers its own example.
+const EXAMPLES: Record<string, string[]> = {
+  task1: ["这批项目采用了哪些关键方法？逐条给出出处。", "已经实现了哪些工作，依据分别是什么？"],
+  task2: ["比较这些项目的研究对象、方法和应用。", "对比相近方案的主要差异与适用条件。"],
+  task3: ["这个领域有哪些研究路线，已经实现了哪些工作，还有哪些工作可以做？", "关键技术还需要哪些配套技术？"],
+  task4: ["生成一份 2021 至 2025 年面上项目成果报告。"],
+};
+
+/** An empty conversation says which task it is and offers questions in that task's spirit. */
+export function EmptyState({ task, onPick }: { task?: { id: string; name: string; description?: string; example?: string }; onPick: (question: string) => void }) {
+  const examples = task ? EXAMPLES[task.id] ?? (task.example ? [task.example] : []) : EXAMPLES.task1;
   return (
-    <div className="py-[56px]">
-      <p className="text-body font-semibold tracking-[0.3px] text-[var(--primary)]">
-        你的知识，有据可循
+    <div className="pt-[40px] pb-[16px]">
+      <p className="text-body font-semibold tracking-[0.3px] text-[var(--primary)]">你的知识，有据可循</p>
+      <h1 className="mt-[10px] text-page leading-[1.3] font-semibold text-[var(--ink)]">{task ? task.name : "从一个好问题开始。"}</h1>
+      <p className="mt-[8px] max-w-[600px] text-body leading-[1.7] text-[var(--steel)]">
+        {task?.description || "需要时查阅知识库资料并逐条标注来源。"}
       </p>
-      <h1 className="mt-[14px] text-stat leading-[1.2] font-semibold tracking-[-0.6px] text-[var(--ink)]">
-        从一个好问题开始。
-      </h1>
-      <p className="mt-[14px] max-w-[560px] text-body leading-[1.7] text-[var(--steel)]">
-        自然交流，需要时查阅知识库资料并逐条标注来源。选择一个任务模板，或直接输入你的问题。
-      </p>
-      <p className="mt-[28px] text-caption font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">
-        试试这些任务
-      </p>
-      <div className="mt-[10px] flex flex-wrap gap-[8px]">
-        {examples.map(([label, question]) => (
-          <Button key={label} variant="outline" onClick={() => onPick(question)}>
-            {label}
-            <Icon name="chevronRight" size={12} strokeWidth={2.2} />
-          </Button>
+      {examples.length ? <div className="mt-[16px] space-y-[6px]">
+        {examples.map((question) => (
+          <button key={question} type="button" onClick={() => onPick(question)}
+            className="flex w-full max-w-[600px] items-center gap-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] px-[12px] py-[8px] text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">
+            <Icon name="chevronRight" size={12} strokeWidth={2.2} className="shrink-0 text-[var(--stone)]" />{question}
+          </button>
         ))}
-      </div>
+      </div> : null}
     </div>
   );
 }

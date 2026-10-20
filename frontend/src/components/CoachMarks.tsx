@@ -98,7 +98,7 @@ export function taskGuide(task: { id: string; name: string; output_hint?: string
   if (!tips) return [];
   return [
     { target: "chat-task", title: `这是“${task.name}”`, body: <><p>{tips.does}</p>{task.output_hint ? <p className="text-caption text-[var(--steel)]">输出：{task.output_hint}</p> : null}</> },
-    { target: "chat-scope", title: "选择资料范围", body: <><p>默认按问题自动选择最相关的资料库；也可以点资料库手动选择，最多 6 个。</p><p>{tips.scope}</p></> },
+    { target: "chat-scope", title: "选择资料范围", body: <><p>默认按问题自动选择最相关的资料库；点这个按钮可以手动选择，最多 6 个。</p><p>{tips.scope}</p></> },
     { target: "chat-quick", title: "点选提问", body: <><p>已为“{task.name}”预选常用的关注要素{presets?.length ? `（${presets.join("、")}）` : ""}。点“生成问题”，系统把点选内容写成问题填进输入框，你可以再改。</p></> },
     { target: "chat-input", title: "提问并发送", body: <><p>{tips.ask}</p><p className="text-caption text-[var(--steel)]">Enter 发送，Shift+Enter 换行；回答生成时可以离开页面，回来接着看。</p></> },
     { title: "查看与保存结果", body: <p>{tips.after}</p> },

@@ -7,7 +7,6 @@ import { useApp } from "../store";
 const TASKS: [string, string][] = [["task1", "精准问答"], ["task2", "对比分析"], ["task3", "技术研判"], ["task4", "专项报告生成"]];
 const ELEMENTS = ["技术谱系", "场景", "问题", "关键技术", "成果"];
 const INTENTS = ["这个领域有哪些研究路线", "已经实现了哪些工作", "还有哪些工作可以做", "关键技术还需要哪些配套技术", "有哪些代表性项目"];
-const OPEN_KEY = "dox-quick-ask-open";
 // Each task starts with a typical choice, so 生成问题 works the moment the page opens (query 2026-1015 1639).
 export const DEFAULTS: Record<string, { elements: string[]; intents: string[] }> = {
   task1: { elements: ["关键技术"], intents: ["已经实现了哪些工作"] },
@@ -15,10 +14,6 @@ export const DEFAULTS: Record<string, { elements: string[]; intents: string[] }>
   task3: { elements: ["技术谱系", "关键技术"], intents: ["这个领域有哪些研究路线", "还有哪些工作可以做"] },
   task4: { elements: ["场景", "问题", "关键技术", "成果"], intents: ["已经实现了哪些工作"] },
 };
-
-function readOpen() {
-  try { return localStorage.getItem(OPEN_KEY) !== "0"; } catch { return true; }
-}
 
 function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: string }) {
   return <button type="button" aria-pressed={on} onClick={onClick}
@@ -29,11 +24,11 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
 
 /**
  * Click-to-ask (query 2026-1009 ⑤): users pick a task, elements and follow-up asks; the model
- * writes them into one question that lands in the input box for editing before sending.
+ * writes them into one question that lands in the input box for editing before sending. The composer
+ * shows it on an empty conversation and behind its 点选提问 button afterwards (query 2026-1020 1719).
  */
-export function QuickAsk() {
+export function QuickAsk({ onClose }: { onClose: () => void }) {
   const { taskId, corpusIds, askInTask, busy, sessionBusy } = useApp();
-  const [open, setOpen] = useState(readOpen);
   const [task, setTask] = useState(TASKS.some(([id]) => id === taskId) ? taskId : "task1");
   // Follow the session's task when it changes elsewhere (task menu, session list).
   useEffect(() => { if (TASKS.some(([id]) => id === taskId)) setTask(taskId); }, [taskId]);
@@ -44,16 +39,11 @@ export function QuickAsk() {
   const [scene, setScene] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
-  const { data: hierarchy } = useQuery({ ...hierarchyQuery(corpusIds[0] ?? ""), enabled: open && Boolean(corpusIds[0]), staleTime: 60_000 });
+  const { data: hierarchy } = useQuery({ ...hierarchyQuery(corpusIds[0] ?? ""), enabled: Boolean(corpusIds[0]), staleTime: 60_000 });
   const scenes = hierarchy?.scenes.map((item) => item.name) ?? [];
 
   const toggle = (list: string[], value: string, set: (next: string[]) => void) =>
     set(list.includes(value) ? list.filter((item) => item !== value) : [...list, value]);
-
-  function setOpenSaved(next: boolean) {
-    setOpen(next);
-    try { localStorage.setItem(OPEN_KEY, next ? "1" : "0"); } catch { /* per-viewer convenience only */ }
-  }
 
   async function generate() {
     setPending(true); setError("");
@@ -67,9 +57,6 @@ export function QuickAsk() {
     finally { setPending(false); }
   }
 
-  if (!open) return <button type="button" onClick={() => setOpenSaved(true)}
-    className="mb-[8px] text-caption text-[var(--link)] hover:underline">展开点选提问</button>;
-
   const label = "w-[64px] shrink-0 pt-[4px] text-caption text-[var(--stone)]";
   return (
     <section aria-label="点选提问" data-guide="chat-quick" className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[9px]">
@@ -77,7 +64,7 @@ export function QuickAsk() {
         <span className="text-body font-semibold text-[var(--ink)]">点选提问</span>
         <span className="text-caption text-[var(--stone)]">已按任务预选常用项，点“生成问题”填入输入框，再点发送</span>
         <span className="flex-1" />
-        <button type="button" onClick={() => setOpenSaved(false)} className="text-caption text-[var(--stone)] hover:text-[var(--ink)]">收起</button>
+        <button type="button" onClick={onClose} className="text-caption text-[var(--stone)] hover:text-[var(--ink)]">收起</button>
       </div>
       <div className="space-y-[5px]">
         <div className="flex gap-[6px]"><span className={label}>任务</span><div className="flex flex-wrap gap-[6px]">

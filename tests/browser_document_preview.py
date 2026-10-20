@@ -83,7 +83,7 @@ async def main():
             await dialog.get_by_role("button",name="关闭 ✕",exact=True).click()
             await expect(dialog).to_have_count(0)
             await page.get_by_role("link",name="对话工作台",exact=True).click()
-            await expect(page.get_by_role("button",name="✓ 示例库",exact=True)).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^对话知识库：.*示例库"))).to_be_visible()
 
             assert not errors, errors
             print(f"PASS: U7 preview + multi-page continuation + metadata + raw toggle + scope unchanged ({len(reads)} reads)")

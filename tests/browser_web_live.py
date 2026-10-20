@@ -90,7 +90,7 @@ async def main():
                 await first.get_by_role("button", name="加入所选知识库").click()
                 await expect(second).to_be_visible()
                 await second.get_by_role("button", name="仅用于本次运行").click()
-                await expect(page.get_by_label("本次运行配置")).to_contain_text("1 个指定网址快照")
+                await expect(page.get_by_text("1 个指定网址快照")).to_be_visible()
                 docs = await page.request.get(f"{origin}/api/documents?corpus={beta_id}")
                 assert len(await docs.json()) == 1
 

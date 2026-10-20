@@ -304,7 +304,7 @@ export function ChatView() {
           ) : null}
 
           {!turns.length ? (
-            <EmptyState onPick={(question) => setInput(question)} />
+            <EmptyState task={activeTask} onPick={(question) => setInput(question)} />
           ) : null}
 
           {turns.map((turn, i) => {
@@ -351,7 +351,6 @@ export function ChatView() {
                     <MessageView
                       attempt={turn}
                       startedTick={i === turns.length - 1 ? startedTick : undefined}
-                      defaultOpen={i <= 1}
                       onRegenerate={
                         connected && ready ? () => void regenerateAt(i) : undefined
                       }

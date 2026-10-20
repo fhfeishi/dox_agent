@@ -2,19 +2,22 @@
 
 import hashlib
 import json
-import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 from uuid import uuid4
+
+from .core.db import connect, migrate
+
+# Schema steps for web_snapshots.sqlite3, append-only (src/core/db.py).
+SCHEMA = ["CREATE TABLE IF NOT EXISTS web_snapshots (id TEXT PRIMARY KEY, payload TEXT NOT NULL)"]
 
 
 class WebSnapshotStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
-        with sqlite3.connect(path) as db:
-            db.execute("CREATE TABLE IF NOT EXISTS web_snapshots (id TEXT PRIMARY KEY, payload TEXT NOT NULL)")
+        migrate(path, SCHEMA)
 
     def save(self, doc, *, fetched_at: str | None = None, search: dict | None = None) -> dict:
         parsed = urlsplit(doc.origin)
@@ -25,13 +28,13 @@ class WebSnapshotStore:
                     "fetched_at": fetched_at or datetime.now(UTC).isoformat(),
                     "content_hash": digest, "version": digest, "parse_status": "ready",
                     "parser": doc.parser, "markdown": content, **(search or {})}
-        with sqlite3.connect(self.path) as db:
+        with connect(self.path) as db:
             db.execute("INSERT INTO web_snapshots (id, payload) VALUES (?, ?)",
                        (snapshot["web_snapshot_id"], json.dumps(snapshot, ensure_ascii=False)))
         return snapshot
 
     def get(self, snapshot_id: str) -> dict:
-        with sqlite3.connect(self.path) as db:
+        with connect(self.path) as db:
             row = db.execute("SELECT payload FROM web_snapshots WHERE id=?", (snapshot_id,)).fetchone()
         if row is None:
             raise KeyError("网页快照不存在")

@@ -10,13 +10,14 @@ never inheritance, duplication or ranking. 成果 is not a relation basis (outco
 from __future__ import annotations
 
 import hashlib
-import sqlite3
 from pathlib import Path
 from threading import Lock
 
 import numpy as np
 
+from .core.db import connect, migrate
 from .dense import local_model_path
+from .project_index import SCHEMA as PROJECT_INDEX_SCHEMA
 
 DIMENSIONS = ("场景", "问题", "技术")
 TOP = 12           # links kept per project for drawing and listing
@@ -56,20 +57,18 @@ class ProjectSimilarity:
     def __init__(self, path: Path, settings):
         self.path = Path(path)
         self.settings = settings
-        with sqlite3.connect(self.path) as db:
-            db.execute("CREATE TABLE IF NOT EXISTS project_vectors (corpus TEXT, dim TEXT, project TEXT, digest TEXT,"
-                       " vector BLOB, PRIMARY KEY(corpus, dim, project))")
+        migrate(self.path, PROJECT_INDEX_SCHEMA)  # shares project_index.sqlite3
 
     def _vectors(self, corpus: str, dimension: str, texts: dict[str, str]) -> np.ndarray:
         digests = {pid: hashlib.sha256(text.encode()).hexdigest() for pid, text in texts.items()}
-        with sqlite3.connect(self.path) as db:
+        with connect(self.path) as db:
             cached = {row[0]: (row[1], row[2]) for row in db.execute(
                 "SELECT project, digest, vector FROM project_vectors WHERE corpus=? AND dim=?", (corpus, dimension))}
         missing = [pid for pid in texts if cached.get(pid, (None,))[0] != digests[pid]]
         if missing:
             model = _embedder(self.settings.embedding_path, self.settings.embedding_device)
             fresh = model.embed_documents([texts[pid] for pid in missing])
-            with sqlite3.connect(self.path) as db:
+            with connect(self.path) as db:
                 db.executemany("INSERT OR REPLACE INTO project_vectors VALUES (?,?,?,?,?)", [
                     (corpus, dimension, pid, digests[pid], np.asarray(vec, dtype=np.float32).tobytes())
                     for pid, vec in zip(missing, fresh, strict=True)])

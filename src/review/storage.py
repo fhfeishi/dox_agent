@@ -8,9 +8,17 @@ import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
-from ..agent.config import get_settings
+from ..core.db import connect as open_db
+from ..core.db import migrate
 
-DATA = (Path(get_settings().state_dir) / "review").resolve()
+# Set by the app at startup (routes.init_storage) from its own state directory. There is no default:
+# a default from the project settings once pointed code run outside the app at the real review data.
+DATA: Path | None = None
+
+# Schema steps for review/workspace.sqlite3, append-only (src/core/db.py).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS objects (kind TEXT NOT NULL,id TEXT NOT NULL,payload TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(kind,id))",
+]
 
 
 def now():
@@ -18,17 +26,18 @@ def now():
 
 
 def connect():
+    if DATA is None:
+        raise RuntimeError("审查存储尚未初始化：由应用启动时的 init_storage 设定数据目录")
     DATA.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(DATA / "workspace.sqlite3", timeout=20)
+    con = open_db(DATA / "workspace.sqlite3", timeout=20)
     con.row_factory = sqlite3.Row
     return con
 
 
 def init():
+    DATA.mkdir(parents=True, exist_ok=True)
+    migrate(DATA / "workspace.sqlite3", SCHEMA)
     with connect() as con:
-        con.execute(
-            "CREATE TABLE IF NOT EXISTS objects (kind TEXT NOT NULL,id TEXT NOT NULL,payload TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(kind,id))"
-        )
         # A process restart cannot silently leave jobs running forever.
         for row in con.execute("SELECT id,payload FROM objects WHERE kind='run'").fetchall():
             value = json.loads(row["payload"])

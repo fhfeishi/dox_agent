@@ -2,10 +2,10 @@
 
 import json
 import re
-import sqlite3
 from pathlib import Path
 from uuid import uuid4
 
+from .core.db import connect, migrate
 from .prompts import TASKS, task_prompt
 
 VARIABLE = re.compile(r"{{\s*([a-z][a-z0-9_]*)\s*}}")
@@ -68,16 +68,21 @@ def render_skill(skill: dict, prompt: dict, inputs: dict) -> str:
     return f"{body}\n\n执行规则：{skill['rules']}\n输出契约：{skill['output_contract']}"
 
 
+# Schema steps for prompt_skills.sqlite3, append-only (src/core/db.py).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS assets (id TEXT PRIMARY KEY, draft TEXT NOT NULL);"
+    "CREATE TABLE IF NOT EXISTS versions (id TEXT NOT NULL, version INTEGER NOT NULL, definition TEXT NOT NULL, PRIMARY KEY(id,version))",
+]
+
+
 class PromptSkillStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
-        with self.connect() as db:
-            db.execute("CREATE TABLE IF NOT EXISTS assets (id TEXT PRIMARY KEY, draft TEXT NOT NULL)")
-            db.execute("CREATE TABLE IF NOT EXISTS versions (id TEXT NOT NULL, version INTEGER NOT NULL, definition TEXT NOT NULL, PRIMARY KEY(id,version))")
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def list(self, include_archived: bool = False) -> list[dict]:
         with self.connect() as db:

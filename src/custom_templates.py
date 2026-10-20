@@ -8,12 +8,12 @@ appends an immutable version so old reports keep reading their original structur
 
 import json
 import re
-import sqlite3
 from pathlib import Path
 from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from .core.db import connect, migrate
 from .prompts import list_templates, report_template
 
 # Variables a template may declare; they can only reference declared report parameters.
@@ -79,17 +79,22 @@ def normalize_template(template: dict) -> dict:
     return value
 
 
+# Schema steps for artifacts/templates.sqlite3, append-only (src/core/db.py).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS templates (id TEXT PRIMARY KEY, draft TEXT NOT NULL);"
+    "CREATE TABLE IF NOT EXISTS versions (template_id TEXT NOT NULL, version INTEGER NOT NULL, "
+    "definition TEXT NOT NULL, PRIMARY KEY (template_id, version))",
+]
+
+
 class TemplateStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
-        with self.connect() as db:
-            db.execute("CREATE TABLE IF NOT EXISTS templates (id TEXT PRIMARY KEY, draft TEXT NOT NULL)")
-            db.execute("CREATE TABLE IF NOT EXISTS versions (template_id TEXT NOT NULL, version INTEGER NOT NULL, "
-                       "definition TEXT NOT NULL, PRIMARY KEY (template_id, version))")
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def copy_builtin(self, source_template_id: str) -> dict:
         source = next((item for item in list_templates() if item["id"] == source_template_id), None)

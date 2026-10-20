@@ -3,13 +3,13 @@
 import hashlib
 import json
 import re
-import sqlite3
 import uuid
 from collections import defaultdict
 from datetime import UTC, datetime
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
+from .core.db import connect, migrate
 from .retrieval import metadata_from_filename
 from .targets import DIMENSIONS, PROMPT_VERSION, _load, _record_state
 
@@ -25,19 +25,24 @@ def norm(value):
     return re.sub(r"\s+", " ", value or "").strip()
 
 
+# Schema steps for project_index.sqlite3, append-only (src/core/db.py). The file also holds the
+# similarity cache (project_similarity.py), which migrates it with this same list. project_documents
+# and project_vectors are rebuildable caches; topic_merges is manual work (design/系统.md §2).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS project_documents (corpus TEXT, doc TEXT, signature TEXT, payload TEXT, PRIMARY KEY(corpus,doc));"
+    # Manual topic grouping is a log over extracted names, never an edit of the evidence.
+    "CREATE TABLE IF NOT EXISTS topic_merges (id TEXT PRIMARY KEY, corpus TEXT, dimension TEXT, name TEXT,"
+    " members TEXT, replaces TEXT, created TEXT, undone TEXT);"
+    "CREATE TABLE IF NOT EXISTS project_vectors (corpus TEXT, dim TEXT, project TEXT, digest TEXT,"
+    " vector BLOB, PRIMARY KEY(corpus, dim, project))",
+]
+
+
 class ProjectIndex:
     def __init__(self, path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        with self.connect() as db:
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS project_documents (corpus TEXT, doc TEXT, signature TEXT, payload TEXT, PRIMARY KEY(corpus,doc))"
-            )
-            # Manual topic grouping is a log over extracted names, never an edit of the evidence.
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS topic_merges (id TEXT PRIMARY KEY, corpus TEXT, dimension TEXT, name TEXT,"
-                " members TEXT, replaces TEXT, created TEXT, undone TEXT)"
-            )
+        migrate(self.path, SCHEMA)
 
     def merges(self, corpus):
         with self.connect() as db:
@@ -102,7 +107,7 @@ class ProjectIndex:
             db.execute("UPDATE topic_merges SET undone=? WHERE id=?", (datetime.now(UTC).isoformat(), merge_id))
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def library(self, info, knowledge):
         eligible = {doc["doc_id"]: doc for doc in knowledge.current()}

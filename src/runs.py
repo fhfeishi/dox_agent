@@ -9,9 +9,10 @@ parameter schemas, W6 adds network snapshots. The store is application-level
 
 import hashlib
 import json
-import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
+
+from .core.db import connect, migrate
 
 CONTRACT_VERSION = 1
 RESOURCE_POLICIES = ("local_only", "local_plus_urls")
@@ -31,22 +32,26 @@ def _now() -> str:
     return datetime.now(UTC).isoformat()
 
 
+# Schema steps for runs.sqlite3, append-only (src/core/db.py).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS runs ("
+    "run_id TEXT PRIMARY KEY, contract_version INTEGER NOT NULL, "
+    "created_at TEXT NOT NULL, updated_at TEXT NOT NULL, "
+    "session_key TEXT NOT NULL DEFAULT '', parent_run_id TEXT NOT NULL DEFAULT '', "
+    "run_type TEXT NOT NULL, status TEXT NOT NULL, task_id TEXT NOT NULL DEFAULT '', "
+    "model TEXT NOT NULL DEFAULT '', resource_policy TEXT NOT NULL DEFAULT '', "
+    "fingerprint TEXT NOT NULL, payload TEXT NOT NULL)",
+]
+
+
 class RunStore:
     def __init__(self, path: Path):
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
-        with self.connect() as db:
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS runs ("
-                "run_id TEXT PRIMARY KEY, contract_version INTEGER NOT NULL, "
-                "created_at TEXT NOT NULL, updated_at TEXT NOT NULL, "
-                "session_key TEXT NOT NULL DEFAULT '', parent_run_id TEXT NOT NULL DEFAULT '', "
-                "run_type TEXT NOT NULL, status TEXT NOT NULL, task_id TEXT NOT NULL DEFAULT '', "
-                "model TEXT NOT NULL DEFAULT '', resource_policy TEXT NOT NULL DEFAULT '', "
-                "fingerprint TEXT NOT NULL, payload TEXT NOT NULL)")
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def create(self, run_id: str, fingerprint: str, **fields) -> tuple[dict, bool]:
         """Create a snapshot, or return the existing one for the same fingerprint.

@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 import json
-import sqlite3
 from pathlib import Path
 from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from .core.db import connect, migrate
 from .custom_templates import TemplateMissing, TemplateStore
 from .prompt_skills import AssetMissing, PromptSkillStore, validate_asset
 from .prompts import REPORT_TEMPLATES, list_tasks
@@ -118,17 +118,22 @@ def normalize_task(task: dict) -> dict:
     return value
 
 
+# Schema steps for custom_tasks.sqlite3, append-only (src/core/db.py).
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS tasks (id TEXT PRIMARY KEY, draft TEXT NOT NULL);"
+    "CREATE TABLE IF NOT EXISTS versions (task_id TEXT NOT NULL, version INTEGER NOT NULL, "
+    "definition TEXT NOT NULL, PRIMARY KEY (task_id, version))",
+]
+
+
 class CustomTaskStore:
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
-        with self.connect() as db:
-            db.execute("CREATE TABLE IF NOT EXISTS tasks (id TEXT PRIMARY KEY, draft TEXT NOT NULL)")
-            db.execute("CREATE TABLE IF NOT EXISTS versions (task_id TEXT NOT NULL, version INTEGER NOT NULL, "
-                       "definition TEXT NOT NULL, PRIMARY KEY (task_id, version))")
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def copy_builtin(self, source_task_id: str) -> dict:
         source = next((item for item in list_tasks() if item["id"] == source_task_id), None)

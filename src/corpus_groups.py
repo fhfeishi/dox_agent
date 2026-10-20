@@ -1,13 +1,14 @@
 """Single-level presentation groups. One revision protects atomic membership moves."""
 
 import json
-import sqlite3
 from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .agent.corpora import scan_corpora
+from .core.db import connect, migrate
+from .workspace import SCHEMA as WORKSPACE_SCHEMA  # one schema for the shared workspace.sqlite3
 
 router = APIRouter(prefix="/api/corpus-groups")
 
@@ -24,14 +25,12 @@ class GroupStore:
     def __init__(self, path):
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
+        migrate(path, WORKSPACE_SCHEMA)
         with self.connect() as db:
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS corpus_groups (id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER, payload TEXT)"
-            )
             db.execute("INSERT OR IGNORE INTO corpus_groups VALUES (1,0,'[]')")
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def get(self):
         with self.connect() as db:

@@ -1,7 +1,6 @@
 """Small local workspace; notes are versioned source navigation, never evidence."""
 
 import json
-import sqlite3
 from datetime import UTC, datetime
 from uuid import uuid4
 
@@ -10,9 +9,18 @@ from pydantic import BaseModel, Field
 
 from .artifact_migration import report_references
 from .auth import CURRENT_USER
+from .core.db import connect, migrate
 from .knowledge import Document, Page
 
 router = APIRouter(prefix="/api")
+
+
+# Schema steps for workspace.sqlite3, append-only (src/core/db.py). The file also holds the library
+# groups (corpus_groups.py), so both stores migrate it with this one list.
+SCHEMA = [
+    "CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, kind TEXT, revision INTEGER, payload TEXT);"
+    "CREATE TABLE IF NOT EXISTS corpus_groups (id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER, payload TEXT)",
+]
 
 
 class Record(BaseModel):
@@ -25,11 +33,10 @@ class Workspace:
     def __init__(self, path):
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
-        with self.connect() as db:
-            db.execute("CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, kind TEXT, revision INTEGER, payload TEXT)")
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def list(self, kind):
         with self.connect() as db:

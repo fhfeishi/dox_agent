@@ -25,6 +25,7 @@ from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+from .core.db import connect, migrate
 from .launcher import code_version
 
 COOKIE = "dox_session"
@@ -81,31 +82,43 @@ def _check_password(password: str):
         raise HTTPException(422, "密码至少需要 4 个字符")
 
 
+def _schema_v1(db):
+    """Accounts as they stood when migrations were introduced (B3), with the one-time move from the
+    single-administrator layout; idempotent, so an existing file adopts it unchanged."""
+    db.execute("CREATE TABLE IF NOT EXISTS accounts (username TEXT PRIMARY KEY, role TEXT NOT NULL, salt TEXT, digest TEXT, created REAL)")
+    db.execute("CREATE TABLE IF NOT EXISTS attempts (id INTEGER PRIMARY KEY CHECK(id=1), failures INTEGER, until REAL)")
+    db.execute("CREATE TABLE IF NOT EXISTS guides (username TEXT, key TEXT, PRIMARY KEY (username, key))")
+    # The single-administrator layout's sessions carried no user and are dropped.
+    if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='administrator'").fetchone():
+        row = db.execute("SELECT salt,digest FROM administrator WHERE id=1").fetchone()
+        if row:
+            db.execute("INSERT OR IGNORE INTO accounts VALUES ('admin','admin',?,?,?)", (row[0], row[1], time.time()))
+        db.execute("DROP TABLE administrator")
+        db.execute("DROP TABLE IF EXISTS sessions")
+    db.execute("CREATE TABLE IF NOT EXISTS sessions (digest TEXT PRIMARY KEY, username TEXT, expires REAL)")
+
+
+# Schema steps for accounts.sqlite3, append-only (src/core/db.py).
+SCHEMA = [_schema_v1]
+
+
 class Accounts:
     def __init__(self, directory: Path):
         self.path = directory / "accounts.sqlite3"
+        self._ready = False
 
     def connect(self):
-        self.path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-        db = sqlite3.connect(self.path, timeout=15)
-        db.execute("CREATE TABLE IF NOT EXISTS accounts (username TEXT PRIMARY KEY, role TEXT NOT NULL, salt TEXT, digest TEXT, created REAL)")
-        db.execute("CREATE TABLE IF NOT EXISTS attempts (id INTEGER PRIMARY KEY CHECK(id=1), failures INTEGER, until REAL)")
-        db.execute("CREATE TABLE IF NOT EXISTS guides (username TEXT, key TEXT, PRIMARY KEY (username, key))")
-        # One-time move from the single-administrator layout; its sessions carried no user and are dropped.
-        if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='administrator'").fetchone():
-            row = db.execute("SELECT salt,digest FROM administrator WHERE id=1").fetchone()
-            if row:
-                db.execute("INSERT OR IGNORE INTO accounts VALUES ('admin','admin',?,?,?)", (row[0], row[1], time.time()))
-            db.execute("DROP TABLE administrator")
-            db.execute("DROP TABLE IF EXISTS sessions")
-        db.execute("CREATE TABLE IF NOT EXISTS sessions (digest TEXT PRIMARY KEY, username TEXT, expires REAL)")
-        if not db.execute("SELECT 1 FROM accounts").fetchone():
-            for order, (username, role) in enumerate(DEFAULT_ACCOUNTS):
-                salt, digest = self._credentials(DEFAULT_PASSWORD)
-                db.execute("INSERT INTO accounts VALUES (?,?,?,?,?)", (username, role, salt, digest, time.time() + order * 1e-3))
-        db.commit()
-        self.path.chmod(0o600)
-        return db
+        if not self._ready:
+            self.path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+            migrate(self.path, SCHEMA)
+            with connect(self.path) as db:
+                if not db.execute("SELECT 1 FROM accounts").fetchone():
+                    for order, (username, role) in enumerate(DEFAULT_ACCOUNTS):
+                        salt, digest = self._credentials(DEFAULT_PASSWORD)
+                        db.execute("INSERT INTO accounts VALUES (?,?,?,?,?)", (username, role, salt, digest, time.time() + order * 1e-3))
+            self.path.chmod(0o600)
+            self._ready = True
+        return connect(self.path, timeout=15)
 
     @staticmethod
     def password_digest(password, salt):

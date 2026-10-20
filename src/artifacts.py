@@ -3,7 +3,6 @@
 import base64
 import json
 import re
-import sqlite3
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
@@ -11,6 +10,7 @@ from uuid import uuid4
 from fastapi import HTTPException
 
 from .auth import CURRENT_USER
+from .core.db import connect, migrate
 
 CONTRACT_VERSION = 1
 ARTIFACT_TYPES = ("answer_snapshot", "report")
@@ -21,74 +21,83 @@ def _now() -> str:
     return datetime.now(UTC).isoformat()
 
 
+def _schema_v1(db):
+    """The schema as it stood when migrations were introduced (B3), including the column additions
+    earlier versions made on open; idempotent, so an existing file adopts it unchanged."""
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS artifacts ("
+        "id TEXT PRIMARY KEY, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, "
+        "type TEXT NOT NULL, status TEXT NOT NULL, title TEXT NOT NULL DEFAULT '', "
+        "current_version INTEGER NOT NULL DEFAULT 0, session_key TEXT NOT NULL DEFAULT '', "
+        "run_id TEXT NOT NULL DEFAULT '', corpus_ids TEXT NOT NULL DEFAULT '[]', "
+        "task_id TEXT NOT NULL DEFAULT '', template_id TEXT NOT NULL DEFAULT '', "
+        "export_format TEXT NOT NULL DEFAULT 'md', export_status TEXT NOT NULL DEFAULT '', "
+        "fail_reason TEXT NOT NULL DEFAULT '', payload TEXT NOT NULL DEFAULT '{}')"
+    )
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS artifact_versions ("
+        "artifact_id TEXT NOT NULL, version INTEGER NOT NULL, created_at TEXT NOT NULL, "
+        "markdown TEXT NOT NULL DEFAULT '', citations TEXT NOT NULL DEFAULT '[]', "
+        "status TEXT NOT NULL DEFAULT 'completed', "
+        "source_verification TEXT NOT NULL DEFAULT 'unverified', "
+        "fail_reason TEXT NOT NULL DEFAULT '', "
+        "PRIMARY KEY (artifact_id, version))"
+    )
+    # Existing W3-B rows had no per-version state or verification. Their provenance
+    # remains unverified; do not infer that a historic client payload matched a run.
+    columns = {row[1] for row in db.execute("PRAGMA table_info(artifact_versions)")}
+    if "status" not in columns:
+        db.execute(
+            "ALTER TABLE artifact_versions ADD COLUMN status TEXT NOT NULL DEFAULT 'completed'"
+        )
+    if "source_verification" not in columns:
+        db.execute(
+            "ALTER TABLE artifact_versions ADD COLUMN source_verification TEXT NOT NULL DEFAULT 'unverified'"
+        )
+    if "fail_reason" not in columns:
+        db.execute("ALTER TABLE artifact_versions ADD COLUMN fail_reason TEXT NOT NULL DEFAULT ''")
+    if "figures" not in columns:
+        db.execute("ALTER TABLE artifact_versions ADD COLUMN figures TEXT NOT NULL DEFAULT '[]'")
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS artifact_images (sha256 TEXT PRIMARY KEY, data BLOB NOT NULL)"
+    )
+    db.execute("CREATE INDEX IF NOT EXISTS artifact_versions_doc ON artifact_versions(artifact_id)")
+    columns = {row[1] for row in db.execute("PRAGMA table_info(artifacts)")}
+    for name, definition in {
+        "revision": "INTEGER NOT NULL DEFAULT 1",
+        "trashed_at": "TEXT",
+        "purge_after": "TEXT",
+        "report_id": "TEXT",
+        "report_params": "TEXT NOT NULL DEFAULT '{}'",
+        "generated_version": "INTEGER",
+        # Who created it (authorship only; 我的工作 lists one's own reports).
+        "created_by": "TEXT NOT NULL DEFAULT ''",
+    }.items():
+        if name not in columns:
+            db.execute(f"ALTER TABLE artifacts ADD COLUMN {name} {definition}")
+    db.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS artifact_report_identity ON artifacts(report_id) WHERE report_id IS NOT NULL"
+    )
+    db.execute("CREATE INDEX IF NOT EXISTS artifact_expiry ON artifacts(purge_after)")
+    db.execute("CREATE TABLE IF NOT EXISTS artifact_inputs (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, filename TEXT, version TEXT, data BLOB, text TEXT, removed_at TEXT)")
+
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS purged_artifacts (artifact_id TEXT PRIMARY KEY, report_id TEXT, report_run_id TEXT, purged_at TEXT)"
+    )
+
+
+# Schema steps for artifacts/artifacts.sqlite3, append-only (src/core/db.py).
+SCHEMA = [_schema_v1]
+
+
 class ArtifactStore:
     def __init__(self, path: Path):
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
-        with self.connect() as db:
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS artifacts ("
-                "id TEXT PRIMARY KEY, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, "
-                "type TEXT NOT NULL, status TEXT NOT NULL, title TEXT NOT NULL DEFAULT '', "
-                "current_version INTEGER NOT NULL DEFAULT 0, session_key TEXT NOT NULL DEFAULT '', "
-                "run_id TEXT NOT NULL DEFAULT '', corpus_ids TEXT NOT NULL DEFAULT '[]', "
-                "task_id TEXT NOT NULL DEFAULT '', template_id TEXT NOT NULL DEFAULT '', "
-                "export_format TEXT NOT NULL DEFAULT 'md', export_status TEXT NOT NULL DEFAULT '', "
-                "fail_reason TEXT NOT NULL DEFAULT '', payload TEXT NOT NULL DEFAULT '{}')"
-            )
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS artifact_versions ("
-                "artifact_id TEXT NOT NULL, version INTEGER NOT NULL, created_at TEXT NOT NULL, "
-                "markdown TEXT NOT NULL DEFAULT '', citations TEXT NOT NULL DEFAULT '[]', "
-                "status TEXT NOT NULL DEFAULT 'completed', "
-                "source_verification TEXT NOT NULL DEFAULT 'unverified', "
-                "fail_reason TEXT NOT NULL DEFAULT '', "
-                "PRIMARY KEY (artifact_id, version))"
-            )
-            # Existing W3-B rows had no per-version state or verification. Their provenance
-            # remains unverified; do not infer that a historic client payload matched a run.
-            columns = {row[1] for row in db.execute("PRAGMA table_info(artifact_versions)")}
-            if "status" not in columns:
-                db.execute(
-                    "ALTER TABLE artifact_versions ADD COLUMN status TEXT NOT NULL DEFAULT 'completed'"
-                )
-            if "source_verification" not in columns:
-                db.execute(
-                    "ALTER TABLE artifact_versions ADD COLUMN source_verification TEXT NOT NULL DEFAULT 'unverified'"
-                )
-            if "fail_reason" not in columns:
-                db.execute("ALTER TABLE artifact_versions ADD COLUMN fail_reason TEXT NOT NULL DEFAULT ''")
-            if "figures" not in columns:
-                db.execute("ALTER TABLE artifact_versions ADD COLUMN figures TEXT NOT NULL DEFAULT '[]'")
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS artifact_images (sha256 TEXT PRIMARY KEY, data BLOB NOT NULL)"
-            )
-            db.execute("CREATE INDEX IF NOT EXISTS artifact_versions_doc ON artifact_versions(artifact_id)")
-            columns = {row[1] for row in db.execute("PRAGMA table_info(artifacts)")}
-            for name, definition in {
-                "revision": "INTEGER NOT NULL DEFAULT 1",
-                "trashed_at": "TEXT",
-                "purge_after": "TEXT",
-                "report_id": "TEXT",
-                "report_params": "TEXT NOT NULL DEFAULT '{}'",
-                "generated_version": "INTEGER",
-                # Who created it (authorship only; 我的工作 lists one's own reports).
-                "created_by": "TEXT NOT NULL DEFAULT ''",
-            }.items():
-                if name not in columns:
-                    db.execute(f"ALTER TABLE artifacts ADD COLUMN {name} {definition}")
-            db.execute(
-                "CREATE UNIQUE INDEX IF NOT EXISTS artifact_report_identity ON artifacts(report_id) WHERE report_id IS NOT NULL"
-            )
-            db.execute("CREATE INDEX IF NOT EXISTS artifact_expiry ON artifacts(purge_after)")
-            db.execute("CREATE TABLE IF NOT EXISTS artifact_inputs (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, filename TEXT, version TEXT, data BLOB, text TEXT, removed_at TEXT)")
-
-            db.execute(
-                "CREATE TABLE IF NOT EXISTS purged_artifacts (artifact_id TEXT PRIMARY KEY, report_id TEXT, report_run_id TEXT, purged_at TEXT)"
-            )
+        migrate(path, SCHEMA)
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=30)
+        return connect(self.path)
 
     def _guard(self, db, artifact_id, *, include_trashed=False, revision=None, writing=False):
         row = db.execute(

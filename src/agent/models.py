@@ -11,15 +11,11 @@ from langsmith import Client, tracing_context
 from .config import Settings
 
 
-def use_proxy(settings: Settings) -> bool:
-    """Model calls connect directly unless MODEL_USE_PROXY=true asks for the system proxy."""
-    return settings.model_use_proxy
-
-
-@lru_cache(maxsize=2)
-def _http_clients(trust_env: bool):
-    # httpx only reads HTTP(S)_PROXY when trust_env is on; off means a direct connection.
-    return httpx.Client(trust_env=trust_env, timeout=60), httpx.AsyncClient(trust_env=trust_env, timeout=60)
+@lru_cache(maxsize=1)
+def _http_clients():
+    # Model calls always connect directly (user, 2026-10-20): trust_env=False keeps httpx from reading
+    # HTTP(S)_PROXY, ALL_PROXY or a .netrc, so a proxy set for the rest of the machine is never used.
+    return httpx.Client(trust_env=False, timeout=60), httpx.AsyncClient(trust_env=False, timeout=60)
 
 
 def check_model(settings: Settings) -> dict:
@@ -36,12 +32,12 @@ def check_model(settings: Settings) -> dict:
                "max_tokens": 8, "stream": False}
     try:
         # Short timeout: this runs as a launch preflight and must not hold the start for 20 s.
-        with httpx.Client(trust_env=use_proxy(settings), timeout=8) as http:
+        with httpx.Client(trust_env=False, timeout=8) as http:
             response = http.post(base + "/chat/completions",
                                  headers={"Authorization": "Bearer " + settings.model_api_key.get_secret_value()},
                                  json=payload)
     except httpx.TimeoutException:
-        return {"ok": False, "error": "连接超时：网络不可达（默认直连，不经代理）",
+        return {"ok": False, "error": "连接超时：网络不可达（模型调用始终直连，不经代理）",
                 "latency_ms": round((time.monotonic() - started) * 1000)}
     except httpx.HTTPError as exc:
         return {"ok": False, "error": f"无法连接 {base}（DNS 或网络不可达）：{type(exc).__name__}",
@@ -71,14 +67,14 @@ def model_for(settings: Settings, timeout: float | None = None):
     which the former fixed 60 s cut off as a failed answer (query 2026-1015 1518)."""
     if not settings.model_api_key:
         raise ValueError("请配置 MODEL_API_KEY（兼容 DEEPSEEK_API_KEY）")
-    http_client, http_async_client = _http_clients(use_proxy(settings))
+    http_client, http_async_client = _http_clients()
     return ChatOpenAI(
         model=settings.model_name,
         base_url=settings.model_base_url,
         api_key=settings.model_api_key.get_secret_value(),
         http_client=http_client,
         http_async_client=http_async_client,
-        http_socket_options=(),  # our own clients decide proxy use; keep langchain from overriding it
+        http_socket_options=(),  # our own direct clients are used as given; keep langchain from replacing them
         temperature=0.1,
         timeout=timeout if timeout is not None else settings.answer_timeout,
         max_retries=1,

@@ -90,27 +90,36 @@ def frontend_signature(frontend: Path) -> str:
 
 
 def model_check() -> int:
-    """One real request to the configured model; prints endpoint, model name and proxy mode."""
+    """One real request to the configured model, always direct (never the system proxy)."""
     sys.path.insert(0, str(Path.cwd()))
+    import ipaddress
+    import socket
+    from urllib.parse import urlparse
+
     from src.agent.config import get_settings
     from src.agent.models import check_model
 
     settings = get_settings()
-    mode = "走系统代理" if settings.model_use_proxy else "直连，不使用代理"
-    print(f"模型：{settings.model_name} @ {settings.model_base_url}（{mode}）")
+    print(f"模型：{settings.model_name} @ {settings.model_base_url}（直连，不使用系统代理）")
     result = check_model(settings)
     if result.get("ok"):
         print(f"模型连接正常（{result.get('latency_ms')} ms）")
         return 0
     # Everything on stdout, so the lines stay in order in the terminal.
     print(f"模型连接失败：{result.get('error')}")
-    proxy = any(os.environ.get(name) for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"))
-    if not settings.model_use_proxy and proxy:
-        # A failed direct connection with a system proxy present is the usual WSL case: say so plainly.
-        if check_model(settings.model_copy(update={"model_use_proxy": True})).get("ok"):
-            print("经系统代理可以连通：请在 .env 中设 MODEL_USE_PROXY=true 后重启。")
-            return 1
-    print("直连失败时，若本机须经代理上网，在 .env 设 MODEL_USE_PROXY=true；否则检查网络与 MODEL_BASE_URL。")
+    host = urlparse(settings.model_base_url).hostname or ""
+    try:
+        addresses = {info[4][0] for info in socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)}
+    except OSError:
+        addresses = set()
+    # 198.18.0.0/15 is what Clash/mihomo-style proxy tools hand out as fake-ip DNS answers: a direct
+    # connection to it cannot leave the machine, so the fix is in that tool, not in this program.
+    fake = sorted(a for a in addresses if ipaddress.ip_address(a) in ipaddress.ip_network("198.18.0.0/15"))
+    if fake:
+        print(f"{host} 被解析到 {fake[0]}：这是代理软件的 fake-ip 地址，直连无法到达。"
+              f"请在代理软件中把 {host} 设为 DIRECT 并加入 fake-ip-filter（或关闭其 DNS 接管）后重启。")
+    else:
+        print("请检查本机网络、防火墙与 MODEL_BASE_URL。")
     return 1
 
 

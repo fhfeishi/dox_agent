@@ -456,13 +456,17 @@ def workspace_path(settings, knowledge) -> Path:
     return target
 
 
+# Funding measures in the order preferred on a tie (user, 2026-10-20: a 资助金额 without a unit is 万元).
+FUNDING_LABELS = {"awarded": "批准资助金额", "direct": "直接费用", "total": "总经费"}
+
+
 def model_failure_message(exc: BaseException, timeout_hint: str) -> str:
     """A readable reason for a failed model call; the provider's own text stays in the log."""
     name = type(exc).__name__
     if "Timeout" in name:
         return timeout_hint
     if "Connection" in name:
-        return "无法连接模型服务（DNS 或网络不可达）。默认直连、不需要代理；只有本机必须经代理时才在 .env 设 MODEL_USE_PROXY=true 后重启"
+        return "无法连接模型服务（DNS 或网络不可达）。模型调用始终直连、不经代理，请检查本机网络与 MODEL_BASE_URL"
     if name in ("AuthenticationError", "PermissionDeniedError", "RateLimitError"):
         return "模型服务拒绝了请求（密钥或额度），请联系管理员"
     return ""
@@ -2136,18 +2140,21 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         hierarchy, lineage = read("hierarchy.json"), read("lineage.json")
         coverage = library["coverage"]
         identified = coverage["identified_projects"]
-        direct = coverage["funding"].get("direct", {})
         return {
             "corpus_id": info.id, "name": info.name, "files": coverage["files"], "projects": identified,
             "dimensions": {key: value["fully_processed_projects"] for key, value in coverage["dimensions"].items()},
-            "funding": {"total_yuan": direct.get("total_yuan", "0"), "projects": direct.get("eligible_projects", 0)},
             "start_years": sorted({p["start_year"] for p in library["projects"] if p.get("start_year")}),
-            # Per start year, for the leader's yearly charts (query 2026-1019 1458): identified projects, and
-            # the known direct funding (amounts stated without conflict, never a missing one as zero).
+            # Per start year, for the leader's yearly charts (query 2026-1019 1458): identified projects.
             "by_year": per_year(library, lambda p: 1),
-            "funding_by_year": per_year(library, lambda p: next((float(m["amount_yuan"]) for m in p.get("funding") or []
-                if m.get("scope") == "direct" and m.get("amount_yuan") is not None and m.get("currency") == "CNY"
-                and "direct" not in (p.get("funding_conflicts") or [])), 0.0)),
+            # Known funding per measure (amounts stated without conflict, never a missing one as zero);
+            # the endpoint keeps one measure for every library, see FUNDING_LABELS.
+            "funding_scopes": {scope: {
+                "total_yuan": coverage["funding"].get(scope, {}).get("total_yuan", "0"),
+                "projects": coverage["funding"].get(scope, {}).get("eligible_projects", 0),
+                "by_year": per_year(library, lambda p, scope=scope: next((float(m["amount_yuan"]) for m in p.get("funding") or []
+                    if m.get("scope") == scope and m.get("amount_yuan") is not None and m.get("currency") == "CNY"
+                    and scope not in (p.get("funding_conflicts") or [])), 0.0)),
+            } for scope in FUNDING_LABELS},
             "hierarchy": {"generated_at": hierarchy.get("generated_at"), "scenes": len(hierarchy.get("scenes") or []),
                           "issues": sum(len(s.get("issues") or []) for s in hierarchy.get("scenes") or [])},
             "lineage": {"generated_at": lineage.get("generated_at"), "items": len(lineage.get("items") or {}),
@@ -2241,6 +2248,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     by_field.setdefault(item["field"], set()).add(item.get("project_id"))
             row["fields"] = sorted(([name, len(ids)] for name, ids in by_field.items()), key=lambda f: -f[1])
             result.append(row)
+        # One funding measure for all libraries, the one most projects state (query 2026-1015 1142), so
+        # the leader's charts never add 批准资助金额 of one library to 直接费用 of another.
+        scope = max(FUNDING_LABELS, key=lambda s: sum(r["funding_scopes"][s]["projects"] for r in result)) if result else "awarded"
+        for row in result:
+            chosen = row.pop("funding_scopes")[scope]
+            row["funding"] = {"total_yuan": chosen["total_yuan"], "projects": chosen["projects"],
+                              "scope": scope, "label": FUNDING_LABELS[scope]}
+            row["funding_by_year"] = chosen["by_year"]
         return result
 
     @app.get("/api/corpora/{corpus_id}/topics")

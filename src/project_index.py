@@ -13,7 +13,7 @@ from pathlib import Path
 from .retrieval import metadata_from_filename
 from .targets import DIMENSIONS, PROMPT_VERSION, _load, _record_state
 
-INDEX_VERSION = 3
+INDEX_VERSION = 4
 SCOPES = {"批准资助金额": "awarded", "资助金额": "awarded", "直接费用": "direct", "总经费": "total"}
 MONEY = re.compile(
     r"(?m)^\s*(?:[|#>* ]*)(" + "|".join(SCOPES) + r")\s*[:：|]\s*([0-9]+(?:\.[0-9]+)?)\s*[（(]?\s*(万元|元)"
@@ -225,14 +225,17 @@ class ProjectIndex:
                     "version": doc["version"],
                 }
             )
-        # supportNum in the imported archive has no explicit currency/unit contract.
-        # Preserve it as an unverified candidate instead of assuming "万元".
+        # supportNum in the imported archive states no unit; the user confirmed it is 万元 (2026-10-20).
         if fields.get("supportNum") and not any(m["scope"] == "awarded" for m in money):
+            try:
+                amount = str(Decimal(fields["supportNum"].strip()) * 10000)
+            except InvalidOperation:
+                amount = None
             money.append(
                 {
                     "scope": "awarded",
-                    "amount_yuan": None,
-                    "currency": None,
+                    "amount_yuan": amount,
+                    "currency": "CNY" if amount else None,
                     "quote": "supportNum: " + fields["supportNum"],
                     "doc_id": doc["doc_id"],
                     "version": doc["version"],

@@ -11,7 +11,7 @@
   - 测试与界面检查不调用真实模型、不写真实资料（状态目录用临时副本）；不改 Windows 副本 `D:\chyCodespace\agents\dox_agent`。
   - 按变更单元本地提交，提交信息写任务卡、query 时间和 `check.sh` 结果；推送须用户要求。
   - 停测试服务按 PID，不用 `pkill -f`。
-  - 本机直连 api.deepseek.com 超时，`.env` 需 `MODEL_USE_PROXY=true`。
+  - 模型调用始终直连（2026-10-20）。本机代理软件以 fake-ip 接管 DNS（api.deepseek.com → 198.18.0.6），直连超时；需在代理软件中把 api.deepseek.com 设为 DIRECT 并加入 fake-ip-filter，模型才可用。
 
 ## 2. 任务卡状态
 

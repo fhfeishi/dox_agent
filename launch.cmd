@@ -166,7 +166,7 @@ rem ------------------------------------------------------------
 rem Main service
 rem ------------------------------------------------------------
 
-rem Model preflight: endpoint, model name and direct/proxy mode; a failure only warns.
+rem Model preflight: endpoint and model name, always direct; a failure only warns.
 call "%python%" src\launcher.py model
 if errorlevel 1 echo Model check failed; the service still starts. Recheck it in the admin settings.
 

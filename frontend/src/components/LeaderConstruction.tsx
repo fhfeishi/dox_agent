@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 
 export type LibraryOverview = {
   corpus_id: string; name: string; files: number; projects: number; dimensions: Record<string, number>;
-  funding: { total_yuan: string; projects: number }; start_years: number[];
+  /** One measure for all libraries, the one most projects state; label names it (批准资助金额 …). */
+  funding: { total_yuan: string; projects: number; scope?: string; label?: string }; start_years: number[];
   hierarchy: { generated_at?: string | null; scenes: number; issues: number; state?: string };
   lineage: { generated_at?: string | null; items: number; systems: number; state?: string; stale_reason?: string; unplaced?: number };
   pending_identity?: number;
   /** Projects per application field, largest first. */
   fields?: [string, number][];
-  /** Identified projects and known direct funding (yuan) per start year, keyed "2021". */
+  /** Identified projects and known funding (yuan, the same measure as funding) per start year, keyed "2021". */
   by_year?: Record<string, number>; funding_by_year?: Record<string, number>;
 };
 
@@ -35,7 +36,7 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
   const funded = sum((r) => r.funding.projects);
   const kpis: [string, string, string][] = [
     ["资料", `${sum((r) => r.files)} 份`, "当前文件，未跨库去重"],
-    ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出直接经费`],
+    ["经费记录", `${funded} 个项目`, `合计 ${wan(sum((r) => Number(r.funding.total_yuan)))} 万元；其余 ${projects - funded} 个项目报告未给出${rows[0]?.funding.label ?? "经费"}`],
   ];
   return <div className="mx-auto max-w-[1200px] space-y-6 px-5 py-7 sm:px-8">
     <header>

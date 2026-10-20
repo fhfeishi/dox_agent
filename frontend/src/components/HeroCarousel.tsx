@@ -103,7 +103,8 @@ type Slide = { key: string; label: string; title: string; value: number; unit: s
  * the last ten years, each library in its own colour. Each slide leads with its total and one takeaway
  * computed from the same numbers as the chart. It turns every 7 seconds; hovering or focusing pauses it;
  * the labels, the arrows and the arrow keys switch by hand; reduced motion stops the turning and the
- * count-up. Funding is the 直接经费 the reports state; how many projects state it is written on the slide.
+ * count-up. Funding is the one measure most reports state (funding.label, e.g. 批准资助金额); how many
+ * projects state it is written on the slide.
  */
 export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
   const [index, setIndex] = useState(0);
@@ -118,6 +119,7 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
   const groupName = (g: Group) => g.key === "other" ? `其他 ${g.ids.length} 个领域` : bare(g.name);
   const projects = rows.reduce((n, r) => n + r.projects, 0);
   const funded = rows.reduce((n, r) => n + r.funding.projects, 0);
+  const measure = rows[0]?.funding.label ?? "经费";
   const fund = rows.reduce((n, r) => n + Number(r.funding.total_yuan), 0);
   const thisYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => thisYear - 9 + i);
@@ -136,8 +138,8 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
       note: `${rows.length} 个领域资料库；项目在各库内按批准号去重，跨库合计未去重。`,
       chart: <LibraryBars rows={byProjects} value={(r) => r.projects} label={(r) => `${fmt(r.projects)} · ${pct(r.projects, projects)}`} colorOf={colorOf} nameOf={nameOf} /> },
     { key: "funding", label: "领域经费分布", title: "领域经费分布", value: fund / 10000, unit: "万元",
-      insight: funded && byFunding[0] ? `${nameOf(byFunding[0])}最多：${wan(Number(byFunding[0].funding.total_yuan))} 万元，占 ${share(Number(byFunding[0].funding.total_yuan), fund)}%` : "报告尚未给出直接经费金额",
-      note: `已知直接经费合计：${funded} / ${projects} 个项目报告给出金额，其余未给出，不按零计。`,
+      insight: funded && byFunding[0] ? `${nameOf(byFunding[0])}最多：${wan(Number(byFunding[0].funding.total_yuan))} 万元，占 ${share(Number(byFunding[0].funding.total_yuan), fund)}%` : "报告尚未给出经费金额",
+      note: `已知${measure}合计：${funded} / ${projects} 个项目报告给出金额，其余未给出，不按零计。`,
       chart: <LibraryBars rows={byFunding} value={(r) => Number(r.funding.total_yuan)} label={(r) => `${wan(Number(r.funding.total_yuan))} 万元 · ${r.funding.projects} 项`}
         colorOf={colorOf} nameOf={nameOf} missing="报告未给出金额" /> },
     { key: "years", label: "年度项目分布", title: "年度项目分布", value: perYear.reduce((a, b) => a + b, 0), unit: "个项目",
@@ -145,8 +147,8 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
       note: `${years[0]}–${years.at(-1)} 年按立项年份统计，颜色区分领域；柱顶为当年合计。`,
       chart: <YearStack rows={rows} groups={gs} years={years} value={(r, y) => r.by_year?.[y] ?? 0} unit={(v) => `${fmt(v)} 个项目`} nameOf={groupName} /> },
     { key: "year-funding", label: "年度项目经费分布", title: "年度项目经费分布", value: fundPerYear.reduce((a, b) => a + b, 0) / 10000, unit: "万元",
-      insight: Math.max(...fundPerYear) ? `${years[peakOf(fundPerYear)]} 年立项项目经费最多：${wan(fundPerYear[peakOf(fundPerYear)])} 万元` : "报告尚未给出直接经费金额",
-      note: `${years[0]}–${years.at(-1)} 年已知直接经费，按项目立项年份归入，柱顶单位万元；只含给出金额的 ${funded} 个项目。`,
+      insight: Math.max(...fundPerYear) ? `${years[peakOf(fundPerYear)]} 年立项项目经费最多：${wan(fundPerYear[peakOf(fundPerYear)])} 万元` : "报告尚未给出经费金额",
+      note: `${years[0]}–${years.at(-1)} 年已知${measure}，按项目立项年份归入，柱顶单位万元；只含给出金额的 ${funded} 个项目。`,
       chart: <YearStack rows={rows} groups={gs} years={years} value={(r, y) => (r.funding_by_year?.[y] ?? 0) / 10000} unit={(v) => `${fmt(v)} 万元`} nameOf={groupName} /> },
   ];
   const go = (next: number) => setIndex((next + slides.length) % slides.length);

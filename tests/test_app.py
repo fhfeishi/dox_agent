@@ -770,6 +770,33 @@ def test_folder_upload_preserves_paths_and_body_search_stays_in_library(tmp_path
         assert len(client.get(f"/api/corpora/{one}/search", params={"q": "量子传感"}).json()["hits"]) == 3
 
 
+def test_model_calls_never_use_the_system_proxy(monkeypatch):
+    """User, 2026-10-20: DeepSeek is reached directly even when the machine sets a proxy."""
+    from pathlib import Path
+
+    import httpx
+    from pydantic import SecretStr
+
+    from src.agent import models
+    from src.review import model_client
+
+    for name in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
+        monkeypatch.setenv(name, "http://127.0.0.1:9")
+    models._http_clients.cache_clear()
+    settings = Settings(_env_file=None, model_api_key=SecretStr("fixture"))
+    chat = models.model_for(settings)
+    for client in (chat.http_client, chat.http_async_client, *models._http_clients()):
+        assert client.trust_env is False and not client._mounts
+    seen = []
+    real = httpx.Client
+    monkeypatch.setattr(httpx, "Client", lambda *a, **k: seen.append(k.get("trust_env")) or real(*a, **k))
+    models.check_model(settings.model_copy(update={"model_base_url": "http://127.0.0.1:9"}))
+    assert seen == [False]
+    assert "trust_env=True" not in Path(model_client.__file__).read_text(encoding="utf-8")
+    assert "trust_env=False" in Path(model_client.__file__).read_text(encoding="utf-8")
+    models._http_clients.cache_clear()
+
+
 def test_model_failure_message_names_the_reason():
     from src.main import model_failure_message
 
@@ -777,7 +804,22 @@ def test_model_failure_message_names_the_reason():
     class APITimeoutError(Exception): ...
     class AuthenticationError(Exception): ...
 
-    assert "MODEL_USE_PROXY=true" in model_failure_message(APIConnectionError(), "超时")
+    assert "始终直连" in model_failure_message(APIConnectionError(), "超时")
     assert model_failure_message(APITimeoutError(), "超时") == "超时"
     assert "密钥或额度" in model_failure_message(AuthenticationError(), "超时")
     assert model_failure_message(ValueError(), "超时") == ""
+
+
+def test_support_num_without_unit_counts_as_wan_yuan(tmp_path):
+    """User, 2026-10-20: the archive's 资助金额 (supportNum) states no unit and is 万元."""
+    from types import SimpleNamespace
+
+    from src.project_index import ProjectIndex
+
+    index = ProjectIndex(tmp_path / "projects.sqlite3")
+    doc = {"doc_id": "d1", "version": "v1", "title": "2021_2024_62173009_王强_巡检.md",
+           "origin": "2021_2024_62173009_王强_巡检.md", "page_count": 1}
+    row = index.document(SimpleNamespace(id="c", root=tmp_path, dir_name="自然科学基金-测试", name="自然科学基金-测试"), doc, "---\nratifyNo: 62173009\nsupportNum: 303.0\n---\n# 项目报告\n")
+    assert [(m["scope"], m["amount_yuan"], m["currency"]) for m in row["funding"]] == [("awarded", "3030000.0", "CNY")]
+    unreadable = index.document(SimpleNamespace(id="c", root=tmp_path, dir_name="自然科学基金-测试", name="自然科学基金-测试"), doc, "---\nsupportNum: 未知\n---\n")
+    assert unreadable["funding"][0]["amount_yuan"] is None

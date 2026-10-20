@@ -10,7 +10,6 @@ import httpx
 from pydantic import SecretStr
 
 from ..agent.config import get_settings
-from ..agent.models import use_proxy
 from .research import redact
 
 logger = logging.getLogger(__name__)
@@ -125,9 +124,9 @@ class Client:
             ],
         }
         try:
-            # Same proxy choice as the main model client (MODEL_USE_PROXY).
+            # Direct like every model call: the system proxy is never used (user, 2026-10-20).
             with httpx.Client(timeout=min(c["timeout"], remaining), transport=self.transport,
-                              trust_env=use_proxy(get_settings())) as http:
+                              trust_env=False) as http:
                 response = http.post(
                     c["base"] + "/chat/completions",
                     headers={"Authorization": "Bearer " + c["key"]},

@@ -59,6 +59,8 @@ esac
 step ruff "$python" -m ruff check src tests
 # test_hygiene inside pytest includes import and dependency-boundary checks.
 step pytest "$python" -m pytest -q
+# Every write endpoint, called as each role, against the matrix in .logsdev/design/系统.md §5.
+step permissions "$python" scripts/permission_matrix.py --quiet
 step "npm test" npm --prefix frontend test --silent
 step tsc npx --prefix frontend tsc --noEmit -p frontend
 

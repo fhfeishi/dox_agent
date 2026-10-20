@@ -21,7 +21,7 @@
 | Q2 | 0 | D4已批准、Q3边界 | 已完成：节点快照 `archive/2026-10-19-节点/`，PROJECT 只留现行要求（新增 §0），ITERATION 压缩为本文件，根目录文档按 design/requirements/reviews/tasks 归位并改链；删除候选待确认（§4）；本地提交 2aa79fe |
 | Q3 | 0 | — | 已完成：本地提交 151328a、248c67e、02adf14 及本文档提交，已随 ede107b 推送 |
 | B4 | 0/2 | 现有overview接口 | 已完成：计数核对一致；横幅库色按项目数排名固定（同数按库id），“其他领域”列出成员；本地提交 852f2db；证据 `verification/query-20261019-2021/leader-01b-year-slide.png` |
-| D-doc | 1 | Q1、Q2 | 未开始 |
+| D-doc | 1 | Q1、Q2 | 已完成：[系统.md](design/系统.md)、[界面.md](design/界面.md)；`scripts/permission_matrix.py` 实测 78 个写接口与矩阵一致并纳入 `check.sh quick`；结构性发现 5 项分派到 B1/B2/B3 |
 | B3 | 2 | D-doc | 未开始 |
 | B1 | 2 | B3 | 未开始 |
 | B2 | 2 | Q1 | 未开始 |
@@ -53,10 +53,12 @@
   - `.logsdev/interactions/`（9 个已跟踪文件，2026-09-28/29 的界面目标稿、对齐记录和两个补丁）：已被后续设计与实现取代，无现行文档引用。
   - `.workbuddy/`（3 个已跟踪脚本 lineage_tool、scan_event_scale、slice_quote，及若干未跟踪调试脚本和补丁）：`datapipe/README.md` 说明其为临时调试目录，不属于数据链路。
 - **现行状态无法判断**：`design/资料库外置与数据分组实施方案.md` 没有任何文档引用，无法确定是已实施、被取代还是仍待实施。
-- PROJECT 仍有 467 行（10-17 清单建议不超过 400 行）：§1–§10 的单用户阶段表述由 D-doc 重写为 `design/系统.md`、`design/界面.md` 时一并收缩，本次不按当前代码反写已确认要求。
+- PROJECT 仍有 467 行（10-17 清单建议不超过 400 行）：系统与界面的承载方式已移到 design/系统.md、界面.md，但 §1–§10 中的业务规则（报告预检、审查流程等）仍是有效要求，不能随设计文档删除；在 B1/B2 迁移各域时逐域核对后收缩，不按当前代码反写。
+- **权限待决定（D-doc 实测发现）**：任何账户都能彻底清除任何人的成果（`DELETE /api/artifacts/{id}/purge`）；`/api/model/check` 与 `/api/review/model/test` 对所有账户开放且每次产生一次真实模型请求。在“全员共享”下与现行矩阵一致，是否收紧需用户决定。
 - 用户 query 2026-1019 附言（发挥产品负责人判断、丰富呈现）作为工作方式执行，不单列任务。
 
 ## 5. 下一步
 
-1. D-doc：写 `design/系统.md`、`design/界面.md`，明确运行、迁移与接口差异（G2-6）。
-2. 演示之后按工程线推进 B3 → B1、B2，F1/F2；界面线 U1 → U2 → U3 → U4a/U4b。
+1. B3：公共数据库模块与迁移器；先根治系统.md §6 发现 2（审查存储目录由装配传入），再按对象迁入 `state.sqlite3`。
+2. B1：运行服务，先报告与审查（G2-3）；B2 按域拆路由并改为 `Depends(require_role)`，同时根治发现 1。
+3. 界面线 U1 → U2 → U3 → U4a/U4b，依据 [界面.md](design/界面.md)。

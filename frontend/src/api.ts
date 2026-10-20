@@ -350,8 +350,21 @@ export async function fetchReportMetadata(corpusId: string): Promise<ReportMetad
   return jsonOrThrow(response, "元数据覆盖不可用") as Promise<ReportMetadataCoverage>;
 }
 export type RunInfo = { run_id: string; session_key?: string; task_id?: string; task_version?: number | null; model?: string; resource_policy?: string; effective_corpus_ids?: string[]; allowed_doc_ids?: string[] | null; web_snapshot_ids?: string[] };
+/**
+ * What the search did, in the reader's terms (user, 2026-10-20): the terms it looked for, how much it
+ * looked through, which reports it chose and why, what it could not cover, and what the answer rests on.
+ */
+export type TraceReport = { doc_id: string; corpus_id: string; title: string; project_no: string; pi: string; years: string;
+  matched: string[]; cover: number; where: { page: number; heading: string }[] };
+export type TraceItem =
+  | { kind: "search"; round: number; terms: string[]; considered: number; limited: number | null; year_window: number[] | null;
+      reports: TraceReport[]; partial: boolean; reason: string }
+  | { kind: "coverage"; missing: string[]; retry: boolean }
+  | { kind: "answer"; basis: string; sources: number; web: number; characters: number };
+
 export type Event =
   | { event: "run"; data: RunInfo }
+  | { event: "trace"; data: TraceItem }
   | { event: "usage"; data: Usage }
   | { event: "step"; data: Step }
   | { event: "telemetry"; data: Telemetry }
@@ -548,7 +561,7 @@ async function readEvents(response: Response, receive: (event: Event) => void) {
           if (!payload.ok) throw new Error("回答未完成");
           finished = true;
         }
-        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "step", "run"].includes(event)) {
+        if (["status", "sources", "token", "done", "policy", "telemetry", "usage", "step", "run", "trace"].includes(event)) {
           receive({ event, data: payload } as Event);
         }
         if (finished) return;

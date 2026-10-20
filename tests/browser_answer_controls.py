@@ -15,6 +15,18 @@ CORPUS = {"id": "c1", "name": "演示库", "kind": "demo", "domain": "x", "rel_p
           "preparation": "ready", "is_default": True, "index_progress": None, "job": None}
 
 
+async def show_technical(page):
+    """Open the latest answer's 资料检索 panel if folded, then its 技术信息 (administrators only)."""
+    header = page.get_by_role("button", name=re.compile("^资料检索")).last
+    await expect(header).to_be_visible()
+    if await header.get_attribute("aria-expanded") != "true":
+        await header.click()
+    details = page.locator("details").filter(has=page.get_by_text("技术信息", exact=True)).last
+    await expect(details).to_be_visible()
+    if await details.get_attribute("open") is None:
+        await details.locator("summary").click()
+
+
 async def main():
     root = Path(__file__).resolve().parents[1]
     server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(root / "frontend/dist")))
@@ -83,6 +95,8 @@ async def main():
             field = page.get_by_role("textbox", name="问题", exact=True)
             await field.fill("第一问")
             await page.get_by_role("button", name="发送 ↑").click()
+            # Timings and tokens sit in the folded 技术信息 of the 资料检索 panel (2026-10-20).
+            await show_technical(page)
             await expect(page.get_by_text("首 token / Think 等待：等待中", exact=False)).to_be_visible()
             await expect(page.get_by_role("button", name="重新生成").last).to_be_enabled()
             article = page.locator("article").last
@@ -125,12 +139,13 @@ async def main():
             await page.get_by_role("button", name="重新生成").last.click()
             await expect(field).to_have_value("草稿不要清空")
             await page.get_by_role("button", name="停止", exact=True).click()
-            await expect(page.get_by_text("已中断（结果未确认）", exact=False)).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^资料检索")).last).to_contain_text("已中断，结果未确认")
             latest = page.locator("article").last
+            await show_technical(page)
             await expect(latest.get_by_text("首 token / Think 等待：未收到正文", exact=True).first).to_be_visible()
             await page.evaluate("window.mode = 'failure'")
             await page.get_by_role("button", name="重新生成").last.click()
-            await expect(page.get_by_text("失败（未完成）", exact=False)).to_be_visible()
+            await expect(page.get_by_role("button", name=re.compile("^资料检索")).last).to_contain_text("处理失败")
             assert "连接中断" in await page.get_by_role("alert").inner_text()
             await page.evaluate("Object.defineProperty(navigator.clipboard, 'writeText', {value: async () => {throw new Error('denied')}})")
             await latest.get_by_role("button", name="复制答案", exact=True).first.click()

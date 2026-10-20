@@ -745,7 +745,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         if (!started) {
           started = true;
           setStatus("正在接上之前的回答");
-          update((t) => ({ ...t, steps: [], answer: "", sources: [], policy: null, complete: false,
+          update((t) => ({ ...t, steps: [], trace: [], answer: "", sources: [], policy: null, complete: false,
             outcome: "running", firstTokenMs: null, totalMs: null }));
         }
         update((t) => receiveEvent(t, event, performance.now() - start));

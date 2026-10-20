@@ -1921,6 +1921,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             telemetry: dict = {}
             outcome = "interrupted"
             answer_parts: list[str] = []
+            trace: list[dict] = []  # what the search found and why, kept with the run for later tracing
             snapshot_finished = False
             frozen_knowledge = None
             frozen_at = ""
@@ -1951,7 +1952,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                     # A digest avoids treating client-submitted artifact text as authoritative.
                     answer_sha256=(hashlib.sha256("".join(answer_parts).encode("utf-8")).hexdigest()
                                    if outcome == "completed" else ""),
-                    citations=[persisted_citation(source) for source in sources])
+                    citations=[persisted_citation(source) for source in sources],
+                    trace=trace)
             # A2: declare the server-effective run context before any content, so the UI can show
             # the authoritative scope instead of only echoing the client request.
             yield sse("run", {"run_id": payload.run_id, "session_key": payload.session_key or "",
@@ -2010,6 +2012,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                                 sources = event["data"]
                             if event["event"] == "telemetry":
                                 telemetry = event["data"]
+                            if event["event"] == "trace":
+                                trace.append(event["data"])
                             if event["event"] == "token" and isinstance(event["data"].get("text"), str):
                                 answer_parts.append(event["data"]["text"])
                             if event["event"] == "done":

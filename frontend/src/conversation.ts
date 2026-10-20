@@ -17,6 +17,8 @@ export type Attempt = {
   totalMs: number | null;
   elapsedMs: number | null;
   report?: Pick<ReportInfo, "report_id" | "artifact_id">;
+  /** The search as the reader follows it (TraceItem); kept with the answer for later tracing. */
+  trace?: import("./api").TraceItem[];
 };
 export type Turn = Attempt & {
   question: string;
@@ -106,6 +108,7 @@ export function receiveEvent(turn: Turn, event: Event, elapsedMs: number): Turn 
     return { ...turn, usage: event.data };
   }
   if (event.event === "policy") return { ...turn, policy: event.data };
+  if (event.event === "trace") return { ...turn, trace: [...(turn.trace ?? []), event.data] };
   if (event.event === "sources") return { ...turn, sources: event.data };
   if (event.event === "token" && event.data.text) {
     return { ...turn, answer: turn.answer + event.data.text, firstTokenMs: turn.firstTokenMs ?? elapsedMs };

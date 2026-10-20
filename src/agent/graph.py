@@ -165,6 +165,37 @@ def intake_reply(params: dict) -> tuple[str, bool]:
     return f"已整理报告需求：{known_text}。可在下方调整范围，然后直接生成报告。", True
 
 
+def retrieval_trace(result, round_: int, limited: int | None) -> dict:
+    """What the search did, in the reader's terms (user, 2026-10-20: which material was found and why,
+    so a run can be traced later): the terms it looked for, how much it looked through, and for each
+    chosen report which of those terms it holds and where. Facts only, no model reasoning."""
+    reports = []
+    for report in result.reports:
+        held = set()
+        for chunk in report.chunks:
+            held.update(tokens(chunk.text))
+        doc = report.doc
+        where, seen = [], set()
+        for chunk in report.chunks:
+            key = (chunk.page, chunk.heading)
+            if key not in seen:
+                seen.add(key)
+                where.append({"page": chunk.page, "heading": chunk.heading})
+        # Fund reports are named 起_止_批准号_负责人_题目; the number, years and PI are shown on their own.
+        parts = doc.title.split("_", 4)
+        title = parts[4] if doc.project_no and len(parts) == 5 else doc.title
+        reports.append({
+            "doc_id": doc.doc_id, "corpus_id": report.corpus_id, "title": title,
+            "project_no": doc.project_no, "pi": doc.pi,
+            "years": f"{doc.year_from}–{doc.year_to}" if doc.year_from and doc.year_to else "",
+            "matched": [term for term in result.specific if set(tokens(term)) <= held],
+            "cover": round(report.term_cover, 2), "where": where[:3],
+        })
+    return {"kind": "search", "round": round_, "terms": list(result.specific), "considered": result.candidates,
+            "limited": limited, "year_window": list(result.year_window) if result.year_window else None,
+            "reports": reports, "partial": result.partial, "reason": result.reason}
+
+
 def build_graph(knowledge: Knowledge, settings: Settings, model=None):
     llm = model if model is not None else model_for(settings)
     step_sequence = 0
@@ -225,6 +256,9 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             allowed_doc_ids=policy["allowed_doc_ids"], extra_queries=state.get("missing") or None)
         # The retry includes the original question plus missing terms. Do not union
         # two bounded results: that doubles the report budget and duplicates citations.
+        allowed = policy["allowed_doc_ids"]
+        writer({"event": "trace", "data": retrieval_trace(result, 2 if state.get("retry") else 1,
+                                                           len(allowed) if allowed else None)})
         has_web = bool(state.get("web_snapshots"))
         return {
             "retrieval": result,
@@ -252,7 +286,10 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             for report in context.reports:
                 covered.update(tokens(report["markdown"]))
         missing = [term for term in result.specific if not set(tokens(term)) <= covered]
-        if missing and not state.get("retry") and settings.retrieve_retry >= 1:
+        retrying = bool(missing and not state.get("retry") and settings.retrieve_retry >= 1)
+        if missing:
+            get_stream_writer()({"event": "trace", "data": {"kind": "coverage", "missing": missing, "retry": retrying}})
+        if retrying:
             get_stream_writer()({"event": "status", "data": {"message": "覆盖不足，补查缺失主题"}})
             return {"missing": missing, "retry": True}
         stop = "coverage_partial" if (missing or result.partial) else "professional"
@@ -316,6 +353,9 @@ def build_graph(knowledge: Knowledge, settings: Settings, model=None):
             text = no_match_notice(state)
             writer({"event": "token", "data": {"text": text}})
             return {"answer": text, "invalid_citations": 0, "execution_path": path}
+        writer({"event": "trace", "data": {
+            "kind": "answer", "basis": scope, "sources": sum(1 for item in sources if item.get("kind") != "web"),
+            "web": len(web_sections), "characters": len(markdown)}})
         writer({"event": "status", "data": {"message": "基于选定报告组织回答"}})
         instruction = task_instruction(state.get("task_id", DEFAULT_TASK_ID))
         custom_task = state.get("custom_task")

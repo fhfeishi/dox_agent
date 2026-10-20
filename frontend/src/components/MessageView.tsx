@@ -1,9 +1,9 @@
 import { GenerationProgress } from "./GenerationProgress";
-import { useEffect, useMemo, useRef, useState, type ComponentProps } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentProps, type ReactNode } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { PluggableList } from "unified";
-import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, templateArea, templateLabel, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary } from "../api";
+import { fetchReport, fetchArtifact, createReport, fetchCorpusFiles, fetchReportMetadata, fetchTaskVersion, fetchTemplates, preflightReport, templateArea, templateLabel, type ReportInfo, type ReportMetadataCoverage, type ReportPreflight, type Source, type Step, type TaskInfo, type TemplateSummary, type TraceItem } from "../api";
 import { rehypeCitations } from "../citation";
 import { downloadText } from "../exportText";
 import { markdownComponents } from "../markdownComponents";
@@ -22,101 +22,181 @@ const STEP_STATUS: Record<Step["status"], { label: string; cls: string }> = {
   interrupted: { label: "已中断", cls: "bg-[var(--tint-peach)] text-[var(--orange-fg)] ring-[var(--orange-line)]" },
 };
 
-function StepBadge({ sequence, status }: { sequence: number; status: Step["status"] }) {
-  const tone = STEP_STATUS[status].cls;
+const SEARCH_REASON: Record<string, string> = {
+  direct: "没能从问题中识别出可检索的主题词",
+  no_reports: "所选范围内没有包含这些主题词的报告",
+};
+
+function TraceNode({ index, title, last, children }: { index: number; title: string; last?: boolean; children: ReactNode }) {
   return (
-    <span
-      className={`font-code mt-[2px] inline-flex h-[17px] shrink-0 items-center rounded-[4px] px-[5px] text-caption font-semibold tracking-[0.3px] ring-1 ring-inset ${tone}`}
-    >
-      STEP {sequence}
-    </span>
+    <li className="relative flex gap-[10px] pb-[12px]">
+      {!last ? <span aria-hidden="true" className="absolute top-[22px] bottom-0 left-[10px] w-px bg-[var(--hairline)]" /> : null}
+      <span className="relative grid size-[21px] shrink-0 place-items-center rounded-full bg-[var(--primary-soft)] text-caption font-semibold text-[var(--primary)]">{index}</span>
+      <div className="min-w-0 flex-1 pt-[1px]">
+        <p className="text-body font-medium text-[var(--charcoal)]">{title}</p>
+        <div className="mt-[3px] space-y-[6px] text-caption leading-[1.6] text-[var(--steel)]">{children}</div>
+      </div>
+    </li>
   );
 }
 
-function Trace({ attempt, live, defaultOpen }: { attempt: Attempt; live: boolean; defaultOpen: boolean }) {
-  const current = [...attempt.steps].reverse().find((s) => s.status === "running") ?? attempt.steps.at(-1);
-  const finalLabel =
-    attempt.outcome === "completed"
-      ? "处理完成"
-      : attempt.outcome === "interrupted"
-        ? "已中断，结果未确认"
-        : attempt.outcome === "failed"
-          ? "处理失败"
-          : current?.label ?? "准备处理";
+/**
+ * How this answer found its material (user, 2026-10-20: which reports, and why), replacing the list of
+ * internal steps. Folded, one line says what happened; open, the search reads as four stages: what was
+ * looked for, which reports were chosen and where they match, what could not be covered, and what the
+ * answer rests on. Timings and tokens sit in 技术信息 for administrators.
+ */
+function Trace({ attempt, live, defaultOpen, corpusName, onOpenSource, technical }: {
+  attempt: Attempt; live: boolean; defaultOpen: boolean; corpusName: (id: string) => string;
+  onOpenSource?: (s: Source, n: number) => void; technical?: ReactNode;
+}) {
+  const items = attempt.trace ?? [];
+  const searches = items.filter((item): item is Extract<TraceItem, { kind: "search" }> => item.kind === "search");
+  const coverage = items.filter((item): item is Extract<TraceItem, { kind: "coverage" }> => item.kind === "coverage");
+  const answer = items.find((item): item is Extract<TraceItem, { kind: "answer" }> => item.kind === "answer");
+  const search = searches.at(-1);
+  const terms = searches[0]?.terms ?? [];
   const [open, setOpen] = useState(defaultOpen || live);
   useEffect(() => {
     if (live) setOpen(true);
   }, [live]);
+  const summary = live
+    ? !search ? "正在理解问题、确定检索词" : !answer ? `已选出 ${search.reports.length} 份报告，正在核对覆盖` : `正在依据 ${answer.sources} 份资料组织回答`
+    : attempt.outcome === "interrupted" ? "已中断，结果未确认"
+      : attempt.outcome === "failed" ? "处理失败"
+        : search ? search.reports.length ? `在 ${search.considered} 份资料中选出 ${search.reports.length} 份` : "没有找到匹配的报告"
+          : attempt.steps.length ? "未检索资料" : "旧回答没有记录检索过程";
+  const scopeIds = attempt.runInfo?.effective_corpus_ids ?? [];
+  const sourceOf = (docId: string) => {
+    const index = attempt.sources.findIndex((item) => item.doc_id === docId);
+    return index < 0 ? null : { source: attempt.sources[index], number: attempt.sources[index].citation ?? index + 1 };
+  };
+  let stage = 0;
 
   return (
     <div className="mb-[16px] overflow-hidden rounded-[12px] border border-[var(--hairline)] bg-[var(--surface-soft)]">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="font-app flex w-full items-center gap-[8px] px-[12px] py-[9px] text-left hover:bg-[var(--surface)]"
-      >
-        <Icon
-          name="chevronRight"
-          size={13}
-          strokeWidth={2}
-          className={`text-[var(--stone)] transition-transform duration-200 ${open ? "rotate-90" : ""}`}
-        />
-        <span className="text-body font-semibold text-[var(--slate)]">分析过程</span>
+      <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}
+        className="font-app flex w-full items-center gap-[8px] px-[12px] py-[9px] text-left hover:bg-[var(--surface)]">
+        <Icon name="chevronRight" size={13} strokeWidth={2}
+          className={`text-[var(--stone)] transition-transform duration-200 ${open ? "rotate-90" : ""}`} />
+        <span className="text-body font-semibold text-[var(--slate)]">资料检索</span>
         {live ? (
           <span className="relative flex size-[7px] shrink-0">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--primary)] opacity-60" />
             <span className="relative inline-flex size-[7px] rounded-full bg-[var(--primary)]" />
           </span>
         ) : null}
-        <span className="flex-1 text-caption text-[var(--stone)]">
-          {live ? `思考中 · ${current?.label ?? "准备"}` : finalLabel}
+        <span className="min-w-0 flex-1 truncate text-caption text-[var(--steel)]">
+          {summary}{!live && terms.length ? ` · 检索词 ${terms.join("、")}` : ""}
         </span>
-        {!live && attempt.policy ? (
-          <span className="shrink-0 text-caption text-[var(--stone)]">
-            {attempt.policy.allowed_doc_ids ? "限定资料" : "全部资料"}
-          </span>
-        ) : null}
       </button>
 
       {open ? (
-        <div className="border-t border-[var(--hairline-soft)] px-[12px] pt-[6px] pb-[12px]">
-          {attempt.steps.length ? (
-            attempt.steps.map((step) => (
-              <div key={step.id} className="flex gap-[10px] py-[7px]">
-                <StepBadge sequence={step.sequence} status={step.status} />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-baseline gap-[8px]">
-                    <span className="text-body leading-[1.45] text-[var(--charcoal)]">
-                      {step.label}
-                    </span>
-                    <span className="font-code ml-auto shrink-0 text-caption text-[var(--stone)] tabular-nums">
-                      {step.duration_ms != null
-                        ? formatDuration(step.duration_ms)
-                        : STEP_STATUS[step.status].label}
-                    </span>
-                  </div>
-                  {step.detail ? (
-                    <div className="mt-[2px] text-caption text-[var(--stone)]">{step.detail}</div>
-                  ) : null}
-                </div>
-              </div>
-            ))
+        <div className="border-t border-[var(--hairline-soft)] px-[12px] pt-[12px] pb-[4px]">
+          {!items.length ? (
+            <p className="pb-[10px] text-caption text-[var(--stone)]">
+              {live ? "正在理解问题…" : attempt.steps.length ? "本次回答没有检索资料（例如采集报告需求或需要先补充信息）。" : "旧回答没有记录检索过程。"}
+            </p>
           ) : (
-            <p className="py-[7px] text-caption text-[var(--stone)]">
-              {attempt.outcome === "running" ? "正在准备分析步骤…" : "旧回答没有记录详细步骤。"}
-            </p>
+            <ol aria-label="资料检索过程">
+              <TraceNode index={++stage} title="理解问题">
+                <p className="flex flex-wrap items-center gap-[5px]">
+                  <span>检索词</span>
+                  {terms.length ? terms.map((term) => (
+                    <span key={term} className="rounded-[5px] bg-[var(--canvas)] px-[6px] py-[1px] text-[var(--charcoal)] ring-1 ring-[var(--hairline)]">{term}</span>
+                  )) : <span>{searches[0]?.reports.length ? "按问题整体匹配（资料较少，未单独提取检索词）" : "未识别"}</span>}
+                </p>
+                <p>
+                  范围：{scopeIds.length ? scopeIds.map(corpusName).join("、") : "所选资料库"}
+                  {searches[0]?.limited ? ` · 限定 ${searches[0].limited} 份资料` : " · 全部已入库资料"}
+                  {searches[0]?.year_window ? ` · ${searches[0].year_window[0]}–${searches[0].year_window[1]} 年` : ""}
+                </p>
+              </TraceNode>
+              {searches.map((round, r) => (
+                <TraceNode key={r} index={++stage} title={round.round > 1 ? "补查资料" : "找到资料"}>
+                  <p>
+                    {round.reports.length
+                      ? `${round.round > 1 ? "补查后" : `在 ${round.considered} 份资料中`}选出 ${round.reports.length} 份，按与检索词的吻合程度排序`
+                      : SEARCH_REASON[round.reason] ?? "没有找到匹配的报告"}
+                    {round.partial ? "；少于这类任务通常需要的报告数，结论的范围有限" : ""}
+                  </p>
+                  {round.reports.length ? (
+                    <ul className="space-y-[6px]">
+                      {round.reports.map((report) => {
+                        const cited = sourceOf(report.doc_id);
+                        const missing = round.terms.filter((term) => !report.matched.includes(term));
+                        return (
+                          <li key={report.doc_id} className="rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[8px]">
+                            <div className="flex items-start gap-[7px]">
+                              {cited ? <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-caption font-bold text-white">{cited.number}</span> : null}
+                              {cited && onOpenSource
+                                ? <button type="button" onClick={() => onOpenSource(cited.source, cited.number)}
+                                    className="min-w-0 text-left text-body text-[var(--charcoal)] hover:text-[var(--primary)] hover:underline">{report.title}</button>
+                                : <span className="min-w-0 text-body text-[var(--charcoal)]">{report.title}</span>}
+                            </div>
+                            <p className="mt-[2px] text-[var(--stone)]">
+                              {[corpusName(report.corpus_id), report.project_no, report.years, report.pi].filter(Boolean).join(" · ")}
+                            </p>
+                            <div className="mt-[4px] flex flex-wrap items-center gap-x-[10px] gap-y-[3px]">
+                              <span className="flex items-center gap-[6px]">
+                                <span aria-hidden="true" className="h-[5px] w-[44px] overflow-hidden rounded-full bg-[var(--track)]">
+                                  <span className="block h-full rounded-full bg-[var(--primary)]" style={{ width: `${Math.round(report.cover * 100)}%` }} />
+                                </span>
+                                <span>吻合 {Math.round(report.cover * 100)}%</span>
+                              </span>
+                              {report.matched.length ? <span>含：<span className="text-[var(--charcoal)]">{report.matched.join("、")}</span></span> : null}
+                              {missing.length ? <span className="text-[var(--stone)]">未含：{missing.join("、")}</span> : null}
+                            </div>
+                            {report.where.length ? (
+                              <p className="mt-[2px]">依据：{report.where.map((w) => `第 ${w.page} 页${w.heading ? `「${w.heading}」` : ""}`).join("；")}</p>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null}
+                </TraceNode>
+              ))}
+              {coverage.map((gap, g) => (
+                <TraceNode key={`gap-${g}`} index={++stage} title="核对覆盖">
+                  <p>{gap.retry ? `首轮资料没有覆盖「${gap.missing.join("、")}」，已按这些词补查` : `仍未覆盖「${gap.missing.join("、")}」，回答会说明这部分资料不足`}</p>
+                </TraceNode>
+              ))}
+              {answer ? (
+                <TraceNode index={++stage} title="组织回答" last>
+                  <p>
+                    依据 {answer.sources} 份报告的{answer.basis.replace(/^本轮/, "")}（约 {Math.max(1, Math.round(answer.characters / 1000)).toLocaleString()} 千字）
+                    {answer.web ? `，另有 ${answer.web} 个网页快照` : ""}；回答中的 [n] 对应上面的编号。
+                  </p>
+                </TraceNode>
+              ) : live ? (
+                <TraceNode index={++stage} title="组织回答" last><p>等待前面的步骤完成…</p></TraceNode>
+              ) : null}
+            </ol>
           )}
-          {attempt.policy ? (
-            <p className="mt-[6px] border-t border-[var(--hairline-soft)] pt-[8px] text-caption text-[var(--stone)]">
-              {attempt.policy.route === "research" ? "资料研究" : "需要澄清"} ·{" "}
-              {stopLabels[attempt.policy.stop_reason] ?? "处理已更新"}
-              {attempt.policy.notice ? ` · ${attempt.policy.notice}` : ""}
-            </p>
+          {technical ? (
+            <details className="mb-[8px] border-t border-[var(--hairline-soft)] pt-[6px] text-caption text-[var(--stone)]">
+              <summary className="cursor-pointer">技术信息</summary>
+              {technical}
+            </details>
           ) : null}
         </div>
       ) : null}
     </div>
+  );
+}
+
+function StepList({ attempt }: { attempt: Attempt }) {
+  if (!attempt.steps.length) return null;
+  return (
+    <ul className="mt-[6px] flex flex-wrap gap-x-[12px] gap-y-[2px]">
+      {attempt.steps.map((step) => (
+        <li key={step.id}>
+          {step.label}
+          <span className="font-code ml-[4px] tabular-nums">{step.duration_ms != null ? formatDuration(step.duration_ms) : STEP_STATUS[step.status].label}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -637,6 +717,7 @@ export function MessageView({
   // Run records, token counts and timings are for administrators; others see elapsed time only while
   // an answer is being written (节点审查 D4).
   const { role } = useAuth();
+  const { corpora } = useApp();
   useEffect(() => {
     setCopyState("idle");
   }, [attempt.answer]);
@@ -703,7 +784,9 @@ export function MessageView({
 
   return (
     <>
-      {!compact ? <Trace attempt={attempt} live={running} defaultOpen={defaultOpen} /> : null}
+      {!compact ? <Trace attempt={attempt} live={running} defaultOpen={defaultOpen} onOpenSource={onOpenSource}
+        corpusName={(id) => (corpora.find((item) => item.id === id)?.name ?? id).replace(/^自然科学基金-/, "")}
+        technical={role === "admin" ? <><Metrics attempt={attempt} startedTick={startedTick} /><StepList attempt={attempt} /><Telemetry attempt={attempt} /></> : undefined} /> : null}
       {attempt.answer ? (
         <div className="markdown">
           <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={rehypePlugins} components={components}>
@@ -722,8 +805,8 @@ export function MessageView({
       {/* 对比分析的结论以表内 [n] 引用核对，不再追加整段引用来源列表（query 2026-1008 1547）。 */}
       {!compact && (attempt.runInfo?.task_id ?? attempt.options.task_id) !== "task2" ? <Sources attempt={attempt} onOpenSource={onOpenSource} /> : null}
       {!compact ? <ReportCard attempt={attempt} onReport={onReport} /> : null}
-      {!compact && role === "admin" ? <Telemetry attempt={attempt} /> : null}
-      {!compact && (role === "admin" || running) ? <Metrics attempt={attempt} startedTick={startedTick} /> : null}
+
+
 
       {!compact ? (
         <div className="mt-[10px] flex flex-wrap items-center gap-[2px]">

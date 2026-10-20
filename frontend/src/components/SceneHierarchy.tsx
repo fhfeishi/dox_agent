@@ -26,7 +26,7 @@ const STAGE_TONE: Record<string, string> = {
 /** The extracted topics a category groups; the category name itself is a summary. */
 function Members({ names }: { names?: string[] }) {
   if (!names?.length || (names.length === 1)) return null;
-  return <details className="mt-1 text-xs text-[var(--steel)]"><summary className="cursor-pointer">归并 {names.length} 个原提取条目</summary>
+  return <details className="mt-1 text-caption text-[var(--steel)]"><summary className="cursor-pointer">归并 {names.length} 个原提取条目</summary>
     <p className="mt-1 leading-5">{names.join("、")}</p></details>;
 }
 
@@ -49,35 +49,35 @@ export function EvidenceList({ corpusId, evidence, limit = 2, staleHint = "请�
       setError((reason as Error).message);
     }
   }
-  if (!evidence.length) return <p className="mt-2 text-xs text-[var(--stone)]">本次归纳没有可回读的原文证据。</p>;
+  if (!evidence.length) return <p className="mt-2 text-caption text-[var(--stone)]">本次归纳没有可回读的原文证据。</p>;
   return <div className="mt-2 space-y-2">{evidence.slice(0, limit).map((item, index) => <button key={index} type="button"
     onClick={() => void open(item)}
-    className="block w-full rounded-lg bg-[var(--canvas)] p-2 text-left text-xs hover:border-[var(--primary)]">
+    className="block w-full rounded-lg bg-[var(--canvas)] p-2 text-left text-caption hover:border-[var(--primary)]">
     <span className="text-[var(--primary)]">{item.locator.basis === "pdf_page" ? `第 ${item.locator.page} 页` : "解析正文位置"} · 查看原文</span>
     <span className="mt-1 block leading-5 text-[var(--ink)]">{item.quote}</span>
   </button>)}
-  {error ? <p className="text-xs text-[var(--red)]">{error}</p> : null}
-  {evidence.length > limit ? <p className="text-xs text-[var(--stone)]">另有 {evidence.length - limit} 条证据，可在项目详情查看。</p> : null}</div>;
+  {error ? <p className="text-caption text-[var(--red)]">{error}</p> : null}
+  {evidence.length > limit ? <p className="text-caption text-[var(--stone)]">另有 {evidence.length - limit} 条证据，可在项目详情查看。</p> : null}</div>;
 }
 
 function AspectTable({ corpusId, achievements }: { corpusId: string; achievements: Achievement[] }) {
   return <div className="space-y-4">{achievements.map((item) => <section key={item.title} aria-label={item.title + " 相关分析"}
     className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
     <div className="flex flex-wrap items-baseline gap-2"><h4 className="font-semibold">{item.title}</h4>
-      <span className="text-xs text-[var(--steel)]">覆盖 {item.marker_basis.projects} 个去重项目
+      <span className="text-caption text-[var(--steel)]">覆盖 {item.marker_basis.projects} 个去重项目
         {item.marker_basis.representative ? ` · 代表项目 ${item.marker_basis.representative}` : ""}</span></div>
-    {item.summary ? <p className="mt-1 text-sm text-[var(--steel)]">{item.summary}</p> : null}
+    {item.summary ? <p className="mt-1 text-body text-[var(--steel)]">{item.summary}</p> : null}
     <div className="mt-3 overflow-x-auto">
-      <table className="w-full min-w-[520px] border-collapse text-sm">
+      <table className="w-full min-w-[520px] border-collapse text-body">
         <caption className="sr-only">{item.title} 的成果方面完成度</caption>
-        <thead><tr>{["方面", "完成度", "说明"].map((head) => <th key={head} scope="col" className="border-b border-[var(--hairline)] py-2 text-left text-xs text-[var(--steel)]">{head}</th>)}</tr></thead>
+        <thead><tr>{["方面", "完成度", "说明"].map((head) => <th key={head} scope="col" className="border-b border-[var(--hairline)] py-2 text-left text-caption text-[var(--steel)]">{head}</th>)}</tr></thead>
         <tbody>{ASPECTS.map((aspect) => {
           const found = item.aspects.find((value) => value.aspect === aspect);
           const stage = found?.stage ?? "原文未提及";
           return <tr key={aspect} className="align-top">
             <th scope="row" className="border-b border-[var(--hairline)] py-2 text-left font-normal">{aspect}</th>
-            <td className="border-b border-[var(--hairline)] py-2 text-xs" style={{ color: STAGE_TONE[stage] }}>{stage}</td>
-            <td className="border-b border-[var(--hairline)] py-2 text-xs leading-5">{found?.note
+            <td className="border-b border-[var(--hairline)] py-2 text-caption" style={{ color: STAGE_TONE[stage] }}>{stage}</td>
+            <td className="border-b border-[var(--hairline)] py-2 text-caption leading-5">{found?.note
               || (found?.answered ? "" : "本次综合未给出该方面结论")}</td></tr>;
         })}</tbody>
       </table>
@@ -99,7 +99,7 @@ type Dim = typeof DIMS[number];
 const DIM_COLOR: Record<Dim, string> = { 技术谱系: LINEAGE_COLOR, 场景: FACET_COLORS[0], 问题: FACET_COLORS[1], 技术: FACET_COLORS[2], 成果: FACET_COLORS[3] };
 
 function Pill({ text, color }: { text: string; color: string }) {
-  return <span className="rounded-full px-2 py-0.5 text-xs" style={{ color, background: color + "18" }}>{text}</span>;
+  return <span className="rounded-full px-2 py-0.5 text-caption" style={{ color, background: color + "18" }}>{text}</span>;
 }
 
 // 成果分析 dimensions (query 2026-1015 1518). Papers, patents, monographs and awards are counted from
@@ -126,23 +126,23 @@ function OutcomeAnalysis({ corpusId, scene }: { corpusId: string; scene: Scene }
   const leading = values.filter(([, n]) => n > 0).sort((x, y) => y[1] - x[1]).slice(0, 3);
   return <div className="mt-3 space-y-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4" aria-label={scene.name + " 成果分析"}>
     <div className="flex flex-wrap items-baseline gap-2">
-      <p className="text-sm font-semibold">成果分析</p>
-      <span className="text-xs text-[var(--steel)]">{scene.name} · {projects.length} 个项目</span>
+      <p className="text-body font-semibold">成果分析</p>
+      <span className="text-caption text-[var(--steel)]">{scene.name} · {projects.length} 个项目</span>
     </div>
-    {!outputs ? <p role="status" className="text-xs text-[var(--stone)]">正在读取成果列表…</p> : <div className="grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    {!outputs ? <p role="status" className="text-caption text-[var(--stone)]">正在读取成果列表…</p> : <div className="grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div className="mx-auto w-full max-w-[420px]"><Chart spec={{ type: "radar", title: "各类成果覆盖的项目数", labels: values.map(([l]) => l), values: values.map(([, n]) => n), unit: " 个项目", max: projects.length,
         note: `论文、专利、专著、奖励取自 ${listed}/${projects.length} 个项目报告的“成果列表”；其余取自标志性成果中判定为“已取得”的方面` }} /></div>
       <div className="space-y-2 text-body leading-6">
         <p>{leading.length ? <>成果集中在 <b>{leading.map(([l, n]) => `${l}（${n} 个项目）`).join("、")}</b>。</> : "本场景报告中暂未整理出可计数的成果。"}</p>
-        <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-[var(--steel)]">{values.map(([l, n]) =>
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-caption text-[var(--steel)]">{values.map(([l, n]) =>
           <li key={l} className="flex justify-between gap-2"><span>{l}</span><span className="tabular-nums">{n ? `${n} 个项目` : "—"}</span></li>)}</ul>
         <p className="text-caption text-[var(--stone)]">“—”表示本场景资料中没有对应记录，不等于没有该类成果。</p>
       </div>
     </div>}
-    {scene.achievements.length ? <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">按标志性成果查看各方面完成度与原文</summary>
+    {scene.achievements.length ? <details className="text-body"><summary className="cursor-pointer text-caption text-[var(--primary)]">按标志性成果查看各方面完成度与原文</summary>
       <div className="mt-3"><AspectTable corpusId={corpusId} achievements={scene.achievements} /></div></details> : null}
     {/* The full list is long; it opens on demand (query 2026-1015 1518). */}
-    <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">展开成果清单 · {entries} 项（取自报告原文的“成果列表”）</summary>
+    <details className="text-body"><summary className="cursor-pointer text-caption text-[var(--primary)]">展开成果清单 · {entries} 项（取自报告原文的“成果列表”）</summary>
       <div className="mt-3"><OutputsPanel corpusId={corpusId} projectIds={projects} label={scene.name} /></div></details>
   </div>;
 }
@@ -153,7 +153,7 @@ function ProjectLinks({ corpusId, ids, facet }: { corpusId: string; ids: string[
   const { data } = useQuery(projectQuery(corpusId));
   const titles = new Map((data?.projects ?? []).map((p) => [p.project_id, p.title]));
   if (!ids.length) return null;
-  return <details className="mt-2 text-xs"><summary className="cursor-pointer text-[var(--primary)]">查看 {ids.length} 个项目</summary>
+  return <details className="mt-2 text-caption"><summary className="cursor-pointer text-[var(--primary)]">查看 {ids.length} 个项目</summary>
     <ul className="mt-1 space-y-1">{ids.map((id) => <li key={id}><button type="button" onClick={() => showInspector({ kind: "project", corpusId, projectId: id, facet })}
       className="text-left text-[var(--link)] hover:underline">{titles.get(id) ?? id}</button></li>)}</ul></details>;
 }
@@ -188,8 +188,8 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
     for (const [key, v] of Object.entries(next)) { if (v) value.set(key, v); else value.delete(key); }
     return value;
   });
-  if (isPending) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取四维归纳…</p>;
-  if (error) return <p role="alert" className="py-4 text-sm text-[var(--red)]">{error.message}</p>;
+  if (isPending) return <p role="status" className="py-4 text-body text-[var(--steel)]">正在读取四维归纳…</p>;
+  if (error) return <p role="alert" className="py-4 text-body text-[var(--red)]">{error.message}</p>;
   if (!data) return null;
   const busy = run.isPending;
   const coverage = data.coverage ?? {};
@@ -218,14 +218,14 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
         className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
         style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
-        <span className="block text-emphasis font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
-        <span className="hidden text-xs text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
+        <span className="block text-emphasis font-semibold md:text-group" style={{ color: DIM_COLOR[key] }}>{key}</span>
+        <span className="hidden text-caption text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
           : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类" : key === "问题" ? "个核心问题" : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
     </div>
-    <p className="text-sm text-[var(--steel)]">{PURPOSE[dim]}</p>
-    {notice ? <p role="alert" className="text-sm text-[var(--red)]">{notice}</p> : null}
-    {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-sm">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
+    <p className="text-body text-[var(--steel)]">{PURPOSE[dim]}</p>
+    {notice ? <p role="alert" className="text-body text-[var(--red)]">{notice}</p> : null}
+    {data.process?.status === "未完成" ? <p role="alert" className="rounded-lg bg-[var(--canvas)] p-3 text-body">本次生成未完成：{data.process.error}{coverage.update_error ? "，下方为上一次成功生成的结果。" : ""}</p> : null}
     {/* 总览, the five-level lineage and the road map one at a time, so the chosen one has the whole
         page (query 2026-1013 2012); a technique picked in one is selected in the others. */}
     {dim === "技术谱系" ? <>
@@ -239,15 +239,15 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
       {lineageView === "tree" ? <LineageTree corpusId={corpusId} focus={node} onFocus={(key) => go({ node: key })}
         onIssue={(scene) => go({ dim: "问题", scene, node: "" })} /> : null}
       {lineageView === "roadmap" ? lineage?.categories.length ? <LineageRoadmap lineage={lineage} title={libraryName} selected={node} onSelect={(key) => go({ node: key })} />
-        : <p className="text-sm text-[var(--steel)]">生成技术谱系后显示路网图。</p> : null}
+        : <p className="text-body text-[var(--steel)]">生成技术谱系后显示路网图。</p> : null}
     </> : null}
-    {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
+    {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-body text-[var(--steel)]">
       <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维提取。"}</span>{data.state === "missing" ? regenerate : null}
     </div> : <>
       {dim !== "场景" ? <div className="flex flex-wrap gap-2" aria-label="按场景筛选">
-        <button type="button" aria-pressed={!sceneName} onClick={() => go({ scene: "" })} className={`rounded-full border px-3 py-1 text-xs ${!sceneName ? "border-[var(--ink)] font-semibold" : "border-[var(--hairline)]"}`}>全部场景</button>
+        <button type="button" aria-pressed={!sceneName} onClick={() => go({ scene: "" })} className={`rounded-full border px-3 py-1 text-caption ${!sceneName ? "border-[var(--ink)] font-semibold" : "border-[var(--hairline)]"}`}>全部场景</button>
         {data.scenes.map((scene) => <button key={scene.name} type="button" aria-pressed={sceneName === scene.name} onClick={() => go({ scene: sceneName === scene.name ? "" : scene.name })}
-          className={`rounded-full border px-3 py-1 text-xs ${sceneName === scene.name ? "font-semibold" : ""}`} style={{ borderColor: sceneName === scene.name ? FACET_COLORS[0] : "var(--hairline)" }}>{scene.name}</button>)}
+          className={`rounded-full border px-3 py-1 text-caption ${sceneName === scene.name ? "font-semibold" : ""}`} style={{ borderColor: sceneName === scene.name ? FACET_COLORS[0] : "var(--hairline)" }}>{scene.name}</button>)}
       </div> : null}
 
       {dim === "场景" ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -256,58 +256,58 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
           className="rounded-xl border bg-[var(--surface)] p-4 text-left hover:shadow-md"
           style={{ borderLeft: `4px solid ${FACET_COLORS[0]}`, borderColor: sceneName === item.name ? FACET_COLORS[0] : "var(--hairline)" }}>
           <b>{item.name}</b>
-          {item.summary ? <p className="mt-2 text-xs leading-5 text-[var(--steel)]">{item.summary}</p> : null}
-          <p className="mt-3 text-xs text-[var(--steel)]">{item.project_ids.length} 个项目 · 问题 {item.issues.length} 个 · 成果 {item.achievements.length} 项</p>
-          <span className="mt-2 block text-xs text-[var(--primary)]">{sceneName === item.name ? "收起逻辑简图" : "查看场景 → 问题 → 技术 → 成果 逻辑简图 →"}</span>
+          {item.summary ? <p className="mt-2 text-caption leading-5 text-[var(--steel)]">{item.summary}</p> : null}
+          <p className="mt-3 text-caption text-[var(--steel)]">{item.project_ids.length} 个项目 · 问题 {item.issues.length} 个 · 成果 {item.achievements.length} 项</p>
+          <span className="mt-2 block text-caption text-[var(--primary)]">{sceneName === item.name ? "收起逻辑简图" : "查看场景 → 问题 → 技术 → 成果 逻辑简图 →"}</span>
         </button>)}
       </div> : null}
       {dim === "场景" && scenes.length === 1 ? <SceneFlow corpusId={corpusId} scene={scenes[0]} onRoute={showRoute} /> : null}
 
       {dim === "问题" ? scenes.map((scene) => <div key={scene.name} className="space-y-2">
-        <p className="text-sm font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
+        <p className="text-body font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
         <div className="grid gap-3 md:grid-cols-3">{scene.issues.map((issue) => <article key={issue.name} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4" style={{ borderTop: `3px solid ${FACET_COLORS[1]}` }}>
           <div className="flex flex-wrap items-baseline gap-2"><b>{issue.name}</b><Pill text={issue.state} color={issue.state === "已解决" ? FACET_COLORS[2] : FACET_COLORS[1]} /></div>
-          {issue.summary ? <p className="mt-2 text-sm leading-6">{issue.summary}</p> : null}
-          <p className="mt-2 text-xs text-[var(--steel)]">{issue.project_ids.length} 个项目 · {issue.routes.length ? "解决该问题的典型技术：" : "本库暂无对应技术路线"}</p>
+          {issue.summary ? <p className="mt-2 text-body leading-6">{issue.summary}</p> : null}
+          <p className="mt-2 text-caption text-[var(--steel)]">{issue.project_ids.length} 个项目 · {issue.routes.length ? "解决该问题的典型技术：" : "本库暂无对应技术路线"}</p>
           {issue.routes.length ? <div className="mt-1 flex flex-wrap gap-1.5">{issue.routes.map((r) => <button key={r.title} type="button" onClick={() => showRoute(r.title)}
-            title="在技术谱系中查看" className="rounded-full border px-2 py-0.5 text-xs hover:bg-[var(--canvas)]" style={{ borderColor: FACET_COLORS[2] + "88", color: FACET_COLORS[2] }}>{r.title}</button>)}</div> : null}
+            title="在技术谱系中查看" className="rounded-full border px-2 py-0.5 text-caption hover:bg-[var(--canvas)]" style={{ borderColor: FACET_COLORS[2] + "88", color: FACET_COLORS[2] }}>{r.title}</button>)}</div> : null}
           <ProjectLinks corpusId={corpusId} ids={issue.project_ids} facet="问题" />
           <Members names={issue.members} />
         </article>)}</div>
       </div>) : null}
 
       {dim === "技术" ? scenes.map((scene) => <div key={scene.name} className="space-y-2">
-        <p className="text-sm font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
+        <p className="text-body font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
         {scene.issues.filter((issue) => issue.routes.length).map((issue) => <div key={issue.name} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-          <p className="text-xs text-[var(--steel)]">针对问题：<b style={{ color: FACET_COLORS[1] }}>{issue.name}</b></p>
+          <p className="text-caption text-[var(--steel)]">针对问题：<b style={{ color: FACET_COLORS[1] }}>{issue.name}</b></p>
           <div className="mt-2 grid gap-3 md:grid-cols-2">{issue.routes.map((route) => <article key={route.title} className="rounded-lg bg-[var(--canvas)] p-3" style={{ borderLeft: `3px solid ${FACET_COLORS[2]}` }}>
-            <div className="flex flex-wrap items-baseline gap-2"><b className="text-sm">{route.title}</b><span className="text-xs text-[var(--steel)]">{route.project_ids.length} 个项目</span></div>
-            <p className="mt-1 text-sm leading-6">{route.summary}</p>
+            <div className="flex flex-wrap items-baseline gap-2"><b className="text-body">{route.title}</b><span className="text-caption text-[var(--steel)]">{route.project_ids.length} 个项目</span></div>
+            <p className="mt-1 text-body leading-6">{route.summary}</p>
             {(() => {
               const id = routeItem(route.title); const at = id ? locateItem(lineage, id) : null; const level = id ? lineage?.items[id]?.maturity ?? 0 : 0;
-              return at ? <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-[var(--steel)]">技术谱系位置：<span style={{ color: LINEAGE_COLOR }}>{at.category.name} › {at.child.name} › {at.theme.name}</span>
+              return at ? <p className="mt-1 flex flex-wrap items-center gap-1.5 text-caption text-[var(--steel)]">技术谱系位置：<span style={{ color: LINEAGE_COLOR }}>{at.category.name} › {at.child.name} › {at.theme.name}</span>
                 <Tier level={level} /></p> : null;
             })()}
-            <button type="button" onClick={() => showRoute(route.title)} className="mt-1 text-xs text-[var(--link)] hover:underline">在技术谱系中查看 →</button>
+            <button type="button" onClick={() => showRoute(route.title)} className="mt-1 text-caption text-[var(--link)] hover:underline">在技术谱系中查看 →</button>
             <ProjectLinks corpusId={corpusId} ids={route.project_ids} facet="技术" />
             <EvidenceList corpusId={corpusId} evidence={route.evidence} limit={1} />
           </article>)}</div>
         </div>)}
-        {!scene.issues.some((issue) => issue.routes.length) ? <p className="text-xs text-[var(--stone)]">该场景暂无可对应的技术路线条目。</p> : null}
+        {!scene.issues.some((issue) => issue.routes.length) ? <p className="text-caption text-[var(--stone)]">该场景暂无可对应的技术路线条目。</p> : null}
       </div>) : null}
 
       {dim === "成果" ? scenes.map((scene) => <div key={scene.name} className="space-y-2">
-        <p className="text-sm font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
+        <p className="text-body font-semibold" style={{ color: FACET_COLORS[0] }}>{scene.name}</p>
         {scene.achievements.length ? <div className="grid gap-3 md:grid-cols-3">{scene.achievements.map((item) => <article key={item.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4" style={{ borderTop: `3px solid ${FACET_COLORS[3]}` }}>
           <b>{item.title}</b>
-          {item.summary ? <p className="mt-2 text-sm leading-6">{item.summary}</p> : null}
-          <p className="mt-2 text-xs text-[var(--steel)]">覆盖 {item.marker_basis.projects} 个项目{item.marker_basis.representative ? ` · 代表项目 ${item.marker_basis.representative}` : ""}</p>
+          {item.summary ? <p className="mt-2 text-body leading-6">{item.summary}</p> : null}
+          <p className="mt-2 text-caption text-[var(--steel)]">覆盖 {item.marker_basis.projects} 个项目{item.marker_basis.representative ? ` · 代表项目 ${item.marker_basis.representative}` : ""}</p>
           <EvidenceList corpusId={corpusId} evidence={item.evidence} limit={1} />
-        </article>)}</div> : <p className="text-xs text-[var(--stone)]">该场景暂无可对应的成果条目。</p>}
+        </article>)}</div> : <p className="text-caption text-[var(--stone)]">该场景暂无可对应的成果条目。</p>}
         <OutcomeAnalysis corpusId={corpusId} scene={scene} />
       </div>) : null}
 
-      <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--stone)]">
+      <div className="flex flex-wrap items-center gap-2 text-caption text-[var(--stone)]">
         <span>{data.state === "stale" ? "四维提取结果已变化，需重新生成。" : data.generated_at ? `生成于 ${new Date(data.generated_at).toLocaleString("zh-CN")}` : ""}</span>
         {coverage.gaps?.length ? <details><summary className="cursor-pointer">未采用的条目 {coverage.gaps.length} 项</summary>
           <ul className="mt-1 space-y-1">{coverage.gaps.map((gap, index) => <li key={index}>{gap.detail}</li>)}</ul></details> : null}

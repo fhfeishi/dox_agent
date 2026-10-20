@@ -21,18 +21,18 @@ function TierBar({ tiers }: { tiers: number[] }) {
 function StagePanel({ cell, plain, titles, onTech, onProject }: { cell: MatrixCell; plain: string; titles: Map<string, string>;
   onTech: (node: string) => void; onProject: (id: string) => void }) {
   return <div className="mt-3">
-    <p className="text-xs text-[var(--steel)]">{plain ? `${plain} · ` : ""}{cell.projects} 个项目、{cell.items.length} 个技术条目，按技术方向归并：</p>
+    <p className="text-caption text-[var(--steel)]">{plain ? `${plain} · ` : ""}{cell.projects} 个项目、{cell.items.length} 个技术条目，按技术方向归并：</p>
     <div className="mt-2 space-y-1.5">{cell.directions.map((d) => <details key={d.name} className="rounded-lg border border-[var(--hairline)] px-3 py-2">
       <summary className="flex cursor-pointer flex-wrap items-center gap-1.5">
-        <b className="text-body">{d.name}</b><span className="text-xs text-[var(--stone)]">{d.projects} 个项目</span><Tier level={d.maturity} /><Chips list={d.indicators} />
-        {d.plain ? <span className="w-full text-xs leading-5 text-[var(--steel)]">{d.plain}</span> : null}
+        <b className="text-body">{d.name}</b><span className="text-caption text-[var(--stone)]">{d.projects} 个项目</span><Tier level={d.maturity} /><Chips list={d.indicators} />
+        {d.plain ? <span className="w-full text-caption leading-5 text-[var(--steel)]">{d.plain}</span> : null}
       </summary>
       <ul className="mt-2 space-y-1.5">{d.items.map((item) => <li key={item.key} className="border-l-2 pl-2 text-body" style={{ borderColor: tierOf(item.maturity).color }}>
         <span className="flex flex-wrap items-center gap-1.5">
           <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在五级谱系中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
           <Tier level={item.maturity} /><Chips list={item.indicators} />
         </span>
-        <span className="block text-xs text-[var(--steel)]">
+        <span className="block text-caption text-[var(--steel)]">
           <button type="button" onClick={() => onProject(item.projectId)} className="text-left text-[var(--link)] hover:underline">{titles.get(item.projectId) ?? item.projectId}</button>
           {item.basis ? ` · 依据：${item.basis}` : ""}</span>
       </li>)}</ul>
@@ -56,8 +56,8 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   const [open, setOpen] = useState("");
   const [stage, setStage] = useState("");
   const [copied, setCopied] = useState("");
-  if (!lineage) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取技术谱系…</p>;
-  if (!hierarchy.scenes.length || !lineage.categories.length) return <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
+  if (!lineage) return <p role="status" className="py-4 text-body text-[var(--steel)]">正在读取技术谱系…</p>;
+  if (!hierarchy.scenes.length || !lineage.categories.length) return <div className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-body text-[var(--steel)]">
     总览需要本库的场景归纳和技术谱系。{!lineage.categories.length ? <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech("")}>到五级谱系中生成技术谱系 →</button> : "请先在“场景”页生成四维归纳。"}
   </div>;
 
@@ -82,16 +82,16 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
   return <div className="space-y-4">
     <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
       <b className="text-emphasis">{board.branch}</b>
-      <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · {board.scenes.length} 个应用场景</span>
+      <span className="text-body text-[var(--steel)]">{board.projects} 个项目 · {board.scenes.length} 个应用场景</span>
       <span className="flex-1" />
-      <span className="text-xs text-[var(--steel)]">显示</span>
+      <span className="text-caption text-[var(--steel)]">显示</span>
       <div role="radiogroup" aria-label="阶段门槛" className="flex overflow-hidden rounded-md border border-[var(--hairline)]">
         {LEVELS.map((level) => <button key={level.min} type="button" role="radio" aria-checked={min === level.min} onClick={() => setMin(level.min)}
-          className={`px-2.5 py-1 text-xs ${min === level.min ? "bg-[var(--primary)] text-white" : "text-[var(--slate)] hover:bg-[var(--canvas)]"}`}>{level.label}</button>)}
+          className={`px-2.5 py-1 text-caption ${min === level.min ? "bg-[var(--primary)] text-white" : "text-[var(--slate)] hover:bg-[var(--canvas)]"}`}>{level.label}</button>)}
       </div>
       <Button size="sm" variant="ghost" onClick={() => void copy()}>复制汇报大纲</Button>
-      {copied ? <span role="status" className="w-full text-right text-xs text-[var(--steel)]">{copied}</span> : null}
-      <div className="flex w-full flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--steel)]">
+      {copied ? <span role="status" className="w-full text-right text-caption text-[var(--steel)]">{copied}</span> : null}
+      <div className="flex w-full flex-wrap gap-x-4 gap-y-1 text-caption text-[var(--steel)]">
         <TierCounts tiers={board.tiers} unit=" 个项目" />
         <span className="text-[var(--stone)]">（项目按其技术在报告中所述的最高阶段计）</span>
       </div>
@@ -100,17 +100,17 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
     <section aria-label="本库总览要点" className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
       {libraryInsights(board, matrix, lineage, (library?.projects ?? []).map((p) => ({ start: p.start_year, end: p.end_year }))).map((card) =>
         <article key={card.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
-          <p className="text-xs font-semibold text-[var(--stone)]">{card.title}</p>
+          <p className="text-caption font-semibold text-[var(--stone)]">{card.title}</p>
           <p className="mt-1 text-body font-semibold leading-6">{card.headline}</p>
-          <ul className="mt-1.5 space-y-0.5 text-xs leading-5 text-[var(--steel)]">{card.points.map((point) => <li key={point}>{point}</li>)}</ul>
+          <ul className="mt-1.5 space-y-0.5 text-caption leading-5 text-[var(--steel)]">{card.points.map((point) => <li key={point}>{point}</li>)}</ul>
         </article>)}
     </section>
 
-    {min > 0 ? <p role="status" className="rounded-lg border border-[#d9a92f88] bg-[#fdf6e3] px-3 py-2 text-sm text-[#7a5a00]">
+    {min > 0 ? <p role="status" className="rounded-lg border border-[#d9a92f88] bg-[#fdf6e3] px-3 py-2 text-body text-[#7a5a00]">
       当前筛选：只统计“{LEVELS.find((level) => level.min === min)?.label}”的技术条目，已收起 {matrix.hidden} 个；问题、成果与共性底座不受筛选影响。
       <button type="button" className="ml-2 underline" onClick={() => setMin(0)}>显示全部</button></p> : null}
 
-    {lineage.state === "stale" && !lineage.job ? <p className="rounded-lg bg-[#fdf6e3] px-3 py-2 text-xs text-[#9a6500]">{lineage.stale_reason || "四维技术条目已变化"}，当前显示的仍是上次生成的谱系。
+    {lineage.state === "stale" && !lineage.job ? <p className="rounded-lg bg-[#fdf6e3] px-3 py-2 text-caption text-[#9a6500]">{lineage.stale_reason || "四维技术条目已变化"}，当前显示的仍是上次生成的谱系。
       <button type="button" className="ml-1 underline" onClick={() => onTech("")}>到五级谱系中重新生成 →</button></p> : null}
     <section aria-label="主展板" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {matrix.fields.map((field) => {
@@ -121,43 +121,43 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
         if (!row.items.length && !s) return null;
         return <article key={field} className={`flex flex-col gap-2 rounded-xl border-2 bg-[var(--surface)] p-3 ${open === field ? "border-[var(--primary)]" : "border-[var(--hairline)]"} ${s ? "" : "border-dashed"}`}>
           <button type="button" onClick={() => openField(field)} className="text-left">
-            <span className="flex items-baseline gap-2"><b className="text-emphasis">{field}</b><span className="text-xs text-[var(--stone)]">{row.projects} 个项目 · {row.items.length} 个技术条目</span></span>
+            <span className="flex items-baseline gap-2"><b className="text-emphasis">{field}</b><span className="text-caption text-[var(--stone)]">{row.projects} 个项目 · {row.items.length} 个技术条目</span></span>
           </button>
           {fieldHeadline(matrix, lineage, field) ? <p className="text-body font-medium text-[var(--slate)]">{fieldHeadline(matrix, lineage, field)}</p> : null}
           <TierBar tiers={row.tiers} />
           {s ? <ul className="space-y-1 text-body">
             {solved.map((i) => <li key={i.name} className="flex gap-1.5"><span className="text-[#0e7a28]">✔</span><span>{i.name}</span></li>)}
             {later.map((i) => <li key={i.name} className="flex gap-1.5 rounded border border-dashed border-[var(--hairline-strong)] px-1 text-[var(--steel)]"><span>➜</span><span>{i.name}</span></li>)}
-          </ul> : <p className="text-xs leading-5 text-[var(--steel)]">模型未能判定服务领域的技术条目，如实单列。</p>}
+          </ul> : <p className="text-caption leading-5 text-[var(--steel)]">模型未能判定服务领域的技术条目，如实单列。</p>}
           <Chips list={s?.highlights.length ? s.highlights : row.indicators} />
-          <button type="button" onClick={() => openField(field)} className="mt-auto self-start text-xs text-[var(--link)] hover:underline">
+          <button type="button" onClick={() => openField(field)} className="mt-auto self-start text-caption text-[var(--link)] hover:underline">
             {open === field ? "收起" : "展开：按环节查看全部技术 →"}</button>
         </article>;
       })}
     </section>
 
     {board.foundations.length ? <section aria-label="共性技术底座" className="rounded-xl border-2 border-[#7c5cd655] bg-[#7c5cd60d] p-3">
-      <p className="text-sm font-semibold text-[#4a2a8f]">共性技术底座 <span className="font-normal text-[var(--steel)]">· 跨场景共用的数据、协同与可信支撑，单独列出而不在各场景重复</span></p>
+      <p className="text-body font-semibold text-[#4a2a8f]">共性技术底座 <span className="font-normal text-[var(--steel)]">· 跨场景共用的数据、协同与可信支撑，单独列出而不在各场景重复</span></p>
       <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">{board.foundations.map((f) =>
         <button key={f.key} type="button" onClick={() => onTech(f.key)} className="rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-2 text-left hover:border-[#7c5cd6]">
           <span className="flex items-center gap-1.5"><b className="text-body">{f.name}</b><Tier level={f.maturity} /></span>
-          {f.plain ? <span className="mt-0.5 block text-xs leading-5 text-[var(--steel)]">{f.plain}</span> : null}
+          {f.plain ? <span className="mt-0.5 block text-caption leading-5 text-[var(--steel)]">{f.plain}</span> : null}
           <span className="mt-1 block text-caption text-[var(--stone)]">{f.projects} 个项目 · 覆盖 {f.scenes.length}/{board.scenes.length} 个场景 · 属于{f.system}</span>
         </button>)}</div>
     </section> : null}
 
     {open ? <section aria-label={`展开页：${open}`} className="rounded-xl border-2 border-[var(--primary)] bg-[var(--surface)] p-4">
       <div className="flex flex-wrap items-baseline gap-2">
-        <h3 className="text-base font-semibold">{open}</h3>
-        {scene ? <span className="text-sm text-[var(--steel)]">{scene.summary}</span> : null}
+        <h3 className="text-emphasis font-semibold">{open}</h3>
+        {scene ? <span className="text-body text-[var(--steel)]">{scene.summary}</span> : null}
       </div>
       <div role="tablist" aria-label="业务环节" className="mt-3 flex flex-wrap gap-1.5">{matrix.stages.map((st) => {
         const cell = matrixCell(matrix, open, st.name);
         return <button key={st.name} type="button" role="tab" aria-selected={stage === st.name} disabled={!cell.items.length} onClick={() => setStage(st.name)} title={st.plain}
-          className={`rounded-full border px-3 py-1 text-xs disabled:opacity-40 ${stage === st.name ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--canvas)]"}`}>{st.name} · {cell.projects}</button>;
+          className={`rounded-full border px-3 py-1 text-caption disabled:opacity-40 ${stage === st.name ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--canvas)]"}`}>{st.name} · {cell.projects}</button>;
       })}</div>
       {stage ? <StagePanel cell={matrixCell(matrix, open, stage)} plain={matrix.stages.find((st) => st.name === stage)?.plain ?? ""} titles={titles} onTech={onTech} onProject={project} /> : null}
-      {scene ? <p className="mt-4 flex flex-wrap gap-3 border-t border-[var(--hairline)] pt-3 text-xs">
+      {scene ? <p className="mt-4 flex flex-wrap gap-3 border-t border-[var(--hairline)] pt-3 text-caption">
         <span className="text-[var(--stone)]">该领域的</span>
         <button type="button" className="text-[var(--link)] hover:underline" onClick={() => onDim("问题", scene.name)}>核心问题与典型技术路线 →</button>
         <button type="button" className="text-[var(--link)] hover:underline" onClick={() => onDim("成果", scene.name)}>标志性成果与方面完成度 →</button>
@@ -167,7 +167,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
     <p className="text-caption leading-5 text-[var(--stone)]">
       阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“已解决/待研究”为各项目报告的自述，不代表本期新增或近期突破。
     </p>
-    {board.unplaced ? <p className="text-xs text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。
+    {board.unplaced ? <p className="text-caption text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。
       <button type="button" className="ml-1 text-[var(--link)] hover:underline" onClick={() => onTech(board.unplacedKey)}>到五级谱系中逐条查看 →</button></p> : null}
   </div>;
 }

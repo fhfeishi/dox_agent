@@ -50,7 +50,7 @@ export function App() {
             : inspectorOpen ? "lg:pr-[calc(var(--inspector-width)+28px)]" : chatDocked ? "lg:pr-[448px]" : ""
         }`}
       >
-        <Suspense fallback={<div className="p-6 text-sm text-[var(--muted)]">正在加载…</div>}>
+        <Suspense fallback={<div className="p-6 text-body text-[var(--muted)]">正在加载…</div>}>
           <Outlet />
         </Suspense>
         <Guide area={nav} />

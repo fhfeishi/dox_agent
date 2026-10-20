@@ -27,11 +27,11 @@ export function AccountsPanel() {
         onChange={(e) => void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ role: e.target.value }) }), "角色已更新")}>
         {(Object.keys(ROLE_LABEL) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
       </select>
-      <button type="button" className="text-xs text-[var(--link)]" onClick={() => {
+      <button type="button" className="text-caption text-[var(--link)]" onClick={() => {
         const password = window.prompt(`为 ${a.username} 设置新密码（至少 4 个字符）`, "123456");
         if (password) void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ password }) }), "密码已重置，该账户需重新登录");
       }}>重置密码</button>
-      {a.username !== me ? <button type="button" className="text-xs text-[var(--red)]" onClick={() => {
+      {a.username !== me ? <button type="button" className="text-caption text-[var(--red)]" onClick={() => {
         if (window.confirm(`删除账户 ${a.username}？`)) void run(() => accountsRequest("/" + encodeURIComponent(a.username), { method: "DELETE" }), "账户已删除");
       }}>删除</button> : null}
     </li>)}</ul>

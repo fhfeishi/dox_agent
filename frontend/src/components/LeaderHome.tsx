@@ -15,9 +15,9 @@ const span = (years: number[]) => years.length ? `${years[0]}–${years.at(-1)}`
 
 function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
   return <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-    <span className="text-xs font-semibold tabular-nums text-[var(--muted-cool)]">{index}</span>
+    <span className="text-caption font-semibold tabular-nums text-[var(--muted-cool)]">{index}</span>
     <h2 className="text-group font-semibold text-[var(--heading)]">{title}</h2>
-    {note ? <span className="text-xs text-[var(--steel)]">{note}</span> : null}
+    {note ? <span className="text-caption text-[var(--steel)]">{note}</span> : null}
   </div>;
 }
 
@@ -46,7 +46,7 @@ export function LeaderHome() {
     <div className="mx-auto max-w-[1200px] space-y-9 px-5 py-7 sm:px-8">
       {overview.data ? <HeroCarousel rows={rows} />
         : <div className="h-[300px] rounded-2xl bg-gradient-to-br from-[var(--banner-1)] via-[var(--banner-2)] to-[var(--banner-3)]" aria-hidden="true" />}
-      <p className="-mt-6 text-xs text-[var(--stone)]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>
+      <p className="-mt-6 text-caption text-[var(--stone)]">项目在各库内按批准号去重，跨库合计未去重；经费按各报告所述金额统计，未给出的不补零。</p>
 
       {/* 工作台 (query 2026-1019 1458, formerly “开始今天的工作”): four large, square-ish entries. */}
       <section aria-label="工作台" className="@container">
@@ -60,7 +60,7 @@ export function LeaderHome() {
               <b className="text-group text-[var(--heading)]">{w.title}</b>
             </span>
             <span className="relative mt-3 text-body leading-5 text-[var(--steel)]">{w.text}</span>
-            <span className="relative mt-auto text-xs text-[var(--link)] opacity-60 transition-opacity group-hover:opacity-100">进入 →</span>
+            <span className="relative mt-auto text-caption text-[var(--link)] opacity-60 transition-opacity group-hover:opacity-100">进入 →</span>
           </Link>)}
         </div>
       </section>
@@ -68,14 +68,14 @@ export function LeaderHome() {
       {/* Columns follow the section's own width, so the layout holds when the right-hand panel is open. */}
       <section aria-label="资料库概览" className="@container">
         <SectionHead index="02" title="资料库概览" note="点领域切换图表；点卡片在右侧查看资料库" />
-        {overview.error ? <p role="alert" className="text-sm text-[var(--red)]">{(overview.error as Error).message}</p>
-          : !overview.data ? <p role="status" className="text-sm text-[var(--steel)]">正在读取资料库概况…</p>
-          : !chosen ? <p className="text-sm text-[var(--steel)]">尚无已入库资料。</p>
+        {overview.error ? <p role="alert" className="text-body text-[var(--red)]">{(overview.error as Error).message}</p>
+          : !overview.data ? <p role="status" className="text-body text-[var(--steel)]">正在读取资料库概况…</p>
+          : !chosen ? <p className="text-body text-[var(--steel)]">尚无已入库资料。</p>
           : <>
             <div className="grid gap-4 rounded-2xl border border-[var(--line-cool)] bg-white p-5 @3xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
               <div aria-label="各领域项目数" role="group">
-                <h3 className="text-sm font-semibold text-[var(--heading)]">各领域项目数</h3>
-                <p className="mb-3 text-xs text-[var(--stone)]">按库内识别的项目计；点一个领域查看其应用方向</p>
+                <h3 className="text-body font-semibold text-[var(--heading)]">各领域项目数</h3>
+                <p className="mb-3 text-caption text-[var(--stone)]">按库内识别的项目计；点一个领域查看其应用方向</p>
                 <ul className="space-y-1">{rows.map((r) => <li key={r.corpus_id}>
                   <button type="button" aria-pressed={r.corpus_id === chosen.corpus_id} onClick={() => choose(r.corpus_id)}
                     className={`grid w-full grid-cols-[minmax(96px,9.5em)_1fr_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-body transition-colors ${r.corpus_id === chosen.corpus_id ? "bg-[var(--selected-cool)]" : "hover:bg-[var(--surface-cool)]"}`}>
@@ -88,12 +88,12 @@ export function LeaderHome() {
               <div aria-label="所选领域" className="flex flex-col rounded-xl bg-[var(--surface-cool)] p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <h3 className="text-group font-semibold text-[var(--heading)]">{short(chosen.name)}</h3>
-                  <span className="text-xs text-[var(--steel)]">{chosen.projects} 个项目 · 立项 {span(chosen.start_years)}{chosen.funding.projects ? ` · 已知经费 ${wan(chosen.funding.total_yuan)} 万元（${chosen.funding.projects} 个项目）` : ""}</span>
+                  <span className="text-caption text-[var(--steel)]">{chosen.projects} 个项目 · 立项 {span(chosen.start_years)}{chosen.funding.projects ? ` · 已知经费 ${wan(chosen.funding.total_yuan)} 万元（${chosen.funding.projects} 个项目）` : ""}</span>
                 </div>
                 <div className="flex-1 py-2">
                   {fields.length ? <RadarChart spec={{ type: "radar", title: "应用方向分布", labels: fields.map(([n]) => n), values: fields.map(([, v]) => v), unit: " 个项目", max: chosen.projects,
                     note: "有技术服务于该方向的项目数，一个项目可计入多个方向；方向由模型归纳，需人工核对" }} />
-                    : <p className="py-10 text-center text-sm text-[var(--steel)]">该领域尚未归纳应用方向。</p>}
+                    : <p className="py-10 text-center text-body text-[var(--steel)]">该领域尚未归纳应用方向。</p>}
                 </div>
               </div>
             </div>

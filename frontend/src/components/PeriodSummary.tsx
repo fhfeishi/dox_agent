@@ -21,8 +21,8 @@ export function PeriodSummary() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const facts = useQuery({ queryKey: ["recent", period], queryFn: ({ signal }) => fetchSummaryFacts(period, signal) });
-  if (facts.error) return <p role="alert" className="p-8 text-sm text-[var(--red)]">周期总结暂不可读，请稍后重试。</p>;
-  if (!facts.data) return <p role="status" className="p-8 text-sm text-[var(--steel)]">正在读取周期总结…</p>;
+  if (facts.error) return <p role="alert" className="p-8 text-body text-[var(--red)]">周期总结暂不可读，请稍后重试。</p>;
+  if (!facts.data) return <p role="status" className="p-8 text-body text-[var(--steel)]">正在读取周期总结…</p>;
   const label = PERIODS.find((p) => p.key === period)!.label;
   const summary = fromFacts(facts.data);
   const summaries = facts.data.summaries;
@@ -49,14 +49,14 @@ export function PeriodSummary() {
     else navigate(`/review/runs/${encodeURIComponent(item.id)}`);
   };
   const list = (title: string, items: WorkItem[]) => items.length ? <section aria-label={title}>
-    <h3 className="mb-2 text-sm font-semibold text-[var(--steel)]">{title} · {items.length}</h3>
+    <h3 className="mb-2 text-body font-semibold text-[var(--steel)]">{title} · {items.length}</h3>
     <div className="space-y-1.5">{items.map((item) => <button key={item.key} type="button" onClick={() => open(item)}
       className="flex w-full items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5 text-left hover:border-[var(--primary)]">
-      <span className="w-16 shrink-0 text-xs text-[var(--stone)]">{item.type}</span>
+      <span className="w-16 shrink-0 text-caption text-[var(--stone)]">{item.type}</span>
       <span className="min-w-0 flex-1"><b className="block truncate text-body font-medium">{item.title}</b>
-        {item.domains.length ? <span className="block truncate text-xs text-[var(--steel)]">{item.domains.join("、")}</span> : null}</span>
-      {item.runs > 1 ? <span className="shrink-0 text-xs text-[var(--stone)]">共审查 {item.runs} 次</span> : null}
-      <span className="shrink-0 text-xs text-[var(--steel)]">{STATE[item.state]} · {item.date.slice(0, 10)}</span>
+        {item.domains.length ? <span className="block truncate text-caption text-[var(--steel)]">{item.domains.join("、")}</span> : null}</span>
+      {item.runs > 1 ? <span className="shrink-0 text-caption text-[var(--stone)]">共审查 {item.runs} 次</span> : null}
+      <span className="shrink-0 text-caption text-[var(--steel)]">{STATE[item.state]} · {item.date.slice(0, 10)}</span>
     </button>)}</div>
   </section> : null;
   const items = summary.active.length + summary.done.length + summary.failed.length;
@@ -73,12 +73,12 @@ export function PeriodSummary() {
     </section> : null}
     <section aria-label="总结报告" className="rounded-xl border border-[var(--hairline)] p-4">
       <div className="flex flex-wrap items-center gap-3">
-        <h3 className="text-sm font-semibold">总结报告</h3>
-        <span className="flex-1 text-xs text-[var(--stone)]">由模型依据本期的报告与审查撰写文字，图表数字由系统统计；生成约需一分钟。</span>
+        <h3 className="text-body font-semibold">总结报告</h3>
+        <span className="flex-1 text-caption text-[var(--stone)]">由模型依据本期的报告与审查撰写文字，图表数字由系统统计；生成约需一分钟。</span>
         <button type="button" disabled={busy} onClick={() => void generate()}
           className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white disabled:opacity-50">{busy ? "正在生成…" : `生成${label}总结`}</button>
       </div>
-      {error ? <p role="alert" className="mt-2 text-xs text-[var(--red)]">{error}</p> : null}
+      {error ? <p role="alert" className="mt-2 text-caption text-[var(--red)]">{error}</p> : null}
       {summaries.length ? <div className="mt-3 space-y-1">{summaries.map((a) => <button key={a.id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: a.id })}
         className="block w-full truncate rounded-md px-2 py-1 text-left text-body text-[var(--link)] hover:bg-[var(--surface)]">{a.title}</button>)}</div> : null}
     </section>
@@ -92,6 +92,6 @@ export function PeriodSummary() {
         {list("未完成", summary.failed)}
       </div>
     </details> : null}
-    <p className="text-xs leading-5 text-[var(--stone)]">按报告更新时间与审查完成时间统计；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。</p>
+    <p className="text-caption leading-5 text-[var(--stone)]">按报告更新时间与审查完成时间统计；同一申请书的多次同类审查计为一项；形式审查不关联资料库，故不计入领域。</p>
   </section>;
 }

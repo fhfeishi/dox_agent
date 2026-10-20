@@ -451,8 +451,8 @@ export function Composer() {
           </div>
         ) : null}
 
-        {problem ? <p role="status" className="my-2 text-sm text-[var(--red)]">{problem}{options.allowed_doc_ids?.length === 0 && <button onClick={() => setOptions(o => ({ ...o, allowed_doc_ids: null }))}>使用所选库全部资料</button>}</p> : null}
-        {workspace.saveState !== "saved" ? <p role="status" className="my-2 text-sm">{workspace.saveState === "saving" ? "正在保存范围…" : "范围未保存"}{workspace.saveState === "failed" && <button onClick={() => void workspace.retrySave().catch(() => undefined)}>重试保存</button>}</p> : null}
+        {problem ? <p role="status" className="my-2 text-body text-[var(--red)]">{problem}{options.allowed_doc_ids?.length === 0 && <button onClick={() => setOptions(o => ({ ...o, allowed_doc_ids: null }))}>使用所选库全部资料</button>}</p> : null}
+        {workspace.saveState !== "saved" ? <p role="status" className="my-2 text-body">{workspace.saveState === "saving" ? "正在保存范围…" : "范围未保存"}{workspace.saveState === "failed" && <button onClick={() => void workspace.retrySave().catch(() => undefined)}>重试保存</button>}</p> : null}
         {uploadOpen ? <div className="my-2 rounded border p-3"><label>保存到：<select aria-label="上传目标知识库" value={uploadTarget} onChange={e => setUploadTarget(e.target.value)}><option value="">请选择目标知识库</option>{corpora.filter(c => !c.missing).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
           {uploadTarget && !corpusIds.includes(uploadTarget) && <p>此库未用于当前对话</p>}
           <button disabled={!uploadTarget} onClick={() => { openCorpus(uploadTarget, "files"); setUploadOpen(false); }}>前往添加资料</button><button onClick={() => setUploadOpen(false)}>取消</button></div> : null}

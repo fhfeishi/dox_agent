@@ -19,13 +19,13 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, { error: E
     if (this.state.error) {
       return (
         <div className="flex h-screen w-full flex-col items-center justify-center gap-3 bg-[var(--canvas)] p-6 text-center text-[var(--charcoal)]">
-          <h1 className="text-lg font-semibold">界面出现异常</h1>
-          <p className="max-w-xl break-all text-sm opacity-70">
+          <h1 className="text-group font-semibold">界面出现异常</h1>
+          <p className="max-w-xl break-all text-body opacity-70">
             {String(this.state.error.message || this.state.error)}
           </p>
           <button
             type="button"
-            className="rounded-md border border-black/10 px-3 py-1 text-sm hover:bg-black/5"
+            className="rounded-md border border-black/10 px-3 py-1 text-body hover:bg-black/5"
             onClick={() => window.location.reload()}
           >
             重新加载

@@ -28,6 +28,12 @@ const DATA_COLOURS = new Set([
   'components/YearDistribution.tsx',
 ]);
 
+test('text is sized with the type scale, never Tailwind\'s own sizes (U5)', () => {
+  const offending = files.flatMap(({ path, text }) =>
+    [...text.matchAll(/(?<![\w-])text-(?:xs|sm|base|lg|xl|[2-9]xl)(?![\w-])/g)].map((match) => `${path}: ${match[0]}`));
+  assert.deepEqual(offending, []);
+});
+
 test('text is sized with the type scale, never a hard-coded pixel size', () => {
   const offending = files.flatMap(({ path, text }) =>
     [...text.matchAll(/text-\[\d+(?:\.\d+)?px\]/g)].map((match) => `${path}: ${match[0]}`));

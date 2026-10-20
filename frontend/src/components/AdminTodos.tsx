@@ -73,8 +73,8 @@ export function AdminTodoList({ todos, ready, errors, limit = 6 }: { todos: Todo
   const [all, setAll] = useState(false);
   const shown = all ? todos : todos.slice(0, limit);
   // A failure is said, and what did load still shows; the all-clear only when everything was read.
-  const failure = errors.length ? <p role="alert" className="text-sm text-[var(--red)]">部分数据读取失败：{errors.join("；")}。以下仅列出已读取的事项。</p> : null;
-  if (!ready && !todos.length && !failure) return <p role="status" className="text-sm text-[var(--steel)]">正在读取维护事项…</p>;
+  const failure = errors.length ? <p role="alert" className="text-body text-[var(--red)]">部分数据读取失败：{errors.join("；")}。以下仅列出已读取的事项。</p> : null;
+  if (!ready && !todos.length && !failure) return <p role="status" className="text-body text-[var(--steel)]">正在读取维护事项…</p>;
   if (!todos.length && failure) return failure;
   if (!todos.length) return <p className="flex items-center gap-2 rounded-xl border border-dashed border-[var(--line-cool-strong)] bg-white px-4 py-3 text-body text-[var(--steel)]">
     <span aria-hidden="true" className="size-2 rounded-full bg-[var(--ok-fg)]" />暂无需要处理的事项：资料都已读取，结构是最新的，任务都已完成。</p>;

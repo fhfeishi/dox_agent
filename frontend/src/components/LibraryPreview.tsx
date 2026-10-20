@@ -26,7 +26,7 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
   const { data: hierarchy } = useQuery(hierarchyQuery(corpusId));
   const { data: lineage } = useQuery(lineageQuery(corpusId));
   const { data: library } = useQuery(projectQuery(corpusId));
-  if (!corpus) return <p className="text-sm text-[var(--steel)]">资料库已不可用，请刷新列表。</p>;
+  if (!corpus) return <p className="text-body text-[var(--steel)]">资料库已不可用，请刷新列表。</p>;
   const row = overview.data?.find((r) => r.corpus_id === corpusId);
   const insights = hierarchy?.scenes.length && lineage?.categories.length
     ? libraryInsights(buildBoard(hierarchy, lineage), buildMatrix(lineage), lineage, (library?.projects ?? []).map((p) => ({ start: p.start_year, end: p.end_year })))
@@ -57,11 +57,11 @@ export function LibraryPreview({ corpusId }: { corpusId: string }) {
     </div>
     {facts.length ? <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-xl bg-[var(--surface)] p-3 text-body">
       {facts.map(([k, v]) => <div key={k} className="contents"><dt className="text-[var(--steel)]">{k}</dt><dd>{v}</dd></div>)}
-    </dl> : <p role="status" className="text-sm text-[var(--steel)]">正在读取…</p>}
+    </dl> : <p role="status" className="text-body text-[var(--steel)]">正在读取…</p>}
     {attention.length ? <section aria-label="需要处理" className="rounded-xl border border-[var(--warn-line)] bg-[var(--warn-bg)] p-3 text-body text-[var(--warn-fg)]">
       <p className="font-semibold">需要处理</p>{attention.map((a) => <p key={a} className="mt-1">· {a}</p>)}</section> : null}
     {insights.length ? <section aria-label="要点结论" className="space-y-1.5">{insights.map((i) =>
-      <div key={i.title} className="rounded-lg border border-[var(--hairline)] px-3 py-2"><span className="block text-xs text-[var(--stone)]">{i.title}</span>
+      <div key={i.title} className="rounded-lg border border-[var(--hairline)] px-3 py-2"><span className="block text-caption text-[var(--stone)]">{i.title}</span>
         <span className="block text-body font-medium leading-6">{i.headline}</span></div>)}</section> : null}
     {lineage?.fields?.length ? <FocusRadars fields={lineage.fields} items={lineage.items} stages={[]} /> : null}
   </div>;

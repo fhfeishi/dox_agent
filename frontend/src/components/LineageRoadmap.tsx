@@ -256,7 +256,7 @@ export function LineageRoadmap({ lineage, title, selected, onSelect }: { lineage
   const crumb = crumbAt !== null && view.rel >= 1.3 ? [...chainOf(crumbAt)].reverse() : [];
   const hovered = hover ? nodes[hover.i] : null;
   const card = "rounded-xl border border-black/10 bg-white/95 shadow-[0_3px_16px_rgba(20,30,60,.07)] backdrop-blur";
-  const button = (on: boolean) => `rounded-lg px-3 py-1.5 text-xs ${on ? "bg-[#534AB7] font-medium text-white" : "text-[#57606a] hover:bg-[#eef0f5] hover:text-[#1f2328]"}`;
+  const button = (on: boolean) => `rounded-lg px-3 py-1.5 text-caption ${on ? "bg-[#534AB7] font-medium text-white" : "text-[#57606a] hover:bg-[#eef0f5] hover:text-[#1f2328]"}`;
   const toLevel = (lv: 3 | 4 | 5 | 6) => {
     if (lv === 3) { setAnchor(null); return animTo(1, 0, 0); }
     const from = anchor ?? (chosen !== undefined && chosen > 0 ? chosen : -1);

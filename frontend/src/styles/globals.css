@@ -4,13 +4,22 @@
    notes. Utilities: text-caption, text-body, text-emphasis, text-group, text-page, text-stat, text-display. Hard-coded
    pixel sizes are refused by typography.test.mts. */
 @theme {
+  /* Each size carries its line height (U5): the same pairs Tailwind's own sizes used, so pages moved onto
+     the scale keep their spacing; an explicit leading-* still wins. */
   --text-caption: 12px;
+  --text-caption--line-height: 16px;
   --text-body: 14px;
+  --text-body--line-height: 20px;
   --text-emphasis: 16px;
+  --text-emphasis--line-height: 24px;
   --text-group: 18px;
+  --text-group--line-height: 28px;
   --text-page: 22px;
+  --text-page--line-height: 30px;
   --text-stat: 28px;
+  --text-stat--line-height: 36px;
   --text-display: 38px; /* the leader banner's headline figure only */
+  --text-display--line-height: 1;
 }
 
 /* ------------------------------------------------------------------

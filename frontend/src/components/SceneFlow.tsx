@@ -108,7 +108,7 @@ export function SceneFlow({ corpusId, scene, onRoute }: { corpusId: string; scen
   const x = (column: number) => column * (colW + gap);
   const nodeButton = (node: Node, style?: React.CSSProperties) => <button key={node.key} type="button" aria-pressed={selected === node.key} onClick={() => setSelected(node.key)}
     title={`${node.label}\n${node.note}`}
-    className={`rounded-lg border bg-[var(--canvas)] px-2.5 py-1.5 text-left text-xs transition-opacity ${wide ? "absolute overflow-hidden" : ""}`}
+    className={`rounded-lg border bg-[var(--canvas)] px-2.5 py-1.5 text-left text-caption transition-opacity ${wide ? "absolute overflow-hidden" : ""}`}
     style={{ borderColor: selected === node.key ? node.color : node.color + "55", borderLeftWidth: 3, opacity: lit.has(node.key) ? 1 : 0.35, ...style }}>
     <span className="line-clamp-2 block font-medium leading-4 text-[var(--ink)]">{node.label}</span>
     <span className="line-clamp-1 block text-caption text-[var(--stone)]">{node.note}</span>
@@ -118,8 +118,8 @@ export function SceneFlow({ corpusId, scene, onRoute }: { corpusId: string; scen
   const titles = new Map((library?.projects ?? []).map((p) => [p.project_id, p.title]));
   const facet = ["场景", "问题", "技术", "成果"][current.column];
   return <section aria-label={scene.name + " 逻辑简图"} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-    <p className="text-sm font-semibold">逻辑简图 · {scene.name}</p>
-    <p className="mt-1 text-xs text-[var(--steel)]">箭头方向为“场景 → 问题 → 技术 → 成果”。点击任一方框，高亮它所在的链条并在下方列出相关项目。每项成果默认只连到与它共同项目最多的技术（实线）；选中链条时，其余有共同项目的连线以虚线补充显示。</p>
+    <p className="text-body font-semibold">逻辑简图 · {scene.name}</p>
+    <p className="mt-1 text-caption text-[var(--steel)]">箭头方向为“场景 → 问题 → 技术 → 成果”。点击任一方框，高亮它所在的链条并在下方列出相关项目。每项成果默认只连到与它共同项目最多的技术（实线）；选中链条时，其余有共同项目的连线以虚线补充显示。</p>
     <div ref={box} className="relative mt-3" style={wide ? { height } : undefined}>
       {wide ? <>
         <svg aria-hidden className="pointer-events-none absolute inset-0" width={width} height={height}>
@@ -139,25 +139,25 @@ export function SceneFlow({ corpusId, scene, onRoute }: { corpusId: string; scen
               markerEnd={`url(#flow-arrow-${on ? "on" : "off"})`} />;
           })}
         </svg>
-        {(["场景", "问题", "技术", "成果"] as const).map((label, column) => <p key={label} className="absolute top-0 text-xs font-semibold"
+        {(["场景", "问题", "技术", "成果"] as const).map((label, column) => <p key={label} className="absolute top-0 text-caption font-semibold"
           style={{ left: x(column), color: FACET_COLORS[column] }}>{label}{column === 3 && !nodes.some((n) => n.column === 3) ? " · 暂无条目" : ""}</p>)}
         {nodes.map((node) => nodeButton(node, { left: x(node.column), top: top.get(node.key), width: colW, height: NODE_H }))}
       </> : <div className="grid gap-3">{(["场景", "问题", "技术", "成果"] as const).map((label, column) => <div key={label} className="flex flex-col gap-2">
-        <p className="text-xs font-semibold" style={{ color: FACET_COLORS[column] }}>{label}</p>
+        <p className="text-caption font-semibold" style={{ color: FACET_COLORS[column] }}>{label}</p>
         {nodes.filter((n) => n.column === column).map((node) => nodeButton(node))}
-        {!nodes.some((n) => n.column === column) ? <p className="text-xs text-[var(--stone)]">暂无条目</p> : null}
+        {!nodes.some((n) => n.column === column) ? <p className="text-caption text-[var(--stone)]">暂无条目</p> : null}
       </div>)}</div>}
     </div>
     <div className="mt-4 border-t border-[var(--hairline)] pt-3">
       <div className="flex flex-wrap items-center gap-2">
-        <b className="text-sm" style={{ color: current.color }}>{current.label}</b>
-        <span className="text-xs text-[var(--steel)]">{facet} · {current.projects.length} 个项目</span>
-        {current.column === 2 ? <button type="button" onClick={() => onRoute(current.label)} className="text-xs text-[var(--link)] hover:underline">在技术谱系中查看 →</button> : null}
+        <b className="text-body" style={{ color: current.color }}>{current.label}</b>
+        <span className="text-caption text-[var(--steel)]">{facet} · {current.projects.length} 个项目</span>
+        {current.column === 2 ? <button type="button" onClick={() => onRoute(current.label)} className="text-caption text-[var(--link)] hover:underline">在技术谱系中查看 →</button> : null}
       </div>
       <ul className="mt-2 grid gap-1 sm:grid-cols-2">{current.projects.slice(0, 12).map((id) => <li key={id}>
         <button type="button" onClick={() => showInspector({ kind: "project", corpusId, projectId: id, facet })}
-          className="text-left text-xs text-[var(--link)] hover:underline">{titles.get(id) ?? id}</button></li>)}</ul>
-      {current.projects.length > 12 ? <p className="mt-1 text-xs text-[var(--stone)]">另有 {current.projects.length - 12} 个项目，可在资料列表中按场景筛选。</p> : null}
+          className="text-left text-caption text-[var(--link)] hover:underline">{titles.get(id) ?? id}</button></li>)}</ul>
+      {current.projects.length > 12 ? <p className="mt-1 text-caption text-[var(--stone)]">另有 {current.projects.length - 12} 个项目，可在资料列表中按场景筛选。</p> : null}
     </div>
   </section>;
 }

@@ -73,12 +73,12 @@ export function IntelligenceView() {
   }
   return <section className="min-h-0 flex-1 overflow-y-auto bg-[var(--canvas)]">
     <div className="mx-auto max-w-5xl space-y-6 px-8 py-8">
-      <header><p className="text-xs font-semibold tracking-widest text-[var(--primary)]">外部信息 × 已有项目</p><h1 className="mt-2 text-3xl font-semibold">情报分析</h1><p className="mt-3 text-sm leading-6 text-[var(--steel)]">上传技术说明或方案，选择一个分析目的，得到有依据的整理报告。外部材料不会自动进入资料库。</p></header>
+      <header><p className="text-caption font-semibold tracking-widest text-[var(--primary)]">外部信息 × 已有项目</p><h1 className="mt-2 text-stat font-semibold">情报分析</h1><p className="mt-3 text-body leading-6 text-[var(--steel)]">上传技术说明或方案，选择一个分析目的，得到有依据的整理报告。外部材料不会自动进入资料库。</p></header>
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
-          <h2 className="font-semibold">1 · 选择外部材料</h2><p className="my-3 text-xs leading-6 text-[var(--steel)]">支持多份 PDF、Word、Markdown 或文本；替换文件保留旧报告引用的版本。未被报告引用的暂存材料保留 7 天。</p>
-          <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--primary)] bg-[var(--primary-soft)] p-6 text-center text-sm font-medium text-[var(--primary)]">点击选择文件<input aria-label="上传外部材料" className="sr-only" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files); e.target.value = ""; }} /></label>
-          <div className="mt-4 space-y-2">{inputs.map((input) => <div key={input.input_id} className="rounded-lg border p-3"><div className="flex items-center justify-between gap-3"><button className="text-left text-sm text-[var(--primary)]" onClick={() => showInspector({ kind: "input", inputId: input.input_id })}>{input.filename}</button><button className="text-xs text-[var(--steel)]" disabled={Boolean(busy)} onClick={() => setInputs((old) => old.filter((item) => item.input_id !== input.input_id))}>移出本次选择</button></div><p className="mt-1 text-xs text-[var(--steel)]">{input.text.length.toLocaleString()} 字符 · 点击核对正文</p></div>)}</div>
+          <h2 className="font-semibold">1 · 选择外部材料</h2><p className="my-3 text-caption leading-6 text-[var(--steel)]">支持多份 PDF、Word、Markdown 或文本；替换文件保留旧报告引用的版本。未被报告引用的暂存材料保留 7 天。</p>
+          <label className="block cursor-pointer rounded-xl border border-dashed border-[var(--primary)] bg-[var(--primary-soft)] p-6 text-center text-body font-medium text-[var(--primary)]">点击选择文件<input aria-label="上传外部材料" className="sr-only" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files); e.target.value = ""; }} /></label>
+          <div className="mt-4 space-y-2">{inputs.map((input) => <div key={input.input_id} className="rounded-lg border p-3"><div className="flex items-center justify-between gap-3"><button className="text-left text-body text-[var(--primary)]" onClick={() => showInspector({ kind: "input", inputId: input.input_id })}>{input.filename}</button><button className="text-caption text-[var(--steel)]" disabled={Boolean(busy)} onClick={() => setInputs((old) => old.filter((item) => item.input_id !== input.input_id))}>移出本次选择</button></div><p className="mt-1 text-caption text-[var(--steel)]">{input.text.length.toLocaleString()} 字符 · 点击核对正文</p></div>)}</div>
         </section>
         <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6">
           <h2 className="font-semibold">2 · 选择分析目的</h2>
@@ -88,28 +88,28 @@ export function IntelligenceView() {
             <span className="block text-body font-medium">{item.label}</span>
             <span className="mt-0.5 block text-caption leading-5 text-[var(--steel)]">{item.focus}</span>
           </button>)}</div>
-          <label className="block text-sm">对照资料库<select aria-label="情报分析资料库" className="mt-2 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3" value={chosenCorpus} disabled={Boolean(busy)} onChange={(e) => setCorpus(e.target.value)}>{corpora.filter((item) => !item.missing).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
-          <p className="mt-3 text-xs leading-6 text-[var(--steel)]">本次材料自述与库内证据分别呈现。没有国外资料或相近项目时会明确提示，不据此判断原创或领先。</p>
+          <label className="block text-body">对照资料库<select aria-label="情报分析资料库" className="mt-2 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3" value={chosenCorpus} disabled={Boolean(busy)} onChange={(e) => setCorpus(e.target.value)}>{corpora.filter((item) => !item.missing).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+          <p className="mt-3 text-caption leading-6 text-[var(--steel)]">本次材料自述与库内证据分别呈现。没有国外资料或相近项目时会明确提示，不据此判断原创或领先。</p>
         </section>
       </div>
-      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模板</h2><label className="cursor-pointer text-sm text-[var(--primary)]">上传自己的模板<input aria-label="上传情报报告模板" className="sr-only" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
+      <section className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface)] p-6"><div className="flex flex-wrap justify-between gap-3"><h2 className="font-semibold">3 · 确认报告模板</h2><label className="cursor-pointer text-body text-[var(--primary)]">上传自己的模板<input aria-label="上传情报报告模板" className="sr-only" type="file" accept=".docx,.doc,.pdf,.md,.txt" disabled={Boolean(busy)} onChange={(e) => { void upload(e.target.files, true); e.target.value = ""; }} /></label></div>
         <div className="my-4 flex flex-wrap gap-3">
-          <select aria-label="选择报告模板" className="rounded border p-2 text-sm" value={templateId} disabled={Boolean(busy)} onChange={(e) => {
+          <select aria-label="选择报告模板" className="rounded border p-2 text-body" value={templateId} disabled={Boolean(busy)} onChange={(e) => {
             const ident = e.target.value; if (!ident) return; setBusy("读取报告模板");
             void fetchTemplate(ident).then((value) => { setTemplateId(value.id); setTemplateVersion(value.version); setTemplate(value.content); setTemplateInput(null); })
               .catch((error) => setError(error.message)).finally(() => setBusy(""));
           }}><option value="">本次临时章节</option>{(templates.data ?? []).filter((item) => item.status === "published" && templateArea(item) === "intelligence").map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
           <Button size="sm" variant="ghost" disabled={Boolean(busy) || !template.trim()} onClick={() => void saveTemplate()}>保存为我的模板</Button>
         </div>
-        <p className="my-3 text-xs text-[var(--steel)]">{templateInput ? templateInput.filename : templateName ?? (templateId ? templateId : "本次临时章节")} · {template.split("\n").filter((line) => line.startsWith("## ")).length} 节 · 正文与模板版本随本次结果保存。</p>
-        <details><summary className="cursor-pointer text-sm text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-sm" /></details>
+        <p className="my-3 text-caption text-[var(--steel)]">{templateInput ? templateInput.filename : templateName ?? (templateId ? templateId : "本次临时章节")} · {template.split("\n").filter((line) => line.startsWith("## ")).length} 节 · 正文与模板版本随本次结果保存。</p>
+        <details><summary className="cursor-pointer text-body text-[var(--primary)]">预览和调整报告章节</summary><textarea aria-label="情报报告模板" disabled={Boolean(busy)} value={template} onChange={(e) => { setTemplate(e.target.value); setTemplateId(""); setTemplateVersion(undefined); }} className="mt-3 min-h-52 w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body" /></details>
         {/* 情报分析's own template library, kept apart from 存量分析's (query 2026-1014 1820). */}
-        <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-sm text-[var(--primary)]">管理情报分析模板（新建、上传提取、修改、删除）</summary>
+        <details className="mt-3" onToggle={() => void templates.refetch()}><summary className="cursor-pointer text-body text-[var(--primary)]">管理情报分析模板（新建、上传提取、修改、删除）</summary>
           <div className="mt-3"><TemplateLibrary area="intelligence" /></div></details>
       </section>
-      {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-sm text-red-800">{error}</p> : null}
+      {error ? <p role="alert" className="rounded-lg bg-red-50 p-4 text-body text-red-800">{error}</p> : null}
       {busy ? <GenerationProgress status="generating" stage_label={busy} /> : null}
-      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-sm text-[var(--steel)]">{busy || "完成后自动保存到报告中心"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
+      <div className="flex flex-wrap items-center gap-4"><Button disabled={Boolean(busy) || !inputs.length || !chosenCorpus || !template.trim()} onClick={() => void analyze()}>生成分析报告</Button><p role="status" className="text-body text-[var(--steel)]">{busy || "完成后自动保存到报告中心"}</p>{resultId ? <Button variant="ghost" onClick={() => showInspector({ kind: "artifact", artifactId: resultId })}>查看本次报告</Button> : null}</div>
     </div>
   </section>;
 }
@@ -117,6 +117,6 @@ export function IntelligenceView() {
 export function ExternalInputView({ inputId }: { inputId: string }) {
   const result = useQuery({ queryKey: ["external-input", inputId], queryFn: ({ signal }) => fetchIntelligenceInput(inputId, signal) });
   return <div className="p-4">{result.error ? <p role="alert">{result.error.message}</p> : result.data ? <>
-    <h3 className="font-semibold">{result.data.filename}</h3><p className="my-2 text-xs text-[var(--steel)]">外部材料自述 · 原输入版本保留</p>
+    <h3 className="font-semibold">{result.data.filename}</h3><p className="my-2 text-caption text-[var(--steel)]">外部材料自述 · 原输入版本保留</p>
     <div className="markdown"><Markdown>{result.data.text}</Markdown></div></> : <p>正在读取原输入…</p>}</div>;
 }

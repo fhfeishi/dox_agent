@@ -38,7 +38,7 @@ export function TechTimeline({ lineage, itemIds, projects, groupOf, onOpen }: {
     }
   }
   const rows = [...byProject.values()];
-  if (!rows.length) return <p className="text-xs text-[var(--stone)]">该分支没有立项年份明确的项目，无法绘制项目周期图。</p>;
+  if (!rows.length) return <p className="text-caption text-[var(--stone)]">该分支没有立项年份明确的项目，无法绘制项目周期图。</p>;
 
   const y0 = Math.min(...rows.map((r) => r.start)), y1 = Math.max(...rows.map((r) => r.end));
   const years = Array.from({ length: y1 - y0 + 1 }, (_, i) => y0 + i);
@@ -72,7 +72,7 @@ export function TechTimeline({ lineage, itemIds, projects, groupOf, onOpen }: {
   const picked = cell ? active(cell.year, cell.level) : [];
 
   return <div>
-    <p className="text-xs text-[var(--steel)]">
+    <p className="text-caption text-[var(--steel)]">
       最早立项 <b>{y0}</b> · 最近结题 <b>{y1}</b> · {rows.length} 个项目、{itemIds.length - undated} 个技术条目 ·
       本分支已有项目报告达到 <b style={{ color: MATURITY_COLORS[top] }}>{levels[top]}</b>{undated ? ` · ${undated} 条无项目年份未画出` : ""}
     </p>
@@ -119,15 +119,15 @@ export function TechTimeline({ lineage, itemIds, projects, groupOf, onOpen }: {
       </svg>
       </ZoomPan>
     </div>
-    {!dense && groups.length > 1 ? <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--steel)]">
+    {!dense && groups.length > 1 ? <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-caption text-[var(--steel)]">
       {groups.map((g) => <span key={g} className="flex items-center gap-1"><span className="size-2.5 rounded-full" style={{ background: color(g) }} />{g}</span>)}
     </div> : null}
-    {picked.length ? <div className="mt-2 rounded-lg border border-[var(--hairline)] p-3 text-xs">
+    {picked.length ? <div className="mt-2 rounded-lg border border-[var(--hairline)] p-3 text-caption">
       <p className="font-semibold">{cell!.year} 年 · {levels[cell!.level]} · {picked.length} 个项目</p>
       <ul className="mt-1 max-h-[200px] space-y-1 overflow-y-auto">{picked.map((r) => <li key={r.id}>
         <button type="button" onClick={() => onOpen(r.projectId)} className="text-left text-[var(--link)] hover:underline">{r.title}</button>
         <span className="text-[var(--stone)]"> · {r.name}（{r.start}–{r.end}）</span></li>)}</ul>
     </div> : null}
-    <p className="mt-2 text-xs leading-5 text-[var(--stone)]">阶段由模型依据各项目报告中的技术说明和已取得成果判定，计划和预期工作不计；它表示项目结题时报告所述的程度，不是每一年的水平，也不是正式的技术成熟度评定。报告中没有试验、部署等事件的日期，因此不推断某一年取得突破。点击项目可核对原文。</p>
+    <p className="mt-2 text-caption leading-5 text-[var(--stone)]">阶段由模型依据各项目报告中的技术说明和已取得成果判定，计划和预期工作不计；它表示项目结题时报告所述的程度，不是每一年的水平，也不是正式的技术成熟度评定。报告中没有试验、部署等事件的日期，因此不推断某一年取得突破。点击项目可核对原文。</p>
   </div>;
 }

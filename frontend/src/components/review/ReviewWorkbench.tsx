@@ -74,7 +74,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
       {error ? <Notice text={error} error /> : null}
       {extraction?.status === "running" ? <Notice text="正在自动整理基本信息，完成后才能保存；你已填写的字段会保留。" /> : null}
       {extraction?.error ? <Notice text={extraction.error} error /> : null}
-      {differing.length && extraction?.status !== "running" ? <div className="mb-2 flex flex-wrap items-center gap-2 rounded-lg bg-[var(--tint-yellow)] px-3 py-2 text-xs">
+      {differing.length && extraction?.status !== "running" ? <div className="mb-2 flex flex-wrap items-center gap-2 rounded-lg bg-[var(--tint-yellow)] px-3 py-2 text-caption">
         <span className="flex-1">模型建议与当前值不同：{differing.map(([key, value]) => `${REVIEW_FIELD_LABEL[key] ?? key}=${Array.isArray(value) ? value.join("、") : String(value)}`).join("；")}</span>
         <Button size="sm" variant="ghost" onClick={() => differing.forEach(([key, value]) => edit(key as keyof ReviewMetadata, value))}>填入模型建议（需再保存）</Button>
       </div> : null}
@@ -101,9 +101,9 @@ function MetadataFields({ doc, onSave, onRetry }: {
           {field("organization_count", "number")}
           {field("patent_count", "number")}
           {field("birth_date")}
-          <label className="text-xs">负责人学历<select aria-label="负责人学历" className={inputCls} value={draft.education ?? ""} onChange={(e) => edit("education", e.target.value)}><option value="">待核对</option>{["专科", "本科", "硕士", "博士"].map((v) => <option key={v}>{v}</option>)}</select></label>
-          <label className="text-xs">是否包含高校<select aria-label="是否包含高校" className={inputCls} value={draft.university_present == null ? "" : String(draft.university_present)} onChange={(e) => edit("university_present", e.target.value === "" ? null : e.target.value === "true")}><option value="">待核对</option><option value="true">已核对：包含</option><option value="false">已核对：不包含</option></select></label>
-          <label className="text-xs">正式申报时间<input aria-label="正式申报时间" type="datetime-local" className={inputCls} value={localTime(draft.submitted_at)} onChange={(e) => edit("submitted_at", e.target.value ? new Date(e.target.value).toISOString() : "")} /></label>
+          <label className="text-caption">负责人学历<select aria-label="负责人学历" className={inputCls} value={draft.education ?? ""} onChange={(e) => edit("education", e.target.value)}><option value="">待核对</option>{["专科", "本科", "硕士", "博士"].map((v) => <option key={v}>{v}</option>)}</select></label>
+          <label className="text-caption">是否包含高校<select aria-label="是否包含高校" className={inputCls} value={draft.university_present == null ? "" : String(draft.university_present)} onChange={(e) => edit("university_present", e.target.value === "" ? null : e.target.value === "true")}><option value="">待核对</option><option value="true">已核对：包含</option><option value="false">已核对：不包含</option></select></label>
+          <label className="text-caption">正式申报时间<input aria-label="正式申报时间" type="datetime-local" className={inputCls} value={localTime(draft.submitted_at)} onChange={(e) => edit("submitted_at", e.target.value ? new Date(e.target.value).toISOString() : "")} /></label>
         </div>
       </details>
       {Object.keys(fields).length ? (
@@ -151,8 +151,8 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
   const confirmed = state?.mappings.filter((row) => row.status === "confirmed").length ?? 0;
   useEffect(() => onSummary({ confirmed, total: state?.mappings.length ?? 0, dirty }), [confirmed, state, dirty]);
   if (error) return <Notice text={error} error />;
-  if (!state) return <p className="text-sm text-[var(--steel)]">正在识别章节…</p>;
-  if (!state.mappings.length) return <p className="text-sm text-[var(--steel)]">本模板没有需要按章节定位的条目。</p>;
+  if (!state) return <p className="text-body text-[var(--steel)]">正在识别章节…</p>;
+  if (!state.mappings.length) return <p className="text-body text-[var(--steel)]">本模板没有需要按章节定位的条目。</p>;
   const index = new Map(state.blocks.map((block, i) => [block.id, i]));
   const label = (id: string) => {
     const block = state.blocks[index.get(id) ?? 0];
@@ -203,14 +203,14 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
             <details className="mt-2">
               <summary className="cursor-pointer text-[var(--link)]">调整范围或标记缺失</summary>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                <label className="text-xs">起始文本块
+                <label className="text-caption">起始文本块
                   <select aria-label={row.section + "起始文本块"} className="mt-1 block w-full rounded border border-[var(--hairline)] p-1" value={choice.block_ids[0] ?? ""}
                     onChange={(e) => setChoices({ ...choices, [row.check_id]: { block_ids: e.target.value ? range(e.target.value, choice.block_ids[choice.block_ids.length - 1] ?? e.target.value) : [], missing: false } })}>
                     <option value="">未选择</option>
                     {state.blocks.map((block) => <option key={block.id} value={block.id}>{label(block.id)}</option>)}
                   </select>
                 </label>
-                <label className="text-xs">结束文本块（含）
+                <label className="text-caption">结束文本块（含）
                   <select aria-label={row.section + "结束文本块"} className="mt-1 block w-full rounded border border-[var(--hairline)] p-1" value={choice.block_ids[choice.block_ids.length - 1] ?? ""}
                     disabled={!choice.block_ids.length}
                     onChange={(e) => setChoices({ ...choices, [row.check_id]: { block_ids: range(choice.block_ids[0], e.target.value), missing: false } })}>
@@ -218,23 +218,23 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
                   </select>
                 </label>
               </div>
-              <label className="mt-2 flex items-center gap-2 text-xs"><input type="checkbox" checked={choice.missing}
+              <label className="mt-2 flex items-center gap-2 text-caption"><input type="checkbox" checked={choice.missing}
                 onChange={(e) => setChoices({ ...choices, [row.check_id]: { block_ids: [], missing: e.target.checked } })} />已核对全文标题，确认申请书缺少该章节</label>
             </details>
             {selected && !changed ? (
-              <div className="mt-2 rounded-lg bg-[var(--surface)] p-2 text-xs leading-5">
+              <div className="mt-2 rounded-lg bg-[var(--surface)] p-2 text-caption leading-5">
                 <span className="font-semibold">计入 {selected.count} 字符</span> · {doc.kind === "pdf" ? "页" : "块"} {selected.pages.join("、")}
                 {selected.unread_images ? <span className="ml-2 text-[var(--orange-fg)]">含 {selected.unread_images} 处未读取图片，覆盖不足</span> : null}
                 <p className="mt-1 line-clamp-2 text-[var(--steel)]">{selected.text}</p>
               </div>
-            ) : changed ? <p className="mt-2 text-xs text-[var(--steel)]">保存后按新范围重新计数。</p> : null}
+            ) : changed ? <p className="mt-2 text-caption text-[var(--steel)]">保存后按新范围重新计数。</p> : null}
           </div>
         );
       })}
       <div className="flex flex-wrap items-center gap-2">
         <Button variant={dirty || confirmed < state.mappings.length ? "primary" : "outline"} disabled={busy || (!dirty && confirmed === state.mappings.length)}
           onClick={() => void save()}>{busy ? "保存中…" : "确认并保存章节对应"}</Button>
-        <span className="text-xs text-[var(--stone)]">唯一且完整读取的章节会自动核对；有歧义时可在这里确认范围。{state.saved_at ? `上次保存 ${localTime(state.saved_at)}` : ""}</span>
+        <span className="text-caption text-[var(--stone)]">唯一且完整读取的章节会自动核对；有歧义时可在这里确认范围。{state.saved_at ? `上次保存 ${localTime(state.saved_at)}` : ""}</span>
       </div>
     </div>
   );
@@ -249,10 +249,10 @@ function StepTile({ step, label, value, open, onClick, onDrop }: {
     onDragOver={onDrop ? (e) => { e.preventDefault(); setOver(true); } : undefined} onDragLeave={onDrop ? () => setOver(false) : undefined}
     onDrop={onDrop ? (e) => { e.preventDefault(); setOver(false); const file = e.dataTransfer.files[0]; if (file) onDrop(file); } : undefined}
     className={`flex min-w-0 items-center gap-3 rounded-xl border px-4 py-3 text-left hover:border-[var(--primary)] ${open || over ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface)]"}`}>
-    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-xs font-semibold text-white">{step}</span>
+    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-caption font-semibold text-white">{step}</span>
     <span className="min-w-0 flex-1"><span className="block text-caption text-[var(--steel)]">{label}</span>
       <span className="block truncate text-body font-semibold text-[var(--ink)]">{value}</span></span>
-    <span className="text-xs text-[var(--steel)]">{open ? "▴" : "▾"}</span>
+    <span className="text-caption text-[var(--steel)]">{open ? "▴" : "▾"}</span>
   </button>;
 }
 
@@ -267,10 +267,10 @@ function LatestRun({ runs }: { runs: ReviewRun[] }) {
       <Pill tone={latest.status === "completed" ? "mint" : latest.status === "failed" ? "rose" : "sky"}>
         {latest.status === "completed" ? "审查完成" : latest.status === "failed" ? "未完成" : REVIEW_STATUS_LABEL[latest.status] ?? "审查中"}</Pill>
       <b className="min-w-0 flex-1 truncate">{title}</b>
-      <span className="text-xs text-[var(--link)]">{latest.status === "completed" ? "打开报告 →" : latest.status === "failed" ? "查看原因 →" : latest.stage_label}</span>
+      <span className="text-caption text-[var(--link)]">{latest.status === "completed" ? "打开报告 →" : latest.status === "failed" ? "查看原因 →" : latest.stage_label}</span>
     </Link>
     {["queued", "running"].includes(latest.status) ? <GenerationProgress compact status={latest.status} stage={latest.stage} stage_label={latest.stage_label} kind={latest.request.kind} /> : null}
-    {active ? <p className="mt-1 text-xs text-[var(--steel)]">共 {active} 项在排队或审查中，可离开本页，完成后从这里或左侧审核任务打开。</p> : null}
+    {active ? <p className="mt-1 text-caption text-[var(--steel)]">共 {active} 项在排队或审查中，可离开本页，完成后从这里或左侧审核任务打开。</p> : null}
   </div>;
 }
 
@@ -442,7 +442,7 @@ export function ReviewWorkbench() {
           <p>{text.lead}</p>
           {template ? <p className="mt-1">本次启用 <b>{enabled.length}</b> 项：{enabled.slice(0, 6).map((c) => c.title).join("、")}{enabled.length > 6 ? "…" : ""}</p> : null}
           <p className="mt-1 text-caption text-[var(--steel)]">{text.note} 完整条款已在右侧预览。</p>
-          <p className="mt-3 text-xs font-semibold text-[var(--steel)]">更换模板</p>
+          <p className="mt-3 text-caption font-semibold text-[var(--steel)]">更换模板</p>
           <div className="mt-1">{usable.map((rule) => (
             <button key={rule.id} type="button" disabled={!rule.confirmed} onClick={() => { remember("template", rule.id); showInspector({ kind: "review-template", templateId: rule.id }); }}
               className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-body disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--canvas)]"}`}>
@@ -451,8 +451,8 @@ export function ReviewWorkbench() {
               {!rule.confirmed ? <Pill tone="yellow">草稿</Pill> : null}
             </button>))}</div>
           <div className="mt-2 flex flex-wrap gap-3 border-t border-[var(--hairline)] pt-2">
-            {template ? <Link className="text-xs text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模板编辑</Link> : null}
-            <Link className="text-xs text-[var(--link)]" to="/review/templates">新建或上传模板</Link>
+            {template ? <Link className="text-caption text-[var(--link)]" to={`/review/templates/new?from=${encodeURIComponent(template.id)}&back=${back}`}>复制当前模板编辑</Link> : null}
+            <Link className="text-caption text-[var(--link)]" to="/review/templates">新建或上传模板</Link>
           </div>
         </div>
       ) : null}
@@ -465,8 +465,8 @@ export function ReviewWorkbench() {
           <p className="text-caption text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <Button disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{doc ? "上传新版本" : "上传申请书"}</Button>
-            {doc ? <button type="button" className="text-xs text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>查看原文</button> : null}
-            {proposals.length ? <select aria-label="选择已上传申请书" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 text-xs" value={doc?.id ?? ""}
+            {doc ? <button type="button" className="text-caption text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>查看原文</button> : null}
+            {proposals.length ? <select aria-label="选择已上传申请书" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-1.5 text-caption" value={doc?.id ?? ""}
               onChange={(e) => { const next = docs.find((item) => item.id === e.target.value); if (next) { setDoc(next); remember("proposal", next.id); } }}>
               <option value="">选择已上传的申请书</option>
               {proposals.map((item) => <option key={item.id} value={item.id}>{item.metadata.title || item.filename} · {item.created_at?.slice(0, 10)}</option>)}
@@ -477,7 +477,7 @@ export function ReviewWorkbench() {
       <LatestRun runs={runs.filter((run) => (run.request?.kind ?? "formal") === reviewKind)} />
       {doc ? (
         <details aria-label="准备核对" className="mt-4 space-y-4 rounded-xl border border-[var(--hairline)] p-4">
-          <summary className="cursor-pointer text-sm font-medium">补充信息与高级选项（可选）</summary>
+          <summary className="cursor-pointer text-body font-medium">补充信息与高级选项（可选）</summary>
           <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3 text-body">
             <strong className="mr-2">准备核对</strong>
             <Pill tone={template ? "mint" : "rose"}>{template ? "模板已保存" : "缺少模板"}</Pill>
@@ -498,7 +498,7 @@ export function ReviewWorkbench() {
           {reviewKind === "formal" && template ? (
             <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
               <strong className="text-body">章节对应核对</strong>
-              <p className="mb-3 mt-1 text-xs text-[var(--steel)]">模板中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
+              <p className="mb-3 mt-1 text-caption text-[var(--steel)]">模板中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
               <SectionMapping doc={doc} rule={template} onSummary={setMapping} />
             </div>
           ) : null}
@@ -506,18 +506,18 @@ export function ReviewWorkbench() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
                 <strong className="text-body">对照资料库</strong>
-                <p className="mt-1 text-xs text-[var(--steel)]">选择一个子资料库，系统从中检索与申请书最相近的报告，读取全文作为对比参考。</p>
+                <p className="mt-1 text-caption text-[var(--steel)]">选择一个子资料库，系统从中检索与申请书最相近的报告，读取全文作为对比参考。</p>
                 <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_auto]">
                   <select aria-label="对照资料库" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-2" value={chosenLibrary} onChange={(e) => setLibrary(e.target.value)}>
                     {available.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
                   </select>
-                  <label className="text-xs">参考报告
+                  <label className="text-caption">参考报告
                     <select aria-label="参考报告篇数" className="ml-2 rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-2" value={references} onChange={(e) => setReferences(Number(e.target.value))}>
                       {[1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n} 篇{n === 3 ? "（默认）" : ""}</option>)}
                     </select></label>
                 </div>
                 <p className="mt-3 font-semibold">附加文献（{literature.length} 已选）</p>
-                {!evidence.length ? <p className="text-xs text-[var(--stone)]">技术证据库为空。</p> : null}
+                {!evidence.length ? <p className="text-caption text-[var(--stone)]">技术证据库为空。</p> : null}
                 <div className="mt-1 max-h-[140px] space-y-1 overflow-y-auto">
                   {evidence.map((item) => (
                     <label key={item.id} className="flex items-center gap-2"><input type="checkbox" checked={literature.includes(item.id)}
@@ -531,14 +531,14 @@ export function ReviewWorkbench() {
                 <strong className="text-body">评价方式</strong>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "update"} onChange={() => setMode("update")} /><span>更新建议（默认）：面向修改与下次申报，使用今天之前的已选材料。</span></label>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "historical"} onChange={() => setMode("historical")} /><span>历史评价：按指定评价时点，只采用日期明确且不晚于该时点的材料。</span></label>
-                {mode === "historical" ? <label className="mt-2 block text-xs">评价时点<input aria-label="评价时点" type="date" className="ml-2 rounded border border-[var(--hairline)] p-1" value={cutoff} onChange={(e) => setCutoff(e.target.value)} /></label> : null}
+                {mode === "historical" ? <label className="mt-2 block text-caption">评价时点<input aria-label="评价时点" type="date" className="ml-2 rounded border border-[var(--hairline)] p-1" value={cutoff} onChange={(e) => setCutoff(e.target.value)} /></label> : null}
               </div>
             </div>
           ) : null}
           <details className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
             <summary className="cursor-pointer text-body font-semibold">补充信息表（可选）</summary>
-            <p className="my-2 text-xs text-[var(--steel)]">信息表与正文分别保存；两处事实冲突时并列展示，不固定只信其一。</p>
-            <select aria-label="选择申报信息表" className="mr-3 rounded border p-2 text-xs" value={sheetId} onChange={(e) => remember("sheet", e.target.value)}>
+            <p className="my-2 text-caption text-[var(--steel)]">信息表与正文分别保存；两处事实冲突时并列展示，不固定只信其一。</p>
+            <select aria-label="选择申报信息表" className="mr-3 rounded border p-2 text-caption" value={sheetId} onChange={(e) => remember("sheet", e.target.value)}>
               <option value="">尚未提供</option>{docs.filter((item) => item.id !== doc.id).map((item) => <option key={item.id} value={item.id}>{item.filename}</option>)}
             </select>
             <input aria-label="上传申报信息表" type="file" accept={ACCEPT} disabled={Boolean(busy)} onChange={(e) => {

@@ -33,8 +33,8 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
     onYear?.(String(value));
     showInspector({ kind: "year", corpusId, year: value });
   };
-  if (result.error) return <p role="alert" className="text-sm text-[var(--red)]">{(result.error as Error).message}</p>;
-  if (!result.data) return <p role="status" className="text-sm text-[var(--steel)]">正在读取项目…</p>;
+  if (result.error) return <p role="alert" className="text-body text-[var(--red)]">{(result.error as Error).message}</p>;
+  if (!result.data) return <p role="status" className="text-body text-[var(--steel)]">正在读取项目…</p>;
   const projects = result.data.projects.filter((p) => p.identity_status === "identified");
   const dated = projects.filter((p) => p.start_year !== null);
   // Open on the amount type most projects state (a library may have only 直接经费), never an empty chart.
@@ -70,7 +70,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
     onMouseEnter: () => setHover(y), onMouseLeave: () => setHover(null), onFocus: () => setHover(y), onBlur: () => setHover(null),
     onClick: () => pick(y, count), onKeyDown: (e: KeyboardEvent) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(y, count); } },
   });
-  if (!years.length) return <p className="text-sm text-[var(--steel)]">本领域项目的立项年份均待核对。</p>;
+  if (!years.length) return <p className="text-body text-[var(--steel)]">本领域项目的立项年份均待核对。</p>;
   const focusCount = marked ? counts.find((c) => c.year === focus)!.count : 0;
   const focusTotal = marked ? totals.find((t) => t.year === focus) : undefined;
   const card = "flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4";
@@ -82,7 +82,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
     <div className="grid items-stretch gap-4 xl:grid-cols-2">
       <section aria-label="年度分布-项目数量" className={card}>
         <div className="flex min-h-[38px] flex-wrap items-center gap-2"><h3 className="font-semibold">年度分布 · 项目数量</h3></div>
-        <p className="mt-1 min-h-[36px] text-xs leading-[18px] text-[var(--steel)]">按立项年份统计 {dated.length} 个项目；立项年份待核对的项目 {projects.length - dated.length} 个。</p>
+        <p className="mt-1 min-h-[36px] text-caption leading-[18px] text-[var(--steel)]">按立项年份统计 {dated.length} 个项目；立项年份待核对的项目 {projects.length - dated.length} 个。</p>
         <svg role="img" aria-label="各立项年份的项目数量柱状图" viewBox={`0 0 ${W} ${H}`} className="mt-1 w-full">
           {band}
           {[0, 0.5, 1].map((r) => <g key={r}><line x1={L} x2={W - R} y1={yCount(maxCount * r)} y2={yCount(maxCount * r)} stroke="var(--hairline)" />
@@ -95,7 +95,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
             {c.count ? <text x={x(c.year)} y={yCount(c.count) - 5} textAnchor="middle" fontSize="11" fill="var(--slate)">{c.count}</text> : null}
           </g>)}
         </svg>
-        <p className="mt-auto pt-1 text-xs text-[var(--stone)]"><span className="mr-1 inline-block size-2.5 rounded-sm bg-[var(--primary)] opacity-80" />立项项目数（柱，点击查看当年项目）</p>
+        <p className="mt-auto pt-1 text-caption text-[var(--stone)]"><span className="mr-1 inline-block size-2.5 rounded-sm bg-[var(--primary)] opacity-80" />立项项目数（柱，点击查看当年项目）</p>
       </section>
       <section aria-label="年度分布-项目资金" className={card}>
         <div className="flex min-h-[38px] flex-wrap items-center gap-2"><h3 className="font-semibold">年度分布 · 项目资金</h3>
@@ -103,7 +103,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
           <select aria-label="金额口径" value={scope} onChange={(e) => setScope(e.target.value)} className="cursor-pointer rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1 text-body">
             <option value="awarded">批准资助金额</option><option value="direct">直接经费</option><option value="total">总经费</option>
           </select></div>
-        <p className="mt-1 min-h-[36px] text-xs leading-[18px] text-[var(--steel)]">{scopeName}（万元），按立项年归属。{known.length} 个项目给出金额，{dated.length - known.length} 个缺失或冲突；部分覆盖时合计不代表完整年度总额。</p>
+        <p className="mt-1 min-h-[36px] text-caption leading-[18px] text-[var(--steel)]">{scopeName}（万元），按立项年归属。{known.length} 个项目给出金额，{dated.length - known.length} 个缺失或冲突；部分覆盖时合计不代表完整年度总额。</p>
         {/* One chart (query 2026-1015 1142): the yearly total as bars with a line on the left axis, and
             each project's amount as a point over its year's bar on the right axis. */}
         {known.length ? <svg role="img" aria-label="年度资助合计柱状图、总金额折线与各项目金额" viewBox={`0 0 ${W} ${H}`} className="mt-1 w-full">
@@ -127,8 +127,8 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
             onClick={() => showInspector({ kind: "project", corpusId, projectId: k.p.project_id, facet: "成果" })}
             onKeyDown={(e) => { if (e.key === "Enter") showInspector({ kind: "project", corpusId, projectId: k.p.project_id, facet: "成果" }); }}>
             <title>{k.p.title} · {k.year} 年 · {fmt(k.wan)} 万元</title></circle>)}
-        </svg> : <p className="flex flex-1 items-center justify-center py-6 text-center text-sm text-[var(--steel)]">当前口径没有可确认的金额，未以其他口径替代。</p>}
-        <p className="mt-auto flex flex-wrap gap-x-4 pt-1 text-xs text-[var(--stone)]">
+        </svg> : <p className="flex flex-1 items-center justify-center py-6 text-center text-body text-[var(--steel)]">当前口径没有可确认的金额，未以其他口径替代。</p>}
+        <p className="mt-auto flex flex-wrap gap-x-4 pt-1 text-caption text-[var(--stone)]">
           <span><span className="mr-1 inline-block size-2.5 rounded-sm bg-[var(--primary)] opacity-40" />年度合计（柱，左轴）</span>
           <span className="text-[var(--orange)]">—●— 合计走势（缺失年份不连线）</span>
           <span><span className="mr-1 inline-block size-2.5 rounded-full bg-[#0f766e] opacity-70" />单个项目（点，右轴）</span>
@@ -149,8 +149,8 @@ export function YearReports({ corpusId, year }: { corpusId: string; year: number
   const { showInspector, openPreview } = useLayout();
   const result = useQuery(projectQuery(corpusId));
   const [query, setQuery] = useState("");
-  if (result.error) return <p role="alert" className="text-sm text-[var(--red)]">{(result.error as Error).message}</p>;
-  if (!result.data) return <p role="status" className="text-sm text-[var(--steel)]">正在读取…</p>;
+  if (result.error) return <p role="alert" className="text-body text-[var(--red)]">{(result.error as Error).message}</p>;
+  if (!result.data) return <p role="status" className="text-body text-[var(--steel)]">正在读取…</p>;
   const name = (corpora.find((c) => c.id === corpusId)?.name ?? corpusId).replace(/^自然科学基金-/, "");
   const projects = result.data.projects.filter((p) => p.identity_status === "identified" && p.start_year === year);
   const files = projects.reduce((n, p) => n + p.files.length, 0);
@@ -163,15 +163,15 @@ export function YearReports({ corpusId, year }: { corpusId: string; year: number
     </div>
     {projects.length > 6 ? <input type="search" aria-label="在本年报告中搜索" placeholder="搜索项目或报告" value={query} onChange={(e) => setQuery(e.target.value)}
       className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body" /> : null}
-    {!projects.length ? <p className="text-sm text-[var(--steel)]">本年没有纳入的报告。</p> : null}
+    {!projects.length ? <p className="text-body text-[var(--steel)]">本年没有纳入的报告。</p> : null}
     <ul className="space-y-2">{shown.map((p) => <li key={p.project_id} className="rounded-lg border border-[var(--hairline)] p-3">
       <button type="button" onClick={() => showInspector({ kind: "project", corpusId, projectId: p.project_id, facet: "成果" })}
         className="block text-left text-body font-medium leading-5 hover:text-[var(--primary)]">{p.title}</button>
-      <p className="mt-0.5 text-xs text-[var(--stone)]">{p.number || "批准号待核对"} · {p.files.length} 份报告</p>
+      <p className="mt-0.5 text-caption text-[var(--stone)]">{p.number || "批准号待核对"} · {p.files.length} 份报告</p>
       <div className="mt-1.5 space-y-0.5">{p.files.map((f) => <button key={f.document.doc_id} type="button" onClick={() => openPreview(f.document, null, corpusId)}
-        className="block w-full truncate text-left text-xs text-[var(--link)] hover:underline" title={f.document.title}>{f.document.title}</button>)}</div>
+        className="block w-full truncate text-left text-caption text-[var(--link)] hover:underline" title={f.document.title}>{f.document.title}</button>)}</div>
     </li>)}</ul>
-    {q && !shown.length ? <p className="text-sm text-[var(--steel)]">没有匹配的项目或报告。</p> : null}
+    {q && !shown.length ? <p className="text-body text-[var(--steel)]">没有匹配的项目或报告。</p> : null}
   </div>;
 }
 

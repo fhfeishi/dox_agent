@@ -160,12 +160,12 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
     <div key={slide.key} aria-roledescription="slide" aria-label={`${index + 1} / ${slides.length}：${slide.label}`} aria-live={paused ? "polite" : "off"}
       className="hero-slide relative grid min-h-[300px] items-stretch gap-8 px-6 pt-6 pb-16 sm:px-9 md:h-[300px] md:grid-cols-[minmax(0,0.78fr)_minmax(0,1.42fr)]">
       <div className="flex flex-col justify-center">
-        <p className="flex items-center gap-2 text-xs text-[#aebdd0]">
+        <p className="flex items-center gap-2 text-caption text-[#aebdd0]">
           <span className="tabular-nums text-[#7f93ab]">{String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
           <span className="h-3 w-px bg-white/20" />研究版图{prefix ? ` · ${prefix.replace("与", "")} 与各领域` : ""}
         </p>
         <h1 className="mt-2 text-page leading-tight font-semibold tracking-wide">{slide.title}</h1>
-        <p className="mt-3 flex items-baseline gap-2"><b className="text-display leading-none font-semibold tabular-nums">{fmt(counted)}</b><span className="text-sm text-[#c9d4e1]">{slide.unit}</span></p>
+        <p className="mt-3 flex items-baseline gap-2"><b className="text-display leading-none font-semibold tabular-nums">{fmt(counted)}</b><span className="text-body text-[#c9d4e1]">{slide.unit}</span></p>
         {slide.insight ? <p className="mt-3.5 inline-flex max-w-full items-center gap-2 self-start rounded-2xl bg-white/[0.08] px-3 py-1 text-body text-[#eef3f8] ring-1 ring-white/10">
           <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-[#7cc4ff]" /><span>{slide.insight}</span></p> : null}
         <p className="mt-3 max-w-[30em] text-caption leading-[18px] text-pretty text-[#8fa3ba]">{slide.note}</p>
@@ -182,8 +182,8 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
       </div>
       {still ? null : <button type="button" aria-label={held ? "继续播放" : "暂停播放"} aria-pressed={held} onClick={() => setHeld(!held)}
         className="grid size-7 place-items-center rounded-full bg-white/10 text-caption hover:bg-white/20">{held ? "▶" : "❚❚"}</button>}
-      <button type="button" aria-label="上一张" onClick={() => go(index - 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-sm hover:bg-white/20">‹</button>
-      <button type="button" aria-label="下一张" onClick={() => go(index + 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-sm hover:bg-white/20">›</button>
+      <button type="button" aria-label="上一张" onClick={() => go(index - 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-body hover:bg-white/20">‹</button>
+      <button type="button" aria-label="下一张" onClick={() => go(index + 1)} className="grid size-7 place-items-center rounded-full bg-white/10 text-body hover:bg-white/20">›</button>
     </div>
   </section>;
 }

@@ -14,7 +14,7 @@ const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh
 export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => void }) {
   const result = useQuery({ ...libraryOverviewQuery() });
   // Waiting and failure sit in the same column as the page they stand in for.
-  const column = "mx-auto max-w-[1200px] px-5 py-7 text-sm sm:px-8";
+  const column = "mx-auto max-w-[1200px] px-5 py-7 text-body sm:px-8";
   if (result.error) return <p role="alert" className={`${column} text-[var(--red)]`}>{(result.error as Error).message}</p>;
   if (!result.data) return <p role="status" className={`${column} text-[var(--steel)]`}>正在读取资料库概况…</p>;
   const rows = [...result.data].sort((a, b) => b.projects - a.projects);
@@ -27,12 +27,12 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
   ];
   return <div className="mx-auto max-w-[1200px] space-y-6 px-5 py-7 sm:px-8">
     <header>
-      <p className="text-xs text-[var(--steel)]">资料覆盖与归纳状态</p>
-      <h1 className="mt-2 text-2xl font-semibold">资料库建设情况</h1>
+      <p className="text-caption text-[var(--steel)]">资料覆盖与归纳状态</p>
+      <h1 className="mt-2 text-page font-semibold">资料库建设情况</h1>
     </header>
     <section aria-label="总体数字" className="grid gap-2 sm:grid-cols-2">
       {kpis.map(([title, value, note]) => <div key={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-        <p className="text-body text-[var(--steel)]">{title}</p><p className="my-1 text-2xl font-semibold">{value}</p><p className="text-xs leading-5 text-[var(--stone)]">{note}</p>
+        <p className="text-body text-[var(--steel)]">{title}</p><p className="my-1 text-page font-semibold">{value}</p><p className="text-caption leading-5 text-[var(--stone)]">{note}</p>
       </div>)}
     </section>
     <section aria-label="各资料库" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
@@ -56,6 +56,6 @@ export function LeaderConstruction({ onOpen }: { onOpen: (corpusId: string) => v
         })}</tbody>
       </table>
     </section>
-    <p className="text-xs leading-5 text-[var(--stone)]">项目在各库内按批准号去重；跨库合计未去重。“技术研判”分别列出四个维度的项目数，不代表四维同时齐备；场景、问题与技术条目由模型归纳，需人工核对。点一行在右侧查看详情。</p>
+    <p className="text-caption leading-5 text-[var(--stone)]">项目在各库内按批准号去重；跨库合计未去重。“技术研判”分别列出四个维度的项目数，不代表四维同时齐备；场景、问题与技术条目由模型归纳，需人工核对。点一行在右侧查看详情。</p>
   </div>;
 }

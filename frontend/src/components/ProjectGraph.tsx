@@ -155,18 +155,18 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
   const linked = new Set(related.slice(0, LINKS).map((row) => row.project.project_id));
   const dim = (p: Project) => (year !== null && p.start_year !== year) || (focus && p.project_id !== focus.project_id && !linked.has(p.project_id));
 
-  if (!dated.length) return <p className="rounded-xl border border-dashed p-5 text-sm text-[var(--steel)]">当前范围没有立项年份明确的项目，无法绘制关系图。</p>;
+  if (!dated.length) return <p className="rounded-xl border border-dashed p-5 text-body text-[var(--steel)]">当前范围没有立项年份明确的项目，无法绘制关系图。</p>;
   return (
     <section aria-label="项目关系图" className="overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--canvas)] shadow-sm">
-      <div className="flex flex-wrap items-center gap-2 border-b border-[var(--hairline)] px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center gap-2 border-b border-[var(--hairline)] px-4 py-3 text-body">
         <b>项目关系图 · 申请代码 × 立项年份</b>
         <span className="flex-1" />
-        <span className="rounded-full border border-[var(--hairline)] px-2 py-0.5 text-xs text-[var(--steel)]">角度 = 申请代码</span>
-        <span className="rounded-full border border-[var(--hairline)] px-2 py-0.5 text-xs text-[var(--steel)]">半径 = 立项年份</span>
-        <span className="text-xs text-[var(--steel)]">关联依据</span>
+        <span className="rounded-full border border-[var(--hairline)] px-2 py-0.5 text-caption text-[var(--steel)]">角度 = 申请代码</span>
+        <span className="rounded-full border border-[var(--hairline)] px-2 py-0.5 text-caption text-[var(--steel)]">半径 = 立项年份</span>
+        <span className="text-caption text-[var(--steel)]">关联依据</span>
         <div role="group" aria-label="关联依据" className="flex gap-1">
           {(Object.keys(RELATIONS) as Relation[]).map((key) => <button key={key} type="button" aria-pressed={relation === key} onClick={() => setRelation(key)}
-            className="rounded-full border px-3 py-0.5 text-xs" style={{ borderColor: RELATIONS[key].color, color: relation === key ? "#fff" : RELATIONS[key].color, background: relation === key ? RELATIONS[key].color : "transparent" }}>{key}</button>)}
+            className="rounded-full border px-3 py-0.5 text-caption" style={{ borderColor: RELATIONS[key].color, color: relation === key ? "#fff" : RELATIONS[key].color, background: relation === key ? RELATIONS[key].color : "transparent" }}>{key}</button>)}
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
@@ -175,7 +175,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
           <div className="mt-2 flex flex-wrap gap-1 md:flex-col">
             {layout.years.map((y) => (
               <button key={y} type="button" aria-pressed={year === y} onClick={() => setYear(year === y ? null : y)}
-                className={`flex justify-between gap-3 rounded-lg border px-2 py-1 text-xs ${year === y ? "border-[var(--primary)] bg-[var(--primary-soft)] font-semibold" : "border-[var(--hairline)]"}`}>
+                className={`flex justify-between gap-3 rounded-lg border px-2 py-1 text-caption ${year === y ? "border-[var(--primary)] bg-[var(--primary-soft)] font-semibold" : "border-[var(--hairline)]"}`}>
                 <span>{y}</span><span className="text-[var(--steel)]">{dated.filter((p) => p.start_year === y).length} 个</span>
               </button>
             ))}
@@ -248,10 +248,10 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
           </svg>
         </div>
         {focus ? (
-          <aside aria-label="项目关系详情" className="shrink-0 border-t border-[var(--hairline)] p-4 text-sm md:w-[300px] md:border-t-0 md:border-l">
+          <aside aria-label="项目关系详情" className="shrink-0 border-t border-[var(--hairline)] p-4 text-body md:w-[300px] md:border-t-0 md:border-l">
             <div className="flex items-start gap-2"><b className="flex-1 leading-6">{focus.title}</b>
               <button type="button" aria-label="关闭项目关系详情" onClick={() => setSelected(null)} className="text-[var(--steel)]">✕</button></div>
-            <dl className="mt-2 grid grid-cols-[64px_1fr] gap-y-1 text-xs">
+            <dl className="mt-2 grid grid-cols-[64px_1fr] gap-y-1 text-caption">
               <dt className="text-[var(--steel)]">批准号</dt><dd>{focus.number}</dd>
               <dt className="text-[var(--steel)]">申请代码</dt><dd>{focus.code || "原文未注明"}</dd>
               <dt className="text-[var(--steel)]">起止年</dt><dd>{focus.start_year}{focus.end_year ? "–" + focus.end_year : ""}</dd>
@@ -259,13 +259,13 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
               {focus.unit ? <><dt className="text-[var(--steel)]">依托单位</dt><dd>{focus.unit}</dd></> : null}
             </dl>
             <Button size="sm" className="mt-3" onClick={() => onOpen(focus.project_id)}>查看项目详情与原文</Button>
-            {memberOf.get(focus.project_id)?.length ? <p className="mt-3 text-xs">所属{relation === "技术" ? "技术" : relation}：{memberOf.get(focus.project_id)!.slice(0, 6).join("、")}</p> : null}
-            <p className="mt-4 text-xs font-semibold text-[var(--steel)]">{relation}关联项目 · {graded ? degreeOf(focus.project_id) : related.length}{(graded ? degreeOf(focus.project_id) : related.length) > LINKS ? `（列出并连线最相近 ${LINKS} 个）` : ""}</p>
-            {!related.length ? <p className="mt-2 text-xs text-[var(--stone)]">当前范围内没有与该项目{RELATIONS[relation].note.split("：")[0]}的项目，可切换关联依据。</p> : null}
+            {memberOf.get(focus.project_id)?.length ? <p className="mt-3 text-caption">所属{relation === "技术" ? "技术" : relation}：{memberOf.get(focus.project_id)!.slice(0, 6).join("、")}</p> : null}
+            <p className="mt-4 text-caption font-semibold text-[var(--steel)]">{relation}关联项目 · {graded ? degreeOf(focus.project_id) : related.length}{(graded ? degreeOf(focus.project_id) : related.length) > LINKS ? `（列出并连线最相近 ${LINKS} 个）` : ""}</p>
+            {!related.length ? <p className="mt-2 text-caption text-[var(--stone)]">当前范围内没有与该项目{RELATIONS[relation].note.split("：")[0]}的项目，可切换关联依据。</p> : null}
             <div className="mt-2 max-h-[360px] space-y-2 overflow-y-auto">
               {related.slice(0, 30).map((row) => (
                 <button key={row.project.project_id} type="button" onClick={() => setSelected(row.project.project_id)}
-                  className="block w-full rounded-lg border border-[var(--hairline)] p-2 text-left text-xs hover:border-[var(--primary)]">
+                  className="block w-full rounded-lg border border-[var(--hairline)] p-2 text-left text-caption hover:border-[var(--primary)]">
                   <b className="block text-body">{row.project.title}</b>
                   <span className="text-[var(--steel)]">{row.project.start_year} · {[
                     row.similarity !== undefined ? `${relation}相似度 ${Math.round(row.similarity * 100)}%` : "",
@@ -277,7 +277,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
           </aside>
         ) : null}
       </div>
-      <div className="flex flex-wrap items-center gap-3 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">
+      <div className="flex flex-wrap items-center gap-3 border-t border-[var(--hairline)] px-4 py-2 text-caption text-[var(--steel)]">
         <span className="flex items-center gap-2" aria-label="颜色深浅图例">颜色深浅：关联少
           <span className="inline-block h-2.5 w-24 rounded-full" style={{ background: "linear-gradient(90deg, #6b728026, #6b7280)" }} />关联多（最多 {maxDegree} 个）</span>
         <span className="mx-1 h-3 w-px bg-[var(--hairline-strong)]" />扇区按学部（大学部再按申请代码细分）：
@@ -287,7 +287,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
             {d.name === "代码待核对" ? `（${d.codes.join("、")}，不属于已知学部字母，请核对原文）` : ""}</span>
         ))}
       </div>
-      <div aria-label="颜色类别图例" className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[var(--hairline)] px-4 py-2 text-xs text-[var(--steel)]">
+      <div aria-label="颜色类别图例" className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[var(--hairline)] px-4 py-2 text-caption text-[var(--steel)]">
         <span>颜色 = {relation === "技术" ? "技术谱系体系" : relation === "场景" ? "场景类别" : "核心问题"}：</span>
         {categories.names.map((name) => <span key={name} className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: categories.hue.get(name) }} />{name}</span>)}
         <span className="flex items-center gap-1"><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: "#9aa3b5" }} />未归入类别</span>

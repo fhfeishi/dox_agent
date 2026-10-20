@@ -224,8 +224,8 @@ export function CorpusFiles({
               <Icon name="plus" size={13} strokeWidth={2.2} />
               选择文件
             </button>
-            <button type="button" disabled={busy || !connected} onClick={() => folderRef.current?.click()} className="rounded-lg border bg-[var(--canvas)] px-3 py-2 text-xs">选择文件夹</button>
-            <span className="text-xs text-[var(--steel)]">或将文件、文件夹拖入此处</span>
+            <button type="button" disabled={busy || !connected} onClick={() => folderRef.current?.click()} className="rounded-lg border bg-[var(--canvas)] px-3 py-2 text-caption">选择文件夹</button>
+            <span className="text-caption text-[var(--steel)]">或将文件、文件夹拖入此处</span>
             <input ref={folderRef} type="file" aria-label="上传文件夹" multiple {...{ webkitdirectory: "" }} className="sr-only"
               onChange={(e) => { const files = Array.from(e.target.files ?? []); e.target.value = "";
                 void uploadFiles(files.map((file) => ({ file, path: file.webkitRelativePath || file.name }))); }} />
@@ -273,21 +273,21 @@ export function CorpusFiles({
           </button>)}
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <div role="group" aria-label="列表方式" className="flex rounded-lg bg-[var(--surface)] p-0.5 text-xs">
+          <div role="group" aria-label="列表方式" className="flex rounded-lg bg-[var(--surface)] p-0.5 text-caption">
             {([["", "按项目"], ["file", "按文件"]] as const).map(([key, label]) => <button key={label} type="button" aria-pressed={(key === "file") === byFile}
               onClick={() => updateFilter("by", key)} className={`rounded-md px-2.5 py-1.5 ${(key === "file") === byFile ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)]"}`}>{label}</button>)}
           </div>
-          <select aria-label="搜索方式" value={mode} onChange={(e) => setMode(e.target.value)} className="rounded-lg border bg-[var(--primary-soft)] p-2 text-xs">
+          <select aria-label="搜索方式" value={mode} onChange={(e) => setMode(e.target.value)} className="rounded-lg border bg-[var(--primary-soft)] p-2 text-caption">
             <option value="name">文件名搜索</option><option value="content">正文检索</option>
           </select>
-          <span className="text-xs text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : `${projects.length} 个项目`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
-          {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-xs text-[var(--link)]">清空选择</button> : null}
-          {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-xs text-[var(--link)]"
+          <span className="text-caption text-[var(--steel)]">{byFile ? `${searchedRows.length} 份` : `${projects.length} 个项目`} · 已选 {selectedDocs.length} 份{mode === "content" ? "（正文检索最多返回100份相关资料）" : ""}</span>
+          {selectedDocs.length ? <button type="button" onClick={() => setSelectedIds([])} className="text-caption text-[var(--link)]">清空选择</button> : null}
+          {needle && searchedRows.some((row) => row.document && row.status === "indexed") ? <button type="button" className="text-caption text-[var(--link)]"
             onClick={() => setSelectedIds([...new Set([...selectedIds, ...searchedRows.flatMap((row) => row.document && row.status === "indexed" ? [row.document.doc_id] : [])])].slice(0, 20))}>
             勾选搜索结果（最多 20 份）</button> : null}
           <span className="flex-1" />
           {!chatOpen ? <button type="button" onClick={() => setChatOpen(true)}
-            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">分析工作区{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
+            className="rounded-lg border border-[var(--primary)] px-3 py-1.5 text-caption font-medium text-[var(--primary)] hover:bg-[var(--primary-soft)]">分析工作区{selectedDocs.length ? ` · ${selectedDocs.length} 份` : ""}</button> : null}
           {matches.isFetching && mode === "content" ? <span role="status">正在检索正文…</span> : null}
           {mode === "content" && matches.error ? <span role="alert">{matches.error.message}</span> : null}
         </div>
@@ -298,7 +298,7 @@ export function CorpusFiles({
         <ul aria-label="资料列表" className="max-h-[560px] space-y-1 overflow-y-auto rounded-xl border border-[var(--hairline)] p-1">
           {pageRows.map(({ key, file, document, status }) => (
             <li key={key} onMouseEnter={() => setHovered(document ?? null)} onMouseLeave={() => setHovered(null)}
-              className={`group relative flex min-h-[58px] flex-wrap items-center gap-3 rounded-lg border border-l-4 px-3 py-2 text-xs transition-[background-color,border-color] duration-150 ${document && selectedIds.includes(document.doc_id) ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
+              className={`group relative flex min-h-[58px] flex-wrap items-center gap-3 rounded-lg border border-l-4 px-3 py-2 text-caption transition-[background-color,border-color] duration-150 ${document && selectedIds.includes(document.doc_id) ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
               <input type="checkbox" aria-label={`选择 ${file.rel_path}`} disabled={!document || status !== "indexed"}
                 checked={!!document && selectedIds.includes(document.doc_id)} onChange={() => document && select(document.doc_id)} />
               {hovered?.doc_id === document?.doc_id && document ? <div role="tooltip" className="pointer-events-none absolute left-9 right-4 top-full z-10 hidden rounded-lg border bg-[var(--canvas)] p-3 leading-6 shadow-lg group-hover:block">
@@ -390,7 +390,7 @@ export function CorpusFiles({
           ))}
           {!searchedRows.length ? <li className="text-caption text-[var(--stone)]">{needle ? "没有匹配的资料。" : "此筛选下没有文档。"}</li> : null}
         </ul>
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-caption">
           <button disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)} className="rounded border px-3 py-2 disabled:opacity-40">上一页</button>
           <span>第 {currentPage + 1} / {Math.max(1, Math.ceil(searchedRows.length / 40))} 页 · 每页 40 份</span>
           <button disabled={(currentPage + 1) * 40 >= searchedRows.length} onClick={() => setPage(currentPage + 1)} className="rounded border px-3 py-2 disabled:opacity-40">下一页</button>

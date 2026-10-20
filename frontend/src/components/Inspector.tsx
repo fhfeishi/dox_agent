@@ -388,7 +388,7 @@ export function Inspector() {
             {artifact?.status === "generating" ? <GenerationProgress status="generating" /> : null}
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
-                <div className="mb-3 flex flex-wrap gap-2 text-sm">
+                <div className="mb-3 flex flex-wrap gap-2 text-body">
                   {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" }) : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button>{deletable ? <button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button> : null}</> : deletable ? <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button> : <span className="text-[var(--stone)]">仅生成人或管理员可删除</span>}
                 </div>
                 <h2 className="text-emphasis font-semibold text-[var(--ink)]">{artifact.title}</h2>

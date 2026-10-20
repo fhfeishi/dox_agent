@@ -84,10 +84,10 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
       <Button size="sm" disabled={busy || !selected.size || Boolean(unavailable)} onClick={() => extraction.mutate(false)}>生成四维信息{selected.size ? `（${selected.size}）` : ""}</Button>
       <Button size="sm" variant="ghost" disabled={busy || !selected.size || Boolean(unavailable)} onClick={() => extraction.mutate(true)}>重新提取所选</Button>
     </div>
-    <p className="mt-2 text-xs text-[var(--stone)]">四维方案 · 当前可用于筛选 {currentCount} 份；未处理 {items.filter((item) => !item.stale && item.process.status === "未处理").length}；未完成 {items.filter((item) => !item.stale && item.process.status === "未完成").length}；待更新 {items.filter((item) => item.stale).length}。提取会调用模型，普通浏览不会提取。</p>
+    <p className="mt-2 text-caption text-[var(--stone)]">四维方案 · 当前可用于筛选 {currentCount} 份；未处理 {items.filter((item) => !item.stale && item.process.status === "未处理").length}；未完成 {items.filter((item) => !item.stale && item.process.status === "未完成").length}；待更新 {items.filter((item) => item.stale).length}。提取会调用模型，普通浏览不会提取。</p>
     {reports.isPending ? <p role="status">正在读取四维列表…</p> : null}
     {error || reports.error || extraction.error ? <p role="alert" className="mt-2 text-[var(--red)]">{error || reports.error?.message || extraction.error?.message}{reports.data && reports.error ? "（显示上次读取内容）" : ""}</p> : null}
-    {jobId ? <div className="my-2 flex flex-wrap items-center gap-2 text-xs" aria-label="提取进度">
+    {jobId ? <div className="my-2 flex flex-wrap items-center gap-2 text-caption" aria-label="提取进度">
       {job.data ? <span role="status">{running ? "提取中" : "提取已结束"} · 已完成 {job.data.completed} / 共 {job.data.total} · 失败 {job.data.errors.length} 项</span> : null}
       {job.error ? <span role="alert">任务状态暂不可读；服务重启后任务记录可能不可用，请刷新已发布结果。{job.error.message}</span> : null}
       {job.data?.errors.map((item) => <span key={item.doc_id}>{item.doc_id}：{item.error}</span>)}
@@ -104,7 +104,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
           for (const name of new Set(item.facets[dimension]?.items.map((entry) => normalizeFacetName(entry.name)))) counts.set(name, (counts.get(name) ?? 0) + 1);
         }
         if (filters[index] && !counts.has(filters[index])) counts.set(filters[index], 0);
-        return <label key={dimension} className="text-xs">{dimension === "成果" ? "文献成果" : dimension}
+        return <label key={dimension} className="text-caption">{dimension === "成果" ? "文献成果" : dimension}
           <select aria-label={`${dimension}筛选`} value={filters[index]} onChange={(event) => setFilter(FILTER_KEYS[index], event.target.value)} className="ml-1 max-w-56 rounded border p-2">
             <option value="">全部</option>
             {[...counts].sort(([a], [b]) => a.localeCompare(b, "zh")).map(([name, count]) => <option key={name} value={name}>{name}（{count} 份）</option>)}
@@ -116,7 +116,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
       </select>
     </div>
     <div className="mb-2 flex flex-wrap gap-2">{filters.map((value, index) => value ? <Button key={index} size="sm" variant="quiet" onClick={() => setFilter(FILTER_KEYS[index], "")}>{DIMENSIONS[index]}：{value} ×</Button> : null)}</div>
-    <p className="text-xs text-[var(--steel)]">筛选命中 {visible.length} 份 · 已选 {selected.size} 份（当前筛选外 {Math.max(0, selected.size - visible.filter((item) => selected.has(item.doc_id)).length)} 份）。跨维筛选表示共同出现，不代表存在关联。</p>
+    <p className="text-caption text-[var(--steel)]">筛选命中 {visible.length} 份 · 已选 {selected.size} 份（当前筛选外 {Math.max(0, selected.size - visible.filter((item) => selected.has(item.doc_id)).length)} 份）。跨维筛选表示共同出现，不代表存在关联。</p>
     <div className="my-2 flex flex-wrap gap-2">
       <Button size="sm" variant="quiet" disabled={!visible.length} onClick={() => setSelected((current) => new Set([...current, ...visible.map((item) => item.doc_id)]))}>选中筛选结果</Button>
       <Button size="sm" variant="ghost" disabled={!selected.size} onClick={() => { setSelected(new Set()); setCompare(false); }}>清空选择</Button>
@@ -124,7 +124,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
     </div>
     {selected.size ? <section aria-label="基于所选资料研究" className="my-3 rounded border p-3">
       <label className="block">研究问题<textarea aria-label="研究问题" className="mt-1 w-full rounded border p-2" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="说明你希望从所选资料中研究什么" /></label>
-      <p className="mb-2 text-xs text-[var(--stone)]">将新建会话，限定 {selected.size} 份原文。{context ? `筛选背景：${context}。` : ""}报告还会按项目年份和类别预检，实际纳入范围以预检为准。</p>
+      <p className="mb-2 text-caption text-[var(--stone)]">将新建会话，限定 {selected.size} 份原文。{context ? `筛选背景：${context}。` : ""}报告还会按项目年份和类别预检，实际纳入范围以预检为准。</p>
       <div className="flex flex-wrap gap-2">{[["task1", "基于所选资料提问"], ["task2", "生成对比分析"], ["task3", "技术研判"], ["task4", "生成报告"]].map(([task, label]) =>
         <Button key={task} size="sm" disabled={sessionBusy || !question.trim() || Boolean(unavailable) || task === "task2" && selected.size < 2} onClick={() => void research(task)}>{label}</Button>)}</div>
       {unavailable ? <p role="alert">{unavailable} 份选中资料已失效，请清空并重新选择。</p> : null}
@@ -140,11 +140,11 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
         <div className="mt-2 flex flex-wrap gap-2">{DIMENSIONS.map((key, index) => {
           const facet = item.facets[key];
           const label = item.stale ? "待更新" : item.process.status === "未处理" ? "未处理" : facet?.state === "has" ? "有内容" : facet?.state === "异常" ? "提取异常" : item.process.status !== "已完成" ? "未完成" : "未提及";
-          return <button key={key} className="rounded-full bg-[var(--primary-soft)] px-2 py-1 text-xs text-[var(--primary-pressed)] disabled:bg-[var(--surface)] disabled:text-[var(--stone)]"
+          return <button key={key} className="rounded-full bg-[var(--primary-soft)] px-2 py-1 text-caption text-[var(--primary-pressed)] disabled:bg-[var(--surface)] disabled:text-[var(--stone)]"
             disabled={item.stale || item.process.status === "未处理"} onClick={() => open(item.doc_id, index)}>{key}：{label}</button>;
-        })}<span className="ml-auto text-xs text-[var(--stone)]">处理覆盖 {item.process.coverage.processed}/{item.process.coverage.total} 段</span></div>
-        {item.message ? <p className="mt-1 text-xs">{item.message}</p> : null}
-        {usableTarget(item) ? <p className="mt-2 text-xs text-[var(--steel)]">技术：{item.facets["技术"]?.items.map((entry) => entry.name).join("、") || "未提及"}；文献成果：{item.facets["成果"]?.items.map((entry) => `${entry.name}（${entry.status ?? "原文未明确"}）`).join("、") || "未提及"}</p> : null}
+        })}<span className="ml-auto text-caption text-[var(--stone)]">处理覆盖 {item.process.coverage.processed}/{item.process.coverage.total} 段</span></div>
+        {item.message ? <p className="mt-1 text-caption">{item.message}</p> : null}
+        {usableTarget(item) ? <p className="mt-2 text-caption text-[var(--steel)]">技术：{item.facets["技术"]?.items.map((entry) => entry.name).join("、") || "未提及"}；文献成果：{item.facets["成果"]?.items.map((entry) => `${entry.name}（${entry.status ?? "原文未明确"}）`).join("、") || "未提及"}</p> : null}
       </li>)}
       {!reports.isPending && !visible.length ? <li>当前筛选没有资料；可移除筛选查看未整理或未分类内容。</li> : null}
     </ul>

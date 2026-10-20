@@ -182,7 +182,7 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             />
           ) : null}
           {corpusView === "files" ? (admin ? <TopicAdmin corpusId={corpus.id} /> : null) : (
-            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <details className="mt-5"><summary className="cursor-pointer text-sm text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details> : null}</>
+            <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <details className="mt-5"><summary className="cursor-pointer text-body text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details> : null}</>
           )}
         </>
       )}

@@ -48,17 +48,17 @@ export function AuthGate({ children }: { children: ReactNode }) {
           setPassword(""); await load();
         } catch (cause) { setError((cause as Error).message); } finally { setBusy(false); }
       }}>
-      <p className="text-sm font-semibold text-[var(--primary)]">DoxAgent · 资料工作台</p>
-      <h1 className="mt-3 text-2xl font-semibold">登录</h1>
-      <p className="mt-2 text-sm text-[var(--steel)]">初始账户 admin，默认密码 123456；登录后可在“设置 → 账户”修改。</p>
-      <label className="mt-6 block text-sm">账户<input className="mt-2 w-full rounded-lg border p-3" value={username}
+      <p className="text-body font-semibold text-[var(--primary)]">DoxAgent · 资料工作台</p>
+      <h1 className="mt-3 text-page font-semibold">登录</h1>
+      <p className="mt-2 text-body text-[var(--steel)]">初始账户 admin，默认密码 123456；登录后可在“设置 → 账户”修改。</p>
+      <label className="mt-6 block text-body">账户<input className="mt-2 w-full rounded-lg border p-3" value={username}
         required autoComplete="username" onChange={(e) => setUsername(e.target.value)} /></label>
-      <label className="mt-4 block text-sm">密码<input className="mt-2 w-full rounded-lg border p-3" type="password" required
+      <label className="mt-4 block text-body">密码<input className="mt-2 w-full rounded-lg border p-3" type="password" required
         maxLength={256} autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-      {error ? <p role="alert" className="mt-4 text-sm text-[var(--red)]">{error}</p> : null}
+      {error ? <p role="alert" className="mt-4 text-body text-[var(--red)]">{error}</p> : null}
       <button className="mt-6 w-full rounded-lg bg-[var(--primary)] p-3 text-white disabled:opacity-50"
         disabled={busy || !session}>{busy ? "正在登录…" : "登录"}</button>
-      {!session ? <button type="button" className="mt-3 text-sm text-[var(--link)]" onClick={() => void load()}>重新连接</button> : null}
+      {!session ? <button type="button" className="mt-3 text-body text-[var(--link)]" onClick={() => void load()}>重新连接</button> : null}
     </form>
   </main>;
 }

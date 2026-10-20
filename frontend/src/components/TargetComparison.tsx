@@ -8,8 +8,8 @@ export function TargetComparison({ corpusId, reports, onOpen }: {
 }) {
   const details = useQueries({ queries: reports.map((item) => ({ ...targetDetailQuery(corpusId, item.doc_id, item.version), enabled: usableTarget(item) })) });
   return <div className="my-3 overflow-x-auto" aria-label="四维只读对照">
-    <p className="mb-2 text-xs">按原文限定核对材料；点击条目查看引文。此表不调用模型，不生成优劣结论。</p>
-    <table className="w-full border-collapse text-xs"><thead><tr><th className="border p-2">维度</th>{reports.map((item) => <th key={item.doc_id} className="min-w-56 border p-2">{item.title}</th>)}</tr></thead>
+    <p className="mb-2 text-caption">按原文限定核对材料；点击条目查看引文。此表不调用模型，不生成优劣结论。</p>
+    <table className="w-full border-collapse text-caption"><thead><tr><th className="border p-2">维度</th>{reports.map((item) => <th key={item.doc_id} className="min-w-56 border p-2">{item.title}</th>)}</tr></thead>
       <tbody>{DIMENSIONS.map((key, index) => <tr key={key}><th className="border p-2">{key === "成果" ? "文献成果" : key}</th>{reports.map((item, position) => {
         const detail = details[position];
         const facet = detail.data?.facets.find((entry) => entry.key === key);

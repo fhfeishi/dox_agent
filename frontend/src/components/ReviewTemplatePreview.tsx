@@ -17,16 +17,16 @@ export function ReviewTemplatePreview({ templateId }: { templateId: string }) {
   if (error) return <p role="alert">{error}</p>;
   if (!rule) return <p>正在读取模板…</p>;
   return <section aria-label="审查模板预览">
-    <h2 className="text-lg font-semibold">{rule.name}</h2>
-    <p className="mt-2 text-xs text-[var(--steel)]">{rule.kind === "formal" ? "形式审查" : "专业审查"} · 版本 {rule.version} · {rule.checks.filter((c) => c.enabled).length} 项启用</p>
-    <p className="my-3 text-sm leading-6">{rule.scope_note}</p>
+    <h2 className="text-group font-semibold">{rule.name}</h2>
+    <p className="mt-2 text-caption text-[var(--steel)]">{rule.kind === "formal" ? "形式审查" : "专业审查"} · 版本 {rule.version} · {rule.checks.filter((c) => c.enabled).length} 项启用</p>
+    <p className="my-3 text-body leading-6">{rule.scope_note}</p>
     {rule.checks.map((c) => <article key={c.id} className="mb-3 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4">
-      <h3 className="text-sm font-semibold">{c.title}{!c.enabled ? "（未启用）" : ""}</h3>
-      <p className="mt-2 whitespace-pre-wrap text-sm leading-6">{c.requirement}</p>
-      <p className="mt-2 text-xs text-[var(--steel)]">{REVIEW_METHOD_LABEL[c.method] ?? c.method} · {c.source}</p>
-      {c.execution?.field === "section_characters" ? <p className="mt-2 text-xs">仅计章节正文，去空白，按 Unicode 字符计数。</p> : null}
-      {c.revised ? <p className="mt-2 text-xs text-[var(--orange)]">已人工修订，请核对当前要求。</p> : null}
+      <h3 className="text-body font-semibold">{c.title}{!c.enabled ? "（未启用）" : ""}</h3>
+      <p className="mt-2 whitespace-pre-wrap text-body leading-6">{c.requirement}</p>
+      <p className="mt-2 text-caption text-[var(--steel)]">{REVIEW_METHOD_LABEL[c.method] ?? c.method} · {c.source}</p>
+      {c.execution?.field === "section_characters" ? <p className="mt-2 text-caption">仅计章节正文，去空白，按 Unicode 字符计数。</p> : null}
+      {c.revised ? <p className="mt-2 text-caption text-[var(--orange)]">已人工修订，请核对当前要求。</p> : null}
     </article>)}
-    <Link to={`/review/templates/${encodeURIComponent(rule.id)}`} className="text-sm text-[var(--link)]">进入模板管理与编辑 →</Link>
+    <Link to={`/review/templates/${encodeURIComponent(rule.id)}`} className="text-body text-[var(--link)]">进入模板管理与编辑 →</Link>
   </section>;
 }

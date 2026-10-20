@@ -273,8 +273,8 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
     queryFn: ({ signal }) => fetchTargetDetail(corpusId, source!.docId, signal),
   });
 
-  if (isPending) return <p role="status" className="py-4 text-sm text-[var(--steel)]">正在读取技术谱系…</p>;
-  if (error || !data || !root || !node) return <p role="alert" className="py-4 text-sm text-[var(--red)]">{error?.message ?? "技术谱系不可用"}</p>;
+  if (isPending) return <p role="status" className="py-4 text-body text-[var(--steel)]">正在读取技术谱系…</p>;
+  if (error || !data || !root || !node) return <p role="alert" className="py-4 text-body text-[var(--red)]">{error?.message ?? "技术谱系不可用"}</p>;
 
   const resolve = fieldResolver(data);
   const stageNames = (data.stages ?? []).map((s) => s.name);
@@ -298,7 +298,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
     catch { setNotice("复制失败，请检查浏览器剪贴板权限"); }
   };
   const toggle = (list: string[], set: (v: string[]) => void, value: string) => set(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
-  const chip = (on: boolean) => `rounded-full border px-2.5 py-0.5 text-xs ${on ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] bg-[var(--surface)] text-[var(--slate)] hover:bg-[var(--canvas)]"}`;
+  const chip = (on: boolean) => `rounded-full border px-2.5 py-0.5 text-caption ${on ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] bg-[var(--surface)] text-[var(--slate)] hover:bg-[var(--canvas)]"}`;
   const groupOf = (itemId: string) => {
     const at = locateItem(data, itemId);
     if (!at) return "未归入体系的条目";
@@ -329,33 +329,33 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="size-3 rounded-full" style={{ background: color }} />
         <b style={{ color }}>{root.name}</b>
-        <span className="text-xs text-[var(--stone)] tabular-nums">{projectCount(root.items)} 项目 · {root.items.length} 条技术</span>
+        <span className="text-caption text-[var(--stone)] tabular-nums">{projectCount(root.items)} 项目 · {root.items.length} 条技术</span>
         <span className="flex-1" />
         {data.categories.length ? <Button size="sm" variant="ghost" onClick={() => void outline()}>复制谱系大纲</Button> : null}
         {generate}
         {data.categories.length ? <Button size="sm" variant={full ? "primary" : "ghost"} onClick={() => setFull(!full)}>{full ? "退出铺满（Esc）" : "铺满屏幕"}</Button> : null}
       </div>
-      {running ? <div role="status" className="mb-2 text-xs text-[var(--steel)]">正在归类与判定报告所述阶段 {data.job!.done}/{data.job!.total} 条（大库约需数分钟，可离开本页）
+      {running ? <div role="status" className="mb-2 text-caption text-[var(--steel)]">正在归类与判定报告所述阶段 {data.job!.done}/{data.job!.total} 条（大库约需数分钟，可离开本页）
         <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-[var(--hairline)]"><span className="block h-full bg-[var(--primary)]" style={{ width: `${data.job!.done / Math.max(1, data.job!.total) * 100}%` }} /></span></div> : null}
-      {notice ? <p role={notice.startsWith("已复制") ? "status" : "alert"} className={`mb-2 text-xs ${notice.startsWith("已复制") ? "text-[var(--steel)]" : "text-[var(--red)]"}`}>{notice}</p> : null}
-      {data.error ? <p role="alert" className="mb-2 text-xs text-[var(--red)]">上次生成未完成：{data.error}{data.categories.length ? "，下方为之前的结果。" : ""}</p> : null}
-      {data.state === "stale" && !running ? <p className="mb-2 text-xs text-[#9a6500]">{data.stale_reason || "四维技术条目已变化"}，谱系需要重新生成。</p> : null}
-      {!data.categories.length ? <p className="text-sm text-[var(--steel)]">{running ? "生成完成后显示。" : "尚未生成。生成时由模型把本库全部项目的技术条目归入“体系 › 方向 › 主题”，并依据各项目报告判定所述阶段；条目名称保持原样。"}</p> : <>
+      {notice ? <p role={notice.startsWith("已复制") ? "status" : "alert"} className={`mb-2 text-caption ${notice.startsWith("已复制") ? "text-[var(--steel)]" : "text-[var(--red)]"}`}>{notice}</p> : null}
+      {data.error ? <p role="alert" className="mb-2 text-caption text-[var(--red)]">上次生成未完成：{data.error}{data.categories.length ? "，下方为之前的结果。" : ""}</p> : null}
+      {data.state === "stale" && !running ? <p className="mb-2 text-caption text-[#9a6500]">{data.stale_reason || "四维技术条目已变化"}，谱系需要重新生成。</p> : null}
+      {!data.categories.length ? <p className="text-body text-[var(--steel)]">{running ? "生成完成后显示。" : "尚未生成。生成时由模型把本库全部项目的技术条目归入“体系 › 方向 › 主题”，并依据各项目报告判定所述阶段；条目名称保持原样。"}</p> : <>
         {/* Folded by default so the drawing keeps the pane's height (query 2026-1013 2012). */}
         <details aria-label="谱系筛选" open={filtered || undefined} className="mb-3 space-y-1.5 rounded-lg bg-[var(--canvas)] px-3 py-2">
-          <summary className="cursor-pointer text-xs text-[var(--steel)]">按应用领域、业务环节筛选{filtered ? ` · 已筛选 ${[...fields, ...stages].join("、")}` : ""}</summary>
+          <summary className="cursor-pointer text-caption text-[var(--steel)]">按应用领域、业务环节筛选{filtered ? ` · 已筛选 ${[...fields, ...stages].join("、")}` : ""}</summary>
           {([["应用领域", [...resolve.names, UNDETERMINED_FIELD], fields, setFields, (v: string) => (id: string) => resolve.of(id) === v],
             ["业务环节", [...stageNames, UNDETERMINED_STAGE], stages, setStages, (v: string) => (id: string) => stageOf(id) === v]] as const).map(([label, values, list, set, test]) =>
             <div key={label} className="flex flex-wrap items-center gap-1.5">
-              <span className="w-14 shrink-0 text-xs text-[var(--steel)]">{label}</span>
+              <span className="w-14 shrink-0 text-caption text-[var(--steel)]">{label}</span>
               {values.map((v) => { const n = projectCount(all.filter(test(v))); return n ? <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))}
                 onClick={() => toggle(list, set, v)}>{v} <span className="tabular-nums opacity-70">{n}</span></button> : null; })}
             </div>)}
           <p className="text-caption text-[var(--stone)]">数字为项目数（去重）；一个项目可涉及多个领域与环节。</p>
-          {filtered ? <p role="status" className="pt-0.5 text-xs text-[var(--steel)]">已筛选 {[...fields, ...stages].join("、")} · 匹配 {projectCount([...match])} 个项目、{match.size} 条技术
+          {filtered ? <p role="status" className="pt-0.5 text-caption text-[var(--steel)]">已筛选 {[...fields, ...stages].join("、")} · 匹配 {projectCount([...match])} 个项目、{match.size} 条技术
             <button type="button" className="ml-2 text-[var(--link)] hover:underline" onClick={() => { setFields([]); setStages([]); }}>恢复全部</button></p> : null}
         </details>
-        <nav aria-label="谱系位置" className="mb-2 flex flex-wrap items-center gap-1 text-xs">
+        <nav aria-label="谱系位置" className="mb-2 flex flex-wrap items-center gap-1 text-caption">
           {path.map((n, i) => <span key={n.key} className="flex items-center gap-1">{i ? <span className="text-[var(--stone)]">›</span> : null}
             {i < path.length - 1 ? <button type="button" onClick={() => onFocus(n.key)} className="rounded px-1 text-[var(--link)] hover:bg-[var(--canvas)]">{n.name}</button>
               : <b className="px-1">{n.name}</b>}</span>)}
@@ -365,13 +365,13 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
           {TIERS.map((tier) => <span key={tier.label} className="inline-flex items-center gap-1"><Tier level={tier.min} />
             <span className="text-[var(--stone)]">{tier.min === 5 ? "5 级" : tier.min === 4 ? "4 级" : tier.min === 2 ? "2–3 级" : "0–1 级"}</span></span>)}</p>
       </>}
-      {data.gaps.length ? <p className="mt-2 text-xs text-[var(--stone)]">{data.gaps.join("；")}</p> : null}
+      {data.gaps.length ? <p className="mt-2 text-caption text-[var(--stone)]">{data.gaps.join("；")}</p> : null}
     </div>} right={
     <aside aria-label="技术详情" className="h-full space-y-3 overflow-y-auto rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-      {!data.categories.length ? <p className="text-sm text-[var(--steel)]">生成后，点击左侧图谱中的任一节点查看技术定位、应用任务、项目与原文依据。</p> : leaf ? <>
+      {!data.categories.length ? <p className="text-body text-[var(--steel)]">生成后，点击左侧图谱中的任一节点查看技术定位、应用任务、项目与原文依据。</p> : leaf ? <>
         <Section title="技术定位">
-          <h3 className="text-base font-semibold leading-6" style={{ color: node.color }}>{leaf.name}</h3>
-          {at ? <p className="text-xs text-[var(--steel)]">{at.category.name} › {at.child.name} › {at.theme.name}</p> : null}
+          <h3 className="text-emphasis font-semibold leading-6" style={{ color: node.color }}>{leaf.name}</h3>
+          {at ? <p className="text-caption text-[var(--steel)]">{at.category.name} › {at.child.name} › {at.theme.name}</p> : null}
           {at?.theme.plain ? <p className="rounded-md bg-[var(--canvas)] px-2 py-1">{at.theme.plain}</p> : null}
           {leaf.desc ? <p className="text-[var(--slate)]">{leaf.desc}</p> : null}
         </Section>
@@ -379,53 +379,53 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
           <p>应用领域：{resolve.of(leafId)}<span className="mx-1.5 text-[var(--stone)]">·</span>业务环节：{stageOf(leafId)}</p>
           {aimed.length ? <p>原文所述针对问题：{aimed.map((r) => nameOf("问题", r.to.item_id)).join("；")}</p> : null}
           {typical.map((t, i) => <p key={i}>典型技术：<button type="button" onClick={() => onIssue(t.scene)} className="text-[var(--link)] hover:underline">{t.issue}</button>
-            <span className="text-xs text-[var(--stone)]"> · {t.scene} · {t.state}</span></p>)}
+            <span className="text-caption text-[var(--stone)]"> · {t.scene} · {t.state}</span></p>)}
         </Section>
         <Section title="实现与配套">
           {stated.length ? stated.map((r, i) => { const other = r.from.item_id === leaf.item_id ? r.to.item_id : r.from.item_id;
-            return <p key={i}>原文明示配套：<b>{nameOf("技术", other)}</b>{r.evidence?.[0] ? <span className="block text-xs leading-5 text-[var(--steel)]">“{r.evidence[0].quote}”</span> : null}</p>; })
-            : <p className="text-xs text-[var(--stone)]">原文未明示与其他技术的配套关系。</p>}
-          {companions.length ? <div><p className="text-xs text-[var(--stone)]">同项目还涉及的技术（同一报告中出现，不代表配套或依赖）</p>
+            return <p key={i}>原文明示配套：<b>{nameOf("技术", other)}</b>{r.evidence?.[0] ? <span className="block text-caption leading-5 text-[var(--steel)]">“{r.evidence[0].quote}”</span> : null}</p>; })
+            : <p className="text-caption text-[var(--stone)]">原文未明示与其他技术的配套关系。</p>}
+          {companions.length ? <div><p className="text-caption text-[var(--stone)]">同项目还涉及的技术（同一报告中出现，不代表配套或依赖）</p>
             <div className="mt-1 flex flex-wrap gap-1.5">{companions.map((id) => <button key={id} type="button" onClick={() => onFocus(`i:${id}`)}
-              className="rounded border border-[var(--hairline)] px-2 py-0.5 text-xs text-[var(--link)] hover:bg-[var(--canvas)]">{data.items[id].name}</button>)}</div></div> : null}
+              className="rounded border border-[var(--hairline)] px-2 py-0.5 text-caption text-[var(--link)] hover:bg-[var(--canvas)]">{data.items[id].name}</button>)}</div></div> : null}
         </Section>
         <Section title="项目与成果">
           <p><button type="button" onClick={() => open(leaf.project_id)} className="text-left text-[var(--link)] hover:underline">{project?.title ?? leaf.project_id}</button>
-            <span className="ml-1 text-xs text-[var(--stone)]">{project?.start_year ?? "?"}–{project?.end_year ?? "?"}</span></p>
+            <span className="ml-1 text-caption text-[var(--stone)]">{project?.start_year ?? "?"}–{project?.end_year ?? "?"}</span></p>
           <p className="flex flex-wrap items-center gap-1.5">报告所述阶段：<Tier level={leaf.maturity} /><span>{leaf.maturity} {data.maturity_levels[leaf.maturity]}</span>
             <Chips list={indicators([leaf.basis, leaf.desc])} /></p>
-          {leaf.basis ? <p className="text-xs text-[var(--steel)]">判定依据（本项目）：{leaf.basis}</p> : null}
-          {outcomes.length ? <ul className="list-disc space-y-0.5 pl-5 text-xs leading-5 text-[var(--slate)]">{outcomes.map((o) => <li key={o.id}>{o.name}</li>)}</ul> : null}
+          {leaf.basis ? <p className="text-caption text-[var(--steel)]">判定依据（本项目）：{leaf.basis}</p> : null}
+          {outcomes.length ? <ul className="list-disc space-y-0.5 pl-5 text-caption leading-5 text-[var(--slate)]">{outcomes.map((o) => <li key={o.id}>{o.name}</li>)}</ul> : null}
         </Section>
         <Section title="原文依据">
-          {source && target.isPending ? <p className="text-xs text-[var(--stone)]">正在读取原文依据…</p>
-            : target.error ? <p className="text-xs text-[var(--red)]">{(target.error as Error).message}</p>
+          {source && target.isPending ? <p className="text-caption text-[var(--stone)]">正在读取原文依据…</p>
+            : target.error ? <p className="text-caption text-[var(--red)]">{(target.error as Error).message}</p>
             : <EvidenceList corpusId={corpusId} evidence={evidence} limit={2} staleHint="请重新整理该文件" />}
         </Section>
       </> : node.blank ? <>
         <Section title="技术定位">
-          <p className="text-xs text-[var(--stone)]">{LEVEL_NAMES[node.level]} · {node.covered ? "萌芽节点" : "空白节点"}</p>
-          <h3 className="text-base font-semibold leading-6 text-[var(--slate)]">{node.name}</h3>
+          <p className="text-caption text-[var(--stone)]">{LEVEL_NAMES[node.level]} · {node.covered ? "萌芽节点" : "空白节点"}</p>
+          <h3 className="text-emphasis font-semibold leading-6 text-[var(--slate)]">{node.name}</h3>
           {node.plain ? <p className="rounded-md bg-[var(--canvas)] px-2 py-1">{node.plain}</p> : null}
         </Section>
         <Section title="为什么列出">
           {node.reason ? <p>{node.reason}</p> : null}
-          <p className="rounded-md border border-dashed border-[var(--hairline-strong)] px-2 py-1.5 text-xs leading-5 text-[var(--steel)]">
+          <p className="rounded-md border border-dashed border-[var(--hairline-strong)] px-2 py-1.5 text-caption leading-5 text-[var(--steel)]">
             {node.covered ? `本库没有以此为主的方向；按技术名称检索，约 ${node.covered} 个项目零散涉及，归在谱系的其他节点下。` : "本库项目均未涉及该方向。"}
             该节点依据领域通用知识补充，用来呈现谱系全貌与本库尚未覆盖的部分，不是本库原文的归纳，不计入任何统计。</p>
         </Section>
       </> : <>
         <Section title="技术定位">
-          <p className="text-xs text-[var(--stone)]">{LEVEL_NAMES[node.level]}</p>
-          <h3 className="text-base font-semibold leading-6" style={{ color: node.level ? node.color : color }}>{node.name}</h3>
+          <p className="text-caption text-[var(--stone)]">{LEVEL_NAMES[node.level]}</p>
+          <h3 className="text-emphasis font-semibold leading-6" style={{ color: node.level ? node.color : color }}>{node.name}</h3>
           {node.plain ? <p className="rounded-md bg-[var(--canvas)] px-2 py-1">{node.plain}</p> : null}
-          {node.summary ? <p className="text-xs text-[var(--steel)]">边界：{node.summary}</p> : null}
-          {node.foundation ? <p className="text-xs text-[#4a2a8f]">共性底座：支撑其他技术的数据、协同与可信能力。</p> : null}
+          {node.summary ? <p className="text-caption text-[var(--steel)]">边界：{node.summary}</p> : null}
+          {node.foundation ? <p className="text-caption text-[#4a2a8f]">共性底座：支撑其他技术的数据、协同与可信能力。</p> : null}
         </Section>
         <Section title="应用任务">
           {([["应用领域", tally(matched(node.items), (id) => resolve.of(id)).slice(0, 8), fields, setFields],
             ["业务环节", tally(matched(node.items), stageOf), stages, setStages]] as const).map(([label, rows, list, set]) =>
-            <div key={label} className="flex flex-wrap items-center gap-1.5"><span className="w-14 shrink-0 text-xs text-[var(--steel)]">{label}</span>
+            <div key={label} className="flex flex-wrap items-center gap-1.5"><span className="w-14 shrink-0 text-caption text-[var(--steel)]">{label}</span>
               {rows.map(([v, n]) => <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))} onClick={() => toggle(list, set, v)}>
                 {v} <span className="tabular-nums opacity-70">{n}</span></button>)}</div>)}
           <p className="text-caption text-[var(--stone)]">数字为项目数（去重）。</p>
@@ -433,7 +433,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
         <Section title="项目与成果">
           <p>{projectCount(matched(node.items))} 个项目（去重）· {matched(node.items).length} 条技术{filtered ? "（当前筛选）" : ""}</p>
           <TierCounts tiers={tierCounts(matched(node.items).map((id) => data.items[id]?.maturity ?? 0))} unit=" 条" />
-          <p className="text-xs text-[var(--stone)]">阶段按条目统计；个别项目的最高阶段不代表整个分支。</p>
+          <p className="text-caption text-[var(--stone)]">阶段按条目统计；个别项目的最高阶段不代表整个分支。</p>
           <TechTimeline lineage={data} itemIds={matched(node.items)} projects={periods} groupOf={groupOf} onOpen={open} />
         </Section>
       </>}

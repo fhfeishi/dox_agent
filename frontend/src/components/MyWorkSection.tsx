@@ -39,33 +39,33 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
 
   return <section aria-label="我的工作">
     {/* bare: the page supplies the heading (leader 首页) and only the progress line remains. */}
-    {bare ? (working ? <p className="mb-2 text-xs text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
+    {bare ? (working ? <p className="mb-2 text-caption text-[var(--steel)]">{working} 项正在处理，完成后在这里打开</p> : null)
       : <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
-      <h2 className="text-base font-semibold text-[var(--heading)]">我的工作</h2>
-      <span className="text-xs text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
+      <h2 className="text-emphasis font-semibold text-[var(--heading)]">我的工作</h2>
+      <span className="text-caption text-[var(--steel)]">{working ? `${working} 项正在处理，完成后在这里打开` : "本账户发起的对话、报告与审查；更早的内容在“报告中心”中"}</span>
     </div>}
     <div className="grid gap-3 lg:grid-cols-3">
       <section aria-label="我的对话" className={box}>
-        <h3 className="mb-2 text-sm font-semibold">我的对话</h3>
+        <h3 className="mb-2 text-body font-semibold">我的对话</h3>
         {sessions.length ? sessions.map((s) => <button key={s.id} type="button" onClick={() => void switchSession(s.id)} className={row}>
           <span className="min-w-0 flex-1 truncate">{s.title}</span>
-          {s.data.origin === "workspace" ? <span className="shrink-0 text-xs text-[var(--steel)]">{TERMS.workspaceAnalysis.name}</span> : null}
-          <span className="shrink-0 text-xs text-[var(--stone)]">{s.updated_at?.slice(5, 10)}</span></button>) : empty("还没有对话。")}
+          {s.data.origin === "workspace" ? <span className="shrink-0 text-caption text-[var(--steel)]">{TERMS.workspaceAnalysis.name}</span> : null}
+          <span className="shrink-0 text-caption text-[var(--stone)]">{s.updated_at?.slice(5, 10)}</span></button>) : empty("还没有对话。")}
       </section>
       <section aria-label="我的报告" className={box}>
-        <h3 className="mb-2 text-sm font-semibold">我的报告</h3>
+        <h3 className="mb-2 text-body font-semibold">我的报告</h3>
         {reports.error ? <p role="alert" className="px-3 text-body text-[var(--red)]">{(reports.error as Error).message}</p> : null}
         {reports.data?.length ? reports.data.map((r) => <button key={r.artifact_id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: r.artifact_id })} className={row}>
           <span className="min-w-0 flex-1 truncate">{r.title || "分析报告"}</span>
-          <span className="shrink-0 text-xs text-[var(--stone)]">{r.interrupted ? "已中断，可重试" : REPORT_STATE[r.status] ?? r.status}</span></button>)
+          <span className="shrink-0 text-caption text-[var(--stone)]">{r.interrupted ? "已中断，可重试" : REPORT_STATE[r.status] ?? r.status}</span></button>)
           : reports.data ? empty("还没有报告。") : empty("正在读取…")}
       </section>
       <section aria-label="我的审查" className={box}>
-        <h3 className="mb-2 text-sm font-semibold">我的审查</h3>
+        <h3 className="mb-2 text-body font-semibold">我的审查</h3>
         {reviews.error ? <p role="alert" className="px-3 text-body text-[var(--red)]">{(reviews.error as Error).message}</p> : null}
         {reviews.data?.length ? reviews.data.map((r) => <button key={r.id} type="button" onClick={() => void navigate(`/review/runs/${encodeURIComponent(r.id)}`)} className={row}>
           <span className="min-w-0 flex-1 truncate">{r.document?.metadata?.title || r.document?.filename || "申请书"}</span>
-          <span className="shrink-0 text-xs text-[var(--stone)]">{REVIEW_STATUS_LABEL[r.status] ?? r.status}</span></button>)
+          <span className="shrink-0 text-caption text-[var(--stone)]">{REVIEW_STATUS_LABEL[r.status] ?? r.status}</span></button>)
           : reviews.data ? empty("还没有审查。") : empty("正在读取…")}
       </section>
     </div>

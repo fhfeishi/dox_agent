@@ -56,8 +56,8 @@ export function LibraryHome() {
   return <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-8">
     <div className="mx-auto max-w-[1200px] space-y-6">
       <header className="flex flex-wrap items-center gap-3">
-        <h1 className="text-2xl font-semibold">资料库</h1>
-        {corporaLoaded ? <span className="text-sm text-[var(--steel)]">{corpora.length} 个资料库</span> : null}
+        <h1 className="text-page font-semibold">资料库</h1>
+        {corporaLoaded ? <span className="text-body text-[var(--steel)]">{corpora.length} 个资料库</span> : null}
         <span className="flex-1" />
         <input type="search" aria-label="搜索资料库" placeholder="搜索资料库名称或说明" value={search.get("q") ?? ""}
           onChange={(e) => setSearch((old) => { const next = new URLSearchParams(old); if (e.target.value) next.set("q", e.target.value); else next.delete("q"); return next; }, { replace: true })}
@@ -78,15 +78,15 @@ export function LibraryHome() {
             className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">新建分组</button> : null}
         </>
       </header>
-      {corporaError || error ? <p role="alert" className="text-sm text-[var(--red)]">{corporaError || error}</p> : null}
-      {!corpora.length ? <p className="text-sm text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可点“新建资料库”。" : "正在读取资料库…"}</p> : null}
+      {corporaError || error ? <p role="alert" className="text-body text-[var(--red)]">{corporaError || error}</p> : null}
+      {!corpora.length ? <p className="text-body text-[var(--steel)]">{corporaLoaded ? "还没有资料库，可点“新建资料库”。" : "正在读取资料库…"}</p> : null}
       {sections.map((section) => {
         const ids = section.ids.filter(visible);
         if (!ids.length && (!section.id || query)) return null;
         return <section key={section.id || "_"} aria-label={section.name || "资料库"}>
           {section.name ? <div className="group mb-2 flex items-center gap-2">
-            <h2 className="text-sm font-semibold text-[var(--steel)]">{section.name} · {ids.length}</h2>
-            {section.id && data ? <span className="flex gap-2 text-xs text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
+            <h2 className="text-body font-semibold text-[var(--steel)]">{section.name} · {ids.length}</h2>
+            {section.id && data ? <span className="flex gap-2 text-caption text-[var(--steel)] opacity-0 group-hover:opacity-100 focus-within:opacity-100">
               <button type="button" onClick={() => { const next = window.prompt("分组名称", section.name); if (next?.trim()) void act(() => changeGroups(data.revision, "rename", section.id, next.trim())); }}>改名</button>
               <button type="button" onClick={() => { if (window.confirm(`解散分组「${section.name}」？其中的资料库回到未分组，不会删除。`)) void act(() => changeGroups(data.revision, "dissolve", section.id)); }}>解散</button>
             </span> : null}
@@ -99,10 +99,10 @@ export function LibraryHome() {
             return <article key={id} className="flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] transition-colors hover:border-[var(--primary)]">
               <button type="button" onClick={() => openCorpus(id)} className="flex-1 p-4 text-left">
                 <span className="flex items-center gap-2"><b className="min-w-0 flex-1 truncate text-emphasis" title={c.name}>{short(c.name)}</b>
-                  {state ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 text-xs text-[var(--warn-fg)]">{state}</span> : null}</span>
+                  {state ? <span className="shrink-0 rounded bg-[var(--warn-bg)] px-1.5 text-caption text-[var(--warn-fg)]">{state}</span> : null}</span>
                 <span className="mt-1 line-clamp-2 block min-h-[2.5em] text-body leading-5 text-[var(--steel)]">{c.description || "暂无说明"}</span>
                 <span className="mt-2 block text-body text-[var(--slate)]">报告 {c.docs_count} 份{info ? ` · 项目 ${info.projects} 个` : ""}</span>
-                {fields ? <span className="mt-0.5 block truncate text-xs text-[var(--stone)]">主要应用领域：{fields}</span> : null}
+                {fields ? <span className="mt-0.5 block truncate text-caption text-[var(--stone)]">主要应用领域：{fields}</span> : null}
               </button>
               <div className="flex border-t border-[var(--hairline)] text-body">
                 <button type="button" onClick={() => openCorpus(id)} className="flex-1 py-2 text-[var(--primary)] hover:bg-[var(--canvas)]">打开</button>

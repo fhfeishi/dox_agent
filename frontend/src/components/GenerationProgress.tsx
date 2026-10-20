@@ -3,7 +3,7 @@ import { generationProgress, type GenerationState } from "../generationProgress"
 export function GenerationProgress(props: GenerationState & { compact?: boolean }) {
   const state = generationProgress(props);
   return <div className={props.compact ? "mt-2" : "my-4 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3"}>
-    <div className="mb-2 flex items-center justify-between gap-3 text-xs text-[var(--steel)]">
+    <div className="mb-2 flex items-center justify-between gap-3 text-caption text-[var(--steel)]">
       <span className="truncate">{state.label}</span>
       {state.percent !== undefined ? <span className="shrink-0 tabular-nums">{state.percent}%{state.active && props.status !== "queued" ? " · 阶段进度" : ""}</span> : null}
     </div>

@@ -37,7 +37,7 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
         const copies = files.filter((f) => f.duplicate_of && (own.includes(f.duplicate_of) || own.includes(f.rel_path)));
         const pending = p.identity_status === "pending";
         const expanded = open.includes(p.project_id);
-        return <li key={p.project_id} className={`rounded-lg border border-l-4 px-3 py-2 text-xs transition-colors ${picked ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
+        return <li key={p.project_id} className={`rounded-lg border border-l-4 px-3 py-2 text-caption transition-colors ${picked ? "border-[var(--primary)] border-l-[var(--primary)] bg-[var(--primary-soft)]" : "border-transparent hover:border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>
           <div className="flex items-center gap-3">
             <input type="checkbox" aria-label={`选择项目 ${p.title}`} checked={picked === ids.length && ids.length > 0}
               ref={(el) => { if (el) el.indeterminate = picked > 0 && picked < ids.length; }} onChange={() => onToggle(ids, picked < ids.length)} />
@@ -72,7 +72,7 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
       {shown.length > limit ? <li><button type="button" onClick={() => setLimit(limit + 60)} className="w-full rounded-lg py-2 text-caption text-[var(--link)] hover:bg-[var(--surface)]">
         显示更多（已显示 {limit} / {shown.length} 个项目）</button></li> : null}
     </ul>
-    {unread.length ? <details open className="rounded-xl border border-[var(--danger-line)] bg-[var(--danger-bg)] px-3 py-2 text-xs">
+    {unread.length ? <details open className="rounded-xl border border-[var(--danger-line)] bg-[var(--danger-bg)] px-3 py-2 text-caption">
       <summary className="cursor-pointer font-medium text-[var(--red)]">未入库的文件 · {unread.length}</summary>
       <ul aria-label="未入库的文件" className="mt-2 space-y-1">{unread.map((f) => <li key={f.rel_path} className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate" title={f.rel_path}>{name(f.rel_path)}</span>

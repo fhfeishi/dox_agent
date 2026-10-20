@@ -149,7 +149,7 @@ export function ResultsPage() {
       {stat("资料审查", totals.data?.completed.review)}
       {stat("情报分析", totals.data?.completed.intelligence)}
     </section>
-    {totals.error ? <p role="alert" className="text-xs text-[var(--red)]">报告统计暂不可读</p> : null}
+    {totals.error ? <p role="alert" className="text-caption text-[var(--red)]">报告统计暂不可读</p> : null}
     {totals.data && (totals.data.active || totals.data.failed) ? <p className="-mt-3 text-body text-[var(--steel)]">
       另有生成中 {totals.data.active} 份、未完成 {totals.data.failed} 份，未计入已完成。</p> : null}
 
@@ -187,7 +187,7 @@ export function ResultsPage() {
         </select>
         </div>
       </div>
-      {query || library || state !== "all" || group !== "all" ? <div className="flex items-center justify-between gap-3 text-xs text-[var(--steel)]">
+      {query || library || state !== "all" || group !== "all" ? <div className="flex items-center justify-between gap-3 text-caption text-[var(--steel)]">
         <span>{loaded ? "当前显示 " + shown.length + " 份" : "正在读取筛选结果"}</span>
         <button type="button" className={link} onClick={() => filter({ q: "", library: "", status: "", group: "" })}>清除筛选</button>
       </div> : null}

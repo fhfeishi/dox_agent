@@ -32,14 +32,14 @@ export function Guide({ area }: { area: string }) {
   const close = () => { setForced(false); if (!guidesSeen.includes(area)) seeGuide(area); };
   return <div role="dialog" aria-label={`${guide.title} 操作指南`}
     className="absolute right-4 bottom-4 z-40 w-[300px] max-w-[calc(100%-2rem)] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 shadow-xl">
-    <p className="text-sm font-semibold">{guide.title} · 三步上手</p>
+    <p className="text-body font-semibold">{guide.title} · 三步上手</p>
     <ol className="mt-2 space-y-1.5 text-body leading-5 text-[var(--slate)]">
       {guide.steps.map((step, i) => <li key={step} className="flex gap-2">
         <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-caption font-semibold text-white">{i + 1}</span>{step}</li>)}
     </ol>
     <div className="mt-3 flex items-center justify-between">
       <span className="text-caption text-[var(--stone)]">可随时点“指南”再次查看</span>
-      <button type="button" onClick={close} className="rounded-md bg-[var(--primary)] px-3 py-1 text-xs text-white">知道了</button>
+      <button type="button" onClick={close} className="rounded-md bg-[var(--primary)] px-3 py-1 text-caption text-white">知道了</button>
     </div>
   </div>;
 }

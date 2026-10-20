@@ -62,7 +62,7 @@ export function BarChart({ spec }: { spec: ChartSpec }) {
 }
 
 function Caption({ spec, scale }: { spec: ChartSpec; scale?: string }) {
-  return <figcaption className="mt-2 text-center text-xs text-[var(--steel)]"><b className="font-semibold text-[var(--slate)]">{spec.title}</b>
+  return <figcaption className="mt-2 text-center text-caption text-[var(--steel)]"><b className="font-semibold text-[var(--slate)]">{spec.title}</b>
     {scale ? <span className="ml-2 text-[var(--stone)]">{scale}</span> : null}
     {spec.note ? <span className="block text-[var(--stone)]">{spec.note}</span> : null}</figcaption>;
 }
@@ -78,7 +78,7 @@ export function ChartBlock({ source }: { source: string }) {
     if (!Array.isArray(spec.labels) || !Array.isArray(spec.values) || spec.labels.length !== spec.values.length) throw new Error();
     return <div className="my-4 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>;
   } catch {
-    return <p role="alert" className="text-xs text-[var(--red)]">图表数据不完整，无法绘制。</p>;
+    return <p role="alert" className="text-caption text-[var(--red)]">图表数据不完整，无法绘制。</p>;
   }
 }
 

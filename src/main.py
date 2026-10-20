@@ -65,6 +65,7 @@ from .hierarchy import HierarchyInvalid
 from .hierarchy import read as read_hierarchy
 from .hierarchy import synthesize as synthesize_hierarchy
 from .intelligence import router as intelligence_router
+from .jobs import JobBusy, Jobs
 from .knowledge import Knowledge, KnowledgeGroup
 from .parsers import collect_sources, import_defaults, parse_web, unsafe_name
 from .project_index import ProjectIndex
@@ -549,10 +550,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         # H1/H2: per-corpus Knowledge cache (default corpus reuses app.state.knowledge),
         # ingest job states and their tasks.
         app.state.corpus_knowledge = {}
-        app.state.corpus_jobs = {}
-        app.state.corpus_tasks = {}
-        app.state.target_jobs = {}
-        app.state.target_tasks = {}
+        app.state.jobs = Jobs(app.state.runs)
+        app.state.jobs.recover()
         app.state.preparation = "ready" if knowledge is not None else "running"
 
         async def prepare():
@@ -577,16 +576,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         with suppress(asyncio.CancelledError): await cleanup_task
         preparation_task.cancel()
         await asyncio.gather(preparation_task, return_exceptions=True)
-        for corpus_task in app.state.corpus_tasks.values():
-            if not corpus_task.done():
-                corpus_task.cancel()
-        if app.state.corpus_tasks:
-            await asyncio.gather(*app.state.corpus_tasks.values(), return_exceptions=True)
-        for target_task in app.state.target_tasks.values():
-            if not target_task.done():
-                target_task.cancel()
-        if app.state.target_tasks:
-            await asyncio.gather(*app.state.target_tasks.values(), return_exceptions=True)
+        await app.state.jobs.shutdown()
 
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
     from .auth import install_auth
@@ -996,7 +986,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             "description": info.description,
             "missing": info.missing,
             "index_progress": dense.progress if dense else None,
-            "job": app.state.corpus_jobs.get(info.id),
+            "job": app.state.jobs.latest("import", info.id),
             **counts,
         }
 
@@ -1057,8 +1047,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         same_case_directory = info.root.name.lower() == name.lower()
         if not target.is_relative_to(root) or (target.exists() and not same_case_directory):
             raise HTTPException(409, "同名知识库已存在")
-        running = request.app.state.corpus_tasks.get(corpus_id)
-        if (running and not running.done()) or request.app.state.import_lock.locked():
+        if request.app.state.jobs.busy("import", corpus_id) or request.app.state.import_lock.locked():
             raise HTTPException(409, "知识库正在上传或导入，暂不能重命名")
         old = info.root
 
@@ -1135,9 +1124,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
             raise HTTPException(404, "知识库不存在")
-        running = app.state.corpus_tasks.get(corpus_id)
-        target_running = app.state.target_tasks.get(corpus_id)
-        if ((running and not running.done()) or (target_running and not target_running.done())
+        if (app.state.jobs.busy("import", corpus_id) or app.state.jobs.busy("target", corpus_id)
                 or app.state.import_lock.locked()):
             raise HTTPException(409, "知识库正在上传或导入，暂不能删除")
         def remove():
@@ -1195,9 +1182,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         configured = any(str(entry.get("path", "")).strip("/") == directory for entry in settings.corpora or [])
         if (owner and not generated_owner) or configured:
             raise HTTPException(409, "所选目录已归属于另一个知识库，请选择未关联的目录")
-        running = request.app.state.corpus_tasks.get(corpus_id)
-        target_running = request.app.state.corpus_tasks.get(target_info.id)
-        if ((running and not running.done()) or (target_running and not target_running.done())
+        if (request.app.state.jobs.busy("import", corpus_id) or request.app.state.jobs.busy("import", target_info.id)
                 or request.app.state.import_lock.locked()):
             raise HTTPException(409, "知识库正在上传或导入，暂不能重新关联")
 
@@ -1240,8 +1225,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "知识库不存在")
         if info.missing:
             raise HTTPException(409, "知识库目录已缺失，刷新和入库前请先重新关联或移除失效记录")
-        running = request.app.state.corpus_tasks.get(corpus_id)
-        if running and not running.done():
+        if request.app.state.jobs.busy("import", corpus_id):
             raise HTTPException(409, "该知识库正在导入")
         # An explicit refresh may initialize source/; ordinary GET requests never do.
         try:
@@ -1250,30 +1234,23 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(409, "资料目录不可访问，未修改现有索引") from exc
         job = {"status": "running", "total": 0, "completed": 0, "imported": 0, "changed": 0,
                "added": 0, "updated": 0, "skipped": 0, "deleted": 0, "forced": force, "errors": []}
-        request.app.state.corpus_jobs[corpus_id] = job
 
-        async def run():
-            try:
-                async with request.app.state.import_lock:
-                    kn = knowledge_for(info)
-                    report = await asyncio.to_thread(import_defaults, kn, settings, root=info.source_dir,
-                                                     force=force, parsed_root=info.root / "parsed")
-                job["total"] = job["completed"] = report["scanned"]
-                job["imported"] = len(report["imported"])
-                job["changed"] = report["added"] + report["updated"]
-                job["added"] = report["added"]
-                job["updated"] = report["updated"]
-                job["skipped"] = report["skipped"]
-                job["deleted"] = report["deleted"]
-                job["errors"] = report["errors"]
-                job["status"] = "partial" if job["errors"] else "done"
-            except Exception as exc:
-                logger.exception("Corpus ingest failed")
-                job["status"] = "error"
-                job["errors"].append({"error": type(exc).__name__})
+        # A persisted run (card B1): a restart leaves it “interrupted” rather than forgotten.
+        async def run(job, report):
+            async with request.app.state.import_lock:
+                kn = knowledge_for(info)
+                result = await asyncio.to_thread(import_defaults, kn, settings, root=info.source_dir,
+                                                 force=force, parsed_root=info.root / "parsed")
+            return {"total": result["scanned"], "completed": result["scanned"], "imported": len(result["imported"]),
+                    "changed": result["added"] + result["updated"], "added": result["added"],
+                    "updated": result["updated"], "skipped": result["skipped"], "deleted": result["deleted"],
+                    "errors": result["errors"], "status": "partial" if result["errors"] else "done"}
 
-        request.app.state.corpus_tasks[corpus_id] = asyncio.create_task(run())
-        return job
+        try:
+            # On the event loop: start() schedules the work there (its two small writes are quick).
+            return request.app.state.jobs.start("import", corpus_id, run, job, params={"force": force})
+        except JobBusy as exc:
+            raise HTTPException(409, "该知识库正在导入") from exc
 
     @app.get("/api/corpora/{corpus_id}/reports")
     async def target_reports(corpus_id: str):
@@ -1307,20 +1284,17 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "知识库不存在")
         if info.missing:
             raise HTTPException(409, "知识库目录已缺失")
-        running = request.app.state.target_tasks.get(corpus_id)
-        if running and not running.done():
+        if request.app.state.jobs.busy("target", corpus_id):
             raise HTTPException(409, "该知识库正在生成四维信息")
         knowledge = knowledge_for(info)
         current_ids = {doc["doc_id"] for doc in await asyncio.to_thread(knowledge.current)}
         missing = [doc_id for doc_id in payload.doc_ids if doc_id not in current_ids]
         if missing:
             raise HTTPException(422, {"message": "所选资料已更新或不可用", "doc_ids": missing})
-        job_id = uuid4().hex
-        job = {"job_id": job_id, "corpus_id": corpus_id, "status": "running",
+        job = {"corpus_id": corpus_id, "status": "running",
                "completed": 0, "total": len(payload.doc_ids), "errors": []}
-        request.app.state.target_jobs[job_id] = job
 
-        async def run_target_job():
+        async def run_target_job(job, report):
             for doc_id in payload.doc_ids:
                 try:
                     record = await extract_target(info, knowledge, settings, doc_id, force=payload.force)
@@ -1334,16 +1308,19 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 except Exception as exc:
                     logger.exception("Target extraction failed for %s", doc_id)
                     job["errors"].append({"doc_id": doc_id, "error": type(exc).__name__})
-            job["status"] = ("done" if not job["errors"] else
-                             "partial" if job["completed"] else "error")
+                report(completed=job["completed"], errors=job["errors"])
+            return {"status": "done" if not job["errors"] else "partial" if job["completed"] else "error"}
 
-        request.app.state.target_tasks[corpus_id] = asyncio.create_task(run_target_job())
-        return job
+        try:
+            return request.app.state.jobs.start("target", corpus_id, run_target_job, job,
+                                                params={"doc_ids": payload.doc_ids, "force": payload.force})
+        except JobBusy as exc:
+            raise HTTPException(409, "该知识库正在生成四维信息") from exc
 
     @app.get("/api/corpora/{corpus_id}/target/jobs/{job_id}")
     async def target_job(corpus_id: str, job_id: str):
-        job = app.state.target_jobs.get(job_id)
-        if job is None or job["corpus_id"] != corpus_id:
+        job = await asyncio.to_thread(app.state.jobs.get, job_id, "target", corpus_id)
+        if job is None:
             raise HTTPException(404, "四维提取任务不存在")
         return job
 

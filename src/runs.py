@@ -41,6 +41,9 @@ SCHEMA = [
     "run_type TEXT NOT NULL, status TEXT NOT NULL, task_id TEXT NOT NULL DEFAULT '', "
     "model TEXT NOT NULL DEFAULT '', resource_policy TEXT NOT NULL DEFAULT '', "
     "fingerprint TEXT NOT NULL, payload TEXT NOT NULL)",
+    # B1: the job runner asks for a library's latest import or extraction, and for unfinished runs.
+    "CREATE INDEX IF NOT EXISTS runs_by_type ON runs(run_type, created_at);"
+    "CREATE INDEX IF NOT EXISTS runs_by_status ON runs(status)",
 ]
 
 
@@ -126,6 +129,18 @@ class RunStore:
         if row is None:
             raise KeyError("运行记录不存在")
         return json.loads(row[0])
+
+    def latest(self, run_type: str, corpus_id: str) -> dict | None:
+        """The newest run of a type for one library (imports, extractions: a handful per library)."""
+        with self.connect() as db:
+            rows = db.execute("SELECT payload FROM runs WHERE run_type=? ORDER BY created_at DESC", (run_type,)).fetchall()
+        return next((s for s in map(json.loads, (r[0] for r in rows)) if corpus_id in s.get("effective_corpus_ids", [])), None)
+
+    def unfinished(self, run_types: tuple[str, ...]) -> list[dict]:
+        with self.connect() as db:
+            rows = db.execute(f"SELECT payload FROM runs WHERE status IN ('queued','running') AND run_type IN "
+                              f"({','.join('?' for _ in run_types)})", run_types).fetchall()
+        return [json.loads(row[0]) for row in rows]
 
     def existing_ids(self, run_ids: list[str]) -> set[str]:
         ids = list(dict.fromkeys(run_id for run_id in run_ids if run_id))

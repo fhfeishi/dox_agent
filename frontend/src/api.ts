@@ -18,7 +18,9 @@ export class ApiError extends Error {
 }
 export type TaskParameter = { key: string; label: string; type: "text" | "integer" | "enum" | "boolean" | "year_range"; help?: string; required?: boolean; options?: string[]; default?: unknown };
 export type TaskInfo = { id: string; name: string; description: string; prompt?: string; example?: string; output_hint?: string; has_template: boolean; templates?: string[]; artifacts?: { default: string; allowed: string[] }; kind?: "builtin" | "custom"; status?: "draft" | "published" | "archived"; archived?: boolean; engine_task_id?: string; version?: number; revision?: number; background?: string; goal?: string; requirements?: string; category?: string; boundaries?: string; clarification_conditions?: string; output_instructions?: string; outline?: string; parameter_defaults?: Record<string, string>; parameters?: TaskParameter[]; report_template_id?: string; report_template_version?: number; skill_id?: string; skill_version?: number };
-export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[] };
+export type CorpusJob = { status: string; total: number; completed: number; imported: number; changed: number; added?: number; updated?: number; skipped?: number; deleted?: number; forced?: boolean; errors: { source?: string; error: string }[];
+  /** The persisted run behind it (card B1): status "interrupted" when a restart cut it off. */
+  run_id?: string; started_at?: string; ended_at?: string | null };
 export type CorpusInfo = {
   id: string; name: string; kind: string; domain: string; rel_path: string;
   docs_count: number; preparation: string; is_default: boolean; missing?: boolean;
@@ -117,7 +119,7 @@ export type WebSnapshot = { web_snapshot_id: string; url: string; title: string;
 export type WebSearchResult = { result_id: string; url: string; title: string; snippet: string };
 export type WebSearch = { search_id: string; expires_at: string; query: string; domains: string[]; time_filter: string; provider: string; results: WebSearchResult[] };
 
-export type TargetJob = { job_id: string; corpus_id: string; status: "running" | "done" | "partial" | "error"; completed: number; total: number; errors: { doc_id: string; error: string }[] };
+export type TargetJob = { job_id: string; corpus_id: string; status: "running" | "done" | "partial" | "error" | "interrupted"; completed: number; total: number; errors: { doc_id: string; error: string }[] };
 export type TargetEvidence = { version: string; locator: { basis: string; page?: number; chunk_id?: string; heading?: string; start_char?: number; end_char?: number }; quote: string };
 export type TargetItem = {
   id: string; name: string; desc: string;

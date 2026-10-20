@@ -32,6 +32,13 @@ def serve(root: Path, port: int):
         return f"# {params['domain']}\n\n巡检机器人项目的研究进展 [1]。\n"
 
     main_module.generate_markdown = writer
+    importer = main_module.import_defaults
+
+    def slow_import(*args, **kwargs):  # a library refresh that takes root/import_delay seconds
+        time.sleep(float((root / "import_delay").read_text()))
+        return importer(*args, **kwargs)
+
+    main_module.import_defaults = slow_import
     storage.DATA = root / "state" / "review"
     settings = Settings(_env_file=None, state_dir=root / "state", corpora_root=root / "corpora", user_dir=root / "usr",
                         model_api_key=SecretStr("fixture"), model_base_url="http://127.0.0.1:9", embedding_path="")
@@ -107,6 +114,7 @@ async def main():
         root = Path(directory)
         corpus_id = prepare(root)
         (root / "delay").write_text("4")
+        (root / "import_delay").write_text("0")
         child, origin = start(root)
         try:
             async with async_playwright() as p:
@@ -158,9 +166,24 @@ async def main():
                 await until(page, interrupted.filter(has_text="已完成"))
                 await expect(interrupted.filter(has_text="已中断")).to_have_count(0)
                 await page.screenshot(path=str(ROOT / ".logsdev/verification/upgrade-B1/results-retried.png"))
+
+                # 3. A library refresh cut off by a restart is reported as such, not forgotten.
+                (root / "import_delay").write_text("120")
+                assert (await page.request.post(f"{origin}/api/corpora/{quote(corpus_id)}/ingest")).ok
+                await page.wait_for_timeout(1000)
+                os.kill(child.pid, signal.SIGKILL)
+                child.wait(timeout=10)
+                (root / "import_delay").write_text("0")
+                child, origin = start(root)
+                page = await context.new_page()
+                await sign_in(page, origin)
+                await page.goto(f"{origin}/library/{quote(corpus_id)}/documents")
+                await expect(page.get_by_text("上次刷新因服务重启中断", exact=False)).to_be_visible()
+                await page.screenshot(path=str(ROOT / ".logsdev/verification/upgrade-B1/library-import-interrupted.png"))
                 assert not errors, errors
                 await browser.close()
-            print("PASS report survives a closed page; after kill -9 it shows 已中断，可重试 and the retry completes")
+            print("PASS report survives a closed page; after kill -9 it shows 已中断，可重试 and the retry completes; "
+                  "an import cut off by kill -9 shows as interrupted")
         finally:
             child.kill()
             child.wait(timeout=10)

@@ -155,6 +155,17 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
       ) : (
         <>
           {error ? <p role="alert" className="text-[12.5px] text-[var(--red)]">{error}</p> : null}
+          {/* The library's latest refresh, above the content: a cut-off or failed one needs a look, not a footnote. */}
+          {corpus.job && ["interrupted", "error", "partial"].includes(corpus.job.status) ? (
+            <div role="status" className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--tint-peach)] px-3 py-2 text-[12.5px] text-[var(--charcoal)]">
+              <b>{corpus.job.status === "interrupted" ? "上次刷新因服务重启中断" : corpus.job.status === "partial" ? `上次刷新部分完成：${corpus.job.errors.length} 项失败` : "上次刷新失败"}</b>
+              <span className="text-[var(--slate)]">现有索引保留{corpus.job.ended_at ? ` · ${new Date(corpus.job.ended_at).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" })}` : ""}</span>
+              <button type="button" className="ml-auto text-[var(--link)] hover:underline disabled:opacity-50" disabled={busy || ingestBusy} onClick={() => runCorpusIngest(corpus.id)}>再次刷新</button>
+            </div>
+          ) : corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
+            {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :
+              `最近刷新：新增 ${corpus.job.added ?? 0}，更新 ${corpus.job.updated ?? 0}，删除 ${corpus.job.deleted ?? 0}，跳过 ${corpus.job.skipped ?? 0}`}
+          </p> : null}
           {corpusView === "files" ? (
             <CorpusFiles
               corpusId={corpus.id}
@@ -169,12 +180,6 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
           {corpusView === "files" ? (admin ? <TopicAdmin corpusId={corpus.id} /> : null) : (
             <><ProjectOverview corpusId={corpus.id} corpusName={corpus.name} />{view === "target" ? <details className="mt-5"><summary className="cursor-pointer text-sm text-[var(--steel)]">文件级整理与只读对照</summary><TargetReports corpusId={corpus.id} /></details> : null}</>
           )}
-          {corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
-            {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :
-              corpus.job.status === "partial" ? `部分完成：${corpus.job.errors.length} 项失败` :
-                corpus.job.status === "error" ? "刷新失败，现有索引保留" :
-                  `最近刷新：新增 ${corpus.job.added ?? 0}，更新 ${corpus.job.updated ?? 0}，删除 ${corpus.job.deleted ?? 0}，跳过 ${corpus.job.skipped ?? 0}`}
-          </p> : null}
         </>
       )}
       </div>

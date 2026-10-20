@@ -70,7 +70,7 @@ async def main():
 
             await page.route(re.compile(r".*/api/corpora/[^/]+/files.*$"), lambda r: r.fulfill(json={"source_dir":"/tmp/source", "files":[], "misplaced_files":[]}))
             # Refresh is now explicitly per library; the old global-refresh action is gone.
-            for cid, message in (("a","最近刷新"),("b","刷新失败，现有索引保留"),("c","部分完成：1 项失败")):
+            for cid, message in (("a","最近刷新"),("b","上次刷新失败"),("c","部分完成：1 项失败")):
                 await page.goto(origin + "/library/" + cid + "/documents")
                 await page.get_by_role("button",name="管理 ▾",exact=True).click()
                 await page.get_by_role("menuitem",name="刷新本库",exact=True).click()

@@ -103,7 +103,7 @@ async def main():
                 await preview.get_by_role("button", name="关闭 ✕").click()
             preview_file_status = 200
 
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
+            await page.get_by_role("link", name="对话工作台", exact=True).click()
             await page.get_by_role("textbox", name="问题", exact=True).fill("这个项目的结论是什么？")
             await page.get_by_role("button", name="发送 ↑").click()
             stale_citation = page.get_by_role("button", name="[2]", exact=True).last

@@ -235,7 +235,7 @@ async def main():
             await expect(page.get_by_role("button", name="✓ 演示库", exact=True)).to_be_visible()
 
             # ---- 进入库内的技术研判 ------------------------------------------------
-            await page.get_by_role("button", name="资料库", exact=True).click()
+            await page.get_by_role("link", name="资料库", exact=True).click()
             await page.get_by_role("button", name="打开", exact=True).first.click()  # the library cards (query 2026-1013 2012)
             await page.get_by_role("button", name="技术研判", exact=True).first.click()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
@@ -315,7 +315,7 @@ async def main():
             await expect(page.get_by_text(re.compile("提取中 · 已完成"))).to_be_visible()
             await page.get_by_role("button", name="停止查看进度").click()
             await expect(page.get_by_text("仍在处理：已停止自动刷新，可点击“继续查看状态”查看最新进度")).to_be_visible()
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
+            await page.get_by_role("link", name="对话工作台", exact=True).click()
             await page.go_back()
             disclosure = page.locator("details").filter(has=page.get_by_text("文件级整理与只读对照", exact=True))
             if not await disclosure.evaluate("(element) => element.open"):

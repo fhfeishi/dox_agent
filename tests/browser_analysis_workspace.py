@@ -74,7 +74,7 @@ async def main():
                 await page.goto(origin+"/home")
                 await page.evaluate("""async()=>{for(const k of ['home','overview','chat','library','tasks','review','intelligence','results']) await fetch('/api/auth/guides',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:k})})}""")
                 # 1. Receive: a folder upload; only the unreadable file is reported as failed.
-                await act(page.get_by_role("button", name="资料库", exact=True))
+                await act(page.get_by_role("link", name="资料库", exact=True))
                 await act(page.get_by_role("button", name="打开", exact=True).first)
                 guide = page.get_by_role("button", name="知道了")
                 if await guide.count(): await guide.click()

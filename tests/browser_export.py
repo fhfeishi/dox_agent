@@ -54,7 +54,7 @@ async def main():
             await page.route("**/api/chat", chat)
 
             await page.goto(origin)
-            await page.get_by_role("button", name="对话工作台", exact=True).click()
+            await page.get_by_role("link", name="对话工作台", exact=True).click()
             await page.get_by_role("textbox", name="问题", exact=True).fill("导出测试")
             await page.get_by_role("button", name="发送 ↑").click()
 

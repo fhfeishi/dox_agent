@@ -186,7 +186,7 @@ async def main():
                 body=b"%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF"))
 
             await page.goto(origin + "/chat")
-            await page.get_by_role("button", name="资料库", exact=True).click()
+            await page.get_by_role("link", name="资料库", exact=True).click()
             # 资料库 opens on the cards (query 2026-1013 2012); a card opens the library in place.
             await page.get_by_role("button", name="打开", exact=True).first.click()
             await page.get_by_role("button", name="技术研判", exact=True).first.click()

@@ -146,7 +146,7 @@ async def main():
                 screenshots=Path(".logsdev/verification/upgrade-20261019-q1")
                 screenshots.mkdir(parents=True,exist_ok=True)
                 await page.screenshot(path=str(screenshots/"projects.png"),full_page=True)
-                await page.get_by_role("button", name="情报分析", exact=True).click()
+                await page.get_by_role("link", name="情报分析", exact=True).click()
                 await page.get_by_label("上传外部材料", exact=True).set_input_files(
                     {
                         "name": "外部技术说明.md",
@@ -168,7 +168,7 @@ async def main():
                 await expect(pane.get_by_text("外部材料自述 · 原输入版本保留", exact=True)).to_be_visible()
                 await page.get_by_role("button", name="关闭预览面板", exact=True).click()
                 # 成果是独立页面，报告按类别分组（query 2026-1015 1553）。
-                await page.get_by_role("button", name="报告中心", exact=True).click()
+                await page.get_by_role("link", name="报告中心", exact=True).click()
                 results = page.get_by_role("region", name="报告列表", exact=True)
                 await results.get_by_role("tab", name=re.compile("^情报分析")).click()
                 await expect(results.get_by_text("综合情报报告", exact=True).first).to_be_visible()

@@ -94,7 +94,7 @@ async def main():
                 with ZipFile(BytesIO(await zip_response.body())) as package:
                     assert package.read(f"figures/{figure_id}.jpg") == figure_bytes
                 # 成果 is a page in the main bar (query 2026-1019 1458); its report list opens the report on the right.
-                await page.get_by_role("navigation", name="主导航").get_by_role("button", name="报告中心", exact=True).click()
+                await page.get_by_role("navigation", name="主导航").get_by_role("link", name="报告中心", exact=True).click()
                 await page.get_by_role("region", name="报告列表").get_by_role("button", name="云边协同", exact=False).first.click()
                 image = page.get_by_role("img", name="图1 云边协同架构")
                 await expect(image).to_be_visible()

@@ -118,7 +118,7 @@ async def main():
                     except OSError: pass
                     await asyncio.sleep(0.1)
                 else: raise AssertionError("uploaded.txt 未在 10 秒内落盘")
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="对话工作台",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
                 await expect(page.get_by_role("button",name="✓ fixture",exact=True)).to_be_visible()
                 await expect(page.get_by_role("button",name="✓ zz-b",exact=True)).to_be_visible()
                 await expect(page.get_by_role("button",name="✓ zz-c",exact=True)).to_have_count(0)
@@ -167,7 +167,7 @@ async def main():
                 assert report.status == 201, await report.text()
 
 
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
                 await expect(page.get_by_role("button", name="实测领域", exact=True)).to_be_visible()
                 await page.get_by_role("button", name="离线回答 [1]", exact=True).click()
@@ -183,7 +183,7 @@ async def main():
                 await page.get_by_role("combobox", name="报告版本").select_option("1")
                 await expect(page.get_by_text("原始回答已核验").last).to_be_visible()
                 await page.get_by_role("button", name="关闭预览面板",exact=True).click()
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
                 card=page.get_by_role("region",name="报告列表").get_by_role("listitem").filter(has=page.get_by_role("button",name="离线回答 [1]",exact=True))
                 await card.get_by_role("button",name="移入回收站",exact=True).click()
@@ -193,10 +193,10 @@ async def main():
                 await page.get_by_role("combobox",name="报告版本").select_option("1")
                 await expect(page.get_by_text("原始回答已核验").last).to_be_visible()
                 await page.get_by_role("button",name="还原",exact=True).last.click()
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(page.get_by_role("button",name="离线回答 [1]",exact=True)).to_be_visible()
                 # P1: a second snapshot is purged through the browser confirm path; the chat answer survives.
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="对话工作台",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
                 await page.get_by_role("textbox",name="问题",exact=True).fill("第二次查询样本")
                 await page.get_by_role("button",name="发送 ↑",exact=True).click()
                 await expect(page.get_by_role("button",name="保存到报告中心",exact=True)).to_have_count(1)  # current turn only
@@ -205,7 +205,7 @@ async def main():
                 snapshots=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
                 assert len(snapshots)==2,snapshots
                 doomed=snapshots[0]["artifact_id"]  # active view sorts created_at DESC; card 0 is the newest snapshot
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 cards=page.get_by_role("region",name="报告列表").get_by_role("listitem").filter(has=page.get_by_role("button",name="离线回答 [1]",exact=True))
                 await expect(cards).to_have_count(2)
                 await cards.nth(0).get_by_role("button",name="移入回收站",exact=True).click()
@@ -225,11 +225,11 @@ async def main():
                 assert (await purged.json())["detail"]["lifecycle"]=="purged"
                 remaining=await (await page.request.get(f"{origin}/api/artifacts?type=answer_snapshot")).json()
                 assert [item["artifact_id"] for item in remaining]==[snapshots[1]["artifact_id"]]
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(cards).to_have_count(1)
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="对话工作台",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
                 await expect(page.get_by_text("离线回答 [1]").last).to_be_visible()  # the chat answer outlives its purged snapshot
-                await page.get_by_role("navigation").get_by_role("button",name="资料库",exact=True).click()
+                await page.get_by_role("navigation").get_by_role("link",name="资料库",exact=True).click()
                 page.once("dialog",lambda dialog: dialog.accept("研究组"))
                 await page.get_by_role("button",name="新建分组",exact=True).click()
                 await expect(page.get_by_role("region",name="研究组",exact=True)).to_be_visible()
@@ -251,7 +251,7 @@ async def main():
                 await group.get_by_role("button",name="解散",exact=True).click()
                 await expect(group).to_have_count(0)
                 assert len(await (await page.request.get(f"{origin}/api/corpora")).json()) == 3
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="对话工作台",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="对话工作台",exact=True).click()
                 await page.set_viewport_size({"width":720,"height":900})
                 await expect(page.get_by_role("button",name="＋管理知识库",exact=True)).to_be_visible()
                 shots=Path(".logsdev/verification/upgrade-20261019-q1")
@@ -282,7 +282,7 @@ async def main():
                 page = await browser.new_page(viewport={"width": 1440, "height": 950})
                 await login(page, origin)
                 await page.goto(origin + "/chat")
-                await page.get_by_role("navigation",name="主导航").get_by_role("button",name="报告中心",exact=True).click()
+                await page.get_by_role("navigation",name="主导航").get_by_role("link",name="报告中心",exact=True).click()
                 await expect(page.get_by_role("button", name="离线回答 [1]", exact=True)).to_be_visible()
                 await expect(page.get_by_role("button", name="实测领域", exact=True)).to_be_visible()
                 items = await (await page.request.get(f"{origin}/api/artifacts")).json()

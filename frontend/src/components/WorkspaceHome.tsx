@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../auth";
+import { workCards } from "../navigation";
 import { useApp } from "../store";
 import { fetchReviewRuns, type ReviewRun } from "../reviewApi";
 
@@ -16,17 +17,11 @@ function latestReviews(runs: ReviewRun[]) {
 }
 import { resultsSummaryQuery } from "../resultsSummary";
 import type { ArtifactSummary } from "../api";
-import { Icon, type IconName } from "./Icons";
+import { Icon } from "./Icons";
 import { GenerationProgress } from "./GenerationProgress";
 import { MyWorkSection } from "./MyWorkSection";
 import { LeaderHome } from "./LeaderHome";
 
-const ACTIONS: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
-  { to: "/library", title: "资料查阅", text: "从场景、问题、技术和成果了解一个领域。", icon: "library", accent: "var(--area-library)" },
-  { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势，形成有出处的报告。", icon: "tasks", accent: "var(--area-analysis)" },
-  { to: "/review/formal", title: "资料审查", text: "上传材料，按模板核对规范或开展技术评议。", icon: "review", accent: "var(--area-review)" },
-  { to: "/intelligence", title: "情报分析", text: "结合外部信息与库内资料，分析背景与可行性。", icon: "forecast", accent: "var(--area-intelligence)" },
-];
 
 export function WorkspaceHome() {
   const { role } = useAuth();
@@ -80,7 +75,7 @@ function WorkHome() {
       <section aria-label="开始工作">
         <div className="mb-3"><h2 className="text-base font-semibold text-[var(--heading)]">开始一项工作</h2></div>
         <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-          {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex min-h-[140px] min-w-0 flex-col rounded-xl border border-[var(--line-cool)] bg-white p-4 sm:p-5 transition-colors hover:border-[var(--line-cool-strong)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+          {workCards(role).map((a) => <Link key={a.to} to={a.to} className="group flex min-h-[140px] min-w-0 flex-col rounded-xl border border-[var(--line-cool)] bg-white p-4 sm:p-5 transition-colors hover:border-[var(--line-cool-strong)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
             <span className="flex items-center justify-between"><span className="grid size-9 place-items-center rounded-lg bg-[var(--surface-cool)]" style={{ color: a.accent }}><Icon name={a.icon} size={20} /></span>
               <span aria-hidden="true" className="text-[var(--muted-cool-soft)] group-hover:text-[var(--primary)]">↗</span></span>
             <h3 className="mt-3 text-emphasis font-semibold">{a.title}</h3><p className="mt-2 text-xs leading-6 text-[var(--steel)]">{a.text}</p>

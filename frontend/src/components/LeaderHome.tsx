@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router";
+import { workCards } from "../navigation";
 import { useApp } from "../store";
 import { RadarChart } from "./Charts";
-import { Icon, type IconName } from "./Icons";
+import { Icon } from "./Icons";
 import type { LibraryOverview } from "./LeaderConstruction";
 import { MyWorkSection } from "./MyWorkSection";
 import { HeroCarousel } from "./HeroCarousel";
@@ -11,12 +12,6 @@ const short = (name: string) => name.replace(/^自然科学基金-/, "");
 const wan = (yuan: string | number) => (Number(yuan) / 10000).toLocaleString("zh-CN", { maximumFractionDigits: 0 });
 const span = (years: number[]) => years.length ? `${years[0]}–${years.at(-1)}` : "年份待核对";
 
-const WORK: { to: string; title: string; text: string; icon: IconName; accent: string }[] = [
-  { to: "/library", title: "资料查阅", text: "按领域浏览项目资料与原文", icon: "library", accent: "var(--area-library)" },
-  { to: "/tasks", title: "存量分析", text: "对比项目、研判趋势、形成报告", icon: "tasks", accent: "var(--area-analysis)" },
-  { to: "/review/formal", title: "资料审查", text: "核对申请书规范，开展技术评议", icon: "review", accent: "var(--area-review)" },
-  { to: "/intelligence", title: "情报分析", text: "结合外部材料分析背景与可行性", icon: "forecast", accent: "var(--area-intelligence)" },
-];
 
 function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
   return <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -61,7 +56,7 @@ export function LeaderHome() {
       <section aria-label="工作台" className="@container">
         <SectionHead index="01" title="工作台" />
         <div className="grid grid-cols-2 gap-4 @5xl:grid-cols-4">
-          {WORK.map((w) => <Link key={w.to} to={w.to}
+          {workCards("leader").map((w) => <Link key={w.to} to={w.to}
             className="group relative flex min-h-[158px] flex-col overflow-hidden rounded-2xl border border-[var(--line-cool)] bg-white p-5 transition-[border-color,box-shadow] hover:border-[var(--line-cool-strong)] hover:shadow-md focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
             <span aria-hidden="true" className="pointer-events-none absolute -right-3 -bottom-4 opacity-[0.06]" style={{ color: w.accent }}><Icon name={w.icon} size={112} /></span>
             <span className="relative flex items-center gap-3">

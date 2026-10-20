@@ -223,8 +223,8 @@ function SplitPane({ left, right, full }: { left: ReactNode; right: ReactNode; f
 /** A section of the detail panel: a small heading and its body. */
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return <section className="border-t border-[var(--hairline)] pt-3 first:border-t-0 first:pt-0">
-    <h4 className="mb-1.5 text-[12px] font-semibold tracking-wide text-[var(--stone)]">{title}</h4>
-    <div className="space-y-1.5 text-[13px] leading-6">{children}</div>
+    <h4 className="mb-1.5 text-caption font-semibold tracking-wide text-[var(--stone)]">{title}</h4>
+    <div className="space-y-1.5 text-body leading-6">{children}</div>
   </section>;
 }
 
@@ -358,7 +358,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
               {values.map((v) => { const n = projectCount(all.filter(test(v))); return n ? <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))}
                 onClick={() => toggle(list, set, v)}>{v} <span className="tabular-nums opacity-70">{n}</span></button> : null; })}
             </div>)}
-          <p className="text-[11px] text-[var(--stone)]">数字为项目数（去重）；一个项目可涉及多个领域与环节。</p>
+          <p className="text-caption text-[var(--stone)]">数字为项目数（去重）；一个项目可涉及多个领域与环节。</p>
           {filtered ? <p role="status" className="pt-0.5 text-xs text-[var(--steel)]">已筛选 {[...fields, ...stages].join("、")} · 匹配 {projectCount([...match])} 个项目、{match.size} 条技术
             <button type="button" className="ml-2 text-[var(--link)] hover:underline" onClick={() => { setFields([]); setStages([]); }}>恢复全部</button></p> : null}
         </details>
@@ -368,7 +368,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
               : <b className="px-1">{n.name}</b>}</span>)}
         </nav>
         <LineageColumns path={path} lineage={data} match={match} projects={projectCount} onSelect={onFocus} />
-        <p className="mt-2 flex flex-wrap items-center gap-1.5 text-[11.5px] text-[var(--steel)]">项目技术的报告所述阶段：
+        <p className="mt-2 flex flex-wrap items-center gap-1.5 text-caption text-[var(--steel)]">项目技术的报告所述阶段：
           {TIERS.map((tier) => <span key={tier.label} className="inline-flex items-center gap-1"><Tier level={tier.min} />
             <span className="text-[var(--stone)]">{tier.min === 5 ? "5 级" : tier.min === 4 ? "4 级" : tier.min === 2 ? "2–3 级" : "0–1 级"}</span></span>)}</p>
       </>}
@@ -435,7 +435,7 @@ export function LineageTree({ corpusId, focus, onFocus, onIssue }: {
             <div key={label} className="flex flex-wrap items-center gap-1.5"><span className="w-14 shrink-0 text-xs text-[var(--steel)]">{label}</span>
               {rows.map(([v, n]) => <button key={v} type="button" aria-pressed={list.includes(v)} className={chip(list.includes(v))} onClick={() => toggle(list, set, v)}>
                 {v} <span className="tabular-nums opacity-70">{n}</span></button>)}</div>)}
-          <p className="text-[11px] text-[var(--stone)]">数字为项目数（去重）。</p>
+          <p className="text-caption text-[var(--stone)]">数字为项目数（去重）。</p>
         </Section>
         <Section title="项目与成果">
           <p>{projectCount(matched(node.items))} 个项目（去重）· {matched(node.items).length} 条技术{filtered ? "（当前筛选）" : ""}</p>

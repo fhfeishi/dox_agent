@@ -93,21 +93,21 @@ function MenuTab({ label, sections, active, current }: { label: string; sections
       {sections.map((section) => section.children ? <div key={section.label}>
         <button type="button" role="menuitem" aria-expanded={expanded === section.label}
           onClick={() => setExpanded(expanded === section.label ? null : section.label)}
-          className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-[13px] text-[var(--ink)] hover:bg-[var(--surface)]">
+          className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-body text-[var(--ink)] hover:bg-[var(--surface)]">
           {section.label}<span aria-hidden="true" className="text-[var(--stone)]">{expanded === section.label ? "−" : "+"}</span>
         </button>
         {expanded === section.label ? <div className="mb-1 ml-3 space-y-0.5 border-l border-[var(--hairline)] pl-1.5">
           {section.children.map((page) => <Link key={page.to} role="menuitem" to={page.to}
-            className={`block rounded-md px-3 py-1.5 text-[13px] hover:bg-[var(--surface)] ${current(page.to) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{page.label}</Link>)}
+            className={`block rounded-md px-3 py-1.5 text-body hover:bg-[var(--surface)] ${current(page.to) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{page.label}</Link>)}
         </div> : null}
       </div> : <Link key={section.to} role="menuitem" to={section.to!}
-        className={`block rounded-md px-3 py-2 text-[13px] hover:bg-[var(--surface)] ${current(section.to!) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{section.label}</Link>)}
+        className={`block rounded-md px-3 py-2 text-body hover:bg-[var(--surface)] ${current(section.to!) ? "font-semibold text-[var(--primary-pressed)]" : ""}`}>{section.label}</Link>)}
     </div> : null}
   </div>;
 }
 
 function tab(active: boolean) {
-  return `relative shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-[14px] font-medium transition-colors ${active
+  return `relative shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-body font-medium transition-colors ${active
     ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--slate)] hover:bg-[var(--surface)] hover:text-[var(--ink)]"}`;
 }
 
@@ -136,7 +136,12 @@ export function TopNav() {
     };
     check();
     window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    // Entries can grow after the first layout (web fonts, the account's role arriving): measure again
+    // whenever one of them changes size, or 报告中心 is clipped off the end of an unfolded bar.
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(check);
+    for (const entry of Array.from(navRef.current?.children ?? [])) observer?.observe(entry);
+    void document.fonts?.ready.then(check);
+    return () => { window.removeEventListener("resize", check); observer?.disconnect(); };
   }, [folded, role]);
   useEffect(() => { setFolded(false); }, [role]);
   const links: MenuSection[] = [
@@ -156,7 +161,7 @@ export function TopNav() {
       onClick={toggleSidebar} className={icon}><Icon name="list" size={18} /></button> : <span className="w-8 shrink-0" />}
     <Link to="/home" aria-label="回到工作首页" className="mr-2 flex shrink-0 items-center gap-2">
       <span className="grid size-7 place-items-center rounded-lg bg-[var(--navy)]"><BrandMark size={14} /></span>
-      <span className="hidden text-[15px] font-semibold text-[var(--ink)] md:inline">资料工作台</span>
+      <span className="hidden text-emphasis font-semibold text-[var(--ink)] md:inline">资料工作台</span>
     </Link>
     <nav ref={navRef} aria-label="主导航" className={`min-w-0 flex-1 items-center gap-1 overflow-hidden ${folded ? "hidden" : "flex"}`}>
       {ITEMS.slice(0, 1).map((item) => <button key={item.key} type="button" aria-current={nav === item.key ? "page" : undefined} onClick={() => setNav(item.key)} title={item.hint} className={tab(nav === item.key)}>{item.label}</button>)}
@@ -183,10 +188,10 @@ export function TopNav() {
     </nav> : null}
     {/* Model name, address and connection test are the administrator's (节点审查 B2); others see whether analysis is available. */}
     {role === "admin" ? <button type="button" title={`模型：${model || "未知"} · ${llmText}`} aria-label={`模型状态：${llmText}`} onClick={() => setDrawerOpen(true)}
-      className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
+      className="hidden shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-caption text-[var(--steel)] hover:bg-[var(--surface)] sm:flex">
       <span className={`size-2 rounded-full ${llmTone}`} />模型</button>
       // Others are told about the analysis service only when it is not available.
-      : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-[12px] text-[var(--steel)] sm:flex">
+      : llmText !== "正常" ? <span title={`分析服务：${llmText}`} aria-label={`分析服务：${llmText}`} className="hidden shrink-0 items-center gap-1.5 px-2.5 py-1 text-caption text-[var(--steel)] sm:flex">
         <span className={`size-2 rounded-full ${llmTone}`} />分析服务{llmText}</span> : null}
     {role === "admin" ? <button type="button" aria-label="设置" title="设置" onClick={() => setDrawerOpen(true)} className={icon}><Icon name="settings" size={17} /></button> : null}
     <UserMenu />

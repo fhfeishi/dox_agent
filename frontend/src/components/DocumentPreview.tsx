@@ -40,7 +40,7 @@ export function DocumentPreview({
       header={doc?.title ?? ""}
       meta={
         doc ? (
-          <p className="mt-[4px] break-all text-[11px] text-[var(--stone)]">
+          <p className="mt-[4px] break-all text-caption text-[var(--stone)]">
             {documentMeta(doc)}
             {isLegacyParser(doc.parser) ? (
               <span className="ml-2 inline-block">
@@ -97,15 +97,15 @@ export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?
   }, [doc, corpus]);
   return (
     <>
-      {loading ? <p className="text-[13px] text-[var(--steel)]">正在读取正文…</p> : null}
+      {loading ? <p className="text-body text-[var(--steel)]">正在读取正文…</p> : null}
       {error ? (
-        <p role="alert" className="text-[13px] text-[var(--red)]">
+        <p role="alert" className="text-body text-[var(--red)]">
           {error}
         </p>
       ) : null}
       {!loading && !error ? (
         <>
-          <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-[12px]">
+          <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-caption">
             {markdown ? (
               <button type="button" className="text-[var(--link)] hover:underline" onClick={() => setRaw((value) => !value)}>
                 {raw ? "渲染 Markdown" : "查看原文"}
@@ -133,11 +133,11 @@ export function TextPreview({ doc, corpus }: { doc: DocumentInfo | null; corpus?
               </Markdown>
             </div>
           ) : (
-            <pre className="font-code whitespace-pre-wrap break-words text-[12px] leading-[1.9] text-[var(--charcoal)]">
+            <pre className="font-code whitespace-pre-wrap break-words text-caption leading-[1.9] text-[var(--charcoal)]">
               {text}
             </pre>
           )}
-          <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-[11px] text-[var(--stone)]">
+          <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-caption text-[var(--stone)]">
             这是知识库规范化正文预览，不等于原始 PDF 文件。
           </p>
         </>

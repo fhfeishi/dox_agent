@@ -85,7 +85,7 @@ export function SidePanel() {
           {childrenOf(session.id).map((child) => (
             <li key={child.id}><button type="button" disabled={!workspace.loaded || sessionBusy}
               onClick={() => void switchSession(child.id)}
-              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-[12px] text-[var(--steel)] transition-colors hover:bg-[#f1efec] disabled:opacity-40">
+              className="w-full truncate rounded-[6px] px-[8px] py-[6px] text-left text-caption text-[var(--steel)] transition-colors hover:bg-[#f1efec] disabled:opacity-40">
               {child.title} <span className="text-[var(--stone)]">· 历史分支</span>
             </button></li>
           ))}
@@ -103,7 +103,7 @@ export function SidePanel() {
           aria-label="＋ 新的问答"
           disabled={!workspace.loaded || sessionBusy}
           onClick={() => void switchSession()}
-          className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] bg-[var(--primary)] px-[14px] py-[9px] text-[13.5px] font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
+          className="font-app flex w-full items-center justify-center gap-[7px] rounded-[8px] bg-[var(--primary)] px-[14px] py-[9px] text-body font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
         >
           <Icon name="plus" size={15} strokeWidth={2} />
           新建对话
@@ -124,9 +124,9 @@ export function SidePanel() {
           <>
             <div className="flex gap-[6px] px-[8px] pt-[4px]">
               <button type="button" aria-label="全部会话" onClick={() => setSessionFilter("all")}
-                className={`rounded-full px-[9px] py-[4px] text-[11px] ${sessionFilter === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>全部</button>
+                className={`rounded-full px-[9px] py-[4px] text-caption ${sessionFilter === "all" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>全部</button>
               <button type="button" aria-label="仅看置顶" onClick={() => setSessionFilter("pinned")}
-                className={`rounded-full px-[9px] py-[4px] text-[11px] ${sessionFilter === "pinned" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>置顶</button>
+                className={`rounded-full px-[9px] py-[4px] text-caption ${sessionFilter === "pinned" ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)]"}`}>置顶</button>
             </div>
             {unsaved && (
               <div>
@@ -157,12 +157,12 @@ export function SidePanel() {
               );
             })}
             {!unsaved && !sessions.length && (
-              <p className="px-[10px] py-4 text-[12.5px] text-[var(--stone)]">
+              <p className="px-[10px] py-4 text-body text-[var(--stone)]">
                 {q ? "没有匹配的会话。" : "还没有会话。"}
               </p>
             )}
             {sessionFilter === "all" && !!archived.length && (
-              <details className="px-[8px] pt-[10px] text-[12px]">
+              <details className="px-[8px] pt-[10px] text-caption">
                 <summary className="cursor-pointer text-[var(--steel)]">
                   已归档会话 · {archived.length}
                 </summary>
@@ -191,12 +191,12 @@ export function SidePanel() {
           <>
             <GroupLabel className="pt-[2px]">任务模板</GroupLabel>
             {!taskCapable ? (
-              <p className="px-[10px] py-3 text-[12.5px] leading-[1.6] text-[var(--stone)]">
+              <p className="px-[10px] py-3 text-body leading-[1.6] text-[var(--stone)]">
                 任务功能未启用（需 <code className="font-code">VITE_UI_TASKS=1</code>）。
               </p>
             ) : null}
             {tasksError ? (
-              <p role="alert" className="px-[10px] py-2 text-[12px] text-[var(--red)]">
+              <p role="alert" className="px-[10px] py-2 text-caption text-[var(--red)]">
                 {tasksError}
               </p>
             ) : null}
@@ -213,10 +213,10 @@ export function SidePanel() {
                 ))
               : null}
             {taskCapable && !tasks.length && !tasksError ? (
-              <p className="px-[10px] py-3 text-[12.5px] text-[var(--stone)]">正在读取任务…</p>
+              <p className="px-[10px] py-3 text-body text-[var(--stone)]">正在读取任务…</p>
             ) : null}
             {taskCapable && !!tasks.length && !visibleTasks.length ? (
-              <p className="px-[10px] py-3 text-[12.5px] text-[var(--stone)]">没有匹配的任务。</p>
+              <p className="px-[10px] py-3 text-body text-[var(--stone)]">没有匹配的任务。</p>
             ) : null}
             <div className="px-[8px] pt-[10px]">
               <Button
@@ -239,7 +239,7 @@ export function SidePanel() {
       <div className="flex flex-col gap-[9px] border-t border-[var(--hairline)] px-[12px] py-[10px]">
         {progress && progress.total > 0 ? (
           <div className="flex flex-col gap-[5px]">
-            <div className="flex justify-between text-[11.5px] text-[var(--steel)]">
+            <div className="flex justify-between text-caption text-[var(--steel)]">
               <span>向量索引</span>
               <b className="font-code font-semibold text-[var(--slate)] tabular-nums">
                 {progress.completed} / {progress.total}
@@ -300,14 +300,14 @@ function SessionRow({
         <input
           autoFocus
           aria-label="会话标题"
-          className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-[12.5px] text-[var(--ink)] outline-none focus:border-[var(--primary)]"
+          className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[6px] text-body text-[var(--ink)] outline-none focus:border-[var(--primary)]"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
         />
-        <button type="submit" className="rounded-[6px] px-[6px] py-[5px] text-[11.5px] text-[var(--link)]">
+        <button type="submit" className="rounded-[6px] px-[6px] py-[5px] text-caption text-[var(--link)]">
           保存
         </button>
-        <button type="button" className="px-[4px] text-[11.5px] text-[var(--steel)]" onClick={() => setEditing(null)}>
+        <button type="button" className="px-[4px] text-caption text-[var(--steel)]" onClick={() => setEditing(null)}>
           取消
         </button>
       </form>
@@ -324,10 +324,10 @@ function SessionRow({
           active ? "bg-[#eae7e3] font-medium text-[var(--ink)]" : "text-[var(--slate)] hover:bg-[#f1efec]"
         }`}
       >
-        <span className="min-w-0 flex-1 truncate text-[13px]">{title || "未命名会话"}</span>
-        {pinned ? <span className="shrink-0 text-[10px] text-[var(--primary)]">置顶</span> : null}
+        <span className="min-w-0 flex-1 truncate text-body">{title || "未命名会话"}</span>
+        {pinned ? <span className="shrink-0 text-caption text-[var(--primary)]">置顶</span> : null}
         {taskName && (
-          <span className="shrink-0 rounded-[4px] bg-[var(--tint-lavender)] px-[5px] py-[1px] text-[10px] font-semibold text-[var(--purple)]">
+          <span className="shrink-0 rounded-[4px] bg-[var(--tint-lavender)] px-[5px] py-[1px] text-caption font-semibold text-[var(--purple)]">
             {taskName}
           </span>
         )}
@@ -335,7 +335,7 @@ function SessionRow({
       <span className="hidden shrink-0 items-center gap-[2px] group-hover:flex">
         <button type="button" aria-label={pinned ? "取消置顶会话" : "置顶会话"}
           title={pinned ? "取消置顶" : "置顶"}
-          className="rounded-[5px] px-[3px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+          className="rounded-[5px] px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
           onClick={onPin}>{pinned ? "取消" : "置顶"}</button>
         <button
           type="button"
@@ -352,15 +352,15 @@ function SessionRow({
         {confirming ? (
           <>
             <button type="button" aria-label="确认删除会话"
-              className="rounded-[5px] px-[4px] py-[2px] text-[10px] text-[var(--red)] hover:bg-[var(--surface)]"
+              className="rounded-[5px] px-[4px] py-[2px] text-caption text-[var(--red)] hover:bg-[var(--surface)]"
               onClick={() => { setConfirming(false); onDelete(); }}>确认删除</button>
             <button type="button" aria-label="取消删除会话"
-              className="rounded-[5px] px-[4px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+              className="rounded-[5px] px-[4px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
               onClick={() => setConfirming(false)}>取消</button>
           </>
         ) : (
           <button type="button" aria-label="删除会话" title="删除会话"
-            className="rounded-[5px] px-[3px] py-[2px] text-[10px] text-[var(--steel)] hover:bg-[var(--surface)]"
+            className="rounded-[5px] px-[3px] py-[2px] text-caption text-[var(--steel)] hover:bg-[var(--surface)]"
             onClick={() => setConfirming(true)}>删除</button>
         )}
         <button

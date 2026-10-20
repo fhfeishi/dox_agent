@@ -12,8 +12,8 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
   const [search] = useSearchParams();
   const result = useQuery(targetDetailQuery(corpusId, docId, search.get("version") ?? undefined));
   const detail = result.data;
-  if (result.error) return <p role="alert" className="text-[12.5px] text-[var(--red)]">{result.error.message}</p>;
-  if (!detail) return <p className="text-[12.5px] text-[var(--steel)]">正在读取四维信息…</p>;
+  if (result.error) return <p role="alert" className="text-body text-[var(--red)]">{result.error.message}</p>;
+  if (!detail) return <p className="text-body text-[var(--steel)]">正在读取四维信息…</p>;
 
   const active = detail.facets[index] ?? detail.facets[0];
   const relations = detail.relations.filter((item) => item.from.dimension === active.key
@@ -39,13 +39,13 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
   }
 
   return (
-    <div className="space-y-[12px] text-[12.5px]">
+    <div className="space-y-[12px] text-body">
       <div>
-        <p className="text-[13px] font-medium text-[var(--charcoal)]">{detail.title}</p>
-        <p className="mt-[2px] break-all text-[11px] text-[var(--stone)]">{detail.source_name}</p>
+        <p className="text-body font-medium text-[var(--charcoal)]">{detail.title}</p>
+        <p className="mt-[2px] break-all text-caption text-[var(--stone)]">{detail.source_name}</p>
         <div className="mt-[6px] flex flex-wrap items-center gap-[6px]">
           <Pill tone={detail.process.status === "已完成" ? "mint" : "rose"}>{detail.process.status}</Pill>
-          <span className="text-[11px] text-[var(--stone)]">
+          <span className="text-caption text-[var(--stone)]">
             方案 v{detail.schema_version} · 提示 v{detail.prompt_version} · 处理覆盖 {detail.process.coverage.processed}/{detail.process.coverage.total} 段 · 文档版本 {detail.version.slice(0, 8)}
           </span>
         </div>
@@ -55,7 +55,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
         {detail.facets.map((facet, position) => (
           <button key={facet.key} type="button"
             onClick={() => showInspector({ kind: "target", corpusId, docId, index: position })}
-            className={`rounded-full px-[9px] py-[3px] text-[11.5px] ${position === index
+            className={`rounded-full px-[9px] py-[3px] text-caption ${position === index
               ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
             {facet.key} · {facet.state === "has" ? facet.items.length : facet.state === "异常" ? "提取异常" : "未提及"}
           </button>
@@ -63,7 +63,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
       </div>
 
       {active.state === "异常" ? (
-        <p role="alert" className="text-[12px] text-[var(--red)]">
+        <p role="alert" className="text-caption text-[var(--red)]">
           {detail.error || "该维度提取异常（返回结构缺字段或引文不匹配），请重新提取；这不等同于原文未提及。"}
         </p>
       ) : null}
@@ -79,7 +79,7 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
             <ul className="mt-[6px] space-y-[4px]">
               {item.evidence.map((evidence, position) => (
                 <li key={`${evidence.quote}:${position}`}>
-                  <button type="button" className="text-left text-[11.5px] text-[var(--link)] hover:underline"
+                  <button type="button" className="text-left text-caption text-[var(--link)] hover:underline"
                     onClick={() => openEvidenceAt(evidence)}>
                     {evidence.locator.basis === "pdf_page" ? `第 ${evidence.locator.page} 页` : "解析正文位置"} · “{evidence.quote.slice(0, 60)}…”
                   </button>
@@ -88,14 +88,14 @@ export function TargetReportView({ corpusId, docId }: { corpusId: string; docId:
             </ul>
           </li>
         ))}
-        {active.state === "未提及" ? <li className="text-[12px] text-[var(--stone)]">{detail.process.coverage.processed === detail.process.coverage.total && detail.process.status === "已完成" ? "原文未提及该维度。" : "处理未完成，不能判断原文是否提及。"}</li> : null}
-        {active.state === "has" && !active.items.length ? <li className="text-[12px] text-[var(--stone)]">没有条目。</li> : null}
+        {active.state === "未提及" ? <li className="text-caption text-[var(--stone)]">{detail.process.coverage.processed === detail.process.coverage.total && detail.process.status === "已完成" ? "原文未提及该维度。" : "处理未完成，不能判断原文是否提及。"}</li> : null}
+        {active.state === "has" && !active.items.length ? <li className="text-caption text-[var(--stone)]">没有条目。</li> : null}
       </ul>
 
       {relations.length ? (
         <div className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] p-[10px]">
-          <p className="text-[11.5px] font-medium text-[var(--charcoal)]">提取记录的原文关联（{active.key}）</p>
-          <ul className="mt-[4px] space-y-[3px] text-[11.5px] text-[var(--steel)]">
+          <p className="text-caption font-medium text-[var(--charcoal)]">提取记录的原文关联（{active.key}）</p>
+          <ul className="mt-[4px] space-y-[3px] text-caption text-[var(--steel)]">
             {relations.map((relation, position) => (
               <li key={position}>
                 {relation.from.dimension}「{nameOf(detail!, relation.from.dimension, relation.from.item_id)}」

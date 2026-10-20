@@ -51,7 +51,7 @@ export function BarChart({ spec }: { spec: ChartSpec }) {
   const max = Math.max(1, ...spec.values);
   return <figure className="m-0">
     <div role="img" aria-label={spec.title} className="space-y-1.5">
-      {spec.labels.map((label, i) => <div key={label} className="flex items-center gap-2 text-[13px]">
+      {spec.labels.map((label, i) => <div key={label} className="flex items-center gap-2 text-body">
         <span className="w-28 shrink-0 truncate text-right" title={label}>{label}</span>
         <span className="h-4 flex-1 rounded bg-[var(--hairline)]"><span className="block h-4 rounded bg-[var(--primary)]" style={{ width: `${100 * spec.values[i] / max}%` }} /></span>
         <span className="w-14 shrink-0 tabular-nums">{spec.values[i]}{spec.unit ?? ""}</span>

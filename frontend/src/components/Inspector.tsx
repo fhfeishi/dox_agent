@@ -34,7 +34,7 @@ const ARTIFACT_TYPE_LABEL: Record<string, string> = { answer_snapshot: "保存�
 function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
   return (
     <div className="mb-[10px] flex items-center gap-[8px]">
-      <span className="text-[11px] font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">
+      <span className="text-caption font-semibold tracking-[0.5px] text-[var(--stone)] uppercase">
         {children}
       </span>
       <span className="flex-1" />
@@ -53,11 +53,11 @@ function SessionReports({ sessionKey }: { sessionKey: string }) {
     fetchArtifacts(sessionKey, abort.signal).then(setItems, () => { if (!abort.signal.aborted) setItems([]); });
     return () => abort.abort();
   }, [sessionKey]);
-  if (!items) return <p className="mb-[14px] text-[12px] text-[var(--stone)]">正在读取…</p>;
-  if (!items.length) return <p className="mb-[14px] text-[12px] leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存到报告中心”；专项报告在对话中的报告卡生成。</p>;
+  if (!items) return <p className="mb-[14px] text-caption text-[var(--stone)]">正在读取…</p>;
+  if (!items.length) return <p className="mb-[14px] text-caption leading-[1.6] text-[var(--steel)]">本会话还没有报告。回答下方可“保存到报告中心”；专项报告在对话中的报告卡生成。</p>;
   return <ul className="mb-[14px] space-y-[6px]">{items.map((item) => <li key={item.artifact_id}>
     <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: item.artifact_id })}
-      className="block w-full truncate rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-[12.5px] text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
+      className="block w-full truncate rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-left text-body text-[var(--ink)] hover:border-[var(--primary)]">{item.title || "未命名报告"}</button>
   </li>)}</ul>;
 }
 
@@ -361,8 +361,8 @@ export function Inspector() {
         {inspectorTarget.kind === "report" ? (
           <>
             <SectionTitle>报告</SectionTitle>
-            {reportError ? <p role="alert" className="text-[12px] text-[var(--red)]">{reportError}</p> : null}
-            {!report && !reportError ? <p className="text-[12px] text-[var(--steel)]">正在读取报告…</p> : null}
+            {reportError ? <p role="alert" className="text-caption text-[var(--red)]">{reportError}</p> : null}
+            {!report && !reportError ? <p className="text-caption text-[var(--steel)]">正在读取报告…</p> : null}
             {report?.report_id === inspectorTarget.reportId ? (
               <Card>
                 <div className="mb-[12px] flex gap-[8px]">
@@ -379,34 +379,34 @@ export function Inspector() {
 
         {inspectorTarget.kind === "artifact" ? (
           <>
-            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{artifact ? ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type : ""}</span>}>
+            <SectionTitle aside={<span className="text-caption text-[var(--stone)]">{artifact ? ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type : ""}</span>}>
               报告中心
             </SectionTitle>
-            {artifactError ? <p role="alert" className="text-[12px] text-[var(--red)]">{artifactError}</p> : null}
-            {!artifact && !artifactError ? <p className="text-[12px] text-[var(--steel)]">正在读取…</p> : null}
+            {artifactError ? <p role="alert" className="text-caption text-[var(--red)]">{artifactError}</p> : null}
+            {!artifact && !artifactError ? <p className="text-caption text-[var(--steel)]">正在读取…</p> : null}
             {artifact?.status === "generating" ? <GenerationProgress status="generating" /> : null}
             {artifact?.artifact_id === inspectorTarget.artifactId ? (
               <Card>
                 <div className="mb-3 flex flex-wrap gap-2 text-sm">
                   {artifact.lifecycle === "trashed" ? <><span>回收站只读 · 保留至 {artifact.purge_after ? new Date(artifact.purge_after).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" }) : ""}</span><button onClick={() => void changeArtifactLifecycle(artifact,"restore").catch(e => setArtifactSaveError(e.message))}>还原</button>{deletable ? <button onClick={() => { if (window.confirm("彻底删除全部版本与独占附件？此操作不可恢复。")) void changeArtifactLifecycle(artifact,"purge").catch(e => setArtifactSaveError(e.message)); }}>彻底删除</button> : null}</> : deletable ? <button disabled={artifact.status === "generating"} onClick={() => void changeArtifactLifecycle(artifact,"trash").catch(e => setArtifactSaveError(e.message))}>移入回收站（保留7天）</button> : <span className="text-[var(--stone)]">仅生成人或管理员可删除</span>}
                 </div>
-                <h2 className="text-[15px] font-semibold text-[var(--ink)]">{artifact.title}</h2>
-                <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
+                <h2 className="text-emphasis font-semibold text-[var(--ink)]">{artifact.title}</h2>
+                <p className="mt-[6px] text-caption text-[var(--stone)]">
                   {ARTIFACT_TYPE_LABEL[artifact.type] ?? artifact.type} · 版本 {artifact.version} · {artifact.status === "draft" ? "草稿" : artifact.status === "completed" ? "已完成" : artifact.status === "failed" ? "失败" : "生成中"}
                   {artifact.legacy ? " · 历史报告（只读兼容）" : ""}
                 </p>
                 {/* Traceability stays available but folded; readers see the result first (query 2026-1013 1520). */}
-                <details className="mt-[4px] text-[11px] text-[var(--stone)]">
+                <details className="mt-[4px] text-caption text-[var(--stone)]">
                 <summary className="cursor-pointer">技术信息</summary>
                 <p className="mt-[4px] break-all">
                   来源运行：{artifact.run_available === true ? artifact.run_id : "未记录"} · 会话：{artifact.session_key || "未记录"}
                 </p>
-                <dl className="mt-[7px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[3px] text-[11.5px]">
+                <dl className="mt-[7px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[3px] text-caption">
                   <dt className="text-[var(--stone)]">生成人</dt><dd>{artifact.created_by || "未记录"}</dd><dt className="text-[var(--stone)]">任务 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.task_id || "未记录"} / {artifact.task_version ? `v${artifact.task_version}` : "未记录"}</dd>
                   <dt className="text-[var(--stone)]">模板 ID / 版本</dt><dd className="break-all text-[var(--charcoal)]">{artifact.template_id || "未记录"} / {artifact.template_version != null ? `v${artifact.template_version}` : "未记录"}</dd>
                 </dl>
                 </details>
-                {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-[12.5px]">
+                {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-body">
                   <p className="font-semibold text-[var(--red)]">{artifact.interrupted ? "已中断，可重试" : "生成未完成"}</p>
                   {artifact.fail_reason ? <p className="mt-[2px] text-[var(--slate)]">{artifact.fail_reason}</p> : null}
                   {artifact.type === "report" && artifact.lifecycle !== "trashed" ? artifact.task_id === "intelligence"
@@ -415,12 +415,12 @@ export function Inspector() {
                       onClick={() => void retryArtifact(artifact.artifact_id)}>{retrying ? "正在重新发起…" : "按原设置重新生成"}</Button> : null}
                   {retryNote ? <p className="mt-[5px] text-[var(--steel)]">{retryNote}</p> : null}
                 </div> : null}
-                {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-[12px] text-[var(--steel)]">
+                {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-caption text-[var(--steel)]">
                   {artifact.source_verification === "verified" ? "原始回答已核验"
                     : artifact.source_verification === "user_modified" ? "用户修订版本"
                     : "原始输出未核验"}
                 </p> : null}
-                {artifactVersions.length > 1 ? <label className="mt-[9px] flex items-center gap-[8px] text-[12px] text-[var(--steel)]">
+                {artifactVersions.length > 1 ? <label className="mt-[9px] flex items-center gap-[8px] text-caption text-[var(--steel)]">
                   查看版本
                   <select aria-label="报告版本" value={artifact.version} disabled={editingArtifact}
                     onChange={(event) => {
@@ -433,14 +433,14 @@ export function Inspector() {
                     {artifactVersions.map((item) => <option key={item.version} value={item.version}>版本 {item.version} · {item.status === "draft" ? "草稿" : item.status === "failed" ? "失败" : "已完成"}</option>)}
                   </select>
                 </label> : null}
-                {artifactSaveError ? <p role="alert" className="mt-[7px] text-[12px] text-[var(--red)]">{artifactSaveError}</p> : null}
+                {artifactSaveError ? <p role="alert" className="mt-[7px] text-caption text-[var(--red)]">{artifactSaveError}</p> : null}
                 {artifact.lifecycle !== "trashed" && artifact.status !== "generating" && (artifact.status !== "failed" || artifact.markdown) ? <>
                 <div className="mt-[12px] flex flex-wrap gap-[8px]">
                   <Button size="sm" onClick={() => void navigator.clipboard.writeText(artifact.markdown)}>复制</Button>
                   {artifact.figures?.length ? <a href={artifactExportUrl(artifact.artifact_id, "zip", artifact.version)}>下载图文 ZIP</a>
                     : <Button size="sm" variant="ghost" onClick={() => downloadText(artifact.markdown, `artifact-${artifact.artifact_id.slice(0, 8)}-v${artifact.version}.md`)}>下载 .md</Button>}
                   <a href={artifactExportUrl(artifact.artifact_id, "docx", artifact.version)}
-                     className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-[12px] text-[var(--slate)] hover:bg-[var(--surface)]">
+                     className="font-app inline-flex h-[26px] items-center rounded-[6px] px-[8px] text-caption text-[var(--slate)] hover:bg-[var(--surface)]">
                     导出 .docx
                   </a>
                   {!artifact.legacy ? <Button size="sm" variant="ghost" onClick={() => {
@@ -454,7 +454,7 @@ export function Inspector() {
                 </div>
                 </> : null}
                 {artifact.lifecycle !== "trashed" && artifact.figures?.length && !editingArtifact ? <div className="mt-[10px] space-y-[7px]">
-                  {artifact.figures.map((figure) => <div key={figure.figure_id} className="rounded border border-[var(--hairline)] p-[7px] text-[12px]">
+                  {artifact.figures.map((figure) => <div key={figure.figure_id} className="rounded border border-[var(--hairline)] p-[7px] text-caption">
                     <span>{figure.caption} · 原 PDF 第 {figure.page} 页</span>
                     <div className="mt-[4px] flex gap-[8px]">
                       <Button size="sm" variant="ghost" disabled={savingArtifact} onClick={() => void updateFigure(figure.figure_id)}>移除图片</Button>
@@ -484,7 +484,7 @@ export function Inspector() {
                 </div> : null}
                 {editingArtifact ? <div className="mt-[12px]">
                   <textarea aria-label="报告正文 Markdown" value={artifactDraft} onChange={(event) => setArtifactDraft(event.target.value)}
-                    className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px] leading-[1.6] text-[var(--ink)]" />
+                    className="min-h-[260px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption leading-[1.6] text-[var(--ink)]" />
                   <div className="mt-[8px] flex flex-wrap gap-[7px]">
                     <Button size="sm" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("draft")}>保存草稿</Button>
                     <Button size="sm" variant="ghost" disabled={savingArtifact || !artifactDraft.trim()} onClick={() => void saveArtifactVersion("completed")}>完成新版本</Button>
@@ -505,21 +505,21 @@ export function Inspector() {
 
         {inspectorTarget.kind === "execution" ? (
           <>
-            <SectionTitle aside={<span className="text-[11px] text-[var(--stone)]">{runStatus ? OUTCOME_LABEL[runStatus] ?? runStatus : "无"}</span>}>
+            <SectionTitle aside={<span className="text-caption text-[var(--stone)]">{runStatus ? OUTCOME_LABEL[runStatus] ?? runStatus : "无"}</span>}>
               运行概览
             </SectionTitle>
             {!isLatestRun && !runSnapshot ? (
               <Card>
-                <p className="text-[12.5px] text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
+                <p className="text-body text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
               </Card>
             ) : (
               <>
                 <Card className="mb-[10px]">
-                  <div className="text-[12.8px] font-medium text-[var(--ink)]">运行信息</div>
+                  <div className="text-body font-medium text-[var(--ink)]">运行信息</div>
                   {runSnapshotMissing ? (
-                    <p className="mt-[6px] text-[12px] text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
+                    <p className="mt-[6px] text-caption text-[var(--steel)]">运行信息未记录（历史运行或快照写入失败）。</p>
                   ) : null}
-                  <dl className="mt-[8px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[4px] text-[12px]">
+                  <dl className="mt-[8px] grid grid-cols-[auto_1fr] gap-x-[10px] gap-y-[4px] text-caption">
                     <dt className="text-[var(--stone)]">运行 ID</dt><dd className="truncate font-code text-[var(--charcoal)]">{executionRunId || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">状态</dt><dd className="text-[var(--charcoal)]">{(OUTCOME_LABEL[runStatus] ?? runStatus) || "未记录"}</dd>
                     <dt className="text-[var(--stone)]">总耗时</dt><dd className="text-[var(--charcoal)]">{isLatestRun && latest?.totalMs != null ? formatDuration(latest.totalMs) : isLatestRun ? "未提供" : "未记录（仅快照）"}</dd>
@@ -536,11 +536,11 @@ export function Inspector() {
                 </Card>
 
                 <Card className="mb-[10px]">
-                  <div className="text-[12.8px] font-medium text-[var(--ink)]">执行阶段</div>
+                  <div className="text-body font-medium text-[var(--ink)]">执行阶段</div>
                   {isLatestRun && latest?.steps?.length ? (
                     <ol className="mt-[8px] space-y-[6px]">
                       {latest.steps.map((step) => (
-                        <li key={`${step.id}-${step.sequence}-${step.status}`} className="flex items-center gap-[8px] text-[12px]">
+                        <li key={`${step.id}-${step.sequence}-${step.status}`} className="flex items-center gap-[8px] text-caption">
                           <span className="min-w-0 flex-1 truncate text-[var(--charcoal)]">{step.label}</span>
                           <span className="shrink-0 text-[var(--stone)]">
                             {step.status === "running" ? "进行中" : step.duration_ms != null ? formatDuration(step.duration_ms) : "已完成"}
@@ -548,21 +548,21 @@ export function Inspector() {
                         </li>
                       ))}
                     </ol>
-                  ) : <p className="mt-[6px] text-[12px] text-[var(--steel)]">{isLatestRun ? "没有阶段记录。" : "仅保留运行快照，阶段明细未记录。"}</p>}
+                  ) : <p className="mt-[6px] text-caption text-[var(--steel)]">{isLatestRun ? "没有阶段记录。" : "仅保留运行快照，阶段明细未记录。"}</p>}
                 </Card>
 
                 <Card>
-                  <div className="text-[12.8px] font-medium text-[var(--ink)]">检索与用量</div>
+                  <div className="text-body font-medium text-[var(--ink)]">检索与用量</div>
                   {isLatestRun ? (
                     <>
-                      <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                      <p className="mt-[6px] text-caption leading-[1.6] text-[var(--steel)]">
                         路径 {latest?.telemetry?.path ?? "未记录"} · 命中片段 {latest?.telemetry?.chunks_retrieved ?? "未记录"} · 选中报告 {latest?.telemetry?.reports_selected ?? "未记录"} · 上下文 {latest?.telemetry?.context_tokens ?? "未记录"} tokens
                       </p>
-                      <p className="mt-[5px] text-[12px] leading-[1.6] text-[var(--steel)]">
+                      <p className="mt-[5px] text-caption leading-[1.6] text-[var(--steel)]">
                         输入 {latest?.usage?.input_tokens ?? "未提供"} · 输出 {latest?.usage?.output_tokens ?? "未提供"} · 总 {latest?.usage?.total_tokens ?? "未提供"} · 调用 {latest?.usage?.calls ?? 0} 次
                       </p>
                     </>
-                  ) : <p className="mt-[6px] text-[12px] leading-[1.6] text-[var(--steel)]">{"实时阶段与用量仅对最近一轮可见；来源运行的快照指标通过 GET /api/runs/<id> 回读。"}</p>}
+                  ) : <p className="mt-[6px] text-caption leading-[1.6] text-[var(--steel)]">{"实时阶段与用量仅对最近一轮可见；来源运行的快照指标通过 GET /api/runs/<id> 回读。"}</p>}
                 </Card>
               </>
             )}
@@ -572,7 +572,7 @@ export function Inspector() {
         {inspectorTarget.kind === "document" ? (
           <>
             <SectionTitle>资料原文</SectionTitle>
-            <p className="mb-[12px] break-all text-[11px] text-[var(--stone)]">{documentMeta(inspectorTarget.doc)}</p>
+            <p className="mb-[12px] break-all text-caption text-[var(--stone)]">{documentMeta(inspectorTarget.doc)}</p>
             <Button size="sm" className="mb-[14px]" onClick={() => openFullPreview(inspectorTarget.doc, inspectorTarget.page, inspectorTarget.corpusId, true)}>放大阅读</Button>
             {inspectorTarget.doc.focus ? (
               <TargetFocusedText doc={inspectorTarget.doc} corpus={inspectorTarget.corpusId} quote={inspectorTarget.doc.focus} />
@@ -589,14 +589,14 @@ export function Inspector() {
         {inspectorTarget.kind === "web" ? (
           <div>
             <SectionTitle>已确认网页快照</SectionTitle>
-            {webError ? <p role="alert" className="text-[12px] text-[var(--red)]">{webError}</p> : null}
+            {webError ? <p role="alert" className="text-caption text-[var(--red)]">{webError}</p> : null}
             {webSnapshot ? <>
-              <p className="break-all text-[11px] text-[var(--stone)]">{webSnapshot.url} · 抓取 {webSnapshot.fetched_at} · 版本 {webSnapshot.version}</p>
-              {webSnapshot.search_query ? <p className="mt-[5px] text-[11px] text-[var(--steel)]">搜索词：{webSnapshot.search_query} · 域名：{webSnapshot.search_domains?.join("、") || "未记录"} · 时间：{webSnapshot.search_time_filter === "month" ? "近一月" : webSnapshot.search_time_filter === "year" ? "近一年" : "不限"}</p> : null}
-              <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-[12px]">
+              <p className="break-all text-caption text-[var(--stone)]">{webSnapshot.url} · 抓取 {webSnapshot.fetched_at} · 版本 {webSnapshot.version}</p>
+              {webSnapshot.search_query ? <p className="mt-[5px] text-caption text-[var(--steel)]">搜索词：{webSnapshot.search_query} · 域名：{webSnapshot.search_domains?.join("、") || "未记录"} · 时间：{webSnapshot.search_time_filter === "month" ? "近一月" : webSnapshot.search_time_filter === "year" ? "近一年" : "不限"}</p> : null}
+              <div className="markdown mt-[12px] max-h-[70vh] overflow-auto rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] p-[12px] text-caption">
                 <Markdown remarkPlugins={[remarkGfm]}>{webSnapshot.markdown}</Markdown>
               </div>
-            </> : !webError ? <p className="text-[12px] text-[var(--stone)]">正在读取…</p> : null}
+            </> : !webError ? <p className="text-caption text-[var(--stone)]">正在读取…</p> : null}
           </div>
         ) : null}
 
@@ -604,16 +604,16 @@ export function Inspector() {
           <>
             <SectionTitle
               aside={
-                <span className="text-[11px] text-[var(--stone)]">本轮会话 · {answered} 轮已答</span>
+                <span className="text-caption text-[var(--stone)]">本轮会话 · {answered} 轮已答</span>
               }
             >
               会话
             </SectionTitle>
             <Card className="mb-[10px]">
-              <div className="text-[13px] font-medium text-[var(--ink)]">
+              <div className="text-body font-medium text-[var(--ink)]">
                 {currentCorpus?.name ?? "未选择知识库"}
               </div>
-              <div className="mt-[6px] flex flex-wrap items-center gap-[8px] text-[11.5px] text-[var(--stone)]">
+              <div className="mt-[6px] flex flex-wrap items-center gap-[8px] text-caption text-[var(--stone)]">
                 <Pill tone={corpusReady ? "mint" : "yellow"}>
                   {corpusReady ? "已就绪" : "准备中"}
                 </Pill>
@@ -631,8 +631,8 @@ export function Inspector() {
 
             <SectionTitle>会话</SectionTitle>
             <Card>
-              <div className="text-[12.5px] text-[var(--charcoal)]">{workspace.message}</div>
-              <div className="mt-[6px] text-[11.5px] text-[var(--stone)]">
+              <div className="text-body text-[var(--charcoal)]">{workspace.message}</div>
+              <div className="mt-[6px] text-caption text-[var(--stone)]">
                 共 {workspace.sessions.length} 个会话 · {workspace.branches.length} 个分支
               </div>
               <div className="mt-[10px] flex gap-[8px]">
@@ -644,7 +644,7 @@ export function Inspector() {
 
         {inspectorTarget.kind === "answer" && tab === "cite" ? (
           <SectionTitle
-            aside={<span className="text-[11px] text-[var(--stone)]">{citations.length} 处引用</span>}
+            aside={<span className="text-caption text-[var(--stone)]">{citations.length} 处引用</span>}
           >
             本轮引用片段
           </SectionTitle>
@@ -652,7 +652,7 @@ export function Inspector() {
 
         {inspectorTarget.kind === "answer" && tab === "cite" && !citations.length ? (
           <Card>
-            <p className="text-[12.5px] leading-[1.6] text-[var(--steel)]">
+            <p className="text-body leading-[1.6] text-[var(--steel)]">
               本轮回答还没有引用。提问后，命中资料的来源会在这里逐条列出。
             </p>
           </Card>
@@ -665,29 +665,29 @@ export function Inspector() {
               return (
                 <Card key={`${n}-${i}`}>
                   <div className="flex items-start gap-[8px]">
-                    <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-[10px] font-bold text-white">
+                    <span className="mt-[2px] grid size-[16px] shrink-0 place-items-center rounded-[4px] bg-[var(--primary)] text-caption font-bold text-white">
                       {n}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[12.8px] leading-[1.45] font-medium text-[var(--ink)]">
+                      <div className="text-body leading-[1.45] font-medium text-[var(--ink)]">
                         {s.title}
                       </div>
-                      <div className="mt-[3px] text-[11.5px] text-[var(--stone)]">
+                      <div className="mt-[3px] text-caption text-[var(--stone)]">
                         第 {s.page ?? 1} 页
                       </div>
                     </div>
                   </div>
-                  <p className="mt-[10px] text-[12.5px] leading-[1.7] text-[var(--slate)]">
+                  <p className="mt-[10px] text-body leading-[1.7] text-[var(--slate)]">
                     {s.snippet}
                   </p>
                   <div className="mt-[8px] flex items-center justify-between gap-2">
-                    <span className="truncate text-[10.5px] text-[var(--stone)]">
+                    <span className="truncate text-caption text-[var(--stone)]">
                       版本 {s.version ?? "—"}
                     </span>
                     <button
                       type="button"
                       onClick={() => handleOpenSource(s, n)}
-                      className="font-app inline-flex shrink-0 items-center gap-[5px] text-[12px] text-[var(--link)] hover:underline"
+                      className="font-app inline-flex shrink-0 items-center gap-[5px] text-caption text-[var(--link)] hover:underline"
                     >
                       查看原文
                       <Icon name="chevronRight" size={11} strokeWidth={2.4} />
@@ -703,19 +703,19 @@ export function Inspector() {
           <>
             <SectionTitle
               aside={
-                <span className="text-[11px] text-[var(--stone)]">
+                <span className="text-caption text-[var(--stone)]">
                   {currentCorpus ? currentCorpus.name : "未选择"}
                 </span>
               }
             >
               资料
             </SectionTitle>
-            <p className="mb-[12px] text-[12px] leading-[1.6] text-[var(--steel)]">
+            <p className="mb-[12px] text-caption leading-[1.6] text-[var(--steel)]">
               浏览不会改变检索范围；打开后为 PDF 原文或规范化正文。
             </p>
             {!corpusReady ? (
               <Card>
-                <p className="text-[12.5px] text-[var(--steel)]">知识库就绪后即可浏览。</p>
+                <p className="text-body text-[var(--steel)]">知识库就绪后即可浏览。</p>
               </Card>
             ) : (
               <div className="flex flex-col gap-[6px]">
@@ -730,10 +730,10 @@ export function Inspector() {
                       <Icon name="doc" size={13} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[12.8px] font-medium text-[var(--ink)]">
+                      <span className="block truncate text-body font-medium text-[var(--ink)]">
                         {doc.title}
                       </span>
-                      <span className="block truncate text-[11px] text-[var(--stone)]">
+                      <span className="block truncate text-caption text-[var(--stone)]">
                         {documentMeta(doc)}
                       </span>
                     </span>
@@ -741,7 +741,7 @@ export function Inspector() {
                 ))}
                 {!documents.length ? (
                   <Card>
-                    <p className="text-[12.5px] text-[var(--steel)]">当前知识库还没有已入库文档。</p>
+                    <p className="text-body text-[var(--steel)]">当前知识库还没有已入库文档。</p>
                   </Card>
                 ) : null}
               </div>

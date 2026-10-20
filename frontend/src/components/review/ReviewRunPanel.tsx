@@ -25,17 +25,17 @@ export function ReviewRunPanel() {
     return () => { active = false; window.clearInterval(timer); };
   }, [reviewing]);
   const ordered = useMemo(() => runs, [runs]);
-  if (error) return <p role="alert" className="px-[10px] py-2 text-[12px] text-[var(--red)]">{error}</p>;
+  if (error) return <p role="alert" className="px-[10px] py-2 text-caption text-[var(--red)]">{error}</p>;
   return (
     <div>
-      <p className="px-[10px] pt-[4px] text-[11px] text-[var(--stone)]">审核任务</p>
-      {!ordered.length ? <p className="px-[10px] py-3 text-[12.5px] text-[var(--stone)]">还没有审核任务。</p> : null}
+      <p className="px-[10px] pt-[4px] text-caption text-[var(--stone)]">审核任务</p>
+      {!ordered.length ? <p className="px-[10px] py-3 text-body text-[var(--stone)]">还没有审核任务。</p> : null}
       {ordered.map((run) => (
         <Link key={run.id} to={`/review/runs/${run.id}`}
-          className="mt-[2px] flex items-center gap-[6px] rounded-[8px] px-[10px] py-[6px] text-[12.5px] text-[var(--slate)] hover:bg-[var(--surface)]">
+          className="mt-[2px] flex items-center gap-[6px] rounded-[8px] px-[10px] py-[6px] text-body text-[var(--slate)] hover:bg-[var(--surface)]">
           <Icon name={run.status === "completed" ? "checklist" : run.status === "running" ? "reload" : "warning"} size={13} strokeWidth={1.9} />
           <span className="min-w-0 flex-1 truncate">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
-          <span className="text-[11px] text-[var(--stone)]">{run.status === "completed" ? "已完成" : run.status === "running" ? "进行中" : "未完成"}</span>
+          <span className="text-caption text-[var(--stone)]">{run.status === "completed" ? "已完成" : run.status === "running" ? "进行中" : "未完成"}</span>
         </Link>
       ))}
     </div>

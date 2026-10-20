@@ -32,11 +32,11 @@ function ViewShell({
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-[1200px] px-5 pt-7 sm:px-8">
           <div className="mb-[6px] flex flex-wrap items-center gap-[10px]">
-            <h1 className="text-[24px] font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
+            <h1 className="text-page font-semibold tracking-[-0.6px] text-[var(--ink)]">{title}</h1>
             <span className="flex-1" />
             {actions}
           </div>
-          <p className="max-w-[680px] text-[13.5px] leading-[1.6] text-[var(--steel)]">{description}</p>
+          <p className="max-w-[680px] text-body leading-[1.6] text-[var(--steel)]">{description}</p>
         </div>
         <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 md:grid-cols-2 gap-[16px] px-5 sm:px-8 pt-[20px] pb-[40px]">
           {children}
@@ -114,8 +114,8 @@ export function TasksView() {
     });
   }
 
-  const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-[12px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
-  const danger = "rounded-[6px] px-[7px] py-[4px] text-[12px] text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45";
+  const action = "rounded-[6px] border border-[var(--hairline)] px-[9px] py-[4px] text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:opacity-45";
+  const danger = "rounded-[6px] px-[7px] py-[4px] text-caption text-[var(--stone)] hover:text-[var(--red)] disabled:opacity-45";
   // The store keeps archived tasks so old sessions still resolve their names; the page splits them.
   const isArchived = (item: { archived?: boolean; status?: string }) => Boolean(item.archived) || item.status === "archived";
   const liveTasks = tasks.filter((t) => !isArchived(t));
@@ -134,16 +134,16 @@ export function TasksView() {
         onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void uploaded(file); }} />
       {!taskCapable ? (
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
-          <p className="text-[13.5px] font-medium text-[var(--ink)]">任务功能未启用</p>
-          <p className="mx-auto mt-[8px] max-w-[520px] text-[12.5px] leading-[1.6] text-[var(--steel)]">
+          <p className="text-body font-medium text-[var(--ink)]">任务功能未启用</p>
+          <p className="mx-auto mt-[8px] max-w-[520px] text-body leading-[1.6] text-[var(--steel)]">
             请联系管理员启用分析任务。
           </p>
         </div>
       ) : null}
-      {taskCapable && tasksError ? <p role="alert" className="col-span-full text-[13px] text-[var(--red)]">{tasksError}</p> : null}
-      {message ? <p role="status" className="col-span-full text-[13px] text-[var(--steel)]">{message}</p> : null}
+      {taskCapable && tasksError ? <p role="alert" className="col-span-full text-body text-[var(--red)]">{tasksError}</p> : null}
+      {message ? <p role="status" className="col-span-full text-body text-[var(--steel)]">{message}</p> : null}
       {taskCapable && !tasks.length && !tasksError ? (
-        <p className="text-[13px] text-[var(--stone)]">正在读取任务列表…</p>
+        <p className="text-body text-[var(--stone)]">正在读取任务列表…</p>
       ) : null}
       {taskCapable
         ? liveTasks.map((task, index) => {
@@ -156,13 +156,13 @@ export function TasksView() {
                   <span className="grid size-[34px] place-items-center rounded-[8px]" style={{ background: style.tint, color: style.fg }}>
                     <Icon name={style.icon} size={16} strokeWidth={1.9} />
                   </span>
-                  <span className="flex flex-wrap items-center gap-[8px] text-[14px] font-semibold text-[var(--ink)]">
+                  <span className="flex flex-wrap items-center gap-[8px] text-body font-semibold text-[var(--ink)]">
                     {task.name}
                     {task.id === taskId ? <Pill tone="lav">当前</Pill> : null}
                     <Pill tone={task.kind === "custom" ? "lav" : "sky"}>{task.kind === "custom" ? `我的任务 · ${statusLabel(task)}` : "内置"}</Pill>
                   </span>
-                  <span className="text-[14px] leading-[1.6] text-[var(--steel)]">{task.description}</span>
-                  {manage && task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-[11.5px] leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
+                  <span className="text-body leading-[1.6] text-[var(--steel)]">{task.description}</span>
+                  {manage && task.output_hint ? <span className="rounded-[6px] bg-[var(--surface-soft)] px-[8px] py-[5px] text-caption leading-[1.5] text-[var(--slate)]">输出：{task.output_hint}</span> : null}
                 </button>
                 <div className="mt-auto flex flex-wrap items-center gap-[6px] border-t border-[var(--hairline)] pt-[10px]">
                   <button type="button" className={action} onClick={() => showInspector({ kind: "task", taskId: task.id })}>预览</button>
@@ -175,15 +175,15 @@ export function TasksView() {
                   {picking?.task === task.id ? <form className="flex items-center gap-[6px]" onSubmit={(e) => { e.preventDefault();
                       void navigate(`/library/${encodeURIComponent(picking.corpus)}/documents?workspace=1&task=${encodeURIComponent(task.id)}`); }}>
                     <select aria-label="选择资料库" autoFocus value={picking.corpus} onChange={(e) => setPicking({ ...picking, corpus: e.target.value })}
-                      className="max-w-[180px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[6px] py-[3px] text-[12px]">
+                      className="max-w-[180px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[6px] py-[3px] text-caption">
                       {libraries.map((c) => <option key={c.id} value={c.id}>{c.name.replace(/^自然科学基金-/, "")}</option>)}
                     </select>
-                    <button className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white">选择资料</button>
-                    <button type="button" onClick={() => setPicking(null)} className="text-[12px] text-[var(--steel)]">取消</button>
+                    <button className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white">选择资料</button>
+                    <button type="button" onClick={() => setPicking(null)} className="text-caption text-[var(--steel)]">取消</button>
                   </form>
                     : <button type="button" disabled={!usable || busy} title={usable ? "" : "草稿发布后才能使用"}
                     onClick={() => task.kind === "custom" ? void startTask(task.id) : libraries.length ? setPicking({ task: task.id, corpus: libraries[0].id }) : setMessage("还没有已入库资料的资料库")}
-                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-[12px] text-white disabled:opacity-45">开始分析</button>}
+                    className="rounded-[6px] bg-[var(--primary)] px-[10px] py-[4px] text-caption text-white disabled:opacity-45">开始分析</button>}
                 </div>
               </article>
             );
@@ -193,9 +193,9 @@ export function TasksView() {
       {taskCapable ? <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div> : null}
       {taskCapable && showArchived ? (
         <section aria-label="已归档" className="col-span-full rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[14px]">
-          <h2 className="text-[13px] font-semibold text-[var(--ink)]">已归档的分析任务 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
-          {!archivedTasks.length ? <p className="mt-[8px] text-[12px] text-[var(--stone)]">没有已归档的分析任务。</p> : null}
-          <ul className="mt-[8px] space-y-[6px] text-[12.5px]">
+          <h2 className="text-body font-semibold text-[var(--ink)]">已归档的分析任务 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
+          {!archivedTasks.length ? <p className="mt-[8px] text-caption text-[var(--stone)]">没有已归档的分析任务。</p> : null}
+          <ul className="mt-[8px] space-y-[6px] text-body">
             {archivedTasks.map((item) =>
               <li key={item.id} className="flex items-center gap-[8px]">
                 <button type="button" className="text-left text-[var(--link)] hover:underline"

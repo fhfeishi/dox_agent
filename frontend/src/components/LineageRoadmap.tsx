@@ -334,10 +334,10 @@ export function LineageRoadmap({ lineage, title, selected, onSelect }: { lineage
       </svg>
 
       <div data-hud className={`${card} absolute left-3 top-3 max-w-[340px] px-4 py-3`}>
-        <p className="text-[14px] font-semibold">{title} · 路网</p>
-        <p className="mt-0.5 text-[11.5px] leading-5 text-[#8b949e]">{nodes[0].projects} 个项目 · {nodes[0].items} 条技术<br />
+        <p className="text-body font-semibold">{title} · 路网</p>
+        <p className="mt-0.5 text-caption leading-5 text-[#8b949e]">{nodes[0].projects} 个项目 · {nodes[0].items} 条技术<br />
           R3 {counts[3]} / R4 {counts[4]} / R5 {counts[5]} / R6 {counts[6]}</p>
-        {blanks.gap + blanks.emerging ? <p className="mt-2 flex flex-wrap gap-1.5 text-[11.5px] text-[#57606a]">
+        {blanks.gap + blanks.emerging ? <p className="mt-2 flex flex-wrap gap-1.5 text-caption text-[#57606a]">
           <span className="flex items-center gap-1.5 rounded-md border border-black/10 px-2 py-0.5"><i className="size-2 rounded-full bg-[#57606a]" />本库已有</span>
           <span className="flex items-center gap-1.5 rounded-md border border-black/10 px-2 py-0.5"><i className="size-2 rounded-full bg-[#57606a] opacity-40" />萌芽 <b>{blanks.emerging}</b></span>
           <span className="flex items-center gap-1.5 rounded-md border border-black/10 px-2 py-0.5"><i className="size-2 rounded-full border border-dashed border-[#9AA2AC]" />空白 <b>{blanks.gap}</b></span>
@@ -354,21 +354,21 @@ export function LineageRoadmap({ lineage, title, selected, onSelect }: { lineage
           <button type="button" aria-label={large ? "退出全屏" : "全屏查看"} title={large ? "退出全屏（Esc）" : "全屏查看"} className={button(false)} onClick={() => setLarge(!large)}>{large ? "✕" : "⛶"}</button>
         </div>
       </div>
-      {crumb.length > 1 ? <nav data-hud aria-label="路网位置" className={`${card} absolute left-1/2 top-3 hidden max-w-[40%] -translate-x-1/2 truncate px-4 py-2 text-[11.5px] xl:block`}>
+      {crumb.length > 1 ? <nav data-hud aria-label="路网位置" className={`${card} absolute left-1/2 top-3 hidden max-w-[40%] -translate-x-1/2 truncate px-4 py-2 text-caption xl:block`}>
         {crumb.map((j, x) => <span key={j}>{x ? <span className="mx-1 text-[#ced3da]">›</span> : null}
           {x < crumb.length - 1 ? <button type="button" className="text-[#534AB7] hover:underline" onClick={() => choose(j)}>{nodes[j].name}</button>
             : <b className="font-medium">{nodes[j].name}</b>}</span>)}
       </nav> : null}
       <div data-hud className={`${card} absolute bottom-3 left-3 hidden max-w-[420px] px-4 py-3 sm:block`}>
-        <p className="mb-1.5 text-[10.5px] font-medium tracking-wider text-[#8b949e]">R3（点击定位）</p>
+        <p className="mb-1.5 text-caption font-medium tracking-wider text-[#8b949e]">R3（点击定位）</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">{nodes.map((n, i) => n.level === 3 ? <button key={n.key} type="button"
-          className="flex items-center gap-2 rounded-md px-1 py-0.5 text-left text-[11.5px] text-[#57606a] hover:bg-[#f1f2f6] hover:text-[#1f2328]" onClick={() => choose(i)}>
+          className="flex items-center gap-2 rounded-md px-1 py-0.5 text-left text-caption text-[#57606a] hover:bg-[#f1f2f6] hover:text-[#1f2328]" onClick={() => choose(i)}>
           <i className={`size-2.5 shrink-0 rounded-[3px] ${n.blank ? "border border-dashed border-[#9AA2AC]" : ""}`} style={{ background: n.blank ? undefined : n.color }} />
           <span className="truncate">{n.name}</span>
           <em className="ml-auto not-italic tabular-nums text-[#8b949e]">{n.blank ? (n.blank === "gap" ? "空白" : "萌芽") : n.projects}</em></button> : null)}</div>
       </div>
-      <p className="pointer-events-none absolute bottom-3 right-3 hidden text-right text-[11px] leading-5 text-[#8b949e] sm:block">滚轮缩放 · 拖动平移 · 双击空白退回<br />悬停看路径 · 点击在上方谱系中查看</p>
-      {hovered && hover ? <div className="pointer-events-none fixed z-[90] max-w-[300px] rounded-lg bg-[rgba(26,30,38,.95)] px-3 py-2 text-[11.5px] leading-5 text-white shadow-xl"
+      <p className="pointer-events-none absolute bottom-3 right-3 hidden text-right text-caption leading-5 text-[#8b949e] sm:block">滚轮缩放 · 拖动平移 · 双击空白退回<br />悬停看路径 · 点击在上方谱系中查看</p>
+      {hovered && hover ? <div className="pointer-events-none fixed z-[90] max-w-[300px] rounded-lg bg-[rgba(26,30,38,.95)] px-3 py-2 text-caption leading-5 text-white shadow-xl"
         style={{ left: Math.min(hover.x + 16, window.innerWidth - 310), top: hover.y + 16 }}>
         <b className="font-semibold">{hovered.name}</b>
         <span className="block text-[#c3c9d4]">R{hovered.level} · {hovered.blank === "gap" ? "空白：本库项目未涉及（依据领域知识补充）"

@@ -132,11 +132,11 @@ function OutcomeAnalysis({ corpusId, scene }: { corpusId: string; scene: Scene }
     {!outputs ? <p role="status" className="text-xs text-[var(--stone)]">正在读取成果列表…</p> : <div className="grid items-center gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div className="mx-auto w-full max-w-[420px]"><Chart spec={{ type: "radar", title: "各类成果覆盖的项目数", labels: values.map(([l]) => l), values: values.map(([, n]) => n), unit: " 个项目", max: projects.length,
         note: `论文、专利、专著、奖励取自 ${listed}/${projects.length} 个项目报告的“成果列表”；其余取自标志性成果中判定为“已取得”的方面` }} /></div>
-      <div className="space-y-2 text-[13px] leading-6">
+      <div className="space-y-2 text-body leading-6">
         <p>{leading.length ? <>成果集中在 <b>{leading.map(([l, n]) => `${l}（${n} 个项目）`).join("、")}</b>。</> : "本场景报告中暂未整理出可计数的成果。"}</p>
         <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-[var(--steel)]">{values.map(([l, n]) =>
           <li key={l} className="flex justify-between gap-2"><span>{l}</span><span className="tabular-nums">{n ? `${n} 个项目` : "—"}</span></li>)}</ul>
-        <p className="text-[11px] text-[var(--stone)]">“—”表示本场景资料中没有对应记录，不等于没有该类成果。</p>
+        <p className="text-caption text-[var(--stone)]">“—”表示本场景资料中没有对应记录，不等于没有该类成果。</p>
       </div>
     </div>}
     {scene.achievements.length ? <details className="text-sm"><summary className="cursor-pointer text-xs text-[var(--primary)]">按标志性成果查看各方面完成度与原文</summary>
@@ -218,7 +218,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
         onClick={() => go({ dim: key === "技术谱系" ? "" : key, scene: key === "技术谱系" ? "" : sceneName, node: "" })}
         className="shrink-0 rounded-xl border-2 bg-[var(--surface)] px-3 py-1.5 text-left transition-shadow hover:shadow-md md:rounded-2xl md:px-4 md:py-3"
         style={{ borderColor: dim === key ? DIM_COLOR[key] : "var(--hairline)", background: dim === key ? DIM_COLOR[key] + "12" : undefined }}>
-        <span className="block text-[15px] font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
+        <span className="block text-emphasis font-semibold md:text-lg" style={{ color: DIM_COLOR[key] }}>{key}</span>
         <span className="hidden text-xs text-[var(--steel)] md:inline">{key === "技术谱系" ? (lineageClasses ? `${lineageClasses} 个技术体系 · ${lineageItems} 个技术条目` : "尚未生成")
           : data.scenes.length ? `${counts[key]} ${key === "场景" ? "类" : key === "问题" ? "个核心问题" : key === "技术" ? "条技术路线" : "项标志性成果"}` : "尚未归纳"}</span>
       </button>)}
@@ -232,7 +232,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
       <div role="tablist" aria-label="技术谱系视图" className="inline-flex gap-1 rounded-lg bg-[var(--surface)] p-1">
         {LINEAGE_VIEWS.map(([key, label]) => <button key={key} type="button" role="tab" aria-selected={lineageView === key}
           onClick={() => go({ lineage: key === "overview" ? "" : key })}
-          className={`rounded-md px-3 py-1 text-[13.5px] ${lineageView === key ? "bg-[var(--canvas)] font-semibold shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
+          className={`rounded-md px-3 py-1 text-body ${lineageView === key ? "bg-[var(--canvas)] font-semibold shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>{label}</button>)}
       </div>
       {lineageView === "overview" ? <ReportBoard corpusId={corpusId} hierarchy={data} onTech={toDetail}
         onDim={(d, scene) => go({ dim: d, scene, node: "" })} /> : null}

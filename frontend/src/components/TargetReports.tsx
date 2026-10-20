@@ -76,7 +76,7 @@ export function TargetReports({ corpusId }: { corpusId: string }) {
       if (row) next.set("version", row.version); return next;
     });
   }
-  return <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-[13px]">
+  return <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-body">
     <div className="flex flex-wrap items-center gap-[8px]">
       <h3 className="font-medium">技术研判 · 报告单元 {items.length} 份</h3>
       <span className="flex-1" />

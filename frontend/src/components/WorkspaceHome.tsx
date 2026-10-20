@@ -83,7 +83,7 @@ function WorkHome() {
           {ACTIONS.map((a) => <Link key={a.to} to={a.to} className="group flex min-h-[140px] min-w-0 flex-col rounded-xl border border-[#e3e7ec] bg-white p-4 sm:p-5 transition-colors hover:border-[#acb8c9] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
             <span className="flex items-center justify-between"><span className="grid size-9 place-items-center rounded-lg bg-[#f3f5f8]" style={{ color: a.accent }}><Icon name={a.icon} size={20} /></span>
               <span aria-hidden="true" className="text-[#b4bdc9] group-hover:text-[var(--primary)]">↗</span></span>
-            <h3 className="mt-3 text-[15px] font-semibold">{a.title}</h3><p className="mt-2 text-xs leading-6 text-[var(--steel)]">{a.text}</p>
+            <h3 className="mt-3 text-emphasis font-semibold">{a.title}</h3><p className="mt-2 text-xs leading-6 text-[var(--steel)]">{a.text}</p>
           </Link>)}
         </div>
       </section>

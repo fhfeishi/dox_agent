@@ -22,7 +22,7 @@ function readOpen() {
 
 function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: string }) {
   return <button type="button" aria-pressed={on} onClick={onClick}
-    className={`rounded-full border px-[10px] py-[3px] text-[12px] transition-colors ${on
+    className={`rounded-full border px-[10px] py-[3px] text-caption transition-colors ${on
       ? "border-[var(--primary)] bg-[var(--primary-soft)] text-[var(--primary-pressed)]"
       : "border-[var(--hairline-strong)] text-[var(--slate)] hover:border-[var(--primary)]"}`}>{children}</button>;
 }
@@ -68,16 +68,16 @@ export function QuickAsk() {
   }
 
   if (!open) return <button type="button" onClick={() => setOpenSaved(true)}
-    className="mb-[8px] text-[12px] text-[var(--link)] hover:underline">展开点选提问</button>;
+    className="mb-[8px] text-caption text-[var(--link)] hover:underline">展开点选提问</button>;
 
-  const label = "w-[64px] shrink-0 pt-[4px] text-[11.5px] text-[var(--stone)]";
+  const label = "w-[64px] shrink-0 pt-[4px] text-caption text-[var(--stone)]";
   return (
     <section aria-label="点选提问" className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[9px]">
       <div className="mb-[6px] flex items-center gap-[8px]">
-        <span className="text-[12.5px] font-semibold text-[var(--ink)]">点选提问</span>
-        <span className="text-[11.5px] text-[var(--stone)]">已按任务预选常用项，点“生成问题”填入输入框，再点发送</span>
+        <span className="text-body font-semibold text-[var(--ink)]">点选提问</span>
+        <span className="text-caption text-[var(--stone)]">已按任务预选常用项，点“生成问题”填入输入框，再点发送</span>
         <span className="flex-1" />
-        <button type="button" onClick={() => setOpenSaved(false)} className="text-[11.5px] text-[var(--stone)] hover:text-[var(--ink)]">收起</button>
+        <button type="button" onClick={() => setOpenSaved(false)} className="text-caption text-[var(--stone)] hover:text-[var(--ink)]">收起</button>
       </div>
       <div className="space-y-[5px]">
         <div className="flex gap-[6px]"><span className={label}>任务</span><div className="flex flex-wrap gap-[6px]">
@@ -96,11 +96,11 @@ export function QuickAsk() {
       <div className="mt-[8px] flex flex-wrap items-center gap-[8px]">
         <button type="button" disabled={pending || busy || sessionBusy || (!elements.length && !intents.length && !scene)}
           onClick={() => void generate()}
-          className="rounded-[7px] bg-[var(--primary)] px-[12px] py-[5px] text-[12.5px] text-white disabled:opacity-45">
+          className="rounded-[7px] bg-[var(--primary)] px-[12px] py-[5px] text-body text-white disabled:opacity-45">
           {pending ? "正在生成问题…" : "生成问题"}
         </button>
-        {task !== taskId ? <span className="text-[11.5px] text-[var(--stone)]">将新建「{TASKS.find(([id]) => id === task)![1]}」会话，沿用当前知识库</span> : null}
-        {error ? <span role="alert" className="text-[12px] text-[var(--red)]">{error}</span> : null}
+        {task !== taskId ? <span className="text-caption text-[var(--stone)]">将新建「{TASKS.find(([id]) => id === task)![1]}」会话，沿用当前知识库</span> : null}
+        {error ? <span role="alert" className="text-caption text-[var(--red)]">{error}</span> : null}
       </div>
     </section>
   );

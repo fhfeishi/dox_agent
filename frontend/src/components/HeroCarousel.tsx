@@ -39,14 +39,14 @@ function LibraryBars({ rows, value, label, colorOf, nameOf, missing }: { rows: L
   const absent = rows.filter((r) => !(value(r) > 0));
   const max = Math.max(1, ...shown.map(value));
   return <figure role="img" aria-label="各资料库数值横条图" className="m-0 flex h-full w-full flex-col justify-center">
-    <ul className="space-y-[5px]">{shown.map((r, i) => <li key={r.corpus_id} title={`${short(r.name)}：${label(r)}`} className="grid grid-cols-[6.5em_minmax(0,1fr)] items-center gap-3 text-[12px] leading-[14px]">
+    <ul className="space-y-[5px]">{shown.map((r, i) => <li key={r.corpus_id} title={`${short(r.name)}：${label(r)}`} className="grid grid-cols-[6.5em_minmax(0,1fr)] items-center gap-3 text-caption leading-[14px]">
       <span className="truncate text-right text-[#dbe4ee]">{nameOf(r)}</span>
       <span className="flex min-w-0 items-center gap-2">
         <span className="hero-bar h-[11px] shrink-0 rounded-[3px]" style={{ width: `calc((100% - 8.5em) * ${value(r) / max})`, minWidth: 3, background: colorOf(r.corpus_id), animationDelay: `${i * 45}ms` }} />
         <span className="shrink-0 whitespace-nowrap tabular-nums text-[#c9d4e1]">{label(r)}</span>
       </span>
     </li>)}</ul>
-    {absent.length && missing ? <figcaption className="mt-2.5 pl-[calc(6.5em+12px)] text-[11.5px] text-[#8fa3ba]">{missing}：{absent.map(nameOf).join("、")}</figcaption> : null}
+    {absent.length && missing ? <figcaption className="mt-2.5 pl-[calc(6.5em+12px)] text-caption text-[#8fa3ba]">{missing}：{absent.map(nameOf).join("、")}</figcaption> : null}
   </figure>;
 }
 
@@ -76,7 +76,7 @@ function YearStack({ rows, groups: gs, years, value, unit, nameOf }: { rows: Lib
           <text x={x + bar / 2} y={H - 4} textAnchor="middle" fontSize="11" fill={i === peak ? "#e6edf5" : "#8fa3ba"}>{y}</text>
         </g>; })}
     </svg>
-    <figcaption className="mt-1.5 flex flex-wrap gap-x-3.5 gap-y-1 text-[11.5px] text-[#c9d4e1]">
+    <figcaption className="mt-1.5 flex flex-wrap gap-x-3.5 gap-y-1 text-caption text-[#c9d4e1]">
       {present.map((g) => <span key={g.key} title={g.name} className="inline-flex items-center gap-1.5"><span className="inline-block size-2 rounded-[2px]" style={{ background: g.color }} />{nameOf(g)}</span>)}
     </figcaption>
   </figure>;
@@ -173,18 +173,18 @@ export function HeroCarousel({ rows }: { rows: LibraryOverview[] }) {
           <span className="tabular-nums text-[#7f93ab]">{String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
           <span className="h-3 w-px bg-white/20" />研究版图{prefix ? ` · ${prefix.replace("与", "")} 与各领域` : ""}
         </p>
-        <h1 className="mt-2 text-[23px] leading-tight font-semibold tracking-wide">{slide.title}</h1>
-        <p className="mt-3 flex items-baseline gap-2"><b className="text-[38px] leading-none font-semibold tabular-nums">{fmt(counted)}</b><span className="text-sm text-[#c9d4e1]">{slide.unit}</span></p>
-        {slide.insight ? <p className="mt-3.5 inline-flex max-w-full items-center gap-2 self-start rounded-full bg-white/[0.08] px-3 py-1 text-[12.5px] text-[#eef3f8] ring-1 ring-white/10">
-          <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-[#7cc4ff]" /><span className="truncate">{slide.insight}</span></p> : null}
-        <p className="mt-3 max-w-[30em] text-[11.5px] leading-[18px] text-pretty text-[#8fa3ba]">{slide.note}</p>
+        <h1 className="mt-2 text-page leading-tight font-semibold tracking-wide">{slide.title}</h1>
+        <p className="mt-3 flex items-baseline gap-2"><b className="text-display leading-none font-semibold tabular-nums">{fmt(counted)}</b><span className="text-sm text-[#c9d4e1]">{slide.unit}</span></p>
+        {slide.insight ? <p className="mt-3.5 inline-flex max-w-full items-center gap-2 self-start rounded-2xl bg-white/[0.08] px-3 py-1 text-body text-[#eef3f8] ring-1 ring-white/10">
+          <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-[#7cc4ff]" /><span>{slide.insight}</span></p> : null}
+        <p className="mt-3 max-w-[30em] text-caption leading-[18px] text-pretty text-[#8fa3ba]">{slide.note}</p>
       </div>
       <div className="relative hidden min-w-0 items-center border-l border-white/10 pl-8 md:flex">{slide.chart}</div>
     </div>
     <div className="absolute inset-x-6 bottom-4 flex items-center gap-3 border-t border-white/10 pt-3 sm:inset-x-9">
       <div role="group" aria-label="切换导览" className="flex flex-1 flex-wrap gap-1.5">
         {slides.map((s, i) => <button key={s.key} type="button" aria-label={`第 ${i + 1} 张：${s.label}`} aria-current={i === index ? "true" : undefined} onClick={() => go(i)}
-          className={`relative overflow-hidden rounded-full px-2.5 py-0.5 text-[11px] transition-colors ${i === index ? "bg-white text-[#172a40]" : "bg-white/10 text-[#c9d4e1] hover:bg-white/20"}`}>
+          className={`relative overflow-hidden rounded-full px-2.5 py-0.5 text-caption transition-colors ${i === index ? "bg-white text-[#172a40]" : "bg-white/10 text-[#c9d4e1] hover:bg-white/20"}`}>
           {s.label}
           {i === index && !paused && !still ? <span aria-hidden="true" key={index} className="hero-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#3987e5]" /> : null}
         </button>)}

@@ -63,7 +63,7 @@ export function PdfViewer({
   }
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <div className="flex items-center gap-[8px] pb-[10px] text-[12px] text-[var(--slate)]">
+      <div className="flex items-center gap-[8px] pb-[10px] text-caption text-[var(--slate)]">
         <button
           type="button"
           className="rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[10px] py-[5px] disabled:opacity-40"
@@ -94,8 +94,8 @@ export function PdfViewer({
         </a>
       </div>
       {/* key 确保翻页时 iframe 重新加载，使 #page= 片段生效；已知代价：每次翻页重载整份 PDF（大扫描件成本高），D6 升级 PDF.js 后改 JS 控制页码 */}
-      {availability === "checking" ? <p role="status" className="py-[16px] text-[13px] text-[var(--steel)]">正在检查原文件…</p> : null}
-      {availability === "error" ? <p role="alert" className="py-[16px] text-[13px] text-[var(--red)]">{fileError}</p> : null}
+      {availability === "checking" ? <p role="status" className="py-[16px] text-body text-[var(--steel)]">正在检查原文件…</p> : null}
+      {availability === "error" ? <p role="alert" className="py-[16px] text-body text-[var(--red)]">{fileError}</p> : null}
       {availability === "available" ? (
         <iframe
           key={current}
@@ -104,7 +104,7 @@ export function PdfViewer({
           className="min-h-0 w-full flex-1 rounded-[10px] border border-[var(--hairline)] bg-white"
         />
       ) : null}
-      <p className="pt-[10px] text-[11px] text-[var(--stone)]">
+      <p className="pt-[10px] text-caption text-[var(--stone)]">
         浏览器内置 PDF 渲染（缩放请用阅读器工具栏）。页码与引用的一致性校验（D10）完成前为 best effort。
       </p>
     </div>

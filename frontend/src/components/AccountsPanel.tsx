@@ -24,11 +24,11 @@ export function AccountsPanel() {
     setError(""); setNotice("");
     try { setAccounts(await action()); setNotice(done); } catch (e) { setError((e as Error).message); }
   };
-  const input = "min-w-0 rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-2 py-1.5 text-[12.5px]";
+  const input = "min-w-0 rounded-md border border-[var(--hairline)] bg-[var(--canvas)] px-2 py-1.5 text-body";
   return <section aria-label="账户管理" className="mt-[22px]">
-    <h3 className="text-[13px] font-semibold text-[var(--ink)]">账户</h3>
-    <p className="mt-1 text-[11.5px] leading-[1.6] text-[var(--stone)]">领导账户登录后进入精简的领域全景；管理员与普通用户进入完整系统，只有管理员能管理账户。</p>
-    <ul className="mt-2">{accounts.map((a) => <li key={a.username} className="flex items-center gap-2 border-b border-[var(--hairline)] py-[7px] text-[12.5px]">
+    <h3 className="text-body font-semibold text-[var(--ink)]">账户</h3>
+    <p className="mt-1 text-caption leading-[1.6] text-[var(--stone)]">领导账户登录后进入精简的领域全景；管理员与普通用户进入完整系统，只有管理员能管理账户。</p>
+    <ul className="mt-2">{accounts.map((a) => <li key={a.username} className="flex items-center gap-2 border-b border-[var(--hairline)] py-[7px] text-body">
       <span className="min-w-0 flex-1 truncate font-medium">{a.username}{a.username === me ? "（当前）" : ""}</span>
       <select aria-label={`${a.username} 的角色`} className={input} value={a.role}
         onChange={(e) => void run(() => call("/" + encodeURIComponent(a.username), { method: "PATCH", body: JSON.stringify({ role: e.target.value }) }), "角色已更新")}>
@@ -54,7 +54,7 @@ export function AccountsPanel() {
       </select>
       <Button size="sm" type="submit" className="col-span-3 justify-self-start">添加账户</Button>
     </form>
-    {error ? <p role="alert" className="mt-2 text-[12px] text-[var(--red)]">{error}</p> : null}
-    {notice ? <p role="status" className="mt-2 text-[12px] text-[var(--steel)]">{notice}</p> : null}
+    {error ? <p role="alert" className="mt-2 text-caption text-[var(--red)]">{error}</p> : null}
+    {notice ? <p role="status" className="mt-2 text-caption text-[var(--steel)]">{notice}</p> : null}
   </section>;
 }

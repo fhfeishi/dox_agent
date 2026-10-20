@@ -28,7 +28,7 @@ export function UserMenu() {
     if (!response.ok) { setMessage(typeof value?.detail === "string" ? value.detail : "修改失败"); return; }
     setForm({ old: "", next: "" }); setChanging(false); setMessage("密码已修改");
   }
-  const item = "block w-full rounded-md px-3 py-1.5 text-left text-[13px] hover:bg-[var(--surface)]";
+  const item = "block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)]";
   return <div ref={box} className="relative shrink-0">
     <button type="button" aria-label={`账户：${username}`} aria-expanded={open} onClick={() => { setOpen(!open); setMessage(""); }}
       className="grid size-8 place-items-center rounded-full bg-[var(--primary)] text-sm font-semibold text-white hover:opacity-90">
@@ -36,7 +36,7 @@ export function UserMenu() {
     </button>
     {open ? <div role="menu" aria-label="账户菜单" className="fixed top-[52px] right-3 z-[90] w-[230px] rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-2 shadow-xl">
       <div className="border-b border-[var(--hairline)] px-3 pt-1 pb-2">
-        <p className="truncate text-[14px] font-semibold">{username}</p>
+        <p className="truncate text-body font-semibold">{username}</p>
         <p className="text-xs text-[var(--steel)]">{ROLE_LABEL[role]}</p>
       </div>
       <button type="button" role="menuitem" className={item + " mt-1"} onClick={() => { setOpen(false); window.dispatchEvent(new Event(GUIDE_EVENT)); }}>本页操作指南</button>

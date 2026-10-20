@@ -5,6 +5,7 @@ directory, so the shots show the pages as they will be presented. Only the answe
 not exercised: the pages here are navigation, 任务模版 and the two home pages.
 """
 import asyncio
+import os
 import shutil
 import sqlite3
 from pathlib import Path
@@ -17,7 +18,9 @@ from src.main import create_app
 from tests.browser_artifacts_live import start_server
 
 ROOT = Path(__file__).resolve().parents[1]
-SHOTS = ROOT / ".logsdev/verification/query-20261019-2021"
+# SHOTS_DIR and VIEWPORT (e.g. 1366x768) let one run cover another screen size (U1: 1366, 1920, 150 %).
+SHOTS = Path(os.environ.get("SHOTS_DIR") or ROOT / ".logsdev/verification/query-20261019-2021")
+WIDTH, HEIGHT = (int(n) for n in os.environ.get("VIEWPORT", "1440x900").split("x"))
 # A writable copy of the knowledge metadata: the overview caches into the corpus database, so the
 # real .knowledge must not be used directly.
 SNAPSHOT = Path("/tmp/dox-shots-corpora")
@@ -62,6 +65,14 @@ async def shot(page, name):
     await page.screenshot(path=str(SHOTS / f"{name}.png"), full_page=True)
 
 
+async def open_menu(page, name):
+    """A top-bar menu, or the folded 工作导航 that holds every entry when the bar does not fit."""
+    button = page.get_by_role("button", name=name, exact=True)
+    if not await button.count():
+        button = page.get_by_role("button", name="工作导航 ▾", exact=True)
+    await button.click()
+
+
 async def dismiss(page):
     for _ in range(3):
         guide = page.get_by_role("button", name="知道了")
@@ -94,7 +105,7 @@ async def main():
         try:
             async with async_playwright() as p:
                 browser = await p.chromium.launch(headless=True)
-                page = await browser.new_page(viewport={"width": 1440, "height": 900})
+                page = await browser.new_page(viewport={"width": WIDTH, "height": HEIGHT})
                 errors = []
                 page.on("pageerror", lambda e: errors.append(str(e)))
 
@@ -104,10 +115,10 @@ async def main():
                 await dismiss(page)
                 await expect(page.get_by_role("navigation", name="主导航")).to_be_visible()
                 await shot(page, "admin-01-home")
-                await page.get_by_role("button", name="存量分析 ▾", exact=True).click()
+                await open_menu(page, "存量分析 ▾")
                 await shot(page, "admin-02-menu-tasks")
                 await page.keyboard.press("Escape")
-                await page.get_by_role("button", name="资料审查 ▾", exact=True).click()
+                await open_menu(page, "资料审查 ▾")
                 await shot(page, "admin-03-menu-review")
                 await page.keyboard.press("Escape")
                 await page.goto(origin + "/tasks")
@@ -152,7 +163,7 @@ async def main():
                 await page.get_by_role("region", name="首页导览").get_by_role("button", name="第 3 张：年度项目分布").click()
                 await page.wait_for_timeout(700)
                 await page.get_by_role("region", name="首页导览").screenshot(path=str(SHOTS / "leader-01b-year-slide.png"))
-                await page.get_by_role("button", name="工作台 ▾", exact=True).click()
+                await open_menu(page, "工作台 ▾")
                 await shot(page, "leader-02-workbench")
                 await page.get_by_role("menuitem", name="存量分析", exact=True).click()
                 await shot(page, "leader-03-workbench-tasks")

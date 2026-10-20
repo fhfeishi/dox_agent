@@ -67,7 +67,7 @@ export function LibraryHome() {
         <span className="flex-1" />
         <input type="search" aria-label="搜索资料库" placeholder="搜索资料库名称或说明" value={search.get("q") ?? ""}
           onChange={(e) => setSearch((old) => { const next = new URLSearchParams(old); if (e.target.value) next.set("q", e.target.value); else next.delete("q"); return next; }, { replace: true })}
-          className="w-[240px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px]" />
+          className="w-[240px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body" />
         {/* Every account keeps libraries and their groups (query 2026-1016 0919). */}
         <>
           {creating ? <form className="flex gap-1.5" onSubmit={(e) => {
@@ -75,13 +75,13 @@ export function LibraryHome() {
             void act(async () => { const created = await createCorpus(name.trim()); setName(""); setCreating(false); refreshCorpora(); openCorpus(created.id, "files"); });
           }}>
             <input autoFocus aria-label="新资料库名称" placeholder="资料库名称" required value={name} onChange={(e) => setName(e.target.value)}
-              className="w-[180px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[13px]" />
-            <button type="submit" className="rounded-lg bg-[var(--primary)] px-3 text-[13px] text-white">创建</button>
-            <button type="button" className="text-[13px] text-[var(--steel)]" onClick={() => setCreating(false)}>取消</button>
-          </form> : <button type="button" onClick={() => setCreating(true)} className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white">
+              className="w-[180px] rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body" />
+            <button type="submit" className="rounded-lg bg-[var(--primary)] px-3 text-body text-white">创建</button>
+            <button type="button" className="text-body text-[var(--steel)]" onClick={() => setCreating(false)}>取消</button>
+          </form> : <button type="button" onClick={() => setCreating(true)} className="flex items-center gap-1.5 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white">
             <Icon name="plus" size={14} />新建资料库</button>}
           {data ? <button type="button" onClick={() => { const next = window.prompt("新分组名称"); if (next?.trim()) void act(() => changeGroups(data.revision, "create", "", next.trim())); }}
-            className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">新建分组</button> : null}
+            className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">新建分组</button> : null}
         </>
       </header>
       {corporaError || error ? <p role="alert" className="text-sm text-[var(--red)]">{corporaError || error}</p> : null}
@@ -104,13 +104,13 @@ export function LibraryHome() {
             const state = c.missing ? "目录缺失" : c.job?.status === "running" ? "导入中" : c.preparation === "error" ? "加载失败" : !c.docs_count ? "空库" : "";
             return <article key={id} className="flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] transition-colors hover:border-[var(--primary)]">
               <button type="button" onClick={() => openCorpus(id)} className="flex-1 p-4 text-left">
-                <span className="flex items-center gap-2"><b className="min-w-0 flex-1 truncate text-[15px]" title={c.name}>{short(c.name)}</b>
+                <span className="flex items-center gap-2"><b className="min-w-0 flex-1 truncate text-emphasis" title={c.name}>{short(c.name)}</b>
                   {state ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 text-xs text-[#7a5a00]">{state}</span> : null}</span>
-                <span className="mt-1 line-clamp-2 block min-h-[2.5em] text-[12.5px] leading-5 text-[var(--steel)]">{c.description || "暂无说明"}</span>
-                <span className="mt-2 block text-[12.5px] text-[var(--slate)]">报告 {c.docs_count} 份{info ? ` · 项目 ${info.projects} 个` : ""}</span>
+                <span className="mt-1 line-clamp-2 block min-h-[2.5em] text-body leading-5 text-[var(--steel)]">{c.description || "暂无说明"}</span>
+                <span className="mt-2 block text-body text-[var(--slate)]">报告 {c.docs_count} 份{info ? ` · 项目 ${info.projects} 个` : ""}</span>
                 {fields ? <span className="mt-0.5 block truncate text-xs text-[var(--stone)]">主要应用领域：{fields}</span> : null}
               </button>
-              <div className="flex border-t border-[var(--hairline)] text-[12.5px]">
+              <div className="flex border-t border-[var(--hairline)] text-body">
                 <button type="button" onClick={() => openCorpus(id)} className="flex-1 py-2 text-[var(--primary)] hover:bg-[var(--canvas)]">打开</button>
                 <button type="button" onClick={() => showInspector({ kind: "corpus", corpusId: id })} className="flex-1 border-l border-[var(--hairline)] py-2 text-[var(--slate)] hover:bg-[var(--canvas)]">信息</button>
               </div>

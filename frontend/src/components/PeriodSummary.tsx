@@ -59,7 +59,7 @@ export function PeriodSummary() {
     <div className="space-y-1.5">{items.map((item) => <button key={item.key} type="button" onClick={() => open(item)}
       className="flex w-full items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5 text-left hover:border-[var(--primary)]">
       <span className="w-16 shrink-0 text-xs text-[var(--stone)]">{item.type}</span>
-      <span className="min-w-0 flex-1"><b className="block truncate text-[14px] font-medium">{item.title}</b>
+      <span className="min-w-0 flex-1"><b className="block truncate text-body font-medium">{item.title}</b>
         {item.domains.length ? <span className="block truncate text-xs text-[var(--steel)]">{item.domains.join("、")}</span> : null}</span>
       {item.runs > 1 ? <span className="shrink-0 text-xs text-[var(--stone)]">共审查 {item.runs} 次</span> : null}
       <span className="shrink-0 text-xs text-[var(--steel)]">{STATE[item.state]} · {item.date.slice(0, 10)}</span>
@@ -68,12 +68,12 @@ export function PeriodSummary() {
   const items = summary.active.length + summary.done.length + summary.failed.length;
   return <section aria-label="周期总结" className="@container space-y-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 sm:p-5">
     <div className="flex flex-wrap items-center gap-3">
-      <h2 className="text-[16px] font-semibold">周期总结</h2>
+      <h2 className="text-emphasis font-semibold">周期总结</h2>
       <div role="group" aria-label="时间段" className="flex flex-wrap gap-1">{PERIODS.map((p) =>
         <button key={p.key} type="button" aria-pressed={period === p.key} onClick={() => setPeriod(p.key)}
-          className={`rounded-full border px-3 py-1 text-[13px] ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>
+          className={`rounded-full border px-3 py-1 text-body ${period === p.key ? "border-[var(--primary)] bg-[var(--primary)] text-white" : "border-[var(--hairline)] hover:bg-[var(--surface)]"}`}>{p.label}</button>)}</div>
     </div>
-    <p className="rounded-xl bg-[var(--surface)] px-4 py-3 text-[15px] leading-7">{headline(summary, label)}</p>
+    <p className="rounded-xl bg-[var(--surface)] px-4 py-3 text-emphasis leading-7">{headline(summary, label)}</p>
     {charts.length ? <section aria-label="本期图表" className="grid gap-3 @2xl:grid-cols-2">
       {charts.map((spec) => <div key={spec.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4"><Chart spec={spec} /></div>)}
     </section> : null}
@@ -82,16 +82,16 @@ export function PeriodSummary() {
         <h3 className="text-sm font-semibold">总结报告</h3>
         <span className="flex-1 text-xs text-[var(--stone)]">由模型依据本期的报告与审查撰写文字，图表数字由系统统计；生成约需一分钟。</span>
         <button type="button" disabled={busy} onClick={() => void generate()}
-          className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[13px] text-white disabled:opacity-50">{busy ? "正在生成…" : `生成${label}总结`}</button>
+          className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white disabled:opacity-50">{busy ? "正在生成…" : `生成${label}总结`}</button>
       </div>
       {error ? <p role="alert" className="mt-2 text-xs text-[var(--red)]">{error}</p> : null}
       {summaries.length ? <div className="mt-3 space-y-1">{summaries.map((a) => <button key={a.id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: a.id })}
-        className="block w-full truncate rounded-md px-2 py-1 text-left text-[13.5px] text-[var(--link)] hover:bg-[var(--surface)]">{a.title}</button>)}</div> : null}
+        className="block w-full truncate rounded-md px-2 py-1 text-left text-body text-[var(--link)] hover:bg-[var(--surface)]">{a.title}</button>)}</div> : null}
     </section>
-    {summary.domains.length ? <p className="flex flex-wrap gap-1.5 text-[13px]">{summary.domains.map((d) =>
+    {summary.domains.length ? <p className="flex flex-wrap gap-1.5 text-body">{summary.domains.map((d) =>
       <span key={d.name} className="rounded-md border border-[var(--hairline)] px-2 py-0.5">{d.name} <span className="text-[var(--stone)]">{d.count}</span></span>)}</p> : null}
     {items ? <details className="group">
-      <summary className="cursor-pointer text-[13px] text-[var(--link)]">查看{label}的 {items} 项工作</summary>
+      <summary className="cursor-pointer text-body text-[var(--link)]">查看{label}的 {items} 项工作</summary>
       <div className="mt-3 space-y-4">
         {list("进行中", summary.active)}
         {list("已完成", summary.done)}

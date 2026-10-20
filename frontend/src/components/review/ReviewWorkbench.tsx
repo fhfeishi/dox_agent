@@ -42,9 +42,9 @@ function MetadataFields({ doc, onSave, onRetry }: {
     return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
   };
   const fields = extraction?.fields ?? {};
-  const inputCls = "mt-[3px] w-full rounded-[7px] border border-[var(--hairline)] bg-[var(--canvas)] px-[8px] py-[6px] text-[12.5px]";
+  const inputCls = "mt-[3px] w-full rounded-[7px] border border-[var(--hairline)] bg-[var(--canvas)] px-[8px] py-[6px] text-body";
   const field = (key: keyof ReviewMetadata, type: "text" | "number" = "text", hint = "") => (
-    <label key={key} className="block text-[12px] text-[var(--slate)]">
+    <label key={key} className="block text-caption text-[var(--slate)]">
       {REVIEW_FIELD_LABEL[key] ?? key}
       <input className={inputCls} placeholder={hint}
         value={type === "number" && (draft[key] === null || draft[key] === undefined) ? "" : String(draft[key] ?? "")}
@@ -60,7 +60,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
   return (
     <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
       <div className="mb-[8px] flex flex-wrap items-center gap-[8px]">
-        <strong className="text-[13.5px] text-[var(--ink)]">基本信息核对</strong>
+        <strong className="text-body text-[var(--ink)]">基本信息核对</strong>
         {doc.confirmed_at && !touched.size ? <Pill tone="mint">已确认</Pill> : touched.size ? <Pill tone="yellow">有未保存修改</Pill> : <Pill tone="yellow">待确认</Pill>}
         {extraction?.status === "running" ? <Pill tone="sky">{extraction.stage_label || "模型正在提取"}</Pill>
           : extraction?.status === "completed" ? <Pill tone="mint">已自动整理 · 请核对</Pill>
@@ -83,14 +83,14 @@ function MetadataFields({ doc, onSave, onRetry }: {
         {field("total_budget", "number")}
         {field("plan_start", "text", "YYYY-MM-DD")}
         {field("plan_end", "text", "YYYY-MM-DD")}
-        <label className="block text-[12px] text-[var(--slate)] sm:col-span-2">申报单位名单（每行一家）
+        <label className="block text-caption text-[var(--slate)] sm:col-span-2">申报单位名单（每行一家）
           <textarea aria-label="申报单位名单" rows={3} className={inputCls} value={(draft.organizations ?? []).join("\n")}
             onChange={(event) => edit("organizations", event.target.value.split("\n"))} />
         </label>
         {field("budget", "number")}
         {field("application_budget", "number")}
       </div>
-      <details className="mt-[10px] text-[12px]">
+      <details className="mt-[10px] text-caption">
         <summary className="cursor-pointer text-[var(--steel)]">更多字段（基金、类别、年度、学历等，按模板需要填写）</summary>
         <div className="mt-2 grid grid-cols-1 gap-[10px] sm:grid-cols-4">
           {field("fund")}
@@ -106,7 +106,7 @@ function MetadataFields({ doc, onSave, onRetry }: {
         </div>
       </details>
       {Object.keys(fields).length ? (
-        <details className="mt-[10px] text-[12px]">
+        <details className="mt-[10px] text-caption">
           <summary className="cursor-pointer text-[var(--steel)]">查看字段原文依据（{Object.keys(fields).length} 项）</summary>
           {Object.entries(fields).map(([key, value]) => (
             <div key={key} className="mt-[8px]">
@@ -116,14 +116,14 @@ function MetadataFields({ doc, onSave, onRetry }: {
               {value.candidates.map((candidate, index) => (
                 <div key={index} className="mt-[4px] text-[var(--slate)]">
                   {String(candidate.value)} · 第 {candidate.page} 页 · {candidate.reason}
-                  <blockquote className="mt-[2px] text-[11.5px] text-[var(--stone)]">{candidate.quote}</blockquote>
+                  <blockquote className="mt-[2px] text-caption text-[var(--stone)]">{candidate.quote}</blockquote>
                 </div>
               ))}
             </div>
           ))}
         </details>
       ) : null}
-      <p className="mt-[8px] text-[11.5px] text-[var(--stone)]">
+      <p className="mt-[8px] text-caption text-[var(--stone)]">
         计划日期按原文填写实际精度（如只写到月填 YYYY-MM），不能用申报或上传日期代替。审查材料不进入资料库；原文件：<button type="button" className="text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>{doc.filename}</button>
       </p>
     </div>
@@ -178,9 +178,9 @@ function SectionMapping({ doc, rule, onSummary }: { doc: ReviewDoc; rule: Review
         const changed = JSON.stringify(choice) !== JSON.stringify({ block_ids: row.block_ids, missing: row.missing });
         const selected = row.selected;
         return (
-          <div key={row.check_id} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-[12.5px]">
+          <div key={row.check_id} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body">
             <div className="flex flex-wrap items-center gap-2">
-              <strong className="text-[13px]">{row.section}</strong>
+              <strong className="text-body">{row.section}</strong>
               <span className="text-[var(--stone)]">→</span>
               <span className="min-w-0 flex-1 truncate text-[var(--slate)]">{choice.missing ? "确认缺少该章节" : choice.block_ids.length ? `${label(choice.block_ids[0])} 起，共 ${choice.block_ids.length} 块` : "未定位"}</span>
               <Pill tone={changed ? "yellow" : row.status === "confirmed" ? "mint" : row.status === "found" ? "sky" : row.status === "ambiguous" ? "peach" : "gray"}>
@@ -249,8 +249,8 @@ function StepTile({ step, label, value, open, onClick, onDrop }: {
     onDrop={onDrop ? (e) => { e.preventDefault(); setOver(false); const file = e.dataTransfer.files[0]; if (file) onDrop(file); } : undefined}
     className={`flex min-w-0 items-center gap-3 rounded-xl border px-4 py-3 text-left hover:border-[var(--primary)] ${open || over ? "border-[var(--primary)] bg-[var(--primary-soft)]" : "border-[var(--hairline)] bg-[var(--surface)]"}`}>
     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[var(--primary)] text-xs font-semibold text-white">{step}</span>
-    <span className="min-w-0 flex-1"><span className="block text-[11.5px] text-[var(--steel)]">{label}</span>
-      <span className="block truncate text-[14px] font-semibold text-[var(--ink)]">{value}</span></span>
+    <span className="min-w-0 flex-1"><span className="block text-caption text-[var(--steel)]">{label}</span>
+      <span className="block truncate text-body font-semibold text-[var(--ink)]">{value}</span></span>
     <span className="text-xs text-[var(--steel)]">{open ? "▴" : "▾"}</span>
   </button>;
 }
@@ -261,7 +261,7 @@ function LatestRun({ runs }: { runs: ReviewRun[] }) {
   if (!latest) return null;
   const title = latest.document?.metadata?.title || latest.document?.filename || "申请书";
   const active = runs.filter((run) => run.status === "queued" || run.status === "running").length;
-  return <div className="mt-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 text-[13px]">
+  return <div className="mt-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] px-4 py-3 text-body">
     <Link to={`/review/runs/${latest.id}`} className="flex flex-wrap items-center gap-2 hover:text-[var(--link)]">
       <Pill tone={latest.status === "completed" ? "mint" : latest.status === "failed" ? "rose" : "sky"}>
         {latest.status === "completed" ? "审查完成" : latest.status === "failed" ? "未完成" : REVIEW_STATUS_LABEL[latest.status] ?? "审查中"}</Pill>
@@ -433,17 +433,17 @@ export function ReviewWorkbench() {
       </div>
       <input ref={fileInput} aria-label="上传申请书文件" type="file" accept={ACCEPT} className="hidden"
         onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void upload(file); }} />
-      {blockers.length && doc ? <p className="mt-2 text-[11.5px] text-[var(--stone)]">尚需：{blockers.join("；")}</p> : null}
+      {blockers.length && doc ? <p className="mt-2 text-caption text-[var(--stone)]">尚需：{blockers.join("；")}</p> : null}
 
       {panel === "template" ? (
-        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-[12.5px] leading-6 text-[var(--slate)]">
+        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-body leading-6 text-[var(--slate)]">
           <p>{text.lead}</p>
           {template ? <p className="mt-1">本次启用 <b>{enabled.length}</b> 项：{enabled.slice(0, 6).map((c) => c.title).join("、")}{enabled.length > 6 ? "…" : ""}</p> : null}
-          <p className="mt-1 text-[11.5px] text-[var(--steel)]">{text.note} 完整条款已在右侧预览。</p>
+          <p className="mt-1 text-caption text-[var(--steel)]">{text.note} 完整条款已在右侧预览。</p>
           <p className="mt-3 text-xs font-semibold text-[var(--steel)]">更换模板</p>
           <div className="mt-1">{usable.map((rule) => (
             <button key={rule.id} type="button" disabled={!rule.confirmed} onClick={() => { remember("template", rule.id); showInspector({ kind: "review-template", templateId: rule.id }); }}
-              className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-[12.5px] disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--canvas)]"}`}>
+              className={`mb-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-body disabled:opacity-50 ${rule.id === template?.id ? "bg-[var(--primary-soft)]" : "hover:bg-[var(--canvas)]"}`}>
               <span className="min-w-0 flex-1 truncate">{rule.name} · v{rule.version}</span>
               <Pill tone="gray">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
               {!rule.confirmed ? <Pill tone="yellow">草稿</Pill> : null}
@@ -455,12 +455,12 @@ export function ReviewWorkbench() {
         </div>
       ) : null}
       {panel === "upload" ? (
-        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-[12.5px] leading-6 text-[var(--slate)]">
+        <div className="mt-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4 text-body leading-6 text-[var(--slate)]">
           {doc ? <>
             <p>{doc.kind.toUpperCase()} · {doc.page_count} {doc.kind === "pdf" ? "页" : "个文本块"} · {doc.confirmed_at ? "基本信息已确认" : "基本信息待核对"}</p>
-            {doc.warnings?.length ? <p className="text-[11.5px] text-[#8a6a00]">{doc.warnings[0]}</p> : null}
+            {doc.warnings?.length ? <p className="text-caption text-[#8a6a00]">{doc.warnings[0]}</p> : null}
           </> : null}
-          <p className="text-[11px] text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
+          <p className="text-caption text-[var(--steel)]">PDF / DOC / DOCX / Markdown / TXT，≤30MB；扫描件不做 OCR。可把文件拖到“申请书”上。</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <Button disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{doc ? "上传新版本" : "上传申请书"}</Button>
             {doc ? <button type="button" className="text-xs text-[var(--link)] hover:underline" onClick={() => showInspector({ kind: "review-source", fileId: doc.id, page: 1, title: doc.filename })}>查看原文</button> : null}
@@ -476,7 +476,7 @@ export function ReviewWorkbench() {
       {doc ? (
         <details aria-label="准备核对" className="mt-4 space-y-4 rounded-xl border border-[var(--hairline)] p-4">
           <summary className="cursor-pointer text-sm font-medium">补充信息与高级选项（可选）</summary>
-          <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3 text-[12.5px]">
+          <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-3 text-body">
             <strong className="mr-2">准备核对</strong>
             <Pill tone={template ? "mint" : "rose"}>{template ? "模板已保存" : "缺少模板"}</Pill>
             <Pill tone="mint">正文可读 · {doc.page_count} {doc.kind === "pdf" ? "页" : "块"}</Pill>
@@ -495,15 +495,15 @@ export function ReviewWorkbench() {
             }} />
           {reviewKind === "formal" && template ? (
             <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
-              <strong className="text-[13.5px]">章节对应核对</strong>
+              <strong className="text-body">章节对应核对</strong>
               <p className="mb-3 mt-1 text-xs text-[var(--steel)]">模板中的章节名称定义检查对象；这里确认本申请书中实际参与计数的内容。可选择重复标题的正确位置、调整起止文本块，或确认缺少该章节。</p>
               <SectionMapping doc={doc} rule={template} onSummary={setMapping} />
             </div>
           ) : null}
           {reviewKind === "professional" ? (
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-[12.5px]">
-                <strong className="text-[13.5px]">对照资料库</strong>
+              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
+                <strong className="text-body">对照资料库</strong>
                 <p className="mt-1 text-xs text-[var(--steel)]">选择一个子资料库，系统从中检索与申请书最相近的报告，读取全文作为对比参考。</p>
                 <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_auto]">
                   <select aria-label="对照资料库" className="rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] p-2" value={chosenLibrary} onChange={(e) => setLibrary(e.target.value)}>
@@ -525,8 +525,8 @@ export function ReviewWorkbench() {
                 </div>
 
               </div>
-              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-[12.5px]">
-                <strong className="text-[13.5px]">评价方式</strong>
+              <div className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px] text-body">
+                <strong className="text-body">评价方式</strong>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "update"} onChange={() => setMode("update")} /><span>更新建议（默认）：面向修改与下次申报，使用今天之前的已选材料。</span></label>
                 <label className="mt-2 flex items-start gap-2"><input type="radio" checked={mode === "historical"} onChange={() => setMode("historical")} /><span>历史评价：按指定评价时点，只采用日期明确且不晚于该时点的材料。</span></label>
                 {mode === "historical" ? <label className="mt-2 block text-xs">评价时点<input aria-label="评价时点" type="date" className="ml-2 rounded border border-[var(--hairline)] p-1" value={cutoff} onChange={(e) => setCutoff(e.target.value)} /></label> : null}
@@ -534,7 +534,7 @@ export function ReviewWorkbench() {
             </div>
           ) : null}
           <details className="rounded-[12px] border border-[var(--hairline)] bg-[var(--surface)] p-[16px]">
-            <summary className="cursor-pointer text-[13.5px] font-semibold">补充信息表（可选）</summary>
+            <summary className="cursor-pointer text-body font-semibold">补充信息表（可选）</summary>
             <p className="my-2 text-xs text-[var(--steel)]">信息表与正文分别保存；两处事实冲突时并列展示，不固定只信其一。</p>
             <select aria-label="选择申报信息表" className="mr-3 rounded border p-2 text-xs" value={sheetId} onChange={(e) => remember("sheet", e.target.value)}>
               <option value="">尚未提供</option>{docs.filter((item) => item.id !== doc.id).map((item) => <option key={item.id} value={item.id}>{item.filename}</option>)}
@@ -561,12 +561,12 @@ function RunList({ runs }: { runs: ReviewRun[] }) {
   if (!runs.length) return null;
   return (
     <details id="records" className="mt-[18px]">
-      <summary className="cursor-pointer text-[13px] text-[var(--steel)]">审查记录 · {runs.length} 份</summary>
+      <summary className="cursor-pointer text-body text-[var(--steel)]">审查记录 · {runs.length} 份</summary>
       <div className="mt-[8px] grid gap-[8px]">
         {runs.map((run) => (
           <Link key={run.id} to={`/review/runs/${run.id}`}
-            className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px] hover:border-[var(--primary)]">
-            <span className="block text-[13px] font-semibold text-[var(--ink)]">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
+            className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption hover:border-[var(--primary)]">
+            <span className="block text-body font-semibold text-[var(--ink)]">{run.document?.metadata?.title || run.document?.filename || "未命名申请书"}</span>
             <span className="mt-[3px] block text-[var(--steel)]">
               {REVIEW_STATUS_LABEL[run.status] ?? run.status} · {run.rule?.name ?? "模板"} v{run.rule?.version ?? "-"}
               {run.summary ? ` · 问题 ${run.summary.issue ?? 0} / 建议 ${run.summary.warning ?? 0} / 待核实 ${run.summary.pending ?? 0}` : ""} · {run.created_at?.slice(0, 10)}

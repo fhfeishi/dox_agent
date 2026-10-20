@@ -35,8 +35,8 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
   const sessions = workspace.sessions.filter((s) => s.created_by === username && !s.data.archived).slice(0, 8);
   const working = [...(reviews.data ?? []).filter((r) => ACTIVE.has(r.status)), ...(reports.data ?? []).filter((r) => ACTIVE.has(r.status))].length;
   const box = "rounded-xl border border-[#e3e7ec] bg-white p-4";
-  const row = "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-[13.5px] hover:bg-[#f6f7f9]";
-  const empty = (text: string) => <p className="px-3 py-2 text-[13px] text-[var(--stone)]">{text}</p>;
+  const row = "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-body hover:bg-[#f6f7f9]";
+  const empty = (text: string) => <p className="px-3 py-2 text-body text-[var(--stone)]">{text}</p>;
 
   return <section aria-label="我的工作">
     {/* bare: the page supplies the heading (leader 首页) and only the progress line remains. */}
@@ -54,7 +54,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
       </section>
       <section aria-label="我的报告" className={box}>
         <h3 className="mb-2 text-sm font-semibold">我的报告</h3>
-        {reports.error ? <p role="alert" className="px-3 text-[13px] text-[var(--red)]">{(reports.error as Error).message}</p> : null}
+        {reports.error ? <p role="alert" className="px-3 text-body text-[var(--red)]">{(reports.error as Error).message}</p> : null}
         {reports.data?.length ? reports.data.map((r) => <button key={r.artifact_id} type="button" onClick={() => showInspector({ kind: "artifact", artifactId: r.artifact_id })} className={row}>
           <span className="min-w-0 flex-1 truncate">{r.title || "分析报告"}</span>
           <span className="shrink-0 text-xs text-[var(--stone)]">{r.interrupted ? "已中断，可重试" : REPORT_STATE[r.status] ?? r.status}</span></button>)
@@ -62,7 +62,7 @@ export function MyWorkSection({ bare = false }: { bare?: boolean } = {}) {
       </section>
       <section aria-label="我的审查" className={box}>
         <h3 className="mb-2 text-sm font-semibold">我的审查</h3>
-        {reviews.error ? <p role="alert" className="px-3 text-[13px] text-[var(--red)]">{(reviews.error as Error).message}</p> : null}
+        {reviews.error ? <p role="alert" className="px-3 text-body text-[var(--red)]">{(reviews.error as Error).message}</p> : null}
         {reviews.data?.length ? reviews.data.map((r) => <button key={r.id} type="button" onClick={() => void navigate(`/review/runs/${encodeURIComponent(r.id)}`)} className={row}>
           <span className="min-w-0 flex-1 truncate">{r.document?.metadata?.title || r.document?.filename || "申请书"}</span>
           <span className="shrink-0 text-xs text-[var(--stone)]">{REVIEW_STATUS_LABEL[r.status] ?? r.status}</span></button>)

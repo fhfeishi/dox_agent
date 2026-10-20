@@ -28,7 +28,7 @@ export function ScopeSelector({
     groups.set(key, group);
   }
   return (
-    <div className="text-[12.5px]">
+    <div className="text-body">
       <div className="mb-[8px] flex items-center justify-between gap-2">
         <span className="text-[var(--steel)]">
           {selected ? `已选 ${selected.length} 份（最多 ${MAX_SCOPE} 份）` : "全部资料"}
@@ -44,7 +44,7 @@ export function ScopeSelector({
       </div>
       <input
         aria-label="筛选资料"
-        className="font-app mb-[8px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-[12.5px] outline-none focus:border-[var(--primary)]"
+        className="font-app mb-[8px] w-full rounded-[8px] border border-[var(--hairline)] bg-[var(--canvas)] px-[10px] py-[7px] text-body outline-none focus:border-[var(--primary)]"
         placeholder="按标题或来源筛选"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
@@ -52,7 +52,7 @@ export function ScopeSelector({
       <div className="max-h-[200px] overflow-auto">
         {[...groups].map(([corpusId, group]) => (
           <section key={corpusId} className="mb-[8px]">
-            <h4 className="sticky top-0 bg-[var(--canvas)] py-[3px] text-[11px] font-medium text-[var(--steel)]">{group.name}</h4>
+            <h4 className="sticky top-0 bg-[var(--canvas)] py-[3px] text-caption font-medium text-[var(--steel)]">{group.name}</h4>
             {group.items.map((d) => {
               const ambiguous = (owners.get(d.doc_id) ?? 0) > 1;
               return (
@@ -71,7 +71,7 @@ export function ScopeSelector({
                   />
                   <span className="min-w-0">
                     <span className="block text-[var(--charcoal)]">{d.title}</span>
-                    <span className="block break-all text-[11px] text-[var(--stone)]">
+                    <span className="block break-all text-caption text-[var(--stone)]">
                       {ambiguous ? "文档归属不唯一，不能限定选择" : d.origin}
                       {!ambiguous ? <><br />版本 {d.version}<br />{d.captured_at}</> : null}
                     </span>
@@ -81,7 +81,7 @@ export function ScopeSelector({
             })}
           </section>
         ))}
-        {!visible.length ? <p className="text-[12px] text-[var(--stone)]">没有匹配的资料。</p> : null}
+        {!visible.length ? <p className="text-caption text-[var(--stone)]">没有匹配的资料。</p> : null}
       </div>
     </div>
   );

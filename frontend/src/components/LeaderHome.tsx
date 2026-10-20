@@ -21,7 +21,7 @@ const WORK: { to: string; title: string; text: string; icon: IconName; accent: s
 function SectionHead({ index, title, note }: { index: string; title: string; note?: string }) {
   return <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
     <span className="text-xs font-semibold tabular-nums text-[#8a98aa]">{index}</span>
-    <h2 className="text-[17px] font-semibold text-[#1f3147]">{title}</h2>
+    <h2 className="text-group font-semibold text-[#1f3147]">{title}</h2>
     {note ? <span className="text-xs text-[var(--steel)]">{note}</span> : null}
   </div>;
 }
@@ -66,9 +66,9 @@ export function LeaderHome() {
             <span aria-hidden="true" className="pointer-events-none absolute -right-3 -bottom-4 opacity-[0.06]" style={{ color: w.accent }}><Icon name={w.icon} size={112} /></span>
             <span className="relative flex items-center gap-3">
               <span className="grid size-11 place-items-center rounded-xl" style={{ color: w.accent, background: w.accent + "14" }}><Icon name={w.icon} size={22} /></span>
-              <b className="text-[18px] text-[#1f3147]">{w.title}</b>
+              <b className="text-group text-[#1f3147]">{w.title}</b>
             </span>
-            <span className="relative mt-3 text-[13px] leading-5 text-[var(--steel)]">{w.text}</span>
+            <span className="relative mt-3 text-body leading-5 text-[var(--steel)]">{w.text}</span>
             <span className="relative mt-auto text-xs text-[var(--link)] opacity-60 transition-opacity group-hover:opacity-100">进入 →</span>
           </Link>)}
         </div>
@@ -87,7 +87,7 @@ export function LeaderHome() {
                 <p className="mb-3 text-xs text-[var(--stone)]">按库内识别的项目计；点一个领域查看其应用方向</p>
                 <ul className="space-y-1">{rows.map((r) => <li key={r.corpus_id}>
                   <button type="button" aria-pressed={r.corpus_id === chosen.corpus_id} onClick={() => choose(r.corpus_id)}
-                    className={`grid w-full grid-cols-[minmax(96px,9.5em)_1fr_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-[13px] transition-colors ${r.corpus_id === chosen.corpus_id ? "bg-[#eef3f9]" : "hover:bg-[#f6f8fb]"}`}>
+                    className={`grid w-full grid-cols-[minmax(96px,9.5em)_1fr_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-body transition-colors ${r.corpus_id === chosen.corpus_id ? "bg-[#eef3f9]" : "hover:bg-[#f6f8fb]"}`}>
                     <span className={`truncate ${r.corpus_id === chosen.corpus_id ? "font-semibold text-[#1f3147]" : "text-[var(--slate)]"}`} title={short(r.name)}>{short(r.name)}</span>
                     <span className="h-2 overflow-hidden rounded-full bg-[#edf1f5]"><span className="block h-full rounded-full transition-[width] duration-300"
                       style={{ width: `${Math.max(2, r.projects / most * 100)}%`, background: r.corpus_id === chosen.corpus_id ? "#2c5373" : "#9fb3c8" }} /></span>
@@ -96,7 +96,7 @@ export function LeaderHome() {
               </div>
               <div aria-label="所选领域" className="flex flex-col rounded-xl bg-[#f8fafc] p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h3 className="text-[17px] font-semibold text-[#1f3147]">{short(chosen.name)}</h3>
+                  <h3 className="text-group font-semibold text-[#1f3147]">{short(chosen.name)}</h3>
                   <span className="text-xs text-[var(--steel)]">{chosen.projects} 个项目 · 立项 {span(chosen.start_years)}{chosen.funding.projects ? ` · 已知经费 ${wan(chosen.funding.total_yuan)} 万元（${chosen.funding.projects} 个项目）` : ""}</span>
                 </div>
                 <div className="flex-1 py-2">
@@ -112,11 +112,11 @@ export function LeaderHome() {
               {rows.map((r) => <button key={r.corpus_id} type="button" onClick={() => openLibrary(r.corpus_id)} aria-pressed={r.corpus_id === chosen.corpus_id}
                 className={`flex flex-col rounded-xl border bg-white px-3 py-2.5 text-left transition-[border-color,box-shadow] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-[var(--primary)] ${r.corpus_id === chosen.corpus_id ? "border-[#7f97b1]" : "border-[#e2e7ee] hover:border-[#b4c1d2]"}`}>
                 <span className="flex items-baseline justify-between gap-2">
-                  <b className="truncate text-[13.5px] text-[#1f3147]" title={short(r.name)}>{short(r.name)}</b>
-                  <b className="shrink-0 text-[15px] font-semibold tabular-nums text-[#1f3147]">{r.projects}</b>
+                  <b className="truncate text-body text-[#1f3147]" title={short(r.name)}>{short(r.name)}</b>
+                  <b className="shrink-0 text-emphasis font-semibold tabular-nums text-[#1f3147]">{r.projects}</b>
                 </span>
                 <span aria-hidden="true" className="mt-1.5 block h-1 overflow-hidden rounded-full bg-[#edf1f5]"><span className="block h-full rounded-full bg-[#7f97b1]" style={{ width: `${Math.max(2, r.projects / most * 100)}%` }} /></span>
-                <span className="mt-1.5 truncate text-[11px] text-[var(--stone)]">{span(r.start_years)}{r.funding.projects ? ` · ${wan(r.funding.total_yuan)} 万元` : ""}</span>
+                <span className="mt-1.5 truncate text-caption text-[var(--stone)]">{span(r.start_years)}{r.funding.projects ? ` · ${wan(r.funding.total_yuan)} 万元` : ""}</span>
               </button>)}
             </div>
           </>}

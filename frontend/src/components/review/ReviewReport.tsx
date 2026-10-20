@@ -90,7 +90,7 @@ export function ReviewRunPage() {
         {item.mapping && item.mapping !== "confirmed" ? <Pill tone="yellow">范围未确认</Pill> : null}
         <StatusPill status={item.status} />
       </div>
-      {item.requirement ? <p className="mt-2 text-[13px] text-[var(--slate)]">要求：{item.requirement}{item.actual !== undefined && item.actual !== null ? <> · 实际值：<b>{String(item.actual)}</b></> : null}</p> : null}
+      {item.requirement ? <p className="mt-2 text-body text-[var(--slate)]">要求：{item.requirement}{item.actual !== undefined && item.actual !== null ? <> · 实际值：<b>{String(item.actual)}</b></> : null}</p> : null}
       <div className="my-3 rounded-xl bg-[var(--surface)] p-4 text-sm leading-7"><strong className="mb-1 block text-xs text-[var(--steel)]">修改或核对建议</strong>{item.suggestion || "结合原文逐项核对。"}</div>
       <details className="text-sm leading-7"><summary className="cursor-pointer font-medium text-[var(--primary)]">查看问题说明、要求和原文依据</summary>
         <p className="mt-3 whitespace-pre-wrap">{item.detail}</p>

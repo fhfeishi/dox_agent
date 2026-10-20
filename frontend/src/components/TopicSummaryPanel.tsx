@@ -44,7 +44,7 @@ export function TopicSummaryPanel({ corpusId, dimension, name }: { corpusId: str
       {summary?.status === "未完成" && !summary.overview ? <p className="mt-2 text-xs text-[var(--red)]">归纳未完成：{summary.error}</p> : null}
       {summary?.state === "stale" ? <p className="mt-2 text-xs text-[#8a6a00]">本主题的成员或来源版本已变化；下方为原归纳及其当时的原文快照，打开已更新的文件会提示版本变化。</p> : null}
       {summary && summary.state !== "missing" && summary.overview !== undefined ? <>
-        {summary.overview ? <p className="mt-3 text-[14px] leading-7">{summary.overview}</p> : null}
+        {summary.overview ? <p className="mt-3 text-body leading-7">{summary.overview}</p> : null}
         <p className="mt-2 text-xs text-[var(--steel)]">涉及 {summary.project_count} 个项目 · 代表项目：{(summary.representatives ?? []).map((r) => `${r.title}（${r.items} 条依据）`).join("、") || "无"}{summary.unsupported_items ? ` · ${summary.unsupported_items} 条描述无可回读原文，未参与归纳` : ""}</p>
         <div className="mt-3 grid gap-3 md:grid-cols-2">
           <div><p className="mb-2 text-xs font-semibold text-[var(--steel)]">共性</p>{summary.common?.length ? <ul className="space-y-2">{summary.common.map(point)}</ul> : <p className="text-xs text-[var(--stone)]">没有至少两个项目共同支持的共性要点。</p>}</div>

@@ -57,12 +57,12 @@ export function Overview() {
     {area === "domains" ? <div className="sticky top-0 z-10 border-b border-[var(--hairline)] bg-[var(--canvas)]/95 backdrop-blur">
       {/* The toolbar sits on the page's content column, not the window edge (query 2026-1019 2021). */}
       <div className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center gap-4 px-5 py-2.5 sm:px-8">
-      <label className="flex items-center gap-2 text-[13px] text-[var(--steel)]">领域
+      <label className="flex items-center gap-2 text-body text-[var(--steel)]">领域
         <select aria-label="选择领域" value={current?.id ?? ""} onChange={(e) => set({ domain: e.target.value })}
-          className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-[14px] font-semibold text-[var(--ink)]">
+          className="rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1.5 text-body font-semibold text-[var(--ink)]">
           {domains.map((c) => <option key={c.id} value={c.id}>{short(c.name)}</option>)}
         </select></label>
-      <label className="flex items-center gap-2 text-[13px] text-[var(--steel)]">分析视角
+      <label className="flex items-center gap-2 text-body text-[var(--steel)]">分析视角
         <select aria-label="分析视角" value={view} onChange={(e) => set({ view: e.target.value === "overview" ? "" : e.target.value })}
           className="max-w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-sm text-[var(--ink)]">
           {views.map((v) => <option key={v.key} value={v.key}>{v.label}</option>)}
@@ -124,16 +124,16 @@ function Work() {
     <header><p className="text-xs text-[var(--steel)]">管理员概览</p><h1 className="mt-2 text-2xl font-semibold">资料建设与运行维护</h1><p className="mt-2 text-sm text-[var(--steel)]">先处理待办，再查看各库覆盖与归纳状态。</p></header>
     <section aria-label="总体数字" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
       {kpis.map(([title, value]) => <div key={title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
-        <p className="text-[13px] text-[var(--steel)]">{title}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}
+        <p className="text-body text-[var(--steel)]">{title}</p><p className="mt-1 text-2xl font-semibold">{value}</p></div>)}
     </section>
     <section aria-label="需要处理">
       <h2 className="mb-2 text-base font-semibold">需要处理{ready ? " · " + todos.length : ""}</h2>
       {errors.length ? <p role="alert" className="mb-3 text-sm text-[var(--red)]">部分数据读取失败：{errors.map(e => (e as Error).message).join("；")}。以下仅展示已读取事项。</p> : !ready ? <p role="status" className="mb-3 text-sm text-[var(--steel)]">正在读取维护事项…</p> : null}
-      <p className="mb-3 text-xs text-[var(--steel)]">库内项目分别计数，跨库未去重。下方列出当前可读取的维护事项；失败任务完整列表见成果。</p>
+      <p className="mb-3 text-xs text-[var(--steel)]">库内项目分别计数，跨库未去重。下方列出当前可读取的维护事项；失败任务的完整列表在“报告中心”。</p>
       {!todos.length && ready && !errors.length ? <p className="rounded-xl border border-dashed p-4 text-sm text-[var(--steel)]">暂无需要处理的事项。</p> : null}
       <div className="max-h-[360px] space-y-1.5 overflow-y-auto">{todos.map((t) => <div key={t.key} className="flex items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2.5">
-        <span className="min-w-0 flex-1"><b className="block text-[14px] font-medium">{t.what}</b><span className="block truncate text-xs text-[var(--steel)]">{t.detail}</span></span>
-        <button type="button" onClick={t.go} className="shrink-0 rounded-md border border-[var(--hairline-strong)] px-3 py-1 text-[13px] hover:bg-[var(--canvas)]">{t.action}</button>
+        <span className="min-w-0 flex-1"><b className="block text-body font-medium">{t.what}</b><span className="block truncate text-xs text-[var(--steel)]">{t.detail}</span></span>
+        <button type="button" onClick={t.go} className="shrink-0 rounded-md border border-[var(--hairline-strong)] px-3 py-1 text-body hover:bg-[var(--canvas)]">{t.action}</button>
       </div>)}</div>
     </section>
   </div>;
@@ -184,7 +184,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
         const key = "i:" + i.title;
         return <button key={i.title} type="button" aria-expanded={open === key} onClick={() => toggle(key)} className={`${card(open === key)} p-3`}>
           <span className="block text-xs text-[var(--stone)]">{i.title}</span>
-          <span className="mt-1 block text-[14px] font-semibold leading-6">{i.headline}</span>
+          <span className="mt-1 block text-body font-semibold leading-6">{i.headline}</span>
           {open === key ? <span className="mt-1.5 block space-y-0.5 text-xs leading-5 text-[var(--steel)]">{i.points.map((p) => <span key={p} className="block">{p}</span>)}</span> : null}
         </button>;
       })}</div>
@@ -196,11 +196,11 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
         const key = "s:" + scene.name;
         return <div key={scene.name} className={card(open === key)}>
           <button type="button" aria-expanded={open === key} onClick={() => toggle(key)} className="flex w-full items-center gap-3 p-3 text-left">
-            <b className="min-w-0 flex-1 text-[14px]">{scene.name}</b>
+            <b className="min-w-0 flex-1 text-body">{scene.name}</b>
             <span className="text-xs text-[var(--stone)]">{scene.project_ids.length} 个项目 · 问题 {scene.issues.length} 个</span>
           </button>
           {open === key ? <ul className="space-y-2 border-t border-[var(--hairline)] px-3 py-3">{scene.issues.map((issue) =>
-            <li key={issue.name} className="text-[13px]">
+            <li key={issue.name} className="text-body">
               <span className="flex gap-1.5"><span className={issue.state === "已解决" ? "text-[#0e7a28]" : "text-[var(--steel)]"}>{issue.state === "已解决" ? "✔" : "➜"}</span><b className="font-medium">{issue.name}</b></span>
               {issue.routes.length ? <span className="mt-1 flex flex-wrap gap-1 pl-5">{issue.routes.map((r) =>
                 <span key={r.title} className="rounded-md bg-[var(--canvas)] px-2 py-0.5 text-xs text-[var(--slate)]">{r.title}</span>)}</span>
@@ -218,7 +218,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
         const key = "t:" + system.name;
         return <div key={system.name} className={card(open === key)}>
           <button type="button" aria-expanded={open === key} onClick={() => toggle(key)} className="flex w-full items-center gap-3 p-3 text-left">
-            <span className="min-w-0 flex-1"><b className="block text-[14px]">{system.name}</b>
+            <span className="min-w-0 flex-1"><b className="block text-body">{system.name}</b>
               {system.plain ? <span className="block truncate text-xs text-[var(--steel)]">{system.plain}</span> : null}</span>
             <span className="text-xs text-[var(--stone)]">{system.projects} 个项目</span>
           </button>
@@ -228,7 +228,7 @@ function Domain({ corpusId, name }: { corpusId: string; name: string }) {
         </div>;
       })}</div>
     </section>
-    <p className="text-[11px] text-[var(--stone)]">结论由本库项目报告归纳计算；阶段为报告所述，不是正式技术成熟度评定。</p>
+    <p className="text-caption text-[var(--stone)]">结论由本库项目报告归纳计算；阶段为报告所述，不是正式技术成熟度评定。</p>
   </div>;
 }
 /** Key and supporting technologies and open problems of one domain, counted from its lineage and scenes. */
@@ -252,8 +252,8 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
     <div className="flex flex-wrap items-baseline gap-3"><h1 className="text-xl font-semibold">{name} · 关键技术</h1>
       <button type="button" className="text-sm text-[var(--link)]" onClick={() => setSearch({ domain: corpusId, view: "lineage" }, { replace: true })}>查看技术谱系 →</button></div>
     <section aria-label="关键技术方向" className="overflow-x-auto rounded-xl border border-[var(--hairline)]">
-      <table className="w-full min-w-[720px] text-left text-[13.5px]">
-        <thead className="bg-[var(--surface)] text-[12.5px] text-[var(--steel)]"><tr>
+      <table className="w-full min-w-[720px] text-left text-body">
+        <thead className="bg-[var(--surface)] text-body text-[var(--steel)]"><tr>
           {["技术方向", "所属体系", "项目", `${tierOf(4).label}及以上`, "主要主题"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr></thead>
         <tbody>{directions.slice(0, 12).map((d) => <tr key={d.system + d.name} className="border-t border-[var(--hairline)]">
           <td className="px-4 py-2.5"><b className="font-medium">{d.name}</b>{d.foundation ? <span className="ml-2 rounded bg-[#7c5cd61a] px-1.5 text-xs text-[#4a2a8f]">共性</span> : null}
@@ -265,13 +265,13 @@ function KeyTechnology({ corpusId, name }: { corpusId: string; name: string }) {
     </section>
     {board?.foundations.length ? <section aria-label="共性与配套技术">
       <h2 className="mb-2 text-base font-semibold">共性与配套技术</h2>
-      <div className="grid gap-2 sm:grid-cols-2">{board.foundations.map((f) => <div key={f.key} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3 text-[13.5px]">
+      <div className="grid gap-2 sm:grid-cols-2">{board.foundations.map((f) => <div key={f.key} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3 text-body">
         <b>{f.name}</b><span className="ml-2 text-xs text-[var(--steel)]">{f.projects} 个项目 · 覆盖 {f.scenes.length}/{board.scenes.length} 个场景</span>
         {f.plain ? <p className="mt-1 text-xs text-[var(--steel)]">{f.plain}</p> : null}</div>)}</div>
     </section> : null}
     <section aria-label="问题与技术路线">
       <h2 className="mb-2 text-base font-semibold">问题与技术路线 · {issues.length} 个问题{noRoute.length ? `，${noRoute.length} 个缺少对应技术路线` : ""}</h2>
-      <div className="space-y-1.5">{issues.map((i) => <div key={i.scene + i.name} className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2 text-[13.5px]">
+      <div className="space-y-1.5">{issues.map((i) => <div key={i.scene + i.name} className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] px-4 py-2 text-body">
         <span className={i.state === "已解决" ? "text-[#0e7a28]" : "text-[var(--steel)]"}>{i.state === "已解决" ? "✔ 报告所述已解决" : "➜ 待研究"}</span>
         <b className="font-medium">{i.name}</b><span className="text-xs text-[var(--stone)]">{i.scene}</span>
         <span className="flex-1" />

@@ -194,13 +194,13 @@ export function CorpusFiles({
   const currentPage = Math.min(page, Math.max(0, Math.ceil(searchedRows.length / 40) - 1));
   const pageRows = searchedRows.slice(currentPage * 40, (currentPage + 1) * 40);
   return (
-    <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-[13px]">
+    <div className="mt-[14px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[14px] text-body">
       <h3 className="font-medium text-[var(--charcoal)]">文档 · 已入库 {counts.indexed} / 源文件 {files.length} · 待处理 {counts.pending} / 失败 {counts.failed}</h3>
       <div className="mt-[10px] space-y-[10px]">
-        {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[#fff7e6] px-[10px] py-[8px] text-[11.5px] text-[#805900]">
+        {listing?.misplaced_files.length ? <p role="status" className="rounded-[8px] bg-[#fff7e6] px-[10px] py-[8px] text-caption text-[#805900]">
           在知识库根目录发现未放入资料目录的文件：{listing.misplaced_files.join("、")}。请移入下方 source/ 目录后刷新；系统不会自动移动文件。
         </p> : null}
-        {showPath && listing?.source_dir ? <details className="break-all text-[11.5px] text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
+        {showPath && listing?.source_dir ? <details className="break-all text-caption text-[var(--stone)]"><summary className="cursor-pointer">查看本地资料目录</summary><p>
           本地资料目录：<code>{listing.source_dir}</code>
           <button type="button" className="ml-[7px] text-[var(--link)] hover:underline" onClick={() => void navigator.clipboard?.writeText(listing.source_dir)}>复制路径</button>
         </p></details> : null}
@@ -215,7 +215,7 @@ export function CorpusFiles({
             <button
               type="button"
               disabled={busy || !connected}
-              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[7px] bg-[var(--primary)] px-[12px] text-[12.5px] font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
+              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[7px] bg-[var(--primary)] px-[12px] text-body font-medium text-white transition-colors hover:bg-[var(--primary-pressed)] disabled:opacity-50"
               onClick={() => inputRef.current?.click()}
             >
               <Icon name="plus" size={13} strokeWidth={2.2} />
@@ -241,13 +241,13 @@ export function CorpusFiles({
               }}
             />
           </div>
-          <p className="mt-[6px] text-[11.5px] text-[var(--stone)]">
+          <p className="mt-[6px] text-caption text-[var(--stone)]">
             支持 md / markdown / txt / pdf / docx 多选；每个文件独立上传并增量导入，失败项不会阻断后续文件。
           </p>
-          {busy ? <button type="button" className="mt-[6px] text-[11.5px] text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
+          {busy ? <button type="button" className="mt-[6px] text-caption text-[var(--red)] hover:underline" onClick={() => { stopAfterCurrent.current = true; }}>停止后续未上传文件</button> : null}
         </div>
         </>
-        {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-[11.5px]">
+        {uploads.length ? <ul aria-label="本次添加进度" className="space-y-[3px] rounded-[8px] bg-[var(--surface-soft)] p-[8px] text-caption">
           {uploads.map((item) => <li key={item.path} className="flex gap-[8px]">
             <span className="min-w-0 flex-1 truncate" title={item.file.name}>{item.file.name}</span>
             <span className="shrink-0 text-[var(--stone)]">{{ waiting: "等待", uploading: "上传并处理", indexed: "已入库", "parse-error": "已保存，解析失败", "upload-error": "上传失败", stopped: "已停止，未上传" }[item.state]}</span>
@@ -262,10 +262,10 @@ export function CorpusFiles({
               value={search}
               onChange={(event) => updateFilter("q", event.target.value)}
               placeholder={mode === "content" ? "输入正文主题（至少两个字）" : "按文件名搜索"}
-              className="font-app w-full border-0 bg-transparent text-[11.5px] text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
+              className="font-app w-full border-0 bg-transparent text-caption text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
             />
           </label>
-          {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" onClick={() => updateFilter("status", key)} className={`rounded-full px-[9px] py-[4px] text-[11px] ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
+          {(["all", "pending", "indexed", "failed"] as const).map((key) => <button key={key} type="button" onClick={() => updateFilter("status", key)} className={`rounded-full px-[9px] py-[4px] text-caption ${filter === key ? "bg-[var(--primary-soft)] text-[var(--primary-pressed)]" : "text-[var(--steel)] hover:bg-[var(--surface)]"}`}>
             {{ all: "全部", pending: "待处理", indexed: "已入库", failed: "失败" }[key]} {counts[key]}
           </button>)}
         </div>
@@ -314,7 +314,7 @@ export function CorpusFiles({
                   <input
                     autoFocus
                     aria-label="文件名"
-                    className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-[12px] outline-none focus:border-[var(--primary)]"
+                    className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-caption outline-none focus:border-[var(--primary)]"
                     value={editing.name}
                     onChange={(e) => setEditing({ ...editing, name: e.target.value })}
                   />
@@ -332,8 +332,8 @@ export function CorpusFiles({
                     const meta = fundMetaFromPath(file.rel_path);
                     const folder = file.rel_path.includes("/") ? file.rel_path.split("/").slice(0, -1).join("/") : "";
                     return <span className="min-w-0 flex-1" title={file.rel_path}>
-                      <span className="block truncate text-[13px] font-medium text-[var(--ink)]">{meta?.title || file.rel_path.split("/").at(-1)}</span>
-                      <span className="block truncate text-[11.5px] text-[var(--stone)]">
+                      <span className="block truncate text-body font-medium text-[var(--ink)]">{meta?.title || file.rel_path.split("/").at(-1)}</span>
+                      <span className="block truncate text-caption text-[var(--stone)]">
                         {meta ? `${meta.yearFrom}–${meta.yearTo} · ${meta.projectNo} · ${meta.pi}` : file.rel_path.split(".").at(-1)?.toUpperCase()}
                         {folder ? ` · ${folder}` : ""}</span>
                     </span>;
@@ -342,14 +342,14 @@ export function CorpusFiles({
                     {status === "error" ? "已保存，未入库 · 解析失败" : STATUS_LABEL[status] ?? status}
                   </span>
                   {file.reason ? <span className="max-w-[220px] truncate text-[var(--red)]" title={file.reason}>{file.reason}</span> : null}
-                  {file.duplicate_of ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-[11px] text-[#9b2c2c]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
-                  {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-[11px] text-[#7a5a00]">项目待核对</span> : null}
+                  {file.duplicate_of ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-caption text-[#9b2c2c]" title={file.duplicate_of}>与 {file.duplicate_of.split("/").at(-1)} 内容相同</span> : null}
+                  {document && pendingDocs.has(document.doc_id) ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-caption text-[#7a5a00]">项目待核对</span> : null}
                   {status === "indexed" && document && onPreview ? <button type="button" className="shrink-0 text-[var(--link)] hover:underline" onClick={() => onPreview(document)}>预览</button> : null}
                   {status === "error" ? (
                     <button
                       type="button"
                       disabled={busy || !connected}
-                      className="shrink-0 rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-[11px] text-[var(--link)] disabled:opacity-50"
+                      className="shrink-0 rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption text-[var(--link)] disabled:opacity-50"
                       onClick={() => void run(onRetryImport)}
                     >
                       重试本库待处理项
@@ -385,7 +385,7 @@ export function CorpusFiles({
               )}
             </li>
           ))}
-          {!searchedRows.length ? <li className="text-[12px] text-[var(--stone)]">{needle ? "没有匹配的资料。" : "此筛选下没有文档。"}</li> : null}
+          {!searchedRows.length ? <li className="text-caption text-[var(--stone)]">{needle ? "没有匹配的资料。" : "此筛选下没有文档。"}</li> : null}
         </ul>
         <div className="flex items-center justify-between text-xs">
           <button disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)} className="rounded border px-3 py-2 disabled:opacity-40">上一页</button>
@@ -396,13 +396,13 @@ export function CorpusFiles({
         {chatOpen ? <AnalysisWorkspace corpusId={corpusId} corpusName={corpusName} documents={selectedDocs} onBusy={setChatBusy} projects={projects} task={workspaceTask}
           onRemove={(ids) => setSelectedIds((old) => old.filter((item) => !ids.includes(item)))} onClear={() => setSelectedIds([])} onClose={() => setChatOpen(false)} />
           // Ticking files offers the conversation without opening it over the list.
-          : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-[13px] shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
+          : selectedDocs.length ? <div role="region" aria-label="已选资料" className="fixed bottom-6 left-1/2 z-[55] flex -translate-x-1/2 items-center gap-3 rounded-full border border-[var(--hairline)] bg-[var(--canvas)] py-2 pr-2 pl-5 text-body shadow-[0_16px_40px_-16px_rgba(15,23,42,0.45)]">
             <span className="whitespace-nowrap text-[var(--slate)]">已选 <b className="text-[var(--ink)]">{selectedDocs.length}</b> 份资料</span>
-            <button type="button" onClick={() => setSelectedIds([])} className="whitespace-nowrap text-[12.5px] text-[var(--steel)] hover:text-[var(--ink)]">清空</button>
+            <button type="button" onClick={() => setSelectedIds([])} className="whitespace-nowrap text-body text-[var(--steel)] hover:text-[var(--ink)]">清空</button>
             <button type="button" onClick={() => setChatOpen(true)} className="whitespace-nowrap rounded-full bg-[var(--primary)] px-4 py-1.5 font-medium text-white hover:bg-[var(--primary-pressed)]">分析这些资料</button>
           </div> : null}
         {notice || result.error ? (
-          <p role="alert" className="text-[12px] text-[var(--red)]">
+          <p role="alert" className="text-caption text-[var(--red)]">
             {notice || result.error?.message}
           </p>
         ) : null}

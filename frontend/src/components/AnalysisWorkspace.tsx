@@ -115,7 +115,7 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
   const lastQuestion = [...items].reverse().find((t): t is Answer => t.kind === "answer")?.question ?? "";
   const reporting = items.some((t) => t.kind === "report" && (t.state === "checking" || t.state === "generating"));
   const right = inspectorOpen ? "xl:right-[calc(var(--inspector-width)+20px)]" : "";
-  const link = "text-[11.5px] text-[var(--link)] hover:underline disabled:opacity-40";
+  const link = "text-caption text-[var(--link)] hover:underline disabled:opacity-40";
 
   return <section aria-label="分析工作区"
     className={`${PANEL_SHELL} fixed top-[52px] right-0 bottom-0 z-[60] w-full sm:top-[62px] sm:right-[10px] sm:bottom-[10px] sm:w-[440px] ${right}`}>
@@ -127,18 +127,18 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
 
     {/* The scope stays in view: every question and report below uses exactly this. */}
     <div aria-label="分析范围" className="border-b border-[var(--hairline)] bg-[var(--canvas)] px-[14px] py-[9px]">
-      <div className="mb-[6px] flex items-center gap-2 text-[11.5px] text-[var(--steel)]">
+      <div className="mb-[6px] flex items-center gap-2 text-caption text-[var(--steel)]">
         <span className="font-medium">范围 · {scope}</span>
         <span className="flex-1 text-[var(--stone)]">{ids.length ? "在左侧勾选可增减" : "在左侧勾选项目可缩小范围"}</span>
         {ids.length ? <button type="button" onClick={onClear} className="text-[var(--link)] hover:underline">清空</button> : null}
       </div>
       {ids.length ? <ul className="flex max-h-[76px] flex-wrap gap-[5px] overflow-y-auto">
-        {groups.map(({ p, docs }) => <li key={p.project_id} className="flex max-w-full items-center gap-1 rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] py-[2px] pr-[3px] pl-[7px] text-[11.5px] text-[var(--slate)]">
+        {groups.map(({ p, docs }) => <li key={p.project_id} className="flex max-w-full items-center gap-1 rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] py-[2px] pr-[3px] pl-[7px] text-caption text-[var(--slate)]">
           <span className="max-w-[300px] truncate" title={p.title}>{p.title}</span><span className="text-[var(--stone)]">{docs.length} 份</span>
           <button type="button" aria-label={`移出范围：${p.title}`} onClick={() => onRemove(docs)}
             className="grid size-[16px] place-items-center rounded text-[var(--stone)] hover:bg-[var(--surface)] hover:text-[var(--red)]">×</button>
         </li>)}
-        {loose.length ? <li className="flex items-center gap-1 rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] py-[2px] pr-[3px] pl-[7px] text-[11.5px] text-[var(--slate)]">
+        {loose.length ? <li className="flex items-center gap-1 rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] py-[2px] pr-[3px] pl-[7px] text-caption text-[var(--slate)]">
           其他资料 {loose.length} 份<button type="button" aria-label="移出范围：其他资料" onClick={() => onRemove(loose)}
             className="grid size-[16px] place-items-center rounded text-[var(--stone)] hover:bg-[var(--surface)] hover:text-[var(--red)]">×</button></li> : null}
       </ul> : null}
@@ -146,27 +146,27 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
 
     <div className="scrollbar-thin min-h-0 flex-1 space-y-5 overflow-y-auto px-[14px] py-[14px]" aria-live="polite">
       {!items.length && !form ? <div className="space-y-2">
-        <p className="text-[12px] text-[var(--steel)]">回答附原文出处；满意的回答可保存到“报告中心”，或直接生成报告。可以这样问：</p>
+        <p className="text-caption text-[var(--steel)]">回答附原文出处；满意的回答可保存到“报告中心”，或直接生成报告。可以这样问：</p>
         {starters(groups.length, ids.length).map(([text, t]) => <button key={text} type="button" onClick={() => void ask(text, t)}
-          className="block w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2 text-left text-[13px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">{text}</button>)}
+          className="block w-full rounded-lg border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2 text-left text-body text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]">{text}</button>)}
       </div> : null}
       {items.map((t) => t.kind === "answer" ? <article key={t.runId} className="space-y-2">
         <div className="ml-auto w-fit max-w-[88%]">
-          <p className="rounded-2xl rounded-br-md bg-[var(--primary)] px-3 py-2 text-[13px] whitespace-pre-wrap text-white">{t.question}</p>
-          <p className="mt-0.5 text-right text-[10.5px] text-[var(--stone)]">{t.scope}</p>
+          <p className="rounded-2xl rounded-br-md bg-[var(--primary)] px-3 py-2 text-body whitespace-pre-wrap text-white">{t.question}</p>
+          <p className="mt-0.5 text-right text-caption text-[var(--stone)]">{t.scope}</p>
         </div>
         <div className="rounded-2xl rounded-bl-md border border-[var(--hairline)] bg-[var(--canvas)] px-3 py-2.5">
-          {t.answer ? <div className="markdown text-[13px]"><ReportMarkdown markdown={t.answer} sources={t.sources} onOpenSource={handleOpenSource} /></div>
-            : !t.error ? <p className="text-[13px] text-[var(--steel)]">正在查阅资料<span className="animate-pulse">…</span></p> : null}
+          {t.answer ? <div className="markdown text-body"><ReportMarkdown markdown={t.answer} sources={t.sources} onOpenSource={handleOpenSource} /></div>
+            : !t.error ? <p className="text-body text-[var(--steel)]">正在查阅资料<span className="animate-pulse">…</span></p> : null}
           {t.sources.length ? <div className="mt-2 border-t border-[var(--hairline)] pt-2">
-            <p className="mb-1 text-[11px] text-[var(--stone)]">出处</p>
+            <p className="mb-1 text-caption text-[var(--stone)]">出处</p>
             <div className="flex flex-wrap gap-1.5">{t.sources.map((source, n) => <button key={`${source.doc_id ?? ""}-${n}`} type="button"
-              className="max-w-full truncate rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] px-2 py-0.5 text-[11.5px] text-[var(--link)] hover:border-[var(--primary)]"
+              className="max-w-full truncate rounded-md border border-[var(--hairline)] bg-[var(--surface-soft)] px-2 py-0.5 text-caption text-[var(--link)] hover:border-[var(--primary)]"
               onClick={() => void handleOpenSource(source, source.citation ?? n + 1)}>[{source.citation ?? n + 1}] {source.title}</button>)}</div>
           </div> : null}
-          {t.error ? <p role="alert" className="mt-1 flex flex-wrap items-center gap-2 text-[12.5px] text-[var(--red)]">{t.error}
+          {t.error ? <p role="alert" className="mt-1 flex flex-wrap items-center gap-2 text-body text-[var(--red)]">{t.error}
             {!busy ? <button type="button" onClick={() => { setItems((old) => old.filter((x) => x.runId !== t.runId)); void ask(t.question, t.task); }}
-              className="rounded-md border border-[var(--red)] px-2 py-0.5 text-[12px]">重试</button> : null}</p> : null}
+              className="rounded-md border border-[var(--red)] px-2 py-0.5 text-caption">重试</button> : null}</p> : null}
           {t.answer && !t.error && !(busy && t === items.at(-1)) ? <div className="mt-2 flex flex-wrap justify-end gap-3 border-t border-[var(--hairline)] pt-2">
             <button type="button" onClick={() => copy(t.answer, t.runId)} className={link}>{copied === t.runId ? "已复制" : "复制"}</button>
             {t.saved ? <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: t.saved! })} className={link}>已保存，打开</button>
@@ -174,30 +174,30 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
             <button type="button" disabled={reporting} onClick={() => setForm({ topic: t.question, template: form?.template ?? "" })} className={link}>以此生成报告</button>
           </div> : null}
         </div>
-      </article> : <article key={t.runId} aria-label={`报告：${t.topic}`} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-[13px]">
+      </article> : <article key={t.runId} aria-label={`报告：${t.topic}`} className="rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-3 text-body">
         <p className="flex items-center gap-2"><Icon name="doc" size={14} /><b className="min-w-0 flex-1 truncate" title={t.topic}>报告 · {t.topic}</b></p>
-        <p className="mt-0.5 text-[11px] text-[var(--stone)]">{t.scope}</p>
-        {t.state === "failed" ? <p role="alert" className="mt-2 text-[12.5px] text-[var(--red)]">{t.error}</p>
-          : <p className="mt-2 text-[12.5px] text-[var(--steel)]">{t.state === "done" ? "已生成并保存到“报告中心”。" : t.note}</p>}
+        <p className="mt-0.5 text-caption text-[var(--stone)]">{t.scope}</p>
+        {t.state === "failed" ? <p role="alert" className="mt-2 text-body text-[var(--red)]">{t.error}</p>
+          : <p className="mt-2 text-body text-[var(--steel)]">{t.state === "done" ? "已生成并保存到“报告中心”。" : t.note}</p>}
         {t.state === "generating" ? <GenerationProgress compact status="generating" /> : null}
         {t.state === "done" && t.artifactId ? <button type="button" onClick={() => showInspector({ kind: "artifact", artifactId: t.artifactId! })}
-          className="mt-2 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[12.5px] text-white">打开报告</button> : null}
-        {t.state === "failed" ? <button type="button" onClick={() => setForm({ topic: t.topic, template: "" })} className="mt-2 rounded-lg border border-[var(--hairline-strong)] px-3 py-1 text-[12.5px]">调整后重新生成</button> : null}
+          className="mt-2 rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white">打开报告</button> : null}
+        {t.state === "failed" ? <button type="button" onClick={() => setForm({ topic: t.topic, template: "" })} className="mt-2 rounded-lg border border-[var(--hairline-strong)] px-3 py-1 text-body">调整后重新生成</button> : null}
       </article>)}
 
-      {form ? <form aria-label="生成报告" className="space-y-2 rounded-xl border border-[var(--primary)] bg-[var(--canvas)] p-3 text-[13px]"
+      {form ? <form aria-label="生成报告" className="space-y-2 rounded-xl border border-[var(--primary)] bg-[var(--canvas)] p-3 text-body"
         onSubmit={(e) => { e.preventDefault(); void generate(form.topic, form.template || templates.data?.[0]?.id || "comprehensive"); }}>
         <p className="font-semibold">生成报告 <span className="font-normal text-[var(--stone)]">· {scope}</span></p>
-        <label className="block text-[12px] text-[var(--steel)]">报告要回答的问题
+        <label className="block text-caption text-[var(--steel)]">报告要回答的问题
           <textarea aria-label="报告主题" value={form.topic} rows={3} onChange={(e) => setForm({ ...form, topic: e.target.value })}
-            className="mt-1 w-full resize-y rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-[13px] text-[var(--ink)] outline-none focus:border-[var(--primary)]" /></label>
-        <label className="block text-[12px] text-[var(--steel)]">报告模板
+            className="mt-1 w-full resize-y rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-body text-[var(--ink)] outline-none focus:border-[var(--primary)]" /></label>
+        <label className="block text-caption text-[var(--steel)]">报告模板
           <select aria-label="报告模板" value={form.template || templates.data?.[0]?.id || ""} onChange={(e) => setForm({ ...form, template: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-[13px] text-[var(--ink)]">
+            className="mt-1 w-full rounded-lg border border-[var(--hairline-strong)] px-2 py-1.5 text-body text-[var(--ink)]">
             {(templates.data ?? []).map((t) => <option key={t.id} value={t.id}>{templateLabel(t)}</option>)}
           </select></label>
-        <div className="flex gap-2"><button disabled={!form.topic.trim()} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-[12.5px] text-white disabled:opacity-40">生成</button>
-          <button type="button" onClick={() => setForm(null)} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[12.5px]">取消</button></div>
+        <div className="flex gap-2"><button disabled={!form.topic.trim()} className="rounded-lg bg-[var(--primary)] px-3 py-1.5 text-body text-white disabled:opacity-40">生成</button>
+          <button type="button" onClick={() => setForm(null)} className="rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">取消</button></div>
       </form> : null}
       <div ref={bottom} />
     </div>
@@ -208,14 +208,14 @@ export function AnalysisWorkspace({ corpusId, corpusName, documents, projects, t
           onChange={(e) => setQuestion(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); void ask(question); } }}
           placeholder={ids.length ? "向所选资料提问…" : "向本资料库提问…"}
-          className="max-h-[120px] min-w-0 flex-1 resize-none bg-transparent px-2 py-1.5 text-[13px] leading-[1.5] outline-none" />
-        {busy ? <button type="button" onClick={() => controller.current?.abort()} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-[13px]">停止</button>
-          : <button disabled={!question.trim()} className="shrink-0 rounded-lg bg-[var(--primary)] px-3.5 py-1.5 text-[13px] text-white disabled:opacity-40">发送</button>}
+          className="max-h-[120px] min-w-0 flex-1 resize-none bg-transparent px-2 py-1.5 text-body leading-[1.5] outline-none" />
+        {busy ? <button type="button" onClick={() => controller.current?.abort()} className="shrink-0 rounded-lg border border-[var(--hairline-strong)] px-3 py-1.5 text-body">停止</button>
+          : <button disabled={!question.trim()} className="shrink-0 rounded-lg bg-[var(--primary)] px-3.5 py-1.5 text-body text-white disabled:opacity-40">发送</button>}
       </div>
-      <div className="mt-1 flex items-center justify-between px-1 text-[10.5px] text-[var(--stone)]">
+      <div className="mt-1 flex items-center justify-between px-1 text-caption text-[var(--stone)]">
         <span>Enter 发送 · Shift+Enter 换行</span>
         <button type="button" disabled={reporting || Boolean(form)} onClick={() => setForm({ topic: question.trim() || lastQuestion || (groups.length > 1 ? "比较所选项目的技术路线、方法与已取得成果" : "梳理所选资料的研究进展与成果"), template: "" })}
-          className="text-[12px] text-[var(--link)] hover:underline disabled:opacity-40">生成报告…</button>
+          className="text-caption text-[var(--link)] hover:underline disabled:opacity-40">生成报告…</button>
       </div>
     </form>
   </section>;

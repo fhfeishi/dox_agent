@@ -37,7 +37,7 @@ export function OutputsPanel({ corpusId, projectIds, label }: { corpusId: string
       <div className="mt-2 flex flex-wrap gap-2">{Object.entries(counts).sort((a, b) => rank(a[0]) - rank(b[0])).map(([type, n]) =>
         <span key={type} className="rounded-lg border border-[var(--hairline)] px-2 py-1 text-xs">{type} <b style={{ color: FACET_COLORS[3] }}>{n}</b></span>)}</div>
       <ul className="mt-3 space-y-1.5">{shown.map((row, i) => <li key={i} className="text-xs leading-5">
-        <span className="mr-1 rounded bg-[var(--surface)] px-1.5 py-0.5 text-[11px] text-[var(--slate)]">{row.type}</span>
+        <span className="mr-1 rounded bg-[var(--surface)] px-1.5 py-0.5 text-caption text-[var(--slate)]">{row.type}</span>
         <span className="text-[var(--ink)]">{row.title}</span>
         <button type="button" onClick={() => open(row.projectId)} className="ml-1 text-[var(--link)] hover:underline">
           {titles.get(row.projectId)?.title ?? row.projectId} · 查看原文</button>

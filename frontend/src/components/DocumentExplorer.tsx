@@ -54,7 +54,7 @@ export function DocumentExplorer({
       header={doc ? doc.title : "本地文档"}
       meta={
         doc ? (
-          <p className="mt-[4px] break-all text-[11px] text-[var(--stone)]">
+          <p className="mt-[4px] break-all text-caption text-[var(--stone)]">
             {documentMeta(doc)}
             {isLegacyParser(doc.parser) ? (
               <span className="ml-2 inline-block">
@@ -63,7 +63,7 @@ export function DocumentExplorer({
             ) : null}
           </p>
         ) : (
-          <p className="mt-[4px] text-[11px] text-[var(--stone)]">
+          <p className="mt-[4px] text-caption text-[var(--stone)]">
             {corpusName ? `库：${corpusName} · ` : ""}检索范围：{allowedDocIds ? `${allowedDocIds.length} 份` : "全部"} ·
             浏览不会改变范围
           </p>
@@ -71,7 +71,7 @@ export function DocumentExplorer({
       }
     >
       {!ready ? (
-        <p className="text-[13px] text-[var(--steel)]" role="status">
+        <p className="text-body text-[var(--steel)]" role="status">
           知识库就绪后即可浏览本地文档。
         </p>
       ) : null}
@@ -82,7 +82,7 @@ export function DocumentExplorer({
         <>
           <button
             type="button"
-            className="mb-[12px] text-[12px] text-[var(--link)] hover:underline"
+            className="mb-[12px] text-caption text-[var(--link)] hover:underline"
             onClick={() => onNavigate(null, null)}
           >
             ← 返回目录
@@ -99,7 +99,7 @@ export function DocumentExplorer({
           ) : (
             <TextPane doc={doc} corpus={corpus} />
           )}
-          <div className="mt-[16px] border-t border-[var(--hairline)] pt-[12px] text-[12px]">
+          <div className="mt-[16px] border-t border-[var(--hairline)] pt-[12px] text-caption">
             {limited ? (
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[var(--primary-pressed)]" role="status">
@@ -154,15 +154,15 @@ function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
   }, [doc, corpus]);
   return (
     <div className="min-h-0 flex-1 overflow-auto">
-      {loading ? <p className="text-[13px] text-[var(--steel)]">正在读取正文…</p> : null}
+      {loading ? <p className="text-body text-[var(--steel)]">正在读取正文…</p> : null}
       {error ? (
-        <p role="alert" className="text-[13px] text-[var(--red)]">
+        <p role="alert" className="text-body text-[var(--red)]">
           {error}
         </p>
       ) : null}
       {!loading && !error ? (
         <>
-          <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-[12px]">
+          <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-caption">
             {markdown ? (
               <button type="button" className="text-[var(--link)] hover:underline" onClick={() => setRaw((value) => !value)}>
                 {raw ? "渲染 Markdown" : "查看原文"}
@@ -186,11 +186,11 @@ function TextPane({ doc, corpus }: { doc: DocumentInfo; corpus?: string }) {
               </Markdown>
             </div>
           ) : (
-            <pre className="font-code whitespace-pre-wrap break-words text-[12px] leading-[1.9] text-[var(--charcoal)]">
+            <pre className="font-code whitespace-pre-wrap break-words text-caption leading-[1.9] text-[var(--charcoal)]">
               {text}
             </pre>
           )}
-          <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-[11px] text-[var(--stone)]">
+          <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-caption text-[var(--stone)]">
             这是知识库规范化正文预览；原始文件预览仅 PDF 支持。
           </p>
         </>

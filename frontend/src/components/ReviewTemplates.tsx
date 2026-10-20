@@ -125,7 +125,7 @@ export function ReviewTemplates() {
         <Button disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{busy ? "正在整理要求…" : "上传文字模板"}</Button>
         <input ref={fileInput} aria-label="上传文字模板文件" type="file" multiple accept=".pdf,.doc,.docx,.md,.txt" className="hidden"
           onChange={(event) => { const files = Array.from(event.target.files ?? []); event.target.value = ""; if (files.length) void upload(files); }} />
-        <span className="text-[11.5px] text-[var(--stone)]">支持 TXT、Markdown、DOCX、可提取文字的 PDF；整理结果是草稿，原文件与各条出处保留。</span>
+        <span className="text-caption text-[var(--stone)]">支持 TXT、Markdown、DOCX、可提取文字的 PDF；整理结果是草稿，原文件与各条出处保留。</span>
       </div>
       {legacy.length ? (
         <section className="mb-6 rounded-xl border border-[#f2d98a] bg-[var(--tint-yellow)] p-4">
@@ -143,7 +143,7 @@ export function ReviewTemplates() {
       </>}
       {(["formal", "professional"] as ReviewKind[]).map((kind) => (
         <section key={kind} className="mb-6">
-          <h2 className="mb-3 text-[15px] font-semibold">{REVIEW_KIND_LABEL[kind]}模板</h2>
+          <h2 className="mb-3 text-emphasis font-semibold">{REVIEW_KIND_LABEL[kind]}模板</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {rules.filter((rule) => rule.kind === kind && !rule.archived).map((rule) => <TemplateTile key={rule.id} rule={rule} admin={role === "admin"}
               onDelete={() => void remove(rule)} />)}
@@ -158,12 +158,12 @@ export function ReviewTemplates() {
 function TemplateTile({ rule, admin, onDelete }: { rule: ReviewRule; admin: boolean; onDelete: () => void }) {
   const { showInspector } = useApp();
   const builtin = rule.id.startsWith("builtin-") || rule.source_kind === "builtin";
-  const action = "rounded-md border border-[var(--hairline)] px-2.5 py-1 text-[12px] text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]";
+  const action = "rounded-md border border-[var(--hairline)] px-2.5 py-1 text-caption text-[var(--slate)] hover:border-[var(--primary)] hover:text-[var(--primary)]";
   return (
     <article className="flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 hover:border-[var(--primary)]">
       <button type="button" onClick={() => showInspector({ kind: "review-template", templateId: rule.id })} className="text-left">
         <span className="flex flex-wrap items-center gap-2">
-          <strong className="text-[14px] text-[var(--ink)]">{rule.name}</strong>
+          <strong className="text-body text-[var(--ink)]">{rule.name}</strong>
           <Pill tone="lav">{REVIEW_SOURCE_LABEL[rule.source_kind ?? "manual"]}</Pill>
           <Pill tone={rule.confirmed ? "mint" : "yellow"}>{rule.confirmed ? "已启用" : "草稿"}</Pill>
         </span>
@@ -172,8 +172,8 @@ function TemplateTile({ rule, admin, onDelete }: { rule: ReviewRule; admin: bool
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <button type="button" className={action} onClick={() => showInspector({ kind: "review-template", templateId: rule.id })}>预览</button>
         <Link className={action} to={`/review/templates/${encodeURIComponent(rule.id)}`}>{admin ? "修改" : "查看全部条目"}</Link>
-        {admin && !builtin ? <button type="button" className="rounded-md px-2 py-1 text-[12px] text-[var(--stone)] hover:text-[var(--red)]" onClick={onDelete}>删除</button> : null}
-        {builtin ? <span className="text-[11px] text-[var(--stone)]">内置，修改时另存为新模板</span> : null}
+        {admin && !builtin ? <button type="button" className="rounded-md px-2 py-1 text-caption text-[var(--stone)] hover:text-[var(--red)]" onClick={onDelete}>删除</button> : null}
+        {builtin ? <span className="text-caption text-[var(--stone)]">内置，修改时另存为新模板</span> : null}
       </div>
     </article>
   );
@@ -266,7 +266,7 @@ export function ReviewTemplateDetail() {
         <div className="flex flex-wrap items-center gap-2">
           {editing ? (
             <label className="min-w-0 flex-1 text-xs text-[var(--slate)]">模板名称
-              <input aria-label="模板名称" className="mt-1 block w-full rounded-lg border border-[var(--hairline-strong)] px-3 py-2 text-[15px] font-semibold"
+              <input aria-label="模板名称" className="mt-1 block w-full rounded-lg border border-[var(--hairline-strong)] px-3 py-2 text-emphasis font-semibold"
                 value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} />
               {problems.name ? <span className="mt-1 block text-[var(--red)]">{problems.name}</span> : null}
             </label>
@@ -335,12 +335,12 @@ function CheckPreview({ kind, check }: { kind: ReviewKind; check: ReviewCheck })
   return (
     <article id={"check-" + check.id} className={`scroll-mt-4 rounded-xl border border-[var(--hairline)] bg-[var(--canvas)] p-4 ${check.enabled ? "" : "opacity-60"}`}>
       <div className="flex flex-wrap items-center gap-2">
-        <h3 className="flex-1 text-[15px] font-semibold">{check.title}</h3>
+        <h3 className="flex-1 text-emphasis font-semibold">{check.title}</h3>
         {!check.enabled ? <Pill tone="gray">已停用</Pill> : null}
         <Pill tone={check.method === "calculation" ? "sky" : check.method === "model" ? "lav" : "gray"}>{measureLabel(check)}</Pill>
         {kind === "professional" && check.evidence_need ? <Pill tone="gray">{REVIEW_EVIDENCE_NEED_LABEL[check.evidence_need]}</Pill> : null}
       </div>
-      <p className="mt-2 text-[14px] leading-6">{check.requirement}</p>
+      <p className="mt-2 text-body leading-6">{check.requirement}</p>
       <p className="mt-1 text-xs leading-5 text-[var(--steel)]">{check.applicability}</p>
       {requirementLine(check) ? <p className="mt-2 inline-block rounded-md bg-[var(--tint-sky)] px-2 py-1 text-xs text-[#12609e]">执行参数：{requirementLine(check)}</p> : null}
       {check.execution?.field === "section_characters" ? (
@@ -349,8 +349,8 @@ function CheckPreview({ kind, check }: { kind: ReviewKind; check: ReviewCheck })
       {check.revised && original ? (
         <p className="mt-2 rounded-lg bg-[var(--tint-yellow)] px-3 py-2 text-xs">原文要求：{original.requirement || "（无）"} ／ 本模板人工修订为：{check.requirement}。执行按修订后的要求；原文件只证明原始要求。</p>
       ) : null}
-      <p className="mt-2 text-[11.5px] text-[var(--stone)]">来源：{check.source === "用户编写" ? "用户编写" : check.source}{check.page ? ` · 第 ${check.page} 页/块` : ""}</p>
-      {check.quote ? <blockquote className="mt-1 border-l-2 border-[var(--hairline-strong)] pl-2 text-[11.5px] text-[var(--steel)]">{check.quote}</blockquote> : null}
+      <p className="mt-2 text-caption text-[var(--stone)]">来源：{check.source === "用户编写" ? "用户编写" : check.source}{check.page ? ` · 第 ${check.page} 页/块` : ""}</p>
+      {check.quote ? <blockquote className="mt-1 border-l-2 border-[var(--hairline-strong)] pl-2 text-caption text-[var(--steel)]">{check.quote}</blockquote> : null}
     </article>
   );
 }
@@ -408,7 +408,7 @@ function CheckEditor({ kind, check, problem, onChange, onMove, onDelete }: {
             <label className="text-xs text-[var(--slate)]">{spec.operator === "eq" ? "要求值" : "上限（含）"} · {measure.unit}
               <input aria-label={"上限：" + check.title} inputMode="decimal" className={input} value={spec.value} onChange={(e) => setSpec({ value: e.target.value })} /></label>
           )}
-          {measure.kind === "section" ? <p className="text-[11px] leading-5 text-[var(--steel)] sm:col-span-3">计数口径（只读）：{COUNTING_NOTE}</p> : null}
+          {measure.kind === "section" ? <p className="text-caption leading-5 text-[var(--steel)] sm:col-span-3">计数口径（只读）：{COUNTING_NOTE}</p> : null}
         </div>
       ) : null}
       <label className="mt-3 block text-xs text-[var(--slate)]">{kind === "formal" ? "要求说明" : "评价问题"}

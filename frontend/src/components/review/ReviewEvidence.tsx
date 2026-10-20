@@ -20,7 +20,7 @@ export function ReviewEvidence() {
 
   useEffect(() => { void fetchReviewEvidence().then(setItems).catch((cause) => setError((cause as Error).message)); }, []);
   const reload = async () => setItems(await fetchReviewEvidence());
-  const input = "rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-[12.5px]";
+  const input = "rounded-[7px] border border-[var(--hairline)] bg-[var(--surface)] px-[8px] py-[6px] text-body";
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
@@ -38,31 +38,31 @@ export function ReviewEvidence() {
       <Notice text={notice} />
       <div className="mb-[16px] flex flex-wrap items-center gap-[10px] rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4">
         <Button variant="primary" disabled={Boolean(busy)} onClick={() => fileInput.current?.click()}>{busy === "上传" ? "上传中…" : "上传本地文献"}</Button>
-        <label className="text-[12px] text-[var(--slate)]">发表日期（可选）
+        <label className="text-caption text-[var(--slate)]">发表日期（可选）
           <input type="date" value={published} onChange={(event) => setPublished(event.target.value)} className={"ml-[6px] " + input} /></label>
-        <span className="text-[11.5px] text-[var(--stone)]">PDF / DOCX / Markdown / TXT，可多选；历史评价只使用有日期的文献。</span>
+        <span className="text-caption text-[var(--stone)]">PDF / DOCX / Markdown / TXT，可多选；历史评价只使用有日期的文献。</span>
         <input ref={fileInput} aria-label="上传本地文献文件" type="file" multiple accept={ACCEPT} className="hidden"
           onChange={(event) => { const files = event.target.files; void upload(files).then(() => { event.target.value = ""; }); }} />
       </div>
 
-      <strong className="text-[13.5px] text-[var(--ink)]">证据库（{items.length}）</strong>
-      {!items.length ? <p className="mt-[6px] text-[12.5px] text-[var(--stone)]">证据库为空；没有直接相关文献时，评议只评价申请书内部论证。</p> : null}
+      <strong className="text-body text-[var(--ink)]">证据库（{items.length}）</strong>
+      {!items.length ? <p className="mt-[6px] text-body text-[var(--stone)]">证据库为空；没有直接相关文献时，评议只评价申请书内部论证。</p> : null}
       <div className="mt-[8px] grid gap-[8px]">
         {items.map((item) => (
-          <div key={item.id} className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-[12px]">
-            {item.filename ? <button type="button" className="text-left text-[13px] font-semibold text-[var(--link)] hover:underline"
+          <div key={item.id} className="rounded-[10px] border border-[var(--hairline)] bg-[var(--surface)] p-[12px] text-caption">
+            {item.filename ? <button type="button" className="text-left text-body font-semibold text-[var(--link)] hover:underline"
               onClick={() => showInspector({ kind: "review-source", fileId: item.id, page: 1, title: item.filename, evidence: true })}>{item.title}</button>
-              : <a className="text-[13px] font-semibold text-[var(--link)]" href={item.url} target="_blank" rel="noreferrer">{item.title}</a>}
+              : <a className="text-body font-semibold text-[var(--link)]" href={item.url} target="_blank" rel="noreferrer">{item.title}</a>}
             <span className="mt-[3px] block text-[var(--steel)]">{item.published || "日期未填"} · {item.origin}</span>
           </div>
         ))}
       </div>
 
-      <details className="mt-[18px] rounded-[10px] border border-[var(--hairline)] p-[12px] text-[12px]">
-        <summary className="cursor-pointer text-[12.5px] text-[var(--steel)]">其他方式：联网题录检索（需外网）、手工录入</summary>
+      <details className="mt-[18px] rounded-[10px] border border-[var(--hairline)] p-[12px] text-caption">
+        <summary className="cursor-pointer text-body text-[var(--steel)]">其他方式：联网题录检索（需外网）、手工录入</summary>
         <div className="mt-[10px] flex flex-wrap items-end gap-[8px]">
-          <label className="text-[12px] text-[var(--slate)]">检索词<input value={query} onChange={(event) => setQuery(event.target.value)} className={"ml-[6px] " + input} /></label>
-          <label className="text-[12px] text-[var(--slate)]">截止日期<input type="date" value={cutoff} onChange={(event) => setCutoff(event.target.value)} className={"ml-[6px] " + input} /></label>
+          <label className="text-caption text-[var(--slate)]">检索词<input value={query} onChange={(event) => setQuery(event.target.value)} className={"ml-[6px] " + input} /></label>
+          <label className="text-caption text-[var(--slate)]">截止日期<input type="date" value={cutoff} onChange={(event) => setCutoff(event.target.value)} className={"ml-[6px] " + input} /></label>
           <Button disabled={!cutoff || query.trim().length < 3} onClick={() => {
             setBusy("检索");
             void searchReviewEvidence(query.trim(), cutoff)

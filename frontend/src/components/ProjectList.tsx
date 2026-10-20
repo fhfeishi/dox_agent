@@ -42,12 +42,12 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
             <input type="checkbox" aria-label={`选择项目 ${p.title}`} checked={picked === ids.length && ids.length > 0}
               ref={(el) => { if (el) el.indeterminate = picked > 0 && picked < ids.length; }} onChange={() => onToggle(ids, picked < ids.length)} />
             <button type="button" onClick={() => toggleOpen(p.project_id)} aria-expanded={expanded} className="min-w-0 flex-1 text-left">
-              <span className="block truncate text-[13px] font-medium text-[var(--ink)]">{p.title}</span>
-              <span className="block truncate text-[11.5px] text-[var(--stone)]">
+              <span className="block truncate text-body font-medium text-[var(--ink)]">{p.title}</span>
+              <span className="block truncate text-caption text-[var(--stone)]">
                 {p.start_year ? `${p.start_year}–${p.end_year ?? "?"}` : "年份待核对"} · {p.number || "批准号待核对"}{p.admin ? ` · ${p.admin}` : ""}</span>
             </button>
-            {pending ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-[11px] text-[#7a5a00]" title={p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"}>项目待核对</span> : null}
-            {copies.length ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-[11px] text-[#9b2c2c]">含重复内容 {copies.length}</span> : null}
+            {pending ? <span className="shrink-0 rounded bg-[#fdf3d8] px-1.5 py-0.5 text-caption text-[#7a5a00]" title={p.identity_conflict ? "文件名与原文批准号冲突" : "基金体系或批准号待核对"}>项目待核对</span> : null}
+            {copies.length ? <span className="shrink-0 rounded bg-[#fdecea] px-1.5 py-0.5 text-caption text-[#9b2c2c]">含重复内容 {copies.length}</span> : null}
             <button type="button" onClick={() => toggleOpen(p.project_id)} className="shrink-0 text-[var(--steel)] hover:text-[var(--ink)]">{p.files.length} 份文件 {expanded ? "▴" : "▾"}</button>
           </div>
           {expanded ? <ul aria-label={`${p.title} 的文件`} className="mt-2 space-y-1 border-t border-[var(--hairline)] pt-2 pl-7">
@@ -68,8 +68,8 @@ export function ProjectList({ projects, files, selectedIds, onToggle, onPreview,
           </ul> : null}
         </li>;
       })}
-      {!shown.length ? <li className="px-3 py-2 text-[12px] text-[var(--stone)]">{needle ? "没有匹配的项目。" : "还没有可识别的项目。"}</li> : null}
-      {shown.length > limit ? <li><button type="button" onClick={() => setLimit(limit + 60)} className="w-full rounded-lg py-2 text-[12px] text-[var(--link)] hover:bg-[var(--surface)]">
+      {!shown.length ? <li className="px-3 py-2 text-caption text-[var(--stone)]">{needle ? "没有匹配的项目。" : "还没有可识别的项目。"}</li> : null}
+      {shown.length > limit ? <li><button type="button" onClick={() => setLimit(limit + 60)} className="w-full rounded-lg py-2 text-caption text-[var(--link)] hover:bg-[var(--surface)]">
         显示更多（已显示 {limit} / {shown.length} 个项目）</button></li> : null}
     </ul>
     {unread.length ? <details open className="rounded-xl border border-[#f1c8c8] bg-[#fff8f8] px-3 py-2 text-xs">

@@ -111,7 +111,7 @@ export function SceneFlow({ corpusId, scene, onRoute }: { corpusId: string; scen
     className={`rounded-lg border bg-[var(--canvas)] px-2.5 py-1.5 text-left text-xs transition-opacity ${wide ? "absolute overflow-hidden" : ""}`}
     style={{ borderColor: selected === node.key ? node.color : node.color + "55", borderLeftWidth: 3, opacity: lit.has(node.key) ? 1 : 0.35, ...style }}>
     <span className="line-clamp-2 block font-medium leading-4 text-[var(--ink)]">{node.label}</span>
-    <span className="line-clamp-1 block text-[11px] text-[var(--stone)]">{node.note}</span>
+    <span className="line-clamp-1 block text-caption text-[var(--stone)]">{node.note}</span>
   </button>;
 
   const current = nodes.find((n) => n.key === selected)!;

@@ -96,28 +96,28 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
             if (name.trim()) void run(async () => { await renameCorpus(corpus.id, name.trim()); setEditing(false); });
           }}>
             <input autoFocus aria-label="资料库名称" value={name} onChange={(e) => setName(e.target.value)}
-              className="font-app w-[260px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-[15px] font-semibold outline-none focus:border-[var(--primary)]" />
+              className="font-app w-[260px] rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[8px] py-[5px] text-emphasis font-semibold outline-none focus:border-[var(--primary)]" />
             <Button type="submit" size="sm" disabled={busy || !name.trim()}>保存</Button>
             <Button variant="ghost" size="sm" onClick={() => { setEditing(false); setName(corpus.name); }}>取消</Button>
           </form> : <>
             {/* query 2026-1013 2012: back to the cards, or straight to another library, without a side list. */}
-            <button type="button" onClick={onClose} className="text-[13px] text-[var(--link)] hover:underline">← 全部资料库</button>
+            <button type="button" onClick={onClose} className="text-body text-[var(--link)] hover:underline">← 全部资料库</button>
             <span className="text-[var(--stone)]">/</span>
             <h1 className="sr-only">{corpus.name}</h1>
             <select aria-label="切换资料库" value={corpus.id} onChange={(e) => openCorpus(e.target.value, corpusView)}
-              className="max-w-full sm:max-w-[360px] cursor-pointer rounded-lg border border-[var(--primary)] bg-[var(--primary-soft)] px-3 py-2 text-[16px] font-semibold text-[var(--primary-pressed)] shadow-sm transition-colors hover:bg-[var(--primary-soft-2)] focus:outline-2 focus:outline-[var(--primary)]">
+              className="max-w-full sm:max-w-[360px] cursor-pointer rounded-lg border border-[var(--primary)] bg-[var(--primary-soft)] px-3 py-2 text-emphasis font-semibold text-[var(--primary-pressed)] shadow-sm transition-colors hover:bg-[var(--primary-soft-2)] focus:outline-2 focus:outline-[var(--primary)]">
               {corpora.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </>}
           <Pill tone={status.tone}>{status.label}</Pill>
-          <span className="text-[12px] text-[var(--stone)]">{KIND_LABEL[corpus.kind] ?? corpus.kind} · {corpus.docs_count} 份</span>
+          <span className="text-caption text-[var(--stone)]">{KIND_LABEL[corpus.kind] ?? corpus.kind} · {corpus.docs_count} 份</span>
           {isActive ? <Pill tone="lav">当前对话使用</Pill> : null}
           <span className="flex-1" />
           {/* One row of views, one shown at a time in this page (query 2026-1013 2012). */}
           {!corpus.missing ? <nav aria-label="库内视图" className="flex flex-wrap items-center gap-[2px] rounded-lg bg-[var(--surface)] p-[3px]">
             {VIEWS.map(([key, label]) => (
               <button key={key} type="button" onClick={() => showView(key)} aria-pressed={view === key}
-                className={`whitespace-nowrap rounded-md px-[12px] py-[7px] text-[13px] transition-colors motion-reduce:transition-none ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
+                className={`whitespace-nowrap rounded-md px-[12px] py-[7px] text-body transition-colors motion-reduce:transition-none ${view === key ? "bg-[var(--canvas)] font-semibold text-[var(--ink)] shadow-sm" : "text-[var(--steel)] hover:text-[var(--ink)]"}`}>
                 {label}
               </button>
             ))}
@@ -129,18 +129,18 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
         {editingDescription ? <div className="mt-[8px] flex items-start gap-[8px]">
           <textarea autoFocus aria-label="资料库说明" rows={2} maxLength={1000} value={description} onChange={(event) => setDescription(event.target.value)}
             placeholder="简要说明这个资料库收录什么资料（可选）"
-            className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-[12.5px] leading-[1.5] outline-none focus:border-[var(--primary)]" />
+            className="font-app min-w-0 flex-1 rounded-[6px] border border-[var(--hairline-strong)] bg-[var(--canvas)] px-[9px] py-[6px] text-body leading-[1.5] outline-none focus:border-[var(--primary)]" />
           <Button size="sm" disabled={busy} onClick={() => void run(async () => { await setCorpusDescription(corpus.id, description.trim()); setEditingDescription(false); })}>保存</Button>
           <Button size="sm" variant="ghost" onClick={() => { setEditingDescription(false); setDescription(corpus.description ?? ""); }}>取消</Button>
         </div> : <button type="button" onClick={() => setEditingDescription(true)} title="点击编辑说明"
-          className="mt-[4px] block max-w-[900px] text-left text-[12.5px] leading-[1.6] text-[var(--steel)] hover:text-[var(--ink)]">
+          className="mt-[4px] block max-w-[900px] text-left text-body leading-[1.6] text-[var(--steel)] hover:text-[var(--ink)]">
           {corpus.description || "添加说明：这个资料库收录什么资料"}</button>}
-        {notice ? <p role="alert" className="mt-[6px] text-[12px] text-[var(--red)]">{notice}</p> : null}
+        {notice ? <p role="alert" className="mt-[6px] text-caption text-[var(--red)]">{notice}</p> : null}
       </header>
 
       <div className="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-5 py-[18px] sm:px-8">
       {corpus.missing ? (
-        <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-[12px]">
+        <section className="space-y-[10px] rounded-[10px] border border-[#f1c8c8] bg-[#fff8f8] p-[14px] text-caption">
           <p className="font-medium text-[var(--red)]">目录缺失 · 原路径：<code>{corpus.rel_path}</code></p>
           <p className="text-[var(--steel)]">若你已在资料库根目录中重新放置或改名该文件夹，请明确选择对应目录。系统不会按相似名称自动合并。</p>
           <div className="flex flex-wrap gap-[8px]">
@@ -154,15 +154,15 @@ export function CorpusDetail({ corpusId, onClose }: { corpusId: string; onClose:
         </section>
       ) : (
         <>
-          {error ? <p role="alert" className="text-[12.5px] text-[var(--red)]">{error}</p> : null}
+          {error ? <p role="alert" className="text-body text-[var(--red)]">{error}</p> : null}
           {/* The library's latest refresh, above the content: a cut-off or failed one needs a look, not a footnote. */}
           {corpus.job && ["interrupted", "error", "partial"].includes(corpus.job.status) ? (
-            <div role="status" className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--tint-peach)] px-3 py-2 text-[12.5px] text-[var(--charcoal)]">
+            <div role="status" className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--tint-peach)] px-3 py-2 text-body text-[var(--charcoal)]">
               <b>{corpus.job.status === "interrupted" ? "上次刷新因服务重启中断" : corpus.job.status === "partial" ? `上次刷新部分完成：${corpus.job.errors.length} 项失败` : "上次刷新失败"}</b>
               <span className="text-[var(--slate)]">现有索引保留{corpus.job.ended_at ? ` · ${new Date(corpus.job.ended_at).toLocaleString("zh-CN", { dateStyle: "medium", timeStyle: "short" })}` : ""}</span>
               <button type="button" className="ml-auto text-[var(--link)] hover:underline disabled:opacity-50" disabled={busy || ingestBusy} onClick={() => runCorpusIngest(corpus.id)}>再次刷新</button>
             </div>
-          ) : corpus.job ? <p role="status" className="text-[11.5px] text-[var(--steel)]">
+          ) : corpus.job ? <p role="status" className="text-caption text-[var(--steel)]">
             {corpus.job.status === "running" ? `刷新中 ${corpus.job.completed}/${corpus.job.total || "?"}` :
               `最近刷新：新增 ${corpus.job.added ?? 0}，更新 ${corpus.job.updated ?? 0}，删除 ${corpus.job.deleted ?? 0}，跳过 ${corpus.job.skipped ?? 0}`}
           </p> : null}
@@ -203,7 +203,7 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
     document.addEventListener("mousedown", close); document.addEventListener("keydown", escape);
     return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", escape); };
   }, [open]);
-  const item = "block w-full rounded-md px-3 py-1.5 text-left text-[13px] hover:bg-[var(--surface)] disabled:opacity-40";
+  const item = "block w-full rounded-md px-3 py-1.5 text-left text-body hover:bg-[var(--surface)] disabled:opacity-40";
   const pick = (action: () => void) => () => { setOpen(false); action(); };
   const groupOf = groups?.groups.find((g) => g.members.includes(corpus.id))?.id ?? "";
   return <div ref={box} className="relative">
@@ -213,8 +213,8 @@ function ManageMenu({ corpus, busy, isActive, onRename, onDescribe, run, onClose
         <>
         <button type="button" role="menuitem" className={item} onClick={pick(onRename)}>重命名</button>
         <button type="button" role="menuitem" className={item} onClick={pick(onDescribe)}>编辑说明</button>
-        {groups ? <label className="flex items-center gap-2 px-3 py-1.5 text-[13px]">分组
-          <select aria-label="移动到分组" className="min-w-0 flex-1 rounded border border-[var(--hairline)] bg-[var(--canvas)] px-1 py-0.5 text-[12.5px]" value={groupOf}
+        {groups ? <label className="flex items-center gap-2 px-3 py-1.5 text-body">分组
+          <select aria-label="移动到分组" className="min-w-0 flex-1 rounded border border-[var(--hairline)] bg-[var(--canvas)] px-1 py-0.5 text-body" value={groupOf}
             onChange={(e) => { const target = e.target.value; setOpen(false); void run(async () => { await changeGroups(groups.revision, "move", target, "", corpus.id); }); }}>
             <option value="">未分组</option>{groups.groups.map((g) => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select></label> : null}

@@ -71,7 +71,7 @@ export function Drawer({
       >
         <div className="flex items-center gap-[10px] border-b border-[var(--hairline)] px-[20px] py-[14px]">
           <div className="min-w-0 flex-1">
-            <h2 className="truncate text-[15px] font-semibold tracking-[-0.2px] text-[var(--ink)]">{title}</h2>
+            <h2 className="truncate text-emphasis font-semibold tracking-[-0.2px] text-[var(--ink)]">{title}</h2>
             {subtitle}
           </div>
           {headerAction}

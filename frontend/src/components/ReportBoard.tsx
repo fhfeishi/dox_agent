@@ -23,10 +23,10 @@ function StagePanel({ cell, plain, titles, onTech, onProject }: { cell: MatrixCe
     <p className="text-xs text-[var(--steel)]">{plain ? `${plain} · ` : ""}{cell.projects} 个项目、{cell.items.length} 个技术条目，按技术方向归并：</p>
     <div className="mt-2 space-y-1.5">{cell.directions.map((d) => <details key={d.name} className="rounded-lg border border-[var(--hairline)] px-3 py-2">
       <summary className="flex cursor-pointer flex-wrap items-center gap-1.5">
-        <b className="text-[13px]">{d.name}</b><span className="text-xs text-[var(--stone)]">{d.projects} 个项目</span><Tier level={d.maturity} /><Chips list={d.indicators} />
+        <b className="text-body">{d.name}</b><span className="text-xs text-[var(--stone)]">{d.projects} 个项目</span><Tier level={d.maturity} /><Chips list={d.indicators} />
         {d.plain ? <span className="w-full text-xs leading-5 text-[var(--steel)]">{d.plain}</span> : null}
       </summary>
-      <ul className="mt-2 space-y-1.5">{d.items.map((item) => <li key={item.key} className="border-l-2 pl-2 text-[13px]" style={{ borderColor: tierOf(item.maturity).color }}>
+      <ul className="mt-2 space-y-1.5">{d.items.map((item) => <li key={item.key} className="border-l-2 pl-2 text-body" style={{ borderColor: tierOf(item.maturity).color }}>
         <span className="flex flex-wrap items-center gap-1.5">
           <button type="button" onClick={() => onTech(`i:${item.key}`)} title="在五级谱系中查看" className="text-left font-medium hover:text-[var(--link)] hover:underline">{item.name}</button>
           <Tier level={item.maturity} /><Chips list={item.indicators} />
@@ -79,7 +79,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
 
   return <div className="space-y-4">
     <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
-      <b className="text-[15px]">{board.branch}</b>
+      <b className="text-emphasis">{board.branch}</b>
       <span className="text-sm text-[var(--steel)]">{board.projects} 个项目 · {board.scenes.length} 个应用场景</span>
       <span className="flex-1" />
       <span className="text-xs text-[var(--steel)]">显示</span>
@@ -99,7 +99,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       {libraryInsights(board, matrix, lineage, (library?.projects ?? []).map((p) => ({ start: p.start_year, end: p.end_year }))).map((card) =>
         <article key={card.title} className="rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-3">
           <p className="text-xs font-semibold text-[var(--stone)]">{card.title}</p>
-          <p className="mt-1 text-[14px] font-semibold leading-6">{card.headline}</p>
+          <p className="mt-1 text-body font-semibold leading-6">{card.headline}</p>
           <ul className="mt-1.5 space-y-0.5 text-xs leading-5 text-[var(--steel)]">{card.points.map((point) => <li key={point}>{point}</li>)}</ul>
         </article>)}
     </section>
@@ -119,11 +119,11 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
         if (!row.items.length && !s) return null;
         return <article key={field} className={`flex flex-col gap-2 rounded-xl border-2 bg-[var(--surface)] p-3 ${open === field ? "border-[var(--primary)]" : "border-[var(--hairline)]"} ${s ? "" : "border-dashed"}`}>
           <button type="button" onClick={() => openField(field)} className="text-left">
-            <span className="flex items-baseline gap-2"><b className="text-[15px]">{field}</b><span className="text-xs text-[var(--stone)]">{row.projects} 个项目 · {row.items.length} 个技术条目</span></span>
+            <span className="flex items-baseline gap-2"><b className="text-emphasis">{field}</b><span className="text-xs text-[var(--stone)]">{row.projects} 个项目 · {row.items.length} 个技术条目</span></span>
           </button>
-          {fieldHeadline(matrix, lineage, field) ? <p className="text-[13px] font-medium text-[var(--slate)]">{fieldHeadline(matrix, lineage, field)}</p> : null}
+          {fieldHeadline(matrix, lineage, field) ? <p className="text-body font-medium text-[var(--slate)]">{fieldHeadline(matrix, lineage, field)}</p> : null}
           <TierBar tiers={row.tiers} />
-          {s ? <ul className="space-y-1 text-[13px]">
+          {s ? <ul className="space-y-1 text-body">
             {solved.map((i) => <li key={i.name} className="flex gap-1.5"><span className="text-[#0e7a28]">✔</span><span>{i.name}</span></li>)}
             {later.map((i) => <li key={i.name} className="flex gap-1.5 rounded border border-dashed border-[var(--hairline-strong)] px-1 text-[var(--steel)]"><span>➜</span><span>{i.name}</span></li>)}
           </ul> : <p className="text-xs leading-5 text-[var(--steel)]">模型未能判定服务领域的技术条目，如实单列。</p>}
@@ -138,9 +138,9 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       <p className="text-sm font-semibold text-[#4a2a8f]">共性技术底座 <span className="font-normal text-[var(--steel)]">· 跨场景共用的数据、协同与可信支撑，单独列出而不在各场景重复</span></p>
       <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">{board.foundations.map((f) =>
         <button key={f.key} type="button" onClick={() => onTech(f.key)} className="rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-2 text-left hover:border-[#7c5cd6]">
-          <span className="flex items-center gap-1.5"><b className="text-[13px]">{f.name}</b><Tier level={f.maturity} /></span>
+          <span className="flex items-center gap-1.5"><b className="text-body">{f.name}</b><Tier level={f.maturity} /></span>
           {f.plain ? <span className="mt-0.5 block text-xs leading-5 text-[var(--steel)]">{f.plain}</span> : null}
-          <span className="mt-1 block text-[11px] text-[var(--stone)]">{f.projects} 个项目 · 覆盖 {f.scenes.length}/{board.scenes.length} 个场景 · 属于{f.system}</span>
+          <span className="mt-1 block text-caption text-[var(--stone)]">{f.projects} 个项目 · 覆盖 {f.scenes.length}/{board.scenes.length} 个场景 · 属于{f.system}</span>
         </button>)}</div>
     </section> : null}
 
@@ -162,7 +162,7 @@ export function ReportBoard({ corpusId, hierarchy, onTech, onDim }: { corpusId: 
       </p> : null}
     </section> : null}
 
-    <p className="text-[11px] leading-5 text-[var(--stone)]">
+    <p className="text-caption leading-5 text-[var(--stone)]">
       阶段为模型依据各项目报告中的技术说明与已取得成果的判定（不是正式的技术成熟度评定）；指标原样摘自所引原文；“已解决/待研究”为各项目报告的自述，不代表本期新增或近期突破。
     </p>
     {board.unplaced ? <p className="text-xs text-[var(--steel)]">另有 <b>{board.unplaced}</b> 个技术条目未归入技术体系，反映当前分类尚未覆盖的部分。

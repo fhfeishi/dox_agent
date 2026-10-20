@@ -18,7 +18,7 @@ export const TONE_BG: Record<Tone, string> = {
 export function Pill({ tone = "gray", children }: { tone?: Tone; children: ReactNode }) {
   return (
     <span
-      className={`inline-block rounded-[4px] px-[7px] py-[2px] text-[10.5px] leading-[1.45] font-semibold ${TONE_BG[tone]}`}
+      className={`inline-block rounded-[4px] px-[7px] py-[2px] text-caption leading-[1.45] font-semibold ${TONE_BG[tone]}`}
     >
       {children}
     </span>
@@ -67,10 +67,10 @@ export function Button({
 }) {
   const sizeCls =
     size === "sm"
-      ? "h-[26px] px-[10px] text-[12px]"
+      ? "h-[26px] px-[10px] text-caption"
       : size === "lg"
-        ? "h-[38px] px-[16px] text-[13.5px] w-full justify-center"
-        : "h-[30px] px-[12px] text-[12.5px]";
+        ? "h-[38px] px-[16px] text-body w-full justify-center"
+        : "h-[30px] px-[12px] text-body";
 
   return (
     <button
@@ -108,7 +108,7 @@ export function ToolButton({
       type="button"
       title={title ?? label}
       onClick={onClick}
-      className={`font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] text-[12.5px] transition-colors ${
+      className={`font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] text-body transition-colors ${
         label ? "px-[10px]" : "w-[30px] justify-center"
       } ${
         active
@@ -159,10 +159,10 @@ export function PanelRow({
         <span className="size-[6px] shrink-0 rounded-full" style={{ background: dot }} />
       ) : null}
       {icon ? <Icon name={icon} size={14} className="shrink-0" /> : null}
-      <span className="min-w-0 flex-1 truncate text-[13px]">{title}</span>
+      <span className="min-w-0 flex-1 truncate text-body">{title}</span>
       {meta ? (
         <span
-          className={`shrink-0 text-[11px] ${active ? "text-[var(--steel)]" : "text-[var(--stone)]"}`}
+          className={`shrink-0 text-caption ${active ? "text-[var(--steel)]" : "text-[var(--stone)]"}`}
         >
           {meta}
         </span>
@@ -174,7 +174,7 @@ export function PanelRow({
 export function GroupLabel({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`px-[8px] pt-[12px] pb-[6px] text-[11px] font-semibold tracking-[0.6px] text-[var(--stone)] uppercase ${className}`}
+      className={`px-[8px] pt-[12px] pb-[6px] text-caption font-semibold tracking-[0.6px] text-[var(--stone)] uppercase ${className}`}
     >
       {children}
     </div>
@@ -202,7 +202,7 @@ export function SearchField({
         aria-label={ariaLabel}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="font-app w-full border-0 bg-transparent text-[13px] text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
+        className="font-app w-full border-0 bg-transparent text-body text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
       />
     </label>
   );

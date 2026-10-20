@@ -34,8 +34,8 @@ function PopItem({
         {icon ?? <Icon name="tasks" size={14} strokeWidth={1.9} />}
       </span>
       <span className="min-w-0">
-        <span className="block text-[13px] leading-[1.35] font-medium text-[var(--ink)]">{title}</span>
-        <span className="mt-[1px] block text-[11.5px] leading-[1.4] text-[var(--stone)]">
+        <span className="block text-body leading-[1.35] font-medium text-[var(--ink)]">{title}</span>
+        <span className="mt-[1px] block text-caption leading-[1.4] text-[var(--stone)]">
           {description}
         </span>
       </span>
@@ -251,7 +251,7 @@ export function Composer() {
     <div className="shrink-0 bg-gradient-to-t from-[var(--canvas)] via-[var(--canvas)] to-transparent px-[32px] pb-[20px]">
       <div className="mx-auto w-full max-w-[820px]">
         {!scopeReady ? (
-          <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
+          <div role="status" className="mb-[8px] flex items-center gap-[10px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <span className="min-w-0 flex-1">
               {corporaError
                 ? `知识库列表读取失败：${corporaError}`
@@ -269,23 +269,23 @@ export function Composer() {
                           ? "此会话原范围含目录缺失的知识库，请移除或重新关联。"
                           : "当前对话使用的范围不可用。"}
             </span>
-            {corporaError ? <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => refreshCorpora()}>重试刷新</button> : null}
+            {corporaError ? <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-caption" onClick={() => refreshCorpora()}>重试刷新</button> : null}
             {!corporaError && corporaLoaded && repairScope ? (
-              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-[11.5px]" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
+              <button type="button" className="shrink-0 rounded-[6px] border border-[var(--hairline-strong)] px-[9px] py-[5px] text-caption" onClick={() => { if (corpora.length) setCorpusOpen(true); else { setNav("library"); setNewCorpusOpen(true); } }}>
                 {corpora.length ? "选择知识库" : "新建知识库"}
               </button>
             ) : null}
           </div>
         ) : null}
         {editing ? (
-          <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[#d5cdf7] bg-[var(--primary-soft)] px-[10px] py-[7px] text-[12px] text-[var(--primary-pressed)]">
+          <div className="mb-[8px] flex items-center gap-[8px] rounded-[8px] border border-[#d5cdf7] bg-[var(--primary-soft)] px-[10px] py-[7px] text-caption text-[var(--primary-pressed)]">
             <Icon name="edit" size={13} strokeWidth={1.9} />
             <span className="flex-1">
               正在编辑第 {editing.index + 1} 轮的提问 · 确认后将从这条消息重新生成回答
             </span>
             <button
               type="button"
-              className="font-app rounded-[5px] px-[7px] py-[2px] text-[11.5px] font-medium hover:bg-[#ddd5f8]"
+              className="font-app rounded-[5px] px-[7px] py-[2px] text-caption font-medium hover:bg-[#ddd5f8]"
               onClick={() => setEditing(null)}
             >
               取消
@@ -293,14 +293,14 @@ export function Composer() {
           </div>
         ) : null}
         {(customTask || missingCustomTask) && !taskReady ? (
-          <div role="status" className="mb-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[7px] text-[12px] text-[var(--steel)]">
+          <div role="status" className="mb-[8px] rounded-[8px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[10px] py-[7px] text-caption text-[var(--steel)]">
             {taskVersionState === "missing" ? "此旧会话未记录任务版本，已阻止发送。" : taskVersionState === "failed" ? `${taskVersionError} 可从成组状态备份恢复，或新建最新版会话。` : "正在读取此会话固定的任务版本…"}
             {latestVersion ? <div className="mt-[5px] flex flex-wrap items-center gap-[7px]">
               {workspace.taskVersion ? <span>当前 v{workspace.taskVersion} / 最新 v{latestVersion}</span> : <span>最新 v{latestVersion}</span>}
-              {workspace.taskVersion ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-[11.5px]" onClick={() => {
+              {workspace.taskVersion ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
               }}>升级到最新版</button> : null}
-              <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-[11.5px]" onClick={() => void startTask(taskId)}>新建最新版会话</button>
+              <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[3px] text-caption" onClick={() => void startTask(taskId)}>新建最新版会话</button>
             </div> : null}
           </div>
         ) : null}
@@ -318,7 +318,7 @@ export function Composer() {
           <button ref={corpusButton} type="button" aria-expanded={corpusOpen} onClick={() => { setCorpusOpen(v => !v); setPopOpen(false); setScopeOpen(false); }} className="rounded-full border px-3 py-1 text-sm">＋管理知识库</button>
           <span className="text-xs">{corpusIds.length}/6</span>
           {emptyScopeCorpus ? (
-            <span className="flex items-center gap-[6px] text-[11px] text-[#9a6500]">
+            <span className="flex items-center gap-[6px] text-caption text-[#9a6500]">
               「{emptyScopeCorpus.name}」暂无已入库文档
               <button type="button" className="text-[var(--link)] hover:underline" onClick={() => openCorpus(emptyScopeCorpus.id, "files")}>
                 添加文档
@@ -332,18 +332,18 @@ export function Composer() {
 
         {!editing ? <QuickAsk /> : null}
 
-        <p aria-label="本次运行配置" className="mb-[7px] text-[11px] leading-[1.5] text-[var(--stone)]">
+        <p aria-label="本次运行配置" className="mb-[7px] text-caption leading-[1.5] text-[var(--stone)]">
           本次配置：{activeTask?.name ?? taskId} · {corpusIds.length
             ? corpusIds.map((id) => corpora.find((item) => item.id === id)?.name ?? id).join("、")
             : "未选择知识库"} · {options.allowed_doc_ids !== null ? `限定 ${scoped} 份资料` : "全部已入库资料"} · {options.web_snapshot_ids?.length ? `本地资料 + ${options.web_snapshot_ids.length} 个指定网址快照` : "本地资料 · 网络关闭"}{role === "admin" ? ` · ${model || "模型未记录"}` : ""} · {taskId === "task4" || activeTask?.engine_task_id === "task4" ? "中文 Markdown 报告" : "中文回答，保留引用"}
         </p>
 
-        {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-[11px] text-[var(--steel)]">
+        {options.web_snapshot_ids?.length ? <div className="mb-[7px] flex items-center gap-[7px] text-caption text-[var(--steel)]">
           已确认网页快照 {options.web_snapshot_ids.length} 个
           <button type="button" className="text-[var(--link)]" onClick={() => setOptions((current) => ({ ...current, web_snapshot_ids: [] }))}>清除本次网页范围</button>
         </div> : null}
 
-        {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-[12px]">
+        {webOpen ? <div className="mb-[8px] rounded-[10px] border border-[var(--hairline)] bg-[var(--canvas)] p-[10px] text-caption">
           <div className="mb-[7px] flex gap-[5px]">
             <button type="button" onClick={() => setWebMode("url")} className={webMode === "url" ? "font-semibold text-[var(--primary)]" : "text-[var(--stone)]"}>指定网址</button>
             <span>·</span>
@@ -413,15 +413,15 @@ export function Composer() {
               change={(ids) => setOptions((o) => ({ ...o, allowed_doc_ids: ids }))}
               disabled={busy || !connected || Boolean(scopeDocumentsError)}
             />
-            {scopeDocumentsError ? <p role="alert" className="mt-[6px] text-[11px] text-[var(--red)]">{scopeDocumentsError}</p> : null}
+            {scopeDocumentsError ? <p role="alert" className="mt-[6px] text-caption text-[var(--red)]">{scopeDocumentsError}</p> : null}
           </div>
         ) : null}
 
         {activeTask?.kind === "custom" ? (
-          <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-[12px] text-[var(--slate)]">
+          <div className="mb-[8px] rounded-[9px] border border-[var(--hairline)] bg-[var(--surface-soft)] px-[11px] py-[8px] text-caption text-[var(--slate)]">
             <div className="flex flex-wrap items-center gap-[7px]">
               <span>{versionUpdateAvailable ? `当前 v${workspace.taskVersion} / 最新 v${latestVersion}` : `任务 v${workspace.taskVersion ?? activeTask.version}`} · {corpusIds.length} 个知识库 · {options.allowed_doc_ids !== null ? `${scoped} 份指定资料` : "全部资料"} · 网络关闭 · {activeTask.output_hint || "文本回答"}</span>
-              {versionUpdateAvailable ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[2px] text-[11px]" onClick={() => {
+              {versionUpdateAvailable ? <button type="button" className="rounded-[5px] border border-[var(--hairline-strong)] px-[7px] py-[2px] text-caption" onClick={() => {
                 if (window.confirm(`将此会话从任务 v${workspace.taskVersion} 升级到 v${latestVersion}？`)) void upgradeTaskVersion();
               }}>升级到最新版</button> : null}
             </div>
@@ -429,7 +429,7 @@ export function Composer() {
             {taskFields.length ? <div className="mt-[8px] flex flex-wrap gap-[8px]">{taskFields.map((field) => {
               const value = taskParams[field.key] ?? field.default;
               const year = (value ?? {}) as { from?: number; to?: number };
-              return <label key={field.key} className="min-w-[130px] text-[11px]">{field.label}{field.required ? " *" : ""}
+              return <label key={field.key} className="min-w-[130px] text-caption">{field.label}{field.required ? " *" : ""}
                 {field.type === "enum" ? <select aria-label={field.label} value={String(value ?? "")}
                   onChange={(event) => setTaskParam(field.key, event.target.value || undefined)}
                   className="mt-[3px] block w-full rounded border border-[var(--hairline)] bg-[var(--canvas)] p-[5px]">
@@ -490,7 +490,7 @@ export function Composer() {
                   ? "描述报告需求：领域、年份范围、模板（成果/热点/未来/综合）…"
                   : "基于当前知识库提问，或点击 + 选择一项任务…"
             }
-            className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-[14px] leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
+            className="font-app max-h-[180px] w-full resize-none border-0 bg-transparent px-[15px] pt-[13px] pb-[4px] text-body leading-[1.6] text-[var(--ink)] outline-none placeholder:text-[var(--stone)] disabled:bg-white"
           />
 
           <div className="flex items-center gap-[6px] px-[9px] pt-[7px] pb-[9px]">
@@ -506,11 +506,11 @@ export function Composer() {
               </button>
               {popOpen ? (
                 <div className="absolute bottom-[calc(100%+8px)] left-0 z-[60] w-[296px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
-                  <div className="px-[9px] pt-[8px] pb-[5px] text-[10.5px] font-semibold tracking-[0.6px] text-[var(--stone)] uppercase">
+                  <div className="px-[9px] pt-[8px] pb-[5px] text-caption font-semibold tracking-[0.6px] text-[var(--stone)] uppercase">
                     分析任务
                   </div>
                   {tasksError ? (
-                    <p role="alert" className="px-[9px] py-[6px] text-[11.5px] text-[var(--red)]">
+                    <p role="alert" className="px-[9px] py-[6px] text-caption text-[var(--red)]">
                       {tasksError}
                     </p>
                   ) : null}
@@ -560,7 +560,7 @@ export function Composer() {
             <button
               type="button"
               onClick={() => setScopeOpen((v) => !v)}
-              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-[12.5px] text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
+              className="font-app inline-flex h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--slate)] transition-colors hover:bg-[var(--surface)]"
             >
               <Icon name="list" size={15} />
               资料范围：
@@ -570,7 +570,7 @@ export function Composer() {
             <span className="flex-1" />
 
             <span
-              className="font-app hidden h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-[12.5px] text-[var(--stone)] sm:inline-flex"
+              className="font-app hidden h-[30px] items-center gap-[6px] rounded-[6px] px-[9px] text-body text-[var(--stone)] sm:inline-flex"
               title="首期为服务端固定单一模型，暂不支持切换"
             >
               <Icon name="info" size={14} />
@@ -613,7 +613,7 @@ export function Composer() {
           </div>
         </div>
 
-        <p className="mt-[9px] text-center text-[11px] text-[var(--stone)]" role="status">
+        <p className="mt-[9px] text-center text-caption text-[var(--stone)]" role="status">
           {status ? `${status} · ` : ""}
           DoxAgent 会基于当前知识库作答并标注来源；重要结论建议核对原文
         </p>

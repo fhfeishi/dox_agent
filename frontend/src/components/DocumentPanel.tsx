@@ -42,7 +42,7 @@ export function DocumentPanel({
       >
         <div className="flex items-start gap-[12px] border-b border-[var(--hairline)] px-[18px] pt-[14px] pb-[12px]">
           <div className="min-w-0 flex-1">
-            <h2 className="truncate text-[14px] font-semibold text-[var(--ink)]">{header}</h2>
+            <h2 className="truncate text-body font-semibold text-[var(--ink)]">{header}</h2>
             {meta}
           </div>
           <button

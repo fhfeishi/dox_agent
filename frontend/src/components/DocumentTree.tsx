@@ -72,11 +72,11 @@ export function DocumentTree({
           placeholder="按文件名筛选…"
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
-          className="font-app w-full border-0 bg-transparent text-[13px] text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
+          className="font-app w-full border-0 bg-transparent text-body text-[var(--ink)] outline-none placeholder:text-[var(--stone)]"
         />
       </label>
       {!documents.length ? (
-        <p className="py-[24px] text-center text-[13px] text-[var(--steel)]">文献库还没有文档。</p>
+        <p className="py-[24px] text-center text-body text-[var(--steel)]">文献库还没有文档。</p>
       ) : null}
       {matches ? (
         <ul className="space-y-[2px]">
@@ -84,23 +84,23 @@ export function DocumentTree({
             <li key={doc.doc_id}>
               <button
                 type="button"
-                className={`w-full truncate rounded-[6px] px-[8px] py-[7px] text-left text-[13px] transition-colors hover:bg-[var(--surface)] ${
+                className={`w-full truncate rounded-[6px] px-[8px] py-[7px] text-left text-body transition-colors hover:bg-[var(--surface)] ${
                   doc.doc_id === selectedDocId ? "bg-[var(--surface)] font-medium" : ""
                 }`}
                 onClick={() => onOpen(doc)}
               >
                 {doc.title}
                 <StatusMark doc={doc} />
-                <span className="ml-1 text-[11px] text-[var(--stone)]">{doc.rel_path ?? ""}</span>
+                <span className="ml-1 text-caption text-[var(--stone)]">{doc.rel_path ?? ""}</span>
               </button>
             </li>
           ))}
           {!matches.length ? (
-            <li className="py-[16px] text-center text-[13px] text-[var(--steel)]">没有匹配的文档。</li>
+            <li className="py-[16px] text-center text-body text-[var(--steel)]">没有匹配的文档。</li>
           ) : null}
         </ul>
       ) : (
-        <ul className="space-y-[1px] text-[13px]">
+        <ul className="space-y-[1px] text-body">
           {renderNodes(tree, expanded, toggle, selectedDocId, onOpen, 0)}
         </ul>
       )}
@@ -164,7 +164,7 @@ function renderNodes(
               className={`text-[var(--stone)] transition-transform ${open ? "rotate-90" : ""}`}
             />
             <span className="truncate">{child.name}</span>
-            <span className="text-[11px] text-[var(--stone)]">{countDocs(child)}</span>
+            <span className="text-caption text-[var(--stone)]">{countDocs(child)}</span>
           </button>
           {open ? renderNodes(child, expanded, toggle, selectedDocId, onOpen, depth + 1) : null}
         </li>,

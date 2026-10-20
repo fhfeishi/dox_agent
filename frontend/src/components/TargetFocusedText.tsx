@@ -54,8 +54,8 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
     marker.current?.scrollIntoView({ block: "center" });
   }, [range?.at, renderMarkdown, loading]);
 
-  if (loading) return <p className="text-[13px] text-[var(--steel)]">正在读取正文…</p>;
-  if (error) return <p role="alert" className="text-[13px] text-[var(--red)]">{error}</p>;
+  if (loading) return <p className="text-body text-[var(--steel)]">正在读取正文…</p>;
+  if (error) return <p role="alert" className="text-body text-[var(--red)]">{error}</p>;
 
   const located = range !== null;
   const view = located ? text.slice(range!.start, range!.end) : text.slice(0, WINDOW * 2);
@@ -65,7 +65,7 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
 
   return (
     <>
-      <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-[12px]">
+      <div className="mb-[12px] flex flex-wrap items-center justify-end gap-[12px] text-caption">
         {markdown ? (
           <button type="button" className="text-[var(--link)] hover:underline"
             onClick={() => setRenderMarkdown((value) => !value)}>
@@ -82,7 +82,7 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
         </button>
       </div>
       {located ? null : (
-        <p role="status" className="mb-[10px] text-[12px] text-[#8a6a00]">
+        <p role="status" className="mb-[10px] text-caption text-[#8a6a00]">
           未能在当前正文中找到该引文（资料可能已更新）。已显示正文开头，请重新提取或刷新资料后再定位；不用旧位置冒充新内容。
         </p>
       )}
@@ -91,11 +91,11 @@ export function TargetFocusedText({ doc, corpus, quote }: { doc: DocumentInfo; c
           <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{view}</Markdown>
         </div>
       ) : (
-        <pre className="font-code whitespace-pre-wrap break-words text-[12px] leading-[1.9] text-[var(--charcoal)]">
+        <pre className="font-code whitespace-pre-wrap break-words text-caption leading-[1.9] text-[var(--charcoal)]">
           {located ? (<>{before}<mark ref={marker} className="bg-[var(--primary-soft)] text-[var(--ink)]">{hit}</mark>{after}</>) : view}
         </pre>
       )}
-      <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-[11px] text-[var(--stone)]">
+      <p className="mt-[22px] border-t border-[var(--hairline)] pt-[10px] text-caption text-[var(--stone)]">
         这是知识库规范化正文预览，不等于原始 PDF 文件。
       </p>
     </>

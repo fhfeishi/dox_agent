@@ -174,7 +174,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
       </div>
       <div className="flex flex-col md:flex-row">
         <aside className="shrink-0 border-b border-[var(--hairline)] p-4 md:w-[150px] md:border-r md:border-b-0">
-          <p className="text-[10.5px] font-bold tracking-[2px] text-[var(--stone)]">立项年份</p>
+          <p className="text-caption font-bold tracking-[2px] text-[var(--stone)]">立项年份</p>
           <div className="mt-2 flex flex-wrap gap-1 md:flex-col">
             {layout.years.map((y) => (
               <button key={y} type="button" aria-pressed={year === y} onClick={() => setYear(year === y ? null : y)}
@@ -183,14 +183,14 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
               </button>
             ))}
           </div>
-          {undated ? <p className="mt-3 text-[11px] text-[var(--steel)]">另有 {undated} 个项目立项年待核对，未绘入。</p> : null}
-          <p className="mt-3 text-[11px] leading-5 text-[var(--steel)]">{RELATIONS[relation].note}</p>
-          <p className="mt-2 text-[11px] leading-5 text-[var(--steel)]">{graded
+          {undated ? <p className="mt-3 text-caption text-[var(--steel)]">另有 {undated} 个项目立项年待核对，未绘入。</p> : null}
+          <p className="mt-3 text-caption leading-5 text-[var(--steel)]">{RELATIONS[relation].note}</p>
+          <p className="mt-2 text-caption leading-5 text-[var(--steel)]">{graded
             ? `按各项目${relation}描述的语义相似度关联（相似度 ≥ ${graded.threshold}），并非仅看同名条目。`
             : similarity.isPending ? `正在计算${relation}相似关联，首次约需数分钟；暂按四维层级类别显示。`
               : `未能计算相似关联（${(similarity.error as Error | null)?.message ?? ""}），暂按四维层级类别显示。`}</p>
-          <p className="mt-2 text-[11px] leading-5 text-[var(--stone)]">颜色越深，关联项目越多。成果不作关联依据：同有样机或论文不说明项目相关。关联只表示有同类描述，不判断继承或重复立项。</p>
-          {!hierarchy?.scenes?.length ? <p className="mt-2 text-[11px] text-[#8a6a00]">尚未生成四维层级，场景、问题关联不可用，技术仅按同名条目。</p> : null}
+          <p className="mt-2 text-caption leading-5 text-[var(--stone)]">颜色越深，关联项目越多。成果不作关联依据：同有样机或论文不说明项目相关。关联只表示有同类描述，不判断继承或重复立项。</p>
+          {!hierarchy?.scenes?.length ? <p className="mt-2 text-caption text-[#8a6a00]">尚未生成四维层级，场景、问题关联不可用，技术仅按同名条目。</p> : null}
         </aside>
         <div className="min-w-0 flex-1 overflow-x-auto">
           <svg viewBox={`-110 0 ${SIZE + 220} ${SIZE}`} role="img" aria-label={`${title}项目关系图，${dated.length} 个项目`} className="mx-auto block w-full min-w-[560px] max-w-[1000px]">
@@ -269,7 +269,7 @@ export function ProjectGraph({ corpusId, projects, title, onOpen }: {
               {related.slice(0, 30).map((row) => (
                 <button key={row.project.project_id} type="button" onClick={() => setSelected(row.project.project_id)}
                   className="block w-full rounded-lg border border-[var(--hairline)] p-2 text-left text-xs hover:border-[var(--primary)]">
-                  <b className="block text-[12.5px]">{row.project.title}</b>
+                  <b className="block text-body">{row.project.title}</b>
                   <span className="text-[var(--steel)]">{row.project.start_year} · {[
                     row.similarity !== undefined ? `${relation}相似度 ${Math.round(row.similarity * 100)}%` : "",
                     row.shared.length ? `共同${relation}：${row.shared.slice(0, 3).join("、")}${row.shared.length > 3 ? ` 等 ${row.shared.length} 项` : ""}` : "",

@@ -8,7 +8,7 @@ export function Toast() {
   return (
     <div
       role="status"
-      className="fixed bottom-[22px] left-1/2 z-[100] -translate-x-1/2 rounded-full bg-[var(--navy)] px-[16px] py-[9px] text-[12.5px] text-white shadow-[0_12px_32px_-8px_rgba(15,15,15,0.4)]"
+      className="fixed bottom-[22px] left-1/2 z-[100] -translate-x-1/2 rounded-full bg-[var(--navy)] px-[16px] py-[9px] text-body text-white shadow-[0_12px_32px_-8px_rgba(15,15,15,0.4)]"
     >
       {toast}
     </div>
@@ -23,7 +23,7 @@ export function StatusBanner() {
     <div className="flex shrink-0 justify-center border-b border-[var(--tint-peach)] bg-[var(--tint-cream)] px-4 py-[7px]">
       <div
         role="status"
-        className="flex items-center gap-[10px] text-[12.5px] leading-5 text-[#8a3d00]"
+        className="flex items-center gap-[10px] text-body leading-5 text-[#8a3d00]"
       >
         <Icon name="warning" size={14} />
         <span>

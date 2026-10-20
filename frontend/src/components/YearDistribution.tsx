@@ -74,7 +74,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
   const focusTotal = marked ? totals.find((t) => t.year === focus) : undefined;
   const card = "flex flex-col rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-4";
   return <div className="space-y-3">
-    <p role="status" aria-live="polite" className="min-h-[36px] rounded-lg bg-[var(--surface)] px-4 py-2 text-[13px] text-[var(--slate)]">
+    <p role="status" aria-live="polite" className="min-h-[36px] rounded-lg bg-[var(--surface)] px-4 py-2 text-body text-[var(--slate)]">
       {marked ? <><b className="text-[var(--ink)]">{focus} 年</b>：{focusCount} 个项目立项；{focusTotal ? `已知${scopeName}合计 ${fmt(focusTotal.sum)} 万元（${focusTotal.n} 个项目给出金额）` : `没有项目给出${scopeName}`}。点击柱子在右侧查看当年项目。</>
         : <>共 {dated.length} 个项目按立项年份分布，{known.length} 个给出{scopeName}；把鼠标移到任一年份，两图同时标出。</>}
     </p>
@@ -99,7 +99,7 @@ export function YearDistribution({ corpusId, year, onYear }: { corpusId: string;
       <section aria-label="年度分布-项目资金" className={card}>
         <div className="flex min-h-[38px] flex-wrap items-center gap-2"><h3 className="font-semibold">年度分布 · 项目资金</h3>
           <span className="flex-1" />
-          <select aria-label="金额口径" value={scope} onChange={(e) => setScope(e.target.value)} className="cursor-pointer rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1 text-[13px]">
+          <select aria-label="金额口径" value={scope} onChange={(e) => setScope(e.target.value)} className="cursor-pointer rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-2 py-1 text-body">
             <option value="awarded">批准资助金额</option><option value="direct">直接经费</option><option value="total">总经费</option>
           </select></div>
         <p className="mt-1 min-h-[36px] text-xs leading-[18px] text-[var(--steel)]">{scopeName}（万元），按立项年归属。{known.length} 个项目给出金额，{dated.length - known.length} 个缺失或冲突；部分覆盖时合计不代表完整年度总额。</p>
@@ -156,15 +156,15 @@ export function YearReports({ corpusId, year }: { corpusId: string; year: number
   const shown = q ? projects.filter((p) => `${p.title} ${p.number} ${p.files.map((f) => f.document.title).join(" ")}`.toLowerCase().includes(q)) : projects;
   return <div className="space-y-3 p-1">
     <div>
-      <h2 className="text-[16px] font-semibold">{year} 年 · {name}</h2>
-      <p className="mt-1 text-[12.5px] text-[var(--steel)]">报告 {files} 份 · 项目 {projects.length} 个。按项目立项年份归入，不是当年提交或发布的报告数。</p>
+      <h2 className="text-emphasis font-semibold">{year} 年 · {name}</h2>
+      <p className="mt-1 text-body text-[var(--steel)]">报告 {files} 份 · 项目 {projects.length} 个。按项目立项年份归入，不是当年提交或发布的报告数。</p>
     </div>
     {projects.length > 6 ? <input type="search" aria-label="在本年报告中搜索" placeholder="搜索项目或报告" value={query} onChange={(e) => setQuery(e.target.value)}
-      className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-[13px]" /> : null}
+      className="w-full rounded-lg border border-[var(--hairline-strong)] bg-[var(--canvas)] px-3 py-1.5 text-body" /> : null}
     {!projects.length ? <p className="text-sm text-[var(--steel)]">本年没有纳入的报告。</p> : null}
     <ul className="space-y-2">{shown.map((p) => <li key={p.project_id} className="rounded-lg border border-[var(--hairline)] p-3">
       <button type="button" onClick={() => showInspector({ kind: "project", corpusId, projectId: p.project_id, facet: "成果" })}
-        className="block text-left text-[13.5px] font-medium leading-5 hover:text-[var(--primary)]">{p.title}</button>
+        className="block text-left text-body font-medium leading-5 hover:text-[var(--primary)]">{p.title}</button>
       <p className="mt-0.5 text-xs text-[var(--stone)]">{p.number || "批准号待核对"} · {p.files.length} 份报告</p>
       <div className="mt-1.5 space-y-0.5">{p.files.map((f) => <button key={f.document.doc_id} type="button" onClick={() => openPreview(f.document, null, corpusId)}
         className="block w-full truncate text-left text-xs text-[var(--link)] hover:underline" title={f.document.title}>{f.document.title}</button>)}</div>

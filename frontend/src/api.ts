@@ -521,6 +521,11 @@ export async function streamChat(messages: Message[], runIdOrSignal: string | Ab
         : "请求失败（" + response.status + "）";
     throw new ApiError(message, detail);
   }
+  await readEvents(response, receive);
+}
+
+/** Read an answer's server-sent events until it ends; an answer that stops short throws. */
+async function readEvents(response: Response, receive: (event: Event) => void) {
   if (!response.body) throw new Error("浏览器未收到响应流");
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
@@ -555,6 +560,23 @@ export async function streamChat(messages: Message[], runIdOrSignal: string | Ab
     await reader.cancel().catch(() => undefined);
     reader.releaseLock();
   }
+}
+
+/**
+ * GET /api/runs/{id}/events: an answer from its first event, live while it is still being written,
+ * or as kept with the run once done (card B1). Resolves to false when the server has nothing to show.
+ */
+export async function followRun(runId: string, signal: AbortSignal, receive: (event: Event) => void): Promise<boolean> {
+  const response = await fetch(`/api/runs/${encodeURIComponent(runId)}/events`, { signal });
+  if (response.status === 404 || response.status === 409) return false;
+  if (!response.ok) throw new ApiError("请求失败（" + response.status + "）", null);
+  await readEvents(response, receive);
+  return true;
+}
+
+/** POST /api/runs/{id}/cancel: stop an answer on purpose (leaving the page no longer stops it). */
+export async function cancelRun(runId: string) {
+  await fetch(`/api/runs/${encodeURIComponent(runId)}/cancel`, { method: "POST" }).catch(() => undefined);
 }
 
 export async function changeArtifactLifecycle(item: ArtifactSummary, action: "trash" | "restore" | "purge") {

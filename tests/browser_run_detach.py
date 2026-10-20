@@ -11,6 +11,7 @@ import sys
 import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 from urllib.parse import quote
 
 from playwright.async_api import async_playwright, expect
@@ -39,10 +40,19 @@ def serve(root: Path, port: int):
         return importer(*args, **kwargs)
 
     main_module.import_defaults = slow_import
+
+    class Answer:  # a model that writes five parts, root/answer_delay seconds apart
+        async def astream(self, messages):
+            for part in ("第一段，", "第二段，", "第三段，", "第四段，", "第五段完。"):
+                await asyncio.sleep(float((root / "answer_delay").read_text()))
+                yield SimpleNamespace(content=part)
+
+    from src.agent.graph import build_graph
     storage.DATA = root / "state" / "review"
     settings = Settings(_env_file=None, state_dir=root / "state", corpora_root=root / "corpora", user_dir=root / "usr",
                         model_api_key=SecretStr("fixture"), model_base_url="http://127.0.0.1:9", embedding_path="")
-    uvicorn.run(main_module.create_app(settings), host="127.0.0.1", port=port, log_level="error")
+    app = main_module.create_app(settings, graph_factory=lambda knowledge, s: build_graph(knowledge, s, Answer()))
+    uvicorn.run(app, host="127.0.0.1", port=port, log_level="error")
 
 
 def start(root: Path) -> tuple[subprocess.Popen, str]:
@@ -115,6 +125,7 @@ async def main():
         corpus_id = prepare(root)
         (root / "delay").write_text("4")
         (root / "import_delay").write_text("0")
+        (root / "answer_delay").write_text("1")
         child, origin = start(root)
         try:
             async with async_playwright() as p:
@@ -180,10 +191,47 @@ async def main():
                 await page.goto(f"{origin}/library/{quote(corpus_id)}/documents")
                 await expect(page.get_by_text("上次刷新因服务重启中断", exact=False)).to_be_visible()
                 await page.screenshot(path=str(ROOT / ".logsdev/verification/upgrade-B1/library-import-interrupted.png"))
+
+                # 4. An answer keeps being written after its page closes (user, 2026-10-20):
+                #    back after it finished, the whole answer is there; back while it runs, it carries on live.
+                async def ask(question):
+                    await page.goto(origin + "/chat")
+                    await page.get_by_role("textbox", name="问题", exact=True).fill(question)
+                    await page.wait_for_timeout(1500)  # let the conversation finish rendering before counting
+                    before = await page.locator("article").count()
+                    await page.get_by_role("button", name="发送 ↑").click()
+                    await expect(page.locator("article")).to_have_count(before + 2)  # the question and its answer
+                    await expect(page.locator("article").last).to_contain_text("第一段")
+
+                await ask("巡检机器人有哪些进展？")
+                await page.close()
+                await asyncio.sleep(6)  # the server finishes the answer meanwhile
+                page = await context.new_page()
+                page.on("pageerror", lambda e: errors.append(str(e)))
+                await page.goto(origin + "/chat")
+                await expect(page.locator("article").last).to_contain_text("第五段完。", timeout=10000)
+                await page.screenshot(path=str(ROOT / ".logsdev/verification/upgrade-B1/answer-after-leaving.png"))
+                await ask("巡检机器人还有哪些待研究的问题？")
+                await page.close()
+                page = await context.new_page()
+                await page.goto(origin + "/chat")
+                await expect(page.locator("article").last).to_contain_text("第五段完。", timeout=15000)
+                # Picked up, not asked again: the question is there once.
+                await expect(page.locator("article").filter(has_text="巡检机器人还有哪些待研究的问题？")).to_have_count(1)
+
+                # 5. 停止 now has to reach the server: the answer stops there and is not picked up again.
+                await ask("巡检机器人这一问会被停止")
+                await page.get_by_role("button", name="停止").click()
+                await page.wait_for_timeout(6000)  # long enough for the stand-in to have finished
+                sessions = await (await page.request.get(origin + "/api/workspace/sessions")).json()
+                stopped = next(t for item in sessions for t in item["data"]["turns"] if t["question"] == "巡检机器人这一问会被停止")
+                run = await (await page.request.get(origin + "/api/runs/" + stopped["runId"])).json()
+                assert run["status"] == "interrupted" and not run.get("replay"), run.get("status")
+                await expect(page.locator("article").last).not_to_contain_text("第五段完。")
                 assert not errors, errors
                 await browser.close()
             print("PASS report survives a closed page; after kill -9 it shows 已中断，可重试 and the retry completes; "
-                  "an import cut off by kill -9 shows as interrupted")
+                  "an import cut off by kill -9 shows as interrupted; an answer keeps going after its page closes; 停止 stops it at the server")
         finally:
             child.kill()
             child.wait(timeout=10)

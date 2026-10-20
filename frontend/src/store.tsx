@@ -18,6 +18,8 @@ import {
   fetchTasks,
   ingestCorpus,
   streamChat,
+  followRun,
+  cancelRun,
   type ChatRequestOptions,
   type CorpusInfo,
   type Options,
@@ -360,6 +362,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const controller = useRef<AbortController | null>(null);
   const activeRun = useRef<Promise<void> | null>(null);
   const latestTurns = useRef<Turn[]>([]);
+  const resumed = useRef(new Set<string>());  // answers already picked up again (card B1)
   const startedTick = useRef(0);
 
   const setTurnsTracked: Dispatch<SetStateAction<Turn[]>> = (value) =>
@@ -657,6 +660,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
           ? [...history, turn]
           : [...old, turn],
     );
+    // The question is kept at once: the answer now outlives the page (card B1), and a page closed a
+    // moment after 发送 must not lose the question the server is answering.
+    void workspace.saveNow(latestTurns.current, options).catch(() => undefined);
     const update = (apply: (turn: Turn) => Turn) =>
       replaceTurns((old) => old.map((t, i) => (i === old.length - 1 ? apply(t) : t)));
     const run = (async () => {
@@ -709,8 +715,57 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   function stop() {
+    // Leaving the page no longer stops an answer (card B1), so 停止 has to tell the server.
+    const turn = latestTurns.current.at(-1);
+    if (turn && turn.outcome === "running") {
+      resumed.current.add(turn.runId);  // stopped on purpose: not picked up again
+      void cancelRun(turn.runId);
+    }
     controller.current?.abort();
   }
+
+  /**
+   * An answer keeps being written after its page closes (user, 2026-10-20). Opening the session again
+   * picks it up: live if it is still being written, complete if it finished meanwhile. The turn is
+   * only replaced once the server sends something, so an answer it no longer has stays as it was.
+   */
+  async function resumeAnswer(target: Turn) {
+    if (controller.current || resumed.current.has(target.runId)) return;
+    resumed.current.add(target.runId);
+    const request = new AbortController();
+    controller.current = request;
+    const start = performance.now();
+    let started = false;
+    const update = (apply: (turn: Turn) => Turn) =>
+      replaceTurns((old) => old.map((t, i) => (i === old.length - 1 && t.runId === target.runId ? apply(t) : t)));
+    setBusy(true);
+    try {
+      const found = await followRun(target.runId, request.signal, (event) => {
+        if (request.signal.aborted) return;
+        if (!started) {
+          started = true;
+          setStatus("正在接上之前的回答");
+          update((t) => ({ ...t, steps: [], answer: "", sources: [], policy: null, complete: false,
+            outcome: "running", firstTokenMs: null, totalMs: null }));
+        }
+        update((t) => receiveEvent(t, event, performance.now() - start));
+      });
+      if (found) setStatus("回答完成");
+    } catch {
+      if (started) update((t) => stopTurn(t, request.signal.aborted, performance.now() - start));
+      setStatus("");
+    } finally {
+      if (controller.current === request) controller.current = null;
+      setBusy(false);
+    }
+    if (started) await workspace.saveNow(latestTurns.current, options).catch(() => undefined);
+  }
+  // Keyed on the session's last turn: a session's turns arrive after the session itself is chosen.
+  const lastTurn = turns.at(-1);
+  useEffect(() => {
+    if (!workspace.loaded || !lastTurn || lastTurn.complete || lastTurn.outcome !== "interrupted" || lastTurn.runId.startsWith("legacy-")) return;
+    void resumeAnswer(lastTurn);
+  }, [workspace.active, workspace.loaded, lastTurn?.runId, lastTurn?.outcome]);
 
   /** Regenerate the answer at `index`; later turns are dropped (they depended on it). */
   async function regenerateAt(index: number) {

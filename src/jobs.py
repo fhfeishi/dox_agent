@@ -22,8 +22,9 @@ from .runs import RunStore, request_fingerprint
 logger = logging.getLogger(__name__)
 Progress = Callable[..., None]
 Work = Callable[[dict, Progress], Awaitable[dict]]
-# Kinds run here so far; the rest of card B1 (answers, reports, intelligence, summaries, review) follows.
-KINDS = ("import", "target")
+# Runs whose unfinished state a restart must settle. Answers (chat) are written by their own task in
+# main.py (src/answers.py) but settle the same way; reports settle through their artifact.
+KINDS = ("import", "target", "chat")
 
 
 class JobBusy(RuntimeError):

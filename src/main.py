@@ -41,6 +41,10 @@ from .agent.corpora import (
 from .agent.graph import build_graph
 from .agent.models import check_model, model_for, tracing
 from .agent.usage import TurnUsage
+from .answers import KEEP_SECONDS as ANSWER_KEEP_SECONDS
+from .answers import AnswerLog
+from .answers import from_list as answer_from_list
+from .answers import replay as answer_replay
 from .artifacts import ArtifactStore, report_title
 from .compose_question import compose as compose_question
 from .corpus_groups import GroupStore
@@ -552,6 +556,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.corpus_knowledge = {}
         app.state.jobs = Jobs(app.state.runs)
         app.state.jobs.recover()
+        app.state.answers = {}       # run_id → AnswerLog of an answer being written or just written
+        app.state.answer_tasks = {}  # run_id → the task writing it
         app.state.preparation = "ready" if knowledge is not None else "running"
 
         async def prepare():
@@ -577,6 +583,9 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         preparation_task.cancel()
         await asyncio.gather(preparation_task, return_exceptions=True)
         await app.state.jobs.shutdown()
+        for task in list(app.state.answer_tasks.values()):
+            task.cancel()
+        await asyncio.gather(*app.state.answer_tasks.values(), return_exceptions=True)
 
     app = FastAPI(title="dox_agent", version="0.2.0", lifespan=lifespan)
     from .auth import install_auth
@@ -1995,8 +2004,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                             stream_mode="custom",
                             config={"recursion_limit": 12, "tags": ["dox-agent", "agentic-rag"], "callbacks": [usage]},
                         ):
-                            if await request.is_disconnected():
-                                return
                             if event["event"] == "policy":
                                 policy = event["data"]
                             if event["event"] == "sources":
@@ -2059,11 +2066,54 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 if frozen_knowledge is not None:
                     frozen_knowledge.close_snapshot()
 
-        return StreamingResponse(
-            stream(),
-            media_type="text/event-stream",
-            headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
-        )
+        # The answer is produced by its own task and this response only follows it (card B1): closing
+        # the page ends the following, not the answer, which is there when the person comes back.
+        log = AnswerLog()
+        app.state.answers[payload.run_id] = log
+
+        async def produce():
+            try:
+                async for chunk in stream():
+                    await log.append(chunk)
+            finally:
+                await log.close()
+                app.state.answer_tasks.pop(payload.run_id, None)
+                try:
+                    if (await asyncio.to_thread(app.state.runs.get, payload.run_id)).get("status") == "completed":
+                        await asyncio.to_thread(app.state.runs.update, payload.run_id, replay=answer_replay(log.chunks))
+                except Exception:  # noqa: BLE001 - the live log still serves pages for a while
+                    logger.warning("answer replay not saved: %s", payload.run_id)
+                asyncio.get_running_loop().call_later(ANSWER_KEEP_SECONDS, app.state.answers.pop, payload.run_id, None)
+
+        app.state.answer_tasks[payload.run_id] = asyncio.create_task(produce())
+        return StreamingResponse(log.follow(), media_type="text/event-stream",
+                                 headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+    @app.get("/api/runs/{run_id}/events")
+    async def run_events(run_id: str):
+        """An answer's events from the start: live while it is being written, then from the run."""
+        log = app.state.answers.get(run_id)
+        if log is not None:
+            return StreamingResponse(log.follow(), media_type="text/event-stream", headers={"Cache-Control": "no-cache"})
+        try:
+            snapshot = await asyncio.to_thread(app.state.runs.get, run_id)
+        except KeyError as exc:
+            raise HTTPException(404, "运行记录未记录") from exc
+        if snapshot.get("run_type") != "chat" or not snapshot.get("replay"):
+            raise HTTPException(409, {"status": snapshot.get("status"), "message": "这次回答没有可恢复的内容"})
+        return StreamingResponse(answer_from_list(snapshot["replay"]), media_type="text/event-stream",
+                                 headers={"Cache-Control": "no-cache"})
+
+    @app.post("/api/runs/{run_id}/cancel")
+    async def cancel_run(run_id: str):
+        """Stop an answer on purpose; leaving the page no longer does (the model would keep billing)."""
+        task = app.state.answer_tasks.get(run_id)
+        if task is None or task.done():
+            return {"run_id": run_id, "cancelled": False}
+        task.cancel()
+        with suppress(asyncio.CancelledError):
+            await asyncio.wait({task}, timeout=5)
+        return {"run_id": run_id, "cancelled": True}
 
     async def record_report_failure(run_id: str, params: dict, reason: str) -> None:
         try:

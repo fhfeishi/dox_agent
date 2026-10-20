@@ -2594,6 +2594,8 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(404, "成果不存在") from exc
         if item["type"] != "report" or item["status"] != "failed":
             raise HTTPException(409, "只有未完成的报告可以重新生成")
+        if item.get("task_id") == "intelligence":
+            raise HTTPException(409, "情报分析报告依赖当时上传的外部材料，请在情报分析页重新发起")
         params = item.get("report_params") or {}
         fields = {key: params[key] for key in ReportRequest.model_fields
                   if key not in ("run_id", "parent_run_id", "scope_fingerprint") and params.get(key) is not None}

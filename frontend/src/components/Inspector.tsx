@@ -409,8 +409,10 @@ export function Inspector() {
                 {artifact.status === "failed" ? <div role="alert" className="mt-[8px] rounded-[8px] bg-[var(--tint-rose)] px-[10px] py-[8px] text-[12.5px]">
                   <p className="font-semibold text-[var(--red)]">{artifact.interrupted ? "已中断，可重试" : "生成未完成"}</p>
                   {artifact.fail_reason ? <p className="mt-[2px] text-[var(--slate)]">{artifact.fail_reason}</p> : null}
-                  {artifact.type === "report" && artifact.lifecycle !== "trashed" ? <Button size="sm" className="mt-[7px]" disabled={retrying || Boolean(retryNote)}
-                    onClick={() => void retryArtifact(artifact.artifact_id)}>{retrying ? "正在重新发起…" : "按原设置重新生成"}</Button> : null}
+                  {artifact.type === "report" && artifact.lifecycle !== "trashed" ? artifact.task_id === "intelligence"
+                    ? <p className="mt-[5px] text-[var(--steel)]">情报分析报告依赖当时上传的外部材料，请在“情报分析”页重新发起。</p>
+                    : <Button size="sm" className="mt-[7px]" disabled={retrying || Boolean(retryNote)}
+                      onClick={() => void retryArtifact(artifact.artifact_id)}>{retrying ? "正在重新发起…" : "按原设置重新生成"}</Button> : null}
                   {retryNote ? <p className="mt-[5px] text-[var(--steel)]">{retryNote}</p> : null}
                 </div> : null}
                 {artifact.type === "answer_snapshot" ? <p className="mt-[5px] text-[12px] text-[var(--steel)]">

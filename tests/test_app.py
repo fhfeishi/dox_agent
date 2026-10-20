@@ -872,3 +872,20 @@ def test_only_the_author_or_an_administrator_may_delete_a_report(tmp_path):
         as_user("admin")
         assert act("DELETE", "/api/artifacts/no-author") == 200
         assert act("DELETE", "/api/artifacts/no-author/purge") == 200
+
+
+def test_retry_runs_only_failed_reports_that_can_be_rebuilt(tmp_path):
+    """Card B1: 按原设置重新生成 is for failed reports; 情报分析 needs its uploaded materials again."""
+    from pydantic import SecretStr
+
+    settings = Settings(_env_file=None, state_dir=tmp_path / "state", corpora_root=tmp_path / "corpora",
+                        user_dir=tmp_path / "usr", model_api_key=SecretStr("fixture"), embedding_path="")
+    with TestClient(create_app(settings)) as client:
+        store = client.app.state.artifacts
+        done = store.create("answer", type="answer_snapshot", title="回答", markdown="正文")
+        failed = store.begin_report("intel-run", {"domain": "机器人", "task_id": "intelligence"})
+        store.record_failed_report(run_id="intel-run", reason="报告生成失败")
+        assert client.post(f"/api/artifacts/{done['artifact_id']}/retry").status_code == 409
+        response = client.post(f"/api/artifacts/{failed['artifact_id']}/retry")
+        assert response.status_code == 409 and "情报分析" in response.json()["detail"]
+        assert client.post("/api/artifacts/missing/retry").status_code == 404

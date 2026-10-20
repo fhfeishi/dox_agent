@@ -242,7 +242,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
         : <p className="text-sm text-[var(--steel)]">生成技术谱系后显示路网图。</p> : null}
     </> : null}
     {dim === "技术谱系" ? null : !data.scenes.length ? <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--hairline)] bg-[var(--surface)] p-5 text-sm text-[var(--steel)]">
-      <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维整理。"}</span>{data.state === "missing" ? regenerate : null}
+      <span className="flex-1">{data.state === "missing" ? "本库尚未生成四维归纳。" : "本库还没有场景维度的整理条目，请先完成文件级四维提取。"}</span>{data.state === "missing" ? regenerate : null}
     </div> : <>
       {dim !== "场景" ? <div className="flex flex-wrap gap-2" aria-label="按场景筛选">
         <button type="button" aria-pressed={!sceneName} onClick={() => go({ scene: "" })} className={`rounded-full border px-3 py-1 text-xs ${!sceneName ? "border-[var(--ink)] font-semibold" : "border-[var(--hairline)]"}`}>全部场景</button>
@@ -308,7 +308,7 @@ export function SceneHierarchy({ corpusId }: { corpusId: string }) {
       </div>) : null}
 
       <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--stone)]">
-        <span>{data.state === "stale" ? "四维整理条目已变化，结果需更新。" : data.generated_at ? `生成于 ${new Date(data.generated_at).toLocaleString("zh-CN")}` : ""}</span>
+        <span>{data.state === "stale" ? "四维提取结果已变化，需重新生成。" : data.generated_at ? `生成于 ${new Date(data.generated_at).toLocaleString("zh-CN")}` : ""}</span>
         {coverage.gaps?.length ? <details><summary className="cursor-pointer">未采用的条目 {coverage.gaps.length} 项</summary>
           <ul className="mt-1 space-y-1">{coverage.gaps.map((gap, index) => <li key={index}>{gap.detail}</li>)}</ul></details> : null}
         <span className="flex-1" />{regenerate}

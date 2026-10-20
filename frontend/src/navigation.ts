@@ -1,4 +1,5 @@
 import type { IconName } from "./components/Icons";
+import { TERMS } from "./copy.ts";
 import type { NavKey } from "./store";
 
 /**
@@ -27,7 +28,7 @@ const ALL: Role[] = ["admin", "leader", "user"];
 // 存量分析 opens on 任务模版 and the four built-in tasks are one click away; `?task=` highlights that
 // task's card with its library picker (query 2026-1019 2021).
 export const TASK_PAGES: NavPage[] = [
-  { to: "/tasks", label: "任务模版" },
+  { to: "/tasks", label: TERMS.taskTemplates.name },
   { to: "/tasks?task=task1", label: "精准问答" },
   { to: "/tasks?task=task2", label: "对比分析" },
   { to: "/tasks?task=task3", label: "技术研判" },
@@ -41,22 +42,22 @@ export const REVIEW_PAGES: NavPage[] = [
 ];
 
 export const NAV: NavEntry[] = [
-  { key: "home", label: "首页", to: "/home", hint: "开始工作、我的工作、最近报告", roles: ALL },
-  { key: "overview", label: "概览", roles: ["admin"],
-    pages: [{ to: "/overview/build", label: "资料库建设" }, { to: "/overview/domains", label: "领域分析" }] },
+  { key: "home", label: TERMS.home.name, to: "/home", hint: "开始工作、我的工作、最近报告", roles: ALL },
+  { key: "overview", label: TERMS.overview.name, roles: ["admin"],
+    pages: [{ to: "/overview/build", label: TERMS.build.name }, { to: "/overview/domains", label: TERMS.domains.name }] },
   // A leader's 资料库建设 is on 首页, so their 概览 is the one page 领域分析 (query 2026-1016).
-  { key: "overview", label: "领域分析", to: "/overview/domains", roles: ["leader"] },
-  { key: "library", label: "资料库", to: "/library", roles: ALL,
-    card: { title: "资料查阅", text: "按领域浏览项目资料与原文", to: "/library", icon: "library", accent: "var(--area-library)" } },
-  { key: "chat", label: "对话工作台", to: "/chat", roles: ALL, workbench: true },
-  { key: "tasks", label: "存量分析", pages: TASK_PAGES, hint: "任务模版：精准问答、对比分析、技术研判、专项报告", roles: ALL, workbench: true,
-    card: { title: "存量分析", text: "对比项目、研判趋势、形成报告", to: "/tasks", icon: "tasks", accent: "var(--area-analysis)" } },
-  { key: "review", label: "资料审查", pages: REVIEW_PAGES, roles: ALL, workbench: true,
-    card: { title: "资料审查", text: "按模板核对申请书、开展技术评议", to: "/review/formal", icon: "review", accent: "var(--area-review)" } },
-  { key: "intelligence", label: "情报分析", to: "/intelligence", hint: "上传外部材料进行分析", roles: ALL, workbench: true,
-    card: { title: "情报分析", text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
+  { key: "overview", label: TERMS.domains.name, to: "/overview/domains", roles: ["leader"] },
+  { key: "library", label: TERMS.library.name, to: "/library", roles: ALL,
+    card: { title: TERMS.libraryBrowse.name, text: "按领域浏览项目资料与原文", to: "/library", icon: "library", accent: "var(--area-library)" } },
+  { key: "chat", label: TERMS.chat.name, to: "/chat", roles: ALL, workbench: true },
+  { key: "tasks", label: TERMS.tasks.name, pages: TASK_PAGES, hint: "任务模版：精准问答、对比分析、技术研判、专项报告", roles: ALL, workbench: true,
+    card: { title: TERMS.tasks.name, text: "对比项目、研判趋势、形成报告", to: "/tasks", icon: "tasks", accent: "var(--area-analysis)" } },
+  { key: "review", label: TERMS.review.name, pages: REVIEW_PAGES, roles: ALL, workbench: true,
+    card: { title: TERMS.review.name, text: "按模板核对申请书、开展技术评议", to: "/review/formal", icon: "review", accent: "var(--area-review)" } },
+  { key: "intelligence", label: TERMS.intelligence.name, to: "/intelligence", hint: "上传外部材料进行分析", roles: ALL, workbench: true,
+    card: { title: TERMS.intelligence.name, text: "结合外部材料分析背景与可行性", to: "/intelligence", icon: "forecast", accent: "var(--area-intelligence)" } },
   // 报告中心 (named 成果 until query 2026-1019 2021) is a page of its own after the work areas.
-  { key: "results", label: "报告中心", to: "/results", hint: "全部报告、周期总结与回收站", roles: ALL },
+  { key: "results", label: TERMS.results.name, to: "/results", hint: "全部报告、周期总结与回收站", roles: ALL },
 ];
 
 /** A bar item: an entry, or for a leader the one 工作台 menu that holds the work areas. */
@@ -69,7 +70,7 @@ export function barFor(role: Role): BarItem[] {
   const bench = visible.filter((entry) => entry.workbench);
   for (const entry of visible) {
     if (!entry.workbench) items.push({ kind: "entry", entry });
-    else if (entry === bench[0]) items.push({ kind: "workbench", label: "工作台", entries: bench });
+    else if (entry === bench[0]) items.push({ kind: "workbench", label: TERMS.workbench.name, entries: bench });
   }
   return items;
 }

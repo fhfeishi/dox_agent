@@ -67,7 +67,7 @@ async def main():
                 assert next(t for t in tasks if t["name"] == "技术研判（我的）")["outline"].endswith("- 可继续工作")
 
                 await inspector.get_by_role("button",name="关闭预览面板",exact=True).click()
-                await page.get_by_role("button",name="管理分析任务",exact=True).click()
+                await page.get_by_role("button",name="管理任务模版",exact=True).click()
                 # Cleanup: drafts are deleted, a published task is archived and can come back.
                 while await cards.filter(has_text="未发布草稿").count():
                     before = await cards.count()

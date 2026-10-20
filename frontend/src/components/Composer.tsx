@@ -507,7 +507,7 @@ export function Composer() {
               {popOpen ? (
                 <div className="absolute bottom-[calc(100%+8px)] left-0 z-[60] w-[296px] rounded-[12px] border border-[var(--hairline)] bg-[var(--canvas)] p-[6px] shadow-[0_16px_48px_-8px_rgba(15,15,15,0.16)]">
                   <div className="px-[9px] pt-[8px] pb-[5px] text-caption font-semibold tracking-[0.6px] text-[var(--stone)] uppercase">
-                    分析任务
+                    任务模版
                   </div>
                   {tasksError ? (
                     <p role="alert" className="px-[9px] py-[6px] text-caption text-[var(--red)]">

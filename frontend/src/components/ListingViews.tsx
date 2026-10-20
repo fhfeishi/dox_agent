@@ -125,7 +125,7 @@ export function TasksView() {
       title="任务模版"
       description="存量分析从这里开始：选一个任务模版，选择资料库后补充问题并发送。生成的报告可在“报告中心”查看。"
       actions={<>
-        {role === "admin" ? <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束任务管理" : "管理分析任务"}</Button> : null}
+        {role === "admin" ? <Button variant="ghost" onClick={() => { setManage(!manage); setShowArchived(false); }}>{manage ? "结束任务管理" : "管理任务模版"}</Button> : null}
         {manage ? <Button variant="ghost" onClick={() => setShowArchived(!showArchived)}>{showArchived ? "隐藏已归档" : "已归档"}</Button> : null}
         
       </>}
@@ -136,7 +136,7 @@ export function TasksView() {
         <div className="col-span-full rounded-[12px] border border-dashed border-[var(--hairline-strong)] bg-[var(--surface-soft)] p-[24px] text-center">
           <p className="text-body font-medium text-[var(--ink)]">任务功能未启用</p>
           <p className="mx-auto mt-[8px] max-w-[520px] text-body leading-[1.6] text-[var(--steel)]">
-            请联系管理员启用分析任务。
+            请联系管理员启用任务模版。
           </p>
         </div>
       ) : null}
@@ -193,8 +193,8 @@ export function TasksView() {
       {taskCapable ? <div className="col-span-full border-t border-[var(--hairline)] pt-[16px]"><TemplateLibrary area="analysis" /></div> : null}
       {taskCapable && showArchived ? (
         <section aria-label="已归档" className="col-span-full rounded-[10px] border border-dashed border-[var(--hairline-strong)] p-[14px]">
-          <h2 className="text-body font-semibold text-[var(--ink)]">已归档的分析任务 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
-          {!archivedTasks.length ? <p className="mt-[8px] text-caption text-[var(--stone)]">没有已归档的分析任务。</p> : null}
+          <h2 className="text-body font-semibold text-[var(--ink)]">已归档的任务模版 <span className="font-normal text-[var(--stone)]">· 不能用于新的分析，已绑定的历史版本仍可回看</span></h2>
+          {!archivedTasks.length ? <p className="mt-[8px] text-caption text-[var(--stone)]">没有已归档的任务模版。</p> : null}
           <ul className="mt-[8px] space-y-[6px] text-body">
             {archivedTasks.map((item) =>
               <li key={item.id} className="flex items-center gap-[8px]">

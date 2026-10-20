@@ -64,7 +64,7 @@ export function ProjectDetail({ corpusId, projectId, facet }: { corpusId: string
       <p className="my-2 text-xs text-[var(--steel)]">批准号 {focus.number || "待核对"} · 立项 {focus.start_year ?? "待核对"} · {focus.files.length} 份文件 · {focus.year_conflict ? "项目时间存在冲突" : "来源版本分别保留"}</p>
       {focus.funding.map((m, i) => <p key={i} className="my-1 text-xs">{SCOPES[m.scope]}：{m.amount_yuan === null ? "金额单位待核对" : Number(m.amount_yuan) / 10000 + " 万元"} · {m.quote}{focus.funding_conflicts.includes(m.scope) ? " · 存在冲突，未纳入经费统计" : ""}</p>)}
       <div className="mt-4 space-y-2">{focus.facets[facet].items.map((item, i) => <button key={i} type="button" onClick={() => evidence(focus, item.doc_id)} className="block w-full rounded-lg bg-[var(--canvas)] p-3 text-left text-sm"><b>{item.name} {item.status ? "· " + item.status : ""}</b><p className="mt-1">{item.desc}</p><p className="mt-2 text-xs text-[var(--steel)]">来源：{focus.files.find((f) => f.document.doc_id === item.doc_id)?.document.title}</p><span className="text-xs text-[var(--primary)]">查看此文件的原文依据</span></button>)}</div>
-      {focus.files.map((file) => <p key={file.document.doc_id} className="mt-2 text-xs text-[var(--steel)]">{file.document.title} · {file.completed ? "四维整理完成" : file.notice || "未完成整理，已有证据按来源展示"}</p>)}
+      {focus.files.map((file) => <p key={file.document.doc_id} className="mt-2 text-xs text-[var(--steel)]">{file.document.title} · {file.completed ? "四维提取完成" : file.notice || "未完成整理，已有证据按来源展示"}</p>)}
     </section>
 );
 }

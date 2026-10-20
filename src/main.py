@@ -46,6 +46,7 @@ from .answers import AnswerLog
 from .answers import from_list as answer_from_list
 from .answers import replay as answer_replay
 from .artifacts import ArtifactStore, report_title
+from .auth import ADMIN_ONLY
 from .compose_question import compose as compose_question
 from .corpus_groups import GroupStore
 from .corpus_groups import router as corpus_groups_router
@@ -695,7 +696,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 item["referenced_by"] = await asyncio.to_thread(app.state.custom_tasks.referenced_by_skill, item["id"])
         return items
 
-    @app.post("/api/prompt-skills", status_code=201)
+    @app.post("/api/prompt-skills", dependencies=ADMIN_ONLY, status_code=201)
     async def create_prompt_skill(payload: AssetCreate):
         try:
             return await asyncio.to_thread(app.state.prompt_skills.create, payload.kind, payload.source_id)
@@ -718,7 +719,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except AssetMissing as exc:
             raise HTTPException(404, str(exc)) from exc
 
-    @app.put("/api/prompt-skills/{asset_id}/draft")
+    @app.put("/api/prompt-skills/{asset_id}/draft", dependencies=ADMIN_ONLY)
     async def save_prompt_skill(asset_id: str, payload: AssetDraft):
         try:
             return await asyncio.to_thread(app.state.prompt_skills.save, asset_id, payload.revision,
@@ -728,7 +729,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except AssetConflict as exc:
             raise HTTPException(409, str(exc)) from exc
 
-    @app.post("/api/prompt-skills/{asset_id}/publish")
+    @app.post("/api/prompt-skills/{asset_id}/publish", dependencies=ADMIN_ONLY)
     async def publish_prompt_skill(asset_id: str, payload: AssetRevision):
         try:
             return await asyncio.to_thread(app.state.prompt_skills.publish, asset_id, payload.revision)
@@ -739,11 +740,11 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except AssetInvalid as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.post("/api/prompt-skills/{asset_id}/enable")
+    @app.post("/api/prompt-skills/{asset_id}/enable", dependencies=ADMIN_ONLY)
     async def enable_prompt_skill(asset_id: str):
         return await set_prompt_skill_enabled(asset_id, True)
 
-    @app.post("/api/prompt-skills/{asset_id}/disable")
+    @app.post("/api/prompt-skills/{asset_id}/disable", dependencies=ADMIN_ONLY)
     async def disable_prompt_skill(asset_id: str):
         return await set_prompt_skill_enabled(asset_id, False)
 
@@ -755,7 +756,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except AssetInvalid as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.post("/api/prompt-skills/{asset_id}/archive")
+    @app.post("/api/prompt-skills/{asset_id}/archive", dependencies=ADMIN_ONLY)
     async def archive_prompt_skill(asset_id: str):
         try:
             return await asyncio.to_thread(app.state.prompt_skills.archive, asset_id)
@@ -764,7 +765,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except AssetInvalid as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.post("/api/prompt-skills/{asset_id}/test")
+    @app.post("/api/prompt-skills/{asset_id}/test", dependencies=ADMIN_ONLY)
     async def test_prompt_skill(asset_id: str, payload: AssetTest):
         try:
             item = await asyncio.to_thread(app.state.prompt_skills.get, asset_id)
@@ -787,14 +788,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
                 for task in list_tasks()] + await asyncio.to_thread(app.state.custom_tasks.list,
                                                                        include_archived=include_archived)
 
-    @app.post("/api/tasks/custom", status_code=201)
+    @app.post("/api/tasks/custom", dependencies=ADMIN_ONLY, status_code=201)
     async def copy_task(payload: TaskCopy):
         try:
             return await asyncio.to_thread(app.state.custom_tasks.copy_builtin, payload.source_task_id)
         except TaskMissing as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.delete("/api/tasks/custom/{task_id}", status_code=204)
+    @app.delete("/api/tasks/custom/{task_id}", dependencies=ADMIN_ONLY, status_code=204)
     async def delete_task(task_id: str):
         try:
             await asyncio.to_thread(app.state.custom_tasks.delete, task_id)
@@ -803,14 +804,14 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TaskConflict as exc:
             raise HTTPException(409, str(exc)) from exc
 
-    @app.post("/api/tasks/custom/{task_id}/archive")
+    @app.post("/api/tasks/custom/{task_id}/archive", dependencies=ADMIN_ONLY)
     async def archive_task(task_id: str):
         try:
             return await asyncio.to_thread(app.state.custom_tasks.archive, task_id)
         except TaskMissing as exc:
             raise HTTPException(404, str(exc)) from exc
 
-    @app.post("/api/tasks/custom/{task_id}/restore")
+    @app.post("/api/tasks/custom/{task_id}/restore", dependencies=ADMIN_ONLY)
     async def restore_task(task_id: str):
         try:
             return await asyncio.to_thread(app.state.custom_tasks.restore, task_id)
@@ -831,7 +832,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TaskMissing as exc:
             raise HTTPException(404, str(exc)) from exc
 
-    @app.put("/api/tasks/custom/{task_id}/draft")
+    @app.put("/api/tasks/custom/{task_id}/draft", dependencies=ADMIN_ONLY)
     async def save_task_draft(task_id: str, payload: TaskDraft):
         changes = payload.model_dump(exclude={"revision"}, exclude_unset=True)
         if payload.parameters is not None and payload.parameter_defaults is not None and (
@@ -849,7 +850,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TaskInvalid as exc:
             raise HTTPException(422, str(exc)) from exc
 
-    @app.post("/api/tasks/custom/{task_id}/publish")
+    @app.post("/api/tasks/custom/{task_id}/publish", dependencies=ADMIN_ONLY)
     async def publish_task(task_id: str, payload: TaskPublish):
         try:
             return await asyncio.to_thread(app.state.custom_tasks.publish, task_id, payload.revision)
@@ -1161,7 +1162,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         app.state.corpus_knowledge.pop(corpus_id, None)
         return {"deleted": corpus_id, "purged_source": purge_source}
 
-    @app.post("/api/corpora/{corpus_id}/reassociate")
+    @app.post("/api/corpora/{corpus_id}/reassociate", dependencies=ADMIN_ONLY)
     async def reassociate_corpus(request: Request, corpus_id: str, payload: CorpusReassociate):
         """Explicitly reconnect a missing stable corpus id to an unclaimed directory."""
         info = await asyncio.to_thread(find_corpus, corpus_id)
@@ -1286,7 +1287,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         except TargetStale as exc:
             raise HTTPException(409, {"stale": True, "message": str(exc)}) from exc
 
-    @app.post("/api/corpora/{corpus_id}/target", status_code=202)
+    @app.post("/api/corpora/{corpus_id}/target", dependencies=ADMIN_ONLY, status_code=202)
     async def target_extract(request: Request, corpus_id: str, payload: TargetExtractRequest):
         info = await asyncio.to_thread(find_corpus, corpus_id)
         if info is None:
@@ -2294,7 +2295,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         """G1: manual topic grouping log; original extracted names stay with each item."""
         return {"merges": await asyncio.to_thread(app.state.project_index.merges, corpus_id)}
 
-    @app.post("/api/corpora/{corpus_id}/topics")
+    @app.post("/api/corpora/{corpus_id}/topics", dependencies=ADMIN_ONLY)
     async def merge_topics(corpus_id: str, payload: TopicMerge):
         _, library = await project_library(corpus_id)
         originals = {item["original_name"] for p in library["projects"] for item in p["facets"][payload.dimension]["items"]}
@@ -2305,7 +2306,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
             raise HTTPException(422, str(exc)) from exc
         return {"merges": await asyncio.to_thread(app.state.project_index.merges, corpus_id)}
 
-    @app.post("/api/corpora/{corpus_id}/topics/{merge_id}/undo")
+    @app.post("/api/corpora/{corpus_id}/topics/{merge_id}/undo", dependencies=ADMIN_ONLY)
     async def undo_topic_merge(corpus_id: str, merge_id: str):
         try:
             await asyncio.to_thread(app.state.project_index.undo, corpus_id, merge_id)
@@ -2332,7 +2333,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         info, library = await project_library(corpus_id)
         return await lineage.read(info, library)
 
-    @app.post("/api/corpora/{corpus_id}/lineage", status_code=202)
+    @app.post("/api/corpora/{corpus_id}/lineage", dependencies=ADMIN_ONLY, status_code=202)
     async def generate_lineage(corpus_id: str):
         """Starts (or joins) the background generation; poll GET for progress."""
         info, library = await project_library(corpus_id)
@@ -2375,7 +2376,7 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         library = await asyncio.to_thread(app.state.project_index.library, info, knowledge_for(info))
         return await read_hierarchy(info, library)
 
-    @app.post("/api/corpora/{corpus_id}/hierarchy")
+    @app.post("/api/corpora/{corpus_id}/hierarchy", dependencies=ADMIN_ONLY)
     async def generate_corpus_hierarchy(corpus_id: str, payload: dict | None = None):
         """One corpus-level synthesis call; the stored result is kept when the call fails."""
         info = await asyncio.to_thread(find_corpus, corpus_id)

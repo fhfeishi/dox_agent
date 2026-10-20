@@ -18,7 +18,7 @@ from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
-from ..auth import CURRENT_USER
+from ..auth import ADMIN_ONLY, CURRENT_USER
 from . import audit, guidelines, metadata, sections, templates
 from . import storage as db
 from .export import export_report
@@ -262,7 +262,7 @@ def rules():
     return db.all_items("rule")
 
 
-@router.post("/rules")
+@router.post("/rules", dependencies=ADMIN_ONLY)
 def save_rule(rule: RulePack):
     data = rule.model_dump(mode="json")
     if data["id"].startswith("builtin-") or data["source_kind"] == "builtin":
@@ -280,7 +280,7 @@ def save_rule(rule: RulePack):
     return publish(data, old)
 
 
-@router.delete("/rules/{id}")
+@router.delete("/rules/{id}", dependencies=ADMIN_ONLY)
 def delete_rule(id: str):
     """删除 a template (query 2026-1014 1737): it leaves the list and the workbench; reviews already run
     keep the version they used. Built-in templates are read only. Administrators only (auth)."""
@@ -338,12 +338,12 @@ def save_mappings(id: str, update: MappingUpdate):
     return mappings(id, update.rule_id)
 
 
-@router.post("/rules/validate")
+@router.post("/rules/validate", dependencies=ADMIN_ONLY)
 def validate_rule(rule: RulePack):
     return rule.model_dump(mode="json")
 
 
-@router.post("/guidelines/plan")
+@router.post("/guidelines/plan", dependencies=ADMIN_ONLY)
 async def plan_guidelines(files: list[UploadFile] = File(...), kind: str = Form("formal")):
     if not model_configured():
         raise HTTPException(400, "请先配置审查模型，检查清单由大模型生成。")

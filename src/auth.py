@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Literal
 from urllib.parse import urlsplit
 
-from fastapi import HTTPException, Request
+from fastapi import Depends, HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -34,14 +34,6 @@ Role = Literal["admin", "leader", "user"]
 USERNAME = re.compile(r"^[^\s/\\]{1,40}$")
 GUIDE = re.compile(r"^[a-z][a-z-]{0,30}$")
 SAFE = ("GET", "HEAD", "OPTIONS")
-# Libraries are everyone's to keep (query 2026-1016 0919): any account may create, rename, describe,
-# group and delete libraries and add, rename, delete and re-import their files. What stays with the
-# administrator is the model-heavy regeneration of a library's structure (four-facet extraction, topic
-# merges, lineage, hierarchy) and re-linking its folder on disk. Shared analysis tasks, their prompt
-# assets and review templates are maintained by administrators too (节点审查 D2); a review run only
-# reads a template. Report templates stay open: 情报分析 lets anyone save their own.
-ADMIN_WRITES = re.compile(r"^/api/(corpora/[^/]+/(reassociate|target|topics(/.*)?|lineage|hierarchy)"
-                          r"|tasks/custom(/.*)?|prompt-skills(/.*)?|review/(rules|guidelines)(/.*)?)$")
 # The signed-in account for this request, so stores can record who created a report or review
 # (节点审查 Q2). It records authorship only; what each account may see is not separated yet.
 CURRENT_USER: ContextVar[str] = ContextVar("current_user", default="")
@@ -231,6 +223,21 @@ class Accounts:
             db.execute("INSERT OR IGNORE INTO guides VALUES (?,?)", (username, key))
 
 
+def require_admin(request: Request):
+    """Libraries are everyone's to keep (query 2026-1016 0919): any account may create, rename, describe,
+    group and delete libraries and add, rename, delete and re-import their files. What stays with the
+    administrator is the model-heavy regeneration of a library's structure (four-facet extraction, topic
+    merges, lineage, hierarchy) and re-linking its folder on disk; shared analysis tasks, their prompt
+    assets and review templates are maintained by administrators too (节点审查 D2). Report templates stay
+    open: 情报分析 lets anyone save their own. Each such endpoint declares ``ADMIN_ONLY`` (card B2), and
+    scripts/permission_matrix.py measures the result against design/系统.md §5."""
+    if request.state.user[1] != "admin":
+        raise HTTPException(403, "资料库结构重新生成与共享模板维护需要管理员账户")
+
+
+ADMIN_ONLY = [Depends(require_admin)]
+
+
 def install_auth(app, directory):
     accounts = Accounts(directory)
     app.state.accounts = accounts
@@ -249,11 +256,6 @@ def install_auth(app, directory):
                     return JSONResponse({"detail": "请先登录"}, status_code=401)
                 request.state.user = user
                 CURRENT_USER.set(user[0])
-                # query 2026-1013 1133 / UI review: the first action permissions, enforced here, not by hidden buttons.
-                # Leaders work like users in the workbench (query 2026-1013 1842); maintenance stays admin's.
-                if request.method not in SAFE:
-                    if user[1] != "admin" and ADMIN_WRITES.match(path):
-                        return JSONResponse({"detail": "资料库结构重新生成与共享模板维护需要管理员账户"}, status_code=403)
         return await call_next(request)
 
     def admin(request: Request):

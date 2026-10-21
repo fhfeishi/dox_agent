@@ -3,7 +3,9 @@
 import asyncio
 import hashlib
 import json
+import logging
 import os
+import re
 import shlex
 import shutil
 import signal
@@ -18,6 +20,8 @@ from .agent.config import Settings
 from .agent.corpora import SOURCE_SUFFIXES
 from .knowledge import Document, Page
 from .retrieval import RawBlock
+
+logger = logging.getLogger(__name__)
 
 
 def _first_file(directory: Path, names: list[str]) -> Path | None:
@@ -157,6 +161,25 @@ def mineru_args(template: str, pdf: Path, out: Path, *, search_path: str | None 
     return args
 
 
+# Causes a reader can act on, for the PDF failures seen in practice (A1 pack, 2026-10-21): the file list
+# showed mineru's raw log tail — timestamps, module names, a temporary path. The full output is logged.
+MINERU_CAUSES = (
+    (("data format error", "failed to load document", "not a pdf", "invalid pdf"), "文件不是有效的 PDF：可能已损坏，或只是改了扩展名"),
+    (("password", "encrypted"), "PDF 设有密码，无法读取"),
+)
+
+
+def mineru_failure(output: str) -> str:
+    lowered = output.lower()
+    for needles, reason in MINERU_CAUSES:
+        if any(needle in lowered for needle in needles):
+            return reason
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    plain = [line for line in lines if not re.match(r"^\d{4}-\d{2}-\d{2}[ T]", line)]
+    last = re.sub(r"(?:[A-Za-z]:)?(?:[/\\][^\s/\\]+)+", "", (plain or lines or ["原因未知"])[-1]).strip(" :：")
+    return "PDF 解析失败：" + (last[:120] or "原因未知")
+
+
 def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str, list[Page]]:
     """K13: run mineru into ``out_dir`` and return ``(markdown, per-page text)``."""
     shutil.rmtree(out_dir, ignore_errors=True)
@@ -182,8 +205,9 @@ def parse_pdf_pages(path: Path, settings: Settings, out_dir: Path) -> tuple[str,
         _kill_process_group(process)
         raise ValueError(f"mineru 解析超时（>{int(settings.mineru_timeout)}s；可用 MINERU_TIMEOUT 调大）") from None
     if process.returncode != 0:
-        tail = (output or b"")[-500:].decode("utf-8", "ignore")
-        raise ValueError("mineru 解析失败：" + tail)
+        text = (output or b"")[-4000:].decode("utf-8", "ignore")
+        logger.warning("mineru failed on %s:\n%s", path.name, text)
+        raise ValueError(mineru_failure(text))
     markdown, pages = read_mineru_output(out_dir)
     if not pages:
         raise ValueError("mineru 输出为空，未入库")
@@ -363,7 +387,8 @@ def import_defaults(knowledge, settings: Settings, *, root: Path, force: bool = 
                 stat = path.stat()
                 knowledge.record_file(rel, stat.st_size, stat.st_mtime_ns, (prev or {}).get("sha256", ""),
                                       (prev or {}).get("doc_id"), "error", digest,
-                                      f"{type(exc).__name__}: {exc}")
+                                      # Our own ValueErrors are written for the reader; anything else names its type.
+                                      str(exc) if type(exc) is ValueError else f"{type(exc).__name__}: {exc}")
             except OSError:
                 pass
 

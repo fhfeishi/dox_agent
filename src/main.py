@@ -209,3 +209,6 @@ def create_app(settings=None, knowledge=None, graph_factory=build_graph):
         return FileResponse(path, headers=headers)
 
     return app
+
+
+app = create_app()

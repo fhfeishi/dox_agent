@@ -132,3 +132,15 @@ def test_serve_stops_without_waiting_for_background_jobs(tmp_path):
     finally:
         if process.poll() is None:
             process.kill()
+
+
+def test_the_served_app_exists():
+    # launch.sh / launch.cmd serve "src.main:app" (launcher.serve). Every other test builds its own app
+    # with create_app, so losing the module-level app went unnoticed (B2 split, 2026-10-20). Read, not
+    # imported: importing would build the app from the real settings and touch the real account store.
+    import ast
+    import inspect
+
+    module, _, name = inspect.signature(launcher.serve).parameters["app"].default.partition(":")
+    tree = ast.parse((Path(__file__).resolve().parents[1] / (module.replace(".", "/") + ".py")).read_text(encoding="utf-8"))
+    assert any(isinstance(node, ast.Assign) and any(getattr(t, "id", None) == name for t in node.targets) for node in tree.body)

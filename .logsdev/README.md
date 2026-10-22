@@ -1,64 +1,22 @@
-# .logsdev — 项目记录与维护约定
+# .logsdev — dox_agent 记录
 
-本目录保存 dox_agent 的开发文档与工作记录。**按任务需要组织，不强制模板**：先用已有等价文档，缺什么再采用什么；模板占位不代表已完成或已采用的事实。同一结论只在一个地方维护，其他场景只补差异与链接。
+记录规则见 [DOCUMENTS](../.agents/DOCUMENTS.md)，方法见 [.agents/rules/](../.agents/rules/)，入口与阅读路由见 [AGENTS.md](../AGENTS.md)。本文件只登记项目映射、列出现有记录，不写规则，不另设状态词；各记录的状态以其开头为准。
 
-## 记录入口
+## 项目映射
 
-| 文件 | 用途 | 何时更新 |
-|---|---|---|
-| [PROJECT.md](PROJECT.md) | 长期稳定说明：目标、范围、结构、契约、质量约束、当前限制 | 目标/需求/契约/现状实质变化时 |
-| [ITERATION.md](ITERATION.md) | 当前工作：目标、已完成与依据、未决与下一步 | 有意义的进展、阻碍或接续点变化时 |
-| [DECISIONS.md](DECISIONS.md) | 关键取舍：选择、理由、代价、替代关系 | 决策采用或被替代时 |
+query → .logsdev/query.md；PROJECTION → .logsdev/PROJECT.md；INTERACTION → .logsdev/ITERATION.md；DECISIONS → .logsdev/DECISIONS.md；删除记录 → .logsdev/cleanup-log.md；任务记录 → .logsdev/tasks
+设计载体（系统） → .logsdev/design/系统.md；设计载体（界面） → .logsdev/design/界面.md
 
-## 模板选择
+## 索引
 
-| 模板 | 何时采用 | 主要内容 |
-|---|---|---|
-| [PROJECT.md](PROJECT.md) | 长期项目需要独立的稳定说明时 | 目标、有效要求、现状与重要限制 |
-| [ITERATION.md](ITERATION.md) | 工作需要跨会话接续时 | 当前目标、完成内容及依据、未决问题与下一步 |
-| [DECISIONS.md](DECISIONS.md) | 出现值得长期追溯且需独立维护的取舍时 | 选择、理由、代价与替代关系 |
-
-无需按表格顺序填写，也无需先创建空决策文件。单次修改、审查或知识总结可以直接完成并交付。
-
-## 填写与更新
-
-替换所需占位，删去不适用内容。当前工作默认用简短自然语言；只有任务、验收或证据确实需要对应时才展开表格和编号。不默认指定角色、维护者或完整审查链。
-
-长期结论引用可定位的提交及检查结果、固定报告或带版本的记录，不能只指向下一次会被覆盖的工作文件。更新当前工作前保留必要历史依据，并带入仍有效的约束和问题。
-
-根目录只放上述三份长期文档及 query.md、cleanup-log.md；其他材料按下方索引放入子目录。历史默认用 git 追溯，节点收口时把被压缩的长期文档完整复制到 `archive/<日期>-节点/`。
-
-## 文档索引
-
-状态说明：**现行**＝当前有效、冲突时按 PROJECT §0 与最新 query；**参考**＝已实施或部分被取代，仅作设计依据；**历史**＝已被取代，只供追溯；**待确认**＝无法判断。
-
-| 目录 | 文档 | 状态 |
-|---|---|---|
-| 根目录 | [query.md](query.md) 用户原文；[cleanup-log.md](cleanup-log.md) 删除登记 | 现行 |
-| [design/](design/) | [系统](design/系统.md)：对象与唯一写入方、存储、执行、权限矩阵（实测）、结构性发现 | 现行 |
-| | [界面](design/界面.md)：现状度量、导航、术语表、令牌、页面结构、前端结构 | 现行 |
-| | [机关界面设计语言](design/机关界面设计语言.md) | 现行 |
-| | [总体交互与展示设计 1015](design/dox_agent总体交互与展示设计-20261015.md) | 现行（导航与页面细节以 PROJECT §0 为准） |
-| | [上下层设计规范 1016](design/dox_agent系统与交互设计优化_上下层设计规范-20261016.md) | 参考（升级方案的输入） |
-| | [通用模板审查与资料归纳设计实施方案 1008](design/通用模板审查与资料归纳设计实施方案-20261008.md) | 现行（审查与主题归纳的契约） |
-| | [成果管理与回收站实施指南](design/成果管理与回收站实施指南.md) | 参考（已实施；“成果”现称“报告中心”） |
-| | [资料管理人员业务需求与实施方案](design/资料管理人员业务需求与实施方案.md) | 参考（导航与成果归属以正式需求为准） |
-| | [对话知识库交互优化方案](design/对话知识库交互优化方案.md)、[工程设计复核与审查界面优化方案](design/工程设计复核与审查界面优化方案.md)、[系统设计梳理 1013](design/dox_agent_系统设计梳理-20261013.md) | 参考 |
-| [requirements/](requirements/) | [需求文档：资料管理、存量分析、情报分析与资料审查](requirements/需求文档-资料管理与分析审查.md) | 现行（正式需求，导航与页面以后续 query 为准） |
-| [reviews/](reviews/) | [节点审查 1013-1914](reviews/dox_agent_节点审查-20261013-1914.md)、[千人使用场景 UI 复核 1013](reviews/机关单位千人使用场景_UI与易用性复核-20261013.md)、[从 Demo 到可用产品 1016](reviews/dox_agent从Demo到可用产品_重构建议-20261016.md)、[节点审查 1017-0900](reviews/dox_agent_节点审查-20261017-0900/README.md) | 历史（结论已进入升级方案） |
-| [tasks/](tasks/) | [升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md) | 现行（当前批次） |
-| | [Q1 接续记录](tasks/upgrade-Q1-20261019.md) | 现行 |
-| | [工作任务：资料整理到对比报告 1016](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系任务](tasks/lineage-task/README.md) | 参考（已实施） |
-| [DeepResearch-products/](DeepResearch-products/README.md) | 同类产品调研与整合方案 | 参考 |
-| [verification/](verification/) | 各批次截图与验证记录 | 证据 |
-| [archive/2026-10-19-节点/](archive/2026-10-19-节点/) | 收口前的完整 PROJECT、ITERATION | 历史 |
-| interactions/、design/资料库外置与数据分组实施方案.md | 早期界面目标稿与对齐记录；状态未定的外置方案 | 本地保留，不入库（2026-10-20 用户决定） |
----
-
-## 维护约定在哪
-
-规则不在本目录维护：信息归属、记录格式、状态表、载体上限与出口见 [.agents/DOCUMENTS.md](../.agents/DOCUMENTS.md)，规划、开发、验证、写作方法见 [.agents/rules/](../.agents/rules/)，入口与阅读路由见 [AGENTS.md](../AGENTS.md)。本文件只保留本项目的文档索引；规则与索引冲突时以 `.agents/` 为准，并修本索引。
-
-改动本目录任何文件后运行 `python3 .agents/verifier/check_rules.py`，退出码为 0 才算完成；首次接入留下的历史问题登记在 `.agents/verifier/check_rules.baseline`，只减不增。
-
-历史默认用 git 追溯；节点收口时把被压缩的长期文档完整复制到 `archive/<日期>-节点/`，并按 DOCUMENTS 的“archive 清单”登记。
+| 位置 | 内容 |
+|---|---|
+| [query.md](query.md)、`query-archive/` | 用户原文；已关闭的条目按月归档 |
+| [PROJECT.md](PROJECT.md)、[ITERATION.md](ITERATION.md)、[DECISIONS.md](DECISIONS.md)、`DECISIONS-archive.md`、[cleanup-log.md](cleanup-log.md) | 正式要求、当前工作、决定、接入前的历史决定、删除登记 |
+| [design/系统.md](design/系统.md)、[design/界面.md](design/界面.md) | 现行设计载体 |
+| [tasks/](tasks/) | 任务记录：[升级方案 1019](tasks/dox_agent_升级方案-20261019/README.md)、[Q1 接续](tasks/upgrade-Q1-20261019.md)、[A1 验收](tasks/A1-验收-20261021/README.md)、[领域分析全景实施](tasks/task-领域分析全景实施-20261021.md)、[资料整理到对比报告](tasks/工作任务-资料整理到对比报告-20261016.md)、[技术谱系](tasks/lineage-task/README.md) |
+| `owner-首页-design/`、`owner-领域分析-design/`、`owner-问答-design/` | 专题目录（本地保存、不入库）：首页、领域分析、对话工作台的设计迭代与候选 |
+| [UI设计skill调研-20261021.md](UI设计skill调研-20261021.md) | 工作文档 |
+| `verification/` | 检查证据（本地保存、不入库），按 `query-YYYYMMDD-HHMM` 等来源分目录 |
+| [design/](design/)、[requirements/](requirements/)、[reviews/](reviews/)、[DeepResearch-products/](DeepResearch-products/README.md)、`interactions/` | 接入本规范前的分类目录，原位保留、不再新增文件（见 DECISIONS 的 D-20261022-2）；其中仍作参考的有 [机关界面设计语言](design/机关界面设计语言.md)、[总体交互与展示设计 1015](design/dox_agent总体交互与展示设计-20261015.md)、[通用模板审查与资料归纳 1008](design/通用模板审查与资料归纳设计实施方案-20261008.md)、[需求文档](requirements/需求文档-资料管理与分析审查.md) |
+| `archive/` | 本地查阅的过时材料，清单见 [archive/README.md](archive/README.md)；[2026-10-19 节点快照](archive/2026-10-19-节点/) 入库 |
